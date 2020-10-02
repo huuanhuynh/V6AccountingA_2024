@@ -228,5 +228,13 @@ namespace V6ThuePost
                 //DialogResult = DialogResult.Cancel;
             }
         }
+
+        private void V6MessageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (timer1 != null)
+            {
+                timer1.Dispose();
+            }
+        }
     }
 }

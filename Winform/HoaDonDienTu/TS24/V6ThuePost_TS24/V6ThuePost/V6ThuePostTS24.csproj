@@ -90,6 +90,9 @@
       <DependentUpon>BaseMessageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="XmlConverter.cs" />
+    <EmbeddedResource Include="BaseMessageForm.resx">
+      <DependentUpon>BaseMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>

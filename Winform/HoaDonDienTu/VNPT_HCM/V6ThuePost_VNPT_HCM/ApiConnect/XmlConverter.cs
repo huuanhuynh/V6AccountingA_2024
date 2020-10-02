@@ -106,16 +106,16 @@ namespace V6ThuePostXmlApi
 
         static Dictionary<string, string> XmlChars = new Dictionary<string, string>()
         {
-            {"'", "&apos;"},    // Dấu nháy đơn (')
-            {"\"", "&quot;"},   // Dấu nháy kép (")
+            //{"'", "&apos;"},    // Dấu nháy đơn (')
+            //{"\"", "&quot;"},   // Dấu nháy kép (")
             {"&", "&amp;"},     // Dấu và       (&)
             {"<", "&lt;"},      // Dấu nhỏ hơn  (<)
             {">", "&gt;"},      // Dấu lớn hơn  (>)
             
-            {"/", "&#47;"},
-            {"[", "&#91;"},
-            {"\\", "&#92;"},
-            {"]", "&#93;"},
+            //{"/", "&#47;"},
+            //{"[", "&#91;"},
+            //{"\\", "&#92;"},
+            //{"]", "&#93;"},
         }; 
         /// <summary>
         /// Sửa lỗi nội dung ký tự đặt biệt.

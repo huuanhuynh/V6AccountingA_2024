@@ -143,6 +143,7 @@ namespace V6ThuePostViettelApi
 
                     // Write the data to the request stream.
                     dataStream.Write(byteArray, 0, byteArray.Length);
+                    //dataStream.Flush();
                     // Close the Stream object.
                     dataStream.Close();
                 }

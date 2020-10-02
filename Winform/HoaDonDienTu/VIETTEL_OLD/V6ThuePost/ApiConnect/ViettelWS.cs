@@ -352,22 +352,7 @@ namespace V6ThuePostViettelApi
             string result = POST("InvoiceAPI/InvoiceUtilsWS/getInvoices/" + _codetax, json);
             return result;
         }
-
-        public string POST_DRAFT(ViettelWS _V6Http, string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _V6Http.POST("InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("ViettelWS.POST_DRAFT " + result);
-            return result;
-        }
-
+        
         /// <summary>
         /// Gửi hóa đơn mới.
         /// </summary>
@@ -395,7 +380,7 @@ namespace V6ThuePostViettelApi
         /// <param name="taxCode">Mã số thuế doanh nghiệp sử dụng HĐĐT.</param>
         /// <param name="jsonBody">Dữ liệu hóa đơn</param>
         /// <returns></returns>
-        public string POST_NEW_DRAF(string taxCode, string jsonBody)
+        public string POST_DRAFT(string taxCode, string jsonBody)
         {
             string result;
             try

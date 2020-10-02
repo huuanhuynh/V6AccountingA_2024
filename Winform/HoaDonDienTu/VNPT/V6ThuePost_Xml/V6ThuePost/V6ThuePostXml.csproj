@@ -92,6 +92,9 @@
     <Compile Include="BaseMessageForm.Designer.cs">
       <DependentUpon>BaseMessageForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BaseMessageForm.resx">
+      <DependentUpon>BaseMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>

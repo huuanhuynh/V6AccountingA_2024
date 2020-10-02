@@ -25,9 +25,7 @@ namespace V6ThuePost
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
         #region ===== VAR =====
-        /// <summary>
-        /// Tên cờ V6STT_REC
-        /// </summary>
+        
         //private static string flagName = "";
         /// <summary>
         /// Cờ bắt đầu.
@@ -230,58 +228,67 @@ namespace V6ThuePost
                             }
                             else if (mode.EndsWith("3")) // Tự xuất pdf rồi gửi
                             {
-                                string export_file = null;
-                                if (string.IsNullOrEmpty(exportName))
+                                try
                                 {
-                                    var save = new SaveFileDialog
+                                    string export_file = null;
+                                    if (string.IsNullOrEmpty(exportName))
                                     {
-                                        Filter = "Pdf files (*.pdf)|*.pdf",
-                                        Title = "Xuất pdf để gửi đi.",
-                                    };
-                                    if (save.ShowDialog() == DialogResult.OK)
-                                    {
-                                        export_file = save.FileName;
+                                        var save = new SaveFileDialog
+                                        {
+                                            Filter = "Pdf files (*.pdf)|*.pdf",
+                                            Title = "Xuất pdf để gửi đi.",
+                                        };
+                                        if (save.ShowDialog() == DialogResult.OK)
+                                        {
+                                            export_file = save.FileName;
+                                        }
+                                        else
+                                        {
+                                            export_file = null;
+                                            return;
+                                        }
                                     }
                                     else
                                     {
-                                        export_file = null;
-                                        return;
+                                        export_file = exportName + ".pdf";
+                                    }
+
+                                    string dbfDataFile = arg3;
+                                    string rptFile = arg4;
+                                    ReportDocument rpt = new ReportDocument();
+                                    rpt.Load(rptFile);
+                                    DataSet ds = new DataSet();
+                                    DataTable data1 = ReadDbf(dbfDataFile);
+                                    data1.TableName = "DataTable1";
+                                    DataTable data2 = data1.Clone();
+                                    data2.TableName = "DataTable2";
+                                    var row0Data = data1.Rows[0].ToDataDictionary();
+                                    data2.AddRow(row0Data);
+                                    ds.Tables.Add(data1);
+                                    ds.Tables.Add(data2);
+                                    string tien_bang_chu = MoneyToWords(
+                                        ObjectAndString.ObjectToDecimal(row0Data["T_TT"]),
+                                        "V", "VND");
+                                    rpt.SetDataSource(ds);
+                                    rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
+                                    bool export_ok = ExportRptToPdf(null, rpt, export_file);
+                                    if (export_ok)
+                                    {
+                                        result += "\r\nExport ok.";
+                                    }
+                                    else
+                                    {
+                                        result += "\r\nExport fail.";
+                                    }
+
+                                    if (export_ok && File.Exists(export_file))
+                                    {
+                                        result += UploadInvAttachmentFkey(fkeyA, export_file);
                                     }
                                 }
-                                else
+                                catch
                                 {
-                                    export_file = exportName + ".pdf";
-                                }
-                                string dbfDataFile = arg3;
-                                string rptFile = arg4;
-                                ReportDocument rpt = new ReportDocument();
-                                rpt.Load(rptFile);
-                                DataSet ds = new DataSet();
-                                DataTable data1 = ReadDbf(dbfDataFile);
-                                data1.TableName = "DataTable1";
-                                DataTable data2 = data1.Clone();
-                                data2.TableName = "DataTable2";
-                                var row0Data = data1.Rows[0].ToDataDictionary();
-                                data2.AddRow(row0Data);
-                                ds.Tables.Add(data1);
-                                ds.Tables.Add(data2);
-                                string tien_bang_chu = MoneyToWords(ObjectAndString.ObjectToDecimal(row0Data["T_TT"]),
-                                    "V", "VND");
-                                rpt.SetDataSource(ds);
-                                rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
-                                bool export_ok = ExportRptToPdf(null, rpt, export_file);
-                                if (export_ok)
-                                {
-                                    result += "\r\nExport ok.";
-                                }
-                                else
-                                {
-                                    result += "\r\nExport fail.";
-                                }
-
-                                if (export_ok && File.Exists(export_file))
-                                {
-                                    result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                    //
                                 }
                             }
                         }

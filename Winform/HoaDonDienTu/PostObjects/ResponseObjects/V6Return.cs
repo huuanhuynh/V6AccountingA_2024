@@ -23,10 +23,6 @@ namespace V6ThuePost.ResponseObjects
         /// </summary>
         public string RESULT_ERROR_MESSAGE;
         /// <summary>
-        /// Mã lỗi của lỗi.
-        /// </summary>
-        public string RESULT_ERROR_CODE;
-        /// <summary>
         /// Câu thông báo trả về.
         /// </summary>
         public string RESULT_MESSAGE;

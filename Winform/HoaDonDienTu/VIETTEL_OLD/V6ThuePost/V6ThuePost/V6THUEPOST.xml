@@ -83,7 +83,7 @@
 	<ItemInfo	Field='discount'	FieldV6='0'	Type='Field'/>
 	<ItemInfo	Field='itemDiscount'	FieldV6='ck'	Type='Field'/>
 	<ItemInfo	Field='isIncreaseItem'  Value='1'	FieldV6='isIncreaseItem'	Type='Field'  DataType='bool' Note='true: số tăng - false: số giảm vd ck là false'/>
-  <!--ItemInfo	Field='selection'	FieldV6='0'	Type='Field'/-->
+  <!--ItemInfo	Field='selection'	FieldV6='0'	Type='Field'  Note='null-1- Hàng Hóa 2: Ghi chú 3: Chiết khấu 4: Bảng kê 5: Phí khác.'/-->
   <!--ItemInfo	Field='itemNote'	FieldV6='0'	Type='Field'/-->
   <!--ItemInfo	Field='batchNo'	FieldV6='0'	Type='Field'/-->
   <!--ItemInfo	Field='expDate'	FieldV6='0'	Type='Field'/-->

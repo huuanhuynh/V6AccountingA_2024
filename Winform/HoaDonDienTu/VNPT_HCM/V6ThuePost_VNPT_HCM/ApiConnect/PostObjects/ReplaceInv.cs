@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using V6Tools.V6Objects;
 
 namespace V6ThuePostXmlApi.PostObjects
 {
-    public class ReplaceInv
+    public class ReplaceInv : V6JsonObject
     {
         /// <summary>
         /// &lt;ReplaceInv>...........&lt;/ReplaceInv>

@@ -45,7 +45,6 @@ namespace V6ThuePostXmlApi
             }
             catch (Exception ex)
             {
-                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
@@ -94,7 +93,6 @@ namespace V6ThuePostXmlApi
             }
             catch (Exception ex)
             {
-                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
@@ -205,7 +203,6 @@ namespace V6ThuePostXmlApi
             }
             catch (Exception ex)
             {
-                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }

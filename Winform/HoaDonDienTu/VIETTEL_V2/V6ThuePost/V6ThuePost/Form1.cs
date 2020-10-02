@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using V6ThuePost.ResponseObjects;
 using V6ThuePost.ViettelObjects;
 using V6ThuePostViettelApi;
 
@@ -65,29 +66,16 @@ namespace V6ThuePost
         {
             if (Program._viettel_ws != null)
             {
-                string result = Program._viettel_ws.POST_VIETTEL_TOKEN("/InvoiceAPI/InvoiceWS/createInvoice/" + Program._codetax, "");
-                //Phân tích result
+                V6Return v6return = null;
+                string result = Program._viettel_ws.POST_CREATE_INVOICE("", out v6return);
+                
                 string message = "";
-                try
+                if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
                 {
-                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
-                    if (!string.IsNullOrEmpty(responseObject.description))
-                    {
-                        message += "Kết nối ổn. " + responseObject.description;
-                    }
-
-                    if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
-                    {
-                        message += " " + responseObject.result.invoiceNo;
-                        Program.WriteFlag(Program.flagFileName4, responseObject.result.invoiceNo);
-                        File.Create(Program.flagFileName2).Close();
-                    }
+                    message += "Kết nối ổn. " + v6return.RESULT_ERROR_MESSAGE;
+                    BaseMessage.Show(message, 0, this);
                 }
-                catch (Exception ex)
-                {
-                    Logger.WriteToLog("Program.Main ConverResultObjectException: " + ex.Message);
-                    message = "Kết quả:";
-                }
+            
                 result = message + "\n" + result;
                 lblResult.Text = result;
             }
@@ -100,16 +88,17 @@ namespace V6ThuePost
         private void btnSend_Click(object sender, EventArgs e)
         {
             string result = null;
-
+            V6Return v6Return;
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
-                result = Program._viettel_ws.POST_VIETTEL_TOKEN(Program.createInvoiceUrl, richTextBox1.Text);
+                
+                result = Program._viettel_ws.POST_CREATE_INVOICE(richTextBox1.Text, out v6Return);
                 lblResult.Text = result;
             }
             else
             {
                 string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
-                result = Program._viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT);
+                result = Program._viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT, out v6Return);
                 lblResult.Text = result;
             }
             

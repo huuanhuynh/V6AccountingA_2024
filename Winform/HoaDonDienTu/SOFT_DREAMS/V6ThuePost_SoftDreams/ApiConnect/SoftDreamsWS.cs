@@ -64,7 +64,7 @@ namespace V6ThuePostSoftDreamsApi
                 v6return.RESULT_OBJECT = response;
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
                 v6return.RESULT_MESSAGE = response.Message;
-                v6return.RESULT_ERROR_CODE = response.Status.ToString();
+                //v6return.RESULT_ERROR_CODE = response.Status.ToString();
 
                 if (response.Status == 2)
                 {
@@ -139,7 +139,7 @@ namespace V6ThuePostSoftDreamsApi
                 v6return.RESULT_OBJECT = response;
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
                 v6return.RESULT_MESSAGE = response.Message;
-                v6return.RESULT_ERROR_CODE = response.Status.ToString();
+                //v6return.RESULT_ERROR_CODE = response.Status.ToString();
 
                 if (response.Status == 2)
                 {
@@ -210,7 +210,7 @@ namespace V6ThuePostSoftDreamsApi
                 v6return.RESULT_OBJECT = response;
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
                 v6return.RESULT_MESSAGE = response.Message;
-                v6return.RESULT_ERROR_CODE = response.Status.ToString();
+                //v6return.RESULT_ERROR_CODE = response.Status.ToString();
 
                 if (response.Status == 2)
                 {
@@ -272,7 +272,7 @@ namespace V6ThuePostSoftDreamsApi
                 : _easyService.ServerAdjustInvoice(request, issue, _host, _id, _pass);
 
                 v6return.RESULT_OBJECT = response;
-                v6return.RESULT_ERROR_CODE = response.Status.ToString();
+                //v6return.RESULT_ERROR_CODE = response.Status.ToString();
                 
                 if (response.Status == 2)
                 {

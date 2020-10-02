@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace V6ThuePost.ViettelV2Object.Response
+namespace V6ThuePost.ViettelV2Objects.Response
 {
     public class LoginResponse
     {

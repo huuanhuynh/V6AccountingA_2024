@@ -208,7 +208,6 @@ namespace V6ThuePostManager
             {
                 paras.Result = new PM_Result();
                 paras.Result.V6ReturnValues = new V6Return();
-                paras.Result.V6ReturnValues.RESULT_ERROR_CODE = "EX";
                 paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "EX: " + ex.Message;
                 V6ControlFormHelper.WriteExLog("RequestManager.PowerPost", ex);
             }
@@ -2785,13 +2784,11 @@ namespace V6ThuePostManager
                     }
                     else
                     {
-                        paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = responseObject.description;
-                        paras.Result.V6ReturnValues.RESULT_ERROR_CODE = responseObject.errorCode;
+                        paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = responseObject.errorCode + ":" + responseObject.description;
                     }
                 }
                 catch (Exception ex)
                 {
-                    paras.Result.V6ReturnValues.RESULT_ERROR_CODE = "CONVERT RESPONSE OBJECT EXCEPTION";
                     paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "CONVERT EXCEPTION: " +  ex.Message;
                     Logger.WriteToLog("EXECUTE_VIETTEL ConverResultObjectException: " + paras.Fkey_hd + ex.Message);
                     message = "Kết quả:";
@@ -2800,9 +2797,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
-                paras.Result.V6ReturnValues.RESULT_ERROR_CODE = "WS EXCEPTION";
                 paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
-                
                 V6ControlFormHelper.WriteExLog("PostManager.EXECUTE_VIETTEL", ex);
             }
 

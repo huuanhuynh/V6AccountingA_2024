@@ -95,6 +95,9 @@
     <EmbeddedResource Include="V6Form.resx">
       <DependentUpon>V6Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="V6MessageForm.resx">
+      <DependentUpon>V6MessageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

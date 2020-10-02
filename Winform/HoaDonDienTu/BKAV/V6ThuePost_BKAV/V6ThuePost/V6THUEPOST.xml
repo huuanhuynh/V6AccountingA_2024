@@ -4,6 +4,7 @@
 	<V6Info Field='BkavPartnerToken' 	Value='S7E75uuQXj//rSgk71Iw8EYRCmhIS+7RDy2hXK6zDhqR/X8cEX3txl1skdjN2oYfZPSh7RKFAAopNVRp5lX+o+5kLp8ZvWD/'/>
   <V6Info Field='BkavCommandTypeNew' 	Value='Ers0JMABBas='/>
 	<V6Info Field='baselink' 	Value='https://wsdemo.ehoadon.vn/WSPublicEHoaDon.asmx' Type=''/>
+	<V6Info Field='BkavSign' 	Value='1' Type=''/>
 	
 	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
 	<!--Các thông tin đơn vị được in trên hóa đơn-->			

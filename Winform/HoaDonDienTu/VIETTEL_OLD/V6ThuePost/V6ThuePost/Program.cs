@@ -177,7 +177,13 @@ namespace V6ThuePost
                             fs.Close();
                         }
 
-                        if (string.IsNullOrEmpty(_SERIAL_CERT))
+                        if (mode == "M0") // DRAFT
+                        {
+                            jsonBody = ReadData(dbfFile, "M");
+                            File.Create(flagFileName1).Close();
+                            result = _viettel_ws.POST_DRAFT(_codetax, jsonBody);
+                        }
+                        else if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
                             jsonBody = ReadData(dbfFile, "M");
                             File.Create(flagFileName1).Close();
@@ -253,7 +259,16 @@ namespace V6ThuePost
                             message += " " + responseObject.description;
                         }
 
-                        if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
+                        if (!string.IsNullOrEmpty(responseObject.errorCode))
+                        {
+                            File.Create(flagFileName3).Close();
+                        }
+                        else if (mode == "M0")
+                        {
+                            File.Create(flagFileName4).Close();
+                            File.Create(flagFileName2).Close();
+                        }
+                        else if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
                         {
                             message += " " + responseObject.result.invoiceNo;
                             WriteFlag(flagFileName4, responseObject.result.invoiceNo);
@@ -285,6 +300,7 @@ namespace V6ThuePost
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
             }
+            Application.Exit();
         }
 
         internal static void WriteFlag(string fileName, string content)

@@ -12,7 +12,8 @@ using V6Tools.V6Convert;
 using Newtonsoft.Json;
 using Spy;
 using Spy.SpyObjects;
-using V6ThuePost.ViettelObjects;
+using V6ThuePost.ResponseObjects;
+using V6ThuePost.ViettelV2Objects;
 
 namespace V6ThuePost
 {
@@ -26,23 +27,7 @@ namespace V6ThuePost
         /// Link host
         /// </summary>
         public static string baseUrl = "";
-        /// <summary>
-        /// Link hàm tạo mới (không chứa baseUrl, khi dùng sẽ nối lại sau).
-        /// </summary>
-        public static string createInvoiceUrl = "";
-        /// <summary>
-        /// Link hàm sửa đổi (không chứa baseUrl, khi dùng sẽ nối lại sau).
-        /// </summary>
-        public static string modifyUrl = "";
-        //{
-        //"supplierTaxCode":"0100109106",
-        //"invoiceNo":"AA/17E0000166",
-        //"pattern":"01GTKT0/151",
-        //"transactionUuid":"testuuid9999999",
-        //"fileType":"ZIP"
-        //}
-        public static string getInvoiceRepresentationFileUrl = "InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile";
-
+        
         //public static string mst = "";
         /// <summary>
         /// Tên đăng nhập vào host.
@@ -134,7 +119,7 @@ namespace V6ThuePost
                 try
                 {
                     string jsonBody = "";
-
+                    V6Return v6return = new V6Return();
                     ReadXmlInfo(arg1_xmlFile);
                     string dbfFile = arg2;
 
@@ -145,7 +130,13 @@ namespace V6ThuePost
                         ReadData(arg2, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
-                        result = POST_NEW(jsonBody);
+                        result = _viettel_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                        if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
+                        {
+                            result = "Kết nối ổn. " + result;
+                            File.Create(flagFileName2).Close();
+                            goto End;
+                        }
                         if (result.Contains("\"errorCode\":\"TEMPLATE_NOT_FOUND\""))
                         {
                             result = "Kết nối ổn. " + result;
@@ -169,19 +160,20 @@ namespace V6ThuePost
                                 Field = "transactionUuid",
                                 Value = "" + new_uid,
                             };
-
-                            var fs = new FileStream(flagFileName5, FileMode.Create);
-                            StreamWriter sw = new StreamWriter(fs);
-                            sw.Write("" + new_uid);
-                            sw.Close();
-                            fs.Close();
                         }
 
-                        if (string.IsNullOrEmpty(_SERIAL_CERT))
+                        if (mode == "M0") // DRAF
                         {
                             jsonBody = ReadData(dbfFile, "M");
                             File.Create(flagFileName1).Close();
-                            result = POST_NEW(jsonBody);
+                            result = _viettel_ws.POST_DRAFT(jsonBody, out v6return);
+                        }
+                        else if (string.IsNullOrEmpty(_SERIAL_CERT))
+                        {
+                            jsonBody = ReadData(dbfFile, "M");
+                            if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
+                            File.Create(flagFileName1).Close();
+                            result = _viettel_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
@@ -191,9 +183,10 @@ namespace V6ThuePost
                                 Value = _SERIAL_CERT,
                             };
                             jsonBody = ReadData(dbfFile, "M");
+                            if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
                             _viettel_ws = new ViettelWS(baseUrl, username, password, _codetax);
-                            result = _viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
+                            result = _viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out v6return);
                         }
                     }
                     else if (mode.StartsWith("S"))
@@ -225,13 +218,48 @@ namespace V6ThuePost
 
                         jsonBody = ReadData(dbfFile, "S");
                         File.Create(flagFileName1).Close();
-                        result = POST_EDIT(jsonBody);
+                        result = _viettel_ws.POST_EDIT(jsonBody, out v6return);
                     }
                     else if (mode == "T")
                     {
                         jsonBody = ReadData(dbfFile, "T");
                         File.Create(flagFileName1).Close();
-                        result = POST_NEW(jsonBody);
+                        result = _viettel_ws.POST_REPLACE(jsonBody, out v6return);
+                    }
+                    else if (mode.StartsWith("G")) // call exe như mode M
+                    {
+                        //MakeFlagNames(arg2);
+                        jsonBody = ReadData(dbfFile, "M");
+                        if (mode == "G1" || mode == "G") // Gạch nợ theo fkey
+                        {
+                            File.Create(flagFileName1).Close();
+                            string invoiceNo = ""  + postObject.generalInvoiceInfo["invoiceSeries"] +  row0["SO_CT"].ToString().Trim();
+                            string strIssueDate = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], null);
+                            string templateCode = postObject.generalInvoiceInfo["templateCode"].ToString();
+                            string buyerEmailAddress = postObject.buyerInfo["buyerEmail"].ToString();
+                            string paymentType = postObject.generalInvoiceInfo["paymentType"].ToString();
+                            string paymentTypeName = postObject.generalInvoiceInfo["paymentTypeName"].ToString();
+                            result = _viettel_ws.UpdatePaymentStatus(_codetax, invoiceNo, strIssueDate, templateCode,
+                                buyerEmailAddress, paymentType, paymentTypeName, "true", out v6return);
+                        }
+                        //else if (mode == "G2") // Gạch nợ hóa đơn theo lstInvToken(01GTKT2/001;AA/13E;10)
+                        //{
+                        //    File.Create(flagFileName1).Close();
+                        //    result = confirmPayment(arg2);
+                        //}
+                        else if (mode == "G3") // Hủy gạch nợ theo fkey
+                        {
+                            File.Create(flagFileName1).Close();
+                            string invoiceNo = ""  + postObject.generalInvoiceInfo["invoiceSeries"] +  row0["SO_CT"].ToString().Trim();
+                            string strIssueDate = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], null);
+                            string templateCode = postObject.generalInvoiceInfo["templateCode"].ToString();
+                            string buyerEmailAddress = postObject.buyerInfo["buyerEmail"].ToString();
+                            string paymentType = postObject.generalInvoiceInfo["paymentType"].ToString();
+                            string paymentTypeName = postObject.generalInvoiceInfo["paymentTypeName"].ToString();
+                            result = _viettel_ws.UpdatePaymentStatus(_codetax, invoiceNo, strIssueDate, templateCode,
+                                buyerEmailAddress, paymentType, paymentTypeName, "false", out v6return);
+                        }
+
                     }
                     else if (mode == "H")
                     {
@@ -245,28 +273,18 @@ namespace V6ThuePost
 
                     //Phân tích result
                     string message = "";
-                    try
+                    if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                     {
-                        CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);// MyJson.ConvertJson<CreateInvoiceResponse>(result);
-                        if (!string.IsNullOrEmpty(responseObject.description))
-                        {
-                            message += " " + responseObject.description;
-                        }
-
-                        if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
-                        {
-                            message += " " + responseObject.result.invoiceNo;
-                            WriteFlag(flagFileName4, responseObject.result.invoiceNo);
-                            File.Create(flagFileName2).Close();
-                        }
+                        message = "OK.";
+                        WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
+                        File.Create(flagFileName2).Close();
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Logger.WriteToLog("Program.Main ConverResultObjectException: " + ex.Message);
-                        message = "Kết quả:";
+                        message = "ERR:";
+                        WriteFlag(flagFileName3, v6return.RESULT_ERROR_MESSAGE);
                     }
                     result = message + "\n" + result;
-
                 }
                 catch (Exception ex)
                 {
@@ -285,6 +303,8 @@ namespace V6ThuePost
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
             }
+            //Environment.Exit(0);
+            Process.GetCurrentProcess().Kill(); // AAARGHHHGHglglgghh...
         }
 
         internal static void WriteFlag(string fileName, string content)
@@ -309,12 +329,12 @@ namespace V6ThuePost
             //try
             {
                 //PostObject obj = new PostObject();
-                postObject = new PostObjectViettel();
+                postObject = new PostObjectViettelV2();
                 //ReadXmlInfo(xmlFile);
                 DataTable dataDbf =  ParseDBF.ReadDBF(dbfFile);
                 DataTable data = Data_Table.FromTCVNtoUnicode(dataDbf);
                 //Fill data to postObject
-                DataRow row0 = data.Rows[0];
+                row0 = data.Rows[0];
 
                 fkeyA = fkey0 + row0["STT_REC"];
                 MakeFlagNames(fkeyA);
@@ -351,6 +371,7 @@ namespace V6ThuePost
                 {
                     postObject.sellerInfo[item.Key] = GetValue(row0, item.Value);
                 }
+
                 if (metadataConfig != null)
                 {
                     foreach (KeyValuePair<string, ConfigLine> metaItem in metadataConfig)
@@ -772,38 +793,9 @@ namespace V6ThuePost
         }
         #endregion ==== ALNT ====
 
-        public static string POST_NEW(string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _viettel_ws.POST_VIETTEL_TOKEN(createInvoiceUrl, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("Program.POST_NEW " + result);
-            return result;
-        }
-
-        public static string POST_EDIT(string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _viettel_ws.POST_VIETTEL_TOKEN(modifyUrl, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("Program.POST_EDIT " + result);
-            return result;
-        }
-
         //private static Dictionary<string, string> sellerInfo;
-        private static PostObjectViettel postObject;
+        private static PostObjectViettelV2 postObject;
+        private static DataRow row0;
 
         internal static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         internal static Dictionary<string, ConfigLine> buyerInfoConfig = null;
@@ -859,12 +851,6 @@ namespace V6ThuePost
                                         break;
                                     case "baselink":
                                         baseUrl = UtilityHelper.DeCrypt(line.Value);
-                                        break;
-                                    case "createlink":
-                                        createInvoiceUrl = UtilityHelper.DeCrypt(line.Value);
-                                        break;
-                                    case "modifylink":
-                                        modifyUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                         break;
                                 }
                                 break;

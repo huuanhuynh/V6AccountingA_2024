@@ -1093,7 +1093,7 @@ namespace V6ThuePost
                     inv.Invoice[item.Key] = GetValue(row0, item.Value);
                 }
 
-                result = XmlConverter.ClassToXml(postObject);
+                result = postObject.ToXml();// XmlConverter.ClassTo Xml(postObject);
             }
             //catch (Exception ex)
             {
@@ -1205,7 +1205,7 @@ namespace V6ThuePost
                     inv.Invoice[item.Key] = GetValue(row0, item.Value);
                 }
 
-                result = XmlConverter.ClassToXml(inv);
+                result = inv.ToXml();// = XmlConverter.ClassTo Xml(inv);
             }
             //catch (Exception ex)
             {
@@ -1296,7 +1296,7 @@ namespace V6ThuePost
                     inv.Invoice[item.Key] = GetValue(row0, item.Value);
                 }
 
-                result = XmlConverter.ClassToXml(inv);
+                result = inv.ToXml();// = XmlConverter.ClassToXml(inv);
             }
             //catch (Exception ex)
             {

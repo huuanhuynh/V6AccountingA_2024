@@ -1,12 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using Newtonsoft.Json;
 using V6SignToken;
-using V6ThuePost.ViettelObjects;
-using V6ThuePost.ViettelObjects.GetInvoice;
-using V6ThuePost.ViettelV2Object.Response;
+using V6ThuePost.ResponseObjects;
+using V6ThuePost.ViettelV2Objects;
+using V6ThuePost.ViettelV2Objects.GetInvoice;
+using V6ThuePost.ViettelV2Objects.Response;
 using V6Tools;
 
 namespace V6ThuePostViettelApi
@@ -17,6 +21,7 @@ namespace V6ThuePostViettelApi
         /// https://api-vinvoice.viettel.vn
         /// </summary>
         private string _baseurl = "";
+
         /// <summary>
         /// Tên người sử dụng trên hệ thống Sinvoice (Viettel), thường là codetax
         /// </summary>
@@ -28,7 +33,11 @@ namespace V6ThuePostViettelApi
         /// </summary>
         private string _codetax;
 
-        private readonly RequestManager requestManager = new RequestManager();
+        private const string create_link = @"/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoice/";
+        //private const string cancel_link = @"/InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
+        private const string cancel_link = @"/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
+
+        //private readonly RequestManager requestManager = new RequestManager();
 
         public ViettelWS(string baseurl, string username, string password, string codetax)
         {
@@ -38,24 +47,76 @@ namespace V6ThuePostViettelApi
             _password = password;
             _codetax = codetax;
 
-            //Login();
+            Login();
         }
 
         private void Login()
         {
+            //InitiateSSLTrust();//bypass SSL
+            //if (use_ssl)
+            {
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                                       | SecurityProtocolType.Tls11
+                                                       | SecurityProtocolType.Tls12
+                                                       | SecurityProtocolType.Ssl3;
+            }
             string body = "{\"username\" : \""+_username+"\", \"password\" : \""+_password+"\"}";
+            //Thread thread = new Thread(ABC_Login);
+            //thread.Start();
+            //Thread.Sleep(1000);
             string result = SendRequest(_baseurl + "/auth/login", body, "POST", "", "", "", true);
-
             LoginResponse loginResponse = JsonConvert.DeserializeObject<LoginResponse>(result);
             string token = loginResponse.access_token;
             _viettel_token = token;
-            //string result = POST("/auth/login", body);
         }
 
-        public string POST(string uri, string request)
+        //private void ABC_Login()
+        //{
+        //    try
+        //    {
+        //        string body = "{\"username\" : \""+_username+"\", \"password\" : \""+_password+"\"}";
+        //        string result = SendRequest(_baseurl + "/auth/login", body, "POST", "", "", "", true,
+        //            "10.61.11.42", 3128, true);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        //
+        //    }
+        //}
+
+        public string POST_CREATE_INVOICE(string body, out V6Return v6return)
+        {
+            v6return = new V6Return();
+            string result = POST_VIETTEL_COOKIESTOKEN(create_link + _codetax, body);
+            v6return.RESULT_STRING = result;
+            try
+            {
+                //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
+                CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                v6return.RESULT_OBJECT = responseObject;
+                if (responseObject.result == null)
+                {
+                    v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                }
+                else
+                {
+                    v6return.SO_HD = responseObject.result.invoiceNo;
+                    v6return.ID = responseObject.result.transactionID;
+                    v6return.SECRET_CODE = responseObject.result.reservationCode;
+                }
+            }
+            catch (Exception ex1)
+            {
+                v6return.RESULT_ERROR_MESSAGE = ex1.Message;
+            }
+            return result;
+        }
+
+        public string POST_USERPASS(string uri, string request)
         {
             if (!uri.StartsWith("/")) uri = "/" + uri;
-            string postResult = SendRequest(_baseurl + uri, request, "POST", _username, _password, _viettel_token, true);
+            string postResult = SendRequest(_baseurl + uri, request, "POST", _username, _password, "", true);
             return postResult;
         }
 
@@ -65,21 +126,24 @@ namespace V6ThuePostViettelApi
         /// <param name="uri">Đường dẫn hàm, không kể _baseurl</param>
         /// <param name="request"></param>
         /// <returns></returns>
-        public string POST_VIETTEL_TOKEN(string uri, string request)
+        public string POST_VIETTEL_COOKIESTOKEN(string uri, string request)
         {
             if (!uri.StartsWith("/")) uri = "/" + uri;
             string postResult = SendRequest(_baseurl + uri, request, "POST", "", "", _viettel_token, true);
             return postResult;
         }
 
-        public string GET(string uri)
+        public string GET_VIETTEL_TOKEN(string uri)
         {
             if (!uri.StartsWith("/")) uri = "/" + uri;
-            HttpWebResponse respone = requestManager.SendGETRequest(_baseurl + uri, _username, _password, true);
-            return requestManager.GetResponseContent(respone);
+            string postResult = SendRequest(_baseurl + uri, "", "GET", "", "", _viettel_token, true);
+            return postResult;
+            //HttpWebResponse respone = requestManager.SendGETRequest(_baseurl + uri, _username, _password, true);
+            //return requestManager.GetResponseContent(respone);
         }
 
         CookieContainer cookies = new CookieContainer();
+
         /// <summary>
         /// 
         /// </summary>
@@ -92,6 +156,7 @@ namespace V6ThuePostViettelApi
         /// <param name="allowAutoRedirect"></param>
         /// <returns></returns>
         public string SendRequest(string full_uri, string content, string method, string username, string password_or_bearertoken, string viettel_token, bool allowAutoRedirect)
+            //string proxyIP = "", int port = 0, bool use_ssl = false)
         {
             try
             {
@@ -104,6 +169,13 @@ namespace V6ThuePostViettelApi
 
                 // Create a request using a URL that can receive a post. 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(full_uri);
+
+                //if (!string.IsNullOrEmpty(proxyIP))
+                //{
+                //    WebProxy proxy = new WebProxy(proxyIP, port);
+                //    request.Proxy = proxy;
+                //}
+                
 
                 // Set the Method property of the request to POST.
                 request.Method = method;
@@ -119,17 +191,17 @@ namespace V6ThuePostViettelApi
                         {
                             request.Credentials = CredentialCache.DefaultNetworkCredentials;
                         }
-                        else
+                        else if(!string.IsNullOrEmpty(viettel_token)) // 3 Viettel Authorization with Cookie access_token=...
                         {
-                            request.Headers.Add("cook", string.Format("\"access_token\":\"{0}\"", viettel_token));
+                            request.Headers.Add("Cookie", string.Format("access_token={0}", viettel_token));
                         }
                     }
-                    else
+                    else // 2 Authorization with Bearer token
                     {
                         request.Headers.Add("Authorization", "Bearer " + password_or_bearertoken); // Lúc này password là Bearer Token.
                     }
                 }
-                else
+                else // 1 Basic Authorization with username + password
                 {
                     var encoded = Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes(username + ":" + password_or_bearertoken));
                     request.Headers.Add("Authorization", "Basic " + encoded);
@@ -144,7 +216,9 @@ namespace V6ThuePostViettelApi
                     byte[] byteArray = Encoding.UTF8.GetBytes(content);
 
                     // Set the ContentType property of the WebRequest.
-                    if (full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/cancelTransactionInvoice".ToLower()))
+                    // Custom for Viettel API v2.0
+                    if (full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/cancelTransactionInvoice".ToLower())
+                        || full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/updatePaymentStatus".ToLower()))
                     {
                         request.ContentType = "application/x-www-form-urlencoded";
                     }
@@ -156,7 +230,12 @@ namespace V6ThuePostViettelApi
                     // Set the ContentLength property of the WebRequest.
                     request.ContentLength = byteArray.Length;
 
-                    ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                    ServicePointManager.ServerCertificateValidationCallback = delegate(object sender,
+                        X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                    {
+                        return true;
+                    };
+                    
                     //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/49.0 Chrome/43.0.2357.126_coc_coc Safari/537.36";
                     // Get the request stream.
                     Stream requestStream = request.GetRequestStream();
@@ -184,15 +263,10 @@ namespace V6ThuePostViettelApi
                         reader = new StreamReader(responseStream);
                         responseFromServer = reader.ReadToEnd();
                     }
-                    else
-                    {
-                        responseFromServer = null;
-                        //
-                    }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    //Console.WriteLine(ex.Message);
                 }
                 finally
                 {                
@@ -210,15 +284,80 @@ namespace V6ThuePostViettelApi
                 return responseFromServer;
                 //return request;
             }
+            catch (WebException webex)
+            {
+                if (webex.Response == null) return null;
+                WebResponse errResp = webex.Response;
+                using (Stream respStream = errResp.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(respStream);
+                    string text = reader.ReadToEnd();
+                    return text;
+                }
+            }
             catch (Exception ex)
             {
                 return null;
             }
         }
 
+        /// <summary>
+        /// Cập nhập tình trạng thanh toán.
+        /// </summary>
+        /// <param name="codeTax">0100109106-712 hoặc 0100109106</param>
+        /// <param name="invoiceNo">AA/20E0000002</param>
+        /// <param name="strIssueDate">1600154781000</param>
+        /// <param name="templateCode">01GTKT0/001</param>
+        /// <param name="buyerEmailAddress">tamdtt1@viettel.com.vn</param>
+        /// <param name="paymentType">TM</param>
+        /// <param name="paymentTypeName">TM</param>
+        /// <param name="cusGetInvoiceRight">true/false</param>
+        /// <param name="v6return">Kết quả trả về v6</param>
+        /// <returns></returns>
+        public string UpdatePaymentStatus(string codeTax, string invoiceNo, string strIssueDate, string templateCode,
+            string buyerEmailAddress, string paymentType, string paymentTypeName, string cusGetInvoiceRight, out V6Return v6return)
+        {
+            v6return = new V6Return();
+            //@"supplierTaxCode=0100109106-712
+            //&invoiceNo=AA%2F20E0000002
+            //&strIssueDate=1600154781000
+            //&templateCode=01GTKT0%2F002
+            //&buyerEmailAddress=tamdtt1%40viettel.com.vn
+            //&paymentType=TM
+            //&paymentTypeName=TM
+            //&cusGetInvoiceRight=true"
 
-        private const string create_link0 = @"InvoiceAPI/InvoiceWS/createInvoice"; // + /MST
-        private const string cancel_link = @"InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
+            string request =
+                @"supplierTaxCode=" + codeTax
+                + @"&invoiceNo=" + invoiceNo
+                + @"&strIssueDate=" + strIssueDate
+                + @"&templateCode=" + templateCode
+                + @"&buyerEmailAddress=" + buyerEmailAddress
+                + @"&paymentType=" + paymentType
+                + @"&paymentTypeName=" + paymentTypeName
+                + @"&cusGetInvoiceRight=" + cusGetInvoiceRight;
+            string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/updatePaymentStatus", request);
+            v6return.RESULT_STRING = result;
+            // Sample result
+            //{"errorCode":null,"description":null,"result":true,"paymentTime":null,"paymentMethod":null}   // word
+            //{\"code\":400,\"message\":\"EMAIL_INVALID\",\"data\":\"Email không hợp lệ\"}                  // test
+            //{"errorCode":null,"description":null,"result":true,"paymentTime":1601463363413,"paymentMethod":"TC"}  //test
+            UpdatePaymentResponse responseObject = JsonConvert.DeserializeObject<UpdatePaymentResponse>(result);
+            v6return.RESULT_OBJECT = responseObject;
+            if (responseObject.result)
+            {
+                v6return.RESULT_MESSAGE = "OK";
+            }
+            else if (responseObject.code != 0)
+            {
+                v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+            }
+            else
+            {
+                v6return.RESULT_MESSAGE = responseObject.message;
+            }
+            return result;
+        }
 
         /// <summary>
         /// Hủy hóa đơn.
@@ -243,7 +382,7 @@ namespace V6ThuePostViettelApi
                 + @"&strIssueDate=" + strIssueDate
                 + @"&additionalReferenceDesc=" + additionalReferenceDesc
                 + @"&additionalReferenceDate=" + additionalReferenceDate;
-            string result = POST_VIETTEL_TOKEN(cancel_link, request);
+            string result = POST_VIETTEL_COOKIESTOKEN(cancel_link, request);
 
             return result;
         }
@@ -277,7 +416,7 @@ namespace V6ThuePostViettelApi
             //string contentType = "application/x-www-form-urlencoded";
             //string request = string.Empty;
             //string result = CreateRequest.webRequest(apiLink, request, autStr, "GET", contentType);
-            string result = GET(apiLink);
+            string result = GET_VIETTEL_TOKEN(apiLink);
 
             ZipFileResponse objFile = JsonConvert.DeserializeObject<ZipFileResponse>(result);
             string fileName = objFile.fileName;
@@ -322,7 +461,7 @@ namespace V6ThuePostViettelApi
             //string contentType = "application/x-www-form-urlencoded";
             //string request = string.Empty;
             //string result = CreateRequest.webRequest(apiLink, request, autStr, "GET", contentType);
-            string result = GET(apiLink);
+            string result = GET_VIETTEL_TOKEN(apiLink);
 
             ZipFileResponse objFile = JsonConvert.DeserializeObject<ZipFileResponse>(result);
             string fileName = objFile.fileName;
@@ -352,7 +491,7 @@ namespace V6ThuePostViettelApi
         /// Download bản chuyển đổi.
         /// </summary>
         /// <param name="codeTax"></param>
-        /// <param name="methodlink">InvoiceAPI/InvoiceWS/createExchangeInvoiceFile</param>
+        /// <param name="methodlink">/services/einvoiceapplication/api/InvoiceAPI/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile</param>
         /// <param name="invoiceNo">Số hóa đơn hệ thống Viettel trả về.</param>
         /// <param name="strIssueDate"></param>
         /// <param name="savefolder"></param>
@@ -382,7 +521,7 @@ namespace V6ThuePostViettelApi
 //                            ""fileType"":""" + objGetFile.fileType + @"""
 //                            }";
 
-            string result = GET(methodlink + parameters);
+            string result = GET_VIETTEL_TOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
 
             PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
             string fileName = objFile.fileName;
@@ -415,12 +554,11 @@ namespace V6ThuePostViettelApi
         /// Download bản thể hiện.
         /// </summary>
         /// <param name="codeTax"></param>
-        /// <param name="methodlink">InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)</param>
         /// <param name="invoiceNo">Số hóa đơn hệ thống Viettel trả về.</param>
         /// <param name="pattern"></param>
         /// <param name="savefolder"></param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDF(string codeTax, string methodlink, string invoiceNo, string pattern, string savefolder)
+        public string DownloadInvoicePDF(string codeTax, string invoiceNo, string pattern, string savefolder)
         {
             GetFileRequest objGetFile = new GetFileRequest();
             objGetFile.invoiceNo = invoiceNo;
@@ -436,7 +574,7 @@ namespace V6ThuePostViettelApi
                             ""fileType"":""" + objGetFile.fileType + @"""
                             }";
 
-            string result = POST_VIETTEL_TOKEN(methodlink, request);
+            string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile", request);
 
             PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
             string fileName = objFile.fileName;
@@ -466,24 +604,22 @@ namespace V6ThuePostViettelApi
             return path;
         }
 
-        public string CheckConnection(string create_link)
+        /// <summary>
+        /// Chạy kiểm tra kết nối. Nếu ổn trả về null. Có lỗi trả về câu thông báo.
+        /// </summary>
+        /// <returns></returns>
+        public string CheckConnection()
         {
-            string result = POST_VIETTEL_TOKEN(create_link, "");
-            //Phân tích result
-            string message = null;
-            
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
-            if (!string.IsNullOrEmpty(responseObject.description) && responseObject.description.Contains("Phải chọn loại template hóa đơn"))
+            V6Return v6return;
+            string result = POST_CREATE_INVOICE("", out v6return);
+            if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
             {
-                ;
+                return null;
             }
-
-            if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
+            else
             {
-                message += " " + responseObject.result.invoiceNo;
+                return v6return.RESULT_ERROR_MESSAGE;
             }
-
-            return message;
         }
 
         /// <summary>
@@ -501,7 +637,7 @@ namespace V6ThuePostViettelApi
                 toDate = from.ToString("dd/MM/yyyy"),
             };
             string json = input.ToJson();
-            string result = POST_VIETTEL_TOKEN("InvoiceAPI/InvoiceUtilsWS/getListInvoiceDataControl", json);
+            string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/getListInvoiceDataControl", json);
             return result;
         }
 
@@ -513,83 +649,87 @@ namespace V6ThuePostViettelApi
         public string GetInvoices(GetInvoiceInput input)
         {
             string json = input.ToJson();
-            string result = POST_VIETTEL_TOKEN("InvoiceAPI/InvoiceUtilsWS/getInvoices/" + _codetax, json);
+            string result = POST_VIETTEL_COOKIESTOKEN("InvoiceAPI/InvoiceUtilsWS/getInvoices/" + _codetax, json);
             return result;
         }
 
-        public string POST_DRAFT(ViettelWS _V6Http, string jsonBody)
+        public string POST_DRAFT(string jsonBody, out V6Return v6return)
         {
             string result;
+            v6return = new V6Return();
             try
             {
-                result = _V6Http.POST_VIETTEL_TOKEN("InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+                result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+                v6return.RESULT_STRING = result;
+                try
+                {
+                    // {"errorCode":"","description":"","result":{}}
+                    // {"code":400,"message":"TRANSACTION_UUID_INVALID","data":"Transaction Uuid đã được lập hóa đơn"}
+                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    v6return.RESULT_OBJECT = responseObject;
+                    if (string.IsNullOrEmpty(responseObject.message))
+                    {
+                        v6return.SO_HD = responseObject.result.invoiceNo;
+                        v6return.ID = responseObject.result.transactionID;
+                        v6return.SECRET_CODE = responseObject.result.reservationCode;
+                    }
+                    else
+                    {
+                        v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                    }
+                }
+                catch (Exception ex1)
+                {
+                    v6return.RESULT_ERROR_MESSAGE = ex1.Message;
+                }
             }
             catch (Exception ex)
             {
                 result = ex.Message;
+                v6return.RESULT_ERROR_MESSAGE += ex.Message;
             }
             Logger.WriteToLog("ViettelWS.POST_DRAFT " + result);
             return result;
         }
-
-        /// <summary>
-        /// Gửi hóa đơn mới.
-        /// </summary>
-        /// <param name="_createInvoiceUrl">InvoiceAPI/InvoiceWS/createInvoice/0302375710</param>
-        /// <param name="jsonBody"></param>
-        /// <returns></returns>
-        public string POST_NEW(string _createInvoiceUrl, string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = POST_VIETTEL_TOKEN(_createInvoiceUrl, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("ViettelWS.POST_NEW " + result);
-            return result;
-        }
-
-        /// <summary>
-        /// Tạo mới hoặc sửa hóa đơn nháp.
-        /// </summary>
-        /// <param name="taxCode">Mã số thuế doanh nghiệp sử dụng HĐĐT.</param>
-        /// <param name="jsonBody">Dữ liệu hóa đơn</param>
-        /// <returns></returns>
-        public string POST_NEW_DRAF(string taxCode, string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = POST_VIETTEL_TOKEN("/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + taxCode, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("ViettelWS.POST_NEW " + result);
-            return result;
-        }
-
+        
         /// <summary>
         /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
         /// </summary>
-        /// <param name="_createInvoiceUrl"></param>
         /// <param name="jsonBody"></param>
         /// <returns></returns>
-        public string POST_REPLACE(string _createInvoiceUrl, string jsonBody)
+        public string POST_REPLACE(string jsonBody, out V6Return v6return)
         {
-            string result;
+            string result = null;
+            v6return = new V6Return();
             try
             {
-                result = POST_VIETTEL_TOKEN(_createInvoiceUrl, jsonBody);
+                result = POST_CREATE_INVOICE(jsonBody, out v6return);
+                v6return.RESULT_STRING = result;
+                try
+                {
+                    //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
+                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    v6return.RESULT_OBJECT = responseObject;
+                    if (responseObject.result == null)
+                    {
+                        v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                    }
+                    else
+                    {
+                        v6return.SO_HD = responseObject.result.invoiceNo;
+                        v6return.ID = responseObject.result.transactionID;
+                        v6return.SECRET_CODE = responseObject.result.reservationCode;
+                    }
+                }
+                catch (Exception ex1)
+                {
+                    v6return.RESULT_ERROR_MESSAGE = ex1.Message;
+                }
             }
             catch (Exception ex)
             {
                 result = ex.Message;
+                v6return.RESULT_ERROR_MESSAGE += ex.Message;
             }
             Logger.WriteToLog("ViettelWS.POST_REPLACE " + result);
             return result;
@@ -598,25 +738,26 @@ namespace V6ThuePostViettelApi
         /// <summary>
         /// Gửi điều chỉnh hóa đơn.
         /// </summary>
-        /// <param name="_modifylink"></param>
         /// <param name="jsonBody"></param>
         /// <returns></returns>
-        public string POST_EDIT(string _modifylink, string jsonBody)
+        public string POST_EDIT(string jsonBody, out V6Return v6return)
         {
             string result;
+            v6return = new V6Return();
             try
             {
-                result = POST_VIETTEL_TOKEN(_modifylink, jsonBody);
+                result = POST_VIETTEL_COOKIESTOKEN("editlink", jsonBody);
             }
             catch (Exception ex)
             {
                 result = ex.Message;
+                v6return.RESULT_ERROR_MESSAGE += ex.Message;
             }
             Logger.WriteToLog("ViettelWS.POST_EDIT " + result);
             return result;
         }
 
-        public CreateInvoiceResponse POST_NEW_TOKEN(string json, string templateCode, string token_serial)
+        public CreateInvoiceResponse POST_NEW_USBTOKEN(string json, string templateCode, string token_serial)
         {
             string result = null;
             CreateInvoiceResponse responseObject = CreateInvoiceUsbTokenGetHash(json, out result);
@@ -637,32 +778,48 @@ namespace V6ThuePostViettelApi
             }
         }
 
-        public string CreateInvoiceUsbTokenGetHash_Sign(string json, string templateCode, string token_serial)
+        public string CreateInvoiceUsbTokenGetHash_Sign(string json, string templateCode, string token_serial, out V6Return v6return)
         {
-            string result = null;
-            string result2 = null;
-            result = POST_VIETTEL_TOKEN("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
-
+            string hash_result = null;
+            string sign_result2 = null;
+            v6return = new V6Return();
+            hash_result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
+            v6return.RESULT_STRING = hash_result;
+            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(hash_result);
+            v6return.RESULT_OBJECT = responseObject;
             if (responseObject.result != null)
             {
                 V6Sign v6sign = new V6Sign();
                 string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
-                result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
+                sign_result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
+                v6return.RESULT_STRING = sign_result2;
+                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(sign_result2);
+                v6return.RESULT_OBJECT = responseObject;
+                if (responseObject.result == null)
+                {
+                    v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                }
+                else
+                {
+                    v6return.SO_HD = responseObject.result.invoiceNo;
+                    v6return.ID = responseObject.result.transactionID;
+                    v6return.SECRET_CODE = responseObject.result.reservationCode;
+                }
             }
             else
             {
-                Logger.WriteToLog("" + result);
+                v6return.RESULT_ERROR_MESSAGE = hash_result;
+                Logger.WriteToLog("" + hash_result);
                 return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
             }
 
-            return result2;
+            return sign_result2;
         }
 
 
         public CreateInvoiceResponse CreateInvoiceUsbTokenGetHash(string json, out string result)
         {
-            result = POST_VIETTEL_TOKEN("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
+            result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
             CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
             return responseObject;
         }
@@ -677,7 +834,7 @@ namespace V6ThuePostViettelApi
         /// <returns></returns>
         public string CreateInvoiceUsbTokenInsertSignature(string supplierTaxCode, string templateCode, string hashString, string signature)
         {
-            string methodlink = "InvoiceAPI/InvoiceWS/createInvoiceUsbTokenInsertSignature";
+            string methodlink = "/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenInsertSignature";
             string request = 
 @"{
 ""supplierTaxCode"":""" + supplierTaxCode + @""",
@@ -686,7 +843,7 @@ namespace V6ThuePostViettelApi
 ""signature"":""" + signature + @"""
 }";
 
-            string result = POST_VIETTEL_TOKEN(methodlink, request);
+            string result = POST_VIETTEL_COOKIESTOKEN(methodlink, request);
 
             return result;
         }

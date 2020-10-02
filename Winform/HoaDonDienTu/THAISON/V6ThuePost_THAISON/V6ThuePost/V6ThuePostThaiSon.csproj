@@ -77,6 +77,9 @@
     <Compile Include="BaseMessageForm.Designer.cs">
       <DependentUpon>BaseMessageForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BaseMessageForm.resx">
+      <DependentUpon>BaseMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

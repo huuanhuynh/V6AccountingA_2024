@@ -357,7 +357,6 @@ namespace V6ThuePostMInvoiceApi
             }
             catch (Exception ex)
             {
-                v6return.RESULT_ERROR_CODE = "WS_EXCEPTION";
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
 
                 result = ex.Message;
@@ -407,9 +406,7 @@ namespace V6ThuePostMInvoiceApi
             }
             catch (Exception ex)
             {
-                v6return.RESULT_ERROR_CODE = "WS_EXCEPTION";
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
-
                 result = ex.Message;
             }
             Logger.WriteToLog("WS.POST_NEW " + result);
@@ -488,9 +485,7 @@ namespace V6ThuePostMInvoiceApi
             }
             catch (Exception ex)
             {
-                v6return.RESULT_ERROR_CODE = "WS_EXCEPTION";
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
-
                 result = ex.Message;
             }
             Logger.WriteToLog("WS.POST_EDIT " + result);
@@ -535,9 +530,7 @@ namespace V6ThuePostMInvoiceApi
             }
             catch (Exception ex)
             {
-                v6return.RESULT_ERROR_CODE = "WS_EXCEPTION";
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
-
                 result = ex.Message;
             }
             Logger.WriteToLog("WS.POST_NEW " + result);

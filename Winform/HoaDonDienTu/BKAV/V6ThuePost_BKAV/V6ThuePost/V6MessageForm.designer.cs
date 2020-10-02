@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6MessageForm));
             this.lblMessage = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCANCEL = new System.Windows.Forms.Button();
@@ -105,7 +104,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = Properties.Resources.Warning_48x48_72;
+            this.pictureBox1.Image = global::V6ThuePost.Properties.Resources.Warning_48x48_72;
             this.pictureBox1.Location = new System.Drawing.Point(20, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(48, 48);
@@ -182,13 +181,13 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblMessage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(300, 120);
             this.Name = "V6MessageForm";
             this.ShowInTaskbar = false;
             this.Text = "Thông báo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.V6MessageForm_FormClosing);
             this.Controls.SetChildIndex(this.lblMessage, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

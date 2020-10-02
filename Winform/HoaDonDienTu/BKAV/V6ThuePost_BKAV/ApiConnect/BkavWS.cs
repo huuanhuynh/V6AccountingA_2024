@@ -67,7 +67,6 @@ namespace V6ThuePostBkavApi
             catch (Exception ex)
             {
                 v6return = new V6Return();
-                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = ex.Message;
             }
@@ -298,17 +297,9 @@ namespace V6ThuePostBkavApi
             Guid guid = Guid.Empty;
             msg = Convertor.StringToGuid(uid, out guid);
             if (msg.Length > 0) return "Giá trị không thể convert sang GUID";
-            postObject.Invoice["InvoiceGUID"] = guid;
-
-            //listInvoiceDataWS.Add(invoiceDataWS);
-
-            string list = null;
-            list = "[" + postObject.ToJson() + "]";
-            //msg = Convertor.ObjectToString<List<InvoiceDataWS>>(rdXML.Checked, listInvoiceDataWS, out list);
-            //if (msg.Length > 0) return msg;
-
+            
             Result result = null;
-            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._205_SignGUID, list, out result);
+            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._205_SignGUID, uid, out result);
             v6return.RESULT_OBJECT = result.Object;
             v6return.RESULT_STRING = result.Object.ToString();
             if (msg.Length > 0)
@@ -317,6 +308,7 @@ namespace V6ThuePostBkavApi
                 return msg;
             }
 
+            return msg;
             // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
             List<InvoiceResult> listInvoiceResult = null;
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
