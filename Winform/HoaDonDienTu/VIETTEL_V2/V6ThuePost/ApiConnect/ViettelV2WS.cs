@@ -218,7 +218,9 @@ namespace V6ThuePostViettelApi
                     // Set the ContentType property of the WebRequest.
                     // Custom for Viettel API v2.0
                     if (full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/cancelTransactionInvoice".ToLower())
-                        || full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/updatePaymentStatus".ToLower()))
+                        || full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/updatePaymentStatus".ToLower())
+                        || full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/createExchangeInvoiceFile".ToLower())
+                        )
                     {
                         request.ContentType = "application/x-www-form-urlencoded";
                     }
@@ -376,9 +378,15 @@ namespace V6ThuePostViettelApi
             //additionalReferenceDesc = "viettel_1234";
             //additionalReferenceDate = "20170907161438";
 
+            //supplierTaxCode=0100109106-712
+            //&invoiceNo=AA%2F20E0000001
+            //&strIssueDate=1600102800000
+            //&additionalReferenceDesc=hello
+            //&additionalReferenceDate=1600230649604
+
             string request =
                 @"supplierTaxCode=" + codeTax
-                + @"&invoiceNo=" + invoiceNo
+                + @"&invoiceNo=" + invoiceNo.Replace("/", "%2F")
                 + @"&strIssueDate=" + strIssueDate
                 + @"&additionalReferenceDesc=" + additionalReferenceDesc
                 + @"&additionalReferenceDate=" + additionalReferenceDate;
@@ -487,121 +495,136 @@ namespace V6ThuePostViettelApi
             return path;
         }
 
-        /// <summary>
-        /// Download bản chuyển đổi.
-        /// </summary>
-        /// <param name="codeTax"></param>
-        /// <param name="methodlink">/services/einvoiceapplication/api/InvoiceAPI/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile</param>
-        /// <param name="invoiceNo">Số hóa đơn hệ thống Viettel trả về.</param>
-        /// <param name="strIssueDate"></param>
-        /// <param name="savefolder"></param>
-        /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDFexchange(string codeTax, string methodlink, string invoiceNo, string strIssueDate, string savefolder)
-        {
-            //GetFileRequestE objGetFile = new GetFileRequestE()
-            //{
-            //    supplierTaxCode = codeTax,
-            //    invoiceNo = invoiceNo,
-            //    strIssueDate = strIssueDate,
-            //    exchangeUser = _username
-            //};
-            string parameters =
-                string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}", codeTax, invoiceNo,
-                    strIssueDate, _username);
-            //string q = objGetFile.ToJson();
-
-            //q = "{" + string.Format(
-            //        @"""supplierTaxCode"" : ""{0}"", ""invoiceNo"" : ""{1}"", ""strIssueDate"" : ""{2}"", ""exchangeUser"" : ""{3}""",
-            //        codeTax, invoiceNo, "20170907161438", "viettel") + "}";
-//                string request = @"{
-//                            ""supplierTaxCode"":""" + codeTax + @""",
-//                            ""invoiceNo"":""" + objGetFile.invoiceNo + @""",
-//                            ""pattern"":""" + objGetFile.pattern + @""",
-//                            ""transactionUuid"":""" + objGetFile.transactionUuid + @""",
-//                            ""fileType"":""" + objGetFile.fileType + @"""
-//                            }";
-
-            string result = GET_VIETTEL_TOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
-
-            PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
-            string fileName = objFile.fileName;
-            if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
-            {
-                throw new Exception("Download no file!");
-            }
-            string path = Path.Combine(savefolder, fileName + ".pdf");
-
-            if (File.Exists(path))
-            {
-                try
-                {
-                    File.Delete(path);
-                }
-                catch
-                {
-                    //
-                }
-            }
-            if (!File.Exists(path))
-            {
-                File.WriteAllBytes(path, objFile.fileToBytes);
-            }
-            
-            return path;
-        }
 
         /// <summary>
         /// Download bản thể hiện.
         /// </summary>
         /// <param name="codeTax"></param>
-        /// <param name="invoiceNo">Số hóa đơn hệ thống Viettel trả về.</param>
-        /// <param name="pattern"></param>
+        /// <param name="invoiceNo">Số hóa đơn hệ thống Viettel trả về AA/17E0000166.</param>
+        /// <param name="templateCode">01GTKT0/151</param>
+        /// <param name="uid">uid từ khi lập hóa đơn.</param>
         /// <param name="savefolder"></param>
+        /// <param name="v6Return"></param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDF(string codeTax, string invoiceNo, string pattern, string savefolder)
+        public string DownloadInvoicePDF(string codeTax, string invoiceNo, string templateCode, string uid,
+            string savefolder, out V6Return v6Return)
         {
-            GetFileRequest objGetFile = new GetFileRequest();
+            v6Return = new V6Return();
+            GetPDFFileRequest objGetFile = new GetPDFFileRequest();
+            objGetFile.supplierTaxCode = codeTax;
             objGetFile.invoiceNo = invoiceNo;
-            objGetFile.pattern = pattern;
+            objGetFile.templateCode = templateCode;
+            objGetFile.transactionUuid = uid;
             objGetFile.fileType = "pdf";
-            objGetFile.transactionUuid = "";
+            //string request = objGetFile.ToJson("VIETTEL");
 
             string request = @"{
                             ""supplierTaxCode"":""" + codeTax + @""",
                             ""invoiceNo"":""" + objGetFile.invoiceNo + @""",
-                            ""pattern"":""" + objGetFile.pattern + @""",
+                            ""templateCode"":""" + objGetFile.templateCode + @""",
                             ""transactionUuid"":""" + objGetFile.transactionUuid + @""",
                             ""fileType"":""" + objGetFile.fileType + @"""
                             }";
 
             string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile", request);
-
+            v6Return.RESULT_STRING = result;
             PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
             string fileName = objFile.fileName;
             if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
             {
+                v6Return.RESULT_ERROR_MESSAGE = "Download no file!";
                 throw new Exception("Download no file!");
             }
+            else
+            {
+                v6Return.PATH = Path.Combine(savefolder, fileName + ".pdf");
+            }
 
-            string path = Path.Combine(savefolder, fileName + ".pdf");
-
-            if (File.Exists(path))
+            if (File.Exists(v6Return.PATH))
             {
                 try
                 {
-                    File.Delete(path);
+                    File.Delete(v6Return.PATH);
                 }
                 catch
                 {
                     //
                 }
             }
-            if (!File.Exists(path))
+            if (!File.Exists(v6Return.PATH))
             {
-                File.WriteAllBytes(path, objFile.fileToBytes);
+                File.WriteAllBytes(v6Return.PATH, objFile.fileToBytes);
             }
 
-            return path;
+            return v6Return.PATH;
+        }
+
+
+        /// <summary>
+        /// Download bản chuyển đổi.
+        /// </summary>
+        /// <param name="codeTax"></param>
+        /// <param name="invoiceNo">Số hóa đơn hệ thống Viettel trả về.</param>
+        /// <param name="strIssueDate"></param>
+        /// <param name="savefolder"></param>
+        /// <returns>Trả về đường dẫn file pdf.</returns>
+        public string DownloadInvoicePDFexchange(string codeTax, string invoiceNo, string strIssueDate, string savefolder, out V6Return v6Return)
+        {
+            v6Return = new V6Return();
+            GetPDFFileRequestE objGetPdfFile = new GetPDFFileRequestE()
+            {
+                supplierTaxCode = codeTax,
+                invoiceNo = invoiceNo,
+                strIssueDate = strIssueDate,
+                exchangeUser = _username
+            };
+            string request = objGetPdfFile.ToJson("VIETTEL");
+
+            //GetPDFFileRequest objGetFile = new GetPDFFileRequest();
+            //objGetFile.supplierTaxCode = codeTax;
+            //objGetFile.invoiceNo = invoiceNo;
+            //objGetFile.templateCode = templateCode;
+            //objGetFile.transactionUuid = uid;
+            //objGetFile.fileType = "pdf";
+            //string request2 = objGetFile.ToJson("VIETTEL");
+
+            string parameters =
+                string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}", codeTax, invoiceNo,
+                    strIssueDate, _username);
+            
+
+            //string result = GET_VIETTEL_TOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
+            string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
+            v6Return.RESULT_STRING = result;
+            PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+            string fileName = objFile.fileName;
+            if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
+            {
+                v6Return.RESULT_ERROR_MESSAGE = "Download no file!";
+                throw new Exception("Download no file!");
+            }
+            else
+            {
+                v6Return.PATH = Path.Combine(savefolder, fileName + ".pdf");
+            }
+
+            if (File.Exists(v6Return.PATH))
+            {
+                try
+                {
+                    File.Delete(v6Return.PATH);
+                }
+                catch
+                {
+                    //
+                }
+            }
+            if (!File.Exists(v6Return.PATH))
+            {
+                File.WriteAllBytes(v6Return.PATH, objFile.fileToBytes);
+            }
+            
+            return v6Return.PATH;
         }
 
         /// <summary>

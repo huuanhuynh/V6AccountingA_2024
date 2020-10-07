@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -10,8 +11,10 @@ using V6ThuePostViettelApi;
 using V6Tools;
 using V6Tools.V6Convert;
 using Newtonsoft.Json;
+using PdfiumViewer;
 using Spy;
 using Spy.SpyObjects;
+using V6Controls.Forms.Viewer;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.ViettelV2Objects;
 
@@ -164,7 +167,7 @@ namespace V6ThuePost
 
                         if (mode == "M0") // DRAF
                         {
-                            jsonBody = ReadData(dbfFile, "M");
+                            jsonBody = ReadData(dbfFile, "S");
                             File.Create(flagFileName1).Close();
                             result = _viettel_ws.POST_DRAFT(jsonBody, out v6return);
                         }
@@ -264,11 +267,79 @@ namespace V6ThuePost
                     else if (mode == "H")
                     {
                         string soseri_soct = arg2;
-                        string ngay_ct = ObjectAndString.StringToDate(arg3).ToString("yyyyMMddHHmmss");
+                        DateTime ngay_ct = ObjectAndString.StringToDate(arg3);
+                        string strIssueDate = V6JsonConverter.ObjectToJson(ngay_ct, "VIETTEL");
                         string stt_rec = arg4;
                         MakeFlagNames(stt_rec);
                         File.Create(flagFileName1).Close();
-                        result = _viettel_ws.CancelTransactionInvoice(_codetax, soseri_soct, ngay_ct, stt_rec, ngay_ct);
+                        result = _viettel_ws.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate);
+                    }
+                    else if (mode.StartsWith("P"))
+                    {
+                        string soseri_soct = arg2;
+                        string templateCode = arg3;
+                        string uid = arg4;
+                        MakeFlagNames(uid);
+                        File.Create(flagFileName1).Close();
+                        if (mode.EndsWith("2"))
+                        {
+                            DateTime ngay_ct = ObjectAndString.StringToDate(arg3);
+                            string strIssueDate = V6JsonConverter.ObjectToJson(ngay_ct, "VIETTEL");
+                            result = _viettel_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, startupPath, out v6return);
+                        }
+                        else
+                        {
+                            result = _viettel_ws.DownloadInvoicePDF(_codetax, soseri_soct, templateCode, uid, startupPath, out v6return);
+                        }
+                        
+                        if (string.IsNullOrEmpty(result))
+                        {
+                            // Lỗi
+                            File.Create(flagFileName3).Close();
+                            goto End;
+                        }
+                        else
+                        {
+
+                        }
+                        // In
+
+                        if (mode.StartsWith("PP"))
+                        {
+                            PDF_ViewPrintForm view = new PDF_ViewPrintForm(v6return.PATH);
+                            view.ShowDialog();
+                        }
+                        else
+                        {
+                            
+                            PrintDialog printDialog = new PrintDialog();
+                            printDialog.AllowSomePages = false;//
+                            //printDialog.Document = printDocument;
+                            printDialog.UseEXDialog = true;
+                            //printDialog.Document.PrinterSettings.FromPage = 1;
+                            //printDialog.Document.PrinterSettings.ToPage = pdfDocument1.PageCount;
+                            if (printDialog.ShowDialog() != DialogResult.OK)
+                                return;
+                            string pdf_file = result;
+                            PdfDocument pdfDocument1 = PdfDocument.Load(pdf_file);
+                            using (PrintDocument printDocument = pdfDocument1.CreatePrintDocument(PdfPrintMode.ShrinkToMargin))
+                            {
+                                printDocument.PrinterSettings = printDialog.PrinterSettings;
+                                printDialog.Document = printDocument;
+                                try
+                                {
+                                    if (printDialog.Document.PrinterSettings.FromPage <= pdfDocument1.PageCount)
+                                        printDialog.Document.Print();
+                                }
+                                catch(Exception ex)
+                                {
+                                    //f9Error += ex.Message;
+                                    //f9ErrorAll += ex.Message;
+                                    //f9MessageAll += ex.Message;
+                                }
+                            }
+                        }
+
                     }
 
                     //Phân tích result
@@ -342,6 +413,11 @@ namespace V6ThuePost
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
                     postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
+                }
+
+                if (mode == "S")
+                {
+                    postObject.generalInvoiceInfo["adjustmentType"] = "3";
                 }
 
                 if (mode == "T")
@@ -851,6 +927,9 @@ namespace V6ThuePost
                                         break;
                                     case "baselink":
                                         baseUrl = UtilityHelper.DeCrypt(line.Value);
+                                        break;
+                                    case "v6fkey":
+                                        fkey0 = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                         break;
                                 }
                                 break;

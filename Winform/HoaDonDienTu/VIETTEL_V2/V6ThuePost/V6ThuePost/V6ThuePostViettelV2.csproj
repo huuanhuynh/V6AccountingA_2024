@@ -42,6 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Git\MicrosoftSource\Framework35\Lib\Winform\BkavCommand35\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PdfiumViewer">
+      <HintPath>..\..\..\..\..\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
+    </Reference>
     <Reference Include="Spy001">
       <HintPath>..\..\..\..\..\Lib\Winform\V6ThuePost\VNPT_HCM\Spy001.dll</HintPath>
     </Reference>
@@ -75,6 +78,12 @@
     <Compile Include="Form1.designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="PDF_ViewPrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PDF_ViewPrintForm.designer.cs">
+      <DependentUpon>PDF_ViewPrintForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseForm.resx">
@@ -85,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PDF_ViewPrintForm.resx">
+      <DependentUpon>PDF_ViewPrintForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -145,6 +157,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="VSoft.ico" />
+    <Content Include="x86\pdfium.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

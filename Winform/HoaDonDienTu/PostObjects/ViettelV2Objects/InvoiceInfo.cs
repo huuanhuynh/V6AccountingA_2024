@@ -45,7 +45,16 @@ namespace V6ThuePost.ViettelV2Objects
         public string transactionUuid { get; set; }
     }
 
-    public class GetFileRequestE : V6JsonObject
+    public class GetPDFFileRequest : V6JsonObject
+    {
+        public string supplierTaxCode { get; set; }
+        public string invoiceNo { get; set; }
+        public string templateCode { get; set; }
+        public string transactionUuid { get; set; }
+        public string fileType { get; set; }
+    }
+
+    public class GetPDFFileRequestE : V6JsonObject
     {
         public string supplierTaxCode { get; set; }
         public string invoiceNo { get; set; }

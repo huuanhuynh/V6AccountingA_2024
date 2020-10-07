@@ -3,7 +3,7 @@
   <V6Info Field='username' 	Value='eRIaBh+mg1mELLE0KA1j0w==' Type=''/>
   <V6Info Field='password' 	Value='9mBfhdLtNXLp2CdF43g85g=='/>
   <V6Info Field='codetax' 	Value='eRIaBh+mg1mELLE0KA1j0w=='/>
-  
+  <V6Info Field='v6fkey' 		Value='V6' Type=''/>
 	<V6Info Field='certificateSerial' 	Value='V6SOFT'/>
   <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
   <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
@@ -25,13 +25,17 @@
 	<GeneralInvoiceInfo Field='cusGetInvoiceRight' 	Value='1'	FieldV6=''	Type='Field' DataType='Bool'/>
 	<GeneralInvoiceInfo Field='buyerIdNo' 	Value=''/>
 	<GeneralInvoiceInfo Field='buyerIdType' 	Value=''/>
+	<GeneralInvoiceInfo Field='userName' 	Value=''/>
   
+	<SellerInfo Field='sellerCode' 	Value='MACNBENBAN'/>
 	<SellerInfo Field='sellerLegalName' 	Value='CÔNG TY A'/>
 	<SellerInfo Field='sellerTaxCode' 		Value='0100109106-715'/>
 	<SellerInfo Field='sellerAddressLine'	Value='6A HCM'/>
 	<SellerInfo Field='sellerPhoneNumber'	Value='08'/>
 	<SellerInfo Field='sellerFaxNumber'		Value='08'/>
 	<SellerInfo Field='sellerEmail'			Value='a@gmail.com'/>
+	<SellerInfo Field='sellerBankName'			Value=''	FieldV6=''	Type='Field'/>
+	<SellerInfo Field='sellerBankAccount'		Value=''	FieldV6=''	Type='Field'/>
 	
 	
 	<Payments Field='paymentMethodName'			Value=''	FieldV6='MA_HTTT' Type='Field'/>
@@ -69,6 +73,8 @@
 	<ItemInfo	Field='quantity'	FieldV6='so_luong'	Type='Field'/>
 	<ItemInfo	Field='unitPrice'	FieldV6='gia2'	Type='Field'/>
 	<ItemInfo	Field='itemTotalAmountWithoutTax'	FieldV6='tien2'	Type='Field'/>
+	<ItemInfo	Field='itemTotalAmountWithTax'	FieldV6='tien2'	Type='Field'/>
+	<ItemInfo	Field='itemTotalAmountAfterDiscount'	FieldV6='tien2'	Type='Field'/>
 	<ItemInfo	Field='taxPercentage'	FieldV6='thue_suatI'	Type='Field' DataType='int'/>
 	<ItemInfo	Field='taxAmount'	FieldV6='thue'	Type='Field' />
 	<ItemInfo	Field='discount'	FieldV6='0'	Type='Field'/>
@@ -85,6 +91,7 @@
 	<SummarizeInfo	Field='totalAmountWithTax'		FieldV6='T_TT'	Type='Field'/>
 	<SummarizeInfo	Field='totalAmountWithTaxInWords'		FieldV6='t_tt' Type='Field' DataType='N2CMANT'/>
 	<SummarizeInfo	Field='discountAmount'		FieldV6='T_CK'	Type='Field'/>
+	<SummarizeInfo	Field='totalAmountAfterDiscount'		FieldV6='t_tt'	Type='Field'/>
 	<SummarizeInfo	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field' DataType='int'/>
 	
 	
