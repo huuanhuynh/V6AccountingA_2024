@@ -21,6 +21,7 @@ using V6Controls.Forms.Viewer;
 using V6Controls.Structs;
 using V6Init;
 using V6Structs;
+using V6ThuePostManager;
 using V6Tools;
 using V6Tools.V6Convert;
 
@@ -4930,6 +4931,98 @@ namespace V6ControlManager.FormManager.ChungTuManager
             else
             {
                 ShowParentMessage(V6Text.Text("LACKINFO"));
+            }
+        }
+
+        protected void InHoaDonDienTu()
+        {
+            if (!IsViewingAnInvoice) return;
+
+            //bool ctrl_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
+            //if (ctrl_is_down)
+            //{ btnTestViewXml_Click(sender, e); return; }
+
+            try
+            {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                
+                var row = AM_current;
+                string MA_SONB = row["MA_SONB"].ToString().Trim();
+                IDictionary<string, object> key = new Dictionary<string, object>();
+                key["MA_SONB"] = MA_SONB;
+                string brand = ("" + V6BusinessHelper.SelectOneValue("ALSONB", "S1", key)).Trim();
+                //string brand = "3"; // 1:Viettel 2:Vnpt 3:Bkav 4:Vnpt_token 5:SoftDreams 6:ThaiSon 7:Monet 8:Minvoice 9...
+                if (string.IsNullOrEmpty(brand))
+                {
+                    this.ShowWarningMessage(V6Text.CheckInfor + " " + MA_SONB);
+                    return;
+                }
+
+                string mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"];
+                if (shift_is_down)
+                {
+                    if (mode == "0") mode = "1";
+                    else if (mode == "1") mode = "0";
+                }
+                
+                string return_file_name = "";
+                string tableName = "V6MAPINFO";
+                string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
+                //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
+                SqlParameter[] plist0 =
+                {
+                    new SqlParameter("@Loai", "AAPPR_"+_invoice.Mact+"2"),
+                    new SqlParameter("@MA_TD1", brand), // Nhánh hóa đơn điện tử.
+                    new SqlParameter("@Ma_ct", (row["Ma_ct"] ?? "").ToString()),
+                    new SqlParameter("@Stt_rec", (row["Stt_rec"] ?? "").ToString()),
+                    new SqlParameter("@Ma_dvcs", row["MA_DVCS"].ToString()),
+                    new SqlParameter("@User_ID", V6Login.UserId),
+                    new SqlParameter("@Advance", ""),
+                };
+                var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
+
+                string invoiceNo = row["SO_SERI"].ToString().Trim() + row["SO_CT"].ToString().Trim();
+                DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT"]);
+                string v6_partner_id = row["V6PARTNER_ID"].ToString().Trim();
+                string pattern = row["MA_MAUHD"].ToString().Trim();
+                string fkey_hd = row["fkey_hd"].ToString().Trim();
+                
+                var pmparams = new PostManagerParams
+                {
+                    DataSet = map_table.DataSet,
+                    Branch = brand, // FilterControl.String1,                 // Nhánh hóa đơn điện tử.
+                    InvoiceNo = invoiceNo,
+                    InvoiceDate = ngay_ct,
+                    V6PartnerID = v6_partner_id,
+                    Pattern = pattern,
+                    Fkey_hd = fkey_hd,
+                    //strIssueDate = "nouse",
+                    Mode = mode,
+                };
+                string error;
+                return_file_name = PostManager.PowerDownloadPDF(pmparams, out error);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    this.ShowErrorMessage(error);
+                    return;
+                }
+
+                string ext = Path.GetExtension(return_file_name).ToLower();
+                if (ext == ".pdf")
+                {
+                    PDF_ViewPrintForm view = new PDF_ViewPrintForm(return_file_name);
+                    view.ShowDialog(this);
+                }
+                else if (ext == ".html")
+                {
+                    HtmlViewerForm view = new HtmlViewerForm(return_file_name, return_file_name, false);
+                    view.ShowDialog(this);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnTestViewPdf_Click", ex);
             }
         }
     }

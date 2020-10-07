@@ -9401,6 +9401,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
+        private void inHoaDonDienTuMenu_Click(object sender, EventArgs e)
+        {
+            InHoaDonDienTu();
+        }
+
         
     }
 }

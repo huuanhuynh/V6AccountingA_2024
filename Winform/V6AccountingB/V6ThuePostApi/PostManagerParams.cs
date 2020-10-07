@@ -21,13 +21,16 @@ namespace V6ThuePostManager
         /// </summary>
         public string Mode { get; set; }
         /// <summary>
-        /// 1:Viettel   2:Vnpt  3:Bkav  4:Vnpt_token    5:SoftDreams
+        /// 1:Viettel 2:Vnpt 3:Bkav 4:Vnpt_token 5:SoftDreams 6:ThaiSon 7:Monet 8:Minvoice 9...
         /// </summary>
         public string Branch { get; set; }
 
         public string Dir { get; set; }
         public string FileName { get; set; }
         public string RptFileFull { get; set; }
+        /// <summary>
+        /// Fkey từ V6
+        /// </summary>
         public string Fkey_hd { get; set; }
         /// <summary>
         /// <para>Key hóa đơn cũ dùng cho thay thế.</para>
@@ -49,8 +52,13 @@ namespace V6ThuePostManager
         /// Dữ liệu hóa đơn mới.
         /// </summary>
         public IDictionary<string, object> AM_new { get; set; }
-
+        /// <summary>
+        /// Mã tạo ra bởi server HĐĐT
+        /// </summary>
         public string V6PartnerID { get; set; }
+        /// <summary>
+        /// F4 hay F6 ?
+        /// </summary>
         public string Key_Down { get; set; }
 
         /// <summary>
@@ -61,9 +69,13 @@ namespace V6ThuePostManager
         /// Ký hiệu hóa đơn vd:AA/19E
         /// </summary>
         public string Serial { get; set; }
+        /// <summary>
+        /// Ngày chứng từ.
+        /// </summary>
         public DateTime InvoiceDate { get; set; }
-
-        public string strIssueDate = null;
+        /// <summary>
+        /// Kết quả trả về của Web_service đã được phân tích.
+        /// </summary>
         public PM_Result Result = null;
     }
 

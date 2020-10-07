@@ -251,6 +251,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.inPhieuThuTienMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inHoaDonDienTuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -3635,9 +3636,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuThuTienMenu,
             this.inPhieuHachToanMenu,
-            this.inKhacMenu});
+            this.inKhacMenu,
+            this.inHoaDonDienTuMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 92);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 114);
             // 
             // inPhieuThuTienMenu
             // 
@@ -3662,6 +3664,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
             this.inKhacMenu.Text = "In khác";
             this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
+            // 
+            // inHoaDonDienTuMenu
+            // 
+            this.inHoaDonDienTuMenu.AccessibleDescription = "INVOICEM00050";
+            this.inHoaDonDienTuMenu.Name = "inHoaDonDienTuMenu";
+            this.inHoaDonDienTuMenu.Size = new System.Drawing.Size(173, 22);
+            this.inHoaDonDienTuMenu.Text = "In hóa đơn điện tử";
+            this.inHoaDonDienTuMenu.Click += new System.EventHandler(this.inHoaDonDienTuMenu_Click);
             // 
             // btnCopy
             // 
@@ -4046,5 +4056,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem chonALVTMenu;
         private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
+        private System.Windows.Forms.ToolStripMenuItem inHoaDonDienTuMenu;
     }
 }

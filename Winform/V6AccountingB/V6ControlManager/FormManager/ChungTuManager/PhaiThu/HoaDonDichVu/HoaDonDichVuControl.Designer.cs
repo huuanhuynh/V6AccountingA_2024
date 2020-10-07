@@ -206,6 +206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNameT = new V6Controls.V6Label();
+            this.inHoaDonDienTuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1431,7 +1432,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.exportXmlMenu,
             this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 290);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 268);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ChonDonHangBanMenu
@@ -2599,9 +2600,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuThuTienMenu,
             this.inPhieuHachToanMenu,
-            this.inKhacMenu});
+            this.inKhacMenu,
+            this.inHoaDonDienTuMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 114);
             // 
             // inPhieuThuTienMenu
             // 
@@ -2724,6 +2726,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.lblNameT.Size = new System.Drawing.Size(688, 18);
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // inHoaDonDienTuMenu
+            // 
+            this.inHoaDonDienTuMenu.AccessibleDescription = "INVOICEM00050";
+            this.inHoaDonDienTuMenu.Name = "inHoaDonDienTuMenu";
+            this.inHoaDonDienTuMenu.Size = new System.Drawing.Size(173, 22);
+            this.inHoaDonDienTuMenu.Text = "In hóa đơn điện tử";
+            this.inHoaDonDienTuMenu.Click += new System.EventHandler(this.inHoaDonDienTuMenu_Click);
             // 
             // HoaDonDichVuControl
             // 
@@ -2958,5 +2968,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private System.Windows.Forms.ToolStripMenuItem timTopCuoiKyMenu;
         private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
+        private System.Windows.Forms.ToolStripMenuItem inHoaDonDienTuMenu;
     }
 }

@@ -1410,9 +1410,23 @@ namespace V6AccountingBusiness
             return count;
         }
 
+        public static DataTable SelectSimple(string tableName, string fields, string where="", string group="", string sort = "", params SqlParameter[] pList)
+        {
+            return SqlConnect.SelectSimple(tableName, fields, where, group, sort, pList);
+        }
         public static DataTable SelectTable(string tableName)
         {
             return SqlConnect.SelectTable(tableName);
+        }
+
+        public static DataTable SelectOneRow(string tablename, IDictionary<string, object> keys)
+        {
+            return SqlConnect.SelectOneRow(tablename, keys);
+        }
+
+        public static object SelectOneValue(string tablename, string field, IDictionary<string, object> keys)
+        {
+            return SqlConnect.SelectOneValue(tablename, field, keys);
         }
 
         /// <summary>

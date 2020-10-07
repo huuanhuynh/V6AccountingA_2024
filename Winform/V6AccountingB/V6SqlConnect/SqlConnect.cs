@@ -209,6 +209,45 @@ namespace V6SqlConnect
             return null;
         }
 
+        public static DataTable SelectSimple(string tableName, string fields, string where="", string group="", string sort = "", params SqlParameter[] pList)
+        {
+            if (CheckV6Key())
+            {
+                if (fields == null) fields = "*";
+                
+                var fieldsSelect = string.IsNullOrEmpty(fields) ? "*" : fields;
+                var whereClause = string.IsNullOrEmpty(where) ? "" : " WHERE " + where;
+                var groupClause = string.IsNullOrEmpty(group) ? "" : " GROUP BY " + group;
+                var sortOrder = string.IsNullOrEmpty(sort) ? "" : " ORDER BY " + sort;
+
+                var sql = string.Format("Select {0} from {1} {2} {3} {4}", fieldsSelect, tableName, whereClause, groupClause, sortOrder);
+                var ds = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, CommandType.Text, sql, DatabaseConfig.TimeOut, pList);
+                var t = ds.Tables.Count > 0 ? ds.Tables[0] : null;
+
+                if (t != null)
+                {
+                    t.TableName = tableName;
+                }
+                return t;
+            }
+            return null;
+        }
+
+        public static DataTable SelectOneRow(string tablename, IDictionary<string, object> keys)
+        {
+            if(string.IsNullOrEmpty(tablename))
+                throw new ArgumentException("tablename");
+            if (keys == null || keys.Count == 0)
+                throw new ArgumentException("keyList");
+
+            SqlParameter[] plist;
+            var where = SqlGenerator.GenSqlWhereOutParameters(keys, out plist);
+            var sql = string.Format("Select {0} from {1} where " + where, "*", tablename);
+            var ds = ExecuteDataset(CommandType.Text, sql, plist);
+            if (ds != null && ds.Tables.Count > 0) return ds.Tables[0];
+            return null;
+        }
+
         /// <summary>
         /// Lấy lên 1 giá trị duy nhất trong 1 bảng dữ liệu.
         /// </summary>

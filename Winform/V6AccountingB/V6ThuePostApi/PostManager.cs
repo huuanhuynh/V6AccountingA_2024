@@ -2981,8 +2981,8 @@ namespace V6ThuePostManager
 
             if (paras.Mode == "1") // Mode Thể hiện
                 return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern, V6Setting.V6SoftLocalAppData_Directory);
-            
-            return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, paras.InvoiceNo, paras.strIssueDate, V6Setting.V6SoftLocalAppData_Directory);
+            string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
+            return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, paras.InvoiceNo, strIssueDate, V6Setting.V6SoftLocalAppData_Directory);
         }
         
         #endregion viettel
@@ -4379,7 +4379,6 @@ namespace V6ThuePostManager
                     case "1":
                         ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
                         return viettel_ws.GetListInvoiceDataControl(paras.InvoiceDate, paras.InvoiceDate);
-                        return viettel_ws.DownloadInvoice(_codetax, paras.InvoiceNo, "xml", paras.strIssueDate, V6Setting.V6SoftLocalAppData_Directory);
                         break;
                 }
             }

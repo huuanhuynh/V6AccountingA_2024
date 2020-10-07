@@ -152,16 +152,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                             string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
                             string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
-                            string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
+                            DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
 
                             var pmparams1 = new PostManagerParams
                             {
                                 DataSet = map_table.DataSet,
                                 Branch = FilterControl.String1,
                                 InvoiceNo = invoiceNo,
+                                InvoiceDate = ngay_ct,
                                 Pattern = pattern,
                                 Serial = serial,
-                                strIssueDate = strIssueDate,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
                             return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
@@ -431,17 +431,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
                 string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
+                DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
                 
                 var pmparams = new PostManagerParams
                 {
                     DataSet = map_table.DataSet,
                     Branch = FilterControl.String1,
                     InvoiceNo = invoiceNo,
+                    InvoiceDate = ngay_ct,
                     V6PartnerID = v6_partner_id,
                     Pattern = pattern,
                     Fkey_hd = fkey_hd,
-                    strIssueDate = strIssueDate,
                     Mode = mode,
                 };
                 string error;

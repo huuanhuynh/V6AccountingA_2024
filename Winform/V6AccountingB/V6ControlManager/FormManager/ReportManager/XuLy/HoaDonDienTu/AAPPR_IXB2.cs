@@ -224,8 +224,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                 string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
                 string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
-                DateTime ngayCt = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
-                string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
+                DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
 
                 var paras = new PostManagerParams
                 {
@@ -239,8 +238,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //Fkey_hd = fkey_hd,
                     Pattern = pattern,
                     InvoiceNo = invoiceNo,
-                    InvoiceDate = ngayCt,
-                    strIssueDate = strIssueDate,
+                    InvoiceDate = ngay_ct,
                 };
                 var result = PostManager.SearchInvoice(paras);
                 this.ShowInfoMessage(result.Left(200));

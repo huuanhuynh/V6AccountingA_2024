@@ -78,6 +78,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.btnIn = new wyDay.Controls.SplitButton();
             this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -259,7 +260,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtSoPhieu = new V6Controls.V6VvarTextBox();
-            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChucNang.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
             this.menuBtnTim.SuspendLayout();
@@ -618,7 +618,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.btnQuayRa.AccessibleDescription = "APOCTPOAR00040";
             this.btnQuayRa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnQuayRa.Image = global::V6ControlManager.Properties.Resources.BackArrow24;
-            this.btnQuayRa.Location = new System.Drawing.Point(578, 547);
+            this.btnQuayRa.Location = new System.Drawing.Point(593, 547);
             this.btnQuayRa.Name = "btnQuayRa";
             this.btnQuayRa.Size = new System.Drawing.Size(76, 32);
             this.btnQuayRa.TabIndex = 14;
@@ -696,7 +696,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.inPhieuHachToanMenu,
             this.inKhacMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
             // 
             // inPhieuHachToanMenu
             // 
@@ -705,6 +705,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.inPhieuHachToanMenu.Size = new System.Drawing.Size(173, 22);
             this.inPhieuHachToanMenu.Text = "In phiếu hạch toán";
             this.inPhieuHachToanMenu.Click += new System.EventHandler(this.inPhieuHachToanMenu_Click);
+            // 
+            // inKhacMenu
+            // 
+            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
+            this.inKhacMenu.Name = "inKhacMenu";
+            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
+            this.inKhacMenu.Text = "In khác";
+            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
             // 
             // btnCopy
             // 
@@ -3704,14 +3712,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.txtSoPhieu.Size = new System.Drawing.Size(100, 20);
             this.txtSoPhieu.TabIndex = 1;
             this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
-            // 
-            // inKhacMenu
-            // 
-            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
-            this.inKhacMenu.Name = "inKhacMenu";
-            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
-            this.inKhacMenu.Text = "In khác";
-            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
             // 
             // DeNghiNhapKhoINY_Control
             // 

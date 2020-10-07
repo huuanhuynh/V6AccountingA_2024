@@ -4176,5 +4176,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonTuExcel(shift);
         }
+
+        private void inHoaDonDienTuMenu_Click(object sender, EventArgs e)
+        {
+            InHoaDonDienTu();
+        }
     }
 }
