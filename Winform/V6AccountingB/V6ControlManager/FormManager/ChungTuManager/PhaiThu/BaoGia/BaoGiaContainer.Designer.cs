@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsFull = new System.Windows.Forms.ToolStripButton();
-            this.tsClose = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsMessage = new System.Windows.Forms.ToolStripLabel();
-            this.toolStrip1.SuspendLayout();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.tsFull = new System.Windows.Forms.Button();
+            this.tsNew = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.tsMessage = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -51,71 +50,74 @@
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // toolStrip1
+            // btnClose
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsNew,
-            this.toolStripSeparator1,
-            this.tsFull,
-            this.tsClose,
-            this.toolStripSeparator2,
-            this.tsMessage});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(860, 31);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsNew
-            // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = global::V6ControlManager.Properties.Resources.Add24;
-            this.tsNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(28, 28);
-            this.tsNew.Text = "Thêm";
-            this.tsNew.Click += new System.EventHandler(this.btnThemBaoGia_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::V6ControlManager.Properties.Resources.CloseXbox24;
+            this.btnClose.Location = new System.Drawing.Point(829, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(26, 26);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // tsFull
             // 
-            this.tsFull.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsFull.FlatAppearance.BorderSize = 0;
+            this.tsFull.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tsFull.Image = global::V6ControlManager.Properties.Resources.ZoomIn24;
-            this.tsFull.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsFull.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsFull.Location = new System.Drawing.Point(35, 0);
             this.tsFull.Name = "tsFull";
-            this.tsFull.Size = new System.Drawing.Size(28, 28);
-            this.tsFull.Text = "Phóng to";
+            this.tsFull.Size = new System.Drawing.Size(26, 26);
+            this.tsFull.TabIndex = 6;
+            this.tsFull.UseVisualStyleBackColor = true;
             this.tsFull.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
-            // tsClose
+            // tsNew
             // 
-            this.tsClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsClose.Image = global::V6ControlManager.Properties.Resources.CloseXbox24;
-            this.tsClose.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsClose.Name = "tsClose";
-            this.tsClose.Size = new System.Drawing.Size(28, 28);
-            this.tsClose.Text = "Đóng";
-            this.tsClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.tsNew.FlatAppearance.BorderSize = 0;
+            this.tsNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsNew.Image = global::V6ControlManager.Properties.Resources.Add24;
+            this.tsNew.Location = new System.Drawing.Point(3, 0);
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(26, 26);
+            this.tsNew.TabIndex = 7;
+            this.tsNew.UseVisualStyleBackColor = true;
+            this.tsNew.Click += new System.EventHandler(this.btnThemBaoGia_Click);
             // 
-            // toolStripSeparator2
+            // panel1
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.lblTitle);
+            this.panel1.Controls.Add(this.tsMessage);
+            this.panel1.Location = new System.Drawing.Point(67, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(758, 33);
+            this.panel1.TabIndex = 8;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(3, 5);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(763, 19);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tsMessage
             // 
-            this.tsMessage.AutoSize = false;
-            this.tsMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.tsMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tsMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsMessage.ForeColor = System.Drawing.Color.Red;
+            this.tsMessage.Location = new System.Drawing.Point(0, 0);
             this.tsMessage.Name = "tsMessage";
-            this.tsMessage.Size = new System.Drawing.Size(386, 28);
+            this.tsMessage.Size = new System.Drawing.Size(758, 33);
+            this.tsMessage.TabIndex = 0;
             this.tsMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BaoGiaContainer
@@ -123,26 +125,27 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.tsFull);
+            this.Controls.Add(this.tsNew);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
             this.Name = "BaoGiaContainer";
             this.Size = new System.Drawing.Size(860, 609);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.BaoGiaContainer_Load);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tsNew;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsClose;
-        private System.Windows.Forms.ToolStripButton tsFull;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripLabel tsMessage;
+        public System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button tsFull;
+        private System.Windows.Forms.Button tsNew;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label tsMessage;
     }
 }

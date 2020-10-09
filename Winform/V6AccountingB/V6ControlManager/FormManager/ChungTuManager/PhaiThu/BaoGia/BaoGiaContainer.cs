@@ -47,9 +47,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             _timerHideMessage = new Timer();
             _timerHideMessage.Interval = 200;
             _timerHideMessage.Tick += _timerHideMessage_Tick;
-
+            lblTitle.Text = Invoice.Name.ToUpper();
             currentTabIndex = tabControl1.SelectedIndex;
             LoadColorList();
+        }
+
+        private void BaoGiaContainer_Load(object sender, EventArgs e)
+        {
+            ApplyButtonToolTip();
+        }
+
+        private void ApplyButtonToolTip()
+        {
+            try
+            {
+                toolTipV6FormControl.SetToolTip(tsNew, V6Text.Add);
+                toolTipV6FormControl.SetToolTip(tsFull, V6Text.ZoomIn);
+                toolTipV6FormControl.SetToolTip(btnClose, V6Text.Close);
+            }
+            catch (Exception)
+            {
+                //
+            }
         }
 
         private void AddTab()
@@ -233,7 +252,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                 if (keyData == Keys.Escape)
                 {
-                    tsClose.PerformClick();
+                    btnClose.PerformClick();
                     return true;
                 }
             }
@@ -297,10 +316,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     if (child.IsDisposed) return;
                     container.Controls.Add(child);
                     tsFull.Image = Properties.Resources.ZoomIn24;
-                    tsFull.Text = V6Text.ZoomIn;
+                    toolTipV6FormControl.SetToolTip(tsFull, V6Text.ZoomIn);
                 };
                 tsFull.Image = Properties.Resources.ZoomOut24;
-                tsFull.Text = V6Text.ZoomOut;
+                toolTipV6FormControl.SetToolTip(tsFull, V6Text.ZoomOut);
 
                 f.ShowDialog(container);
             }
@@ -330,5 +349,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {
             currentTabIndex = tabControl1.SelectedIndex;
         }
+
     }
 }

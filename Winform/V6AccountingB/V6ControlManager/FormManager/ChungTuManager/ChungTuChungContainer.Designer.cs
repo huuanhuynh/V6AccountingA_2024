@@ -33,6 +33,7 @@
             this.tsFull = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.tsMessage = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -90,11 +91,23 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Controls.Add(this.tsMessage);
             this.panel1.Location = new System.Drawing.Point(67, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(758, 33);
             this.panel1.TabIndex = 4;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(3, 5);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(763, 19);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tsMessage
             // 
@@ -135,5 +148,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label tsMessage;
         public System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

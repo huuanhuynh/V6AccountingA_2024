@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             _timerHideMessage = new Timer();
             _timerHideMessage.Interval = 200;
             _timerHideMessage.Tick += _timerHideMessage_Tick;
-
+            lblTitle.Text = Invoice.Name.ToUpper();
             currentTabIndex = tabControl1.SelectedIndex;
             LoadColorList();
         }
