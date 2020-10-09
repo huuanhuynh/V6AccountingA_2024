@@ -16,6 +16,7 @@ using SignTokenCore;
 using Spy;
 using Spy.SpyObjects;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6ThuePost;
@@ -40,6 +41,7 @@ using V6ThuePostXmlApi.PortalService;
 using V6ThuePostXmlApi.PublishService;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Reader;
 using CreateInvoiceResponse = V6ThuePost.ViettelObjects.CreateInvoiceResponse;
 
 namespace V6ThuePostManager
@@ -49,7 +51,7 @@ namespace V6ThuePostManager
     /// </summary>
     public static class PostManager
     {
-        static DataTable map_table;
+        static DataTable _map_table;
         static DataTable ad_table;
         static DataTable am_table;
         private static string Fkey_hd_tt = null;
@@ -73,7 +75,7 @@ namespace V6ThuePostManager
         public static string _password = "";
         public static string _codetax = "";
         public static string _ma_dvcs = "";
-        private static string _baseUrl = "", _site = "", _createInvoiceUrl = "", _modifylink = "";
+        public static string _baseUrl = "", _site = "", _createInvoiceUrl = "", _modifylink = "";
         /// <summary>
         /// InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)
         /// </summary>
@@ -158,7 +160,7 @@ namespace V6ThuePostManager
             string result0 = null;
             try
             {
-                map_table = paras.DataSet.Tables[0];
+                _map_table = paras.DataSet.Tables[0];
                 ad_table = paras.DataSet.Tables[1];
                 am_table = paras.DataSet.Tables[2];
                 Fkey_hd_tt = paras.Fkey_hd_tt;
@@ -173,12 +175,15 @@ namespace V6ThuePostManager
                     ad3_table = null;
                 }
 
-                ReadConfigInfo(map_table);
+                ReadConfigInfo(_map_table);
 
                 switch (paras.Branch)
                 {
                     case "1":
                         result0 = EXECUTE_VIETTEL(paras);
+                        break;
+                    case "Test":
+                        result0 = EXECUTE_VIETTEL_V2CALL(paras);
                         break;
                     case "2":
                         result0 = EXECUTE_VNPT(paras);
@@ -225,7 +230,7 @@ namespace V6ThuePostManager
         public static string GetConfigBaseLink(DataTable mapTable)
         {
             _site = "";
-            map_table = mapTable;
+            _map_table = mapTable;
             ReadConfigInfo(mapTable);
             return _site;
         }
@@ -243,14 +248,14 @@ namespace V6ThuePostManager
             paras.Result = new PM_Result();
             try
             {
-                map_table = paras.DataSet.Tables[0];
+                _map_table = paras.DataSet.Tables[0];
                 
                 //ad_table = pmparams.DataSet.Tables[1];
                 //am_table = pmparams.DataSet.Tables[2];
                 //DataRow row0 = am_table.Rows[0];
                 //ad2_table = pmparams.DataSet.Tables[3];
 
-                ReadConfigInfo(map_table);
+                ReadConfigInfo(_map_table);
 
                 switch (paras.Branch)
                 {
@@ -296,7 +301,7 @@ namespace V6ThuePostManager
                         }
                         break;
                     case "6":
-                        map_table = paras.DataSet.Tables[0];
+                        _map_table = paras.DataSet.Tables[0];
                         ad_table = paras.DataSet.Tables[1];
                         am_table = paras.DataSet.Tables[2];
                         Fkey_hd_tt = paras.Fkey_hd_tt;
@@ -311,7 +316,7 @@ namespace V6ThuePostManager
                             ad3_table = null;
                         }
 
-                        ReadConfigInfo(map_table);
+                        ReadConfigInfo(_map_table);
 
                         ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _link_Publish_vnpt_thaison, _username, _password, _SERIAL_CERT);
                         var hoadon_entity = (HoaDonEntity)ReadData_ThaiSon(paras.Mode.Substring(0, 1));
@@ -378,7 +383,7 @@ namespace V6ThuePostManager
         }
 
         /// <summary>
-        /// <para>Tham số cần thiết: DataSet[map_table][ad_table][am_table], Branch[1viettel][2vnpt]</para>
+        /// <para>Tham số cần thiết: DataSet[_map_table][ad_table][am_table], Branch[1viettel][2vnpt]</para>
         /// </summary>
         /// <param name="paras"></param>
         /// <param name="error">Lỗi trả về.</param>
@@ -390,13 +395,13 @@ namespace V6ThuePostManager
             paras.Result = new PM_Result();
             try
             {
-                map_table = paras.DataSet.Tables[0];
+                _map_table = paras.DataSet.Tables[0];
                 //ad_table = pmparams.DataSet.Tables[1];
                 //am_table = pmparams.DataSet.Tables[2];
                 //DataRow row0 = am_table.Rows[0];
                 //ad2_table = pmparams.DataSet.Tables[3];
 
-                ReadConfigInfo(map_table);
+                ReadConfigInfo(_map_table);
 
                 switch (paras.Branch)
                 {
@@ -405,10 +410,17 @@ namespace V6ThuePostManager
                         break;
                     case "2": case "4":
                         int option = ObjectAndString.ObjectToInt(paras.Mode);
-                        result = VnptWS.DownloadInvPDFFkey(_link_Portal_vnpt, option, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        VnptWS vnptWS = new VnptWS(_baseUrl, _account, _accountpassword, _username, _password);
+                        result = vnptWS.DownloadInvPDFFkey(paras.Fkey_hd, option, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     case "3":
-                        result = BkavDownloadInvoicePDF(paras);
+                        BkavWS bkav_ws = new BkavWS();
+                        ExecCommandFunc wsExecCommand = null;
+                        var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(_baseUrl);
+                        wsExecCommand = webservice.ExecuteCommand;
+                        uint Constants_Mode = RemoteCommand.DefaultMode;
+                        var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
+                        result = bkav_ws.DownloadInvoicePDF(remoteCommand, paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
@@ -670,6 +682,20 @@ namespace V6ThuePostManager
 
         #region ==== VNPT ====
 
+        /// <summary>
+        /// Hàm chỉ áp dụng được sau khi đã chạy và nhận cấu hình.
+        /// </summary>
+        /// <returns></returns>
+        private static VnptWS CreateVnptWS()
+        {
+            if (V6Infos == null || V6Infos.Count == 0)
+            {
+                throw new Exception(V6Text.NoDefine);
+            }
+            VnptWS vnptWS = new VnptWS(_baseUrl, _account, _accountpassword, _username, _password);
+            return vnptWS;
+        }
+
         private static string EXECUTE_VNPT(PostManagerParams paras)
         {
             string result = "";
@@ -678,7 +704,7 @@ namespace V6ThuePostManager
             try
             {
                 var row0 = am_table.Rows[0];
-
+                VnptWS vnptWS = new VnptWS(_baseUrl, _account, _accountpassword, _username, _password);
                 if (paras.Mode == "TestView")
                 {
                     var xml = ReadData_Vnpt();
@@ -695,20 +721,20 @@ namespace V6ThuePostManager
                         }
                         else
                         {
-                            result = VnptWS.ConfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                            result = vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                         }
                     }
                     else if (paras.Mode == "E_G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        result = VnptWS.ConfirmPayment(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.ConfirmPayment(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "E_G3") // Hủy gạch nợ theo fkey
                     {
-                        result = VnptWS.UnconfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "E_H1")
                     {
-                        result = cancelInv(paras.Fkey_hd);
+                        result = vnptWS.cancelInv(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "E_S1")
                     {
@@ -727,7 +753,7 @@ namespace V6ThuePostManager
                     {
                         if (customerInfoConfig != null && customerInfoConfig.Count > 0)
                         {
-                            DoUpdateCus(am_table);
+                            DoUpdateCus(vnptWS, am_table);
                         }
                     }
                     catch (Exception)
@@ -736,10 +762,10 @@ namespace V6ThuePostManager
                     }
                     var xml = ReadData_Vnpt();
                     //File.Create(flagFileName1).Close();
-                    result = ImportAndPublishInv(xml);
+                    result = vnptWS.ImportAndPublishInv(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
 
-                    string invXml = DownloadInvFkeyNoPay(fkeyA);
-                    paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
+                    //string invXml = DownloadInvFkeyNoPay(fkeyA);
+                    //paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
                     
                     string filePath = Path.Combine(paras.Dir, paras.FileName);
                     if (filePath.Length > 0 && result.StartsWith("OK"))
@@ -821,8 +847,9 @@ namespace V6ThuePostManager
                     }
                     else if (!result.StartsWith("OK"))       // Hoặc đã có trên hệ thống HDDT ERR:0
                     {
-                        invXml = DownloadInvFkeyNoPay(fkeyA);
-                        paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
+                        V6Return v6return;
+                        string invXml = vnptWS.DownloadInvFkeyNoPay(fkeyA, out v6return);
+                        paras.Result.InvoiceNo = v6return.SO_HD;
                         if (!string.IsNullOrEmpty(paras.Result.InvoiceNo))
                         {
                             result = "OK-Đã tồn tại fkey.";
@@ -834,11 +861,8 @@ namespace V6ThuePostManager
                 {
                     fkeyA = paras.Fkey_hd;
                     
-                    string invXml = DownloadInvFkeyNoPay(fkeyA);
-                    paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
-                    //WriteFlag(flagFileName4, so_hoa_don);
+                    string invXml = vnptWS.DownloadInvFkeyNoPay(fkeyA, out paras.Result.V6ReturnValues);
                     result += paras.Result.InvoiceNo;
-                    //result += invXml;
                 }
                 else if (paras.Mode == "S")
                 {
@@ -866,15 +890,15 @@ namespace V6ThuePostManager
                 {
                     if (paras.Mode == "G1") // Gạch nợ theo fkey
                     {
-                        result = VnptWS.ConfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        result = VnptWS.ConfirmPayment(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.ConfirmPayment(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
                     {
-                        result = VnptWS.UnconfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                     }
                 }
                 else if (paras.Mode == "H")
@@ -886,7 +910,7 @@ namespace V6ThuePostManager
                     // Danh muc??
                     string type = "1";
                     if (paras.Mode.Length > 1) type = paras.Mode[1].ToString();
-                    result = DoUpdateCus(am_table, type);
+                    result = DoUpdateCus(vnptWS, am_table, type);
                     //DataTable data = V6BusinessHelper.Select("ALKH", "*", "ISNULL([E_MAIL],'') <> ''").Data;
                     //result = DoUpdateCus(data, type);
                 }
@@ -1013,6 +1037,10 @@ namespace V6ThuePostManager
 
         public static string DoUpdateCus(DataTable data, string type = "1")
         {
+            return DoUpdateCus(CreateVnptWS(), data, type);
+        }
+        public static string DoUpdateCus(VnptWS vnptWS, DataTable data, string type = "1")
+        {
             string update_cus_result = "";
             string error = "";
             int error_count = 0, success_count = 0;
@@ -1040,7 +1068,7 @@ namespace V6ThuePostManager
 
                             Logger.WriteToLog(string.Format("Preparing UpdateCus {0} {1}\r\n{2}", count, ma_kh, xml));
                             V6Return v6return;
-                            var num = VnptWS.UpdateCus(_link_Publish_vnpt_thaison, xml, _username, _password, out v6return);
+                            var num = vnptWS.UpdateCus(xml, out v6return);
                             if (num == "1")
                             {
                                 success_count++;
@@ -1079,7 +1107,7 @@ namespace V6ThuePostManager
 
                         Logger.WriteToLog("Preparing UpdateCus:\r\n" + xml);
                         V6Return v6return;
-                        var num = VnptWS.UpdateCus(_link_Publish_vnpt_thaison, xml, _username, _password, out v6return);
+                        var num = vnptWS.UpdateCus(xml, out v6return);
                         success_count = Convert.ToInt32(num);
                         update_cus_result += "Success " + num + "/" + data.Rows.Count;
                     }
@@ -1599,40 +1627,6 @@ namespace V6ThuePostManager
         }
 
         /// <summary>
-        /// Download invoice VNPT
-        /// </summary>
-        /// <param name="fkey"></param>
-        /// <returns></returns>
-        public static string DownloadInvFkeyNoPay(string fkey)
-        {
-            string result = null;
-            try
-            {
-                result = new PortalService(_link_Portal_vnpt).downloadInvFkeyNoPay(fkey, _username, _password);
-
-                if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    result += "\r\nCó lỗi.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.DownloadInvFkeyNoPay " + result);
-            return result;
-        }
-
-        /// <summary>
         /// Tải lên bảng kê.
         /// </summary>
         /// <param name="fkey"></param>
@@ -1909,6 +1903,46 @@ namespace V6ThuePostManager
             }
 
             Logger.WriteToLog("Program.cancelInv " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Download invoice VNPT
+        /// </summary>
+        /// <param name="fkey"></param>
+        /// <param name="v6Return"></param>
+        /// <returns></returns>
+        public static string DownloadInvFkeyNoPay(string fkey, out V6Return v6Return)
+        {
+            string result = null;
+            v6Return = new V6Return();
+            try
+            {
+                result = new PortalService(_link_Portal_vnpt).downloadInvFkeyNoPay(fkey, _username, _password);
+                v6Return.RESULT_STRING = result;
+                if (result.StartsWith("ERR:7"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
+                }
+                else if (result.StartsWith("ERR:1"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                }
+                else if (result.StartsWith("ERR"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi.";
+                }
+                else
+                {
+                    v6Return.SO_HD = GetSoHoaDon_VNPT(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+                v6Return.RESULT_ERROR_MESSAGE = result;
+            }
+
             return result;
         }
 
@@ -2193,6 +2227,7 @@ namespace V6ThuePostManager
             try
             {
                 var row0 = am_table.Rows[0];
+                VnptWS vnptWS = new VnptWS(_baseUrl, _account, _accountpassword, _username, _password);
                 if (paras.Mode == "TestView")
                 {
                     var xml = ReadData_Vnpt();
@@ -2214,8 +2249,9 @@ namespace V6ThuePostManager
                     }
                     else if (resultM.StartsWith("ERR:0"))       // Hoặc đã có trên hệ thống HDDT ERR:0
                     {
-                        string invXml = DownloadInvFkeyNoPay(fkeyA);
-                        paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
+                        V6Return v6return;
+                        string invXml = DownloadInvFkeyNoPay(fkeyA, out v6return);
+                        paras.Result.InvoiceNo = v6return.SO_HD;
                         if (!string.IsNullOrEmpty(paras.Result.InvoiceNo))
                         {
                             result = "OK-Đã tồn tại fkey. " + resultM;
@@ -2321,10 +2357,8 @@ namespace V6ThuePostManager
                 else if (String.Equals(paras.Mode, "DownloadInvFkeyNoPay", StringComparison.CurrentCultureIgnoreCase))
                 {
                     fkeyA = paras.Fkey_hd;
-                    string invXml = DownloadInvFkeyNoPay(fkeyA);
-                    string so_hoa_don = GetSoHoaDon_VNPT(invXml);
-                    paras.Result.InvoiceNo = so_hoa_don;
-                    result += so_hoa_don;
+                    string invXml = DownloadInvFkeyNoPay(fkeyA, out paras.Result.V6ReturnValues);
+                    result += paras.Result.InvoiceNo;
                 }
                 else if (paras.Mode == "S")
                 {
@@ -2354,15 +2388,15 @@ namespace V6ThuePostManager
                 {
                     if (paras.Mode == "G1") // Gạch nợ theo fkey
                     {
-                        VnptWS.ConfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        VnptWS.ConfirmPayment(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        vnptWS.ConfirmPayment(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
                     {
-                        VnptWS.UnconfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
                     }
                 }
                 else if (paras.Mode == "H")
@@ -2813,7 +2847,180 @@ namespace V6ThuePostManager
         }
 
         
+        private static string EXECUTE_VIETTEL_V2CALL(PostManagerParams paras)
+        {
+            string result = "";
+            paras.Result = new PM_Result();
+            V6Return rd = new V6Return();
+            paras.Result.V6ReturnValues = rd;
 
+            try
+            {
+                string jsonBody = "";
+                //var _V6Http = new ViettelWS(_baseUrl, _username, _password);
+                ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
+
+                if (paras.Mode == "TestView")
+                {
+                    var xml = ReadData_Viettel(paras);
+                    result = xml;
+                    paras.Result.ResultString = xml;
+                }
+                else if (paras.Mode == "E_G1") // Gạch nợ
+                {
+                    rd.RESULT_ERROR_MESSAGE = V6Text.NotSupported;
+                }
+                else if (paras.Mode == "E_H1") // Hủy hóa đơn
+                {
+                    
+                    DataRow row0 = am_table.Rows[0];
+                    var item = generalInvoiceInfoConfig["invoiceIssuedDate"];
+                    string strIssueDate = ((DateTime)GetValue(row0, item)).ToString("yyyyMMddHHmmss");
+                    string additionalReferenceDesc = paras.AM_new["STT_REC"].ToString();
+                    paras.InvoiceNo = paras.AM_new["SO_SERI"].ToString().Trim() + paras.AM_new["SO_CT"].ToString().Trim();
+                    result = viettel_ws.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
+                    
+                }
+                else if (paras.Mode == "E_T1")
+                {
+                    jsonBody = ReadData_Viettel(paras);
+                    result = viettel_ws.POST_REPLACE(_createInvoiceUrl, jsonBody);
+                }
+                else if (paras.Mode.StartsWith("M"))
+                {
+                    generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                    {
+                        Field = "adjustmentType",
+                        Value = "1",
+                    };
+                    
+                    if (string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        jsonBody = ReadData_Viettel(paras);
+                        V6BusinessHelper.WriteTextFile("tprint_soa.json", jsonBody);
+                        var process = new Process 
+                        {
+                            StartInfo = new ProcessStartInfo
+                            {
+                                WorkingDirectory = "debug",
+                                FileName = "debug\\V6ThuePostViettelV2.exe",
+                                Arguments = "M_JSON V6ThuePost.xml tprint_soa.json",
+                                UseShellExecute = false,
+                                RedirectStandardOutput = true,
+                                CreateNoWindow = true
+                            }
+                        };
+
+                        if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
+                        {
+                            process.StartInfo.Arguments = "M_JSON V6ThuePost.xml tprint_soa.json";
+                        }
+                        else
+                        {
+                            process.StartInfo.Arguments = "M_JSON V6ThuePost.xml tprint_soa.json";
+                        }
+
+                        process.Start();
+                        //while (!process.StandardOutput.EndOfStream)
+                        //{
+                        //    string line = process.StandardOutput.ReadLine();
+                        //    // do something with line
+                        //}
+                        result = process.StandardOutput.ReadToEnd();
+                        process.WaitForExit();
+                        // Phân tích Result tại đây.
+                        paras.Form.ShowInfoMessage(result);
+                    }
+                    else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                        jsonBody = ReadData_Viettel(paras);
+                        string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                        result = viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
+                    }
+                }
+                else if (paras.Mode.StartsWith("S"))
+                {
+                    if (paras.Mode.EndsWith("3"))
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "3",
+                        };
+                    }
+                    else if (paras.Mode.EndsWith("5"))
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "5",
+                        };
+                    }
+                    else
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "3",
+                        };
+                    }
+
+                    jsonBody = ReadData_Viettel(paras);
+                    //File.Create(flagFileName1).Close();
+                    result = viettel_ws.POST_EDIT(_modifylink, jsonBody);
+                }
+
+                //Phân tích result
+                paras.Result.V6ReturnValues.RESULT_STRING = result;
+                string message = "";
+                try
+                {
+                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    paras.Result.V6ReturnValues.RESULT_OBJECT = responseObject;
+                    if (!string.IsNullOrEmpty(responseObject.description))
+                    {
+                        message += " " + responseObject.description;
+                    }
+
+                    if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
+                    {
+                        paras.Result.V6ReturnValues.SO_HD = responseObject.result.invoiceNo;
+                        paras.Result.V6ReturnValues.ID = responseObject.result.transactionID;
+                        paras.Result.V6ReturnValues.SECRET_CODE = responseObject.result.reservationCode;
+                        message += " " + responseObject.result.invoiceNo;
+                        
+                    }
+                    else if (responseObject.errorCode == null)
+                    {
+                        paras.Result.V6ReturnValues.SO_HD = paras.InvoiceNo;
+                        paras.Result.V6ReturnValues.RESULT_MESSAGE = responseObject.description;
+                    }
+                    else
+                    {
+                        paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = responseObject.errorCode + ":" + responseObject.description;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "CONVERT EXCEPTION: " +  ex.Message;
+                    Logger.WriteToLog("EXECUTE_VIETTEL ConverResultObjectException: " + paras.Fkey_hd + ex.Message);
+                    message = "Kết quả:";
+                }
+                result = message + "\n" + result;
+            }
+            catch (Exception ex)
+            {
+                paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
+                V6ControlFormHelper.WriteExLog("PostManager.EXECUTE_VIETTEL", ex);
+            }
+
+            return result;
+        }
         
 
         
@@ -2953,23 +3160,7 @@ namespace V6ThuePostManager
             }
             return result;
         }
-
-        /// <summary>
-        /// Trả về đường dẫn file pdf.
-        /// </summary>
-        /// <param name="postManagerParams"></param>
-        /// <returns>Trả về đường dẫn file pdf.</returns>
-        public static string BkavDownloadInvoicePDF(PostManagerParams postManagerParams)
-        {
-            BkavWS bkav_ws = new BkavWS();
-            ExecCommandFunc wsExecCommand = null;
-            var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(_baseUrl);
-            wsExecCommand = webservice.ExecuteCommand;
-            uint Constants_Mode = RemoteCommand.DefaultMode;
-            var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
-            return bkav_ws.DownloadInvoicePDF(remoteCommand, postManagerParams.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory);
-        }
-
+        
         /// <summary>
         /// Trả về đường dẫn file pdf.
         /// </summary>
@@ -4104,9 +4295,10 @@ namespace V6ThuePostManager
         /// <summary>
         /// Cần viết thêm đọc xml.
         /// </summary>
-        /// <param name="map_table"></param>
-        public static void ReadConfigInfo(DataTable map_table)
+        /// <param name="mapTable"></param>
+        public static void ReadConfigInfo(DataTable mapTable)
         {
+            V6Infos = new Dictionary<string, string>();
             generalInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
             buyerInfoConfig = new Dictionary<string, ConfigLine>();
             sellerInfoConfig = new Dictionary<string, ConfigLine>();
@@ -4121,7 +4313,7 @@ namespace V6ThuePostManager
 
             try
             {
-                foreach (DataRow row in map_table.Rows)
+                foreach (DataRow row in mapTable.Rows)
                 {
                     string GROUP_NAME = row["GroupName"].ToString().Trim().ToUpper();
                     ConfigLine line = ReadConfigLine(row);
@@ -4166,6 +4358,7 @@ namespace V6ThuePostManager
                                     //Vnpt, có dùng cả username, password
                                 case "link_publish":
                                         _link_Publish_vnpt_thaison = UtilityHelper.DeCrypt(line.Value);
+                                        _baseUrl = _link_Publish_vnpt_thaison.Substring(0, _link_Publish_vnpt_thaison.LastIndexOf('/'));
                                     break;
                                 case "link_business":
                                     _link_Business_vnpt = UtilityHelper.DeCrypt(line.Value);
@@ -4357,7 +4550,7 @@ namespace V6ThuePostManager
         {
             try
             {
-                map_table = paras.DataSet.Tables[0];
+                _map_table = paras.DataSet.Tables[0];
                 //ad_table = paras.DataSet.Tables[1];
                 //am_table = paras.DataSet.Tables[2];
                 //Fkey_hd_tt = paras.Fkey_hd_tt;
@@ -4372,7 +4565,7 @@ namespace V6ThuePostManager
                 //    ad3_table = null;
                 //}
 
-                ReadConfigInfo(map_table);
+                ReadConfigInfo(_map_table);
 
                 switch (paras.Branch)
                 {

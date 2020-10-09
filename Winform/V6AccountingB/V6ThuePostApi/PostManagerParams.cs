@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using V6ThuePost.ResponseObjects;
 using V6ThuePostBkavApi.ResponseObjects;
 using V6Tools.V6Convert;
@@ -73,6 +74,9 @@ namespace V6ThuePostManager
         /// Ngày chứng từ.
         /// </summary>
         public DateTime InvoiceDate { get; set; }
+
+        public Control Form { get; set; }
+
         /// <summary>
         /// Kết quả trả về của Web_service đã được phân tích.
         /// </summary>
@@ -160,6 +164,9 @@ namespace V6ThuePostManager
         /// </summary>
         public V6Return V6ReturnValues = null;
 
+        /// <summary>
+        /// Số hóa đơn. (Thông với V6ReturnValues.SO_HD)
+        /// </summary>
         public string InvoiceNo
         {
             get

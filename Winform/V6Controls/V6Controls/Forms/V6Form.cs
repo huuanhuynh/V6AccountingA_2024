@@ -67,6 +67,11 @@ namespace V6Controls.Forms
             base.OnHandleDestroyed(e);
         }
 
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            base.OnClosing(e);
+            if (!e.Cancel && this.Owner != null) this.Owner.Focus();
+        }
+
         /// <summary>
         /// Hãy override hàm này để tối ưu bộ nhớ.
         /// <para>Xóa biến, tối ưu bộ nhớ.</para>

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using V6ThuePost.ResponseObjects;
+using V6ThuePostXmlApi.Web_References.BusinessService;
 
 namespace V6ThuePostXmlApi
 {
-    public class VnptWS
+    public class VnptTokenV5WS
     {
         private string _baseLink = "https://admindemo.vnpt-invoice.com.vn";
         private string _publishLink = "/PublishService.asmx";
@@ -29,7 +30,7 @@ namespace V6ThuePostXmlApi
         /// <param name="accountPassword">Mật khẩu admin.</param>
         /// <param name="userName">Tài khoản web service.</param>
         /// <param name="password">Mật khẩu ws.</param>
-        public VnptWS(string baseLink, string account, string accountPassword, string userName, string password)
+        public VnptTokenV5WS(string baseLink, string account, string accountPassword, string userName, string password)
         {
             _baseLink = baseLink;
             _account = account;
@@ -44,7 +45,7 @@ namespace V6ThuePostXmlApi
         /// <param name="xml">Dữ liệu các hóa đơn.</param>
         /// <param name="serial">Ký hiệu VN/20E</param>
         /// <param name="v6Return">Kết quả trả về đã phân tích.</param>
-        /// <param name="pattern">Mấu số 01GTKT3/001</param>
+        /// <param name="pattern">Mẫu số 01GTKT0...</param>
         /// <returns>Thông báo phát hành hd.</returns>
         public string ImportAndPublishInv(string xml, string pattern, string serial, out V6Return v6Return)
         {
@@ -108,6 +109,7 @@ namespace V6ThuePostXmlApi
 
             return result;
         }
+
 
         /// <summary>
         /// Download invoice VNPT
@@ -177,18 +179,19 @@ namespace V6ThuePostXmlApi
         /// <summary>
         /// Gạch nợ hóa đơn theo lstInvToken(01GTKT2/001;AA/13E;10)
         /// </summary>
+        /// <param name="_link_Business"></param>
         /// <param name="lstInvToken">01GTKT2/001;AA/13E;10_????????</param>
         /// <param name="userName"></param>
         /// <param name="userPass"></param>
         /// <param name="v6return">Các giá trị trả về.</param>
         /// <returns></returns>
-        public string ConfirmPayment(string lstInvToken, string userName, string userPass, out V6Return v6return)
+        public static string ConfirmPayment(string _link_Business, string lstInvToken, string userName, string userPass, out V6Return v6return)
         {
             string result = null;
             v6return = new V6Return();
             try
             {
-                result = new BusinessService.BusinessService(_baseLink + _businessLink).confirmPayment(lstInvToken, userName, userPass);
+                result = new BusinessService(_link_Business).confirmPayment(lstInvToken, userName, userPass);
                 v6return.RESULT_STRING = result;
                 if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 
@@ -221,133 +224,81 @@ namespace V6ThuePostXmlApi
         /// <summary>
         /// Gạch nợ hóa đơn theo fkey
         /// </summary>
+        /// <param name="_link_Business"></param>
         /// <param name="fkey_old"></param>
         /// <param name="userName"></param>
         /// <param name="userPass"></param>
-        /// <param name="v6Return"></param>
+        /// <param name="v6return"></param>
         /// <returns></returns>
-        public string ConfirmPaymentFkey(string fkey_old, string userName, string userPass, out V6Return v6Return)
+        public static string ConfirmPaymentFkey(string _link_Business, string fkey_old, string userName, string userPass, out V6Return v6return)
         {
             string result = null;
-            v6Return = new V6Return();
+            v6return = new V6Return();
             try
             {
-                result = new BusinessService.BusinessService(_baseLink + _businessLink).confirmPaymentFkey(fkey_old, userName, userPass);
-                v6Return.RESULT_STRING = result;
-                v6Return.RESULT_OBJECT = result;
-                if (result.StartsWith("OK"))
+                result = new BusinessService(_link_Business).confirmPaymentFkey(fkey_old, userName, userPass);
+                v6return.RESULT_STRING = result;
+                v6return.RESULT_OBJECT = result;
+                if (result.StartsWith("ERR:13"))
                 {
-
-                }
-                else if (result.StartsWith("ERR:13"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHóa đơn đã được gạch nợ.";
+                    result += "Hóa đơn đã được gạch nợ.";
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
                 else if (result.StartsWith("ERR:7"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông gạch nợ được.";
+                    result += "Không gạch nợ được.";
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
                 else if (result.StartsWith("ERR:6"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
+                    result += "Không tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
                 else if (result.StartsWith("ERR:1"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTài khoản đăng nhập sai.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result;
+                    result += "Tài khoản đăng nhập sai.";
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
             }
             catch (Exception ex)
             {
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
-                v6Return.RESULT_ERROR_MESSAGE = result;
             }
 
             return result;
         }
 
-        public string UnconfirmPaymentFkey(string fkey_old, string userName, string userPass, out V6Return v6Return)
+        public static string UnconfirmPaymentFkey(string _link_Business, string fkey_old, string userName, string userPass, out V6Return v6return)
         {
             string result = null;
-            v6Return = new V6Return();
+            v6return = new V6Return();
             try
             {
-                result = new BusinessService.BusinessService(_baseLink + _businessLink).UnConfirmPaymentFkey(fkey_old, userName, userPass);
-                v6Return.RESULT_STRING = result;
+                result = new BusinessService(_link_Business).UnConfirmPaymentFkey(fkey_old, userName, userPass);
+                v6return.RESULT_STRING = result;
+                if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 
-                if (result.StartsWith("OK"))
+                if (result.StartsWith("ERR:13"))
                 {
-
-                }
-                else if (result.StartsWith("ERR:13"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHóa đơn đã được bỏ gạch nợ.";
+                    result += "\r\nHóa đơn đã được bỏ gạch nợ.";
                 }
                 else if (result.StartsWith("ERR:7"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông bỏ gạch nợ được.";
+                    result += "\r\nKhông bỏ gạch nợ được.";
                 }
                 else if (result.StartsWith("ERR:6"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
+                    result += "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
                 }
                 else if (result.StartsWith("ERR:1"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTài khoản đăng nhập sai.";
-                }
-                else if (result.StartsWith("ERR")) v6Return.RESULT_ERROR_MESSAGE = result;
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-                v6Return.RESULT_ERROR_MESSAGE = result;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Hủy hóa đơn.
-        /// </summary>
-        /// <param name="fkey_old"></param>
-        /// <param name="v6Return"></param>
-        /// <returns></returns>
-        public string cancelInv(string fkey_old, out V6Return v6Return)
-        {
-            string result = null;
-            v6Return = new V6Return();
-            try
-            {
-                result = new BusinessService.BusinessService(_baseLink + _businessLink).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
-                v6Return.RESULT_STRING = result;
-                if (result.StartsWith("OK"))
-                {
-
-                }
-                else if (result.StartsWith("ERR:9"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTrạng thái hóa đơn không được thay thế.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHóa đơn đã được thay thế rồi, hủy rồi.";
-                }
-                else if (result.StartsWith("ERR:2"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông tồn tại hóa đơn cần hủy.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                    result += "\r\nTài khoản đăng nhập sai.";
                 }
             }
             catch (Exception ex)
             {
                 result = "ERR:EX\r\n" + ex.Message;
-                v6Return.RESULT_ERROR_MESSAGE = result;
             }
 
             return result;
@@ -356,24 +307,20 @@ namespace V6ThuePostXmlApi
         /// <summary>
         /// Tải về file PDF hóa đơn. Trả về đường dẫn file.
         /// </summary>
-        /// <param name="linkPortal"></param>
         /// <param name="option">0 - Bản pdf thông thường; 1 - Bản pdf chuyển đổi.</param>
         /// <param name="fkey"></param>
-        /// <param name="userName"></param>
-        /// <param name="userPass"></param>
         /// <param name="saveFolder"></param>
-        /// <param name="v6Return"></param>
+        /// <param name="v6return"></param>
         /// <returns></returns>
-        public string DownloadInvPDFFkey(string fkey, int option, string userName, string userPass, string saveFolder, out V6Return v6Return)
+        public string DownloadInvPDFFkey(string fkey, int option,string saveFolder, out V6Return v6return)
         {
             string result = null;
-            v6Return = new V6Return();
+            v6return = new V6Return();
             try
             {
                 if (option == 1)
                 {
-                    result = new PortalService.PortalService(_baseLink + _portalLink).convertForStoreFkey(fkey, userName, userPass);
-                    v6Return.RESULT_STRING = result;
+                    result = new PortalService.PortalService(_baseLink + _portalLink).convertForStoreFkey(fkey, _username, _password);
                     string fileName = fkey;
                     string path = Path.Combine(saveFolder, fileName + ".html");
                     try
@@ -388,17 +335,37 @@ namespace V6ThuePostXmlApi
                         if (!File.Exists(path)) File.WriteAllText(path, result);
                     }
 
-                    v6Return.PATH = path;
+                    v6return.PATH = path;
                     return path;
                 }
                 else
                 {
-                    result = new PortalService.PortalService(_baseLink + _portalLink).downloadInvPDFFkey(fkey, userName, userPass);
-                    v6Return.RESULT_STRING = result;
+                    result = new PortalService.PortalService(_baseLink + _portalLink).downloadInvPDFFkey(fkey, _username, _password);
                 }
-                v6Return.RESULT_STRING = result;
+                v6return.RESULT_STRING = result;
+                if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 
-                if (!result.StartsWith("ERR"))
+                if (result.StartsWith("ERR:11"))
+                {
+                    result += "Hóa đơn chưa thanh toán nên không xem được.";
+                }
+                else if (result.StartsWith("ERR:7"))
+                {
+                    result += "User name không phù hợp, không tìm thấy company tương ứng cho user.";
+                }
+                else if (result.StartsWith("ERR:6"))
+                {
+                    result += "Không tìm thấy hóa đơn.";
+                }
+                else if (result.StartsWith("ERR:1"))
+                {
+                    result += "Tài khoản đăng nhập sai hoặc không có quyền.";
+                }
+                else if (result.StartsWith("ERR"))
+                {
+                    result += "Có lỗi xảy ra.";
+                }
+                else
                 {
                     string fileName = fkey;
                     string path = Path.Combine(saveFolder, fileName + ".pdf");
@@ -414,71 +381,52 @@ namespace V6ThuePostXmlApi
                         if (!File.Exists(path)) File.WriteAllBytes(path, Convert.FromBase64String(result));
                     }
                     
-                    v6Return.PATH = path;
+                    v6return.PATH = path;
                     return path;
-                }
-                else if (result.StartsWith("ERR:11"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHóa đơn chưa thanh toán nên không xem được.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông tìm thấy hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi xảy ra.";
                 }
             }
             catch (Exception ex)
             {
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
-                v6Return.RESULT_ERROR_MESSAGE = result;
             }
 
-            return result;
+            if(result != null)
+                throw new Exception(result);
+            return null;
         }
 
-        public string UpdateCus(string xml, out V6Return v6Return)
+        public static string UpdateCus(string link_Publish, string xml, string username, string password, out V6Return v6return)
         {
-            v6Return = new V6Return();
+            v6return = new V6Return();
             int result = 0;
             string message = "";
             try
             {
-                result = new PublishService.PublishService(_baseLink + _publishLink).UpdateCus(xml, _username, _password, 0);
-                v6Return.RESULT_STRING = "" + result;
+                result = new PublishService.PublishService(link_Publish).UpdateCus(xml, username, password, 0);
                 message += result;
 
                 if (result == -5)
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = "ERR:" + result + "\r\nCó khách hàng đã tồn tại.";
+                    message = "ERR:" + message + "\r\nCó khách hàng đã tồn tại.";
                 }
                 else if (result == -3)
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = "ERR:" + result + "\r\nDữ liệu xml đầu vào không đúng quy định.";
+                    message = "ERR:" + message + "\r\nDữ liệu xml đầu vào không đúng quy định.";
                 }
                 else if (result == -2)
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = "ERR:" + result + "\r\nKhông import được khách hàng vào database.";
+                    message = "ERR:" + message + "\r\nKhông import được khách hàng vào database.";
                 }
                 else if (result == -1)
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = "ERR:" + result + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                    message = "ERR:" + message + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
                 }
             }
             catch (Exception ex)
             {
                 message = "ERR:EX\r\n" + ex.Message;
-                v6Return.RESULT_ERROR_MESSAGE = message;
+                //Logger.WriteToLog("Program.UpdateCus " + message);
             }
 
             return message;

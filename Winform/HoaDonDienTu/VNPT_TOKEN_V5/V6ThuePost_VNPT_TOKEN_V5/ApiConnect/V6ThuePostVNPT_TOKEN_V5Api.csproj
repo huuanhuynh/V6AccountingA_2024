@@ -58,6 +58,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="VnptTokenV5WS.cs" />
     <Compile Include="Web References\BusinessService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -178,6 +179,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\AttachmentService\AttachmentService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PostObjects\V6ThuePostObjects.csproj">
+      <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
+      <Name>V6ThuePostObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

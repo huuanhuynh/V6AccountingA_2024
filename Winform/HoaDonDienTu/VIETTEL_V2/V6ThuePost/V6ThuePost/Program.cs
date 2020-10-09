@@ -147,6 +147,10 @@ namespace V6ThuePost
                             goto End;
                         }
                     }
+                    else if (mode == "M_JSON")
+                    {
+                        Console.Write("Test M_JSON result.");
+                    }
                     else if (mode.StartsWith("M"))
                     {
                         StartAutoInputTokenPassword();

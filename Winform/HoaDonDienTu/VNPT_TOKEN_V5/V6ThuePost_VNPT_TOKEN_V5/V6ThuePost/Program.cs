@@ -16,6 +16,7 @@ using Spy;
 using Spy.SpyObjects;
 using Spy.User32Constants;
 using Spy.WindowHandle;
+using V6ThuePost.ResponseObjects;
 using V6ThuePost.VnptObjects;
 using V6ThuePostXmlApi;
 using V6ThuePostXmlApi.AttachmentService;
@@ -33,10 +34,8 @@ namespace V6ThuePost
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
         #region ===== VAR =====
-        /// <summary>
-        /// Tên cờ V6STT_REC
-        /// </summary>
-        //private static string flagName = "";
+
+        public static VnptTokenV5WS _vnptWS = null;
         /// <summary>
         /// Cờ bắt đầu.
         /// </summary>
@@ -61,11 +60,11 @@ namespace V6ThuePost
         /// <summary>
         /// Config.
         /// </summary>
+        public static string _baseUrl = "";
         public static string link_Publish = "";
         public static string link_Portal = "";
         public static string link_Business = "";
         public static string link_Attachment = "";
-        public static string methodUrl = "";
         public static string mst = "";
         /// <summary>
         /// services
@@ -159,6 +158,9 @@ namespace V6ThuePost
                     
                     ReadXmlInfo(arg1_xmlFile);
 
+                    _vnptWS = new VnptTokenV5WS(_baseUrl, account, accountpassword, username, password);
+                    V6Return v6return = null;
+
                     if (String.Equals(mode, "ImportCert", StringComparison.CurrentCultureIgnoreCase))
                     {
                         result = ImportCertWithToken_Dll();
@@ -168,11 +170,7 @@ namespace V6ThuePost
                         MessageBox.Show("Test DownloadInvPDFFkey");
                         fkeyA = arg2;
                         MakeFlagNames(fkeyA);
-                        string invXml = DownloadInvPDFFkey(fkeyA);
-                        string so_hoa_don = GetSoHoaDon(invXml);
-                        WriteFlag(flagFileName4, so_hoa_don);
-                        result += so_hoa_don;
-                        //result += invXml;
+                        result = _vnptWS.DownloadInvPDFFkey(fkeyA, 0, startupPath, out v6return);
                     }
                     else if (mode.ToLower() == "DownloadInvPDFFkeyNoPay".ToLower())
                     {
@@ -1967,7 +1965,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.AdjustReplaceInvWithToken32(account, accountpassword, xmlInvData, username, password,
+                result = VNPTEInvoiceSignToken.AdjustReplaceInvWithToken68(account, accountpassword, xmlInvData, username, password,
                     serialCert, type, invToken, pattern, seri, link_Publish);
                 result += GetResultDescription_Dll(result);
             }
@@ -2101,7 +2099,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.PublishInvWithToken32(account, accountpassword, xmlInvData, username, password, SERIAL_CERT, pattern, seri, link_Publish);
+                result = VNPTEInvoiceSignToken.PublishInvWithToken68(account, accountpassword, xmlInvData, username, password, SERIAL_CERT, pattern, seri, link_Publish);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2856,6 +2854,7 @@ namespace V6ThuePost
                                     break;
                                 case "link_publish":
                                     link_Publish = UtilityHelper.DeCrypt(line.Value);
+                                    _baseUrl = link_Publish.Substring(0, link_Publish.LastIndexOf('/'));
                                     break;
                                 case "link_portal":
                                     link_Portal = UtilityHelper.DeCrypt(line.Value);

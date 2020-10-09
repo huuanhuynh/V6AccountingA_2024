@@ -46,7 +46,7 @@ namespace V6ThuePost
             string jsonBody = Program.ReadData(txtDbfFile.Text, "M");
             txtUsername.Text = Program.username;
             txtPassword.Text = Program.password;
-            txtURL.Text = Program.baseUrl;
+            txtURL.Text = Program._baseUrl;
             richTextBox1.Text = jsonBody;
             btnTest.Enabled = true;
             btnSend.Enabled = true;

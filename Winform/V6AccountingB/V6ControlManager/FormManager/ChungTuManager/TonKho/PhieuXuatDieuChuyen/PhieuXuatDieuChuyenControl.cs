@@ -6759,6 +6759,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
+
+        private void inHoaDonDienTuMenu_Click(object sender, EventArgs e)
+        {
+            InHoaDonDienTu();
+        }
         
     }
 }

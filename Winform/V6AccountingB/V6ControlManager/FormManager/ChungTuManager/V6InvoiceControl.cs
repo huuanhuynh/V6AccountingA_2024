@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -4945,7 +4946,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                
+
                 var row = AM_current;
                 string MA_SONB = row["MA_SONB"].ToString().Trim();
                 IDictionary<string, object> key = new Dictionary<string, object>();
@@ -4958,20 +4959,27 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     return;
                 }
 
+                string v6_partner_infor = ("" + row["PART_INFORS"]).Trim();
+                if (string.IsNullOrEmpty(v6_partner_infor))
+                {
+                    this.ShowWarningMessage("Hóa đơn chưa chuyển!");
+                    return;
+                }
+
                 string mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"];
                 if (shift_is_down)
                 {
                     if (mode == "0") mode = "1";
                     else if (mode == "1") mode = "0";
                 }
-                
+
                 string return_file_name = "";
                 string tableName = "V6MAPINFO";
-                string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
+                string keys = "UID,MA_TD1"; //+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
                 //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
                 SqlParameter[] plist0 =
                 {
-                    new SqlParameter("@Loai", "AAPPR_"+_invoice.Mact+"2"),
+                    new SqlParameter("@Loai", "AAPPR_" + _invoice.Mact + "2"),
                     new SqlParameter("@MA_TD1", brand), // Nhánh hóa đơn điện tử.
                     new SqlParameter("@Ma_ct", (row["Ma_ct"] ?? "").ToString()),
                     new SqlParameter("@Stt_rec", (row["Stt_rec"] ?? "").ToString()),
@@ -4986,7 +4994,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 string v6_partner_id = row["V6PARTNER_ID"].ToString().Trim();
                 string pattern = row["MA_MAUHD"].ToString().Trim();
                 string fkey_hd = row["fkey_hd"].ToString().Trim();
-                
+
                 var pmparams = new PostManagerParams
                 {
                     DataSet = map_table.DataSet,
@@ -5018,7 +5026,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     HtmlViewerForm view = new HtmlViewerForm(return_file_name, return_file_name, false);
                     view.ShowDialog(this);
                 }
-
+            }
+            catch (WebException ex)
+            {
+                this.ShowErrorMessage(V6Text.Text("NETWORK_ERROR"));
             }
             catch (Exception ex)
             {

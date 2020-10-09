@@ -201,6 +201,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.xemVitriMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.xemVitri2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.txtLoaiCt = new V6Controls.V6VvarTextBox();
+            this.inHoaDonDienTuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2431,9 +2432,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuHachToanMenu,
-            this.inKhacMenu});
+            this.inKhacMenu,
+            this.inHoaDonDienTuMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 92);
             // 
             // inPhieuHachToanMenu
             // 
@@ -2617,6 +2619,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtLoaiCt.Size = new System.Drawing.Size(10, 20);
             this.txtLoaiCt.TabIndex = 37;
             this.txtLoaiCt.Visible = false;
+            // 
+            // inHoaDonDienTuMenu
+            // 
+            this.inHoaDonDienTuMenu.AccessibleDescription = "INVOICEM00050";
+            this.inHoaDonDienTuMenu.Name = "inHoaDonDienTuMenu";
+            this.inHoaDonDienTuMenu.Size = new System.Drawing.Size(173, 22);
+            this.inHoaDonDienTuMenu.Text = "In hóa đơn điện tử";
+            this.inHoaDonDienTuMenu.Click += new System.EventHandler(this.inHoaDonDienTuMenu_Click);
             // 
             // PhieuXuatDieuChuyenControl
             // 
@@ -2848,5 +2858,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem chonALVTMenu;
         private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
+        private System.Windows.Forms.ToolStripMenuItem inHoaDonDienTuMenu;
     }
 }

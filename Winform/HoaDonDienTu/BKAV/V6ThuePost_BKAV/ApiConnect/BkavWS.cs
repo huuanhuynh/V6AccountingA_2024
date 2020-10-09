@@ -341,7 +341,14 @@ namespace V6ThuePostBkavApi
             return msg;
         }
 
-        public string DownloadInvoicePDF(RemoteCommand remoteCommand, string fkey_hd, string savefolder)
+        /// <summary>
+        /// Tải về file PDF hóa đơn, thành công trả về đường dẫn file.
+        /// </summary>
+        /// <param name="remoteCommand"></param>
+        /// <param name="stringID"></param>
+        /// <param name="savefolder"></param>
+        /// <returns></returns>
+        public string DownloadInvoicePDF(RemoteCommand remoteCommand, string stringID, string savefolder)
         {
             string msg = null;
 
@@ -351,14 +358,14 @@ namespace V6ThuePostBkavApi
             //InvoiceDataWS invoiceDataWS = new InvoiceDataWS();
             //Chỉ được truyền giá trị cho PartnerInvoiceID trong hoặc PartnerInvoiceStringID
             postObject.PartnerInvoiceID = "0";
-            postObject.PartnerInvoiceStringID = fkey_hd;
+            postObject.PartnerInvoiceStringID = stringID;
 
             //string list = postObject.ToJson();//\"N000986211SOA
             //list = "[" + list + "]";
             
             Result result = null;
             //msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._804_GetInvoiceLink, list, out result);
-            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._808_GetInvoicePDF64, fkey_hd, out result);
+            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._808_GetInvoicePDF64, stringID, out result);
             if (msg.Length > 0) throw new Exception(msg);
 
             // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
@@ -369,7 +376,7 @@ namespace V6ThuePostBkavApi
 
             if (pdfResult != null && pdfResult.PDF != null)
             {
-                string path = Path.Combine(savefolder, fkey_hd + ".pdf");
+                string path = Path.Combine(savefolder, stringID + ".pdf");
                 try
                 {
                     if (File.Exists(path)) File.Delete(path);
@@ -384,29 +391,6 @@ namespace V6ThuePostBkavApi
 
                 return path;
             }
-
-            //string url = null;
-            //foreach (InvoiceResult invoiceResult in listInvoiceResult)
-            //{
-            //    if (invoiceResult.Status == 0)
-            //    {
-            //        msg = "";
-            //        url = invoiceResult.MessLog;
-            //    }//Link tải trả về trong trường MessLog
-            //    else return invoiceResult.MessLog;
-            //}
-
-            //if (!string.IsNullOrEmpty(url))
-            //{
-            //    string path = Path.Combine(savefolder, fkey_hd + ".pdf");
-
-            //    using (WebClient webClient = new WebClient())
-            //    {
-            //        //webClient.DownloadFile("https://ws.ehoadon.vn" + url, path);
-            //        webClient.DownloadFile("https://demo.ehoadon.vn" + url, path);
-            //    }
-            //    return path;
-            //}
             
             return null;
         }

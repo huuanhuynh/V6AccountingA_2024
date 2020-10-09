@@ -25,13 +25,13 @@ namespace V6ThuePost
         /// <summary>
         /// Link host
         /// </summary>
-        public static string baseUrl = "";
+        public static string _baseUrl = "";
         /// <summary>
-        /// Link hàm tạo mới (không chứa baseUrl, khi dùng sẽ nối lại sau).
+        /// Link hàm tạo mới (không chứa _baseUrl, khi dùng sẽ nối lại sau).
         /// </summary>
         public static string createInvoiceUrl = "";
         /// <summary>
-        /// Link hàm sửa đổi (không chứa baseUrl, khi dùng sẽ nối lại sau).
+        /// Link hàm sửa đổi (không chứa _baseUrl, khi dùng sẽ nối lại sau).
         /// </summary>
         public static string modifyUrl = "";
         //{
@@ -138,7 +138,7 @@ namespace V6ThuePost
                     ReadXmlInfo(arg1_xmlFile);
                     string dbfFile = arg2;
 
-                    _viettel_ws = new ViettelWS(baseUrl, username, password, _codetax);
+                    _viettel_ws = new ViettelWS(_baseUrl, username, password, _codetax);
 
                     if (mode.ToUpper() == "MTEST")
                     {
@@ -198,7 +198,7 @@ namespace V6ThuePost
                             };
                             jsonBody = ReadData(dbfFile, "M");
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                            _viettel_ws = new ViettelWS(baseUrl, username, password, _codetax);
+                            _viettel_ws = new ViettelWS(_baseUrl, username, password, _codetax);
                             result = _viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
                         }
                     }
@@ -874,7 +874,7 @@ namespace V6ThuePost
                                         token_password = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "baselink":
-                                        baseUrl = UtilityHelper.DeCrypt(line.Value);
+                                        _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "createlink":
                                         createInvoiceUrl = UtilityHelper.DeCrypt(line.Value);

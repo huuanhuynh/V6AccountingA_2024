@@ -2256,6 +2256,22 @@ namespace V6AccountingBusiness
             }
         }
 
+        public static void WriteTextFile(string fileName, string content)
+        {
+            try
+            {
+                var fs = new FileStream(fileName, FileMode.Create);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Write(content);
+                sw.Close();
+                fs.Close();
+            }
+            catch
+            {
+                //
+            }
+        }
+
         public static void WriteV6UserLog(string item_id, string action, string content)
         {
             try
@@ -2403,7 +2419,6 @@ namespace V6AccountingBusiness
                 return false;
             }
         }
-
 
         
     }

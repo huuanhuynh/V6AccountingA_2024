@@ -88,7 +88,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private bool f9Running;
         private string f9Error = "";
-        private string f9ErrorAll = "";
         private string f9MessageAll = "";
         protected override void XuLyF9()
         {
@@ -113,7 +112,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void F9Thread()
         {
             f9Running = true;
-            f9ErrorAll = "";
             f9MessageAll = "";
 
             int i = 0;
@@ -159,6 +157,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             Fkey_hd = fkey_hd,
                             Pattern = pattern,
                             Serial = serial,
+                            Form = this,
                         };
                         result = PostManager.PowerPost(paras);//, out sohoadon, out id, out error);
 
@@ -191,7 +190,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 catch (Exception ex)
                 {
                     f9Error += ex.Message;
-                    f9ErrorAll += ex.Message;
                     f9MessageAll += ex.Message;
                 }
             }
@@ -215,10 +213,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 Key_Down = "";
                 RemoveGridViewRow();
                 btnNhan.PerformClick();
-                string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
-                V6ControlFormHelper.SetStatusText(message);
-                V6ControlFormHelper.ShowMainMessage(message);
-                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll, 300);
+                V6ControlFormHelper.SetStatusText(f9MessageAll);
+                V6ControlFormHelper.ShowMainMessage(f9MessageAll);
+                this.ShowMessage(f9MessageAll, 300);
             }
         }
         #endregion xulyF9
@@ -266,6 +263,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         Fkey_hd = fkey_hd,
                         Pattern = pattern,
                         Serial = serial,
+                        Form = this,
                     };
                     result = PostManager.PowerPost(paras);//, out sohoadon, out id, out error);
 
@@ -320,6 +318,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     Key_Down = "TestView",
                     RptFileFull = ReportFileFull,
                     Fkey_hd = fkey_hd,
+                    Form = this,
                 };
                 result = PostManager.PowerPost(paras);
                 Clipboard.SetText(result);
