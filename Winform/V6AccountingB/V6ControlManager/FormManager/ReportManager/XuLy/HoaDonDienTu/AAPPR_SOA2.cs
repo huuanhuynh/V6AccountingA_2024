@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -12,7 +11,6 @@ using V6Controls.Forms;
 using V6Init;
 using V6ThuePostManager;
 using V6Tools;
-using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -159,7 +157,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             Serial = serial,
                             Form = this,
                         };
-                        result = PostManager.PowerPost(paras);//, out sohoadon, out id, out error);
+                        result = PostManager.PowerPost(paras);
 
                         if (paras.Result.IsSuccess(paras.Mode))
                         {

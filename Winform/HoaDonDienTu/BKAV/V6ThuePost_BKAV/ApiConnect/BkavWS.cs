@@ -8,13 +8,28 @@ using Newtonsoft.Json;
 using V6ThuePost.ResponseObjects;
 using V6ThuePostBkavApi.PostObjects;
 using V6ThuePostBkavApi.ResponseObjects;
+using V6ThuePostBkavApi.vn.ehoadon.wsdemo;
 
 namespace V6ThuePostBkavApi
 {
     public class BkavWS
     {
+        private string _baseUrl;
+        private string BkavPartnerGUID;
+        private string BkavPartnerToken;
+        private RemoteCommand remoteCommand;
+        public BkavWS(string baseUrl, string bkavPartnerGUID, string bkavPartnerToken)
+        {
+            _baseUrl = baseUrl;
+            BkavPartnerGUID = bkavPartnerGUID;
+            BkavPartnerToken = bkavPartnerToken;
+            
+            var webservice = new WSPublicEHoaDon(_baseUrl);
+            uint Constants_Mode = RemoteCommand.DefaultMode;
+            remoteCommand = new RemoteCommand(webservice.ExecuteCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
+        }
 
-        public string POST(RemoteCommand remoteCommand, string jsonBody, int commandType, out V6Return v6return)
+        public string POST(string jsonBody, int commandType, out V6Return v6return)
         {
             string result = null;
             //so_hd = 0;
@@ -32,32 +47,32 @@ namespace V6ThuePostBkavApi
                     case BkavConst._111_CreateClientNo:
                     case BkavConst._112_CreateWithParternSerial: // Hóa đơn tự sinh số chưa phát hành.
                     case BkavConst._200_Update: // 200 sửa
-                        msg = DoCreateInvoice(remoteCommand, commandType, jsonBody, out v6return);
+                        msg = DoCreateInvoice(commandType, jsonBody, out v6return);
                         break;
                     case BkavConst._121_CreateAdjust:
-                        msg = DoAdjustInvoice(remoteCommand, jsonBody, out v6return);
+                        msg = DoAdjustInvoice(jsonBody, out v6return);
                         break;
                     case BkavConst._120_CreateReplace:
                     case BkavConst._123_CreateReplace:
-                        msg = DoReplaceInvoice(remoteCommand, commandType, jsonBody, out v6return);
+                        msg = DoReplaceInvoice(commandType, jsonBody, out v6return);
                         break;
                     case BkavConst._201_CancelInvoiceByInvoiceGUID:
                     case BkavConst._202_CancelInvoiceByPartnerInvoiceID:
-                        msg = CancelInvoice(remoteCommand, commandType, jsonBody, out v6return);
+                        msg = CancelInvoice(commandType, jsonBody, out v6return);
                         break;
                     case BkavConst._205_SignGUID:
-                        msg = SignInvoice(remoteCommand, jsonBody, out v6return);
+                        msg = SignInvoice(jsonBody, out v6return);
                         break;
                     default:
                         msg = "V6 not supported.";
                         v6return = new V6Return();
-                        v6return.RESULT_ERROR_MESSAGE = msg;
                         break;
                 }
 
                 if (msg.Length > 0)
                 {
                     result = "ERR:" + msg;
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
                 else if (v6return != null)
                 {
@@ -67,6 +82,7 @@ namespace V6ThuePostBkavApi
             catch (Exception ex)
             {
                 v6return = new V6Return();
+                v6return.RESULT_STRING = ex.Message;
                 v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = ex.Message;
             }
@@ -77,12 +93,11 @@ namespace V6ThuePostBkavApi
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="remoteCommand"></param>
         /// <param name="commandType"></param>
         /// <param name="listInvoice_json"></param>
         /// <param name="v6return">Giá trị trả về cho PostManagerResult. RESULT_STRING RESULT_OBJECT SO_HD ID RESULT_ERROR</param>
         /// <returns></returns>
-        string DoCreateInvoice(RemoteCommand remoteCommand, int commandType, string listInvoice_json, out V6Return v6return)
+        string DoCreateInvoice(int commandType, string listInvoice_json, out V6Return v6return)
         {
             string msg = null;
             v6return = new V6Return();
@@ -130,7 +145,7 @@ namespace V6ThuePostBkavApi
             return msg;
         }
 
-        string DoAdjustInvoice(RemoteCommand remoteCommand, string listInvoice_json, out V6Return v6return)
+        string DoAdjustInvoice(string listInvoice_json, out V6Return v6return)
         {
             string msg = null;
             v6return = new V6Return();
@@ -174,7 +189,7 @@ namespace V6ThuePostBkavApi
         }
 
 
-        public string DoReplaceInvoice(RemoteCommand remoteCommand, int commandType, string listInvoice_json, out V6Return v6return)
+        public string DoReplaceInvoice(int commandType, string listInvoice_json, out V6Return v6return)
         {
             string msg = null;
             v6return = new V6Return();
@@ -218,7 +233,7 @@ namespace V6ThuePostBkavApi
             return msg;
         }
 
-        public string CancelInvoice(RemoteCommand remoteCommand, int CmdType, string id, out V6Return v6return)
+        public string CancelInvoice(int CmdType, string id, out V6Return v6return)
         {
             string msg = "";
             v6return = new V6Return();
@@ -288,7 +303,7 @@ namespace V6ThuePostBkavApi
             return msg;
         }
 
-        public string SignInvoice(RemoteCommand remoteCommand, string uid, out V6Return v6return)
+        public string SignInvoice(string uid, out V6Return v6return)
         {
             string msg = "";
             v6return = new V6Return();
@@ -344,11 +359,10 @@ namespace V6ThuePostBkavApi
         /// <summary>
         /// Tải về file PDF hóa đơn, thành công trả về đường dẫn file.
         /// </summary>
-        /// <param name="remoteCommand"></param>
         /// <param name="stringID"></param>
         /// <param name="savefolder"></param>
         /// <returns></returns>
-        public string DownloadInvoicePDF(RemoteCommand remoteCommand, string stringID, string savefolder)
+        public string DownloadInvoicePDF(string stringID, string savefolder)
         {
             string msg = null;
 

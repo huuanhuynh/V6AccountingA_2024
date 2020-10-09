@@ -9,7 +9,6 @@ using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
-using V6Structs;
 using V6ThuePostManager;
 using V6Tools;
 using Timer = System.Windows.Forms.Timer;
@@ -40,27 +39,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         private bool f9Running;
         private string f9Error = "";
-        private string f9ErrorAll = "";
         private string f9MessageAll = "";
         
         protected override void XuLyF9()
         {
             try
             {
-                //AAPPR_EINVOICE1_F9 form = new AAPPR_EINVOICE1_F9();
-                //if (form.ShowDialog(this) != DialogResult.OK)
-                //{
-                //    return;
-                //}
-                //TxtMa_bp_Text = form.TxtMa_bp.Text.Trim();
-                //TxtMa_nvien_Text = form.TxtMa_nvien.Text.Trim();
-                //if (TxtMa_bp_Text == "" && TxtMa_nvien_Text == "")
-                //{
-                //    return;
-                //}
-
-                Timer tF9 = new Timer();
-                tF9.Interval = 500;
+                Timer tF9 = new Timer {Interval = 500};
                 tF9.Tick += tF9_Tick;
                 Thread t = new Thread(F9Thread);
                 t.SetApartmentState(ApartmentState.STA);
@@ -78,7 +63,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void F9Thread()
         {
             f9Running = true;
-            f9ErrorAll = "";
             f9MessageAll = "";
 
             var form = new AAPPR_EINVOICE1_F9();
@@ -115,7 +99,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                         //DataTable data0 = ds.Tables[0];
-                        string result = "";//, error = "", sohoadon = "", id = "";
                         var paras = new PostManagerParams
                         {
                             DataSet = ds,
@@ -125,11 +108,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             V6PartnerID = row.Cells["V6PARTNER_ID"].Value.ToString().Trim(),
                             AM_new = row_data,
                         };
-                        result = PostManager.PowerPost(paras);
+                        string result = PostManager.PowerPost(paras);
 
                         if (paras.Result.IsSuccess(mode))
                         {
-                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString, V6Text.Text("ThanhCong"));
+                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, paras.Result.InvoiceNo, paras.Result.Id, result, V6Text.Text("ThanhCong"));
                             
                             SqlParameter[] plist2 =
                             {
@@ -157,7 +140,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 catch (Exception ex)
                 {
                     f9Error += ex.Message;
-                    f9ErrorAll += ex.Message;
+                    f9MessageAll += ex.Message;
                 }
             }
             f9Running = false;
@@ -179,10 +162,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 RemoveGridViewRow();
 
                 btnNhan.PerformClick();
-                string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
-                V6ControlFormHelper.SetStatusText(message);
-                V6ControlFormHelper.ShowMainMessage(message);
-                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll, 300);
+                
+                V6ControlFormHelper.SetStatusText(f9MessageAll);
+                V6ControlFormHelper.ShowMainMessage(f9MessageAll);
+                this.ShowMessage("F9 " + f9MessageAll, 300);
             }
         }
         #endregion xulyF9
@@ -192,7 +175,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 f9Error = "";
-                f9ErrorAll = "";
                 f9MessageAll = "";
                 if (dataGridView1.CurrentRow == null) return;
 
@@ -215,7 +197,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     string fkey_hd_tt = am_old["FKEY_HD_TT"].ToString().Trim();
                     if (string.IsNullOrEmpty(fkey_hd_tt))
                     {
-                        f9ErrorAll = "Không có mã FKEY_HD_TT.";
+                        f9MessageAll = "Không có mã FKEY_HD_TT.";
                         return;
                     }
 
@@ -236,7 +218,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                     //DataTable data0 = ds.Tables[0];
-                    string result = ""; //, error = "", sohoadon = "", id = "";
                     var paras = new PostManagerParams
                     {
                         DataSet = ds,
@@ -248,20 +229,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         Fkey_hd_tt = fkey_hd_tt, // "[01GTKT0/003]_[AA/17E]_[0000105]",
                     };
 
-                    result = PostManager.PowerPost(paras);
+                    string result = PostManager.PowerPost(paras);
 
                     if (paras.Result.IsSuccess(paras.Mode))     // Phải phân biệt 2 loại thành công.
                     {
                         if (paras.Result.ResultMessage != null && paras.Result.ResultMessage.Contains("Đã tồn tại Hóa đơn"))
                         {
                             f9MessageAll += string.Format("{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct,
-                             paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString,
+                             paras.Result.InvoiceNo, paras.Result.Id, result,
                              V6Text.Exist);
                         }
                         else
                         {
                             f9MessageAll += string.Format("{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct,
-                                paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString,
+                                paras.Result.InvoiceNo, paras.Result.Id, result,
                                 V6Text.Text("ThanhCong"));
                         }
 
@@ -291,7 +272,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 catch (Exception ex)
                 {
                     f9Error += ex.Message;
-                    f9ErrorAll += ex.Message;
+                    f9MessageAll += ex.Message;
                 }
 
                 // Thông báo hoàn thành:
@@ -391,7 +372,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
-        V6Invoice81 invoice = new V6Invoice81();
+        private readonly V6Invoice81 invoice = new V6Invoice81();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try

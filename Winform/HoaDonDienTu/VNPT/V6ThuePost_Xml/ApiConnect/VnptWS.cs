@@ -109,8 +109,64 @@ namespace V6ThuePostXmlApi
             return result;
         }
 
+        public string adjustInv(string xml, string fkey_old, out V6Return v6Return)
+        {
+            string result = null;
+            v6Return = new V6Return();
+            try
+            {
+                result = new BusinessService.BusinessService(_baseLink + _businessLink).adjustInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
+                v6Return.RESULT_STRING = result;
+                if (result.StartsWith("OK") && result.Contains("_"))
+                {
+                    //OK:01GTKT3/001;AA/12E;key_0000002
+                    int index = result.IndexOf('_');
+                    string so_hd = result.Substring(index + 1);
+                    v6Return.SO_HD = so_hd;
+                }
+                else if (result.StartsWith("ERR:9"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTrạng thái hóa đơn không được điều chỉnh.";
+                }
+                else if (result.StartsWith("ERR:8"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHóa đơn cần điều chỉnh đã bị thay thế. Không thể điều chỉnh được nữa.";
+                }
+                else if (result.StartsWith("ERR:7"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
+                }
+                else if (result.StartsWith("ERR:6"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nDải hóa đơn cũ đã hết.";
+                }
+                else if (result.StartsWith("ERR:5"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông phát hành được hóa đơn.";
+                }
+                else if (result.StartsWith("ERR:3"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nDữ liệu xml đầu vào không đúng quy định.";
+                }
+                else if (result.StartsWith("ERR:2"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHóa đơn cần điều chỉnh không tôn tại.";
+                }
+                else if (result.StartsWith("ERR:1"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+
+            return result;
+        }
+
         /// <summary>
-        /// Download invoice VNPT
+        /// Download invoice VNPT, trả về invXml.
         /// </summary>
         /// <param name="fkey"></param>
         /// <param name="v6Return"></param>
@@ -309,6 +365,68 @@ namespace V6ThuePostXmlApi
             return result;
         }
 
+        public string replaceInv(string xml, string fkey_old, out V6Return v6Return)
+        {
+            string result = null;
+            v6Return = new V6Return();
+            try
+            {
+                result = new BusinessService.BusinessService(_baseLink + _businessLink).replaceInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
+                v6Return.RESULT_STRING = result;
+
+                if (result.StartsWith("OK"))
+                {
+                    //OK:01GTKT3/001;AA/12E;key_0000002
+                    int index = result.IndexOf('_');
+                    string so_hd = result.Substring(index + 1);
+                    v6Return.SO_HD = so_hd;
+                }
+                else if (result.StartsWith("ERR:9"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTrạng thái hóa đơn không được thay thế.";
+                }
+                else if (result.StartsWith("ERR:8"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHóa đơn đã được thay thế rồi. Không thể thay thế nữa.";
+                }
+                else if (result.StartsWith("ERR:7"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
+                }
+                else if (result.StartsWith("ERR:6"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nDải hóa đơn cũ đã hết.";
+                }
+                else if (result.StartsWith("ERR:5"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi trong quá trình thay thế hóa đơn.";
+                }
+                else if (result.StartsWith("ERR:3"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nDữ liệu xml đầu vào không đúng quy định.";
+                }
+                else if (result.StartsWith("ERR:2"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông tồn tại hóa đơn cần thay thế.";
+                }
+                else if (result.StartsWith("ERR:1"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                }
+                else if (result.StartsWith("ERR"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+                v6Return.RESULT_ERROR_MESSAGE = result;
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Hủy hóa đơn.
         /// </summary>
@@ -484,19 +602,30 @@ namespace V6ThuePostXmlApi
             return message;
         }
 
-        public static string CheckConnection()
+        /// <summary>
+        /// Kiểm tra kết nối lên server. Ok trả về null.
+        /// </summary>
+        /// <returns></returns>
+        public string CheckConnection()
         {
-            return "false";
-            //string result = Program.ImportAndPublishInv("<V6test>Test</V6test>");
-            //lblResult.Text = result;
-            //if (result != null && result.Contains("Dữ liệu xml đầu vào không đúng quy định"))
-            //{
-            //    BaseMessage.Show("Kết nối ổn!", 500, this);
-            //}
-            //else
-            //{
-            //    BaseMessage.Show(result);
-            //}
+            try
+            {
+                V6Return v6return;
+                string result = ImportAndPublishInv("<V6test>Test</V6test>", "", "", out v6return);
+                if (result != null &&(result.StartsWith("ERR:3") || result.StartsWith("ERR:20")))
+                {
+                    return null;
+                }
+                else
+                {
+                    return "Fail: " + result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
+        
     }
 }

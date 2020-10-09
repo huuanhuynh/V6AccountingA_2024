@@ -28,6 +28,9 @@ namespace V6ThuePostManager
 
         public string Dir { get; set; }
         public string FileName { get; set; }
+        /// <summary>
+        /// Đường dẫn file mẫu report để xuất PDF
+        /// </summary>
         public string RptFileFull { get; set; }
         /// <summary>
         /// Fkey từ V6

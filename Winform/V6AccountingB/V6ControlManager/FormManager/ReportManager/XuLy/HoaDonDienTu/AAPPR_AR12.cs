@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -69,8 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                Timer tF9 = new Timer();
-                tF9.Interval = 500;
+                Timer tF9 = new Timer {Interval = 500};
                 tF9.Tick += tF9_Tick;
                 Thread t = new Thread(F9Thread);
                 t.SetApartmentState(ApartmentState.STA);
@@ -119,7 +117,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                         //DataTable data0 = ds.Tables[0];
-                        string result = "";//, error = "", sohoadon = "", id = "";
                         var paras = new PostManagerParams
                         {
                             DataSet = ds,
@@ -131,7 +128,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             RptFileFull = ReportFileFull,
                             Fkey_hd = fkey_hd,
                         };
-                        result = PostManager.PowerPost(paras);//, out sohoadon, out id, out error);
+                        var result = PostManager.PowerPost(paras);
 
                         if (paras.Result.IsSuccess(paras.Mode))
                         {
@@ -207,7 +204,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var row = dataGridView1.CurrentRow;
 
                 //string mode = row.Cells["Kieu_in"].Value.ToString();
-                string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                //string soct = row.Cells["So_ct"].Value.ToString().Trim();
                 string dir = row.Cells["Dir_in"].Value.ToString().Trim();
                 string file = row.Cells["File_in"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
@@ -225,7 +222,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                 //DataTable data0 = ds.Tables[0];
-                string result = "";//, error = "", sohoadon = "", id = "";
                 var paras = new PostManagerParams
                 {
                     DataSet = ds,
@@ -237,7 +233,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     RptFileFull = ReportFileFull,
                     Fkey_hd = fkey_hd,
                 };
-                result = PostManager.PowerPost(paras);
+                var result = PostManager.PowerPost(paras);
                 Clipboard.SetText(result);
                 //this.ShowMessage(result);
                 AAPPR_SOA2_ViewXml viewer = new AAPPR_SOA2_ViewXml(result);
@@ -249,7 +245,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        V6Invoice21 invoice = new V6Invoice21();
+        readonly V6Invoice21 invoice = new V6Invoice21();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try

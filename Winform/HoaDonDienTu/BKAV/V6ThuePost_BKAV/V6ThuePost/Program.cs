@@ -114,20 +114,15 @@ namespace V6ThuePost
                     ReadXmlInfo(arg1_xmlFile);
                     string jsonBody = null;
                     //string dbfFile = args[1];
-                    BkavWS bkavWS = new BkavWS();
-                    ExecCommandFunc wsExecCommand = null;
-                    var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(baseUrl);
-                    wsExecCommand = webservice.ExecuteCommand;
-                    uint Constants_Mode = RemoteCommand.DefaultMode;
-                    remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
+                    BkavWS bkavWS = new BkavWS(baseUrl, BkavPartnerGUID, BkavPartnerToken);
                     V6Return v6return = null;
 
                     if (mode.ToUpper() == "MTEST")
                     {
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._100_CreateNew, out v6return);
-                        if (result.Contains("Dữ liệu xml đầu vào không đúng quy định"))
+                        result = bkavWS.POST(jsonBody, BkavConst._100_CreateNew, out v6return);
+                        if (result.Contains("Dữ liệu tạo hóa đơn không hợp lệ"))
                         {
                             result = "OK:" + result;
                         }
@@ -140,14 +135,14 @@ namespace V6ThuePost
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._100_CreateNew, out v6return);
+                        result = bkavWS.POST(jsonBody, BkavConst._100_CreateNew, out v6return);
                         if (!string.IsNullOrEmpty(v6return.SO_HD))
                         {
                             WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
                             if (V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
                             {
                                 V6Return v6return2;
-                                string result2 = bkavWS.SignInvoice(remoteCommand, v6return.ID, out v6return2);
+                                string result2 = bkavWS.SignInvoice(v6return.ID, out v6return2);
                                 result += "\r\n" + result2;
                             }
                         }
@@ -156,7 +151,7 @@ namespace V6ThuePost
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._101_CreateEmpty, out v6return);
+                        result = bkavWS.POST(jsonBody, BkavConst._101_CreateEmpty, out v6return);
                         if (!string.IsNullOrEmpty(v6return.SO_HD))
                         {
                             WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
@@ -166,7 +161,7 @@ namespace V6ThuePost
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._200_Update, out v6return);
+                        result = bkavWS.POST(jsonBody, BkavConst._200_Update, out v6return);
                         if (!string.IsNullOrEmpty(v6return.SO_HD))
                         {
                             WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
@@ -176,14 +171,14 @@ namespace V6ThuePost
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._112_CreateWithParternSerial, out v6return);
+                        result = bkavWS.POST(jsonBody, BkavConst._112_CreateWithParternSerial, out v6return);
                         if (!string.IsNullOrEmpty(v6return.SO_HD))
                         {
                             WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
                             if (V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
                             {
                                 V6Return v6return2;
-                                string result2 = bkavWS.SignInvoice(remoteCommand, v6return.ID, out v6return2);
+                                string result2 = bkavWS.SignInvoice(v6return.ID, out v6return2);
                                 //"Tài khoản không sử dụng CKS BKAV-HSM [!|637368896620789548|!]. Status: 1"
                                 result += "\r\n" + result2;
                             }
@@ -193,7 +188,7 @@ namespace V6ThuePost
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust, out v6return);
+                        result = bkavWS.POST(jsonBody, BkavConst._121_CreateAdjust, out v6return);
                         if (!string.IsNullOrEmpty(v6return.SO_HD))
                         {
                             WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
@@ -203,7 +198,7 @@ namespace V6ThuePost
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace, out v6return);
+                        result = bkavWS.POST(jsonBody, BkavConst._120_CreateReplace, out v6return);
                         if (!string.IsNullOrEmpty(v6return.SO_HD))
                         {
                             WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
@@ -219,13 +214,13 @@ namespace V6ThuePost
                         File.Create(flagFileName1).Close();
                         jsonBody = fkeyA;// paras.Fkey_hd;
                         //MessageBox.Show("Test jsonBody " + jsonBody);
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out v6return);
+                        result = bkavWS.POST(jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out v6return);
                     }
                     else if (mode == "E_T1")
                     {
                         jsonBody = ReadData(arg2, "T");
                         File.Create(flagFileName1).Close();
-                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._123_CreateReplace, out v6return);
+                        result = bkavWS.POST(jsonBody, BkavConst._123_CreateReplace, out v6return);
                     }
 
                     if (result.StartsWith("ERR"))

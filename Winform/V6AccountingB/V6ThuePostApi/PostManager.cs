@@ -164,16 +164,9 @@ namespace V6ThuePostManager
                 ad_table = paras.DataSet.Tables[1];
                 am_table = paras.DataSet.Tables[2];
                 Fkey_hd_tt = paras.Fkey_hd_tt;
-                DataRow row0 = am_table.Rows[0];
+                //DataRow row0 = am_table.Rows[0];
                 ad2_table = paras.DataSet.Tables[3];
-                if (paras.DataSet.Tables.Count > 4)
-                {
-                    ad3_table = paras.DataSet.Tables[4];
-                }
-                else
-                {
-                    ad3_table = null;
-                }
+                ad3_table = paras.DataSet.Tables.Count > 4 ? paras.DataSet.Tables[4] : null;
 
                 ReadConfigInfo(_map_table);
 
@@ -265,19 +258,12 @@ namespace V6ThuePostManager
                         break;
                     case "2":
                     case "4":
-                        result = CheckConnectionVNPT();
+                        VnptWS vnptWS = CreateVnptWS();
+                        result = vnptWS.CheckConnection();
                         break;
                     case "3":
-                        BkavWS bkavWS = new BkavWS();
-                
-                        ExecCommandFunc wsExecCommand = null;
-                        var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(_baseUrl);
-                        wsExecCommand = webservice.ExecuteCommand;
-                        uint Constants_Mode = RemoteCommand.DefaultMode;
-                        var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
-                        var jsonBody = "{}";
-                        int commandType = BkavCommandTypeNew;
-                        result = bkavWS.POST(remoteCommand, jsonBody, commandType, out paras.Result.V6ReturnValues);
+                        BkavWS bkavWS = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
+                        result = bkavWS.POST("{}", BkavCommandTypeNew, out paras.Result.V6ReturnValues);
                         if (result.Contains("ERR:Có lỗi xảy ra."))
                         {
                             result = null;
@@ -356,32 +342,7 @@ namespace V6ThuePostManager
             }
             return result;
         }
-
-        /// <summary>
-        /// Kiểm tra kết nối lên server.
-        /// </summary>
-        /// <returns></returns>
-        public static string CheckConnectionVNPT()
-        {
-            try
-            {
-                string result = ImportAndPublishInv("<V6test>Test</V6test>");
-                //lblResult.Text = result;
-                if (result != null && result.Contains("Dữ liệu xml đầu vào không đúng quy định"))
-                {
-                    return null;
-                }
-                else
-                {
-                    return "Fail: " + result;
-                }
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-
+        
         /// <summary>
         /// <para>Tham số cần thiết: DataSet[_map_table][ad_table][am_table], Branch[1viettel][2vnpt]</para>
         /// </summary>
@@ -414,13 +375,8 @@ namespace V6ThuePostManager
                         result = vnptWS.DownloadInvPDFFkey(paras.Fkey_hd, option, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     case "3":
-                        BkavWS bkav_ws = new BkavWS();
-                        ExecCommandFunc wsExecCommand = null;
-                        var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(_baseUrl);
-                        wsExecCommand = webservice.ExecuteCommand;
-                        uint Constants_Mode = RemoteCommand.DefaultMode;
-                        var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
-                        result = bkav_ws.DownloadInvoicePDF(remoteCommand, paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory);
+                        BkavWS bkav_ws = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
+                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
@@ -456,25 +412,13 @@ namespace V6ThuePostManager
 
         private static string EXECUTE_BKAV(PostManagerParams paras)
         {
-            //IDictionary<string, object> rd = new Dictionary<string, object>();
             string result = "";
-            //int so_hd = 0;
-            //sohoadon = null;
-            //id = null;
-            //error = null;
             paras.Result = new PM_Result();
-            //paras.Result.ResultDictionary = rd;
             try
             {
-                BkavWS bkavWS = new BkavWS();
+                BkavWS bkavWS = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
                 
-                ExecCommandFunc wsExecCommand = null;
-                var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(_baseUrl);
-                wsExecCommand = webservice.ExecuteCommand;
-                uint Constants_Mode = RemoteCommand.DefaultMode;
-                var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
-
-                string jsonBody = null;
+                string jsonBody;
 
                 if (paras.Mode == "TestView")
                 {
@@ -489,26 +433,26 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "E_H1")
                 {
                     jsonBody = paras.Fkey_hd;
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.V6ReturnValues);
+                    result = bkavWS.POST(jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "E_H2") // Hủy và ký hủy
                 {
                     jsonBody = paras.Fkey_hd;
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.V6ReturnValues);
+                    result = bkavWS.POST(jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.V6ReturnValues);
                     if (!result.StartsWith("ERR") && V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
                     {
-                        result = result + "\r\n" + bkavWS.SignInvoice(remoteCommand, paras.V6PartnerID, out paras.Result.V6ReturnValues);
+                        result = result + "\r\n" + bkavWS.SignInvoice(paras.V6PartnerID, out paras.Result.V6ReturnValues);
                     }
                 }
                 else if (paras.Mode == "E_S1")
                 {
                     jsonBody = ReadData_Bkav("S");
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust, out paras.Result.V6ReturnValues);
+                    result = bkavWS.POST(jsonBody, BkavConst._121_CreateAdjust, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "E_T1")
                 {
                     jsonBody = ReadData_Bkav("T");
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._123_CreateReplace, out paras.Result.V6ReturnValues);
+                    result = bkavWS.POST(jsonBody, BkavConst._123_CreateReplace, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "M")
                 {
@@ -517,22 +461,22 @@ namespace V6ThuePostManager
                     if (paras.Key_Down == "F4") commandType = BkavConst._101_CreateEmpty;
                     else if (paras.Key_Down == "F6") commandType = BkavConst._200_Update;
 
-                    result = bkavWS.POST(remoteCommand, jsonBody, commandType, out paras.Result.V6ReturnValues);
+                    result = bkavWS.POST(jsonBody, commandType, out paras.Result.V6ReturnValues);
                     if (string.IsNullOrEmpty(paras.Key_Down) && V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
                     {
                         V6Return v6return2;
-                        result = result + "\r\n" + bkavWS.SignInvoice(remoteCommand, paras.Result.V6ReturnValues.ID, out v6return2);
+                        result = result + "\r\n" + bkavWS.SignInvoice(paras.Result.V6ReturnValues.ID, out v6return2);
                     }
                 }
                 else if (paras.Mode == "S")
                 {
                     jsonBody = ReadData_Bkav("S");
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust, out paras.Result.V6ReturnValues);
+                    result = bkavWS.POST(jsonBody, BkavConst._121_CreateAdjust, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("T"))
                 {
                     jsonBody = ReadData_Bkav("T");
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._123_CreateReplace, out paras.Result.V6ReturnValues);
+                    result = bkavWS.POST(jsonBody, BkavConst._123_CreateReplace, out paras.Result.V6ReturnValues);
                 }
                 else
                 {
@@ -648,7 +592,7 @@ namespace V6ThuePostManager
                 {
                     postObject.PartnerInvoiceID =
                         ObjectAndString.ObjectToString(GetValue(row0, summarizeInfoConfig["PartnerInvoiceID"]), "ddMMyyyyHHmmss");
-                    if (postObject.PartnerInvoiceID.ToString().Length < 14 && ObjectAndString.ObjectToInt(postObject.PartnerInvoiceID) != 0)
+                    if (postObject.PartnerInvoiceID.Length < 14 && ObjectAndString.ObjectToInt(postObject.PartnerInvoiceID) != 0)
                     {
                         postObject.PartnerInvoiceID = ("00000000000000" + postObject.PartnerInvoiceID).Right("ddMMyyyyHHmmss".Length);
                     }
@@ -659,18 +603,11 @@ namespace V6ThuePostManager
                         GetValue(row0, summarizeInfoConfig["PartnerInvoiceStringID"]).ToString();
                 }
 
-                //Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
-                //foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
-                //{
-                //    taxBreakdown[item.Key] = GetValue(row0, item.Value);
-                //}
-                //postObject.taxBreakdowns.Add(taxBreakdown);//One only!
-
                 result = postObject.ToJson();
             }
             catch (Exception ex)
             {
-                //
+                throw ex;
             }
             return "[" + result + "]";
         }
@@ -739,12 +676,12 @@ namespace V6ThuePostManager
                     else if (paras.Mode == "E_S1")
                     {
                         var xml = ReadDataS_Vnpt();
-                        result = adjustInv(xml, paras.Fkey_hd);
+                        result = vnptWS.adjustInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "E_T1")
                     {
                         var xml = ReadDataXmlT();
-                        result = replaceInv(xml, paras.Fkey_hd);
+                        result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                 }
                 else  if (paras.Mode.StartsWith("M") || paras.Mode == "") // MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
@@ -758,7 +695,7 @@ namespace V6ThuePostManager
                     }
                     catch (Exception)
                     {
-                        
+                        // Bỏ qua lỗi.
                     }
                     var xml = ReadData_Vnpt();
                     //File.Create(flagFileName1).Close();
@@ -793,7 +730,7 @@ namespace V6ThuePostManager
                         }
                         else if (paras.Mode.EndsWith("3")) // Tự xuất pdf rồi gửi
                         {
-                            string export_file = null;
+                            string export_file;
                             if (string.IsNullOrEmpty(exportName))
                             {
                                 var save = new SaveFileDialog
@@ -807,7 +744,6 @@ namespace V6ThuePostManager
                                 }
                                 else
                                 {
-                                    export_file = null;
                                     goto End;
                                 }
                             }
@@ -848,7 +784,7 @@ namespace V6ThuePostManager
                     else if (!result.StartsWith("OK"))       // Hoặc đã có trên hệ thống HDDT ERR:0
                     {
                         V6Return v6return;
-                        string invXml = vnptWS.DownloadInvFkeyNoPay(fkeyA, out v6return);
+                        vnptWS.DownloadInvFkeyNoPay(fkeyA, out v6return);
                         paras.Result.InvoiceNo = v6return.SO_HD;
                         if (!string.IsNullOrEmpty(paras.Result.InvoiceNo))
                         {
@@ -867,7 +803,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "S")
                 {
                     var xml = ReadDataS_Vnpt();
-                    result = adjustInv(xml, paras.Fkey_hd);
+                    result = vnptWS.adjustInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     string filePath = Path.Combine(paras.Dir, paras.FileName);
                     if (filePath.Length > 0 && result.StartsWith("OK"))
                     {
@@ -884,7 +820,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "T")
                 {
                     var xml = ReadDataXmlT();
-                    result = replaceInv(xml, paras.Fkey_hd);
+                    result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("G"))
                 {
@@ -959,13 +895,8 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "E1")
                     {
-                        string rptFile = paras.RptFileFull;
-                        //string saveFile = arg4;
-
                         string export_file;
-                        //ReadDataXml(arg2);
                         bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
-
                         if (export_ok && File.Exists(export_file))
                         {
                             result += "\r\nExport ok.";
@@ -1132,14 +1063,11 @@ namespace V6ThuePostManager
 
         public static Customer ReadCusDataXml(DataRow row)
         {
-            string result = "";
             Customer cus = new Customer();
-
             foreach (KeyValuePair<string, ConfigLine> item in customerInfoConfig)
             {
                 cus.Customer_Info[item.Key] = GetValue(row, item.Value);
             }
-
             return cus;
         }
 
@@ -1571,60 +1499,6 @@ namespace V6ThuePostManager
             return result_entity;
         }
 
-        /// <summary>
-        /// Phát hành hóa đơn.
-        /// </summary>
-        /// <param name="xml">Dữ liệu các hóa đơn.</param>
-        /// <returns>Thông báo phát hành hd.</returns>
-        public static string ImportAndPublishInv(string xml)
-        {
-            string result = null;
-            try
-            {
-                var publishService = new PublishService(_link_Publish_vnpt_thaison);
-                result = publishService.ImportAndPublishInv(_account, _accountpassword, xml, _username, _password, __pattern, __serial, convert == "1" ? 1 : 0);
-
-                if (result.StartsWith("ERR:20"))
-                {
-                    result += "\r\nPattern và serial không phù hợp, hoặc không tồn tại hóa đơn đã đăng kí có sử dụng Pattern và serial truyền vào.";
-                }
-                else if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:10"))
-                {
-                    result += "\r\nLô có số hóa đơn vượt quá max cho phép.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông đủ số hóa đơn cho lô phát hành.";
-                }
-                else if (result.StartsWith("ERR:5"))
-                {
-                    result += "\r\nKhông phát hành được hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:3"))
-                {
-                    result += "\r\nDữ liệu xml đầu vào không đúng quy định.\nKhông có hóa đơn nào được phát hành.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.ImportAndPublishInv " + result);
-            return result;
-        }
 
         /// <summary>
         /// Tải lên bảng kê.
@@ -1694,104 +1568,6 @@ namespace V6ThuePostManager
             byte[] fileBytes = File.ReadAllBytes(filePath);
             string fileBase64 = Convert.ToBase64String(fileBytes);
             return fileBase64;
-        }
-
-        public static string adjustInv(string xml, string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                result = new BusinessService(_link_Business_vnpt).adjustInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
-
-                if (result.StartsWith("ERR:9"))
-                {
-                    result += "\r\nTrạng thái hóa đơn không được điều chỉnh.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    result += "\r\nHóa đơn cần điều chỉnh đã bị thay thế. Không thể điều chỉnh được nữa.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nDải hóa đơn cũ đã hết.";
-                }
-                else if (result.StartsWith("ERR:5"))
-                {
-                    result += "\r\nKhông phát hành được hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:3"))
-                {
-                    result += "\r\nDữ liệu xml đầu vào không đúng quy định.";
-                }
-                else if (result.StartsWith("ERR:2"))
-                {
-                    result += "\r\nHóa đơn cần điều chỉnh không tôn tại.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.adjustInv " + result);
-            return result;
-        }
-
-        public static string replaceInv(string xml, string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                result = new BusinessService(_link_Business_vnpt).replaceInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
-
-                if (result.StartsWith("ERR:9"))
-                {
-                    result += "\r\nTrạng thái hóa đơn không được thay thế.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    result += "\r\nHóa đơn đã được thay thế rồi. Không thể thay thế nữa.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nDải hóa đơn cũ đã hết.";
-                }
-                else if (result.StartsWith("ERR:5"))
-                {
-                    result += "\r\nCó lỗi trong quá trình thay thế hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:3"))
-                {
-                    result += "\r\nDữ liệu xml đầu vào không đúng quy định.";
-                }
-                else if (result.StartsWith("ERR:2"))
-                {
-                    result += "\r\nKhông tồn tại hóa đơn cần thay thế.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.replaceInv " + result);
-            return result;
         }
 
         /// <summary>
@@ -2363,7 +2139,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "S")
                 {
                     var xml = ReadDataS_Vnpt();
-                    result = adjustInv(xml, paras.Fkey_hd);
+                    result = vnptWS.adjustInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     paras.Result.ResultString = result;
                     string filePath = Path.Combine(paras.Dir, paras.FileName);
                     if (filePath.Length > 0 && result.StartsWith("OK"))
@@ -2381,7 +2157,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "T")
                 {
                     var xml = ReadDataXmlT();
-                    result = replaceInv(xml, paras.Fkey_hd);
+                    result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     paras.Result.ResultString = result;
                 }
                 else if (paras.Mode.StartsWith("G"))
@@ -2453,13 +2229,8 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "E1")
                     {
-                        string rptFile = paras.RptFileFull;
-                        //string saveFile = arg4;
-
                         string export_file;
-                        //ReadDataXml(arg2);
                         bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
-
                         if (export_ok && File.Exists(export_file))
                         {
                             result += "\r\nExport ok.";
@@ -3269,25 +3040,31 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "S")
                 {
-                    var xml = ReadDataS_Vnpt();
-                    result = adjustInv(xml, paras.Fkey_hd);
-                    string filePath = Path.Combine(paras.Dir, paras.FileName);
-                    if (filePath.Length > 0 && result.StartsWith("OK"))
+                    var invoices = ReadData_SoftDreams(paras.Mode);
+                    foreach (Inv inv in invoices.Inv)
                     {
-                        if (File.Exists(filePath))
-                        {
-                            result += UploadInvAttachmentFkey(fkeyA, filePath);
-                        }
-                        else
-                        {
-                            result += "Không tồn tại " + filePath;
-                        }
+                        var adj = inv.ToAdjustInv();
+                        result += softDreamsWS.AdjustInvoice(adj, paras.Fkey_hd, paras.Pattern, paras.Serial, true, _signmode, out paras.Result.V6ReturnValues);
                     }
+                    
+                    //string filePath = Path.Combine(paras.Dir, paras.FileName);
+                    //if (filePath.Length > 0 && result.StartsWith("OK"))
+                    //{
+                    //    if (File.Exists(filePath))
+                    //    {
+                    //        result += UploadInvAttachmentFkey(fkeyA, filePath);
+                    //    }
+                    //    else
+                    //    {
+                    //        result += "Không tồn tại " + filePath;
+                    //    }
+                    //}
                 }
                 else if (paras.Mode == "T")
                 {
-                    var xml = ReadDataXmlT();
-                    result = replaceInv(xml, paras.Fkey_hd);
+                    var invoices = ReadData_SoftDreams(paras.Mode);
+                    var inv = invoices.Inv[0].ToReplaceInv();
+                    result = softDreamsWS.ReplaceInvoice(inv, paras.Fkey_hd, paras.Pattern, paras.Serial, true, _signmode, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("G"))
                 {
@@ -3353,13 +3130,8 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "E1")
                     {
-                        string rptFile = paras.RptFileFull;
-                        //string saveFile = arg4;
-
                         string export_file;
-                        //ReadDataXml(arg2);
                         bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
-
                         if (export_ok && File.Exists(export_file))
                         {
                             result += "\r\nExport ok.";
@@ -3619,13 +3391,8 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "E1")
                     {
-                        string rptFile = paras.RptFileFull;
-                        //string saveFile = arg4;
-
                         string export_file;
-                        //ReadDataXml(arg2);
                         bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
-
                         if (export_ok && File.Exists(export_file))
                         {
                             result += "\r\nExport ok.";
@@ -3791,14 +3558,9 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "E1")
                     {
-                        string rptFile = paras.RptFileFull;
-                        //string saveFile = arg4;
-
                         string export_file;
-                        //ReadDataXml(arg2);
                         string response0 = "";
                         bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref response0);
-
                         if (export_ok && File.Exists(export_file))
                         {
                             response.isSuccess = true;// += "\r\nExport ok.";
@@ -4009,14 +3771,9 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "E1")
                     {
-                        string rptFile = paras.RptFileFull;
-                        //string saveFile = arg4;
-
                         string export_file;
-                        //ReadDataXml(arg2);
                         string response0 = "";
                         bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref response0);
-
                         if (export_ok && File.Exists(export_file))
                         {
                             response.ok = "1";
