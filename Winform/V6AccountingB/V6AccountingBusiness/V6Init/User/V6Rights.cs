@@ -83,7 +83,7 @@ namespace V6Init
         {
             try
             {
-                return IsAdmin || RightDelete.Contains("\\" + code + "\\");
+                return IsAdmin || RightDelete.Contains("/" + code + "/");
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ namespace V6Init
         {
             try
             {
-                return IsAdmin || RightAdd.Contains("\\" + code + "\\");
+                return IsAdmin || RightAdd.Contains("/" + code + "/");
             }
             catch(Exception ex)
             {
@@ -110,7 +110,7 @@ namespace V6Init
         {
             try
             {
-                return IsAdmin || RightCopy.Contains("\\" + codeMact + "\\");
+                return IsAdmin || RightCopy.Contains("/" + codeMact + "/");
             }
             catch (Exception ex)
             {
@@ -123,7 +123,7 @@ namespace V6Init
         {
             try
             {
-                return IsAdmin || RightEdit.Contains("\\" + code + "\\");
+                return IsAdmin || RightEdit.Contains("/" + code + "/");
             }
             catch (Exception ex)
             {
@@ -165,7 +165,7 @@ namespace V6Init
         {
             try
             {
-                return IsAdmin || RightView.Contains("\\" + code + "\\");
+                return IsAdmin || RightView.Contains("/" + code + "/");
             }
             catch (Exception ex)
             {
@@ -184,7 +184,7 @@ namespace V6Init
         {
             try
             {
-                return IsAdmin || RightPrint.Contains("\\" + code + "\\");
+                return IsAdmin || RightPrint.Contains("/" + code + "/");
             }
             catch (Exception ex)
             {
@@ -197,7 +197,7 @@ namespace V6Init
         {
             try
             {
-                return IsAdmin || RightDvcs.Contains("\\" + code + "\\");
+                return IsAdmin || RightDvcs.Contains("/" + code + "/");
             }
             catch (Exception ex)
             {
@@ -210,7 +210,7 @@ namespace V6Init
         {
             try
             {
-                return IsAdmin || RightKho.Contains("\\" + code + "\\");
+                return IsAdmin || RightKho.Contains("/" + code + "/");
             }
             catch (Exception ex)
             {
@@ -224,70 +224,70 @@ namespace V6Init
         {
             get
             {
-                return "\\" + _dataUserInfo["rights"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["rights"].ToString().Trim() + "/";
             }
         }
         private string RightAdd
         {
             get
             {
-                return "\\" + _dataUserInfo["r_add"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_add"].ToString().Trim() + "/";
             }
         }
         private string RightCopy
         {
             get
             {
-                return "\\" + _dataUserInfo["r_copy"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_copy"].ToString().Trim() + "/";
             }
         }
         private string RightEdit
         {
             get
             {
-                return "\\" + _dataUserInfo["r_edit"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_edit"].ToString().Trim() + "/";
             }
         }
         private string RightDelete
         {
             get
             {
-                return "\\" + _dataUserInfo["r_del"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_del"].ToString().Trim() + "/";
             }
         }
         private string RightView
         {
             get
             {
-                return "\\" + _dataUserInfo["r_view"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_view"].ToString().Trim() + "/";
             }
         }
         private string RightPrint
         {
             get
             {
-                return "\\" + _dataUserInfo["r_print"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_print"].ToString().Trim() + "/";
             }
         }
         private string RightDvcs
         {
             get
             {
-                return "\\" + _dataUserInfo["r_dvcs"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_dvcs"].ToString().Trim() + "/";
             }
         }
         public string RightKho
         {
             get
             {
-                return "\\" + _dataUserInfo["r_kho"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_kho"].ToString().Trim() + "/";
             }
         }
         public string RightSonb
         {
             get
             {
-                return "\\" + _dataUserInfo["r_sonb"].ToString().Trim() + "\\";
+                return "/" + _dataUserInfo["r_sonb"].ToString().Trim() + "/";
             }
         }
         public byte User_acc

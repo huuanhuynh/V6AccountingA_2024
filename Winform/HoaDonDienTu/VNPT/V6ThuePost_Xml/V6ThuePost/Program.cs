@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using Spy;
+using Spy.SpyObjects;
+using V6ThuePost.ResponseObjects;
 using V6ThuePost.VnptObjects;
 using V6ThuePostXmlApi;
 using V6ThuePostXmlApi.AttachmentService;
@@ -51,6 +56,7 @@ namespace V6ThuePost
         /// <summary>
         /// Config.
         /// </summary>
+        public static string _baseLink = "";
         public static string link_Publish = "";
         public static string link_Portal = "";
         public static string link_Business = "";
@@ -68,8 +74,16 @@ namespace V6ThuePost
         /// </summary>
         private static string account;
         private static string accountpassword;
-        private static string partten, partten_field;
-        private static string seri, seri_field;
+        /// <summary>
+        /// Serial của chứng thư công ty đã đăng ký trong hệ thống.
+        /// </summary>
+        private static string _SERIAL_CERT;
+        //Auto input setting
+        private static string _token_password_title = "";
+        private static string _token_password = "";
+
+        private static string _pattern, partten_field;
+        private static string _seri, seri_field;
         private static string convert = "0";
         //Excel config
         private static string template_xls = "template.xls";
@@ -136,7 +150,8 @@ namespace V6ThuePost
                     if (args.Length > 4) arg4 = args[4];
                     
                     ReadXmlInfo(arg1_xmlFile);
-
+                    VnptWS vnptWS = new VnptWS(_baseLink, account, accountpassword, username, password);
+                    V6Return v6Return = null;
                     if (mode.ToLower() == "DownloadInvPDFFkey".ToLower())
                     {
                         MessageBox.Show("Test DownloadInvPDFFkey");
@@ -189,19 +204,26 @@ namespace V6ThuePost
 
                     }
                     //MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
-                    else if (mode.StartsWith("M") || mode == "")
+                    else if (mode.StartsWith("M"))
                     {
                         #region ==== mode M M1:tạo mới gửi excel có sẵn  M2:tạo mới+xuất excel rồi gửi.
                         var xml = ReadDataXml(arg2);
                         File.Create(flagFileName1).Close();
                         result = ImportAndPublishInv(xml);
-                        //Trả về OK:pattern;serial1-fkey_soHD
+                        if (string.IsNullOrEmpty(_SERIAL_CERT))
+                        {
+                            result = vnptWS.ImportAndPublishInv(xml, _pattern, _seri, out v6Return);
+                        }
+                        else
+                        {
+                            StartAutoInputTokenPassword();
+                            result = vnptWS.PublishInvWithToken_Dll(xml, _pattern, _seri, _SERIAL_CERT, out v6Return);
+                        }
+                        //Trả về OK:_pattern;serial1-fkey_soHD
                         //"OK:01GTKT0/001;PT/19E-V6A0002218HDA_4"
 
                         
-                        string invXml = DownloadInvFkeyNoPay(fkeyA);
-                        string so_hoa_don = GetSoHoaDon_xml(invXml);
-                        WriteFlag(flagFileName4, so_hoa_don);
+                        WriteFlag(flagFileName4, v6Return.SO_HD);
 
                         if (arg3.Length > 0 && result.StartsWith("OK"))
                         {
@@ -294,8 +316,8 @@ namespace V6ThuePost
                         }
                         else if(!result.StartsWith("OK")) // chạy lại cho trường hợp đã tồn tại fkey
                         {
-                            invXml = DownloadInvFkeyNoPay(fkeyA);
-                            so_hoa_don = GetSoHoaDon_xml(invXml);
+                            string invXml = DownloadInvFkeyNoPay(fkeyA);
+                            string so_hoa_don = GetSoHoaDon_xml(invXml);
                             if (!string.IsNullOrEmpty(so_hoa_don))
                             {
                                 WriteFlag(flagFileName4, so_hoa_don);
@@ -308,7 +330,7 @@ namespace V6ThuePost
                     {
                         var xml = ReadDataXmlS(dbfFile: arg2);
                         File.Create(flagFileName1).Close();
-                        result = adjustInv(xml, fkey_old: arg3);
+                        result = vnptWS.adjustInv(xml, arg3, out v6Return);
                         if (arg4.Length > 0 && result.StartsWith("OK"))
                         {
                             if (File.Exists(arg4))
@@ -325,7 +347,7 @@ namespace V6ThuePost
                     {
                         var xml = ReadDataXmlT(arg2);
                         File.Create(flagFileName1).Close();
-                        result = replaceInv(xml, arg3);
+                        result = vnptWS.replaceInv(xml, arg3, out v6Return);
                     }
                     else if (mode.StartsWith("G"))
                     {
@@ -333,24 +355,25 @@ namespace V6ThuePost
                         if (mode == "G1") // Gạch nợ theo fkey
                         {
                             File.Create(flagFileName1).Close();
-                            result = confirmPaymentFkey(arg2);
+                            result = vnptWS.ConfirmPaymentFkey(arg2, out v6Return);
                         }
                         else if (mode == "G2") // Gạch nợ hóa đơn theo lstInvToken(01GTKT2/001;AA/13E;10)
                         {
                             File.Create(flagFileName1).Close();
-                            result = confirmPayment(arg2);
+                            result = vnptWS.ConfirmPayment(arg2, out v6Return);
                         }
                         else if (mode == "G3") // Hủy gạch nợ theo fkey
                         {
                             File.Create(flagFileName1).Close();
-                            result = UnconfirmPaymentFkey(arg2);
+                            result = vnptWS.UnconfirmPaymentFkey(arg2, out v6Return);
                         }
                     }
                     else if (mode == "H")
                     {
                         MakeFlagNames(arg2);
                         File.Create(flagFileName1).Close();
-                        result = cancelInv(fkey_old: arg2);
+                        string fkey_old = arg2;
+                        result = vnptWS.cancelInv(fkey_old, out v6Return);
                     }
                     else if (mode.StartsWith("U"))//U1,U2
                     {
@@ -551,6 +574,10 @@ namespace V6ThuePost
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
             }
+            End:
+
+            StopAutoInputTokenPassword();
+            Process.GetCurrentProcess().Kill();
         }
 
         private static void WriteFlag(string fileName, string content)
@@ -590,7 +617,7 @@ namespace V6ThuePost
         /// <summary>
         /// Lấy số hóa đơn từ kết quả trả về của hàm ImportAndPublishInv
         /// </summary>
-        /// <param name="pattern">pattern;serial1-key1_num1</param>
+        /// <param name="pattern">_pattern;serial1-key1_num1</param>
         /// <returns></returns>
         private static string GetSoHoaDon_pattern(string pattern)
         {
@@ -603,7 +630,7 @@ namespace V6ThuePost
                 if (startIndex > 0)
                 {
                     startIndex += startTerm.Length;
-                    //int endIndex = pattern.IndexOf(endTerm, StringComparison.Ordinal);
+                    //int endIndex = _pattern.IndexOf(endTerm, StringComparison.Ordinal);
                     if (pattern.Length > startIndex)
                     {
                         result = pattern.Substring(startIndex);
@@ -640,6 +667,81 @@ namespace V6ThuePost
         //    exportFile = null;
         //    return false;
         //}
+
+        
+        /// <summary>
+        /// Chạy tiến trình tự động điền password token nếu có thông tin pass và title.
+        /// </summary>
+        public static void StartAutoInputTokenPassword()
+        {
+            StopAutoInputTokenPassword();
+            if (string.IsNullOrEmpty(_token_password)) return;
+            if (string.IsNullOrEmpty(_token_password_title)) return;
+            autoToken = new Thread(AutoInputTokenPassword);
+            //autoToken.IsBackground = true;
+            autoToken.Start();
+        }
+
+        private static Thread autoToken = null;
+        public static void StopAutoInputTokenPassword()
+        {
+            if (autoToken != null && autoToken.IsAlive) autoToken.Abort();
+        }
+        private static void AutoInputTokenPassword()
+        {
+            try
+            {
+                //Find input password windows.
+                Spy001 spy = new Spy001();
+                var thisProcessID = Process.GetCurrentProcess().Id;
+                SpyWindowHandle input_password_window = spy.FindWindow(_token_password_title, thisProcessID);
+
+                while (input_password_window == null)
+                {
+                    input_password_window = spy.FindWindow(_token_password_title, thisProcessID);
+                }
+                //Find input password textbox, ok button
+                //SpyWindowHandle input_handle = null;
+                //SpyWindowHandle chk_soft_handle = null;
+                //SpyWindowHandle ok_button_handle = null;
+                //SpyWindowHandle soft_keyboard = null;
+
+                //foreach (KeyValuePair<string, SpyWindowHandle> child_item in input_password_window.Childs)
+                //{
+                //    if (child_item.Value.Class.ClassName == "Edit")//Kích hoạt bàn phím ảo
+                //    {
+                //        input_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text == "Đăng nhập")
+                //    {
+                //        ok_button_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text.StartsWith("Kích hoạt"))
+                //    {
+                //        chk_soft_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text == "soft keyboard")
+                //    {
+                //        soft_keyboard = child_item.Value;
+                //    }
+                //}
+
+                //Input password
+                {
+                    input_password_window.SetForegroundWindow();
+                    //if (input_handle != null) input_handle.SetFocus();
+                    foreach (char c in _token_password)
+                    {
+                        spy.SendKeyPress(c);
+                    }
+                    spy.SendKeyPressEnter();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("Program.AutoInputTokenPassword " + ex.Message);
+            }
+        }
 
         public static bool ExportExcel(string dbfDataFile, out string exportFile, ref string result)
         {
@@ -856,8 +958,8 @@ namespace V6ThuePost
                 //}
 
                 inv.key = fkeyA;
-                partten = row0[partten_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                _pattern = row0[partten_field].ToString().Trim();
+                _seri = row0[seri_field].ToString().Trim();
                 //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
                 
@@ -960,8 +1062,8 @@ namespace V6ThuePost
                 DataRow row0 = data.Rows[0];
                 fkeyA = fkey0 + row0["STT_REC"];
                 inv.key = fkeyA;
-                //partten = row0[partten_field].ToString().Trim();
-                //seri = row0[seri_field].ToString().Trim();
+                //_pattern = row0[partten_field].ToString().Trim();
+                //_serial = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
@@ -1044,8 +1146,8 @@ namespace V6ThuePost
                 DataRow row0 = data.Rows[0];
                 fkeyA = fkey0 + row0["STT_REC"];
                 inv.key = fkeyA;
-                //partten = row0[partten_field].ToString().Trim();
-                //seri = row0[seri_field].ToString().Trim();
+                //_pattern = row0[partten_field].ToString().Trim();
+                //_serial = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
@@ -1422,7 +1524,7 @@ namespace V6ThuePost
             try
             {
                 var publishService = new PublishService(link_Publish);
-                result = publishService.ImportAndPublishInv(account, accountpassword, xml, username, password, partten, seri, convert == "1" ? 1 : 0);
+                result = publishService.ImportAndPublishInv(account, accountpassword, xml, username, password, _pattern, _seri, convert == "1" ? 1 : 0);
 
                 if (result.StartsWith("ERR:20"))
                 {
@@ -1503,6 +1605,11 @@ namespace V6ThuePost
             return result;
         }
         
+        /// <summary>
+        /// Tải về file PDF dạng base64
+        /// </summary>
+        /// <param name="fkey"></param>
+        /// <returns></returns>
         public static string DownloadInvPDFFkeyNoPay(string fkey)
         {
             string result = null;
@@ -1510,6 +1617,10 @@ namespace V6ThuePost
             {
                 result = new PortalService(link_Portal).downloadInvPDFFkeyNoPay(fkey, username, password);
 
+                //if (result.StartsWith("ERR"))
+                //{
+                //    File.WriteAllBytes(fileName, Convert.FromBase64String(result));
+                //}
                 if (result.StartsWith("ERR:11"))
                 {
                     result += "\r\nHóa đơn chưa thanh toán nên không xem được.";
@@ -2156,14 +2267,28 @@ namespace V6ThuePost
                                 case "accountpassword":
                                     accountpassword = UtilityHelper.DeCrypt(line.Value);
                                     break;
-                                case "partten":
+                                case "serialcert":
+                                    _SERIAL_CERT = UtilityHelper.DeCrypt(line.Value).ToUpper();
+                                    break;
+                                case "token_password_title":
+                                    _token_password_title = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "_token_password":
+                                    _token_password = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "_pattern":
                                     partten_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
-                                case "seri":
+                                case "_serial":
                                     seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "baselink":
+                                case "baseurl":
+                                    _baseLink = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "link_publish":
                                     link_Publish = UtilityHelper.DeCrypt(line.Value);
+                                    _baseLink = link_Publish.Substring(0, link_Publish.LastIndexOf('/'));
                                     break;
                                 case "link_portal":
                                     link_Portal = UtilityHelper.DeCrypt(line.Value);

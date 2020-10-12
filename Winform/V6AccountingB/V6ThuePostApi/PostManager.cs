@@ -372,7 +372,7 @@ namespace V6ThuePostManager
                     case "2": case "4":
                         int option = ObjectAndString.ObjectToInt(paras.Mode);
                         VnptWS vnptWS = new VnptWS(_baseUrl, _account, _accountpassword, _username, _password);
-                        result = vnptWS.DownloadInvPDFFkey(paras.Fkey_hd, option, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        result = vnptWS.DownloadInvPDFFkey(paras.Fkey_hd, option,V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     case "3":
                         BkavWS bkav_ws = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
@@ -658,16 +658,16 @@ namespace V6ThuePostManager
                         }
                         else
                         {
-                            result = vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                            result = vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                         }
                     }
                     else if (paras.Mode == "E_G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        result = vnptWS.ConfirmPayment(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.ConfirmPayment(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "E_G3") // Hủy gạch nợ theo fkey
                     {
-                        result = vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "E_H1")
                     {
@@ -698,8 +698,17 @@ namespace V6ThuePostManager
                         // Bỏ qua lỗi.
                     }
                     var xml = ReadData_Vnpt();
-                    //File.Create(flagFileName1).Close();
-                    result = vnptWS.ImportAndPublishInv(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                    
+                    if (string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        result = vnptWS.ImportAndPublishInv(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                    }
+                    else
+                    {
+                        StartAutoInputTokenPassword();
+                        result = PublishInvWithToken_Dll(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                    }
+                    
 
                     //string invXml = DownloadInvFkeyNoPay(fkeyA);
                     //paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
@@ -826,15 +835,15 @@ namespace V6ThuePostManager
                 {
                     if (paras.Mode == "G1") // Gạch nợ theo fkey
                     {
-                        result = vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        result = vnptWS.ConfirmPayment(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.ConfirmPayment(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
                     {
-                        result = vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        result = vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                 }
                 else if (paras.Mode == "H")
@@ -961,7 +970,7 @@ namespace V6ThuePostManager
                 result += "ERR:EX\r\n" + ex.Message;
                 paras.Result.ResultErrorMessage = ex.Message;
             }
-
+            StopAutoInputTokenPassword();
             End:
             return result;
         }
@@ -2010,20 +2019,15 @@ namespace V6ThuePostManager
                     result = xml;
                     paras.Result.ResultString = xml;
                 }
-                else if (paras.Mode.StartsWith("M") || paras.Mode == "")     //  MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
+                else if (paras.Mode.StartsWith("M"))     //  MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
                 {
                     var xml = ReadData_Vnpt();
                     StartAutoInputTokenPassword();
-                    string resultM = PublishInvWithToken_Dll(xml);
+                    string resultM = PublishInvWithToken_Dll(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
                     result = resultM;
-                    paras.Result.ResultString = result;
                     //"OK:mẫu số;ký hiệu-Fkey_Số hóa đơn,"
                     //"OK:01GTKT0/001;VT/19E-A0283806HDA_XXX"
-                    if (resultM.StartsWith("OK"))
-                    {
-                        paras.Result.InvoiceNo = GetSoHoaDon_Dll(resultM);
-                    }
-                    else if (resultM.StartsWith("ERR:0"))       // Hoặc đã có trên hệ thống HDDT ERR:0
+                    if (resultM.StartsWith("ERR:0"))       // Hoặc đã có trên hệ thống HDDT ERR:0
                     {
                         V6Return v6return;
                         string invXml = DownloadInvFkeyNoPay(fkeyA, out v6return);
@@ -2037,17 +2041,8 @@ namespace V6ThuePostManager
                     else // chạy lần 2
                     {
                         StartAutoInputTokenPassword();
-                        resultM = PublishInvWithToken_Dll(xml);
+                        resultM = PublishInvWithToken_Dll(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
                         result = resultM;
-                        paras.Result.ResultString = result;
-                        if (resultM.StartsWith("OK"))
-                        {
-                            paras.Result.InvoiceNo = GetSoHoaDon_Dll(resultM);
-                        }
-                        else // Đã chạy 2 lần vẫn không được.
-                        {
-                            paras.Result.ResultErrorMessage = resultM;
-                        }
                     }
 
                     // Gửi file.
@@ -2164,15 +2159,15 @@ namespace V6ThuePostManager
                 {
                     if (paras.Mode == "G1") // Gạch nợ theo fkey
                     {
-                        vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        vnptWS.ConfirmPayment(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        vnptWS.ConfirmPayment(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
                     {
-                        vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, _username, _password, out paras.Result.V6ReturnValues);
+                        vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     }
                 }
                 else if (paras.Mode == "H")
@@ -2305,133 +2300,136 @@ namespace V6ThuePostManager
         /// Đẩy lên và phát hành hóa đơn có ký chữ ký số (Token).
         /// </summary>
         /// <param name="xmlInvData">chuỗi xml hóa đơn.</param>
+        /// <param name="pattern">Mấu số 01GTKT0/001</param>
+        /// <param name="serial">Ký hiệu VT/19E</param>
+        /// <param name="v6Return">Kết quả</param>
         /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “-” + Fkey + “_” + Số hóa đơn + “,”</returns>
-        public static string PublishInvWithToken_Dll(string xmlInvData)
+        public static string PublishInvWithToken_Dll(string xmlInvData, string pattern, string serial, out V6Return v6Return)
         {
             string result = null;
+            v6Return = new V6Return();
             try
             {
-                result = VNPTEInvoiceSignToken.PublishInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, _SERIAL_CERT, __pattern, __serial, _link_Publish_vnpt_thaison);
-                result += GetResultDescription_Dll(result);
+                result = VNPTEInvoiceSignToken.PublishInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, _SERIAL_CERT, pattern, serial, _link_Publish_vnpt_thaison);
+                v6Return.RESULT_STRING = result;
+                if (result.StartsWith("OK"))
+                {
+                    //"OK:mẫu số;ký hiệu-Fkey_Số hóa đơn,"
+                    //"OK:01GTKT0/001;VT/19E-A0283806HDA_XXX"
+                    int index = result.IndexOf('_');
+                    string so_hd = result.Substring(index + 1);
+                    v6Return.SO_HD = so_hd;
+                }
+                else if (result.StartsWith("ERR:-3"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi trong quá trình lấy chứng thư.";
+                }
+                else if (result.StartsWith("ERR:-2"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nChứng thư không có privatekey.";
+                }
+                else if (result.StartsWith("ERR:-1"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nẤn nút hủy khi nhập mã pin của chứng thư.";
+                }
+                else if (result.StartsWith("ERR:30"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTạo mới lô hóa đơn lỗi (fkey trùng,…).";
+                }
+                else if (result.StartsWith("ERR:28"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nThông tin chứng thư chưa có trong hệ thống.";
+                }
+                else if (result.StartsWith("ERR:27"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nChứng thư chưa đến thời điểm sử dụng.";
+                }
+                else if (result.StartsWith("ERR:26"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nChứng thư đã hết hạn.";
+                }
+                else if (result.StartsWith("ERR:24"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nChứng thư truyền lên không đúng với chứng thư công ty đăng ký trên hệ thống";
+                }
+                else if (result.StartsWith("ERR:23"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nChứng thư truyền lên không đúng định dạng.";
+                }
+                else if (result.StartsWith("ERR:22"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCông ty chưa đăng ký thông tin keystore.";
+                }
+                else if (result.StartsWith("ERR:21"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông tìm thấy công ty trên hệ thống.";
+                }
+                else if (result.StartsWith("ERR:20"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTham số mẫu số và ký hiệu truyền vào không hợp lệ.";
+                }
+                else if (result.StartsWith("ERR:19"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\npattern truyền vào không giống với pattern của hoá đơn cần điều chỉnh/thay thế.";
+                }
+                else if (result.StartsWith("ERR:10"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nSố lượng hóa đơn truyền vào lớn hơn maxBlockInv.";
+                }
+                else if (result.StartsWith("ERR:9"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\n???.";
+                }
+                else if (result.StartsWith("ERR:8"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHoá đơn đã được điều chỉnh, thay thế.";
+                }
+                else if (result.StartsWith("ERR:7"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông tìm thấy chứng thư trong máy. Hãy cắm token.";
+                }
+                else if (result.StartsWith("ERR:6"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông còn đủ số hóa đơn cho lô phát hành.";
+                }
+                else if (result.StartsWith("ERR:5"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi xảy ra.";
+                }
+                else if (result.StartsWith("ERR:4"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\ntoken hóa đơn sai định dạng.";
+                }
+                else if (result.StartsWith("ERR:3"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nĐịnh dạng file xml hóa đơn không đúng.";
+                }
+                else if (result.StartsWith("ERR:2"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông tồn tại hoá đơn cần thay thế/điều chỉnh.";
+                }
+                else if (result.StartsWith("ERR:1"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nKhông có quyền truy cập webservice.";
+                }
+                else if (result.StartsWith("ERR:0"))
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nLỗi Fkey đã tồn tại.";
+                }
+                else
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = result + "???";
+                }
             }
             catch (Exception ex)
             {
                 result = "ERR:EX\r\n" + ex.Message;
+                v6Return.RESULT_ERROR_MESSAGE = result;
             }
             Logger.WriteToLog("Program.PublishInvWithToken " + result);
             return result;
         }
 
-        private static string GetResultDescription_Dll(string result)
-        {
-            string description = null;
-            if (result.StartsWith("OK"))
-            {
-
-            }
-            else if (result.StartsWith("ERR:-3"))
-            {
-                description = "\r\nCó lỗi trong quá trình lấy chứng thư.";
-            }
-            else if (result.StartsWith("ERR:-2"))
-            {
-                description = "\r\nChứng thư không có privatekey.";
-            }
-            else if (result.StartsWith("ERR:-1"))
-            {
-                description = "\r\nẤn nút hủy khi nhập mã pin của chứng thư.";
-            }
-            else if (result.StartsWith("ERR:30"))
-            {
-                description = "\r\nTạo mới lô hóa đơn lỗi (fkey trùng,…).";
-            }
-            else if (result.StartsWith("ERR:28"))
-            {
-                description = "\r\nThông tin chứng thư chưa có trong hệ thống.";
-            }
-            else if (result.StartsWith("ERR:27"))
-            {
-                description = "\r\nChứng thư chưa đến thời điểm sử dụng.";
-            }
-            else if (result.StartsWith("ERR:26"))
-            {
-                description = "\r\nChứng thư đã hết hạn.";
-            }
-            else if (result.StartsWith("ERR:24"))
-            {
-                description = "\r\nChứng thư truyền lên không đúng với chứng thư công ty đăng ký trên hệ thống";
-            }
-            else if (result.StartsWith("ERR:23"))
-            {
-                description = "\r\nChứng thư truyền lên không đúng định dạng.";
-            }
-            else if (result.StartsWith("ERR:22"))
-            {
-                description = "\r\nCông ty chưa đăng ký thông tin keystore.";
-            }
-            else if (result.StartsWith("ERR:21"))
-            {
-                description = "\r\nKhông tìm thấy công ty trên hệ thống.";
-            }
-            else if (result.StartsWith("ERR:20"))
-            {
-                description = "\r\nTham số mẫu số và ký hiệu truyền vào không hợp lệ.";
-            }
-            else if (result.StartsWith("ERR:19"))
-            {
-                description = "\r\npattern truyền vào không giống với pattern của hoá đơn cần điều chỉnh/thay thế.";
-            }
-            else if (result.StartsWith("ERR:10"))
-            {
-                description = "\r\nSố lượng hóa đơn truyền vào lớn hơn maxBlockInv.";
-            }
-            else if (result.StartsWith("ERR:9"))
-            {
-                description = "\r\n???.";
-            }
-            else if (result.StartsWith("ERR:8"))
-            {
-                description = "\r\nHoá đơn đã được điều chỉnh, thay thế.";
-            }
-            else if (result.StartsWith("ERR:7"))
-            {
-                description = "\r\nKhông tìm thấy chứng thư trong máy. Hãy cắm token.";
-            }
-            else if (result.StartsWith("ERR:6"))
-            {
-                description = "\r\nKhông còn đủ số hóa đơn cho lô phát hành.";
-            }
-            else if (result.StartsWith("ERR:5"))
-            {
-                description = "\r\nCó lỗi xảy ra.";
-            }
-            else if (result.StartsWith("ERR:4"))
-            {
-                description = "\r\ntoken hóa đơn sai định dạng.";
-            }
-            else if (result.StartsWith("ERR:3"))
-            {
-                description = "\r\nĐịnh dạng file xml hóa đơn không đúng.";
-            }
-            else if (result.StartsWith("ERR:2"))
-            {
-                description = "\r\nKhông tồn tại hoá đơn cần thay thế/điều chỉnh.";
-            }
-            else if (result.StartsWith("ERR:1"))
-            {
-                description = "\r\nKhông có quyền truy cập webservice.";
-            }
-            else if (result.StartsWith("ERR:0"))
-            {
-                description = "\r\nLỗi Fkey đã tồn tại.";
-            }
-            else
-            {
-                description = "???";
-            }
-
-            return description;
-        }
 
         /// <summary>
         /// Lấy số hóa đơn từ chuỗi OK:ký hiệu;mẫu số-fkey_Số hóa đơn.

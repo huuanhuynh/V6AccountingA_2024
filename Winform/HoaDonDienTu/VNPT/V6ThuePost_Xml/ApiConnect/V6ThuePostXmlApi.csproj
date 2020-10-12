@@ -35,6 +35,9 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SignTokenCore">
+      <HintPath>..\..\..\..\..\Lib\Winform\V6ThuePost\VNPT_HCM\SignTokenCore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />

@@ -80,14 +80,15 @@ namespace V6ThuePost
         /// <summary>
         /// serial của chứng thư công ty đã đăng ký trong hệ thống.
         /// </summary>
-        private static string SERIAL_CERT;
-        private static string pattern, partten_field;
-        private static string seri, seri_field;
-        private static string convert = "0";
+        private static string _SERIAL_CERT;
         //Auto input setting
         private static string token_password_title = "";
-        //private static string token_password_title = "Untitle"; // Test notepad
         private static string token_password = "";
+
+        private static string _pattern, partten_field;
+        private static string _seri, seri_field;
+        private static string convert = "0";
+        
 
         //Excel config
         private static string template_xls = "template.xls";
@@ -443,8 +444,8 @@ namespace V6ThuePost
                             File.Create(flagFileName1).Close();
                             string so_hoa_don = arg3;
                             int type = ObjectAndString.ObjectToInt(arg4);
-                            var invToken = string.Format("{0};{1};{2}", pattern, seri, so_hoa_don);
-                            result = AdjustReplaceInvWithToken_Dll(xml, SERIAL_CERT, type, invToken);
+                            var invToken = string.Format("{0};{1};{2}", _pattern, _seri, so_hoa_don);
+                            result = AdjustReplaceInvWithToken_Dll(xml, _SERIAL_CERT, type, invToken);
                             //type: thay thế = 1, điều chỉnh tăng = 2, điều chỉnh giảm = 3, điều chỉnh thông tin = 4
                         }
                     }
@@ -1021,8 +1022,8 @@ namespace V6ThuePost
                 //}
 
                 inv.key = fkeyA;
-                pattern = row0[partten_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                _pattern = row0[partten_field].ToString().Trim();
+                _seri = row0[seri_field].ToString().Trim();
                 //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
                 
@@ -1150,8 +1151,8 @@ namespace V6ThuePost
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
                 inv.key = fkeyA;
-                pattern = row0[partten_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                _pattern = row0[partten_field].ToString().Trim();
+                _seri = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
@@ -1241,8 +1242,8 @@ namespace V6ThuePost
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
                 inv.key = fkeyA;
-                pattern = row0[partten_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                _pattern = row0[partten_field].ToString().Trim();
+                _seri = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
@@ -1668,7 +1669,7 @@ namespace V6ThuePost
             try
             {
                 var publishService = new PublishService(link_Publish);
-                result = publishService.ImportAndPublishInv(account, accountpassword, xml, username, password, pattern, seri, convert == "1" ? 1 : 0);
+                result = publishService.ImportAndPublishInv(account, accountpassword, xml, username, password, _pattern, _seri, convert == "1" ? 1 : 0);
                 //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
                 if (result.StartsWith("OK"))
                 {
@@ -1872,7 +1873,7 @@ namespace V6ThuePost
                 invToken = "";
                 string getHashXml = null;
                 getHashXml = publishService.getHashInvWithToken(account, accountpassword, xmlInvData, username, password,
-                    SERIAL_CERT, 0, invToken, pattern, seri, 0);
+                    _SERIAL_CERT, 0, invToken, _pattern, _seri, 0);
 
                 //<Invoices><Inv><key>A0283806HDA</key><idInv>646972</idInv><hashValue>Xvnk+BZ7PH2j0tgdQ9uOZFVrnus=</hashValue><pattern>01GTKT0/001</pattern><serial>VT/19E</serial></Inv></Invoices>
                 //getHashXml = GetHashInv(xmlInvData);
@@ -1907,7 +1908,7 @@ namespace V6ThuePost
                 string getHashXml = null;
                 try
                 {
-                    getHashXml = publishService.getHashInvWithToken(account, accountpassword, xmlInvData, username, password, SERIAL_CERT, 0, invToken, pattern, seri, 0);// GetHashInv()
+                    getHashXml = publishService.getHashInvWithToken(account, accountpassword, xmlInvData, username, password, _SERIAL_CERT, 0, invToken, _pattern, _seri, 0);// GetHashInv()
                 }
                 catch (Exception ex)
                 {
@@ -1931,7 +1932,7 @@ namespace V6ThuePost
                 
                 string xmlInvDataSigned = ""
                                           + "<Invoices>"
-                                          + "<SerialCert>"+SERIAL_CERT.ToUpper()+"</SerialCert>"
+                                          + "<SerialCert>"+_SERIAL_CERT.ToUpper()+"</SerialCert>"
                                           + "<Inv>"
                                           + "<key>"+getFkey+"</key>"                            // fkey
                                           + "<idInv>"+getIdInv+"</idInv>"                         // id hóa đơn trên hệ thống vnpt
@@ -1939,7 +1940,7 @@ namespace V6ThuePost
                                           + "</Inv>"
                                           + "</Invoices>";
                 
-                var result4 = publishService.publishInvWithToken(account, accountpassword, xmlInvDataSigned, username, password, pattern, seri);
+                var result4 = publishService.publishInvWithToken(account, accountpassword, xmlInvDataSigned, username, password, _pattern, _seri);
                 //<Invoices><SerialCert>‎5404FFFEB7033FB316D672201B7A2249</SerialCert><Inv><key>A0283806HDA</key><idInv>647292</idInv><signValue>WseKwNHQZy2DgssoeWPGpmu9v5hUonZyPGAHbWbiB63JZuYTETXGdbkT5oTHSlM6jtx8EhqfdU+qHuvTEsG9MRBvkmUcbwSHhk+1enWsUNGLhf5x+C2B2ePBobX46QuP7ddy//qYdfKT/e1glIrxeqeSZ8HWjJiaCXErACsafxs=</signValue></Inv></Invoices>
                 //"ERR:24" chứng thư truyền lên không đúng với chứng thư công ty đăng ký trên hệ thống
                 result += result4;
@@ -1966,7 +1967,7 @@ namespace V6ThuePost
             try
             {
                 result = VNPTEInvoiceSignToken.AdjustReplaceInvWithToken(account, accountpassword, xmlInvData, username, password,
-                    serialCert, type, invToken, pattern, seri, link_Publish);
+                    serialCert, type, invToken, _pattern, _seri, link_Publish);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -1987,7 +1988,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.CancelInvoiceWithToken(account, accountpassword, xmlData, username, password, pattern, linkWS: link_Publish);
+                result = VNPTEInvoiceSignToken.CancelInvoiceWithToken(account, accountpassword, xmlData, username, password, _pattern, linkWS: link_Publish);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2008,7 +2009,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.getHashInv(account, accountpassword, username, password, SERIAL_CERT, xmlFkeyInv, pattern, link_Publish);
+                result = VNPTEInvoiceSignToken.getHashInv(account, accountpassword, username, password, _SERIAL_CERT, xmlFkeyInv, _pattern, link_Publish);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2038,7 +2039,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.getStatusInv(account, accountpassword, username, password, xmlFkeyInv, pattern, link_Publish);
+                result = VNPTEInvoiceSignToken.getStatusInv(account, accountpassword, username, password, xmlFkeyInv, _pattern, link_Publish);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2058,7 +2059,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.ImportCertWithToken(account, accountpassword, username, password, SERIAL_CERT, link_Publish);
+                result = VNPTEInvoiceSignToken.ImportCertWithToken(account, accountpassword, username, password, _SERIAL_CERT, link_Publish);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2078,7 +2079,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.PublishInv(account, accountpassword, xmlHash, username, password, SERIAL_CERT, pattern, seri, link_Publish);
+                result = VNPTEInvoiceSignToken.PublishInv(account, accountpassword, xmlHash, username, password, _SERIAL_CERT, _pattern, _seri, link_Publish);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2099,7 +2100,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.PublishInvWithToken(account, accountpassword, xmlInvData, username, password, SERIAL_CERT, pattern, seri, link_Publish);
+                result = VNPTEInvoiceSignToken.PublishInvWithToken(account, accountpassword, xmlInvData, username, password, _SERIAL_CERT, _pattern, _seri, link_Publish);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2838,10 +2839,10 @@ namespace V6ThuePost
                                     accountpassword = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "serialcert":
-                                    SERIAL_CERT = UtilityHelper.DeCrypt(line.Value).ToUpper();
+                                    _SERIAL_CERT = UtilityHelper.DeCrypt(line.Value).ToUpper();
                                     break;
                                 case "token_password_title":
-                                    token_password_title = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    token_password_title = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "token_password":
                                     token_password = UtilityHelper.DeCrypt(line.Value);
