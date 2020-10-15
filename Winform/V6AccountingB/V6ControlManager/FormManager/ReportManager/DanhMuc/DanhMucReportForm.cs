@@ -487,13 +487,21 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             try
             {
-                if (V6Setting.IsVietnamese)
+                if (V6Setting.ReportLanguage == "V")
                 {
                     rTiengViet.Checked = true;
                 }
-                else
+                else if (V6Setting.ReportLanguage == "E")
                 {
                     rEnglish.Checked = true;
+                }
+                else if (V6Setting.ReportLanguage == "B")
+                {
+                    rBothLang.Checked = true;
+                }
+                else
+                {
+                    rCurrent.Checked = true;
                 }
                 LoadComboboxSource();
                 

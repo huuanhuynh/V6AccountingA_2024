@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlctAddEditFrom));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label61 = new System.Windows.Forms.Label();
             this.txtngay_ks_ky = new V6Controls.V6DateTimeColor();
@@ -97,6 +98,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.dicEditExtraInfo = new V6Controls.Controls.DicEditButton();
             this.tabCacTuyChon = new System.Windows.Forms.TabPage();
             this.v6ColorTextBox22 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox20 = new V6Controls.V6ColorTextBox();
@@ -219,6 +221,7 @@
             this.label72 = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
+            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
@@ -895,6 +898,7 @@
             this.tabThongTinNgamDinh.AccessibleDescription = "ADDEDITT00009";
             this.tabThongTinNgamDinh.AutoScroll = true;
             this.tabThongTinNgamDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinNgamDinh.Controls.Add(this.dicEditButton1);
             this.tabThongTinNgamDinh.Controls.Add(this.txtTYPE_VIEW);
             this.tabThongTinNgamDinh.Controls.Add(this.lblTYPE_VIEW);
             this.tabThongTinNgamDinh.Controls.Add(this.lblResetCopy);
@@ -922,6 +926,7 @@
             this.tabThongTinNgamDinh.Controls.Add(this.label24);
             this.tabThongTinNgamDinh.Controls.Add(this.label25);
             this.tabThongTinNgamDinh.Controls.Add(this.label26);
+            this.tabThongTinNgamDinh.Controls.Add(this.dicEditExtraInfo);
             this.tabThongTinNgamDinh.Location = new System.Drawing.Point(4, 28);
             this.tabThongTinNgamDinh.Margin = new System.Windows.Forms.Padding(4);
             this.tabThongTinNgamDinh.Name = "tabThongTinNgamDinh";
@@ -988,7 +993,7 @@
             this.txtResetCopy.Location = new System.Drawing.Point(196, 234);
             this.txtResetCopy.Margin = new System.Windows.Forms.Padding(4);
             this.txtResetCopy.Name = "txtResetCopy";
-            this.txtResetCopy.Size = new System.Drawing.Size(538, 23);
+            this.txtResetCopy.Size = new System.Drawing.Size(517, 23);
             this.txtResetCopy.TabIndex = 21;
             this.toolTipV6FormControl.SetToolTip(this.txtResetCopy, "Các trường dữ liệu reset về rỗng khi copy.");
             this.txtResetCopy.Visible = false;
@@ -1145,7 +1150,7 @@
             this.txtExtraInfo.Location = new System.Drawing.Point(196, 209);
             this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtExtraInfo.Name = "txtExtraInfo";
-            this.txtExtraInfo.Size = new System.Drawing.Size(538, 23);
+            this.txtExtraInfo.Size = new System.Drawing.Size(517, 23);
             this.txtExtraInfo.TabIndex = 19;
             this.txtExtraInfo.Visible = false;
             // 
@@ -1324,6 +1329,15 @@
             this.label26.Size = new System.Drawing.Size(131, 17);
             this.label26.TabIndex = 0;
             this.label26.Text = "Ngoại tệ ngầm định";
+            // 
+            // dicEditExtraInfo
+            // 
+            this.dicEditExtraInfo.Image = ((System.Drawing.Image)(resources.GetObject("dicEditExtraInfo.Image")));
+            this.dicEditExtraInfo.Location = new System.Drawing.Point(713, 209);
+            this.dicEditExtraInfo.Name = "dicEditExtraInfo";
+            this.dicEditExtraInfo.ReferenceControl = this.txtExtraInfo;
+            this.dicEditExtraInfo.Size = new System.Drawing.Size(21, 21);
+            this.dicEditExtraInfo.TabIndex = 151;
             // 
             // tabCacTuyChon
             // 
@@ -3196,6 +3210,15 @@
             this.label74.TabIndex = 90;
             this.label74.Text = "Mã ĐN 1";
             // 
+            // dicEditButton1
+            // 
+            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.Location = new System.Drawing.Point(713, 234);
+            this.dicEditButton1.Name = "dicEditButton1";
+            this.dicEditButton1.ReferenceControl = this.txtResetCopy;
+            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
+            this.dicEditButton1.TabIndex = 151;
+            // 
             // AlctAddEditFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -3417,5 +3440,7 @@
         private System.Windows.Forms.Label label72;
         private System.Windows.Forms.Label label73;
         private System.Windows.Forms.Label label74;
+        private Controls.DicEditButton dicEditExtraInfo;
+        private Controls.DicEditButton dicEditButton1;
     }
 }

@@ -897,13 +897,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
-                if (V6Setting.IsVietnamese)
+                if (V6Setting.ReportLanguage == "V")
                 {
                     rTiengViet.Checked = true;
                 }
-                else
+                else if (V6Setting.ReportLanguage == "E")
                 {
                     rEnglish.Checked = true;
+                }
+                else if (V6Setting.ReportLanguage == "B")
+                {
+                    rBothLang.Checked = true;
+                }
+                else
+                {
+                    rCurrent.Checked = true;
                 }
                 LoadComboboxSource();
                 
@@ -936,7 +944,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             if (!key3.Contains("7")) exportToPdfMenu.Visible = false;
                             if (!key3.Contains("8")) viewInvoiceInfoMenu.Visible = false;
                         }
-                        
                     }
                 }
 
@@ -1127,18 +1134,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             try
             {
                 SetCrossLineRpt(rpDoc);
+                // SUBREPORT
+                for (int i = 0; i < rpDoc.Subreports.Count; i++)
+                {
+                    SetCrossLineRpt(rpDoc.Subreports[i]);
+                }
 
                 if (MauTuIn == 1 && _soLienIn >= 2 && rpDoc2 != null)
                 {
                     SetCrossLineRpt(rpDoc2);
+                    // SUBREPORT
+                    for (int i = 0; i < rpDoc2.Subreports.Count; i++)
+                    {
+                        SetCrossLineRpt(rpDoc2.Subreports[i]);
+                    }
                 }
                 if (MauTuIn == 1 && _soLienIn >= 3 && rpDoc3 != null)
                 {
                     SetCrossLineRpt(rpDoc3);
+                    // SUBREPORT
+                    for (int i = 0; i < rpDoc3.Subreports.Count; i++)
+                    {
+                        SetCrossLineRpt(rpDoc3.Subreports[i]);
+                    }
                 }
                 if (MauTuIn == 1 && _soLienIn >= 4 && rpDoc4 != null)
                 {
                     SetCrossLineRpt(rpDoc4);
+                    // SUBREPORT
+                    for (int i = 0; i < rpDoc4.Subreports.Count; i++)
+                    {
+                        SetCrossLineRpt(rpDoc4.Subreports[i]);
+                    }
                 }
             }
             catch (Exception ex)
@@ -1373,6 +1400,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 try
                 {
                     rpDoc.SetParameterValue(item.Key, item.Value);
+                    // SUBREPORT
+                    for (int i = 0; i < rpDoc.Subreports.Count; i++)
+                    {
+                        rpDoc.SetParameterValue(item.Key, item.Value, rpDoc.Subreports[i].Name);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1387,6 +1419,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     try
                     {
                         rpDoc2.SetParameterValue(item.Key, item.Value);
+                        // SUBREPORT
+                        for (int i = 0; i < rpDoc2.Subreports.Count; i++)
+                        {
+                            rpDoc2.SetParameterValue(item.Key, item.Value, rpDoc2.Subreports[i].Name);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -1401,6 +1438,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     try
                     {
                         rpDoc3.SetParameterValue(item.Key, item.Value);
+                        // SUBREPORT
+                        for (int i = 0; i < rpDoc3.Subreports.Count; i++)
+                        {
+                            rpDoc3.SetParameterValue(item.Key, item.Value, rpDoc3.Subreports[i].Name);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -1415,6 +1457,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     try
                     {
                         rpDoc4.SetParameterValue(item.Key, item.Value);
+                        // SUBREPORT
+                        for (int i = 0; i < rpDoc4.Subreports.Count; i++)
+                        {
+                            rpDoc4.SetParameterValue(item.Key, item.Value, rpDoc4.Subreports[i].Name);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -1909,7 +1956,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     if (File.Exists(ReportFileFull_1)) rpDoc.Load(ReportFileFull_1);
                     else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull_1);
-                    rpDoc.SetDataSource(_ds);
+                    rpDoc.SetDataSource(_ds.Copy());
+                    // SUBREPORT
+                    for (int i = 0; i < rpDoc.Subreports.Count; i++)
+                    {
+                        rpDoc.Subreports[i].SetDataSource(_ds.Copy());
+                    }
                 }
                 catch (Exception e1)
                 {
@@ -1923,6 +1975,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         if (File.Exists(ReportFileFull_2)) rpDoc2.Load(ReportFileFull_2);
                         else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull_2);
                         rpDoc2.SetDataSource(_ds.Copy());
+                        // SUBREPORT
+                        for (int i = 0; i < rpDoc2.Subreports.Count; i++)
+                        {
+                            rpDoc2.Subreports[i].SetDataSource(_ds.Copy());
+                        }
                     }
                     catch (Exception e2)
                     {
@@ -1937,6 +1994,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         if (File.Exists(ReportFileFull_3)) rpDoc3.Load(ReportFileFull_3);
                         else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull_3);
                         rpDoc3.SetDataSource(_ds.Copy());
+                        // SUBREPORT
+                        for (int i = 0; i < rpDoc3.Subreports.Count; i++)
+                        {
+                            rpDoc3.Subreports[i].SetDataSource(_ds.Copy());
+                        }
                     }
                     catch (Exception e3)
                     {
@@ -1952,6 +2014,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         if (File.Exists(ReportFileFull_4)) rpDoc4.Load(ReportFileFull_4);
                         else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull_4);
                         rpDoc4.SetDataSource(_ds.Copy());
+                        // SUBREPORT
+                        for (int i = 0; i < rpDoc4.Subreports.Count; i++)
+                        {
+                            rpDoc4.Subreports[i].SetDataSource(_ds.Copy());
+                        }
                     }
                     catch (Exception e4)
                     {
@@ -2017,9 +2084,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull);
 
                 rpDoc.SetDataSource(_ds);
-
+                
                 SetAllReportParams(rpDoc, rpDoc2, rpDoc3, rpDoc4);
                 SetCrossLineAll(rpDoc, rpDoc2, rpDoc3, rpDoc4);
+                
                 var infos = EXTRA_INFOR;
                 if (infos.ContainsKey("RPTHIDE"))
                 {
@@ -2062,6 +2130,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     if (all_objects.ContainsKey(NAME))
                     {
                         all_objects[NAME].ObjectFormat.EnableSuppress = true;
+                    }
+                }
+
+                // SUBREPORT
+                for (int i = 0; i < rpDoc.Subreports.Count; i++)
+                {
+                    var all_objects_sub = new SortedDictionary<string, ReportObject>();
+                    foreach (ReportObject o in rpDoc.Subreports[i].ReportDefinition.ReportObjects)
+                    {
+                        all_objects_sub[o.Name.ToUpper()] = o;
+                    }
+                
+                    foreach (string name in names)
+                    {
+                        string NAME = name.ToUpper();
+                        if (all_objects_sub.ContainsKey(NAME))
+                        {
+                            all_objects_sub[NAME].ObjectFormat.EnableSuppress = true;
+                        }
                     }
                 }
             }
