@@ -392,7 +392,7 @@ namespace V6ThuePostManager
                         break;
                     case "8":
                         MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
-                        result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory);
+                        result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
@@ -848,7 +848,7 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "H")
                 {
-                    result = cancelInv(paras.Fkey_hd);
+                    result = vnptWS.cancelInv(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "D")
                 {
@@ -1578,45 +1578,7 @@ namespace V6ThuePostManager
             string fileBase64 = Convert.ToBase64String(fileBytes);
             return fileBase64;
         }
-
-        /// <summary>
-        /// Gạch nợ hóa đơn theo fkey
-        /// </summary>
-        /// <param name="fkey_old"></param>
-        /// <returns></returns>
-        public static string confirmPaymentFkey0(string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                result = new BusinessService(_link_Business_vnpt).confirmPaymentFkey(fkey_old, _username, _password);
-
-                if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nKhông gạch nợ được.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.confirmPaymentFkey " + result);
-            return result;
-        }
-
+        
         /// <summary>
         /// Hủy hóa đơn.
         /// </summary>
@@ -3752,6 +3714,10 @@ namespace V6ThuePostManager
                     //    response = monetWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
                     //}
                 }
+                else if (paras.Mode == "E_H1")
+                {
+                    response = mInvoiceWs.POST_CANCEL(paras.V6PartnerID, "", paras.InvoiceDate, "", out paras.Result.V6ReturnValues);
+                }
                 else if (paras.Mode == "H")
                 {
                     var hoadon_entity = ReadData_Minvoice(paras.Mode.Substring(0, 1));
@@ -4087,15 +4053,20 @@ namespace V6ThuePostManager
                                     _password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "codetax":
-                                    _codetax = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    _codetax = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "ma_dvcs":
                                     _ma_dvcs = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "baselink":
-                                    _baseUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                case "baseurl":
+                                    _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "site":
+                                case "login":
+                                case "sitelogin":
+                                case "loginsite":
+                                case "website":
                                     _site = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "createlink":

@@ -260,6 +260,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 continue;
                             }
                         }
+                        else if (FilterControl.String1 == "8")
+                        {
+                            string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
+                            var pmparams = new PostManagerParams
+                            {
+                                DataSet = map_table.DataSet,
+                                Branch = FilterControl.String1,
+                                InvoiceNo = soct,
+                                //InvoiceDate = ngay_ct,
+                                V6PartnerID = v6_partner_id,
+                                //Pattern = pattern,
+                                //Fkey_hd = fkey_hd,
+                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                            };
+                            return_file_name = PostManager.PowerDownloadPDF(pmparams, out error);
+                            if (!string.IsNullOrEmpty(error))
+                            {
+                                f9Error += error;
+                                f9ErrorAll += error;
+                                f9MessageAll += error;
+                                continue;
+                            }
+                        }
                         else
                         {
                             this.ShowInfoMessage(V6Text.NotSupported);

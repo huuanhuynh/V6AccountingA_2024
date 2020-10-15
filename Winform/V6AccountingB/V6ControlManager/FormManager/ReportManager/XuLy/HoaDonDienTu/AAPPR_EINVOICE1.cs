@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             DataSet = ds,
                             Mode = mode,
                             Branch = FilterControl.String1,
-                            Fkey_hd = fkey_hd,// Cần thiết cho Hủy VNPT BKAV
+                            Fkey_hd = fkey_hd,
                             V6PartnerID = row.Cells["V6PARTNER_ID"].Value.ToString().Trim(),
                             AM_new = row_data,
                         };

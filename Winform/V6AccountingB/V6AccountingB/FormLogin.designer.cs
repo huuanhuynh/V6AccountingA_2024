@@ -49,6 +49,11 @@
             this.cboAgent = new V6Controls.V6ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.grbNgonNgu = new System.Windows.Forms.GroupBox();
+            this.rCurrent = new System.Windows.Forms.RadioButton();
+            this.rBothLang = new System.Windows.Forms.RadioButton();
+            this.rEnglish = new System.Windows.Forms.RadioButton();
+            this.rTiengViet = new System.Windows.Forms.RadioButton();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cboDatabase = new V6Controls.V6ComboBox();
@@ -56,15 +61,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.grbNgonNgu.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(70, 136);
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Image = global::V6AccountingB.Properties.Resources.LoginButton_32;
+            this.btnLogin.Location = new System.Drawing.Point(70, 180);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(86, 23);
-            this.btnLogin.TabIndex = 10;
+            this.btnLogin.Size = new System.Drawing.Size(100, 40);
+            this.btnLogin.TabIndex = 11;
             this.btnLogin.Text = "Login";
+            this.btnLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -83,7 +92,7 @@
             this.txtUserName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUserName.Location = new System.Drawing.Point(70, 3);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(215, 20);
+            this.txtUserName.Size = new System.Drawing.Size(241, 20);
             this.txtUserName.TabIndex = 1;
             this.txtUserName.Text = "V6";
             this.txtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserName_KeyDown);
@@ -96,11 +105,14 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(163, 136);
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::V6AccountingB.Properties.Resources.exit;
+            this.btnCancel.Location = new System.Drawing.Point(209, 180);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(86, 23);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Size = new System.Drawing.Size(100, 40);
+            this.btnCancel.TabIndex = 12;
+            this.btnCancel.Text = "Exit";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -120,7 +132,7 @@
             this.txtPassword.Location = new System.Drawing.Point(70, 29);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '#';
-            this.txtPassword.Size = new System.Drawing.Size(215, 20);
+            this.txtPassword.Size = new System.Drawing.Size(241, 20);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
@@ -140,7 +152,7 @@
             this.cboLang.FormattingEnabled = true;
             this.cboLang.Location = new System.Drawing.Point(70, 109);
             this.cboLang.Name = "cboLang";
-            this.cboLang.Size = new System.Drawing.Size(215, 21);
+            this.cboLang.Size = new System.Drawing.Size(241, 21);
             this.cboLang.TabIndex = 9;
             this.cboLang.SelectedIndexChanged += new System.EventHandler(this.cboLang_SelectedIndexChanged);
             this.cboLang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
@@ -207,7 +219,7 @@
             this.cboModule.FormattingEnabled = true;
             this.cboModule.Location = new System.Drawing.Point(70, 82);
             this.cboModule.Name = "cboModule";
-            this.cboModule.Size = new System.Drawing.Size(215, 21);
+            this.cboModule.Size = new System.Drawing.Size(241, 21);
             this.cboModule.TabIndex = 7;
             this.cboModule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
@@ -230,7 +242,7 @@
             this.cboAgent.Location = new System.Drawing.Point(70, 55);
             this.cboAgent.Name = "cboAgent";
             this.cboAgent.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cboAgent.Size = new System.Drawing.Size(215, 21);
+            this.cboAgent.Size = new System.Drawing.Size(241, 21);
             this.cboAgent.TabIndex = 5;
             this.cboAgent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
@@ -240,7 +252,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(3, 208);
+            this.label6.Location = new System.Drawing.Point(21, 271);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(296, 18);
             this.label6.TabIndex = 12;
@@ -249,6 +261,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.grbNgonNgu);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.cboAgent);
@@ -264,13 +277,81 @@
             this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(296, 39);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(290, 163);
+            this.panel1.Size = new System.Drawing.Size(315, 228);
             this.panel1.TabIndex = 3;
+            // 
+            // grbNgonNgu
+            // 
+            this.grbNgonNgu.AccessibleDescription = "REPORTL00010";
+            this.grbNgonNgu.Controls.Add(this.rCurrent);
+            this.grbNgonNgu.Controls.Add(this.rBothLang);
+            this.grbNgonNgu.Controls.Add(this.rEnglish);
+            this.grbNgonNgu.Controls.Add(this.rTiengViet);
+            this.grbNgonNgu.Location = new System.Drawing.Point(4, 137);
+            this.grbNgonNgu.Name = "grbNgonNgu";
+            this.grbNgonNgu.Size = new System.Drawing.Size(306, 40);
+            this.grbNgonNgu.TabIndex = 10;
+            this.grbNgonNgu.TabStop = false;
+            this.grbNgonNgu.Text = "Report language";
+            // 
+            // rCurrent
+            // 
+            this.rCurrent.AccessibleDescription = "REPORTR00007";
+            this.rCurrent.AutoSize = true;
+            this.rCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rCurrent.Location = new System.Drawing.Point(226, 17);
+            this.rCurrent.Name = "rCurrent";
+            this.rCurrent.Size = new System.Drawing.Size(59, 17);
+            this.rCurrent.TabIndex = 3;
+            this.rCurrent.Text = "Current";
+            this.rCurrent.UseVisualStyleBackColor = true;
+            // 
+            // rBothLang
+            // 
+            this.rBothLang.AccessibleDescription = "REPORTR00006";
+            this.rBothLang.AutoSize = true;
+            this.rBothLang.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rBothLang.Location = new System.Drawing.Point(144, 17);
+            this.rBothLang.Name = "rBothLang";
+            this.rBothLang.Size = new System.Drawing.Size(82, 17);
+            this.rBothLang.TabIndex = 2;
+            this.rBothLang.Text = "Multi choice";
+            this.rBothLang.UseVisualStyleBackColor = true;
+            this.rBothLang.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
+            // 
+            // rEnglish
+            // 
+            this.rEnglish.AccessibleDescription = "REPORTR00005";
+            this.rEnglish.AccessibleName = "English";
+            this.rEnglish.AutoSize = true;
+            this.rEnglish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rEnglish.Location = new System.Drawing.Point(85, 17);
+            this.rEnglish.Name = "rEnglish";
+            this.rEnglish.Size = new System.Drawing.Size(59, 17);
+            this.rEnglish.TabIndex = 1;
+            this.rEnglish.Text = "English";
+            this.rEnglish.UseVisualStyleBackColor = true;
+            this.rEnglish.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
+            // 
+            // rTiengViet
+            // 
+            this.rTiengViet.AccessibleDescription = "REPORTR00004";
+            this.rTiengViet.AutoSize = true;
+            this.rTiengViet.Checked = true;
+            this.rTiengViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rTiengViet.Location = new System.Drawing.Point(5, 17);
+            this.rTiengViet.Name = "rTiengViet";
+            this.rTiengViet.Size = new System.Drawing.Size(80, 17);
+            this.rTiengViet.TabIndex = 0;
+            this.rTiengViet.TabStop = true;
+            this.rTiengViet.Text = "Vietnamese";
+            this.rTiengViet.UseVisualStyleBackColor = true;
+            this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
             // 
             // lblStatus
             // 
             this.lblStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblStatus.Location = new System.Drawing.Point(319, 205);
+            this.lblStatus.Location = new System.Drawing.Point(340, 270);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(210, 18);
             this.lblStatus.TabIndex = 1;
@@ -292,7 +373,7 @@
             this.cboDatabase.FormattingEnabled = true;
             this.cboDatabase.Location = new System.Drawing.Point(364, 7);
             this.cboDatabase.Name = "cboDatabase";
-            this.cboDatabase.Size = new System.Drawing.Size(215, 21);
+            this.cboDatabase.Size = new System.Drawing.Size(241, 21);
             this.cboDatabase.TabIndex = 2;
             this.cboDatabase.SelectedIndexChanged += new System.EventHandler(this.cboDatabase_SelectedIndexChanged);
             // 
@@ -315,7 +396,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(590, 227);
+            this.ClientSize = new System.Drawing.Size(619, 295);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label0);
             this.Controls.Add(this.panel1);
@@ -345,6 +426,8 @@
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.grbNgonNgu.ResumeLayout(false);
+            this.grbNgonNgu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,5 +458,10 @@
         private V6Controls.V6ComboBox cboDatabase;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox grbNgonNgu;
+        private System.Windows.Forms.RadioButton rBothLang;
+        private System.Windows.Forms.RadioButton rEnglish;
+        private System.Windows.Forms.RadioButton rTiengViet;
+        private System.Windows.Forms.RadioButton rCurrent;
     }
 }

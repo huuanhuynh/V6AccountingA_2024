@@ -198,7 +198,8 @@ namespace V6ThuePost
                         DateTime ngay_ct = ObjectAndString.StringToDate(arg4);
                         MakeFlagNames(id);
                         File.Create(flagFileName1).Close();
-                        result = _WS.POST_CANCEL(id, sovb, ngay_ct, "ghi_chu");
+                        responseObject = _WS.POST_CANCEL(id, sovb, ngay_ct, "ghi_chu", out v6Return);
+                        result = v6Return.RESULT_STRING;
                     }
 
                     //Phân tích result

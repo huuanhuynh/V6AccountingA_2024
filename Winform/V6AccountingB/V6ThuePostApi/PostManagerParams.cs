@@ -33,7 +33,7 @@ namespace V6ThuePostManager
         /// </summary>
         public string RptFileFull { get; set; }
         /// <summary>
-        /// Fkey từ V6
+        /// Fkey từ V6, // Cần thiết cho Hủy VNPT, BKAV,
         /// </summary>
         public string Fkey_hd { get; set; }
         /// <summary>

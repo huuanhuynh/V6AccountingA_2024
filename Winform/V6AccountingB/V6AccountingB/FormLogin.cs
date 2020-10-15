@@ -29,6 +29,7 @@ namespace V6AccountingB
         }
 
         public bool ReadyLogin { get; set; }
+        bool ReadyReportLanguage = false;
         private bool _tblsLoaded, _allowClient;
 
         private void MyInit()
@@ -78,6 +79,29 @@ namespace V6AccountingB
             txtUserName.Text = V6Setting.LASTUSERW;
             //Khởi tạo với rad đang check. Mặc định local.
             //ResetInfos(radAPIDataMode.Checked ? GetDataMode.API : GetDataMode.Local);
+            if (V6Setting.ReportLanguage == "V")
+            {
+                rTiengViet.Checked = true;
+            }
+            else if (V6Setting.ReportLanguage == "E")
+            {
+                rEnglish.Checked = true;
+            }
+            else if (V6Setting.ReportLanguage == "B")
+            {
+                rBothLang.Checked = true;
+            }
+            else // C
+            {
+                rCurrent.Checked = true;
+            }
+
+            Ready();
+            if (string.IsNullOrEmpty(V6Setting.ReportLanguage))
+            {
+                rTiengViet.Checked = true;
+                rbtLanguage_CheckedChanged(rTiengViet, new EventArgs());
+            }
             
         }
 
@@ -142,7 +166,8 @@ namespace V6AccountingB
                 if (string.IsNullOrEmpty(V6Setting.Language)) V6Setting.Language = "V";
                 cboLang.SelectedValue = V6Setting.Language;
                 //cboLang.SelectedIndex = GetLangIndex(TblLanguage, V6Setting.Language);
-
+                ReadyReportLanguage = true;
+                
                 cboModule.ValueMember = "module_id";
                 cboModule.DisplayMember = "name";
                 cboModule.DataSource = TblModule;
@@ -159,7 +184,7 @@ namespace V6AccountingB
                     txtUserName.Focus();
                     V6Options.LoadValue();
                     this.Text = "LOGIN - Version " + Application.ProductVersion;
-                    Ready();
+                    //Ready();
                 }
                 else
                 {
@@ -431,14 +456,54 @@ namespace V6AccountingB
 
         private void cboLang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (IsReady)
+            if (ReadyReportLanguage)
             {
                 V6Login.SelectedLanguage = cboLang.SelectedValue.ToString().Trim().ToUpper();
                 if (cboAgent.DataSource != null)
                 {
                     cboAgent.DisplayMember = V6Setting.IsVietnamese ? "Name" : "Name2";
                 }
+
+                if (V6Login.SelectedLanguage == "V")
+                {
+                    rTiengViet.Checked = true;
+                }
+                else if (V6Login.SelectedLanguage == "E")
+                {
+                    rEnglish.Checked = true;
+                }
             }
+        }
+
+        bool _radioRunning = false;
+        private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!IsReady) return;
+                _radioRunning = true;
+                if (rTiengViet.Checked)
+                {
+                    V6Setting.ReportLanguage = "V";
+                }
+                else if (rEnglish.Checked)
+                {
+                    V6Setting.ReportLanguage = "E";
+                }
+                else if (rBothLang.Checked)
+                {
+                    V6Setting.ReportLanguage = "B";
+                }
+                else if (rCurrent.Checked)
+                {
+                    V6Setting.ReportLanguage = V6Setting.Language;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".rbtLanguage_CheckedChanged", ex);
+            }
+            _radioRunning = false;
         }
         
     }    

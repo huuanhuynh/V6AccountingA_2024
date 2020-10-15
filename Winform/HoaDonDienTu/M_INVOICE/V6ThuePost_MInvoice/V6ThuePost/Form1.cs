@@ -155,7 +155,9 @@ namespace V6ThuePost
         {
             try
             {
-                Program._WS.DownloadInvoicePDF(btnPDF.AccessibleName, "F:\\Test");
+                V6Return v6Return;
+                string result = Program._WS.DownloadInvoicePDF(btnPDF.AccessibleName, "F:\\Test", out v6Return);
+                BaseMessage.Show(result, 0, this);
             }
             catch (Exception ex)
             {

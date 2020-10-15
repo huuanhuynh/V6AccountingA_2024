@@ -27,17 +27,17 @@ namespace V6ThuePostMInvoiceApi
         private string _codetax;
 
         private readonly RequestManager requestManager = new RequestManager();
-        private string _cancel_link = "api/Invoice/xoaboHD";
-        private const string _createInvoiceUrl = "api/InvoiceAPI/Save";
-        private const string _editLink = "api/InvoiceAPI/Save";
-        private const string _modifylinkT = "api/InvoiceAPI/DcTang";
-        private const string _modifylinkG = "api/InvoiceAPI/DcGiam";
-        private const string _replaceInvoiceUrl = "api/InvoiceAPI/Save";
+        private string _cancel_link = "/api/Invoice/xoaboHD";
+        private const string _createInvoiceUrl = "/api/InvoiceAPI/Save";
+        private const string _editLink = "/api/InvoiceAPI/Save";
+        private const string _modifylinkT = "/api/InvoiceAPI/DcTang";
+        private const string _modifylinkG = "/api/InvoiceAPI/DcGiam";
+        private const string _replaceInvoiceUrl = "/api/InvoiceAPI/Save";
 
         public MInvoiceWS(string baseurl, string username, string password, string ma_dvcs, string codetax)
         {
             _baseurl = baseurl;
-            if (!_baseurl.EndsWith("/")) _baseurl += "/";
+            if (_baseurl.EndsWith("/")) _baseurl = _baseurl.Substring(0, _baseurl.Length-1);
             _username = username;
             _password = password;
             _ma_dvcs = ma_dvcs;
@@ -69,7 +69,7 @@ namespace V6ThuePostMInvoiceApi
         /// <returns></returns>
         private string POST0(string uri, string request)
         {
-            if (uri.StartsWith("/")) uri = uri.Substring(1);
+            if (!uri.StartsWith("/")) uri = "/" + uri;
             HttpWebResponse respone = requestManager.SendPOSTRequest(_baseurl + uri, request, "", "", true);
             return requestManager.GetResponseContent(respone);
         }
@@ -82,7 +82,7 @@ namespace V6ThuePostMInvoiceApi
         /// <returns></returns>
         private string POST(string uri, string request)
         {
-            if (uri.StartsWith("/")) uri = uri.Substring(1);
+            if (!uri.StartsWith("/")) uri = "/" + uri;
             HttpWebResponse respone = requestManager.SendPOSTRequest(_baseurl + uri, request, _username, _password, true);
             return requestManager.GetResponseContent(respone);
         }
@@ -95,14 +95,14 @@ namespace V6ThuePostMInvoiceApi
         /// <returns></returns>
         public string POST_Bearer(string uri, string request)
         {
-            if (uri.StartsWith("/")) uri = uri.Substring(1);
+            if (!uri.StartsWith("/")) uri = "/" + uri;
             HttpWebResponse respone = requestManager.SendPOSTRequest(_baseurl + uri, request, "", _logintoken, true);
             return requestManager.GetResponseContent(respone);
         }
 
         public string GET(string uri)
         {
-            if (uri.StartsWith("/")) uri = uri.Substring(1);
+            if (!uri.StartsWith("/")) uri = "/" + uri;
             HttpWebResponse respone = requestManager.SendGETRequest(_baseurl + uri, _username, _password, true);
             return requestManager.GetResponseContent(respone);
         }
@@ -114,7 +114,7 @@ namespace V6ThuePostMInvoiceApi
         /// <returns></returns>
         public string GET_Bearer(string uri)
         {
-            if (uri.StartsWith("/")) uri = uri.Substring(1);
+            if (!uri.StartsWith("/")) uri = "/" + uri;
             HttpWebResponse respone = requestManager.SendGETRequest(_baseurl + uri, "", _logintoken, true);
             return requestManager.GetResponseContent(respone);
         }
@@ -127,14 +127,24 @@ namespace V6ThuePostMInvoiceApi
         /// <param name="ngayvb"></param>
         /// <param name="ghi_chu"></param>
         /// <returns></returns>
-        public string POST_CANCEL(string inv_InvoiceAuth_id, string sovb, DateTime ngayvb, string ghi_chu)
+        public MInvoiceResponse POST_CANCEL(string inv_InvoiceAuth_id, string sovb, DateTime ngayvb, string ghi_chu, out V6Return v6Return)
         {
+            v6Return = new V6Return();
             string request =
                 "{\"inv_InvoiceAuth_id\":\"" + inv_InvoiceAuth_id + "\",\"sovb\":\"" + sovb + "\",\"ngayvb\":\""+ngayvb.ToString("yyyy-MM-dd")+"\",\"ghi_chu\":\""+ghi_chu+"\"}";
 
             string result = POST_Bearer(_cancel_link, request);
-
-            return result;
+            v6Return.RESULT_STRING = result;
+            MInvoiceResponse responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
+            if (string.IsNullOrEmpty(responseObject.error))
+            {
+                v6Return.RESULT_MESSAGE = responseObject.Message;
+            }
+            else
+            {
+                v6Return.RESULT_ERROR_MESSAGE = responseObject.error;
+            }
+            return responseObject;
         }
 
         /// <summary>
@@ -167,7 +177,7 @@ namespace V6ThuePostMInvoiceApi
 
         //public string DownloadInvoiceZip(string codeTax, string uri, string savefolder)
         //{
-        //    if (uri.StartsWith("/")) uri = uri.Substring(1);
+        //    if (!uri.StartsWith("/")) uri = "/" + uri;
         //    string apiLink = _baseurl + uri;
 
         //    GetFileRequest objGetFile = new GetFileRequest();
@@ -263,33 +273,51 @@ namespace V6ThuePostMInvoiceApi
         /// </summary>
         /// <param name="id">inv_InvoiceAuth_id</param>
         /// <param name="savefolder">Nơi lưu file</param>
+        /// <param name="v6Return">Thông tin trả về đã được phân tích.</param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDF(string id, string savefolder)
+        public string DownloadInvoicePDF(string id, string savefolder, out V6Return v6Return)
         {
-            string uri = string.Format("/api/Invoice/Preview?id={0}", id);
-            string response = GET_Bearer(uri);
-            //"There is no row at position 0."
-            string fileName = "objFile.fileName";
-            if (string.IsNullOrEmpty(fileName) || "objFile.fileToBytes" == null)
-            {
-                throw new Exception("Download no file!");
-            }
-
-            string path = Path.Combine(savefolder, fileName + ".pdf");
-
+            v6Return = new V6Return();
             try
             {
-                if (File.Exists(path)) File.Delete(path);
+                string uri = string.Format("/api/Invoice/Preview?id={0}", id);
+                string fileName = id;
+                string path = Path.Combine(savefolder, fileName + ".pdf");
+                try
+                {
+                    if (File.Exists(path)) File.Delete(path);
+                }
+                catch
+                {
+
+                }
+                string download_link = _baseurl + uri;
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(download_link, path);
+                }
+            
+                v6Return.RESULT_OBJECT = download_link;
+                v6Return.RESULT_STRING = download_link;
+                v6Return.RESULT_MESSAGE = path;
+                v6Return.PATH = path;
+                if (File.Exists(path))
+                {
+                    return path;
+                }
+                else
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "ERR:" + download_link;
+                    return null;
+                }
             }
-            catch
+            catch (Exception ex)
             {
-            }
-            finally
-            {
-                if (!File.Exists(path)) File.WriteAllBytes(path, null);
+                v6Return.RESULT_ERROR_MESSAGE = ex.Message;
             }
 
-            return path;
+
+            return null;
         }
 
         /// <summary>

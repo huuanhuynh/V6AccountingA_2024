@@ -183,7 +183,7 @@ namespace V6Init
 
         private static string _language = "";
         /// <summary>
-        /// Tùy chọn ngôn ngữ của V6 được lưu trong Registry.
+        /// Tùy chọn ngôn ngữ của V6 được lưu trong Registry. V hoặc E
         /// </summary>
         public static string Language
         {
@@ -209,6 +209,31 @@ namespace V6Init
         public static bool IsVietnamese
         {
             get { return Language == "V"; }
+        }
+
+        private static string _report_language = "";
+        /// <summary>
+        /// Tùy chọn ngôn ngữ report của V6 được lưu trong Registry. V E B
+        /// </summary>
+        public static string ReportLanguage
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_report_language))
+                {
+                    _report_language = UtilityHelper.ReadRegistry("V6RLANGUAGE");
+                    if (string.IsNullOrEmpty(_report_language))
+                    {
+                        Language = "V";
+                    }
+                }
+                return _report_language;
+            }
+            set
+            {
+                _report_language = value;
+                UtilityHelper.WriteRegistry("V6RLANGUAGE", value);
+            }
         }
 
         private static string _lastUserW = "";

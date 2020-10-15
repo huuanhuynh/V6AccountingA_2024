@@ -231,11 +231,17 @@ namespace V6Init
         /// </summary>
         public static int MadvcsTotal { get; set; }
 
+        /// <summary>
+        /// Mã ngôn ngữ lưu trong reg, truy cập qua V6Setting.Language = V, E
+        /// </summary>
         public static string SelectedLanguage
         {
             get { return V6Setting.Language; }
             set { V6Setting.Language = value; }
         }
+        /// <summary>
+        /// Chữ hiển thị của ngôn ngữ. vd "Tiếng Việt"
+        /// </summary>
         public static string SelectedLanguageName { get; set; }
         public static string SelectedModule { get; set; }
         public static string StartupPath { get; set; }
