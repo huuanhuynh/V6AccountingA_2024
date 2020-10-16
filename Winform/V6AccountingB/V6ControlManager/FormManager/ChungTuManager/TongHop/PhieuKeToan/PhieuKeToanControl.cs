@@ -1774,6 +1774,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
                     AD2Tables.Remove(_sttRec);
+                    // WriteDBlog.
+                    SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
                 }
                 else
                 {

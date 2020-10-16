@@ -2292,6 +2292,37 @@ namespace V6AccountingBusiness
             }
         }
 
+        public static void WriteV6History(string item_id, string action, string type,
+            string ma_ct, string stt_rec, string content,
+            string ma_dm, string ma, string content2, string uid)
+        {
+            try
+            {
+                IDictionary<string, object> data = new Dictionary<string, object>();
+
+                data["DATE"] = GetServerDateTime();
+                data["USER_ID"] = V6Login.UserId;
+                data["USER_NAME"] = V6Login.UserName;
+                data["CLIENT_NAME"] = V6Login.ClientName;
+                data["ITEM_ID"] = item_id;
+                data["ACTION"] = action;
+                data["TYPE"] = type;
+                data["MA_CT"] = ma_ct;
+                data["MA_DM"] = ma_dm;
+                data["STT_REC"] = stt_rec;
+                data["MA"] = ma;
+                data["CONTENT"] = content;
+                data["CONTENT2"] = content2;
+                //data["CONTENT3"] = content;
+                //data["CONTENT4"] = content;
+                InsertSimple("V6HISTORY", data);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog("WriteV6History " + item_id + action + content, ex);
+            }
+        }
+
         /// <summary>
         /// Kiểm tra hóa đơn đã thanh toán, ko được sửa hoặc xóa (check tồn tại)
         /// </summary>

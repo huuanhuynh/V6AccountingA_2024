@@ -3350,6 +3350,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 {
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
+                    // WriteDBlog.
+                    SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
                 }
                 else
                 {

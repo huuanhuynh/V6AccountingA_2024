@@ -2727,6 +2727,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 {
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
+                    // WriteDBlog.
+                    SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
                 }
                 else
                 {

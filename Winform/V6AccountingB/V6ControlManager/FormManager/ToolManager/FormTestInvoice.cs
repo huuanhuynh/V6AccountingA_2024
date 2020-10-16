@@ -209,6 +209,8 @@ namespace V6ControlManager.FormManager.ToolManager
                         if (invoice.UpdateInvoice(amData, adData, new List<IDictionary<string, object>>(), keys))
                         {
                             log81u += "Update ok " + oldSttRec + "\r\n";
+                            // WriteDBlog.
+                            //SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
                         }
                         else
                         {

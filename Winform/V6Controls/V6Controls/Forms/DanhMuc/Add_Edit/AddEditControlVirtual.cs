@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -482,6 +483,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     int b = UpdateData();
                     if (b > 0)
                     {
+                        SaveEditLog(DataOld, DataDic);
                         AfterSaveBase();
                         AfterSave();
                         AfterUpdate();
@@ -779,6 +781,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public virtual void AfterUpdate()
         {
             
+        }
+
+        /// <summary>
+        /// Save Edit history.
+        /// </summary>
+        /// <param name="data_old">Dữ liệu trước đó.</param>
+        /// <param name="data_new">Dữ liệu mới</param>
+        protected void SaveEditLog(IDictionary<string, object> data_old, IDictionary<string, object> data_new)
+        {
+            try
+            {
+                if (V6Options.SaveEditLogList && _aldmConfig != null && _aldmConfig.HaveInfo)
+                {
+                    string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
+                    V6BusinessHelper.WriteV6History(ItemID, MethodBase.GetCurrentMethod().Name,
+                        string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(), "", "", "",
+                        _aldmConfig.MA_DM,  ObjectAndString.ObjectToString(data_new[_aldmConfig.VALUE]), info, ObjectAndString.ObjectToString(DataOld["UID"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SaveEditLog", ex);
+            }
         }
 
         /// <summary>

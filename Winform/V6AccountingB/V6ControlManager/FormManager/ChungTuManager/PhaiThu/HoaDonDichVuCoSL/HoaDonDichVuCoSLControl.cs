@@ -4281,7 +4281,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         #endregion view invoice
 
         #region ==== Add Thread ====
-        public IDictionary<string, object> addDataAM;
+        public IDictionary<string, object> readyDataAM;
         public List<IDictionary<string, object>> addDataAD, addDataAD3;
         private string addErrorMessage = "";
 
@@ -4385,7 +4385,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 CheckForIllegalCrossThreadCalls = false;
 
-                if (Invoice.InsertInvoice(addDataAM, addDataAD, addDataAD3))
+                if (Invoice.InsertInvoice(readyDataAM, addDataAD, addDataAD3))
                 {
                     _AED_Success = true;
                 }
@@ -4524,11 +4524,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 CheckForIllegalCrossThreadCalls = false;
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
-                if (Invoice.UpdateInvoice(addDataAM, addDataAD, addDataAD3, keys))
+                if (Invoice.UpdateInvoice(readyDataAM, addDataAD, addDataAD3, keys))
                 {
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
                     AD3Tables.Remove(_sttRec);
+                    // WriteDBlog.
+                    SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
                 }
                 else
                 {
@@ -4690,10 +4692,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
 
-                    addDataAM = PreparingDataAM(Invoice);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
+                    readyDataAM = PreparingDataAM(Invoice);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
                     //V6ControlFormHelper.UpdateDKlistAll(GetData(), new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
                     if (Mode == V6Mode.Add)
                     {

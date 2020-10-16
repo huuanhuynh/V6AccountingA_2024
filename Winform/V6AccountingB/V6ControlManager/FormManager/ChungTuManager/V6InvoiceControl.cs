@@ -5036,5 +5036,30 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".btnTestViewPdf_Click", ex);
             }
         }
+
+        /// <summary>
+        /// Save Edit history.
+        /// </summary>
+        /// <param name="data_old">Dữ liệu trước đó.</param>
+        /// <param name="data_new">Dữ liệu mới</param>
+        protected void SaveEditLog(IDictionary<string, object> data_old, IDictionary<string, object> data_new)
+        {
+            try
+            {
+                if (V6Options.SaveEditLogInvoice)
+                {
+                    string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
+                    V6BusinessHelper.WriteV6History(ItemID, MethodBase.GetCurrentMethod().Name,
+                        string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(), _invoice.Mact, _sttRec, info,
+                        "", "", "", ObjectAndString.ObjectToString(data_old["UID"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SaveEditLog", ex);
+            }
+        }
+
+        
     }
 }

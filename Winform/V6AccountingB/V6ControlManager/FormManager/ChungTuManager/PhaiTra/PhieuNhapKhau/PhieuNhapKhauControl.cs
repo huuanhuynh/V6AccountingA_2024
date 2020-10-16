@@ -4699,6 +4699,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     AD2Tables.Remove(_sttRec);
                     AD3Tables.Remove(_sttRec);
                     Mode = V6Mode.View;
+                    // WriteDBlog.
+                    SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
                 }
                 else
                 {

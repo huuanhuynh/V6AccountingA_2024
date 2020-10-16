@@ -8616,6 +8616,30 @@ namespace V6Controls.Forms
             table.Columns[oldName].ColumnName = newName;
         }
 
-        
+
+        public static string CompareDifferentData(IDictionary<string, object> data1, IDictionary<string, object> data2)
+        {
+            string result = "";
+            foreach (KeyValuePair<string, object> item in data1)
+            {
+                if (data2.ContainsKey(item.Key))
+                {
+                    if(ObjectAndString.IsNumberType(item.Value.GetType()))
+                    {
+                        decimal oldValue = ObjectAndString.ObjectToDecimal(item.Value);
+                        decimal newValue = ObjectAndString.ObjectToDecimal(data2[item.Key]);
+                        if(newValue != oldValue) result += string.Format("~{0}:{1}|{2}", item.Key, oldValue, newValue);
+                    }
+                    else
+                    {
+                        string oldValue = ObjectAndString.ObjectToString(item.Value).Trim();
+                        string newValue = ObjectAndString.ObjectToString(data2[item.Key]).Trim();
+                        if(newValue != oldValue) result += string.Format("~{0}:{1}|{2}", item.Key, oldValue, newValue);
+                    }
+                }
+            }
+            if (result.Length > 1) result = result.Substring(1);
+            return result;
+        }
     }
 }

@@ -2772,6 +2772,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
                     AD3Tables.Remove(_sttRec);
+                    // WriteDBlog.
+                    SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
                 }
                 else
                 {

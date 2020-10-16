@@ -2468,6 +2468,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     ADTables.Remove(_sttRec);
                     AD2Tables.Remove(_sttRec);
                     AD3Tables.Remove(_sttRec);
+                    // WriteDBlog.
+                    SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
                 }
                 else
                 {

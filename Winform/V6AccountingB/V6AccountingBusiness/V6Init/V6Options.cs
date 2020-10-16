@@ -499,6 +499,15 @@ namespace V6Init
                 return GetValueNull("M_SUA_BC");
             }
         }
+        
+        public static string M_USER_LOG
+        {
+            get
+            {
+                if (V6OptionValues == null) return "";
+                return GetValueNull("M_USER_LOG") + "";
+            }
+        }
 
         /// <summary>
         /// Số ký hiệu phiên bản trong SQL
@@ -511,6 +520,33 @@ namespace V6Init
             }
         }
 
+        public static bool SaveEditLogInvoice
+        {
+            get
+            {
+                string m_user_log = M_USER_LOG;
+                if (m_user_log.Length > 1 || m_user_log[1] == '1')
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        public static bool SaveEditLogList
+        {
+            get
+            {
+                string m_user_log = M_USER_LOG;
+                if (m_user_log.Length > 2 || m_user_log[2] == '1')
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
     }
 
     public enum GetDataMode
