@@ -26,7 +26,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
         {
             try
             {
-                _aldmConfig = ConfigManager.GetAldmConfig("AMAD71A");
+                _aldmConfig = ConfigManager.GetAldmConfig("AMAD92B");
                 if (_aldmConfig.HaveInfo) gridViewSummary1.NoSumColumns = _aldmConfig.GRDT_V1;
             }
             catch (Exception ex)

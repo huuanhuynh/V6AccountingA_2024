@@ -1618,8 +1618,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
         void _maLo_V6LostFocus(object sender)
         {
-            //Check malo
-            //throw new NotImplementedException();
             CheckMaLo();
         }
         
