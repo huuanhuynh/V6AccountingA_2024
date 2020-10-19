@@ -15,15 +15,14 @@ using Spy;
 using Spy.SpyObjects;
 using Spy.User32Constants;
 using Spy.WindowHandle;
+using V6ThuePost.VnptObjects;
 using V6ThuePostXmlApi;
 using V6ThuePostXmlApi.AttachmentService;
 using V6ThuePostXmlApi.PortalService;
-using V6ThuePostXmlApi.PostObjects;
 using V6ThuePostXmlApi.PublishService;
 using V6ThuePostXmlApi.Web_References.BusinessService;
 using V6Tools;
 using V6Tools.V6Convert;
-using ParseDBF = V6Tools.ParseDBF;
 
 namespace V6ThuePost
 {
@@ -32,9 +31,7 @@ namespace V6ThuePost
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
         #region ===== VAR =====
-        /// <summary>
-        /// Tên cờ V6STT_REC
-        /// </summary>
+        
         //private static string flagName = "";
         /// <summary>
         /// Cờ bắt đầu.
@@ -1936,7 +1933,7 @@ namespace V6ThuePost
                                           + "<Inv>"
                                           + "<key>"+getFkey+"</key>"                            // fkey
                                           + "<idInv>"+getIdInv+"</idInv>"                         // id hóa đơn trên hệ thống vnpt
-                                          + "<signValue>" + XmlConverter.FixXmlValueChar(digitalSign) + "</signValue>"
+                                          + "<signValue>" + digitalSign + "</signValue>"
                                           + "</Inv>"
                                           + "</Invoices>";
                 
@@ -2689,7 +2686,7 @@ namespace V6ThuePost
                             cus = ReadCusDataXml(row);
                             ma_kh = row["MA_KH"].ToString().Trim();
                             cuss.Customer_List.Add(cus);
-                            string xml = XmlConverter.ClassToXml(cuss);
+                            string xml = V6XmlConverter.ClassToXml(cuss);
 
                             Logger.WriteToLog(string.Format("Preparing UpdateCus {0} {1}\r\n{2}", count, ma_kh, xml));
                             var num = UpdateCus(xml);
@@ -2727,7 +2724,7 @@ namespace V6ThuePost
                             Customer cus = ReadCusDataXml(row);
                             cuss.Customer_List.Add(cus);
                         }
-                        string xml = XmlConverter.ClassToXml(cuss);
+                        string xml = V6XmlConverter.ClassToXml(cuss);
 
                         Logger.WriteToLog("Preparing UpdateCus:\r\n" + xml);
                         var num = UpdateCus(xml);

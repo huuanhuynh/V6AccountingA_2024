@@ -223,8 +223,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     case "MA_VT":
                         _maVt = (V6VvarTextBox) control;
                         _maVt.Upper();
-                        _maVt.LO_YN = false;
-                        _maVt.DATE_YN = false;
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
                         //_maVt.BrotherFields = "dvt";
                         _mavt_default_initfilter = _maVt.InitFilter;
@@ -294,9 +292,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     case "MA_KHO_I":
                         _maKhoI = (V6VvarTextBox)control;
                         _maKhoI.Upper();
-                        _maKhoI.LO_YN = false;
-                        _maKhoI.DATE_YN = false;
-
                         _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
                         break;
 
@@ -749,8 +744,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         {
                             if (_maVt.Text != "")
                             {
-                                _maVt.RefreshLoDateYnValue();
-                                _maKhoI.RefreshLoDateYnValue();
                                 _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                                 _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim() + "'");
                                 // Tuanmh 05/05/2018 sai HSD
@@ -1640,7 +1633,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 if (_maVt.LO_YN)
                 {
                     //Tuanmh 05/05/2018 Sai HSD
@@ -1883,7 +1875,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                _maKhoI.RefreshLoDateYnValue();
                 var makho_data = _maKhoI.Data;
                 if (makho_data != null)
                 {
@@ -2117,7 +2108,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 var data = _maVt.Data;
                 if (data == null)
                 {
@@ -5989,8 +5979,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         dataGridView1.Lock();
                         if (!string.IsNullOrEmpty(_sttRec0))
                         {
-                            _maVt.RefreshLoDateYnValue();
-                            _maKhoI.RefreshLoDateYnValue();
                             XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
                             _maVt.Focus();
                         }
@@ -7218,7 +7206,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         VVar = "MA_VT",
                     };
                     temp_vt.Text = ma_vt;
-                    temp_vt.RefreshLoDateYnValue();
 
                     if (newData.ContainsKey("SO_LUONG"))
                     {

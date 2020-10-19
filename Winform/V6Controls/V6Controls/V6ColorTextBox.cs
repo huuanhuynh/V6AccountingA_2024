@@ -3,11 +3,13 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using V6Controls.Forms;
 using V6Controls.Functions;
 using V6Init;
+using V6Tools.V6Convert;
 
 namespace V6Controls
 {
@@ -68,15 +70,65 @@ namespace V6Controls
         protected bool _enableColorEffectOnMouseEnter;
         public bool _upper, _lower;
 
-        public bool LO_YN = false;
-        public bool SKSM_YN = false;
-        public bool DATE_YN = false;
-        public bool VITRI_YN = false;
-        public bool REPL_YN = false;
+        public virtual DataRow Data { get; protected set; }
+        public bool LO_YN
+        {
+            get
+            {
+                if (Data != null && Data.Table.Columns.Contains("LO_YN")) return ObjectAndString.ObjectToBool(Data["LO_YN"]);
+                return false;
+            }
+        }
+        public bool SKSM_YN
+        {
+            get
+            {
+                if (Data != null && Data.Table.Columns.Contains("SKSM_YN")) return ObjectAndString.ObjectToBool(Data["SKSM_YN"]);
+                return false;
+            }
+        }
+        public bool DATE_YN
+        {
+            get
+            {
+                if (Data != null && Data.Table.Columns.Contains("DATE_YN")) return ObjectAndString.ObjectToBool(Data["DATE_YN"]);
+                return false;
+            }
+        }
+        public bool VITRI_YN
+        {
+            get
+            {
+                if (Data != null && Data.Table.Columns.Contains("VITRI_YN")) return ObjectAndString.ObjectToBool(Data["VITRI_YN"]);
+                return false;
+            }
+        }
+        public bool REPL_YN
+        {
+            get
+            {
+                if (Data != null && Data.Table.Columns.Contains("REPL_YN")) return ObjectAndString.ObjectToBool(Data["REPL_YN"]);
+                return false;
+            }
+        }
         
         //{Tuanmh 02/08/2016
-        public bool VT_TON_KHO = false;
-        public int GIA_TON = 0;
+        public bool VT_TON_KHO
+        {
+            get
+            {
+                if (Data != null && Data.Table.Columns.Contains("VT_TON_KHO")) return ObjectAndString.ObjectToBool(Data["VT_TON_KHO"]);
+                return false;
+            }
+        }
+        public int GIA_TON
+        {
+            get
+            {
+                if (Data != null && Data.Table.Columns.Contains("GIA_TON")) return ObjectAndString.ObjectToInt(Data["GIA_TON"]);
+                return 0;
+            }
+        }
         //}
 
         /// <summary>

@@ -122,11 +122,12 @@ namespace V6ThuePostMInvoiceApi
         /// <summary>
         /// Hủy hóa đơn.
         /// </summary>
-        /// <param name="inv_InvoiceAuth_id"></param>
+        /// <param name="inv_InvoiceAuth_id">Mã id nhận về khi tạo mới.</param>
         /// <param name="sovb"></param>
         /// <param name="ngayvb"></param>
         /// <param name="ghi_chu"></param>
-        /// <returns></returns>
+        /// <param name="v6Return">Thông tin trả về đã được phân tích.</param>
+        /// <returns>MInvoiceResponse</returns>
         public MInvoiceResponse POST_CANCEL(string inv_InvoiceAuth_id, string sovb, DateTime ngayvb, string ghi_chu, out V6Return v6Return)
         {
             v6Return = new V6Return();
@@ -146,79 +147,6 @@ namespace V6ThuePostMInvoiceApi
             }
             return responseObject;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="codeTax"></param>
-        /// <param name="invoiceNo">AA/17E0037914</param>
-        /// <param name="fileType">xml zip</param>
-        /// <param name="issueDate">20180320152309</param>
-        /// <param name="savefolder"></param>
-        /// <returns></returns>
-        public string DownloadInvoice(string codeTax, string invoiceNo, string fileType, string issueDate, string savefolder)
-        {
-            string path = Path.Combine(savefolder, "fileName" + ".zip");
-            if (File.Exists(path))
-            {
-                try
-                {
-                    File.Delete(path);
-                }
-                catch
-                {
-                    //
-                }
-            }
-            File.WriteAllBytes(path, null);
-
-            return path;
-        }
-
-        //public string DownloadInvoiceZip(string codeTax, string uri, string savefolder)
-        //{
-        //    if (!uri.StartsWith("/")) uri = "/" + uri;
-        //    string apiLink = _baseurl + uri;
-
-        //    GetFileRequest objGetFile = new GetFileRequest();
-        //    objGetFile.fileType = "zip";
-        //    objGetFile.invoiceNo = "BR/18E0000014";
-        //    objGetFile.strIssueDate = "20180320152309";
-
-        //    string getData = "?supplierTaxCode=" + codeTax +
-        //                     "&invoiceNo=" + objGetFile.invoiceNo +
-        //                     "&fileType=" + objGetFile.fileType +
-        //                     "&strIssueDate=" + objGetFile.strIssueDate;
-        //    apiLink += getData;
-        //    //string autStr = CreateRequest.Base64Encode(userPass);
-        //    //string contentType = "application/x-www-form-urlencoded";
-        //    //string request = string.Empty;
-        //    //string result = CreateRequest.webRequest(apiLink, request, autStr, "GET", contentType);
-        //    string result = GET(apiLink);
-
-        //    ZipFileResponse objFile = JsonConvert.DeserializeObject<ZipFileResponse>(result);
-        //    string fileName = objFile.fileName;
-        //    if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
-        //    {
-        //        throw new Exception("Download no file!");
-        //    }
-
-        //    string path = Path.Combine(savefolder, fileName + ".zip");
-        //    if (File.Exists(path))
-        //    {
-        //        try
-        //        {
-        //            File.Delete(path);
-        //        }
-        //        catch
-        //        {
-        //            //
-        //        }
-        //    }
-        //    File.WriteAllBytes(path, objFile.fileToBytes);
-
-        //    return path;
-        //}
 
         /// <summary>
         /// Download bản chuyển đổi.
@@ -333,7 +261,7 @@ namespace V6ThuePostMInvoiceApi
         }
         
         /// <summary>
-        /// Gửi hóa đơn mới.
+        /// Gửi hóa đơn mới. "editmode": 1,
         /// </summary>
         /// <param name="jsonBody"></param>
         /// <param name="v6return">Thông tin trả về cho V6.</param>
@@ -448,7 +376,8 @@ namespace V6ThuePostMInvoiceApi
             string result;
             try
             {
-                result = POST(_replaceInvoiceUrl, jsonBody.ToJson());
+                throw new Exception("POST_REPLACE NOT SUPPORTED");
+                result = POST_Bearer(_replaceInvoiceUrl, jsonBody.ToJson());
             }
             catch (Exception ex)
             {
@@ -512,6 +441,12 @@ namespace V6ThuePostMInvoiceApi
             return responseObject;
         }
 
+        /// <summary>
+        /// "editmode": 2,
+        /// </summary>
+        /// <param name="jsonBody"></param>
+        /// <param name="v6return"></param>
+        /// <returns></returns>
         public string POST_MODIFY_t(string jsonBody, out V6Return v6return)
         {
             string result;

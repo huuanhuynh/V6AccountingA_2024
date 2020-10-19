@@ -739,41 +739,6 @@ namespace V6Controls
             }
         }
 
-        public void RefreshLoDateYnValue()
-        {
-            try
-            {
-                if (Data == null)
-                {
-                    LO_YN = false;
-                    SKSM_YN = false;
-                    DATE_YN = false;
-                    VITRI_YN = false;
-                    REPL_YN = false;
-                    VT_TON_KHO = false;
-                    GIA_TON = 0;
-                    return;
-                }
-                if (Data.ContainsKey("LO_YN"))
-                    LO_YN = ObjectAndString.ObjectToInt(Data["LO_YN"]) == 1;
-                if (Data.ContainsKey("SKSM_YN"))
-                    SKSM_YN = ObjectAndString.ObjectToInt(Data["SKSM_YN"]) == 1;
-                if (Data.ContainsKey("DATE_YN"))
-                    DATE_YN = ObjectAndString.ObjectToInt(Data["DATE_YN"]) == 1;
-                if (Data.ContainsKey("VITRI_YN"))
-                    VITRI_YN = ObjectAndString.ObjectToInt(Data["VITRI_YN"]) == 1;
-                if (Data.ContainsKey("REPL_YN"))
-                    REPL_YN = ObjectAndString.ObjectToInt(Data["REPL_YN"]) == 1;
-                if (Data.ContainsKey("VT_TON_KHO"))
-                    VT_TON_KHO = ObjectAndString.ObjectToInt(Data["VT_TON_KHO"]) == 1;
-                if (Data.ContainsKey("GIA_TON"))
-                    GIA_TON = ObjectAndString.ObjectToInt(Data["GIA_TON"]);
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".RefreshLoDateYnValue", ex);
-            }
-        }
 
         /// <summary>
         /// Gán lại các biến và giá trị về rỗng hoặc null.

@@ -43,7 +43,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 errors += V6Text.Text("CHUANHAP") + " " + lblMaVT.Text;
                 txtMaVT.Focus();
             }
-            txtMaVT.RefreshLoDateYnValue();
+
             if (txtMaVT.DATE_YN)
             {
                 if (txtngay_hhsd.Value == null)

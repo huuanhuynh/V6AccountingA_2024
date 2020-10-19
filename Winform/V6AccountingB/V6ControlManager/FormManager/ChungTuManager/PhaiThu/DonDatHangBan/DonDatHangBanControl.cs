@@ -181,10 +181,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     case "MA_VT":
                         _maVt = (V6VvarTextBox) control;
                         _maVt.Upper();
-                        _maVt.LO_YN = false;
-                        _maVt.DATE_YN = false;
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
-                        
                         _mavt_default_initfilter = _maVt.InitFilter;
                         var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                         if (setting.Contains(Invoice.Mact))
@@ -271,9 +268,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     case "MA_KHO_I":
                         _maKhoI = (V6VvarTextBox)control;
                         _maKhoI.Upper();
-                        _maKhoI.LO_YN = false;
-                        _maKhoI.DATE_YN = false;
-
                         _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
                         break;
                     case "MA_THUE_I":
@@ -563,8 +557,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         };
                         _maLo.GotFocus += (s, e) =>
                         {
-                            _maVt.RefreshLoDateYnValue();
-                            _maKhoI.RefreshLoDateYnValue();
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                             _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
                         };
@@ -1053,14 +1045,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void XuLyLayThongTinKhiChonMaKhoI()
         {
-            _maKhoI.RefreshLoDateYnValue();
         }
 
         private void XuLyLayThongTinKhiChonMaLo()
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 if (_maVt.LO_YN)
                 {
                     if (_maLo.Text.Trim() != "")
@@ -1272,7 +1262,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 var data = _maVt.Data;
                 if (data == null)
                 {
@@ -1946,7 +1935,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                         V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
                         txtmavt.Text = cell_MA_VT.Value.ToString();
-                        txtmavt.RefreshLoDateYnValue();
                         if (txtmavt.Data != null && txtmavt.VITRI_YN)
                         {
                             var packs1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["Packs1"]);
@@ -4578,8 +4566,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     else
                     {
                         dataGridView1.Lock();
-                        _maVt.RefreshLoDateYnValue();
-                        _maKhoI.RefreshLoDateYnValue();
                         XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
                         _maVt.Focus();
                     }

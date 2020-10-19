@@ -224,10 +224,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     case "MA_VT":
                         _maVt = (V6VvarTextBox) control;
                         _maVt.Upper();
-                        _maVt.LO_YN = false;
-                        _maVt.DATE_YN = false;
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
-                   
                         _mavt_default_initfilter = _maVt.InitFilter;
                         var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                         if (setting.Contains(Invoice.Mact))
@@ -337,9 +334,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     case "MA_KHO_I":
                         _maKhoI = (V6VvarTextBox)control;
                         _maKhoI.Upper();
-                        _maKhoI.LO_YN = false;
-                        _maKhoI.DATE_YN = false;
-
                         _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
                         break;
                     case "MA_THUE_I":
@@ -664,8 +658,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         };
                         _maLo.GotFocus += (s, e) =>
                         {
-                            _maVt.RefreshLoDateYnValue();
-                            _maKhoI.RefreshLoDateYnValue();
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                             _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
                         };
@@ -1245,7 +1237,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private void XuLyLayThongTinKhiChonMaKhoI()
         {
-            _maKhoI.RefreshLoDateYnValue();
         }
 
         /// <summary>
@@ -1261,7 +1252,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                _maVt.RefreshLoDateYnValue();
 
                 TinhTienNt2(actionControl);
                 //TinhTienVon();
@@ -1294,7 +1284,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 if (_maVt.LO_YN)
                 {
                     if (_maLo.Text.Trim() != "")
@@ -1507,7 +1496,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 var data = _maVt.Data;
                 if (data == null)
                 {
@@ -2230,7 +2218,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                         V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
                         txtmavt.Text = cell_MA_VT.Value.ToString();
-                        txtmavt.RefreshLoDateYnValue();
 
                         // TinhTienNt2(_soLuong1)
                         {
@@ -4691,8 +4678,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     else
                     {
                         dataGridView1.Lock();
-                        _maVt.RefreshLoDateYnValue();
-                        _maKhoI.RefreshLoDateYnValue();
                         XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
                         _maVt.Focus();
                     }

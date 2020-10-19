@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
+using GSM;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
@@ -794,10 +795,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var cell_MA_LO = row.Cells["MA_LO"];
                 V6VvarTextBox txtmavt = new V6VvarTextBox() {VVar = "MA_VT"};
                 txtmavt.Text = cell_MA_VT.Value.ToString();
-                txtmavt.RefreshLoDateYnValue();
                 V6VvarTextBox txtmakhoi = new V6VvarTextBox() {VVar = "MA_KHO"};
                 txtmakhoi.Text = cell_MA_KHO_I.Value.ToString();
-                txtmakhoi.RefreshLoDateYnValue();
 
                 GetTon13Row(row, detail1, txtmavt, txtmakhoi, ngay_ct);
                 if (txtmavt.VITRI_YN)
@@ -5038,6 +5037,98 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
+        /// Thêm vào lịch sử thay đổi dòng chi tiết.
+        /// </summary>
+        /// <param name="stt_rec0">Mã dòng</param>
+        /// <param name="controlList1"></param>
+        /// <param name="oldData">Dữ liệu cũ. null nếu thêm dòng.</param>
+        /// <param name="newData">Dữ liệu mới. null nếu xóa.</param>
+        protected void UpdateDetailChangeLog(string stt_rec0, Dictionary<string, AlctControls> controlList1, IDictionary<string, object> oldData, IDictionary<string, object> newData)
+        {
+            if (oldData == null) // add
+            {
+                SortedDictionary<string, object> newData1 = new SortedDictionary<string, object>();
+                foreach (KeyValuePair<string, AlctControls> item in controlList1)
+                {
+                    if (item.Value.IsVisible && item.Value.DetailControl.Enabled)
+                    {
+                        newData1[item.Key.ToUpper()] = newData[item.Key.ToUpper()];
+                    }
+                }
+
+                editLogData[stt_rec0] = new OldNewData() {OldData = null, NewData = newData1};
+            }
+            else if (newData == null) // delete
+            {
+                SortedDictionary<string, object> oldData1 = new SortedDictionary<string, object>();
+                foreach (KeyValuePair<string, AlctControls> item in controlList1)
+                {
+                    if (item.Value.IsVisible && item.Value.DetailControl.Enabled)
+                    {
+                        oldData1[item.Key.ToUpper()] = oldData[item.Key.ToUpper()];
+                    }
+                }
+
+                editLogData[stt_rec0] = new OldNewData() {OldData = oldData1, NewData = null};
+            }
+            else // edit
+            {
+                if (editLogData.ContainsKey(stt_rec0))
+                {
+                    IDictionary<string, object> newData1 = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, AlctControls> item in controlList1)
+                    {
+                        if (item.Value.IsVisible && item.Value.DetailControl.Enabled)
+                        {
+                            string FIELD = item.Key.ToUpper();
+                            newData1[FIELD] = newData[FIELD];
+                        }
+                    }
+
+                    editLogData[stt_rec0].NewData = newData1;
+                }
+                else
+                {
+                    IDictionary<string, object> oldData1 = new Dictionary<string, object>();
+                    IDictionary<string, object> newData1 = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, AlctControls> item in controlList1)
+                    {
+                        if (item.Value.IsVisible && item.Value.DetailControl.Enabled)
+                        {
+                            string FIELD = item.Key.ToUpper();
+                            oldData1[FIELD] = oldData[FIELD];
+                            newData1[FIELD] = newData[FIELD];
+                        }
+                    }
+
+                    editLogData[stt_rec0] = new OldNewData() {OldData = oldData1, NewData = newData1};
+                }
+            }
+        }
+
+        /// <summary>
+        /// stt_rec0 add?edit?delete data
+        /// </summary>
+        private Dictionary<string, OldNewData> editLogData = new Dictionary<string, OldNewData>();
+
+        private class OldNewData
+        {
+            public IDictionary<string, object> OldData = null;
+            public IDictionary<string, object> NewData = null;
+        }
+
+        private string GetDetailInfo()
+        {
+            string result = "";
+            foreach (KeyValuePair<string, OldNewData> item in editLogData)
+            {
+                result += "~" + item.Key + " " + V6ControlFormHelper.CompareDifferentData(item.Value.OldData, item.Value.NewData);
+            }
+            if (result.Length > 1) result = result.Substring(1);
+            return result;
+        }
+
+        /// <summary>
         /// Save Edit history.
         /// </summary>
         /// <param name="data_old">Dữ liệu trước đó.</param>
@@ -5049,9 +5140,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (V6Options.SaveEditLogInvoice)
                 {
                     string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
-                    V6BusinessHelper.WriteV6History(ItemID, MethodBase.GetCurrentMethod().Name,
-                        string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(), _invoice.Mact, _sttRec, info,
-                        "", "", "", ObjectAndString.ObjectToString(data_old["UID"]));
+                    string detailInfo = GetDetailInfo();
+                    V6BusinessHelper.WriteV6InvoiceHistory(ItemID, MethodBase.GetCurrentMethod().Name, string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(),
+                        ObjectAndString.ObjectToString(data_old["UID"]), _invoice.Mact, _sttRec, info, detailInfo);
                 }
             }
             catch (Exception ex)

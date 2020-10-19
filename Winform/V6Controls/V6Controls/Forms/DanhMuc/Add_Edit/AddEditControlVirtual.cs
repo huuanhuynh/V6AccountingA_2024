@@ -795,8 +795,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (V6Options.SaveEditLogList && _aldmConfig != null && _aldmConfig.HaveInfo)
                 {
                     string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
-                    V6BusinessHelper.WriteV6History(ItemID, MethodBase.GetCurrentMethod().Name,
-                        string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(), "", "", "",
+                    V6BusinessHelper.WriteV6ListHistory(ItemID, MethodBase.GetCurrentMethod().Name,
+                        string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(),
                         _aldmConfig.MA_DM,  ObjectAndString.ObjectToString(data_new[_aldmConfig.VALUE]), info, ObjectAndString.ObjectToString(DataOld["UID"]));
                 }
             }

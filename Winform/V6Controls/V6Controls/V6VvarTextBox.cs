@@ -8,7 +8,6 @@ using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6Controls
 {
@@ -91,7 +90,7 @@ namespace V6Controls
         /// <summary>
         /// Dữ liệu liên quan khi chọn mã
         /// </summary>
-        public DataRow Data
+        public override DataRow Data
         {
             get
             {
@@ -105,7 +104,7 @@ namespace V6Controls
                 }
                 return _data;
             }
-            private set
+            protected set
             {
                 _data = value;
                 V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
@@ -852,42 +851,6 @@ namespace V6Controls
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".SetValue", ex);
-            }
-        }
-
-        public void RefreshLoDateYnValue()
-        {
-            try
-            {
-                if (Data == null)
-                {
-                    LO_YN = false;
-                    SKSM_YN = false;
-                    DATE_YN = false;
-                    VITRI_YN = false;
-                    REPL_YN = false;
-                    VT_TON_KHO = false;
-                    GIA_TON = 0;
-                    return;
-                }
-                if (Data.Table.Columns.Contains("LO_YN"))
-                    LO_YN = ObjectAndString.ObjectToInt(Data["LO_YN"]) == 1;
-                if (Data.Table.Columns.Contains("SKSM_YN"))
-                    SKSM_YN = ObjectAndString.ObjectToInt(Data["SKSM_YN"]) == 1;
-                if (Data.Table.Columns.Contains("DATE_YN"))
-                    DATE_YN = ObjectAndString.ObjectToInt(Data["DATE_YN"]) == 1;
-                if (Data.Table.Columns.Contains("VITRI_YN"))
-                    VITRI_YN = ObjectAndString.ObjectToInt(Data["VITRI_YN"]) == 1;
-                if (Data.Table.Columns.Contains("REPL_YN"))
-                    REPL_YN = ObjectAndString.ObjectToInt(Data["REPL_YN"]) == 1;
-                if (Data.Table.Columns.Contains("VT_TON_KHO"))
-                    VT_TON_KHO = ObjectAndString.ObjectToInt(Data["VT_TON_KHO"]) == 1;
-                if (Data.Table.Columns.Contains("GIA_TON"))
-                    GIA_TON = ObjectAndString.ObjectToInt(Data["GIA_TON"]);
-            }
-            catch (Exception)
-            {
-                // ignored
             }
         }
 

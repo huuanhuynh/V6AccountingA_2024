@@ -234,8 +234,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     case "MA_VT":
                         _maVt = (V6VvarTextBox) control;
                         _maVt.Upper();
-                        _maVt.LO_YN = false;
-                        _maVt.DATE_YN = false;
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
                    
                         _mavt_default_initfilter = _maVt.InitFilter;
@@ -342,8 +340,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     case "MA_KHO_I":
                         _maKhoI = (V6VvarTextBox)control;
                         _maKhoI.Upper();
-                        _maKhoI.LO_YN = false;
-                        _maKhoI.DATE_YN = false;
                         _maKhoI.GotFocus += delegate
                         {
                             if(_maKhoI.Text.Trim() == "")
@@ -743,8 +739,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _maLo = (V6VvarTextBox)control;
                         _maLo.Enter += (s, e) =>
                         {
-                            _maVt.RefreshLoDateYnValue();
-                            _maKhoI.RefreshLoDateYnValue();
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                             _dataLoDate = V6BusinessHelper.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                             var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
@@ -1855,9 +1849,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
 
                         var tempMA_VT = new V6VvarTextBox() {VVar = "MA_VT", Text = c_maVt};
-                        tempMA_VT.RefreshLoDateYnValue();
                         var tempMA_KHOI = new V6VvarTextBox() {VVar = "MA_KHO", Text = c_maKhoI};
-                        tempMA_KHOI.RefreshLoDateYnValue();
                         // Theo doi lo moi check
                         if (!tempMA_VT.LO_YN || !tempMA_VT.DATE_YN || !tempMA_KHOI.LO_YN || !tempMA_KHOI.DATE_YN)
                             continue;
@@ -2291,7 +2283,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                _maVt.RefreshLoDateYnValue();
                 if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
                 {
                     if (_soLuong1.Value > _ton13.Value)
@@ -2820,7 +2811,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                _maKhoI.RefreshLoDateYnValue();
                 var makho_data = _maKhoI.Data;
                 if (makho_data != null)
                 {
@@ -2853,7 +2843,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 if (_maVt.LO_YN)
                 {
                     if (_maLo.Text.Trim() != "")
@@ -3295,7 +3284,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 var data = _maVt.Data;
                 if (data == null)
                 {
@@ -3924,7 +3912,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                         V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
                         txtmavt.Text = cell_MA_VT.Value.ToString();
-                        txtmavt.RefreshLoDateYnValue();
                         if (txtmavt.Data != null && txtmavt.VITRI_YN)
                         {
                             var packs1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["Packs1"]);
@@ -6680,14 +6667,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                 if (error == "")
                 {
-                    //Tạo cột thiếu cho AD. (Làm chậm)
-                    //foreach (KeyValuePair<string, object> item in data)
-                    //{
-                    //    if (!AD.Columns.Contains(item.Key))
-                    //    {
-                    //        AD.Columns.Add(item.Key, (item.Value ?? "").GetType());
-                    //    }
-                    //}
+                    UpdateDetailChangeLog(_sttRec0, detailControlList1, null, data);
                     //Tạo dòng dữ liệu mới.
                     var newRow = AD.NewRow();
                     foreach (DataColumn column in AD.Columns)
@@ -6773,6 +6753,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         //Sửa dòng dữ liệu trên DataRow vì DBNull lỗi khi xử lý trên dgv.?
                         var currentRow = AD.Rows[cIndex];
+                        UpdateDetailChangeLog(_sttRec0, detailControlList1, currentRow.ToDataDictionary(), data);
                         foreach (DataColumn column in AD.Columns)
                         {
                             var key = column.ColumnName.ToUpper();
@@ -6851,6 +6832,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
                             var delete_data = currentRow.ToDataDictionary();
+                            UpdateDetailChangeLog(_sttRec0, detailControlList1, delete_data, null);
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             ViewCurrentRowToDetail(dataGridView1, detail1);
@@ -7262,8 +7244,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     else
                     {
                         dataGridView1.Lock();
-                        _maVt.RefreshLoDateYnValue();
-                        _maKhoI.RefreshLoDateYnValue();
                         XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
                         _maVt.Focus();
                         GetLoDate13();
@@ -7728,7 +7708,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         VVar = "MA_VT",
                     };
                     temp_vt.Text = ma_vt;
-                    temp_vt.RefreshLoDateYnValue();
                     if (temp_vt.LO_YN && temp_vt.DATE_YN)
                     {
                         // Tách dòng nhiều lô cộng dồn cho đủ số lượng.

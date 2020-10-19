@@ -163,14 +163,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     case "MA_VT":
                         _maVt = (V6VvarTextBox) control;
                         _maVt.Upper();
-                        _maVt.LO_YN = false;
-                        _maVt.DATE_YN = false;
-
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_qg,ma_vitri";
-                   
                         _maVt.V6LostFocus += MaVatTu_V6LostFocus;
 
-             
                         _maVt.V6LostFocusNoChange += delegate
                         {
                             if (_maVt.LO_YN)
@@ -235,8 +230,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     case "MA_KHO2":
                         _maKho2 = (V6VvarTextBox)control;
                         _maKho2.Upper();
-                        _maKho2.LO_YN = false;
-                        _maKho2.DATE_YN = false;
                         _maKho2.V6LostFocus += delegate(object sender)
                         {
                             
@@ -593,8 +586,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         _maLo = (V6VvarTextBox)control;
                         _maLo.GotFocus += (s, e) =>
                         {
-                            _maVt.RefreshLoDateYnValue();
-                            txtMaKhoX.RefreshLoDateYnValue();
                             _maLo.CheckNotEmpty = _maVt.LO_YN && txtMaKhoX.LO_YN;
 
                             _dataLoDate = Invoice.GetLoDate(_maVt.Text, txtMaKhoX.Text, _sttRec, dateNgayCT.Date);
@@ -1464,7 +1455,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
 
                         var tempMA_VT = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
-                        tempMA_VT.RefreshLoDateYnValue();
                         //var tempMA_KHO_X = new V6VvarTextBox() { VVar = "MA_KHO", Text = ma_kho_x };
                         //tempMA_KHO_X.RefreshLoDateYnValue();
                         // Theo doi lo moi check
@@ -1535,7 +1525,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
 
                         var tempMA_VT = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
-                        tempMA_VT.RefreshLoDateYnValue();
                         //var tempMA_KHOI = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_maKhoI };
                         //tempMA_KHOI.RefreshLoDateYnValue();
                         // Theo doi lo moi check
@@ -1609,7 +1598,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                _maVt.RefreshLoDateYnValue();
                 if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
                 {
                     if (_soLuong1.Value > _ton13.Value)
@@ -1939,7 +1927,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 var makhoX_data = txtMaKhoX.Data;
                 method_log += "1";
-                txtMaKhoX.RefreshLoDateYnValue();
                 method_log += "2";
 
                 //GetTon13();
@@ -2035,15 +2022,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
-                txtMaKhoN.LO_YN = false;
-                txtMaKhoN.DATE_YN = false;
-
                 var data = txtMaKhoN.Data;
                 if (data != null)
                 {
-                    txtMaKhoN.LO_YN = (data["LO_YN"] ?? "").ToString().Trim() == "1";
-                    txtMaKhoN.DATE_YN = (data["DATE_YN"] ?? "").ToString().Trim() == "1";
-
                     TxtTen_khoN.Text = data["TEN_KHO"].ToString();
                     
                     var tk_dl = data["TK_DL"].ToString().Trim();
@@ -2099,7 +2080,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 if (_maVt.LO_YN)
                 {
                     if (_maLo.Text.Trim() != "")
@@ -2683,7 +2663,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
-                txtMaKhoX.RefreshLoDateYnValue();
                 if ((_maVt.LO_YN || _maVt.DATE_YN) && (txtMaKhoX.LO_YN || txtMaKhoX.DATE_YN))
                     return;
 
@@ -2763,7 +2742,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
-                _maVt.RefreshLoDateYnValue();
                 var data = _maVt.Data;
                 if (data == null)
                 {
@@ -3184,7 +3162,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                         V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
                         txtmavt.Text = cell_MA_VT.Value.ToString();
-                        txtmavt.RefreshLoDateYnValue();
                         if (txtmavt.Data != null && txtmavt.VITRI_YN)
                         {
                             var packs1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["Packs1"]);
@@ -5234,9 +5211,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     else
                     {
                         dataGridView1.Lock();
-                        _maVt.RefreshLoDateYnValue();
-                        txtMaKhoX.RefreshLoDateYnValue();
-                        txtMaKhoN.RefreshLoDateYnValue();
                         XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
                         _maVt.Focus();
                         GetLoDate13();
@@ -5907,18 +5881,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         ma_kho_s0 = data["MA_KHO"].ToString().Trim();
                         txtMaKhoX.Text = ma_kho_s0;
-                        txtMaKhoX.RefreshLoDateYnValue();
                     }
                     if (ma_kho_n_s0 == null && data.ContainsKey("MA_KHO_N"))
                     {
                         ma_kho_n_s0 = data["MA_KHO_N"].ToString().Trim();
                         txtMaKhoN.Text = ma_kho_n_s0;
-                        txtMaKhoN.RefreshLoDateYnValue();
                     }
                     if (ma_kho_n_s0 == null && txtMaKhoN.Text != "")
                     {
                         ma_kho_n_s0 = txtMaKhoN.Text.Trim();
-                        txtMaKhoN.RefreshLoDateYnValue();
                     }
                     
                     string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
@@ -5941,7 +5912,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         VVar = "MA_VT",
                     };
                     temp_vt.Text = ma_vt;
-                    temp_vt.RefreshLoDateYnValue();
                     if (temp_vt.LO_YN && temp_vt.DATE_YN)
                     {
                         // Tách dòng nhiều lô cộng dồn cho đủ số lượng.
@@ -6288,8 +6258,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 VVar = "MA_VT",
             };
             temp_vt.Text = ma_vt;
-            temp_vt.RefreshLoDateYnValue();
-                    
+
             DataTable lodate_data = V6BusinessHelper.GetStockinVitriDatePriority(ma_vt, ma_kho_n, _sttRec, dateNgayCT.Date);
 
             if (temp_vt.VITRI_YN && lodate_data != null && lodate_data.Rows.Count > 0)

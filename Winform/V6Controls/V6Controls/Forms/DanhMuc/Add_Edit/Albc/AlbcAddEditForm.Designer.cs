@@ -342,7 +342,7 @@
             // txtExcel1
             // 
             this.txtExcel1.AccessibleName = "EXCEL1";
-            this.txtExcel1.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtExcel1.BackColor = System.Drawing.Color.White;
             this.txtExcel1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtExcel1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtExcel1.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -351,10 +351,8 @@
             this.txtExcel1.LeaveColor = System.Drawing.Color.White;
             this.txtExcel1.Location = new System.Drawing.Point(99, 6);
             this.txtExcel1.Name = "txtExcel1";
-            this.txtExcel1.ReadOnly = true;
-            this.txtExcel1.Size = new System.Drawing.Size(620, 20);
+            this.txtExcel1.Size = new System.Drawing.Size(617, 20);
             this.txtExcel1.TabIndex = 2;
-            this.txtExcel1.TabStop = false;
             // 
             // label6
             // 
@@ -595,7 +593,7 @@
             this.txtShowFields1.LeaveColor = System.Drawing.Color.White;
             this.txtShowFields1.Location = new System.Drawing.Point(99, 32);
             this.txtShowFields1.Name = "txtShowFields1";
-            this.txtShowFields1.Size = new System.Drawing.Size(620, 20);
+            this.txtShowFields1.Size = new System.Drawing.Size(617, 20);
             this.txtShowFields1.TabIndex = 5;
             // 
             // label9
@@ -695,7 +693,7 @@
             this.txtShowFields2.LeaveColor = System.Drawing.Color.White;
             this.txtShowFields2.Location = new System.Drawing.Point(99, 146);
             this.txtShowFields2.Name = "txtShowFields2";
-            this.txtShowFields2.Size = new System.Drawing.Size(620, 20);
+            this.txtShowFields2.Size = new System.Drawing.Size(617, 20);
             this.txtShowFields2.TabIndex = 17;
             // 
             // txtFormats2
@@ -795,7 +793,7 @@
             this.txtNoSum2.LeaveColor = System.Drawing.Color.White;
             this.txtNoSum2.Location = new System.Drawing.Point(99, 234);
             this.txtNoSum2.Name = "txtNoSum2";
-            this.txtNoSum2.Size = new System.Drawing.Size(620, 20);
+            this.txtNoSum2.Size = new System.Drawing.Size(617, 20);
             this.txtNoSum2.TabIndex = 26;
             // 
             // txtNoSum1
@@ -810,7 +808,7 @@
             this.txtNoSum1.LeaveColor = System.Drawing.Color.White;
             this.txtNoSum1.Location = new System.Drawing.Point(99, 120);
             this.txtNoSum1.Name = "txtNoSum1";
-            this.txtNoSum1.Size = new System.Drawing.Size(620, 20);
+            this.txtNoSum1.Size = new System.Drawing.Size(617, 20);
             this.txtNoSum1.TabIndex = 14;
             // 
             // label13
@@ -895,12 +893,12 @@
             // 
             this.btnGRDS_V2.AccessibleDescription = ".";
             this.btnGRDS_V2.AccessibleName = "";
-            this.btnGRDS_V2.Enabled = false;
             this.btnGRDS_V2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnGRDS_V2.Location = new System.Drawing.Point(716, 144);
             this.btnGRDS_V2.Name = "btnGRDS_V2";
             this.btnGRDS_V2.Size = new System.Drawing.Size(25, 23);
             this.btnGRDS_V2.TabIndex = 16;
+            this.btnGRDS_V2.TabStop = false;
             this.btnGRDS_V2.Text = "...";
             this.btnGRDS_V2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGRDS_V2.UseVisualStyleBackColor = true;
@@ -910,12 +908,12 @@
             // 
             this.btnGRDS_V1.AccessibleDescription = ".";
             this.btnGRDS_V1.AccessibleName = "";
-            this.btnGRDS_V1.Enabled = false;
             this.btnGRDS_V1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnGRDS_V1.Location = new System.Drawing.Point(716, 29);
             this.btnGRDS_V1.Name = "btnGRDS_V1";
             this.btnGRDS_V1.Size = new System.Drawing.Size(25, 23);
             this.btnGRDS_V1.TabIndex = 4;
+            this.btnGRDS_V1.TabStop = false;
             this.btnGRDS_V1.Text = "...";
             this.btnGRDS_V1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGRDS_V1.UseVisualStyleBackColor = true;
@@ -925,12 +923,12 @@
             // 
             this.btnNoSum2.AccessibleDescription = ".";
             this.btnNoSum2.AccessibleName = "";
-            this.btnNoSum2.Enabled = false;
             this.btnNoSum2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnNoSum2.Location = new System.Drawing.Point(716, 232);
             this.btnNoSum2.Name = "btnNoSum2";
             this.btnNoSum2.Size = new System.Drawing.Size(25, 23);
             this.btnNoSum2.TabIndex = 25;
+            this.btnNoSum2.TabStop = false;
             this.btnNoSum2.Text = "...";
             this.btnNoSum2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNoSum2.UseVisualStyleBackColor = true;
@@ -940,12 +938,12 @@
             // 
             this.btnNoSum1.AccessibleDescription = ".";
             this.btnNoSum1.AccessibleName = "";
-            this.btnNoSum1.Enabled = false;
             this.btnNoSum1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnNoSum1.Location = new System.Drawing.Point(716, 118);
             this.btnNoSum1.Name = "btnNoSum1";
             this.btnNoSum1.Size = new System.Drawing.Size(25, 23);
             this.btnNoSum1.TabIndex = 13;
+            this.btnNoSum1.TabStop = false;
             this.btnNoSum1.Text = "...";
             this.btnNoSum1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNoSum1.UseVisualStyleBackColor = true;
@@ -955,12 +953,12 @@
             // 
             this.btnEXCEL1.AccessibleDescription = ".";
             this.btnEXCEL1.AccessibleName = "";
-            this.btnEXCEL1.Enabled = false;
             this.btnEXCEL1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnEXCEL1.Location = new System.Drawing.Point(716, 4);
             this.btnEXCEL1.Name = "btnEXCEL1";
             this.btnEXCEL1.Size = new System.Drawing.Size(25, 23);
             this.btnEXCEL1.TabIndex = 1;
+            this.btnEXCEL1.TabStop = false;
             this.btnEXCEL1.Text = "...";
             this.btnEXCEL1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEXCEL1.UseVisualStyleBackColor = true;
@@ -1005,6 +1003,7 @@
             this.btnEditXml.Name = "btnEditXml";
             this.btnEditXml.Size = new System.Drawing.Size(40, 25);
             this.btnEditXml.TabIndex = 33;
+            this.btnEditXml.TabStop = false;
             this.btnEditXml.Text = "...";
             this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditXml.UseVisualStyleBackColor = true;
@@ -1059,7 +1058,7 @@
             this.v6ColorTextBox16.Location = new System.Drawing.Point(99, 290);
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
-            this.v6ColorTextBox16.Size = new System.Drawing.Size(620, 20);
+            this.v6ColorTextBox16.Size = new System.Drawing.Size(617, 20);
             this.v6ColorTextBox16.TabIndex = 30;
             this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox16, resources.GetString("v6ColorTextBox16.ToolTip"));
             // 
@@ -1077,7 +1076,7 @@
             // dicEditButton2
             // 
             this.dicEditButton2.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton2.Image")));
-            this.dicEditButton2.Location = new System.Drawing.Point(719, 290);
+            this.dicEditButton2.Location = new System.Drawing.Point(716, 290);
             this.dicEditButton2.Name = "dicEditButton2";
             this.dicEditButton2.ReferenceControl = this.v6ColorTextBox16;
             this.dicEditButton2.Separator_Item = "~";

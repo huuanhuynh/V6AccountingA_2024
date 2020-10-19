@@ -8620,25 +8620,53 @@ namespace V6Controls.Forms
         public static string CompareDifferentData(IDictionary<string, object> data1, IDictionary<string, object> data2)
         {
             string result = "";
-            foreach (KeyValuePair<string, object> item in data1)
+            if (data1 == null)
             {
-                if (data2.ContainsKey(item.Key))
+                foreach (KeyValuePair<string, object> item in data2)
                 {
-                    if(ObjectAndString.IsNumberType(item.Value.GetType()))
+                    string newValue = ObjectAndString.ObjectToString(data2[item.Key]).Trim();
+                    result += string.Format(";{0}:{1}", item.Key, newValue);
+                }
+
+                if (result.Length > 1) result = result.Substring(1);
+                result = "new " + result;
+            }
+            else if (data2 == null)
+            {
+                foreach (KeyValuePair<string, object> item in data1)
+                {
+                    string oldValue = ObjectAndString.ObjectToString(item.Value).Trim();
+                    result += string.Format(";{0}:{1}", item.Key, oldValue);
+                }
+
+                if (result.Length > 1) result = result.Substring(1);
+                result = "delete " + result;
+            }
+            else
+            {
+                foreach (KeyValuePair<string, object> item in data1)
+                {
+                    if (data2.ContainsKey(item.Key))
                     {
-                        decimal oldValue = ObjectAndString.ObjectToDecimal(item.Value);
-                        decimal newValue = ObjectAndString.ObjectToDecimal(data2[item.Key]);
-                        if(newValue != oldValue) result += string.Format("~{0}:{1}|{2}", item.Key, oldValue, newValue);
-                    }
-                    else
-                    {
-                        string oldValue = ObjectAndString.ObjectToString(item.Value).Trim();
-                        string newValue = ObjectAndString.ObjectToString(data2[item.Key]).Trim();
-                        if(newValue != oldValue) result += string.Format("~{0}:{1}|{2}", item.Key, oldValue, newValue);
+                        if (ObjectAndString.IsNumberType(item.Value.GetType()))
+                        {
+                            decimal oldValue = ObjectAndString.ObjectToDecimal(item.Value);
+                            decimal newValue = ObjectAndString.ObjectToDecimal(data2[item.Key]);
+                            if (newValue != oldValue)
+                                result += string.Format(";{0}:{1}|{2}", item.Key, oldValue, newValue);
+                        }
+                        else
+                        {
+                            string oldValue = ObjectAndString.ObjectToString(item.Value).Trim();
+                            string newValue = ObjectAndString.ObjectToString(data2[item.Key]).Trim();
+                            if (newValue != oldValue)
+                                result += string.Format(";{0}:{1}|{2}", item.Key, oldValue, newValue);
+                        }
                     }
                 }
+                if (result.Length > 1) result = "edit " + result.Substring(1);
             }
-            if (result.Length > 1) result = result.Substring(1);
+
             return result;
         }
     }
