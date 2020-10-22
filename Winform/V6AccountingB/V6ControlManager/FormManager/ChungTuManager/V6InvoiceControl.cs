@@ -649,12 +649,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return addDataAM;
         }
 
-        public void LoadTag(V6InvoiceBase invoice, ControlCollection detailPanelControls)
+        public void LoadTagAndText(V6InvoiceBase invoice, ControlCollection detailPanelControls)
         {
             try
             {
                 var tagData = invoice.LoadTag(m_itemId);
                 V6ControlFormHelper.SetFormTagDictionary(this, tagData);
+                V6ControlFormHelper.SetFormTextDictionaryByName(this, invoice.textData);
                 if (detailPanelControls != null)
                 {
                     foreach (Control control in detailPanelControls)
@@ -665,7 +666,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".LoadTag " + _sttRec, ex);
+                this.WriteExLog(GetType() + ".LoadTagAndText " + _sttRec, ex);
             }
         }
 
@@ -5050,30 +5051,38 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 SortedDictionary<string, object> newData1 = new SortedDictionary<string, object>();
                 foreach (KeyValuePair<string, AlctControls> item in controlList1)
                 {
-                    if (item.Value.IsVisible && item.Value.DetailControl.Enabled)
+                    string KEY = item.Key.ToUpper();
+                    if (item.Value.IsVisible && item.Value.DetailControl.Enabled && newData.ContainsKey(KEY))
                     {
-                        newData1[item.Key.ToUpper()] = newData[item.Key.ToUpper()];
+                        if (!ObjectAndString.IsNoValue(newData[KEY]))
+                        {
+                            newData1[KEY] = newData[KEY];
+                        }
                     }
                 }
 
-                editLogData[stt_rec0] = new OldNewData() {OldData = null, NewData = newData1};
+                editLogData["ADD_" + stt_rec0] = new OldNewData() {OldData = null, NewData = newData1};
             }
             else if (newData == null) // delete
             {
                 SortedDictionary<string, object> oldData1 = new SortedDictionary<string, object>();
                 foreach (KeyValuePair<string, AlctControls> item in controlList1)
                 {
-                    if (item.Value.IsVisible && item.Value.DetailControl.Enabled)
+                    string KEY = item.Key.ToUpper();
+                    if (item.Value.IsVisible && item.Value.DetailControl.Enabled && oldData.ContainsKey(KEY))
                     {
-                        oldData1[item.Key.ToUpper()] = oldData[item.Key.ToUpper()];
+                        if (!ObjectAndString.IsNoValue(oldData[KEY]))
+                        {
+                            oldData1[KEY] = oldData[KEY];
+                        }
                     }
                 }
 
-                editLogData[stt_rec0] = new OldNewData() {OldData = oldData1, NewData = null};
+                editLogData["DELETE_" + stt_rec0] = new OldNewData() {OldData = oldData1, NewData = null};
             }
             else // edit
             {
-                if (editLogData.ContainsKey(stt_rec0))
+                if (editLogData.ContainsKey("EDIT_" + stt_rec0))
                 {
                     IDictionary<string, object> newData1 = new Dictionary<string, object>();
                     foreach (KeyValuePair<string, AlctControls> item in controlList1)
@@ -5085,7 +5094,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         }
                     }
 
-                    editLogData[stt_rec0].NewData = newData1;
+                    editLogData["EDIT_" + stt_rec0].NewData = newData1;
                 }
                 else
                 {
@@ -5101,7 +5110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         }
                     }
 
-                    editLogData[stt_rec0] = new OldNewData() {OldData = oldData1, NewData = newData1};
+                    editLogData["EDIT_" + stt_rec0] = new OldNewData() {OldData = oldData1, NewData = newData1};
                 }
             }
         }

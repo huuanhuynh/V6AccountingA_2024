@@ -988,6 +988,11 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Format mặc định cho các loại dữ liệu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void V6ColorDataGridView_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             

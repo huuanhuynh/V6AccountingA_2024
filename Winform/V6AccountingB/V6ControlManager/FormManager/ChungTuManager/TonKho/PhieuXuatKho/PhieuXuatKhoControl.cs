@@ -115,7 +115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             LoadAdvanceControls(Invoice.Mact);
             CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
-            LoadTag(Invoice, detail1.Controls);
+            LoadTagAndText(Invoice, detail1.Controls);
             HideControlByGRD_HIDE();
             ResetForm();
 
@@ -4562,6 +4562,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 //if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                 if (error == "")
                 {
+                    UpdateDetailChangeLog(_sttRec0, detailControlList1, null, data);
                     //Tạo dòng dữ liệu mới.
                     var newRow = AD.NewRow();
                     foreach (DataColumn column in AD.Columns)
@@ -4624,6 +4625,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         {
                             //Sửa dòng dữ liệu.
                             var currentRow = AD.Rows[cIndex];
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, detailControlList1, currentRow.ToDataDictionary(), data);
                             foreach (DataColumn column in AD.Columns)
                             {
                                 var key = column.ColumnName.ToUpper();
@@ -4685,6 +4688,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
                             var delete_data = currentRow.ToDataDictionary();
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, detailControlList1, delete_data, null);
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             ViewCurrentRowToDetail(dataGridView1, detail1);

@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -228,6 +228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnIn = new wyDay.Controls.SplitButton();
             this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -236,7 +237,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNameT = new V6Controls.V6Label();
-            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -315,20 +315,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -340,8 +340,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 142);
             this.dataGridView1.TabIndex = 1;
@@ -541,10 +541,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.TxtL_AM_INFO.GrayText = "L_AM_INFO";
             this.TxtL_AM_INFO.HoverColor = System.Drawing.Color.Yellow;
             this.TxtL_AM_INFO.LeaveColor = System.Drawing.Color.White;
-            this.TxtL_AM_INFO.Location = new System.Drawing.Point(529, 78);
+            this.TxtL_AM_INFO.Location = new System.Drawing.Point(392, 78);
             this.TxtL_AM_INFO.Margin = new System.Windows.Forms.Padding(5);
             this.TxtL_AM_INFO.Name = "TxtL_AM_INFO";
-            this.TxtL_AM_INFO.Size = new System.Drawing.Size(339, 20);
+            this.TxtL_AM_INFO.Size = new System.Drawing.Size(476, 20);
             this.TxtL_AM_INFO.TabIndex = 160;
             // 
             // Txtngay_ct2
@@ -624,11 +624,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtGhiChuChung.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGhiChuChung.HoverColor = System.Drawing.Color.Yellow;
             this.txtGhiChuChung.LeaveColor = System.Drawing.Color.White;
-            this.txtGhiChuChung.Location = new System.Drawing.Point(392, 148);
+            this.txtGhiChuChung.Location = new System.Drawing.Point(392, 166);
             this.txtGhiChuChung.Margin = new System.Windows.Forms.Padding(5);
-            this.txtGhiChuChung.Multiline = true;
             this.txtGhiChuChung.Name = "txtGhiChuChung";
-            this.txtGhiChuChung.Size = new System.Drawing.Size(476, 37);
+            this.txtGhiChuChung.Size = new System.Drawing.Size(476, 20);
             this.txtGhiChuChung.TabIndex = 130;
             // 
             // txtSoCtKemt
@@ -654,7 +653,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(290, 151);
+            this.label2.Location = new System.Drawing.Point(290, 170);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
@@ -701,7 +700,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtGC_UD3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_UD3.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_UD3.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_UD3.Location = new System.Drawing.Point(392, 124);
+            this.txtGC_UD3.Location = new System.Drawing.Point(392, 144);
             this.txtGC_UD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_UD3.Name = "txtGC_UD3";
             this.txtGC_UD3.Size = new System.Drawing.Size(476, 20);
@@ -720,7 +719,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtGC_UD2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_UD2.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_UD2.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_UD2.Location = new System.Drawing.Point(392, 101);
+            this.txtGC_UD2.Location = new System.Drawing.Point(392, 122);
             this.txtGC_UD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_UD2.Name = "txtGC_UD2";
             this.txtGC_UD2.Size = new System.Drawing.Size(476, 20);
@@ -739,10 +738,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtGC_UD1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_UD1.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_UD1.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_UD1.Location = new System.Drawing.Point(392, 78);
+            this.txtGC_UD1.Location = new System.Drawing.Point(392, 100);
             this.txtGC_UD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_UD1.Name = "txtGC_UD1";
-            this.txtGC_UD1.Size = new System.Drawing.Size(135, 20);
+            this.txtGC_UD1.Size = new System.Drawing.Size(476, 20);
             this.txtGC_UD1.TabIndex = 123;
             // 
             // label29
@@ -752,7 +751,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(289, 127);
+            this.label29.Location = new System.Drawing.Point(289, 148);
             this.label29.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(72, 13);
@@ -766,7 +765,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(290, 104);
+            this.label28.Location = new System.Drawing.Point(290, 126);
             this.label28.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(72, 13);
@@ -780,7 +779,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(290, 81);
+            this.label27.Location = new System.Drawing.Point(290, 104);
             this.label27.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(72, 13);
@@ -3268,7 +3267,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.inPhieuHachToanMenu,
             this.inKhacMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
             // 
             // inPhieuHachToanMenu
             // 
@@ -3277,6 +3276,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.inPhieuHachToanMenu.Size = new System.Drawing.Size(173, 22);
             this.inPhieuHachToanMenu.Text = "In phiếu hạch toán";
             this.inPhieuHachToanMenu.Click += new System.EventHandler(this.inPhieuHachToanMenu_Click);
+            // 
+            // inKhacMenu
+            // 
+            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
+            this.inKhacMenu.Name = "inKhacMenu";
+            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
+            this.inKhacMenu.Text = "In khác";
+            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
             // 
             // btnCopy
             // 
@@ -3375,14 +3382,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.Size = new System.Drawing.Size(669, 18);
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // inKhacMenu
-            // 
-            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
-            this.inKhacMenu.Name = "inKhacMenu";
-            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
-            this.inKhacMenu.Text = "In khác";
-            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
             // 
             // DonDatHangBanControl
             // 

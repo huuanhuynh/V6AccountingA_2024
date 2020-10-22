@@ -8,6 +8,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
 {
@@ -110,6 +111,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                             var NAME = row.Cells["NAME"].Value.ToString().Trim();
                             //var checkCode = row.Cells["CHECKCODE"].Value;
                             var checkCode = SqlConnect.GetServerDateTime().ToString("yyyyMMddHH:mm:ss");
+                            checkCode = checkCode.Replace(" ", "");
                             dataDic = new SortedDictionary<string, object>
                             {
                                 {"ALLOW", allow},
@@ -137,6 +139,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                         var NAME = row.Cells["NAME"].Value.ToString().Trim();
                         //var checkCode = row.Cells["CHECKCODE"].Value;
                         var checkCode = SqlConnect.GetServerDateTime().ToString("yyyyMMddHH:mm:ss");
+                        checkCode = checkCode.Replace(" ", "");
                         dataDic = new SortedDictionary<string, object>
                         {
                             {"ALLOW", allow},

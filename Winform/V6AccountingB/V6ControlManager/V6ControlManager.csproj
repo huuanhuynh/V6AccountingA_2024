@@ -67,6 +67,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormManager\ChungTuManager\HistoryViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\HistoryViewerForm.Designer.cs">
+      <DependentUpon>HistoryViewerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5891,6 +5897,9 @@
     <None Include="Resources\newspaperplus.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormManager\ChungTuManager\HistoryViewerForm.resx">
+      <DependentUpon>HistoryViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.resx">
       <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -8963,6 +8972,7 @@
     <None Include="Resources\Excel16.png" />
     <None Include="Resources\Export24.png" />
     <Content Include="Resources\HammerBlack16.png" />
+    <None Include="Resources\History24.png" />
     <Content Include="Resources\House16.png" />
     <None Include="Resources\LineEdit24.png" />
     <None Include="Resources\Network24.png" />

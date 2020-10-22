@@ -113,8 +113,8 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                             if(allow == allow2) continue;
 
                             var NAME = row.Cells["NAME"].Value.ToString().Trim();
-                            //var checkCode = row.Cells["CHECKCODE"].Value;
                             var checkCode = SqlConnect.GetServerDateTime().ToString("yyyyMMddHH:mm:ss");
+                            checkCode = checkCode.Replace(" ", "");
                             dataDic = new SortedDictionary<string, object>
                             {
                                 {"ALLOW", allow},
@@ -139,8 +139,8 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                         var row = dataGridView1.Rows[e.RowIndex];
                         var allow = row.Cells[e.ColumnIndex].Value.ToString().Trim() == "1" ? "0" : "1";
                         var NAME = row.Cells["NAME"].Value.ToString().Trim();
-                        //var checkCode = row.Cells["CHECKCODE"].Value;
                         var checkCode = SqlConnect.GetServerDateTime().ToString("yyyyMMddHH:mm:ss");
+                        checkCode = checkCode.Replace(" ", "");
                         dataDic = new SortedDictionary<string, object>
                         {
                             {"ALLOW", allow},

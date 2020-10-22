@@ -393,6 +393,16 @@ namespace V6ControlManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap History24 {
+            get {
+                object obj = ResourceManager.GetObject("History24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap House16 {
             get {
                 object obj = ResourceManager.GetObject("House16", resourceCulture);

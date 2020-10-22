@@ -1229,23 +1229,28 @@ namespace V6AccountingBusiness.Invoices
 
         protected DataTable defaultData;
         protected DataTable defaultInfo;
-        private SortedDictionary<string, string> loadTag;
+        private SortedDictionary<string, string> tagData;
+        public SortedDictionary<string, string> textData;
 
         public virtual SortedDictionary<string, string> LoadTag(string itemId)
         {
-            if (loadTag != null && loadTag.Count > 0) return loadTag;
+            if (tagData != null && tagData.Count > 0) return tagData;
             if (defaultData == null || defaultData.Rows.Count == 0)
                 defaultData = V6BusinessHelper.GetDefaultValueData(1, Mact, "", itemId, "nhom='00'");
             var result = new SortedDictionary<string,string>();
+            textData = new SortedDictionary<string, string>();
             foreach (DataRow row in defaultData.Rows)
             {
-                var cell = row["Tag"]; if (cell == null) continue;
-                var value = cell.ToString().Trim(); if (value == "") continue;
+                var nameTag = row["NameTag"].ToString().Trim().ToUpper();
+                var text = V6Setting.IsVietnamese ? row["defaultV"].ToString().Trim() : row["defaultE"].ToString().Trim();
+                if (nameTag != "" && text != "") textData[nameTag] = text;
+                var cellTag = row["Tag"]; if (cellTag == null) continue;
+                var tagValue = cellTag.ToString().Trim(); if (tagValue == "") continue;
 
-                var name = row["NameTag"].ToString().Trim().ToUpper();
-                result[name] = value;
+                
+                result[nameTag] = tagValue;
             }
-            loadTag = result;
+            tagData = result;
             return result;
         }
 

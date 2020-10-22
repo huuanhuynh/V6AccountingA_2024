@@ -35,6 +35,7 @@
             this.comboBox1 = new V6Controls.V6ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnHistory = new System.Windows.Forms.Button();
             this.btnIn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +49,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -64,8 +66,9 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(474, 247);
+            this.dataGridView1.Size = new System.Drawing.Size(601, 247);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             // 
             // comboBox1
             // 
@@ -101,12 +104,25 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnHistory
+            // 
+            this.btnHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHistory.Image = global::V6ControlManager.Properties.Resources.History24;
+            this.btnHistory.Location = new System.Drawing.Point(397, 2);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(97, 39);
+            this.btnHistory.TabIndex = 10;
+            this.btnHistory.Text = "&Lịch sử";
+            this.btnHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHistory.UseVisualStyleBackColor = true;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
+            // 
             // btnIn
             // 
             this.btnIn.AccessibleDescription = "INVOICEB00001";
             this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print24;
-            this.btnIn.Location = new System.Drawing.Point(373, 2);
+            this.btnIn.Location = new System.Drawing.Point(500, 2);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(97, 39);
             this.btnIn.TabIndex = 10;
@@ -115,18 +131,19 @@
             this.btnIn.UseVisualStyleBackColor = true;
             this.btnIn.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // ViewInfoData
+            // InvoiceInfosViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(477, 294);
+            this.ClientSize = new System.Drawing.Size(604, 294);
+            this.Controls.Add(this.btnHistory);
             this.Controls.Add(this.btnIn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnClose);
-            this.Name = "ViewInfoData";
+            this.Name = "InvoiceInfosViewForm";
             this.Text = "ViewInfoData";
             this.Load += new System.EventHandler(this.ViewInfoData_Load);
             this.Controls.SetChildIndex(this.btnClose, 0);
@@ -134,6 +151,7 @@
             this.Controls.SetChildIndex(this.comboBox1, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.btnIn, 0);
+            this.Controls.SetChildIndex(this.btnHistory, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -148,6 +166,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnIn;
+        private System.Windows.Forms.Button btnHistory;
         
     }
 }

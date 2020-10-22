@@ -17,9 +17,9 @@ namespace V6SqlConnect
         public static string GenInsertSql(int UserId, string tableName, V6TableStruct structTable, DataRow row)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
-            var dateString = serverDateTime.ToString("yyyyMMdd");
-            var timeString = serverDateTime.ToString("HH:mm:ss");
-            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateString = serverDateTime.ToString("yyyyMMdd").Replace(" ", "");
+            var timeString = serverDateTime.ToString("HH:mm:ss").Replace(" ", "");
+            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss").Replace(" : ", ":");
             
             string fields = "";
             string values = "";
@@ -78,9 +78,9 @@ namespace V6SqlConnect
         public static string GenInsertSql(int UserId, string tableName, V6TableStruct structTable, IDictionary<string, string> dataDictionary)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
-            var dateString = serverDateTime.ToString("yyyyMMdd");
-            var timeString = serverDateTime.ToString("HH:mm:ss");
-            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateString = serverDateTime.ToString("yyyyMMdd").Replace(" ", "");
+            var timeString = serverDateTime.ToString("HH:mm:ss").Replace(" ", "");
+            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss").Replace(" : ", ":");
             string fields = "";
             string values = "";
             foreach (V6ColumnStruct column in structTable.Values)
@@ -146,9 +146,9 @@ namespace V6SqlConnect
         public static string GenInsertSql(int UserId, string tableName, V6TableStruct structTable, IDictionary<string, object> dataDictionary)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
-            var dateString = serverDateTime.ToString("yyyyMMdd");
-            var timeString = serverDateTime.ToString("HH:mm:ss");
-            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateString = serverDateTime.ToString("yyyyMMdd").Replace(" ", "");
+            var timeString = serverDateTime.ToString("HH:mm:ss").Replace(" ", "");
+            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss").Replace(" : ", ":");
             string fields = "";
             string values = "";
             foreach (V6ColumnStruct column in structTable.Values)
@@ -258,9 +258,9 @@ namespace V6SqlConnect
             string fields = "";
             string values = "";
             var serverDateTime = SqlConnect.GetServerDateTime();
-            var dateString = serverDateTime.ToString("yyyyMMdd");
-            var timeString = serverDateTime.ToString("HH:mm:ss");
-            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateString = serverDateTime.ToString("yyyyMMdd").Replace(" ", "");
+            var timeString = serverDateTime.ToString("HH:mm:ss").Replace(" ", "");
+            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss").Replace(" : ", ":");
             
             foreach (V6ColumnStruct column in structTable.Values)
             {
@@ -387,9 +387,9 @@ namespace V6SqlConnect
         public static string GenUpdateSql(int UserId, string tableName, IDictionary<string, object> dataDictionary, IDictionary<string, object> keys, V6TableStruct structTable)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
-            var dateString = serverDateTime.ToString("yyyyMMdd");
-            var timeString = serverDateTime.ToString("HH:mm:ss");
-            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateString = serverDateTime.ToString("yyyyMMdd").Replace(" ", "");
+            var timeString = serverDateTime.ToString("HH:mm:ss").Replace(" ", "");
+            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss").Replace(" : ", ":");
             var sql = "Update [" + tableName + "] Set";// field = value[, field = value[...]]
             foreach (V6ColumnStruct column in structTable.Values)
             {
@@ -442,9 +442,9 @@ namespace V6SqlConnect
             out SqlParameter[] plist)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
-            var dateString = serverDateTime.ToString("yyyyMMdd");
-            var timeString = serverDateTime.ToString("HH:mm:ss");
-            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateString = serverDateTime.ToString("yyyyMMdd").Replace(" ", "");
+            var timeString = serverDateTime.ToString("HH:mm:ss").Replace(" ", "");
+            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss").Replace(" : ", ":");
             var p_list = new List<SqlParameter>();
             var sql = "Update [" + tableName + "] Set";// field = value[, field = value[...]]
             foreach (V6ColumnStruct column in structTable.Values)
@@ -831,9 +831,9 @@ namespace V6SqlConnect
             //GetStructureTableAndColumnsStruct();
             string sql = "Update [" + tableName + "] Set";// field = value[, field = value[...]]
             var serverDateTime = SqlConnect.GetServerDateTime();
-            var dateString = serverDateTime.ToString("yyyyMMdd");
-            var timeString = serverDateTime.ToString("HH:mm:ss");
-            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateString = serverDateTime.ToString("yyyyMMdd").Replace(" ", "");
+            var timeString = serverDateTime.ToString("HH:mm:ss").Replace(" ", "");
+            var datetimeString = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss").Replace(" : ", ":");
 
             foreach (V6ColumnStruct column in structTable.Values)
             {
@@ -1618,8 +1618,8 @@ namespace V6SqlConnect
             if (string.IsNullOrEmpty(ngay1) || string.IsNullOrEmpty(ngay2)) return -1;
             try
             {
-                string date1 = DateTime.ParseExact(ngay1, dinhdang1, null).ToString("yyyyMMdd");
-                string date2 = DateTime.ParseExact(ngay2, dinhdang2, null).ToString("yyyyMMdd");
+                string date1 = DateTime.ParseExact(ngay1, dinhdang1, null).ToString("yyyyMMdd").Replace(" ", "");
+                string date2 = DateTime.ParseExact(ngay2, dinhdang2, null).ToString("yyyyMMdd").Replace(" ", "");
                 if (date1 == date2)
                 {
                     return 1;

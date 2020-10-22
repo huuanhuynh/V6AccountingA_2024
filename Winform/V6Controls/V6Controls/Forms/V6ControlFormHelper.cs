@@ -2614,6 +2614,26 @@ namespace V6Controls.Forms
                 throw ex;
             }
         }
+        
+        public static void SetFormTextDictionaryByName(Control control, SortedDictionary<string, string> textData)
+        {
+            try
+            {
+                _errors = "";
+                SetFormTextDicRecursive(control, textData);
+            }
+            catch (Exception ex)
+            {
+                _errors += "\r\nControlName: " + control.Name + "\r\nException: " + ex.Message;
+            }
+            if (_errors != "")
+            {
+                var ex = new Exception("SetFormTextDictionary: " + _errors);
+                Logger.WriteExLog(V6Login.ClientName + " " + MethodBase.GetCurrentMethod().DeclaringType
+                    + ".SetFormTextDictionary", ex, LastActionListString);
+                throw ex;
+            }
+        }
 
         private static void SetMenuItemTag(ToolStripMenuItem control, SortedDictionary<string, string> tagData)
         {
@@ -2632,6 +2652,30 @@ namespace V6Controls.Forms
                     AddTagString(control, tagData[NAME]);
                 }
             CANCELALL: ;
+            }
+            catch (Exception ex)
+            {
+                _errors += "\r\nControlName: " + control.Name + "\r\nException: " + ex.Message;
+            }
+        }
+
+        private static void SetMenuItemText(ToolStripMenuItem control, SortedDictionary<string, string> textData)
+        {
+            try
+            {
+                var tagString = string.Format(";{0};", control.Tag ?? "");
+                var cancelall = tagString.Contains(";cancelall;");
+                var canceldata = tagString.Contains(";canceldata;");
+                var cancelset = tagString.Contains(";cancelset;");
+                if (canceldata || cancelset || cancelall) goto CANCELALL;
+
+                var NAME = control.Name;
+                if (textData != null && !string.IsNullOrEmpty(NAME) && textData.ContainsKey(NAME.ToUpper()))
+                {
+                    NAME = NAME.ToUpper();
+                    control.Text = textData[NAME];
+                }
+                CANCELALL: ;
             }
             catch (Exception ex)
             {
@@ -2702,7 +2746,62 @@ namespace V6Controls.Forms
         }
 
         
+        private static void SetFormTextDicRecursive(Control control, SortedDictionary<string, string> textData)
+        {
+            try
+            {
+                var tagString = string.Format(";{0};", control.Tag ?? "");
+                var cancelall = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";cancelall;");
+                //var canceldata = tagString.Contains(";canceldata;");
+                //var cancelset = tagString.Contains(";cancelset;");
+                if (cancelall) goto CANCELALL;
 
+                var NAME = control.Name;
+                if (textData != null && !string.IsNullOrEmpty(NAME) && textData.ContainsKey(NAME.ToUpper()))
+                {
+                    NAME = NAME.ToUpper();
+
+                    SetControlValue(control, textData[NAME]);
+                }
+
+                if (control.Controls.Count > 0)
+                {
+                    foreach (Control c in control.Controls)
+                    {
+                        SetFormTextDicRecursive(c, textData);
+                    }
+                }
+
+                // Dò qua menu
+                if (control is DropDownButton)
+                {
+                    var button = control as DropDownButton;
+                    if (button.Menu != null)
+                        foreach (ToolStripMenuItem item in button.Menu.Items)
+                        {
+                            SetMenuItemText(item, textData);
+                        }
+                }
+                if (control.ContextMenuStrip != null)
+                {
+                    foreach (ToolStripMenuItem item in control.ContextMenuStrip.Items)
+                    {
+                        SetMenuItemText(item, textData);
+                    }
+                }
+
+                control.ControlAdded += (object sender, ControlEventArgs e) =>
+                {
+                    SetFormTextDicRecursive(e.Control, textData);
+                };
+        
+            CANCELALL: ;
+            }
+            catch (Exception ex)
+            {
+                _errors += "\r\nControlName: " + control.Name + "\r\nException: " + ex.Message;
+            }
+        }
 
 
         /// <summary>
@@ -6067,8 +6166,12 @@ namespace V6Controls.Forms
                                     var s = fff[0];
                                     if (s.Length > 0)
                                     {
-                                        if(char.IsNumber(s[0])) column.Width = ObjectAndString.ObjectToInt(fff[0]);
-                                        else column.Width = ObjectAndString.ObjectToInt(fff[0].Substring(1));
+                                        if(char.IsNumber(s[0])) column.Width = ObjectAndString.ObjectToInt(s);
+                                        else
+                                        {
+                                            column.Width = ObjectAndString.ObjectToInt(s.Substring(1));
+                                            if(s[0] == 'T') column.DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+                                        }
                                     }
                                     else
                                     {
@@ -6653,7 +6756,7 @@ namespace V6Controls.Forms
         /// <param name="control"></param>
         public static void ApplyControlTripleClick(Control control)
         {
-            if (V6Setting.Triple)
+            if (!V6Setting.Triple) return;
             try
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
@@ -8620,7 +8723,7 @@ namespace V6Controls.Forms
         public static string CompareDifferentData(IDictionary<string, object> data1, IDictionary<string, object> data2)
         {
             string result = "";
-            if (data1 == null)
+            if (data1 == null) // add
             {
                 foreach (KeyValuePair<string, object> item in data2)
                 {
@@ -8629,9 +8732,8 @@ namespace V6Controls.Forms
                 }
 
                 if (result.Length > 1) result = result.Substring(1);
-                result = "new " + result;
             }
-            else if (data2 == null)
+            else if (data2 == null) // delete
             {
                 foreach (KeyValuePair<string, object> item in data1)
                 {
@@ -8640,9 +8742,8 @@ namespace V6Controls.Forms
                 }
 
                 if (result.Length > 1) result = result.Substring(1);
-                result = "delete " + result;
             }
-            else
+            else // edit
             {
                 foreach (KeyValuePair<string, object> item in data1)
                 {
@@ -8664,7 +8765,7 @@ namespace V6Controls.Forms
                         }
                     }
                 }
-                if (result.Length > 1) result = "edit " + result.Substring(1);
+                if (result.Length > 1) result = result.Substring(1);
             }
 
             return result;

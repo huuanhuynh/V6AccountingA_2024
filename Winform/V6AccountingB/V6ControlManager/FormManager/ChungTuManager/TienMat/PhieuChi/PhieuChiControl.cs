@@ -135,7 +135,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             LoadAdvanceControls(Invoice.Mact);
             CreateCustomInfoTextBox(group4, txtSoct_tt, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
-            LoadTag(Invoice, detail1.Controls);
+            LoadTagAndText(Invoice, detail1.Controls);
             HideControlByGRD_HIDE();
             ResetForm();
 
@@ -3970,9 +3970,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         /// <summary>
         /// Khi bấm nhận thêm detail, them kt co soct0 ngayct0 them ad2?
         /// </summary>
-        /// <param name="dic"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
-        public override bool XuLyThemDetail(IDictionary<string, object> dic)
+        public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3983,17 +3983,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 //var dic = V6ControlFormHelper.GetFormDataDictionary(phieuThuDetail1);
                 _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
-                dic.Add("STT_REC0", _sttRec0);
+                data.Add("STT_REC0", _sttRec0);
 
                 //Thêm thông tin...
-                dic["MA_CT"] = Invoice.Mact;
-                dic["NGAY_CT"] = dateNgayCT.Date;
+                data["MA_CT"] = Invoice.Mact;
+                data["NGAY_CT"] = dateNgayCT.Date;
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
                 if (_MA_GD == "1")
                 {
-                    if (!dic.ContainsKey("SO_CT0") || dic["SO_CT0"].ToString().Trim() == "")
+                    if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "")
                     {
                         var label = "SO_CT0";
                         var lbl = detail1.GetControlByName("lbl" + label);
@@ -4004,24 +4004,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" ||
                          _MA_GD == "8" || _MA_GD == "9")
                 {
-                    if (!dic.ContainsKey("TK_I") || dic["TK_I"].ToString().Trim() == "")
+                    if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "")
                         error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
                 }
                 else if (_MA_GD == "3")
                 {
-                    if (!dic.ContainsKey("TK_I") || dic["TK_I"].ToString().Trim() == "")
+                    if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "")
                         error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
                 }
 
                 if (error == "")
                 {
+                    UpdateDetailChangeLog(_sttRec0, detailControlList1, null, data);
                     //Tạo dòng dữ liệu mới.
                     var newRow = AD.NewRow();
                     foreach (DataColumn column in AD.Columns)
                     {
                         var key = column.ColumnName.ToUpper();
                         object value = ObjectAndString.ObjectTo(column.DataType,
-                            dic.ContainsKey(key) ? dic[key] : "") ?? DBNull.Value;
+                            data.ContainsKey(key) ? data[key] : "") ?? DBNull.Value;
                         newRow[key] = value;
                     }
 
@@ -4098,6 +4099,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         //Sửa dòng dữ liệu.
                         var currentRow = AD.Rows[cIndex];
+                        var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                        UpdateDetailChangeLog(c_sttRec0, detailControlList1, currentRow.ToDataDictionary(), data);
                         foreach (DataColumn column in AD.Columns)
                         {
                             var key = column.ColumnName.ToUpper();
@@ -4151,6 +4154,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
                     {
                         var delete_data = currentRow.ToDataDictionary();
+                        var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                        UpdateDetailChangeLog(c_sttRec0, detailControlList1, delete_data, null);
                         AD.Rows.Remove(currentRow);
                         dataGridView1.DataSource = AD;
                         detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());

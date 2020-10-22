@@ -151,7 +151,7 @@ namespace V6ControlManager.FormManager.MenuManager
                 FormManagerHelper.CurrentMenu3Control = this;
                 V6ControlFormHelper.SetHideMenuLabel(lblShowHide, e.SelectedButton.Text);
                 
-                if (V6Options.GetValue("M_USER_LOG").Trim() == "1")
+                if (V6Options.Menu3Log)
                 {
                     SqlParameter[] plist =
                     {

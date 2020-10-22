@@ -111,6 +111,17 @@ namespace V6Init
             }
         }
 
+        /// <summary>
+        /// Số ký hiệu phiên bản trong SQL
+        /// </summary>
+        public static string CurrentVersion
+        {
+            get
+            {
+                return GetValue("M_V6SOFT_VER");
+            }
+        }
+
         public static string MODULE_ID
         {
             get { return GetValue("MODULE_ID"); }
@@ -500,6 +511,9 @@ namespace V6Init
             }
         }
         
+        /// <summary>
+        /// 111 tương ứng Menu3Log/EditLogInvoice/EditLogList
+        /// </summary>
         public static string M_USER_LOG
         {
             get
@@ -509,14 +523,17 @@ namespace V6Init
             }
         }
 
-        /// <summary>
-        /// Số ký hiệu phiên bản trong SQL
-        /// </summary>
-        public static string CurrentVersion
+        public static bool Menu3Log
         {
             get
             {
-                return GetValue("M_V6SOFT_VER");
+                string m_user_log = M_USER_LOG;
+                if (m_user_log.Length > 0 || m_user_log[0] == '1')
+                {
+                    return true;
+                }
+
+                return false;
             }
         }
 

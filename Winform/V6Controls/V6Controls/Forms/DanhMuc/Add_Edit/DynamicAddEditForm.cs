@@ -209,6 +209,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 F2 = defineInfo.F2,
                                 FilterStart = defineInfo.FilterStart,
                             };
+                            
+                            var vvar_input = (V6VvarTextBox)input;
+                            if (defineInfo.ToUpper) vvar_input.CharacterCasing = CharacterCasing.Upper;
+                            var maxlength = 1;
+                            if (!string.IsNullOrEmpty(defineInfo.LimitChars))
+                            {
+                                vvar_input.LimitCharacters = defineInfo.LimitChars;
+                                vvar_input.MaxLength = maxlength;
+                            }
+
+                            vvar_input.SetInitFilter(defineInfo.InitFilter);
+                            vvar_input.F2 = defineInfo.F2;
                         }
                         else if (defineInfo.ControlType.ToUpper() == "LOOKUPTEXTBOX")
                         {

@@ -166,6 +166,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        private void ViewHistory()
+        {
+            try
+            {
+                var selectedValue = comboBox1.SelectedValue.ToString().Trim();
+                if (selectedValue == "PRINT_INFOR3")
+                {
+                    HistoryViewerForm form = new HistoryViewerForm();
+                    form.Data = dataGridView1.CurrentRow.ToDataDictionary();
+                    form.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "", ex);
+            }
+        }
+
         private void ViewInfoData_Load(object sender, EventArgs e)
         {
             LoadCombobox();
@@ -184,6 +202,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private void btnPrint_Click(object sender, EventArgs e)
         {
             Print();
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            ViewHistory();
+        }
+
+        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            if (e.Column.ValueType == typeof (DateTime))
+            {
+                e.Column.DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+            }
         }
 
         

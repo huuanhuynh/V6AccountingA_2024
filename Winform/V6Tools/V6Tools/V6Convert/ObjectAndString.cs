@@ -389,8 +389,8 @@ namespace V6Tools.V6Convert
                 //    result = o.ToString();
                 //}
             }
-            //if (result != "") return result;
-
+            
+            
             if (o is List<string>)
             {
                 var lo = (List<string>) o;
@@ -399,6 +399,11 @@ namespace V6Tools.V6Convert
                     result += ";" + s;
                 }
                 if (result.Length > 1) result = result.Substring(1);
+                return result;
+            }
+            else if (o is Guid)
+            {
+                result = o.ToString();
                 return result;
             }
 
@@ -1079,5 +1084,26 @@ namespace V6Tools.V6Convert
         }
 
         #endregion ===== GENERATE XML =====
+
+        /// <summary>
+        /// Kết hợp kiểm tra IsNullOrEmpty, khoảng trắng và 0
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        public static bool IsNoValue(object o)
+        {
+            if (o == null) return true;
+            if (o is string)
+            {
+                return "" == o.ToString().Trim();
+            }
+
+            if (IsNumberType(o.GetType()))
+            {
+                return 0 == ObjectToDecimal(o);
+            }
+            
+            return false;
+        }
     }
 }
