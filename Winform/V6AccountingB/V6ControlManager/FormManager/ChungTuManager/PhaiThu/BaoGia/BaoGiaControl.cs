@@ -3929,6 +3929,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if (IsViewingAnInvoice)
                 {
+                    InitEditLog();
                     var row = AM.Rows[CurrentIndex];
 
                     if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81", "S", Invoice.Mact) == 1)

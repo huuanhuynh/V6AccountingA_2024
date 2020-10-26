@@ -2,7 +2,6 @@
 using V6Init;
 using V6Structs;
 using V6Tools;
-using V6AccountingBusiness;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -25,7 +24,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void From_Load(object sender, System.EventArgs e)
+        private void From_Load(object sender, EventArgs e)
         {
             txtMaKH.ExistRowInTable();
             TxtMa_dvcs.ExistRowInTable();
@@ -58,11 +57,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
                 errors += V6Text.CheckInfor + "\r\n";
             
-            AldmConfig config = ConfigManager.GetAldmConfig(_MA_DM.ToString());
+            AldmConfig config = ConfigManager.GetAldmConfig(_MA_DM);
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
                 var key_list = ObjectAndString.SplitString(config.KEY);
-                errors += CheckValid(_MA_DM.ToString(), key_list);
+                errors += CheckValid(_MA_DM, key_list);
             }
 
             if(errors.Length>0) throw new Exception(errors);
@@ -76,9 +75,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (txt.Value < 1) txt.Value = 0;
                 if (txt.Value > 12) txt.Value = 12;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + "txtThang1_TextChanged", ex);
             }
         }
 

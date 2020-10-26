@@ -3026,6 +3026,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
 
                 if (!IsViewingAnInvoice) return;
+                InitEditLog();
                 if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                 {
                     if(string.IsNullOrEmpty(_sttRec))

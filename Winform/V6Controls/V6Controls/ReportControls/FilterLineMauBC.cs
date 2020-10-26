@@ -223,7 +223,7 @@ namespace V6ReportControls
 
         void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, CurrentTable.ToString());
+            LoadAdvanceControls((Control)sender, CurrentTable);
         }
 
         protected void LoadAdvanceControls(Control form, string ma_ct)
@@ -353,7 +353,7 @@ namespace V6ReportControls
 
         private void btnSuaTTMau_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToUpper() + "6"))
             {
                 DoEdit();
             }
@@ -365,7 +365,7 @@ namespace V6ReportControls
 
         private void btnSuaCTMau_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToUpper() + "6"))
             {
                 DoEditDetails();
             }

@@ -4078,6 +4078,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if (!IsViewingAnInvoice) return;
+                InitEditLog();
                 if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                 {
                     if (Mode == V6Mode.View)

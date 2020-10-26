@@ -5115,15 +5115,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        public void InitEditLog()
+        {
+            editLogData = new Dictionary<string, OldNewData>();
+        }
+
         /// <summary>
         /// stt_rec0 add?edit?delete data
         /// </summary>
-        private Dictionary<string, OldNewData> editLogData = new Dictionary<string, OldNewData>();
+        private Dictionary<string, OldNewData> editLogData;
 
         private class OldNewData
         {
-            public IDictionary<string, object> OldData = null;
-            public IDictionary<string, object> NewData = null;
+            public IDictionary<string, object> OldData;
+            public IDictionary<string, object> NewData;
         }
 
         private string GetDetailInfo()
@@ -5146,7 +5151,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                if (V6Options.SaveEditLogInvoice)
+                if (V6Options.SaveEditLogInvoice && _invoice.WRITE_LOG)
                 {
                     string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
                     string detailInfo = GetDetailInfo();
@@ -5156,7 +5161,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".SaveEditLog", ex);
+                this.WriteExLog(GetType() + ".SaveEditHistory", ex);
             }
         }
 

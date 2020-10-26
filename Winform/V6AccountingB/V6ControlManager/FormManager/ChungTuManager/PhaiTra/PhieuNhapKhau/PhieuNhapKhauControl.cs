@@ -4945,41 +4945,42 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             try
             {
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
-                if (IsViewingAnInvoice)
-                    if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
+                if (!IsViewingAnInvoice) return;
+                InitEditLog();
+                if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
+                {
+                    if (Mode == V6Mode.View)
                     {
-                        if (Mode == V6Mode.View)
+                        // Tuanmh 16/02/2016 Check level
+                        var row = AM.Rows[CurrentIndex];
+                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                         {
-                            // Tuanmh 16/02/2016 Check level
-                            var row = AM.Rows[CurrentIndex];
-                            if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
-                            {
-                                //Tuanmh 24/07/2016 Check Debit Amount
-                                bool check_edit =
+                            //Tuanmh 24/07/2016 Check Debit Amount
+                            bool check_edit =
                                 CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
-                                        txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "E");
+                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
+                                    txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "E");
 
-                                if (check_edit)
-                                {
-                                    Mode = V6Mode.Edit;
-                                    detail1.MODE = V6Mode.View;
-                                    detail2.MODE = V6Mode.View;
-                                    detail3.MODE = V6Mode.View;
-                                    //SetDataGridView3ChiPhiReadOnly();
-                                    GoToFirstFocus(txtMa_sonb);
-                                }
-                            }
-                            else
+                            if (check_edit)
                             {
-                                V6ControlFormHelper.NoRightWarning();
+                                Mode = V6Mode.Edit;
+                                detail1.MODE = V6Mode.View;
+                                detail2.MODE = V6Mode.View;
+                                detail3.MODE = V6Mode.View;
+                                //SetDataGridView3ChiPhiReadOnly();
+                                GoToFirstFocus(txtMa_sonb);
                             }
                         }
+                        else
+                        {
+                            V6ControlFormHelper.NoRightWarning();
+                        }
                     }
-                    else
-                    {
-                        V6ControlFormHelper.NoRightWarning();
-                    }
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
             }
             catch (Exception ex)
             {

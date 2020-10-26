@@ -215,37 +215,37 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             };
 
             
-            var dynamicControlList = new SortedDictionary<int, Control>();
+            dynamicControlList1 = new SortedDictionary<int, Control>();
             int stt = 0;
-            dynamicControlList.Add(stt++, _ma_vt);
+            dynamicControlList1.Add(stt++, _ma_vt);
             //dynamicControlList.Add(stt++, _mo_ngoac);
-            dynamicControlList.Add(stt++, _ten_vt);
+            dynamicControlList1.Add(stt++, _ten_vt);
             //dynamicControlList.Add(stt++, _oper);
             //dynamicControlList.Add(stt++, _dong_ngoac);
-            dynamicControlList.Add(stt++, _dvt);
-            dynamicControlList.Add(stt++, _tslkm);
-            dynamicControlList.Add(stt++, _tu_soluong);
-            dynamicControlList.Add(stt++, _den_soluong);
-            dynamicControlList.Add(stt++, _tu_sotien);
-            dynamicControlList.Add(stt++, _den_sotien);
+            dynamicControlList1.Add(stt++, _dvt);
+            dynamicControlList1.Add(stt++, _tslkm);
+            dynamicControlList1.Add(stt++, _tu_soluong);
+            dynamicControlList1.Add(stt++, _den_soluong);
+            dynamicControlList1.Add(stt++, _tu_sotien);
+            dynamicControlList1.Add(stt++, _den_sotien);
 
-            dynamicControlList.Add(stt++, _ma_hangkm);
-            dynamicControlList.Add(stt++, _soluong_km);
+            dynamicControlList1.Add(stt++, _ma_hangkm);
+            dynamicControlList1.Add(stt++, _soluong_km);
 
-            dynamicControlList.Add(stt++, _sotien_km);
-            dynamicControlList.Add(stt++, _ghichu_km);
-            dynamicControlList.Add(stt++, _pt_ck);
-            dynamicControlList.Add(stt++, _ghichu_ck);
+            dynamicControlList1.Add(stt++, _sotien_km);
+            dynamicControlList1.Add(stt++, _ghichu_km);
+            dynamicControlList1.Add(stt++, _pt_ck);
+            dynamicControlList1.Add(stt++, _ghichu_ck);
             
             
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, Control> item in dynamicControlList1)
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
             }
             
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (Control control in dynamicControlList1.Values)
             {
                 
                 detail1.AddControl(control);
@@ -376,37 +376,37 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             };
 
 
-            var dynamicControlList = new SortedDictionary<int, Control>();
+            dynamicControlList2 = new SortedDictionary<int, Control>();
             int stt = 0;
-            dynamicControlList.Add(stt++, _ma_vt22);
+            dynamicControlList2.Add(stt++, _ma_vt22);
             //dynamicControlList.Add(stt++, _mo_ngoac22);
-            dynamicControlList.Add(stt++, _ten_vt22);
+            dynamicControlList2.Add(stt++, _ten_vt22);
             //dynamicControlList.Add(stt++, _oper22);
             //dynamicControlList.Add(stt++, _dong_ngoac22);
-            dynamicControlList.Add(stt++, _dvt22);
-            dynamicControlList.Add(stt++, _tslkm22);
-            dynamicControlList.Add(stt++, _tu_soluong22);
-            dynamicControlList.Add(stt++, _den_soluong22);
-            dynamicControlList.Add(stt++, _tu_sotien22);
-            dynamicControlList.Add(stt++, _den_sotien22);
+            dynamicControlList2.Add(stt++, _dvt22);
+            dynamicControlList2.Add(stt++, _tslkm22);
+            dynamicControlList2.Add(stt++, _tu_soluong22);
+            dynamicControlList2.Add(stt++, _den_soluong22);
+            dynamicControlList2.Add(stt++, _tu_sotien22);
+            dynamicControlList2.Add(stt++, _den_sotien22);
 
-            dynamicControlList.Add(stt++, _ma_hangkm22);
-            dynamicControlList.Add(stt++, _soluong_km22);
+            dynamicControlList2.Add(stt++, _ma_hangkm22);
+            dynamicControlList2.Add(stt++, _soluong_km22);
 
-            dynamicControlList.Add(stt++, _sotien_km22);
-            dynamicControlList.Add(stt++, _ghichu_km22);
-            dynamicControlList.Add(stt++, _pt_ck22);
-            dynamicControlList.Add(stt++, _ghichu_ck22);
+            dynamicControlList2.Add(stt++, _sotien_km22);
+            dynamicControlList2.Add(stt++, _ghichu_km22);
+            dynamicControlList2.Add(stt++, _pt_ck22);
+            dynamicControlList2.Add(stt++, _ghichu_ck22);
 
 
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, Control> item in dynamicControlList2)
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
             }
 
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (Control control in dynamicControlList2.Values)
             {
                 detail3.AddControl(control);
             }
@@ -586,7 +586,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd5Sql);
 
                     //Update AM
-                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM.ToString(), DataDic, keys, _TableStruct);
+                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM, DataDic, keys, _TableStruct);
                     var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
 
                     int j = 0, k = 0, l = 0;
@@ -661,7 +661,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_KM",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "MA_KM",
                  txtMaKm.Text.Trim(), DataOld["MA_KM"].ToString());
                 if (!b)
                     throw new Exception(V6Text.Exist + V6Text.EditDenied
@@ -669,7 +669,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_KM",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA_KM",
                  txtMaKm.Text.Trim(), txtMaKm.Text.Trim());
                 if (!b)
                     throw new Exception(V6Text.Exist + V6Text.AddDenied
@@ -866,6 +866,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 
                 if (error == "")
                 {
+                    UpdateDetailChangeLog(_sttRec0, dynamicControlList1, null, data);
                     //Tạo dòng dữ liệu mới.
                     var newRow = AD.NewRow();
                     foreach (DataColumn column in AD.Columns)
@@ -991,6 +992,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         {
                             //Sửa dòng dữ liệu.
                             var currentRow = AD.Rows[cIndex];
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList1, currentRow.ToDataDictionary(), data);
                             foreach (DataColumn column in AD.Columns)
                             {
                                 var key = column.ColumnName.ToUpper();
@@ -1102,9 +1105,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = "Mã vật tư: " + currentRow["Ma_vt"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList1, delete_data, null);
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());

@@ -60,7 +60,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Structs.V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_KU",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "MA_KU",
                     TxtMa_ku.Text.Trim(), DataOld["MA_KU"].ToString());
                 if (!b)
                     throw new Exception(V6Init.V6Text.DataExist
@@ -68,7 +68,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Structs.V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_KU",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA_KU",
                     TxtMa_ku.Text.Trim(), TxtMa_ku.Text.Trim());
                 if (!b)
                     throw new Exception(V6Init.V6Text.DataExist

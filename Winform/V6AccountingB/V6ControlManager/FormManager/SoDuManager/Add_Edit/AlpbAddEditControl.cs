@@ -149,27 +149,27 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
           
             
-            var dynamicControlList = new SortedDictionary<int, Control>();
+            dynamicControlList1 = new SortedDictionary<int, Control>();
             //t_sl1, t_sl2, t_tien1, t_tien2, sl_km, tien_km, Ghi_chukm, Ghi_chuck, T_SLKM;
-            dynamicControlList.Add(0, _tk);
-            dynamicControlList.Add(1, _ma_vv);
-            dynamicControlList.Add(2, _ma_bpht);
-            dynamicControlList.Add(3, _ma_sp);
-            dynamicControlList.Add(4, _ma_phi);
-            dynamicControlList.Add(5, _ma_td);
-            dynamicControlList.Add(6, _ma_td2);
-            dynamicControlList.Add(7, _ma_td3);
-            dynamicControlList.Add(8, _ma_hd);
-            dynamicControlList.Add(9, _ma_ku);
+            dynamicControlList1.Add(0, _tk);
+            dynamicControlList1.Add(1, _ma_vv);
+            dynamicControlList1.Add(2, _ma_bpht);
+            dynamicControlList1.Add(3, _ma_sp);
+            dynamicControlList1.Add(4, _ma_phi);
+            dynamicControlList1.Add(5, _ma_td);
+            dynamicControlList1.Add(6, _ma_td2);
+            dynamicControlList1.Add(7, _ma_td3);
+            dynamicControlList1.Add(8, _ma_hd);
+            dynamicControlList1.Add(9, _ma_ku);
             
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, Control> item in dynamicControlList1)
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
             }
             
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (Control control in dynamicControlList1.Values)
             {
                 detail1.AddControl(control);
             }
@@ -374,6 +374,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 
                 if (error == "")
                 {
+                    UpdateDetailChangeLog(_sttRec0, dynamicControlList2, null, data);
                     //Tạo dòng dữ liệu mới.
                     var newRow = AD.NewRow();
                     foreach (DataColumn column in AD.Columns)
@@ -433,6 +434,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         {
                             //Sửa dòng dữ liệu.
                             var currentRow = AD.Rows[cIndex];
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList2, currentRow.ToDataDictionary(), data);
                             foreach (DataColumn column in AD.Columns)
                             {
                                 var key = column.ColumnName.ToUpper();
@@ -482,9 +485,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = V6Text.FieldCaption("TK") + " : " + currentRow["tk"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList2, delete_data, null);
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());

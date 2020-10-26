@@ -63,13 +63,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
            
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "VVAR",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "VVAR",
                  txtVvar.Text.Trim(), DataOld["VVAR"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblVvar.Text + "=" + txtVvar.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "VVAR",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "VVAR",
                  txtVvar.Text.Trim(), txtVvar.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblVvar.Text + "=" + txtVvar.Text;
             }

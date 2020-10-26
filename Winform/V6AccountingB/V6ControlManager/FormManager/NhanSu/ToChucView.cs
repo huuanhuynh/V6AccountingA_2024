@@ -252,7 +252,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
         void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, _tableName.ToString());
+            LoadAdvanceControls((Control)sender, _tableName);
         }
 
         protected void LoadAdvanceControls(Control form, string ma_ct)
@@ -1019,7 +1019,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowPrint("", _tableName.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowPrint("", _tableName.ToUpper() + "6"))
             {
                 DoPrint();
             }

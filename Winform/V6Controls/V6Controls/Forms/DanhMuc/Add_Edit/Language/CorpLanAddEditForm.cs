@@ -95,7 +95,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "ID", txtID.Text.Trim(), txtID.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "ID", txtID.Text.Trim(), txtID.Text.Trim());
                 if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblID.Text, txtID.Text));
             }
 

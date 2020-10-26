@@ -165,25 +165,25 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             };
             
 
-            var dynamicControlList = new SortedDictionary<int, Control>();
+            dynamicControlList2 = new SortedDictionary<int, Control>();
             
-            dynamicControlList.Add(0, ma_nv);
-            dynamicControlList.Add(1, ngay_ct);
-            dynamicControlList.Add(2, so_ct);
-            dynamicControlList.Add(3, nguyen_gia);
-            dynamicControlList.Add(4, gt_da_pb);
-            dynamicControlList.Add(5, gt_cl);
-            dynamicControlList.Add(6, gt_pb_ky);
-            dynamicControlList.Add(7, dien_giai);
+            dynamicControlList2.Add(0, ma_nv);
+            dynamicControlList2.Add(1, ngay_ct);
+            dynamicControlList2.Add(2, so_ct);
+            dynamicControlList2.Add(3, nguyen_gia);
+            dynamicControlList2.Add(4, gt_da_pb);
+            dynamicControlList2.Add(5, gt_cl);
+            dynamicControlList2.Add(6, gt_pb_ky);
+            dynamicControlList2.Add(7, dien_giai);
 
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, Control> item in dynamicControlList2)
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
             }
 
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (Control control in dynamicControlList2.Values)
             {
                 detail1.AddControl(control);
             }
@@ -290,20 +290,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 GrayText = "Giá trị"
             };
 
-            var dynamicControlList = new SortedDictionary<int, Control>();
-            dynamicControlList.Add(0, ten_ptkt);
-            dynamicControlList.Add(1, dvt);
-            dynamicControlList.Add(2, so_luong);
-            dynamicControlList.Add(3, gia_tri);
+            dynamicControlList3 = new SortedDictionary<int, Control>();
+            dynamicControlList3.Add(0, ten_ptkt);
+            dynamicControlList3.Add(1, dvt);
+            dynamicControlList3.Add(2, so_luong);
+            dynamicControlList3.Add(3, gia_tri);
 
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, Control> item in dynamicControlList3)
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
             }
 
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (Control control in dynamicControlList3.Values)
             {
                 detail3.AddControl(control);
             }
@@ -404,28 +404,28 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             ma_sp.SetInitFilter("Loai_vt='55'");
 
 
-            var dynamicControlList = new SortedDictionary<int, Control>();
+            dynamicControlList4 = new SortedDictionary<int, Control>();
             
-            dynamicControlList.Add(0, ma_bp_i);
-            dynamicControlList.Add(1, ma_bpht_i);
-            dynamicControlList.Add(2, ma_vv_i);
-            dynamicControlList.Add(3, tk_pb_i);
-            dynamicControlList.Add(4, tk_cp_i);
-            dynamicControlList.Add(5, he_so);
-            dynamicControlList.Add(6, ma_phi);
-            dynamicControlList.Add(7, ma_td_i);
-            dynamicControlList.Add(8, ma_td2_i);
-            dynamicControlList.Add(9, ma_td3_i);
-            dynamicControlList.Add(10, ma_sp);
+            dynamicControlList4.Add(0, ma_bp_i);
+            dynamicControlList4.Add(1, ma_bpht_i);
+            dynamicControlList4.Add(2, ma_vv_i);
+            dynamicControlList4.Add(3, tk_pb_i);
+            dynamicControlList4.Add(4, tk_cp_i);
+            dynamicControlList4.Add(5, he_so);
+            dynamicControlList4.Add(6, ma_phi);
+            dynamicControlList4.Add(7, ma_td_i);
+            dynamicControlList4.Add(8, ma_td2_i);
+            dynamicControlList4.Add(9, ma_td3_i);
+            dynamicControlList4.Add(10, ma_sp);
 
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, Control> item in dynamicControlList4)
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
             }
 
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (Control control in dynamicControlList4.Values)
             {
                 detail4.AddControl(control);
             }
@@ -576,7 +576,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd5Sql);
 
                     //Update AM
-                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM.ToString(), DataDic, keys, _TableStruct);
+                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM, DataDic, keys, _TableStruct);
                     var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
                     
                     int j = 0, k = 0, l = 0;
@@ -662,7 +662,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "SO_THE_CC",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "SO_THE_CC",
                  txtMaCongCu.Text.Trim(), DataOld["SO_THE_CC"].ToString());
                 if (!b)
                     throw new Exception(V6Text.Exist + V6Text.EditDenied
@@ -670,7 +670,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "SO_THE_CC",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "SO_THE_CC",
                  txtMaCongCu.Text.Trim(), txtMaCongCu.Text.Trim());
                 if (!b)
                     throw new Exception(V6Text.Exist + V6Text.AddDenied
@@ -848,6 +848,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 
                 if (error == "")
                 {
+                    UpdateDetailChangeLog(_sttRec0_22, dynamicControlList2, null, data);
                     //Tạo dòng dữ liệu mới.
                     var newRow = AD.NewRow();
                     foreach (DataColumn column in AD.Columns)
@@ -1006,8 +1007,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         
                         if (error == "")
                         {
-                            //Sửa dòng dữ liệu.
                             var currentRow = AD.Rows[cIndex];
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList2, currentRow.ToDataDictionary(), data);
+                            //Sửa dòng dữ liệu.
                             foreach (DataColumn column in AD.Columns)
                             {
                                 var key = column.ColumnName.ToUpper();
@@ -1171,9 +1174,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = "Mã nguồn vốn: " + currentRow["Ma_nv"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList2, delete_data, null);
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());

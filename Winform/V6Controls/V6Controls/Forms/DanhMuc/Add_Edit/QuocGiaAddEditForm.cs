@@ -31,7 +31,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     if (DataDic.ContainsKey(key) && DataOld.ContainsKey(key))
                     {
-                        bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, key,
+                        bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, key,
                             DataDic[key].ToString(), DataOld[key].ToString());
                         if (!b)
                             throw new Exception(V6Init.V6Text.DataExist
@@ -46,7 +46,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 foreach (KeyValuePair<string, object> key in keys)
                 {
-                    bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, key.Key,
+                    bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, key.Key,
                         DataDic[key.Key].ToString(), "");
                     if (!b) throw new Exception(V6Init.V6Text.DataExist
                         + key.Key + "=" + DataDic[key.Key]);

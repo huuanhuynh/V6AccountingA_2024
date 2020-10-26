@@ -42,11 +42,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (txtTen_bt.Text.Trim() == "")
                 errors += V6Text.Text("CHUANHAP") + " " + lblTenBt.Text;
             
-            AldmConfig config = ConfigManager.GetAldmConfig(_MA_DM.ToString());
+            AldmConfig config = ConfigManager.GetAldmConfig(_MA_DM);
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
                 var key_list = ObjectAndString.SplitString(config.KEY);
-                errors += CheckValid(_MA_DM.ToString(), key_list);
+                errors += CheckValid(_MA_DM, key_list);
             }
 
             if (errors.Length > 0) throw new Exception(errors);

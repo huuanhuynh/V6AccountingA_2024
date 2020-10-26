@@ -62,7 +62,7 @@ namespace V6AccountingB
             catch (Exception ex)
             {
                 this.ShowInfoMessage(V6Text.Text("COLOI1"));
-                this.WriteExLog(GetType() + "", ex);
+                this.WriteExLog(GetType() + "btnOK_Click", ex);
             }
         }
 

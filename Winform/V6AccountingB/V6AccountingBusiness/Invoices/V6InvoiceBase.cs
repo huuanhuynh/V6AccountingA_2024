@@ -191,25 +191,11 @@ namespace V6AccountingBusiness.Invoices
         }
         
         /// <summary>
-        /// Cờ đánh dấu có ghi log chi tiết khi thực hiện insert/update hay không?
+        /// Lưu lại lịch sử sửa chứng từ.
         /// </summary>
         public bool WRITE_LOG
         {
-            get
-            {
-                try
-                {
-                    if (Alct.Table.Columns.Contains("WRITE_LOG"))
-                    {
-                        return Alct["WRITE_LOG"].ToString() == "1";
-                    }
-                }
-                catch (Exception)
-                {
-                    //
-                }
-                return false;
-            }
+            get { return ObjectAndString.ObjectToBool(AlctConfig.WRITE_LOG); }
         }
 
         public V6TableStruct AMStruct
@@ -1423,7 +1409,7 @@ namespace V6AccountingBusiness.Invoices
         {
             var insertSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, tableStruct, data, isnew);
             int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insertSql);
-            if (WRITE_LOG)
+            if (false)
             {
                 object stt_rec = data["STT_REC"];
                 object stt_rec0 = data["STT_REC0"];
@@ -1494,7 +1480,7 @@ namespace V6AccountingBusiness.Invoices
 
         protected void WriteLogTransactionComplete(object stt_rec)
         {
-            if (WRITE_LOG)
+            if (false)
             {
                 Logger.WriteToLog(string.Format("Mact {0} stt_rec {1} TRANSACTION COMMITTED.", Mact, stt_rec));
             }

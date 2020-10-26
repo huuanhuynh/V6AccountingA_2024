@@ -45,7 +45,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                          && DataDic.ContainsKey("MA_VV") && DataOld.ContainsKey("MA_VV")
                         && DataDic.ContainsKey("NAM") && DataOld.ContainsKey("NAM"))
                     {
-                        bool b = V6BusinessHelper.IsValidFourCode_OneNumeric(_MA_DM.ToString(), 0,
+                        bool b = V6BusinessHelper.IsValidFourCode_OneNumeric(_MA_DM, 0,
                             "MA_DVCS", TxtMa_dvcs.Text, DataOld["MA_DVCS"].ToString(),
                             "TK", TxtTk.Text, DataOld["TK"].ToString(),
                             "MA_KH", TxtMa_KH.Text, DataOld["MA_KH"].ToString(),
@@ -62,7 +62,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                          && DataDic.ContainsKey("TK") 
                         && DataDic.ContainsKey("NAM") )
                     {
-                        bool b = V6BusinessHelper.IsValidFourCode_OneNumeric(_MA_DM.ToString(), 1,
+                        bool b = V6BusinessHelper.IsValidFourCode_OneNumeric(_MA_DM, 1,
                             "MA_DVCS", TxtMa_dvcs.Text, TxtMa_dvcs.Text,
                             "TK", TxtTk.Text, TxtTk.Text,
                             "MA_KH", TxtMa_KH.Text, TxtMa_KH.Text,

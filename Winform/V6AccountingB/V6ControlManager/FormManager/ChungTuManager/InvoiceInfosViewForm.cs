@@ -180,7 +180,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + "", ex);
+                this.ShowErrorException(GetType() + "ViewHistory", ex);
             }
         }
 

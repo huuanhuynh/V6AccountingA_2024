@@ -3478,6 +3478,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if (!IsViewingAnInvoice) return;
+                InitEditLog();
                 if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                 {
                     var row = AM.Rows[CurrentIndex];

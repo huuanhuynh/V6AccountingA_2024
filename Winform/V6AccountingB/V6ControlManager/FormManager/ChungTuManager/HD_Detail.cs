@@ -505,7 +505,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         if (e.KeyCode == Keys.F12)
                         {
                             var info = string.Format("AccName({0}), TabStop({1}), {2}",
-                                vc.AccessibleName, vc.ClientRectangle, vc.ToString());
+                                vc.AccessibleName, vc.ClientRectangle, vc);
                             V6ControlFormHelper.SetStatusText(info);
                         }
                     };
@@ -605,7 +605,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         if (e.KeyCode == Keys.F12)
                         {
                             var info = string.Format("AccName({0}), TabStop({1}), {2}",
-                                vc.AccessibleName, vc.ClientRectangle, vc.ToString());
+                                vc.AccessibleName, vc.ClientRectangle, vc);
                             V6ControlFormHelper.SetStatusText(info);
                         }
                     };

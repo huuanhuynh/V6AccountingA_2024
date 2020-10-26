@@ -14,7 +14,7 @@
 
             if (Mode == V6Structs.V6Mode.Edit)
             {
-                bool b = V6AccountingBusiness.V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "tk2",
+                bool b = V6AccountingBusiness.V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "tk2",
                     txttk2.Text.Trim(), DataOld["tk2"].ToString());
                 if (!b)
                     throw new System.Exception(V6Init.V6Text.DataExist

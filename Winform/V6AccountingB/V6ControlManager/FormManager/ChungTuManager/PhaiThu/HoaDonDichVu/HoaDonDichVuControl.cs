@@ -2552,6 +2552,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             {
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if (!IsViewingAnInvoice) return;
+                InitEditLog();
                 if (V6BusinessHelper.CheckEditVoucher(_sttRec, "ARS20", "S", Invoice.Mact) == 1)
                 {
                     if (V6Login.IsAdmin)

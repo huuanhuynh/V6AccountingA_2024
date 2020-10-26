@@ -210,7 +210,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         {
                             log81u += "Update ok " + oldSttRec + "\r\n";
                             // WriteDBlog.
-                            //SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
+                            //SaveEditHistory(AM_current.ToDataDictionary(), readyDataAM);
                         }
                         else
                         {

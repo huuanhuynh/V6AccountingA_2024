@@ -3592,6 +3592,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if (IsViewingAnInvoice)
                 {
+                    InitEditLog();
                     if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                     {
                         if (Mode == V6Mode.View)

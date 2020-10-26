@@ -483,7 +483,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     int b = UpdateData();
                     if (b > 0)
                     {
-                        SaveEditLog(DataOld, DataDic);
+                        SaveEditHistory(DataOld, DataDic);
                         AfterSaveBase();
                         AfterSave();
                         AfterUpdate();
@@ -788,21 +788,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// </summary>
         /// <param name="data_old">Dữ liệu trước đó.</param>
         /// <param name="data_new">Dữ liệu mới</param>
-        protected void SaveEditLog(IDictionary<string, object> data_old, IDictionary<string, object> data_new)
+        protected void SaveEditHistory(IDictionary<string, object> data_old, IDictionary<string, object> data_new)
         {
             try
             {
-                if (V6Options.SaveEditLogList && _aldmConfig != null && _aldmConfig.HaveInfo)
+                if (V6Options.SaveEditLogList && _aldmConfig != null && _aldmConfig.HaveInfo && ObjectAndString.ObjectToBool(_aldmConfig.DMFIX))
                 {
                     string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
                     V6BusinessHelper.WriteV6ListHistory(ItemID, MethodBase.GetCurrentMethod().Name,
                         string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(),
-                        _aldmConfig.MA_DM,  ObjectAndString.ObjectToString(data_new[_aldmConfig.VALUE]), info, ObjectAndString.ObjectToString(DataOld["UID"]));
+                        _aldmConfig.MA_DM,  ObjectAndString.ObjectToString(data_new[_aldmConfig.VALUE]), info, ObjectAndString.ObjectToString(data_old["UID"]));
                 }
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".SaveEditLog", ex);
+                this.WriteExLog(GetType() + ".SaveEditHistory", ex);
             }
         }
 

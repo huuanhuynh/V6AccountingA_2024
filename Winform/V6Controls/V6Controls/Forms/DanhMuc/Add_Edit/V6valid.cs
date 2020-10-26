@@ -19,7 +19,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Add)
             {
-                var max = V6BusinessHelper.GetMaxValueTable(_MA_DM.ToString(), "STT", "1=1");
+                var max = V6BusinessHelper.GetMaxValueTable(_MA_DM, "STT", "1=1");
                 txtSTT.Value = max + 1;
             }
         }
@@ -46,12 +46,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA", txtMa.Text.Trim(), DataOld["MA"].ToString());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "MA", txtMa.Text.Trim(), DataOld["MA"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMa.Text + "=" + txtMa.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA", txtMa.Text.Trim(), txtMa.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA", txtMa.Text.Trim(), txtMa.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMa.Text + "=" + txtMa.Text;
             }
 

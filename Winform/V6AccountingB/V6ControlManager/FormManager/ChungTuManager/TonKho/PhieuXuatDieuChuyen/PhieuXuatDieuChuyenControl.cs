@@ -4332,39 +4332,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             try
             {
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
-                if (IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
+                InitEditLog();
+                if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                 {
-                    if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
+                    if (Mode == V6Mode.View)
                     {
-                        if (Mode == V6Mode.View)
+                        // Tuanmh 16/02/2016 Check level
+                        var row = AM.Rows[CurrentIndex];
+                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                         {
-                             // Tuanmh 16/02/2016 Check level
-                            var row = AM.Rows[CurrentIndex];
-                            if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
-                            {
-                                //Tuanmh 24/07/2016 Check Debit Amount
-                                bool check_edit =
+                            //Tuanmh 24/07/2016 Check Debit Amount
+                            bool check_edit =
                                 CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
-                                        "", dateNgayCT.Date, txtTongTien.Value, "E"); // !!!!! txtTongThanhToan
+                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
+                                    "", dateNgayCT.Date, txtTongTien.Value, "E"); // !!!!! txtTongThanhToan
 
-                                if (check_edit)
-                                {
-                                    Mode = V6Mode.Edit;
-                                    detail1.MODE = V6Mode.View;
-                                    GoToFirstFocus(txtMa_sonb);
-                                }
-                            }
-                            else
+                            if (check_edit)
                             {
-                                V6ControlFormHelper.NoRightWarning();
+                                Mode = V6Mode.Edit;
+                                detail1.MODE = V6Mode.View;
+                                GoToFirstFocus(txtMa_sonb);
                             }
                         }
+                        else
+                        {
+                            V6ControlFormHelper.NoRightWarning();
+                        }
                     }
-                    else
-                    {
-                        V6ControlFormHelper.NoRightWarning();
-                    }
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
                 }
             }
             catch (Exception ex)

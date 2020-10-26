@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
@@ -64,6 +65,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         protected string _table2Name, _table3Name, _table4Name, _table5Name;
         protected V6TableStruct _TableStruct;
         public V6Mode Mode = V6Mode.Add;
+        protected SortedDictionary<int, Control> dynamicControlList1, dynamicControlList2, dynamicControlList3, dynamicControlList4;
 
         public string TitleLang
         {
@@ -150,8 +152,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private void AddEditControlVirtual_Load(object sender, EventArgs e)
         {
             //virtual
-            if (_call_LoadDetails_in_base)
-            LoadDetails();
+            if (_call_LoadDetails_in_base) LoadDetails();
             //load truoc lop ke thua
             if (Mode == V6Mode.Add)
             {
@@ -499,6 +500,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     int b = UpdateData();
                     if (b > 0)
                     {
+                        SaveEditHistory(DataOld, DataDic);
                         AfterSaveBase();
                         AfterSave();
                         AfterUpdate();
@@ -883,6 +885,137 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         }
 
         /// <summary>
+        /// Thêm vào lịch sử thay đổi dòng chi tiết.
+        /// </summary>
+        /// <param name="stt_rec0">Mã dòng</param>
+        /// <param name="controlList1"></param>
+        /// <param name="oldData">Dữ liệu cũ. null nếu thêm dòng.</param>
+        /// <param name="newData">Dữ liệu mới. null nếu xóa.</param>
+        protected void UpdateDetailChangeLog(string stt_rec0, IDictionary<int, Control> controlList1, IDictionary<string, object> oldData, IDictionary<string, object> newData)
+        {
+            if (oldData == null) // add
+            {
+                SortedDictionary<string, object> newData1 = new SortedDictionary<string, object>();
+                foreach (KeyValuePair<int, Control> item in controlList1)
+                {
+                    string KEY = item.Value.AccessibleName.ToUpper();
+                    if (item.Value.Visible && item.Value.Enabled && newData.ContainsKey(KEY))
+                    {
+                        if (!ObjectAndString.IsNoValue(newData[KEY]))
+                        {
+                            newData1[KEY] = newData[KEY];
+                        }
+                    }
+                }
+
+                editLogData["ADD_" + stt_rec0] = new OldNewData() {OldData = null, NewData = newData1};
+            }
+            else if (newData == null) // delete
+            {
+                SortedDictionary<string, object> oldData1 = new SortedDictionary<string, object>();
+                foreach (KeyValuePair<int, Control> item in controlList1)
+                {
+                    string KEY = item.Value.AccessibleName.ToUpper();
+                    if (item.Value.Visible && item.Value.Enabled && oldData.ContainsKey(KEY))
+                    {
+                        if (!ObjectAndString.IsNoValue(oldData[KEY]))
+                        {
+                            oldData1[KEY] = oldData[KEY];
+                        }
+                    }
+                }
+
+                editLogData["DELETE_" + stt_rec0] = new OldNewData() {OldData = oldData1, NewData = null};
+            }
+            else // edit
+            {
+                if (editLogData.ContainsKey("EDIT_" + stt_rec0))
+                {
+                    IDictionary<string, object> newData1 = new Dictionary<string, object>();
+                    foreach (KeyValuePair<int, Control> item in controlList1)
+                    {
+                        if (item.Value.Visible && item.Value.Enabled)
+                        {
+                            string FIELD = item.Value.AccessibleName.ToUpper();
+                            newData1[FIELD] = newData[FIELD];
+                        }
+                    }
+
+                    editLogData["EDIT_" + stt_rec0].NewData = newData1;
+                }
+                else
+                {
+                    IDictionary<string, object> oldData1 = new Dictionary<string, object>();
+                    IDictionary<string, object> newData1 = new Dictionary<string, object>();
+                    foreach (KeyValuePair<int, Control> item in controlList1)
+                    {
+                        if (item.Value.Visible && item.Value.Enabled)
+                        {
+                            string FIELD = item.Value.AccessibleName.ToUpper();
+                            oldData1[FIELD] = oldData[FIELD];
+                            newData1[FIELD] = newData[FIELD];
+                        }
+                    }
+
+                    editLogData["EDIT_" + stt_rec0] = new OldNewData() {OldData = oldData1, NewData = newData1};
+                }
+            }
+        }
+
+        //public void InitEditLog()
+        //{
+        //    editLogData = new Dictionary<string, OldNewData>();
+        //}
+
+        /// <summary>
+        /// stt_rec0 add?edit?delete data
+        /// </summary>
+        private Dictionary<string, OldNewData> editLogData = new Dictionary<string, OldNewData>();
+
+        private class OldNewData
+        {
+            public IDictionary<string, object> OldData = null;
+            public IDictionary<string, object> NewData = null;
+        }
+
+        private string GetDetailInfo()
+        {
+            string result = "";
+            foreach (KeyValuePair<string, OldNewData> item in editLogData)
+            {
+                result += "~" + item.Key + " " + V6ControlFormHelper.CompareDifferentData(item.Value.OldData, item.Value.NewData);
+            }
+            if (result.Length > 1) result = result.Substring(1);
+            return result;
+        }
+
+        /// <summary>
+        /// Save Edit history.
+        /// </summary>
+        /// <param name="data_old">Dữ liệu trước đó.</param>
+        /// <param name="data_new">Dữ liệu mới</param>
+        protected void SaveEditHistory(IDictionary<string, object> data_old, IDictionary<string, object> data_new)
+        {
+            try
+            {
+                if (V6Options.SaveEditLogList && _aldmConfig != null && _aldmConfig.HaveInfo && ObjectAndString.ObjectToBool(_aldmConfig.DMFIX))
+                {
+                    string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
+                    //V6BusinessHelper.write.WriteV6ListHistory(ItemID, MethodBase.GetCurrentMethod().Name,
+                    //    string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(),
+                    //    _aldmConfig.MA_DM,  ObjectAndString.ObjectToString(data_new[_aldmConfig.VALUE]), info, ObjectAndString.ObjectToString(data_old["UID"]));
+                    string detailInfo = GetDetailInfo();
+                    V6BusinessHelper.WriteV6InvoiceHistory(ItemID, MethodBase.GetCurrentMethod().Name, string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(),
+                        ObjectAndString.ObjectToString(data_old["UID"]), Mact, _sttRec, info, detailInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SaveEditHistory", ex);
+            }
+        }
+
+        /// <summary>
         /// Hàm được gọi sau khi gán data chính(AM) lên form.
         /// </summary>
         public virtual void AfterSetData()
@@ -995,7 +1128,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     var sss = field_info.Split(':');
                     string field = sss[0];
-                    string format = sss.Length > 1 ? sss[1] : null;
+                    //string format = sss.Length > 1 ? sss[1] : null;
 
                     Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field);
                     if (c != null)
@@ -1013,7 +1146,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     var sss = field_info.Split(':');
                     string field = sss[0];
-                    string format = sss.Length > 1 ? sss[1] : null;
+                    //string format = sss.Length > 1 ? sss[1] : null;
 
                     Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field);
                     if (c is TextBox) ((TextBox)c).ReadOnlyTag();

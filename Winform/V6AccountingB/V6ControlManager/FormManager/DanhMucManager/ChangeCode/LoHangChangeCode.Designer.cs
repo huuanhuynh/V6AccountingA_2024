@@ -46,6 +46,7 @@
             this.lblOldCode = new System.Windows.Forms.Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
+            this.btnGanNgayCu = new V6Controls.Controls.V6FormButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnGanNgayCu);
             this.groupBox1.Controls.Add(this.radDoiMaLoVaNgay);
             this.groupBox1.Controls.Add(this.radDoiMaLo);
             this.groupBox1.Controls.Add(this.radDoiNGay);
@@ -163,13 +165,13 @@
             this.txtNgayHHSD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNgayHHSD.HoverColor = System.Drawing.Color.Yellow;
             this.txtNgayHHSD.LeaveColor = System.Drawing.Color.White;
-            this.txtNgayHHSD.Location = new System.Drawing.Point(426, 75);
+            this.txtNgayHHSD.Location = new System.Drawing.Point(518, 75);
             this.txtNgayHHSD.Margin = new System.Windows.Forms.Padding(4);
             this.txtNgayHHSD.Name = "txtNgayHHSD";
             this.txtNgayHHSD.ReadOnly = true;
             this.txtNgayHHSD.Size = new System.Drawing.Size(144, 20);
             this.txtNgayHHSD.StringValue = "__/__/____";
-            this.txtNgayHHSD.TabIndex = 12;
+            this.txtNgayHHSD.TabIndex = 13;
             this.txtNgayHHSD.TabStop = false;
             this.txtNgayHHSD.Text = "__/__/____";
             // 
@@ -196,11 +198,11 @@
             // 
             this.lblNgayHHSD.AccessibleDescription = "ADDEDITL00712";
             this.lblNgayHHSD.AutoSize = true;
-            this.lblNgayHHSD.Location = new System.Drawing.Point(303, 78);
+            this.lblNgayHHSD.Location = new System.Drawing.Point(395, 78);
             this.lblNgayHHSD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNgayHHSD.Name = "lblNgayHHSD";
             this.lblNgayHHSD.Size = new System.Drawing.Size(76, 13);
-            this.lblNgayHHSD.TabIndex = 11;
+            this.lblNgayHHSD.TabIndex = 12;
             this.lblNgayHHSD.Text = "Ngày hết HSD";
             // 
             // txtMaVt
@@ -214,12 +216,12 @@
             this.txtMaVt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaVt.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaVt.LeaveColor = System.Drawing.Color.White;
-            this.txtMaVt.Location = new System.Drawing.Point(426, 103);
+            this.txtMaVt.Location = new System.Drawing.Point(518, 103);
             this.txtMaVt.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaVt.Name = "txtMaVt";
             this.txtMaVt.ReadOnly = true;
             this.txtMaVt.Size = new System.Drawing.Size(144, 20);
-            this.txtMaVt.TabIndex = 14;
+            this.txtMaVt.TabIndex = 15;
             this.txtMaVt.TabStop = false;
             // 
             // txtNewCode
@@ -243,11 +245,11 @@
             // 
             this.lblMaVt.AccessibleDescription = "ADDEDITL00195";
             this.lblMaVt.AutoSize = true;
-            this.lblMaVt.Location = new System.Drawing.Point(303, 107);
+            this.lblMaVt.Location = new System.Drawing.Point(395, 107);
             this.lblMaVt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMaVt.Name = "lblMaVt";
             this.lblMaVt.Size = new System.Drawing.Size(52, 13);
-            this.lblMaVt.TabIndex = 13;
+            this.lblMaVt.TabIndex = 14;
             this.lblMaVt.Text = "Mã vật tư";
             // 
             // lblHSDMoi
@@ -304,7 +306,7 @@
             this.btnHuy.Location = new System.Drawing.Point(100, 161);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 7;
+            this.btnHuy.TabIndex = 2;
             this.btnHuy.Tag = "Escape";
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -320,11 +322,25 @@
             this.btnNhan.Location = new System.Drawing.Point(12, 161);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 6;
+            this.btnNhan.TabIndex = 1;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
+            // 
+            // btnGanNgayCu
+            // 
+            this.btnGanNgayCu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGanNgayCu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGanNgayCu.Location = new System.Drawing.Point(285, 103);
+            this.btnGanNgayCu.Name = "btnGanNgayCu";
+            this.btnGanNgayCu.Size = new System.Drawing.Size(97, 22);
+            this.btnGanNgayCu.TabIndex = 11;
+            this.btnGanNgayCu.TabStop = false;
+            this.btnGanNgayCu.Text = "Gán ngày cũ";
+            this.toolTipV6FormControl.SetToolTip(this.btnGanNgayCu, "Áp giá bán");
+            this.btnGanNgayCu.UseVisualStyleBackColor = true;
+            this.btnGanNgayCu.Click += new System.EventHandler(this.btnGanNgayCu_Click);
             // 
             // LoHangChangeCode
             // 
@@ -370,5 +386,6 @@
         private System.Windows.Forms.Label lblMaVt;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnNhan;
+        private V6Controls.Controls.V6FormButton btnGanNgayCu;
     }
 }

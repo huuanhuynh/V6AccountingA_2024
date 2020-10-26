@@ -32,12 +32,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "FILE_MAUBC", txtFileMauBc.Text.Trim(), DataOld["FILE_MAUBC"].ToString());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "FILE_MAUBC", txtFileMauBc.Text.Trim(), DataOld["FILE_MAUBC"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblFileMauBC.Text + "=" + txtFileMauBc.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "FILE_MAUBC",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "FILE_MAUBC",
                  txtFileMauBc.Text.Trim(), txtFileMauBc.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblFileMauBC.Text + "=" + txtFileMauBc.Text;
             }

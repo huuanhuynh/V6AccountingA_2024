@@ -712,7 +712,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             LoadStruct();//MaxLength...
             FixMaxLengFormat();
-            V6ControlFormHelper.LoadAndSetFormInfoDefine(_MA_DM.ToString(), this, Parent);
+            V6ControlFormHelper.LoadAndSetFormInfoDefine(_MA_DM, this, Parent);
 
             if (Mode == V6Mode.Edit)
             {
@@ -724,7 +724,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 else
                 {
                     if (_keys != null) LoadData();
-                    else LoadDefaultData(2, "", _MA_DM.ToString(), m_itemId);
+                    else LoadDefaultData(2, "", _MA_DM, m_itemId);
                 }
             }
             else if (Mode == V6Mode.View)
@@ -767,7 +767,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM.ToString());
+                _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM);
                 V6ControlFormHelper.SetFormStruct(this, _TableStruct);
             }
             catch (Exception ex)
@@ -838,7 +838,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 FixFormData();
                 DataDic = GetData();
                 ValidateData();
-                string checkV6Valid = CheckV6Valid(DataDic, _MA_DM.ToString());
+                string checkV6Valid = CheckV6Valid(DataDic, _MA_DM);
                 if (!string.IsNullOrEmpty(checkV6Valid))
                 {
                     this.ShowInfoMessage(checkV6Valid);

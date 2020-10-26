@@ -265,5 +265,10 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
                 CheckEnable(rad);
         }
 
+        private void btnGanNgayCu_Click(object sender, EventArgs e)
+        {
+            txtNgayHHSDmoi.Value = txtNgayHHSD.Value;
+        }
+
     }
 }

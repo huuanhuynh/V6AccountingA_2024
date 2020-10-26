@@ -572,7 +572,7 @@ namespace V6Controls
 
         private void SetValueFormatStr()
         {
-            m_valueFormatStr = "F" + m_decimalLength.ToString();
+            m_valueFormatStr = "F" + m_decimalLength;
         }
 
         private void SendCharKey(char c)

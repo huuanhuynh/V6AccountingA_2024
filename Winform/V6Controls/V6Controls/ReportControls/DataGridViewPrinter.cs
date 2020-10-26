@@ -185,7 +185,7 @@ namespace V6ReportControls
             if (IsWithPaging)
             {
                 PageNumber++;
-                string PageString = "Page " + PageNumber.ToString();
+                string PageString = "Page " + PageNumber;
 
                 StringFormat PageStringFormat = new StringFormat();
                 PageStringFormat.Trimming = StringTrimming.Word;

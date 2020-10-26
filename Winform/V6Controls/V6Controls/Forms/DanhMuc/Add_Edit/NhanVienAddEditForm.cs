@@ -41,13 +41,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_NVIEN",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "MA_NVIEN",
                  TxtMa_nvien.Text.Trim(), DataOld["MA_NVIEN"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaNvien.Text + "=" + TxtMa_nvien.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_NVIEN",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA_NVIEN",
                  TxtMa_nvien.Text.Trim(), TxtMa_nvien.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaNvien.Text + "=" + TxtMa_nvien.Text;
             }

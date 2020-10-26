@@ -106,24 +106,24 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 Width = 100
             };
 
-            var dynamicControlList = new SortedDictionary<int, Control>();
+            dynamicControlList1 = new SortedDictionary<int, Control>();
             
-            dynamicControlList.Add(0, _user_name);
-            dynamicControlList.Add(6, _default1V);
-            dynamicControlList.Add(7, _default1E);
-            dynamicControlList.Add(8, _default11);
-            dynamicControlList.Add(9, _default12);
-            dynamicControlList.Add(10, _default13);
-            dynamicControlList.Add(11, _default14);
+            dynamicControlList1.Add(0, _user_name);
+            dynamicControlList1.Add(6, _default1V);
+            dynamicControlList1.Add(7, _default1E);
+            dynamicControlList1.Add(8, _default11);
+            dynamicControlList1.Add(9, _default12);
+            dynamicControlList1.Add(10, _default13);
+            dynamicControlList1.Add(11, _default14);
             
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, Control> item in dynamicControlList1)
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
             }
             
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (Control control in dynamicControlList1.Values)
             {
                 detail1.AddControl(control);
             }
@@ -227,7 +227,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
 
                     //Update AM
-                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM.ToString(), DataDic, keys, _TableStruct);
+                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM, DataDic, keys, _TableStruct);
                     var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
                     var j = 0;
 
@@ -347,6 +347,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 
                 if (error == "" && _user_name.Data != null)
                 {
+                    UpdateDetailChangeLog(_sttRec0, dynamicControlList1, null, data);
                     //Gom đầy đủ dữ liệu
                     _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                     data["STT_REC0"] = _sttRec0;
@@ -417,6 +418,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         
                         if (error == "")
                         {
+                            var currentRow = AD.Rows[cIndex];
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList1, currentRow.ToDataDictionary(), data);
                             //_sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                             //data["STT_REC0"] = _sttRec0;
                             data["STT_REC"] = txtSttRec.Text;
@@ -431,7 +435,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             data["USER_ID"] = _user_name.Data["user_id"];
 
                             //Sửa dòng dữ liệu.
-                            var currentRow = AD.Rows[cIndex];
                             foreach (DataColumn column in AD.Columns)
                             {
                                 var key = column.ColumnName.ToUpper();
@@ -481,9 +484,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = "Mã: " + currentRow["User_name"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList1, delete_data, null);
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());

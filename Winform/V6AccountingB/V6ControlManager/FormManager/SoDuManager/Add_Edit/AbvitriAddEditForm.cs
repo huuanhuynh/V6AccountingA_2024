@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 // Check data 
                 if (Mode == V6Mode.Edit)
                 {
-                    bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(_MA_DM.ToString(), 0,
+                    bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(_MA_DM, 0,
                             "MA_KHO", TxtMa_kho.Text.Trim(), DataOld["MA_KHO"].ToString(),
                             "MA_VT", TxtMa_vt.Text.Trim(), DataOld["MA_VT"].ToString(),
                             "MA_VITRI", TxtMa_vitri.Text.Trim(), DataOld["MA_VITRI"].ToString(),
@@ -68,7 +68,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else if (Mode == V6Mode.Add)
                 {
-                    bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(_MA_DM.ToString(), 1,
+                    bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(_MA_DM, 1,
                             "MA_KHO", TxtMa_kho.Text.Trim(), TxtMa_kho.Text.Trim(),
                             "MA_VT", TxtMa_vt.Text.Trim(), TxtMa_vt.Text.Trim(),
                             "MA_VITRI", TxtMa_vitri.Text.Trim(), TxtMa_vitri.Text.Trim(),

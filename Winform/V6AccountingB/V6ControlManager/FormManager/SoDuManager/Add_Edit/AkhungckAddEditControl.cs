@@ -122,22 +122,22 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
      
 
             
-            var dynamicControlList = new SortedDictionary<int, Control>();
+            dynamicControlList1 = new SortedDictionary<int, Control>();
             
-            dynamicControlList.Add(0, _ma_vt);
-            dynamicControlList.Add(1, _ten_vt);
-            dynamicControlList.Add(2, _dvt);
-            dynamicControlList.Add(3, _pt_ck);
+            dynamicControlList1.Add(0, _ma_vt);
+            dynamicControlList1.Add(1, _ten_vt);
+            dynamicControlList1.Add(2, _dvt);
+            dynamicControlList1.Add(3, _pt_ck);
 
 
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, Control> item in dynamicControlList1)
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
             }
             
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (Control control in dynamicControlList1.Values)
             {
                 
                 detail1.AddControl(control);
@@ -249,7 +249,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
 
                     //Update AM
-                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM.ToString(), DataDic, keys, _TableStruct);
+                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM, DataDic, keys, _TableStruct);
                     var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
                     var j = 0;
 
@@ -376,6 +376,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 
                 if (error == "")
                 {
+                    UpdateDetailChangeLog(_sttRec0, dynamicControlList1, null, data);
                     //Tạo dòng dữ liệu mới.
                     var newRow = AD.NewRow();
                     foreach (DataColumn column in AD.Columns)
@@ -433,8 +434,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         
                         if (error == "")
                         {
-                            //Sửa dòng dữ liệu.
                             var currentRow = AD.Rows[cIndex];
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList1, currentRow.ToDataDictionary(), data);
+                            //Sửa dòng dữ liệu.
                             foreach (DataColumn column in AD.Columns)
                             {
                                 var key = column.ColumnName.ToUpper();
@@ -528,9 +531,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = "Mã vật tư: " + currentRow["Ma_vt"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
+                            var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList1, delete_data, null);
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());

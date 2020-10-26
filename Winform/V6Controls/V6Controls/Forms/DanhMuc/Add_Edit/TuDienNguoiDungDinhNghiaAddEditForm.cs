@@ -42,7 +42,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
             var KEY_LIST = new[] {"MA_TD"};
-            errors += CheckValid(_MA_DM.ToString(), KEY_LIST);
+            errors += CheckValid(_MA_DM, KEY_LIST);
 
             //if (Mode == V6Mode.Edit)
             //{

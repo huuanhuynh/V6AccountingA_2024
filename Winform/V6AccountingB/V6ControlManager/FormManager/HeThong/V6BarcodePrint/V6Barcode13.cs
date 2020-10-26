@@ -581,8 +581,8 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 			{
 				if( value < this._fMinimumAllowableScale || value > this._fMaximumAllowableScale )
 					throw new Exception( "Scale value out of allowable range.  Value must be between " + 
-						this._fMinimumAllowableScale.ToString( ) + " and " + 
-						this._fMaximumAllowableScale.ToString( ) );
+						this._fMinimumAllowableScale + " and " + 
+						this._fMaximumAllowableScale );
 				_fScale = value;
 			}
 		}

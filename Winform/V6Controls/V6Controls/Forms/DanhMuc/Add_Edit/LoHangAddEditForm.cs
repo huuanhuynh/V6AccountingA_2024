@@ -56,7 +56,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidTwoCode_Full(_MA_DM.ToString(), 0,
+                bool b = V6BusinessHelper.IsValidTwoCode_Full(_MA_DM, 0,
                     "MA_VT", txtMaVT.Text.Trim(), DataOld["MA_VT"].ToString(),
                     "MA_LO", txtMaLo.Text.Trim(), DataOld["MA_LO"].ToString());
 
@@ -65,7 +65,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidTwoCode_Full(_MA_DM.ToString(), 1,
+                bool b = V6BusinessHelper.IsValidTwoCode_Full(_MA_DM, 1,
                     "MA_VT", txtMaVT.Text, txtMaVT.Text,
                     "MA_LO", txtMaLo.Text, txtMaLo.Text);
 

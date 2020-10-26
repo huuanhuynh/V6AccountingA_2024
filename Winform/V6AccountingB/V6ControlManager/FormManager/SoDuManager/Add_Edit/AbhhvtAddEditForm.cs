@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Mode == V6Mode.Edit)
                 {
 
-                    bool b = V6BusinessHelper.IsValidTwoCode_TwoNumeric(_MA_DM.ToString(), 0,
+                    bool b = V6BusinessHelper.IsValidTwoCode_TwoNumeric(_MA_DM, 0,
                         "MA_VT", TxtMa_vt.Text.Trim(), DataOld["MA_VT"].ToString(),
                         "LOAI_HH", txtloai_hh.Text.Trim(), DataOld["LOAI_HH"].ToString(),
                         "THANG", Convert.ToInt32(Txtthang.Value), Convert.ToInt32(Txtthang.Value),
@@ -53,7 +53,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 else if (Mode == V6Mode.Add)
                 {
 
-                    bool b = V6BusinessHelper.IsValidTwoCode_TwoNumeric(_MA_DM.ToString(), 1,
+                    bool b = V6BusinessHelper.IsValidTwoCode_TwoNumeric(_MA_DM, 1,
                         "MA_VT", TxtMa_vt.Text.Trim(), TxtMa_vt.Text.Trim(),
                         "LOAI_HH", txtloai_hh.Text.Trim(), txtloai_hh.Text,
                         "THANG", Convert.ToInt32(Txtthang.Value), Convert.ToInt32(Txtthang.Value),
