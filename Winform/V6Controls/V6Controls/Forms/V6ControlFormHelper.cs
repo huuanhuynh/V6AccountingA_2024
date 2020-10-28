@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -3962,7 +3963,108 @@ namespace V6Controls.Forms
             Logger.WriteToLog(log, logFile);
         }
 
+        public static void PrintGridView(V6ColorDataGridView dataGridView1)
+        {
+            Control thisForm = dataGridView1.Parent;
+            PrintDialog myPrintDialog = new PrintDialog();
+            myPrintDialog.AllowCurrentPage = false;
+            myPrintDialog.AllowPrintToFile = false;
+            myPrintDialog.AllowSelection = false;
+            myPrintDialog.AllowSomePages = false;
+            myPrintDialog.PrintToFile = false;
+            myPrintDialog.ShowHelp = false;
+            myPrintDialog.ShowNetwork = false;
+
+            if (myPrintDialog.ShowDialog(thisForm) != DialogResult.OK)
+                return;
+            PrintDocument MyPrintDocument = new PrintDocument();
+            MyPrintDocument.PrintPage += MyPrintDocument_PrintPage;
+            MyPrintDocument.DocumentName = thisForm.Text;
+            MyPrintDocument.PrinterSettings = myPrintDialog.PrinterSettings;
+            MyPrintDocument.DefaultPageSettings = myPrintDialog.PrinterSettings.DefaultPageSettings;
+            MyPrintDocument.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
+
+            _dgvPrinter = new DataGridViewPrinter(dataGridView1, MyPrintDocument,
+                thisForm.ShowConfirmMessage(V6Setting.IsVietnamese ? "Canh giữa trang khi in?" : "PrintAlignmentCenter?") == DialogResult.Yes,
+                true, thisForm.Text, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
+
+            
+            MyPrintDocument.Print();
+        }
+
+        private static DataGridViewPrinter _dgvPrinter;
+        private static void MyPrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            bool more = _dgvPrinter.DrawDataGridView(e.Graphics);
+            if (more)
+                e.HasMorePages = true;
+        }
+
         #region ==== Print RptReport ====
+
+        /// <summary>
+        /// Lưu giữ PrinterSettings.
+        /// </summary>
+        public static PrinterSettings PrinterSettings = null;
+
+        /// <summary>
+        /// Chọn máy in, trả về PrinterSettings. Nếu không chọn trả về null.
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="printerName">Tên máy in chọn sẵn.</param>
+        /// <param name="allowSomePage">Cho phép in lẻ tẻ.</param>
+        /// <returns></returns>
+        public static PrinterSettings ChoosePrinter(IWin32Window owner, string printerName, bool allowSomePage = true)
+        {
+            PrintDialog pt = new PrintDialog( );
+            
+            pt.PrinterSettings.PrinterName = printerName;
+            //pt.Document = new PrintDocument();
+            pt.AllowPrintToFile = false;
+            pt.AllowCurrentPage = true;
+            pt.AllowSomePages = allowSomePage;
+            pt.UseEXDialog = true; //Fix win7
+
+            if (pt.ShowDialog(owner) == DialogResult.OK)
+            {
+                PrinterSettings = pt.PrinterSettings;
+                return PrinterSettings;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Lấy thông số in cho CrystalReport.
+        /// </summary>
+        /// <param name="printer">PrinterSettings</param>
+        /// <param name="rpts">Các CrystalReport object.</param>
+        public static void SetCrystalReportPrinterOptions(PrinterSettings printer, params ReportDocument[] rpts)
+        {
+            if (printer == null) return;
+            foreach (ReportDocument rpt in rpts)
+            {
+                if (rpt == null) continue;
+                rpt.PrintOptions.NoPrinter = false;
+                //rp.PrintOptions.CopyFrom(printer, printer.DefaultPageSettings); // Không được dùng. Gây sai (ví dụ in ngang/dọc)
+                rpt.PrintOptions.PrinterName = printer.IsDefaultPrinter ? string.Empty : printer.PrinterName;
+                
+                if (printer.Duplex == Duplex.Default) rpt.PrintOptions.PrinterDuplex = PrinterDuplex.Default;
+                else if (printer.Duplex == Duplex.Horizontal) rpt.PrintOptions.PrinterDuplex = PrinterDuplex.Horizontal;
+                else if (printer.Duplex == Duplex.Simplex) rpt.PrintOptions.PrinterDuplex = PrinterDuplex.Simplex;
+                else if (printer.Duplex == Duplex.Vertical) rpt.PrintOptions.PrinterDuplex = PrinterDuplex.Vertical;
+
+                if (printer.DefaultPageSettings.PaperSource.Kind == PaperSourceKind.Custom)
+                {
+                    rpt.PrintOptions.CustomPaperSource = printer.DefaultPageSettings.PaperSource;
+                }
+                else
+                {
+                    rpt.PrintOptions.PaperSource = PrintingConverter.PaperSourceKindToPaperSource(printer.DefaultPageSettings.PaperSource.Kind);
+                    rpt.PrintOptions.CustomPaperSource = null;
+                }
+            }
+        }
 
         /// <summary>
         /// Chọn máy in và in, In xong trả về tên máy đã in.
@@ -3973,47 +4075,52 @@ namespace V6Controls.Forms
         /// <returns>Tên máy in đã chọn in.</returns>
         public static string PrintRpt(IWin32Window owner, ReportDocument rpDoc, string printerName)
         {
-            PrintDialog pt = new PrintDialog();
-            pt.PrinterSettings.PrinterName = printerName;
-            pt.AllowPrintToFile = false;
-            pt.AllowCurrentPage = true;
-            pt.AllowSomePages = true;
-            pt.UseEXDialog = true; //Fix win7
-            if (pt.ShowDialog(owner) == DialogResult.OK)
+            if (ChoosePrinter(owner, printerName) != null)
             {
+                SetCrystalReportPrinterOptions(PrinterSettings, rpDoc);
+
                 bool is_printed = PrintRptToPrinter(rpDoc,
-                    pt.PrinterSettings.PrinterName,
-                    pt.PrinterSettings.Copies,
-                    pt.PrinterSettings.FromPage,
-                    pt.PrinterSettings.ToPage);
-                if (is_printed) return pt.PrinterSettings.PrinterName;
+                    PrinterSettings.PrinterName,
+                    PrinterSettings.Copies,
+                    PrinterSettings.FromPage,
+                    PrinterSettings.ToPage);
+                if (is_printed) return PrinterSettings.PrinterName;
             }
             return null;
         }
 
-        public static bool PrintRptToPrinter(ReportDocument rpDoc, string printerName, int copies, int startPage = 0, int endPage = 0)
+        /// <summary>
+        /// In không cần chọn máy in.
+        /// </summary>
+        /// <param name="rpDoc">Đối tượng in.</param>
+        /// <param name="printerName">Tên máy in sẽ in.</param>
+        /// <param name="copies">Số bản in.</param>
+        /// <param name="startPage">Trang bắt đầu (trang đầu là 1, dùng 0 nếu in tất cả trang).</param>
+        /// <param name="endPage">Trang kết thúc, dùng 0 nếu in tất cả trang.</param>
+        /// <returns></returns>
+        public static bool PrintRptToPrinter(ReportDocument rpDoc, string printerName, int copies, int startPage, int endPage)
         {
             //rpDoc.PrintOptions.PrinterName = printerName; Câu này không có tác dụng.
             var _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
             try
             {
                 bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
-                var setPrinterOk = PrinterStatus.SetDefaultPrinter(printerName);
+                if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
                 var printerError = string.Compare("Error", PrinterStatus.getDefaultPrinterProperties("Status"), StringComparison.OrdinalIgnoreCase) == 0;
 
-                if (setPrinterOk && printerOnline && !printerError)
+                if (printerOnline && !printerError)
                 {
                     rpDoc.PrintToPrinter(copies, false, startPage, endPage);
                     ShowMainMessage("Đã gửi in.");
+                    if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                     return true;
                 }
             }
             catch (Exception)
             {
-                PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 throw;
             }
-            PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
             return false;
         }
         #endregion print rpt
@@ -8770,5 +8877,7 @@ namespace V6Controls.Forms
 
             return result;
         }
+
+        
     }
 }

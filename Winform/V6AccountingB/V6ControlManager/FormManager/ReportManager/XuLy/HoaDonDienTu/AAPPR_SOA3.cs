@@ -101,15 +101,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9MessageAll = "";
 
             //Select printer.
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.AllowSomePages = false;//
-            //printDialog.Document = printDocument;
-            printDialog.UseEXDialog = true;
-            //printDialog.Document.PrinterSettings.FromPage = 1;
-            //printDialog.Document.PrinterSettings.ToPage = pdfDocument1.PageCount;
-            if (printDialog.ShowDialog((IWin32Window)this.FindForm()) != DialogResult.OK)
+            var printerst = V6ControlFormHelper.ChoosePrinter(this, "", false);
+            if (printerst == null)// printDialog.ShowDialog((IWin32Window)this.FindForm()) != DialogResult.OK)
                 return;
-            WebBrowser webBrowser1 = null;
+            //WebBrowser webBrowser1 = null;
 
             string return_file_name = "";
             string tableName = "V6MAPINFO";
@@ -297,21 +292,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             PdfDocument pdfDocument1 = PdfDocument.Load(return_file_name);
                             using (PrintDocument printDocument = pdfDocument1.CreatePrintDocument(PdfPrintMode.ShrinkToMargin))
                             {
-                                printDocument.PrinterSettings = printDialog.PrinterSettings;
-                                printDialog.Document = printDocument;
-                                //printDialog.AllowSomePages = true;
+                                printDocument.PrinterSettings = printerst;
                                 //printDialog.Document = printDocument;
+                                //printDialog.AllowSomePages = true;
+                                //printDocument = printDocument;
                                 //printDialog.UseEXDialog = true;
-                                //printDialog.Document.PrinterSettings.FromPage = 1;
-                                //printDialog.Document.PrinterSettings.ToPage = pdfViewer1.Document.PageCount;
-                                printDialog.Document.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
-                                printDialog.Document.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
+                                //printDocument.PrinterSettings.FromPage = 1;
+                                //printDocument.PrinterSettings.ToPage = pdfViewer1.Document.PageCount;
+                                printDocument.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
+                                printDocument.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
                                 try
                                 {
-                                    if (printDialog.Document.PrinterSettings.FromPage <= pdfDocument1.PageCount)
+                                    if (printDocument.PrinterSettings.FromPage <= pdfDocument1.PageCount)
                                     {
-                                        printDialog.Document.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
-                                        printDialog.Document.Print();
+                                        printDocument.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
+                                        printDocument.Print();
                                     }
                                 }
                                 catch(Exception ex)
@@ -324,33 +319,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else if (ext == ".html")
                         {
-                            var setPrinterOk = PrinterStatus.SetDefaultPrinter(printDialog.PrinterSettings.PrinterName);
                             HtmlViewerForm view = new HtmlViewerForm(return_file_name, return_file_name, true);
                             view.AutoPrint = true;
                             view.ShowDialog(this);
-
-                            //webBrowser1.Navigate(return_file_name);
-                            //while(webBrowser1.ReadyState != WebBrowserReadyState.Complete)
-                            //{
-                            //    //Application.DoEvents();
-                            //    Thread.Sleep(1000);
-                            //}
-                            //webBrowser1.Print();
-
-                            //// Create a WebBrowser instance. 
-                            //webBrowser1 = new WebBrowser();
-                            //// Add an event handler that prints the document after it loads.
-                            //webBrowser1.DocumentCompleted += (sender, args) =>
-                            //{
-                            //    // Print the document now that it is fully loaded.
-                            //    ((WebBrowser)sender).Print();
-                            //    // Dispose the WebBrowser now that the task is complete. 
-                            //    ((WebBrowser)sender).Dispose();
-                            //};
-                            //// Set the Url property to load the document.
-                            //webBrowser1.Url = new Uri(return_file_name);
-                        
-
                         }
 
                         

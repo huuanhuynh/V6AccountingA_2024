@@ -6688,6 +6688,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\InChungTuViewBase.resx">
       <DependentUpon>InChungTuViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocKetQuaPhieuChi.resx">
       <DependentUpon>LocKetQuaPhieuChi.cs</DependentUpon>
@@ -6892,6 +6893,7 @@
     <EmbeddedResource Include="FormManager\ReportManager\Add_Edit\Report1.rdlc" />
     <EmbeddedResource Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.resx">
       <DependentUpon>DanhMucReportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_IXB_IN1.resx">
       <DependentUpon>AAPPR_IXB_IN1.cs</DependentUpon>
@@ -8005,9 +8007,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportD\ReportD99ViewBase.resx">
       <DependentUpon>ReportD99ViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportD\ReportDViewBase.resx">
       <DependentUpon>ReportDViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AARCD2.resx">
       <DependentUpon>AARCD2.cs</DependentUpon>
@@ -8128,39 +8132,50 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR45db2ViewBase.resx">
       <DependentUpon>ReportR45db2ViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR47Container.resx">
       <DependentUpon>ReportR47Container.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR47ViewBase.resx">
       <DependentUpon>ReportR47ViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR45ViewBase.resx">
       <DependentUpon>ReportR45ViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.resx">
       <DependentUpon>ReportRWWView2Base.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRView2Base.resx">
       <DependentUpon>ReportRView2Base.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR44ViewBase.resx">
       <DependentUpon>ReportR44ViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportTreeViewBase.resx">
       <DependentUpon>ReportTreeViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRViewBase.resx">
       <DependentUpon>ReportRViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\SoDu\SoDu2ReportForm.resx">
       <DependentUpon>SoDu2ReportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\SoDu\SoDu1ReportForm.resx">
       <DependentUpon>SoDu1ReportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\SoDu\SoDuReportForm_Old.resx">
       <DependentUpon>SoDuReportForm_Old.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL_F4.resx">
       <DependentUpon>AAPPR_XULY_ALL_F4.cs</DependentUpon>
@@ -8176,6 +8191,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F10.resx">
       <DependentUpon>AAPPR_IND_F10.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.resx">
       <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>

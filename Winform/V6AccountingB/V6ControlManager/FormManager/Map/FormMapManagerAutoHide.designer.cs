@@ -60,7 +60,6 @@
             this.menuPic2Report = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPictureReport = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip_Pic1.SuspendLayout();
             this.panel1_Image.SuspendLayout();
@@ -210,7 +209,7 @@
             this.contextMenuStrip_Reload.Name = "contextMenuStrip2";
             this.contextMenuStrip_Reload.Size = new System.Drawing.Size(111, 26);
             // 
-            // reloadToolStripMenuItem
+            // reloadMenu
             // 
             this.reloadMenu.AccessibleDescription = "REPORTM00010";
             this.reloadMenu.Name = "reloadMenu";
@@ -407,7 +406,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_DataGrid;
         private System.Windows.Forms.ToolStripMenuItem exportToExcel;
         private System.Windows.Forms.ToolStripMenuItem printGrid;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Reload;
         private System.Windows.Forms.ToolStripMenuItem reloadMenu;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Pic1;

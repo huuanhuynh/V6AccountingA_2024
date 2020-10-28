@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.txtSo_the_ts = new V6Controls.V6VvarTextBox();
             this.v6Label1 = new V6Controls.V6Label();
@@ -824,7 +823,6 @@
 
         #endregion
 
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;

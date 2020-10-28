@@ -31,7 +31,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.v6Label17 = new V6Controls.V6Label();
             this.v6Label16 = new V6Controls.V6Label();
@@ -741,7 +740,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         #endregion
 
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.Timer timerViewReport;
         private V6Controls.V6Label v6Label17;
         private V6Controls.V6Label v6Label16;

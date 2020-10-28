@@ -56,7 +56,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.rTienViet = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.txtReportTitle = new System.Windows.Forms.TextBox();
@@ -592,7 +591,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private System.Windows.Forms.GroupBox grbTienTe;
         private System.Windows.Forms.RadioButton rNgoaiTe;
         private System.Windows.Forms.RadioButton rTienViet;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.Panel panel0;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolTip toolTip1;

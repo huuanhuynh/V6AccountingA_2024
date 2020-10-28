@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -35,7 +33,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         public decimal TTT_NT { get; set; }
         public string MA_NT { get; set; }
 
-        DataGridViewPrinter _myDataGridViewPrinter;
         private ReportDocument _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40;
 
         private string _reportProcedure;
@@ -1535,9 +1532,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             _executing = false;
         }
 
-        //private bool _forcePrint;
         public string PrinterName { get; set; }
-        public PrintDialog printDialog = null;
         private int _soLienIn = 1, _printCopy = 1;
         
         public int PrintCopies
@@ -1870,37 +1865,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
         
 
-        private bool SetupThePrinting()
-        {
-            PrintDialog myPrintDialog = new PrintDialog();
-            myPrintDialog.AllowCurrentPage = false;
-            myPrintDialog.AllowPrintToFile = false;
-            myPrintDialog.AllowSelection = false;
-            myPrintDialog.AllowSomePages = false;
-            myPrintDialog.PrintToFile = false;
-            myPrintDialog.ShowHelp = false;
-            myPrintDialog.ShowNetwork = false;
-
-            if (myPrintDialog.ShowDialog(this) != DialogResult.OK)
-                return false;
-
-            MyPrintDocument.DocumentName = Text;
-            MyPrintDocument.PrinterSettings = myPrintDialog.PrinterSettings;
-            MyPrintDocument.DefaultPageSettings = myPrintDialog.PrinterSettings.DefaultPageSettings;
-            MyPrintDocument.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
-
-            _myDataGridViewPrinter = new DataGridViewPrinter(dataGridView1, MyPrintDocument,
-                this.ShowConfirmMessage("PrintAlignmentCenter") == DialogResult.Yes,
-                true, Text, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
-
-            return true;
-        }
-        private void MyPrintDocument_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            bool more = _myDataGridViewPrinter.DrawDataGridView(e.Graphics);
-            if (more)
-                e.HasMorePages = true;
-        }
         private void printGrid_Click(object sender, EventArgs e)
         {
             if (_tbl_AD == null)
@@ -1910,11 +1874,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             try
             {
-                MyPrintDocument.PrintPage += MyPrintDocument_PrintPage;
-                if (SetupThePrinting())
-                {
-                    MyPrintDocument.Print();
-                }
+                V6ControlFormHelper.PrintGridView(dataGridView1);
             }
             catch (Exception ex)
             {
@@ -2198,10 +2158,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             int intDaGuiDenMayIn = 0;
             bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
-            var setPrinterOk = PrinterStatus.SetDefaultPrinter(printerName);
-            var printerError = string.Compare("Error", PrinterStatus.getDefaultPrinterProperties("Status"), StringComparison.OrdinalIgnoreCase) == 0;
-
-            if (setPrinterOk && printerOnline && !printerError)
+            
+            if (printerOnline)
             {
                 try
                 {
@@ -2209,19 +2167,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         try
                         {
-                            if (printDialog != null)
+                            if (V6ControlFormHelper.PrinterSettings != null)
                             {
-                                rpDoc.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                                rpDoc.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                                V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc);
                             }
-                            if (IsInvoice)
-                            {
-                                rpDoc.PrintToPrinter(1, false, 1, 1);
-                            }
-                            else
-                            {
-                                rpDoc.PrintToPrinter(1, false, 0, 0);
-                            }
+                            if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                            rpDoc.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                             intDaGuiDenMayIn++;
                         }
                         catch (Exception ex)
@@ -2232,19 +2183,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         if (_soLienIn > 1)
                             try
                             {
-                                if (printDialog != null)
+                                if (V6ControlFormHelper.PrinterSettings != null)
                                 {
-                                    rpDoc2.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                                    rpDoc2.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc2);
                                 }
-                                if (IsInvoice)
-                                {
-                                    rpDoc2.PrintToPrinter(1, false, 1, 1);
-                                }
-                                else
-                                {
-                                    rpDoc2.PrintToPrinter(1, false, 0, 0);
-                                }
+                                if (rpDoc2.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                                rpDoc2.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                                 intDaGuiDenMayIn++;
                             }
                             catch (Exception ex)
@@ -2255,19 +2199,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             try
                             {
-                                if (printDialog != null)
+                                if (V6ControlFormHelper.PrinterSettings != null)
                                 {
-                                    rpDoc3.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                                    rpDoc3.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc3);
                                 }
-                                if (IsInvoice)
-                                {
-                                    rpDoc3.PrintToPrinter(1, false, 1, 1);
-                                }
-                                else
-                                {
-                                    rpDoc3.PrintToPrinter(1, false, 0, 0);
-                                }
+                                if (rpDoc3.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                                rpDoc3.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                                 intDaGuiDenMayIn++;
                             }
                             catch (Exception ex)
@@ -2279,19 +2216,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             try
                             {
-                                if (printDialog != null)
+                                if (V6ControlFormHelper.PrinterSettings != null)
                                 {
-                                    rpDoc4.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                                    rpDoc4.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc4);
                                 }
-                                if (IsInvoice)
-                                {
-                                    rpDoc4.PrintToPrinter(1, false, 1, 1);
-                                }
-                                else
-                                {
-                                    rpDoc4.PrintToPrinter(1, false, 0, 0);
-                                }
+                                if (rpDoc4.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                                rpDoc4.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                                 intDaGuiDenMayIn++;
                             }
                             catch (Exception ex)
@@ -2304,19 +2234,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         try
                         {
-                            if (printDialog != null)
+                            if (V6ControlFormHelper.PrinterSettings != null)
                             {
-                                rpDoc.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                                rpDoc.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                                V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc);
                             }
-                            if (IsInvoice)
-                            {
-                                rpDoc.PrintToPrinter(_soLienIn, false, 1, 1);
-                            }
-                            else
-                            {
-                                rpDoc.PrintToPrinter(_soLienIn*_printCopy, false, 0, 0);
-                            }
+                            if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                            rpDoc.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                             intDaGuiDenMayIn = _soLienIn;
                         }
                         catch (Exception ex)
@@ -2348,9 +2271,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 btnIn.Enabled = true;
                 this.ShowErrorMessage(string.Format("{0} {1}", GetType(), V6Text.Text("PRINTERAE")));
             }
-            //reset default printer
-            //try { V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter); }
-            //catch { }
         }
         
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -2514,39 +2434,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
 
                 _soLienIn = (int) numSoLien.Value;
-                //if (!IsInvoice)
-                //{
-                //    crystalReportViewer1.PrintReport();
-                //    return;
-                //}
-
-                var dfp = DefaultPrinter;
+                
                 if (string.IsNullOrEmpty(PrinterName))
                 {
                     _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
 
-                    printDialog = new PrintDialog();
-                    printDialog.Document = new PrintDocument();
-                    printDialog.PrinterSettings.PrinterName = dfp;
-                    printDialog.AllowCurrentPage = false;
-                    printDialog.AllowPrintToFile = false;
-                    printDialog.AllowSelection = false;
-                    printDialog.AllowSomePages = false;
-                    printDialog.PrintToFile = false;
-                    printDialog.UseEXDialog = true; //Fix win7
-
-                    DialogResult dr = printDialog.ShowDialog(this);
-                    if (dr == DialogResult.OK)
+                    var printerst = V6ControlFormHelper.ChoosePrinter(this, DefaultPrinter);
+                    if (printerst != null)
                     {
-                        var selectedPrinter = printDialog.PrinterSettings.PrinterName;
-                        _printCopy = printDialog.PrinterSettings.Copies;
-
+                        var selectedPrinter = printerst.PrinterName;
+                        _printCopy = printerst.Copies;
+                        V6ControlFormHelper.SetCrystalReportPrinterOptions(printerst, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
                         V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
                         //printting = true;
                         Print(selectedPrinter, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
                         PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
 
-                        if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
+                        if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != DefaultPrinter)
                         {
                             print_one = true;
                             DefaultPrinter = selectedPrinter;
@@ -2592,52 +2496,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     }
                 }
 
-                var dfp = DefaultPrinter;
-                
                 _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
 
-                printDialog = new PrintDialog();
-                printDialog.Document = new PrintDocument();
-                printDialog.PrinterSettings.PrinterName = dfp;
-                printDialog.AllowCurrentPage = false;
-                printDialog.AllowPrintToFile = false;
-                printDialog.AllowSelection = false;
-                printDialog.AllowSomePages = false;
-                printDialog.PrintToFile = false;
-                printDialog.UseEXDialog = true; //Fix win7
-
-                DialogResult dr = printDialog.ShowDialog(this);
-                if (dr == DialogResult.OK)
+                
+                var printerst = V6ControlFormHelper.ChoosePrinter(this, DefaultPrinter);
+                if (printerst != null)
                 {
-                    var selectedPrinter = printDialog.PrinterSettings.PrinterName;
-                    _printCopy = printDialog.PrinterSettings.Copies;
-                    var setPrinterOk = PrinterStatus.SetDefaultPrinter(selectedPrinter);
-
-                    V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
-
+                    var selectedPrinter = printerst.PrinterName;
+                    _printCopy = printerst.Copies;
+                    
                     var rpDoc = _rpDoc0;
                     if (sender == inLien1Menu) rpDoc = _rpDoc0;
                     if (sender == inLien2Menu) rpDoc = _rpDoc20;
                     if (sender == inLien3Menu) rpDoc = _rpDoc30;
                     if (sender == inLien4Menu) rpDoc = _rpDoc40;
                     
-                    if (printDialog != null)
-                    {
-                        rpDoc.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                        rpDoc.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
-                    }
-                    if (IsInvoice)
-                    {
-                        rpDoc.PrintToPrinter(_printCopy, false, 1, 1);
-                    }
-                    else
-                    {
-                        rpDoc.PrintToPrinter(_printCopy, false, 0, 0);
-                    }
+                    V6ControlFormHelper.SetCrystalReportPrinterOptions(printerst, rpDoc);
+                    if (_rpDoc0.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(selectedPrinter);
+                    V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
+                    rpDoc.PrintToPrinter(_printCopy, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
+                    if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
 
-                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
-
-                    if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
+                    if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != DefaultPrinter)
                     {
                         print_one = true;
                         DefaultPrinter = selectedPrinter;
@@ -2646,7 +2526,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             catch (Exception ex)
             {
-                PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                if (_rpDoc0.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 
                 this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name + ((ToolStripMenuItem)sender).Name, ex);
             }

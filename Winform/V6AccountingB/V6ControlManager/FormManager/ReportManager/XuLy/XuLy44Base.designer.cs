@@ -38,7 +38,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
@@ -286,7 +285,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelMenu;
         private System.Windows.Forms.ToolStripMenuItem printGridMenu;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         protected System.Windows.Forms.Timer timerViewReport;
         public System.Windows.Forms.Panel panel1;
         protected V6Controls.V6ColorDataGridView dataGridView1;

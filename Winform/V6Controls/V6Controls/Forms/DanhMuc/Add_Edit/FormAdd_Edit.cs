@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
 using System.Windows.Forms;
-using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
 
@@ -13,12 +10,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         public Control _fatherControl;
         public AddEditControlVirtual FormControl;
-        private readonly V6TableName _tableName0 = V6TableName.None;
-        private V6Mode _mode;
-        private IDictionary<string, object> _keys;
-        private IDictionary<string, object> _data;
+        private readonly V6Mode _mode;
+        private readonly IDictionary<string, object> _keys;
+        private readonly IDictionary<string, object> _data;
         private readonly string _MA_DM;
-        //private string _tableView;//use _aldmConfig;
         
         public event HandleResultData InsertSuccessEvent;
         public event HandleResultData UpdateSuccessEvent;
@@ -29,14 +24,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             var handler = AfterInitControl;
             if (handler != null) handler(FormControl, EventArgs.Empty);
         }
-
-        /// <summary>
-        /// No_use
-        /// </summary>
-        //protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        //protected Type Event_program;
-        //protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-        
 
         /// <summary>
         /// Khởi tạo form / không sử dụng.
@@ -53,9 +40,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <param name="mode">V6Mode.Add hoặc V6Mode.Edit</param>
         /// <param name="keys">Khóa để sửa, dùng để load oldData nếu tham số (data) null.</param>
         /// <param name="data">Dữ liệu cũ sẽ gán lên form. Nếu null load bằng keys nếu có.</param>
-        public FormAddEdit(V6TableName tableName, V6Mode mode = V6Mode.Add,
-            IDictionary<string, object> keys = null,
-            IDictionary<string, object> data = null)
+        public FormAddEdit(V6TableName tableName, V6Mode mode, IDictionary<string, object> keys, IDictionary<string, object> data)
         {
             _MA_DM = tableName.ToString();
             _mode = mode;
@@ -74,9 +59,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <param name="mode"></param>
         /// <param name="keys">Khóa lấy dữ liệu</param>
         /// <param name="data">Hoặc dữ liệu có sẵn</param>
-        public FormAddEdit(string ma_dm, V6Mode mode = V6Mode.Add,
-            IDictionary<string, object> keys = null,
-            IDictionary<string, object> data = null)
+        public FormAddEdit(string ma_dm, V6Mode mode = V6Mode.Add, IDictionary<string, object> keys = null, IDictionary<string, object> data = null)
         {
             _MA_DM = ma_dm;
             _mode = mode;
@@ -158,8 +141,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             keys_string += " " + item.Value;
                         }
                     }
-                    if (!string.IsNullOrEmpty(keys_string))
-                    ((NoRightAddEdit)FormControl).NoRightInfo = keys_string;
+                    if (!string.IsNullOrEmpty(keys_string)) ((NoRightAddEdit)FormControl).NoRightInfo = keys_string;
                 }
 
                 OnAfterInitControl();
@@ -180,26 +162,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.ShowErrorException(GetType() + ".InitFormControl", ex);
             }
         }
-
-        private void LoadAldmConfig()
-        {
-            try
-            {
-                _aldmConfig = ConfigManager.GetAldmConfig(_MA_DM);
-                //if (_aldmConfig.HaveInfo)
-                //{
-                //    if (_aldmConfig.IS_ALDM)
-                //    {
-                //        Text = FormControl.Mode + " - " + (V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2);
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".LoadAldmConfig", ex);
-            }
-        }
-
+        
         private void MyInit()
         {
             try

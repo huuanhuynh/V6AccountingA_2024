@@ -873,53 +873,17 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             
         }
 
-        private bool SetupThePrinting()
-        {
-            PrintDialog MyPrintDialog = new PrintDialog();
-            MyPrintDialog.AllowCurrentPage = false;
-            MyPrintDialog.AllowPrintToFile = false;
-            MyPrintDialog.AllowSelection = false;
-            MyPrintDialog.AllowSomePages = false;
-            MyPrintDialog.PrintToFile = false;
-            MyPrintDialog.ShowHelp = false;
-            MyPrintDialog.ShowNetwork = false;
-
-            if (MyPrintDialog.ShowDialog(this) != DialogResult.OK)
-                return false;
-
-            MyPrintDocument.DocumentName = Text;
-            MyPrintDocument.PrinterSettings = MyPrintDialog.PrinterSettings;
-            MyPrintDocument.DefaultPageSettings = MyPrintDialog.PrinterSettings.DefaultPageSettings;
-            MyPrintDocument.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
-
-            MyDataGridViewPrinter = new DataGridViewPrinter(dataGridView1, MyPrintDocument,
-                this.ShowConfirmMessage("PrintAlignmentCenter") == DialogResult.Yes,
-                true, Text, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
-
-            return true;
-        }
-
-        private void MyPrintDocument_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            bool more = MyDataGridViewPrinter.DrawDataGridView(e.Graphics);
-            if (more)
-                e.HasMorePages = true;
-        }
-
         private void printGrid_Click(object sender, EventArgs e)
         {
             if (_tbl == null)
             {
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
 
             try
             {
-                MyPrintDocument.PrintPage += new PrintPageEventHandler(MyPrintDocument_PrintPage);
-                if (SetupThePrinting())
-                {
-                    MyPrintDocument.Print();
-                }
+                V6ControlFormHelper.PrintGridView(dataGridView1);
             }
             catch (Exception ex)
             {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -31,7 +30,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
     public partial class ReportRViewBase : V6FormControl
     {
         #region Biến toàn cục
-        DataGridViewPrinter _myDataGridViewPrinter;
         private ReportDocument _rpDoc0;
 
         private string _reportProcedure;
@@ -1194,23 +1192,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void Print(string printerName, ReportDocument rpDoc)
         {
-            int intDaGuiDenMayIn = 0;
             bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
-            var setPrinterOk = PrinterStatus.SetDefaultPrinter(printerName);
-            var printerError = string.Compare("Error", PrinterStatus.getDefaultPrinterProperties("Status"), StringComparison.OrdinalIgnoreCase) == 0;
-
-            if (setPrinterOk && printerOnline && !printerError)
+            
+            if (printerOnline)
             {
                 try
                 {
-                    rpDoc.PrintToPrinter(_printCopy, false, 0, 0);
-
-                    //if (!xemMau)
-                    //    timer1.Start();
-                    
-                        //xong = true;
-                        CallPrintSuccessEvent();
-                    
+                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc);
+                    V6ControlFormHelper.PrintRptToPrinter(rpDoc, printerName, _printCopy, 0, 0);
+                    CallPrintSuccessEvent();
                 }
                 catch (Exception ex)
                 {
@@ -1219,29 +1209,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             else
             {
-                //isInHoaDonClicked = false;
                 btnIn.Enabled = true;
                 this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
             }
-            //reset default printer
-            //try { V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter); }
-            //catch { }
         }
 
-        //private void FormatGridViewBoldColor()
-        //{
-        //    try
-        //    {
-        //        string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-        //        object VALUEV;
-        //        V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
-        //        V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.WriteExLog(GetType() + ".FormatGridViewBoldColor", ex);
-        //    }
-        //}
 
         private void FormatGridView()
         {
@@ -1374,37 +1346,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         
         
 
-        private bool SetupThePrinting()
-        {
-            PrintDialog myPrintDialog = new PrintDialog();
-            myPrintDialog.AllowCurrentPage = false;
-            myPrintDialog.AllowPrintToFile = false;
-            myPrintDialog.AllowSelection = false;
-            myPrintDialog.AllowSomePages = false;
-            myPrintDialog.PrintToFile = false;
-            myPrintDialog.ShowHelp = false;
-            myPrintDialog.ShowNetwork = false;
-
-            if (myPrintDialog.ShowDialog(this) != DialogResult.OK)
-                return false;
-
-            MyPrintDocument.DocumentName = Text;
-            MyPrintDocument.PrinterSettings = myPrintDialog.PrinterSettings;
-            MyPrintDocument.DefaultPageSettings = myPrintDialog.PrinterSettings.DefaultPageSettings;
-            MyPrintDocument.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
-
-            _myDataGridViewPrinter = new DataGridViewPrinter(dataGridView1, MyPrintDocument,
-                this.ShowConfirmMessage("PrintAlignmentCenter") == DialogResult.Yes,
-                true, Text, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
-
-            return true;
-        }
-        private void MyPrintDocument_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            bool more = _myDataGridViewPrinter.DrawDataGridView(e.Graphics);
-            if (more)
-                e.HasMorePages = true;
-        }
         private void printGrid_Click(object sender, EventArgs e)
         {
             if (_tbl1 == null)
@@ -1414,11 +1355,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             try
             {
-                MyPrintDocument.PrintPage += MyPrintDocument_PrintPage;
-                if (SetupThePrinting())
-                {
-                    MyPrintDocument.Print();
-                }
+                V6ControlFormHelper.PrintGridView(dataGridView1);
             }
             catch (Exception ex)
             {
@@ -1841,12 +1778,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 //return;
 
                 //in có kiểm soát.
-                var dfp = DefaultPrinter;
-                var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc0, dfp);
+                var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc0, DefaultPrinter);
                 if (!string.IsNullOrEmpty(selectedPrinter))
                 {
                     print_one = true;
-                    if (selectedPrinter != dfp)
+                    if (selectedPrinter != DefaultPrinter)
                     {
                         DefaultPrinter = selectedPrinter;
                     }

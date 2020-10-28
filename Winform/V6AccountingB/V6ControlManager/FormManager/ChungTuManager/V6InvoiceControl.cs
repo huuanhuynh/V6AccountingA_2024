@@ -419,7 +419,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var data = V6BusinessHelper.ExecuteProcedure("VPA_SET_EDIT_READONLY_ALL", plist).Tables[0];
                     if (container is HD_Detail)
                     {
-                        string L_FIELD_N = "L_FIELDS" + container.Name.Right(1);
+                        string L_FIELD_N = "L_FIELDS" + container.Name.Right(1);    // L_FIELDS+1 với 1 là stt detail control.
                         if (data.Columns.Contains(L_FIELD_N) && data.Rows.Count > 0)
                         {
                             edit_readonly.AddRange(ObjectAndString.SplitString(data.Rows[0][L_FIELD_N].ToString()));

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
@@ -206,7 +205,6 @@
 
         #endregion
 
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;

@@ -46,7 +46,7 @@
 	<ItemInfo	Field='Amount'	FieldV6='tien2'	Type='Field'/>
 	<ItemInfo	Field='TaxRateID'	Value='1'	DataType='Int'	FieldV6='TaxRateID'	Type='Field'	Note='1	0%, 2	5%, 3	10%, 4	Không chịu thuế, 5	Không kê khai thuế, 6 Khác'/>
 	<ItemInfo	Field='TaxAmount'	FieldV6='thue'	Type='Field'/>
-	<ItemInfo	Field='IsDiscount'	FieldV6='ck'	Type='Field'	DataType='Bool'/>
+	<ItemInfo	Field='IsDiscount'	FieldV6='ISDISCOUNT'	Type='Field'	DataType='Bool'/>
 	<ItemInfo	Field='UserDefineDetails'	Value='string đối tượng dạng json hoặc xml'	FieldV6='GC_TD1'	Type='Field'/>
 	<ItemInfo	Field='IsIncrease'	FieldV6='GC_TD1'	Note='Dùng mã lệnh 121: Điều chỉnh thì Báo tăng là True, Báo giảm là False'	DataType='Bool'	Type='Field'/>
 	

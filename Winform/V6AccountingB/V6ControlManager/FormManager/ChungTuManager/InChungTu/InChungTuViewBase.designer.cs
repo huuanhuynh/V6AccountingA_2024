@@ -63,7 +63,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.rTienViet = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.txtReportTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -831,7 +830,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.GroupBox grbTienTe;
         private System.Windows.Forms.RadioButton rNgoaiTe;
         private System.Windows.Forms.RadioButton rTienViet;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.Panel panel0;
         private System.Windows.Forms.Timer timerViewReport;
         private System.Windows.Forms.GroupBox grbNgonNgu;

@@ -11,7 +11,6 @@ using CrystalDecisions.CrystalReports.Engine;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager;
-using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
@@ -253,7 +252,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private SortedDictionary<string, string> _extraInfor = null;
+        private SortedDictionary<string, string> _extraInfor;
 
         private void GetExtraInfor()
         {
@@ -1184,23 +1183,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void Print(string printerName)
         {
-            int intDaGuiDenMayIn = 0;
             bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
-            var setPrinterOk = PrinterStatus.SetDefaultPrinter(printerName);
-            var printerError = string.Compare("Error", PrinterStatus.getDefaultPrinterProperties("Status"), StringComparison.OrdinalIgnoreCase) == 0;
-
-            if (setPrinterOk && printerOnline && !printerError)
+            
+            if (printerOnline)
             {
                 try
                 {
-                    _rpDoc0.PrintToPrinter(_printCopy, false, 0, 0);
-
-                    //if (!xemMau)
-                    //    timer1.Start();
-                    
-                        //xong = true;
-                        CallPrintSuccessEvent();
-                    
+                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, _rpDoc0);
+                    V6ControlFormHelper.PrintRptToPrinter(_rpDoc0, printerName, _printCopy, 0, 0);
+                    CallPrintSuccessEvent();
                 }
                 catch (Exception ex)
                 {
@@ -1209,13 +1200,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             else
             {
-                //isInHoaDonClicked = false;
                 btnIn.Enabled = true;
                 this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
             }
-            //reset default printer
-            //try { V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter); }
-            //catch { }
         }
 
         private void FormatGridView()
@@ -1598,14 +1585,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            if (FilterControl.GridViewHideFields != null && FilterControl.GridViewHideFields.ContainsKey(e.Column.DataPropertyName.ToUpper()))
-            {
-                e.Column.Visible = false;
-            }
-        }
-
         private void btnIn_Click(object sender, EventArgs e)
         {
             try
@@ -1639,7 +1618,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private bool _updateDataRow = false;
+        private bool _updateDataRow;
         private void cboMauIn_SelectedIndexChanged (object sender, EventArgs e)
         {
             if (!IsReady) return;

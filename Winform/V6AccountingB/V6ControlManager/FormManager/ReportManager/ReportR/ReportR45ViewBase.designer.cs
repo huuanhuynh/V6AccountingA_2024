@@ -44,7 +44,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.cboMauIn = new V6Controls.V6ComboBox();
             this.lblNguoiLapBieu = new System.Windows.Forms.Label();
@@ -637,7 +636,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.GroupBox grbTienTe;
         private System.Windows.Forms.RadioButton rNgoaiTe;
         private System.Windows.Forms.RadioButton rTienViet;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.Panel panel0;
         private System.Windows.Forms.Timer timerViewReport;
         private System.Windows.Forms.GroupBox grbNgonNgu;

@@ -113,7 +113,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             //printview.Document = document;
             //printview.ShowDialog(owner);
 
-            PrintDialog printdialog1 = new PrintDialog();
+            PrintDialog printdialog1 = new PrintDialog( );
             printdialog1.AllowPrintToFile = true;
             printdialog1.PrintToFile = false;
             printdialog1.AllowSelection = false;

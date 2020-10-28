@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -21,7 +20,6 @@ using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
-using V6ReportControls;
 using V6RptEditor;
 using V6Structs;
 using V6Tools;
@@ -32,7 +30,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
     public partial class ReportD99ViewBase : V6FormControl
     {
         #region ==== Biến toàn cục ====
-        DataGridViewPrinter _myDataGridViewPrinter;
         private ReportDocument _rpDoc0;
 
         private string _reportProcedure;
@@ -1309,37 +1306,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         
         
 
-        private bool SetupThePrinting()
-        {
-            PrintDialog myPrintDialog = new PrintDialog();
-            myPrintDialog.AllowCurrentPage = false;
-            myPrintDialog.AllowPrintToFile = false;
-            myPrintDialog.AllowSelection = false;
-            myPrintDialog.AllowSomePages = false;
-            myPrintDialog.PrintToFile = false;
-            myPrintDialog.ShowHelp = false;
-            myPrintDialog.ShowNetwork = false;
-
-            if (myPrintDialog.ShowDialog(this) != DialogResult.OK)
-                return false;
-
-            MyPrintDocument.DocumentName = Text;
-            MyPrintDocument.PrinterSettings = myPrintDialog.PrinterSettings;
-            MyPrintDocument.DefaultPageSettings = myPrintDialog.PrinterSettings.DefaultPageSettings;
-            MyPrintDocument.DefaultPageSettings.Margins = new Margins(40, 40, 40, 40);
-
-            _myDataGridViewPrinter = new DataGridViewPrinter(dataGridView1, MyPrintDocument,
-                this.ShowConfirmMessage("PrintAlignmentCenter") == DialogResult.Yes,
-                true, Text, new Font("Tahoma", 18, FontStyle.Bold, GraphicsUnit.Point), Color.Black, true);
-
-            return true;
-        }
-        private void MyPrintDocument_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            bool more = _myDataGridViewPrinter.DrawDataGridView(e.Graphics);
-            if (more)
-                e.HasMorePages = true;
-        }
         private void printGrid_Click(object sender, EventArgs e)
         {
             if (_tbl == null)
@@ -1349,11 +1315,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
             try
             {
-                MyPrintDocument.PrintPage += MyPrintDocument_PrintPage;
-                if (SetupThePrinting())
-                {
-                    MyPrintDocument.Print();
-                }
+                V6ControlFormHelper.PrintGridView(dataGridView1);
             }
             catch (Exception ex)
             {
@@ -1741,15 +1703,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 }
 
                 crystalReportViewer1.PrintReport();
-                //return;
-
-                //var dfp = DefaultPrinter;
-                //var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc0, dfp);
-                //if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
-                //{
-                //    print_one = true;
-                //    DefaultPrinter = selectedPrinter;
-                //}
             }
             catch (Exception ex)
             {
