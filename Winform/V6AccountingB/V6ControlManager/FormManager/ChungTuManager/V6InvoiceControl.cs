@@ -5046,84 +5046,97 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="newData">Dữ liệu mới. null nếu xóa.</param>
         protected void UpdateDetailChangeLog(string stt_rec0, Dictionary<string, AlctControls> controlList1, IDictionary<string, object> oldData, IDictionary<string, object> newData)
         {
-            if (oldData == null) // add
-            {
-                SortedDictionary<string, object> newData1 = new SortedDictionary<string, object>();
-                foreach (KeyValuePair<string, AlctControls> item in controlList1)
-                {
-                    string KEY = item.Key.ToUpper();
-                    if (item.Value.IsVisible && item.Value.DetailControl.Enabled && newData.ContainsKey(KEY))
-                    {
-                        if (!ObjectAndString.IsNoValue(newData[KEY]))
-                        {
-                            newData1[KEY] = newData[KEY];
-                        }
-                    }
-                }
+            // Tuanmh 30/10/2020 Ignore
+            //return;
+            if (Mode != V6Mode.Edit) return;                                    // Chỉ chạy mode Edit.
+            if (!V6Options.SaveEditLogInvoice || !_invoice.WRITE_LOG) return;   // Cho phép lưu log trong setting.
 
-                editLogData["ADD_" + stt_rec0] = new OldNewData() {OldData = null, NewData = newData1};
-            }
-            else if (newData == null) // delete
+            try
             {
-                SortedDictionary<string, object> oldData1 = new SortedDictionary<string, object>();
-                foreach (KeyValuePair<string, AlctControls> item in controlList1)
+                if (oldData == null) // add
                 {
-                    string KEY = item.Key.ToUpper();
-                    if (item.Value.IsVisible && item.Value.DetailControl.Enabled && oldData.ContainsKey(KEY))
-                    {
-                        if (!ObjectAndString.IsNoValue(oldData[KEY]))
-                        {
-                            oldData1[KEY] = oldData[KEY];
-                        }
-                    }
-                }
-
-                editLogData["DELETE_" + stt_rec0] = new OldNewData() {OldData = oldData1, NewData = null};
-            }
-            else // edit
-            {
-                if (editLogData.ContainsKey("EDIT_" + stt_rec0))
-                {
-                    IDictionary<string, object> newData1 = new Dictionary<string, object>();
+                    SortedDictionary<string, object> newData1 = new SortedDictionary<string, object>();
                     foreach (KeyValuePair<string, AlctControls> item in controlList1)
                     {
-                        if (item.Value.IsVisible && item.Value.DetailControl.Enabled)
+                        string KEY = item.Key.ToUpper();
+                        if (item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled && newData.ContainsKey(KEY))
                         {
-                            string FIELD = item.Key.ToUpper();
-                            newData1[FIELD] = newData[FIELD];
+                            if (!ObjectAndString.IsNoValue(newData[KEY]))
+                            {
+                                newData1[KEY] = newData[KEY];
+                            }
                         }
                     }
 
-                    editLogData["EDIT_" + stt_rec0].NewData = newData1;
+                    editLogData["ADD_" + stt_rec0] = new OldNewData() {OldData = null, NewData = newData1};
                 }
-                else
+                else if (newData == null) // delete
                 {
-                    IDictionary<string, object> oldData1 = new Dictionary<string, object>();
-                    IDictionary<string, object> newData1 = new Dictionary<string, object>();
+                    SortedDictionary<string, object> oldData1 = new SortedDictionary<string, object>();
                     foreach (KeyValuePair<string, AlctControls> item in controlList1)
                     {
-                        if (item.Value.IsVisible && item.Value.DetailControl.Enabled)
+                        string KEY = item.Key.ToUpper();
+                        if (item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled && oldData.ContainsKey(KEY))
                         {
-                            string FIELD = item.Key.ToUpper();
-                            oldData1[FIELD] = oldData[FIELD];
-                            newData1[FIELD] = newData[FIELD];
+                            if (!ObjectAndString.IsNoValue(oldData[KEY]))
+                            {
+                                oldData1[KEY] = oldData[KEY];
+                            }
                         }
                     }
 
-                    editLogData["EDIT_" + stt_rec0] = new OldNewData() {OldData = oldData1, NewData = newData1};
+                    editLogData["DELETE_" + stt_rec0] = new OldNewData() {OldData = oldData1, NewData = null};
                 }
+                else // edit
+                {
+                    if (editLogData.ContainsKey("EDIT_" + stt_rec0))
+                    {
+                        IDictionary<string, object> newData1 = new Dictionary<string, object>();
+                        foreach (KeyValuePair<string, AlctControls> item in controlList1)
+                        {
+                            if (item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled)
+                            {
+                                string FIELD = item.Key.ToUpper();
+                                newData1[FIELD] = newData[FIELD];
+                            }
+                        }
+
+                        editLogData["EDIT_" + stt_rec0].NewData = newData1;
+                    }
+                    else
+                    {
+                        IDictionary<string, object> oldData1 = new Dictionary<string, object>();
+                        IDictionary<string, object> newData1 = new Dictionary<string, object>();
+                        foreach (KeyValuePair<string, AlctControls> item in controlList1)
+                        {
+                            if (item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled)
+                            {
+                                string FIELD = item.Key.ToUpper();
+                                oldData1[FIELD] = oldData[FIELD];
+                                newData1[FIELD] = newData[FIELD];
+                            }
+                        }
+
+                        editLogData["EDIT_" + stt_rec0] = new OldNewData() {OldData = oldData1, NewData = newData1};
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".UpdateDetailChangeLog", ex);
             }
         }
 
         public void InitEditLog()
         {
+            if (!V6Options.SaveEditLogInvoice || !_invoice.WRITE_LOG) return;   // Cho phép lưu log trong setting.
             editLogData = new Dictionary<string, OldNewData>();
         }
 
         /// <summary>
         /// stt_rec0 add?edit?delete data
         /// </summary>
-        private Dictionary<string, OldNewData> editLogData;
+        private Dictionary<string, OldNewData> editLogData = new Dictionary<string, OldNewData>();
 
         private class OldNewData
         {
