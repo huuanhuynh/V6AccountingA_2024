@@ -41,7 +41,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 var mact = txtMaCt.Text;
-                var Invoice = new V6InvoiceBase(mact);
+                var Invoice = V6InvoiceBase.GetInvoiceBase(mact);
                 cboKieuPost.ValueMember = "kieu_post";
                 cboKieuPost.DisplayMember = V6Setting.Language == "V" ? "Ten_post" : "Ten_post2";
                 cboKieuPost.DataSource = Invoice.AlPost;

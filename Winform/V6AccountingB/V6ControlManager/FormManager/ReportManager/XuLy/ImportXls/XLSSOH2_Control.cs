@@ -338,8 +338,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 sumColumns = "," + sumColumns.ToUpper() + ",";
                 maxColumns = "," + maxColumns.ToUpper() + ",";
                 var am_row = _tbl.NewRow();
+                int rowindex = -1;
                 foreach (IDictionary<string, object> row in dataRows)
                 {
+                    rowindex++;
                     foreach (DataColumn column in _tbl.Columns)
                     {
                         var FIELD = column.ColumnName.ToUpper();
@@ -370,7 +372,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            am_row[FIELD] = row[FIELD];
+                            if (rowindex == 0) am_row[FIELD] = row[FIELD];
+                            else if(!ObjectAndString.IsNoValue(row[FIELD])) am_row[FIELD] = row[FIELD];
                         }
                     }
                 }

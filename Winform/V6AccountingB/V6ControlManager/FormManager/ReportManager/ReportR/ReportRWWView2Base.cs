@@ -1843,7 +1843,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 string ma_ct = row.Cells["MA_CT"].Value.ToString().Trim();
                 string stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
                 if (ma_ct == String.Empty || stt_rec == String.Empty) return;
-                new InvoiceInfosViewForm(new V6InvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
+                new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
             }
             catch (Exception ex)
             {

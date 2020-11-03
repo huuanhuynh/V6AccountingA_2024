@@ -800,7 +800,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                         }
                     }
 
-                V6InvoiceBase _invoice = new V6InvoiceBase(_maCt);
+                V6InvoiceBase _invoice = V6InvoiceBase.GetInvoiceBase(_maCt);
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _invoice.AlctConfig.GRDS_AM, _invoice.AlctConfig.GRDF_AM,
                             V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,

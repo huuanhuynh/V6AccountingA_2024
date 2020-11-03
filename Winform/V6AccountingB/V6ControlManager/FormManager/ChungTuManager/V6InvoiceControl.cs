@@ -45,7 +45,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="maCt">Chưa dùng làm gì.</param>
         public V6InvoiceControl(string maCt)
         {
-            _invoice = new V6InvoiceBase(maCt);
+            _invoice = V6InvoiceBase.GetInvoiceBase(maCt);
             //MaCt = maCt;
             InitializeComponent();
             MyInit0();

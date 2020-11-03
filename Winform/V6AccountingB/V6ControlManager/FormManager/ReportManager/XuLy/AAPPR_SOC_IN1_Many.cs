@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public AAPPR_SOC_IN1_Many(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
-            
+            //!!!!!!!!!!
         }
 
         public override void SetStatus2Text()
@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             if (hoadon_nd51 == 1)
                             {
-                                var sql = "Update Am81 Set Sl_in = Sl_in+1 Where Stt_rec=@p";
+                                var sql = "Update " + invoice.AM_TableName + " Set Sl_in = Sl_in+1 Where Stt_rec=@p";
                                 SqlConnect.ExecuteNonQuery(CommandType.Text, sql, new SqlParameter("@p", stt_rec));
                             }
                             sender.Dispose();

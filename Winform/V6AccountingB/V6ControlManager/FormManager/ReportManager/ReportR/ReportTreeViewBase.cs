@@ -1886,7 +1886,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 string ma_ct = rowData["MA_CT"].ToString().Trim();
                 string stt_rec = rowData["STT_REC"].ToString().Trim();
                 if (ma_ct == String.Empty || stt_rec == String.Empty) return;
-                new InvoiceInfosViewForm(new V6InvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
+                new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
             }
             catch (Exception ex)
             {

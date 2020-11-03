@@ -56,8 +56,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                case "AAPPR_SOA_IN1":
                     return new AAPPR_SOA_IN1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_SOC_IN1":
-                    if (V6ControlFormHelper.ShowConfirmMessage("TestPrintManyNew") == DialogResult.Yes)
-                    return new AAPPR_SOC_IN1_Many(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     return new AAPPR_SOC_IN1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_SOA_IN2":
                     return new AAPPR_SOA_IN2(itemId, program, procedure, reportFile, reportCaption, reportCaption2);

@@ -35,6 +35,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             Load_Data = true;//Thay đổi cờ.
             base.MakeReport2();
+            string maCt = FilterControl.ObjectDictionary["MA_CT"].ToString().Trim();
+            Invoice = V6InvoiceBase.GetInvoiceBase(maCt);
         }
 
         #region ==== Xử lý F9 ====
@@ -101,13 +103,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private V6InvoiceBase Invoice;
         private void F9Thread()
         {
             f9Running = true;
             f9ErrorAll = "";
 
             int i = 0;
-            var Invoice = new V6Invoice81();
+            
             var program = _program + "F9";// Invoice.PrintReportProcedure;
             //var repFile = Invoice.Alct["FORM"].ToString().Trim();
             var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
@@ -139,7 +142,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             if (hoadon_nd51 == 1)
                             {
-                                var sql = "Update Am81 Set Sl_in = Sl_in+1 Where Stt_rec=@p";
+                                var sql = "Update " + Invoice.AM_TableName + " Set Sl_in = Sl_in+1 Where Stt_rec=@p";
                                 SqlConnect.ExecuteNonQuery(CommandType.Text, sql, new SqlParameter("@p", stt_rec));
                             }
                             sender.Dispose();
@@ -321,7 +324,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         var keys = new SortedDictionary<string, object> {{"STT_REC", sttRec}};
                         var data = new SortedDictionary<string, object> {{"SO_CTX", so_ctx_temp}};
-                        if (V6BusinessHelper.UpdateSimple("AM81", data, keys) > 0)
+                        if (V6BusinessHelper.UpdateSimple(Invoice.AM_TableName, data, keys) > 0)
                         {
                             count++;
                             row.Cells["SO_CTX"].Value = so_ctx_temp;
@@ -378,13 +381,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF10
 
-        V6Invoice83 invoice = new V6Invoice83();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try
             {
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
-                var data = invoice.LoadAD(sttRec);
+                var data = Invoice.LoadAD(sttRec);
                 dataGridView2.DataSource = data;
             }
             catch (Exception ex)

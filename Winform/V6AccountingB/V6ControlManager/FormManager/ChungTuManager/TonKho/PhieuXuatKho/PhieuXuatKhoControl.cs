@@ -886,6 +886,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                     }
 
+                    //if (check && inputUpper == "" && _maViTri.CheckNotEmpty)
+                    //{
+                    //    check = false;
+                    //}
+
                     if (!check)
                     {
                         var initFilter = GetAlVitriTonInitFilter();

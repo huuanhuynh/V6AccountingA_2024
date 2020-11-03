@@ -13,7 +13,78 @@ namespace V6AccountingBusiness.Invoices
 {
     public class V6InvoiceBase
     {
-        public V6InvoiceBase(string maCt)
+        public static V6InvoiceBase GetInvoiceBase(string ma_ct)
+        {
+            ma_ct = ma_ct.ToUpper().Trim();
+            switch (ma_ct)
+            {
+                #region ==== Phải thu ====
+                case "SOA":// Hóa đơn bán hàng kiêm phiếu xuất
+                    return new V6Invoice81();
+                case "SOB":// Hóa đơn dịch vụ có số lượng
+                    return new V6Invoice82();
+                case "SOC":// Hóa đơn bán lẻ CAFE
+                    return new V6Invoice83();
+                case "SOH":// Đơn đặt hàng bán
+                    return new V6Invoice91();
+                case "SOR":// Báo giá.
+                    return new V6Invoice93();
+                case "AR1":// Hóa đơn dịch vụ
+                    return new V6Invoice21();
+                case "SOF":// Phiếu nhập hàng bán bị trả lại
+                    return new V6Invoice76();
+                #endregion phải thu
+                #region ==== Tồn kho ====
+                case "IXA":// Phiếu xuất kho
+                    return new V6Invoice84();
+                case "IXB":// Phiếu xuất điều chuyển
+                    return new V6Invoice85();
+                case "IND":// Phiếu NHẬP kho
+                    return new V6Invoice74();
+                case "INY":// Đề nghị nhập kho
+                    return new V6Invoice94INY();
+                case "IXY":// Đề nghị xuất kho
+                    return new V6Invoice95IXY();
+                case "IXP":// Phiếu duyệt xuất bán
+                    return new V6Invoice96IXP();
+                #endregion tồn kho
+                #region ==== Tiền mặt ====
+                case "BC1":// Bao co
+                case "TA1":// Phieu thu
+                    return new V6Invoice41(ma_ct);
+                case "BN1":// Bao no
+                case "CA1":// Phieu chi
+                    return new V6Invoice51(ma_ct);
+                #endregion tiền mặt
+                #region ==== Phải trả ====
+                case "POA":// PhieuNhapMua
+                    return new V6Invoice71();
+                case "POH":// DonDatHangMua
+                    return new V6Invoice92();
+                case "POB":// PhieuNhapKhau
+                    return new V6Invoice72();
+                case "POC":// PhieuNhapChiPhiMuaHang
+                    return new V6Invoice73();
+                case "AP1":// HoaDonMuaHangDichVu
+                    return new V6Invoice31();
+                case "AP2":// PhieuThanhToanTamUng
+                    return new V6Invoice32();
+                case "IXC":// PhieuXuatTraLaiNCC
+                    return new V6Invoice86();
+                #endregion phải trả
+                #region ==== Tổng hợp ====
+                // Phiếu kế toán dùng chung
+                case "GL1":
+                case "AP9":
+                case "AR9":
+                    return new V6Invoice11(ma_ct);
+                #endregion tổng hợp
+                default:
+                    return new V6InvoiceBase(ma_ct, "00" + ma_ct);
+            }
+        }
+
+        internal V6InvoiceBase(string maCt)
         {
             Mact = maCt;
             CodeMact = "00" + maCt;
@@ -1483,66 +1554,6 @@ namespace V6AccountingBusiness.Invoices
             if (false)
             {
                 Logger.WriteToLog(string.Format("Mact {0} stt_rec {1} TRANSACTION COMMITTED.", Mact, stt_rec));
-            }
-        }
-
-        public static V6InvoiceBase GetInvoice(string ma_ct)
-        {
-            switch (ma_ct)
-            {
-                case "GL1":
-                    return new V6Invoice11();
-                case "AR1":
-                    return new V6Invoice21();
-                case "AP1":
-                    return new V6Invoice31();
-                case "AP2":
-                    return new V6Invoice32();
-                case "TA1":
-                    return new V6Invoice41();
-                case "BC1":
-                    return new V6Invoice46();
-                case "CA1":
-                    return new V6Invoice51();
-                case "BN1":
-                    return new V6Invoice56();
-                case "POA":
-                    return new V6Invoice71();
-                case "POB":
-                    return new V6Invoice72();
-                case "POC":
-                    return new V6Invoice73();
-                case "IND":
-                    return new V6Invoice74();
-                case "SOF":
-                    return new V6Invoice76();
-                case "SOA":
-                    return new V6Invoice81();
-                case "SOB":
-                    return new V6Invoice82();
-                case "SOC":
-                    return new V6Invoice83();
-                case "IXA":
-                    return new V6Invoice84();
-                case "IXB":
-                    return new V6Invoice85();
-                case "IXC":
-                    return new V6Invoice86();
-
-                case "SOH":
-                    return new V6Invoice91();
-                case "POH":
-                    return new V6Invoice92();
-                case "SOR":
-                    return new V6Invoice93();
-
-                case "INY":
-                    return new V6Invoice94INY();
-                case "IXY":
-                    return new V6Invoice95IXY();
-
-                default:
-                    return null;
             }
         }
 

@@ -44,6 +44,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             TxtMa_ct.Text = "SOC";
             TxtMa_ct.Enabled = false;
+            ObjectDictionary["MA_CT"] = TxtMa_ct.Text;
 
             String1ValueChanged += AAPPR_SOC_IN1_String1ValueChanged;
         }
@@ -67,6 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
+            ObjectDictionary["MA_CT"] = TxtMa_ct.Text;
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));

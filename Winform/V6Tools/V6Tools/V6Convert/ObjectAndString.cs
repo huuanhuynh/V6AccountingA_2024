@@ -1103,7 +1103,7 @@ namespace V6Tools.V6Convert
                 return 0 == ObjectToDecimal(o);
             }
             
-            return false;
+            return "" == o.ToString().Trim();
         }
     }
 }

@@ -52,6 +52,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             
         }
+        
         public static V6Control GetChungTuContainer(string maCt, string itemId) // ALCT.TYPE_VIEW 2 = showQuickView
         {
             if(maCt == "SOR")// Báo giá.

@@ -406,7 +406,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                 if (string.Equals(tableName, _table2Name, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    var invoice = new V6InvoiceBase(mact);
+                    var invoice = V6InvoiceBase.GetInvoiceBase(mact);
                     dgv.SetCorplan2();
                     V6ControlFormHelper.FormatGridViewAndHeader(dgv, invoice.GRDS_AD, invoice.GRDF_AD,
                         V6Setting.IsVietnamese ? invoice.GRDHV_AD : invoice.GRDHE_AD);
