@@ -1143,7 +1143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // 
             // v6Label23
             // 
-            this.v6Label23.AccessibleDescription = "ASOCTSOFL00026";
+            this.v6Label23.AccessibleDescription = "ASOCTSOFL00029";
             this.v6Label23.AutoSize = true;
             this.v6Label23.Location = new System.Drawing.Point(8, 74);
             this.v6Label23.Name = "v6Label23";

@@ -54,7 +54,7 @@ namespace V6ThuePost
         private static string account;
         private static string accountpassword;
         private static string id, id_field = "ID_MASTER";
-        private static string partten, partten_field;
+        private static string pattern, pattern_field;
         private static string seri, seri_field;
         private static string convert = "0";
         //Excel config
@@ -676,7 +676,7 @@ namespace V6ThuePost
                 fkeyA = fkey0 + row0["STT_REC"];
                 _amData[id_field] = fkeyA;
                 
-                //partten = row0[partten_field].ToString().Trim();
+                //pattern = row0[pattern_field].ToString().Trim();
                 //seri = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
@@ -1343,7 +1343,8 @@ namespace V6ThuePost
                                     id_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "partten":
-                                    partten_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                case "pattern":
+                                    pattern_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "seri":
                                     seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

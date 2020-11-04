@@ -75,7 +75,7 @@ namespace V6ThuePost
         private static string token_password = "";
         private static string account;
         private static string accountpassword;
-        private static string partten, pattern_field;
+        private static string pattern, pattern_field;
         private static string seri, seri_field;
         private static string convert = "0";
         //Excel config
@@ -669,7 +669,7 @@ namespace V6ThuePost
                 //}
 
                 //postObject.key = fkeyA;
-                partten = row0[pattern_field].ToString().Trim();
+                pattern = row0[pattern_field].ToString().Trim();
                 seri = row0[seri_field].ToString().Trim();
                 //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
@@ -1315,6 +1315,7 @@ namespace V6ThuePost
                                     _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "partten":
+                                case "pattern":
                                     pattern_field = line.Value;
                                     break;
                                 case "seri":

@@ -64,7 +64,7 @@ namespace V6Controls.Controls.Label
                     if(row.Table.Columns.Contains(V6Setting.Language))
                     listView1.Items.Add(new ListViewItem(new[] {"SelectedLang", row[V6Setting.Language].ToString()}));
                 }
-                else
+                else if (_label.AccessibleDescription != ".")
                 {
                     listView1.Items.Add(new ListViewItem(new[] { "Error", "No CorpLan info." }));
 

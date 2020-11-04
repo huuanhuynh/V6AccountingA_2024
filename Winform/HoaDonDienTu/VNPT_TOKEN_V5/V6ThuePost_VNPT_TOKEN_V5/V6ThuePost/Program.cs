@@ -81,7 +81,7 @@ namespace V6ThuePost
         /// serial của chứng thư công ty đã đăng ký trong hệ thống.
         /// </summary>
         private static string SERIAL_CERT;
-        private static string pattern, partten_field;
+        private static string pattern, pattern_field;
         private static string seri, seri_field;
         private static string convert = "0";
         //Auto input setting
@@ -1021,7 +1021,7 @@ namespace V6ThuePost
                 //}
 
                 inv.key = fkeyA;
-                pattern = row0[partten_field].ToString().Trim();
+                pattern = row0[pattern_field].ToString().Trim();
                 seri = row0[seri_field].ToString().Trim();
                 //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
@@ -1150,7 +1150,7 @@ namespace V6ThuePost
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
                 inv.key = fkeyA;
-                pattern = row0[partten_field].ToString().Trim();
+                pattern = row0[pattern_field].ToString().Trim();
                 seri = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
@@ -1241,7 +1241,7 @@ namespace V6ThuePost
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
                 inv.key = fkeyA;
-                pattern = row0[partten_field].ToString().Trim();
+                pattern = row0[pattern_field].ToString().Trim();
                 seri = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
@@ -2847,7 +2847,7 @@ namespace V6ThuePost
                                     token_password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "pattern":
-                                    partten_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    pattern_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "seri":
                                     seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

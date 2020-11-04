@@ -82,7 +82,7 @@ namespace V6ThuePost
         private static string _token_password_title = "";
         private static string _token_password = "";
 
-        private static string _pattern, partten_field;
+        private static string _pattern, pattern_field;
         private static string _seri, seri_field;
         private static string convert = "0";
         //Excel config
@@ -958,7 +958,7 @@ namespace V6ThuePost
                 //}
 
                 inv.key = fkeyA;
-                _pattern = row0[partten_field].ToString().Trim();
+                _pattern = row0[pattern_field].ToString().Trim();
                 _seri = row0[seri_field].ToString().Trim();
                 //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
@@ -1062,7 +1062,7 @@ namespace V6ThuePost
                 DataRow row0 = data.Rows[0];
                 fkeyA = fkey0 + row0["STT_REC"];
                 inv.key = fkeyA;
-                //_pattern = row0[partten_field].ToString().Trim();
+                //_pattern = row0[pattern_field].ToString().Trim();
                 //_serial = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
@@ -1146,7 +1146,7 @@ namespace V6ThuePost
                 DataRow row0 = data.Rows[0];
                 fkeyA = fkey0 + row0["STT_REC"];
                 inv.key = fkeyA;
-                //_pattern = row0[partten_field].ToString().Trim();
+                //_pattern = row0[pattern_field].ToString().Trim();
                 //_serial = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
 
@@ -2273,13 +2273,15 @@ namespace V6ThuePost
                                 case "token_password_title":
                                     _token_password_title = UtilityHelper.DeCrypt(line.Value);
                                     break;
-                                case "_token_password":
+                                case "token_password":
                                     _token_password = UtilityHelper.DeCrypt(line.Value);
                                     break;
-                                case "_pattern":
-                                    partten_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                case "pattern":
+                                case "partten":
+                                    pattern_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
-                                case "_serial":
+                                case "serial":
+                                case "seri":
                                     seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "baselink":

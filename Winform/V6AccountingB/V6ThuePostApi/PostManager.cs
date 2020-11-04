@@ -4111,10 +4111,12 @@ namespace V6ThuePostManager
                                 case "token_password":
                                     _token_password = UtilityHelper.DeCrypt(line.Value);
                                     break;
-                                case "partten": // Đang sử dụng chữ partten trong config V6Info.Field
+                                case "pattern":
+                                case "partten":
                                     pattern_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "seri":
+                                case "serial":
                                     seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                     //Bkav

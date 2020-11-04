@@ -224,70 +224,70 @@ namespace V6Init
         {
             get
             {
-                return "/" + _dataUserInfo["rights"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["rights"]).Trim() + "/";
             }
         }
         private string RightAdd
         {
             get
             {
-                return "/" + _dataUserInfo["r_add"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_add"]).Trim() + "/";
             }
         }
         private string RightCopy
         {
             get
             {
-                return "/" + _dataUserInfo["r_copy"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_copy"]).Trim() + "/";
             }
         }
         private string RightEdit
         {
             get
             {
-                return "/" + _dataUserInfo["r_edit"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_edit"]).Trim() + "/";
             }
         }
         private string RightDelete
         {
             get
             {
-                return "/" + _dataUserInfo["r_del"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_del"]).Trim() + "/";
             }
         }
         private string RightView
         {
             get
             {
-                return "/" + _dataUserInfo["r_view"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_view"]).Trim() + "/";
             }
         }
         private string RightPrint
         {
             get
             {
-                return "/" + _dataUserInfo["r_print"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_print"]).Trim() + "/";
             }
         }
         private string RightDvcs
         {
             get
             {
-                return "/" + _dataUserInfo["r_dvcs"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_dvcs"]).Trim() + "/";
             }
         }
         public string RightKho
         {
             get
             {
-                return "/" + _dataUserInfo["r_kho"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_kho"]).Trim() + "/";
             }
         }
         public string RightSonb
         {
             get
             {
-                return "/" + _dataUserInfo["r_sonb"].ToString().Trim() + "/";
+                return ("/" + _dataUserInfo["r_sonb"]).Trim() + "/";
             }
         }
         public byte User_acc
