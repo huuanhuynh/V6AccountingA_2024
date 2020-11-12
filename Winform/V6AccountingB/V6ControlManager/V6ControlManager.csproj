@@ -2163,6 +2163,12 @@
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.Designer.cs">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDEMAILALL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDEMAILALL.Designer.cs">
+      <DependentUpon>XASENDEMAILALL.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6952,6 +6958,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.resx">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDEMAILALL.resx">
+      <DependentUpon>XASENDEMAILALL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.resx">
       <DependentUpon>XASENDSMSALL.cs</DependentUpon>
     </EmbeddedResource>
@@ -8998,6 +9007,7 @@
     <None Include="Resources\PrintInvoice16.png" />
     <None Include="Resources\SettingAdd24.png" />
     <None Include="Resources\Setting24.png" />
+    <None Include="Resources\SendEmail32.png" />
     <Content Include="Resources\ToolBox16.png" />
     <Content Include="Resources\TreeBlack16.png" />
     <Content Include="Resources\TreeFolderYellowk16.png" />

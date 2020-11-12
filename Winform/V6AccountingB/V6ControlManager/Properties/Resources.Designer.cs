@@ -643,6 +643,16 @@ namespace V6ControlManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SendEmail32 {
+            get {
+                object obj = ResourceManager.GetObject("SendEmail32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Setting24 {
             get {
                 object obj = ResourceManager.GetObject("Setting24", resourceCulture);
