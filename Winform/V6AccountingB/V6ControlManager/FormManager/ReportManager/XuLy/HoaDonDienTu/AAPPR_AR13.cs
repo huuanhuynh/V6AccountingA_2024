@@ -89,14 +89,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9MessageAll = "";
 
             //Select printer.
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.AllowSomePages = false;//
-            //printDialog.Document = printDocument;
-            printDialog.UseEXDialog = true;
-            //printDialog.Document.PrinterSettings.FromPage = 1;
-            //printDialog.Document.PrinterSettings.ToPage = pdfDocument1.PageCount;
-            if (printDialog.ShowDialog((IWin32Window)this.FindForm()) != DialogResult.OK)
-                return;
+            //PrintDialog printDialog = new PrintDialog( );
+            //printDialog.AllowSomePages = false;//
+            //printDialog.UseEXDialog = true;
+            //if (printDialog.ShowDialog((IWin32Window)this.FindForm()) != DialogResult.OK)
+            //    return;
+
+            var printerst = V6ControlFormHelper.ChoosePrinter(this, null);
+            if (printerst == null) return;
 
             string pdf_file = "";
             string tableName = "V6MAPINFO";
@@ -212,12 +212,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         PdfDocument pdfDocument1 = PdfDocument.Load(pdf_file);
                         using (PrintDocument printDocument = pdfDocument1.CreatePrintDocument(PdfPrintMode.ShrinkToMargin))
                         {
-                            printDocument.PrinterSettings = printDialog.PrinterSettings;
-                            printDialog.Document = printDocument;
+                            printDocument.PrinterSettings = V6ControlFormHelper.PrinterSettings;
+                            //printDialog.Document = printDocument;
                             try
                             {
-                                if (printDialog.Document.PrinterSettings.FromPage <= pdfDocument1.PageCount)
-                                    printDialog.Document.Print();
+                                if (printDocument.PrinterSettings.FromPage <= pdfDocument1.PageCount) printDocument.Print();
+                                //if (printDialog.Document.PrinterSettings.FromPage <= pdfDocument1.PageCount)
+                                //    printDialog.Document.Print();
                             }
                             catch(Exception ex)
                             {

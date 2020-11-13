@@ -490,15 +490,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                PrintDialog p = new PrintDialog();
-                p.AllowCurrentPage = false;
-                p.AllowPrintToFile = false;
-                p.AllowSelection = false;
-                p.AllowSomePages = false;
-                p.PrintToFile = false;
-                p.UseEXDialog = true; //Fix win7
-
-
                 Timer tF9 = new Timer();
                 tF9.Interval = 500;
                 tF9.Tick += tF9_Tick;
@@ -569,7 +560,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //  btnNhan.PerformClick();
                 try
                 {
-                    //V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    //PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 }
                 catch
                 {

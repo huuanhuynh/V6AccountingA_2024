@@ -269,14 +269,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         
         private void txtReportFileEnd_TextChanged(object sender, EventArgs e)
         {
-            if (IsReady)
-            txtReportFileNew.Text = ReportFileNew;
+            if (IsReady) txtReportFileNew.Text = ReportFileNew;
         }
 
         private void txtMa_File_TextChanged(object sender, EventArgs e)
         {
-            if (IsReady)
-            txtReportFileNew.Text = ReportFileNew;
+            if (IsReady) txtReportFileNew.Text = ReportFileNew;
         }
 
         private void btnExcel2_Click(object sender, EventArgs e)
@@ -304,11 +302,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private void btnPrinterSelect_Click(object sender, EventArgs e)
         {
-            PrintDialog pt = new PrintDialog();
-            if (pt.ShowDialog(this) == DialogResult.OK)
-            {
-                txtPrinterDef.Text = pt.PrinterSettings.PrinterName;
-            }
+            var printerst = V6ControlFormHelper.ChoosePrinter(this, null);
+            if (printerst == null) return;
+            txtPrinterDef.Text = printerst.PrinterName;
         }
         private void btnPhanQuyenUser_Click(object sender, EventArgs e)
         {

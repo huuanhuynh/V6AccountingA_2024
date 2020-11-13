@@ -55,23 +55,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 InLienTuc = true;
 
 
-                _oldDefaultPrinter = V6Tools.PrinterStatus.GetDefaultPrinterName();
+                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
 
-                PrintDialog p = new PrintDialog();
-                p.AllowCurrentPage = false;
-                p.AllowPrintToFile = false;
-                p.AllowSelection = false;
-                p.AllowSomePages = false;
-                p.PrintToFile = false;
-                p.UseEXDialog = true; //Fix win7
-                
                 if (InLienTuc) // thì chọn máy in trước
                 {
-                    DialogResult dr = p.ShowDialog(this);
-                    if (dr == DialogResult.OK)
+                    var printerst = V6ControlFormHelper.ChoosePrinter(this, _oldDefaultPrinter);
+                    if (printerst != null)
                     {
-                        _PrinterName = p.PrinterSettings.PrinterName;
-                        _PrintCopies = p.PrinterSettings.Copies;
+                        _PrinterName = printerst.PrinterName;
+                        _PrintCopies = printerst.Copies;
                         V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
                         printting = true;
                     }
@@ -188,7 +180,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //  btnNhan.PerformClick();
                 try
                 {
-                    V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 }
                 catch
                 {
@@ -222,23 +214,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 InLienTuc = false;
 
-                _oldDefaultPrinter = V6Tools.PrinterStatus.GetDefaultPrinterName();
-
-                PrintDialog p = new PrintDialog();
-                p.AllowCurrentPage = false;
-                p.AllowPrintToFile = false;
-                p.AllowSelection = false;
-                p.AllowSomePages = false;
-                p.PrintToFile = false;
-                p.UseEXDialog = true; //Fix win7
+                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
 
                 if (InLienTuc) // thì chọn máy in trước
                 {
-                    DialogResult dr = p.ShowDialog(this);
-                    if (dr == DialogResult.OK)
+                    var printerst = V6ControlFormHelper.ChoosePrinter(this, _oldDefaultPrinter);
+                    if (printerst != null)
                     {
-                        _PrinterName = p.PrinterSettings.PrinterName;
-                        _PrintCopies = p.PrinterSettings.Copies;
+                        _PrinterName = printerst.PrinterName;
+                        _PrintCopies = printerst.Copies;
                         V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
                         printting = true;
                     }
@@ -347,7 +331,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 RemoveGridViewRow();
                 try
                 {
-                    V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 }
                 catch
                 {

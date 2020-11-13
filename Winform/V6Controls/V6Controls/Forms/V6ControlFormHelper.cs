@@ -3966,7 +3966,7 @@ namespace V6Controls.Forms
         public static void PrintGridView(V6ColorDataGridView dataGridView1)
         {
             Control thisForm = dataGridView1.Parent;
-            PrintDialog myPrintDialog = new PrintDialog();
+            PrintDialog myPrintDialog = new PrintDialog( );
             myPrintDialog.AllowCurrentPage = false;
             myPrintDialog.AllowPrintToFile = false;
             myPrintDialog.AllowSelection = false;
@@ -4008,21 +4008,29 @@ namespace V6Controls.Forms
         public static PrinterSettings PrinterSettings = null;
 
         /// <summary>
-        /// Chọn máy in, trả về PrinterSettings. Nếu không chọn trả về null.
+        /// Chọn máy in, Lưu giữ PrinterSettings vào V6ControlFormHelper, trả về PrinterSettings. Nếu không chọn trả về null (vẫn lưu trạng thái cũ).
         /// </summary>
         /// <param name="owner"></param>
         /// <param name="printerName">Tên máy in chọn sẵn.</param>
         /// <param name="allowSomePage">Cho phép in lẻ tẻ.</param>
         /// <returns></returns>
-        public static PrinterSettings ChoosePrinter(IWin32Window owner, string printerName, bool allowSomePage = true)
+        public static PrinterSettings ChoosePrinter(IWin32Window owner, string printerName, bool allowSomePage = true, bool allowSelection = true)
         {
             PrintDialog pt = new PrintDialog( );
-            
-            pt.PrinterSettings.PrinterName = printerName;
+
+            if (string.IsNullOrEmpty(printerName))
+            {
+
+            }
+            else
+            {
+                pt.PrinterSettings.PrinterName = printerName;
+            }
             //pt.Document = new PrintDocument();
             pt.AllowPrintToFile = false;
             pt.AllowCurrentPage = true;
             pt.AllowSomePages = allowSomePage;
+            pt.AllowSelection = allowSelection;
             pt.UseEXDialog = true; //Fix win7
 
             if (pt.ShowDialog(owner) == DialogResult.OK)

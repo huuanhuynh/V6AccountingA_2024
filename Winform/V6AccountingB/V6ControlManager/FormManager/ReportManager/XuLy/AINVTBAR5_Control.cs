@@ -510,14 +510,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             try
             {
-                PrintDialog p = new PrintDialog();
-                p.AllowCurrentPage = false;
-                p.AllowPrintToFile = false;
-                p.AllowSelection = false;
-                p.AllowSomePages = false;
-                p.PrintToFile = false;
-                p.UseEXDialog = true; //Fix win7
-
                 if (ctype == "1" && dataGridView2.DataSource != null && dataGridView2.RowCount > 0)
                 {
                     this.ShowWarningMessage(V6Text.UnFinished);
@@ -608,7 +600,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //  btnNhan.PerformClick();
                 try
                 {
-                    //V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    //PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 }
                 catch
                 {
@@ -655,15 +647,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             try
             {
-                PrintDialog p = new PrintDialog();
-                p.AllowCurrentPage = false;
-                p.AllowPrintToFile = false;
-                p.AllowSelection = false;
-                p.AllowSomePages = false;
-                p.PrintToFile = false;
-                p.UseEXDialog = true; //Fix win7
-
-
                 Timer tF10 = new Timer();
                 tF10.Interval = 500;
                 tF10.Tick += tF10_Tick;
@@ -760,7 +743,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //  btnNhan.PerformClick();
                 try
                 {
-                    //V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    //PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 }
                 catch
                 {

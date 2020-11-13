@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 using UrielGuy.SyntaxHighlightingTextBox;
+using V6Controls.Forms;
 
 //using Tester;
 
@@ -18,7 +19,7 @@ namespace V6Controls.Controls.GridView
         //string startGroup = "{", endGroup = "}";
         string startGroup = "(", endGroup = ")";
 
-        DataSet ds = new DataSet();
+        //DataSet ds = new DataSet();
 
         public string UsingText { get; set; }
         public string ContentText
@@ -90,10 +91,10 @@ namespace V6Controls.Controls.GridView
             
         }
 
-        private void tsbNew_Click(object sender, EventArgs e)
-        {            
-            newFile();
-        }
+        //private void tsbNew_Click(object sender, EventArgs e)
+        //{            
+        //    newFile();
+        //}
         
         private void save()
         {
@@ -555,15 +556,10 @@ namespace V6Controls.Controls.GridView
 
         private void tsbPrint_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Chưa");
-            PrintDialog prd = new PrintDialog();
-            prd.AllowCurrentPage = false;
-            prd.AllowSelection = false;
-            prd.AllowSomePages = false;            
-            if (prd.ShowDialog(this)==DialogResult.OK)
+            var printerst = V6ControlFormHelper.ChoosePrinter(this, null, false);
+            if (printerst != null)
             {
-                txtColorTextBox.PrinterName = prd.PrinterSettings.PrinterName;                
-                txtColorTextBox.PrintRichTextContents();
+                txtColorTextBox.PrintRichTextContents(printerst);
             }
         }
 
@@ -584,12 +580,7 @@ namespace V6Controls.Controls.GridView
             txtColorTextBox.WordWrap = !txtColorTextBox.WordWrap;
             rớtDòngToolStripMenuItem.Checked = txtColorTextBox.WordWrap;
         }
-
-        private void tsbExportToExcel_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        
         private void hiệnThanhMenu1ToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             
@@ -600,16 +591,6 @@ namespace V6Controls.Controls.GridView
             
         }
         
-        private void tsbMultiSQL_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void runSQLMultiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsbMultiSQL_Click(null, null);
-        }
-
         private void TạoMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newFile();
@@ -618,11 +599,6 @@ namespace V6Controls.Controls.GridView
         private void mởToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFile();
-        }
-
-        private void tsbXmlTable_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void txtColorTextBox_KeyUp(object sender, KeyEventArgs e)
@@ -638,7 +614,7 @@ namespace V6Controls.Controls.GridView
         private void txtColorTextBox_Enter(object sender, EventArgs e)
         {
             if(txtColorTextBox.Text != "")
-            txtColorTextBox.CallOnTextChange();
+                txtColorTextBox.CallOnTextChange();
         }
 
         private void buildToolStripMenuItem_Click(object sender, EventArgs e)

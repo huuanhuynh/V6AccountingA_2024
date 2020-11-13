@@ -1119,23 +1119,11 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
             SendMessage(Handle, EM_FORMATRANGE, 0, lParam);
         }
         //==========================Print==================        
-        private string printerName = "";
-
-        public string PrinterName
-        {
-            //get { return printerName; }
-            set { printerName = value; }
-        }        
         
-        private void printDocSetting(PrintDocument printDoc)
-        {
-            if(printerName != null && printerName != "")
-                printDoc.PrinterSettings.PrinterName = printerName;
-        }
-        public void PrintRichTextContents()
+        public void PrintRichTextContents(PrinterSettings printerst)
         {
             PrintDocument printDoc = new PrintDocument();
-            printDocSetting(printDoc);
+            printDoc.PrinterSettings = printerst;
             printDoc.BeginPrint += new PrintEventHandler(printDoc_BeginPrint);
             printDoc.PrintPage += new PrintPageEventHandler(printDoc_PrintPage);
             printDoc.EndPrint += new PrintEventHandler(printDoc_EndPrint);

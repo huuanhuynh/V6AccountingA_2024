@@ -207,7 +207,7 @@ namespace V6ThuePost
         /// </summary>
         public void PrintDocument()
         {
-            PrintDialog printDialog = new PrintDialog();
+            PrintDialog printDialog = new PrintDialog( );
             printDialog.AllowPrintToFile = false;
             printDialog.AllowSomePages = true;
             

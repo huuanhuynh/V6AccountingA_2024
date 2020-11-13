@@ -56,42 +56,30 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
-
-                PrintDialog p = new PrintDialog();
-                p.AllowCurrentPage = false;
-                p.AllowPrintToFile = false;
-                p.AllowSelection = false;
-                p.AllowSomePages = false;
-                p.PrintToFile = false;
-                p.UseEXDialog = true; //Fix win7
-                //if (choosePrinter)
+                var printerst = V6ControlFormHelper.ChoosePrinter(this, _oldDefaultPrinter);
+                if (printerst != null)
                 {
-                    DialogResult dr = p.ShowDialog(this);
-                    if (dr == DialogResult.OK)
-                    {
-                        _PrinterName = p.PrinterSettings.PrinterName;
-                        _PrintCopies = p.PrinterSettings.Copies;
-                        V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
-                        printting = true;
-                        //Print(_PrinterName);
+                    _PrinterName = printerst.PrinterName;
+                    _PrintCopies = printerst.Copies;
+                    V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
+                    printting = true;
+                    //Print(_PrinterName);
 
-                        Timer tF9 = new Timer();
-                        tF9.Interval = 500;
-                        tF9.Tick += tF9_Tick;
-                        CheckForIllegalCrossThreadCalls = false;
-                        remove_list_g = new List<DataGridViewRow>();
-                        Thread t = new Thread(F9Thread);
-                        t.SetApartmentState(ApartmentState.STA);
-                        t.IsBackground = true;
-                        t.Start();
-                        tF9.Start();
-                    }
-                    else
-                    {
-                        printting = false;
-                    }
+                    Timer tF9 = new Timer();
+                    tF9.Interval = 500;
+                    tF9.Tick += tF9_Tick;
+                    CheckForIllegalCrossThreadCalls = false;
+                    remove_list_g = new List<DataGridViewRow>();
+                    Thread t = new Thread(F9Thread);
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.IsBackground = true;
+                    t.Start();
+                    tF9.Start();
                 }
-                
+                else
+                {
+                    printting = false;
+                }
             }
             catch (Exception ex)
             {

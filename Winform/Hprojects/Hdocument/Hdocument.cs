@@ -635,7 +635,7 @@ namespace H_document
         /// </summary>
         public void Print(IWin32Window owner = null)
         {
-            PrintDialog pd = new PrintDialog();
+            PrintDialog pd = new PrintDialog( );
             if (pd.ShowDialog(owner) == DialogResult.OK)
             {
                 Print(pd.PrinterSettings);

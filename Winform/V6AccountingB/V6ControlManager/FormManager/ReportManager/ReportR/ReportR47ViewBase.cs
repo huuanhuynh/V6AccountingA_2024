@@ -1275,7 +1275,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         //        this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
         //    }
         //    //reset default printer
-        //    //try { V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter); }
+        //    //try { PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter); }
         //    //catch { }
         //}
 

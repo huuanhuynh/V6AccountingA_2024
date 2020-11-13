@@ -11,6 +11,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
+using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
@@ -97,40 +98,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 _oldDefaultPrinter = V6Tools.PrinterStatus.GetDefaultPrinterName();
-
-                PrintDialog p = new PrintDialog();
-                p.AllowCurrentPage = false;
-                p.AllowPrintToFile = false;
-                p.AllowSelection = false;
-                p.AllowSomePages = false;
-                p.PrintToFile = false;
-                p.UseEXDialog = true; //Fix win7
-                //if (choosePrinter)
+                var printerst = V6ControlFormHelper.ChoosePrinter(this, _oldDefaultPrinter);
+                if (printerst != null)
                 {
-                    DialogResult dr = p.ShowDialog(this);
-                    if (dr == DialogResult.OK)
-                    {
-                        _PrinterName = p.PrinterSettings.PrinterName;
-                        _PrintCopies = p.PrinterSettings.Copies;
-                        V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
-                        printting = true;
-                        //Print(_PrinterName);
-                        remove_list_g = new List<DataGridViewRow>();
-                        Timer tF9 = new Timer();
-                        tF9.Interval = 500;
-                        tF9.Tick += tF9_Tick;
-                        Thread t = new Thread(F9Thread);
-                        t.SetApartmentState(ApartmentState.STA);
-                        CheckForIllegalCrossThreadCalls = false;
-                        t.IsBackground = true;
-                        t.Start();
-                        tF9.Start();
+                    _PrinterName = printerst.PrinterName;
+                    _PrintCopies = printerst.Copies;
+                    V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
+                    printting = true;
+                    //Print(_PrinterName);
+                    remove_list_g = new List<DataGridViewRow>();
+                    Timer tF9 = new Timer();
+                    tF9.Interval = 500;
+                    tF9.Tick += tF9_Tick;
+                    Thread t = new Thread(F9Thread);
+                    t.SetApartmentState(ApartmentState.STA);
+                    CheckForIllegalCrossThreadCalls = false;
+                    t.IsBackground = true;
+                    t.Start();
+                    tF9.Start();
 
-                    }
-                    else
-                    {
-                        printting = false;
-                    }
+                }
+                else
+                {
+                    printting = false;
                 }
             }
             catch (Exception ex)
@@ -229,7 +219,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 btnNhan.PerformClick();
                 try
                 {
-                    V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 }
                 catch
                 {

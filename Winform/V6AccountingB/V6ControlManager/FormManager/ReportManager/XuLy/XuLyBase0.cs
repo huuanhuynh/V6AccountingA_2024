@@ -145,7 +145,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             All_Objects["thisForm"] = this;
             CreateFormProgram();
             AddFilterControl(_program);
-            FixFilterControlSize();
             LoadComboboxSource();
             InvokeFormEvent(FormDynamicEvent.INIT);
         }
@@ -153,6 +152,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void Form_Load(object sender, EventArgs e)
         {
             LoadDefaultData(4, "", _program, m_itemId, "");
+            FixFilterControlSize();
         }
 
         
@@ -194,6 +194,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         void panel1_SizeChanged(object sender, EventArgs e)
         {
             FilterControl.Height = panel1.Height - 5;
+            //FixFilterControlSize();
         }
         
         

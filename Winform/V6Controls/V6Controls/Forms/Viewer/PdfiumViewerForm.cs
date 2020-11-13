@@ -88,14 +88,11 @@ namespace V6Controls.Forms.Viewer
                 }
                 else if (keyData == (Keys.Control | Keys.P))
                 {
-                    PrintDialog printDialog = new PrintDialog();
-                    printDialog.AllowSomePages = true;
-                    printDialog.AllowSelection = true;
-                    if (printDialog.ShowDialog(this) == DialogResult.OK)
+                    var printerst = V6ControlFormHelper.ChoosePrinter(this, null);
+                    if (printerst != null)
                     {
                         var pd = pdfViewer1.Document.CreatePrintDocument();
-                        var ps = printDialog.PrinterSettings;
-                        pd.PrinterSettings = ps;
+                        pd.PrinterSettings = printerst;
                         pd.Print();
                     }
                 }
