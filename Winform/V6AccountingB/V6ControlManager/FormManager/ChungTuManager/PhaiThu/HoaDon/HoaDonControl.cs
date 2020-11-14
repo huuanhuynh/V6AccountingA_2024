@@ -198,6 +198,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
         private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6NumberTextBox _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg, _tien_vcNt, _tien_vc;
+        private V6NumberTextBox _sl_td1;
         private V6DateTimeColor _hanSd;
 
         private void LoadDetailControls()
@@ -442,6 +443,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     case "SO_LUONG":
                         _soLuong = (V6NumberTextBox)control;
                         _soLuong.Tag = "hide";
+                        break;
+                    case "SL_TD1":
+                        _sl_td1 = control as V6NumberTextBox;
                         break;
                     case "HE_SO1T":
                         _he_so1T = (V6NumberTextBox)control;
@@ -2786,6 +2790,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             //}
 
             GetGia();
+            GetGiaVonCoDinh();
             GetTon13();
             TinhTienNt2(null);
             if (_maVt.VITRI_YN)
@@ -3461,6 +3466,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
+        public void GetGiaVonCoDinh()
+        {
+            try
+            {
+                if (_maVt.GIA_TON != 5) return;
+                if (_maNt != _mMaNt0) _sl_td1.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD3"]);
+                else _sl_td1.Value = 1;
+
+                _gia_nt.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD1"]);
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         private void XuLyThayDoiDvt1()
         {
             if (_dvt1.Data == null)
@@ -3606,33 +3628,42 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             TinhGiaNt();
 
             _tienNt.Value = V6BusinessHelper.Vround((_soLuong.Value * _gia_nt.Value), M_ROUND_NT);
-            _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
+            
             if (_maNt == _mMaNt0)
             {
                 _tien.Value = _tienNt.Value;
-
+            }
+            else
+            {
+                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * _sl_td1.Value), M_ROUND);
+                else _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
             }
         }
        
         public void TinhTienVon_GiaVon()
         {
-            _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
+            
             if (_maNt == _mMaNt0)
             {
                 _tien.Value = _tienNt.Value;
-
+            }
+            else
+            {
+                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * _sl_td1.Value), M_ROUND);
+                else _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
             }
 
             if (_soLuong.Value != 0)
             {
-
                 _gia_nt.Value = V6BusinessHelper.Vround((_tienNt.Value / _soLuong.Value), M_ROUND_GIA_NT);
-                _gia.Value = V6BusinessHelper.Vround((_tien.Value / _soLuong.Value), M_ROUND_GIA);
-
+                
                 if (_maNt == _mMaNt0)
                 {
                     _gia.Value = _gia_nt.Value;
-
+                }
+                else
+                {
+                    _gia.Value = V6BusinessHelper.Vround((_tien.Value / _soLuong.Value), M_ROUND_GIA);
                 }
             }
         }
@@ -3675,11 +3706,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         public void TinhGiaNt()
         {
             try
-            {
-                _gia.Value = V6BusinessHelper.Vround((_gia_nt.Value * txtTyGia.Value), M_ROUND_GIA_NT);
+            {                
                 if (_maNt == _mMaNt0)
                 {
                     _gia.Value = _gia_nt.Value;
+                }
+                else
+                {
+                     if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia.Value = V6BusinessHelper.Vround((_gia_nt.Value * _sl_td1.Value), M_ROUND_GIA);
+                     else _gia.Value = V6BusinessHelper.Vround((_gia_nt.Value * txtTyGia.Value), M_ROUND_GIA_NT);
                 }
             }
             catch (Exception ex)

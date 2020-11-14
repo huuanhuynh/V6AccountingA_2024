@@ -608,22 +608,25 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             var one_tygia = ObjectAndString.ObjectToDecimal(one["TY_GIA"]);
                             if (one_tygia == 0) one_tygia = 1;
-                            if (one.ContainsKey("GIA_NT1")) one["GIA"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT1"])*one_tygia, V6Setting.RoundGia);
-                            if (one.ContainsKey("GIA_NT1")) one["GIA1"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT1"])*one_tygia, V6Setting.RoundGia);
+
                             if (one.ContainsKey("GIA_NT21")) one["GIA21"] =
                                 V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT21"]) * one_tygia, V6Setting.RoundGia);
                             if (one.ContainsKey("GIA_NT21")) one["GIA2"] =
                                 V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT21"]) * one_tygia, V6Setting.RoundGia);
-
-
-                            if (one.ContainsKey("TIEN_NT")) one["TIEN"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["TIEN_NT"])*one_tygia, V6Setting.RoundTien);
                             if (one.ContainsKey("TIEN_NT2")) one["TIEN2"] =
                                 V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["TIEN_NT2"]) * one_tygia, V6Setting.RoundTien);
                             if (one.ContainsKey("THUE_NT")) one["THUE"] =
                                 V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["THUE_NT"]) * one_tygia, V6Setting.RoundTien);
+
+
+                            if (one.ContainsKey("GIA_NT1")) one["GIA"] =
+                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT1"]) * one_tygia, V6Setting.RoundGia);
+                            if (one.ContainsKey("GIA_NT1")) one["GIA1"] =
+                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT1"]) * one_tygia, V6Setting.RoundGia);
+                            
+                            if (one.ContainsKey("TIEN_NT")) one["TIEN"] =
+                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["TIEN_NT"]) * one_tygia, V6Setting.RoundTien);
+                            
                         }
                     }
                 }
@@ -649,6 +652,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         one["DVT"] = vt_row_data["DVT"];
                         one["TK_DT"] = vt_row_data["TK_DT"];
                         one["TK_GV"] = vt_row_data["TK_GV"];
+
+                        decimal sl_td1 = ObjectAndString.ObjectToDecimal(vt_row_data["SL_TD1"]);
+                        var one_maNt = ""; if (one.ContainsKey("MA_NT")) one["MA_NT"].ToString().Trim();
+                        if (one_maNt == V6Options.M_MA_NT0) sl_td1 = 1;
+                        if (ObjectAndString.ObjectToInt(vt_row_data["GIA_TON"]) == 5 && sl_td1 != 0)
+                        {
+                            if (one.ContainsKey("GIA_NT1")) one["GIA"] =
+                               V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT1"]) * sl_td1, V6Setting.RoundGia);
+                            if (one.ContainsKey("GIA_NT1")) one["GIA1"] =
+                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT1"]) * sl_td1, V6Setting.RoundGia);
+
+                            if (one.ContainsKey("TIEN_NT")) one["TIEN"] =
+                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["TIEN_NT"]) * sl_td1, V6Setting.RoundTien);
+                        }
                     }
                 }
 

@@ -624,9 +624,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label106.Location = new System.Drawing.Point(197, 69);
             this.label106.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(502, 17);
+            this.label106.Size = new System.Drawing.Size(393, 17);
             this.label106.TabIndex = 10;
-            this.label106.Text = "1-Giá trung bình , 2-Đích danh , 3-Nhập trước xuất trước, 4-Trung bình di động";
+            this.label106.Text = "1-Trung bình , 2-Đích danh , 3-FIFO, 4-TB di động, 5-Cố định";
             // 
             // label105
             // 

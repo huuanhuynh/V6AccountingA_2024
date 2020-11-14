@@ -99,6 +99,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label19 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.tabTonKho = new System.Windows.Forms.TabPage();
+            this.chkREPL_YN = new V6Controls.V6CheckBox();
             this.v6NumberTextBox37 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox36 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox30 = new V6Controls.V6NumberTextBox();
@@ -289,7 +290,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.lblMa = new System.Windows.Forms.Label();
-            this.chkREPL_YN = new V6Controls.V6CheckBox();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTaiKhoan.SuspendLayout();
@@ -560,9 +560,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label106.Location = new System.Drawing.Point(197, 69);
             this.label106.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(502, 17);
+            this.label106.Size = new System.Drawing.Size(393, 17);
             this.label106.TabIndex = 10;
-            this.label106.Text = "1-Giá trung bình , 2-Đích danh , 3-Nhập trước xuất trước, 4-Trung bình di động";
+            this.label106.Text = "1-Trung bình , 2-Đích danh , 3-FIFO, 4-TB di động, 5-Cố định";
             // 
             // label105
             // 
@@ -1333,6 +1333,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabTonKho.Size = new System.Drawing.Size(735, 362);
             this.tabTonKho.TabIndex = 2;
             this.tabTonKho.Text = "Tồn kho";
+            // 
+            // chkREPL_YN
+            // 
+            this.chkREPL_YN.AccessibleDescription = "ADDEDITC00045";
+            this.chkREPL_YN.AccessibleName = "REPL_YN";
+            this.chkREPL_YN.AutoSize = true;
+            this.chkREPL_YN.Location = new System.Drawing.Point(422, 10);
+            this.chkREPL_YN.Margin = new System.Windows.Forms.Padding(4);
+            this.chkREPL_YN.Name = "chkREPL_YN";
+            this.chkREPL_YN.Size = new System.Drawing.Size(143, 21);
+            this.chkREPL_YN.TabIndex = 38;
+            this.chkREPL_YN.Text = "Thay thế tên hàng";
+            this.chkREPL_YN.UseVisualStyleBackColor = true;
             // 
             // v6NumberTextBox37
             // 
@@ -4370,19 +4383,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.lblMa.Size = new System.Drawing.Size(66, 17);
             this.lblMa.TabIndex = 0;
             this.lblMa.Text = "Mã vật tư";
-            // 
-            // chkREPL_YN
-            // 
-            this.chkREPL_YN.AccessibleDescription = "ADDEDITC00045";
-            this.chkREPL_YN.AccessibleName = "REPL_YN";
-            this.chkREPL_YN.AutoSize = true;
-            this.chkREPL_YN.Location = new System.Drawing.Point(422, 10);
-            this.chkREPL_YN.Margin = new System.Windows.Forms.Padding(4);
-            this.chkREPL_YN.Name = "chkREPL_YN";
-            this.chkREPL_YN.Size = new System.Drawing.Size(143, 21);
-            this.chkREPL_YN.TabIndex = 38;
-            this.chkREPL_YN.Text = "Thay thế tên hàng";
-            this.chkREPL_YN.UseVisualStyleBackColor = true;
             // 
             // VatTuAddEditForm
             // 
