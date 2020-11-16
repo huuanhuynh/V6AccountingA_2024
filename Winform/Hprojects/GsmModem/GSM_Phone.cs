@@ -170,24 +170,24 @@ namespace GSM
 
         #region ==== inbox outbox COM ====
         //ShortMessageCollection inboxCom;
-        public SmsData inboxDataCom = new SmsData("Inbox", "inbox.dat", 1);
-        public SmsData outboxDataCom = new SmsData("Outbox", "outbox.dat", 2);
+        //public SmsData inboxDataCom = new SmsData("Inbox", "inbox.dat", 1);       // dont'n want to use
+        //public SmsData outboxDataCom = new SmsData("Outbox", "outbox.dat", 2);    // dont'n want to use
         //bool inboxComFresh = false;
-        public ShortMessageCollection InboxComMessageList
-        {
-            get
-            {
-                //return new ShortMessageCollection();
-                return inboxDataCom.MessageList;
-            }
-        }
-        public ShortMessageCollection OutboxComMessageList
-        {
-            get
-            {
-                return outboxDataCom.MessageList;
-            }
-        }
+        //public ShortMessageCollection InboxComMessageList
+        //{
+        //    get
+        //    {
+        //        //return new ShortMessageCollection();
+        //        return inboxDataCom.MessageList;
+        //    }
+        //}
+        //public ShortMessageCollection OutboxComMessageList
+        //{
+        //    get
+        //    {
+        //        return outboxDataCom.MessageList;
+        //    }
+        //}
 
         #endregion com
 
@@ -1178,19 +1178,19 @@ namespace GSM
             switch (messageType)
             {
                 case Message_Type.REC_UNREAD:
-                    return inboxDataCom.UnreadMessageList;
+                    return new ShortMessageCollection();// inboxDataCom.UnreadMessageList;
                 case Message_Type.REC_READ:
-                    return inboxDataCom.ReadMessageList;
+                    return new ShortMessageCollection();// inboxDataCom.ReadMessageList;
                     
                 case Message_Type.STO_UNSENT:
-                    return outboxDataCom.UnsendMessageList;
+                    return new ShortMessageCollection();//outboxDataCom.UnsendMessageList;
                 case Message_Type.STO_SENT:
-                    return outboxDataCom.SendMessageList;;
+                    return new ShortMessageCollection();//outboxDataCom.SendMessageList;;
                     
                 case Message_Type.ALL:
                     ShortMessageCollection sms_colection = new ShortMessageCollection();
-                    sms_colection.AddRange(inboxDataCom.MessageList);
-                    sms_colection.AddRange(outboxDataCom.MessageList);
+                    //sms_colection.AddRange(inboxDataCom.MessageList);
+                    //sms_colection.AddRange(outboxDataCom.MessageList);
                     return sms_colection;
                     
                 default:
@@ -1256,16 +1256,15 @@ namespace GSM
                         }
                         #endregion
 
-                        if (messageType == AT.StoredMessageType.REC_UNREAD)
-                        {
-                            NewUnreadMessageCount = 0;
-                            if(EnableSaveNewMessage)
-                            foreach (ShortMessage item in SMS_colection)
-                            {
-                                inboxDataCom.WriteSms(item);
-                            }
-                            
-                        }
+                        //if (messageType == AT.StoredMessageType.REC_UNREAD)
+                        //{
+                        //    NewUnreadMessageCount = 0;
+                        //    if(EnableSaveNewMessage)
+                        //    foreach (ShortMessage item in SMS_colection)
+                        //    {
+                        //        inboxDataCom.WriteSms(item);
+                        //    }                            
+                        //}
 
                     }
                     catch (Exception ex)
@@ -1311,15 +1310,15 @@ namespace GSM
                         }
                         #endregion Parse messages pdu
 
-                        if (type == 0)
-                        {
-                            NewUnreadMessageCount = 0;
-                            if(EnableSaveNewMessage)
-                            foreach (ShortMessage sms in SMS_colection)
-                            {
-                                inboxDataCom.WriteSms(sms);
-                            }
-                        }
+                        //if (type == 0)
+                        //{
+                        //    NewUnreadMessageCount = 0;
+                        //    if(EnableSaveNewMessage)
+                        //    foreach (ShortMessage sms in SMS_colection)
+                        //    {
+                        //        inboxDataCom.WriteSms(sms);
+                        //    }
+                        //}
 
                         foreach (ShortMessage msg in SMS_colection)
                         {
@@ -1595,11 +1594,11 @@ namespace GSM
                     sms.MessageType = Message_Type.UNKNOW;
                 }
 
-                if (save)
-                {
-                    outboxDataCom.WriteSms(sms);
-                    outboxUfresh = false;
-                }
+                //if (save)
+                //{
+                //    outboxDataCom.WriteSms(sms);
+                //    outboxUfresh = false;
+                //}
 
                 return sendStatus;
             }
@@ -1682,11 +1681,11 @@ namespace GSM
                     sms.MessageType = Message_Type.UNKNOW;
                 }
 
-                if (save)
-                {
-                    outboxDataCom.WriteSms(sms);
-                    outboxUfresh = false;
-                }
+                //if (save)
+                //{
+                //    outboxDataCom.WriteSms(sms);
+                //    outboxUfresh = false;
+                //}
 
                 return sendStatus;
             }
@@ -1795,18 +1794,18 @@ namespace GSM
                 switch (comStorageType)
                 {
                     case Storage.COM1:
-                        result = inboxDataCom.DeleteSmsAt(index);
+                        //result = inboxDataCom.DeleteSmsAt(index);
                         //inboxFresh = false;
                         inboxRfresh = false;
                         break;
                     case Storage.COM2:
-                        result = outboxDataCom.DeleteSmsAt(index);
+                        //result = outboxDataCom.DeleteSmsAt(index);
                         outboxSfresh = false;
                         //outboxFresh = false;
                         break;
                     case Storage.COM:
                         //Xóa cả 2 nơi.
-                        result = inboxDataCom.DeleteSmsAt(index) || outboxDataCom.DeleteSmsAt(index);
+                        //result = inboxDataCom.DeleteSmsAt(index) || outboxDataCom.DeleteSmsAt(index);
                         break;
                     default:
                         break;
