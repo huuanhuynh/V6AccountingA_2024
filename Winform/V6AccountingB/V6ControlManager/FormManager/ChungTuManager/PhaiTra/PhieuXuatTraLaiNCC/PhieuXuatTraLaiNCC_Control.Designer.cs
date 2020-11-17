@@ -204,6 +204,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.btnIn = new wyDay.Controls.SplitButton();
             this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -217,7 +218,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.XemPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chuaDatTen2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.chuaDatTen3Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1297,6 +1298,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.group4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group4.Controls.Add(this.chkAutoNext);
             this.group4.Controls.Add(this.chkTempSuaCT);
             this.group4.Controls.Add(this.lblKieuPostColor);
             this.group4.Controls.Add(this.txtTongSoLuong);
@@ -1434,14 +1436,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.exportXmlMenu,
             this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(195, 246);
+            this.menuChucNang.Size = new System.Drawing.Size(196, 246);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // chonALVTMenu
             // 
             this.chonALVTMenu.AccessibleDescription = "INVOICEM00047";
             this.chonALVTMenu.Name = "chonALVTMenu";
-            this.chonALVTMenu.Size = new System.Drawing.Size(194, 22);
+            this.chonALVTMenu.Size = new System.Drawing.Size(195, 22);
             this.chonALVTMenu.Text = "Chọn vật tư, hàng hóa";
             this.chonALVTMenu.Click += new System.EventHandler(this.chonALVTMenu_Click);
             // 
@@ -1449,7 +1451,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.chonDonHangMuaMenu.AccessibleDescription = "INVOICEM00013";
             this.chonDonHangMuaMenu.Name = "chonDonHangMuaMenu";
-            this.chonDonHangMuaMenu.Size = new System.Drawing.Size(194, 22);
+            this.chonDonHangMuaMenu.Size = new System.Drawing.Size(195, 22);
             this.chonDonHangMuaMenu.Text = "Chọn đơn hàng mua";
             this.chonDonHangMuaMenu.Visible = false;
             // 
@@ -1457,7 +1459,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.TroGiupMenu.AccessibleDescription = "INVOICEM00003";
             this.TroGiupMenu.Name = "TroGiupMenu";
-            this.TroGiupMenu.Size = new System.Drawing.Size(194, 22);
+            this.TroGiupMenu.Size = new System.Drawing.Size(195, 22);
             this.TroGiupMenu.Text = "Trợ giúp";
             this.TroGiupMenu.Click += new System.EventHandler(this.TroGiupMenu_Click);
             // 
@@ -1465,7 +1467,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.chonTuExcelMenu.AccessibleDescription = "INVOICEM00004";
             this.chonTuExcelMenu.Name = "chonTuExcelMenu";
-            this.chonTuExcelMenu.Size = new System.Drawing.Size(194, 22);
+            this.chonTuExcelMenu.Size = new System.Drawing.Size(195, 22);
             this.chonTuExcelMenu.Text = "Chọn từ excel";
             this.chonTuExcelMenu.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
             // 
@@ -1473,7 +1475,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.xuLyKhacMenu.AccessibleDescription = "INVOICEM00010";
             this.xuLyKhacMenu.Name = "xuLyKhacMenu";
-            this.xuLyKhacMenu.Size = new System.Drawing.Size(194, 22);
+            this.xuLyKhacMenu.Size = new System.Drawing.Size(195, 22);
             this.xuLyKhacMenu.Text = "Xử lý khác";
             this.xuLyKhacMenu.Click += new System.EventHandler(this.xuLyKhacMenu_Click);
             // 
@@ -1481,7 +1483,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
             this.thayTheMenu.Name = "thayTheMenu";
-            this.thayTheMenu.Size = new System.Drawing.Size(194, 22);
+            this.thayTheMenu.Size = new System.Drawing.Size(195, 22);
             this.thayTheMenu.Text = "Thay thế";
             this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
             // 
@@ -1489,7 +1491,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
             this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
-            this.thayTheNhieuMenu.Size = new System.Drawing.Size(194, 22);
+            this.thayTheNhieuMenu.Size = new System.Drawing.Size(195, 22);
             this.thayTheNhieuMenu.Text = "Thay thế nhiều";
             this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
             // 
@@ -1497,7 +1499,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.thayThe2Menu.AccessibleDescription = "INVOICEM00009";
             this.thayThe2Menu.Name = "thayThe2Menu";
-            this.thayThe2Menu.Size = new System.Drawing.Size(194, 22);
+            this.thayThe2Menu.Size = new System.Drawing.Size(195, 22);
             this.thayThe2Menu.Text = "Sửa nhiều dòng";
             this.thayThe2Menu.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
@@ -1505,7 +1507,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.chonDeNghiXuatMenu.AccessibleDescription = "INVOICEM00022";
             this.chonDeNghiXuatMenu.Name = "chonDeNghiXuatMenu";
-            this.chonDeNghiXuatMenu.Size = new System.Drawing.Size(194, 22);
+            this.chonDeNghiXuatMenu.Size = new System.Drawing.Size(195, 22);
             this.chonDeNghiXuatMenu.Text = "Chọn đề nghị xuất kho";
             this.chonDeNghiXuatMenu.Click += new System.EventHandler(this.chonDeNghiXuatMenu_Click);
             // 
@@ -1513,7 +1515,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.exportXmlMenu.AccessibleDescription = "INVOICEM00043";
             this.exportXmlMenu.Name = "exportXmlMenu";
-            this.exportXmlMenu.Size = new System.Drawing.Size(194, 22);
+            this.exportXmlMenu.Size = new System.Drawing.Size(195, 22);
             this.exportXmlMenu.Tag = "cancel";
             this.exportXmlMenu.Text = "Export Xml";
             this.exportXmlMenu.Click += new System.EventHandler(this.exportXmlMenu_Click);
@@ -1522,7 +1524,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.importXmlMenu.AccessibleDescription = "INVOICEM00044";
             this.importXmlMenu.Name = "importXmlMenu";
-            this.importXmlMenu.Size = new System.Drawing.Size(194, 22);
+            this.importXmlMenu.Size = new System.Drawing.Size(195, 22);
             this.importXmlMenu.Text = "Import Xml";
             this.importXmlMenu.Click += new System.EventHandler(this.importXmlMenu_Click);
             // 
@@ -2862,7 +2864,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.inPhieuHachToanMenu,
             this.inKhacMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
             // 
             // inPhieuHachToanMenu
             // 
@@ -2871,6 +2873,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.inPhieuHachToanMenu.Size = new System.Drawing.Size(173, 22);
             this.inPhieuHachToanMenu.Text = "In phiếu hạch toán";
             this.inPhieuHachToanMenu.Click += new System.EventHandler(this.inPhieuHachToanMenu_Click);
+            // 
+            // inKhacMenu
+            // 
+            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
+            this.inKhacMenu.Name = "inKhacMenu";
+            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
+            this.inKhacMenu.Text = "In khác";
+            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
             // 
             // btnCopy
             // 
@@ -2942,13 +2952,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.timTopCuoiKyMenu,
             this.timKhacMenu});
             this.menuBtnTim.Name = "menuBtnIn";
-            this.menuBtnTim.Size = new System.Drawing.Size(156, 48);
+            this.menuBtnTim.Size = new System.Drawing.Size(154, 48);
             // 
             // timTopCuoiKyMenu
             // 
             this.timTopCuoiKyMenu.AccessibleDescription = "INVOICEM00045";
             this.timTopCuoiKyMenu.Name = "timTopCuoiKyMenu";
-            this.timTopCuoiKyMenu.Size = new System.Drawing.Size(155, 22);
+            this.timTopCuoiKyMenu.Size = new System.Drawing.Size(153, 22);
             this.timTopCuoiKyMenu.Text = "Top 5 chứng từ";
             this.timTopCuoiKyMenu.Click += new System.EventHandler(this.timTopCuoiKyMenu_Click);
             // 
@@ -2956,7 +2966,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.timKhacMenu.AccessibleDescription = "INVOICEM00046";
             this.timKhacMenu.Name = "timKhacMenu";
-            this.timKhacMenu.Size = new System.Drawing.Size(155, 22);
+            this.timKhacMenu.Size = new System.Drawing.Size(153, 22);
             this.timKhacMenu.Text = "Khác...";
             // 
             // lblNameT
@@ -3018,13 +3028,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.chuaDatTen3Menu.Size = new System.Drawing.Size(161, 22);
             this.chuaDatTen3Menu.Text = "...";
             // 
-            // inKhacMenu
+            // chkAutoNext
             // 
-            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
-            this.inKhacMenu.Name = "inKhacMenu";
-            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
-            this.inKhacMenu.Text = "In khác";
-            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
+            this.chkAutoNext.AccessibleName = ".";
+            this.chkAutoNext.AutoSize = true;
+            this.chkAutoNext.Location = new System.Drawing.Point(155, 9);
+            this.chkAutoNext.Name = "chkAutoNext";
+            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
+            this.chkAutoNext.TabIndex = 47;
+            this.chkAutoNext.TabStop = false;
+            this.chkAutoNext.Text = "Sửa liên tục";
+            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // PhieuXuatTraLaiNCCControl
             // 
@@ -3274,5 +3288,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem chonALVTMenu;
         private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
+        private V6CheckBox chkAutoNext;
     }
 }

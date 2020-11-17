@@ -148,6 +148,26 @@ namespace V6Controls
             return ObjectAndString.ObjectToString(cell.Value);
         }
 
+        /// <summary>
+        /// Di chuyển xuống dòng tiếp theo. Nếu hết dòng trả về null.
+        /// </summary>
+        /// <returns></returns>
+        public DataGridViewRow GotoNextRow()
+        {
+            if (CurrentRow == null && RowCount > 0)
+            {
+                return CurrentRow;
+            }
+            if (CurrentRow.Index < RowCount - 1 && CurrentCell != null)
+            {
+                SaveSelectedCellLocation();
+                _saveRowIndex++;
+                LoadSelectedCellLocation();
+                return CurrentRow;
+            }
+            return null;
+        }
+
         protected override void OnDataError(bool displayErrorDialogIfNoHandler, DataGridViewDataErrorEventArgs e)
         {
             //this.WriteExLog(GetType() + ".OnDataError", e.Exception);

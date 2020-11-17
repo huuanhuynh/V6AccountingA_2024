@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AFASUAKH_F3(string stt_rec, IDictionary<string,object> data)
+        public AFASUAKH_F3(string stt_rec, IDictionary<string, object> data)
         {
             _sttRec = stt_rec;
             _data = data;

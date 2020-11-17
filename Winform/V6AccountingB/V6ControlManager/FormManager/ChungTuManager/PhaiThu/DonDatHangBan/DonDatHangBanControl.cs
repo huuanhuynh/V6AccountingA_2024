@@ -4295,7 +4295,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 ViewCurrentRowToDetail(dataGridView1, detail1);
             }
         }
-        private void DonDatHangBanDetail1_AddHandle(IDictionary<string,object> data)
+        private void DonDatHangBanDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4310,7 +4310,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void DonDatHangBanDetail1_EditHandle(IDictionary<string,object> data)
+        private void DonDatHangBanDetail1_EditHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4319,6 +4319,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
                     return;
                 }
                 throw new Exception(V6Text.EditFail);

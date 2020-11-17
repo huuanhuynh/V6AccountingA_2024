@@ -4646,7 +4646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 ViewCurrentRowToDetail(dataGridView1, detail1);
             }
         }
-        private void BaoGiaDetail1_AddHandle(IDictionary<string,object> data)
+        private void BaoGiaDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4694,7 +4694,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void BaoGiaDetail1_EditHandle(IDictionary<string,object> data)
+        private void BaoGiaDetail1_EditHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4703,6 +4703,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
                     return;
                 }
                 throw new Exception(V6Text.EditFail);

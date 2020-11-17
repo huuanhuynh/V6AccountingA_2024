@@ -3298,7 +3298,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 ViewCurrentRowToDetail(dataGridView1, detail1);
             }
         }
-        private void HoaDonDichVuDetail1_AddHandle(IDictionary<string,object> data)
+        private void HoaDonDichVuDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -3313,7 +3313,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void HoaDonDichVuDetail1_EditHandle(IDictionary<string,object> data)
+        private void HoaDonDichVuDetail1_EditHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -3322,6 +3322,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
                     return;
                 }
                 throw new Exception(V6Text.EditFail);

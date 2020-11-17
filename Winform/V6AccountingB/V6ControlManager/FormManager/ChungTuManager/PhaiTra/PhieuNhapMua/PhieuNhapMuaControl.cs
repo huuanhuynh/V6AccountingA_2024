@@ -6049,7 +6049,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void hoaDonDetail1_AddHandle(IDictionary<string,object> data)
+        private void hoaDonDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -6064,7 +6064,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void hoaDonDetail2_AddHandle(IDictionary<string,object> data)
+        private void hoaDonDetail2_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail2(data))
             {
@@ -6164,13 +6164,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
                     return;
                 }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void hoaDonDetail2_EditHandle(IDictionary<string,object> data)
+        private void hoaDonDetail2_EditHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail2(data))
             {

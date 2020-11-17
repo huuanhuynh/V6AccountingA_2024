@@ -3467,7 +3467,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        public override bool XuLyThemDetail(IDictionary<string,object> data)
+        public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3996,7 +3996,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 ViewCurrentRowToDetail(dataGridView1, detail1);
             }
         }
-        private void hoaDonDetail1_AddHandle(IDictionary<string,object> data)
+        private void hoaDonDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4021,6 +4021,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
                     return;
                 }
                 throw new Exception(V6Text.EditFail);

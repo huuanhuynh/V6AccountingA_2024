@@ -3151,7 +3151,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
                 }
         }
-        private void hoaDonDetail1_AddHandle(IDictionary<string,object> data)
+        private void hoaDonDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -3166,7 +3166,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void hoaDonDetail2_AddHandle(IDictionary<string,object> data)
+        private void hoaDonDetail2_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail2(data))
             {
@@ -3226,13 +3226,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
                     return;
                 }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void hoaDonDetail2_EditHandle(IDictionary<string,object> data)
+        private void hoaDonDetail2_EditHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail2(data))
             {

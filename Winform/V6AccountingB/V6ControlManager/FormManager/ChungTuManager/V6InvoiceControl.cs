@@ -1275,6 +1275,32 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         #endregion ==== GETTONROW ====
 
+        /// <summary>
+        /// Di chuyển đến chi tiết tiếp theo, focus vào nút Sửa. Nếu dòng cuối cho focus vào Mới.
+        /// </summary>
+        /// <param name="dataGridView1">Gridview</param>
+        /// <param name="detailControl">và detail_control tương ứng.</param>
+        /// <param name="check">on-off</param>
+        public void GotoNextDetailEdit(V6ColorDataGridView dataGridView1, HD_Detail detailControl, bool check)
+        {
+            if (!check)
+            {
+                detailControl.FocusButton = detailControl.btnMoi;
+                return;
+            }
+
+            try
+            {
+                detailControl.FocusButton = detailControl.btnSua;
+                var nextRow = dataGridView1.GotoNextRow();
+                if (nextRow == null) detailControl.FocusButton = detailControl.btnMoi;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
         public void HienThiTongSoDong(Label lblTongSoDong)
         {
             try
@@ -5177,6 +5203,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + ".SaveEditHistory", ex);
             }
         }
+
+
 
         
     }

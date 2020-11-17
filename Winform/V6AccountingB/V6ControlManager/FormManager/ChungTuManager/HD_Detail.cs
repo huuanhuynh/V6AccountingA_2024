@@ -30,6 +30,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public List<string> CarryFields = new List<string>();
         public Dictionary<string, object> CarryData { get; set; }
+        /// <summary>
+        /// Đối tượng nhận focus sau khi thực hiện "Nhận".
+        /// </summary>
+        public Control FocusButton = null;
 
         public bool Loai_ck;
 
@@ -337,7 +341,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (ok)
             {
                 MODE = V6Mode.View;
-                btnMoi.Focus();
+                if (FocusButton != null) FocusButton.Focus();
+                else btnMoi.Focus();
             }
             else
             {
@@ -872,6 +877,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public void FocusBtnThem()
         {
             btnMoi.Focus();
+        }
+
+        public void FocusBtnSua()
+        {
+            btnSua.Focus();
         }
 
         private void btnMoi_Click(object sender, EventArgs e)

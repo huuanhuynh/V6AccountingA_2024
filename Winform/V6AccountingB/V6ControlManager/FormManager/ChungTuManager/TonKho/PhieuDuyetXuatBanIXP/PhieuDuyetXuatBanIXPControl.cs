@@ -4624,7 +4624,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 ViewCurrentRowToDetail(dataGridView1, detail1);
             }
         }
-        private void PhieuDuyetXuatBanIXPDetail1_AddHandle(IDictionary<string,object> data)
+        private void PhieuDuyetXuatBanIXPDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4639,7 +4639,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void PhieuDuyetXuatBanIXPDetail1_EditHandle(IDictionary<string,object> data)
+        private void PhieuDuyetXuatBanIXPDetail1_EditHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4648,12 +4648,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
                     return;
                 }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
         }
+
         private void PhieuDuyetXuatBanIXPDetail1_ClickDelete(object sender, HD_Detail_Eventargs e)
         {
             XuLyXoaDetail();
