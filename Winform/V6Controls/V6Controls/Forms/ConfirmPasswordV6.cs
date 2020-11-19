@@ -19,6 +19,7 @@ namespace V6Controls.Forms
             InitializeComponent();
             //txtUserName.Text = V6LoginInfo.UserName;
             txtPassword.Focus();
+            TopMost = true;
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

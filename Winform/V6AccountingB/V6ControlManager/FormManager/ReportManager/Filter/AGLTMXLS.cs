@@ -49,6 +49,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             LoadAlmaubc();
             if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
+            Ready();
         }
 
         public void SetHideFields(string lang)
@@ -367,6 +368,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
+        private void btnXemMau_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string name = txtMauExport.Text.Trim().ToLower();
+                if (!name.EndsWith(".xls") && !name.EndsWith(".xlsx")) name += ".xls";
+                V6ControlFormHelper.OpenExcelTemplate(name, V6Setting.V6ReportsFolder);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnXemMau_Click", ex);
+            }
+        }
+
         private void btnExport_Click(object sender, EventArgs e)
         {
             try
@@ -377,7 +392,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return;
                 }
 
-                string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls");
+                string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls", cboMaubc_X.Text);
                 if (string.IsNullOrEmpty(saveFile)) return;
 
                 string xlsTemplateFile = "Reports\\" + txtMauExport.Text.Trim();
@@ -404,8 +419,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         string FCOLUMN = row["FCOLUMN"].ToString().Trim().ToUpper();
                         object value = row["Value"];
                         object fvalue = row["fvalue"];
-                        mappingData.Add(NAME, value);
-                        addressData.Add(FCOLUMN, fvalue);
+                        if (mappingData.ContainsKey(NAME))
+                        {
+                            ShowMainMessage(V6Text.DataExist + "NAME=" + NAME);
+                        }
+                        else
+                        {
+                            mappingData.Add(NAME, value);
+                        }
+                        if (addressData.ContainsKey(FCOLUMN))
+                        {
+                            ShowMainMessage(V6Text.DataExist + "FCOLUMN=" + FCOLUMN);
+                        }
+                        else
+                        {
+                            addressData.Add(FCOLUMN, fvalue);
+                        }
                     }
                     else
                     {
@@ -413,8 +442,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         string FCOLUMN = row["FCOLUMN"].ToString().Trim().ToUpper();
                         object value = row[vType + "Value"];
                         object fvalue = row[vType + "fvalue"];
-                        mappingData.Add(NAME, value);
-                        addressData.Add(FCOLUMN, fvalue);
+                        if (mappingData.ContainsKey(NAME))
+                        {
+                            ShowMainMessage(V6Text.DataExist + "NAME=" + NAME);
+                        }
+                        else
+                        {
+                            mappingData.Add(NAME, value);
+                        }
+                        if (addressData.ContainsKey(FCOLUMN))
+                        {
+                            ShowMainMessage(V6Text.DataExist + FCOLUMN);
+                        }
+                        else
+                        {
+                            addressData.Add(FCOLUMN, fvalue);
+                        }
                     }
                 }
 
@@ -444,6 +487,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             LoadAlmaubc();
         }
+
+        private void cboMaubc_X_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboMaubc_X.SelectedValue == null) return;
+            //if (_radioRunning || _updateDataRow) return;
+            try
+            {
+                txtMauExport.Text = cboMaubc_X.SelectedValue.ToString().Trim();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".cboMaubc_X_SelectedIndexChanged", ex);
+            }
+        }
+
+        
 
     }
 }

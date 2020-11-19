@@ -18,6 +18,18 @@ namespace V6Init
     public static class V6Setting
     {
         /// <summary>
+        /// Thư mục IMPORT_EXCEL
+        /// </summary>
+        public static readonly string IMPORT_EXCEL = "IMPORT_EXCEL";
+        /// <summary>
+        /// Thư mục EMPORT_EXCEL_SYSTEM
+        /// </summary>
+        public static readonly string EMPORT_EXCEL_SYSTEM = "EMPORT_EXCEL_SYSTEM";
+        /// <summary>
+        /// Thư mục Reports
+        /// </summary>
+        public static readonly string V6ReportsFolder = "Reports";
+        /// <summary>
         /// <para>Đường dẫn thư mục tạm của chương trình trên máy client.</para>
         /// <para>File sẽ bị xóa khi khởi động chương trình.</para>
         /// </summary>

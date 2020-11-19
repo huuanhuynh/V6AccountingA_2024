@@ -97,7 +97,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.OpenExcelTemplate("SOH_ALL.XLS", "IMPORT_EXCEL");
+            V6ControlFormHelper.OpenExcelTemplate("SOH_ALL.XLS", V6Setting.IMPORT_EXCEL);
         }
 
         private void chkAutoSoCt_CheckedChanged(object sender, EventArgs e)

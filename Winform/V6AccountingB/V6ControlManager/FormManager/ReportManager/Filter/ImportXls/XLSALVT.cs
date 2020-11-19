@@ -89,7 +89,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.OpenExcelTemplate("ALVT_ALL.XLS", "IMPORT_EXCEL");
+            V6ControlFormHelper.OpenExcelTemplate("ALVT_ALL.XLS", V6Setting.IMPORT_EXCEL);
         }
     }
 }

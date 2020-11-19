@@ -58,6 +58,7 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.btnExport = new V6Controls.Controls.V6FormButton();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
+            this.btnXemMau = new V6Controls.Controls.V6FormButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,9 +71,9 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(0, 325);
+            this.groupBox1.Location = new System.Drawing.Point(0, 342);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 93);
+            this.groupBox1.Size = new System.Drawing.Size(289, 94);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -154,6 +155,7 @@
             this.cboMaubc_X.Size = new System.Drawing.Size(196, 21);
             this.cboMaubc_X.TabIndex = 18;
             this.cboMaubc_X.TabStop = false;
+            this.cboMaubc_X.SelectedIndexChanged += new System.EventHandler(this.cboMaubc_X_SelectedIndexChanged);
             // 
             // v6Label20
             // 
@@ -314,7 +316,7 @@
             this.cboMauCdkt_B.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMauCdkt_B.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboMauCdkt_B.FormattingEnabled = true;
-            this.cboMauCdkt_B.Location = new System.Drawing.Point(61, 217);
+            this.cboMauCdkt_B.Location = new System.Drawing.Point(61, 209);
             this.cboMauCdkt_B.Name = "cboMauCdkt_B";
             this.cboMauCdkt_B.Size = new System.Drawing.Size(231, 21);
             this.cboMauCdkt_B.TabIndex = 18;
@@ -327,7 +329,7 @@
             this.cboMauKqkd_C.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMauKqkd_C.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboMauKqkd_C.FormattingEnabled = true;
-            this.cboMauKqkd_C.Location = new System.Drawing.Point(61, 244);
+            this.cboMauKqkd_C.Location = new System.Drawing.Point(61, 236);
             this.cboMauKqkd_C.Name = "cboMauKqkd_C";
             this.cboMauKqkd_C.Size = new System.Drawing.Size(231, 21);
             this.cboMauKqkd_C.TabIndex = 18;
@@ -337,7 +339,7 @@
             // 
             this.v6Label1.AccessibleDescription = "FILTERL00266";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(3, 220);
+            this.v6Label1.Location = new System.Drawing.Point(3, 212);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(60, 13);
             this.v6Label1.TabIndex = 17;
@@ -347,7 +349,7 @@
             // 
             this.v6Label2.AccessibleDescription = "FILTERL00267";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(3, 247);
+            this.v6Label2.Location = new System.Drawing.Point(3, 239);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(61, 13);
             this.v6Label2.TabIndex = 17;
@@ -390,7 +392,7 @@
             // txtMauExport
             // 
             this.txtMauExport.AccessibleName = "MAU_EXPORT";
-            this.txtMauExport.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMauExport.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtMauExport.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMauExport.CheckNotEmpty = true;
             this.txtMauExport.Enabled = false;
@@ -399,17 +401,18 @@
             this.txtMauExport.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMauExport.HoverColor = System.Drawing.Color.Yellow;
             this.txtMauExport.LeaveColor = System.Drawing.Color.White;
-            this.txtMauExport.Location = new System.Drawing.Point(70, 271);
+            this.txtMauExport.Location = new System.Drawing.Point(70, 263);
             this.txtMauExport.Name = "txtMauExport";
+            this.txtMauExport.ReadOnly = true;
             this.txtMauExport.Size = new System.Drawing.Size(218, 20);
             this.txtMauExport.TabIndex = 19;
-            this.txtMauExport.Text = "ThuyetminhTCTT200";
+            this.txtMauExport.TabStop = false;
             // 
             // v6Label3
             // 
             this.v6Label3.AccessibleDescription = "FILTERL00268";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(3, 274);
+            this.v6Label3.Location = new System.Drawing.Point(3, 266);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(61, 13);
             this.v6Label3.TabIndex = 17;
@@ -418,11 +421,13 @@
             // btnExport
             // 
             this.btnExport.AccessibleDescription = "FILTERB00012";
-            this.btnExport.Location = new System.Drawing.Point(177, 296);
+            this.btnExport.Image = global::V6ControlManager.Properties.Resources.Export24;
+            this.btnExport.Location = new System.Drawing.Point(178, 288);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(111, 23);
+            this.btnExport.Size = new System.Drawing.Size(110, 32);
             this.btnExport.TabIndex = 30;
             this.btnExport.Text = "Xuất";
+            this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -439,6 +444,18 @@
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
             // 
+            // btnXemMau
+            // 
+            this.btnXemMau.Image = global::V6ControlManager.Properties.Resources.Excel16;
+            this.btnXemMau.Location = new System.Drawing.Point(61, 289);
+            this.btnXemMau.Name = "btnXemMau";
+            this.btnXemMau.Size = new System.Drawing.Size(110, 32);
+            this.btnXemMau.TabIndex = 30;
+            this.btnXemMau.Text = "Xem mẫu";
+            this.btnXemMau.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXemMau.UseVisualStyleBackColor = true;
+            this.btnXemMau.Click += new System.EventHandler(this.btnXemMau_Click);
+            // 
             // AGLTMXLS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,6 +463,7 @@
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaCTMau);
             this.Controls.Add(this.btnSuaTTMau);
+            this.Controls.Add(this.btnXemMau);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnThemMau);
             this.Controls.Add(this.label3);
@@ -470,7 +488,7 @@
             this.Controls.Add(this.chk_Luy_ke);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLTMXLS";
-            this.Size = new System.Drawing.Size(295, 421);
+            this.Size = new System.Drawing.Size(295, 438);
             this.Load += new System.EventHandler(this.AGLTMXLS_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -511,5 +529,6 @@
         private V6Controls.V6Label v6Label3;
         private V6Controls.Controls.V6FormButton btnExport;
         private V6Controls.V6CheckBox chkHienTatCa;
+        private V6Controls.Controls.V6FormButton btnXemMau;
     }
 }

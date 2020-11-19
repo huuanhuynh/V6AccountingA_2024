@@ -941,7 +941,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.OpenExcelTemplate(_table_name + "_ALL.XLS", "IMPORT_EXCEL");
+            V6ControlFormHelper.OpenExcelTemplate(_table_name + "_ALL.XLS", V6Setting.IMPORT_EXCEL);
         }
 
 

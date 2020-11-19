@@ -170,7 +170,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (FilterControl is XASENDSMS)
+                if (FilterControl is XASENDSMS || FilterControl is XASENDMAIL || FilterControl is XASENDSMSALL || FilterControl is XASENDEMAILALL)
                 {
                     panel1.Width = grbDieuKienLoc.Width - 5;
                     panel1.Height = grbDieuKienLoc.Height - 5;

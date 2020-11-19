@@ -8,7 +8,6 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -6027,13 +6026,24 @@ namespace V6Controls.Forms
 
         #endregion ExportExcelTemplateONLINE
 
-
         /// <summary>
-        /// Mở ra 1 bản copy của file mấu
+        /// Mở ra 1 bản copy (hoặc gốc nếu giữ Shift) của file mấu.
         /// </summary>
         /// <param name="file">Tên file không có đường dẫn. Ví dụ A.xls</param>
-        /// <param name="folder">Thư mục con của chương trình. Ví dụ Template</param>
+        /// <param name="folder">Thư mục con của chương trình. Ví dụ Template.</param>
         public static void OpenExcelTemplate(string file, string folder)
+        {
+            bool shift_is_down = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+            OpenExcelTemplate(file, folder, shift_is_down);
+        }
+
+        /// <summary>
+        /// Mở ra 1 bản copy (hoặc gốc shift) của file mấu.
+        /// </summary>
+        /// <param name="file">Tên file không có đường dẫn. Ví dụ A.xls</param>
+        /// <param name="folder">Thư mục con của chương trình. Ví dụ Template.</param>
+        /// <param name="shift">Mở file gốc.</param>
+        public static void OpenExcelTemplate(string file, string folder, bool shift)
         {
             try
             {
@@ -6042,18 +6052,28 @@ namespace V6Controls.Forms
                 path1 = Path.Combine(path1, file);
                 if (File.Exists(path1))
                 {
-                    //Copy to tempfolder
+                    if (shift)
+                    {
+                        if (new ConfirmPasswordV6().ShowDialog() == DialogResult.OK)
+                        {
+                            ProcessStartInfo info0 = new ProcessStartInfo(path1);
+                            Process.Start(info0);
+                        }
+                        return;
+                    }
+
+                    // else copy to tempfolder then open copy
                     string path2 = V6ControlsHelper.CreateV6SoftLocalAppDataDirectory();
                     path2 = Path.Combine(path2, file);
                     if (File.Exists(path2)) File.Delete(path2);
                     File.Copy(path1, path2);
-                    SetStatusText(path1);
+                    
                     ProcessStartInfo info1 = new ProcessStartInfo(path2);
                     Process.Start(info1);
                 }
                 else
                 {
-                    ShowMainMessage(string.Format("{0} [{1}]", V6Text.NotExist, file));
+                    ShowMainMessage(string.Format("{0} [{1}]", V6Text.NotExist, path1));
                 }
             }
             catch (Exception ex)

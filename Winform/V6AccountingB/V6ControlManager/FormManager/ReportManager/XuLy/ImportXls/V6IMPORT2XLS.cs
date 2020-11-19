@@ -1175,7 +1175,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.OpenExcelTemplate(_selected_ma_ct + "_ALL.XLS", "IMPORT_EXCEL");
+            V6ControlFormHelper.OpenExcelTemplate(_selected_ma_ct + "_ALL.XLS", V6Setting.IMPORT_EXCEL);
         }
 
         private void chkAutoSoCt_CheckedChanged(object sender, EventArgs e)

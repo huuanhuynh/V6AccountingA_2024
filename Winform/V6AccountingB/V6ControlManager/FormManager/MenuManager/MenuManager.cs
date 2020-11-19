@@ -281,6 +281,20 @@ namespace V6ControlManager.FormManager.MenuManager
                                         repFileF5, repTitleF5, repTitle2F5);
                                 }
                             }
+                            else if (codeform.StartsWith("48")) // ReportRViewBase Không hiển thị report.
+                            {
+                                program = codeform.Substring(2);
+                                if (string.IsNullOrEmpty(pro_old))
+                                {
+                                    c = new ReportRView0Base(item_id, program, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                }
+                                else
+                                {
+                                    c = new ReportRView0Base(item_id, pro_old, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                }
+                            }
                             else
                             {
                                 if (string.IsNullOrEmpty(pro_old))

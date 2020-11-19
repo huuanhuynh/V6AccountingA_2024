@@ -83,13 +83,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //_tbl2 = ds2.Tables[0];
 
                 string path1 = V6Login.StartupPath;
-                path1 = Path.Combine(path1, "IMPORT_EXCEL");
+                path1 = Path.Combine(path1, V6Setting.IMPORT_EXCEL);
                 path1 = Path.Combine(path1, "SOA_DATA2.XLS");
                 _columnsMapper_AMAD = Excel_File.Sheet1ToDataTable(path1, 0, 5);
                 MAPPING_COLUMNS_DATATABLE(_tbl, _columnsMapper_AMAD);
                 
                 path1 = V6Login.StartupPath;
-                path1 = Path.Combine(path1, "IMPORT_EXCEL");
+                path1 = Path.Combine(path1, V6Setting.IMPORT_EXCEL);
                 path1 = Path.Combine(path1, "ALVT_DATA2.XLS");
                 _columnsMapper_ALVT = Excel_File.Sheet1ToDataTable(path1, 0, 5);
                 //MAPPING_COLUMNS_DATATABLE(_tbl2, path1);
