@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms
 {
     partial class SendSmsForm
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SendSmsForm));
-            this.xasendmail1 = new V6ControlManager.FormManager.ReportManager.Filter.Sms.XASENDMAIL();
+            this.xasendmail1 = new XASENDMAIL();
             this.SuspendLayout();
             // 
             // xasendmail1

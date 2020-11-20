@@ -1,6 +1,6 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms
 {
-    partial class XASENDSMSALL
+    partial class XASENDSMS
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,9 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timerGuiDanhSach = new System.Windows.Forms.Timer(this.components);
             this.timerSend = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -53,6 +50,7 @@
             this.grbFilter = new System.Windows.Forms.GroupBox();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
+            this.filterLineVvarTextBox8 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox4 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
             this.lineMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
@@ -64,12 +62,10 @@
             this.btnKetNoi = new System.Windows.Forms.Button();
             this.txtConnectPort = new V6Controls.V6ColorTextBox();
             this.btnGuiDanhSach = new System.Windows.Forms.Button();
-            this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.grbTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbFilter.SuspendLayout();
             this.grbKetNoi.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // timerGuiDanhSach
@@ -162,11 +158,8 @@
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Size = new System.Drawing.Size(677, 336);
+            this.dataGridView1.Size = new System.Drawing.Size(538, 502);
             this.dataGridView1.TabIndex = 8;
-            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
             // Check
@@ -247,6 +240,7 @@
             this.grbFilter.AccessibleDescription = "MAILSMSG00006";
             this.grbFilter.Controls.Add(this.dateNgay_ct2);
             this.grbFilter.Controls.Add(this.dateNgay_ct1);
+            this.grbFilter.Controls.Add(this.filterLineVvarTextBox8);
             this.grbFilter.Controls.Add(this.filterLineVvarTextBox4);
             this.grbFilter.Controls.Add(this.filterLineVvarTextBox3);
             this.grbFilter.Controls.Add(this.lineMaDvcs);
@@ -292,13 +286,26 @@
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct1.TabIndex = 1;
             // 
+            // filterLineVvarTextBox8
+            // 
+            this.filterLineVvarTextBox8.AccessibleDescription = "FILTERL00009";
+            this.filterLineVvarTextBox8.AccessibleName2 = "TK";
+            this.filterLineVvarTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterLineVvarTextBox8.Caption = "Tài khoản";
+            this.filterLineVvarTextBox8.FieldName = "TK";
+            this.filterLineVvarTextBox8.Location = new System.Drawing.Point(6, 182);
+            this.filterLineVvarTextBox8.Name = "filterLineVvarTextBox8";
+            this.filterLineVvarTextBox8.Size = new System.Drawing.Size(287, 22);
+            this.filterLineVvarTextBox8.TabIndex = 8;
+            this.filterLineVvarTextBox8.Vvar = "TK";
+            // 
             // filterLineVvarTextBox4
             // 
             this.filterLineVvarTextBox4.AccessibleDescription = "FILTERL00008";
             this.filterLineVvarTextBox4.AccessibleName2 = "MA_BP";
             this.filterLineVvarTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterLineVvarTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox4.Caption = "Mã bộ phận";
             this.filterLineVvarTextBox4.FieldName = "MA_BP";
             this.filterLineVvarTextBox4.Location = new System.Drawing.Point(6, 157);
@@ -313,7 +320,6 @@
             this.filterLineVvarTextBox3.AccessibleName2 = "MA_KH";
             this.filterLineVvarTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterLineVvarTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox3.Caption = "Mã khách hàng";
             this.filterLineVvarTextBox3.FieldName = "MA_KH";
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 132);
@@ -328,7 +334,6 @@
             this.lineMaDvcs.AccessibleName2 = "MA_DVCS";
             this.lineMaDvcs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaDvcs.Caption = "Mã đơn vị";
             this.lineMaDvcs.FieldName = "MA_DVCS";
             this.lineMaDvcs.Location = new System.Drawing.Point(6, 107);
@@ -343,7 +348,6 @@
             this.lineMact.AccessibleName2 = "";
             this.lineMact.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineMact.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMact.Caption = "Mã chứng từ";
             this.lineMact.FieldName = "";
             this.lineMact.Location = new System.Drawing.Point(6, 82);
@@ -438,38 +442,10 @@
             this.btnGuiDanhSach.UseVisualStyleBackColor = true;
             this.btnGuiDanhSach.Click += new System.EventHandler(this.btnGuiDanhSach_Click);
             // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(311, 374);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(677, 160);
-            this.dataGridView2.TabIndex = 11;
-            // 
-            // XASENDSMSALL
+            // XASENDSMS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.grbTest);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.chkIgnore);
@@ -481,8 +457,8 @@
             this.Controls.Add(this.btnChonHet);
             this.Controls.Add(this.grbFilter);
             this.Controls.Add(this.grbKetNoi);
-            this.Name = "XASENDSMSALL";
-            this.Size = new System.Drawing.Size(1000, 540);
+            this.Name = "XASENDSMS";
+            this.Size = new System.Drawing.Size(861, 540);
             this.grbTest.ResumeLayout(false);
             this.grbTest.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -490,7 +466,6 @@
             this.grbFilter.PerformLayout();
             this.grbKetNoi.ResumeLayout(false);
             this.grbKetNoi.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -525,9 +500,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private V6ReportControls.FilterLineVvarTextBox lineMaDvcs;
+        private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox8;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox4;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox3;
-        public V6Controls.V6ColorDataGridView dataGridView2;
 
 
     }

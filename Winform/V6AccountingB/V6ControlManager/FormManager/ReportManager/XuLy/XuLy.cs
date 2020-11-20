@@ -340,6 +340,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 case "V6IM2XLS":
                     //return new V6IMPORT2XLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "ADVXNK01":
+                    return new XuLyBase0(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
             }
 
             // Đổi program thành pro_old

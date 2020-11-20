@@ -1647,88 +1647,83 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void CheckSoKhungTon(bool isChanged)
-        {
-            if (NotAddEdit) return;
-            if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
-            if (!_maVt.LO_YN) return;
-            //Fix Tuanmh 15/11/2017
-            if (!_maKhoI.LO_YN) return;
+        //private void CheckSoKhungTon(bool isChanged)
+        //{
+        //    if (NotAddEdit) return;
+        //    if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
+        //    if (!_maVt.LO_YN) return;
+        //    //Fix Tuanmh 15/11/2017
+        //    if (!_maKhoI.LO_YN) return;
+        //    try
+        //    {
+        //        Invoice.GetAlLoTon(dateNgayCT.Date, _sttRec, _maVt.Text, _maKhoI.Text);
+        //        FixAlLoTon(Invoice.AlLoTon, AD);
+        //        var inputUpper = _maLo.Text.Trim().ToUpper();
+        //        if (Invoice.AlLoTon != null && Invoice.AlLoTon.Rows.Count > 0)
+        //        {
+        //            var check = false;
+        //            foreach (DataRow row in Invoice.AlLoTon.Rows)
+        //            {
+        //                if (row["Ma_lo"].ToString().Trim().ToUpper() == inputUpper)
+        //                {
+        //                    check = true;
+        //                }
+        //                if (check)
+        //                {
+        //                    //
+        //                    _maLo.Tag = row;
+        //                    XuLyKhiNhanMaLo (row.ToDataDictionary(), isChanged);
+        //                    break;
+        //                }
+        //            }
+        //            if (!check)
+        //            {
+        //                var initFilter = GetAlLoTonInitFilter();
+        //                var f = new FilterView(Invoice.AlLoTon, "Ma_lo", "ALLOTON", _maLo, initFilter);
+        //                if (f.ViewData != null && f.ViewData.Count > 0)
+        //                {
+        //                    var d = f.ShowDialog(this);
+        //                    //xu ly data
+        //                    if (d == DialogResult.OK)
+        //                    {
+        //                        if (_maLo.Tag is DataRow)
+        //                            XuLyKhiNhanMaLo (((DataRow)_maLo.Tag).ToDataDictionary(), isChanged);
+        //                        else if (_maLo.Tag is DataGridViewRow)
+        //                            XuLyKhiNhanMaLo (((DataGridViewRow)_maLo.Tag).ToDataDictionary(), isChanged);
+        //                    }
+        //                    else
+        //                    {
+        //                        _maLo.Text = _maLo.GotFocusText;
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    ShowParentMessage("AlLoTon" + V6Text.NoData);
+        //                }
+        //            }
 
-            try
-            {
-                Invoice.GetAlLoTon(dateNgayCT.Date, _sttRec, _maVt.Text, _maKhoI.Text);
-                FixAlLoTon(Invoice.AlLoTon, AD);
+        //            GetLoDate13();
 
-                var inputUpper = _maLo.Text.Trim().ToUpper();
-                if (Invoice.AlLoTon != null && Invoice.AlLoTon.Rows.Count > 0)
-                {
-                    var check = false;
-                    foreach (DataRow row in Invoice.AlLoTon.Rows)
-                    {
-                        if (row["Ma_lo"].ToString().Trim().ToUpper() == inputUpper)
-                        {
-                            check = true;
-                        }
-
-                        if (check)
-                        {
-                            //
-                            _maLo.Tag = row;
-                            XuLyKhiNhanMaLo(row.ToDataDictionary(), isChanged);
-                            break;
-                        }
-                    }
-
-                    if (!check)
-                    {
-                        var initFilter = GetAlLoTonInitFilter();
-                        var f = new FilterView(Invoice.AlLoTon, "Ma_lo", "ALLOTON", _maLo, initFilter);
-                        if (f.ViewData != null && f.ViewData.Count > 0)
-                        {
-                            var d = f.ShowDialog(this);
-
-                            //xu ly data
-                            if (d == DialogResult.OK)
-                            {
-                                if (_maLo.Tag is DataRow)
-                                    XuLyKhiNhanMaLo(((DataRow)_maLo.Tag).ToDataDictionary(), isChanged);
-                                else if (_maLo.Tag is DataGridViewRow)
-                                    XuLyKhiNhanMaLo(((DataGridViewRow)_maLo.Tag).ToDataDictionary(), isChanged);
-                            }
-                            else
-                            {
-                                _maLo.Text = _maLo.GotFocusText;
-                            }
-                        }
-                        else
-                        {
-                            ShowParentMessage("AlLoTon" + V6Text.NoData);
-                        }
-                    }
-
-                    GetLoDate13();
-
-                    if (_maLo.GotFocusText == _maLo.LostFocusText
-                        && (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO)))
-                    {
-                        if (_soLuong1.Value > _ton13.Value)
-                        {
-                            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                            TinhTienNt2(null);
-                        }
-                    }
-                }
-                else
-                {
-                    ShowMainMessage("AlLoTon null");
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
+        //            if (_maLo.GotFocusText == _maLo.LostFocusText
+        //                && (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO)))
+        //            {
+        //                if (_soLuong1.Value > _ton13.Value)
+        //                {
+        //                    _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
+        //                    TinhTienNt2(null);
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ShowMainMessage("AlLoTon null");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+        //    }
+        //}
 
         private void FixAlLoTon(DataTable alLoTon, DataTable ad)
         {
@@ -2844,33 +2839,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void XuLyLayThongTinKhiChonMaLo()
-        {
-            try
-            {
-                if (_maVt.LO_YN)
-                {
-                    if (_maLo.Text.Trim() != "")
-                    {
-                        var data = _maLo.Data;
-                        if (data != null)
-                            _hanSd.Value = ObjectAndString.ObjectToDate(data["NGAY_HHSD"]);
-                    }
-                    else
-                    {
-                        _hanSd.Value = null;
-                    }
-                }
-                else
-                {
-                    _hanSd.Value = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
+        //private void XuLyLayThongTinKhiChonMaLo()
+        //{
+        //    try
+        //    {
+        //        if (_maVt.LO_YN)
+        //        {
+        //            if (_maLo.Text.Trim() != "")
+        //            {
+        //                var data = _maLo.Data;
+        //                if (data != null)
+        //                    _hanSd.Value = ObjectAndString.ObjectToDate(data["NGAY_HHSD"]);
+        //            }
+        //            else
+        //            {
+        //                _hanSd.Value  = null;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            _hanSd.Value  = null;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+        //    }
+        //}
 
         private DataTable _dataLoDate;
 

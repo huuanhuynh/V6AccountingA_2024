@@ -1114,7 +1114,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (F10Error.Length > 0 ? "Error: " : "")
                     + F10Error);
 
-                V6ControlFormHelper.ShowMainMessage("F10 finish!");
+                SetStatusText("F10 " + V6Text.Finish);
 
                 //V6ControlFormHelper.ShowInfoMessage("F10 finish "
                 //    + (F10ErrorAll.Length > 0 ? "Error: " : "")

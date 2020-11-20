@@ -192,7 +192,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9ErrorAll.Length > 0 ? "Error: " : "")
                     + f9ErrorAll);
 
-                V6ControlFormHelper.ShowMainMessage("F9 " + V6Text.Finish);
+                SetStatusText("F9 " + V6Text.Finish);
             }
         }
         #endregion xulyF9
@@ -334,7 +334,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f10ErrorAll.Length > 0 ? "Error: " : "")
                     + f10ErrorAll);
 
-                V6ControlFormHelper.ShowMainMessage("F10 " + V6Text.Finish);
+                SetStatusText("F10 " + V6Text.Finish);
             }
         }
         V6Invoice81 invoice = new V6Invoice81();

@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using GSM;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
@@ -14,7 +13,7 @@ using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 
-namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
+namespace V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms
 {
     public partial class XASENDEMAILALL : FilterBase
     {
@@ -63,6 +62,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             {
                 _ds = ds;
                 ViewData(_ds.Tables[0]);
+                if (dataGridView1.RowCount > 0) btnGuiDanhSach.Enabled = true;
             }
             catch (Exception ex)
             {

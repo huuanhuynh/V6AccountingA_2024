@@ -12,7 +12,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6Tools;
 
-namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
+namespace V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms
 {
     public partial class XASENDMAIL : FilterBase
     {

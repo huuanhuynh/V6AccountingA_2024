@@ -2163,16 +2163,16 @@
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.Designer.cs">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDEMAILALL.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDEMAILALL.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDEMAILALL.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDEMAILALL.Designer.cs">
       <DependentUpon>XASENDEMAILALL.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDSMSALL.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDSMSALL.Designer.cs">
       <DependentUpon>XASENDSMSALL.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XL_LIST_ALL_Filter.cs">
@@ -2180,6 +2180,12 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XL_LIST_ALL_Filter.Designer.cs">
       <DependentUpon>AAPPR_XL_LIST_ALL_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\XADVXNK01_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\XADVXNK01_Filter.Designer.cs">
+      <DependentUpon>XADVXNK01_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\HoaDonDienTu\AAPPR_AR12_filter.cs">
       <SubType>UserControl</SubType>
@@ -2289,10 +2295,10 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLTMXLS.designer.cs">
       <DependentUpon>AGLTMXLS.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMS.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDSMS.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMS.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDSMS.Designer.cs">
       <DependentUpon>XASENDSMS.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_POH1.cs">
@@ -3177,16 +3183,16 @@
     <Compile Include="FormManager\ReportManager\Filter\NhanSu\HPRCONGCT_Filter.Designer.cs">
       <DependentUpon>HPRCONGCT_Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\SendSmsForm.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\SendSmsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\SendSmsForm.designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\SendSmsForm.designer.cs">
       <DependentUpon>SendSmsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDMAIL.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDMAIL.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDMAIL.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDMAIL.Designer.cs">
       <DependentUpon>XASENDMAIL.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\V6LEVELSET.cs">
@@ -6964,14 +6970,17 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.resx">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDEMAILALL.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDEMAILALL.resx">
       <DependentUpon>XASENDEMAILALL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDSMSALL.resx">
       <DependentUpon>XASENDSMSALL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XL_LIST_ALL_Filter.resx">
       <DependentUpon>AAPPR_XL_LIST_ALL_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\Base0\XADVXNK01_Filter.resx">
+      <DependentUpon>XADVXNK01_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\HoaDonDienTu\AAPPR_AR12_filter.resx">
       <DependentUpon>AAPPR_AR12_filter.cs</DependentUpon>
@@ -7027,7 +7036,7 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLTMXLS.resx">
       <DependentUpon>AGLTMXLS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDSMS.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDSMS.resx">
       <DependentUpon>XASENDSMS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_POH1.resx">
@@ -7474,10 +7483,10 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ReportFilter44Base.resx">
       <DependentUpon>ReportFilter44Base.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\SendSmsForm.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\SendSmsForm.resx">
       <DependentUpon>SendSmsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDMAIL.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDMAIL.resx">
       <DependentUpon>XASENDMAIL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\V6LEVELSET.resx">

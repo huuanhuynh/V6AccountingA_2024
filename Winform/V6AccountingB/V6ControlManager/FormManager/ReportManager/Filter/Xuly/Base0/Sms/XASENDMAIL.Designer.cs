@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms
 {
     partial class XASENDMAIL
     {

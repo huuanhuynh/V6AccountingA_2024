@@ -7,7 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ReportManager.Filter;
-using V6ControlManager.FormManager.ReportManager.Filter.Sms;
+using V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
@@ -22,12 +22,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         #region Biến toàn cục
         
-        protected string _reportProcedure, _reportFile;
-        protected string _program, _reportCaption, _reportCaption2;
+        public string _reportProcedure, _reportFile;
+        public string _program, _reportCaption, _reportCaption2;
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
 
-        protected DataSet _ds;
-        protected DataTable _tbl, _tbl2;
+        public DataSet _ds;
+        public DataTable _tbl, _tbl2;
         public DataTable MauInData;
         public DataRow MauInSelectedRow
         {

@@ -2289,6 +2289,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             //Tính tiền thuế theo thuế suất
             var thue_suat = 0m;
             var t_thue_nt = 0m;
+            var t_thue = 0m;
             var ty_gia = txtTyGia.Value;
             var t_tien_nt0 = txtTongTienNt0.Value;
             var t_gg_nt = txtTongGiamNt.Value;
@@ -2297,6 +2298,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             if (chkT_THUE_NT.Checked)//Tiền thuế gõ tự do
             {
                 t_thue_nt = txtTongThueNt.Value;
+                t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
+
+                if (_maNt == _mMaNt0)
+                    t_thue = t_thue_nt;
             }
             else
             {
@@ -2304,9 +2309,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 //tiền thuế = (tiền hàng - tiền giảm - chiết khấu) * thuế suất
                 t_thue_nt = (t_tien_nt0 - t_gg_nt - t_ck_nt)*thue_suat/100;
                 t_thue_nt = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
-                //sV("T_THUE_NT", t_thue_nt);
-                txtTongThueNt.Value = t_thue_nt;
+
+                t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
+                if (_maNt == _mMaNt0)
+                    t_thue = t_thue_nt;
             }
+
+            txtTongThueNt.Value = t_thue_nt;
+            txtTongThue.Value = t_thue;
 
             //tính thuế riêng cho từng chi tiết
             //tính phần trăm giá trị của từng chi tiết trên tổng tiền hàng rồi nhân với tổng thuế sẽ ra thuế 

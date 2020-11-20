@@ -10,7 +10,7 @@ namespace V6Controls.Forms
             {
                 lblMessage.Text = value;
                 _showTimeCount = 0;
-                timer1.Start();
+                if (!timer1.Enabled) timer1.Start();
                 ShowToScreen();
             }
         }

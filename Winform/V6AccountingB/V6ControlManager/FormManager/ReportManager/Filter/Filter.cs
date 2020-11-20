@@ -1,4 +1,6 @@
-﻿using V6ControlManager.FormManager.ReportManager.Filter.NhanSu;
+﻿using V6ControlManager.FormManager.ReportManager.Filter.Base0;
+using V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms;
+using V6ControlManager.FormManager.ReportManager.Filter.NhanSu;
 using V6ControlManager.FormManager.ReportManager.Filter.Xuly;
 using V6Controls.Forms;
 
@@ -1588,16 +1590,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                     break;
                 case "ASENDMAIL":
-                    result = new Sms.XASENDMAIL();
+                    result = new XASENDMAIL();
                     break;
                 case "ASENDSMS":
-                    result = new Sms.XASENDSMS();
+                    result = new XASENDSMS();
                     break;
                 case "ASENDSMSALL":
-                    result = new Sms.XASENDSMSALL();
+                    result = new XASENDSMSALL();
                     break;
                 case "ASENDEMAILALL":
-                    result = new Sms.XASENDEMAILALL();
+                    result = new XASENDEMAILALL();
+                    break;
+
+                case "ADVXNK01":
+                    result = new XADVXNK01_Filter();
                     break;
             }
 

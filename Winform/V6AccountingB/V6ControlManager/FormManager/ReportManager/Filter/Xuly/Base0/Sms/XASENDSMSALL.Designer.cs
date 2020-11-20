@@ -1,6 +1,6 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms
 {
-    partial class XASENDEMAILALL
+    partial class XASENDSMSALL
     {
         /// <summary> 
         /// Required designer variable.
@@ -41,8 +41,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.chkIgnore = new System.Windows.Forms.CheckBox();
             this.grbTest = new System.Windows.Forms.GroupBox();
-            this.txtNoiDung_Test = new V6Controls.V6ColorTextBox();
-            this.txtSendTo_Test = new V6Controls.V6ColorTextBox();
+            this.txtSmsTo = new V6Controls.V6ColorTextBox();
             this.btnGui1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -60,11 +59,16 @@
             this.lineMact = new V6ReportControls.FilterLineVvarTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.grbKetNoi = new System.Windows.Forms.GroupBox();
+            this.btnTuKetNoi = new System.Windows.Forms.Button();
+            this.btnKetNoi = new System.Windows.Forms.Button();
+            this.txtConnectPort = new V6Controls.V6ColorTextBox();
             this.btnGuiDanhSach = new System.Windows.Forms.Button();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.grbTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbFilter.SuspendLayout();
+            this.grbKetNoi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,50 +102,34 @@
             // grbTest
             // 
             this.grbTest.AccessibleDescription = "MAILSMSG00004";
-            this.grbTest.Controls.Add(this.txtNoiDung_Test);
-            this.grbTest.Controls.Add(this.txtSendTo_Test);
+            this.grbTest.Controls.Add(this.txtSmsTo);
             this.grbTest.Controls.Add(this.btnGui1);
-            this.grbTest.Location = new System.Drawing.Point(3, 290);
+            this.grbTest.Location = new System.Drawing.Point(3, 374);
             this.grbTest.Name = "grbTest";
-            this.grbTest.Size = new System.Drawing.Size(302, 165);
+            this.grbTest.Size = new System.Drawing.Size(302, 81);
             this.grbTest.TabIndex = 9;
             this.grbTest.TabStop = false;
             this.grbTest.Text = "Thử nghiệm";
             // 
-            // txtNoiDung_Test
+            // txtSmsTo
             // 
-            this.txtNoiDung_Test.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNoiDung_Test.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNoiDung_Test.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNoiDung_Test.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNoiDung_Test.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNoiDung_Test.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNoiDung_Test.LeaveColor = System.Drawing.Color.White;
-            this.txtNoiDung_Test.Location = new System.Drawing.Point(6, 45);
-            this.txtNoiDung_Test.Multiline = true;
-            this.txtNoiDung_Test.Name = "txtNoiDung_Test";
-            this.txtNoiDung_Test.Size = new System.Drawing.Size(290, 114);
-            this.txtNoiDung_Test.TabIndex = 7;
-            // 
-            // txtSendTo_Test
-            // 
-            this.txtSendTo_Test.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSendTo_Test.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSendTo_Test.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtSendTo_Test.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtSendTo_Test.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtSendTo_Test.GrayText = "Địa chỉ email";
-            this.txtSendTo_Test.HoverColor = System.Drawing.Color.Yellow;
-            this.txtSendTo_Test.LeaveColor = System.Drawing.Color.White;
-            this.txtSendTo_Test.Location = new System.Drawing.Point(6, 19);
-            this.txtSendTo_Test.Name = "txtSendTo_Test";
-            this.txtSendTo_Test.Size = new System.Drawing.Size(231, 20);
-            this.txtSendTo_Test.TabIndex = 0;
+            this.txtSmsTo.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSmsTo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSmsTo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSmsTo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSmsTo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSmsTo.GrayText = "Số điện thoại";
+            this.txtSmsTo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSmsTo.LeaveColor = System.Drawing.Color.White;
+            this.txtSmsTo.Location = new System.Drawing.Point(6, 19);
+            this.txtSmsTo.Name = "txtSmsTo";
+            this.txtSmsTo.Size = new System.Drawing.Size(131, 20);
+            this.txtSmsTo.TabIndex = 0;
             // 
             // btnGui1
             // 
             this.btnGui1.AccessibleDescription = "MAILSMSB00011";
-            this.btnGui1.Location = new System.Drawing.Point(243, 17);
+            this.btnGui1.Location = new System.Drawing.Point(148, 19);
             this.btnGui1.Name = "btnGui1";
             this.btnGui1.Size = new System.Drawing.Size(46, 23);
             this.btnGui1.TabIndex = 1;
@@ -384,11 +372,64 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Từ ngày";
             // 
+            // grbKetNoi
+            // 
+            this.grbKetNoi.AccessibleDescription = "MAILSMSG00002";
+            this.grbKetNoi.Controls.Add(this.btnTuKetNoi);
+            this.grbKetNoi.Controls.Add(this.btnKetNoi);
+            this.grbKetNoi.Controls.Add(this.txtConnectPort);
+            this.grbKetNoi.Location = new System.Drawing.Point(3, 289);
+            this.grbKetNoi.Name = "grbKetNoi";
+            this.grbKetNoi.Size = new System.Drawing.Size(302, 79);
+            this.grbKetNoi.TabIndex = 1;
+            this.grbKetNoi.TabStop = false;
+            this.grbKetNoi.Text = "Kết nối sms";
+            // 
+            // btnTuKetNoi
+            // 
+            this.btnTuKetNoi.AccessibleDescription = "MAILSMSB00008";
+            this.btnTuKetNoi.Location = new System.Drawing.Point(87, 19);
+            this.btnTuKetNoi.Name = "btnTuKetNoi";
+            this.btnTuKetNoi.Size = new System.Drawing.Size(105, 23);
+            this.btnTuKetNoi.TabIndex = 1;
+            this.btnTuKetNoi.Text = "Tự kết nối";
+            this.btnTuKetNoi.UseVisualStyleBackColor = true;
+            this.btnTuKetNoi.Click += new System.EventHandler(this.btnTuKetNoi_Click);
+            // 
+            // btnKetNoi
+            // 
+            this.btnKetNoi.AccessibleDescription = "MAILSMSB00007";
+            this.btnKetNoi.Location = new System.Drawing.Point(6, 19);
+            this.btnKetNoi.Name = "btnKetNoi";
+            this.btnKetNoi.Size = new System.Drawing.Size(75, 23);
+            this.btnKetNoi.TabIndex = 0;
+            this.btnKetNoi.Text = "Kết nối";
+            this.btnKetNoi.UseVisualStyleBackColor = true;
+            this.btnKetNoi.Click += new System.EventHandler(this.btnKetNoi_Click);
+            // 
+            // txtConnectPort
+            // 
+            this.txtConnectPort.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtConnectPort.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtConnectPort.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtConnectPort.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtConnectPort.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtConnectPort.HoverColor = System.Drawing.Color.Yellow;
+            this.txtConnectPort.LeaveColor = System.Drawing.Color.White;
+            this.txtConnectPort.Location = new System.Drawing.Point(4, 48);
+            this.txtConnectPort.Name = "txtConnectPort";
+            this.txtConnectPort.ReadOnly = true;
+            this.txtConnectPort.Size = new System.Drawing.Size(188, 20);
+            this.txtConnectPort.TabIndex = 2;
+            this.txtConnectPort.TabStop = false;
+            this.txtConnectPort.Text = "Chưa kết nối";
+            // 
             // btnGuiDanhSach
             // 
             this.btnGuiDanhSach.AccessibleDescription = "MAILSMSB00010";
             this.btnGuiDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGuiDanhSach.Image = global::V6ControlManager.Properties.Resources.SendEmail32;
+            this.btnGuiDanhSach.Enabled = false;
+            this.btnGuiDanhSach.Image = global::V6ControlManager.Properties.Resources.sms48;
             this.btnGuiDanhSach.Location = new System.Drawing.Point(7, 482);
             this.btnGuiDanhSach.Name = "btnGuiDanhSach";
             this.btnGuiDanhSach.Size = new System.Drawing.Size(165, 52);
@@ -425,7 +466,7 @@
             this.dataGridView2.Size = new System.Drawing.Size(677, 160);
             this.dataGridView2.TabIndex = 11;
             // 
-            // XASENDEMAILALL
+            // XASENDSMSALL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -440,13 +481,16 @@
             this.Controls.Add(this.btnDaoLuaChon);
             this.Controls.Add(this.btnChonHet);
             this.Controls.Add(this.grbFilter);
-            this.Name = "XASENDEMAILALL";
+            this.Controls.Add(this.grbKetNoi);
+            this.Name = "XASENDSMSALL";
             this.Size = new System.Drawing.Size(1000, 540);
             this.grbTest.ResumeLayout(false);
             this.grbTest.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbFilter.ResumeLayout(false);
             this.grbFilter.PerformLayout();
+            this.grbKetNoi.ResumeLayout(false);
+            this.grbKetNoi.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -465,12 +509,16 @@
         private V6Controls.V6ColorTextBox txtChonTen;
         private System.Windows.Forms.Button btnChonTheoTen;
         private System.Windows.Forms.Button btnGuiDanhSach;
+        private System.Windows.Forms.Button btnKetNoi;
+        private V6Controls.V6ColorTextBox txtConnectPort;
         private System.Windows.Forms.Button btnBoChonHet;
         private System.Windows.Forms.Button btnDaoLuaChon;
         private System.Windows.Forms.Button btnChonHet;
-        private V6Controls.V6ColorTextBox txtSendTo_Test;
+        private V6Controls.V6ColorTextBox txtSmsTo;
+        private System.Windows.Forms.GroupBox grbKetNoi;
         private System.Windows.Forms.Button btnGui1;
         private System.Windows.Forms.GroupBox grbTest;
+        private System.Windows.Forms.Button btnTuKetNoi;
         private V6Controls.V6DateTimePicker dateNgay_ct2;
         private V6Controls.V6DateTimePicker dateNgay_ct1;
         private System.Windows.Forms.GroupBox grbFilter;
@@ -481,7 +529,6 @@
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox4;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox3;
         public V6Controls.V6ColorDataGridView dataGridView2;
-        private V6Controls.V6ColorTextBox txtNoiDung_Test;
 
 
     }
