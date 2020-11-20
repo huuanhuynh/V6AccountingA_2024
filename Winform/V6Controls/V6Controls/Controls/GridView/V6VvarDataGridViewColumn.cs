@@ -32,6 +32,7 @@ namespace V6Controls.Controls.GridView
         /// <param name="e"></param>
         void V6VvarDataGridViewEditingControl_VisibleChanged(object sender, EventArgs e)
         {
+            if (Disposing) return;
             if (Visible)
             {
                 var cell = dataGridView.CurrentCell;

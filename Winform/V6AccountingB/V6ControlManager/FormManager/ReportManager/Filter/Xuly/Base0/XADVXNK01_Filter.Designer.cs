@@ -276,6 +276,7 @@
             this.Controls.Add(this.grbFilter);
             this.Name = "XADVXNK01_Filter";
             this.Size = new System.Drawing.Size(1000, 540);
+            this.Load += new System.EventHandler(this.XADVXNK01_Filter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbFilter.ResumeLayout(false);
             this.grbFilter.PerformLayout();

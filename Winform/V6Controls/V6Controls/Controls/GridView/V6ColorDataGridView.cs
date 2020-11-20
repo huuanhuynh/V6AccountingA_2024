@@ -240,7 +240,7 @@ namespace V6Controls
         /// </summary>
         [DefaultValue(false)]
         public bool CongThuc_CellEndEdit_ApplyAllRow { get; set; }
-        private readonly Dictionary<string, string> CongThuc = new Dictionary<string, string>();
+        public readonly Dictionary<string, string> CongThuc = new Dictionary<string, string>();
         private readonly Dictionary<string, string> CongThuc_Valid = new Dictionary<string, string>();
         /// <summary>
         /// Gán công thức tính toán, ghi đè nếu đã có.
@@ -2172,7 +2172,7 @@ namespace V6Controls
         /// <summary>
         /// Cho phép sửa trên những cột truyền vào.
         /// </summary>
-        /// <param name="columns">Nhiều cột trong 1 mảng hoặc trong các biến khác nhau. Field:CVvar - Field:N2</param>
+        /// <param name="columns">Nhiều cột trong 1 mảng hoặc trong các biến khác nhau. Field:CVvar:InitFilter; Field:CVvar - Field:N2</param>
         public void SetEditColumnParams(params string[] columns)
         {
             SetEditColumn(columns);

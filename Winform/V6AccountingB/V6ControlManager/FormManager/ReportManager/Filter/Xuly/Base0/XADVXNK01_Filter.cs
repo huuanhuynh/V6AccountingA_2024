@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Controls.GridView;
 using V6Controls.Forms;
@@ -19,6 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
     public partial class XADVXNK01_Filter : FilterBase
     {
         private AldmConfig _aldmConfig;
+        private XuLyBase0 _base0;
 
         public XADVXNK01_Filter()
         {
@@ -34,7 +34,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 Anchor = (AnchorStyles) 0xF;
                 ExecuteMode = ExecuteMode.ExecuteProcedure;
                 //lineMact.SetValue("POH");
-                LoadConfig();
             }
             catch (Exception ex)
             {
@@ -42,11 +41,29 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             }
         }
 
+        private void XADVXNK01_Filter_Load(object sender, EventArgs e)
+        {
+            LoadConfig();
+        }
+
         private void LoadConfig()
         {
             try
             {
-                _aldmConfig = ConfigManager.GetAldmConfig("ma_dm");
+                _base0 = FindParent<XuLyBase0>() as XuLyBase0;
+                if (_base0 != null)
+                {
+                    this.ShowInfoMessage("Test code alkh line 58");
+                    _aldmConfig = ConfigManager.GetAldmConfig("ALKH");
+                    //_aldmConfig = ConfigManager.GetAldmConfig(_base0._reportFile);
+                    var table = V6BusinessHelper.Select(_aldmConfig.TABLE_NAME, "top 100 *", "", "", "").Data;
+                    dataGridView1.DataSource = table;
+                    FormatGridView(dataGridView1);
+                }
+                else
+                {
+                    throw new Exception(V6Text.NoDefine);
+                }
             }
             catch (Exception ex)
             {
@@ -85,10 +102,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
 
         public override void FormatGridView(V6ColorDataGridView dataGridView1)
         {
-            dataGridView1 = this.dataGridView1;
             try
             {
-                _aldmConfig = ConfigManager.GetAldmConfig("ASENDEMAILALL");
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1,
                     V6Setting.IsVietnamese ? _aldmConfig.GRDHV_V1 : _aldmConfig.GRDHE_V1);
             }
@@ -188,6 +203,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
 
         protected void ViewDetails(DataGridViewRow row)
         {
+            return;
             try
             {
                 if (row != null)
@@ -263,44 +279,73 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         {
             try
             {
-                if (_showFields != null)
+                List<DataGridViewColumn> cList = new List<DataGridViewColumn>();
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
-                    var showFieldSplit = ObjectAndString.SplitString(_showFields);
-                    foreach (string field in showFieldSplit)
+                    cList.Add(column);
+                }
+                foreach (DataGridViewColumn column in cList)
+                {
+                    string FIELD = column.Name.Trim().ToUpper();
+                    DataGridViewColumn column1 = null;
+                    
+                    var editFieldDic = ObjectAndString.StringToStringDictionary(EditFieldFormat);
+                    if (editFieldDic.ContainsKey(column.Name.ToUpper()))
                     {
-                        if (field.Contains(":"))
+                        string EorR_FORMAT = editFieldDic[FIELD];
+                        
+                        var ss = EorR_FORMAT.Split(':');
+
+                        if (ss[0].ToUpper() == "R")
                         {
-                            var ss = field.Split(':');
-                            DataGridViewColumn column = null;
-
-                            if (ss.Length > 2)
-                            {
-                                string NM_IP = ss[2].ToUpper(); // N2 hoac NM_IP_SL
-                                if (NM_IP.StartsWith("N"))
-                                {
-                                    string newFormat = NM_IP.Length == 2 ? NM_IP : V6Options.GetValueNull(NM_IP.Substring(1));
-                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6NumberDataGridViewColumn), newFormat);
-                                }
-                                else if (NM_IP.StartsWith("C")) // CVvar
-                                {
-                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6VvarDataGridViewColumn), null);
-                                    ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
-                                }
-                                else if (NM_IP.StartsWith("D0")) // ColorDateTime
-                                {
-                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6DateTimeColorGridViewColumn), null);
-                                }
-                                else if (NM_IP.StartsWith("D1")) // DateTimePicker
-                                {
-                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6DateTimePickerGridViewColumn), null);
-                                }
-                            }
-
-                            if (ss[1].ToUpper() == "R" && column != null)
-                            {
-                                column.ReadOnly = true;
-                            }
+                            column.ReadOnly = true;
+                            continue;
                         }
+                        if (!EorR_FORMAT.Contains(":")) goto Default;
+
+                        string NM_IP = ss[1].ToUpper(); // N2 hoac NM_IP_SL
+                        if (NM_IP.StartsWith("N"))
+                        {
+                            string newFormat = NM_IP.Length == 2 ? NM_IP : V6Options.GetValueNull(NM_IP.Substring(1));
+                            dataGridView1.ChangeColumnType(FIELD, typeof(V6NumberDataGridViewColumn), newFormat);
+                        }
+                        else if (NM_IP.StartsWith("C")) // CVvar
+                        {
+                            column1 = dataGridView1.ChangeColumnType(FIELD, typeof(V6VvarDataGridViewColumn), null);
+                            ((V6VvarDataGridViewColumn) column1).Vvar = NM_IP.Substring(1);
+                        }
+                        else if (NM_IP.StartsWith("D0")) // ColorDateTime
+                        {
+                            dataGridView1.ChangeColumnType(FIELD, typeof(V6DateTimeColorGridViewColumn), null);
+                        }
+                        else if (NM_IP.StartsWith("D1")) // DateTimePicker
+                        {
+                            dataGridView1.ChangeColumnType(FIELD, typeof(V6DateTimePickerGridViewColumn), null);
+                        }
+
+
+                        continue;
+                    }
+
+                    Default:
+                    {
+                        if (ObjectAndString.IsNumberType(column.ValueType))
+                        {
+                            column1 = dataGridView1.ChangeColumnType(column.Name, typeof(V6NumberDataGridViewColumn), null);
+                        }
+                        //else if (NM_IP.StartsWith("C")) // CVvar
+                        //{
+                        //    column1 = dataGridView1.ChangeColumnType(ss[0], typeof(V6VvarDataGridViewColumn), null);
+                        //    ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
+                        //}
+                        else if (ObjectAndString.IsDateTimeType(column.ValueType)) // ColorDateTime
+                        {
+                            column1 = dataGridView1.ChangeColumnType(column.Name, typeof(V6DateTimeColorGridViewColumn), null);
+                        }
+                        //else if (NM_IP.StartsWith("D1")) // DateTimePicker
+                        //{
+                        //    column1 = dataGridView1.ChangeColumnType(ss[0], typeof(V6DateTimePickerGridViewColumn), null);
+                        //}
                     }
                 }
             }
@@ -310,8 +355,27 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             }
         }
 
-        private string _tableName, _showFields;
-        private string[] _keyFields;
+        /// <summary>
+        /// Tên bảng từ AldmConfig.
+        /// </summary>
+        private string TableName
+        {
+            get { return _aldmConfig.TABLE_NAME; }
+        }
+
+        private string EditFieldFormat
+        {
+            get { return _aldmConfig.FIELD; }
+        }
+
+        private string[] KeyFields
+        {
+            get
+            {
+                return ObjectAndString.SplitString(_aldmConfig.KEY);
+            }
+        }
+
         private IDictionary<string, object> _defaultData = null;
         public bool HaveChange { get; set; }
         /// <summary>
@@ -323,7 +387,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         {
             try
             {
-                SetStatusText(V6Text.Add + _tableName);
+                SetStatusText(V6Text.Add + TableName);
 
                 //Gán dữ liệu mặc định
                 if (_defaultData != null)
@@ -334,7 +398,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 if (data.ContainsKey("UID")) data.Remove("UID");
                 //Tạo keys giả
                 IDictionary<string, object> keys = new Dictionary<string, object>();
-                foreach (string field in _keyFields)
+                foreach (string field in KeyFields)
                 {
                     var FIELD = field.ToUpper();
                     if (FIELD != "UID")
@@ -363,13 +427,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                     //keys.AddRange(data);
                 }
 
-                var result = V6BusinessHelper.Insert(_tableName, data);
+                var result = V6BusinessHelper.Insert(TableName, data);
                 if (result)
                 {
                     HaveChange = true;
-                    SetStatusText(string.Format("{0} {1}", _tableName, V6Text.AddSuccess));
+                    SetStatusText(string.Format("{0} {1}", TableName, V6Text.AddSuccess));
 
-                    var selectResult = V6BusinessHelper.Select(_tableName, keys, "*");
+                    var selectResult = V6BusinessHelper.Select(TableName, keys, "*");
                     if (selectResult.TotalRows == 1)
                     {
                         return selectResult.Data.Rows[0].ToDataDictionary();
@@ -387,7 +451,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             }
             catch (Exception ex)
             {
-                SetStatusText(string.Format("{0} {1}", _tableName, V6Text.AddFail));
+                SetStatusText(string.Format("{0} {1}", TableName, V6Text.AddFail));
                 this.WriteExLog(GetType() + ".AddData", ex);
             }
             return null;
@@ -402,21 +466,21 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         {
             try
             {
-                SetStatusText(string.Format("{0} {1} {2}", V6Text.Delete, _tableName, delete_info));
+                SetStatusText(string.Format("{0} {1} {2}", V6Text.Delete, TableName, delete_info));
                 if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
                 {
-                    var result = V6BusinessHelper.Delete(_tableName, keys);
+                    var result = V6BusinessHelper.Delete(TableName, keys);
                     if (result > 0)
                     {
                         HaveChange = true;
                         dataGridView1.Rows.RemoveAt(rowIndex);
-                        SetStatusText(string.Format("{0} {1} {2}", _tableName, V6Text.DeleteSuccess, delete_info));
+                        SetStatusText(string.Format("{0} {1} {2}", TableName, V6Text.DeleteSuccess, delete_info));
                     }
                 }
             }
             catch (Exception ex)
             {
-                SetStatusText(string.Format("{0} {1} {2}", _tableName, V6Text.DeleteFail, delete_info));
+                SetStatusText(string.Format("{0} {1} {2}", TableName, V6Text.DeleteFail, delete_info));
                 Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".UpdateData",
                     ex, V6ControlFormHelper.LastActionListString, Application.ProductName);
             }
@@ -433,10 +497,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             var update_info = "";
             try
             {
-                SetStatusText(string.Format("{0} {1}", V6Text.Edit, _tableName));
+                SetStatusText(string.Format("{0} {1}", V6Text.Edit, TableName));
                 var row = dataGridView1.Rows[rowIndex];
                 SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
-                foreach (string field in _keyFields)
+                foreach (string field in KeyFields)
                 {
                     var currentKeyFieldColumnIndex = row.Cells[field].ColumnIndex;
                     if (columnIndex == currentKeyFieldColumnIndex)
@@ -454,23 +518,23 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 var update_value = row.Cells[columnIndex].Value;
                 updateData.Add(UPDATE_FIELD, update_value);
                 update_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
-                foreach (string FIELD in updateFieldList)
+                foreach (KeyValuePair<string, string> item in dataGridView1.CongThuc)
                 {
-                    update_value = row.Cells[FIELD].Value;
-                    updateData[FIELD] = update_value;
-                    update_info += FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
+                    update_value = row.Cells[item.Key].Value;
+                    updateData[item.Key] = update_value;
+                    update_info += item.Key + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
                 }
 
-                var result = V6BusinessHelper.UpdateSimple(_tableName, updateData, keys);
+                var result = V6BusinessHelper.UpdateSimple(TableName, updateData, keys);
                 if (result > 0)
                 {
                     HaveChange = true;
-                    SetStatusText(string.Format("{0} {1} {2}", _tableName, V6Text.EditSuccess, update_info));
+                    SetStatusText(string.Format("{0} {1} {2}", TableName, V6Text.EditSuccess, update_info));
                 }
             }
             catch (Exception ex)
             {
-                SetStatusText(string.Format("{0} {1} {2}", _tableName, V6Text.EditFail, update_info));
+                SetStatusText(string.Format("{0} {1} {2}", TableName, V6Text.EditFail, update_info));
                 Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".UpdateData",
                     ex, V6ControlFormHelper.LastActionListString, Application.ProductName);
             }
@@ -481,12 +545,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             _cellBeginEditValue = dataGridView1.CurrentCell.Value;
         }
 
-        private List<string> updateFieldList = new List<string>();
+        //private List<string> updateFieldList0 = new List<string>();
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             //var UPDATE_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
             //Xu ly cong thuc tinh toan
-            updateFieldList = new List<string>();
+            //updateFieldList = new List<string>(); // Đổi qua dùng CongThuc trong datagridview.
+            
             
             //if (CheckUpdateField(UPDATE_FIELD)) XuLyCongThucTinhToan();
 
@@ -507,7 +572,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                         //var rowData = dataGridView1.CurrentRow.ToDataDictionary();
                         var keys = new SortedDictionary<string, object>();
                         delete_info = "";
-                        foreach (string field in _keyFields)
+                        foreach (string field in KeyFields)
                         {
                             var UPDATE_FIELD = field.ToUpper();
                             var update_value = dataGridView1.CurrentRow.Cells[field].Value;
@@ -519,6 +584,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 }
             }
         }
+
+        
 
 
 

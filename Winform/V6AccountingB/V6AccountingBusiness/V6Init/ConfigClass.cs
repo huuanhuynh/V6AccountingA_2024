@@ -259,6 +259,9 @@ namespace V6Init
         public string F_SEARCH { get { return GetString("F_SEARCH"); } }
         public string SEARCH0 { get { return GetString("SEARCH0"); } }
         public string FILTER { get { return GetString("FILTER"); } }
+        /// <summary>
+        /// Field:EorR:CVvar;Field:E:N2;Field,E:D0;Field:D1 Định nghĩa trường edit.
+        /// </summary>
         public string FIELD { get { return GetString("FIELD"); } }
         public string FIELD2 { get { return GetString("FIELD2"); } }
         /// <summary>
