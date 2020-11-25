@@ -23,17 +23,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
     public partial class FilterBase : V6Control
     {
         #region ==== FIELDS and PROPERTIES ====
-        protected DataSet _ds = null;
-        protected string _program;
-        protected string _reportProcedure;
-        protected string MAU = "", LAN = "";
+        public DataSet _ds = null;
+        public string _program;
+        public string _reportProcedure;
+        public string MAU = "", LAN = "";
         /// <summary>
         /// Tắt MadeFilterControls
         /// </summary>
         public bool DynamicOff { get; set; }
 
         //{tuanmh 11/09/2016
-        private DataGridView _parentGridView;
+        public DataGridView _parentGridView;
         /// <summary>
         /// Mã liên kết giữa 2 bảng.
         /// Mặc định không thay đổi là stt_rec

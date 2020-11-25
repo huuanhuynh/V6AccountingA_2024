@@ -381,6 +381,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
+                All_Objects["thisForm"] = this;
                 //DMETHOD
                 if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
                 {

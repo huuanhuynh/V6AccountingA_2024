@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -22,6 +23,37 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
     {
         private AldmConfig _aldmConfig;
         private XuLyBase0 _base0;
+
+        /// <summary>
+        /// Tên bảng từ AldmConfig.
+        /// </summary>
+        private string TableName
+        {
+            get { return _aldmConfig.TABLE_NAME; }
+        }
+
+        private string EditFieldFormat
+        {
+            get { return _aldmConfig.FIELD; }
+        }
+
+        private string[] KeyFields
+        {
+            get
+            {
+                return ObjectAndString.SplitString(_aldmConfig.KEY);
+            }
+        }
+
+        private IDictionary<string, object> _defaultData = null;
+        public bool HaveChange { get; set; }
+
+        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        /// <summary>
+        /// Code động từ aldmConfig.
+        /// </summary>
+        protected Type Event_program;
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         public XADVXNK01_Filter()
         {
@@ -53,6 +85,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 LoadConfig();
                 FilterControl = AddFilterControl44Base("ADVXNK01." + _base0._reportFile, _base0._reportProcedure, panel1);
                 FilterControl2 = AddFilterControl44Base2("ADVXNK01." + _base0._reportFile + "_ADD", _base0._reportProcedure, panel2);
+                CreateFormProgram();
+
                 FilterControl2.groupBox1.Text = "";
                 FilterControl2.radAnd.Visible = false;
                 FilterControl2.radOr.Visible = false;
@@ -60,6 +94,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 // Right
                 dataGridView1.AllowUserToAddRows = V6Login.UserRight.AllowAdd(ItemID, _base0._reportFile + "6");
                 dataGridView1.ReadOnly = !V6Login.UserRight.AllowEdit(ItemID, _base0._reportFile + "6");
+                InvokeFormEvent(FormDynamicEvent.INIT);
+                InvokeFormEvent(FormDynamicEvent.INIT2);
             }
             catch (Exception ex)
             {
@@ -118,6 +154,69 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             return FilterControl2;
         }
 
+        protected void CreateFormProgram()
+        {
+            try
+            {
+                All_Objects["thisForm"] = this;
+                //DMETHOD
+                if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
+                {
+                    return;
+                }
+
+                string using_text = "";
+                string method_text = "";
+                //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+                {
+                    var xml = _aldmConfig.DMETHOD;
+                    if (xml == "") return;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) return;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    }
+                }
+
+            Build:
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
+        /// <summary>
+        /// Gọi hàm động theo tên event đã định nghĩa.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
+        public object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
+        }
+
         public override List<SqlParameter> GetFilterParameters()
         {
             var result = FilterControl.GetFilterParameters();
@@ -129,6 +228,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             try
             {
                 _ds = ds;
+                All_Objects["_ds"] = _ds;
+                InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                 dataGridView1.DataSource = _ds.Tables[0];
                 FormatGridView(dataGridView1);
                 if (_ds.Tables.Count > 1)
@@ -345,18 +446,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             var currentRow = dataGridView1.CurrentRow;
             if (currentRow == null) return;
 
-            //if (_updateDatabase)
+            var newData = currentRow.ToDataDictionary();
+            var afterData = AddData(newData);
+            InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
+            if (afterData != null)
             {
-                var newData = currentRow.ToDataDictionary();
-                var afterData = AddData(newData);
-                if (afterData != null)
+                foreach (KeyValuePair<string, object> item in afterData)
                 {
-                    foreach (KeyValuePair<string, object> item in afterData)
+                    if (dataGridView1.Columns.Contains(item.Key))
                     {
-                        if (dataGridView1.Columns.Contains(item.Key))
-                        {
-                            currentRow.Cells[item.Key].Value = item.Value;
-                        }
+                        currentRow.Cells[item.Key].Value = item.Value;
                     }
                 }
             }
@@ -442,29 +541,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             }
         }
 
-        /// <summary>
-        /// Tên bảng từ AldmConfig.
-        /// </summary>
-        private string TableName
-        {
-            get { return _aldmConfig.TABLE_NAME; }
-        }
-
-        private string EditFieldFormat
-        {
-            get { return _aldmConfig.FIELD; }
-        }
-
-        private string[] KeyFields
-        {
-            get
-            {
-                return ObjectAndString.SplitString(_aldmConfig.KEY);
-            }
-        }
-
-        private IDictionary<string, object> _defaultData = null;
-        public bool HaveChange { get; set; }
+        
         /// <summary>
         /// Thêm dữ liệu vào cơ sở dữ liệu.
         /// </summary>
@@ -624,6 +701,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                     updateData[item.Key] = update_value;
                     update_info += item.Key + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
                 }
+                // more modified data by dynamic code.
+                foreach (KeyValuePair<string, object> item in beforeEditData)
+                {
+                    if (item.Key != UPDATE_FIELD && ObjectAndString.ObjectToString(item.Value) !=
+                        ObjectAndString.ObjectToString(afterEditData[item.Key]))
+                    {
+                        updateData[item.Key] = afterEditData[item.Key];
+                    }
+                }
 
                 var result = V6BusinessHelper.UpdateSimple(TableName, updateData, keys);
                 if (result > 0)
@@ -643,18 +729,28 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             _cellBeginEditValue = dataGridView1.CurrentCell.Value;
+            beforeEditData = dataGridView1.CurrentRow.ToDataDictionary();
         }
 
+        private IDictionary<string, object> beforeEditData;
+        private IDictionary<string, object> afterEditData;
         //private List<string> updateFieldList0 = new List<string>();
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            var cell = dataGridView1.CurrentCell;
+            string FIELD = cell.OwningColumn.DataPropertyName.ToUpper();
+            All_Objects["cell"] = cell;
+            V6ControlsHelper.InvokeMethodDynamic(Event_program, FIELD + "_LOSTFOCUS", All_Objects);
+            
             //var UPDATE_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
             //Xu ly cong thuc tinh toan
             //updateFieldList = new List<string>(); // Đổi qua dùng CongThuc trong datagridview.
             //if (CheckUpdateField(UPDATE_FIELD)) XuLyCongThucTinhToan();
 
+            afterEditData = dataGridView1.CurrentRow.ToDataDictionary();
+
             UpdateData(e.RowIndex, e.ColumnIndex);
-            
+            InvokeFormEvent(FormDynamicEvent.AFTERUPDATE);
         }
 
         string delete_info = "";
@@ -683,7 +779,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                             keys.Add(UPDATE_FIELD, update_value);
                             delete_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
                         }
-                        if (keys.Count > 0) DeleteData(keys, selectedRowIndex);
+
+                        if (keys.Count > 0)
+                        {
+                            DeleteData(keys, selectedRowIndex);
+                            InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
+                        }
                     }
                 }
             }
@@ -717,7 +818,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         /// <summary>
         /// Chức năng sửa hàng loạt một cột dữ liệu.
         /// </summary>
-        /// <param name="invoice"></param>
         /// <param name="many">Thanh thế hết giá trị cho các cột được cấu hình Alct.Extra_info.CT_REPLACE bằng giá trị của dòng đang đứng.</param>
         public void ChucNang_ThayThe(bool many = false)
         {
@@ -783,6 +883,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
                                 if (row.Index < dataGridView1.CurrentRow.Index) continue;
+                                if (row.IsNewRow) continue;
 
                                 object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
                                 if (ObjectAndString.IsDateTimeType(valueType) && newValue != null)
@@ -804,6 +905,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
                                 if (row.Index < dataGridView1.CurrentRow.Index) continue;
+                                if (row.IsNewRow) continue;
 
                                 var newValue = ObjectAndString.ObjectToDecimal(row.Cells[field_index].Value) * -1;
                                 SortedDictionary<string, object> newData = new SortedDictionary<string, object>();

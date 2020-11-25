@@ -160,8 +160,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected void AddFilterControl(string program)
         {
             FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure);
-            FilterControl.Height = panel1.Height - 5;
-            FilterControl.Width = panel1.Width - 5;
+            FilterControl.Height = panel1.Height;
+            FilterControl.Width = panel1.Width;
             panel1.Controls.Add(FilterControl);
             panel1.SizeChanged += panel1_SizeChanged;
             FilterControl.Focus();
@@ -176,8 +176,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     panel1.Width = grbDieuKienLoc.Width - 5;
                     panel1.Height = grbDieuKienLoc.Height - 5;
                     panel1.Anchor |= AnchorStyles.Right | AnchorStyles.Bottom;
-                    FilterControl.Width = panel1.Width - 5;
-                    FilterControl.Height = panel1.Height - 5;
+                    FilterControl.Width = panel1.Width;
+                    FilterControl.Height = panel1.Height;
                     FilterControl.Anchor |= AnchorStyles.Right | AnchorStyles.Bottom;
                 }
             }
