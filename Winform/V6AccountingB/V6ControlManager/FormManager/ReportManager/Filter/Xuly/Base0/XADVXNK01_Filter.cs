@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Init;
+using V6ReportControls;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -31,9 +34,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         {
             try
             {
+                DynamicOff = true;
                 Anchor = (AnchorStyles) 0xF;
                 ExecuteMode = ExecuteMode.ExecuteProcedure;
                 //lineMact.SetValue("POH");
+                // Sau hàm này cũng đã tự có program + reportProc
             }
             catch (Exception ex)
             {
@@ -43,8 +48,27 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
 
         private void XADVXNK01_Filter_Load(object sender, EventArgs e)
         {
-            LoadConfig();
+            try
+            {
+                LoadConfig();
+                FilterControl = AddFilterControl44Base("ADVXNK01." + _base0._reportFile, _base0._reportProcedure, panel1);
+                FilterControl2 = AddFilterControl44Base2("ADVXNK01." + _base0._reportFile + "_ADD", _base0._reportProcedure, panel2);
+                FilterControl2.groupBox1.Text = "";
+                FilterControl2.radAnd.Visible = false;
+                FilterControl2.radOr.Visible = false;
+                //FilterControl2
+                // Right
+                dataGridView1.AllowUserToAddRows = V6Login.UserRight.AllowAdd(ItemID, _base0._reportFile + "6");
+                dataGridView1.ReadOnly = !V6Login.UserRight.AllowEdit(ItemID, _base0._reportFile + "6");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XADVXNK01_Filter_Load", ex);
+            }
         }
+
+        public ReportFilter44Base FilterControl { get; set; }
+        public ReportFilter44Base FilterControl2 { get; set; }
 
         private void LoadConfig()
         {
@@ -53,12 +77,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 _base0 = FindParent<XuLyBase0>() as XuLyBase0;
                 if (_base0 != null)
                 {
-                    this.ShowInfoMessage("Test code alkh line 58");
-                    _aldmConfig = ConfigManager.GetAldmConfig("ALKH");
-                    //_aldmConfig = ConfigManager.GetAldmConfig(_base0._reportFile);
-                    var table = V6BusinessHelper.Select(_aldmConfig.TABLE_NAME, "top 100 *", "", "", "").Data;
-                    dataGridView1.DataSource = table;
-                    FormatGridView(dataGridView1);
+                    //this.ShowInfoMessage("Test code alkh line 59");
+                    //_aldmConfig = ConfigManager.GetAldmConfig("ALKH");
+                    _aldmConfig = ConfigManager.GetAldmConfig(_base0._reportFile); // Đảo program bằng reportFile.
+                    // Test data
+                    //var table = V6BusinessHelper.Select(_aldmConfig.TABLE_NAME, "top 100 *", "", "", "").Data;
+                    //dataGridView1.DataSource = table;
+                    //FormatGridView(dataGridView1);
                 }
                 else
                 {
@@ -71,18 +96,31 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             }
         }
 
+        public static ReportFilter44Base AddFilterControl44Base(string program, string reportProcedure, Panel panel1)
+        {
+            panel1.Controls.Clear();
+
+            var FilterControl = Filter.GetFilterControl44(program, reportProcedure);
+            panel1.Controls.Add(FilterControl);
+            FilterControl.LoadLanguage();
+            FilterControl.Focus();
+            return FilterControl;
+        }
+        
+        public static ReportFilter44Base AddFilterControl44Base2(string program, string reportProcedure, Panel panel2)
+        {
+            panel2.Controls.Clear();
+
+            var FilterControl2 = Filter.GetFilterControl44(program, reportProcedure);
+            panel2.Controls.Add(FilterControl2);
+            FilterControl2.LoadLanguage();
+            FilterControl2.Focus();
+            return FilterControl2;
+        }
+
         public override List<SqlParameter> GetFilterParameters()
         {
-            var result = new List<SqlParameter>();
-            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
-            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
-            result.Add(new SqlParameter("@LSTMA_CT", lineMact.StringValue));
-            var key0 = GetFilterStringByFields(new List<string>()
-            {
-                "MA_DVCS","MA_BP", "MA_KH"
-            }, true);
-            result.Add(new SqlParameter("@advance", key0));
-
+            var result = FilterControl.GetFilterParameters();
             return result;
         }
 
@@ -92,11 +130,60 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             {
                 _ds = ds;
                 dataGridView1.DataSource = _ds.Tables[0];
+                FormatGridView(dataGridView1);
+                if (_ds.Tables.Count > 1)
+                {
+                    dataGridView2.DataSource = _ds.Tables[1];
+                    if (_ds.Tables[1].Rows.Count > 0)
+                    {
+                        _defaultData = _ds.Tables[1].Rows[0].ToDataDictionary();
+                        dataGridView1.Enabled = true;
+                    }
+                    else
+                    {
+                        _defaultData = new Dictionary<string, object>();
+                        dataGridView1.Enabled = false;
+                    }
+                    SetFilterControl2Data();
+                }
+                else
+                {
+                    _defaultData = new Dictionary<string, object>();
+                    dataGridView1.Enabled = false;
+                }
                 if (dataGridView1.RowCount > 0) btnGuiDanhSach.Enabled = true;
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".LoadDataFinish", ex);
+                this.ShowErrorException(GetType() + ".LoadDataFinish", ex);
+            }
+        }
+
+        private void SetFilterControl2Data()
+        {
+            try
+            {
+                foreach (Control control in FilterControl2.groupBox1.Controls)
+                {
+                    var line = control as FilterLineBase;
+                    if (line == null) continue;
+                    if (!_defaultData.ContainsKey(line.FieldName.ToUpper()))
+                    {
+                        //line.Visible = false;
+                    }
+                    else
+                    {
+                        line.SetValue(_defaultData[line.FieldName.ToUpper()]);
+                    }
+                }
+
+                FilterControl2.SortFilterLine();
+
+                V6ControlFormHelper.SetFormDataDictionary(panel2, _defaultData);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".SetFilterControl2Data", ex);
             }
         }
 
@@ -388,12 +475,25 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             try
             {
                 SetStatusText(V6Text.Add + TableName);
-
+                if (_defaultData == null || _defaultData.Count == 0)
+                {
+                    this.ShowErrorMessage("Thiếu dữ liệu mặc định.");
+                    return null;
+                }
                 //Gán dữ liệu mặc định
                 if (_defaultData != null)
                 {
                     data.AddRange(_defaultData, true);
                 }
+
+                var filterData = new Dictionary<string, object>();
+                foreach (Control control in FilterControl2.groupBox1.Controls)
+                {
+                    var line = control as FilterLineBase;
+                    if (line == null) continue;
+                    filterData[line.FieldName.ToUpper()] = line.ObjectValue;
+                }
+                data.AddRange(filterData, true);
                 //Remove UID in data
                 if (data.ContainsKey("UID")) data.Remove("UID");
                 //Tạo keys giả
@@ -551,19 +651,23 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             //var UPDATE_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
             //Xu ly cong thuc tinh toan
             //updateFieldList = new List<string>(); // Đổi qua dùng CongThuc trong datagridview.
-            
-            
             //if (CheckUpdateField(UPDATE_FIELD)) XuLyCongThucTinhToan();
 
-            //if (_updateDatabase)
-                UpdateData(e.RowIndex, e.ColumnIndex);
+            UpdateData(e.RowIndex, e.ColumnIndex);
+            
         }
 
         string delete_info = "";
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Delete)
+            if (e.KeyData == Keys.Delete || e.KeyData == Keys.F8)
             {
+                if (!V6Login.UserRight.AllowDelete(ItemID, _base0._reportFile + "6"))
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                    e.Handled = true;
+                    return;
+                }
                 if (dataGridView1.CurrentRow != null)
                 {
                     var selectedRowIndex = dataGridView1.CurrentRow.Index;
@@ -585,7 +689,148 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             }
         }
 
-        
+        private void XADVXNK01_Filter_SizeChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int height = (btnGuiDanhSach.Top - 10) / 2;
+                panel1.Height = height;
+                panel2.Height = height;
+                panel2.Top = panel1.Bottom;
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private void thayTheMenu_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe();
+        }
+
+        private void thayTheNhieuMenu_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe(true);
+        }
+
+        /// <summary>
+        /// Chức năng sửa hàng loạt một cột dữ liệu.
+        /// </summary>
+        /// <param name="invoice"></param>
+        /// <param name="many">Thanh thế hết giá trị cho các cột được cấu hình Alct.Extra_info.CT_REPLACE bằng giá trị của dòng đang đứng.</param>
+        public void ChucNang_ThayThe(bool many = false)
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+
+                if (!_aldmConfig.EXTRA_INFOR.ContainsKey("CT_REPLACE"))
+                {
+                    ShowMainMessage(V6Text.NoDefine + "EXTRA_INFOR[CT_REPLACE]");
+                    return;
+                }
+                var listFieldCanReplace = ObjectAndString.SplitString(_aldmConfig.EXTRA_INFOR["CT_REPLACE"]);
+
+                if (many)
+                {
+                    IDictionary<string, object> data = new Dictionary<string, object>();
+                    if (dataGridView1.CurrentRow != null)
+                    {
+                        foreach (string field in listFieldCanReplace)
+                        {
+                            data[field.ToUpper()] = dataGridView1.CurrentRow.Cells[field].Value;
+                        }
+
+                        V6ControlFormHelper.UpdateDKlistAll(data, listFieldCanReplace, _ds.Tables[0], dataGridView1.CurrentRow.Index);
+                    }
+                }
+                else // Thay thế giá trị của cột đang đứng từ dòng hiện tại trở xuống bằng giá trị mới.
+                {
+                    int field_index = dataGridView1.CurrentCell.ColumnIndex;
+                    string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
+
+
+                    if (!listFieldCanReplace.Contains(FIELD))
+                    {
+                        ShowMainMessage(V6Text.NoDefine + " CT_REPLACE:" + FIELD);
+                        return;
+                    }
+
+                    V6ColorTextBox textBox = new V6ColorTextBox();
+                    if (dataGridView1.Columns[FIELD] is V6VvarDataGridViewColumn) textBox = new V6VvarTextBox();
+                    else if (dataGridView1.Columns[FIELD] is V6DateTimeColorGridViewColumn) textBox = new V6DateTimeColor();
+                    else if (dataGridView1.Columns[FIELD] is V6NumberDataGridViewColumn) textBox = new V6NumberTextBox();
+
+                    Type valueType = dataGridView1.CurrentCell.OwningColumn.ValueType;
+
+                    //Check
+                    if (textBox == null)
+                    {
+                        ShowMainMessage(V6Text.Text("UNKNOWNOBJECT"));
+                        return;
+                    }
+
+                    ChucNangThayTheForm f = new ChucNangThayTheForm(ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType), textBox);
+                    if (f.ShowDialog(this) == DialogResult.OK)
+                    {
+                        if (f.ChucNangDaChon == f._ThayThe)
+                        {
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                if (row.Index < dataGridView1.CurrentRow.Index) continue;
+
+                                object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
+                                if (ObjectAndString.IsDateTimeType(valueType) && newValue != null)
+                                {
+                                    DateTime newDate = (DateTime)newValue;
+                                    if (newDate < new DateTime(1700, 1, 1))
+                                    {
+                                        newValue = null;
+                                    }
+                                }
+
+                                SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                                newData.Add(FIELD, newValue);
+                                V6ControlFormHelper.UpdateGridViewRow(row, newData);
+                            }
+                        }
+                        else // Đảo ngược
+                        {
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                if (row.Index < dataGridView1.CurrentRow.Index) continue;
+
+                                var newValue = ObjectAndString.ObjectToDecimal(row.Cells[field_index].Value) * -1;
+                                SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                                newData.Add(FIELD, newValue);
+                                V6ControlFormHelper.UpdateGridViewRow(row, newData);
+                            }
+                        }
+
+                        //All_Objects["replaceField"] = FIELD;
+                        //All_Objects["dataGridView1"] = dataGridView1;
+                        //All_Objects["detail1"] = detail1;
+                        //if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERREPLACE))
+                        //{
+                        //    InvokeFormEvent(FormDynamicEvent.AFTERREPLACE);
+                        //}
+                        //else
+                        //{
+                        //    AfterReplace(All_Objects);
+                        //}
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ChucNang_ThayThe " + _sttRec, ex);
+            }
+        }
 
 
 

@@ -46,5 +46,9 @@
 
         public System.Windows.Forms.ToolTip filterBaseToolTip1;
 
+        public virtual void SortFilterLine()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

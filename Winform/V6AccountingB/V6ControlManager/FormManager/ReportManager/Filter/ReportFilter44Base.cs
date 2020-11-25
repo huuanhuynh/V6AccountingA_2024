@@ -849,5 +849,30 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
         }
 
+        public override void SortFilterLine()
+        {
+            try
+            {
+                int top = 10;
+                foreach (Control control in groupBox1.Controls)
+                {
+                    if (!(control is FilterLineBase)) continue;
+
+                    if (control.Visible)
+                    {
+                        control.Top = top;
+                        top = control.Bottom;
+                    }
+                    else
+                    {
+                        // Invisible control.
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SortFilterLine", ex);
+            }
+        }
     }
 }

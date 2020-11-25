@@ -161,6 +161,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure);
             FilterControl.Height = panel1.Height - 5;
+            FilterControl.Width = panel1.Width - 5;
             panel1.Controls.Add(FilterControl);
             panel1.SizeChanged += panel1_SizeChanged;
             FilterControl.Focus();

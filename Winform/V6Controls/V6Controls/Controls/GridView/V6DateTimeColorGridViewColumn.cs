@@ -93,6 +93,7 @@ namespace V6Controls.Controls.GridView
             if (Visible)
             {
                 var cell = dataGridView.CurrentCell;
+                if (cell == null) return;
                 Value = ObjectAndString.ObjectToDate(cell.Value);
                 //if (cell.OwningColumn.DefaultCellStyle.Format != null && cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
                 //    this.DecimalPlaces = ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));

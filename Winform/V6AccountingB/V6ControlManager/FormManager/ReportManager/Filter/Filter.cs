@@ -1604,7 +1604,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 case "ADVXNK01":
                     result = new XADVXNK01_Filter();
+                    //return result; // Đã dùng cờ DynamicOff, có thể bỏ dòng này.
                     break;
+                //default:
+                    //if (program.StartsWith("ADVXNK01."))
+                    //{
+                    //    result = new ReportFilter44Base(program.Substring("ADVXNK01.".Length), reportProcedure);
+                    //}
+                    //break;
             }
 
             if (result == null) result = new FilterBase() { Visible = false };
@@ -1616,6 +1623,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         public static ReportFilter44Base GetFilterControl44(string program, string reportProcedure)
         {
+            if (program.StartsWith("ADVXNK01."))
+            {
+                var result = new ReportFilter44Base(program.Substring("ADVXNK01.".Length), reportProcedure);
+                result.MyInitDynamic(program.Substring("ADVXNK01.".Length), reportProcedure);
+                return result;
+            }
             return new ReportFilter44Base(program, reportProcedure);
         }
     }

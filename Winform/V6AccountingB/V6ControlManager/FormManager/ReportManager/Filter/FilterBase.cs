@@ -27,6 +27,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         protected string _program;
         protected string _reportProcedure;
         protected string MAU = "", LAN = "";
+        /// <summary>
+        /// Tắt MadeFilterControls
+        /// </summary>
+        public bool DynamicOff { get; set; }
 
         //{tuanmh 11/09/2016
         private DataGridView _parentGridView;
@@ -65,10 +69,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// </summary>
         public Dictionary<string, object> ParameterNameList2 = new Dictionary<string, object>();
 
+        public FilterLineDynamic lineNgay_SV = null;
         public FilterLineDynamic lineNgay_ct1 = null;
         public FilterLineDynamic lineNgay_ct2 = null;
         public FilterLineDynamic lineMauBC { get; set; }
         public FilterLineDynamic lineLAN { get; set; }
+        public FilterLineDynamic lineLANG { get; set; }
         public FilterLineDynamic lineUserID { get; set; }
 
         protected string Alreport_advance = "";
@@ -229,14 +235,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 this.WriteExLog(GetType() + ".MyInitDynamic", ex);
             }
         }
-        
+
         public void MadeFilterControls(string program, Dictionary<string, object> all_Objects)
         {
             Type Event_program = null;
-            //Dictionary<string, object> All_Objects = new Dictionary<string, object>();
             all_Objects["filterControl"] = this;
+            if (DynamicOff) return;
             string all_using_text = "", all_method_text = "";
-
             SqlParameter[] plist =
             {
                 new SqlParameter("@ma_bc", program), 
@@ -260,8 +265,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (groupBox1 != null)
                     foreach (Control control in groupBox1.Controls)
                     {
-                        if(lineTop < control.Top + 35)
-                        lineTop = control.Top + 35;
+                        if(lineTop < control.Top + 35) lineTop = control.Top + 35;
                     }
 
                 foreach (DataRow row in dataALREPORT1.Rows)
@@ -300,18 +304,42 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             //panel1.Controls.Add(lineControl);
 
                             //Giữ lại control ngày.
+                            if (lineControl.DefineInfo.DefaultValue == "M_SV_DATE")
+                            {
+                                lineNgay_SV = lineControl;
+                                lineNgay_SV.SetValue(V6Setting.M_SV_DATE);
+                            }
                             if (lineControl.DefineInfo.DefaultValue == "M_NGAY_CT1")
+                            {
                                 lineNgay_ct1 = lineControl;
+                            }
+
                             if (lineControl.DefineInfo.DefaultValue == "M_NGAY_CT2")
+                            {
                                 lineNgay_ct2 = lineControl;
+                            }
                             //Giu lai tiente, ngonnguBC
                             if (lineControl.DefineInfo.DefaultValue == "M_MAU_BC")
+                            {
                                 lineMauBC = lineControl;
+                                lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
+                            }
                             if (lineControl.DefineInfo.DefaultValue == "M_LAN")
+                            {
                                 lineLAN = lineControl;
+                                lineLAN.SetValue(LAN);
+                            }
+                            if (lineControl.DefineInfo.DefaultValue == "M_LANG")
+                            {
+                                lineLANG = lineControl;
+                                lineLANG.SetValue(V6Login.SelectedLanguage);
+                            }
                             //Giữ lại user_id
                             if (lineControl.DefineInfo.DefaultValue == "M_USER_ID")
+                            {
                                 lineUserID = lineControl;
+                                lineUserID.SetValue(V6Login.UserId);
+                            }
 
                             string xml = row["DMETHOD"].ToString().Trim();
                             if (!string.IsNullOrEmpty(xml))

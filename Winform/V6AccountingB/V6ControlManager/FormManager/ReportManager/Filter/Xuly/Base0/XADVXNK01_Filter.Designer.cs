@@ -35,30 +35,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
-            this.grbFilter = new System.Windows.Forms.GroupBox();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
-            this.filterLineVvarTextBox4 = new V6ReportControls.FilterLineVvarTextBox();
-            this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineMact = new V6ReportControls.FilterLineVvarTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnGuiDanhSach = new System.Windows.Forms.Button();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.grbFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.menuChucNang.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Excel|*.xls;*.xlsx|DatabaseFox|*.dbf|Text|*.txt|Tất cả hỗ trợ|*.xls;*.xlsx;*.dbf;" +
-    "*.txt";
             // 
             // dataGridView1
             // 
@@ -77,7 +65,8 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(311, 10);
+            this.dataGridView1.ContextMenuStrip = this.menuChucNang;
+            this.dataGridView1.Location = new System.Drawing.Point(316, 3);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -94,135 +83,13 @@
             this.dataGridView1.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserAddedRow);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
-            // grbFilter
+            // panel1
             // 
-            this.grbFilter.AccessibleDescription = "MAILSMSG00006";
-            this.grbFilter.Controls.Add(this.dateNgay_ct2);
-            this.grbFilter.Controls.Add(this.dateNgay_ct1);
-            this.grbFilter.Controls.Add(this.filterLineVvarTextBox4);
-            this.grbFilter.Controls.Add(this.filterLineVvarTextBox3);
-            this.grbFilter.Controls.Add(this.lineMaDvcs);
-            this.grbFilter.Controls.Add(this.lineMact);
-            this.grbFilter.Controls.Add(this.label7);
-            this.grbFilter.Controls.Add(this.label8);
-            this.grbFilter.Location = new System.Drawing.Point(3, 10);
-            this.grbFilter.Name = "grbFilter";
-            this.grbFilter.Size = new System.Drawing.Size(302, 358);
-            this.grbFilter.TabIndex = 0;
-            this.grbFilter.TabStop = false;
-            this.grbFilter.Text = "Lọc dữ liệu";
-            // 
-            // dateNgay_ct2
-            // 
-            this.dateNgay_ct2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateNgay_ct2.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay_ct2.CustomFormat = "dd/MM/yyyy";
-            this.dateNgay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateNgay_ct2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
-            this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dateNgay_ct2.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct2.Location = new System.Drawing.Point(189, 39);
-            this.dateNgay_ct2.Name = "dateNgay_ct2";
-            this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 3;
-            // 
-            // dateNgay_ct1
-            // 
-            this.dateNgay_ct1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateNgay_ct1.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
-            this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
-            this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dateNgay_ct1.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct1.Location = new System.Drawing.Point(189, 13);
-            this.dateNgay_ct1.Name = "dateNgay_ct1";
-            this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct1.TabIndex = 1;
-            // 
-            // filterLineVvarTextBox4
-            // 
-            this.filterLineVvarTextBox4.AccessibleDescription = "FILTERL00008";
-            this.filterLineVvarTextBox4.AccessibleName2 = "MA_BP";
-            this.filterLineVvarTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterLineVvarTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.filterLineVvarTextBox4.Caption = "Mã bộ phận";
-            this.filterLineVvarTextBox4.FieldName = "MA_BP";
-            this.filterLineVvarTextBox4.Location = new System.Drawing.Point(6, 157);
-            this.filterLineVvarTextBox4.Name = "filterLineVvarTextBox4";
-            this.filterLineVvarTextBox4.Size = new System.Drawing.Size(287, 22);
-            this.filterLineVvarTextBox4.TabIndex = 7;
-            this.filterLineVvarTextBox4.Vvar = "MA_BP";
-            // 
-            // filterLineVvarTextBox3
-            // 
-            this.filterLineVvarTextBox3.AccessibleDescription = "FILTERL00007";
-            this.filterLineVvarTextBox3.AccessibleName2 = "MA_KH";
-            this.filterLineVvarTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterLineVvarTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.filterLineVvarTextBox3.Caption = "Mã khách hàng";
-            this.filterLineVvarTextBox3.FieldName = "MA_KH";
-            this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 132);
-            this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";
-            this.filterLineVvarTextBox3.Size = new System.Drawing.Size(287, 22);
-            this.filterLineVvarTextBox3.TabIndex = 6;
-            this.filterLineVvarTextBox3.Vvar = "MA_KH";
-            // 
-            // lineMaDvcs
-            // 
-            this.lineMaDvcs.AccessibleDescription = "FILTERL00005";
-            this.lineMaDvcs.AccessibleName2 = "MA_DVCS";
-            this.lineMaDvcs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.lineMaDvcs.Caption = "Mã đơn vị";
-            this.lineMaDvcs.FieldName = "MA_DVCS";
-            this.lineMaDvcs.Location = new System.Drawing.Point(6, 107);
-            this.lineMaDvcs.Name = "lineMaDvcs";
-            this.lineMaDvcs.Size = new System.Drawing.Size(287, 22);
-            this.lineMaDvcs.TabIndex = 5;
-            this.lineMaDvcs.Vvar = "MA_DVCS";
-            // 
-            // lineMact
-            // 
-            this.lineMact.AccessibleDescription = "FILTERL00004";
-            this.lineMact.AccessibleName2 = "";
-            this.lineMact.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineMact.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.lineMact.Caption = "Mã chứng từ";
-            this.lineMact.FieldName = "";
-            this.lineMact.Location = new System.Drawing.Point(6, 82);
-            this.lineMact.Name = "lineMact";
-            this.lineMact.Size = new System.Drawing.Size(287, 22);
-            this.lineMact.TabIndex = 4;
-            this.lineMact.Vvar = "MA_CT";
-            // 
-            // label7
-            // 
-            this.label7.AccessibleDescription = "FILTERL00003";
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 39);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Đến ngày";
-            // 
-            // label8
-            // 
-            this.label8.AccessibleDescription = "FILTERL00002";
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 19);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Từ ngày";
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(310, 238);
+            this.panel1.TabIndex = 1;
             // 
             // btnGuiDanhSach
             // 
@@ -257,50 +124,77 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(311, 374);
+            this.dataGridView2.Location = new System.Drawing.Point(316, 367);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(677, 160);
+            this.dataGridView2.Size = new System.Drawing.Size(677, 170);
             this.dataGridView2.TabIndex = 11;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Location = new System.Drawing.Point(3, 241);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(310, 238);
+            this.panel2.TabIndex = 1;
+            // 
+            // menuChucNang
+            // 
+            this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thayTheMenu,
+            this.thayTheNhieuMenu});
+            this.menuChucNang.Name = "menuChucNang";
+            this.menuChucNang.Size = new System.Drawing.Size(153, 70);
+            // 
+            // thayTheMenu
+            // 
+            this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
+            this.thayTheMenu.Name = "thayTheMenu";
+            this.thayTheMenu.Size = new System.Drawing.Size(152, 22);
+            this.thayTheMenu.Text = "Thay thế";
+            this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
+            // 
+            // thayTheNhieuMenu
+            // 
+            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
+            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
+            this.thayTheNhieuMenu.Size = new System.Drawing.Size(152, 22);
+            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
+            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
             // 
             // XADVXNK01_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnGuiDanhSach);
-            this.Controls.Add(this.grbFilter);
             this.Name = "XADVXNK01_Filter";
             this.Size = new System.Drawing.Size(1000, 540);
             this.Load += new System.EventHandler(this.XADVXNK01_Filter_Load);
+            this.SizeChanged += new System.EventHandler(this.XADVXNK01_Filter_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.grbFilter.ResumeLayout(false);
-            this.grbFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.menuChucNang.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private V6Controls.V6ColorDataGridView dataGridView1;
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnGuiDanhSach;
-        private V6Controls.V6DateTimePicker dateNgay_ct2;
-        private V6Controls.V6DateTimePicker dateNgay_ct1;
-        private System.Windows.Forms.GroupBox grbFilter;
-        private V6ReportControls.FilterLineVvarTextBox lineMact;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private V6ReportControls.FilterLineVvarTextBox lineMaDvcs;
-        private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox4;
-        private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox3;
         public V6Controls.V6ColorDataGridView dataGridView2;
+        public System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ContextMenuStrip menuChucNang;
+        private System.Windows.Forms.ToolStripMenuItem thayTheMenu;
+        private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
 
 
     }
