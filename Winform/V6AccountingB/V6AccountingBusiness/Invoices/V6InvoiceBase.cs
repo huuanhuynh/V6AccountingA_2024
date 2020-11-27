@@ -731,6 +731,19 @@ namespace V6AccountingBusiness.Invoices
         }
 
         /// <summary>
+        /// Tự thay đổi mẫu ngoại tệ.
+        /// </summary>
+        public bool ExtraInfo_PrintNT
+        {
+            get
+            {
+                bool result = false;
+                if (EXTRA_INFOR.ContainsKey("PRINTNT")) result = ObjectAndString.ObjectToBool(EXTRA_INFOR["PRINTNT"]);
+                return result;
+            }
+        }
+
+        /// <summary>
         /// Zoom mặc định cho crystalreport khi in chứng từ.
         /// <para>1 PageWidth, 2 AllPage, 50 is 50%</para>
         /// </summary>

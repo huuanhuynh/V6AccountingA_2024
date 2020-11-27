@@ -894,6 +894,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
+                if (Invoice.ExtraInfo_PrintNT && MA_NT != V6Options.M_MA_NT0)
+                {
+                    rNgoaiTe.Checked = true;
+                }
+
                 if (V6Setting.ReportLanguage == "V")
                 {
                     rTiengViet.Checked = true;

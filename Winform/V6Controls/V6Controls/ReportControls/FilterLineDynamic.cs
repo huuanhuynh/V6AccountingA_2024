@@ -687,6 +687,34 @@ namespace V6ReportControls
             }
         }
 
+        public void SetMaxLength(int maxLength)
+        {
+            if (_textBox != null)
+            {
+                _textBox.MaxLength = maxLength;
+            }
+            else if (_vtextBox != null)
+            {
+                _vtextBox.MaxLength = maxLength;
+            }
+            else if (_lookupTextBox != null)
+            {
+                _lookupTextBox.MaxLength = maxLength;
+            }
+            else if (_lookupProc != null)
+            {
+                _lookupProc.MaxLength = maxLength;
+            }
+            else if (_numberTextBox != null)
+            {
+                _numberTextBox.MaxNumLength = maxLength;
+            }
+            else if (_dateTimePick != null)
+            {
+                //_dateTimePick;
+            }
+        }
+
         public void SetNotEmpty(bool b)
         {
             CheckNotEmpty = b;

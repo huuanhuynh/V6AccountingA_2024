@@ -1781,6 +1781,7 @@ namespace V6Controls.Forms
             }
             //LimitChar
             if (!string.IsNullOrEmpty(lineInfo.LimitChars)) lineControl.SetLimitChars(lineInfo.LimitChars);
+            if (lineInfo.MaxLength > 0) lineControl.SetMaxLength(lineInfo.MaxLength);
             //NotEmpty
             if (lineInfo.NotEmpty) lineControl.SetNotEmpty(true);
 
