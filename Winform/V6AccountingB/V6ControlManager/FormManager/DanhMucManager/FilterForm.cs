@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6Structs;
 
 namespace V6ControlManager.FormManager.DanhMucManager
@@ -28,17 +29,19 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
         private readonly V6TableStruct _structTable;
         private string[] _fields;
+        private AldmConfig _aldmConfig;
 
         public FilterForm()
         {
             InitializeComponent();
         }
 
-        public FilterForm(V6TableStruct structTable, string[] fields)
+        public FilterForm(V6TableStruct structTable, string[] fields, AldmConfig aldmConfig)
         {
             InitializeComponent();
             _structTable = structTable;
             _fields = fields;
+            _aldmConfig = aldmConfig;
             MyInit();
         }
 
@@ -68,7 +71,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     }
                     _fields = list.ToArray();
                 }
-                panel1.AddMultiFilterLine(_structTable, _fields);
+                panel1.AddMultiFilterLine(_structTable, _fields, _aldmConfig);
             }
             catch (Exception ex)
             {

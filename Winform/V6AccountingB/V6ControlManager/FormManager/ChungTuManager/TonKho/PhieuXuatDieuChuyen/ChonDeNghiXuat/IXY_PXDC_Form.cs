@@ -129,7 +129,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private void SetValueAndShowLocKetQua()
         {
             ShowLocKetQua();
-            _locKetQua.SetAM(tAM);
+            _locKetQua.SetAM(tAM) ;
             Refresh0();
         }
 

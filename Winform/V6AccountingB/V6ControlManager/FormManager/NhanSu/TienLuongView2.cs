@@ -829,7 +829,7 @@ namespace V6ControlManager.FormManager.NhanSu
                     return;
                 }
                 string[] fields = _v6LookupConfig.GetDefaultLookupFields;
-                _filterForm = new FilterForm(structTable, fields);
+                _filterForm = new FilterForm(structTable, fields, null);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;
                 _filterForm.TopMost = true;

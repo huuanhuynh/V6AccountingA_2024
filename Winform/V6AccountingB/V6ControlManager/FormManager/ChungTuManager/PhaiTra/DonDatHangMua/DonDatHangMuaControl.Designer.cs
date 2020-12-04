@@ -2007,9 +2007,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.group5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.group5.Controls.Add(this.panelVND);
             this.group5.Controls.Add(this.panelNT);
-            this.group5.Location = new System.Drawing.Point(474, 376);
+            this.group5.Location = new System.Drawing.Point(474, 373);
             this.group5.Name = "group5";
-            this.group5.Size = new System.Drawing.Size(420, 150);
+            this.group5.Size = new System.Drawing.Size(420, 154);
             this.group5.TabIndex = 5;
             this.group5.TabStop = false;
             // 
@@ -2429,7 +2429,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.group4.Controls.Add(this.v6Label19);
             this.group4.Location = new System.Drawing.Point(5, 373);
             this.group4.Name = "group4";
-            this.group4.Size = new System.Drawing.Size(465, 150);
+            this.group4.Size = new System.Drawing.Size(465, 154);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
@@ -2437,7 +2437,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             this.chkAutoNext.AccessibleName = ".";
             this.chkAutoNext.AutoSize = true;
-            this.chkAutoNext.Location = new System.Drawing.Point(144, 9);
+            this.chkAutoNext.Location = new System.Drawing.Point(83, 57);
             this.chkAutoNext.Name = "chkAutoNext";
             this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
             this.chkAutoNext.TabIndex = 47;
@@ -2528,7 +2528,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.btnChucNang.Location = new System.Drawing.Point(97, 26);
             this.btnChucNang.Menu = this.menuChucNang;
             this.btnChucNang.Name = "btnChucNang";
-            this.btnChucNang.Size = new System.Drawing.Size(87, 23);
+            this.btnChucNang.Size = new System.Drawing.Size(90, 23);
             this.btnChucNang.TabIndex = 37;
             this.btnChucNang.TabStop = false;
             this.btnChucNang.Tag = "cancel";
@@ -2549,11 +2549,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.TxtT_cp_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtT_cp_nt.HoverColor = System.Drawing.Color.Yellow;
             this.TxtT_cp_nt.LeaveColor = System.Drawing.Color.White;
-            this.TxtT_cp_nt.Location = new System.Drawing.Point(195, 51);
+            this.TxtT_cp_nt.Location = new System.Drawing.Point(230, 51);
             this.TxtT_cp_nt.Name = "TxtT_cp_nt";
             this.TxtT_cp_nt.NumberFormatName = "M_IP_TIEN_NT";
             this.TxtT_cp_nt.ReadOnly = true;
-            this.TxtT_cp_nt.Size = new System.Drawing.Size(119, 20);
+            this.TxtT_cp_nt.Size = new System.Drawing.Size(109, 20);
             this.TxtT_cp_nt.TabIndex = 10;
             this.TxtT_cp_nt.TabStop = false;
             this.TxtT_cp_nt.Tag = "disable";
@@ -2578,11 +2578,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.TxtT_cp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtT_cp.HoverColor = System.Drawing.Color.Yellow;
             this.TxtT_cp.LeaveColor = System.Drawing.Color.White;
-            this.TxtT_cp.Location = new System.Drawing.Point(324, 51);
+            this.TxtT_cp.Location = new System.Drawing.Point(350, 51);
             this.TxtT_cp.Name = "TxtT_cp";
             this.TxtT_cp.NumberFormatName = "M_IP_TIEN";
             this.TxtT_cp.ReadOnly = true;
-            this.TxtT_cp.Size = new System.Drawing.Size(136, 20);
+            this.TxtT_cp.Size = new System.Drawing.Size(109, 20);
             this.TxtT_cp.TabIndex = 11;
             this.TxtT_cp.TabStop = false;
             this.TxtT_cp.Tag = "disable";
@@ -2827,7 +2827,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.btnChonPX.AccessibleDescription = "ASOCTSOAB00046";
             this.btnChonPX.Location = new System.Drawing.Point(195, 26);
             this.btnChonPX.Name = "btnChonPX";
-            this.btnChonPX.Size = new System.Drawing.Size(75, 23);
+            this.btnChonPX.Size = new System.Drawing.Size(90, 23);
             this.btnChonPX.TabIndex = 2;
             this.btnChonPX.TabStop = false;
             this.btnChonPX.Text = "Chọn PX";
@@ -2856,7 +2856,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             this.v6Label30.AccessibleDescription = "APOCTPOAL00068";
             this.v6Label30.AutoSize = true;
-            this.v6Label30.Location = new System.Drawing.Point(151, 53);
+            this.v6Label30.Location = new System.Drawing.Point(180, 53);
             this.v6Label30.Name = "v6Label30";
             this.v6Label30.Size = new System.Drawing.Size(41, 13);
             this.v6Label30.TabIndex = 3;
@@ -2914,7 +2914,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // lblDocSoTien
             // 
             this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDocSoTien.Location = new System.Drawing.Point(12, 525);
+            this.lblDocSoTien.Location = new System.Drawing.Point(12, 529);
             this.lblDocSoTien.Name = "lblDocSoTien";
             this.lblDocSoTien.Size = new System.Drawing.Size(877, 15);
             this.lblDocSoTien.TabIndex = 13;

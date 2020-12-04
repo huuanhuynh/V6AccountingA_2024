@@ -20,9 +20,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
 {
     public partial class TimDonDatHangBanForm : V6Form
     {
-        private readonly DonDatHangBanControl _formChungTu;
+        //private readonly DonDatHangBanControl _formChungTu;
+        public DataTable _formChungTu_AM;
+        public DataTable _formChungTu_AD;
+        private V6Mode _mode;
         private V6Invoice91 _invoice;
-        private LocKetQuaDonDatHangBan _locKetQua;
+
+        public LocKetQuaDonDatHangBan _locKetQua;
         //private bool __ready = false;
         private bool _viewMode;
 
@@ -42,11 +46,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             InitializeComponent();
         }
 
-        public TimDonDatHangBanForm(DonDatHangBanControl formChungTu)
+        public TimDonDatHangBanForm(V6Invoice91 invoice, V6Mode mode)
         {
             InitializeComponent();
-            _formChungTu = formChungTu;
-            _invoice = formChungTu.Invoice;
+            //_formChungTu = formChungTu;
+            _mode = mode;
+            _invoice = invoice;// formChungTu.Invoice;
             MyInit();
         }
 
@@ -106,7 +111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
         {
             try
             {
-                _locKetQua = new LocKetQuaDonDatHangBan(_invoice, _formChungTu.AM, _formChungTu.AD)
+                _locKetQua = new LocKetQuaDonDatHangBan(_invoice, _formChungTu_AM, _formChungTu_AD)
                 {Dock = DockStyle.Fill, Visible = false};
                 panel1.Controls.Add(_locKetQua);
             }
@@ -141,8 +146,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
         {
             try
             {
-                _formChungTu.LoadAD(sttrec);
-                _locKetQua.SetAD(_formChungTu.AD);
+                _formChungTu_AD = _invoice.LoadAD(sttrec);
+                _locKetQua.SetAD(_formChungTu_AD);
             }
             catch (Exception ex)
             {
@@ -152,9 +157,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
 
         private void SetValueAndShowLocKetQua()
         {
-            ShowLocKetQua();
             _locKetQua.SetAM(tempAM);
-            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, _formChungTu.MA_NT);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, V6Options.M_MA_NT0);
+            ShowLocKetQua();
         }
 
         private void ShowLocKetQua()
@@ -185,10 +190,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             {
                 if (_locKetQua != null && _locKetQua.Visible)
                 {
-                    _formChungTu.AM = tempAM;
-                    _formChungTu.ResetADTables();
-                    _formChungTu.ViewInvoice(_locKetQua.CurrentSttRec, V6Mode.View);
-                    Hide();
+                    //if (_mode == V6Mode.Select)
+                    //{
+                    //    DialogResult = DialogResult.OK;
+                    //}
+                    //else
+                    {
+                        _formChungTu_AM = tempAM;
+                        //_formChungTu_AD = 
+                        //_formChungTu.ResetADTables();
+                        //_formChungTu.ViewInvoice(_locKetQua.CurrentSttRec, V6Mode.View);
+                        //Hide();
+                        DialogResult = DialogResult.OK;
+                    }
                 }
                 else
                 {
@@ -309,7 +323,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
         }
 
         private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "";
-
+        
         private void PrepareThread()
         {
             var stru = _invoice.AMStruct;
@@ -631,7 +645,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
 
         private void Huy()
         {
-            if (!_viewMode && _locKetQua != null && _locKetQua.Visible)
+            if (_mode == V6Mode.Select)
+            {
+                DialogResult = DialogResult.Cancel;
+            }
+            else if (!_viewMode && _locKetQua != null && _locKetQua.Visible)
             {
                 HideLocKetQua();
             }
@@ -653,7 +671,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
 
         private void TimDonDatHangBanForm_Load(object sender, EventArgs e)
         {
-            if (_formChungTu.AM != null && _viewMode)
+            if (_formChungTu_AM != null && _viewMode)
             {
                 ShowLocKetQua();
             }
@@ -675,8 +693,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
 
         private void TimDonDatHangBanForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            Hide();
+            //e.Cancel = true;
+            //Hide();
         }
 
         public void UpdateAM(string sttRec, IDictionary<string, object> data, V6Mode mode)
@@ -702,7 +720,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             {
                 this.WriteExLog(GetType() + ".UpdateAM", ex);
             }
-            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, _formChungTu.MA_NT);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, V6Options.M_MA_NT0);
         }
 
         private void TimDonDatHangBanForm_VisibleChanged(object sender, EventArgs e)

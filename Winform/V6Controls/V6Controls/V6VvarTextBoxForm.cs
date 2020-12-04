@@ -9,6 +9,7 @@ using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls
 {
@@ -893,11 +894,21 @@ namespace V6Controls
                 }
                 else
                 {
+                    var tbStruct = V6BusinessHelper.GetTableStruct(_config.TableName);
                     string[] items = vSearchFields.Split(new []{','}, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string item in items)
                     {
-                        result += " or " + item.Trim() + " like N'" + (_filterStart?"":"%") +
-                                  txtV_Search.Text.Trim().Replace("'", "''") + "%'";
+                        string ITEM = item.Trim().ToUpper();
+                        if (tbStruct.ContainsKey(ITEM) && ObjectAndString.IsNumberType(tbStruct[ITEM].DataType))
+                        {
+                            decimal vSearchDecimal = ObjectAndString.StringToDecimal(txtV_Search.Text);
+                            if (vSearchDecimal != 0) result += " or " + item.Trim() + " = " + vSearchDecimal;
+                        }
+                        else
+                        {
+                            result += " or " + item.Trim() + " like N'" + (_filterStart ? "" : "%") +
+                                      txtV_Search.Text.Trim().Replace("'", "''") + "%'";
+                        }
                     }
                 }
             }

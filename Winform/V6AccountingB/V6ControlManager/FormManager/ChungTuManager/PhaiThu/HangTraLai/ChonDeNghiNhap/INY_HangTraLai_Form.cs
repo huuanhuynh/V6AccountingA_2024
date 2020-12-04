@@ -127,7 +127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonDeN
         private void SetValueAndShowLocKetQua()
         {
             ShowLocKetQua();
-            _locKetQua.SetAM(tAM);
+            _locKetQua.SetAM(tAM) ;
             Refresh0();
         }
 

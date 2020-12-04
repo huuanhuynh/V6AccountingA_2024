@@ -109,6 +109,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.cboChuyenData = new V6Controls.V6ComboBox();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
@@ -204,7 +205,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.Txtma_nk = new V6Controls.V6VvarTextBox();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1434,6 +1434,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
+            // chkAutoNext
+            // 
+            this.chkAutoNext.AccessibleName = ".";
+            this.chkAutoNext.AutoSize = true;
+            this.chkAutoNext.Location = new System.Drawing.Point(7, 35);
+            this.chkAutoNext.Name = "chkAutoNext";
+            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
+            this.chkAutoNext.TabIndex = 48;
+            this.chkAutoNext.TabStop = false;
+            this.chkAutoNext.Text = "Sửa liên tục";
+            this.chkAutoNext.UseVisualStyleBackColor = true;
+            // 
             // lblKieuPostColor
             // 
             this.lblKieuPostColor.AccessibleDescription = ".";
@@ -1466,7 +1478,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.btnChucNang.Location = new System.Drawing.Point(102, 28);
             this.btnChucNang.Menu = this.menuChucNang;
             this.btnChucNang.Name = "btnChucNang";
-            this.btnChucNang.Size = new System.Drawing.Size(87, 29);
+            this.btnChucNang.Size = new System.Drawing.Size(90, 23);
             this.btnChucNang.TabIndex = 35;
             this.btnChucNang.Tag = "cancel";
             this.btnChucNang.Text = "Chức năng";
@@ -1621,7 +1633,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.btnChonPX.AccessibleDescription = "ASOCTSOAB00046";
             this.btnChonPX.Location = new System.Drawing.Point(195, 28);
             this.btnChonPX.Name = "btnChonPX";
-            this.btnChonPX.Size = new System.Drawing.Size(75, 23);
+            this.btnChonPX.Size = new System.Drawing.Size(90, 23);
             this.btnChonPX.TabIndex = 2;
             this.btnChonPX.Text = "Chọn PX";
             this.btnChonPX.UseVisualStyleBackColor = true;
@@ -2721,18 +2733,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.lblNameT.Size = new System.Drawing.Size(617, 18);
             this.lblNameT.TabIndex = 29;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // chkAutoNext
-            // 
-            this.chkAutoNext.AccessibleName = ".";
-            this.chkAutoNext.AutoSize = true;
-            this.chkAutoNext.Location = new System.Drawing.Point(161, 9);
-            this.chkAutoNext.Name = "chkAutoNext";
-            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
-            this.chkAutoNext.TabIndex = 48;
-            this.chkAutoNext.TabStop = false;
-            this.chkAutoNext.Text = "Sửa liên tục";
-            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // HoaDonMuaHangDichVuControl
             // 

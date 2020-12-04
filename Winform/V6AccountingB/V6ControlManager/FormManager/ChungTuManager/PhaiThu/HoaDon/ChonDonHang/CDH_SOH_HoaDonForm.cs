@@ -127,7 +127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
         private void SetValueAndShowLocKetQua()
         {
             ShowLocKetQua();
-            _locKetQua.SetAM(tAM);
+            _locKetQua.SetAM(tAM) ;
             Refresh0();
             //ChungTu.ViewSearchSumary(this, tAM, lblDocSoTien, _f.Invoice.Mact, _formChungTu.MA_NT);
         }

@@ -97,6 +97,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.txtTongTangGiamNt = new V6Controls.NumberTienNt();
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.txtSoct_tt = new V6Controls.V6VvarTextBox();
             this.btnChonHD = new V6Controls.Controls.V6FormButton();
             this.lblKieuPostColor = new V6Controls.V6Label();
@@ -186,7 +187,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1013,9 +1013,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.group5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.group5.Controls.Add(this.panelVND);
             this.group5.Controls.Add(this.panelNT);
-            this.group5.Location = new System.Drawing.Point(424, 404);
+            this.group5.Location = new System.Drawing.Point(424, 399);
             this.group5.Name = "group5";
-            this.group5.Size = new System.Drawing.Size(465, 107);
+            this.group5.Size = new System.Drawing.Size(465, 117);
             this.group5.TabIndex = 5;
             this.group5.TabStop = false;
             // 
@@ -1181,11 +1181,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.group4.Controls.Add(this.cboKieuPost);
             this.group4.Controls.Add(this.lblTongSoDong);
             this.group4.Controls.Add(this.v6Label20);
-            this.group4.Location = new System.Drawing.Point(5, 404);
+            this.group4.Location = new System.Drawing.Point(5, 399);
             this.group4.Name = "group4";
-            this.group4.Size = new System.Drawing.Size(413, 107);
+            this.group4.Size = new System.Drawing.Size(413, 117);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // chkAutoNext
+            // 
+            this.chkAutoNext.AccessibleName = ".";
+            this.chkAutoNext.AutoSize = true;
+            this.chkAutoNext.Location = new System.Drawing.Point(6, 34);
+            this.chkAutoNext.Name = "chkAutoNext";
+            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
+            this.chkAutoNext.TabIndex = 48;
+            this.chkAutoNext.TabStop = false;
+            this.chkAutoNext.Text = "Sửa liên tục";
+            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // txtSoct_tt
             // 
@@ -1198,7 +1210,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.txtSoct_tt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoct_tt.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoct_tt.LeaveColor = System.Drawing.Color.White;
-            this.txtSoct_tt.Location = new System.Drawing.Point(256, 41);
+            this.txtSoct_tt.Location = new System.Drawing.Point(256, 55);
             this.txtSoct_tt.Name = "txtSoct_tt";
             this.txtSoct_tt.Size = new System.Drawing.Size(151, 20);
             this.txtSoct_tt.TabIndex = 43;
@@ -1207,7 +1219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // btnChonHD
             // 
             this.btnChonHD.AccessibleDescription = "ASOCTSOAB00048";
-            this.btnChonHD.Location = new System.Drawing.Point(169, 39);
+            this.btnChonHD.Location = new System.Drawing.Point(169, 53);
             this.btnChonHD.Name = "btnChonHD";
             this.btnChonHD.Size = new System.Drawing.Size(81, 29);
             this.btnChonHD.TabIndex = 42;
@@ -1233,7 +1245,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Location = new System.Drawing.Point(295, 74);
+            this.cboChuyenData.Location = new System.Drawing.Point(295, 88);
             this.cboChuyenData.Name = "cboChuyenData";
             this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
             this.cboChuyenData.TabIndex = 39;
@@ -1244,7 +1256,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // 
             this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
             this.v6Label28.AutoSize = true;
-            this.v6Label28.Location = new System.Drawing.Point(249, 79);
+            this.v6Label28.Location = new System.Drawing.Point(249, 93);
             this.v6Label28.Name = "v6Label28";
             this.v6Label28.Size = new System.Drawing.Size(36, 13);
             this.v6Label28.TabIndex = 40;
@@ -1253,7 +1265,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // btnChucNang
             // 
             this.btnChucNang.AccessibleDescription = "AINCTINDB00026";
-            this.btnChucNang.Location = new System.Drawing.Point(83, 39);
+            this.btnChucNang.Location = new System.Drawing.Point(83, 53);
             this.btnChucNang.Menu = this.menuChucNang;
             this.btnChucNang.Name = "btnChucNang";
             this.btnChucNang.Size = new System.Drawing.Size(81, 29);
@@ -1376,7 +1388,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.chkSuaTien.AccessibleDescription = "ACACTTA1H00002";
             this.chkSuaTien.AccessibleName = "sua_tien";
             this.chkSuaTien.AutoSize = true;
-            this.chkSuaTien.Location = new System.Drawing.Point(6, 43);
+            this.chkSuaTien.Location = new System.Drawing.Point(6, 57);
             this.chkSuaTien.Name = "chkSuaTien";
             this.chkSuaTien.Size = new System.Drawing.Size(65, 17);
             this.chkSuaTien.TabIndex = 21;
@@ -1398,7 +1410,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             "0 - Chưa cập nhập",
             "1 - Cập nhập tất cả",
             "2 - Chỉ cập nhập vào kho"});
-            this.cboKieuPost.Location = new System.Drawing.Point(83, 74);
+            this.cboKieuPost.Location = new System.Drawing.Point(83, 88);
             this.cboKieuPost.Name = "cboKieuPost";
             this.cboKieuPost.Size = new System.Drawing.Size(160, 21);
             this.cboKieuPost.TabIndex = 10;
@@ -1418,7 +1430,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // 
             this.v6Label20.AccessibleDescription = "ACACTTA1L00069";
             this.v6Label20.AutoSize = true;
-            this.v6Label20.Location = new System.Drawing.Point(6, 77);
+            this.v6Label20.Location = new System.Drawing.Point(6, 91);
             this.v6Label20.Name = "v6Label20";
             this.v6Label20.Size = new System.Drawing.Size(55, 13);
             this.v6Label20.TabIndex = 9;
@@ -2098,7 +2110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // lblDocSoTien
             // 
             this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDocSoTien.Location = new System.Drawing.Point(6, 515);
+            this.lblDocSoTien.Location = new System.Drawing.Point(6, 520);
             this.lblDocSoTien.Name = "lblDocSoTien";
             this.lblDocSoTien.Size = new System.Drawing.Size(883, 16);
             this.lblDocSoTien.TabIndex = 13;
@@ -2373,18 +2385,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.lblNameT.Size = new System.Drawing.Size(689, 18);
             this.lblNameT.TabIndex = 22;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // chkAutoNext
-            // 
-            this.chkAutoNext.AccessibleName = ".";
-            this.chkAutoNext.AutoSize = true;
-            this.chkAutoNext.Location = new System.Drawing.Point(168, 9);
-            this.chkAutoNext.Name = "chkAutoNext";
-            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
-            this.chkAutoNext.TabIndex = 48;
-            this.chkAutoNext.TabStop = false;
-            this.chkAutoNext.Text = "Sửa liên tục";
-            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // PhieuThuControl
             // 

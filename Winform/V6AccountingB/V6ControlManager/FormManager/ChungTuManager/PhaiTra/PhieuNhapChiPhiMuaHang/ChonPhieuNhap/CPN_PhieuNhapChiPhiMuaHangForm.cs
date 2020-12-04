@@ -110,7 +110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private void SetValueAndShowLocKetQua()
         {
             ShowLocKetQua();
-            _locKetQua.SetAM(tAM);
+            _locKetQua.SetAM(tAM) ;
             ChungTu.ViewSearchSumary(this, _hoaDonForm.AM, lblDocSoTien, _hoaDonForm.Invoice.Mact, _hoaDonForm.MA_NT);
         }
 

@@ -202,7 +202,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms
                             row.Cells[columnSendTo].Value.ToString().Trim(), "V6SOFTWARE", noiDungRieng, "");
                         if (a)
                         {
-
+                            indexDaGui.Add(i);
                         }
                         else
                         {

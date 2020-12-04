@@ -95,6 +95,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
@@ -223,7 +224,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.XemPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chuaDatTen2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -920,7 +920,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.group5.Controls.Add(this.panelNT);
             this.group5.Location = new System.Drawing.Point(428, 390);
             this.group5.Name = "group5";
-            this.group5.Size = new System.Drawing.Size(467, 135);
+            this.group5.Size = new System.Drawing.Size(467, 138);
             this.group5.TabIndex = 5;
             this.group5.TabStop = false;
             // 
@@ -1322,19 +1322,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.group4.Controls.Add(this.v6Label19);
             this.group4.Location = new System.Drawing.Point(5, 390);
             this.group4.Name = "group4";
-            this.group4.Size = new System.Drawing.Size(420, 133);
+            this.group4.Size = new System.Drawing.Size(420, 138);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // chkAutoNext
+            // 
+            this.chkAutoNext.AccessibleName = ".";
+            this.chkAutoNext.AutoSize = true;
+            this.chkAutoNext.Location = new System.Drawing.Point(166, 47);
+            this.chkAutoNext.Name = "chkAutoNext";
+            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
+            this.chkAutoNext.TabIndex = 5;
+            this.chkAutoNext.TabStop = false;
+            this.chkAutoNext.Text = "Sửa liên tục";
+            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // chkTempSuaCT
             // 
             this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
             this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
             this.chkTempSuaCT.AutoSize = true;
-            this.chkTempSuaCT.Location = new System.Drawing.Point(78, 42);
+            this.chkTempSuaCT.Location = new System.Drawing.Point(78, 47);
             this.chkTempSuaCT.Name = "chkTempSuaCT";
             this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
-            this.chkTempSuaCT.TabIndex = 37;
+            this.chkTempSuaCT.TabIndex = 4;
             this.chkTempSuaCT.TabStop = false;
             this.chkTempSuaCT.Text = "Sửa chi tiết";
             this.chkTempSuaCT.UseVisualStyleBackColor = true;
@@ -1349,7 +1361,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.lblKieuPostColor.Location = new System.Drawing.Point(60, 10);
             this.lblKieuPostColor.Name = "lblKieuPostColor";
             this.lblKieuPostColor.Size = new System.Drawing.Size(57, 13);
-            this.lblKieuPostColor.TabIndex = 36;
+            this.lblKieuPostColor.TabIndex = 1;
             this.lblKieuPostColor.Text = "KieuPost";
             // 
             // txtTongSoLuong
@@ -1369,7 +1381,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtTongSoLuong.Name = "txtTongSoLuong";
             this.txtTongSoLuong.ReadOnly = true;
             this.txtTongSoLuong.Size = new System.Drawing.Size(81, 20);
-            this.txtTongSoLuong.TabIndex = 35;
+            this.txtTongSoLuong.TabIndex = 9;
             this.txtTongSoLuong.TabStop = false;
             this.txtTongSoLuong.Tag = "readonly";
             this.txtTongSoLuong.Text = "0,00";
@@ -1387,21 +1399,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Location = new System.Drawing.Point(302, 105);
+            this.cboChuyenData.Location = new System.Drawing.Point(302, 110);
             this.cboChuyenData.Name = "cboChuyenData";
             this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
-            this.cboChuyenData.TabIndex = 22;
+            this.cboChuyenData.TabIndex = 25;
             this.cboChuyenData.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
             // 
             // btnChucNang
             // 
             this.btnChucNang.AccessibleDescription = "ASOCTSOAB00033";
-            this.btnChucNang.Location = new System.Drawing.Point(158, 26);
+            this.btnChucNang.Location = new System.Drawing.Point(142, 23);
             this.btnChucNang.Menu = this.menuChucNang;
             this.btnChucNang.Name = "btnChucNang";
-            this.btnChucNang.Size = new System.Drawing.Size(87, 29);
-            this.btnChucNang.TabIndex = 34;
+            this.btnChucNang.Size = new System.Drawing.Size(90, 23);
+            this.btnChucNang.TabIndex = 26;
             this.btnChucNang.Tag = "cancel";
             this.btnChucNang.Text = "Chức năng";
             this.btnChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1491,10 +1503,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // 
             this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
             this.v6Label28.AutoSize = true;
-            this.v6Label28.Location = new System.Drawing.Point(256, 111);
+            this.v6Label28.Location = new System.Drawing.Point(256, 116);
             this.v6Label28.Name = "v6Label28";
             this.v6Label28.Size = new System.Drawing.Size(36, 13);
-            this.v6Label28.TabIndex = 23;
+            this.v6Label28.TabIndex = 24;
             this.v6Label28.Text = "DATA";
             // 
             // chkVAT_VAO
@@ -1505,7 +1517,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.chkVAT_VAO.Location = new System.Drawing.Point(7, 23);
             this.chkVAT_VAO.Name = "chkVAT_VAO";
             this.chkVAT_VAO.Size = new System.Drawing.Size(94, 17);
-            this.chkVAT_VAO.TabIndex = 21;
+            this.chkVAT_VAO.TabIndex = 2;
             this.chkVAT_VAO.TabStop = false;
             this.chkVAT_VAO.Text = "Thuế đầu vào";
             this.chkVAT_VAO.UseVisualStyleBackColor = true;
@@ -1515,10 +1527,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.chkSuaTien.AccessibleDescription = "ASOCTSOFH00046";
             this.chkSuaTien.AccessibleName = "sua_tien";
             this.chkSuaTien.AutoSize = true;
-            this.chkSuaTien.Location = new System.Drawing.Point(7, 44);
+            this.chkSuaTien.Location = new System.Drawing.Point(7, 47);
             this.chkSuaTien.Name = "chkSuaTien";
             this.chkSuaTien.Size = new System.Drawing.Size(65, 17);
-            this.chkSuaTien.TabIndex = 20;
+            this.chkSuaTien.TabIndex = 3;
             this.chkSuaTien.TabStop = false;
             this.chkSuaTien.Text = "Sửa tiền";
             this.chkSuaTien.UseVisualStyleBackColor = true;
@@ -1537,11 +1549,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtTongSoLuong1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTongSoLuong1.HoverColor = System.Drawing.Color.Yellow;
             this.txtTongSoLuong1.LeaveColor = System.Drawing.Color.White;
-            this.txtTongSoLuong1.Location = new System.Drawing.Point(334, 13);
+            this.txtTongSoLuong1.Location = new System.Drawing.Point(333, 14);
             this.txtTongSoLuong1.Name = "txtTongSoLuong1";
             this.txtTongSoLuong1.ReadOnly = true;
             this.txtTongSoLuong1.Size = new System.Drawing.Size(81, 20);
-            this.txtTongSoLuong1.TabIndex = 1;
+            this.txtTongSoLuong1.TabIndex = 8;
             this.txtTongSoLuong1.TabStop = false;
             this.txtTongSoLuong1.Tag = "readonly";
             this.txtTongSoLuong1.Text = "0,00";
@@ -1565,10 +1577,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             "0 - Chưa cập nhập",
             "1 - Cập nhập tất cả",
             "2 - Chỉ cập nhập vào kho"});
-            this.cboKieuPost.Location = new System.Drawing.Point(83, 106);
+            this.cboKieuPost.Location = new System.Drawing.Point(84, 111);
             this.cboKieuPost.Name = "cboKieuPost";
             this.cboKieuPost.Size = new System.Drawing.Size(172, 21);
-            this.cboKieuPost.TabIndex = 10;
+            this.cboKieuPost.TabIndex = 23;
             this.cboKieuPost.TabStop = false;
             this.cboKieuPost.SelectedIndexChanged += new System.EventHandler(this.cboKieuPost_SelectedIndexChanged);
             // 
@@ -1583,7 +1595,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtTkThueNo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkThueNo.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkThueNo.LeaveColor = System.Drawing.Color.White;
-            this.txtTkThueNo.Location = new System.Drawing.Point(267, 82);
+            this.txtTkThueNo.Location = new System.Drawing.Point(267, 90);
             this.txtTkThueNo.Name = "txtTkThueNo";
             this.txtTkThueNo.Size = new System.Drawing.Size(53, 20);
             this.txtTkThueNo.TabIndex = 19;
@@ -1600,10 +1612,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtTkGt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkGt.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkGt.LeaveColor = System.Drawing.Color.White;
-            this.txtTkGt.Location = new System.Drawing.Point(357, 59);
+            this.txtTkGt.Location = new System.Drawing.Point(357, 68);
             this.txtTkGt.Name = "txtTkGt";
             this.txtTkGt.Size = new System.Drawing.Size(51, 20);
-            this.txtTkGt.TabIndex = 17;
+            this.txtTkGt.TabIndex = 13;
             this.txtTkGt.VVar = "TK";
             // 
             // txtTkChietKhau
@@ -1617,10 +1629,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtTkChietKhau.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkChietKhau.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkChietKhau.LeaveColor = System.Drawing.Color.White;
-            this.txtTkChietKhau.Location = new System.Drawing.Point(267, 59);
+            this.txtTkChietKhau.Location = new System.Drawing.Point(267, 68);
             this.txtTkChietKhau.Name = "txtTkChietKhau";
             this.txtTkChietKhau.Size = new System.Drawing.Size(53, 20);
-            this.txtTkChietKhau.TabIndex = 12;
+            this.txtTkChietKhau.TabIndex = 11;
             this.txtTkChietKhau.VVar = "tk";
             // 
             // txtTkThueCo
@@ -1634,10 +1646,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtTkThueCo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkThueCo.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkThueCo.LeaveColor = System.Drawing.Color.White;
-            this.txtTkThueCo.Location = new System.Drawing.Point(357, 82);
+            this.txtTkThueCo.Location = new System.Drawing.Point(357, 90);
             this.txtTkThueCo.Name = "txtTkThueCo";
             this.txtTkThueCo.Size = new System.Drawing.Size(51, 20);
-            this.txtTkThueCo.TabIndex = 15;
+            this.txtTkThueCo.TabIndex = 21;
             this.txtTkThueCo.VVar = "tk";
             // 
             // txtMa_thue
@@ -1651,10 +1663,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtMa_thue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMa_thue.HoverColor = System.Drawing.Color.Yellow;
             this.txtMa_thue.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_thue.Location = new System.Drawing.Point(83, 84);
+            this.txtMa_thue.Location = new System.Drawing.Point(84, 90);
             this.txtMa_thue.Name = "txtMa_thue";
             this.txtMa_thue.Size = new System.Drawing.Size(48, 20);
-            this.txtMa_thue.TabIndex = 7;
+            this.txtMa_thue.TabIndex = 15;
             this.txtMa_thue.VVar = "ma_thue";
             this.txtMa_thue.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_thue_V6LostFocus);
             // 
@@ -1663,10 +1675,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.chkSuaTkThue.AccessibleDescription = "ASOCTSOFH00049";
             this.chkSuaTkThue.AccessibleName = "sua_tkthue";
             this.chkSuaTkThue.AutoSize = true;
-            this.chkSuaTkThue.Location = new System.Drawing.Point(245, 88);
+            this.chkSuaTkThue.Location = new System.Drawing.Point(245, 93);
             this.chkSuaTkThue.Name = "chkSuaTkThue";
             this.chkSuaTkThue.Size = new System.Drawing.Size(15, 14);
-            this.chkSuaTkThue.TabIndex = 14;
+            this.chkSuaTkThue.TabIndex = 18;
             this.chkSuaTkThue.UseVisualStyleBackColor = true;
             this.chkSuaTkThue.CheckedChanged += new System.EventHandler(this.chkSuaTkThue_CheckedChanged);
             // 
@@ -1675,10 +1687,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.chkSuaPtck.AccessibleDescription = "ASOCTSOFH00047";
             this.chkSuaPtck.AccessibleName = "sua_ptck";
             this.chkSuaPtck.AutoSize = true;
-            this.chkSuaPtck.Location = new System.Drawing.Point(7, 65);
+            this.chkSuaPtck.Location = new System.Drawing.Point(7, 70);
             this.chkSuaPtck.Name = "chkSuaPtck";
             this.chkSuaPtck.Size = new System.Drawing.Size(77, 17);
-            this.chkSuaPtck.TabIndex = 4;
+            this.chkSuaPtck.TabIndex = 6;
             this.chkSuaPtck.TabStop = false;
             this.chkSuaPtck.Text = "Chiết khấu";
             this.chkSuaPtck.UseVisualStyleBackColor = true;
@@ -1698,11 +1710,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtThueSuat.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtThueSuat.HoverColor = System.Drawing.Color.Yellow;
             this.txtThueSuat.LeaveColor = System.Drawing.Color.White;
-            this.txtThueSuat.Location = new System.Drawing.Point(133, 84);
+            this.txtThueSuat.Location = new System.Drawing.Point(133, 90);
             this.txtThueSuat.Name = "txtThueSuat";
             this.txtThueSuat.NumberFormatName = "M_IP_R_LE2";
             this.txtThueSuat.Size = new System.Drawing.Size(51, 20);
-            this.txtThueSuat.TabIndex = 8;
+            this.txtThueSuat.TabIndex = 16;
             this.txtThueSuat.Text = "0,00";
             this.txtThueSuat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtThueSuat.Value = new decimal(new int[] {
@@ -1725,10 +1737,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtPtCk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtPtCk.HoverColor = System.Drawing.Color.Yellow;
             this.txtPtCk.LeaveColor = System.Drawing.Color.White;
-            this.txtPtCk.Location = new System.Drawing.Point(84, 63);
+            this.txtPtCk.Location = new System.Drawing.Point(84, 68);
             this.txtPtCk.Name = "txtPtCk";
             this.txtPtCk.Size = new System.Drawing.Size(45, 20);
-            this.txtPtCk.TabIndex = 5;
+            this.txtPtCk.TabIndex = 7;
             this.txtPtCk.Text = "0,00";
             this.txtPtCk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPtCk.Value = new decimal(new int[] {
@@ -1741,10 +1753,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // btnChonPX
             // 
             this.btnChonPX.AccessibleDescription = "ASOCTSOAB00046";
-            this.btnChonPX.Location = new System.Drawing.Point(251, 26);
+            this.btnChonPX.Location = new System.Drawing.Point(235, 23);
             this.btnChonPX.Name = "btnChonPX";
-            this.btnChonPX.Size = new System.Drawing.Size(75, 23);
-            this.btnChonPX.TabIndex = 2;
+            this.btnChonPX.Size = new System.Drawing.Size(90, 23);
+            this.btnChonPX.TabIndex = 27;
             this.btnChonPX.Text = "Chọn PX";
             this.toolTipV6FormControl.SetToolTip(this.btnChonPX, "Giữ Shift+Click để nhập không theo hóa đơn.");
             this.btnChonPX.UseVisualStyleBackColor = true;
@@ -1764,59 +1776,59 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // 
             this.v6Label20.AccessibleDescription = "ASOCTSOFL00067";
             this.v6Label20.AutoSize = true;
-            this.v6Label20.Location = new System.Drawing.Point(6, 109);
+            this.v6Label20.Location = new System.Drawing.Point(6, 114);
             this.v6Label20.Name = "v6Label20";
             this.v6Label20.Size = new System.Drawing.Size(55, 13);
-            this.v6Label20.TabIndex = 9;
+            this.v6Label20.TabIndex = 22;
             this.v6Label20.Text = "Trạng thái";
             // 
             // v6Label35
             // 
             this.v6Label35.AutoSize = true;
-            this.v6Label35.Location = new System.Drawing.Point(333, 87);
+            this.v6Label35.Location = new System.Drawing.Point(333, 92);
             this.v6Label35.Name = "v6Label35";
             this.v6Label35.Size = new System.Drawing.Size(12, 13);
-            this.v6Label35.TabIndex = 18;
+            this.v6Label35.TabIndex = 20;
             this.v6Label35.Text = "/";
             // 
             // v6Label32
             // 
             this.v6Label32.AccessibleDescription = "ASOCTSOFL00026";
             this.v6Label32.AutoSize = true;
-            this.v6Label32.Location = new System.Drawing.Point(191, 88);
+            this.v6Label32.Location = new System.Drawing.Point(191, 94);
             this.v6Label32.Name = "v6Label32";
             this.v6Label32.Size = new System.Drawing.Size(44, 13);
-            this.v6Label32.TabIndex = 13;
+            this.v6Label32.TabIndex = 17;
             this.v6Label32.Text = "Tk thuế";
             // 
             // v6Label33
             // 
             this.v6Label33.AccessibleDescription = "ASOCTSOFH00054";
             this.v6Label33.AutoSize = true;
-            this.v6Label33.Location = new System.Drawing.Point(323, 64);
+            this.v6Label33.Location = new System.Drawing.Point(323, 72);
             this.v6Label33.Name = "v6Label33";
             this.v6Label33.Size = new System.Drawing.Size(32, 13);
-            this.v6Label33.TabIndex = 16;
+            this.v6Label33.TabIndex = 12;
             this.v6Label33.Text = "Tk gt";
             // 
             // v6Label31
             // 
             this.v6Label31.AccessibleDescription = "ASOCTSOFR00022";
             this.v6Label31.AutoSize = true;
-            this.v6Label31.Location = new System.Drawing.Point(191, 62);
+            this.v6Label31.Location = new System.Drawing.Point(191, 72);
             this.v6Label31.Name = "v6Label31";
             this.v6Label31.Size = new System.Drawing.Size(35, 13);
-            this.v6Label31.TabIndex = 11;
+            this.v6Label31.TabIndex = 10;
             this.v6Label31.Text = "Tk ck";
             // 
             // v6Label19
             // 
             this.v6Label19.AccessibleDescription = "ASOCTSOFL00034";
             this.v6Label19.AutoSize = true;
-            this.v6Label19.Location = new System.Drawing.Point(6, 87);
+            this.v6Label19.Location = new System.Drawing.Point(6, 92);
             this.v6Label19.Name = "v6Label19";
             this.v6Label19.Size = new System.Drawing.Size(46, 13);
-            this.v6Label19.TabIndex = 6;
+            this.v6Label19.TabIndex = 14;
             this.v6Label19.Text = "Mã thuế";
             // 
             // group3
@@ -2790,7 +2802,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // 
             this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDocSoTien.Location = new System.Drawing.Point(12, 528);
+            this.lblDocSoTien.Location = new System.Drawing.Point(12, 532);
             this.lblDocSoTien.Name = "lblDocSoTien";
             this.lblDocSoTien.Size = new System.Drawing.Size(877, 15);
             this.lblDocSoTien.TabIndex = 13;
@@ -3113,18 +3125,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
-            // 
-            // chkAutoNext
-            // 
-            this.chkAutoNext.AccessibleName = ".";
-            this.chkAutoNext.AutoSize = true;
-            this.chkAutoNext.Location = new System.Drawing.Point(158, 8);
-            this.chkAutoNext.Name = "chkAutoNext";
-            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
-            this.chkAutoNext.TabIndex = 47;
-            this.chkAutoNext.TabStop = false;
-            this.chkAutoNext.Text = "Sửa liên tục";
-            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // HangTraLaiControl
             // 

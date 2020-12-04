@@ -32,12 +32,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -122,6 +122,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtTongTangGiamNt = new V6Controls.NumberTienNt();
             this.v6Label38 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.cboChuyenData = new V6Controls.V6ComboBox();
@@ -250,7 +251,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtMa_vitriPH = new V6Controls.V6VvarTextBox();
             this.txtMa_khoPH = new V6Controls.V6VvarTextBox();
             this.btnLuuTam = new System.Windows.Forms.Button();
-            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -365,20 +365,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -390,8 +390,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 226);
             this.dataGridView1.TabIndex = 1;
@@ -1135,20 +1135,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
@@ -1160,8 +1160,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView3.Size = new System.Drawing.Size(875, 171);
             this.dataGridView3.TabIndex = 7;
@@ -1240,9 +1240,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.group5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.group5.Controls.Add(this.panelVND);
             this.group5.Controls.Add(this.panelNT);
-            this.group5.Location = new System.Drawing.Point(482, 399);
+            this.group5.Location = new System.Drawing.Point(482, 398);
             this.group5.Name = "group5";
-            this.group5.Size = new System.Drawing.Size(410, 119);
+            this.group5.Size = new System.Drawing.Size(410, 125);
             this.group5.TabIndex = 5;
             this.group5.TabStop = false;
             // 
@@ -1255,7 +1255,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.panelVND.Controls.Add(this.txtTongThanhToan);
             this.panelVND.Location = new System.Drawing.Point(263, 9);
             this.panelVND.Name = "panelVND";
-            this.panelVND.Size = new System.Drawing.Size(141, 108);
+            this.panelVND.Size = new System.Drawing.Size(141, 112);
             this.panelVND.TabIndex = 1;
             // 
             // txtTongTien2
@@ -1411,7 +1411,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.panelNT.Controls.Add(this.v6Label4);
             this.panelNT.Location = new System.Drawing.Point(9, 9);
             this.panelNT.Name = "panelNT";
-            this.panelNT.Size = new System.Drawing.Size(249, 107);
+            this.panelNT.Size = new System.Drawing.Size(249, 111);
             this.panelNT.TabIndex = 0;
             // 
             // txtTongTienNt2
@@ -1718,16 +1718,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.group4.Controls.Add(this.v6Label19);
             this.group4.Location = new System.Drawing.Point(5, 398);
             this.group4.Name = "group4";
-            this.group4.Size = new System.Drawing.Size(471, 118);
+            this.group4.Size = new System.Drawing.Size(471, 125);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // chkAutoNext
+            // 
+            this.chkAutoNext.AccessibleName = ".";
+            this.chkAutoNext.AutoSize = true;
+            this.chkAutoNext.Location = new System.Drawing.Point(148, 56);
+            this.chkAutoNext.Name = "chkAutoNext";
+            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
+            this.chkAutoNext.TabIndex = 48;
+            this.chkAutoNext.TabStop = false;
+            this.chkAutoNext.Text = "Sửa liên tục";
+            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // chkTempSuaCT
             // 
             this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
             this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
             this.chkTempSuaCT.AutoSize = true;
-            this.chkTempSuaCT.Location = new System.Drawing.Point(241, 10);
+            this.chkTempSuaCT.Location = new System.Drawing.Point(241, 56);
             this.chkTempSuaCT.Name = "chkTempSuaCT";
             this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
             this.chkTempSuaCT.TabIndex = 47;
@@ -1755,7 +1767,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Location = new System.Drawing.Point(356, 91);
+            this.cboChuyenData.Location = new System.Drawing.Point(356, 99);
             this.cboChuyenData.Name = "cboChuyenData";
             this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
             this.cboChuyenData.TabIndex = 21;
@@ -1766,7 +1778,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
             this.v6Label28.AutoSize = true;
-            this.v6Label28.Location = new System.Drawing.Point(310, 98);
+            this.v6Label28.Location = new System.Drawing.Point(310, 106);
             this.v6Label28.Name = "v6Label28";
             this.v6Label28.Size = new System.Drawing.Size(36, 13);
             this.v6Label28.TabIndex = 22;
@@ -1777,7 +1789,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.chkSuaTien.AccessibleDescription = "ASOCTSOAR00026";
             this.chkSuaTien.AccessibleName = "sua_tien";
             this.chkSuaTien.AutoSize = true;
-            this.chkSuaTien.Location = new System.Drawing.Point(7, 27);
+            this.chkSuaTien.Location = new System.Drawing.Point(7, 32);
             this.chkSuaTien.Name = "chkSuaTien";
             this.chkSuaTien.Size = new System.Drawing.Size(65, 17);
             this.chkSuaTien.TabIndex = 20;
@@ -1884,7 +1896,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             "0 - Chưa cập nhập",
             "1 - Cập nhập tất cả",
             "2 - Chỉ cập nhập vào kho"});
-            this.cboKieuPost.Location = new System.Drawing.Point(83, 91);
+            this.cboKieuPost.Location = new System.Drawing.Point(83, 99);
             this.cboKieuPost.Name = "cboKieuPost";
             this.cboKieuPost.Size = new System.Drawing.Size(215, 21);
             this.cboKieuPost.TabIndex = 10;
@@ -1902,7 +1914,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtTkThueNo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkThueNo.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkThueNo.LeaveColor = System.Drawing.Color.White;
-            this.txtTkThueNo.Location = new System.Drawing.Point(267, 69);
+            this.txtTkThueNo.Location = new System.Drawing.Point(267, 77);
             this.txtTkThueNo.Name = "txtTkThueNo";
             this.txtTkThueNo.Size = new System.Drawing.Size(53, 20);
             this.txtTkThueNo.TabIndex = 19;
@@ -1920,7 +1932,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtTkThueCo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkThueCo.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkThueCo.LeaveColor = System.Drawing.Color.White;
-            this.txtTkThueCo.Location = new System.Drawing.Point(356, 70);
+            this.txtTkThueCo.Location = new System.Drawing.Point(356, 78);
             this.txtTkThueCo.Name = "txtTkThueCo";
             this.txtTkThueCo.Size = new System.Drawing.Size(52, 20);
             this.txtTkThueCo.TabIndex = 15;
@@ -1939,7 +1951,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtMa_thue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMa_thue.HoverColor = System.Drawing.Color.Yellow;
             this.txtMa_thue.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_thue.Location = new System.Drawing.Point(83, 69);
+            this.txtMa_thue.Location = new System.Drawing.Point(83, 77);
             this.txtMa_thue.Name = "txtMa_thue";
             this.txtMa_thue.Size = new System.Drawing.Size(48, 20);
             this.txtMa_thue.TabIndex = 7;
@@ -1952,7 +1964,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.chkSuaTkThue.AccessibleName = "sua_tkthue";
             this.chkSuaTkThue.AutoSize = true;
-            this.chkSuaTkThue.Location = new System.Drawing.Point(245, 75);
+            this.chkSuaTkThue.Location = new System.Drawing.Point(245, 83);
             this.chkSuaTkThue.Name = "chkSuaTkThue";
             this.chkSuaTkThue.Size = new System.Drawing.Size(15, 14);
             this.chkSuaTkThue.TabIndex = 14;
@@ -1964,7 +1976,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.chkSuaPtck.AccessibleDescription = "ASOCTSOAL00049";
             this.chkSuaPtck.AccessibleName = "sua_ptck";
             this.chkSuaPtck.AutoSize = true;
-            this.chkSuaPtck.Location = new System.Drawing.Point(7, 47);
+            this.chkSuaPtck.Location = new System.Drawing.Point(7, 56);
             this.chkSuaPtck.Name = "chkSuaPtck";
             this.chkSuaPtck.Size = new System.Drawing.Size(77, 17);
             this.chkSuaPtck.TabIndex = 4;
@@ -1987,7 +1999,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtThueSuat.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtThueSuat.HoverColor = System.Drawing.Color.Yellow;
             this.txtThueSuat.LeaveColor = System.Drawing.Color.White;
-            this.txtThueSuat.Location = new System.Drawing.Point(133, 69);
+            this.txtThueSuat.Location = new System.Drawing.Point(133, 77);
             this.txtThueSuat.Name = "txtThueSuat";
             this.txtThueSuat.NumberFormatName = "M_IP_R_LE2";
             this.txtThueSuat.Size = new System.Drawing.Size(51, 20);
@@ -2014,7 +2026,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtPtCk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtPtCk.HoverColor = System.Drawing.Color.Yellow;
             this.txtPtCk.LeaveColor = System.Drawing.Color.White;
-            this.txtPtCk.Location = new System.Drawing.Point(84, 45);
+            this.txtPtCk.Location = new System.Drawing.Point(84, 54);
             this.txtPtCk.Name = "txtPtCk";
             this.txtPtCk.Size = new System.Drawing.Size(45, 20);
             this.txtPtCk.TabIndex = 5;
@@ -2030,10 +2042,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // btnChucNang
             // 
             this.btnChucNang.AccessibleDescription = "ASOCTSOAB00033";
-            this.btnChucNang.Location = new System.Drawing.Point(148, 39);
+            this.btnChucNang.Location = new System.Drawing.Point(148, 29);
             this.btnChucNang.Menu = this.menuChucNang;
             this.btnChucNang.Name = "btnChucNang";
-            this.btnChucNang.Size = new System.Drawing.Size(87, 29);
+            this.btnChucNang.Size = new System.Drawing.Size(90, 23);
             this.btnChucNang.TabIndex = 1;
             this.btnChucNang.Text = "Chức năng";
             this.btnChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2157,9 +2169,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // btnChonPX
             // 
             this.btnChonPX.AccessibleDescription = "ASOCTSOAB00046";
-            this.btnChonPX.Location = new System.Drawing.Point(241, 39);
+            this.btnChonPX.Location = new System.Drawing.Point(241, 29);
             this.btnChonPX.Name = "btnChonPX";
-            this.btnChonPX.Size = new System.Drawing.Size(75, 29);
+            this.btnChonPX.Size = new System.Drawing.Size(90, 23);
             this.btnChonPX.TabIndex = 2;
             this.btnChonPX.Text = "Chọn PX";
             this.btnChonPX.UseVisualStyleBackColor = true;
@@ -2179,7 +2191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.v6Label20.AccessibleDescription = "ASOCTSOAL00045";
             this.v6Label20.AutoSize = true;
-            this.v6Label20.Location = new System.Drawing.Point(6, 96);
+            this.v6Label20.Location = new System.Drawing.Point(6, 104);
             this.v6Label20.Name = "v6Label20";
             this.v6Label20.Size = new System.Drawing.Size(55, 13);
             this.v6Label20.TabIndex = 9;
@@ -2188,7 +2200,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // v6Label35
             // 
             this.v6Label35.AutoSize = true;
-            this.v6Label35.Location = new System.Drawing.Point(333, 76);
+            this.v6Label35.Location = new System.Drawing.Point(333, 84);
             this.v6Label35.Name = "v6Label35";
             this.v6Label35.Size = new System.Drawing.Size(12, 13);
             this.v6Label35.TabIndex = 18;
@@ -2198,7 +2210,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.v6Label32.AccessibleDescription = "ASOCTSOAL00011";
             this.v6Label32.AutoSize = true;
-            this.v6Label32.Location = new System.Drawing.Point(191, 75);
+            this.v6Label32.Location = new System.Drawing.Point(191, 83);
             this.v6Label32.Name = "v6Label32";
             this.v6Label32.Size = new System.Drawing.Size(44, 13);
             this.v6Label32.TabIndex = 13;
@@ -2208,7 +2220,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.v6Label19.AccessibleDescription = "ASOCTSOAL00007";
             this.v6Label19.AutoSize = true;
-            this.v6Label19.Location = new System.Drawing.Point(6, 74);
+            this.v6Label19.Location = new System.Drawing.Point(6, 82);
             this.v6Label19.Name = "v6Label19";
             this.v6Label19.Size = new System.Drawing.Size(46, 13);
             this.v6Label19.TabIndex = 6;
@@ -3270,7 +3282,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDocSoTien.Location = new System.Drawing.Point(12, 528);
+            this.lblDocSoTien.Location = new System.Drawing.Point(12, 532);
             this.lblDocSoTien.Name = "lblDocSoTien";
             this.lblDocSoTien.Size = new System.Drawing.Size(877, 15);
             this.lblDocSoTien.TabIndex = 13;
@@ -3637,18 +3649,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.btnLuuTam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLuuTam.UseVisualStyleBackColor = true;
             this.btnLuuTam.Click += new System.EventHandler(this.btnLuuTam_Click);
-            // 
-            // chkAutoNext
-            // 
-            this.chkAutoNext.AccessibleName = ".";
-            this.chkAutoNext.AutoSize = true;
-            this.chkAutoNext.Location = new System.Drawing.Point(148, 10);
-            this.chkAutoNext.Name = "chkAutoNext";
-            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
-            this.chkAutoNext.TabIndex = 48;
-            this.chkAutoNext.TabStop = false;
-            this.chkAutoNext.Text = "Sửa liên tục";
-            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // HoaDonCafeControl
             // 

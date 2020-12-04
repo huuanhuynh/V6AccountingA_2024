@@ -371,6 +371,40 @@ namespace V6Init
                 return _extraInfor;
             }
         }
+
+        private Dictionary<string, V6FieldInfo> _v6FieldInfos = new Dictionary<string, V6FieldInfo>();
+        public Dictionary<string, V6FieldInfo> V6FieldInfos
+        {
+            get
+            {
+                if (_v6FieldInfos.Count == 0) GetV6FieldInfos();
+                return _v6FieldInfos;
+            }
+        }
+
+        private void GetV6FieldInfos()
+        {
+            try
+            {
+                var fields = ObjectAndString.SplitString(GRDS_V1);
+                var captions = ObjectAndString.SplitString(GRDH_LANG_V1);
+                var formats = ObjectAndString.SplitString(GRDF_V1);
+
+                for (int i = 0; i < fields.Length; i++)
+                {
+                    string FIELD_NAME = fields[i].Trim().ToUpper();
+                    string caption = captions[i].Trim();
+                    string format = formats[i].Trim();
+
+                    _v6FieldInfos[FIELD_NAME] = new V6FieldInfo(){FieldName = FIELD_NAME, FieldCaption = caption, FieldFormat = format};
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
         private SortedDictionary<string, string> _extraInfor = null;
         private void GetExtraInfor()
         {
@@ -394,6 +428,13 @@ namespace V6Init
                 }
             }
         }
+    }
+
+    public class V6FieldInfo
+    {
+        public string FieldName { get; set; }
+        public string FieldCaption { get; set; }
+        public string FieldFormat { get; set; }
     }
 
     public class AlreportConfig : Config

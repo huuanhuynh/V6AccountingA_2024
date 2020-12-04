@@ -747,7 +747,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(887, 283);
+            this.tabControl1.Size = new System.Drawing.Size(887, 261);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SizeChanged += new System.EventHandler(this.tabControl1_SizeChanged);
             this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
@@ -905,7 +905,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.tabKhac.Location = new System.Drawing.Point(4, 22);
             this.tabKhac.Name = "tabKhac";
             this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac.Size = new System.Drawing.Size(879, 257);
+            this.tabKhac.Size = new System.Drawing.Size(879, 235);
             this.tabKhac.TabIndex = 1;
             this.tabKhac.Text = "Khác";
             // 
@@ -926,7 +926,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtGhiChuChung.Margin = new System.Windows.Forms.Padding(5);
             this.txtGhiChuChung.Multiline = true;
             this.txtGhiChuChung.Name = "txtGhiChuChung";
-            this.txtGhiChuChung.Size = new System.Drawing.Size(432, 37);
+            this.txtGhiChuChung.Size = new System.Drawing.Size(432, 52);
             this.txtGhiChuChung.TabIndex = 179;
             // 
             // txtSoCtKemt
@@ -1413,9 +1413,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.group5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.group5.Controls.Add(this.panelVND);
             this.group5.Controls.Add(this.panelNT);
-            this.group5.Location = new System.Drawing.Point(428, 484);
+            this.group5.Location = new System.Drawing.Point(428, 467);
             this.group5.Name = "group5";
-            this.group5.Size = new System.Drawing.Size(467, 78);
+            this.group5.Size = new System.Drawing.Size(467, 105);
             this.group5.TabIndex = 5;
             this.group5.TabStop = false;
             // 
@@ -1517,9 +1517,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.group4.Controls.Add(this.btnChonPX);
             this.group4.Controls.Add(this.lblTongSoDong);
             this.group4.Controls.Add(this.v6Label20);
-            this.group4.Location = new System.Drawing.Point(5, 484);
+            this.group4.Location = new System.Drawing.Point(5, 467);
             this.group4.Name = "group4";
-            this.group4.Size = new System.Drawing.Size(413, 78);
+            this.group4.Size = new System.Drawing.Size(413, 105);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
@@ -1527,7 +1527,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             this.chkAutoNext.AccessibleName = ".";
             this.chkAutoNext.AutoSize = true;
-            this.chkAutoNext.Location = new System.Drawing.Point(147, 9);
+            this.chkAutoNext.Location = new System.Drawing.Point(116, 32);
             this.chkAutoNext.Name = "chkAutoNext";
             this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
             this.chkAutoNext.TabIndex = 47;
@@ -1540,7 +1540,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
             this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
             this.chkTempSuaCT.AutoSize = true;
-            this.chkTempSuaCT.Location = new System.Drawing.Point(235, 9);
+            this.chkTempSuaCT.Location = new System.Drawing.Point(10, 32);
             this.chkTempSuaCT.Name = "chkTempSuaCT";
             this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
             this.chkTempSuaCT.TabIndex = 44;
@@ -1574,7 +1574,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtTongSoLuong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTongSoLuong.HoverColor = System.Drawing.Color.Yellow;
             this.txtTongSoLuong.LeaveColor = System.Drawing.Color.White;
-            this.txtTongSoLuong.Location = new System.Drawing.Point(316, 33);
+            this.txtTongSoLuong.Location = new System.Drawing.Point(316, 56);
             this.txtTongSoLuong.Name = "txtTongSoLuong";
             this.txtTongSoLuong.ReadOnly = true;
             this.txtTongSoLuong.Size = new System.Drawing.Size(92, 20);
@@ -1596,7 +1596,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Location = new System.Drawing.Point(295, 55);
+            this.cboChuyenData.Location = new System.Drawing.Point(295, 78);
             this.cboChuyenData.Name = "cboChuyenData";
             this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
             this.cboChuyenData.TabIndex = 38;
@@ -1607,7 +1607,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
             this.v6Label28.AutoSize = true;
-            this.v6Label28.Location = new System.Drawing.Point(249, 59);
+            this.v6Label28.Location = new System.Drawing.Point(249, 82);
             this.v6Label28.Name = "v6Label28";
             this.v6Label28.Size = new System.Drawing.Size(36, 13);
             this.v6Label28.TabIndex = 39;
@@ -1616,10 +1616,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // btnChucNang
             // 
             this.btnChucNang.AccessibleDescription = "AINCTIXAB00033";
-            this.btnChucNang.Location = new System.Drawing.Point(147, 30);
+            this.btnChucNang.Location = new System.Drawing.Point(116, 53);
             this.btnChucNang.Menu = this.menuChucNang;
             this.btnChucNang.Name = "btnChucNang";
-            this.btnChucNang.Size = new System.Drawing.Size(87, 23);
+            this.btnChucNang.Size = new System.Drawing.Size(90, 23);
             this.btnChucNang.TabIndex = 37;
             this.btnChucNang.Tag = "cancel";
             this.btnChucNang.Text = "Chức năng";
@@ -1631,7 +1631,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.chkSuaTien.AccessibleDescription = "AINCTIXAC00001";
             this.chkSuaTien.AccessibleName = "sua_tien";
             this.chkSuaTien.AutoSize = true;
-            this.chkSuaTien.Location = new System.Drawing.Point(76, 33);
+            this.chkSuaTien.Location = new System.Drawing.Point(9, 55);
             this.chkSuaTien.Name = "chkSuaTien";
             this.chkSuaTien.Size = new System.Drawing.Size(65, 17);
             this.chkSuaTien.TabIndex = 20;
@@ -1653,7 +1653,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtTongSoLuong1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTongSoLuong1.HoverColor = System.Drawing.Color.Yellow;
             this.txtTongSoLuong1.LeaveColor = System.Drawing.Color.White;
-            this.txtTongSoLuong1.Location = new System.Drawing.Point(316, 10);
+            this.txtTongSoLuong1.Location = new System.Drawing.Point(316, 33);
             this.txtTongSoLuong1.Name = "txtTongSoLuong1";
             this.txtTongSoLuong1.ReadOnly = true;
             this.txtTongSoLuong1.Size = new System.Drawing.Size(92, 20);
@@ -1681,7 +1681,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             "0 - Chưa cập nhập",
             "1 - Cập nhập tất cả",
             "2 - Chỉ cập nhập vào kho"});
-            this.cboKieuPost.Location = new System.Drawing.Point(83, 54);
+            this.cboKieuPost.Location = new System.Drawing.Point(83, 77);
             this.cboKieuPost.Name = "cboKieuPost";
             this.cboKieuPost.Size = new System.Drawing.Size(160, 21);
             this.cboKieuPost.TabIndex = 10;
@@ -1691,9 +1691,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // btnChonPX
             // 
             this.btnChonPX.AccessibleDescription = "ASOCTSOAB00046";
-            this.btnChonPX.Location = new System.Drawing.Point(239, 30);
+            this.btnChonPX.Location = new System.Drawing.Point(221, 53);
             this.btnChonPX.Name = "btnChonPX";
-            this.btnChonPX.Size = new System.Drawing.Size(75, 23);
+            this.btnChonPX.Size = new System.Drawing.Size(90, 23);
             this.btnChonPX.TabIndex = 2;
             this.btnChonPX.Text = "Chọn PX";
             this.btnChonPX.UseVisualStyleBackColor = true;
@@ -1712,7 +1712,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             this.v6Label20.AccessibleDescription = "AINCTIXAL00055";
             this.v6Label20.AutoSize = true;
-            this.v6Label20.Location = new System.Drawing.Point(6, 58);
+            this.v6Label20.Location = new System.Drawing.Point(6, 81);
             this.v6Label20.Name = "v6Label20";
             this.v6Label20.Size = new System.Drawing.Size(55, 13);
             this.v6Label20.TabIndex = 9;
@@ -1721,7 +1721,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // lblDocSoTien
             // 
             this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDocSoTien.Location = new System.Drawing.Point(12, 572);
+            this.lblDocSoTien.Location = new System.Drawing.Point(12, 575);
             this.lblDocSoTien.Name = "lblDocSoTien";
             this.lblDocSoTien.Size = new System.Drawing.Size(877, 15);
             this.lblDocSoTien.TabIndex = 13;

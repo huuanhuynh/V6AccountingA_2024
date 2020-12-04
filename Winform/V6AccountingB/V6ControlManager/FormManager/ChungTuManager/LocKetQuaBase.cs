@@ -166,12 +166,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public void SetAM(DataTable am)
         {
-            if (_grid1 != null) _grid1.DataSource = am.Copy();
+            if (_grid1 != null && am != null) _grid1.DataSource = am.Copy();
         }
 
         public void SetAD(DataTable ad)
         {
-            if (_grid2 != null) _grid2.TableSource = ad.Copy();
+            if (_grid2 != null && ad != null) _grid2.TableSource = ad.Copy();
         }
     }//end class
 }

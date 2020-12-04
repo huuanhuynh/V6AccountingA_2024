@@ -92,6 +92,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.v6Label23 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.cboChuyenData = new V6Controls.V6ComboBox();
@@ -173,7 +174,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.menuBtnTim = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkAutoNext = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1137,6 +1137,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
+            // chkAutoNext
+            // 
+            this.chkAutoNext.AccessibleName = ".";
+            this.chkAutoNext.AutoSize = true;
+            this.chkAutoNext.Location = new System.Drawing.Point(110, 36);
+            this.chkAutoNext.Name = "chkAutoNext";
+            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
+            this.chkAutoNext.TabIndex = 48;
+            this.chkAutoNext.TabStop = false;
+            this.chkAutoNext.Text = "Sửa liên tục";
+            this.chkAutoNext.UseVisualStyleBackColor = true;
+            // 
             // chkTempSuaCT
             // 
             this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
@@ -1180,10 +1192,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // btnChucNang
             // 
             this.btnChucNang.AccessibleDescription = "ASOCTSOAB00033";
-            this.btnChucNang.Location = new System.Drawing.Point(102, 36);
+            this.btnChucNang.Location = new System.Drawing.Point(224, 52);
             this.btnChucNang.Menu = this.menuChucNang;
             this.btnChucNang.Name = "btnChucNang";
-            this.btnChucNang.Size = new System.Drawing.Size(87, 29);
+            this.btnChucNang.Size = new System.Drawing.Size(90, 23);
             this.btnChucNang.TabIndex = 35;
             this.btnChucNang.Tag = "cancel";
             this.btnChucNang.Text = "Chức năng";
@@ -1344,9 +1356,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // btnChonPX
             // 
             this.btnChonPX.AccessibleDescription = "ASOCTSOAB00046";
-            this.btnChonPX.Location = new System.Drawing.Point(195, 36);
+            this.btnChonPX.Location = new System.Drawing.Point(317, 52);
             this.btnChonPX.Name = "btnChonPX";
-            this.btnChonPX.Size = new System.Drawing.Size(75, 23);
+            this.btnChonPX.Size = new System.Drawing.Size(90, 23);
             this.btnChonPX.TabIndex = 2;
             this.btnChonPX.Text = "Chọn PX";
             this.btnChonPX.UseVisualStyleBackColor = true;
@@ -2207,18 +2219,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.timKhacMenu.Name = "timKhacMenu";
             this.timKhacMenu.Size = new System.Drawing.Size(153, 22);
             this.timKhacMenu.Text = "Khác...";
-            // 
-            // chkAutoNext
-            // 
-            this.chkAutoNext.AccessibleName = ".";
-            this.chkAutoNext.AutoSize = true;
-            this.chkAutoNext.Location = new System.Drawing.Point(161, 9);
-            this.chkAutoNext.Name = "chkAutoNext";
-            this.chkAutoNext.Size = new System.Drawing.Size(82, 17);
-            this.chkAutoNext.TabIndex = 48;
-            this.chkAutoNext.TabStop = false;
-            this.chkAutoNext.Text = "Sửa liên tục";
-            this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // PhieuKeToanControl
             // 

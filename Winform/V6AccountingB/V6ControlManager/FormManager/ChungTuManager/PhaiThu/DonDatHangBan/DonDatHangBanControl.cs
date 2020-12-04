@@ -3733,7 +3733,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             get
             {
                 if (_timForm == null || _timForm.IsDisposed)
-                    _timForm = new TimDonDatHangBanForm(this);
+                    _timForm = new TimDonDatHangBanForm(Invoice, V6Mode.View);
                 return _timForm;
             }
         }
@@ -3746,8 +3746,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 {
                     SearchForm.ViewMode = true;
                     SearchForm.Refresh0();
-                    SearchForm.Visible = false;
-                    SearchForm.ShowDialog(this);
+                    if (SearchForm._locKetQua.dataGridView1.CurrentCell != null)
+                    {
+                        int cIndex = SearchForm._locKetQua.dataGridView1.CurrentCell.ColumnIndex;
+                        SearchForm._locKetQua.dataGridView1.CurrentCell =
+                            SearchForm._locKetQua.dataGridView1.Rows[CurrentIndex].Cells[cIndex];
+                    }
+                    //SearchForm.Visible = false;
+                    //SearchForm.ShowDialog(this);
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK && SearchForm._formChungTu_AM != null)
+                    {
+                        AM = SearchForm._formChungTu_AM;
+                        ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    }
                 }
             }
             catch (Exception ex)
@@ -3783,7 +3794,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         SearchForm.ViewMode = true;
                         SearchForm.SearchTopCuoiKy();
                     }
-                    SearchForm.ShowDialog(this);
+
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK || SearchForm._formChungTu_AM != null)
+                    {
+                        AM = SearchForm._formChungTu_AM;
+                        ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    }
+                    //else if (SearchForm._formChungTu_AM != null)
+                    //{
+                    //    AM = SearchForm._formChungTu_AM;
+                    //    ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    //}
                     btnSua.Focus();
                 }
                 else
@@ -5982,6 +6003,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void inKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
+        }
+
+        private void DonDatHangBanDetail1_AddHandle()
+        {
+
+        }
+
+        private void DonDatHangBanDetail1_EditHandle()
+        {
+
         }
 
 

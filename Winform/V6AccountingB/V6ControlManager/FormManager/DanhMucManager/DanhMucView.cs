@@ -1846,7 +1846,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     fields = new[] { "ID", "Ctype", "D", "V", "E" };
                 }
 
-                _filterForm = new FilterForm(structTable, fields);
+                _filterForm = new FilterForm(structTable, fields, _aldmConfig);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;
                 _filterForm.TopMost = true;

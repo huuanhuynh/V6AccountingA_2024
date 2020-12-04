@@ -13,6 +13,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDeNghiXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang;
@@ -9419,6 +9420,64 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void inHoaDonDienTuMenu_Click(object sender, EventArgs e)
         {
             InHoaDonDienTu();
+        }
+
+        private void chonPhieuXuatMenu_Click(object sender, EventArgs e)
+        {
+            if (txtLoaiPhieu.Text.Trim() == "B")
+            {
+                ChonPhieuXuat_A();
+            }
+            else
+            {
+                this.ShowWarningMessage(V6Text.Text("CCDLP=B"), 300);
+            }
+        }
+
+        private void chon1DonHangMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
+                {
+                    FormManagerHelper.HideMainMenu();
+                    TimDonDatHangBanForm searchForm = new TimDonDatHangBanForm(new V6Invoice91(), V6Mode.Select);
+                    searchForm.ViewMode = false;
+                    //searchForm.Visible = false;
+                    //if (flag == "1")
+                    //{
+                    //    searchForm.ViewMode = true;
+                    //    searchForm.SearchTopCuoiKy();
+                    //}
+                    if (searchForm.ShowDialog(this) == DialogResult.OK ||searchForm._formChungTu_AM != null)
+                    {
+                        //V6ControlFormHelper.ShowDataEditorForm(this, searchForm._formChungTu_AM, "AM", "", "stt_rec", false, false);
+                        if (Mode == V6Mode.View || Mode == V6Mode.Init)
+                        {
+                            // Tạo mới chứng từ
+                            Mode = V6Mode.Add;
+                            SetData(searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary());
+                            foreach (DataRow row in searchForm._formChungTu_AD.Rows)
+                            {
+                                XuLyThemDetail(row.ToDataDictionary());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DialogResult a = searchForm.DialogResult;
+                    }
+                    btnSua.Focus();
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".chon1DonHangMenu_Click", ex);
+            }
         }
 
         

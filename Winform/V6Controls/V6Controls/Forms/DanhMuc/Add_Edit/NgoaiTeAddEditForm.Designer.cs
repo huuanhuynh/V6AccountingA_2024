@@ -107,6 +107,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.number.BackColor = System.Drawing.Color.White;
             this.number.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.number.DecimalPlaces = 2;
             this.number.EnterColor = System.Drawing.Color.PaleGreen;
             this.number.ForeColor = System.Drawing.SystemColors.WindowText;
             this.number.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -117,7 +118,7 @@
             this.number.Name = "number";
             this.number.Size = new System.Drawing.Size(135, 23);
             this.number.TabIndex = 20;
-            this.number.Text = "987 654 321,000";
+            this.number.Text = "987 654 321,00";
             this.number.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.number.Value = new decimal(new int[] {
             -188157080,

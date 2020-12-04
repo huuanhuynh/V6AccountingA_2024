@@ -65,7 +65,15 @@ namespace V6ReportControls
                 FilterLineDynamic lineControl = new FilterLineDynamic(NAME);
                 lineControl.Name = "line" + NAME;
                 lineControl.FieldName = NAME;
-                lineControl.Caption = CorpLan2.GetFieldHeader(NAME);
+                if (_aldmConfig != null && _aldmConfig.V6FieldInfos.ContainsKey(NAME))
+                {
+                    lineControl.Caption = _aldmConfig.V6FieldInfos[NAME].FieldCaption;
+                }
+                else
+                {
+                    lineControl.Caption = CorpLan2.GetFieldHeader(NAME);
+                }
+
                 if (structTable.ContainsKey(NAME))
                 {
                     if (",nchar,nvarchar,ntext,char,varchar,text,xml,"
@@ -102,6 +110,7 @@ namespace V6ReportControls
                         else
                         {
                             lineControl.AddNumberTextBox();
+                            lineControl._numberTextBox.DecimalPlaces = structTable[NAME].MaxNumDecimal;
                         }
                     }
                 }
@@ -135,6 +144,19 @@ namespace V6ReportControls
             AddMultiFilterLine(structTable, ObjectAndString.SplitStringBy(fields_adv, ';'));
         }
 
+        private AldmConfig _aldmConfig;
+        /// <summary>
+        /// Thêm vào các ô nhập filterLine tự động
+        /// </summary>
+        /// <param name="structTable"></param>
+        /// <param name="fields_adv">Field:vvar;Field2:vvar2:Field2 like '%':tableLable:oper</param>
+        /// <param name="aldmConfig">Cấu hình danh mục</param>
+        public void AddMultiFilterLine(V6TableStruct structTable, string fields_adv, AldmConfig aldmConfig)
+        {
+            _aldmConfig = aldmConfig;
+            AddMultiFilterLine(structTable, ObjectAndString.SplitStringBy(fields_adv, ';'));
+        }
+
         /// <summary>
         /// Thêm vào các ô nhập filterLine tự động
         /// </summary>
@@ -142,6 +164,55 @@ namespace V6ReportControls
         /// <param name="fields_adv">Cấu trúc phần tử đầy đủ: Field2:vvar2:Field2 like '%':tableLable:oper</param>
         public void AddMultiFilterLine(V6TableStruct structTable, IList<string> fields_adv)
         {
+            _maxIndex = -1;
+            //var spliter = ObjectAndString.SplitStringBy(fields_adv, ';');
+            foreach (string s in fields_adv)
+            {
+                string err = "";
+                try
+                {
+                    var sss = s.Split(new[] {':'}, 5);
+                    var key = sss[0];
+                    string vvar = "", filter = null, tableLabel = null, oper = null;
+                    
+                    if (sss.Length >= 2)
+                    {
+                        vvar = sss[1].Trim();
+                    }
+                    if (sss.Length >= 3)
+                    {
+                        filter = sss[2].Replace("''", "'");
+                    }
+                    if (sss.Length >= 4)
+                    {
+                        tableLabel = sss[3].Trim();
+                    }
+                    if (sss.Length >= 5)
+                    {
+                        oper = sss[4].Trim();
+                    }
+                    AddFilterLineControl(structTable, key, vvar, filter, tableLabel, oper);
+                }
+                catch (Exception ex)
+                {
+                    err += "\n" + ex.Message;
+                }
+                if (err.Length > 0)
+                {
+                    V6ControlFormHelper.ShowErrorMessage("AddMultiFilterLine error!" + err, "PanelFilter");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Thêm vào các ô nhập filterLine tự động
+        /// </summary>
+        /// <param name="structTable"></param>
+        /// <param name="fields_adv">Cấu trúc phần tử đầy đủ: Field2:vvar2:Field2 like '%':tableLable:oper</param>
+        /// <param name="aldmConfig">Cấu hình danh mục</param>
+        public void AddMultiFilterLine(V6TableStruct structTable, IList<string> fields_adv, AldmConfig aldmConfig)
+        {
+            _aldmConfig = aldmConfig;
             _maxIndex = -1;
             //var spliter = ObjectAndString.SplitStringBy(fields_adv, ';');
             foreach (string s in fields_adv)
