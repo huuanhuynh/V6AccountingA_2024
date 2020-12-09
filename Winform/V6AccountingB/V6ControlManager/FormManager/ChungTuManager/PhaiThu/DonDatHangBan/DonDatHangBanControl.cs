@@ -1454,17 +1454,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, "", txtMaGia.Text);
-                _giaNt21.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
-                
-                if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
+
+                if (_gia_ban_nt != null && _gia_ban_nt.Visible && _gia_ban_nt.Enabled && !_gia_ban_nt.ReadOnly)
                 {
-                    _giaNt2.Value = _giaNt21.Value;
+                    _gia_ban_nt.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
+                    if (_maNt == _mMaNt0)
+                    {
+                        _gia_ban.Value = _gia_ban_nt.Value;
+                    }
+
+                    TinhGiaNt21();
+                    TinhGiaNt2_TienNt2();
                 }
                 else
                 {
-                    if (_soLuong.Value != 0)
+                    _giaNt21.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
+
+                    if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
                     {
-                        _giaNt2.Value = _tienNt2.Value / _soLuong.Value;
+                        _giaNt2.Value = _giaNt21.Value;
+                    }
+                    else
+                    {
+                        if (_soLuong.Value != 0)
+                        {
+                            _giaNt2.Value = _tienNt2.Value / _soLuong.Value;
+                        }
                     }
                 }
             }
@@ -5155,10 +5170,50 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
 
-                    var giaNt21 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
-                    row["GIA_NT21"] = giaNt21;
+                    var gia_nt2 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
+                    decimal gia_nt21 = gia_nt2;
+                    decimal gia_ban_nt = gia_nt2;
+
+                    if (_gia_ban_nt != null && _gia_ban_nt.IsVisibleTag() && !_gia_ban_nt.IsTag("disable"))
+                    {
+                        row["GIA_BAN_NT"] = gia_ban_nt;
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["GIA_BAN"] = gia_ban_nt;
+                        }
+
+                        //TinhGiaNt21()
+                        decimal thue_suat = 0m;
+                        if (M_SOA_MULTI_VAT == "1")
+                        {
+                            thue_suat = ObjectAndString.ObjectToDecimal(row["thue_suat_i"]);
+                        }
+                        else
+                        {
+                            thue_suat = txtThueSuat.Value;
+                        }
+
+                        gia_nt21 = V6BusinessHelper.Vround(gia_ban_nt / (1 + (thue_suat / 100)), M_ROUND_GIA_NT);
+                        row["GIA_NT21"] = gia_nt21;
+                        row["GIA21"] = V6BusinessHelper.Vround((gia_nt21 * txtTyGia.Value), M_ROUND_GIA);
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["GIA21"] = gia_nt21;
+                        }
+                    }
+                    else
+                    {
+                        row["GIA_NT21"] = gia_nt21;
+                        row["Gia21"] = V6BusinessHelper.Vround((gia_nt21 * txtTyGia.Value), M_ROUND_GIA_NT);
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["Gia21"] = row["Gia_nt21"];
+                        }
+                    }
+                    
+                    
                     //_soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                    tienNt2 = V6BusinessHelper.Vround((soLuong1 * giaNt21), M_ROUND_NT);
+                    tienNt2 = V6BusinessHelper.Vround((soLuong1 * gia_nt21), M_ROUND_NT);
                     tien2 = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
 
                     row["tien_Nt2"] = tienNt2;
@@ -5182,12 +5237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     }
                     //End TinhChietKhauChiTiet
 
-                    //TinhGiaNt2();
-                    row["Gia21"] = V6BusinessHelper.Vround((_giaNt21.Value * txtTyGia.Value), M_ROUND_GIA_NT);
-                    if (_maNt == _mMaNt0)
-                    {
-                        row["Gia21"] = row["Gia_nt21"];
-                    }
+                    
 
                     if (soLuong != 0)
                     {

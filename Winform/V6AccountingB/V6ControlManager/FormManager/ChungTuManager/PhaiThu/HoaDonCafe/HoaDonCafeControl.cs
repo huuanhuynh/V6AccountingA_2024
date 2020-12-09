@@ -7079,6 +7079,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                     var giaNt21 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
                     row["GIA_NT21"] = giaNt21;
+                    row["Gia21"] = V6BusinessHelper.Vround((giaNt21 * txtTyGia.Value), M_ROUND_GIA_NT);
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["Gia21"] = row["Gia_nt21"];
+                    }
                     //_soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                     tienNt2 = V6BusinessHelper.Vround((soLuong1 * giaNt21), M_ROUND_NT);
                     row["tien_Nt2"] = tienNt2;
@@ -7099,13 +7104,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         row["ck"] = row["ck_nt"];
                     }
                     //End TinhChietKhauChiTiet
-
-                    //TinhGiaNt2();
-                    row["Gia21"] = V6BusinessHelper.Vround((_giaNt21.Value * txtTyGia.Value), M_ROUND_GIA_NT);
-                    if (_maNt == _mMaNt0)
-                    {
-                        row["Gia21"] = row["Gia_nt21"];
-                    }
 
                     if (soLuong != 0)
                     {
