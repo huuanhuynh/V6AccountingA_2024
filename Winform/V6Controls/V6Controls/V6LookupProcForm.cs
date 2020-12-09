@@ -567,7 +567,7 @@ namespace V6Controls
                         {
                             btnTatCa_Click(null, null);
                         }
-                        else if (dataGridView1.Rows.Count == 1)
+                        else if (!txtV_Search.HaveValueChanged && dataGridView1.Rows.Count == 1)
                         {
                             dataGridView1_KeyDown(dataGridView1, new KeyEventArgs(keyData));
                         }
@@ -743,11 +743,21 @@ namespace V6Controls
                 }
                 else
                 {
+                    var tbStruct = V6BusinessHelper.GetTableStruct(LookupInfo.TABLE_NAME);
                     string[] items = vSearchFields.Split(new []{',',';'}, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string item in items)
                     {
-                        result += " or " + item.Trim() + " like N'" + (_filterStart?"":"%") +
-                                  txtV_Search.Text.Trim().Replace("'", "''") + "%'";
+                        string ITEM = item.Trim().ToUpper();
+                        if (tbStruct.ContainsKey(ITEM) && ObjectAndString.IsNumberType(tbStruct[ITEM].DataType))
+                        {
+                            decimal vSearchDecimal = ObjectAndString.StringToDecimal(txtV_Search.Text);
+                            if (vSearchDecimal != 0) result += " or " + item.Trim() + " = " + vSearchDecimal;
+                        }
+                        else
+                        {
+                            result += " or " + item.Trim() + " like N'" + (_filterStart?"":"%") +
+                                   txtV_Search.Text.Trim().Replace("'", "''") + "%'";
+                        }
                     }
                 }
             }
@@ -769,7 +779,7 @@ namespace V6Controls
                 string vSearchFields = LookupInfo.F_SEARCH;
                 _vSearchFilter = GenVSearchFilter(vSearchFields);
                 dataGridView1.DataSource = LayTatCaDanhMuc(_vSearchFilter);
-
+                txtV_Search.ResetFocusText();
                 if(dataGridView1.RowCount > 0)
                     dataGridView1.Focus();
             }

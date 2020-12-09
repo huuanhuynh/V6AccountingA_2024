@@ -53,8 +53,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     V6ControlFormHelper.FormatGridViewAndHeader(
                         grid2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
                         V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
-                    if(_grid2 != null)
-                    V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
+
+                    if(_grid2 != null) V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
                 }
             }
             catch (Exception ex)

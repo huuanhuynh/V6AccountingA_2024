@@ -255,6 +255,8 @@ namespace V6Controls
             }
         }
 
+        public string BaseInitFilter { get; set; }
+
         private string _initFilter;
         public string InitFilter
         {
@@ -265,6 +267,19 @@ namespace V6Controls
                     _initFilter = V6Login.GetInitFilter(LookupInfo.vMa_file, GetFilterType());
                 }
                 return ("" + _initFilter).Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
+            }
+        }
+
+        /// <summary>
+        /// Chuỗi lọc dữ liệu kết hợp từ BaseInitFilter và InitFilter.
+        /// </summary>
+        public string Filter
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(BaseInitFilter)) return InitFilter;
+                if (string.IsNullOrEmpty(InitFilter)) return BaseInitFilter;
+                return BaseInitFilter + " AND " + InitFilter;
             }
         }
 
@@ -586,8 +601,8 @@ namespace V6Controls
                     if (!string.IsNullOrEmpty(LookupInfo.vValue))
                     {
                         var tableName = LookupInfo.vMa_file;
-                        var filter = InitFilter;
-                        if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
+                        var filter = Filter;
+                        if (!string.IsNullOrEmpty(filter)) filter = "and " + filter;
                         var where = " 1=1 " + filter;
                             
                         var tbl1 = V6BusinessHelper.Select(tableName,
@@ -660,21 +675,21 @@ namespace V6Controls
         /// Kiểm tra giá trị có tồn tại trong csdl hay không. Đồng thời gán dữ liệu liên quan (Brothers, Neighbor).
         /// </summary>
         /// <param name="text">Giá trị cần kiểm tra</param>
-        /// <param name="use_InitFilter">Luôn dùng InitFilter khi load dữ liệu. (Trường hợp nhảy ra nhảy vào không dùng)</param>
+        /// <param name="use_Filter">Luôn dùng InitFilter khi load dữ liệu. (Trường hợp nhảy ra nhảy vào không dùng)</param>
         /// <returns></returns>
-        public bool ExistRowInTable(string text, bool use_InitFilter = false)
+        public bool ExistRowInTable(string text, bool use_Filter = false)
         {
             if (V6Setting.NotLoggedIn) return false;
             try
             {
-                if (!use_InitFilter && _data != null && _text_data == Text) return true;
+                if (!use_Filter && _data != null && _text_data == Text) return true;
 
                 _text_data = text;
                 if (!string.IsNullOrEmpty(LookupInfo.vValue))
                 {
                     string tableName = LookupInfo.vMa_file;
-                    string filter = HaveValueChanged ? InitFilter : null;
-                    if (use_InitFilter) filter = InitFilter;
+                    string filter = HaveValueChanged ? Filter : null;
+                    if (use_Filter) filter = Filter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
                     SqlParameter[] plist =
@@ -740,7 +755,7 @@ namespace V6Controls
                 if (!string.IsNullOrEmpty(LookupInfo.vValue))
                 {
                     string tableName = LookupInfo.TableName;
-                    var filter = InitFilter;
+                    var filter = Filter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
                     string where = "";
@@ -943,8 +958,8 @@ namespace V6Controls
 
         protected void DoLookup(LookupMode lookupMode = LookupMode.Single)
         {
-            var filter = InitFilter;
-            if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
+            var filter = Filter;
+            if (!string.IsNullOrEmpty(filter)) filter = "and " + filter;
             var lookup = new V6VvarTextBoxForm(this, LookupInfo, " 1=1 " + filter, lookupMode, FilterStart);
             Looking = true;
             lookup.ShowDialog(this);

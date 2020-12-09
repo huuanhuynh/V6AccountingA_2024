@@ -36,16 +36,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
+            this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnGuiDanhSach = new System.Windows.Forms.Button();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.menuChucNang.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -66,11 +67,11 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.menuChucNang;
-            this.dataGridView1.Location = new System.Drawing.Point(316, 3);
+            this.dataGridView1.Location = new System.Drawing.Point(316, 23);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Size = new System.Drawing.Size(677, 358);
+            this.dataGridView1.Size = new System.Drawing.Size(677, 338);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
@@ -82,6 +83,30 @@
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
             this.dataGridView1.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserAddedRow);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            // 
+            // menuChucNang
+            // 
+            this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thayTheMenu,
+            this.thayTheNhieuMenu});
+            this.menuChucNang.Name = "menuChucNang";
+            this.menuChucNang.Size = new System.Drawing.Size(153, 48);
+            // 
+            // thayTheMenu
+            // 
+            this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
+            this.thayTheMenu.Name = "thayTheMenu";
+            this.thayTheMenu.Size = new System.Drawing.Size(152, 22);
+            this.thayTheMenu.Text = "Thay thế";
+            this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
+            // 
+            // thayTheNhieuMenu
+            // 
+            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
+            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
+            this.thayTheNhieuMenu.Size = new System.Drawing.Size(152, 22);
+            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
+            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
             // 
             // panel1
             // 
@@ -141,34 +166,22 @@
             this.panel2.Size = new System.Drawing.Size(310, 238);
             this.panel2.TabIndex = 1;
             // 
-            // menuChucNang
+            // gridViewTopFilter1
             // 
-            this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thayTheMenu,
-            this.thayTheNhieuMenu});
-            this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(153, 70);
-            // 
-            // thayTheMenu
-            // 
-            this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
-            this.thayTheMenu.Name = "thayTheMenu";
-            this.thayTheMenu.Size = new System.Drawing.Size(152, 22);
-            this.thayTheMenu.Text = "Thay thế";
-            this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
-            // 
-            // thayTheNhieuMenu
-            // 
-            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
-            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
-            this.thayTheNhieuMenu.Size = new System.Drawing.Size(152, 22);
-            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
-            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
+            this.gridViewTopFilter1.Auto = false;
+            this.gridViewTopFilter1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridViewTopFilter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewTopFilter1.DataGridView = this.dataGridView1;
+            this.gridViewTopFilter1.Location = new System.Drawing.Point(316, 1);
+            this.gridViewTopFilter1.Name = "gridViewTopFilter1";
+            this.gridViewTopFilter1.Size = new System.Drawing.Size(677, 22);
+            this.gridViewTopFilter1.TabIndex = 1;
             // 
             // XADVXNK01_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gridViewTopFilter1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView2);
@@ -179,8 +192,8 @@
             this.Load += new System.EventHandler(this.XADVXNK01_Filter_Load);
             this.SizeChanged += new System.EventHandler(this.XADVXNK01_Filter_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.menuChucNang.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -195,6 +208,7 @@
         private System.Windows.Forms.ContextMenuStrip menuChucNang;
         private System.Windows.Forms.ToolStripMenuItem thayTheMenu;
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
+        private V6Controls.Controls.GridViewTopFilter gridViewTopFilter1;
 
 
     }

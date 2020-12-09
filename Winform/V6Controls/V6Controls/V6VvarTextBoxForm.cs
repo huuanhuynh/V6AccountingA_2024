@@ -680,7 +680,7 @@ namespace V6Controls
                         {
                             btnTatCa_Click(null, null);
                         }
-                        else if (dataGridView1.Rows.Count == 1)
+                        else if (!txtV_Search.HaveValueChanged && dataGridView1.Rows.Count == 1)
                         {
                             dataGridView1_KeyDown(dataGridView1, new KeyEventArgs(keyData));
                         }
@@ -930,6 +930,7 @@ namespace V6Controls
                 string vSearchFields = _config.V_Search;
                 _vSearchFilter = GenVSearchFilter(vSearchFields);
                 dataGridView1.DataSource = LayTatCaDanhMuc(_vSearchFilter);
+                txtV_Search.ResetFocusText();
                 ApplyF2Selected();
 
                 if (dataGridView1.RowCount > 0) dataGridView1.Focus();

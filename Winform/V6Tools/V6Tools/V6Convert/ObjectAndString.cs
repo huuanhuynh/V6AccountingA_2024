@@ -411,10 +411,33 @@ namespace V6Tools.V6Convert
             {
                 case "System.DateTime":
                     if (string.IsNullOrEmpty(formatString)) formatString = "dd/MM/yyyy";
-                    result = ((DateTime) o).ToString(formatString);
+                    DateTime date_object = (DateTime) o;
+                    result = date_object.ToString(formatString);
                     if (!formatString.Contains(" "))
                     {
                         result = result.Replace(" ", "");
+                    }
+
+                    if (formatString.Contains("/") && !result.Contains("/"))
+                    {
+                        string result0 = formatString;
+                        result0 = result0.Replace("dd", date_object.Day.ToString("00"));
+                        result0 = result0.Replace("d", date_object.Day.ToString("00"));
+                        result0 = result0.Replace("MM", date_object.Month.ToString("00"));
+                        result0 = result0.Replace("M", date_object.Month.ToString("00"));
+                        result0 = result0.Replace("yyyy", date_object.Year.ToString("0000"));
+                        result0 = result0.Replace("yy", date_object.Year.ToString("00"));
+
+                        result0 = result0.Replace("HH", date_object.ToString("HH"));
+                        result0 = result0.Replace("H", date_object.ToString("H"));
+                        result0 = result0.Replace("hh", date_object.ToString("hh"));
+                        result0 = result0.Replace("h", date_object.ToString("h"));
+                        result0 = result0.Replace("mm", date_object.ToString("mm"));
+                        result0 = result0.Replace("m", date_object.ToString("m"));
+                        result0 = result0.Replace("ss", date_object.ToString("ss"));
+                        result0 = result0.Replace("s", date_object.ToString("s"));
+
+                        result = result0;
                     }
                     break;
                 default:

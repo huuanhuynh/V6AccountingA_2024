@@ -78,7 +78,7 @@ namespace V6Tools.V6Convert
                 //Miliseconds from 1970
                 //result = string.Format("<{0}>{1}</{0}>", name, (long)(date - new DateTime(1970, 1, 1)).TotalMilliseconds);
                 //yyyy/MM/dd
-                result = date.ToString("dd/MM/yyyy").Replace(" ", "");
+                result = date.ToString("dd") + "/" + date.ToString("MM") + "/" + date.ToString("yyyy");
             }
             else if (value is IEnumerable)
             {

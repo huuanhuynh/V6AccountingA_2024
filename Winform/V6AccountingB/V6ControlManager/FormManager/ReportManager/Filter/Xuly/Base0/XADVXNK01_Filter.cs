@@ -232,6 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                 dataGridView1.DataSource = _ds.Tables[0];
                 FormatGridView(dataGridView1);
+                gridViewTopFilter1.MadeFilterItems();
                 if (_ds.Tables.Count > 1)
                 {
                     dataGridView2.DataSource = _ds.Tables[1];

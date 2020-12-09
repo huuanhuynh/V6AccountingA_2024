@@ -432,6 +432,11 @@ namespace V6Controls
             get { return gotfocustext; }
         }
 
+        public void ResetFocusText()
+        {
+            gotfocustext = Text;
+        }
+
         protected string lostfocustext = "";
 
         [Category("V6")]

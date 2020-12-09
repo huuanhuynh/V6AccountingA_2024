@@ -142,7 +142,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
-        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
+        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _gia_ban_nt, _gia_ban, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21;
         private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg;
         private V6DateTimeColor _hanSd;
@@ -393,6 +393,49 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _giaNt21.ReadOnlyTag();
+                            }
+                        }
+                        break;
+                    case "GIA_BAN":
+                        _gia_ban = control as V6NumberTextBox;
+                        if (_gia_ban != null)
+                        {
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                            {
+                                _gia_ban.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                            {
+                                _gia_ban.ReadOnlyTag();
+                            }
+                        }
+                        break;
+                    case "GIA_BAN_NT":
+                        _gia_ban_nt = control as V6NumberTextBox;
+                        if (_gia_ban_nt != null)
+                        {
+                            _gia_ban_nt.TextChanged += (sender, e) =>
+                            {
+
+                            };
+                            _gia_ban_nt.V6LostFocus += delegate(object sender)
+                            {
+                                _gia_ban.Value = V6BusinessHelper.Vround((_gia_ban_nt.Value * txtTyGia.Value), M_ROUND_GIA);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    _gia_ban.Value = _gia_ban_nt.Value;
+                                }
+
+                                TinhGiaNt21();
+                                TinhGiaNt2_TienNt2();
+                            };
+                            if (!V6Login.IsAdmin && (Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_HIDE.ContainsStartsWith(NAME + ":")))
+                            {
+                                _gia_ban_nt.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                            {
+                                _gia_ban_nt.ReadOnlyTag();
                             }
                         }
                         break;
@@ -709,6 +752,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 _gia21.Value = 0;
                 _gg.Value = 0;
                 _ggNt.Value = 0;
+
+                _gia_ban_nt.Value = 0;
+                _gia_ban.Value = 0;
             }
             catch (Exception ex)
             {
@@ -1623,6 +1669,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
+        /// <summary>
+        /// Tính lại giá chưa thuế
+        /// </summary>
+        public void TinhGiaNt21()
+        {
+            try
+            {
+                decimal thue_suat = 0m;
+                if (M_SOA_MULTI_VAT == "1")
+                {
+                    thue_suat = _thue_suat_i.Value;
+                }
+                else
+                {
+                    thue_suat = txtThueSuat.Value;
+                }
+
+                _giaNt21.Value = V6BusinessHelper.Vround(_gia_ban_nt.Value / (1 + (thue_suat / 100)), M_ROUND_GIA_NT);
+                _gia21.Value = V6BusinessHelper.Vround((_giaNt21.Value * txtTyGia.Value), M_ROUND_GIA);
+                if (_maNt == _mMaNt0)
+                {
+                    _gia21.Value = _giaNt21.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         /// <summary>
         /// chay khi nhap tien
         /// </summary>

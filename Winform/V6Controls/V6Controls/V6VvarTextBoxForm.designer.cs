@@ -50,7 +50,7 @@ namespace V6Controls
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnTimAll = new System.Windows.Forms.Button();
-            this.txtV_Search = new System.Windows.Forms.TextBox();
+            this.txtV_Search = new V6Controls.V6ColorTextBox();
             this.btnESC = new System.Windows.Forms.Button();
             this.btnVSearch = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -343,7 +343,7 @@ namespace V6Controls
         internal V6ColorDataGridView dataGridView1;
         private Panel panel1;
         internal Button btnVSearch;
-        internal TextBox txtV_Search;
+        internal V6ColorTextBox txtV_Search;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         internal Button btnESC;

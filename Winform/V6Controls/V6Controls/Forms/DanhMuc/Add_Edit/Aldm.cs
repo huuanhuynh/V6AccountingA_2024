@@ -9,6 +9,7 @@ using V6AccountingBusiness;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Controls.Forms.Editor;
 using V6Init;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -246,8 +247,40 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                DataTable data1 = V6BusinessHelper.Select(txtTable_name.Text, "top 1 *").Data;
-                return V6ControlFormHelper.GetSourceFieldsInfo(data1);
+                if (V6BusinessHelper.IsExistDatabaseTable(txtTable_name.Text))
+                {
+                    DataTable data1 = V6BusinessHelper.Select(txtTable_name.Text, "top 1 *", "1=0").Data;
+                    return V6ControlFormHelper.GetSourceFieldsInfo(data1);
+                }
+                else
+                {
+                    var info = V6BusinessHelper.ExecuteProcedure("V6TOOLS_GET_PROC_INFOR",
+                        new SqlParameter("@proc_name", TXTMA_DM.Text)).Tables[0];
+                    if(info == null || info.Rows.Count == 0) return new List<AlbcFieldInfo>();
+
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    foreach (DataRow row in info.Rows)
+                    {
+                        string para_name = row["para_name"].ToString().Trim();
+                        string para_type = row["para_type"].ToString().Trim().ToLower();
+                        Type para_Type = F.TypeFromData_Type(para_type);
+                        if (ObjectAndString.IsDateTimeType(para_Type))
+                        {
+                            plist.Add(new SqlParameter(para_name, V6Setting.M_SV_DATE));
+                        }
+                        else if (ObjectAndString.IsNumberType(para_Type))
+                        {
+                            int int0 = 0;
+                            plist.Add(new SqlParameter(para_name, int0));
+                        }
+                        else
+                        {
+                            plist.Add(new SqlParameter(para_name, " 1=0 "));
+                        }
+                    }
+                    var data2 = V6BusinessHelper.ExecuteProcedure(TXTMA_DM.Text, plist.ToArray()).Tables[0];
+                    return V6ControlFormHelper.GetSourceFieldsInfo(data2);
+                }
             }
             catch (Exception ex)
             {

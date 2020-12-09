@@ -1531,7 +1531,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <para>Field:TableName:1 => lấy initfilter từ V6Login theo TableName.</para>
         /// <para>Field:TableName:1 => nếu là 1 sẽ gắn thêm [Status] &lt;&gt; '0'</para>
         /// </summary>
-        public void SetInitFilterAll()
+        public void SetBaseInitFilterAll()
         {
             if (V6Setting.NotLoggedIn) return;
             try
@@ -1560,7 +1560,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         var txt = tempControl as V6VvarTextBox;
 
-                        var old_filter = txt.InitFilter;
+                        var old_filter = txt.Filter;
                         var adv_filter = V6Login.GetInitFilter(tableName, V6ControlFormHelper.FindFilterType(this));
                         if (status == "1")
                         {
@@ -1570,22 +1570,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                                 adv_filter += (string.IsNullOrEmpty(adv_filter) ? "" : " and ") + adv_filter_extra;
                             }
                         }
-                        //var new_filter = old_filter;
-                        //if (string.IsNullOrEmpty(new_filter))
-                        if (string.IsNullOrEmpty(old_filter))
-                        {
-                            //new_filter = adv_filter;
-                            txt.SetInitFilter(adv_filter);
-                        }
-                        else
-                        {
-                            if (!string.IsNullOrEmpty(adv_filter))
-                            {
-                                //new_filter = string.Format("({0}) and ({1})", old_filter, adv_filter);
-                                txt.AddInitFilter(adv_filter);
-                            }
-                        }
-                        //txt.SetInitFilter(new_filter);
+                        
+                        txt.BaseInitFilter = adv_filter;
                     }
                 }
 
@@ -1637,7 +1623,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
-                    var old_filter = txt.InitFilter;
+                    var old_filter = txt.Filter;
                     var adv_filter = V6Login.GetInitFilter("ALSONB", V6ControlFormHelper.FindFilterType(this));
                     var adv_filter_extra = "[Status] <> '0'";
                     if (!string.IsNullOrEmpty(adv_filter_extra))
@@ -2305,7 +2291,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private void V6InvoiceControl_Load(object sender, EventArgs e)
         {
             V6ControlsHelper.DisableLookup = false;
-            SetInitFilterAll();
+            SetBaseInitFilterAll();
             LoadLanguage() ;
         }
 
