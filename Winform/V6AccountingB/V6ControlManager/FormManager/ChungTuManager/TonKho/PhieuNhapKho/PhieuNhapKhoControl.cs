@@ -172,7 +172,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         {
                             if (_maVt.LO_YN)
                             {
-                                _maLo.Enabled = true;
+                                if (_maVt.VITRI_YN)
+                                {
+                                    _maLo.ReadOnlyTag();
+                                }
+                                else
+                                {
+                                    _maLo.Enabled = true;
+                                }
                             }
                             else
                             {
@@ -630,6 +637,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         };
                         _maLo.GotFocus += (s, e) =>
                         {
+                            if (NotAddEdit || _maLo.ReadOnly) return;
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                             _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
                             // Tuanmh 05/05/2018 sai HSD

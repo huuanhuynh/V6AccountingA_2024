@@ -200,7 +200,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         {
                             if (_maVt.LO_YN)
                             {
-                                _maLo.Enabled = true;
+                                if (_maVt.VITRI_YN)
+                                {
+                                    _maLo.ReadOnlyTag();
+                                }
+                                else
+                                {
+                                    _maLo.Enabled = true;
+                                }
                             }
                             else
                             {
@@ -560,6 +567,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         //};
                         _maLo.GotFocus += (s, e) =>
                         {
+                            if (NotAddEdit || _maLo.ReadOnly) return;
                             var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
                             if (V6Options.GetValue("M_IXY_CHECK_TON") == "1")
                             {

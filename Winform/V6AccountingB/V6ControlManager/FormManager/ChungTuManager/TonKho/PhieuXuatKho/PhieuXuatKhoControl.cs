@@ -180,10 +180,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                             _maVt.V6LostFocusNoChange += delegate
                             {
-
                                 if (_maVt.LO_YN)
                                 {
-                                    _maLo.Enabled = true;
+                                    if (_maVt.VITRI_YN)
+                                    {
+                                        _maLo.ReadOnlyTag();
+                                    }
+                                    else
+                                    {
+                                        _maLo.Enabled = true;
+                                    }
                                 }
                                 else
                                 {
@@ -561,10 +567,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             _maLo = (V6VvarTextBox)control;
                             _maLo.GotFocus += (s, e) =>
                             {
+                                if (NotAddEdit || _maLo.ReadOnly) return;
+
                                 _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
-                                
                                 var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
-                                
                                 _dataViTri = Invoice.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                                 var getFilter = GetFilterMaLo(_dataViTri, _sttRec0, _maVt.Text, _maKhoI.Text);
                                 if (getFilter != "") filter += " and " + getFilter;

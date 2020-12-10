@@ -200,7 +200,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                         {
                             if (_maVt.LO_YN)
                             {
-                                _maLo.Enabled = true;
+                                if (_maVt.VITRI_YN)
+                                {
+                                    _maLo.ReadOnlyTag();
+                                }
+                                else
+                                {
+                                    _maLo.Enabled = true;
+                                }
                             }
                             else
                             {
@@ -560,6 +567,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                         //};
                         _maLo.GotFocus += (s, e) =>
                         {
+                            if (NotAddEdit || _maLo.ReadOnly) return;
                             var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
                             if (V6Options.GetValue("M_IXY_CHECK_TON") == "1")
                             {
@@ -6341,6 +6349,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
 
                     data["MA_KHO_I"] = cMaKhoI;
                     data["MA_NX_I"] = data["TK_VT"];
+                    data["MA_LNX_I"] = txtLoaiNX_PH.Text;
 
                     if (XuLyThemDetail(data))
                     {

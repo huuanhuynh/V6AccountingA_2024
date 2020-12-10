@@ -193,7 +193,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                         {
                             if (_maVt.LO_YN)
                             {
-                                _maLo.Enabled = true;
+                                if (_maVt.VITRI_YN)
+                                {
+                                    _maLo.ReadOnlyTag();
+                                }
+                                else
+                                {
+                                    _maLo.Enabled = true;
+                                }
                             }
                             else
                             {
@@ -546,8 +553,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                         _maLo = (V6VvarTextBox)control;
                         _maLo.GotFocus += (s, e) =>
                         {
+                            if (NotAddEdit || _maLo.ReadOnly) return;
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
-
                             _dataLoDate = Invoice.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                             var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
                             var getFilter = GetFilterMaLo(_dataLoDate, _sttRec0, _maVt.Text, _maKhoI.Text);

@@ -170,7 +170,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         {
                             if (_maVt.LO_YN)
                             {
-                                _maLo.Enabled = true;
+                                if (_maVt.VITRI_YN)
+                                {
+                                    _maLo.ReadOnlyTag();
+                                }
+                                else
+                                {
+                                    _maLo.Enabled = true;
+                                }
                             }
                             else
                             {
@@ -586,8 +593,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         _maLo = (V6VvarTextBox)control;
                         _maLo.GotFocus += (s, e) =>
                         {
-                            _maLo.CheckNotEmpty = _maVt.LO_YN && txtMaKhoX.LO_YN;
+                            if (NotAddEdit || _maLo.ReadOnly) return;
 
+                            _maLo.CheckNotEmpty = _maVt.LO_YN && txtMaKhoX.LO_YN;
                             _dataLoDate = Invoice.GetLoDate(_maVt.Text, txtMaKhoX.Text, _sttRec, dateNgayCT.Date);
                             var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
                             var getFilter = GetFilterMaLo(_dataLoDate, _sttRec0, _maVt.Text, txtMaKhoX.Text);
@@ -1274,13 +1282,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             try
             {
                 Invoice.GetAlVitriTon(dateNgayCT.Date, _sttRec, _maVt.Text, txtMaKhoX.Text);
-                FixAlVitriTon(Invoice.AlVitriTon, AD);
+                DataView vton = new DataView(Invoice.AlVitriTon);
+                vton.RowFilter = Invoice.GetFilterMaViTriTon(_sttRec, dateNgayCT.Date, txtMaKhoX.Text, txtMaKhoN.Text,
+                    txtLoaiNX_PH.Text, txtLoaiNX_PHN.Text);
+                DataTable alVitriTonFilter = vton.ToTable();
+                FixAlVitriTon(alVitriTonFilter, AD);
 
                 var inputUpper = _maViTri.Text.Trim().ToUpper();
                 if (Invoice.AlVitriTon != null)
                 {
                     var check = false;
-                    foreach (DataRow row in Invoice.AlVitriTon.Rows)
+                    foreach (DataRow row in alVitriTonFilter.Rows)
                     {
                         if (row["Ma_vitri"].ToString().Trim().ToUpper() == inputUpper)
                         {
@@ -1299,7 +1311,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     if (!check)
                     {
                         var initFilter = GetAlVitriTonInitFilter();
-                        var f = new FilterView(Invoice.AlVitriTon, "Ma_vitri", "ALVITRITON", _maViTri, initFilter);
+                        var f = new FilterView(alVitriTonFilter, "Ma_vitri", "ALVITRITON", _maViTri, initFilter);
                         if (f.ViewData != null && f.ViewData.Count > 0)
                         {
                             var d = f.ShowDialog(this);

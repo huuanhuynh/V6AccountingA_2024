@@ -1620,5 +1620,35 @@ namespace V6AccountingBusiness.Invoices
 
             return "" + where;
         }
+
+        public string GetFilterMaViTriTon(string sttRec, DateTime ngayct, string makho_x, string makho_n, string maloai_x, string maloai_n)
+        {
+            try
+            {
+                //DateTime d = DateTime.ParseExact(ngayct, "d/M/yyyy", null);
+                SqlParameter[] pList =
+                {
+                    new SqlParameter("@cMa_ct", Mact),
+                    new SqlParameter("@cStt_rec", sttRec),
+                    new SqlParameter("@dBg", ngayct),
+                    new SqlParameter("@cMa_khox", makho_x),
+                    new SqlParameter("@cMa_khon", makho_n),
+                    new SqlParameter("@cMa_lnxphX", maloai_x),
+                    new SqlParameter("@cMa_lnxphN", maloai_n),
+                    new SqlParameter("@User_id", V6Login.UserId)
+                };
+
+                var resultData = V6BusinessHelper.ExecuteProcedure("VPA_GET_VITRITON_FILTER", pList).Tables[0];
+                if (resultData.Rows.Count == 1)
+                {
+                    return resultData.Rows[0][0].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("InvoiceBase GetFilterMaViTriTon " + ex.Message);
+            }
+            return null;
+        }
     }
 }
