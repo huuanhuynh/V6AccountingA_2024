@@ -569,15 +569,15 @@ namespace V6Controls.Controls
                 string message = null;
                 if (V6Setting.IsVietnamese)
                 {
-                    message = "Tìm chữ gõ bình thường và nhấn Enter." +
-                              "\nTìm số gõ 1 số hoặc 2 số cách nhau bằng ~ " +
-                              "\nTìm 1 ngày gõ ngày/tháng/năm hoặc 2 ngày cách nhau ~.";
+                    message = "Lọc chữ, số hoặc ngày tháng gõ và nhấn Enter." +
+                              "\nKiểu ngày gõ ngày/tháng/năm." +
+                              "\nNhấn tải lại để trở về ban đầu.";
                 }
                 else
                 {
-                    message = "Find text, normal typing and press Enter." +
-                              "\nFind numbers enter 1 or 2 numbers separated by ~ " +
-                              "\nFind in date enter day/month/year. Add ~day/month/year for period.";
+                    message = "Filter text, number or date, typing and press Enter." +
+                              "\nDate type dd/MM/yyyy." +
+                              "\nClick refresh to remove filter.";
                 }
                 this.ShowInfoMessage(message);
             }

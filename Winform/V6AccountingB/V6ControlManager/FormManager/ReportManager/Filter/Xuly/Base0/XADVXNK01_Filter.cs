@@ -48,6 +48,26 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         private IDictionary<string, object> _defaultData = null;
         public bool HaveChange { get; set; }
 
+        public bool ALLOW_ADD
+        {
+            get
+            {
+                return V6Login.UserRight.AllowAdd(ItemID, _base0._reportFile + "6");
+            }
+        }
+        
+        /// <summary>
+        /// Dùng F4 để thêm dòng.
+        /// </summary>
+        public bool USE_F4
+        {
+            get
+            {
+                return _aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("F4") &&
+                       _aldmConfig.EXTRA_INFOR["F4"] == "1";
+            }
+        }
+
         protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         /// <summary>
         /// Code động từ aldmConfig.
@@ -92,7 +112,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 FilterControl2.radOr.Visible = false;
                 //FilterControl2
                 // Right
-                dataGridView1.AllowUserToAddRows = V6Login.UserRight.AllowAdd(ItemID, _base0._reportFile + "6");
+                dataGridView1.AllowUserToAddRows = ALLOW_ADD;
+                if (dataGridView1.AllowUserToAddRows && USE_F4)
+                {
+                    dataGridView1.AllowUserToAddRows = false;
+                }
                 dataGridView1.ReadOnly = !V6Login.UserRight.AllowEdit(ItemID, _base0._reportFile + "6");
                 InvokeFormEvent(FormDynamicEvent.INIT);
                 InvokeFormEvent(FormDynamicEvent.INIT2);
@@ -444,10 +468,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
 
         private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            var currentRow = dataGridView1.CurrentRow;
-            if (currentRow == null) return;
+            int index = dataGridView1.Rows.GetLastRow(DataGridViewElementStates.None) - 1;
+            if (index < 0) return;
+            var row = dataGridView1.Rows[index];
 
-            var newData = currentRow.ToDataDictionary();
+            var newData = row.ToDataDictionary();
             var afterData = AddData(newData);
             InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
             if (afterData != null)
@@ -456,7 +481,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                 {
                     if (dataGridView1.Columns.Contains(item.Key))
                     {
-                        currentRow.Cells[item.Key].Value = item.Value;
+                        row.Cells[item.Key].Value = item.Value;
                     }
                 }
             }
@@ -786,6 +811,25 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                             DeleteData(keys, selectedRowIndex);
                             InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
                         }
+                    }
+                }
+            }
+            else if (e.KeyData == Keys.F4 && USE_F4)
+            {
+                if (ALLOW_ADD)
+                {
+                    var afterData = AddData(new Dictionary<string, object>());
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
+                    if (afterData != null)
+                    {
+                        _ds.Tables[0].AddRow(afterData);
+                        //foreach (KeyValuePair<string, object> item in afterData)
+                        //{
+                        //    if (dataGridView1.Columns.Contains(item.Key))
+                        //    {
+                        //        currentRow.Cells[item.Key].Value = item.Value;
+                        //    }
+                        //}
                     }
                 }
             }
