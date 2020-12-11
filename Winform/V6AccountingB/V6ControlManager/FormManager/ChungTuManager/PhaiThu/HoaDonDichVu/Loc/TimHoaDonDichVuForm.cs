@@ -68,6 +68,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
                 {
                     Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
                 }
+                else
+                {
+                    Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
+                }
             }
             catch (Exception ex)
             {

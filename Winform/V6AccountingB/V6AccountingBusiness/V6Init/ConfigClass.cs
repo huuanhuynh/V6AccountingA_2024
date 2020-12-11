@@ -12,6 +12,7 @@ namespace V6Init
 {
     public class Config
     {
+        public string ma_dm;
         public IDictionary<string, object> DATA;
 
         public Config()
@@ -659,6 +660,7 @@ namespace V6Init
                 {
                     lstConfig = new AldmConfig();
                     lstConfig.NoInfo = true;
+                    lstConfig.ma_dm = ma_dm;
                 }
             }
             catch (Exception ex)
