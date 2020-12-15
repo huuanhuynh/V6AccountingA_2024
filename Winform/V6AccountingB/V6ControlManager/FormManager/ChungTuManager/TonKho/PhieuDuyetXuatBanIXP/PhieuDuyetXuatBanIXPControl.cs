@@ -15,6 +15,7 @@ using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIXP.Loc;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIXP.ChonDonHangBan;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIXP.ChonHoaDon;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
@@ -6068,7 +6069,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonDonHangBan(shift);
         }
-
+        
         private void thayTheMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice);
@@ -6084,7 +6085,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             ChucNang_SuaNhieuDong(Invoice);
         }
 
-        private void chonBaoGiaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonBaoGiaMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonBaoGia(shift);
@@ -6114,6 +6115,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".ChucNang_ChonDonHang " + _sttRec, ex);
+            }
+        }
+        
+        private void ChucNang_ChonHoaDon(bool add = false)
+        {
+            try
+            {
+                chon_accept_flag_add = add;
+                var ma_dvcs = txtMaDVCS.Text.Trim();
+                var message = "";
+                if (ma_dvcs != "")
+                {
+                    CHD_IXPForm chon = new CHD_IXPForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "SOA";
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                    if (ma_dvcs == "") txtMaDVCS.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang_ChonHoaDon " + _sttRec, ex);
             }
         }
 
@@ -6269,7 +6297,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonBaoGiaMenu, chonTuExcelMenu, chonDonHangMuaMenu, ChonViTriDuyetMenu, importXmlMenu);
+            FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonBaoGiaMenu, chonHoaDonMenu, chonTuExcelMenu, chonDonHangMuaMenu, ChonViTriDuyetMenu, importXmlMenu);
         }
 
         private void ChonViTriDuyetMenu_Click(object sender, EventArgs e)
@@ -6443,6 +6471,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
         private void inKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
+        }
+
+        private void chonHoaDonMenu_Click(object sender, EventArgs e)
+        {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonHoaDon(shift);
         }
         
     }

@@ -473,7 +473,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (!ViewDetail) dataGridView1.Height = Height - 30;
+                if (!ViewDetail)
+                {
+                    dataGridView1.Height = Height - 30;
+                }
+                else
+                {
+                    dataGridView1.Height = Height - dataGridView2.Height - 30;
+                }
                 dataGridView1.Width = Width - dataGridView1.Left - 3;
                 dataGridView2.Width = dataGridView1.Width;
             }
@@ -495,7 +502,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 dataGridView2.Height = Height/2 - 10;
                 dataGridView2.Top = Height / 2 + 10;
                 dataGridView2.Visible = true;
-                dataGridView1.Height = Height / 2 - 20;
+                dataGridView1.Height = Height - dataGridView2.Height - 30;
             }
             catch (Exception)
             {
@@ -1430,7 +1437,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (DefaultMenuItem != null && DefaultMenuItem.Enabled)
                 DefaultMenuItem.PerformClick();
         }
-        
+
         
     }
 }

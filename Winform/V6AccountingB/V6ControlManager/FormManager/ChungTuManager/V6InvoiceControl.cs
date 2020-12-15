@@ -2839,6 +2839,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         FixTyGia(AD, row, ty_gia, "NK", "NK_NT", M_ROUND);
                         FixTyGia(AD, row, ty_gia, "CK", "CK_NT", M_ROUND);
                         FixTyGia(AD, row, ty_gia, "GG", "GG_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "TT", "TT_NT", M_ROUND);
 
                         FixTyGia(AD, row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
                         FixTyGia(AD, row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
@@ -2864,6 +2865,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         FixTyGiaDetail(AD, detailControl, ty_gia, "NK", "NK_NT", M_ROUND);
                         FixTyGiaDetail(AD, detailControl, ty_gia, "CK", "CK_NT", M_ROUND);
                         FixTyGiaDetail(AD, detailControl, ty_gia, "GG", "GG_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "TT", "TT_NT", M_ROUND);
 
                         FixTyGiaDetail(AD, detailControl, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
                         FixTyGiaDetail(AD, detailControl, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
@@ -4024,9 +4026,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
 
-        /// <summary>
-        /// No_use
-        /// </summary>
         public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         public Type Event_program;
         public Dictionary<string, object> All_Objects = new Dictionary<string, object>();

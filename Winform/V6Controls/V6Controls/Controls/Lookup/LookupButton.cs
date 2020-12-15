@@ -231,6 +231,9 @@ namespace V6Controls.Controls
                 var ds = V6BusinessHelper.ExecuteProcedure("V6LOOKUPCONTROL", plist);
 
                 LookupButtonDataViewForm f = new LookupButtonDataViewForm(this, ds);
+                bool shift = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+                f.Shift = shift;
+                _shift = shift;
                 f.Text = V6Setting.IsVietnamese ? "Tham chiếu dữ liệu" : "Reference viewer";
                 f.LookupButtonF3Event += f_LookupButtonF3Event;
                 f.AcceptSelectedtData += f_LookupButtonAcceptSelect;
@@ -241,6 +244,8 @@ namespace V6Controls.Controls
                 this.ShowErrorException(GetType() + ".LookupButton_Click", ex);
             }
         }
+
+        private bool _shift = false;
 
         public event LookupButtonEventHandler LookupButtonF3Event;
         protected virtual void OnLookupButtonEvent(object sender, LookupEventArgs e)
@@ -270,7 +275,7 @@ namespace V6Controls.Controls
 
         void f_LookupButtonAcceptSelect(string selectedValues, List<IDictionary<string, object>> selectedData)
         {
-            //this.ReferenceControl.Text = selectedValues;
+            if (_shift) ReferenceControl.Text = selectedValues;
         }
 
     }

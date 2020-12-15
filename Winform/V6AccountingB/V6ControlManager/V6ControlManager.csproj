@@ -1204,6 +1204,18 @@
     <Compile Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\TimPhieuKeToanForm.Designer.cs">
       <DependentUpon>TimPhieuKeToanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonHoaDon\CHD_IXPForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonHoaDon\CHD_IXPForm.Designer.cs">
+      <DependentUpon>CHD_IXPForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonHoaDon\CHD_IXPKetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonHoaDon\CHD_IXPKetQua.Designer.cs">
+      <DependentUpon>CHD_IXPKetQua.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonDonHangBan\CDHB_IXPForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1431,6 +1443,30 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\ChonDeNghiXuat\IXY_PXDC_KetQua.Designer.cs">
       <DependentUpon>IXY_PXDC_KetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapKhau\POB_PXK_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapKhau\POB_PXK_Form.Designer.cs">
+      <DependentUpon>POB_PXK_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapKhau\POB_PXK_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapKhau\POB_PXK_KetQua.Designer.cs">
+      <DependentUpon>POB_PXK_KetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapMuaHang\POA_PXK_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapMuaHang\POA_PXK_Form.Designer.cs">
+      <DependentUpon>POA_PXK_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapMuaHang\POA_PXK_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapMuaHang\POA_PXK_KetQua.Designer.cs">
+      <DependentUpon>POA_PXK_KetQua.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonDeNghiXuat\IXY_PXK_Form.cs">
       <SubType>Form</SubType>
@@ -6490,6 +6526,12 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\TimPhieuKeToanForm.resx">
       <DependentUpon>TimPhieuKeToanForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonHoaDon\CHD_IXPForm.resx">
+      <DependentUpon>CHD_IXPForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonHoaDon\CHD_IXPKetQua.resx">
+      <DependentUpon>CHD_IXPKetQua.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonDonHangBan\CDHB_IXPForm.resx">
       <DependentUpon>CDHB_IXPForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -6607,6 +6649,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ChucNangThayTheForm.resx">
       <DependentUpon>ChucNangThayTheForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapKhau\POB_PXK_Form.resx">
+      <DependentUpon>POB_PXK_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapKhau\POB_PXK_KetQua.resx">
+      <DependentUpon>POB_PXK_KetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapMuaHang\POA_PXK_Form.resx">
+      <DependentUpon>POA_PXK_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapMuaHang\POA_PXK_KetQua.resx">
+      <DependentUpon>POA_PXK_KetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonDeNghiXuat\IXY_PXK_Form.resx">
       <DependentUpon>IXY_PXK_Form.cs</DependentUpon>

@@ -475,7 +475,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms
                 {
                     mact_format = mact;
                     //var alctconfig = ConfigManager.GetAlctConfig(mact);
-                    var aldmConfig = ConfigManager.GetAldmConfig("AAPPR_ALL_AD_" + mact);
+                    var aldmConfig = ConfigManager.GetAldmConfig("ASENDEMAILALL_AD_" + mact);
                     if (!aldmConfig.HaveInfo) return;
 
                     var headerString = V6Setting.IsVietnamese ? aldmConfig.GRDHV_V1 : aldmConfig.GRDHE_V1;

@@ -8180,6 +8180,7 @@ namespace V6Controls.Forms
             string NAME = control.AccessibleName;
             if (string.IsNullOrEmpty(NAME)) return;
             NAME = NAME.ToUpper();
+            All_Objects[NAME] = control;
 
             if (control is V6ColorTextBox)
             {
@@ -8193,6 +8194,71 @@ namespace V6Controls.Forms
                 {
                     All_Objects["sender"] = sender;
                     V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUSNOCHANGE" + before, All_Objects);
+                };
+            }
+
+
+            if (control is DateTimePicker)
+            {
+                var date = control as DateTimePicker;
+                date.ValueChanged += (sender, args) =>
+                {
+                    All_Objects["sender"] = sender;
+                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_VALUECHANGED" + before, All_Objects);
+                };
+            }
+
+            control.Enter += (sender, e) =>
+            {
+                All_Objects["sender"] = sender;
+                All_Objects["e"] = e;
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_ENTER" + before, All_Objects);
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_GOTFOCUS" + before, All_Objects);
+            };
+            control.Leave += (sender, e) =>
+            {
+                All_Objects["sender"] = sender;
+                All_Objects["e"] = e;
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LEAVE" + before, All_Objects);
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LOSTFOCUS" + before, All_Objects);
+            };
+            control.TextChanged += (sender, e) =>
+            {
+                All_Objects["sender"] = sender;
+                All_Objects["e"] = e;
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_TEXTCHANGED" + before, All_Objects);
+            };
+        }
+
+        public static void ApplyControlEventByName(Control control, Type eventProgram, Dictionary<string, object> All_Objects, string before = "")
+        {
+            string NAME = control.Name;
+            if (string.IsNullOrEmpty(NAME)) return;
+            NAME = NAME.ToUpper();
+            All_Objects[NAME] = control;
+
+            if (control is V6ColorTextBox)
+            {
+                var colorTB = control as V6ColorTextBox;
+                colorTB.V6LostFocus += (sender) =>
+                {
+                    All_Objects["sender"] = sender;
+                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUS" + before, All_Objects);
+                };
+                colorTB.V6LostFocusNoChange += (sender) =>
+                {
+                    All_Objects["sender"] = sender;
+                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUSNOCHANGE" + before, All_Objects);
+                };
+            }
+
+            if (control is DateTimePicker)
+            {
+                var date = control as DateTimePicker;
+                date.ValueChanged +=(sender, args) => 
+                {
+                    All_Objects["sender"] = sender;
+                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_VALUECHANGED" + before, All_Objects);
                 };
             }
 
@@ -8230,17 +8296,48 @@ namespace V6Controls.Forms
 
             try
             {
-                var all_control = V6ControlFormHelper.GetAllControls(thisForm);
+                var all_control = GetAllControls(thisForm);
                 string error = "";
                 foreach (Control control in all_control)
                 {
                     try
                     {
-                        V6ControlFormHelper.ApplyControlEventByAccessibleName(control, eventProgram, allObjects);
+                        ApplyControlEventByAccessibleName(control, eventProgram, allObjects);
                     }
                     catch (Exception ex)
                     {
                         error += string.Format("{0}({1}) err: {2}", control.Name, control.AccessibleName, ex.Message);
+                    }
+                }
+
+                if (error.Length > 0)
+                {
+                    thisForm.WriteToLog(thisForm.GetType() + ".ApplyFormControlEvents", error);
+                }
+            }
+            catch (Exception ex)
+            {
+                thisForm.WriteExLog(thisForm.GetType() + ".ApplyFormControlEvents", ex);
+            }
+        }
+
+        public static void ApplyDynamicFormControlEvents_ByName(Control thisForm, Type eventProgram, Dictionary<string, object> allObjects)
+        {
+            if (eventProgram == null) return;
+
+            try
+            {
+                var all_control = GetAllControls(thisForm);
+                string error = "";
+                foreach (Control control in all_control)
+                {
+                    try
+                    {
+                        ApplyControlEventByName(control, eventProgram, allObjects);
+                    }
+                    catch (Exception ex)
+                    {
+                        error += string.Format("{0} err: {1}", control.Name, ex.Message);
                     }
                 }
 

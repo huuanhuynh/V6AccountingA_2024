@@ -18,6 +18,8 @@ namespace V6Controls.Controls
         private DataSet _ds;
 
         public event DataSelectHandler AcceptSelectedtData;
+        public bool Shift { get; set; }
+
         protected virtual void OnAccepSelectedtData(string idlist, List<IDictionary<string, object>> datalist)
         {
             var handler = AcceptSelectedtData;
