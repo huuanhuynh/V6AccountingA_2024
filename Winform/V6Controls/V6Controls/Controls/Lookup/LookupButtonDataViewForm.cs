@@ -92,6 +92,7 @@ namespace V6Controls.Controls
                 }
                 else if (keyData == Keys.Enter)
                 {
+                    if (!Shift) return true;
                     if (_lookupButton.M_Type == "4")
                     {
                         // Gọi sự kiện Accept Select.

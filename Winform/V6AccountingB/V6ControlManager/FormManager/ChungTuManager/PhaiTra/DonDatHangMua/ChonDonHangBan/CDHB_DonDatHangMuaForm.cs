@@ -63,6 +63,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
             {
                 InitTuyChon();
                 InitLocKetQua();
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
 
                 panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
                 panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
@@ -85,6 +86,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
                 {
                     Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
                 }
+                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
@@ -622,7 +625,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
 
         private void Form_Load(object sender, EventArgs e)
         {
-            
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         private void CDH_PNMForm_VisibleChanged(object sender, EventArgs e)

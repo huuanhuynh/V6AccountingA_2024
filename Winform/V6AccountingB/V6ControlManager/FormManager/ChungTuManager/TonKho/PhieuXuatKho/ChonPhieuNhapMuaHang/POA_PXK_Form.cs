@@ -66,7 +66,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonPh
             {
                 InitTuyChon();
                 InitLocKetQua();
-                CreateFormProgram(_locKetQua._aldmConfig);
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
                 panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
                 panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
 
@@ -135,65 +135,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonPh
             ChungTu.SetTxtStatusProperties(Invoice, txtTrangThai, lblStatusDescription);
         }
 
-
-        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        public Type Event_program;
-        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-
-        protected void CreateFormProgram(AldmConfig aldmConfig)
-        {
-            try
-            {
-                All_Objects["thisForm"] = this;
-                //DMETHOD
-                if (aldmConfig.NoInfo || string.IsNullOrEmpty(aldmConfig.DMETHOD))
-                {
-                    return;
-                }
-
-                string using_text = "";
-                string method_text = "";
-                
-                var xml = aldmConfig.DMETHOD;
-                if (xml == "") return;
-                DataSet ds = new DataSet();
-                ds.ReadXml(new StringReader(xml));
-                if (ds.Tables.Count <= 0) return;
-                var data = ds.Tables[0];
-                foreach (DataRow event_row in data.Rows)
-                {
-                    var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
-                    var method_name = event_row["method"].ToString().Trim();
-                    Event_Methods[EVENT_NAME] = method_name;
-
-                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
-                    method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
-                }
-
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + aldmConfig.MA_DM, using_text, method_text);
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".CreateProgram0", ex);
-            }
-        }
-
-        public object InvokeFormEvent(string eventName)
-        {
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey(eventName))
-                {
-                    var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
-            }
-            return null;
-        }
 
         private void SetValueAndShowLocKetQua()
         {

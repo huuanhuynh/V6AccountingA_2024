@@ -60,6 +60,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
             {
                 InitTuyChon();
                 InitLocKetQua();
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
 
                 //locThongTin1.CreateDynamicFilter(_HangTraLaiForm.Invoice.AMStruct, _HangTraLaiForm.Invoice.ADV_AM);
                 panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
@@ -86,6 +87,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
                 {
                     Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
                 }
+                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
@@ -589,6 +592,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
             //{
             //    HideLocKetQua();
             //}
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         private void CDH_PNMForm_VisibleChanged(object sender, EventArgs e)

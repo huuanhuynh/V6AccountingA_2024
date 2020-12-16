@@ -30,6 +30,35 @@ namespace V6Controls.Forms
         [Description("Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo")]
         public string FilterType { get; set; }
 
+        /// <summary>
+        /// Lớp chứa các dynamic_method
+        /// </summary>
+        public Type Event_program;
+        /// <summary>
+        /// Các object có thể có trong chữ ký hàm dynamic_method
+        /// </summary>
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        /// <summary>
+        /// Ánh xạ tên Event và dynamic_method tương ứng.
+        /// </summary>
+        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        public object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
+        }
+
         [DefaultValue(null)]
         protected Image btnNhanImage
         {

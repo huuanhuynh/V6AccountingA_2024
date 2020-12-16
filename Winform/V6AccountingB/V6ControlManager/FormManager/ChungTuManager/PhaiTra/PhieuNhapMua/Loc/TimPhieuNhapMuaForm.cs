@@ -57,6 +57,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
                 v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
                 InitTuyChon();
                 InitLocKetQua();
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
 
                 locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
                 locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);
@@ -73,6 +74,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
                 {
                     Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
                 }
+                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
@@ -461,6 +464,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
             {
                 HideLocKetQua();
             }
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         public void Refresh0()

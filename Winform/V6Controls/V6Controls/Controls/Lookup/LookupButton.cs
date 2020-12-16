@@ -275,7 +275,7 @@ namespace V6Controls.Controls
 
         void f_LookupButtonAcceptSelect(string selectedValues, List<IDictionary<string, object>> selectedData)
         {
-            if (_shift) ReferenceControl.Text = selectedValues;
+            //ReferenceControl.Text = selectedValues; // Đã gán giá trị bên trong LookupButtonDataViewForm
         }
 
     }

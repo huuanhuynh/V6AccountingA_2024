@@ -61,6 +61,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             try
             {
                 InitLocKetQua();
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
                 _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
                 _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
                 _locKetQua.MultiSelect = _multiSelect;
@@ -77,6 +78,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 {
                     Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
                 }
+                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
@@ -461,6 +464,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 HideLocKetQua();
             }
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         public void Refresh0()

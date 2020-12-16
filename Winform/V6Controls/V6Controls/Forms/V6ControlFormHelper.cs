@@ -9004,6 +9004,44 @@ namespace V6Controls.Forms
             return result;
         }
 
-        
+
+        public static  void CreateFormProgram(IWin32Window owner, AldmConfig aldmConfig, Dictionary<string, object> All_Objects, Dictionary<string, string> Event_Methods, out Type Event_program)
+        {
+            Event_program = null;
+            try
+            {
+                All_Objects["thisForm"] = owner;
+                //DMETHOD
+                if (aldmConfig == null || aldmConfig.NoInfo || string.IsNullOrEmpty(aldmConfig.DMETHOD))
+                {
+                    return;
+                }
+
+                string using_text = "";
+                string method_text = "";
+
+                var xml = aldmConfig.DMETHOD;
+                if (xml == "") return;
+                DataSet ds = new DataSet();
+                ds.ReadXml(new StringReader(xml));
+                if (ds.Tables.Count <= 0) return;
+                var data = ds.Tables[0];
+                foreach (DataRow event_row in data.Rows)
+                {
+                    var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                    var method_name = event_row["method"].ToString().Trim();
+                    Event_Methods[EVENT_NAME] = method_name;
+
+                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                    method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                }
+
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + aldmConfig.MA_DM, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                owner.WriteExLog(owner.GetType() + ".CreateFormProgram", ex);
+            }
+        }
     }
 }

@@ -72,6 +72,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
 
                 InitTuyChon();
                 InitLocKetQua();
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
 
                 panelFilterThongTin.AddMultiFilterLine(_invoice.AMStruct, _invoice.ADV_AM);
                 panelFilterTTCT.AddMultiFilterLine(_invoice.ADStruct, _invoice.ADV_AD);
@@ -88,6 +89,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
                 {
                     Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
                 }
+                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
@@ -643,6 +646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
                 HideLocKetQua();
             }
             InitTuyChon();
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         public void Refresh0()

@@ -2758,7 +2758,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="fieldTien"></param>
         /// <param name="fieldTienNt"></param>
         /// <param name="round">Làm tròn</param>
-        private void FixTyGia(DataTable detailData, DataRow row, decimal ty_gia, string fieldTien, string fieldTienNt, int round)
+        protected void FixTyGia(DataTable detailData, DataRow row, decimal ty_gia, string fieldTien, string fieldTienNt, int round)
         {
             if (detailData.Columns.Contains(fieldTien) && detailData.Columns.Contains(fieldTienNt))
             {
@@ -2767,7 +2767,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     row[fieldTien] = V6BusinessHelper.Vround(temp * ty_gia, round);
             }
         }
-        private void FixTyGiaDetail(DataTable detailData, HD_Detail detailControl, decimal ty_gia, string fieldTien, string fieldTienNt, int round)
+
+        protected void FixTyGiaDetail(DataTable detailData, HD_Detail detailControl, decimal ty_gia, string fieldTien, string fieldTienNt, int round)
         {
             if (detailData.Columns.Contains(fieldTien) && detailData.Columns.Contains(fieldTienNt))
             {
@@ -2810,7 +2811,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
             }
         }
-        public void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSuaTien)
+
+        public virtual void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSuaTien)
         {
             try
             {

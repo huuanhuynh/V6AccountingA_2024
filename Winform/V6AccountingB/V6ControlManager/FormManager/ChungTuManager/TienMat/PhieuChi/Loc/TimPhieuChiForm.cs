@@ -61,6 +61,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
                 MyInit_TTCT();
                 InitTuyChon();
                 InitLocKetQua();
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
 
                 CreateDynamicFilter_ThongTin(_invoice.AMStruct, _invoice.ADV_AM);
                 CreateDynamicFilter2_ThongTinCT(_invoice.ADStruct, _invoice.ADV_AD);
@@ -74,6 +75,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
                 {
                     Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
                 }
+                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
@@ -632,6 +635,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             {
                 HideLocKetQua();
             }
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         private void TimPhieuChiForm_KeyDown(object sender, KeyEventArgs e)
