@@ -626,7 +626,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.LimitCharacters = "1234";
+            this.v6ColorTextBox6.LimitCharacters = "12345";
             this.v6ColorTextBox6.Location = new System.Drawing.Point(150, 65);
             this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox6.MaxLength = 1;

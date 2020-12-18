@@ -255,7 +255,7 @@ namespace V6Controls
             }
         }
 
-        public string BaseInitFilter { get; set; }
+        public string BaseInitFilter = null;
 
         private string _initFilter;
         public string InitFilter

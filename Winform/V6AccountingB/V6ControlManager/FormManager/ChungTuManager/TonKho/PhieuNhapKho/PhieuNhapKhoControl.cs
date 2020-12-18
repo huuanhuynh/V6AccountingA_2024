@@ -1334,7 +1334,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 if (_maNt != _mMaNt0) _sl_td1.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD3"]);
                 else _sl_td1.Value = 1;
 
-                _gia_nt0.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD1"]);
+                _gia_nt01.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD1"]);
 
             }
             catch (Exception ex)
