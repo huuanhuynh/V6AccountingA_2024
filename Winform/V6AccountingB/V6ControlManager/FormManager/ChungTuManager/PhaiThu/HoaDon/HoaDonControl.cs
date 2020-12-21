@@ -4719,7 +4719,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             //Tính tiền thuế theo thuế suất
             decimal thue_suat;
             decimal t_thue_nt;
-            decimal t_thue;
+            decimal t_thue = txtTongThue.Value;
 
             var ty_gia = txtTyGia.Value;
             //var t_tien_nt2 = txtTongTienNt2.Value;
@@ -4732,7 +4732,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (chkT_THUE_NT.Checked)//Tiền thuế gõ tự do
             {
                 t_thue_nt = txtTongThueNt.Value;
-                t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
+                if (!chkSuaTien.Checked) t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
                 
                 if (_maNt == _mMaNt0)
                     t_thue = t_thue_nt;
@@ -7238,6 +7238,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
                 {
                     txtTongThueNt.ReadOnly = !chkT_THUE_NT.Checked;
+                    if (!chkSuaTien.Checked) txtTongThue.ReadOnly = txtTongThueNt.ReadOnly;
 
                     if (chkT_THUE_NT.Checked && M_SOA_MULTI_VAT == "1")
                     {
@@ -8734,10 +8735,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
                 if (MA_NT == _mMaNt0)
                 {
                     txtTongThue.Value = txtTongThueNt.Value;
+                }
+                else if (!chkSuaTien.Checked) 
+                {
+                    txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
                 }
                 TinhTongThanhToan("txtTongThueNt_V6LostFocus");
             }
@@ -9681,6 +9685,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (Mode != V6Mode.View && Mode != V6Mode.Init)
+                {
+                    this.ShowInfoMessage(V6Text.UnFinished);
+                }
+
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
                 {
                     FormManagerHelper.HideMainMenu();
@@ -9694,16 +9703,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     //}
                     if (searchForm.ShowDialog(this) == DialogResult.OK ||searchForm._formChungTu_AM != null)
                     {
-                        //V6ControlFormHelper.ShowDataEditorForm(this, searchForm._formChungTu_AM, "AM", "", "stt_rec", false, false);
-                        if (Mode == V6Mode.View || Mode == V6Mode.Init)
+                        // Tạo mới chứng từ
+                        Mode = V6Mode.Add;
+                        SetData(searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary());
+                        foreach (DataRow row in searchForm._formChungTu_AD.Rows)
                         {
-                            // Tạo mới chứng từ
-                            Mode = V6Mode.Add;
-                            SetData(searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary());
-                            foreach (DataRow row in searchForm._formChungTu_AD.Rows)
-                            {
-                                XuLyThemDetail(row.ToDataDictionary());
-                            }
+                            XuLyThemDetail(row.ToDataDictionary());
                         }
                     }
                     else

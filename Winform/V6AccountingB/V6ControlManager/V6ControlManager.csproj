@@ -73,11 +73,23 @@
     <Compile Include="FormManager\ChungTuManager\HistoryViewerForm.Designer.cs">
       <DependentUpon>HistoryViewerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm2.designer.cs">
+      <DependentUpon>ReportR45db2SelectorForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.designer.cs">
       <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\ReportR45SelectorForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\ReportR45SelectorForm2.designer.cs">
+      <DependentUpon>ReportR45SelectorForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\ReportR45SelectorForm.cs">
       <SubType>Form</SubType>
@@ -5951,8 +5963,14 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\HistoryViewerForm.resx">
       <DependentUpon>HistoryViewerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45db2SelectorForm2.resx">
+      <DependentUpon>ReportR45db2SelectorForm2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.resx">
       <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45SelectorForm2.resx">
+      <DependentUpon>ReportR45SelectorForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45SelectorForm.resx">
       <DependentUpon>ReportR45SelectorForm.cs</DependentUpon>

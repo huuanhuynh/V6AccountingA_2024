@@ -197,19 +197,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             {
                 if (_locKetQua != null && _locKetQua.Visible)
                 {
-                    //if (_mode == V6Mode.Select)
-                    //{
-                    //    DialogResult = DialogResult.OK;
-                    //}
-                    //else
-                    {
-                        _formChungTu_AM = tempAM;
-                        //_formChungTu_AD = 
-                        //_formChungTu.ResetADTables();
-                        //_formChungTu.ViewInvoice(_locKetQua.CurrentSttRec, V6Mode.View);
-                        //Hide();
-                        DialogResult = DialogResult.OK;
-                    }
+                    _formChungTu_AM = tempAM;
+                    DialogResult = DialogResult.OK;
                 }
                 else
                 {

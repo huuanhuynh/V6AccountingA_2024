@@ -11,6 +11,8 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonDeNghiXuat;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonPhieuNhapKhau;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonPhieuNhapMuaHang;
@@ -6494,5 +6496,449 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
+        private void chonDeNghiXuat_KhoMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+                //var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
+                var message = "";
+                if (ma_dvcs != "")
+                {
+                    IXY_PXK_Form chon = new IXY_PXK_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chonx_kho_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    //if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        void chonx_kho_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
+        {
+            try
+            {
+                txtLoaiCt.Text = e.Loai_ct;
+                detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
+                {
+                    AD.Rows.Clear();
+                }
+                int addCount = 0, failCount = 0; _message = "";
+
+                string ma_kh_soh = null;
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
+                foreach (IDictionary<string, object> data in selectedDataList)
+                {
+                    // Lấy ma_kh_soh đầu tiên.
+                    if (ma_kh_soh == null && data.ContainsKey("MA_KH_SOH"))
+                    {
+                        ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
+                    }
+
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
+                    string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
+                    if (c_makh != "" && txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(c_makh);
+                    }
+
+                    if (c_makh != "" && c_makh != txtMaKh.Text.ToUpper())
+                    {
+                        failCount++;
+                        _message += ". " + failCount + ":" + c_makh;
+                        continue;
+                    }
+
+                    var newData = new SortedDictionary<string, object>(data);
+                    string ma_vt = newData["MA_VT"].ToString().Trim();
+                    V6VvarTextBox temp_vt = new V6VvarTextBox()
+                    {
+                        VVar = "MA_VT",
+                    };
+                    temp_vt.Text = ma_vt;
+                    if (temp_vt.LO_YN && temp_vt.DATE_YN)
+                    {
+                        // Tách dòng nhiều lô cộng dồn cho đủ số lượng.
+                        decimal total = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                        decimal total_qd = ObjectAndString.ObjectToDecimal(newData["SL_QD"]);
+                        decimal heso = 1;
+                        string dvt1 = newData["DVT1"].ToString().Trim();
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@p1", ma_vt),
+                            new SqlParameter("@p2", dvt1),
+                        };
+                        var dataHeso = V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                        if (dataHeso.Rows.Count > 0)
+                        {
+                            heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                        }
+                        if (heso == 0) heso = 1;
+                        decimal sum = 0, sum_qd = 0;
+
+                        DataTable lodate_data;
+                        if (temp_vt.VITRI_YN)
+                        {
+                            lodate_data = V6BusinessHelper.GetVitriLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+                            FixAlVitriTon_Chon(lodate_data);
+                        }
+                        else
+                        {
+                            lodate_data = V6BusinessHelper.GetLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+                            FixAlLoDateTon_Chon(lodate_data);
+                        }
+
+                        // Get Data
+
+                        for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
+                        {
+                            DataRow data_row = lodate_data.Rows[i];
+                            decimal row_ton_dau = ObjectAndString.ObjectToDecimal(data_row["TON_DAU"]);
+                            decimal row_ton_dau_qd = ObjectAndString.ObjectToDecimal(data_row["TON_DAU_QD"]);
+                            decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau; // Lấy đủ số cần lấy, không đủ thì lấy hết.
+                            decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
+                            // Chỉ định lô
+                            string malo_chidinh = newData["MA_LO"].ToString().Trim();
+                            string malo_row = data_row["MA_LO"].ToString().Trim().ToUpper();
+
+                            if (!string.IsNullOrEmpty(malo_chidinh))
+                            {
+                                // Có lô chỉ định
+                                if (malo_chidinh == malo_row)
+                                {
+                                    newData["MA_LO"] = data_row["MA_LO"];
+                                    newData["HSD"] = data_row["HSD"];
+                                }
+                                else
+                                {
+                                    continue; // bỏ qua lodate_data
+                                }
+                            }
+                            else
+                            {
+                                // Không Có lô chỉ định
+                                newData["MA_LO"] = data_row["MA_LO"];
+                                newData["HSD"] = data_row["HSD"];
+                            }
+                            newData["MA_KHO_I"] = data_row["MA_KHO"];
+                            if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
+
+                            newData["DVT"] = data_row["DVT"];
+                            newData["DVT1"] = dvt1;
+                            newData["HE_SO"] = heso;
+                            newData["SO_LUONG"] = insert;
+                            newData["SO_LUONG1"] = insert / heso;
+                            decimal gia2 = ObjectAndString.ObjectToDecimal(data["GIA2"]);
+                            decimal tien_nt2 = V6BusinessHelper.Vround(insert * gia2, M_ROUND_NT);
+                            newData["TIEN_NT2"] = tien_nt2;
+                            newData["TIEN2"] = V6BusinessHelper.Vround(tien_nt2 * txtTyGia.Value, M_ROUND);
+                            if (_maNt == _mMaNt0)
+                            {
+                                newData["TIEN2"] = tien_nt2;
+                            }
+                            if (M_SOA_MULTI_VAT == "1")
+                            {
+                                decimal thue_suat = ObjectAndString.ObjectToDecimal(data["THUE_SUAT_I"]);
+                                decimal thue_nt = V6BusinessHelper.Vround(thue_suat * tien_nt2, M_ROUND_NT);
+                                newData["THUE_NT"] = thue_nt;
+                                newData["THUE"] = V6BusinessHelper.Vround(thue_nt * txtTyGia.Value, M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    newData["THUE"] = thue_nt;
+                                }
+                            }
+                            var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                            {
+                                newData["SL_QD"] = insert_qd;
+                            }
+                            else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                            {
+                                newData["SL_QD"] = insert / HS_QD1;
+                            }
+
+                            if (XuLyThemDetail(newData))
+                            {
+                                addCount++;
+                                All_Objects["data"] = newData;
+                                InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                            }
+                            else failCount++;
+
+                            sum += insert;
+                            data_row["TON_DAU"] = row_ton_dau - insert;
+                            sum_qd += insert_qd;
+                            data_row["TON_DAU_QD"] = row_ton_dau_qd - insert_qd;
+                            if (sum == total)
+                            {
+                                break;
+                            }
+                        }
+
+                        if (sum < total)
+                        {
+                            // Lấy thêm lô khác cho đủ số lượng trong lodate_data (đã - sl)
+                            for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
+                            {
+                                DataRow data_row = lodate_data.Rows[i];
+                                decimal row_ton_dau = ObjectAndString.ObjectToDecimal(data_row["TON_DAU"]);
+                                decimal row_ton_dau_qd = ObjectAndString.ObjectToDecimal(data_row["TON_DAU_QD"]);
+                                decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau; // Lấy đủ số cần lấy, không đủ thì lấy hết.
+                                if (insert <= 0) continue;
+
+                                decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
+
+                                // Không Có lô chỉ định
+                                newData["MA_LO"] = data_row["MA_LO"];
+                                newData["HSD"] = data_row["HSD"];
+
+                                newData["MA_KHO_I"] = data_row["MA_KHO"];
+                                if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
+
+                                newData["DVT"] = data_row["DVT"];
+                                newData["DVT1"] = dvt1;
+                                newData["HE_SO"] = heso;
+                                newData["SO_LUONG"] = insert;
+                                newData["SO_LUONG1"] = insert / heso;
+                                decimal gia2 = ObjectAndString.ObjectToDecimal(data["GIA2"]);
+                                decimal tien_nt2 = V6BusinessHelper.Vround(insert * gia2, M_ROUND_NT);
+                                newData["TIEN_NT2"] = tien_nt2;
+                                newData["TIEN2"] = V6BusinessHelper.Vround(tien_nt2 * txtTyGia.Value, M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    newData["TIEN2"] = tien_nt2;
+                                }
+                                if (M_SOA_MULTI_VAT == "1")
+                                {
+                                    decimal thue_suat = ObjectAndString.ObjectToDecimal(data["THUE_SUAT_I"]);
+                                    decimal thue_nt = V6BusinessHelper.Vround(thue_suat * tien_nt2, M_ROUND_NT);
+                                    newData["THUE_NT"] = thue_nt;
+                                    newData["THUE"] = V6BusinessHelper.Vround(thue_nt * txtTyGia.Value, M_ROUND);
+                                    if (_maNt == _mMaNt0)
+                                    {
+                                        newData["THUE"] = thue_nt;
+                                    }
+                                }
+                                var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
+                                if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                                {
+                                    newData["SL_QD"] = insert_qd;
+                                }
+                                else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                                {
+                                    newData["SL_QD"] = insert / HS_QD1;
+                                }
+
+                                if (XuLyThemDetail(newData))
+                                {
+                                    addCount++;
+                                    All_Objects["data"] = newData;
+                                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                                }
+                                else failCount++;
+
+                                sum += insert;
+                                sum_qd += insert_qd;
+                                if (sum == total)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (newData.ContainsKey("SO_LUONG"))
+                        {
+                            decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                            decimal insert_qd = ObjectAndString.ObjectToDecimal(newData["SL_QD"]);
+                            decimal heso = 1;
+                            string dvt1 = newData["DVT1"].ToString().Trim();
+                            SqlParameter[] plist =
+                            {
+                                new SqlParameter("@p1", ma_vt),
+                                new SqlParameter("@p2", dvt1),
+                            };
+                            var dataHeso =
+                                V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                            if (dataHeso.Rows.Count > 0)
+                            {
+                                heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                            }
+                            if (heso == 0) heso = 1;
+                            newData["SO_LUONG1"] = insert / heso;
+                            var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                            {
+                                newData["SL_QD"] = insert_qd;
+                            }
+                            else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                            {
+                                newData["SL_QD"] = insert / HS_QD1;
+                            }
+                        }
+                        if (XuLyThemDetail(newData))
+                        {
+                            addCount++;
+                            All_Objects["data"] = newData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                        }
+                        else failCount++;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(ma_kh_soh))
+                {
+                    if (txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(ma_kh_soh);
+                        txtMaKh.CallDoV6LostFocus();
+                    }
+                }
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
+
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
+                //if (addCount > 0)
+                //{
+                //    co_chon_don_hang = true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void xuLyKhac2Menu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+                ReportR45db2SelectorForm2 r45Selector = new ReportR45db2SelectorForm2(Invoice);
+                if (r45Selector.ShowDialog(this) == DialogResult.OK)
+                {
+                    chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData());
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void chon1PhieuNhapMuaMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Mode != V6Mode.View && Mode != V6Mode.Init)
+                {
+                    this.ShowInfoMessage(V6Text.UnFinished);
+                }
+
+                if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
+                {
+                    FormManagerHelper.HideMainMenu();
+                    TimPhieuNhapMuaForm searchForm = new TimPhieuNhapMuaForm(new V6Invoice71(), V6Mode.Select);
+                    searchForm.ViewMode = false;
+                    if (searchForm.ShowDialog(this) == DialogResult.OK || searchForm._formChungTu_AM != null)
+                    {
+                        // Tạo mới chứng từ
+                        Mode = V6Mode.Add;
+                        SetData(searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary());
+                        foreach (DataRow row in searchForm._formChungTu_AD.Rows)
+                        {
+                            XuLyThemDetail(row.ToDataDictionary());
+                        }
+                    }
+                    else
+                    {
+                        DialogResult a = searchForm.DialogResult;
+                    }
+                    btnSua.Focus();
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".chon1PhieuNhapMuaMenu_Click", ex);
+            }
+        }
+
+        private void chon1PhieuNhapKhauMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Mode != V6Mode.View && Mode != V6Mode.Init)
+                {
+                    this.ShowInfoMessage(V6Text.UnFinished);
+                }
+
+                if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
+                {
+                    FormManagerHelper.HideMainMenu();
+                    TimPhieuNhapKhauForm searchForm = new TimPhieuNhapKhauForm(new V6Invoice72(), V6Mode.Select);
+                    searchForm.ViewMode = false;
+                    if (searchForm.ShowDialog(this) == DialogResult.OK || searchForm._formChungTu_AM != null)
+                    {
+                        // Tạo mới chứng từ
+                        Mode = V6Mode.Add;
+                        SetData(searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary());
+                        foreach (DataRow row in searchForm._formChungTu_AD.Rows)
+                        {
+                            XuLyThemDetail(row.ToDataDictionary());
+                        }
+                    }
+                    else
+                    {
+                        DialogResult a = searchForm.DialogResult;
+                    }
+                    btnSua.Focus();
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".chon1PhieuNhapKhauMenu_Click", ex);
+            }
+        }
     }
 }
