@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonDeNghiNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonDonHang;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonPhieuXuat;
@@ -2700,8 +2701,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     case "SO_LUONG1":
                         #region ==== SO_LUONG1 ====
 
-                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
-                        txtmavt.Text = cell_MA_VT.Value.ToString();
+                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT", Text = cell_MA_VT.Value.ToString() };
                         if (txtmavt.Data != null && txtmavt.VITRI_YN)
                         {
                             var packs1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["Packs1"]);
@@ -5216,8 +5216,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 {
                     SearchForm.ViewMode = true;
                     SearchForm.Refresh0();
-                    //SearchForm.Visible = false;
-                    //SearchForm.ShowDialog(this);
+                    
                     if (SearchForm._locKetQua.dataGridView1.CurrentCell != null)
                     {
                         int cIndex = SearchForm._locKetQua.dataGridView1.CurrentCell.ColumnIndex;
@@ -5265,9 +5264,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         SearchForm.SearchTopCuoiKy();
                     }
 
-                    //SearchForm.ShowDialog(this);
-                    //btnSua.Focus();
-                    if (SearchForm.ShowDialog(this) == DialogResult.OK || SearchForm._formChungTu_AM != null)
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK)
                     {
                         AM = SearchForm._formChungTu_AM;
                         ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
@@ -7704,11 +7701,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void btnChonPX_Click(object sender, EventArgs e)
-        {
-            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-            ChonPhieuXuat_A(shift);
-        }
+        //private void btnChonPX_Click(object sender, EventArgs e)
+        //{
+        //    bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+        //    ChonPhieuXuat_A(shift);
+        //}
 
         private void ChonPhieuXuat_A(bool add = false)
         {
@@ -8032,7 +8029,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonDonHangMuaMenu, chonTuExcelMenu, chonDeNghiNhapMenu, importXmlMenu);
+            FixMenuChucNangItemShiftText(chonDonHangMuaMenu, chonTuExcelMenu, chonDeNghiNhapMenu, importXmlMenu, chonPhieuXuatMenu);
         }
 
         private void chkTempSuaCT_CheckedChanged(object sender, EventArgs e)
@@ -8152,6 +8149,59 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private void inKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
+        }
+
+        private void chonPhieuXuatMenu_Click(object sender, EventArgs e)
+        {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChonPhieuXuat_A(shift);
+        }
+
+        private void chon1DonHangMuaMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Mode != V6Mode.View && Mode != V6Mode.Init)
+                {
+                    this.ShowInfoMessage(V6Text.UnFinished);
+                    return;
+                }
+
+                if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
+                {
+                    FormManagerHelper.HideMainMenu();
+                    TimDonDatHangMuaForm searchForm = new TimDonDatHangMuaForm(new V6Invoice92(), V6Mode.Select);
+                    searchForm.ViewMode = false;
+                    if (searchForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        var CHON1AM = searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary();
+                        All_Objects["CHON1AM"] = CHON1AM;
+                        All_Objects["CHON1AD"] = searchForm._formChungTu_AD;
+                        InvokeFormEvent("CHON1" + searchForm._invoice.Mact + Invoice.Mact);
+                        
+                        // Tạo mới chứng từ
+                        Mode = V6Mode.Add;
+                        GetSttRec(Invoice.Mact);
+                        SetData(CHON1AM);
+                        foreach (DataRow row in searchForm._formChungTu_AD.Rows)
+                        {
+                            var newData = row.ToDataDictionary();
+                            newData["STT_RECDH"] = newData["STT_REC"];
+                            newData["STT_REC0DH"] = newData["STT_REC0"];
+                            XuLyThemDetail(newData);
+                        }
+                    }
+                    btnSua.Focus();
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".chon1PhieuNhapMuaMenu_Click", ex);
+            }
         }
 
 

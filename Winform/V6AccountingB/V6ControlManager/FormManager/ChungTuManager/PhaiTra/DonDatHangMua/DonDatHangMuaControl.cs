@@ -1710,8 +1710,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     case "SO_LUONG1":
                         #region ==== SO_LUONG1 ====
 
-                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
-                        txtmavt.Text = cell_MA_VT.Value.ToString();
+                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT", Text = cell_MA_VT.Value.ToString() };
                         if (txtmavt.Data != null && txtmavt.VITRI_YN)
                         {
                             var packs1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["Packs1"]);
@@ -3639,7 +3638,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             get
             {
                 if (_timForm == null || _timForm.IsDisposed)
-                    _timForm = new TimDonDatHangMuaForm(this);
+                    _timForm = new TimDonDatHangMuaForm(Invoice, V6Mode.View);
                 return _timForm;
             }
         }
@@ -3652,8 +3651,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 {
                     SearchForm.ViewMode = true;
                     SearchForm.Refresh0();
-                    SearchForm.Visible = false;
-                    SearchForm.ShowDialog(this);
+
+                    if (SearchForm._locKetQua.dataGridView1.CurrentCell != null)
+                    {
+                        int cIndex = SearchForm._locKetQua.dataGridView1.CurrentCell.ColumnIndex;
+                        SearchForm._locKetQua.dataGridView1.CurrentCell =
+                            SearchForm._locKetQua.dataGridView1.Rows[CurrentIndex].Cells[cIndex];
+                    }
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK && SearchForm._formChungTu_AM != null)
+                    {
+                        AM = SearchForm._formChungTu_AM;
+                        ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    }
                 }
             }
             catch (Exception ex)
@@ -3689,7 +3698,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                         SearchForm.ViewMode = true;
                         SearchForm.SearchTopCuoiKy();
                     }
-                    SearchForm.ShowDialog(this);
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        AM = SearchForm._formChungTu_AM;
+                        ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    }
                     btnSua.Focus();
                 }
                 else

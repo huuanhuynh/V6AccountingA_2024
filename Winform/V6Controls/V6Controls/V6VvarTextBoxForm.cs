@@ -360,7 +360,7 @@ namespace V6Controls
                     if ((_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data)
                         && vSearchFilter.Contains(","))
                     {
-                        var tbl = V6BusinessHelper.Select(tableName, "*", where, "", _config.vOrder).Data;
+                        var tbl = V6BusinessHelper.Select(tableName, _config.Large_yn ? "top 2000 *" : "*", where, "", _config.vOrder).Data;
                         return tbl;
                     }
                     else
@@ -378,7 +378,7 @@ namespace V6Controls
                             }
                         }
 
-                        var tbl = V6BusinessHelper.Select(tableName, "*", where, "", _config.vOrder).Data;
+                        var tbl = V6BusinessHelper.Select(tableName, _config.Large_yn ? "top 2000 *" : "*", where, "", _config.vOrder).Data;
                         return tbl;
                     }
                 }

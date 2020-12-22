@@ -5155,7 +5155,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         SearchForm.SearchTopCuoiKy();
                     }
                     //SearchForm.ShowDialog(this);
-                    if (SearchForm.ShowDialog(this) == DialogResult.OK || SearchForm._formChungTu_AM != null)
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK)
                     {
                         AM = SearchForm._formChungTu_AM;
                         ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
@@ -6642,8 +6642,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 // Tìm dòng có số tiền
                 if (index != -1)
                 {
-                    decimal _nk_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk_nt"]) + (txtT_nk_ao.Value - t_nk_nt_check);
-                    decimal _nk = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk"]) + (txtT_nk.Value - t_nk_check);
+                    decimal _nk_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk_nt"]) + (txtT_nk_nt_ao.Value - t_nk_nt_check);
+                    decimal _nk = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk"]) + (txtT_nk_ao.Value - t_nk_check);
 
                     AD.Rows[index]["Nk_nt"] = _nk_nt;
                     AD.Rows[index]["Nk"] = _nk;

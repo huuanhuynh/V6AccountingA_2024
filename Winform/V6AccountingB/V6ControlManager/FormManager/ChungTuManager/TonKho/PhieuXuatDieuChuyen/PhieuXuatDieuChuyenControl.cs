@@ -1390,10 +1390,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                     foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                     {
-                        //if (maVt == data_maVt && maKhoI == data_maKhoI && maLo == data_maLo && maViTri == data_maViTri)
-                        //{
-
-
                         string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                         string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
                         string c_maKhoI = txtMaKhoX.Text;
@@ -1443,7 +1439,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             try
             {
                 List<DataRow> empty_rows = new List<DataRow>();
-
+                SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
+                
                 for (int i = alVitriTon.Rows.Count - 1; i >= 0; i--)
                 {
                     DataRow data_row = alVitriTon.Rows[i];
@@ -1466,11 +1463,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                         string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
 
-                        var tempMA_VT = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
-                        //var tempMA_KHO_X = new V6VvarTextBox() { VVar = "MA_KHO", Text = ma_kho_x };
-                        //tempMA_KHO_X.RefreshLoDateYnValue();
+                        if (!vt.ContainsKey(c_maVt))
+                        {
+                            vt[c_maVt] = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
+                        }
                         // Theo doi lo moi check
-                        if (!tempMA_VT.LO_YN || !tempMA_VT.DATE_YN || !tempMA_VT.VITRI_YN || !txtMaKhoX.LO_YN || !txtMaKhoX.DATE_YN)
+                        if (!vt[c_maVt].LO_YN || !vt[c_maVt].DATE_YN || !vt[c_maVt].VITRI_YN || !txtMaKhoX.LO_YN || !txtMaKhoX.DATE_YN)
                             continue;
 
                         decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
@@ -1512,6 +1510,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             try
             {
                 List<DataRow> empty_rows = new List<DataRow>();
+                SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
 
                 for (int i = alLoTon.Rows.Count - 1; i >= 0; i--)
                 {
@@ -1536,11 +1535,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                         //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
 
-                        var tempMA_VT = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
-                        //var tempMA_KHOI = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_maKhoI };
-                        //tempMA_KHOI.RefreshLoDateYnValue();
+                        if (!vt.ContainsKey(c_maVt))
+                        {
+                            vt[c_maVt] = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
+                        }
                         // Theo doi lo moi check
-                        if (!tempMA_VT.LO_YN || !tempMA_VT.DATE_YN || !txtMaKhoX.LO_YN || !txtMaKhoX.DATE_YN)
+                        if (!vt[c_maVt].LO_YN || !vt[c_maVt].DATE_YN || !txtMaKhoX.LO_YN || !txtMaKhoX.DATE_YN)
                             continue;
 
                         decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
@@ -2005,11 +2005,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         }
                         method_log += "17";
 
-                        V6VvarTextBox txtMaVt_temp = new V6VvarTextBox() { VVar = "MA_VT" };
+                        SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
                         foreach (DataRow row in AD.Rows)
                         {
-                            txtMaVt_temp.Text = row["MA_VT"].ToString().Trim();
-                            mavt_data = txtMaVt_temp.Data;
+                            string c_maVt = row["MA_VT"].ToString().Trim();
+                            if (!vt.ContainsKey(c_maVt))
+                            {
+                                vt[c_maVt] = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
+                            }
+
+                            mavt_data = vt[c_maVt].Data;
                             if (mavt_data != null)
                             {
                                 tk_vt_tmp = mavt_data["TK_VT"].ToString().Trim();
@@ -2064,11 +2069,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-                        V6VvarTextBox txtMaVt_temp = new V6VvarTextBox() { VVar = "MA_VT" };
+                        SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
                         foreach (DataRow row in AD.Rows)
                         {
-                            txtMaVt_temp.Text = row["MA_VT"].ToString().Trim();
-                            mavt_data = txtMaVt_temp.Data;
+                            string c_maVt = row["MA_VT"].ToString().Trim();
+                            if (!vt.ContainsKey(c_maVt))
+                            {
+                                vt[c_maVt] = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
+                            }
+                            mavt_data = vt[c_maVt].Data;
                             if (mavt_data != null)
                             {
                                 tk_vt_tmp = mavt_data["TK_VT"].ToString().Trim();
@@ -3172,8 +3181,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     case "SO_LUONG1":
                         #region ==== SO_LUONG1 ====
 
-                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
-                        txtmavt.Text = cell_MA_VT.Value.ToString();
+                        V6VvarTextBox txtmavt = new V6VvarTextBox() {VVar = "MA_VT", Text = cell_MA_VT.Value.ToString()};
                         if (txtmavt.Data != null && txtmavt.VITRI_YN)
                         {
                             var packs1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["Packs1"]);

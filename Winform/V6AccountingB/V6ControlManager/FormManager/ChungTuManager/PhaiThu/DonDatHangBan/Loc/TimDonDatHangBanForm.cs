@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
         public DataTable _formChungTu_AM;
         public DataTable _formChungTu_AD;
         private V6Mode _mode;
-        private V6Invoice91 _invoice;
+        public V6Invoice91 _invoice;
 
         public LocKetQuaDonDatHangBan _locKetQua;
         //private bool __ready = false;

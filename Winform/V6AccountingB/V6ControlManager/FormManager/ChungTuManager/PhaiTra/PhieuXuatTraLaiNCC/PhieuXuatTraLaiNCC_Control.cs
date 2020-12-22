@@ -2132,8 +2132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     case "SO_LUONG1":
                         #region ==== SO_LUONG1 ====
 
-                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
-                        txtmavt.Text = cell_MA_VT.Value.ToString();
+                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" , Text = cell_MA_VT.Value.ToString() };
                         if (txtmavt.Data != null && txtmavt.VITRI_YN)
                         {
                             var packs1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["Packs1"]);
@@ -5205,17 +5204,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         {
             try
             {
-                //string sttRec0 = _sttRec0;
-                //string maVt = _maVt.Text.Trim().ToUpper();
-                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                //string maLo = _maLo.Text.Trim().ToUpper();
-                // string maLo = _maLo.Text.Trim().ToUpper();
-
-                //if (maVt == "" || maKhoI == "" || maLo == "") return;
-
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vi_tri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+                SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
+                SortedDictionary<string, V6VvarTextBox> kho = new SortedDictionary<string, V6VvarTextBox>();
 
                 List<DataRow> empty_rows = new List<DataRow>();
 
@@ -5238,20 +5228,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     {
                         //string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                         string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_khoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
                         string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                         //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
 
-                        var tempMA_VT = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
-                        var tempMA_KHOI = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_maKhoI };
+                        if (!vt.ContainsKey(c_maVt))
+                        {
+                            vt[c_maVt] = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
+                        }
+                        if (!kho.ContainsKey(c_khoI))
+                        {
+                            kho[c_khoI] = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_khoI };
+                        }
                         // Theo doi lo moi check
-                        if (!tempMA_VT.LO_YN || !tempMA_VT.DATE_YN || !tempMA_KHOI.LO_YN || !tempMA_KHOI.DATE_YN)
+                        if (!vt[c_maVt].LO_YN || !vt[c_maVt].DATE_YN || !kho[c_khoI].LO_YN || !kho[c_khoI].DATE_YN)
                             continue;
 
                         decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
                         decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
 
-                        if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo)
+                        if (data_maVt == c_maVt && data_maKhoI == c_khoI && data_maLo == c_maLo)
                         {
                             new_soLuong -= c_soLuong;
                             new_soLuong_qd -= c_soLuong_qd;
@@ -5287,13 +5283,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         {
             try
             {
-
-
-                //if (maVt == "" || maKhoI == "" || maLo == "") return;
-
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+                SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
+                SortedDictionary<string, V6VvarTextBox> kho = new SortedDictionary<string, V6VvarTextBox>();
 
                 List<DataRow> empty_rows = new List<DataRow>();
 
@@ -5315,20 +5306,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                     {
                         string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_khoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
                         string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                         string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
 
-                        var tempMA_VT = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
-                        var tempMA_KHOI = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_maKhoI };
+                        if (!vt.ContainsKey(c_maVt))
+                        {
+                            vt[c_maVt] = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
+                        }
+                        if (!kho.ContainsKey(c_khoI))
+                        {
+                            kho[c_khoI] = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_khoI };
+                        }
                         // Theo doi lo moi check
-                        if (!tempMA_VT.LO_YN || !tempMA_VT.DATE_YN || !tempMA_VT.VITRI_YN || !tempMA_KHOI.LO_YN || !tempMA_KHOI.DATE_YN)
+                        if (!vt[c_maVt].LO_YN || !vt[c_maVt].DATE_YN || !vt[c_maVt].VITRI_YN || !kho[c_khoI].LO_YN || !kho[c_khoI].DATE_YN)
                             continue;
 
                         decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
                         decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]); //???
 
-                        if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo &&
+                        if (data_maVt == c_maVt && data_maKhoI == c_khoI && data_maLo == c_maLo &&
                             data_maViTri == c_maViTri)
                         {
                             new_soLuong -= c_soLuong;

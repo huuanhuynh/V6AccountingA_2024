@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
         public DataTable _formChungTu_AD;
         public DataTable _formChungTu_AD2;
         private V6Mode _mode;
-        private V6Invoice72 _invoice;
+        public V6Invoice72 _invoice;
 
         public LocKetQuaPhieuNhapKhau _locKetQua;
         //private bool __ready = false;

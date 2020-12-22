@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.chonALVTMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.XuatHetKhoMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,7 +142,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.chonDeNghiXuatKhoTheoKhoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chon1PhieuNhapMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chon1PhieuNhapKhauMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.xuLyKhac1Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyKhac2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong1 = new V6Controls.NumberSoluong();
@@ -820,20 +820,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -845,8 +845,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 205);
             this.dataGridView1.TabIndex = 1;
@@ -1450,7 +1450,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.panelVND.Controls.Add(this.txtTongTien);
             this.panelVND.Location = new System.Drawing.Point(264, 11);
             this.panelVND.Name = "panelVND";
-            this.panelVND.Size = new System.Drawing.Size(190, 62);
+            this.panelVND.Size = new System.Drawing.Size(190, 88);
             this.panelVND.TabIndex = 1;
             // 
             // txtTongTien
@@ -1486,7 +1486,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.panelNT.Controls.Add(this.v6Label4);
             this.panelNT.Location = new System.Drawing.Point(9, 11);
             this.panelNT.Name = "panelNT";
-            this.panelNT.Size = new System.Drawing.Size(249, 62);
+            this.panelNT.Size = new System.Drawing.Size(249, 88);
             this.panelNT.TabIndex = 0;
             // 
             // txtTongTienNt
@@ -1647,7 +1647,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.btnChucNang2.Size = new System.Drawing.Size(90, 23);
             this.btnChucNang2.TabIndex = 37;
             this.btnChucNang2.Tag = "cancel";
-            this.btnChucNang2.Text = "Chức năng";
+            this.btnChucNang2.Text = "Chức năng 2";
             this.btnChucNang2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChucNang2.UseVisualStyleBackColor = true;
             // 
@@ -1657,19 +1657,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.chonDeNghiXuatKhoTheoKhoMenu,
             this.chon1PhieuNhapMuaMenu,
             this.chon1PhieuNhapKhauMenu,
-            this.xuLyKhac1Menu});
+            this.xuLyKhac2Menu});
             this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(254, 92);
+            this.menuChucNang2.Size = new System.Drawing.Size(254, 114);
             // 
             // chonDeNghiXuatKhoTheoKhoMenu
             // 
+            this.chonDeNghiXuatKhoTheoKhoMenu.AccessibleDescription = "INVOICEM00055";
             this.chonDeNghiXuatKhoTheoKhoMenu.Name = "chonDeNghiXuatKhoTheoKhoMenu";
             this.chonDeNghiXuatKhoTheoKhoMenu.Size = new System.Drawing.Size(253, 22);
             this.chonDeNghiXuatKhoTheoKhoMenu.Text = "Chọn đề nghị xuất kho (theo kho)";
-            this.chonDeNghiXuatKhoTheoKhoMenu.Click += new System.EventHandler(this.chonDeNghiXuat_KhoMenu_Click);
+            this.chonDeNghiXuatKhoTheoKhoMenu.Click += new System.EventHandler(this.chonDeNghiXuatKhoTheoKhoMenu_Click);
             // 
             // chon1PhieuNhapMuaMenu
             // 
+            this.chon1PhieuNhapMuaMenu.AccessibleDescription = "INVOICEM00056";
             this.chon1PhieuNhapMuaMenu.Name = "chon1PhieuNhapMuaMenu";
             this.chon1PhieuNhapMuaMenu.Size = new System.Drawing.Size(253, 22);
             this.chon1PhieuNhapMuaMenu.Text = "Chọn 1 phiếu nhập mua";
@@ -1677,17 +1679,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             // chon1PhieuNhapKhauMenu
             // 
+            this.chon1PhieuNhapKhauMenu.AccessibleDescription = "INVOICEM00057";
             this.chon1PhieuNhapKhauMenu.Name = "chon1PhieuNhapKhauMenu";
             this.chon1PhieuNhapKhauMenu.Size = new System.Drawing.Size(253, 22);
             this.chon1PhieuNhapKhauMenu.Text = "Chọn 1 phiếu nhập khẩu";
             this.chon1PhieuNhapKhauMenu.Click += new System.EventHandler(this.chon1PhieuNhapKhauMenu_Click);
             // 
-            // xuLyKhac1Menu
+            // xuLyKhac2Menu
             // 
-            this.xuLyKhac1Menu.Name = "xuLyKhac1Menu";
-            this.xuLyKhac1Menu.Size = new System.Drawing.Size(253, 22);
-            this.xuLyKhac1Menu.Text = "Xử lý khác (1)";
-            this.xuLyKhac1Menu.Click += new System.EventHandler(this.xuLyKhac2Menu_Click);
+            this.xuLyKhac2Menu.AccessibleDescription = "INVOICEM00058";
+            this.xuLyKhac2Menu.Name = "xuLyKhac2Menu";
+            this.xuLyKhac2Menu.Size = new System.Drawing.Size(253, 22);
+            this.xuLyKhac2Menu.Text = "Xử lý khác (2)";
+            this.xuLyKhac2Menu.Click += new System.EventHandler(this.xuLyKhac2Menu_Click);
             // 
             // btnChucNang
             // 
@@ -2865,6 +2869,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private System.Windows.Forms.ToolStripMenuItem chonDeNghiXuatKhoTheoKhoMenu;
         private System.Windows.Forms.ToolStripMenuItem chon1PhieuNhapMuaMenu;
         private System.Windows.Forms.ToolStripMenuItem chon1PhieuNhapKhauMenu;
-        private System.Windows.Forms.ToolStripMenuItem xuLyKhac1Menu;
+        private System.Windows.Forms.ToolStripMenuItem xuLyKhac2Menu;
     }
 }

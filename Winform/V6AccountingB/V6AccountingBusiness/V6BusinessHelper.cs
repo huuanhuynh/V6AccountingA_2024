@@ -1835,6 +1835,22 @@ namespace V6AccountingBusiness
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_STOCKIN_VITRI_DATE_STT_REC_PRIORITY", plist).Tables[0];
         }
 
+        public static DataTable GetStockinVitriDatePriority_PNK(string mavt, string makho, string sttRec, DateTime ngayct)
+        {
+            mavt = mavt.Replace("'", "''");
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@cKey1", ""),
+                new SqlParameter("@cKey2", ""),
+                new SqlParameter("@cKey3", ""),
+                new SqlParameter("@cMa_kho", makho),
+                new SqlParameter("@cMa_vt", mavt),
+                new SqlParameter("@cStt_rec", sttRec),
+                new SqlParameter("@dBg", ngayct.Date)
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_STOCKIN_VITRI_DATE_STT_REC_PRIORITY_KHO", plist).Tables[0];
+        }
+
         public static DataTable GetVitriLoDatePriority(string mavt, string sttRec, DateTime ngayct)
         {
             mavt = mavt.Replace("'", "''");
@@ -1847,6 +1863,21 @@ namespace V6AccountingBusiness
                 new SqlParameter("@dBg", ngayct.Date)
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_VITRI_DATE_STT_REC_Priority", plist).Tables[0];
+        }
+        
+        public static DataTable GetVitriLoDatePriority_PXK(string mavt, string ma_kho, string sttRec, DateTime ngayct)
+        {
+            mavt = mavt.Replace("'", "''");
+            ma_kho = ma_kho.Replace("'", "''");
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@cKey1", String.Format("Ma_vt = '{0}' AND Ma_kho = '{1}'", mavt, ma_kho)),
+                new SqlParameter("@cKey2", ""),
+                new SqlParameter("@cKey3", ""),
+                new SqlParameter("@cStt_rec", sttRec),
+                new SqlParameter("@dBg", ngayct.Date)
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_VITRI_DATE_STT_REC_Priority_KHO", plist).Tables[0];
         }
 
         public static DataTable GetLoDate(string mavt, string makho, string sttRec, DateTime ngayct)

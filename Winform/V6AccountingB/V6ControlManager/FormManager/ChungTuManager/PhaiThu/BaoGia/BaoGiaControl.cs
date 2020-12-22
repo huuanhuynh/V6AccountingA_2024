@@ -2211,14 +2211,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 switch (FIELD)
                 {
                     case "SO_LUONG1":
-                        //CheckSoLuong1(_soLuong1);
-                        //chkT_THUE_NT.Checked = false;
-                        //Tinh_thue_ct();
-                        //TinhTienNt2(_soLuong1);
                         #region ==== SO_LUONG1 ====
 
-                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
-                        txtmavt.Text = cell_MA_VT.Value.ToString();
+                        //V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT", Text = cell_MA_VT.Value.ToString() };
 
                         // TinhTienNt2(_soLuong1)
                         {

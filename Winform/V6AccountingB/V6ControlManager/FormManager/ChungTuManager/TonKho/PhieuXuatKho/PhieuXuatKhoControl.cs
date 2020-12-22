@@ -1045,17 +1045,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             try
             {
-                //string sttRec0 = _sttRec0;
-                //string maVt = _maVt.Text.Trim().ToUpper();
-                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                //string maLo = _maLo.Text.Trim().ToUpper();
-                // string maLo = _maLo.Text.Trim().ToUpper();
-
-                //if (maVt == "" || maKhoI == "" || maLo == "") return;
-
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vi_tri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+                SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
+                SortedDictionary<string, V6VvarTextBox> kho = new SortedDictionary<string, V6VvarTextBox>();
 
                 List<DataRow> empty_rows = new List<DataRow>();
 
@@ -1078,20 +1069,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     {
                         //string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                         string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_khoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
                         string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                         //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
 
-                        var tempMA_VT = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
-                        var tempMA_KHOI = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_maKhoI };
+                        if (!vt.ContainsKey(c_maVt))
+                        {
+                            vt[c_maVt] = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
+                        }
+                        if (!kho.ContainsKey(c_khoI))
+                        {
+                            kho[c_khoI] = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_khoI };
+                        }
                         // Theo doi lo moi check
-                        if (!tempMA_VT.LO_YN || !tempMA_VT.DATE_YN || !tempMA_KHOI.LO_YN || !tempMA_KHOI.DATE_YN)
+                        if (!vt[c_maVt].LO_YN || !vt[c_maVt].DATE_YN || !kho[c_khoI].LO_YN || !kho[c_khoI].DATE_YN)
                             continue;
 
                         decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
                         decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
 
-                        if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo)
+                        if (data_maVt == c_maVt && data_maKhoI == c_khoI && data_maLo == c_maLo)
                         {
                             new_soLuong -= c_soLuong;
                             new_soLuong_qd -= c_soLuong_qd;
@@ -1223,6 +1220,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
 
                 List<DataRow> empty_rows = new List<DataRow>();
+                SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
+                SortedDictionary<string, V6VvarTextBox> kho = new SortedDictionary<string, V6VvarTextBox>();
 
                 for (int i = alVitriTon.Rows.Count - 1; i >= 0; i--)
                 {
@@ -1242,21 +1241,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                     {
                         string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_khoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
                         string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
-                        string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+                        string c_viTri = row["Ma_vitri"].ToString().Trim().ToUpper();
 
-                        var tempMA_VT = new V6VvarTextBox() {VVar = "MA_VT", Text = c_maVt};
-                        var tempMA_KHOI = new V6VvarTextBox() {VVar = "MA_KHO", Text = c_maKhoI};
+                        if (!vt.ContainsKey(c_maVt))
+                        {
+                            vt[c_maVt] = new V6VvarTextBox() {VVar = "MA_VT", Text = c_maVt};
+                        }
+
+                        if (!kho.ContainsKey(c_khoI))
+                        {
+                            kho[c_khoI] = new V6VvarTextBox() {VVar = "MA_KHO", Text = c_khoI};
+                        }
                         // Theo doi lo moi check
-                        if (!tempMA_VT.LO_YN || !tempMA_VT.DATE_YN || !tempMA_VT.VITRI_YN || !tempMA_KHOI.LO_YN || !tempMA_KHOI.DATE_YN)
+                        if (!vt[c_maVt].LO_YN || !vt[c_maVt].DATE_YN || !vt[c_maVt].VITRI_YN || !kho[c_khoI].LO_YN || !kho[c_khoI].DATE_YN)
                             continue;
 
                         decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
                         decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]); //???
 
-                        if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo &&
-                            data_maViTri == c_maViTri)
+                        if (data_maVt == c_maVt && data_maKhoI == c_khoI && data_maLo == c_maLo &&
+                            data_maViTri == c_viTri)
                         {
                             new_soLuong -= c_soLuong;
                             new_soLuong_qd -= c_soLuong_qd;
@@ -2818,28 +2824,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 {
                     case "SO_LUONG1":
                         #region ==== SO_LUONG1 ====
-                        //_maVt.RefreshLoDateYnValue();
-                        //if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
-                        //{
-                        //    if (_soLuong1.Value > _ton13.Value)
-                        //    {
-                        //        ShowParentMessage(V6Text.StockoutWarning);
-                        //        _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        //        if (M_CAL_SL_QD_ALL == "1")
-                        //        {
-                        //            if (_hs_qd1.Value != 0)
-                        //                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
-                        //        }
-                        //        _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                        //        TinhTienVon1(null);
-                        //        TinhTienVon();
-                        //    }
-                        //}
-                        //TinhTienVon1(actionControl);
-
                         
-                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT" };
-                        txtmavt.Text = cell_MA_VT.Value.ToString();
+                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT", Text = cell_MA_VT.Value.ToString() };
                         if (txtmavt.Data != null && txtmavt.VITRI_YN)
                         {
                             var packs1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["Packs1"]);
@@ -6496,7 +6482,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
-        private void chonDeNghiXuat_KhoMenu_Click(object sender, EventArgs e)
+        private void chonDeNghiXuatKhoTheoKhoMenu_Click(object sender, EventArgs e)
         {
             try
             {
@@ -6550,7 +6536,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
-
+                    
                     foreach (KeyValuePair<string, string> item in ad2am_dic)
                     {
                         if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
@@ -6574,6 +6560,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                     var newData = new SortedDictionary<string, object>(data);
                     string ma_vt = newData["MA_VT"].ToString().Trim();
+                    string ma_kho = newData["MA_KHO_I"].ToString().Trim();
                     V6VvarTextBox temp_vt = new V6VvarTextBox()
                     {
                         VVar = "MA_VT",
@@ -6602,7 +6589,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         DataTable lodate_data;
                         if (temp_vt.VITRI_YN)
                         {
-                            lodate_data = V6BusinessHelper.GetVitriLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+                            lodate_data = V6BusinessHelper.GetVitriLoDatePriority_PXK(ma_vt, ma_kho, _sttRec, dateNgayCT.Date);
                             FixAlVitriTon_Chon(lodate_data);
                         }
                         else
@@ -6866,6 +6853,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 if (Mode != V6Mode.View && Mode != V6Mode.Init)
                 {
                     this.ShowInfoMessage(V6Text.UnFinished);
+                    return;
                 }
 
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
@@ -6873,19 +6861,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     FormManagerHelper.HideMainMenu();
                     TimPhieuNhapMuaForm searchForm = new TimPhieuNhapMuaForm(new V6Invoice71(), V6Mode.Select);
                     searchForm.ViewMode = false;
-                    if (searchForm.ShowDialog(this) == DialogResult.OK || searchForm._formChungTu_AM != null)
+                    if (searchForm.ShowDialog(this) == DialogResult.OK)
                     {
+                        var CHON1AM = searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary();
+                        All_Objects["CHON1AM"] = CHON1AM;
+                        All_Objects["CHON1AD"] = searchForm._formChungTu_AD;
+                        InvokeFormEvent("CHON1" + searchForm._invoice.Mact + Invoice.Mact);
+
                         // Tạo mới chứng từ
                         Mode = V6Mode.Add;
-                        SetData(searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary());
+                        GetSttRec(Invoice.Mact);
+                        SetData(CHON1AM);
                         foreach (DataRow row in searchForm._formChungTu_AD.Rows)
                         {
-                            XuLyThemDetail(row.ToDataDictionary());
+                            var newData = row.ToDataDictionary();
+                            newData["STT_RECDH"] = newData["STT_REC"];
+                            newData["STT_REC0DH"] = newData["STT_REC0"];
+                            XuLyThemDetail(newData);
                         }
-                    }
-                    else
-                    {
-                        DialogResult a = searchForm.DialogResult;
                     }
                     btnSua.Focus();
                 }
@@ -6907,6 +6900,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 if (Mode != V6Mode.View && Mode != V6Mode.Init)
                 {
                     this.ShowInfoMessage(V6Text.UnFinished);
+                    return;
                 }
 
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
@@ -6914,19 +6908,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     FormManagerHelper.HideMainMenu();
                     TimPhieuNhapKhauForm searchForm = new TimPhieuNhapKhauForm(new V6Invoice72(), V6Mode.Select);
                     searchForm.ViewMode = false;
-                    if (searchForm.ShowDialog(this) == DialogResult.OK || searchForm._formChungTu_AM != null)
+                    if (searchForm.ShowDialog(this) == DialogResult.OK)
                     {
+                        var CHON1AM = searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary();
+                        All_Objects["CHON1AM"] = CHON1AM;
+                        All_Objects["CHON1AD"] = searchForm._formChungTu_AD;
+                        InvokeFormEvent("CHON1" + searchForm._invoice.Mact + Invoice.Mact);
+
                         // Tạo mới chứng từ
                         Mode = V6Mode.Add;
-                        SetData(searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary());
+                        GetSttRec(Invoice.Mact);
+                        SetData(CHON1AM);
                         foreach (DataRow row in searchForm._formChungTu_AD.Rows)
                         {
-                            XuLyThemDetail(row.ToDataDictionary());
+                            var newData = row.ToDataDictionary();
+                            newData["STT_RECDH"] = newData["STT_REC"];
+                            newData["STT_REC0DH"] = newData["STT_REC0"];
+                            XuLyThemDetail(newData);
                         }
-                    }
-                    else
-                    {
-                        DialogResult a = searchForm.DialogResult;
                     }
                     btnSua.Focus();
                 }
