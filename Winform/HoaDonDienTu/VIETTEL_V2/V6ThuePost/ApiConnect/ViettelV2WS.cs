@@ -13,9 +13,9 @@ using V6ThuePost.ViettelV2Objects.GetInvoice;
 using V6ThuePost.ViettelV2Objects.Response;
 using V6Tools;
 
-namespace V6ThuePostViettelApi
+namespace V6ThuePostViettelV2Api
 {
-    public class ViettelWS
+    public class ViettelV2WS
     {
         /// <summary>
         /// https://api-vinvoice.viettel.vn
@@ -39,7 +39,7 @@ namespace V6ThuePostViettelApi
 
         //private readonly RequestManager requestManager = new RequestManager();
 
-        public ViettelWS(string baseurl, string username, string password, string codetax)
+        public ViettelV2WS(string baseurl, string username, string password, string codetax)
         {
             _baseurl = baseurl;
             if (_baseurl.EndsWith("/")) _baseurl = _baseurl.Substring(0, _baseurl.Length-1);

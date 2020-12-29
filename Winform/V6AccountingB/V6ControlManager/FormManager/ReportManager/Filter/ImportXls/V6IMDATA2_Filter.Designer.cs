@@ -43,8 +43,8 @@
             this.btnXemMauExcel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimeFullPicker();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimeFullPicker();
             this.chkAutoF9 = new V6Controls.V6CheckBox();
             this.numAuto1 = new System.Windows.Forms.NumericUpDown();
             this.lblPhut = new System.Windows.Forms.Label();
@@ -242,7 +242,7 @@
             // dateNgay_ct2
             // 
             this.dateNgay_ct2.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay_ct2.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_ct2.CustomFormat = "HH:mm dd/MM/yyyy";
             this.dateNgay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateNgay_ct2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dateNgay_ct2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -251,13 +251,13 @@
             this.dateNgay_ct2.LeaveColor = System.Drawing.Color.White;
             this.dateNgay_ct2.Location = new System.Drawing.Point(112, 25);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
-            this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
+            this.dateNgay_ct2.Size = new System.Drawing.Size(143, 20);
             this.dateNgay_ct2.TabIndex = 3;
             // 
             // dateNgay_ct1
             // 
             this.dateNgay_ct1.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_ct1.CustomFormat = "HH:mm dd/MM/yyyy";
             this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateNgay_ct1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -266,7 +266,7 @@
             this.dateNgay_ct1.LeaveColor = System.Drawing.Color.White;
             this.dateNgay_ct1.Location = new System.Drawing.Point(112, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
-            this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
+            this.dateNgay_ct1.Size = new System.Drawing.Size(143, 20);
             this.dateNgay_ct1.TabIndex = 1;
             // 
             // chkAutoF9
@@ -358,10 +358,10 @@
         private V6Controls.V6CheckBox chkAutoSoCt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private V6Controls.V6DateTimePicker dateNgay_ct2;
-        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private V6Controls.V6CheckBox chkAutoF9;
         private System.Windows.Forms.NumericUpDown numAuto1;
         private System.Windows.Forms.Label lblPhut;
+        private V6Controls.V6DateTimeFullPicker dateNgay_ct2;
+        private V6Controls.V6DateTimeFullPicker dateNgay_ct1;
     }
 }

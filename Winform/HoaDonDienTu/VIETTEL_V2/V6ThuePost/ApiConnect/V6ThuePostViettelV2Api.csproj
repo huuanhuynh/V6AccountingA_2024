@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{938CF42A-D1A7-46D4-866C-1222495A1C4C}</ProjectGuid>
+    <ProjectGuid>{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePostViettelV2Api</RootNamespace>

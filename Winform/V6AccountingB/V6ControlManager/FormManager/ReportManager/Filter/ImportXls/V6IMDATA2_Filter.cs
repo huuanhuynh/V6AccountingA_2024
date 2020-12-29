@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F5 = false;
             F9 = true;
 
-            dateNgay_ct1.SetValue(V6Setting.M_SV_DATE.AddDays(-7));
+            dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
             dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
         }
         
@@ -37,8 +37,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             String1 = txtFile.Text;
             String2 = (comboBox1.SelectedItem??"").ToString();
             String3 = (comboBox2.SelectedItem??"").ToString();
-            Date1 = dateNgay_ct1.Date;
-            Date2 = dateNgay_ct2.Date;
+            Date1 = dateNgay_ct1.Value;
+            Date2 = dateNgay_ct2.Value;
             Check1 = chkChuyenMa.Checked;
             Check2 = chkDeleteData0.Checked;
             Check3 = chkAutoSoCt.Checked;
@@ -97,14 +97,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             string tableName = "ALIM2XLS";
             string keys = "MA_CT";
-            var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'SOA'").Data;
+            var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'SOH'").Data;
             V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false);
         }
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
             V6ControlFormHelper.OpenExcelTemplate("ALVT_DATA2.XLS", V6Setting.IMPORT_EXCEL);
-            V6ControlFormHelper.OpenExcelTemplate("SOA_DATA2.XLS", V6Setting.IMPORT_EXCEL);
+            V6ControlFormHelper.OpenExcelTemplate("SOH_DATA2.XLS", V6Setting.IMPORT_EXCEL);
         }
 
         private void chkAutoSoCt_CheckedChanged(object sender, EventArgs e)

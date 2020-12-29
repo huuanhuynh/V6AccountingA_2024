@@ -41,6 +41,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         /// </summary>
         D = 2,
         /// <summary>
+        /// DateTime dd/MM/yyyy HH:mm:ss
+        /// </summary>
+        T = 3,
+        /// <summary>
         /// Number
         /// </summary>
         N0 = 10,

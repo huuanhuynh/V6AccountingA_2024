@@ -21,6 +21,8 @@ namespace V6ThuePostViettelApi
         /// Mã số thuế của doanh nghiệp.
         /// </summary>
         private string _codetax;
+        private const string _create_link = @"InvoiceAPI/InvoiceWS/createInvoice"; // + MST
+        private const string _cancel_link = @"InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
 
         private readonly RequestManager requestManager = new RequestManager();
 
@@ -39,7 +41,7 @@ namespace V6ThuePostViettelApi
         /// <param name="uri">Đường dẫn hàm, không kể _baseurl</param>
         /// <param name="request"></param>
         /// <returns></returns>
-        public string POST(string uri, string request)
+        private string POST(string uri, string request)
         {
             if (uri.StartsWith("/")) uri = uri.Substring(1);
             HttpWebResponse respone = requestManager.SendPOSTRequest(_baseurl + uri, request, _username, _password, true);
@@ -52,9 +54,6 @@ namespace V6ThuePostViettelApi
             HttpWebResponse respone = requestManager.SendGETRequest(_baseurl + uri, _username, _password, true);
             return requestManager.GetResponseContent(respone);
         }
-
-        private const string create_link0 = @"InvoiceAPI/InvoiceWS/createInvoice"; // + /MST
-        private const string cancel_link = @"InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
 
         /// <summary>
         /// Hủy hóa đơn.
@@ -79,7 +78,7 @@ namespace V6ThuePostViettelApi
                 + @"&strIssueDate=" + strIssueDate
                 + @"&additionalReferenceDesc=" + additionalReferenceDesc
                 + @"&additionalReferenceDate=" + additionalReferenceDate;
-            string result = POST(cancel_link, request);
+            string result = POST(_cancel_link, request);
 
             return result;
         }
@@ -290,24 +289,27 @@ namespace V6ThuePostViettelApi
             return path;
         }
 
-        public string CheckConnection(string create_link)
+        /// <summary>
+        /// Hàm kiểm tra kết nối. Nếu thành công trả về rỗng hoặc null.
+        /// </summary>
+        /// <returns></returns>
+        public string CheckConnection()
         {
-            string result = POST(create_link, "");
-            //Phân tích result
-            string message = null;
+            string result = POST(_create_link + "/" + _codetax, "");
             
+            if (result != null && result.StartsWith("<html>") && result.Contains("<div class=\"header\">Request failed.</div>"))
+            {
+                return "REQUEST FAILED.";
+            }
             CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
             if (!string.IsNullOrEmpty(responseObject.description) && responseObject.description.Contains("Phải chọn loại template hóa đơn"))
             {
-                ;
+                return null;
             }
-
-            if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
+            else
             {
-                message += " " + responseObject.result.invoiceNo;
+                return result;
             }
-
-            return message;
         }
 
         /// <summary>
@@ -344,15 +346,14 @@ namespace V6ThuePostViettelApi
         /// <summary>
         /// Gửi hóa đơn mới.
         /// </summary>
-        /// <param name="_createInvoiceUrl">InvoiceAPI/InvoiceWS/createInvoice/0302375710</param>
         /// <param name="jsonBody"></param>
         /// <returns></returns>
-        public string POST_NEW(string _createInvoiceUrl, string jsonBody)
+        public string POST_NEW(string jsonBody)
         {
             string result;
             try
             {
-                result = POST(_createInvoiceUrl, jsonBody);
+                result = POST(_create_link + "/" + _codetax, jsonBody);
             }
             catch (Exception ex)
             {
@@ -407,15 +408,14 @@ namespace V6ThuePostViettelApi
         /// <summary>
         /// Gửi điều chỉnh hóa đơn.
         /// </summary>
-        /// <param name="_modifylink"></param>
         /// <param name="jsonBody"></param>
         /// <returns></returns>
-        public string POST_EDIT(string _modifylink, string jsonBody)
+        public string POST_EDIT(string jsonBody)
         {
             string result;
             try
             {
-                result = POST(_modifylink, jsonBody);
+                result = POST(_create_link + "/" + _codetax, jsonBody);
             }
             catch (Exception ex)
             {

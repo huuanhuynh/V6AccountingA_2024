@@ -74,6 +74,7 @@ namespace V6ThuePostManager
         public static string _username = "";
         public static string _password = "";
         public static string _codetax = "";
+        public static string _version = "";
         public static string _ma_dvcs = "";
         public static string _baseUrl = "", _site = "", _createInvoiceUrl = "", _modifylink = "";
         /// <summary>
@@ -254,7 +255,7 @@ namespace V6ThuePostManager
                 {
                     case "1":
                         ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
-                        result = viettel_ws.CheckConnection(_createInvoiceUrl);
+                        result = viettel_ws.CheckConnection();
                         break;
                     case "2":
                     case "4":
@@ -984,7 +985,7 @@ namespace V6ThuePostManager
             string update_cus_result = "";
             string error = "";
             int error_count = 0, success_count = 0;
-            //MessageBox.Show("Test Debug");
+            
             try
             {
                 //var data = ReadDbf(dbf);
@@ -2420,6 +2421,8 @@ namespace V6ThuePostManager
 
         private static string EXECUTE_VIETTEL(PostManagerParams paras)
         {
+            if (_version == "V2") return EXECUTE_VIETTEL_V2CALL(paras);
+
             string result = "";
             paras.Result = new PM_Result();
             V6Return rd = new V6Return();
@@ -2483,7 +2486,7 @@ namespace V6ThuePostManager
                         }
                         else
                         {
-                            result = viettel_ws.POST_NEW(_createInvoiceUrl, jsonBody);
+                            result = viettel_ws.POST_NEW(jsonBody);
                         }
                     }
                     else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
@@ -2527,7 +2530,7 @@ namespace V6ThuePostManager
 
                     jsonBody = ReadData_Viettel(paras);
                     //File.Create(flagFileName1).Close();
-                    result = viettel_ws.POST_EDIT(_modifylink, jsonBody);
+                    result = viettel_ws.POST_EDIT(jsonBody);
                 }
 
                 //Phân tích result
@@ -2588,8 +2591,18 @@ namespace V6ThuePostManager
             try
             {
                 string jsonBody = "";
-                //var _V6Http = new ViettelWS(_baseUrl, _username, _password);
-                ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
+                //ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax); // Thay thế WS bằng call Process
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        WorkingDirectory = "ViettelV2",
+                        FileName = "ViettelV2\\V6ThuePostViettelV2.exe",
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true
+                    }
+                };
 
                 if (paras.Mode == "TestView")
                 {
@@ -2603,19 +2616,33 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_H1") // Hủy hóa đơn
                 {
-                    
+                    // V6ThuePostViettelV2.exe H_JSON "V6ThuePost.xml" "AB/19E0000341" "27/11/2019" "stt_rec"
                     DataRow row0 = am_table.Rows[0];
                     var item = generalInvoiceInfoConfig["invoiceIssuedDate"];
                     string strIssueDate = ((DateTime)GetValue(row0, item)).ToString("yyyyMMddHHmmss");
                     string additionalReferenceDesc = paras.AM_new["STT_REC"].ToString();
                     paras.InvoiceNo = paras.AM_new["SO_SERI"].ToString().Trim() + paras.AM_new["SO_CT"].ToString().Trim();
-                    result = viettel_ws.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
+                    //result = viettel_ws.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
+                    //V6BusinessHelper.WriteTextFile("ViettelV2\\tprint_soa.json", string.Format("{0};{1};{2};{3};{4}", _codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate));
+                    process.StartInfo.Arguments = string.Format("H_JSON V6ThuePost.xml {0} {1} {2}",
+                        paras.InvoiceNo, ObjectAndString.ObjectToString((DateTime)GetValue(row0, item), "dd/MM/yyyy"), additionalReferenceDesc);
+                    process.Start();
+                    string process_result = process.StandardOutput.ReadToEnd();
+                    process.WaitForExit();
+                    // Phân tích Result tại đây.
+                    paras.Result.V6ReturnValues = JsonConvert.DeserializeObject<V6Return>(process_result);
+                    result = paras.Result.V6ReturnValues.RESULT_STRING;
                     
                 }
                 else if (paras.Mode == "E_T1")
                 {
                     jsonBody = ReadData_Viettel(paras);
-                    result = viettel_ws.POST_REPLACE(_createInvoiceUrl, jsonBody);
+                    V6BusinessHelper.WriteTextFile("ViettelV2\\tprint_soa.json", jsonBody);
+                    process.StartInfo.Arguments = "E_T1_JSON V6ThuePost.xml tprint_soa.json";
+                    process.Start();
+                    result = process.StandardOutput.ReadToEnd();
+                    process.WaitForExit();
+                    //result = viettel_ws.POST_REPLACE(_createInvoiceUrl, jsonBody);
                 }
                 else if (paras.Mode.StartsWith("M"))
                 {
@@ -2628,23 +2655,11 @@ namespace V6ThuePostManager
                     if (string.IsNullOrEmpty(_SERIAL_CERT))
                     {
                         jsonBody = ReadData_Viettel(paras);
-                        V6BusinessHelper.WriteTextFile("tprint_soa.json", jsonBody);
-                        var process = new Process 
-                        {
-                            StartInfo = new ProcessStartInfo
-                            {
-                                WorkingDirectory = "debug",
-                                FileName = "debug\\V6ThuePostViettelV2.exe",
-                                Arguments = "M_JSON V6ThuePost.xml tprint_soa.json",
-                                UseShellExecute = false,
-                                RedirectStandardOutput = true,
-                                CreateNoWindow = true
-                            }
-                        };
+                        V6BusinessHelper.WriteTextFile("ViettelV2\\tprint_soa.json", jsonBody);
 
                         if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
                         {
-                            process.StartInfo.Arguments = "M_JSON V6ThuePost.xml tprint_soa.json";
+                            process.StartInfo.Arguments = "M_F4_JSON V6ThuePost.xml tprint_soa.json";
                         }
                         else
                         {
@@ -2652,15 +2667,12 @@ namespace V6ThuePostManager
                         }
 
                         process.Start();
-                        //while (!process.StandardOutput.EndOfStream)
-                        //{
-                        //    string line = process.StandardOutput.ReadLine();
-                        //    // do something with line
-                        //}
-                        result = process.StandardOutput.ReadToEnd();
+                        string process_result = process.StandardOutput.ReadToEnd();
                         process.WaitForExit();
                         // Phân tích Result tại đây.
-                        paras.Form.ShowInfoMessage(result);
+                        paras.Result.V6ReturnValues = JsonConvert.DeserializeObject<V6Return>(process_result);
+                        result = paras.Result.V6ReturnValues.RESULT_STRING;
+                        //paras.Form.ShowInfoMessage(result);
                     }
                     else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                     {
@@ -2671,7 +2683,15 @@ namespace V6ThuePostManager
                         };
                         jsonBody = ReadData_Viettel(paras);
                         string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                        result = viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
+                        //result = viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
+                        V6BusinessHelper.WriteTextFile("ViettelV2\\tprint_soa.json", jsonBody + "<;>" + templateCode);
+                        process.StartInfo.Arguments = "M_TOKEN_JSON V6ThuePost.xml tprint_soa.json";
+                        process.Start();
+                        string process_result = process.StandardOutput.ReadToEnd();
+                        process.WaitForExit();
+                        // Phân tích Result tại đây.
+                        paras.Result.V6ReturnValues = JsonConvert.DeserializeObject<V6Return>(process_result);
+                        result = paras.Result.V6ReturnValues.RESULT_STRING;
                     }
                 }
                 else if (paras.Mode.StartsWith("S"))
@@ -2702,8 +2722,14 @@ namespace V6ThuePostManager
                     }
 
                     jsonBody = ReadData_Viettel(paras);
-                    //File.Create(flagFileName1).Close();
-                    result = viettel_ws.POST_EDIT(_modifylink, jsonBody);
+                    V6BusinessHelper.WriteTextFile("ViettelV2\\tprint_soa.json", jsonBody);
+                    process.StartInfo.Arguments = "S_JSON V6ThuePost.xml tprint_soa.json";
+                    process.Start();
+                    string process_result = process.StandardOutput.ReadToEnd();
+                    process.WaitForExit();
+                    // Phân tích Result tại đây.
+                    paras.Result.V6ReturnValues = JsonConvert.DeserializeObject<V6Return>(process_result);
+                    result = paras.Result.V6ReturnValues.RESULT_STRING;
                 }
 
                 //Phân tích result
@@ -4054,6 +4080,9 @@ namespace V6ThuePostManager
                                     break;
                                 case "codetax":
                                     _codetax = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "version":
+                                    _version = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "ma_dvcs":
                                     _ma_dvcs = UtilityHelper.DeCrypt(line.Value);

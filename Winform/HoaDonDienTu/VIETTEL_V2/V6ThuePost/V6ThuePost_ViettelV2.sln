@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostViettelV2Api", "ApiConnect\V6ThuePostViettelV2Api.csproj", "{938CF42A-D1A7-46D4-866C-1222495A1C4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostViettelV2Api", "ApiConnect\V6ThuePostViettelV2Api.csproj", "{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostViettelV2", "V6ThuePost\V6ThuePostViettelV2.csproj", "{92801EE7-A5BA-430C-8434-7EE3A8A03414}"
 EndProject
@@ -21,12 +21,12 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{938CF42A-D1A7-46D4-866C-1222495A1C4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{938CF42A-D1A7-46D4-866C-1222495A1C4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{938CF42A-D1A7-46D4-866C-1222495A1C4C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{938CF42A-D1A7-46D4-866C-1222495A1C4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{938CF42A-D1A7-46D4-866C-1222495A1C4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{938CF42A-D1A7-46D4-866C-1222495A1C4C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}.Release|x86.ActiveCfg = Release|Any CPU
 		{92801EE7-A5BA-430C-8434-7EE3A8A03414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92801EE7-A5BA-430C-8434-7EE3A8A03414}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92801EE7-A5BA-430C-8434-7EE3A8A03414}.Debug|x86.ActiveCfg = Debug|Any CPU

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.ViettelObjects;
 using V6ThuePostViettelApi;
-
+using V6ThuePostViettelV2Api;
 using V6Tools;
 
 namespace V6ThuePost
@@ -54,7 +54,7 @@ namespace V6ThuePost
                 btnTest.Enabled = true;
                 btnSend.Enabled = true;
 
-                Program._viettel_ws = new ViettelWS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
+                Program._viettel_ws = new ViettelV2WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
             }
             catch (Exception ex)
             {

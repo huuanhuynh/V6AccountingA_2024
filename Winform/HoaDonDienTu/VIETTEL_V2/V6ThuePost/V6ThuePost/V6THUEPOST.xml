@@ -4,6 +4,8 @@
   <V6Info Field='password' 	Value='9mBfhdLtNXLp2CdF43g85g=='/>
   <V6Info Field='codetax' 	Value='eRIaBh+mg1mELLE0KA1j0w=='/>
   <V6Info Field='v6fkey' 		Value='V6' Type=''/>
+  <V6Info Field='version' 		Value='1097KUKGho4=' Note='V6AccountingB version' Type=''/>
+  <V6Info Field='debug' 		Value='1' Type=''/>
 	<V6Info Field='certificateSerial' 	Value='V6SOFT'/>
   <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
   <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>

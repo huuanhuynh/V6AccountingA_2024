@@ -48,10 +48,36 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 InitializeComponent();
                 M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
+                SetDefaultTime();
             }
             catch (Exception)
             {
 
+            }
+        }
+
+        private void SetDefaultTime()
+        {
+            try
+            {
+                var date1 = FilterControl.GetControlByName("dateNgay_ct1") as DateTimePicker;
+                var date2 = FilterControl.GetControlByName("dateNgay_ct2") as DateTimePicker;
+                if (date1 != null && EXTRA_INFOR.ContainsKey("TIME1"))
+                {
+                    var HHmm = ObjectAndString.SplitStringBy(EXTRA_INFOR["TIME1"], ':');
+                    date1.Value = new DateTime(date1.Value.Year, date1.Value.Month, date1.Value.Day,
+                        ObjectAndString.ObjectToInt(HHmm[0]), ObjectAndString.ObjectToInt(HHmm[1]), 00);
+                }
+                if (date2 != null && EXTRA_INFOR.ContainsKey("TIME2"))
+                {
+                    var HHmm = ObjectAndString.SplitStringBy(EXTRA_INFOR["TIME2"], ':');
+                    date2.Value = new DateTime(date2.Value.Year, date2.Value.Month, date2.Value.Day,
+                        ObjectAndString.ObjectToInt(HHmm[0]), ObjectAndString.ObjectToInt(HHmm[1]), 00);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "SetDefaultTime", ex);
             }
         }
 
@@ -74,8 +100,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     UtilityHelper.DeCrypt(EXTRA_INFOR["USERID"]), UtilityHelper.DeCrypt(EXTRA_INFOR["PASSWORD"]));
                 //var c = DatabaseConfig.ConnectionString;
                 var ds = SqlHelper.ExecuteDataset(conString2, CommandType.Text,
-                    string.Format("Select * from [{0}] Where XNGAY_CT BETWEEN '{1:yyyyMMdd}' AND '{2:yyyyMMdd}'",
-                    EXTRA_INFOR["TABLENAME"], FilterControl.Date1, FilterControl.Date2));
+                    string.Format("Select * from [{0}] Where [{3}] BETWEEN '{1:yyyy-MM-dd HH:mm}' AND '{2:yyyy-MM-dd HH:mm}'",
+                    EXTRA_INFOR["TABLENAME"], FilterControl.Date1, FilterControl.Date2, EXTRA_INFOR["DATEFIELD"]));
                 _tbl = ds.Tables[0];
                 
                 //var ds2 = SqlHelper.ExecuteDataset(conString2, CommandType.Text,
@@ -84,7 +110,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 string path1 = V6Login.StartupPath;
                 path1 = Path.Combine(path1, V6Setting.IMPORT_EXCEL);
-                path1 = Path.Combine(path1, "SOA_DATA2.XLS");
+                path1 = Path.Combine(path1, "SOH_DATA2.XLS");
                 _columnsMapper_AMAD = Excel_File.Sheet1ToDataTable(path1, 0, 5);
                 MAPPING_COLUMNS_DATATABLE(_tbl, _columnsMapper_AMAD);
                 
@@ -111,7 +137,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 dataGridView1.DataSource = _tbl;
                 
-                var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='SOA'").Data;
+                var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='SOH'").Data;
                 if (alim2xls != null && alim2xls.Rows.Count > 0)
                 {
                     var config_row = alim2xls.Rows[0];
@@ -171,8 +197,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 string[] dataFields = "MA_KH,MA_VT,MA_KHO_I".Split(',');
+                dataFields = ObjectAndString.SplitString(EXTRA_INFOR["DATAFIELDS"]);
                 string[] checkFields = "MA_KH,MA_VT,MA_KHO".Split(',');
+                checkFields = ObjectAndString.SplitString(EXTRA_INFOR["CHECKFIELDS"]);
                 string[] checkTables = "ALKH,ALVT,ALKHO".Split(',');
+                checkTables = ObjectAndString.SplitString(EXTRA_INFOR["CHECKTABLES"]);
                 string[] mapTables = "ALKH,ALVT,ALKHO".Split(',');
                 mapTables = ObjectAndString.SplitString(EXTRA_INFOR["MAPTABLES"]);
                 string[] mapFields = "MA_KH,MA_VT,MA_KHO".Split(',');
@@ -378,7 +407,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ChangeColumnName(dataTable, oldName, newName);
+                        V6ControlFormHelper.CopyColumn(dataTable, oldName, newName);
                     }
                 }
             }
@@ -427,7 +456,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             //            new SqlParameter("@Ma_ct", ma_ct_am81),
                             //            new SqlParameter("@UserID", V6Login.UserId),
                             //        };
-                            //        V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOA_DELETE_MAIN", plist);
+                            //        V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOH_DELETE_MAIN", plist);
                             //        // Delete xong không remove nữa.
                             //        removeRows.Remove(row);
                             //    }
@@ -497,9 +526,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         private bool f9Running;
+        /// <summary>
+        /// Thông báo tức thời trong Status1.
+        /// </summary>
         private string f9Message = "";
+        /// <summary>
+        /// Thông báo cuối cùng sau khi chạy xong.
+        /// </summary>
         private string f9MessageAll = "";
-        V6Invoice81 Invoice = new V6Invoice81();
+        V6Invoice91 Invoice = new V6Invoice91();
         private IDictionary<string, object> AM_DATA;
         private bool chkAutoSoCt_Checked = false;
         private void F9Thread_AMAD()
@@ -573,18 +608,30 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         if (FilterControl.Check2) // delete
                         {
-                            DataTable select_am = V6BusinessHelper.Select("AM81", "STT_REC", string.Format("SO_CTX='{0}' AND KIEU_POST='0'", so_ct_old)).Data;
+                            DataTable select_am = V6BusinessHelper.Select("AM91", "STT_REC", string.Format("SO_CTX='{0}' ", so_ct_old)).Data; // AND KIEU_POST='0' (check cả phần ko được xóa)
+                            
                             if (select_am.Rows.Count > 0)
                             {
-                                string select_stt_rec = select_am.Rows[0]["STT_REC"].ToString().Trim();
-                                //Delete excel data dateMin dateMax
-                                SqlParameter[] plist =
+                                string kieu_post = select_am.Rows[0]["KIEU_POST"].ToString().Trim();
+                                if (kieu_post == "0")
                                 {
-                                    new SqlParameter("@STT_REC", select_stt_rec),
-                                    new SqlParameter("@Ma_ct", Invoice.Mact),
-                                    new SqlParameter("@UserID", V6Login.UserId),
-                                };
-                                int a = V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOA_DELETE_MAIN", plist);
+                                    string select_stt_rec = select_am.Rows[0]["STT_REC"].ToString().Trim();
+                                    //Delete excel data dateMin dateMax
+                                    SqlParameter[] plist =
+                                    {
+                                        new SqlParameter("@STT_REC", select_stt_rec),
+                                        new SqlParameter("@Ma_ct", Invoice.Mact),
+                                        new SqlParameter("@UserID", V6Login.UserId),
+                                    };
+                                    int a = V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOH_DELETE_MAIN", plist);
+                                }
+                                else
+                                {
+                                    // Không được xóa, có rồi không nhập lại?
+                                    f9Message += V6Text.Exist + item.Key;
+                                    f9MessageAll += V6Text.Exist + item.Key;
+                                    continue;
+                                }
                             }
                         }
 
@@ -603,7 +650,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         All_Objects["AM"] = AM_DATA;
                         All_Objects["AD"] = AD1_List;
                         InvokeFormEvent("BEFOREINSERT");
-                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<IDictionary<string, object>>()))
+                        if (Invoice.InsertInvoice(AM_DATA, AD1_List))
                         {
                             f9Message += V6Text.Added + item.Key;
                             //Danh dau xóa data.
@@ -1089,7 +1136,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //V6ControlFormHelper.ShowInfoMessage("F9 finish: " + f9MessageAll, 500, this);
                 if (f9MessageAll.Length > 0)
                 {
-                    Logger.WriteToLog(V6Login.ClientName + " " + GetType() + "XLS_SOA F9 " + f9MessageAll);
+                    Logger.WriteToLog(V6Login.ClientName + " " + GetType() + "XLS_SOH F9 " + f9MessageAll);
                 }
                 f9Message = "";
                 f9MessageAll = "";

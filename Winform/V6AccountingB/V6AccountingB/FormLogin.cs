@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -119,6 +120,8 @@ namespace V6AccountingB
                 {
                     lblStatusSuccess =  "Connection OK! Check CrystalReports!";
                     lblStatusFail =     "Connection Fail! Check CrystalReports!";
+                    lblStatus.ForeColor = Color.Red;
+                    lblStatus.Font = new Font(lblStatus.Font, FontStyle.Bold);
                 }
                 //13.0.2000.0 is Crystal Reports for VS 2010
                 //Assembly a = Assembly.Load("CrystalDecisions.CrystalReports.Engine");

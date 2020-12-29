@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using V6Tools.V6Objects;
 
 namespace V6ThuePost.ResponseObjects
 {
     /// <summary>
     /// Đối tượng hứng giá trị trả về cần thiết cho V6.
     /// </summary>
-    public class V6Return
+    public class V6Return : V6JsonObject
     {
         /// <summary>
         /// Đối tượng trả về nếu có Model.

@@ -26,14 +26,7 @@ namespace V6ThuePost
         /// Link host
         /// </summary>
         public static string _baseUrl = "";
-        /// <summary>
-        /// Link hàm tạo mới (không chứa _baseUrl, khi dùng sẽ nối lại sau).
-        /// </summary>
-        public static string createInvoiceUrl = "";
-        /// <summary>
-        /// Link hàm sửa đổi (không chứa _baseUrl, khi dùng sẽ nối lại sau).
-        /// </summary>
-        public static string modifyUrl = "";
+        
         //{
         //"supplierTaxCode":"0100109106",
         //"invoiceNo":"AA/17E0000166",
@@ -793,7 +786,7 @@ namespace V6ThuePost
             string result;
             try
             {
-                result = _viettel_ws.POST(createInvoiceUrl, jsonBody);
+                result = _viettel_ws.POST_NEW(jsonBody);
             }
             catch (Exception ex)
             {
@@ -808,7 +801,7 @@ namespace V6ThuePost
             string result;
             try
             {
-                result = _viettel_ws.POST(modifyUrl, jsonBody);
+                result = _viettel_ws.POST_EDIT(jsonBody);
             }
             catch (Exception ex)
             {
@@ -876,12 +869,12 @@ namespace V6ThuePost
                                     case "baselink":
                                         _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                         break;
-                                    case "createlink":
-                                        createInvoiceUrl = UtilityHelper.DeCrypt(line.Value);
-                                        break;
-                                    case "modifylink":
-                                        modifyUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
-                                        break;
+                                    //case "createlink":
+                                    //    createInvoiceUrl = UtilityHelper.DeCrypt(line.Value);
+                                    //    break;
+                                    //case "modifylink":
+                                    //    modifyUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    //    break;
                                 }
                                 break;
                             }

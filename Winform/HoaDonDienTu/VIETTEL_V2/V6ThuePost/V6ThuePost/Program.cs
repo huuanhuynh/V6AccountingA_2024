@@ -4,10 +4,10 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using V6ThuePostViettelApi;
 using V6Tools;
 using V6Tools.V6Convert;
 using Newtonsoft.Json;
@@ -17,6 +17,7 @@ using Spy.SpyObjects;
 using V6Controls.Forms.Viewer;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.ViettelV2Objects;
+using V6ThuePostViettelV2Api;
 
 namespace V6ThuePost
 {
@@ -25,7 +26,7 @@ namespace V6ThuePost
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
         #region ===== VAR =====
-        public static ViettelWS _viettel_ws = null;
+        public static ViettelV2WS _viettel_ws = null;
         /// <summary>
         /// Link host
         /// </summary>
@@ -79,6 +80,7 @@ namespace V6ThuePost
         /// key đầu ngữ
         /// </summary>
         private static string fkey0 = "";
+        private static string _debug = "";
         /// <summary>
         /// key trong data
         /// </summary>
@@ -124,9 +126,13 @@ namespace V6ThuePost
                     string jsonBody = "";
                     V6Return v6return = new V6Return();
                     ReadXmlInfo(arg1_xmlFile);
+                    if (_debug == "1")
+                    {
+                        MessageBox.Show("debug=1");
+                    }
                     string dbfFile = arg2;
 
-                    _viettel_ws = new ViettelWS(baseUrl, username, password, _codetax);
+                    _viettel_ws = new ViettelV2WS(baseUrl, username, password, _codetax);
 
                     if (mode.ToUpper() == "MTEST")
                     {
@@ -147,9 +153,18 @@ namespace V6ThuePost
                             goto End;
                         }
                     }
-                    else if (mode == "M_JSON")
+                    else if (mode.StartsWith("M") && mode.EndsWith("_JSON"))
                     {
-                        Console.Write("Test M_JSON result.");
+                        jsonBody = ReadText(arg2);
+                        
+                        if (mode.StartsWith("M_F4_"))
+                        {
+                            result = _viettel_ws.POST_DRAFT(jsonBody, out v6return);
+                        }
+                        else
+                        {
+                            result = _viettel_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                        }
                     }
                     else if (mode.StartsWith("M"))
                     {
@@ -171,7 +186,7 @@ namespace V6ThuePost
 
                         if (mode == "M0") // DRAF
                         {
-                            jsonBody = ReadData(dbfFile, "S");
+                            jsonBody = ReadData(dbfFile, "M");
                             File.Create(flagFileName1).Close();
                             result = _viettel_ws.POST_DRAFT(jsonBody, out v6return);
                         }
@@ -192,7 +207,6 @@ namespace V6ThuePost
                             jsonBody = ReadData(dbfFile, "M");
                             if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                            _viettel_ws = new ViettelWS(baseUrl, username, password, _codetax);
                             result = _viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out v6return);
                         }
                     }
@@ -268,8 +282,9 @@ namespace V6ThuePost
                         }
 
                     }
-                    else if (mode == "H")
+                    else if (mode == "H" || mode == "H_JSON")
                     {
+                        // V6ThuePostViettelV2.exe H "V6ThuePost.xml" "AB/19E0000341" "27/11/2019" "stt_rec"
                         string soseri_soct = arg2;
                         DateTime ngay_ct = ObjectAndString.StringToDate(arg3);
                         string strIssueDate = V6JsonConverter.ObjectToJson(ngay_ct, "VIETTEL");
@@ -347,19 +362,27 @@ namespace V6ThuePost
                     }
 
                     //Phân tích result
-                    string message = "";
-                    if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
+
+                    if (mode.EndsWith("JSON"))
                     {
-                        message = "OK.";
-                        WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
-                        File.Create(flagFileName2).Close();
+                        Console.Write(v6return.ToJson());
                     }
                     else
                     {
-                        message = "ERR:";
-                        WriteFlag(flagFileName3, v6return.RESULT_ERROR_MESSAGE);
+                        string message = "";
+                        if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
+                        {
+                            message = "OK.";
+                            WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
+                            File.Create(flagFileName2).Close();
+                        }
+                        else
+                        {
+                            message = "ERR:";
+                            WriteFlag(flagFileName3, v6return.RESULT_ERROR_MESSAGE);
+                        }
+                        result = message + "\n" + result;
                     }
-                    result = message + "\n" + result;
                 }
                 catch (Exception ex)
                 {
@@ -380,6 +403,14 @@ namespace V6ThuePost
             }
             //Environment.Exit(0);
             Process.GetCurrentProcess().Kill(); // AAARGHHHGHglglgghh...
+        }
+
+        private static string ReadText(string fileName)
+        {
+            StreamReader sr = new StreamReader(fileName);
+            string text = sr.ReadToEnd();
+            sr.Close();
+            return text;
         }
 
         internal static void WriteFlag(string fileName, string content)
@@ -934,6 +965,12 @@ namespace V6ThuePost
                                         break;
                                     case "v6fkey":
                                         fkey0 = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                        break;
+                                    //case "version":
+                                    //    _version = UtilityHelper.DeCrypt(line.Value);
+                                    //    break;
+                                    case "debug":
+                                        _debug = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                         break;
                                 }
                                 break;

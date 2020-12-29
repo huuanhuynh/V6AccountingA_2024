@@ -1456,7 +1456,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, "", txtMaGia.Text);
 
-                if (_gia_ban_nt != null && _gia_ban_nt.Visible && _gia_ban_nt.Enabled && !_gia_ban_nt.ReadOnly)
+                if (_gia_ban_nt != null && V6Options.GetValue("M_SOA_PRICE_INCLUDE_VAT") == "1")
                 {
                     _gia_ban_nt.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
                     if (_maNt == _mMaNt0)
@@ -5170,7 +5170,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     decimal gia_nt21 = gia_nt2;
                     decimal gia_ban_nt = gia_nt2;
 
-                    if (_gia_ban_nt != null && _gia_ban_nt.IsVisibleTag() && !_gia_ban_nt.IsTag("disable"))
+                    if (_gia_ban_nt != null && V6Options.GetValue("M_SOA_PRICE_INCLUDE_VAT") == "1")
                     {
                         row["GIA_BAN_NT"] = gia_ban_nt;
                         if (_maNt == _mMaNt0)

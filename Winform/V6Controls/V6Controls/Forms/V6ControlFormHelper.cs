@@ -8943,13 +8943,18 @@ namespace V6Controls.Forms
         }
 
 
-        public static void ChangeColumnName(DataTable table, string oldName, string newName)
+        public static void CopyColumn(DataTable table, string oldName, string newName)
         {
             if (table == null) throw new ArgumentNullException("table");
             if (string.IsNullOrEmpty(oldName) || string.IsNullOrEmpty(newName)) return;
             if (table.Columns.Contains(newName)) return;// throw new Exception("Exist newName: " + newName);
             if (!table.Columns.Contains(oldName)) throw new Exception("NotExist oldName: " + oldName);
-            table.Columns[oldName].ColumnName = newName;
+            table.Columns.Add(newName, table.Columns[oldName].DataType);
+            foreach (DataRow row in table.Rows)
+            {
+                row[newName] = row[oldName];
+            }
+            //table.Columns[oldName].ColumnName = newName;
         }
 
 

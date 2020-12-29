@@ -58,7 +58,7 @@ namespace V6ThuePost
         {
             if (Program._viettel_ws != null)
             {
-                string result = Program._viettel_ws.POST(Program.createInvoiceUrl, "");
+                string result = Program._viettel_ws.POST_NEW("");
                 //Phân tích result
                 string message = "";
                 try
@@ -96,7 +96,7 @@ namespace V6ThuePost
 
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
-                result = Program._viettel_ws.POST(Program.createInvoiceUrl, richTextBox1.Text);
+                result = Program._viettel_ws.POST_NEW(richTextBox1.Text);
                 lblResult.Text = result;
             }
             else
