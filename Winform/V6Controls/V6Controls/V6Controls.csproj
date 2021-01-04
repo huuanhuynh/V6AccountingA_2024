@@ -96,6 +96,24 @@
     <Compile Include="Controls\DateSelectButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\RicherTextBox\FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\RicherTextBox\FindForm.designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RicherTextBox\ReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\RicherTextBox\ReplaceForm.designer.cs">
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RicherTextBox\RicherTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RicherTextBox\RicherTextBox.designer.cs">
+      <DependentUpon>RicherTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DateSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +152,12 @@
     </Compile>
     <Compile Include="Forms\Editor\DicEditForm.designer.cs">
       <DependentUpon>DicEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RichTextEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RichTextEditorForm.designer.cs">
+      <DependentUpon>RichTextEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Viewer\XmlXslZipViewerForm.cs">
       <SubType>Form</SubType>
@@ -1591,6 +1615,15 @@
     <EmbeddedResource Include="Controls\Lookup\LookupButtonDataViewForm.resx">
       <DependentUpon>LookupButtonDataViewForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RicherTextBox\FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RicherTextBox\ReplaceForm.resx">
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RicherTextBox\RicherTextBox.resx">
+      <DependentUpon>RicherTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\V6DateTimeFullPickerNull.resx">
       <DependentUpon>V6DateTimeFullPickerNull.cs</DependentUpon>
     </EmbeddedResource>
@@ -1652,6 +1685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.resx">
       <DependentUpon>VatTuAddEditForm_A2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RichTextEditorForm.resx">
+      <DependentUpon>RichTextEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StringInput.resx">
       <DependentUpon>StringInput.cs</DependentUpon>
@@ -2610,6 +2646,17 @@
     <None Include="Resources\Refresh16.png" />
     <None Include="Resources\Calendar2824.png" />
     <None Include="Resources\Calendar3124.png" />
+    <None Include="Resources\AlignTableCellMiddleCenterHS.bmp" />
+    <None Include="Resources\AlignTableCellMiddleLeftJustHS.bmp" />
+    <None Include="Resources\AlignTableCellMiddleRightHS.bmp" />
+    <None Include="Resources\FindHS.bmp" />
+    <None Include="Resources\FindNextHS.bmp" />
+    <None Include="Resources\IndentHS.bmp" />
+    <None Include="Resources\InsertPictureHS.bmp" />
+    <None Include="Resources\List_BulletsHS.bmp" />
+    <None Include="Resources\OutdentHS.bmp" />
+    <None Include="Resources\ZoomIn.bmp" />
+    <None Include="Resources\ZoomOut.bmp" />
     <Content Include="Setting\TuKhoa.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

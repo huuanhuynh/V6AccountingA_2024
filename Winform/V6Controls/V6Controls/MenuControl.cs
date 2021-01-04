@@ -10,10 +10,12 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
 
@@ -733,6 +735,10 @@ namespace V6Controls
         }
 
         private bool ViewStatusNumber = false;
+        public string HELP1;
+        public string HELP2;
+        public string HELP_XML1;
+        public string HELP_XML2;
         public int StatusNumber { get; set; }
 
         public string ReportFile { get; set; }
@@ -815,6 +821,43 @@ namespace V6Controls
             if (image != null)
             {
                 graphics.DrawImage(image, 36 / 2 - image.Width / 2, y + Height / 2 - image.Height / 2, image.Width, image.Height);
+            }
+        }
+
+        public string GetHELP_XML1()
+        {
+            if (HELP_XML1 != null) return HELP_XML1;
+            try
+            {
+                IDictionary<string, object> key = new Dictionary<string, object>();
+                key.Add("ITEMID", itemID);
+                var data = V6BusinessHelper.Select("V6MENU1", key, "*").Data;
+                if (data.Rows.Count == 1)
+                {
+                    HELP_XML1 = data.Rows[0]["HELP_XML1"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + "GetHELP_XML1", ex, parenT);
+            }
+            return HELP_XML1;
+        }
+
+        public void SetHELP_XML1(string rtf)
+        {
+            HELP_XML1 = rtf;
+            try
+            {
+                IDictionary<string, object> key = new Dictionary<string, object>();
+                key.Add("ITEMID", itemID);
+                IDictionary<string, object> data = new Dictionary<string, object>();
+                data.Add("HELP_XML1", rtf);
+                V6BusinessHelper.UpdateSimple("V6MENU1", data, key);
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + "SetHELP_XML1", ex, parenT);
             }
         }
     }

@@ -105,6 +105,10 @@ namespace V6ControlManager.FormManager.MenuManager
                 Key4 = v6MenuDataRow["Key4"].ToString().Trim(),
 
                 Xtra = v6MenuDataRow["page"].ToString().Trim(),
+                //HELP1 = v6MenuDataRow["HELP1"].ToString().Trim(),
+                //HELP2 = v6MenuDataRow["HELP2"].ToString().Trim(),
+                //HELP_XML1 = v6MenuDataRow["HELP_XML1"].ToString().Trim(),
+                //HELP_XML2 = v6MenuDataRow["HELP_XML2"].ToString().Trim(),
             };
 
             var file0 = Path.Combine("Pictures\\", v6MenuDataRow["PICTURE"].ToString().Trim());
@@ -534,6 +538,19 @@ namespace V6ControlManager.FormManager.MenuManager
                     ResetAltUpDownMenu();
                     if(menuControl1.SelectedButton != null)
                     V6ControlFormHelper.ShowHelp(menuControl1.SelectedButton.Key1, menuControl1.SelectedButton.Text, this);
+                }
+                else if (keyData == Keys.F11)
+                {
+                    if (_currentMenuButton != null)
+                    {
+                        RichTextEditorForm richForm = new RichTextEditorForm();
+                        richForm.richerTextBox1.Rtf = _currentMenuButton.GetHELP_XML1();
+                        richForm.ShowDialog(this);
+                        if (richForm.HaveChanged)
+                        {
+                            _currentMenuButton.SetHELP_XML1(richForm.richerTextBox1.Rtf);
+                        }
+                    }
                 }
                 else if (keyData == (Keys.Alt | Keys.M))
                 {

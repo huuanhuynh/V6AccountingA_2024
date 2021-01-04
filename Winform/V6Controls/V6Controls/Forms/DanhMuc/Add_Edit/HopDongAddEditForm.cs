@@ -80,7 +80,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".UpdateAlqddvt", ex);
+                this.ShowErrorException(GetType() + ".UpdateAlhdct", ex);
             }
         }
         

@@ -93,6 +93,36 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AlignTableCellMiddleCenterHS {
+            get {
+                object obj = ResourceManager.GetObject("AlignTableCellMiddleCenterHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AlignTableCellMiddleLeftJustHS {
+            get {
+                object obj = ResourceManager.GetObject("AlignTableCellMiddleLeftJustHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AlignTableCellMiddleRightHS {
+            get {
+                object obj = ResourceManager.GetObject("AlignTableCellMiddleRightHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Apply {
             get {
                 object obj = ResourceManager.GetObject("Apply", resourceCulture);
@@ -403,6 +433,26 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FindHS {
+            get {
+                object obj = ResourceManager.GetObject("FindHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FindNextHS {
+            get {
+                object obj = ResourceManager.GetObject("FindNextHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap First {
             get {
                 object obj = ResourceManager.GetObject("First", resourceCulture);
@@ -483,6 +533,16 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IndentHS {
+            get {
+                object obj = ResourceManager.GetObject("IndentHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Info_48x48_72 {
             get {
                 object obj = ResourceManager.GetObject("Info_48x48_72", resourceCulture);
@@ -503,6 +563,16 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap InsertPictureHS {
+            get {
+                object obj = ResourceManager.GetObject("InsertPictureHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap jpg16 {
             get {
                 object obj = ResourceManager.GetObject("jpg16", resourceCulture);
@@ -516,6 +586,16 @@ namespace V6Controls.Properties {
         internal static System.Drawing.Bitmap Last {
             get {
                 object obj = ResourceManager.GetObject("Last", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap List_BulletsHS {
+            get {
+                object obj = ResourceManager.GetObject("List_BulletsHS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -566,6 +646,16 @@ namespace V6Controls.Properties {
         internal static System.Drawing.Bitmap No {
             get {
                 object obj = ResourceManager.GetObject("No", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OutdentHS {
+            get {
+                object obj = ResourceManager.GetObject("OutdentHS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -983,6 +1073,16 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ZoomIn {
+            get {
+                object obj = ResourceManager.GetObject("ZoomIn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ZoomIn24 {
             get {
                 object obj = ResourceManager.GetObject("ZoomIn24", resourceCulture);
@@ -996,6 +1096,16 @@ namespace V6Controls.Properties {
         internal static System.Drawing.Bitmap ZoomIn32 {
             get {
                 object obj = ResourceManager.GetObject("ZoomIn32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ZoomOut {
+            get {
+                object obj = ResourceManager.GetObject("ZoomOut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

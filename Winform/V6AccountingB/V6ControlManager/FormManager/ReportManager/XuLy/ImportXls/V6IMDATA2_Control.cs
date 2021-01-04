@@ -250,9 +250,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     string.Format("Select * from [{0}] Where [{1}]='{2}'", mapTable, mapField, checkValue)).Tables[0];
                                 if (mapData.Rows.Count > 0)
                                 {
-                                    if(checkTable.ToUpper() == "ALVT") MAPPING_COLUMNS_DATATABLE(mapData, _columnsMapper_ALVT);
+                                    MAPPING_COLUMNS_DATATABLE(mapData, _columnsMapper_ALVT);
+                                    All_Objects["_data"] = mapData;
+                                    All_Objects["data"] = mapData.Copy();
+                                    InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL + "_ALVT");
+                                    
                                     var selectData2 = mapData.Rows[0].ToDataDictionary();
                                     insert = _categories.Insert(checkTable, selectData2);
+                                    V6BusinessHelper.UpdateAlqddvt(checkValue, checkValue);
                                 }
                             }
 
