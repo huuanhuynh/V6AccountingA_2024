@@ -302,7 +302,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             {
                                 if (_maVt.VITRI_YN)
                                 {
-                                    _maLo.ReadOnlyTag();
+                                    _maLo.Enabled = false;
                                 }
                                 else
                                 {
@@ -1531,8 +1531,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 _ton13.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU"]);
                 if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU_QD"]);
                 _maLo.Enabled = true;
-                //_maLo.ReadOnlyTag();
-
+                
                 if (isChanged) CheckSoLuong1();
             }
             catch (Exception ex)

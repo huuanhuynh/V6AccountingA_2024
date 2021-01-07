@@ -32,6 +32,9 @@ namespace V6Structs
             }
         }
 
+        /// <summary>
+        /// Tổng số dòng trong csdl.
+        /// </summary>
         public int TotalRows { get; set; }
         /// <summary>
         /// Dữ liệu khi dùng Sqlconnect

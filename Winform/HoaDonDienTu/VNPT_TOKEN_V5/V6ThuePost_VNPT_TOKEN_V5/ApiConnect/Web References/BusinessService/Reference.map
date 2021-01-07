@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Results>
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://nuocbdgservicedemo.vnpt-invoice.com.vn/BusinessService.asmx?wsdl" filename="BusinessService.wsdl" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://nuocbdgservicedemo.vnpt-invoice.com.vn/BusinessService.asmx?disco" filename="BusinessService.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://3702288930-democadmin.vnpt-invoice.com.vn/BusinessService.asmx?wsdl" filename="BusinessService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://3702288930-democadmin.vnpt-invoice.com.vn/BusinessService.asmx?disco" filename="BusinessService.disco" />
   </Results>
 </DiscoveryClientResultsFile>

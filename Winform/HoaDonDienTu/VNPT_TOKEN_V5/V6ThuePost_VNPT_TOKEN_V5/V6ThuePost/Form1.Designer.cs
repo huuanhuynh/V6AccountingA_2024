@@ -53,6 +53,7 @@
             this.btnSendNoSign = new System.Windows.Forms.Button();
             this.btnAutoInput = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
+            this.btnSend0 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSend
@@ -270,7 +271,7 @@
             // 
             this.btnImportCertWithToken.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnImportCertWithToken.Enabled = false;
-            this.btnImportCertWithToken.Location = new System.Drawing.Point(393, 567);
+            this.btnImportCertWithToken.Location = new System.Drawing.Point(290, 567);
             this.btnImportCertWithToken.Name = "btnImportCertWithToken";
             this.btnImportCertWithToken.Size = new System.Drawing.Size(135, 23);
             this.btnImportCertWithToken.TabIndex = 10;
@@ -314,11 +315,24 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
+            // btnSend0
+            // 
+            this.btnSend0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSend0.Enabled = false;
+            this.btnSend0.Location = new System.Drawing.Point(431, 568);
+            this.btnSend0.Name = "btnSend0";
+            this.btnSend0.Size = new System.Drawing.Size(97, 23);
+            this.btnSend0.TabIndex = 13;
+            this.btnSend0.Text = "Send 0";
+            this.btnSend0.UseVisualStyleBackColor = true;
+            this.btnSend0.Click += new System.EventHandler(this.btnSend0_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 679);
+            this.Controls.Add(this.btnSend0);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtURL);
@@ -379,6 +393,7 @@
         private System.Windows.Forms.Button btnSendNoSign;
         private System.Windows.Forms.Button btnAutoInput;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnSend0;
     }
 }
 

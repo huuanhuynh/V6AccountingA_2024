@@ -65,14 +65,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (date1 != null && EXTRA_INFOR.ContainsKey("TIME1"))
                 {
                     var HHmm = ObjectAndString.SplitStringBy(EXTRA_INFOR["TIME1"], ':');
-                    date1.Value = new DateTime(date1.Value.Year, date1.Value.Month, date1.Value.Day,
-                        ObjectAndString.ObjectToInt(HHmm[0]), ObjectAndString.ObjectToInt(HHmm[1]), 00);
+                    var date1_value = new DateTime(date1.Value.Year, date1.Value.Month, date1.Value.Day,
+                        0, ObjectAndString.ObjectToInt(HHmm[1]), 00);
+
+                    date1.Value = date1_value.AddHours((double)Number.GiaTriBieuThuc(HHmm[0], null));
                 }
                 if (date2 != null && EXTRA_INFOR.ContainsKey("TIME2"))
                 {
                     var HHmm = ObjectAndString.SplitStringBy(EXTRA_INFOR["TIME2"], ':');
-                    date2.Value = new DateTime(date2.Value.Year, date2.Value.Month, date2.Value.Day,
-                        ObjectAndString.ObjectToInt(HHmm[0]), ObjectAndString.ObjectToInt(HHmm[1]), 00);
+                    var date2_value = new DateTime(date2.Value.Year, date2.Value.Month, date2.Value.Day,
+                        0, ObjectAndString.ObjectToInt(HHmm[1]), 00);
+
+                    date2.Value = date2_value.AddHours((double) Number.GiaTriBieuThuc(HHmm[0], null));
                 }
             }
             catch (Exception ex)
@@ -100,8 +104,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     UtilityHelper.DeCrypt(EXTRA_INFOR["USERID"]), UtilityHelper.DeCrypt(EXTRA_INFOR["PASSWORD"]));
                 //var c = DatabaseConfig.ConnectionString;
                 var ds = SqlHelper.ExecuteDataset(conString2, CommandType.Text,
-                    string.Format("Select * from [{0}] Where [{3}] BETWEEN '{1:yyyy-MM-dd HH:mm}' AND '{2:yyyy-MM-dd HH:mm}'",
-                    EXTRA_INFOR["TABLENAME"], FilterControl.Date1, FilterControl.Date2, EXTRA_INFOR["DATEFIELD"]));
+                    string.Format("Select * from [{0}] Where CAST([{1}] as DATE) = '{2}'",
+                    EXTRA_INFOR["TABLENAME"], EXTRA_INFOR["DATEFIELD"], ObjectAndString.ObjectToString(FilterControl.Date3, "yyyyMMdd")));
                 _tbl = ds.Tables[0];
                 
                 //var ds2 = SqlHelper.ExecuteDataset(conString2, CommandType.Text,
@@ -136,6 +140,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 CHECK_REMOVE_DELETE_DATA();
 
                 dataGridView1.DataSource = _tbl;
+                FormatGridViewBase();
+                FormatGridViewExtern();
                 
                 var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='SOH'").Data;
                 if (alim2xls != null && alim2xls.Rows.Count > 0)
@@ -608,6 +614,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     try
                     {
                         AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT2,TIEN_NT,TIEN2,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
+                        AM_DATA["NGAY_CT"] = FilterControl.Date3; // Ngày chọn trên filter.
                         string so_ct_old = AM_DATA["SO_CT"].ToString().Trim();
                         
 

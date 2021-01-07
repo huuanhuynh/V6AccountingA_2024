@@ -26,6 +26,7 @@ namespace V6ThuePost
 
             btnImportCertWithToken.Enabled = true;
             btnSend.Enabled = true;
+            btnSend0.Enabled = true;
             btnSendS.Enabled = false;
             btnSendNoSign.Enabled = true;
             btnTest.Enabled = true;
@@ -57,6 +58,28 @@ namespace V6ThuePost
             btnSendS.Enabled = true;
         }
 
+        private void btnSend0_Click(object sender, EventArgs e)
+        {
+            string result = null;
+            try
+            {
+                result = Program.ImportInv(richTextBox1.Text);
+                
+                lblResult.Text = result;
+                if (result != null)
+                {
+                    BaseMessage.Show(result, 500, this);
+                }
+                else
+                {
+                    BaseMessage.Show("Response is null!", 0, this);
+                }
+            }
+            catch (Exception ex)
+            {
+                BaseMessage.Show(ex.Message, 0, this);
+            }
+        }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -65,8 +88,18 @@ namespace V6ThuePost
             {
                 //result = Program.ImportAndPublishInv(richTextBox1.Text);
                 //result = Program.PhatHanhHoaDon_Token4buoc(richTextBox1.Text);
-                Program.StartAutoInputTokenPassword();
-                result = Program.PublishInvWithToken_Dll(richTextBox1.Text);
+
+                if (string.IsNullOrEmpty(Program.SERIAL_CERT))
+                {
+                    result = Program.ImportAndPublishInv(richTextBox1.Text);
+                    //result = Program.ImportInv(richTextBox1.Text);
+                }
+                else
+                {
+                    Program.StartAutoInputTokenPassword();
+                    result = Program.PublishInvWithToken_Dll(richTextBox1.Text);
+                }
+                
 
                 lblResult.Text = result;
                 if (result != null)
@@ -75,12 +108,13 @@ namespace V6ThuePost
                 }
                 else
                 {
-                    MessageBox.Show("Response is null!");
+                    BaseMessage.Show("Response is null!", 0, this);
                 }
             }
             catch (Exception ex)
             {
                 Program.StopAutoInputTokenPassword();
+                BaseMessage.Show(ex.Message, 0, this);
             }
         }
         

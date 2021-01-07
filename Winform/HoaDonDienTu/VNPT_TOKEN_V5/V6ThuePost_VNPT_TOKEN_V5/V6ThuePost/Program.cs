@@ -4,7 +4,6 @@ using System.Data;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,15 +13,13 @@ using CrystalDecisions.Shared;
 using SignTokenCore;
 using Spy;
 using Spy.SpyObjects;
-using Spy.User32Constants;
-using Spy.WindowHandle;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.VnptObjects;
 using V6ThuePostXmlApi;
 using V6ThuePostXmlApi.AttachmentService;
+using V6ThuePostXmlApi.BusinessService;
 using V6ThuePostXmlApi.PortalService;
 using V6ThuePostXmlApi.PublishService;
-using V6ThuePostXmlApi.Web_References.BusinessService;
 using V6Tools;
 using V6Tools.V6Convert;
 using ParseDBF = V6Tools.ParseDBF;
@@ -80,7 +77,7 @@ namespace V6ThuePost
         /// <summary>
         /// serial của chứng thư công ty đã đăng ký trong hệ thống.
         /// </summary>
-        private static string SERIAL_CERT;
+        public static string SERIAL_CERT;
         private static string pattern, pattern_field;
         private static string seri, seri_field;
         private static string convert = "0";
@@ -212,7 +209,7 @@ namespace V6ThuePost
                         var xml = ReadDataXml(arg2);
                         File.Create(flagFileName1).Close();
 
-                        if (true)
+                        if (!string.IsNullOrEmpty(SERIAL_CERT))
                         {
                             Program.StartAutoInputTokenPassword();
                             string resultM = PublishInvWithToken_Dll(xml);
@@ -322,7 +319,7 @@ namespace V6ThuePost
                                 }
                             }
                         }
-                        else if (false)
+                        else if (string.IsNullOrEmpty(SERIAL_CERT))
                         {
                             #region ==== mode M M1:tạo mới gửi excel có sẵn  M2:tạo mới+xuất excel rồi gửi.
 
@@ -1668,6 +1665,7 @@ namespace V6ThuePost
             try
             {
                 var publishService = new PublishService(link_Publish);
+                seri = "LX/20E";
                 result = publishService.ImportAndPublishInv(account, accountpassword, xml, username, password, pattern, seri, convert == "1" ? 1 : 0);
                 //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
                 if (result.StartsWith("OK"))

@@ -174,7 +174,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                             {
                                 if (_maVt.VITRI_YN)
                                 {
-                                    _maLo.ReadOnlyTag();
+                                    _maLo.Enabled = false;
                                 }
                                 else
                                 {

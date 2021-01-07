@@ -48,6 +48,8 @@
             this.chkAutoF9 = new V6Controls.V6CheckBox();
             this.numAuto1 = new System.Windows.Forms.NumericUpDown();
             this.lblPhut = new System.Windows.Forms.Label();
+            this.lblDate3 = new System.Windows.Forms.Label();
+            this.dateNgay_ct3 = new V6Controls.V6DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAuto1)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +58,7 @@
             // 
             this.label1.AccessibleDescription = "FILTERL00199";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 237);
+            this.label1.Location = new System.Drawing.Point(1, 266);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 26);
             this.label1.TabIndex = 4;
@@ -78,7 +80,7 @@
             this.btnBrowse.AccessibleDescription = "FILTERB00005";
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowse.Image = global::V6ControlManager.Properties.Resources.Excel16;
-            this.btnBrowse.Location = new System.Drawing.Point(37, 321);
+            this.btnBrowse.Location = new System.Drawing.Point(37, 350);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(137, 24);
             this.btnBrowse.TabIndex = 6;
@@ -118,9 +120,6 @@
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "FILTERG00005";
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.chkAutoSoCt);
             this.groupBox1.Controls.Add(this.chkDeleteData0);
             this.groupBox1.Controls.Add(this.chkChuyenMa);
@@ -189,7 +188,7 @@
             // 
             // txtFile
             // 
-            this.txtFile.Location = new System.Drawing.Point(37, 237);
+            this.txtFile.Location = new System.Drawing.Point(37, 266);
             this.txtFile.Name = "txtFile";
             this.txtFile.ReadOnly = true;
             this.txtFile.Size = new System.Drawing.Size(235, 75);
@@ -200,7 +199,7 @@
             // btnSuaChiTieu
             // 
             this.btnSuaChiTieu.AccessibleDescription = "FILTERB00001";
-            this.btnSuaChiTieu.Location = new System.Drawing.Point(180, 321);
+            this.btnSuaChiTieu.Location = new System.Drawing.Point(180, 350);
             this.btnSuaChiTieu.Name = "btnSuaChiTieu";
             this.btnSuaChiTieu.Size = new System.Drawing.Size(75, 23);
             this.btnSuaChiTieu.TabIndex = 7;
@@ -211,7 +210,7 @@
             // btnXemMauExcel
             // 
             this.btnXemMauExcel.AccessibleDescription = "FILTERB00013";
-            this.btnXemMauExcel.Location = new System.Drawing.Point(5, 352);
+            this.btnXemMauExcel.Location = new System.Drawing.Point(5, 381);
             this.btnXemMauExcel.Name = "btnXemMauExcel";
             this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
             this.btnXemMauExcel.TabIndex = 9;
@@ -273,7 +272,7 @@
             // 
             this.chkAutoF9.AccessibleDescription = "XULYC00017";
             this.chkAutoF9.AutoSize = true;
-            this.chkAutoF9.Location = new System.Drawing.Point(8, 197);
+            this.chkAutoF9.Location = new System.Drawing.Point(8, 226);
             this.chkAutoF9.Name = "chkAutoF9";
             this.chkAutoF9.Size = new System.Drawing.Size(112, 17);
             this.chkAutoF9.TabIndex = 10;
@@ -283,7 +282,7 @@
             // 
             // numAuto1
             // 
-            this.numAuto1.Location = new System.Drawing.Point(164, 197);
+            this.numAuto1.Location = new System.Drawing.Point(164, 226);
             this.numAuto1.Maximum = new decimal(new int[] {
             120,
             0,
@@ -308,16 +307,42 @@
             // 
             this.lblPhut.AccessibleDescription = "XULYC00018";
             this.lblPhut.AutoSize = true;
-            this.lblPhut.Location = new System.Drawing.Point(233, 199);
+            this.lblPhut.Location = new System.Drawing.Point(233, 228);
             this.lblPhut.Name = "lblPhut";
             this.lblPhut.Size = new System.Drawing.Size(28, 13);
             this.lblPhut.TabIndex = 12;
             this.lblPhut.Text = "phút";
             // 
+            // lblDate3
+            // 
+            this.lblDate3.AutoSize = true;
+            this.lblDate3.Location = new System.Drawing.Point(8, 199);
+            this.lblDate3.Name = "lblDate3";
+            this.lblDate3.Size = new System.Drawing.Size(79, 13);
+            this.lblDate3.TabIndex = 13;
+            this.lblDate3.Text = "Ngày tạo phiếu";
+            // 
+            // date3
+            // 
+            this.dateNgay_ct3.BackColor = System.Drawing.SystemColors.Window;
+            this.dateNgay_ct3.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_ct3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgay_ct3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.dateNgay_ct3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateNgay_ct3.HoverColor = System.Drawing.Color.Yellow;
+            this.dateNgay_ct3.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateNgay_ct3.LeaveColor = System.Drawing.Color.White;
+            this.dateNgay_ct3.Location = new System.Drawing.Point(112, 197);
+            this.dateNgay_ct3.Name = "dateNgay_ct3";
+            this.dateNgay_ct3.Size = new System.Drawing.Size(100, 20);
+            this.dateNgay_ct3.TabIndex = 14;
+            // 
             // V6IMDATA2_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblDate3);
+            this.Controls.Add(this.dateNgay_ct3);
             this.Controls.Add(this.lblPhut);
             this.Controls.Add(this.numAuto1);
             this.Controls.Add(this.chkAutoF9);
@@ -332,7 +357,7 @@
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.label1);
             this.Name = "V6IMDATA2_Filter";
-            this.Size = new System.Drawing.Size(275, 392);
+            this.Size = new System.Drawing.Size(275, 427);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAuto1)).EndInit();
@@ -363,5 +388,7 @@
         private System.Windows.Forms.Label lblPhut;
         private V6Controls.V6DateTimeFullPicker dateNgay_ct2;
         private V6Controls.V6DateTimeFullPicker dateNgay_ct1;
+        private System.Windows.Forms.Label lblDate3;
+        private V6Controls.V6DateTimePicker dateNgay_ct3;
     }
 }

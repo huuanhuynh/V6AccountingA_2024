@@ -20,6 +20,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
             dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
+            dateNgay_ct3.SetValue(V6Setting.M_SV_DATE);
         }
         
         /// <summary>
@@ -39,6 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             String3 = (comboBox2.SelectedItem??"").ToString();
             Date1 = dateNgay_ct1.Value;
             Date2 = dateNgay_ct2.Value;
+            Date3 = dateNgay_ct3.Value;
             Check1 = chkChuyenMa.Checked;
             Check2 = chkDeleteData0.Checked;
             Check3 = chkAutoSoCt.Checked;

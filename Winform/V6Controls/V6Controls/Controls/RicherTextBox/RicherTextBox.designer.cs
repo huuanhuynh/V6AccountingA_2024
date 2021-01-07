@@ -102,6 +102,7 @@
             this.rtbDocument.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbDocument.EnableAutoDragDrop = true;
             this.rtbDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rtbDocument.HideSelection = false;
             this.rtbDocument.Location = new System.Drawing.Point(0, 51);
             this.rtbDocument.Name = "rtbDocument";
             this.rtbDocument.Size = new System.Drawing.Size(667, 262);

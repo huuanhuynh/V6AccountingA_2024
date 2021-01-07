@@ -19,6 +19,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         protected V6Categories Categories;
         public string _MA_DM { get; set; }
+        /// <summary>
+        /// Tên bảng lấy dữ liệu.
+        /// </summary>
         public string CONFIG_TABLE_NAME
         {
             get
@@ -253,7 +256,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {   
-                _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM);
+                _TableStruct = V6BusinessHelper.GetTableStruct(CONFIG_TABLE_NAME);
                 V6ControlFormHelper.SetFormStruct(this, _TableStruct);
             }
             catch (Exception ex)
@@ -269,7 +272,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 if (_keys != null && _keys.Count > 0)
                 {
-                    var selectResult = Categories.Select(_MA_DM, _keys);
+                    var selectResult = Categories.Select(CONFIG_TABLE_NAME, _keys);
                     if (selectResult.Data.Rows.Count == 1)
                     {
                         DataOld = selectResult.Data.Rows[0].ToDataDictionary();
@@ -461,7 +464,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 ValidateData();
                 InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
                 InvokeFormEvent("BEFOREINSERTORUPDATE");
-                string checkV6Valid = CheckV6Valid(DataDic, _MA_DM);
+                string checkV6Valid = CheckV6Valid(DataDic, CONFIG_TABLE_NAME);
                 if (!string.IsNullOrEmpty(checkV6Valid))
                 {
                     this.ShowInfoMessage(checkV6Valid, 500);
@@ -488,29 +491,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         AfterSave();
                         AfterUpdate();
                         InvokeFormEvent(FormDynamicEvent.AFTERUPDATE);
-                        
-                        if (_MA_DM == "V6USER")
+
+                        if (CONFIG_TABLE_NAME == "V6USER")
                         {
                             UpdateInheritUser();
                             UpdateAdvanceInforUser();
                         }
 
-                        if (_MA_DM == "V6OPTION")
+                        if (CONFIG_TABLE_NAME == "V6OPTION")
                         {
                             UpdateV6Option();
                         }
 
-                        if (_MA_DM == "ALTK0")
+                        if (CONFIG_TABLE_NAME == "ALTK0")
                         {
                             UpdateBackTk();
                             UpdateLoaiTk("E");
                         }
-                        if (_MA_DM == "ALVV")
+                        if (CONFIG_TABLE_NAME == "ALVV")
                         {
                             UpdateBackVv();
                             UpdateLoaiVv("E");
                         }
-                        if (_MA_DM == "HRPERSONAL")
+                        if (CONFIG_TABLE_NAME == "HRPERSONAL")
                         {
                             Update_Auto_From_Personal();
                         }
@@ -527,7 +530,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             var oldKey1 = newKey1;
                             var oldKey2 = newKey2;
                             var oldKey3 = newKey3;
-                            V6ControlFormHelper.Copy_Here2Data(_MA_DM, Mode,
+                            V6ControlFormHelper.Copy_Here2Data(CONFIG_TABLE_NAME, Mode,
                                 KeyField1, KeyField2, KeyField3,
                                 newKey1, newKey2, newKey3,
                                 oldKey1, oldKey2, oldKey3,
@@ -558,23 +561,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         AfterInsert();
                         InvokeFormEvent(FormDynamicEvent.AFTERINSERT);
 
-                        if (_MA_DM == "V6USER")
+                        if (CONFIG_TABLE_NAME == "V6USER")
                         {
                             UpdateInheritUser();
                             UpdateAdvanceInforUser();
                         }
 
-                        if (_MA_DM == "ALTK0")
+                        if (CONFIG_TABLE_NAME == "ALTK0")
                         {
                             UpdateBackTk();
                             UpdateLoaiTk("A");
                         }
-                        if (_MA_DM == "ALVV")
+                        if (CONFIG_TABLE_NAME == "ALVV")
                         {
                             UpdateBackVv();
                             UpdateLoaiVv("A");
                         }
-                        if (_MA_DM == "HRPERSONAL")
+                        if (CONFIG_TABLE_NAME == "HRPERSONAL")
                         {
                             Update_Auto_From_Personal();
                         }
@@ -598,8 +601,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                     oldKey3 = DataOld[KeyField3].ToString().Trim();
                                 UID = DataOld.ContainsKey("UID") ? DataOld["UID"].ToString() : "";
                             }
-                            
-                            V6ControlFormHelper.Copy_Here2Data(_MA_DM, Mode,
+
+                            V6ControlFormHelper.Copy_Here2Data(CONFIG_TABLE_NAME, Mode,
                                 KeyField1, KeyField2, KeyField3,
                                 newKey1, newKey2, newKey3,
                                 oldKey1, oldKey2, oldKey3,
@@ -625,7 +628,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                
                 var result = Categories.Insert(CONFIG_TABLE_NAME, DataDic);
                 if (result && update_stt13)
                 {
@@ -833,6 +835,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 // Get new id proc 
                 if (_aldmConfig.HaveInfo)
                 {
+                    string ID_FIELD = _aldmConfig.VALUE.ToUpper();
                     // Trường hợp mã có phân nhóm.
                     // DataOld cần thêm dữ liệu AUTOID_LOAINH AUTOID_NHVALUE
                     if (DataOld != null && DataOld.ContainsKey("AUTOID_LOAINH") && DataOld.ContainsKey("AUTOID_NHVALUE"))
@@ -841,7 +844,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         SqlParameter[] plist =
                         {
                             new SqlParameter("@MA_DM", _MA_DM),
-                            new SqlParameter("@Vvalue", DataOld.ContainsKey(_aldmConfig.VALUE.ToUpper()) ? DataOld[_aldmConfig.VALUE.ToUpper()].ToString().Trim() : ""),
+                            new SqlParameter("@Vvalue", DataOld.ContainsKey(ID_FIELD) ? DataOld[ID_FIELD].ToString().Trim() : ""),
                             new SqlParameter("@Loai_nh", DataOld["AUTOID_LOAINH"]),
                             new SqlParameter("@NhValue", DataOld["AUTOID_NHVALUE"]),
                             new SqlParameter("@User_id", V6Login.UserId),
@@ -854,32 +857,43 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             if (value != "")
                             {
                                 IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
-                                value_dic.Add(_aldmConfig.VALUE.ToUpper(), value);
+                                value_dic.Add(ID_FIELD, value);
                                 V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
                                 return;
                             }
                         }
                     }
-                    
-                    
+
+
+                    if (_aldmConfig.INCREASE_YN)
                     {
-                        //var _dataRow = aldm.Rows[0];
-                        if (_aldmConfig.INCREASE_YN)
+                        // Kiểm tra mã tự tăng có tồn tại trong dữ liệu chưa và tăng tiếp (trong 100 số)
+                        update_stt13 = true;
+                        var stt13 = ObjectAndString.ObjectToInt(_aldmConfig.STT13);
+                        var transform = _aldmConfig.TRANSFORM;
+                        var value0 = string.Format(transform, stt13);
+                        var value100 = string.Format(transform, stt13 + 100);
+                        
+                        var check_data = V6BusinessHelper.Select(CONFIG_TABLE_NAME, "*",
+                            string.Format("{0} BETWEEN '{1}' AND '{2}'", ID_FIELD, value0, value100), "", ID_FIELD).Data;
+
+                        int increase = 1;
+                        var value = string.Format(transform, stt13 + increase);
+                        if (check_data != null && check_data.Rows.Count > 0)
                         {
-                            update_stt13 = true;
-                            var id_field = _aldmConfig.VALUE.ToUpper();
-                            var stt13 = ObjectAndString.ObjectToInt(_aldmConfig.STT13);
-                            var transform = _aldmConfig.TRANSFORM;
-                            var value = string.Format(transform, stt13 + 1);
-                            IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
-                            value_dic.Add(id_field, value);
-                            V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
-                            //var control = V6ControlFormHelper.GetControlByAccesibleName(this, id_field);
-                            //if (control != null && control is TextBox)
-                            //{
-                            //    ((TextBox) control).Text = value;
-                            //}
+                            var check_view = new DataView(check_data);
+                            check_view.RowFilter = string.Format("{0}='{1}'", ID_FIELD, value);
+                            while (check_view.Count > 0) // increase <= check_data.Rows.Count)
+                            {
+                                increase++;
+                                value = string.Format(transform, stt13 + increase);
+                                check_view.RowFilter = string.Format("{0}='{1}'", ID_FIELD, value);
+                            }
                         }
+
+                        IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
+                        value_dic.Add(ID_FIELD, value);
+                        V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
                     }
                 }
             }

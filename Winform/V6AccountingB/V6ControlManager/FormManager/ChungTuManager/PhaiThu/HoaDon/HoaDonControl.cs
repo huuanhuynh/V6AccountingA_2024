@@ -1938,8 +1938,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _ton13.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU"]);
                 if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU_QD"]);
                 _maLo.Enabled = true;
-                //_maLo.ReadOnlyTag();
-
+                
                 if (isChanged) CheckSoLuong1();
             }
             catch (Exception ex)
@@ -4927,11 +4926,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec + " " + debug_flag, "TTTT(" + debug + ")"), ex);
             }
 
-            //if(V6Setting.WriteExtraLog)
+            if(IsViewingAnInvoice)
             try // Log
             {
                 var tTienNt2 = TinhTong(AD, "TIEN_NT2");
-                if (txtTongThanhToanNt.Value != tTienNt2 && txtTongCkNt.Value == 0 && txtTongGiamNt.Value == 0)
+                if (txtTongTienNt2.Value != tTienNt2 && txtTongCkNt.Value == 0 && txtTongGiamNt.Value == 0)
                 {
                     string timeString = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     string fileNameAM = string.Format("TTTT_AM_{0}_{1}.xls", CurrentIndex, timeString);

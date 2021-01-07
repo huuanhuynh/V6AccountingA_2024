@@ -2160,6 +2160,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void Print(string printerName, ReportDocument rpDoc, ReportDocument rpDoc2, ReportDocument rpDoc3, ReportDocument rpDoc4)
         {
             int intDaGuiDenMayIn = 0;
+            if (_printCopy < 1) _printCopy = 1;
             bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
             
             if (printerOnline)
@@ -2242,7 +2243,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                 V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc);
                             }
                             if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
-                            rpDoc.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
+                            rpDoc.PrintToPrinter(_soLienIn*_printCopy, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                             intDaGuiDenMayIn = _soLienIn;
                         }
                         catch (Exception ex)

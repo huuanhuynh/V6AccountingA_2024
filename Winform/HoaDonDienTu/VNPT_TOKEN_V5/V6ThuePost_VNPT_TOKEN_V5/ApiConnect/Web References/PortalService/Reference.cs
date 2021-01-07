@@ -23,13 +23,17 @@ namespace V6ThuePostXmlApi.PortalService {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="PortalServiceSoap", Namespace="http://tempuri.org/")]
     public partial class PortalService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback listInvByCusOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SearchInvOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getCatalogViewOperationCompleted;
         
         private System.Threading.SendOrPostCallback getInvViewOperationCompleted;
         
@@ -51,13 +55,21 @@ namespace V6ThuePostXmlApi.PortalService {
         
         private System.Threading.SendOrPostCallback listInvByCusFkeyVNPOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getcatalogViewFkeyOperationCompleted;
+        
         private System.Threading.SendOrPostCallback downloadInvPDFFkeyOperationCompleted;
         
         private System.Threading.SendOrPostCallback downloadInvPDFFkeyNoPayOperationCompleted;
         
+        private System.Threading.SendOrPostCallback downloadNewInvPDFFkeyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getInvViewFkeyByStaffOperationCompleted;
+        
         private System.Threading.SendOrPostCallback getInvViewFkeyOperationCompleted;
         
         private System.Threading.SendOrPostCallback getInvViewFkeyNoPayOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getNewInvViewFkeyOperationCompleted;
         
         private System.Threading.SendOrPostCallback convertForStoreFkeyOperationCompleted;
         
@@ -75,11 +87,23 @@ namespace V6ThuePostXmlApi.PortalService {
         
         private System.Threading.SendOrPostCallback getStaffOperationCompleted;
         
+        private System.Threading.SendOrPostCallback listInvFromNoToNoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback loginportalOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback forgetpassOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback changepasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback listCompanyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback listPatternByComOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
-        /// <remarks/>
-        public PortalService() {
-            this.Url = global::V6ThuePostXmlApi.Properties.Settings.Default.V6ThuePostApi_PortalService_PortalService;
+        
+        public PortalService(string url) {
+            this.Url = url;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -88,9 +112,8 @@ namespace V6ThuePostXmlApi.PortalService {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
-        
-        public PortalService(string url) {
-            this.Url = url;
+        public PortalService() {
+            this.Url = global::V6ThuePostXmlApi.Properties.Settings.Default.V6ThuePostApi_PortalService_PortalService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -128,6 +151,12 @@ namespace V6ThuePostXmlApi.PortalService {
         public event listInvByCusCompletedEventHandler listInvByCusCompleted;
         
         /// <remarks/>
+        public event SearchInvCompletedEventHandler SearchInvCompleted;
+        
+        /// <remarks/>
+        public event getCatalogViewCompletedEventHandler getCatalogViewCompleted;
+        
+        /// <remarks/>
         public event getInvViewCompletedEventHandler getInvViewCompleted;
         
         /// <remarks/>
@@ -158,16 +187,28 @@ namespace V6ThuePostXmlApi.PortalService {
         public event listInvByCusFkeyVNPCompletedEventHandler listInvByCusFkeyVNPCompleted;
         
         /// <remarks/>
+        public event getcatalogViewFkeyCompletedEventHandler getcatalogViewFkeyCompleted;
+        
+        /// <remarks/>
         public event downloadInvPDFFkeyCompletedEventHandler downloadInvPDFFkeyCompleted;
         
         /// <remarks/>
         public event downloadInvPDFFkeyNoPayCompletedEventHandler downloadInvPDFFkeyNoPayCompleted;
         
         /// <remarks/>
+        public event downloadNewInvPDFFkeyCompletedEventHandler downloadNewInvPDFFkeyCompleted;
+        
+        /// <remarks/>
+        public event getInvViewFkeyByStaffCompletedEventHandler getInvViewFkeyByStaffCompleted;
+        
+        /// <remarks/>
         public event getInvViewFkeyCompletedEventHandler getInvViewFkeyCompleted;
         
         /// <remarks/>
         public event getInvViewFkeyNoPayCompletedEventHandler getInvViewFkeyNoPayCompleted;
+        
+        /// <remarks/>
+        public event getNewInvViewFkeyCompletedEventHandler getNewInvViewFkeyCompleted;
         
         /// <remarks/>
         public event convertForStoreFkeyCompletedEventHandler convertForStoreFkeyCompleted;
@@ -192,6 +233,24 @@ namespace V6ThuePostXmlApi.PortalService {
         
         /// <remarks/>
         public event getStaffCompletedEventHandler getStaffCompleted;
+        
+        /// <remarks/>
+        public event listInvFromNoToNoCompletedEventHandler listInvFromNoToNoCompleted;
+        
+        /// <remarks/>
+        public event loginportalCompletedEventHandler loginportalCompleted;
+        
+        /// <remarks/>
+        public event forgetpassCompletedEventHandler forgetpassCompleted;
+        
+        /// <remarks/>
+        public event changepasswordCompletedEventHandler changepasswordCompleted;
+        
+        /// <remarks/>
+        public event listCompanyCompletedEventHandler listCompanyCompleted;
+        
+        /// <remarks/>
+        public event listPatternByComCompletedEventHandler listPatternByComCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/listInvByCus", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -227,6 +286,90 @@ namespace V6ThuePostXmlApi.PortalService {
             if ((this.listInvByCusCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.listInvByCusCompleted(this, new listInvByCusCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SearchInv", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string SearchInv(string cusCode, string pattern, string serial, string fromDate, string toDate, string invNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> invStatus, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> page, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> cussignStatus, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> payment, string userName, string userPass) {
+            object[] results = this.Invoke("SearchInv", new object[] {
+                        cusCode,
+                        pattern,
+                        serial,
+                        fromDate,
+                        toDate,
+                        invNumber,
+                        invStatus,
+                        page,
+                        cussignStatus,
+                        payment,
+                        userName,
+                        userPass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SearchInvAsync(string cusCode, string pattern, string serial, string fromDate, string toDate, string invNumber, System.Nullable<int> invStatus, System.Nullable<int> page, System.Nullable<int> cussignStatus, System.Nullable<int> payment, string userName, string userPass) {
+            this.SearchInvAsync(cusCode, pattern, serial, fromDate, toDate, invNumber, invStatus, page, cussignStatus, payment, userName, userPass, null);
+        }
+        
+        /// <remarks/>
+        public void SearchInvAsync(string cusCode, string pattern, string serial, string fromDate, string toDate, string invNumber, System.Nullable<int> invStatus, System.Nullable<int> page, System.Nullable<int> cussignStatus, System.Nullable<int> payment, string userName, string userPass, object userState) {
+            if ((this.SearchInvOperationCompleted == null)) {
+                this.SearchInvOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSearchInvOperationCompleted);
+            }
+            this.InvokeAsync("SearchInv", new object[] {
+                        cusCode,
+                        pattern,
+                        serial,
+                        fromDate,
+                        toDate,
+                        invNumber,
+                        invStatus,
+                        page,
+                        cussignStatus,
+                        payment,
+                        userName,
+                        userPass}, this.SearchInvOperationCompleted, userState);
+        }
+        
+        private void OnSearchInvOperationCompleted(object arg) {
+            if ((this.SearchInvCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SearchInvCompleted(this, new SearchInvCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getCatalogView", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string getCatalogView(string invToken, string userName, string userPass) {
+            object[] results = this.Invoke("getCatalogView", new object[] {
+                        invToken,
+                        userName,
+                        userPass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getCatalogViewAsync(string invToken, string userName, string userPass) {
+            this.getCatalogViewAsync(invToken, userName, userPass, null);
+        }
+        
+        /// <remarks/>
+        public void getCatalogViewAsync(string invToken, string userName, string userPass, object userState) {
+            if ((this.getCatalogViewOperationCompleted == null)) {
+                this.getCatalogViewOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetCatalogViewOperationCompleted);
+            }
+            this.InvokeAsync("getCatalogView", new object[] {
+                        invToken,
+                        userName,
+                        userPass}, this.getCatalogViewOperationCompleted, userState);
+        }
+        
+        private void OngetCatalogViewOperationCompleted(object arg) {
+            if ((this.getCatalogViewCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getCatalogViewCompleted(this, new getCatalogViewCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -569,6 +712,39 @@ namespace V6ThuePostXmlApi.PortalService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getcatalogViewFkey", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string getcatalogViewFkey(string fkey, string userName, string userPass) {
+            object[] results = this.Invoke("getcatalogViewFkey", new object[] {
+                        fkey,
+                        userName,
+                        userPass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getcatalogViewFkeyAsync(string fkey, string userName, string userPass) {
+            this.getcatalogViewFkeyAsync(fkey, userName, userPass, null);
+        }
+        
+        /// <remarks/>
+        public void getcatalogViewFkeyAsync(string fkey, string userName, string userPass, object userState) {
+            if ((this.getcatalogViewFkeyOperationCompleted == null)) {
+                this.getcatalogViewFkeyOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetcatalogViewFkeyOperationCompleted);
+            }
+            this.InvokeAsync("getcatalogViewFkey", new object[] {
+                        fkey,
+                        userName,
+                        userPass}, this.getcatalogViewFkeyOperationCompleted, userState);
+        }
+        
+        private void OngetcatalogViewFkeyOperationCompleted(object arg) {
+            if ((this.getcatalogViewFkeyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getcatalogViewFkeyCompleted(this, new getcatalogViewFkeyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/downloadInvPDFFkey", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string downloadInvPDFFkey(string fkey, string userName, string userPass) {
             object[] results = this.Invoke("downloadInvPDFFkey", new object[] {
@@ -635,6 +811,72 @@ namespace V6ThuePostXmlApi.PortalService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/downloadNewInvPDFFkey", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string downloadNewInvPDFFkey(string fkey, string userName, string userPass) {
+            object[] results = this.Invoke("downloadNewInvPDFFkey", new object[] {
+                        fkey,
+                        userName,
+                        userPass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void downloadNewInvPDFFkeyAsync(string fkey, string userName, string userPass) {
+            this.downloadNewInvPDFFkeyAsync(fkey, userName, userPass, null);
+        }
+        
+        /// <remarks/>
+        public void downloadNewInvPDFFkeyAsync(string fkey, string userName, string userPass, object userState) {
+            if ((this.downloadNewInvPDFFkeyOperationCompleted == null)) {
+                this.downloadNewInvPDFFkeyOperationCompleted = new System.Threading.SendOrPostCallback(this.OndownloadNewInvPDFFkeyOperationCompleted);
+            }
+            this.InvokeAsync("downloadNewInvPDFFkey", new object[] {
+                        fkey,
+                        userName,
+                        userPass}, this.downloadNewInvPDFFkeyOperationCompleted, userState);
+        }
+        
+        private void OndownloadNewInvPDFFkeyOperationCompleted(object arg) {
+            if ((this.downloadNewInvPDFFkeyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.downloadNewInvPDFFkeyCompleted(this, new downloadNewInvPDFFkeyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getInvViewFkeyByStaff", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string getInvViewFkeyByStaff(string fkey, string userName, string userPass) {
+            object[] results = this.Invoke("getInvViewFkeyByStaff", new object[] {
+                        fkey,
+                        userName,
+                        userPass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getInvViewFkeyByStaffAsync(string fkey, string userName, string userPass) {
+            this.getInvViewFkeyByStaffAsync(fkey, userName, userPass, null);
+        }
+        
+        /// <remarks/>
+        public void getInvViewFkeyByStaffAsync(string fkey, string userName, string userPass, object userState) {
+            if ((this.getInvViewFkeyByStaffOperationCompleted == null)) {
+                this.getInvViewFkeyByStaffOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetInvViewFkeyByStaffOperationCompleted);
+            }
+            this.InvokeAsync("getInvViewFkeyByStaff", new object[] {
+                        fkey,
+                        userName,
+                        userPass}, this.getInvViewFkeyByStaffOperationCompleted, userState);
+        }
+        
+        private void OngetInvViewFkeyByStaffOperationCompleted(object arg) {
+            if ((this.getInvViewFkeyByStaffCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getInvViewFkeyByStaffCompleted(this, new getInvViewFkeyByStaffCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getInvViewFkey", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string getInvViewFkey(string fkey, string userName, string userPass) {
             object[] results = this.Invoke("getInvViewFkey", new object[] {
@@ -697,6 +939,39 @@ namespace V6ThuePostXmlApi.PortalService {
             if ((this.getInvViewFkeyNoPayCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getInvViewFkeyNoPayCompleted(this, new getInvViewFkeyNoPayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getNewInvViewFkey", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string getNewInvViewFkey(string fkey, string userName, string userPass) {
+            object[] results = this.Invoke("getNewInvViewFkey", new object[] {
+                        fkey,
+                        userName,
+                        userPass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getNewInvViewFkeyAsync(string fkey, string userName, string userPass) {
+            this.getNewInvViewFkeyAsync(fkey, userName, userPass, null);
+        }
+        
+        /// <remarks/>
+        public void getNewInvViewFkeyAsync(string fkey, string userName, string userPass, object userState) {
+            if ((this.getNewInvViewFkeyOperationCompleted == null)) {
+                this.getNewInvViewFkeyOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetNewInvViewFkeyOperationCompleted);
+            }
+            this.InvokeAsync("getNewInvViewFkey", new object[] {
+                        fkey,
+                        userName,
+                        userPass}, this.getNewInvViewFkeyOperationCompleted, userState);
+        }
+        
+        private void OngetNewInvViewFkeyOperationCompleted(object arg) {
+            if ((this.getNewInvViewFkeyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getNewInvViewFkeyCompleted(this, new getNewInvViewFkeyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -969,6 +1244,224 @@ namespace V6ThuePostXmlApi.PortalService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/listInvFromNoToNo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string listInvFromNoToNo(string invFromNo, string invToNo, string invPattern, string invSerial, string userName, string userPass) {
+            object[] results = this.Invoke("listInvFromNoToNo", new object[] {
+                        invFromNo,
+                        invToNo,
+                        invPattern,
+                        invSerial,
+                        userName,
+                        userPass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void listInvFromNoToNoAsync(string invFromNo, string invToNo, string invPattern, string invSerial, string userName, string userPass) {
+            this.listInvFromNoToNoAsync(invFromNo, invToNo, invPattern, invSerial, userName, userPass, null);
+        }
+        
+        /// <remarks/>
+        public void listInvFromNoToNoAsync(string invFromNo, string invToNo, string invPattern, string invSerial, string userName, string userPass, object userState) {
+            if ((this.listInvFromNoToNoOperationCompleted == null)) {
+                this.listInvFromNoToNoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnlistInvFromNoToNoOperationCompleted);
+            }
+            this.InvokeAsync("listInvFromNoToNo", new object[] {
+                        invFromNo,
+                        invToNo,
+                        invPattern,
+                        invSerial,
+                        userName,
+                        userPass}, this.listInvFromNoToNoOperationCompleted, userState);
+        }
+        
+        private void OnlistInvFromNoToNoOperationCompleted(object arg) {
+            if ((this.listInvFromNoToNoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.listInvFromNoToNoCompleted(this, new listInvFromNoToNoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/loginportal", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string loginportal(string Account, string ACpass, string userName, string pass, string comid) {
+            object[] results = this.Invoke("loginportal", new object[] {
+                        Account,
+                        ACpass,
+                        userName,
+                        pass,
+                        comid});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void loginportalAsync(string Account, string ACpass, string userName, string pass, string comid) {
+            this.loginportalAsync(Account, ACpass, userName, pass, comid, null);
+        }
+        
+        /// <remarks/>
+        public void loginportalAsync(string Account, string ACpass, string userName, string pass, string comid, object userState) {
+            if ((this.loginportalOperationCompleted == null)) {
+                this.loginportalOperationCompleted = new System.Threading.SendOrPostCallback(this.OnloginportalOperationCompleted);
+            }
+            this.InvokeAsync("loginportal", new object[] {
+                        Account,
+                        ACpass,
+                        userName,
+                        pass,
+                        comid}, this.loginportalOperationCompleted, userState);
+        }
+        
+        private void OnloginportalOperationCompleted(object arg) {
+            if ((this.loginportalCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.loginportalCompleted(this, new loginportalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/forgetpass", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string forgetpass(string Account, string userName, string pass, string comid) {
+            object[] results = this.Invoke("forgetpass", new object[] {
+                        Account,
+                        userName,
+                        pass,
+                        comid});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void forgetpassAsync(string Account, string userName, string pass, string comid) {
+            this.forgetpassAsync(Account, userName, pass, comid, null);
+        }
+        
+        /// <remarks/>
+        public void forgetpassAsync(string Account, string userName, string pass, string comid, object userState) {
+            if ((this.forgetpassOperationCompleted == null)) {
+                this.forgetpassOperationCompleted = new System.Threading.SendOrPostCallback(this.OnforgetpassOperationCompleted);
+            }
+            this.InvokeAsync("forgetpass", new object[] {
+                        Account,
+                        userName,
+                        pass,
+                        comid}, this.forgetpassOperationCompleted, userState);
+        }
+        
+        private void OnforgetpassOperationCompleted(object arg) {
+            if ((this.forgetpassCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.forgetpassCompleted(this, new forgetpassCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/changepassword", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string changepassword(string Account, string oldpassword, string newpassword, string userName, string pass, string comid) {
+            object[] results = this.Invoke("changepassword", new object[] {
+                        Account,
+                        oldpassword,
+                        newpassword,
+                        userName,
+                        pass,
+                        comid});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void changepasswordAsync(string Account, string oldpassword, string newpassword, string userName, string pass, string comid) {
+            this.changepasswordAsync(Account, oldpassword, newpassword, userName, pass, comid, null);
+        }
+        
+        /// <remarks/>
+        public void changepasswordAsync(string Account, string oldpassword, string newpassword, string userName, string pass, string comid, object userState) {
+            if ((this.changepasswordOperationCompleted == null)) {
+                this.changepasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnchangepasswordOperationCompleted);
+            }
+            this.InvokeAsync("changepassword", new object[] {
+                        Account,
+                        oldpassword,
+                        newpassword,
+                        userName,
+                        pass,
+                        comid}, this.changepasswordOperationCompleted, userState);
+        }
+        
+        private void OnchangepasswordOperationCompleted(object arg) {
+            if ((this.changepasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.changepasswordCompleted(this, new changepasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/listCompany", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string listCompany(string userName, string pass, string comid, string comtaxcode) {
+            object[] results = this.Invoke("listCompany", new object[] {
+                        userName,
+                        pass,
+                        comid,
+                        comtaxcode});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void listCompanyAsync(string userName, string pass, string comid, string comtaxcode) {
+            this.listCompanyAsync(userName, pass, comid, comtaxcode, null);
+        }
+        
+        /// <remarks/>
+        public void listCompanyAsync(string userName, string pass, string comid, string comtaxcode, object userState) {
+            if ((this.listCompanyOperationCompleted == null)) {
+                this.listCompanyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnlistCompanyOperationCompleted);
+            }
+            this.InvokeAsync("listCompany", new object[] {
+                        userName,
+                        pass,
+                        comid,
+                        comtaxcode}, this.listCompanyOperationCompleted, userState);
+        }
+        
+        private void OnlistCompanyOperationCompleted(object arg) {
+            if ((this.listCompanyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.listCompanyCompleted(this, new listCompanyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/listPatternByCom", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string listPatternByCom(string userName, string pass, string comid) {
+            object[] results = this.Invoke("listPatternByCom", new object[] {
+                        userName,
+                        pass,
+                        comid});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void listPatternByComAsync(string userName, string pass, string comid) {
+            this.listPatternByComAsync(userName, pass, comid, null);
+        }
+        
+        /// <remarks/>
+        public void listPatternByComAsync(string userName, string pass, string comid, object userState) {
+            if ((this.listPatternByComOperationCompleted == null)) {
+                this.listPatternByComOperationCompleted = new System.Threading.SendOrPostCallback(this.OnlistPatternByComOperationCompleted);
+            }
+            this.InvokeAsync("listPatternByCom", new object[] {
+                        userName,
+                        pass,
+                        comid}, this.listPatternByComOperationCompleted, userState);
+        }
+        
+        private void OnlistPatternByComOperationCompleted(object arg) {
+            if ((this.listPatternByComCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.listPatternByComCompleted(this, new listPatternByComCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -988,11 +1481,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void listInvByCusCompletedEventHandler(object sender, listInvByCusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class listInvByCusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1014,11 +1507,63 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void SearchInvCompletedEventHandler(object sender, SearchInvCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SearchInvCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SearchInvCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void getCatalogViewCompletedEventHandler(object sender, getCatalogViewCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getCatalogViewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getCatalogViewCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void getInvViewCompletedEventHandler(object sender, getInvViewCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getInvViewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1040,11 +1585,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void getInvViewNoPayCompletedEventHandler(object sender, getInvViewNoPayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getInvViewNoPayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1066,11 +1611,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void convertForStoreCompletedEventHandler(object sender, convertForStoreCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class convertForStoreCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1092,11 +1637,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void convertForVerifyCompletedEventHandler(object sender, convertForVerifyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class convertForVerifyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1118,11 +1663,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void downloadInvCompletedEventHandler(object sender, downloadInvCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class downloadInvCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1144,11 +1689,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void downloadInvNoPayCompletedEventHandler(object sender, downloadInvNoPayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class downloadInvNoPayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1170,11 +1715,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void downloadInvPDFCompletedEventHandler(object sender, downloadInvPDFCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class downloadInvPDFCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1196,11 +1741,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void downloadInvPDFNoPayCompletedEventHandler(object sender, downloadInvPDFNoPayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class downloadInvPDFNoPayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1222,11 +1767,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void listInvByCusFkeyCompletedEventHandler(object sender, listInvByCusFkeyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class listInvByCusFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1248,11 +1793,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void listInvByCusFkeyVNPCompletedEventHandler(object sender, listInvByCusFkeyVNPCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class listInvByCusFkeyVNPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1274,11 +1819,37 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void getcatalogViewFkeyCompletedEventHandler(object sender, getcatalogViewFkeyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getcatalogViewFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getcatalogViewFkeyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void downloadInvPDFFkeyCompletedEventHandler(object sender, downloadInvPDFFkeyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class downloadInvPDFFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1300,11 +1871,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void downloadInvPDFFkeyNoPayCompletedEventHandler(object sender, downloadInvPDFFkeyNoPayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class downloadInvPDFFkeyNoPayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1326,11 +1897,63 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void downloadNewInvPDFFkeyCompletedEventHandler(object sender, downloadNewInvPDFFkeyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class downloadNewInvPDFFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal downloadNewInvPDFFkeyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void getInvViewFkeyByStaffCompletedEventHandler(object sender, getInvViewFkeyByStaffCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getInvViewFkeyByStaffCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getInvViewFkeyByStaffCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void getInvViewFkeyCompletedEventHandler(object sender, getInvViewFkeyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getInvViewFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1352,11 +1975,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void getInvViewFkeyNoPayCompletedEventHandler(object sender, getInvViewFkeyNoPayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getInvViewFkeyNoPayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1378,11 +2001,37 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void getNewInvViewFkeyCompletedEventHandler(object sender, getNewInvViewFkeyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getNewInvViewFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getNewInvViewFkeyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void convertForStoreFkeyCompletedEventHandler(object sender, convertForStoreFkeyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class convertForStoreFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1404,11 +2053,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void convertForVerifyFkeyCompletedEventHandler(object sender, convertForVerifyFkeyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class convertForVerifyFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1430,11 +2079,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void downloadInvFkeyCompletedEventHandler(object sender, downloadInvFkeyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class downloadInvFkeyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1456,11 +2105,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void downloadInvFkeyNoPayCompletedEventHandler(object sender, downloadInvFkeyNoPayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class downloadInvFkeyNoPayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1482,11 +2131,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void getDigestCompletedEventHandler(object sender, getDigestCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getDigestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1508,11 +2157,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void ConfirmSigantureCompletedEventHandler(object sender, ConfirmSigantureCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConfirmSigantureCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1534,11 +2183,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void getCusCompletedEventHandler(object sender, getCusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getCusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1560,11 +2209,11 @@ namespace V6ThuePostXmlApi.PortalService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void getStaffCompletedEventHandler(object sender, getStaffCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getStaffCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1572,6 +2221,162 @@ namespace V6ThuePostXmlApi.PortalService {
         private object[] results;
         
         internal getStaffCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void listInvFromNoToNoCompletedEventHandler(object sender, listInvFromNoToNoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class listInvFromNoToNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal listInvFromNoToNoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void loginportalCompletedEventHandler(object sender, loginportalCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class loginportalCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal loginportalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void forgetpassCompletedEventHandler(object sender, forgetpassCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class forgetpassCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal forgetpassCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void changepasswordCompletedEventHandler(object sender, changepasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class changepasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal changepasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void listCompanyCompletedEventHandler(object sender, listCompanyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class listCompanyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal listCompanyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void listPatternByComCompletedEventHandler(object sender, listPatternByComCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class listPatternByComCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal listPatternByComCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

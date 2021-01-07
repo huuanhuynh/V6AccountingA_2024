@@ -220,7 +220,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                             {
                                 if (_maVt.VITRI_YN)
                                 {
-                                    _maLo.ReadOnlyTag();
+                                    _maLo.Enabled = false;
                                 }
                                 else
                                 {

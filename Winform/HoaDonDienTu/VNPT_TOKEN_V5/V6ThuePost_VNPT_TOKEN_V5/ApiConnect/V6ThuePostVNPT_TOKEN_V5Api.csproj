@@ -43,9 +43,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="V6Tools">
-      <HintPath>..\..\..\..\V6Tools\V6Tools\bin\Debug\V6Tools.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.Designer.cs">
@@ -63,7 +60,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Web References\PortalService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -123,10 +119,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://nuocbdgservicedemo.vnpt-invoice.com.vn/AttachmentService.asmx">
+    <WebReferenceUrl Include="https://3702288930-democadmin.vnpt-invoice.com.vn/AttachmentService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\AttachmentService\</RelPath>
-      <UpdateFromURL>https://nuocbdgservicedemo.vnpt-invoice.com.vn/AttachmentService.asmx</UpdateFromURL>
+      <UpdateFromURL>https://3702288930-democadmin.vnpt-invoice.com.vn/AttachmentService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -134,10 +130,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>V6ThuePostXmlApi_V6ThuePostXmlApiS_AttachmentService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://nuocbdgservicedemo.vnpt-invoice.com.vn/BusinessService.asmx">
+    <WebReferenceUrl Include="https://3702288930-democadmin.vnpt-invoice.com.vn/BusinessService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\BusinessService\</RelPath>
-      <UpdateFromURL>https://nuocbdgservicedemo.vnpt-invoice.com.vn/BusinessService.asmx</UpdateFromURL>
+      <UpdateFromURL>https://3702288930-democadmin.vnpt-invoice.com.vn/BusinessService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -145,10 +141,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>V6ThuePostApi_BusinessService_BusinessService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://0315511086-democadmin.vnpt-invoice.com.vn/PortalService.asmx">
+    <WebReferenceUrl Include="https://3702288930-democadmin.vnpt-invoice.com.vn/PortalService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\PortalService\</RelPath>
-      <UpdateFromURL>https://0315511086-democadmin.vnpt-invoice.com.vn/PortalService.asmx</UpdateFromURL>
+      <UpdateFromURL>https://3702288930-democadmin.vnpt-invoice.com.vn/PortalService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -156,10 +152,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>V6ThuePostApi_PortalService_PortalService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://0315511086-democadmin.vnpt-invoice.com.vn/PublishService.asmx">
+    <WebReferenceUrl Include="https://3702288930-democadmin.vnpt-invoice.com.vn/PublishService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\PublishService\</RelPath>
-      <UpdateFromURL>https://0315511086-democadmin.vnpt-invoice.com.vn/PublishService.asmx</UpdateFromURL>
+      <UpdateFromURL>https://3702288930-democadmin.vnpt-invoice.com.vn/PublishService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -181,6 +177,10 @@
     <None Include="Web References\AttachmentService\AttachmentService.disco" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\V6Tools\V6Tools\V6Tools.csproj">
+      <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
+      <Name>V6Tools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\PostObjects\V6ThuePostObjects.csproj">
       <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
       <Name>V6ThuePostObjects</Name>

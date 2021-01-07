@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using V6ThuePost.ResponseObjects;
-using V6ThuePostXmlApi.Web_References.BusinessService;
 
 namespace V6ThuePostXmlApi
 {
@@ -191,7 +190,7 @@ namespace V6ThuePostXmlApi
             v6return = new V6Return();
             try
             {
-                result = new BusinessService(_link_Business).confirmPayment(lstInvToken, userName, userPass);
+                result = new BusinessService.BusinessService(_link_Business).confirmPayment(lstInvToken, userName, userPass);
                 v6return.RESULT_STRING = result;
                 if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 
@@ -236,7 +235,7 @@ namespace V6ThuePostXmlApi
             v6return = new V6Return();
             try
             {
-                result = new BusinessService(_link_Business).confirmPaymentFkey(fkey_old, userName, userPass);
+                result = new BusinessService.BusinessService(_link_Business).confirmPaymentFkey(fkey_old, userName, userPass);
                 v6return.RESULT_STRING = result;
                 v6return.RESULT_OBJECT = result;
                 if (result.StartsWith("ERR:13"))
@@ -275,7 +274,7 @@ namespace V6ThuePostXmlApi
             v6return = new V6Return();
             try
             {
-                result = new BusinessService(_link_Business).UnConfirmPaymentFkey(fkey_old, userName, userPass);
+                result = new BusinessService.BusinessService(_link_Business).UnConfirmPaymentFkey(fkey_old, userName, userPass);
                 v6return.RESULT_STRING = result;
                 if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 
