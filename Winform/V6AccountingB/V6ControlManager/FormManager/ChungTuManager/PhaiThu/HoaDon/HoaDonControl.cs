@@ -3906,21 +3906,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     _gia_nt.Enabled = is_gia_dichdanh;
                     _gia.Enabled = is_gia_dichdanh && _gia_nt.Value == 0 && _maNt != _mMaNt0;
                     //}
-
-
+                    
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
 
                     if (M_SOA_MULTI_VAT == "1")
                     {
                         txtMa_thue.ReadOnly = true;
-                        txtTongThue.ReadOnly = true;
                         txtTongThueNt.ReadOnly = true;
+                        txtTongThue.ReadOnly = true;
                     }
                     else
                     {
                         txtMa_thue.ReadOnly = false;
-                        txtTongThue.ReadOnly = !chkT_THUE_NT.Checked;
                         txtTongThueNt.ReadOnly = !chkT_THUE_NT.Checked;
+                        txtTongThue.ReadOnly = !(chkT_THUE_NT.Checked && chkSuaTien.Checked);
                     }
                 }
 
@@ -7233,12 +7232,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
                 {
                     txtTongThueNt.ReadOnly = !chkT_THUE_NT.Checked;
-                    if (!chkSuaTien.Checked) txtTongThue.ReadOnly = txtTongThueNt.ReadOnly;
+                    txtTongThue.ReadOnly = !(chkT_THUE_NT.Checked && chkSuaTien.Checked);
 
                     if (chkT_THUE_NT.Checked && M_SOA_MULTI_VAT == "1")
                     {
                         _thue_nt.Enabled = true;
                         txtTongThueNt.ReadOnly = true;
+                        txtTongThue.ReadOnly = true;
                     }
                     else
                     {
@@ -7317,6 +7317,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _tienNt2.Enabled = chkSuaTien.Checked;
                 _ckNt.Enabled = chkSuaTien.Checked;
                 _tienNt.Enabled = chkSuaTien.Checked && _xuat_dd.Text != "";
+
+                txtTongThue.ReadOnly = !(chkT_THUE_NT.Checked && chkSuaTien.Checked);
             }
             if (chkSuaTien.Checked)
             {

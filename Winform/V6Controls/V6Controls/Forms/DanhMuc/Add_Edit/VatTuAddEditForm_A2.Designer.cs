@@ -104,7 +104,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label22 = new System.Windows.Forms.Label();
             this.tabMuaHang = new System.Windows.Forms.TabPage();
             this.v6NumberTextBox12 = new V6Controls.V6NumberTextBox();
-            this.label121 = new System.Windows.Forms.Label();
+            this.lblKhac = new System.Windows.Forms.Label();
             this.label120 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.txths_qd1 = new V6Controls.V6NumberTextBox();
@@ -209,7 +209,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.txtpma_khp = new V6Controls.V6VvarTextBox();
             this.txtpma_nvien = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox55 = new V6Controls.V6ColorTextBox();
             this.label85 = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
@@ -227,18 +226,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
             this.btnXoahinh = new System.Windows.Forms.Button();
             this.btnChonhinh = new System.Windows.Forms.Button();
-            this.dvtWidth = new V6Controls.V6ColorTextBox();
             this.dvtHeight = new V6Controls.V6ColorTextBox();
             this.dvtDiamet = new V6Controls.V6ColorTextBox();
-            this.dvtLength = new V6Controls.V6ColorTextBox();
-            this.dvtWeight0 = new V6Controls.V6ColorTextBox();
-            this.v6NumberTextBox21 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox20 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox19 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox18 = new V6Controls.V6NumberTextBox();
-            this.v6NumberTextBox17 = new V6Controls.V6NumberTextBox();
-            this.v6NumberTextBox16 = new V6Controls.V6NumberTextBox();
-            this.v6NumberTextBox15 = new V6Controls.V6NumberTextBox();
             this.v6ColorTextBox61 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox60 = new V6Controls.V6ColorTextBox();
             this.label103 = new System.Windows.Forms.Label();
@@ -259,7 +251,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label47 = new System.Windows.Forms.Label();
             this.v6NumberTextBox10 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox9 = new V6Controls.V6NumberTextBox();
-            this.v6NumberTextBox8 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox7 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox6 = new V6Controls.V6NumberTextBox();
             this.label84 = new System.Windows.Forms.Label();
@@ -313,6 +304,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label3 = new System.Windows.Forms.Label();
             this.lblTen = new System.Windows.Forms.Label();
             this.lblMa = new System.Windows.Forms.Label();
+            this.v6NumberTextBox21 = new V6Controls.V6NumberTextBox();
+            this.dvtWidth = new V6Controls.V6ColorTextBox();
+            this.dvtLength = new V6Controls.V6ColorTextBox();
+            this.dvtWeight0 = new V6Controls.V6ColorTextBox();
+            this.v6NumberTextBox17 = new V6Controls.V6NumberTextBox();
+            this.v6NumberTextBox16 = new V6Controls.V6NumberTextBox();
+            this.v6NumberTextBox15 = new V6Controls.V6NumberTextBox();
+            this.txtPrating = new V6Controls.V6ColorTextBox();
+            this.numThueSuatNK = new V6Controls.V6NumberTextBox();
+            this.txtMaThueNK = new V6Controls.V6VvarTextBox();
+            this.txtPdeliver = new V6Controls.V6NumberTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTaiKhoan.SuspendLayout();
@@ -1339,10 +1341,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.tabMuaHang.AccessibleDescription = "ADDEDITT00008";
             this.tabMuaHang.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabMuaHang.Controls.Add(this.txtPdeliver);
             this.tabMuaHang.Controls.Add(this.v6NumberTextBox12);
-            this.tabMuaHang.Controls.Add(this.label121);
+            this.tabMuaHang.Controls.Add(this.lblKhac);
             this.tabMuaHang.Controls.Add(this.label120);
             this.tabMuaHang.Controls.Add(this.label91);
+            this.tabMuaHang.Controls.Add(this.numThueSuatNK);
             this.tabMuaHang.Controls.Add(this.txths_qd1);
             this.tabMuaHang.Controls.Add(this.label119);
             this.tabMuaHang.Controls.Add(this.label118);
@@ -1350,6 +1354,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabMuaHang.Controls.Add(this.label46);
             this.tabMuaHang.Controls.Add(this.txtdvt_qd1);
             this.tabMuaHang.Controls.Add(this.label14);
+            this.tabMuaHang.Controls.Add(this.txtMaThueNK);
             this.tabMuaHang.Controls.Add(this.txtDVT);
             this.tabMuaHang.Controls.Add(this.checkBox2);
             this.tabMuaHang.Controls.Add(this.label18);
@@ -1383,15 +1388,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0});
             // 
-            // label121
+            // lblKhac
             // 
-            this.label121.AccessibleDescription = "ADDEDITL00083";
-            this.label121.AutoSize = true;
-            this.label121.Location = new System.Drawing.Point(9, 234);
-            this.label121.Name = "label121";
-            this.label121.Size = new System.Drawing.Size(40, 17);
-            this.label121.TabIndex = 13;
-            this.label121.Text = "Khác";
+            this.lblKhac.AccessibleDescription = "ADDEDITL00083";
+            this.lblKhac.AutoSize = true;
+            this.lblKhac.Location = new System.Drawing.Point(9, 234);
+            this.lblKhac.Name = "lblKhac";
+            this.lblKhac.Size = new System.Drawing.Size(40, 17);
+            this.lblKhac.TabIndex = 13;
+            this.lblKhac.Text = "Khác";
             // 
             // label120
             // 
@@ -1543,6 +1548,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabTonKho.AccessibleDescription = "ADDEDITT00006";
             this.tabTonKho.AutoScroll = true;
             this.tabTonKho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabTonKho.Controls.Add(this.txtPrating);
+            this.tabTonKho.Controls.Add(this.dvtWidth);
+            this.tabTonKho.Controls.Add(this.dvtLength);
+            this.tabTonKho.Controls.Add(this.dvtWeight0);
+            this.tabTonKho.Controls.Add(this.v6NumberTextBox17);
+            this.tabTonKho.Controls.Add(this.v6NumberTextBox16);
+            this.tabTonKho.Controls.Add(this.v6NumberTextBox15);
+            this.tabTonKho.Controls.Add(this.v6NumberTextBox21);
             this.tabTonKho.Controls.Add(this.label125);
             this.tabTonKho.Controls.Add(this.label126);
             this.tabTonKho.Controls.Add(this.label122);
@@ -1599,7 +1612,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtWeight.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dvtWeight.HoverColor = System.Drawing.Color.Yellow;
             this.dvtWeight.LeaveColor = System.Drawing.Color.White;
-            this.dvtWeight.Location = new System.Drawing.Point(357, 65);
+            this.dvtWeight.Location = new System.Drawing.Point(357, 61);
             this.dvtWeight.Name = "dvtWeight";
             this.dvtWeight.Size = new System.Drawing.Size(100, 23);
             this.dvtWeight.TabIndex = 42;
@@ -1614,7 +1627,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox14.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox14.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox14.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox14.Location = new System.Drawing.Point(168, 65);
+            this.v6NumberTextBox14.Location = new System.Drawing.Point(168, 61);
             this.v6NumberTextBox14.Name = "v6NumberTextBox14";
             this.v6NumberTextBox14.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox14.TabIndex = 41;
@@ -1636,7 +1649,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox59.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox59.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox59.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox59.Location = new System.Drawing.Point(168, 40);
+            this.v6ColorTextBox59.Location = new System.Drawing.Point(168, 36);
             this.v6ColorTextBox59.Name = "v6ColorTextBox59";
             this.v6ColorTextBox59.Size = new System.Drawing.Size(184, 23);
             this.v6ColorTextBox59.TabIndex = 39;
@@ -2973,7 +2986,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabThongTinKhac.Controls.Add(this.v6NumberTextBox1);
             this.tabThongTinKhac.Controls.Add(this.txtpma_khp);
             this.tabThongTinKhac.Controls.Add(this.txtpma_nvien);
-            this.tabThongTinKhac.Controls.Add(this.v6ColorTextBox55);
             this.tabThongTinKhac.Controls.Add(this.label85);
             this.tabThongTinKhac.Controls.Add(this.label76);
             this.tabThongTinKhac.Controls.Add(this.label79);
@@ -2991,18 +3003,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabThongTinKhac.Controls.Add(this.ptbPHOTOGRAPH);
             this.tabThongTinKhac.Controls.Add(this.btnXoahinh);
             this.tabThongTinKhac.Controls.Add(this.btnChonhinh);
-            this.tabThongTinKhac.Controls.Add(this.dvtWidth);
             this.tabThongTinKhac.Controls.Add(this.dvtHeight);
             this.tabThongTinKhac.Controls.Add(this.dvtDiamet);
-            this.tabThongTinKhac.Controls.Add(this.dvtLength);
-            this.tabThongTinKhac.Controls.Add(this.dvtWeight0);
-            this.tabThongTinKhac.Controls.Add(this.v6NumberTextBox21);
             this.tabThongTinKhac.Controls.Add(this.v6NumberTextBox20);
             this.tabThongTinKhac.Controls.Add(this.v6NumberTextBox19);
             this.tabThongTinKhac.Controls.Add(this.v6NumberTextBox18);
-            this.tabThongTinKhac.Controls.Add(this.v6NumberTextBox17);
-            this.tabThongTinKhac.Controls.Add(this.v6NumberTextBox16);
-            this.tabThongTinKhac.Controls.Add(this.v6NumberTextBox15);
             this.tabThongTinKhac.Controls.Add(this.v6ColorTextBox61);
             this.tabThongTinKhac.Controls.Add(this.v6ColorTextBox60);
             this.tabThongTinKhac.Controls.Add(this.label103);
@@ -3080,21 +3085,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtpma_nvien.Size = new System.Drawing.Size(190, 23);
             this.txtpma_nvien.TabIndex = 62;
             this.txtpma_nvien.VVar = "ma_nvien";
-            // 
-            // v6ColorTextBox55
-            // 
-            this.v6ColorTextBox55.AccessibleName = "prating";
-            this.v6ColorTextBox55.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox55.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox55.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox55.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox55.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox55.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox55.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox55.Location = new System.Drawing.Point(538, 358);
-            this.v6ColorTextBox55.Name = "v6ColorTextBox55";
-            this.v6ColorTextBox55.Size = new System.Drawing.Size(191, 23);
-            this.v6ColorTextBox55.TabIndex = 67;
             // 
             // label85
             // 
@@ -3312,21 +3302,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnChonhinh.UseVisualStyleBackColor = true;
             this.btnChonhinh.Click += new System.EventHandler(this.btnChonhinh_Click);
             // 
-            // dvtWidth
-            // 
-            this.dvtWidth.AccessibleName = "dvtwidth";
-            this.dvtWidth.BackColor = System.Drawing.SystemColors.Window;
-            this.dvtWidth.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.dvtWidth.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dvtWidth.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dvtWidth.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.dvtWidth.HoverColor = System.Drawing.Color.Yellow;
-            this.dvtWidth.LeaveColor = System.Drawing.Color.White;
-            this.dvtWidth.Location = new System.Drawing.Point(339, 144);
-            this.dvtWidth.Name = "dvtWidth";
-            this.dvtWidth.Size = new System.Drawing.Size(100, 23);
-            this.dvtWidth.TabIndex = 17;
-            // 
             // dvtHeight
             // 
             this.dvtHeight.AccessibleName = "dvtheight";
@@ -3356,58 +3331,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtDiamet.Name = "dvtDiamet";
             this.dvtDiamet.Size = new System.Drawing.Size(100, 23);
             this.dvtDiamet.TabIndex = 23;
-            // 
-            // dvtLength
-            // 
-            this.dvtLength.AccessibleName = "dvtlength";
-            this.dvtLength.BackColor = System.Drawing.SystemColors.Window;
-            this.dvtLength.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.dvtLength.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dvtLength.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dvtLength.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.dvtLength.HoverColor = System.Drawing.Color.Yellow;
-            this.dvtLength.LeaveColor = System.Drawing.Color.White;
-            this.dvtLength.Location = new System.Drawing.Point(339, 121);
-            this.dvtLength.Name = "dvtLength";
-            this.dvtLength.Size = new System.Drawing.Size(100, 23);
-            this.dvtLength.TabIndex = 14;
-            // 
-            // dvtWeight0
-            // 
-            this.dvtWeight0.AccessibleName = "dvtweight0";
-            this.dvtWeight0.BackColor = System.Drawing.SystemColors.Window;
-            this.dvtWeight0.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.dvtWeight0.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dvtWeight0.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dvtWeight0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.dvtWeight0.HoverColor = System.Drawing.Color.Yellow;
-            this.dvtWeight0.LeaveColor = System.Drawing.Color.White;
-            this.dvtWeight0.Location = new System.Drawing.Point(339, 98);
-            this.dvtWeight0.Name = "dvtWeight0";
-            this.dvtWeight0.Size = new System.Drawing.Size(100, 23);
-            this.dvtWeight0.TabIndex = 11;
-            // 
-            // v6NumberTextBox21
-            // 
-            this.v6NumberTextBox21.AccessibleName = "packs1";
-            this.v6NumberTextBox21.BackColor = System.Drawing.SystemColors.Window;
-            this.v6NumberTextBox21.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox21.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6NumberTextBox21.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox21.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox21.HoverColor = System.Drawing.Color.Yellow;
-            this.v6NumberTextBox21.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox21.Location = new System.Drawing.Point(150, 236);
-            this.v6NumberTextBox21.Name = "v6NumberTextBox21";
-            this.v6NumberTextBox21.Size = new System.Drawing.Size(184, 23);
-            this.v6NumberTextBox21.TabIndex = 28;
-            this.v6NumberTextBox21.Text = "0,000";
-            this.v6NumberTextBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox21.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // v6NumberTextBox20
             // 
@@ -3470,72 +3393,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox18.Text = "0,000";
             this.v6NumberTextBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox18.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // v6NumberTextBox17
-            // 
-            this.v6NumberTextBox17.AccessibleName = "width";
-            this.v6NumberTextBox17.BackColor = System.Drawing.SystemColors.Window;
-            this.v6NumberTextBox17.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox17.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6NumberTextBox17.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox17.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox17.HoverColor = System.Drawing.Color.Yellow;
-            this.v6NumberTextBox17.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox17.Location = new System.Drawing.Point(150, 144);
-            this.v6NumberTextBox17.Name = "v6NumberTextBox17";
-            this.v6NumberTextBox17.Size = new System.Drawing.Size(184, 23);
-            this.v6NumberTextBox17.TabIndex = 16;
-            this.v6NumberTextBox17.Text = "0,000";
-            this.v6NumberTextBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox17.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // v6NumberTextBox16
-            // 
-            this.v6NumberTextBox16.AccessibleName = "length";
-            this.v6NumberTextBox16.BackColor = System.Drawing.SystemColors.Window;
-            this.v6NumberTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6NumberTextBox16.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox16.HoverColor = System.Drawing.Color.Yellow;
-            this.v6NumberTextBox16.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox16.Location = new System.Drawing.Point(150, 121);
-            this.v6NumberTextBox16.Name = "v6NumberTextBox16";
-            this.v6NumberTextBox16.Size = new System.Drawing.Size(184, 23);
-            this.v6NumberTextBox16.TabIndex = 13;
-            this.v6NumberTextBox16.Text = "0,000";
-            this.v6NumberTextBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox16.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // v6NumberTextBox15
-            // 
-            this.v6NumberTextBox15.AccessibleName = "weight0";
-            this.v6NumberTextBox15.BackColor = System.Drawing.SystemColors.Window;
-            this.v6NumberTextBox15.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox15.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6NumberTextBox15.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox15.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox15.HoverColor = System.Drawing.Color.Yellow;
-            this.v6NumberTextBox15.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox15.Location = new System.Drawing.Point(150, 98);
-            this.v6NumberTextBox15.Name = "v6NumberTextBox15";
-            this.v6NumberTextBox15.Size = new System.Drawing.Size(184, 23);
-            this.v6NumberTextBox15.TabIndex = 10;
-            this.v6NumberTextBox15.Text = "0,000";
-            this.v6NumberTextBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox15.Value = new decimal(new int[] {
             0,
             0,
             0,
@@ -3672,7 +3529,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabThongTinKhac2.Controls.Add(this.label47);
             this.tabThongTinKhac2.Controls.Add(this.v6NumberTextBox10);
             this.tabThongTinKhac2.Controls.Add(this.v6NumberTextBox9);
-            this.tabThongTinKhac2.Controls.Add(this.v6NumberTextBox8);
             this.tabThongTinKhac2.Controls.Add(this.v6NumberTextBox7);
             this.tabThongTinKhac2.Controls.Add(this.v6NumberTextBox6);
             this.tabThongTinKhac2.Controls.Add(this.label84);
@@ -3859,28 +3715,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox9.Text = "0,000";
             this.v6NumberTextBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox9.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // v6NumberTextBox8
-            // 
-            this.v6NumberTextBox8.AccessibleName = "pdeliver";
-            this.v6NumberTextBox8.BackColor = System.Drawing.Color.White;
-            this.v6NumberTextBox8.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox8.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6NumberTextBox8.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox8.HoverColor = System.Drawing.Color.Yellow;
-            this.v6NumberTextBox8.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox8.Location = new System.Drawing.Point(527, 298);
-            this.v6NumberTextBox8.Name = "v6NumberTextBox8";
-            this.v6NumberTextBox8.Size = new System.Drawing.Size(191, 23);
-            this.v6NumberTextBox8.TabIndex = 78;
-            this.v6NumberTextBox8.Text = "0,000";
-            this.v6NumberTextBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox8.Value = new decimal(new int[] {
             0,
             0,
             0,
@@ -4640,6 +4474,214 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.lblMa.TabIndex = 0;
             this.lblMa.Text = "Mã vật tư";
             // 
+            // v6NumberTextBox21
+            // 
+            this.v6NumberTextBox21.AccessibleName = "packs1";
+            this.v6NumberTextBox21.BackColor = System.Drawing.SystemColors.Window;
+            this.v6NumberTextBox21.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6NumberTextBox21.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox21.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox21.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox21.HoverColor = System.Drawing.Color.Yellow;
+            this.v6NumberTextBox21.LeaveColor = System.Drawing.Color.White;
+            this.v6NumberTextBox21.Location = new System.Drawing.Point(168, 161);
+            this.v6NumberTextBox21.Name = "v6NumberTextBox21";
+            this.v6NumberTextBox21.Size = new System.Drawing.Size(184, 23);
+            this.v6NumberTextBox21.TabIndex = 52;
+            this.v6NumberTextBox21.Text = "0,000";
+            this.v6NumberTextBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6NumberTextBox21.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // dvtWidth
+            // 
+            this.dvtWidth.AccessibleName = "dvtwidth";
+            this.dvtWidth.BackColor = System.Drawing.SystemColors.Window;
+            this.dvtWidth.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dvtWidth.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dvtWidth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.dvtWidth.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.dvtWidth.HoverColor = System.Drawing.Color.Yellow;
+            this.dvtWidth.LeaveColor = System.Drawing.Color.White;
+            this.dvtWidth.Location = new System.Drawing.Point(357, 136);
+            this.dvtWidth.Name = "dvtWidth";
+            this.dvtWidth.Size = new System.Drawing.Size(100, 23);
+            this.dvtWidth.TabIndex = 58;
+            // 
+            // dvtLength
+            // 
+            this.dvtLength.AccessibleName = "dvtlength";
+            this.dvtLength.BackColor = System.Drawing.SystemColors.Window;
+            this.dvtLength.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dvtLength.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dvtLength.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.dvtLength.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.dvtLength.HoverColor = System.Drawing.Color.Yellow;
+            this.dvtLength.LeaveColor = System.Drawing.Color.White;
+            this.dvtLength.Location = new System.Drawing.Point(357, 111);
+            this.dvtLength.Name = "dvtLength";
+            this.dvtLength.Size = new System.Drawing.Size(100, 23);
+            this.dvtLength.TabIndex = 56;
+            // 
+            // dvtWeight0
+            // 
+            this.dvtWeight0.AccessibleName = "dvtweight0";
+            this.dvtWeight0.BackColor = System.Drawing.SystemColors.Window;
+            this.dvtWeight0.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dvtWeight0.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dvtWeight0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.dvtWeight0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.dvtWeight0.HoverColor = System.Drawing.Color.Yellow;
+            this.dvtWeight0.LeaveColor = System.Drawing.Color.White;
+            this.dvtWeight0.Location = new System.Drawing.Point(357, 86);
+            this.dvtWeight0.Name = "dvtWeight0";
+            this.dvtWeight0.Size = new System.Drawing.Size(100, 23);
+            this.dvtWeight0.TabIndex = 54;
+            // 
+            // v6NumberTextBox17
+            // 
+            this.v6NumberTextBox17.AccessibleName = "width";
+            this.v6NumberTextBox17.BackColor = System.Drawing.SystemColors.Window;
+            this.v6NumberTextBox17.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6NumberTextBox17.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox17.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox17.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox17.HoverColor = System.Drawing.Color.Yellow;
+            this.v6NumberTextBox17.LeaveColor = System.Drawing.Color.White;
+            this.v6NumberTextBox17.Location = new System.Drawing.Point(168, 136);
+            this.v6NumberTextBox17.Name = "v6NumberTextBox17";
+            this.v6NumberTextBox17.Size = new System.Drawing.Size(184, 23);
+            this.v6NumberTextBox17.TabIndex = 57;
+            this.v6NumberTextBox17.Text = "0,000";
+            this.v6NumberTextBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6NumberTextBox17.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v6NumberTextBox16
+            // 
+            this.v6NumberTextBox16.AccessibleName = "length";
+            this.v6NumberTextBox16.BackColor = System.Drawing.SystemColors.Window;
+            this.v6NumberTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6NumberTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox16.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox16.HoverColor = System.Drawing.Color.Yellow;
+            this.v6NumberTextBox16.LeaveColor = System.Drawing.Color.White;
+            this.v6NumberTextBox16.Location = new System.Drawing.Point(168, 111);
+            this.v6NumberTextBox16.Name = "v6NumberTextBox16";
+            this.v6NumberTextBox16.Size = new System.Drawing.Size(184, 23);
+            this.v6NumberTextBox16.TabIndex = 55;
+            this.v6NumberTextBox16.Text = "0,000";
+            this.v6NumberTextBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6NumberTextBox16.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v6NumberTextBox15
+            // 
+            this.v6NumberTextBox15.AccessibleName = "weight0";
+            this.v6NumberTextBox15.BackColor = System.Drawing.SystemColors.Window;
+            this.v6NumberTextBox15.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6NumberTextBox15.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox15.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox15.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox15.HoverColor = System.Drawing.Color.Yellow;
+            this.v6NumberTextBox15.LeaveColor = System.Drawing.Color.White;
+            this.v6NumberTextBox15.Location = new System.Drawing.Point(168, 86);
+            this.v6NumberTextBox15.Name = "v6NumberTextBox15";
+            this.v6NumberTextBox15.Size = new System.Drawing.Size(184, 23);
+            this.v6NumberTextBox15.TabIndex = 53;
+            this.v6NumberTextBox15.Text = "0,000";
+            this.v6NumberTextBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6NumberTextBox15.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtPrating
+            // 
+            this.txtPrating.AccessibleName = "prating";
+            this.txtPrating.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPrating.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPrating.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPrating.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPrating.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPrating.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPrating.LeaveColor = System.Drawing.Color.White;
+            this.txtPrating.Location = new System.Drawing.Point(168, 11);
+            this.txtPrating.Name = "txtPrating";
+            this.txtPrating.Size = new System.Drawing.Size(184, 23);
+            this.txtPrating.TabIndex = 68;
+            // 
+            // numThueSuatNK
+            // 
+            this.numThueSuatNK.AccessibleName = "THUES_NK";
+            this.numThueSuatNK.BackColor = System.Drawing.SystemColors.Window;
+            this.numThueSuatNK.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.numThueSuatNK.EnterColor = System.Drawing.Color.PaleGreen;
+            this.numThueSuatNK.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.numThueSuatNK.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.numThueSuatNK.HoverColor = System.Drawing.Color.Yellow;
+            this.numThueSuatNK.LeaveColor = System.Drawing.Color.White;
+            this.numThueSuatNK.Location = new System.Drawing.Point(177, 116);
+            this.numThueSuatNK.Name = "numThueSuatNK";
+            this.numThueSuatNK.Size = new System.Drawing.Size(184, 23);
+            this.numThueSuatNK.TabIndex = 6;
+            this.numThueSuatNK.Text = "0,000";
+            this.numThueSuatNK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numThueSuatNK.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtMaThueNK
+            // 
+            this.txtMaThueNK.AccessibleName = "MA_THUENK";
+            this.txtMaThueNK.BackColor = System.Drawing.Color.White;
+            this.txtMaThueNK.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaThueNK.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaThueNK.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaThueNK.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaThueNK.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaThueNK.LeaveColor = System.Drawing.Color.White;
+            this.txtMaThueNK.Location = new System.Drawing.Point(177, 145);
+            this.txtMaThueNK.Name = "txtMaThueNK";
+            this.txtMaThueNK.Size = new System.Drawing.Size(184, 23);
+            this.txtMaThueNK.TabIndex = 1;
+            this.txtMaThueNK.VVar = "MA_THUE30";
+            // 
+            // txtPdeliver
+            // 
+            this.txtPdeliver.AccessibleName = "pdeliver";
+            this.txtPdeliver.BackColor = System.Drawing.Color.White;
+            this.txtPdeliver.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPdeliver.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPdeliver.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPdeliver.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPdeliver.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPdeliver.LeaveColor = System.Drawing.Color.White;
+            this.txtPdeliver.Location = new System.Drawing.Point(203, 203);
+            this.txtPdeliver.Name = "txtPdeliver";
+            this.txtPdeliver.Size = new System.Drawing.Size(191, 23);
+            this.txtPdeliver.TabIndex = 79;
+            this.txtPdeliver.Text = "0,000";
+            this.txtPdeliver.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPdeliver.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // VatTuAddEditForm_A2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4720,18 +4762,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private V6NumberTextBox v6NumberTextBox3;
         private V6NumberTextBox v6NumberTextBox2;
         private System.Windows.Forms.TabPage tabThongTinKhac;
-        private V6ColorTextBox dvtWidth;
         private V6ColorTextBox dvtHeight;
         private V6ColorTextBox dvtDiamet;
-        private V6ColorTextBox dvtLength;
-        private V6ColorTextBox dvtWeight0;
-        private V6NumberTextBox v6NumberTextBox21;
         private V6NumberTextBox v6NumberTextBox20;
         private V6NumberTextBox v6NumberTextBox19;
         private V6NumberTextBox v6NumberTextBox18;
-        private V6NumberTextBox v6NumberTextBox17;
-        private V6NumberTextBox v6NumberTextBox16;
-        private V6NumberTextBox v6NumberTextBox15;
         private V6ColorTextBox v6ColorTextBox61;
         private V6ColorTextBox v6ColorTextBox60;
         private System.Windows.Forms.Label label103;
@@ -4851,7 +4886,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private V6NumberTextBox v6NumberTextBox12;
         private System.Windows.Forms.Label label120;
         private System.Windows.Forms.Label label91;
-        private System.Windows.Forms.Label label121;
+        private System.Windows.Forms.Label lblKhac;
         private System.Windows.Forms.Label label122;
         private System.Windows.Forms.Label label124;
         private System.Windows.Forms.Label label123;
@@ -4945,7 +4980,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label47;
         private V6NumberTextBox v6NumberTextBox10;
         private V6NumberTextBox v6NumberTextBox9;
-        private V6NumberTextBox v6NumberTextBox8;
         private V6NumberTextBox v6NumberTextBox7;
         private V6NumberTextBox v6NumberTextBox6;
         private System.Windows.Forms.Label label84;
@@ -4955,11 +4989,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label80;
         private V6VvarTextBox txtpma_khp;
         private V6VvarTextBox txtpma_nvien;
-        private V6ColorTextBox v6ColorTextBox55;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.Label label79;
         private System.Windows.Forms.Label label78;
         private V6NumberTextBox v6NumberTextBox1;
+        private V6ColorTextBox dvtWidth;
+        private V6ColorTextBox dvtLength;
+        private V6ColorTextBox dvtWeight0;
+        private V6NumberTextBox v6NumberTextBox17;
+        private V6NumberTextBox v6NumberTextBox16;
+        private V6NumberTextBox v6NumberTextBox15;
+        private V6NumberTextBox v6NumberTextBox21;
+        private V6ColorTextBox txtPrating;
+        private V6NumberTextBox numThueSuatNK;
+        private V6VvarTextBox txtMaThueNK;
+        private V6NumberTextBox txtPdeliver;
     }
 }

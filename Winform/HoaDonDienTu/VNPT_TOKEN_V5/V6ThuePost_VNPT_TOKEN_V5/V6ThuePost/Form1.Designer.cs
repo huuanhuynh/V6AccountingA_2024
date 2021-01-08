@@ -54,6 +54,9 @@
             this.btnAutoInput = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnSend0 = new System.Windows.Forms.Button();
+            this.txtPattern = new System.Windows.Forms.TextBox();
+            this.txtSeri = new System.Windows.Forms.TextBox();
+            this.btnUpdatePatternSeri = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSend
@@ -237,7 +240,7 @@
             // 
             this.btnUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUpload.Enabled = false;
-            this.btnUpload.Location = new System.Drawing.Point(453, 645);
+            this.btnUpload.Location = new System.Drawing.Point(540, 647);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 23);
             this.btnUpload.TabIndex = 10;
@@ -271,7 +274,7 @@
             // 
             this.btnImportCertWithToken.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnImportCertWithToken.Enabled = false;
-            this.btnImportCertWithToken.Location = new System.Drawing.Point(290, 567);
+            this.btnImportCertWithToken.Location = new System.Drawing.Point(257, 568);
             this.btnImportCertWithToken.Name = "btnImportCertWithToken";
             this.btnImportCertWithToken.Size = new System.Drawing.Size(135, 23);
             this.btnImportCertWithToken.TabIndex = 10;
@@ -327,11 +330,44 @@
             this.btnSend0.UseVisualStyleBackColor = true;
             this.btnSend0.Click += new System.EventHandler(this.btnSend0_Click);
             // 
+            // txtPattern
+            // 
+            this.txtPattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPattern.Location = new System.Drawing.Point(257, 648);
+            this.txtPattern.Name = "txtPattern";
+            this.txtPattern.Size = new System.Drawing.Size(100, 20);
+            this.txtPattern.TabIndex = 14;
+            this.txtPattern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPattern_KeyPress);
+            // 
+            // txtSeri
+            // 
+            this.txtSeri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtSeri.Location = new System.Drawing.Point(361, 648);
+            this.txtSeri.Name = "txtSeri";
+            this.txtSeri.Size = new System.Drawing.Size(64, 20);
+            this.txtSeri.TabIndex = 15;
+            this.txtSeri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSeri_KeyPress);
+            // 
+            // btnUpdatePatternSeri
+            // 
+            this.btnUpdatePatternSeri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUpdatePatternSeri.Enabled = false;
+            this.btnUpdatePatternSeri.Location = new System.Drawing.Point(431, 647);
+            this.btnUpdatePatternSeri.Name = "btnUpdatePatternSeri";
+            this.btnUpdatePatternSeri.Size = new System.Drawing.Size(139, 23);
+            this.btnUpdatePatternSeri.TabIndex = 13;
+            this.btnUpdatePatternSeri.Text = "Update partern seri";
+            this.btnUpdatePatternSeri.UseVisualStyleBackColor = true;
+            this.btnUpdatePatternSeri.Click += new System.EventHandler(this.btnUpdatePatternSeri_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 679);
+            this.Controls.Add(this.txtSeri);
+            this.Controls.Add(this.txtPattern);
+            this.Controls.Add(this.btnUpdatePatternSeri);
             this.Controls.Add(this.btnSend0);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txtPassword);
@@ -394,6 +430,9 @@
         private System.Windows.Forms.Button btnAutoInput;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnSend0;
+        private System.Windows.Forms.TextBox txtPattern;
+        private System.Windows.Forms.TextBox txtSeri;
+        private System.Windows.Forms.Button btnUpdatePatternSeri;
     }
 }
 

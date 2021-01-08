@@ -78,8 +78,12 @@ namespace V6ThuePost
         /// serial của chứng thư công ty đã đăng ký trong hệ thống.
         /// </summary>
         public static string SERIAL_CERT;
-        private static string pattern, pattern_field;
-        private static string seri, seri_field;
+
+        public static string pattern;
+        private static string pattern_field;
+        public static string seri;
+        private static string seri_field;
+
         private static string convert = "0";
         //Auto input setting
         private static string token_password_title = "";
@@ -100,7 +104,7 @@ namespace V6ThuePost
         /// </summary>
         private static string fkey0 = "V6";
         /// <summary>
-        /// key trong data
+        /// key trong data, Fkey của Invoice.
         /// </summary>
         public static string fkeyA;
         /// <summary>
@@ -1606,11 +1610,18 @@ namespace V6ThuePost
             try
             {
                 var publishService = new PublishService(link_Publish);
+                // Gửi chưa phát hành
                 result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
+                //
+                //publishService.ImportAndPublishInvAsync(account, accountpassword, xml, username, password, pattern, seri, 0, null);
+                //result = publishService.ImportAndPublishInvSignService(account, accountpassword, xml, username, password, 0, "invToken", pattern, seri, 0);
+                //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
+                //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
                 //"OK:01GTKT0/001;VT/19E-V6XNCT_05A0283806HDA"      "OK:01GTKT0/001;VT/19E-A0283806HDA" "OK:01GTKT0/001;VT/19E-A0283807HDA"
                 if (result.StartsWith("OK"))
                 {
-
+                    //seri = "LX/20E";
+                    string publishByFkey = publishService.PublishInvFkey(account, accountpassword, fkeyA, username, password, pattern, seri);
                 }
                 else if (result.StartsWith("ERR:20"))
                 {
@@ -1665,7 +1676,7 @@ namespace V6ThuePost
             try
             {
                 var publishService = new PublishService(link_Publish);
-                seri = "LX/20E";
+                //seri = "LX/20E";
                 result = publishService.ImportAndPublishInv(account, accountpassword, xml, username, password, pattern, seri, convert == "1" ? 1 : 0);
                 //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
                 if (result.StartsWith("OK"))

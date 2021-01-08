@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace V6ThuePost
@@ -30,6 +31,11 @@ namespace V6ThuePost
             btnSendS.Enabled = false;
             btnSendNoSign.Enabled = true;
             btnTest.Enabled = true;
+
+
+            txtPattern.Text = Program.pattern;
+            txtSeri.Text = Program.seri;
+            btnUpdatePatternSeri.Enabled = true;
         }
         
         private void btnReadS_Click(object sender, EventArgs e)
@@ -41,8 +47,12 @@ namespace V6ThuePost
             txtURL.Text = Program.link_Publish;
             richTextBox1.Text = xmlData;
 
+            txtPattern.Text = Program.pattern;
+            txtSeri.Text = Program.seri;
+
             btnSend.Enabled = false;
             btnSendS.Enabled = true;
+            btnUpdatePatternSeri.Enabled = true;
         }
         
         private void btnReadT_Click(object sender, EventArgs e)
@@ -192,6 +202,24 @@ namespace V6ThuePost
             {
                 BaseMessage.Show(result, 0, this);
             }
+        }
+
+        private void btnUpdatePatternSeri_Click(object sender, EventArgs e)
+        {
+            Program.pattern = txtPattern.Text;
+            txtPattern.BackColor = Color.White;
+            Program.seri = txtSeri.Text;
+            txtSeri.BackColor = Color.White;
+        }
+
+        private void txtPattern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtPattern.BackColor = Color.Red;
+        }
+
+        private void txtSeri_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtSeri.BackColor = Color.Red;
         }
         
     }

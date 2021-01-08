@@ -134,7 +134,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho, _maKhoI, _tkTl, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21;
-        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd30, _hs_qd4, _ggNt, _gg, _pt_cki, _thue_suat_i, _thue_nt, _thue;
+        private V6NumberTextBox _ton13, _ton13s, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd30, _hs_qd4, _ggNt, _gg, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6DateTimeColor _hanSd;
 
         private void LoadDetailControls()
@@ -326,6 +326,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         break;
                     case "TON13":
                         _ton13 = (V6NumberTextBox)control;
+                        _ton13.Tag = "disable";
+                        break;
+                    case "TON13S":
+                        _ton13s = (V6NumberTextBox)control;
                         _ton13.Tag = "disable";
                         break;
                     case "TON13QD":
@@ -1341,6 +1345,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         _ton13.Value = 0;
                         if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = 0;
                     }
+
+                    if (_ton13s != null) _ton13s.Value = _ton13.Value;
                 }
             }
             catch (Exception ex)

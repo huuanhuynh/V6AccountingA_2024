@@ -127,7 +127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         public V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _Ma_lnx_i, _tkVt, _maLo, _maKhoI, _maViTri, _maViTri2;
         public V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         public V6NumberTextBox _sl_101, _sl_102, _sl_103, _sl_104, _sl_01, _sl_02, _sl_03, _sl_04;
-        public V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _gia0, _gia_nt0, _tien, _tienNt, _tien0, _tienNt0, _gia01, _gia_nt01;
+        public V6NumberTextBox _ton13, _ton13s, _ton13Qd, _gia, _gia_nt, _gia0, _gia_nt0, _tien, _tienNt, _tien0, _tienNt0, _gia01, _gia_nt01;
         public V6DateTimeColor _hanSd;
 
         private void LoadDetailControls()
@@ -242,6 +242,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         
                     case "TON13":
                         _ton13 = (V6NumberTextBox)control;
+                        _ton13.Tag = "disable";
+                        break;
+                    case "TON13S":
+                        _ton13s = (V6NumberTextBox)control;
                         _ton13.Tag = "disable";
                         break;
                     case "TON13QD":
@@ -1366,6 +1370,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         _ton13.Value = 0;
                         if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = 0;
                     }
+
+                    if (_ton13s != null) _ton13s.Value = _ton13.Value;
                 }
             }
             catch (Exception ex)
