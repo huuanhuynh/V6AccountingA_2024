@@ -2481,39 +2481,62 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 foreach (DataRow row in AD.Rows)
                 {
                     var nhomDK = row["Nh_dk"].ToString().Trim();
-                    var ps_no = ObjectAndString.ObjectToDecimal(row["Ps_no_nt"]);
-                    var ps_co = ObjectAndString.ObjectToDecimal(row["Ps_co_nt"]);
+                    var ps_no_nt = ObjectAndString.ObjectToDecimal(row["Ps_no_nt"]);
+                    var ps_no = ObjectAndString.ObjectToDecimal(row["Ps_no"]);
+                    var ps_co_nt = ObjectAndString.ObjectToDecimal(row["Ps_co_nt"]);
+                    var ps_co = ObjectAndString.ObjectToDecimal(row["Ps_co"]);
                     if (groupDic.ContainsKey(nhomDK))
                     {
-                        var group = groupDic[nhomDK];
-                        group[0] += ps_no;
-                        group[1] += ps_co;
-                        groupDic[nhomDK] = group;
+                        var groupDK = groupDic[nhomDK];
+                        groupDK[0] += ps_no_nt;
+                        groupDK[1] += ps_co_nt;
+                        groupDK[0+2] += ps_no;
+                        groupDK[1+2] += ps_co;
+                        groupDic[nhomDK] = groupDK;
                     }
                     else
                     {
-                        var group = new decimal[] { 0, 0 };
-                        group[0] += ps_no;
-                        group[1] += ps_co;
-                        groupDic[nhomDK] = group;
+                        var groupDK = new decimal[] { 0, 0, 0, 0 }; // 2 phần tử đầu cho group_nt, 2 phần tử sau cho group (không nt).
+                        groupDK[0] += ps_no_nt;
+                        groupDK[1] += ps_co_nt;
+                        groupDK[0+2] += ps_no;
+                        groupDK[1+2] += ps_co;
+                        groupDic[nhomDK] = groupDK;
                     }
                 }
 
                 foreach (KeyValuePair<string, decimal[]> item in groupDic)
                 {
-                    var group = item.Value;
-                    if (group[0] != group[1])
+                    var groupDK = item.Value;
+                    if (groupDK[0] != groupDK[1] || groupDK[0+2] != groupDK[1+2])
                     {
                         if (_nh_dk != null) _nh_dk.Text = item.Key;
-                        if (group[0] > group[1])
+                        if (groupDK[0] > groupDK[1])
                         {
-                            _PsCoNt.Value = group[0] - group[1];
-                            _PsCo.Value = V6BusinessHelper.Vround(_PsCoNt.Value * txtTyGia.Value, M_ROUND);
+                            _PsCoNt.Value = groupDK[0] - groupDK[1];
+                            //_PsCo.Value = groupDK[0+2] - groupDK[1+2]; // V6BusinessHelper.Vround(_PsCoNt.Value * txtTyGia.Value, M_ROUND);
                         }
                         else
                         {
-                            _PsNoNt.Value = group[1] - group[0];
-                            _PsNo.Value = V6BusinessHelper.Vround(_PsNoNt.Value * txtTyGia.Value, M_ROUND);
+                            _PsNoNt.Value = groupDK[1] - groupDK[0];
+                            //_PsNo.Value = groupDK[1+2] - groupDK[0+2]; // V6BusinessHelper.Vround(_PsNoNt.Value * txtTyGia.Value, M_ROUND);
+                        }
+                        break;
+                    }
+                }
+                foreach (KeyValuePair<string, decimal[]> item in groupDic)
+                {
+                    var groupDK = item.Value;
+                    if (groupDK[0 + 2] != groupDK[1 + 2])
+                    {
+                        if (_nh_dk != null) _nh_dk.Text = item.Key;
+                        if (groupDK[0+2] > groupDK[1+2])
+                        {
+                            _PsCo.Value = groupDK[0 + 2] - groupDK[1 + 2];
+                        }
+                        else
+                        {
+                            _PsNo.Value = groupDK[1 + 2] - groupDK[0 + 2];
                         }
                         break;
                     }
@@ -3385,14 +3408,50 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
                 //Check nh_dk
                 var groupDic = new SortedDictionary<string, decimal[]>();
+                var groupCountNT = new SortedDictionary<string, int[]>();
                 var groupCount = new SortedDictionary<string, int[]>();
                 foreach (DataRow row in AD.Rows)
                 {
                     var nhomDK = row["Nh_dk"].ToString().Trim();
-                    var ps_no = ObjectAndString.ObjectToDecimal(row["Ps_no_nt"]);
-                    var ps_co = ObjectAndString.ObjectToDecimal(row["Ps_co_nt"]);
+                    var ps_no_nt = ObjectAndString.ObjectToDecimal(row["Ps_no_nt"]);
+                    var ps_co_nt = ObjectAndString.ObjectToDecimal(row["Ps_co_nt"]);
+                    var ps_no = ObjectAndString.ObjectToDecimal(row["Ps_no"]);
+                    var ps_co = ObjectAndString.ObjectToDecimal(row["Ps_co"]);
 
-                    if (ps_no != 0)
+                    if (ps_no_nt != 0) // Có NT
+                    {
+                        //Cộng nhóm nợ cho nhomDK
+                        if (!groupCountNT.ContainsKey(nhomDK))
+                        {
+                            var group = new int[] { 1, 0 };
+                            groupCountNT[nhomDK] = group;
+                        }
+                        else
+                        {
+                            var group = groupCountNT[nhomDK];
+                            group[0] += 1;
+                            //group[1] += 0;
+                            groupCountNT[nhomDK] = group;
+                        }
+                    }
+                    else
+                    {
+                        //Cộng nhóm có cho nhóm DK
+                        if (!groupCountNT.ContainsKey(nhomDK))
+                        {
+                            var group = new int[] { 0, 1 };
+                            groupCountNT[nhomDK] = group;
+                        }
+                        else
+                        {
+                            var group = groupCountNT[nhomDK];
+                            //group[0] += 0;
+                            group[1] += 1;
+                            groupCountNT[nhomDK] = group;
+                        }
+                    }
+
+                    if (ps_no != 0) // Không NT
                     {
                         //Cộng nhóm nợ cho nhomDK
                         if (!groupCount.ContainsKey(nhomDK))
@@ -3428,15 +3487,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     if (groupDic.ContainsKey(nhomDK))
                     {
                         var group = groupDic[nhomDK];
-                        group[0] += ps_no;
-                        group[1] += ps_co;
+                        group[0] += ps_no_nt;
+                        group[1] += ps_co_nt;
+                        group[0+2] += ps_no;
+                        group[1+2] += ps_co;
                         groupDic[nhomDK] = group;
                     }
                     else
                     {
-                        var group = new decimal[] {0,0};
-                        group[0] += ps_no;
-                        group[1] += ps_co;
+                        var group = new decimal[] {0,0,0,0};
+                        group[0] += ps_no_nt;
+                        group[1] += ps_co_nt;
+                        group[0+2] += ps_no;
+                        group[1+2] += ps_co;
                         groupDic[nhomDK] = group;
                     }
                 }
@@ -3446,10 +3509,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     var group = item.Value;
                     if (group[0] != group[1])
                     {
+                        checkChiTietError += string.Format(V6Text.Text("KTNDKPSNKPSC") + " (NT) {0}\n", item.Key);
+                    }
+                    if (group[0 + 2] != group[1 + 2])
+                    {
                         checkChiTietError += string.Format(V6Text.Text("KTNDKPSNKPSC") + " {0}\n", item.Key);
                     }
                 }
+                // có NT
+                var count2NT = 0;
+                var nhom_listNT = "";
+                foreach (KeyValuePair<string, int[]> item in groupCountNT)
+                {
+                    var group = item.Value;
+                    var count3 = 0;
+                    if (group[0] > 1) count3++;
+                    if (group[1] > 1) count3++;
+                    if (count3 > 1) // nhiều nợ và nhiều có trong 1 nhóm.
+                    {
+                        nhom_listNT += "," + item.Key;
+                        count2NT += 1;
+                    }
+                }
 
+                if (count2NT > 0)
+                {
+                    checkChiTietError += string.Format(V6Text.Text("CHTNNNCTCNDK") + " (NT) " + nhom_listNT);
+                }
+                // không NT
                 var count2 = 0;
                 var nhom_list = "";
                 foreach (KeyValuePair<string, int[]> item in groupCount)
@@ -3463,8 +3550,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         nhom_list += "," + item.Key;
                         count2 += 1;
                     }
-                    
                 }
+
                 if (count2 > 0)
                 {
                     checkChiTietError += string.Format(V6Text.Text("CHTNNNCTCNDK") + nhom_list);

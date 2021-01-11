@@ -619,18 +619,31 @@ namespace V6SqlConnect
                     var column = structTable[FIELD];
                     if (column.sql_data_type_string == "xml") continue;
                     // " and table.[key] = value"
-                    result += string.Format("{0}{1}[{2}] {3} {4}",
-                        and_or, tbL,
-                        key.Key, oper,
+                    if (key.Value == DBNull.Value && oper == "=")
+                    {
+                        result += string.Format("{0}{1}[{2}] is null",
+                            and_or, tbL, key.Key);
+                    }
+                    else if (key.Value == DBNull.Value && oper == "<>")
+                    {
+                        result += string.Format("{0}{1}[{2}] is not null",
+                            and_or, tbL, key.Key);
+                    }
+                    else
+                    {
+                        result += string.Format("{0}{1}[{2}] {3} {4}",
+                            and_or, tbL,
+                            key.Key, oper,
 
-                        GenSqlStringValue(
-                            key.Value,
-                            column.sql_data_type_string,
-                            column.ColumnDefault,
-                            column.AllowNull,
-                            column.MaxLength,
-                            oper.ToLower())
-                            );
+                            GenSqlStringValue(
+                                key.Value,
+                                column.sql_data_type_string,
+                                column.ColumnDefault,
+                                column.AllowNull,
+                                column.MaxLength,
+                                oper.ToLower())
+                                );
+                    }
                 }
             }
             if (result.Length > 4) result = result.Substring(4);
@@ -697,7 +710,6 @@ namespace V6SqlConnect
                     result += string.Format("{0}{1}[{2}] {3} @{4}",
                         and_or, tbL,
                         key.Key, oper,
-
                         FIELD
                             );
                     p_list.Add(new SqlParameter("@" + FIELD, key.Value){SqlDbType = column.SqlDbType});
@@ -734,18 +746,31 @@ namespace V6SqlConnect
                     var column = tableStruct[FIELD];
                     if (column.sql_data_type_string == "xml") continue;
                     // " and table.[key] = value"
-                    result += string.Format("{0}{1}[{2}] {3} {4}",
-                        and_or, tbL,
-                        key.Key, oper0,
+                    if (key.Value == DBNull.Value && oper == "=")
+                    {
+                        result += string.Format("{0}{1}[{2}] is null",
+                            and_or, tbL, key.Key);
+                    }
+                    else if (key.Value == DBNull.Value && oper == "<>")
+                    {
+                        result += string.Format("{0}{1}[{2}] is not null",
+                            and_or, tbL, key.Key);
+                    }
+                    else
+                    {
+                        result += string.Format("{0}{1}[{2}] {3} {4}",
+                            and_or, tbL,
+                            key.Key, oper0,
 
-                        GenSqlStringValue(
-                            key.Value,
-                            column.sql_data_type_string,
-                            column.ColumnDefault,
-                            column.AllowNull,
-                            column.MaxLength,
-                            oper.ToLower())
-                            );
+                            GenSqlStringValue(
+                                key.Value,
+                                column.sql_data_type_string,
+                                column.ColumnDefault,
+                                column.AllowNull,
+                                column.MaxLength,
+                                oper.ToLower())
+                        );
+                    }
                 }
             }
             if (result.Length > 4) result = result.Substring(4);
@@ -778,18 +803,31 @@ namespace V6SqlConnect
                     var column = structTable[FIELD];
                     if (column.sql_data_type_string == "xml") continue;
                     // " and table.[key] = value"
-                    result += string.Format("{0}{1}[{2}] {3} {4}",
-                        and_or, tbL,
-                        key.Key, oper0,
+                    if (key.Value == DBNull.Value && oper == "=")
+                    {
+                        result += string.Format("{0}{1}[{2}] is null",
+                            and_or, tbL, key.Key);
+                    }
+                    else if (key.Value == DBNull.Value && oper == "<>")
+                    {
+                        result += string.Format("{0}{1}[{2}] is not null",
+                            and_or, tbL, key.Key);
+                    }
+                    else
+                    {
+                        result += string.Format("{0}{1}[{2}] {3} {4}",
+                            and_or, tbL,
+                            key.Key, oper0,
 
-                        GenSqlStringValue_oper(
-                            key.Value,
-                            column.sql_data_type_string,
-                            column.ColumnDefault,
-                            column.AllowNull,
-                            column.MaxLength,
-                            oper)
-                            );
+                            GenSqlStringValue_oper(
+                                key.Value,
+                                column.sql_data_type_string,
+                                column.ColumnDefault,
+                                column.AllowNull,
+                                column.MaxLength,
+                                oper)
+                        );
+                    }
                 }
             }
             if (result.Length > 4) result = result.Substring(4);
@@ -815,11 +853,24 @@ namespace V6SqlConnect
             {
                 if (ignoreEmptyString && key.Value is string && string.IsNullOrEmpty(key.Value as string))
                     continue;
+                if (key.Value == DBNull.Value && oper == "=")
+                {
+                    result += string.Format("{0}{1}[{2}] is null",
+                        and_or, tbL, key.Key);
+                }
+                else if (key.Value == DBNull.Value && oper == "<>")
+                {
+                    result += string.Format("{0}{1}[{2}] is not null",
+                        and_or, tbL, key.Key);
+                }
+                else
+                {
+                    result += string.Format("{0}{1}[{2}] {3} {4}",
+                        and_or, tbL,
+                        key.Key, oper,
+                        GenSqlStringValue(key.Value, false, oper));
+                }
                 
-                result += string.Format("{0}{1}[{2}] {3} {4}",
-                    and_or, tbL,
-                    key.Key, oper,
-                    GenSqlStringValue(key.Value,false,oper));
             }
             if (result.Length > 4) result = result.Substring(4);
             return result;

@@ -10,6 +10,7 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -500,6 +501,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 this.ShowErrorException(GetType() + ".cboMaubc_X_SelectedIndexChanged", ex);
             }
+        }
+
+        private void btnMapping_Click(object sender, EventArgs e)
+        {
+            var data = V6BusinessHelper.SelectTable(txtMauExport.Text);
+            IDictionary<string, object> defaultData = new Dictionary<string, object>();
+            defaultData["MAU_BC"] = txtMauExport.Text;
+            defaultData["NAME"] = "NAME";
+            var f = new DataEditorForm(this, data, txtMauExport.Text, null, "UID", "title",
+                true, true, false, true, defaultData);
+            f.ShowDialog(this);
         }
 
         

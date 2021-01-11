@@ -1896,7 +1896,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         public void TienNt2_V6LostFocus(object sender)
         {
-            TinhGiaNt2_TienNt2();
+            TinhGiaNt2_NhapTienNt2();
         }
 
         public void GiaNt21_V6LostFocus(object sender)
@@ -2852,7 +2852,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         /// <summary>
         /// chay khi nhap tien
         /// </summary>
-        public void TinhGiaNt2_TienNt2()
+        public void TinhGiaNt2_NhapTienNt2()
         {
             try
             {

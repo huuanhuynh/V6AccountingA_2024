@@ -1014,7 +1014,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         public void TienNt2_V6LostFocus(object sender)
         {
-            TinhGiaNt2_TienNt2();
+            TinhGiaNt2_NhapTienNt2();
         }
 
         void SoLuong1_V6LostFocus(object sender)
@@ -1771,7 +1771,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        public void TinhGiaNt2_TienNt2()
+        public void TinhGiaNt2_NhapTienNt2()
         {
             try
             {

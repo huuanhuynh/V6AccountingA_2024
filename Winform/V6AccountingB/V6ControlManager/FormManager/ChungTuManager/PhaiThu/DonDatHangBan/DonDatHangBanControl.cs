@@ -431,7 +431,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                                 }
 
                                 TinhGiaNt21();
-                                TinhGiaNt2_TienNt2();
+                                TinhGiaNt2();
+                                chkT_THUE_NT.Checked = false;
+                                TinhTienNt2(_gia_ban_nt);
+                                Tinh_thue_ct();
                             };
                             if (!V6Login.IsAdmin && (Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_HIDE.ContainsStartsWith(NAME + ":")))
                             {
@@ -959,7 +962,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         public void TienNt2_V6LostFocus(object sender)
         {
-            TinhGiaNt2_TienNt2();
+            TinhGiaNt2_NhapTienNt2();
         }
 
         void SoLuong1_V6LostFocus(object sender)
@@ -1471,7 +1474,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     }
 
                     TinhGiaNt21();
-                    TinhGiaNt2_TienNt2();
+                    TinhGiaNt2_NhapTienNt2();
                 }
                 else
                 {
@@ -1725,7 +1728,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         /// <summary>
         /// chay khi nhap tien
         /// </summary>
-        public void TinhGiaNt2_TienNt2()
+        public void TinhGiaNt2_NhapTienNt2()
         {
             try
             {

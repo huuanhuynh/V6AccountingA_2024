@@ -59,6 +59,7 @@
             this.btnExport = new V6Controls.Controls.V6FormButton();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.btnXemMau = new V6Controls.Controls.V6FormButton();
+            this.btnMapping = new V6Controls.Controls.V6FormButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,9 +72,9 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(0, 342);
+            this.groupBox1.Location = new System.Drawing.Point(0, 382);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 94);
+            this.groupBox1.Size = new System.Drawing.Size(289, 86);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -456,11 +457,22 @@
             this.btnXemMau.UseVisualStyleBackColor = true;
             this.btnXemMau.Click += new System.EventHandler(this.btnXemMau_Click);
             // 
+            // btnMapping
+            // 
+            this.btnMapping.Location = new System.Drawing.Point(61, 327);
+            this.btnMapping.Name = "btnMapping";
+            this.btnMapping.Size = new System.Drawing.Size(110, 23);
+            this.btnMapping.TabIndex = 28;
+            this.btnMapping.Text = "Mapping";
+            this.btnMapping.UseVisualStyleBackColor = true;
+            this.btnMapping.Click += new System.EventHandler(this.btnMapping_Click);
+            // 
             // AGLTMXLS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chkHienTatCa);
+            this.Controls.Add(this.btnMapping);
             this.Controls.Add(this.btnSuaCTMau);
             this.Controls.Add(this.btnSuaTTMau);
             this.Controls.Add(this.btnXemMau);
@@ -488,7 +500,7 @@
             this.Controls.Add(this.chk_Luy_ke);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLTMXLS";
-            this.Size = new System.Drawing.Size(295, 438);
+            this.Size = new System.Drawing.Size(295, 470);
             this.Load += new System.EventHandler(this.AGLTMXLS_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -530,5 +542,6 @@
         private V6Controls.Controls.V6FormButton btnExport;
         private V6Controls.V6CheckBox chkHienTatCa;
         private V6Controls.Controls.V6FormButton btnXemMau;
+        private V6Controls.Controls.V6FormButton btnMapping;
     }
 }
