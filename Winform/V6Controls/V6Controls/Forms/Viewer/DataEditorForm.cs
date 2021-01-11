@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls.GridView;
@@ -23,7 +24,7 @@ namespace V6Controls.Forms.Viewer
         private Control _owner;
         private object _data;
         private string _tableName, _showFields;
-        private string[] _keyFields;
+        private string[] _KEY_FIELDS;
         private IDictionary<string, object> _defaultData = null;
         private bool newRowNeeded;
         private bool _updateDatabase;
@@ -45,7 +46,7 @@ namespace V6Controls.Forms.Viewer
         /// <param name="tableName">Tên bảng, MA_DM trong Aldm.</param>
         /// <param name="showFields">Field:EorR:CVvar,Field:E:N2,Field,E:D0...<para>Nếu để null sẽ dùng GRDS_V1 trong Aldm.</para></param>
         /// <param name="keyFields">Các trường khóa để update vào csdl, vd:MA_VT,MA_KHO</param>
-        /// <param name="title">Tiêu đề của form hiện ra.</param>
+        /// <param name="title">Tiêu đề của form hiện ra. Bỏ qua nếu đã có Aldm_config.</param>
         /// <param name="allowAdd">Cho phép thêm dòng mới.</param>
         /// <param name="allowDelete">Cho phép xóa dòng.</param>
         /// <param name="showSum">Hiển thị dòng tổng.</param>
@@ -77,7 +78,7 @@ namespace V6Controls.Forms.Viewer
             _data = data;
             _tableName = tableName;
             _showFields = showFields;
-            _keyFields = ObjectAndString.SplitString(keyFields);
+            _KEY_FIELDS = ObjectAndString.SplitString(keyFields.ToUpper());
             
         }
 
@@ -91,6 +92,21 @@ namespace V6Controls.Forms.Viewer
             try
             {
                 _config = ConfigManager.GetAldmConfig(_tableName);
+                if (_config.HaveInfo)
+                {
+                    Text = _config.TITLE;
+                    if (!string.IsNullOrEmpty(_config.TABLE_KEY))
+                    {
+                        var T_KEYS = ObjectAndString.SplitString(_config.TABLE_KEY.ToUpper());
+                        var list = _KEY_FIELDS.ToList();
+                        foreach (string KEY in T_KEYS)
+                        {
+                            if (!list.Contains(KEY)) list.Add(KEY);
+                        }
+                        _KEY_FIELDS = list.ToArray();
+                    }
+                }
+
                 if (string.IsNullOrEmpty(_showFields) && _config.HaveInfo)
                 {
                     _showFields = _config.GRDS_V1;
@@ -462,7 +478,7 @@ namespace V6Controls.Forms.Viewer
                         //var rowData = dataGridView1.CurrentRow.ToDataDictionary();
                         var keys = new SortedDictionary<string, object>();
                         delete_info = "";
-                        foreach (string field in _keyFields)
+                        foreach (string field in _KEY_FIELDS)
                         {
                             var UPDATE_FIELD = field.ToUpper();
                             var update_value = dataGridView1.CurrentRow.Cells[field].Value;
@@ -531,7 +547,7 @@ namespace V6Controls.Forms.Viewer
                 if (data.ContainsKey("UID")) data.Remove("UID");
                 //Tạo keys giả
                 IDictionary<string, object> keys = new Dictionary<string, object>();
-                foreach (string field in _keyFields)
+                foreach (string field in _KEY_FIELDS)
                 {
                     var FIELD = field.ToUpper();
                     if(FIELD != "UID")
@@ -633,7 +649,7 @@ namespace V6Controls.Forms.Viewer
                 toolStripStatusLabel1.Text = string.Format("{0} {1}", V6Text.Edit, _tableName);
                 var row = dataGridView1.Rows[rowIndex];
                 SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
-                foreach (string field in _keyFields)
+                foreach (string field in _KEY_FIELDS)
                 {
                     var currentKeyFieldColumnIndex = row.Cells[field].ColumnIndex;
                     if (columnIndex == currentKeyFieldColumnIndex)
@@ -721,12 +737,13 @@ namespace V6Controls.Forms.Viewer
 
         private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            var currentRow = dataGridView1.CurrentRow;
-            if (currentRow == null) return;
+            int index = dataGridView1.Rows.GetLastRow(DataGridViewElementStates.None) - 1;
+            if (index < 0) return;
+            var row = dataGridView1.Rows[index];
 
             if (_updateDatabase)
             {
-                var newData = currentRow.ToDataDictionary();
+                var newData = row.ToDataDictionary();
                 var afterData = AddData(newData);
                 if (afterData != null)
                 {
@@ -734,8 +751,13 @@ namespace V6Controls.Forms.Viewer
                     {
                         if (dataGridView1.Columns.Contains(item.Key))
                         {
-                            currentRow.Cells[item.Key].Value = item.Value;
+                            row.Cells[item.Key].Value = item.Value;
                         }
+                    }
+
+                    if (dataGridView1.EditingCell != null)
+                    {
+                        _cellBeginEditValue = dataGridView1.EditingCell.Value;
                     }
                 }
             }
