@@ -275,7 +275,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     
                     var f = new FormAddEdit(V6TableName.Abnghi, V6Mode.View, null, currentRowData);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
 
                     SetStatus2Text();
@@ -310,7 +310,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     
                     var f = new FormAddEdit(V6TableName.Abnghi, V6Mode.Edit, null, currentRowData);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.UpdateSuccessEvent += data =>
                     {
                         V6ControlFormHelper.UpdateGridViewRow(row, data);
@@ -389,7 +389,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
                 var f = new FormAddEdit(V6TableName.Abnghi, V6Mode.Add, null, currentRowData);
                 f.AfterInitControl += f_AfterInitControl;
-                f.InitFormControl();
+                f.InitFormControl(this);
                 f.InsertSuccessEvent += data =>
                 {
                     ;

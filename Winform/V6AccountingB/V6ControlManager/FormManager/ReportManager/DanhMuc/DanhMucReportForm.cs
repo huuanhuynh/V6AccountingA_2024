@@ -1502,8 +1502,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
                 f2.AfterInitControl += f_AfterInitControl;
-                f2.InitFormControl();
-                f2.SetFather(this);
+                f2.InitFormControl(this);
                 f2.ShowDialog(this);
                 if (f2.UpdateSuccess)
                 {
@@ -1556,8 +1555,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
                 f2.AfterInitControl += f_AfterInitControl;
-                f2.InitFormControl();
-                f2.SetFather(this);
+                f2.InitFormControl(this);
                 f2.ShowDialog(this);
                 if (f2.InsertSuccess)
                 {

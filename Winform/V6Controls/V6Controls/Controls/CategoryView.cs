@@ -349,7 +349,7 @@ namespace V6Controls.Controls
                     f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
 
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ParentData = _parentData;
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
@@ -359,7 +359,7 @@ namespace V6Controls.Controls
                     f = new FormAddEdit(_MA_DM);
 
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ParentData = _parentData;
                     f.SetParentData();
                     f.InsertSuccessEvent += f_InsertSuccess;
@@ -418,7 +418,7 @@ namespace V6Controls.Controls
 
 
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ParentData = _parentData;
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
@@ -459,7 +459,7 @@ namespace V6Controls.Controls
                     f = new FormAddEdit(_MA_DM, V6Mode.Edit, keys, _data);
                     
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ParentData = _parentData;
                     f.UpdateSuccessEvent += f_UpdateSuccess;
                     f.CallReloadEvent += FCallReloadEvent;
@@ -796,7 +796,7 @@ namespace V6Controls.Controls
                     
                     f = new FormAddEdit(_MA_DM, V6Mode.View, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
                 }
                 else

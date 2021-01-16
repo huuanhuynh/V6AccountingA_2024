@@ -498,7 +498,7 @@ namespace V6Controls.Forms.Viewer
                 FormAddEdit f = new FormAddEdit(_tableName, V6Mode.Edit, keys, data);
                 //f.AfterInitControl += f_AfterInitControl;
                 f.UpdateSuccessEvent += f_UpdateSuccess;
-                f.InitFormControl();
+                f.InitFormControl(_owner);
                 f.ShowDialog(this);
             }
 

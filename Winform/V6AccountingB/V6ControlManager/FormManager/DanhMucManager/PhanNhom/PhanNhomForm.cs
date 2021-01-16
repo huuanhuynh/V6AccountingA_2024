@@ -512,7 +512,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                         
                         var f = new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Edit, keys, null);          // Load data vs DataOld[]
                         f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
+                        f.InitFormControl(this);
                         //f.ParentData = _senderTextBox.ParentData;
                         f.UpdateSuccessEvent += f_UpdateSuccessEvent;
                         f.ShowDialog(this);
@@ -541,7 +541,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
 
                     var f = new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Add, null, data);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     //f.ParentData = _senderTextBox.ParentData;
                     if (data == null) f.SetParentData();                        // Code lạ??????
                     f.InsertSuccessEvent += f_InsertSuccessEvent;

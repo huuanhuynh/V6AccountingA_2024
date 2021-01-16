@@ -7184,7 +7184,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
                 FormatGridView();
-                XuLyThayDoiMaNt();
+                //XuLyThayDoiMaNt(); // chạy trong txtTyGia_V6LostFocus
             }
 
             txtTyGia_V6LostFocus(sender);
@@ -8600,8 +8600,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         vvar_ma_vt.Text = ma_vt;
                         if (vvar_ma_vt.Data != null)
                         {
-                            decimal sl_td1 = ObjectAndString.ObjectToDecimal(vvar_ma_vt.Data["SL_TD1"]);
-                            if (vvar_ma_vt.GIA_TON == 5 && sl_td1 != 0) ty_gia_von = sl_td1;
+                            decimal ma_vt_sl_td3 = ObjectAndString.ObjectToDecimal(vvar_ma_vt.Data["SL_TD3"]);
+                            if (vvar_ma_vt.GIA_TON == 5 && ma_vt_sl_td3 != 0) ty_gia_von = ma_vt_sl_td3;
                         }
 
                         FixTyGia(AD, row, ty_gia_von, "Tien", "Tien_nt", M_ROUND);

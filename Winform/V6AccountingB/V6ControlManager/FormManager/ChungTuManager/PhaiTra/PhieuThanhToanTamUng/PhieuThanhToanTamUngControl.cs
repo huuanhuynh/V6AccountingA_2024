@@ -3784,6 +3784,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                             newRow["mau_bc"] = adRow["mau_bc"];
                             newRow["ma_thue"] = adRow["ma_thue_i"];
                             newRow["ma_kh"] = adRow["ma_kh_t"];
+                            newRow["ten_kh"] = adRow["ten_kh_t"];
                             newRow["dia_chi"] = adRow["dia_chi_t"];
                             newRow["ten_vt"] = adRow["ten_vt_t"];
                             newRow["ma_so_thue"] = adRow["mst_t"];

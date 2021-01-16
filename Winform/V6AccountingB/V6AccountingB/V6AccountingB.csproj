@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AGLSO6.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AGLSO6.RPT</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -103,6 +109,10 @@
       <DependentUpon>QuickMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Win32.cs" />
+    <EmbeddedResource Include="AGLSO6.RPT">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AGLSO6.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormKeyV6Online.resx">
       <DependentUpon>FormKeyV6Online.cs</DependentUpon>
     </EmbeddedResource>

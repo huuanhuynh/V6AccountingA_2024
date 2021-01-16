@@ -526,7 +526,7 @@ namespace V6Controls
                             };
                             var f = new FormAddEdit(_config.vMa_file, V6Mode.View, keys);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.InitFormControl();
+                            f.InitFormControl(this);
                             f.ParentData = _senderTextBox.ParentData;
                             //f.UpdateSuccessEvent += f_UpdateSuccessEvent;
                             f.ShowDialog(this);
@@ -561,7 +561,7 @@ namespace V6Controls
                             };
                             var f = new FormAddEdit(_config.vMa_file, V6Mode.Edit, keys);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.InitFormControl();
+                            f.InitFormControl(this);
                             f.ParentData = _senderTextBox.ParentData;
                             f.UpdateSuccessEvent += f_UpdateSuccessEvent;
                             f.ShowDialog(this);
@@ -589,7 +589,7 @@ namespace V6Controls
                         var data = row != null ? row.ToDataDictionary() : null;
                         var f = new FormAddEdit(_config.vMa_file, V6Mode.Add, null, data);
                         f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
+                        f.InitFormControl(this);
                         f.ParentData = _senderTextBox.ParentData;
                         if(data == null) f.SetParentData();
                         f.InsertSuccessEvent += f_InsertSuccessEvent;

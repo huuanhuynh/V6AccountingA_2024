@@ -207,7 +207,7 @@ namespace V6ReportControls
                     var _data = row0.ToDataDictionary();
                     var f = new FormAddEdit(TableName, V6Mode.Add, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(FindParent<V6FormControl>());
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
                 }
@@ -215,7 +215,7 @@ namespace V6ReportControls
                 {
                     var f = new FormAddEdit(TableName);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(FindParent<V6FormControl>());
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
                 }
@@ -285,7 +285,7 @@ namespace V6ReportControls
                     var _data = row0.ToDataDictionary();
                     var f = new FormAddEdit(TableName, V6Mode.Edit, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(FindParent<V6FormControl>());
                     f.UpdateSuccessEvent += f_UpdateSuccess;
                     f.CallReloadEvent += FCallReloadEvent;
                     f.ShowDialog(this);

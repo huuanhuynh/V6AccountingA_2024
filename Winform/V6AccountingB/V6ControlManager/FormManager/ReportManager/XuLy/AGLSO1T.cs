@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -53,6 +54,160 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             SetStatus2Text();
         }
+
+        #region ==== Xử lý F6 ====
+        protected override void XuLyF6()
+        {
+            try
+            {
+
+                if (this.ShowConfirmMessage(V6Text.Text("ASKEXPORTEXCELTUNGTRANG1")) != DialogResult.Yes)
+                {
+                    return;
+                }
+                //InLienTuc = true;
+
+
+                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
+
+                //if (InLienTuc) // thì chọn máy in trước
+                {
+                    var printerst = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", ReportFile);
+                    if (string.IsNullOrEmpty(printerst))
+                    {
+                        printting = false;
+                    }
+                    else
+                    {
+                        string savefile = Path.Combine(Path.GetDirectoryName(printerst) ?? V6Login.StartupPath, Path.GetFileNameWithoutExtension(printerst));
+                        All_Objects["savefile"] = savefile;
+                        printting = true;
+                    }
+                }
+
+                Timer tF9 = new Timer();
+                tF9.Interval = 500;
+                tF9.Tick += tF6_Tick;
+                CheckForIllegalCrossThreadCalls = false;
+                remove_list_g = new List<DataGridViewRow>();
+                V6ControlFormHelper.NoOpen = true;
+                F6Thread();
+                //Thread t = new Thread(F6Thread);
+                //t.SetApartmentState(ApartmentState.STA);
+                //t.IsBackground = true;
+                //t.Start();
+                tF9.Start();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
+            }
+        }
+
+        private void F6Thread()
+        {
+            f9Running = true;
+            f9ErrorAll = "";
+
+            int i = 0;
+
+            while (i < dataGridView1.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView1.Rows[i];
+                i++;
+                try
+                {
+                    if (row.IsSelect())
+                    {
+
+                        var tk = (row.Cells["TK"].Value ?? "").ToString().Trim();
+
+                        var oldKeys = FilterControl.GetFilterParameters();
+                        var _reportFileF5 = "AGLSO1TF5";
+                        var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
+                        var _reportTitle2F5 = "Account detail";
+
+                        var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
+                            _reportTitleF5, _reportTitle2F5, "", "", "");
+
+                        view.CodeForm = CodeForm;
+                        //view.FilterControl.Call1(ma_kh);
+                        SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                        data.Add("TK", tk);
+                        V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                        view.CodeForm = CodeForm;
+                        view.Advance = FilterControl.Advance;
+                        view.FilterControl.String1 = FilterControl.String1;
+                        view.FilterControl.String2 = FilterControl.String2;
+
+                        view.Dock = DockStyle.Fill;
+                        view.FilterControl.InitFilters = oldKeys;
+
+                        view.FilterControl.SetParentRow(row.ToDataDictionary());
+
+                        //view.AutoPrint = FilterControl.Check1;
+                        view.AutoExportExcel = All_Objects["savefile"] + "_" + tk + ".xls";
+
+                        view.PrinterName = _PrinterName;
+                        view.PrintCopies = _PrintCopies;
+
+                        view.btnNhan_Click(null, null);
+                        view.ShowToForm(this, "", true);
+                        //var f  = new V6Form();
+                        //f.WindowState = FormWindowState.Maximized;
+                        //f.Controls.Add(view);
+                        //view.Disposed += delegate
+                        //{
+                        //    f.Close();
+                        //};
+                        //f.ShowDialog(this);
+
+                        SetStatus2Text();
+                        remove_list_g.Add(row);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    f9Error += ex.Message;
+                    f9ErrorAll += ex.Message;
+                }
+
+            }
+            f9Running = false;
+        }
+
+        void tF6_Tick(object sender, EventArgs e)
+        {
+            if (f9Running)
+            {
+                var cError = f9Error;
+                f9Error = f9Error.Substring(cError.Length);
+                V6ControlFormHelper.SetStatusText("F9 running "
+                    + (cError.Length > 0 ? "Error: " : "")
+                    + cError);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                RemoveGridViewRow();
+                //  btnNhan.PerformClick();
+                try
+                {
+                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                }
+                catch
+                {
+                }
+                V6ControlFormHelper.NoOpen = false;
+                V6ControlFormHelper.SetStatusText("F9 finish "
+                    + (f9ErrorAll.Length > 0 ? "Error: " : "")
+                    + f9ErrorAll);
+
+                SetStatusText("F9 " + V6Text.Finish);
+            }
+        }
+
+        #endregion ==== Xử lý F6 ====
 
         #region ==== Xử lý F9 ====
 

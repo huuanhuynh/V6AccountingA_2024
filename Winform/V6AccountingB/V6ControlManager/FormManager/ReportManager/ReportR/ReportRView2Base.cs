@@ -702,7 +702,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 if (key3.Length > 0)
                     switch (key3[0])
                     {
-                        case '1': DefaultMenuItem = exportToExcelTemplateMenu; break;
+                        case '1':
+                            if (_ds.Tables.Count > 2)
+                            {
+                                DefaultMenuItem = exportToExcelGroupMenu;
+                            }
+                            else
+                            {
+                                DefaultMenuItem = exportToExcelTemplateMenu;
+                            }
+                            break;
                         case '2': DefaultMenuItem = exportToExcelViewMenu; break;
                         case '3': DefaultMenuItem = exportToExcelMenu; break;
                         case '4': DefaultMenuItem = exportToXmlMenu; break;
@@ -984,11 +993,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     _tbl3 = _ds.Tables[2];
                     _tbl3.TableName = "DataTable3";
                     exportToExcelGroupMenu.Visible = true;
+                    DefaultMenuItem = exportToExcelGroupMenu;
                     exportToExcelTemplateMenu.Visible = false;
                 }
                 else
                 {
                     _tbl3 = null;
+                    DefaultMenuItem = exportToExcelTemplateMenu;
                 }
                 
                 _executesuccess = true;
@@ -1557,8 +1568,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, AlbcKeys, null);
                 f2.AfterInitControl += f_AfterInitControl;
-                f2.InitFormControl();
-                f2.SetFather(this);
+                f2.InitFormControl(this);
                 f2.ShowDialog(this);
                 SetStatus2Text();
                 if (f2.UpdateSuccess)
@@ -1612,8 +1622,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
                 f2.AfterInitControl += f_AfterInitControl;
-                f2.InitFormControl();
-                f2.SetFather(this);
+                f2.InitFormControl(this);
                 f2.ShowDialog(this);
                 SetStatus2Text();
                 if (f2.InsertSuccess)

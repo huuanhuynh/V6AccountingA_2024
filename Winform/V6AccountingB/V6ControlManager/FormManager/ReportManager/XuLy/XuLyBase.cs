@@ -1360,8 +1360,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
                     f2.AfterInitControl += f_AfterInitControl;
-                    f2.InitFormControl();
-                    f2.SetFather(this);
+                    f2.InitFormControl(this);
                     f2.ShowDialog(this);
                     SetStatus2Text();
                     if (f2.InsertSuccess)
@@ -1410,8 +1409,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     };
                 var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
                 f.AfterInitControl += f_AfterInitControl;
-                f.InitFormControl();
-                f.SetFather(this);
+                f.InitFormControl(this);
                 f.UpdateSuccessEvent += (data) =>
                 {
                     //cap nhap thong tin

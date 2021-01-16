@@ -294,7 +294,18 @@ namespace V6Controls
                 var clipboard = Clipboard.GetText().Replace("\n", "").Replace(" ","");
                 clipboard = clipboard.Replace(_thousandSymbol.ToString(), "");
                 clipboard = clipboard.Replace(DecimalSymbol.ToString(), _system_decimal_symbol);
-                
+                if (_decimals > 0 && clipboard.Contains(_system_decimal_symbol))
+                {
+                    for (int i = 0; i < _decimals; i++)
+                    {
+                        clipboard += "0";
+                    }
+                    clipboard = clipboard.Substring(0, _decimals + 1 + clipboard.IndexOf(_system_decimal_symbol, StringComparison.Ordinal));
+                }
+                else if (clipboard.Contains(_system_decimal_symbol))
+                {
+                    clipboard = clipboard.Substring(0, clipboard.IndexOf(_system_decimal_symbol, StringComparison.Ordinal));
+                }
                 decimal newValue = 0;
                 if (decimal.TryParse(clipboard, out newValue))
                 {

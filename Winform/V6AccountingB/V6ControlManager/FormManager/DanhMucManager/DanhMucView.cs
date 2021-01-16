@@ -618,7 +618,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
                     //f.InsertSuccessEvent += f_InsertSuccess;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
                 }
                 else
@@ -626,7 +626,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     f = new FormAddEdit(_MA_DM);
                     f.AfterInitControl += f_AfterInitControl;
                     //f.InsertSuccessEvent += f_InsertSuccess;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
                 }
 
@@ -684,7 +684,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     var f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InsertSuccessEvent += f_InsertSuccess;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
                 }
                 else
@@ -729,7 +729,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     f.AfterInitControl += f_AfterInitControl;
                     //f.UpdateSuccessEvent += f_UpdateSuccess;
                     f.CallReloadEvent += FCallReloadEvent;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
 
                     if (f.UpdateSuccess)
@@ -1247,7 +1247,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     _data = row.ToDataDictionary();
                     var f = new FormAddEdit(_MA_DM, V6Mode.View, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
                 }
                 else

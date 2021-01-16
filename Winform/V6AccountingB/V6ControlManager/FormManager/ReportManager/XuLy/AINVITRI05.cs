@@ -377,7 +377,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
 
                         f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
+                        f.InitFormControl(this);
                         f.ParentData = ((DataRowView) listBoxAlvitri.SelectedItem).Row.ToDataDictionary();
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
@@ -482,7 +482,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         f = new FormAddEdit(_tableName);
                     }
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ParentData = ((DataRowView)listBoxAlvitri.SelectedItem).Row.ToDataDictionary();
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);

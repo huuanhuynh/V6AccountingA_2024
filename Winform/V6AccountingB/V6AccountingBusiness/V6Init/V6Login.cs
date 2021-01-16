@@ -244,6 +244,9 @@ namespace V6Init
         /// </summary>
         public static string SelectedLanguageName { get; set; }
         public static string SelectedModule { get; set; }
+        /// <summary>
+        /// Lưu đường dẫn start của chương trình.
+        /// </summary>
         public static string StartupPath { get; set; }
         /// <summary>
         /// Exe

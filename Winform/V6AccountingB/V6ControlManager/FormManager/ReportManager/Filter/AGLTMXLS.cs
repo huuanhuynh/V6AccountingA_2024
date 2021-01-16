@@ -188,7 +188,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         var _data = row0.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, keys, _data);
                         f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
+                        f.InitFormControl(FindParent<V6FormControl>());
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
@@ -196,7 +196,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     {
                         var f = new FormAddEdit(CurrentTable.ToString());
                         f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
+                        f.InitFormControl(FindParent<V6FormControl>());
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
@@ -275,7 +275,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         var _data = row0.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Edit, keys, _data);
                         f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
+                        f.InitFormControl(FindParent<V6FormControl>());
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
                         f.ShowDialog(this);

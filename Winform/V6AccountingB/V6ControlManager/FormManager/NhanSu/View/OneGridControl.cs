@@ -91,7 +91,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     _data["STT_REC0"] = V6BusinessHelper.GetNewSttRec0(_gridViewData);
                     var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, null, _data);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
                 }
@@ -152,7 +152,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         //var _data = row.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Edit, keys, null);
                         f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
+                        f.InitFormControl(this);
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
                         f.ShowDialog(this);

@@ -626,7 +626,7 @@ namespace V6Controls
                             };
                             var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Edit, keys, null);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.InitFormControl();
+                            f.InitFormControl(this);
                             f.ParentData = _senderParentData;
                             f.UpdateSuccessEvent += a_UpdateSuccessEvent;
                             f.ShowDialog(this);
@@ -651,7 +651,7 @@ namespace V6Controls
                         var data = row != null ? row.ToDataDictionary() : null;
                         var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Add, null, data);
                         f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
+                        f.InitFormControl(this);
                         f.ParentData = _senderParentData;
                         if(data == null) f.SetParentData();
                         f.InsertSuccessEvent += a_InsertSuccessEvent;

@@ -169,6 +169,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private List<SqlParameter> _pList;
 
         public bool AutoPrint { get; set; }
+        /// <summary>
+        /// Tên file excel tự động xuất.
+        /// </summary>
+        public string AutoExportExcel = null;
         public bool AutoClickNhan { get; set; }
         public string PrinterName { get; set; }
         private int _printCopy = 1;
@@ -1384,6 +1388,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     Print(PrinterName, _rpDoc0);
                     Dispose();
                 }
+
+                if (!string.IsNullOrEmpty(AutoExportExcel))
+                {
+                    V6ControlFormHelper.ExportExcelTemplate(this, _tbl1, _tbl2, ReportDocumentParameters,
+                        MAU, LAN, ReportFile, ExcelTemplateFileFull, AutoExportExcel);
+                    Dispose();
+                }
                 
                 dataGridView1.Focus();
             }
@@ -1817,8 +1828,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, AlbcKeys, null);
                 f2.AfterInitControl += f_AfterInitControl;
-                f2.InitFormControl();
-                f2.SetFather(this);
+                f2.InitFormControl(this);
                 f2.ShowDialog(this);
                 SetStatus2Text();
                 if (f2.UpdateSuccess)
@@ -1871,8 +1881,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
                 f2.AfterInitControl += f_AfterInitControl;
-                f2.InitFormControl();
-                f2.SetFather(this);
+                f2.InitFormControl(this);
                 f2.ShowDialog(this);
                 SetStatus2Text();
                 if (f2.InsertSuccess)

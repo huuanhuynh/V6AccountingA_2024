@@ -235,7 +235,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     var f = new FormAddEdit(tableName, V6Mode.Add, null, someData);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
                 }
@@ -322,7 +322,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     var f = new FormAddEdit(tableName, V6Mode.Add, null, someData);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.UpdateSuccessEvent += f_UpdateSuccess;
                     f.ShowDialog(this);
                 }
@@ -392,7 +392,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     var f = new FormAddEdit(tableName, V6Mode.Edit, null, someData);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.UpdateSuccessEvent += f_UpdateSuccess;
                     f.ShowDialog(this);
                 }
@@ -765,7 +765,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     var f = new FormAddEdit(tableName, V6Mode.View, null, someData);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
                 }
                 else

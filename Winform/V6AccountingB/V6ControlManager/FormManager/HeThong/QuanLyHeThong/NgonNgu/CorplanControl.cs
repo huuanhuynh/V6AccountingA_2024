@@ -374,7 +374,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
                 }
 
                 FormAddEdit f = new FormAddEdit(V6TableName.CorpLan, mode, ukey, data);
-                f.InitFormControl();
+                f.InitFormControl(this);
                 #region ==== f_InsertSuccess ====
                 f.InsertSuccessEvent += dic =>
                 {

@@ -113,7 +113,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     f.AfterInitControl += f_AfterInitControl;
                     //f.UpdateSuccessEvent += f_UpdateSuccess;
                     //f.CallReloadEvent +=delegate(object sender, EventArgs args) { btnNhan.PerformClick(); };
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
 
                     if (f.UpdateSuccess)
@@ -302,7 +302,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //var _data = row.ToDataDictionary();
                     var f = new FormAddEdit(_MA_DM, V6Mode.View, keys, null);
                     f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
+                    f.InitFormControl(this);
                     f.ShowDialog(this);
                 }
                 else
