@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
@@ -8,43 +7,96 @@ using V6Tools.V6Convert;
 
 namespace V6Controls.Controls.GridView
 {
-    /// <summary>
-    /// made by: huuan_huynh v6soft 20181115
-    /// </summary>
 
-    #region V6VvarDataGridViewEditingControl
+    #region V6DateTimePickerFullGridViewColumn
+    public class V6DateTimePickerFullGridViewColumn : DataGridViewTextBoxColumn//DataGridViewColumn//
+    {
+        public V6DateTimePickerFullGridViewColumn()
+        {
+            V6DateTimePickerFullDataGridViewCell cell = new V6DateTimePickerFullDataGridViewCell();
+            base.CellTemplate = cell;
 
-    class V6VvarDataGridViewEditingControl : V6VvarTextBox, IDataGridViewEditingControl
+            base.SortMode = DataGridViewColumnSortMode.Automatic;
+            base.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //base.DefaultCellStyle.Format = "F" + this.DecimalLength.ToString();
+        }
+
+        private V6DateTimePickerFullDataGridViewCell NumEditCellTemplate
+        {
+            get
+            {
+                V6DateTimePickerFullDataGridViewCell cell = this.CellTemplate as V6DateTimePickerFullDataGridViewCell;
+                if (cell == null)
+                {
+                    throw new InvalidOperationException("V6DateTimePickerFullGridViewEditingControl does not have a CellTemplate.");
+                }
+                return cell;
+            }
+        }
+
+        [
+            Browsable(false),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
+        ]
+        public override DataGridViewCell CellTemplate
+        {
+            get { return base.CellTemplate; }
+            set
+            {
+                V6DateTimePickerFullDataGridViewCell cell = value as V6DateTimePickerFullDataGridViewCell;
+                if (value != null && cell == null)
+                {
+                    throw new InvalidCastException("Value provided for CellTemplate must be of type V6DateTimePickerFullDataGridViewCell or derive from it.");
+                }
+                base.CellTemplate = value;
+            }
+        }
+        
+        public override string ToString()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(100);
+            sb.Append("V6DateTimePickerFullGridViewColumn { Name=");
+            sb.Append(this.Name);
+            sb.Append(", Index=");
+            sb.Append(this.Index.ToString(CultureInfo.CurrentCulture));
+            sb.Append(" }");
+            return sb.ToString();
+        }
+    }
+
+    #endregion
+
+
+    #region V6DateTimePickerFullGridViewEditingControl
+
+    class V6DateTimePickerFullGridViewEditingControl : V6DateTimePicker, IDataGridViewEditingControl
     {
         private DataGridView dataGridView;  // grid owning this editing control
         private bool valueChanged;  // editing control's value has changed or not
         private int rowIndex;  //  row index in which the editing control resides
-        
-        public V6VvarDataGridViewEditingControl()
+
+        public V6DateTimePickerFullGridViewEditingControl()
         {
             this.TabStop = false;  // control must not be part of the tabbing loop
-            this.VisibleChanged += V6VvarDataGridViewEditingControl_VisibleChanged;
+            this.VisibleChanged += V6DateTimePickerFullGridViewEditingControl_VisibleChanged;
         }
         /// <summary>
         /// Sửa lại giá trị của EditingControl cho đúng.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void V6VvarDataGridViewEditingControl_VisibleChanged(object sender, EventArgs e)
+        void V6DateTimePickerFullGridViewEditingControl_VisibleChanged(object sender, EventArgs e)
         {
-            if (Disposing) return;
+            var cell = dataGridView.CurrentCell;
             if (Visible)
             {
-                var cell = dataGridView.CurrentCell;
-                Text = ObjectAndString.ObjectToString(cell.Value).Trim();
+                Value = ObjectAndString.ObjectToFullDateTime(cell.Value);
                 //if (cell.OwningColumn.DefaultCellStyle.Format != null && cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
                 //    this.DecimalPlaces = ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
             }
             else
             {
-                // Gây sự kiện lên V6ColorDataGridView để Refresh form nếu cần thiết
-                if (dataGridView is V6ColorDataGridView)
-                    ((V6ColorDataGridView)dataGridView).OnV6Changed();
+                cell.Value = Value;
             }
         }
 
@@ -143,7 +195,7 @@ namespace V6Controls.Controls.GridView
         /// </summary>
         public virtual object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
         {
-            return this.Text;
+            return ObjectAndString.ObjectToString(this.Value);
         }
 
         /// <summary>
@@ -161,18 +213,19 @@ namespace V6Controls.Controls.GridView
                     DataGridView = dataGridView,
                     Control = this
                 });
-            
+
             if (selectAll)
             {
-                //var cell = dataGridView.CurrentCell;
-                //this.Text = ObjectAndString.ObjectToString(cell.Value);
-                //if (cell.OwningColumn.DefaultCellStyle.Format != null && cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
-                //    this.DecimalPlaces = ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
-                this.SelectAll();
+                var cell = dataGridView.CurrentCell;
+                //this.Value = ObjectAndString.ObjectToFullDateTime(cell.Value);
+                if (string.IsNullOrEmpty(cell.OwningColumn.DefaultCellStyle.Format))
+                    this.CustomFormat = "dd/MM/yyyy";
+                else this.CustomFormat = cell.OwningColumn.DefaultCellStyle.Format;
+                //this.SelectAll();
             }
             else
             {
-                this.SelectionStart = this.Text.Length;
+                //this.SelectionStart = 0;
             }
         }
 
@@ -182,7 +235,7 @@ namespace V6Controls.Controls.GridView
         /// Small utility function that updates the local dirty state and 
         /// notifies the grid of the value change.
         /// </summary>
-        private void NotifyDataGridViewOfValueChange()
+        public void NotifyDataGridViewOfValueChange()
         {
             if (!this.valueChanged)
             {
@@ -191,14 +244,47 @@ namespace V6Controls.Controls.GridView
             }
         }
 
-        ///// <summary>
-        ///// Listen to the KeyPress notification to know when the value changed, and 
-        ///// notify the grid of the change.
-        ///// </summary>
-        //protected override void OnKeyPress(KeyPressEventArgs e)
-        //{
-        //    base.OnKeyPress(e);
-        //}
+        /// <summary>
+        /// Listen to the KeyPress notification to know when the value changed, and 
+        /// notify the grid of the change.
+        /// </summary>
+        protected override void OnKeyPress(KeyPressEventArgs e)
+        {
+            base.OnKeyPress(e);
+            
+            // The value changes when a digit, the decimal separator or the negative sign is pressed.
+            bool notifyValueChange = false;
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                notifyValueChange = true;
+            }
+            else
+            {
+                System.Globalization.NumberFormatInfo numberFormatInfo = System.Globalization.CultureInfo.CurrentCulture.NumberFormat;
+                string decimalSeparatorStr = numberFormatInfo.NumberDecimalSeparator;
+                string groupSeparatorStr = numberFormatInfo.NumberGroupSeparator;
+                string negativeSignStr = numberFormatInfo.NegativeSign;
+                if (!string.IsNullOrEmpty(decimalSeparatorStr) && decimalSeparatorStr.Length == 1)
+                {
+                    notifyValueChange = decimalSeparatorStr[0] == e.KeyChar;
+                }
+                if (!notifyValueChange && !string.IsNullOrEmpty(groupSeparatorStr) && groupSeparatorStr.Length == 1)
+                {
+                    notifyValueChange = groupSeparatorStr[0] == e.KeyChar;
+                }
+                if (!notifyValueChange && !string.IsNullOrEmpty(negativeSignStr) && negativeSignStr.Length == 1)
+                {
+                    notifyValueChange = negativeSignStr[0] == e.KeyChar;
+                }
+            }
+
+            if (notifyValueChange)
+            {
+                // Let the DataGridView know about the value change
+                NotifyDataGridViewOfValueChange();
+            }
+        }
 
         /// <summary>
         /// Listen to the ValueChanged notification to forward the change to the grid.
@@ -206,10 +292,19 @@ namespace V6Controls.Controls.GridView
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-            dataGridView.CurrentCell.Value = Text;
-            if (dataGridView is V6ColorDataGridView)
-                ((V6ColorDataGridView)dataGridView).OnV6Changed();
-            //if (this.Focused)
+
+            if (this.Focused)
+            {
+                // Let the DataGridView know about the value change
+                NotifyDataGridViewOfValueChange();
+            }
+        }
+
+        protected override void OnValueChanged(EventArgs e)
+        {
+            base.OnValueChanged(e);
+
+            if (this.Focused)
             {
                 // Let the DataGridView know about the value change
                 NotifyDataGridViewOfValueChange();
@@ -219,162 +314,25 @@ namespace V6Controls.Controls.GridView
 
     #endregion
 
-    #region V6VvarDataGridViewColumn
-    public class V6VvarDataGridViewColumn : DataGridViewTextBoxColumn//DataGridViewColumn//
+
+    #region V6DateTimePickerFullDataGridViewCell
+
+    public class V6DateTimePickerFullDataGridViewCell : DataGridViewTextBoxCell
     {
-        public V6VvarDataGridViewColumn()
-        {
-            V6VvarDataGridViewCell cell = new V6VvarDataGridViewCell();
-            base.CellTemplate = cell;
+        //private bool m_showNullWhenZero = false;
+        //private bool m_allowNegative = true;
+        //private int m_decimalLength = 0;
 
-            base.SortMode = DataGridViewColumnSortMode.Automatic;
-            //base.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            //base.DefaultCellStyle.Format = "F" + this.DecimalLength.ToString();
-        }
+        private static Type defaultEditType = typeof(V6DateTimePickerFullGridViewEditingControl);
+        private static Type defaultValueType = typeof(System.DateTime);
 
-        private V6VvarDataGridViewCell VvarCellTemplate
-        {
-            get
-            {
-                V6VvarDataGridViewCell cell = this.CellTemplate as V6VvarDataGridViewCell;
-                if (cell == null)
-                {
-                    throw new InvalidOperationException("V6VvarDataGridViewColumn does not have a CellTemplate.");
-                }
-                return cell;
-            }
-        }
-
-        [
-            Browsable(false),
-            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
-        ]
-        public override DataGridViewCell CellTemplate
-        {
-            get { return base.CellTemplate; }
-            set
-            {
-                V6VvarDataGridViewCell cell = value as V6VvarDataGridViewCell;
-                if (value != null && cell == null)
-                {
-                    throw new InvalidCastException("Value provided for CellTemplate must be of type V6VvarDataGridViewCell or derive from it.");
-                }
-                base.CellTemplate = value;
-            }
-        }
-
-        public string Vvar
-        {
-            // Thuộc tính kiểu mới lưu trong Tag.
-            get
-            {
-                IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("VVAR")) return "" + tagDic["VVAR"];
-                return null;
-            }
-            set
-            {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["VVAR"] = value;
-                Tag = tagDic;
-            }
-        }
-
-        public string InitFilter
-        {
-            // Thuộc tính kiểu mới lưu trong Tag.
-            get
-            {
-                IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("INITFILTER")) return "" + tagDic["INITFILTER"];
-                return null;
-            }
-            set
-            {
-                if (value == null) return;
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["INITFILTER"] = value;
-                Tag = tagDic;
-            }
-        }
-
-        public string LimitCharter
-        {
-            // Thuộc tính kiểu mới lưu trong Tag.
-            get
-            {
-                IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("LIMITCHARTER")) return "" + tagDic["LIMITCHARTER"];
-                return null;
-            }
-            set
-            {
-                if (value == null) return;
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["LIMITCHARTER"] = value;
-                Tag = tagDic;
-            }
-        }
-
-        public bool CheckNotEmpty
-        {
-            get
-            {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("CHECKNOTEMPTY")) return "1" == "" + tagDic["CHECKNOTEMPTY"];
-                return false;
-            }
-            set
-            {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["CHECKNOTEMPTY"] = value ? "1" : "0";
-                Tag = tagDic;
-            }
-        }
-        public bool CheckOnLeave
-        {
-            get
-            {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("CHECKONLEAVE")) return "1" == "" + tagDic["CHECKONLEAVE"];
-                return false;
-            }
-            set
-            {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["CHECKONLEAVE"] = value ? "1" : "0";
-                Tag = tagDic;
-            }
-        }
-
-        public override string ToString()
-        {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder(100);
-            sb.Append("V6VvarDataGridViewColumn { Name=");
-            sb.Append(this.Name);
-            sb.Append(", Index=");
-            sb.Append(this.Index.ToString(CultureInfo.CurrentCulture));
-            sb.Append(" }");
-            return sb.ToString();
-        }
-    }
-
-    #endregion
-
-    #region V6VvarTextBoxDataGridViewCell
-
-    public class V6VvarDataGridViewCell : DataGridViewTextBoxCell
-    {
-        private static Type defaultEditType = typeof(V6VvarDataGridViewEditingControl);
-        private static Type defaultValueType = typeof(System.String);
-
-        public V6VvarDataGridViewCell(){}
+        public V6DateTimePickerFullDataGridViewCell(){}
         
-        private V6VvarDataGridViewEditingControl EditingControl
+        private V6DateTimePickerFullGridViewEditingControl EditingV6DateTimePickerTextBox
         {
             get
             {
-                return this.DataGridView.EditingControl as V6VvarDataGridViewEditingControl;
+                return this.DataGridView.EditingControl as V6DateTimePickerFullGridViewEditingControl;
             }
         }
 
@@ -397,29 +355,16 @@ namespace V6Controls.Controls.GridView
         }
 
         ///// <summary>
-        ///// Làm tròn khi gán giá trị vào cell.
-        ///// If set 0/1.23 to two cells, it will throw Exception when sort by clicking column header.
-        ///// Override this method to ensure the type of value.
+        ///// 
         ///// </summary>
         //protected override bool SetValue(int rowIndex, object value)
         //{
-        //    //Value = ("" + value).Trim();
-        //    //return true;
-        //    //decimal val = 0.0m;
-        //    //try
-        //    //{
-        //    //    if (EditingControl != null)
-        //    //        val = Math.Round(Convert.ToDecimal(value), EditingControl.DecimalPlaces);
-        //    //    else
-        //    //        val = ObjectAndString.ObjectToDecimal(value);
-        //    //}
-        //    //catch { }
-        //    return base.SetValue(rowIndex, value.ToString().Trim());  // if set 0 and 1.23, it will throw exception when sort
+        //   return base.SetValue(rowIndex, value);  // if set 0 and 1.23, it will throw exception when sort
         //}
 
         //public override object Clone()
         //{
-        //    V6VvarTextBoxDataGridViewCell dataGridViewCell = base.Clone() as V6VvarTextBoxDataGridViewCell;
+        //    V6DateTimePickerFullDataGridViewCell dataGridViewCell = base.Clone() as V6DateTimePickerFullDataGridViewCell;
         //    //if (dataGridViewCell != null)
         //    //{
         //    //    //dataGridViewCell.DecimalLength = this.DecimalLength;
@@ -432,34 +377,16 @@ namespace V6Controls.Controls.GridView
         public override void InitializeEditingControl(int rowIndex, object initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
         {
             base.InitializeEditingControl(rowIndex, initialFormattedValue, dataGridViewCellStyle);
-            V6VvarTextBox txt = this.DataGridView.EditingControl as V6VvarTextBox;
-            if (txt != null)
+            OnCommonChange();
+            V6DateTimePickerFullGridViewEditingControl editBox = this.DataGridView.EditingControl as V6DateTimePickerFullGridViewEditingControl;
+            if (editBox != null)
             {
-                var vvarColumn = (V6VvarDataGridViewColumn) DataGridView.CurrentCell.OwningColumn;
-                
-                txt.VVar = vvarColumn.Vvar;
-                txt.SetInitFilter(vvarColumn.InitFilter);
-                txt.LimitCharacters = vvarColumn.LimitCharter;
-                txt.CheckNotEmpty = vvarColumn.CheckNotEmpty;
-                txt.CheckOnLeave = vvarColumn.CheckOnLeave;
-                //txt.Carry = vvarColumn.Carry;
-                txt.CharacterCasing = CharacterCasing.Upper;
-                txt.BorderStyle = BorderStyle.None;
-                //if (dataGridViewCellStyle.Format != null && dataGridViewCellStyle.Format.StartsWith("N"))
-                //    numEditBox.DecimalPlaces = ObjectAndString.ObjectToInt(dataGridViewCellStyle.Format.Substring(1));
-                //numEditBox.DecimalLength = this.DecimalLength;
-                //numEditBox.AllowNegative = this.AllowNegative;
-
-                //string initialFormattedValueStr = initialFormattedValue as string;
-
-                //if (string.IsNullOrEmpty(initialFormattedValueStr))
-                //{
-                //    txt.Text = "0";
-                //}
-                //else
-                //{
-                //    txt.Text = ("" + initialFormattedValueStr).Trim();
-                //}
+                editBox.NotifyDataGridViewOfValueChange();
+                //numEditBox.BorderStyle = BorderStyle.None;
+                editBox.Format = DateTimePickerFormat.Custom;
+                if (string.IsNullOrEmpty(dataGridViewCellStyle.Format))
+                     editBox.CustomFormat = "dd/MM/yyyy";
+                else editBox.CustomFormat = dataGridViewCellStyle.Format;
             }
         }
 
@@ -472,10 +399,10 @@ namespace V6Controls.Controls.GridView
                 throw new InvalidOperationException("Cell is detached or its grid has no editing control.");
             }
 
-            V6VvarTextBox numEditBox = dataGridView.EditingControl as V6VvarTextBox;
+            V6DateTimePicker numEditBox = dataGridView.EditingControl as V6DateTimePicker;
             if (numEditBox != null)
             {
-                numEditBox.ClearUndo();  // avoid interferences between the editing sessions
+                //numEditBox.ClearUndo();  // avoid interferences between the editing sessions
             }
 
             base.DetachEditingControl();
@@ -535,13 +462,13 @@ namespace V6Controls.Controls.GridView
             {
                 return false;
             }
-            V6VvarDataGridViewEditingControl editingControl = this.DataGridView.EditingControl as V6VvarDataGridViewEditingControl;
+            V6DateTimePickerFullGridViewEditingControl editingControl = this.DataGridView.EditingControl as V6DateTimePickerFullGridViewEditingControl;
             return editingControl != null && rowIndex == ((IDataGridViewEditingControl)editingControl).EditingControlRowIndex;
         }
-
+        
         public override string ToString()
         {
-            return "V6VvarDataGridViewCell { ColIndex=" + ColumnIndex.ToString(CultureInfo.CurrentCulture) + 
+            return "V6DateTimePickerFullDataGridViewCell { ColIndex=" + ColumnIndex.ToString(CultureInfo.CurrentCulture) + 
                 ", RowIndex=" + RowIndex.ToString(CultureInfo.CurrentCulture) + " }";
         }
     }

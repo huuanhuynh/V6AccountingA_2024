@@ -96,6 +96,9 @@
     <Compile Include="Controls\DateSelectButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\GridView\V6DateTimePickerFullGridViewColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\RicherTextBox\FindForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -18,4 +18,19 @@ namespace V6Controls.Structs
         /// </summary>
         public bool IsVisible { get; set; }
     }
+    public class AlctColumns
+    {
+        public int FOrder { get; set; }
+        /// <summary>
+        /// Control chính
+        /// </summary>
+        public DataGridViewColumn DetailControl { get; set; }
+        public string LabelText { get; set; }
+        public LookupButton LookupButton { get; set; }
+        public bool IsCarry { get; set; }
+        /// <summary>
+        /// fstatus, Trạng trái ẩn/hiện đăng ký trong Alct1.
+        /// </summary>
+        public bool IsVisible { get; set; }
+    }
 }

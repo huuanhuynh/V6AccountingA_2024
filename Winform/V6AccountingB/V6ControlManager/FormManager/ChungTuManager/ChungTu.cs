@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
@@ -28,10 +30,16 @@ using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho;
 using V6Controls;
+using V6Controls.Controls;
+using V6Controls.Controls.GridView;
 using V6Controls.Forms;
+using V6Controls.Structs;
 using V6Init;
+using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using Control = System.Windows.Forms.Control;
+using Label = System.Windows.Forms.Label;
 
 namespace V6ControlManager.FormManager.ChungTuManager
 {
@@ -214,6 +222,287 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 V6ControlFormHelper.WriteExLog("ChungTu.SetTxtStatusProperties", ex);
             }
+        }
+
+        public static void ApplyAlct1toGridView(DataTable alct1, V6ColorDataGridView dataGridView1,
+            out List<string> _orderList, out SortedDictionary<string, DataRow> _alct1Dic)
+        {
+            var result = new Dictionary<string, AlctColumns>();
+
+            //var alct1 = Invoice.Alct1;
+            _orderList = new List<string>();
+            var _carryList = new List<DataGridViewColumn>();
+            _alct1Dic = new SortedDictionary<string, DataRow>();
+
+            //Control temp_control = new Control();
+            foreach (DataRow row in alct1.Rows)
+            {
+                var read_only = 1 == ObjectAndString.ObjectToInt(row["visible"]);
+                //if (!visible) continue;
+                Config config = new Config(row.ToDataDictionary());
+                var filter_m = config.GetString("FILTER_M");
+                var FCOLUMN = config.GetString("fcolumn").ToUpper();
+                _orderList.Add(FCOLUMN);
+                _alct1Dic.Add(FCOLUMN, row);
+
+                var fcaption = row[V6Setting.Language == "V" ? "caption" : "caption2"].ToString().Trim();
+                var limits = row["limits"].ToString().Trim();
+                var fvvar = row["fvvar"].ToString().Trim();
+                var fstatus = Convert.ToBoolean(row["fstatus"]);
+
+                var width = ObjectAndString.ObjectToInt(row["width"]);
+                var ftype = row["ftype"].ToString().Trim();
+                var fOrder = ObjectAndString.ObjectToInt(row["forder"]);
+                var carry = ObjectAndString.ObjectToInt(row["carry"]) == 1;
+
+                int decimals = 0;
+
+                //Control c = temp_control;
+                DataGridViewColumn c_column = dataGridView1.Columns[FCOLUMN];
+                switch (ftype)
+                {
+                    #region Create controls
+                    //case "A0":
+                    //    if (FCOLUMN == "TANG")
+                    //    {
+                    //        c = CreateCheckTextBox(FCOLUMN, "a", fcaption, limits, width, fstatus, carry);
+                    //    }
+                    //    else if (FCOLUMN == "PX_GIA_DDI")
+                    //    {
+                    //        c = CreateCheckTextBox(FCOLUMN, "a", fcaption, limits, width, fstatus, carry);
+                    //    }
+                    //    else if (FCOLUMN == "PN_GIA_TBI")
+                    //    {
+                    //        c = CreateCheckTextBox(FCOLUMN, "a", fcaption, limits, width, fstatus, carry);
+                    //    }
+                    //    break;
+                    //case "A1":
+                    //    c = CreateCheckTextBox(FCOLUMN, "a", fcaption, limits, width, fstatus, carry);
+                    //    break;
+                    case "C0":
+                        if (fvvar != "")
+                        {
+                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+                            //c = V6ControlFormHelper.CreateVvarTextBox(FCOLUMN, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+
+                            var column = dataGridView1.ChangeColumnType(FCOLUMN, typeof(V6VvarDataGridViewColumn), "C" + fvvar) as V6VvarDataGridViewColumn;
+                            if (column != null)
+                            {
+                                column.HeaderText = fcaption;
+                                column.Vvar = fvvar;
+                                column.CheckOnLeave = checkvvar;
+                                column.CheckNotEmpty = notempty;
+                                //column.Carry = carry;
+                                column.LimitCharter = limits;
+                                column.Width = width;
+                                column.Visible = fstatus;
+                            }
+                        }
+                        else
+                        {
+                            //c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
+                            var column = dataGridView1.Columns[FCOLUMN];
+                            if (column != null)
+                            {
+                                column.HeaderText = fcaption;
+                                column.Width = width;
+                                column.Visible = fstatus;
+                            }
+                        }
+                        break;
+                    //case "C1":  // LookupTextBox
+                    //    if (fvvar != "")
+                    //    {
+                    //        var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                    //        var notempty = Convert.ToBoolean(row["notempty"]);
+                    //        string ma_dm = row["MA_DM"].ToString().Trim();
+                    //        string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
+                    //        string value_field = ss[0];
+                    //        string text_field = ss[1];
+                    //        string bfields = ss[2];
+                    //        string nfields = ss[3];
+                    //        c = CreateLookupTextBox(FCOLUMN, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                    //    }
+                    //    else
+                    //    {
+                    //        c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
+                    //    }
+                    //    break;
+                    //case "C2":  // LookupProc
+                    //    if (fvvar != "")
+                    //    {
+                    //        var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                    //        var notempty = Convert.ToBoolean(row["notempty"]);
+                    //        string ma_dm = row["MA_DM"].ToString().Trim();
+                    //        string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
+                    //        string value_field = ss[0];
+                    //        string text_field = ss[1];
+                    //        string bfields = ss[2];
+                    //        string nfields = ss[3];
+                    //        c = CreateLookupProcTextBox(FCOLUMN, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                    //    }
+                    //    else
+                    //    {
+                    //        c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
+                    //    }
+                    //    break;
+                    //case "C3":  // LookupData
+                    //    if (fvvar != "")
+                    //    {
+                    //        var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                    //        var notempty = Convert.ToBoolean(row["notempty"]);
+                    //        c = CreateLookupDataTextBox(FCOLUMN, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                    //    }
+                    //    else
+                    //    {
+                    //        c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
+                    //    }
+                    //    break;
+                    case "N9"://Kieu so bat ky
+                    case "N0"://Tien
+                    case "N1"://Ngoai te
+                    case "N2"://so luong
+                    case "N3"://GIA
+                    case "N4"://Gia nt
+                    case "N5"://Ty gia
+                        
+                        if (ftype == "N9")
+                        {
+                            decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
+                        }
+                        else if (ftype == "N0")
+                        {
+                            decimals = V6Options.M_IP_TIEN;
+                        }
+                        else if (ftype == "N1")
+                        {
+                            decimals = V6Options.M_IP_TIEN_NT;
+                        }
+                        else if (ftype == "N2")
+                        {
+                            decimals = V6Options.M_IP_SL;
+                        }
+                        else if (ftype == "N3")
+                        {
+                            decimals = V6Options.M_IP_GIA;
+                        }
+                        else if (ftype == "N4")
+                        {
+                            decimals = V6Options.M_IP_GIA_NT;
+                        }
+                        else if (ftype == "N5")
+                        {
+                            decimals = V6Options.M_IP_TY_GIA;
+                        }
+                        
+                        //c = CreateNumberTextBox(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
+                        var num_column = dataGridView1.ChangeColumnType(FCOLUMN, typeof(V6NumberDataGridViewColumn), "N" + decimals) as V6NumberDataGridViewColumn;
+                        if (num_column != null)
+                        {
+                            num_column.HeaderText = fcaption;
+                            num_column.DefaultCellStyle.Format = "N" + decimals;
+                            //num_column.CheckOnLeave = checkvvar;
+                            //num_column.CheckNotEmpty = notempty;
+                            //num_column.LimitCharter = limits;
+                            //column.Carry = carry;
+                            num_column.Width = width;
+                            num_column.Visible = fstatus;
+                        }
+                        break;
+                    
+                    
+                    
+                    case "D0": // Allow null
+                        //c = CreateDateTimeColor(FCOLUMN, fcaption, width, fstatus, carry);
+                        var datecolor_column = dataGridView1.ChangeColumnType(FCOLUMN, typeof(V6DateTimeColorGridViewColumn), null) as V6DateTimeColorGridViewColumn;
+                        if (datecolor_column != null)
+                        {
+                            datecolor_column.HeaderText = fcaption;
+                            datecolor_column.Width = width;
+                            datecolor_column.Visible = fstatus;
+                        }
+                        break;
+                    case "D1": // Not null
+                        //c = CreateDateTimePicker(FCOLUMN, fcaption, width, fstatus, carry);
+                        var date_column = dataGridView1.ChangeColumnType(FCOLUMN, typeof(V6DateTimePickerGridViewColumn), null) as V6DateTimePickerGridViewColumn;
+                        if (date_column != null)
+                        {
+                            date_column.HeaderText = fcaption;
+                            date_column.Width = width;
+                            date_column.Visible = fstatus;
+                        }
+                        break;
+                    case "D2": // Not null + time
+                        //c = CreateDateTimeFullPicker(FCOLUMN, fcaption, width, fstatus, carry);
+                        var datetime_column = dataGridView1.ChangeColumnType(FCOLUMN, typeof(V6DateTimePickerFullGridViewColumn), null) as V6DateTimePickerFullGridViewColumn;
+                        if (datetime_column != null)
+                        {
+                            datetime_column.HeaderText = fcaption;
+                            datetime_column.Width = width;
+                            datetime_column.Visible = fstatus;
+                        }
+                        break;
+                    case "D3": // null + time
+                        //c = V6ControlFormHelper. CreateDateTimeFullPickerNull(FCOLUMN, fcaption, width, fstatus, carry);
+                        var datetemp_column = dataGridView1.ChangeColumnType(FCOLUMN, typeof(V6DateTimeColorGridViewColumn), null) as V6DateTimeColorGridViewColumn;
+                        if (datetemp_column != null)
+                        {
+                            datetemp_column.HeaderText = fcaption;
+                            datetemp_column.Width = width;
+                            datetemp_column.Visible = fstatus;
+                        }
+                        break;
+                        break;
+                    #endregion
+                }
+
+                if (read_only)
+                {
+                    c_column.ReadOnly = true;
+                }
+
+                if (c_column != null)
+                {
+                    //LookupButton lButton = null;
+                    //if (!string.IsNullOrEmpty(filter_m))
+                    //{
+                    //    DefineInfo defineInfo_M = new DefineInfo(filter_m);
+                    //    lButton = new LookupButton();
+                    //    lButton.ReferenceControl = c;
+
+                    //    lButton.Name = "lbt" + FCOLUMN;
+
+                    //    lButton.R_DataType = defineInfo_M.R_DataType;
+                    //    //lButton.R_Value = defineInfo_M.R_Value;
+                    //    //lButton.R_Vvar = defineInfo_M.R_Vvar;
+                    //    //lButton.R_Stt_rec = defineInfo_M.R_Stt_rec;
+                    //    lButton.R_Ma_ct = defineInfo_M.R_Ma_ct;
+
+                    //    lButton.M_DataType = defineInfo_M.M_DataType;
+                    //    lButton.M_Value = defineInfo_M.M_Value;
+                    //    lButton.M_Vvar = defineInfo_M.M_Vvar;
+                    //    lButton.M_Stt_Rec = defineInfo_M.M_Stt_Rec;
+                    //    lButton.M_Ma_ct = defineInfo_M.M_Ma_ct;
+
+                    //    lButton.M_Type = defineInfo_M.M_Type;
+                    //    //lButton.M_User_id = defineInfo_M.M_User_id;
+                    //    //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
+
+                    //    lButton.Visible = defineInfo_M.Visible;
+                    //}
+
+                    result.Add(FCOLUMN, new AlctColumns() { DetailControl = c_column, LookupButton = null, LabelText = fcaption, IsCarry = carry, FOrder = fOrder, IsVisible = fstatus });
+                    if (carry)
+                    {
+                        _carryList.Add(c_column);
+                    }
+                }
+            }
+            //orderList = _orderList;
+            //alct1Dic = _alct1Dic;
+            string[] orderList = new string[5];
+            V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, orderList);
         }
     }
 

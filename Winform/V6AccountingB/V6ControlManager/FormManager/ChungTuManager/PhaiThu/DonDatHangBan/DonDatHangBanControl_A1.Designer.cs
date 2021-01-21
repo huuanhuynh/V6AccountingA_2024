@@ -38,11 +38,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
-            this.MA_VT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TEN_VT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
             this.TxtT_TIENVC = new V6Controls.V6NumberTextBox();
             this.TxtT_TIENVCNT = new V6Controls.V6NumberTextBox();
@@ -237,6 +232,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNameT = new V6Controls.V6Label();
+            this.MA_VT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TEN_VT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -324,46 +324,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
-            // 
-            // MA_VT
-            // 
-            this.MA_VT.DataPropertyName = "MA_VT";
-            this.MA_VT.Frozen = true;
-            this.MA_VT.HeaderText = "Mã vật tư";
-            this.MA_VT.Name = "MA_VT";
-            this.MA_VT.ReadOnly = true;
-            // 
-            // TEN_VT
-            // 
-            this.TEN_VT.DataPropertyName = "TEN_VT";
-            this.TEN_VT.Frozen = true;
-            this.TEN_VT.HeaderText = "Tên vật tư";
-            this.TEN_VT.Name = "TEN_VT";
-            this.TEN_VT.ReadOnly = true;
-            // 
-            // UID
-            // 
-            this.UID.DataPropertyName = "UID";
-            this.UID.HeaderText = "UID";
-            this.UID.Name = "UID";
-            this.UID.ReadOnly = true;
-            this.UID.Visible = false;
-            // 
-            // STT_REC
-            // 
-            this.STT_REC.DataPropertyName = "STT_REC";
-            this.STT_REC.HeaderText = "Rec";
-            this.STT_REC.Name = "STT_REC";
-            this.STT_REC.ReadOnly = true;
-            this.STT_REC.Visible = false;
-            // 
-            // STT_REC0
-            // 
-            this.STT_REC0.DataPropertyName = "STT_REC0";
-            this.STT_REC0.HeaderText = "Rec0";
-            this.STT_REC0.Name = "STT_REC0";
-            this.STT_REC0.ReadOnly = true;
-            this.STT_REC0.Visible = false;
             // 
             // tabKhac
             // 
@@ -3370,6 +3330,44 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // MA_VT
+            // 
+            this.MA_VT.DataPropertyName = "MA_VT";
+            this.MA_VT.HeaderText = "Mã vật tư";
+            this.MA_VT.Name = "MA_VT";
+            this.MA_VT.ReadOnly = true;
+            // 
+            // TEN_VT
+            // 
+            this.TEN_VT.DataPropertyName = "TEN_VT";
+            this.TEN_VT.HeaderText = "Tên vật tư";
+            this.TEN_VT.Name = "TEN_VT";
+            this.TEN_VT.ReadOnly = true;
+            // 
+            // UID
+            // 
+            this.UID.DataPropertyName = "UID";
+            this.UID.HeaderText = "UID";
+            this.UID.Name = "UID";
+            this.UID.ReadOnly = true;
+            this.UID.Visible = false;
+            // 
+            // STT_REC
+            // 
+            this.STT_REC.DataPropertyName = "STT_REC";
+            this.STT_REC.HeaderText = "Rec";
+            this.STT_REC.Name = "STT_REC";
+            this.STT_REC.ReadOnly = true;
+            this.STT_REC.Visible = false;
+            // 
+            // STT_REC0
+            // 
+            this.STT_REC0.DataPropertyName = "STT_REC0";
+            this.STT_REC0.HeaderText = "Rec0";
+            this.STT_REC0.Name = "STT_REC0";
+            this.STT_REC0.ReadOnly = true;
+            this.STT_REC0.Visible = false;
+            // 
             // DonDatHangBanControl_A1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3519,11 +3517,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnFirst;
         private V6VvarTextBox txtTenKh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MA_VT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TEN_VT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC0;
         private V6VvarTextBox txtMaSoThue;
         private System.Windows.Forms.Button btnHuy;
         private V6Controls.V6ComboBox cboMaNt;
@@ -3637,5 +3630,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private System.Windows.Forms.ToolStripMenuItem chonALVTMenu;
         private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
         private V6CheckBox chkAutoNext;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MA_VT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TEN_VT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC0;
     }
 }
