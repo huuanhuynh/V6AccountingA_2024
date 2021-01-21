@@ -53,67 +53,68 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (V6Login.UserRight.AllowDelete(Name, "S07"))
+                    if (!V6Login.UserRight.AllowDelete(Name, "S07"))
                     {
+                        this.ShowWarningMessage(V6Text.NoRight);
+                        return;
+                    }
+                    var currentRow = dataGridView1.CurrentRow;
+                    if (dataGridView1.Columns.Contains("NAM") &&dataGridView1.Columns.Contains("THANG") && dataGridView1.Columns.Contains("KHOA_CTGS"))
+                    {
+                        int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells
+                            ["NAM"].Value);
+                        int selectedthang = ObjectAndString.ObjectToInt
+                            (currentRow.Cells["THANG"].Value);
+                        var _numlist = "";
 
-                        var currentRow = dataGridView1.CurrentRow;
-                        if (dataGridView1.Columns.Contains("NAM") &&dataGridView1.Columns.Contains("THANG") && dataGridView1.Columns.Contains("KHOA_CTGS"))
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
-                            int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells
-                                ["NAM"].Value);
-                             int selectedthang = ObjectAndString.ObjectToInt
-                               (currentRow.Cells["THANG"].Value);
-                            var _numlist = "";
-
-                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            if (row.IsSelect())
                             {
-                                if (row.IsSelect())
-                                {
-                                    var rowdata = row.ToDataDictionary();
-                                    _numlist = _numlist + string.Format(",'{0}'", rowdata["KHOA_CTGS"].ToString().Trim());
+                                var rowdata = row.ToDataDictionary();
+                                _numlist = _numlist + string.Format(",'{0}'", rowdata["KHOA_CTGS"].ToString().Trim());
 
-                                }
                             }
-
-                            if (_numlist.Length > 0)
-                            {
-                                _numlist = _numlist.Substring(1);
-
-
-                                var fText = V6Text.Text("XDKCTGS");
-                                var f = new V6Form
-                                {
-                                    Text = fText,
-                                    AutoSize = true,
-                                    FormBorderStyle = FormBorderStyle.FixedSingle
-                                };
-
-                                var ketchuyenForm = new AGSCTGS02_F8(_numlist, selectedNam, selectedthang, selectedthang, _reportProcedure);
-
-
-                                ketchuyenForm.UpdateSuccessEvent += delegate
-                                {
-                                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                                    {
-                                        if (row.IsSelect())
-                                        {
-                                            row.UnSelect();
-
-                                        }
-                                    }
-                                };
-
-                                f.Controls.Add(ketchuyenForm);
-                                ketchuyenForm.Disposed += delegate
-                                {
-                                    f.Dispose();
-                                };
-
-                                f.ShowDialog(this);
-                                SetStatus2Text();
-                            }
-
                         }
+
+                        if (_numlist.Length > 0)
+                        {
+                            _numlist = _numlist.Substring(1);
+
+
+                            var fText = V6Text.Text("XDKCTGS");
+                            var f = new V6Form
+                            {
+                                Text = fText,
+                                AutoSize = true,
+                                FormBorderStyle = FormBorderStyle.FixedSingle
+                            };
+
+                            var ketchuyenForm = new AGSCTGS02_F8(_numlist, selectedNam, selectedthang, selectedthang, _reportProcedure);
+
+
+                            ketchuyenForm.UpdateSuccessEvent += delegate
+                            {
+                                foreach (DataGridViewRow row in dataGridView1.Rows)
+                                {
+                                    if (row.IsSelect())
+                                    {
+                                        row.UnSelect();
+
+                                    }
+                                }
+                            };
+
+                            f.Controls.Add(ketchuyenForm);
+                            ketchuyenForm.Disposed += delegate
+                            {
+                                f.Dispose();
+                            };
+
+                            f.ShowDialog(this);
+                            SetStatus2Text();
+                        }
+
                     }
 
                 }

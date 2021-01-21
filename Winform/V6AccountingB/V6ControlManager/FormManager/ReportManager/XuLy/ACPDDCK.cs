@@ -51,68 +51,69 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (V6Login.UserRight.AllowDelete(Name, "GL3"))
+                    if (!V6Login.UserRight.AllowDelete(Name, "GL3"))
                     {
+                        this.ShowWarningMessage(V6Text.NoRight);
+                        return;
+                    }
+                    var currentRow = dataGridView1.CurrentRow;
+                    if (dataGridView1.Columns.Contains("NAM") && dataGridView1.Columns.Contains("STT"))
+                    {
+                        var selectedStt = currentRow.Cells
+                            ["STT"].Value;
+                        int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells
+                            ["NAM"].Value);
 
-                        var currentRow = dataGridView1.CurrentRow;
-                        if (dataGridView1.Columns.Contains("NAM") && dataGridView1.Columns.Contains("STT"))
+                        var _numlist = "";
+
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
-                            var selectedStt = currentRow.Cells
-                                ["STT"].Value;
-                            int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells
-                                ["NAM"].Value);
-
-                            var _numlist = "";
-
-                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            if (row.IsSelect())
                             {
-                                if (row.IsSelect())
-                                {
-                                    var rowdata = row.ToDataDictionary();
-                                    _numlist = _numlist + "," + rowdata["STT"].ToString().Trim();
+                                var rowdata = row.ToDataDictionary();
+                                _numlist = _numlist + "," + rowdata["STT"].ToString().Trim();
 
-                                }
                             }
-
-                            if (_numlist.Length > 0)
-                            {
-                                _numlist = _numlist.Substring(1);
-
-
-                                var fText = "Xóa kết chuyển tự động ";
-                                var f = new V6Form
-                                {
-                                    Text = fText,
-                                    AutoSize = true,
-                                    FormBorderStyle = FormBorderStyle.FixedSingle
-                                };
-
-                                var ketchuyenForm = new AGLCTKC_F8(_numlist, selectedNam, _reportProcedure);
-
-
-                                ketchuyenForm.UpdateSuccessEvent += delegate
-                                {
-                                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                                    {
-                                        if (row.IsSelect())
-                                        {
-                                            row.UnSelect();
-
-                                        }
-                                    }
-                                };
-
-                                f.Controls.Add(ketchuyenForm);
-                                ketchuyenForm.Disposed += delegate
-                                {
-                                    f.Dispose();
-                                };
-
-                                f.ShowDialog(this);
-                                SetStatus2Text();
-                            }
-
                         }
+
+                        if (_numlist.Length > 0)
+                        {
+                            _numlist = _numlist.Substring(1);
+
+
+                            var fText = "Xóa kết chuyển tự động ";
+                            var f = new V6Form
+                            {
+                                Text = fText,
+                                AutoSize = true,
+                                FormBorderStyle = FormBorderStyle.FixedSingle
+                            };
+
+                            var ketchuyenForm = new AGLCTKC_F8(_numlist, selectedNam, _reportProcedure);
+
+
+                            ketchuyenForm.UpdateSuccessEvent += delegate
+                            {
+                                foreach (DataGridViewRow row in dataGridView1.Rows)
+                                {
+                                    if (row.IsSelect())
+                                    {
+                                        row.UnSelect();
+
+                                    }
+                                }
+                            };
+
+                            f.Controls.Add(ketchuyenForm);
+                            ketchuyenForm.Disposed += delegate
+                            {
+                                f.Dispose();
+                            };
+
+                            f.ShowDialog(this);
+                            SetStatus2Text();
+                        }
+
                     }
 
                 }

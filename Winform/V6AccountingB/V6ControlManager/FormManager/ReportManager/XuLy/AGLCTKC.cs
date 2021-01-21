@@ -55,7 +55,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
 
-                if (!V6Login.UserRight.AllowDelete(Name, "GL3")) return;
+                if (!V6Login.UserRight.AllowDelete(Name, "GL3"))
+                {
+                    this.ShowWarningMessage(V6Text.NoRight);
+                    return;
+                }
 
                 var currentRow = dataGridView1.CurrentRow;
                 if (dataGridView1.Columns.Contains("NAM") && dataGridView1.Columns.Contains("STT"))
