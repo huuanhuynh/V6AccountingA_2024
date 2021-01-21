@@ -115,6 +115,7 @@ namespace V6Init
         public string SO_LIEN { get { return GetString("SO_LIEN"); } }
         public string MA_CT_IN { get { return GetString("MA_CT_IN"); } }
         public string FORM { get { return GetString("FORM"); } }
+        public string FORMCODE { get { return GetString("FORMCODE"); } }
         public string STT_CT_NKC { get { return GetString("STT_CT_NKC"); } }
         public string STT_CTNTXT { get { return GetString("STT_CTNTXT"); } }
         public string CT_NXT { get { return GetString("CT_NXT"); } }

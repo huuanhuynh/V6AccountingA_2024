@@ -224,6 +224,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
     {
         public static V6InvoiceControl GetChungTuControl(string maCt, string itemId, string sttRec)
         {
+            AlctConfig alctConfig = ConfigManager.GetAlctConfig(maCt);
+            string formCode = alctConfig.FORMCODE;
+            if (formCode != null) formCode = formCode.ToUpper();
+
             switch (maCt)
             {
                 #region ==== Phải thu ====
@@ -234,6 +238,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 case "SOC":
                     return new HoaDonCafeControl(maCt, itemId, sttRec); 
                 case "SOH":
+                    if (formCode == "DONDATHANGBANCONTROL_A1")
+                        return new DonDatHangBanControl_A1(maCt, itemId, sttRec) { Name = itemId };
                     return new DonDatHangBanControl(maCt, itemId, sttRec) { Name = itemId };
                 case "SOR":
                     return new BaoGiaControl(maCt, itemId, sttRec) { Name = itemId };

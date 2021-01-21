@@ -76,6 +76,12 @@
     <Compile Include="FormManager\ChungTuManager\HistoryViewerForm.Designer.cs">
       <DependentUpon>HistoryViewerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl_A1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl_A1.Designer.cs">
+      <DependentUpon>DonDatHangBanControl_A1.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5965,6 +5971,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormManager\ChungTuManager\HistoryViewerForm.resx">
       <DependentUpon>HistoryViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl_A1.resx">
+      <DependentUpon>DonDatHangBanControl_A1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45db2SelectorForm2.resx">
       <DependentUpon>ReportR45db2SelectorForm2.cs</DependentUpon>
