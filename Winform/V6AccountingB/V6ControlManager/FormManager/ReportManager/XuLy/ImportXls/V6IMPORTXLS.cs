@@ -330,7 +330,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //Kiem tra du lieu hop le
                         table = t_f[0];
                         field1 = t_f[1];
-                        if (DuLieuHopLe(grow, field, table, field1))
+                        if (DuLieuTonTai(grow, field, table, field1))
                         {
                             grow.Cells[EXCEL_STATUS].Value = STATUS;
                             continue;
@@ -350,11 +350,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private bool DuLieuHopLe(DataGridViewRow grow, string field, string table, string field1)
+        private bool DuLieuTonTai(DataGridViewRow grow, string field, string checkTable, string checkField)
         {
             IDictionary<string, object> checkData = new SortedDictionary<string, object>();
-            checkData.Add(field1.ToUpper(), grow.Cells[field].Value);
-            return V6BusinessHelper.CheckDataExistStruct(table, checkData);
+            checkData.Add(checkField.ToUpper(), grow.Cells[field].Value);
+            return V6BusinessHelper.CheckDataExistStruct(checkTable, checkData);
         }
 
         #region ==== Xử lý F9 ====

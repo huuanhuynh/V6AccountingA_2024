@@ -316,7 +316,7 @@ namespace V6AccountingB {
             
             private global::System.Data.DataColumn columnSTT_REC;
             
-            private global::System.Data.DataColumn columnTK;
+            private global::System.Data.DataColumn columnGROUP_KEY;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -361,9 +361,9 @@ namespace V6AccountingB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TKColumn {
+            public global::System.Data.DataColumn GROUP_KEYColumn {
                 get {
-                    return this.columnTK;
+                    return this.columnGROUP_KEY;
                 }
             }
             
@@ -404,11 +404,11 @@ namespace V6AccountingB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string STT_REC, string TK) {
+            public DataTable1Row AddDataTable1Row(string STT_REC, string GROUP_KEY) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         STT_REC,
-                        TK};
+                        GROUP_KEY};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -432,7 +432,7 @@ namespace V6AccountingB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnSTT_REC = base.Columns["STT_REC"];
-                this.columnTK = base.Columns["TK"];
+                this.columnGROUP_KEY = base.Columns["GROUP_KEY"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -440,8 +440,8 @@ namespace V6AccountingB {
             private void InitClass() {
                 this.columnSTT_REC = new global::System.Data.DataColumn("STT_REC", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSTT_REC);
-                this.columnTK = new global::System.Data.DataColumn("TK", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTK);
+                this.columnGROUP_KEY = new global::System.Data.DataColumn("GROUP_KEY", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGROUP_KEY);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -833,17 +833,17 @@ namespace V6AccountingB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TK {
+            public string GROUP_KEY {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.TKColumn]));
+                        return ((string)(this[this.tableDataTable1.GROUP_KEYColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TK\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GROUP_KEY\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.TKColumn] = value;
+                    this[this.tableDataTable1.GROUP_KEYColumn] = value;
                 }
             }
             
@@ -861,14 +861,14 @@ namespace V6AccountingB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTKNull() {
-                return this.IsNull(this.tableDataTable1.TKColumn);
+            public bool IsGROUP_KEYNull() {
+                return this.IsNull(this.tableDataTable1.GROUP_KEYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTKNull() {
-                this[this.tableDataTable1.TKColumn] = global::System.Convert.DBNull;
+            public void SetGROUP_KEYNull() {
+                this[this.tableDataTable1.GROUP_KEYColumn] = global::System.Convert.DBNull;
             }
         }
         

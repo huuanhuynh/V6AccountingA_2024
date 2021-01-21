@@ -1834,9 +1834,9 @@ namespace V6Controls.Forms
         /// Lấy thông tin nguồn.
         /// </summary>
         /// <returns></returns>
-        public static List<AlbcFieldInfo> GetSourceFieldsInfo(DataGridView dataGridView1)
+        public static Dictionary<string, AlbcFieldInfo> GetSourceFieldsInfo(DataGridView dataGridView1)
         {
-            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            Dictionary<string, AlbcFieldInfo> result = new Dictionary<string, AlbcFieldInfo>();
             try
             {
                 if (dataGridView1 == null)
@@ -1864,9 +1864,9 @@ namespace V6Controls.Forms
         /// Lấy thông tin nguồn.
         /// </summary>
         /// <returns></returns>
-        public static List<AlbcFieldInfo> GetSourceFieldsInfo(DataTable data1)
+        public static Dictionary<string, AlbcFieldInfo> GetSourceFieldsInfo(DataTable data1)
         {
-            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            Dictionary<string, AlbcFieldInfo> result = new Dictionary<string, AlbcFieldInfo>();
             try
             {
                 if (data1 != null)
@@ -1874,8 +1874,9 @@ namespace V6Controls.Forms
                     foreach (DataColumn column in data1.Columns)
                     {
                         AlbcFieldInfo fi = new AlbcFieldInfo();
-                        result.Add(fi);
-                        fi.FieldName = column.ColumnName.ToUpper();
+                        string FIELD = column.ColumnName.ToUpper();
+                        fi.FieldName = FIELD;
+                        result[FIELD] = fi;
                         if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N0;
                         else if (column.DataType == typeof(DateTime)) fi.FieldType = AlbcFieldType.D;
                         else fi.FieldType = AlbcFieldType.C;
@@ -4519,6 +4520,10 @@ namespace V6Controls.Forms
 
 
         #region ==== EXPORT EXCEL TEMPLATE ====
+        /// <summary>
+        /// Cờ không mở file sau khi export 20210114 sau khi dùng xong cần đặt lại false
+        /// </summary>
+        public static bool NoOpen = false;
 
         /// <summary>
         /// Xuất Excel ra file theo file mẫu.
@@ -4572,6 +4577,7 @@ namespace V6Controls.Forms
 
         /// <summary>
         /// Copy dữ liệu đưa vào, đổi date 1900 về Dbnull.
+        /// <para>Trim cuối chuỗi.</para>
         /// </summary>
         /// <param name="data">Dữ liệu đầu vào.</param>
         /// <returns>Dữ liệu kết quả.</returns>
@@ -4580,20 +4586,30 @@ namespace V6Controls.Forms
             if (data == null) return null;
             DateTime _1900 = new DateTime(1900, 1, 1);
             DataTable result = data.Copy();
-            List<DataColumn> columnList = new List<DataColumn>();
+            List<DataColumn> strColumnList = new List<DataColumn>();
+            List<DataColumn> dateColumnList = new List<DataColumn>();
             foreach (DataColumn column in result.Columns)
             {
-                if (ObjectAndString.IsDateTimeType(column.DataType))
+                if (ObjectAndString.IsStringType(column.DataType))
                 {
-                    columnList.Add(column);
+                    strColumnList.Add(column);
+                }
+                else if (ObjectAndString.IsDateTimeType(column.DataType))
+                {
+                    dateColumnList.Add(column);
                 }
             }
 
             foreach (DataRow row in result.Rows)
             {
-                foreach (DataColumn column in columnList)
+                foreach (DataColumn column in dateColumnList)
                 {
                     if (ObjectAndString.ObjectToFullDateTime(row[column]).Date == _1900) row[column] = DBNull.Value;
+                }
+
+                foreach (DataColumn column in strColumnList)
+                {
+                    row[column] = row[column].ToString().TrimEnd();
                 }
             }
             return result;
@@ -4628,7 +4644,7 @@ namespace V6Controls.Forms
         {
             if (ExportExcelTemplate_running)
             {
-                ShowMainMessage(V6Text.Exporting + ++time_count1);
+                //ShowMainMessage(V6Text.Exporting + ++time_count1);
             }
             else
             {
@@ -4809,7 +4825,7 @@ namespace V6Controls.Forms
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
                         {
-                            if (V6Options.AutoOpenExcel)
+                            if (V6Options.AutoOpenExcel && !NoOpen)
                             {
                                 OpenFileProcess(ExportExcelTemplate_saveFileName);
                             }
@@ -4895,7 +4911,7 @@ namespace V6Controls.Forms
         {
             if (ExportExcelTemplateD_running)
             {
-                ShowMainMessage(V6Text.Exporting + ++time_count3);
+                //ShowMainMessage(V6Text.Exporting + ++time_count3);
             }
             else
             {
@@ -5087,7 +5103,7 @@ namespace V6Controls.Forms
                                 parameters, V6Setting.V6_number_format_info,
                                 insertRow, drawLine))
                             {
-                                if (V6Options.AutoOpenExcel)
+                                if (V6Options.AutoOpenExcel && !NoOpen)
                                 {
                                     OpenFileProcess(save.FileName);
                                 }
@@ -5222,7 +5238,7 @@ namespace V6Controls.Forms
         {
             if (ExportExcelGroup_running)
             {
-                ShowMainMessage(V6Text.Exporting + ++time_count2);
+                //ShowMainMessage(V6Text.Exporting + ++time_count2);
             }
             else
             {
@@ -5447,7 +5463,7 @@ namespace V6Controls.Forms
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
                         {
-                            if (V6Options.AutoOpenExcel)
+                            if (V6Options.AutoOpenExcel && !NoOpen)
                             {
                                 OpenFileProcess(ExportExcelGroup_saveFileName);
                             }
@@ -5516,7 +5532,7 @@ namespace V6Controls.Forms
         {
             if (ExportExcelTemplateHTKK_running)
             {
-                ShowMainMessage(V6Text.Exporting + ++time_countHTKK);
+                //ShowMainMessage(V6Text.Exporting + ++time_countHTKK);
             }
             else
             {
@@ -5723,7 +5739,7 @@ namespace V6Controls.Forms
                                 ExportExcelTemplateHTKK_excelTemplateFile, parameters, datas, ObjectAndString.SplitString(excelColumnsHTKK),
                                 ExportExcelTemplateHTKK_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
-                                if (V6Options.AutoOpenExcel)
+                                if (V6Options.AutoOpenExcel && !NoOpen)
                                 {
                                     OpenFileProcess(ExportExcelTemplateHTKK_saveFileName);
                                 }
@@ -5789,7 +5805,7 @@ namespace V6Controls.Forms
         {
             if (ExportExcelTemplateONLINE_running)
             {
-                ShowMainMessage(V6Text.Exporting + ++time_countONLINE);
+                //ShowMainMessage(V6Text.Exporting + ++time_countONLINE);
             }
             else
             {
@@ -5993,7 +6009,7 @@ namespace V6Controls.Forms
                                 ExportExcelTemplateONLINE_excelTemplateFile, parameters, datas, ObjectAndString.SplitString(excelColumnsONLINE),
                                 ExportExcelTemplateONLINE_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
-                                if (V6Options.AutoOpenExcel)
+                                if (V6Options.AutoOpenExcel && !NoOpen)
                                 {
                                     OpenFileProcess(ExportExcelTemplateONLINE_saveFileName);
                                 }
@@ -6133,7 +6149,7 @@ namespace V6Controls.Forms
         {
             if (ExportRptToPdf_running)
             {
-                ShowMainMessage(V6Text.Exporting + ++time_count4);
+                //ShowMainMessage(V6Text.Exporting + ++time_count4);
             }
             else
             {

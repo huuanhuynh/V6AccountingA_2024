@@ -83,12 +83,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.ShowErrorException(GetType() + ".UpdateAlhdct", ex);
             }
         }
-        
+
+        private CategoryView dmView;
         private void InitCTView()
         {
             try
             {
-                CategoryView dmView = new CategoryView();
+                dmView = new CategoryView();
                 if (Mode == V6Mode.Add)
                 {
                     tabChiTiet.Enabled = false;
@@ -113,6 +114,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + " InitCTView " + ex.Message);
+            }
+        }
+
+        private void v6TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Mode != V6Mode.Add || Mode != V6Mode.Edit) return;
+            if (v6TabControl1.SelectedTab == tabChiTiet)
+            {
+                if (dmView != null) dmView.SetParentData(GetData());
             }
         }
         

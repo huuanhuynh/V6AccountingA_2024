@@ -192,8 +192,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                List<AlbcFieldInfo> targetInfoList = GetTargetFieldsInfo(txtGRDS_V1.Text, txtGRDF_V1.Text, txtGRDHV_V1.Text, txtGRDHE_V1.Text, string.Empty);
-                List<AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
+                Dictionary<string, AlbcFieldInfo> targetInfoList = GetTargetFieldsInfo(txtGRDS_V1.Text, txtGRDF_V1.Text, txtGRDHV_V1.Text, txtGRDHE_V1.Text, string.Empty);
+                Dictionary<string, AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
                 V6ControlFormHelper.SelectFields(this, sourceFields, targetInfoList, txtGRDS_V1, txtGRDF_V1, txtGRDHV_V1, txtGRDHE_V1);
             }
             catch (Exception ex)
@@ -202,9 +202,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private List<AlbcFieldInfo> GetTargetFieldsInfo(string ssss, string ffff, string vvvv, string eeee, string tttt)
+        private Dictionary<string, AlbcFieldInfo> GetTargetFieldsInfo(string ssss, string ffff, string vvvv, string eeee, string tttt)
         {
-            var targetInfoList = new List<AlbcFieldInfo>();
+            var targetInfoList = new Dictionary<string, AlbcFieldInfo>();
             var sss = ObjectAndString.SplitString(ssss);
             var fff = ObjectAndString.SplitString(ffff);    //  N0:100;C200;D250...
             var vvv = ObjectAndString.SplitString(vvvv);
@@ -238,12 +238,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FieldHeaderE = fhe,
                     FieldNoSum = fns,
                 };
-                targetInfoList.Add(fi);
+                targetInfoList[FIELD] = fi;
             }
             return targetInfoList;
         }
 
-        private List<AlbcFieldInfo> GetSourceFieldsInfo1()
+        private Dictionary<string, AlbcFieldInfo> GetSourceFieldsInfo1()
         {
             try
             {
@@ -256,7 +256,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     var info = V6BusinessHelper.ExecuteProcedure("V6TOOLS_GET_PROC_INFOR",
                         new SqlParameter("@proc_name", TXTMA_DM.Text)).Tables[0];
-                    if(info == null || info.Rows.Count == 0) return new List<AlbcFieldInfo>();
+                    if (info == null || info.Rows.Count == 0) return new Dictionary<string, AlbcFieldInfo>();
 
                     List<SqlParameter> plist = new List<SqlParameter>();
                     foreach (DataRow row in info.Rows)
@@ -286,7 +286,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 this.ShowErrorException(GetType() + ".GetSourceFieldsInfo1", ex);
             }
-            return new List<AlbcFieldInfo>();
+            return new Dictionary<string, AlbcFieldInfo>();
         }
 
         

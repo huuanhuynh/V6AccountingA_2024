@@ -46,7 +46,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             _mode = mode;
             _keys = keys;
             _data = data;
-
+            
             InitializeComponent();
 
             //InitFormControl();
@@ -96,15 +96,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// </summary>
         public IDictionary<string, object> Data { get { return FormControl.DataDic; } }
         
-        /// <summary>
-        /// Gán control nơi sinh ra. Phục vụ cho các hàm sâu xa.
-        /// </summary>
-        /// <param name="fatherControl"></param>
-        public void SetFather(Control fatherControl)
-        {
-            _fatherControl = fatherControl;
-            FormControl.SetGrandFather(fatherControl);
-        }
+        ///// <summary>
+        ///// Gán control nơi sinh ra. Phục vụ cho các hàm sâu xa.
+        ///// </summary>
+        ///// <param name="fatherControl"></param>
+        //public void SetFather(Control fatherControl)
+        //{
+        //    _fatherControl = fatherControl;
+        //    FormControl.SetGrandFather(fatherControl);
+        //}
 
         public void SetParentData()
         {
@@ -120,13 +120,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <summary>
         /// Hàm này cần được gọi sau khi khởi tạo new()
         /// </summary>
-        public void InitFormControl()
+        public void InitFormControl(Control grandFather)
         {
             try
             {
                 //LoadAldmConfig();
 
                 FormControl = AddEditManager.Init_Control(_MA_DM);
+                FormControl.SetGrandFather(grandFather);
                 _aldmConfig = FormControl._aldmConfig;
                 Text = _mode + " - " + FormControl.TitleLang;
                 

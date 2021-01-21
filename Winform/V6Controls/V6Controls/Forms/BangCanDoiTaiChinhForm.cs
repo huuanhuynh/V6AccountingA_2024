@@ -12,11 +12,15 @@ namespace V6Controls.Forms
             InitializeComponent();
         }
 
-        public BangCanDoiTaiChinhForm(string initFilter)
+        public BangCanDoiTaiChinhForm(string initFilter, IDictionary<string, object> parentData)
         {
+            _parentData = parentData;
             InitializeComponent();
             MyInit(initFilter);
         }
+
+        private CategoryView view;
+        private IDictionary<string, object> _parentData;
 
         private void MyInit(string initFilter)
         {
@@ -24,8 +28,9 @@ namespace V6Controls.Forms
             {
                 if(string.IsNullOrEmpty(initFilter))
                     throw new ArgumentNullException("initFilter");
-                CategoryView view = new CategoryView("itemID", "title", "ALmaubcct", initFilter, "STT", new Dictionary<string, object>());
+                view = new CategoryView("itemID", "title", "ALmaubcct", initFilter, "STT", _parentData);
                 //view.EnableFullScreen = false;
+                //view.SetParentData();
                 view.Dock = DockStyle.Fill;
                 Controls.Add(view);
                 view.Disposed += view_Disposed;
@@ -40,5 +45,10 @@ namespace V6Controls.Forms
         {
             Dispose(true);
         }
+
+        //public void SetParentData(IDictionary<string, object> parentData)
+        //{
+        //    view.SetParentData(parentData);
+        //}
     }
 }

@@ -134,6 +134,7 @@
             this.v6TabControl1.SelectedIndex = 0;
             this.v6TabControl1.Size = new System.Drawing.Size(767, 444);
             this.v6TabControl1.TabIndex = 1;
+            this.v6TabControl1.SelectedIndexChanged += new System.EventHandler(this.v6TabControl1_SelectedIndexChanged);
             // 
             // tabThongTinChinh
             // 

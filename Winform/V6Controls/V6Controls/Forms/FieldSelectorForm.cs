@@ -324,12 +324,12 @@ namespace V6Controls.Forms
             return result;
         }
 
-        private List<AlbcFieldInfo> _sourceFieldInfoList;
-        private List<AlbcFieldInfo> _targetFieldInfoList;
+        private Dictionary<string, AlbcFieldInfo> _sourceFieldInfoList;
+        private Dictionary<string, AlbcFieldInfo> _targetFieldInfoList;
         private DataTable _sourceTable;
         private DataTable _targetTable;
 
-        DataTable GenTable(List<AlbcFieldInfo> fieldInfoList)
+        DataTable GenTable(Dictionary<string, AlbcFieldInfo> fieldInfoList)
         {
             DataTable table = new DataTable("GenFieldInfoList");
             table.Columns.Add(FIELD_NAME, typeof (string));
@@ -338,8 +338,9 @@ namespace V6Controls.Forms
             table.Columns.Add(FIELD_CAPTION_V, typeof (string));
             table.Columns.Add(FIELD_CAPTION_E, typeof (string));
             //table.Columns.Add(FIELD_NOSUM, typeof(string));
-            foreach (AlbcFieldInfo info in fieldInfoList)
+            foreach (KeyValuePair<string, AlbcFieldInfo> item in fieldInfoList)
             {
+                AlbcFieldInfo info = item.Value;
                 DataRow row = table.NewRow();
                 row[FIELD_NAME] = info.FieldName;
                 row[FIELD_TYPE] = info.FieldType;
@@ -358,7 +359,7 @@ namespace V6Controls.Forms
             if (fields is string[]) AddSourceFieldList((string[])fields);
             if (fields is DataTable) AddSourceFieldList((DataTable)fields);
             if (fields is DataGridView) AddSourceFieldList((DataGridView)fields);
-            if (fields is List<AlbcFieldInfo>) AddSourceFieldList((List<AlbcFieldInfo>)fields);
+            if (fields is Dictionary<string, AlbcFieldInfo>) AddSourceFieldList((Dictionary<string, AlbcFieldInfo>)fields);
         }
 
         private void AddSourceFieldList(string fields)
@@ -368,7 +369,7 @@ namespace V6Controls.Forms
 
         private void AddSourceFieldList(string[] fields)
         {
-            List<AlbcFieldInfo> fieldInfoList = new List<AlbcFieldInfo>();
+            Dictionary<string, AlbcFieldInfo> fieldInfoList = new Dictionary<string, AlbcFieldInfo>();
             foreach (string field in fields)
             {
                 string FIELD = field.Trim().ToUpper();
@@ -376,7 +377,8 @@ namespace V6Controls.Forms
                 {
                     FieldName = FIELD
                 };
-                fieldInfoList.Add(fi);
+                
+                fieldInfoList[FIELD] = fi;
             }
             
             AddSourceFieldList(fieldInfoList);
@@ -393,7 +395,7 @@ namespace V6Controls.Forms
         }
 
 
-        private void AddSourceFieldList(List<AlbcFieldInfo> fieldInfoList)
+        private void AddSourceFieldList(Dictionary<string, AlbcFieldInfo> fieldInfoList)
         {
             _sourceFieldInfoList = fieldInfoList;
             DataTable temp = GenTable(fieldInfoList);
@@ -409,7 +411,7 @@ namespace V6Controls.Forms
             if (fields is string[]) AddTargetFieldList((string[])fields);
             if (fields is DataTable) AddTargetFieldList((DataTable)fields);
             if (fields is DataGridView) AddTargetFieldList((DataGridView)fields);
-            if (fields is List<AlbcFieldInfo>) AddTargetFieldList((List<AlbcFieldInfo>)fields);
+            if (fields is Dictionary<string, AlbcFieldInfo>) AddTargetFieldList((Dictionary<string, AlbcFieldInfo>)fields);
         }
 
         private void AddTargetFieldList(string fields)
@@ -419,7 +421,7 @@ namespace V6Controls.Forms
 
         private void AddTargetFieldList(string[] fields)
         {
-            List<AlbcFieldInfo> fieldInfoList = new List<AlbcFieldInfo>();
+            Dictionary<string, AlbcFieldInfo> fieldInfoList = new Dictionary<string, AlbcFieldInfo>();
             foreach (string field in fields)
             {
                 string FIELD = field.Trim().ToUpper();
@@ -427,7 +429,16 @@ namespace V6Controls.Forms
                 {
                     FieldName = FIELD
                 };
-                fieldInfoList.Add(fi);
+                if (_sourceFieldInfoList.ContainsKey(FIELD))
+                {
+                    var fs = _sourceFieldInfoList[FIELD];
+                    fi.FieldHeaderE = fs.FieldHeaderE;
+                    fi.FieldHeaderV = fs.FieldHeaderV;
+                    fi.FieldNoSum = fs.FieldNoSum;
+                    fi.FieldType = fs.FieldType;
+                    fi.FieldWidth = fs.FieldWidth;
+                }
+                fieldInfoList[FIELD] = fi;
             }
 
             AddTargetFieldList(fieldInfoList);
@@ -440,7 +451,7 @@ namespace V6Controls.Forms
 
         private void AddTargetFieldList(DataGridView gridView)
         {
-            List<AlbcFieldInfo> fieldInfoList = GetListFieldInfo(gridView);
+            Dictionary<string, AlbcFieldInfo> fieldInfoList = GetListFieldInfo(gridView);
             _targetFieldInfoList = fieldInfoList;
             DataTable temp = GenTable(fieldInfoList);
             _targetTable = temp;
@@ -469,10 +480,18 @@ namespace V6Controls.Forms
             }
         }
 
-        private void AddTargetFieldList(List<AlbcFieldInfo> fieldInfoList)
+        private void AddTargetFieldList(Dictionary<string, AlbcFieldInfo> fieldInfoList)
         {
             _targetFieldInfoList = fieldInfoList;
-            DataTable temp = GenTable(fieldInfoList);
+            foreach (KeyValuePair<string, AlbcFieldInfo> targetItem in _targetFieldInfoList)
+            {
+                if (_sourceFieldInfoList.ContainsKey(targetItem.Key))
+                {
+                    var sf = _sourceFieldInfoList[targetItem.Key];
+                    targetItem.Value.FieldType = sf.FieldType;
+                }
+            }
+            DataTable temp = GenTable(_targetFieldInfoList);
             _targetTable = temp;
             dataGridView2.DataSource = temp;
 
@@ -495,9 +514,9 @@ namespace V6Controls.Forms
             }
         }
 
-        private List<AlbcFieldInfo> GetListFieldInfo(DataTable table)
+        private Dictionary<string, AlbcFieldInfo> GetListFieldInfo(DataTable table)
         {
-            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            Dictionary<string, AlbcFieldInfo> result = new Dictionary<string, AlbcFieldInfo>();
             try
             {
                 if (table == null)
@@ -508,8 +527,9 @@ namespace V6Controls.Forms
                 foreach (DataColumn column in table.Columns)
                 {
                     AlbcFieldInfo fi = new AlbcFieldInfo();
-                    result.Add(fi);
-                    fi.FieldName = column.ColumnName.ToUpper();
+                    string FIELD = column.ColumnName.ToUpper();
+                    fi.FieldName = FIELD;
+                    result[FIELD] = fi;
                     if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N0;
                     else if (column.DataType == typeof (DateTime)) fi.FieldType = AlbcFieldType.D;
                     else fi.FieldType = AlbcFieldType.C;
@@ -526,9 +546,9 @@ namespace V6Controls.Forms
             return result;
         }
 
-        private List<AlbcFieldInfo> GetListFieldInfo(DataGridView gridView)
+        private Dictionary<string, AlbcFieldInfo> GetListFieldInfo(DataGridView gridView)
         {
-            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            Dictionary<string, AlbcFieldInfo> result = new Dictionary<string, AlbcFieldInfo>();
             try
             {
                 if (gridView == null)
@@ -547,8 +567,9 @@ namespace V6Controls.Forms
                     foreach (DataColumn column in data1.Columns)
                     {
                         AlbcFieldInfo fi = new AlbcFieldInfo();
-                        result.Add(fi);
-                        fi.FieldName = column.ColumnName.ToUpper();
+                        string FIELD = column.ColumnName.ToUpper();
+                        fi.FieldName = FIELD;
+                        result[FIELD] = fi;
                         if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N0;
                         else if (column.DataType == typeof(DateTime)) fi.FieldType = AlbcFieldType.D;
                         else fi.FieldType = AlbcFieldType.C;

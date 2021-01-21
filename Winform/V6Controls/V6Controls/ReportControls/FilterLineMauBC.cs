@@ -329,7 +329,7 @@ namespace V6ReportControls
                     var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
                     var ma_maubc = row0["file_maubc"].ToString().Trim();
                     var filter = "mau_bc='" + ma_maubc + "'";
-                    BangCanDoiTaiChinhForm form = new BangCanDoiTaiChinhForm(filter);
+                    BangCanDoiTaiChinhForm form = new BangCanDoiTaiChinhForm(filter, row0.ToDataDictionary());
                     form.ShowDialog(this);
                 }
             }

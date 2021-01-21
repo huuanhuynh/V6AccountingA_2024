@@ -314,7 +314,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
                     var ma_maubc = row0["file_maubc"].ToString().Trim();
                     var filter = "mau_bc='" + ma_maubc + "'";
-                    BangCanDoiTaiChinhForm form = new BangCanDoiTaiChinhForm(filter);
+                    var parentData = row0.ToDataDictionary();
+                    parentData["MAU_BC"] = parentData["FILE_MAUBC"];
+                    BangCanDoiTaiChinhForm form = new BangCanDoiTaiChinhForm(filter, parentData);
                     form.ShowDialog(this);
                 }
             }

@@ -180,6 +180,11 @@ namespace V6Tools.V6Export
                                 }
                             }
                         }
+                        else
+                        {
+                            // no datacolumn
+                            throw new Exception("No data column [" + column_param_string + "]");
+                        }
                     }
                 }
                 //var arrayCols = Cols.ToArray();

@@ -37,7 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (V6Login.UserRight.AllowView("", "S03"))
+                    if (V6Login.UserRight.AllowView("", "BS03"))
                     {
                         var view = new ReportRViewBase(m_itemId, _program + "_F7", _program, _reportFile,
                             "BÚT TOÁN PHÂN BỔ CÔNG CỤ", "TOOLS ALLOCATION REPORT", "", "", "");
@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (V6Login.UserRight.AllowDelete("", "S03"))
+                    if (V6Login.UserRight.AllowDelete("", "BS03"))
                     {
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm) != DialogResult.Yes) return;
 
@@ -167,7 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (!V6Login.UserRight.AllowEdit("", "S03"))
+                    if (!V6Login.UserRight.AllowEdit("", "BS03"))
                     {
                         V6ControlFormHelper.NoRightWarning();
                         return;

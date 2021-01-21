@@ -56,7 +56,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (V6Login.UserRight.AllowView("", "S02"))
+                    if (V6Login.UserRight.AllowView("", "BS02"))
                     {
                         var view = new ReportRViewBase(m_itemId, _program + "_F7", _program, _reportFile,
                             "BÚT TOÁN KHẤU HAO TSCĐ", "FA DEPRECEATION REPORT", "", "", "");
@@ -93,7 +93,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (V6Login.UserRight.AllowDelete("", "S02")
+                    if (V6Login.UserRight.AllowDelete("", "BS02")
                         && this.ShowConfirmMessage(V6Text.Text("XBTPBKH")) == DialogResult.Yes)
                     {
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
@@ -185,7 +185,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (!V6Login.UserRight.AllowEdit("", "S02"))
+                    if (!V6Login.UserRight.AllowEdit("", "BS02"))
                     {
                         V6ControlFormHelper.NoRightWarning();
                         return;

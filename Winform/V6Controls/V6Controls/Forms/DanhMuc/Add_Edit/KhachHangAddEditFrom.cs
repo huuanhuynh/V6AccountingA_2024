@@ -208,11 +208,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        private CategoryView dmView;
         private void InitCTView()
         {
             try
             {
-                CategoryView dmView = new CategoryView();
+                dmView = new CategoryView();
                 if (Mode == V6Mode.Add)
                 {
                     tabChiTiet.Enabled = false;
@@ -620,6 +621,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void btnChonFile0_FileNameChanged(object sender, FileButton.Event_Args e)
         {
             toolTipV6FormControl.SetToolTip(e.Sender, e.NewFileName);
+        }
+
+        private void v6TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Mode != V6Mode.Add || Mode != V6Mode.Edit) return;
+            if (v6TabControl1.SelectedTab == tabChiTiet)
+            {
+                if (dmView != null) dmView.SetParentData(GetData());
+            }
         }
 
     }
