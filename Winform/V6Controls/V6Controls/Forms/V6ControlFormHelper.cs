@@ -17,6 +17,7 @@ using CrystalDecisions.Windows.Forms;
 using GSM;
 using V6AccountingBusiness;
 using V6Controls.Controls;
+using V6Controls.Controls.GridView;
 using V6Controls.Controls.Label;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
@@ -6604,8 +6605,52 @@ namespace V6Controls.Forms
                 var FIELD = column.DataPropertyName.ToUpper();
                 if (data.ContainsKey(FIELD))
                 {
-                    row.Cells[FIELD] .Value = ObjectAndString.ObjectTo(column.ValueType, data[FIELD] ?? DBNull.Value);
+                    SetCellValue(row.Cells[FIELD], data[FIELD]);
                 }
+            }
+        }
+
+        public static void SetCellValue(DataGridViewCell cell, object value)
+        {
+            cell.Value = ObjectAndString.ObjectTo(cell.ValueType, value ?? DBNull.Value);
+        }
+
+        public static void SetCellValue(DataGridViewCell cell, object value, DefineInfo config)
+        {
+            try
+            {
+                if (!config.Status) return;
+                if (config.Override)
+                {
+                    SetCellValue(cell, value);
+                }
+
+                if (config.NotEmpty)
+                {
+                    if (value == null) return;
+                    if (ObjectAndString.IsNumberType(value.GetType()))
+                    {
+                        if (ObjectAndString.ObjectToDecimal(value) == 0) return;
+                    }
+                    if (value.ToString().Trim() == "") return;
+                    SetCellValue(cell, value);
+                }
+
+                if (config.NoOverride)
+                {
+                    if (ObjectAndString.IsNumberType(cell.OwningColumn.ValueType))
+                    {
+                        if (ObjectAndString.ObjectToDecimal(cell.Value) == 0) SetCellValue(cell, value);
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(ObjectAndString.ObjectToString(cell.Value))) SetCellValue(cell, value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".SetCellValue " + cell.OwningColumn.DataPropertyName + ":" + value, ex);
             }
         }
 

@@ -14,6 +14,7 @@ using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
 using V6Controls;
+using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Controls.Structs;
@@ -139,13 +140,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-        private V6ColorTextBox _dvt;
-        private V6CheckTextBox _tang, _xuat_dd;
-        private V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
-        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _gia_ban_nt, _gia_ban, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21;
+        private V6ColorTextBox _dvt0;
+        private V6CheckTextBox _tang0, _xuat_dd;
+        private V6VvarTextBox _maVt0, _Ma_lnx_i0, _dvt10, _maKho, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
+        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _gia_ban_nt, _gia_ban, _tien2, _tienNt2, _ck0, _ckNt, _gia2, _gia21;
         private V6NumberTextBox _ton13, _ton13s, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg;
-        private V6DateTimeColor _hanSd;
+        private V6DateTimeColor _hanSd0;
         
 
         private void LoadDetailControls()
@@ -181,45 +182,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 switch (NAME)
                 {
-                    case "MA_VT":
-                        _maVt = (V6VvarTextBox) control;
-                        _maVt.Upper();
-                        _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
-                        _mavt_default_initfilter = _maVt.InitFilter;
-                        var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
-                        if (setting.Contains(Invoice.Mact))
-                        _maVt.Enter += (sender, args) =>
-                        {
-                            string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
-                            if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
-                            else if (!string.IsNullOrEmpty(newFilter))
-                            {
-                                _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
-                            }
-                        };
+                    case "MA_VT": // !!!!! CHƯA XONG !!!!!
+                        
+                        
+                        //_mavt_default_initfilter = _maVt.InitFilter;
+                        //var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
+                        //if (setting.Contains(Invoice.Mact))
+                        //_maVt.Enter += (sender, args) =>
+                        //{
+                        //    string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                        //    if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
+                        //    else if (!string.IsNullOrEmpty(newFilter))
+                        //    {
+                        //        _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
+                        //    }
+                        //};
                    
-                        _maVt.V6LostFocus += MaVatTu_V6LostFocus;
-                        _maVt.V6LostFocusNoChange += delegate
-                        {
-                            if (_maVt.LO_YN)
-                            {
-                                _maLo.Enabled = true;
-                            }
-                            else
-                            {
-                                _maLo.Enabled = false;
-                            }
-                            GetTon13();
-                        };
+                        //_maVt.V6LostFocus += MaVatTu_V6LostFocus;
+                        //_maVt.V6LostFocusNoChange += delegate
+                        //{
+                        //    if (_maVt.LO_YN)
+                        //    {
+                        //        _maLo.Enabled = true;
+                        //    }
+                        //    else
+                        //    {
+                        //        _maLo.Enabled = false;
+                        //    }
+                        //    GetTon13(dataGridView1.CurrentRow);
+                        //};
                         break;
                     case "MA_LNX_I":
-                        _Ma_lnx_i = control as V6VvarTextBox;
-                        if (_Ma_lnx_i != null)
-                        {
-                            _Ma_lnx_i.FilterStart = true;
-                            _Ma_lnx_i.SetInitFilter("LOAI = 'X'");
-                            _Ma_lnx_i.Upper();
-                        }
+                        
                         break;
                     case "TK_DT":
                         _tkDt = (V6VvarTextBox)control;
@@ -246,42 +240,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _tkVt.FilterStart = true;
                         break;
                     case "DVT1":
-                        _dvt1 = (V6VvarTextBox)control;
-                        _dvt1.Upper();
-                        _dvt1.SetInitFilter("");
-                        _dvt1.BrotherFields = "ten_dvt";
-                        _dvt1.V6LostFocus += Dvt1_V6LostFocus;
-                        _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
-                        _dvt1.GotFocus += (s, e) =>
-                        {
-                            _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
-                            _dvt1.ExistRowInTable(true);
-                        };
+                        
+                        //_dvt1.SetInitFilter("");
+                        //_dvt1.BrotherFields = "ten_dvt";
+                        
+                        
+                        
                         break;
-                    case "DVT":
-                        _dvt = (V6ColorTextBox)control;
-                        _dvt.Tag = "hide";
-                        break;
+                    
                     case "MA_KHO":
-                        _maKho = (V6VvarTextBox)control;
-                        _maKho.Upper();
-                        _maKho.V6LostFocus += MaKhoV6LostFocus;
-                        _maKho.Tag = "hide";
                         break;
                     case "MA_KHO_I":
-                        _maKhoI = (V6VvarTextBox)control;
-                        _maKhoI.Upper();
-                        _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
                         break;
                     case "MA_THUE_I":
                         _ma_thue_i = control as V6VvarTextBox;
                         if (_ma_thue_i != null)
                         {
-                            _ma_thue_i.V6LostFocus += delegate
-                            {
-                                XuLyThayDoiMaThue_i();
-                                Tinh_thue_ct();
-                            };
+                            
                         }
                         break;
                     case "TK_THUE_I":
@@ -320,7 +295,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         break;
                     case "SO_LUONG1":
                         _soLuong1 = (V6NumberTextBox)control;
-                        _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;
+                        
                         _soLuong1.V6LostFocusNoChange += delegate
                         {
                             
@@ -392,7 +367,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _giaNt21 = control as V6NumberTextBox;
                         if (_giaNt21 != null)
                         {
-                            _giaNt21.V6LostFocus += GiaNt21_V6LostFocus;
+                            
                             if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _giaNt21.InvisibleTag();
@@ -425,20 +400,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             {
 
                             };
-                            _gia_ban_nt.V6LostFocus += delegate(object sender)
-                            {
-                                _gia_ban.Value = V6BusinessHelper.Vround((_gia_ban_nt.Value * txtTyGia.Value), M_ROUND_GIA);
-                                if (_maNt == _mMaNt0)
-                                {
-                                    _gia_ban.Value = _gia_ban_nt.Value;
-                                }
-
-                                TinhGiaNt21();
-                                TinhGiaNt2();
-                                chkT_THUE_NT.Checked = false;
-                                TinhTienNt2(_gia_ban_nt);
-                                Tinh_thue_ct();
-                            };
+                            
                             if (!V6Login.IsAdmin && (Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_HIDE.ContainsStartsWith(NAME + ":")))
                             {
                                 _gia_ban_nt.InvisibleTag();
@@ -517,18 +479,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             }
                         }
                         break;
-                    case "CK":
-                        _ck = (V6NumberTextBox)control;
-                        break;
-                    //_tien2.V6LostFocus;
+                    
                     case "CK_NT":
                         _ckNt = control as V6NumberTextBox;
                         if (_ckNt != null)
                         {
-                            _ckNt.V6LostFocus += delegate
-                            {
-                                Tinh_thue_ct();
-                            };
+                            
                         }
                         break;
                     case "PT_CKI":
@@ -537,11 +493,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         {
                             _pt_cki.Enabled = !chkLoaiChietKhau.Checked;
                             
-                            _pt_cki.V6LostFocus += delegate
-                            {
-                                TinhChietKhauChiTiet();
-                                Tinh_thue_ct();
-                            };
+                            
                         }
                         break;
                     case "GIA_NT":
@@ -576,10 +528,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             }
                         }
                         break;
-                    case "TANG":
-                        _tang = (V6CheckTextBox)control;
-                        _tang.V6LostFocus += _tang_V6LostFocus;
-                        break;
+                    
                     case "PX_GIA_DDI":
                         _xuat_dd = (V6CheckTextBox)control;
                         _xuat_dd.TextChanged += delegate
@@ -601,24 +550,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     case "MA_LO":
 
                         _maLo = (V6VvarTextBox)control;
-                        _maLo.V6LostFocus += _maLo_V6LostFocus;
-
+                        
                         _maLo.V6LostFocusNoChange += delegate
                         {
-                            XuLyLayThongTinKhiChonMaLo();
-                       
+                            XuLyLayThongTinKhiChonMaLo(dataGridView1.CurrentRow);
                         };
-                        _maLo.GotFocus += (s, e) =>
-                        {
-                            if (NotAddEdit || _maLo.ReadOnly) return;
-                            _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
-                            _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
-                        };
+                        
                         break;
                     case "HSD":
-                        _hanSd = (V6DateTimeColor)control;
-                        _hanSd.Enabled = false;
-                        if (_hanSd.Tag == null || _hanSd.Tag.ToString() != "hide") _hanSd.Tag = "disable";
+                        //_hanSd = (V6DateTimeColor)control;
+                        //_hanSd.Enabled = false;
+                        //if (_hanSd.Tag == null || _hanSd.Tag.ToString() != "hide") _hanSd.Tag = "disable";
                         break;
                     //{ Tuanmh 01/01/2017
                     case "SL_QD":
@@ -637,21 +579,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             {
                                 _sl_qd.EnableTag();
                             }
-                            _sl_qd.V6LostFocus += delegate
-                            {
-                                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
-                                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
-                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
-                                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-
-                                if (M_CAL_SL_QD_ALL == "1")
-                                {
-                                    //CheckSoLuong1();
-                                    chkT_THUE_NT.Checked = false;
-                                    Tinh_thue_ct();
-                                }
-                                
-                            };
+                            
 
                             if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
@@ -686,20 +614,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _ggNt = control as V6NumberTextBox;
                         if (_ggNt != null)
                         {
-                            _ggNt.V6LostFocus += delegate
-                            {
-                                Tinh_thue_ct();
-                            };
+                            
                         }
                         break;
                     case "GG":
                         _gg = control as V6NumberTextBox;
                         if (_gg != null)
                         {
-                            _gg.V6LostFocus += delegate
-                            {
-                                Tinh_thue_ct();
-                            };
+                            
                         }
                         break;
                     case "TIEN_VC_NT":
@@ -722,50 +644,48 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0); // !!!!!
         }
 
-        void _maLo_V6LostFocus(object sender)
-        {
-            CheckMaLo();
-        }
+        
 
-        private void CheckMaLo()
+        private void CheckMaLo(DataGridViewRow grow)
         {
-            if (_maVt.Text != "")
+            string ma_vt = grow.Cells["MA_VT"].Value.ToString().Trim();
+            if (ma_vt != "")
             {
-                _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim()+"'");
+                _maLo.SetInitFilter("Ma_vt='" + ma_vt + "'");
             }
-            XuLyLayThongTinKhiChonMaLo();
+            XuLyLayThongTinKhiChonMaLo(grow);
             
         }
 
-        void _tang_V6LostFocus(object sender)
+        void _tang_V6LostFocus(DataGridViewCell cell_tang, DataGridViewRow grow)
         {
-            if (_tang.Text.Trim() != "")
+            if (cell_tang.Value.ToString().Trim() != "")
             {
-                SetTang();
+                SetTang(grow);
             }
             else
             {
-                GetGia();
+                GetGia(dataGridView1.CurrentRow);
             }
         }
 
-        private void SetTang()
+        private void SetTang(DataGridViewRow grow)
         {
             try
             {
-                _giaNt2.Value = 0;
-                _giaNt21.Value = 0;
-                _tienNt2.Value = 0;
-                _tien2.Value = 0;
-                _ck.Value = 0;
-                _ckNt.Value = 0;
-                _gia2.Value = 0;
-                _gia21.Value = 0;
-                _gg.Value = 0;
-                _ggNt.Value = 0;
+                SetCellValue(grow.Cells["GIA_NT2"], 0);
+                SetCellValue(grow.Cells["GIA_NT21"], 0);
+                SetCellValue(grow.Cells["TIEN_NT2"], 0);
+                SetCellValue(grow.Cells["TIEN2"], 0);
+                SetCellValue(grow.Cells["CK"], 0);
+                SetCellValue(grow.Cells["CK_NT"], 0);
+                SetCellValue(grow.Cells["GIA2"], 0);
+                SetCellValue(grow.Cells["GIA21"], 0);
+                SetCellValue(grow.Cells["GG"], 0);
+                SetCellValue(grow.Cells["GG_NT"], 0);
 
-                _gia_ban_nt.Value = 0;
-                _gia_ban.Value = 0;
+                SetCellValue(grow.Cells["GIA_BAN_NT"], 0);
+                SetCellValue(grow.Cells["GIA_BAN"], 0);
             }
             catch (Exception ex)
             {
@@ -925,32 +845,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         #region Events
         
-        void MaKhoI_V6LostFocus(object sender)
-        {
-            XuLyChonMaKhoI();
-        }
         
-        void MaKhoV6LostFocus(object sender)
+        
+        void Dvt1_V6LostFocusNoChange(DataGridViewCell cell_dvt1, DataGridViewRow grow)
         {
-            _maKhoI.Text = _maKho.Text;
-        }
+            //_dvt1.ExistRowInTable(true); TEN_DVT
 
-        private void MaVatTu_V6LostFocus(object sender)
-        {
-            XuLyChonMaVt(_maVt.Text);
-        }
-        
-        void Dvt1_V6LostFocus(object sender)
-        {
-            XuLyThayDoiDvt1();
-        }
-        void Dvt1_V6LostFocusNoChange(object sender)
-        {
-            _dvt1.ExistRowInTable(true);
-            if (_dvt1.Data != null)
+            var data = cell_dvt1.Tag as IDictionary<string, object>;
+            if (data != null)
             {
-                var he_soT = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soT"]);
-                var he_soM = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soM"]);
+                grow.Cells["TEN_DVT"].Value = data["TEN_DVT"];
+                var he_soT = ObjectAndString.ObjectToDecimal(data["HE_SOT"]);
+                var he_soM = ObjectAndString.ObjectToDecimal(data["HE_SOM"]);
                 if (he_soT == 0) he_soT = 1;
                 if (he_soM == 0) he_soM = 1;
                 if (_he_so1T.Value != he_soT) _he_so1T.Value = he_soT;
@@ -958,6 +864,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             else
             {
+                grow.Cells["TEN_DVT"].Value = "";
                 if (_he_so1T.Value != 1) _he_so1T.Value = 1;
                 if (_he_so1M.Value != 1) _he_so1M.Value = 1;
             }
@@ -968,22 +875,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             TinhGiaNt2_NhapTienNt2();
         }
 
-        void SoLuong1_V6LostFocus(object sender)
+        void SoLuong1_V6LostFocus(DataGridViewRow grow)
         {
             TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _soLuong1);
             TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _soLuong1);
             TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _soLuong1);
             _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-            TinhTienNt2(_soLuong1);
-            Tinh_thue_ct();
+            TinhTienNt2(grow, "SO_LUONG1");
+            Tinh_thue_ct(grow);
         }
 
-        public void GiaNt21_V6LostFocus(object sender)
-        {
-            chkT_THUE_NT.Checked = false;
-            TinhTienNt2(_giaNt21);
-            Tinh_thue_ct();
-        }
+        
 
         void Hs_qd4_V6LostFocus(object sender)
         {
@@ -1079,20 +981,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void XuLyChonMaKhoI()
+
+        private void XuLyChonMaKhoI(DataGridViewRow grow, DataGridViewCell cell)
         {
-            XuLyLayThongTinKhiChonMaKhoI();
-            GetTon13();
+            XuLyLayThongTinKhiChonMaKhoI(grow, cell);
+            GetTon13(grow);
         }
-        private void XuLyChonMaVt(string mavt)
+        private void XuLyChonMaVt(DataGridViewCell cell_mavt, DataGridViewRow grow)
         {
             try
             {
-                XuLyLayThongTinKhiChonMaVt();
-                XuLyDonViTinhKhiChonMaVt(mavt);
-                GetGia();
-                GetTon13();
-                TinhTienNt2();
+                XuLyLayThongTinKhiChonMaVt(cell_mavt, grow);
+                XuLyDonViTinhKhiChonMaVt(cell_mavt, grow);
+                GetGia(grow);
+                GetTon13(grow);
+                TinhTienNt2(grow);
             }
             catch (Exception ex)
             {
@@ -1100,30 +1003,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
-        private void XuLyLayThongTinKhiChonMaKhoI()
+        private void XuLyLayThongTinKhiChonMaKhoI(DataGridViewRow grow, DataGridViewCell cell)
         {
         }
 
-        private void XuLyLayThongTinKhiChonMaLo()
+        private void XuLyLayThongTinKhiChonMaLo(DataGridViewRow grow)
         {
             try
             {
-                if (_maVt.LO_YN)
+                if (IS(grow.Cells["MA_VT"].Tag, "LO_YN"))
                 {
                     if (_maLo.Text.Trim() != "")
                     {
                         var data = _maLo.Data;
                         if (data != null)
-                            _hanSd.Value = ObjectAndString.ObjectToDate(data["NGAY_HHSD"]);
+                            SetCellValue(grow.Cells["HSD"], ObjectAndString.ObjectToDate(data["NGAY_HHSD"]));
                     }
                     else
                     {
-                        _hanSd.Value = null;
+                        SetCellValue(grow.Cells["HSD"], null);
                     }
                 }
                 else
                 {
-                    _hanSd.Value = null;
+                    SetCellValue(grow.Cells["HSD"], null);
                 }
             }
             catch (Exception ex)
@@ -1134,169 +1037,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private DataTable _dataLoDate;
 
-        private void GetLoDate13()
+        public void GetTon13(DataGridViewRow grow)
         {
             try
             {
-                string sttRec0 = _sttRec0;
-                string maVt = _maVt.Text.Trim().ToUpper();
-                string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                string maLo = _maLo.Text.Trim().ToUpper();
-
-                // Theo doi lo moi check
-                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
-                    return;
-
-                if (maVt == "" || maKhoI == "" || maLo == "") return;
-
-                _dataLoDate = Invoice.GetLoDate13(maVt, maKhoI, maLo, _sttRec, dateNgayCT.Date);
-                if (_dataLoDate.Rows.Count == 0)
-                {
-                   ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
-                }
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
-
-                for (int i = _dataLoDate.Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow data_row = _dataLoDate.Rows[i];
-                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
-                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
-                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
-
-                    //Neu dung maVt va maKhoI
-                    if (maVt == data_maVt && maKhoI == data_maKhoI && maLo == data_maLo)
-                    {
-                        //- so luong
-                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
-                        decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
-                        decimal new_soLuong = data_soLuong;
-                        decimal new_soLuong_qd = data_soLuong_qd;
-
-                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
-                        {
-
-                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
-                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
-                            string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
-
-                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
-                            decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
-                            if (c_sttRec0 != sttRec0)
-                            {
-                                if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo)
-                                {
-                                    new_soLuong -= c_soLuong;
-                                    new_soLuong_qd -= c_soLuong_qd;
-                                }
-                            }
-                        }
-
-                        //if (new_soLuong < 0) new_soLuong = 0;
-                        {
-                            _ton13.Value = new_soLuong * _he_so1M.Value / _he_so1T.Value;
-                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
-                            _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
-                            break;
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-        private void GetLoDate()
-        {
-            try
-            {
-                string sttRec0 = _sttRec0;
-                string maVt = _maVt.Text.Trim().ToUpper();
-                string maKhoI = _maKhoI.Text.Trim().ToUpper();
-
-                // Theo doi lo moi check
-                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
-                    return;
-                
-                if (maVt == "" || maKhoI == "") return;
-
-                _dataLoDate = Invoice.GetLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
-                if (_dataLoDate.Rows.Count == 0)
-                {
-                    ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
-                }
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
-
-                for (int i = _dataLoDate.Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow data_row = _dataLoDate.Rows[i];
-                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
-                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
-                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
-                    if (data_maLo == "") continue;
-                    //Neu dung maVt va maKhoI
-                    if (maVt == data_maVt && maKhoI == data_maKhoI)
-                    {
-                        //- so luong
-                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
-                        decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
-                        decimal new_soLuong = data_soLuong;
-                        decimal new_soLuong_qd = data_soLuong_qd;
-
-                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
-                        {
-                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
-                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
-                            string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
-                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
-                            decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
-                            if (c_sttRec0 != sttRec0)
-                            {
-                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo)
-                                {
-                                    new_soLuong -= c_soLuong;
-                                    new_soLuong_qd -= c_soLuong_qd;
-                                }
-                            }
-                        }
-
-                        if (new_soLuong > 0)
-                        {
-                            _ton13.Value = new_soLuong * _he_so1M.Value / _he_so1T.Value;
-                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
-                            _maLo.Text = data_row["Ma_lo"].ToString().Trim();
-                            _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
-                            break;
-                        }
-                        else
-                        {
-                            ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-        public void GetTon13()
-        {
-            try
-            {
-                string maVt = _maVt.Text.Trim().ToUpper();
-                string maKhoI = _maKhoI.Text.Trim().ToUpper();
+                var row_data = grow.ToDataDictionary();
+                string ma_vt = ObjectAndString.ObjectToString(row_data["MA_VT"]).Trim().ToUpper();
+                string ma_kho_i = ObjectAndString.ObjectToString(row_data["MA_KHO_I"]).Trim().ToUpper();// _maKhoI.Text.Trim().ToUpper();
                 // Get ton kho theo ma_kho,ma_vt 18/01/2016
                 //if (V6Options.M_CHK_XUAT == "0")
                 {
-                    _dataLoDate = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Date);
+                    _dataLoDate = Invoice.GetStock(ma_vt, ma_kho_i, _sttRec, dateNgayCT.Date);
                     if (_dataLoDate != null && _dataLoDate.Rows.Count > 0)
                     {
                         DataRow row0 = _dataLoDate.Rows[0];
@@ -1317,11 +1068,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        public void XuLyLayThongTinKhiChonMaVt()
+        public void XuLyLayThongTinKhiChonMaVt(DataGridViewCell cell_mavt, DataGridViewRow grow)
         {
             try
             {
-                var data = _maVt.Data;
+                var data = cell_mavt.Tag as IDictionary<string, object>;
+                
                 if (data == null)
                 {
                     _tkDt.Text = "";
@@ -1337,13 +1089,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 }
                 else
                 {
+                    var BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
+                    foreach (string field in ObjectAndString.SplitString(BrotherFields))
+                    {
+                        string FIELD = field.Trim().ToUpper();
+                        if (data.ContainsKey(FIELD)) SetCellValue(grow.Cells[FIELD], data[FIELD]);
+                        else grow.Cells[FIELD].Value = DBNull.Value;
+                    }
+
                     SetADSelectMoreControlValue(Invoice, data);
-                    //_tkDt.Text = (data["tk_dt"] ?? "").ToString().Trim();
-                    //_tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
-                    SetControlValue(_tkDt, data["tk_dt"], Invoice.GetTemplateSettingAD("TK_DT"));
-                    SetControlValue(_tkGv, data["tk_gv"], Invoice.GetTemplateSettingAD("TK_GV"));
-                    SetControlValue(_soLuong1, data["PACKS1"], Invoice.GetTemplateSettingAD("PACKS1"));
-                    //_tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
+                    
+                    SetCellValue(grow.Cells["TK_DT"], data["TK_DT"], Invoice.GetTemplateSettingAD("TK_DT"));
+                    SetCellValue(grow.Cells["TK_GV"], data["TK_GV"], Invoice.GetTemplateSettingAD("TK_GV"));
+                    SetCellValue(grow.Cells["SO_LUONG1"], data["PACKS1"], Invoice.GetTemplateSettingAD("PACKS1"));
+                    
                     if (M_SOA_HT_KM_CK == "1")
                     {
                         _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
@@ -1374,16 +1133,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         }
                     }
                 }
-                
-                if (_maVt.LO_YN == false)
+
+                var ma_lo_column = dataGridView1.Columns["MA_LO"];
+                if (IS_NOT(cell_mavt, "LO_YN"))
                 {   
-                    _maLo.Text = "";
-                    _hanSd.Value = null;
-                    _maLo.Enabled = false;
+                    SetCellValue(grow.Cells["MA_LO"], "");
+                    SetCellValue(grow.Cells["HSD"], null);
+                    ma_lo_column.ReadOnly = true;//.Enabled = false;
                 }
                 else
                 {
-                    _maLo.Enabled = true;
+                    ma_lo_column.ReadOnly = false; //_maLo.Enabled = true;
                 }
 
                 //SetDefaultDataDetail(Invoice, detail1.panelControls);
@@ -1399,35 +1159,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         /// </summary>
         /// <param name="mavt">Giá trị hiện tại của ô _mavt</param>
         /// <param name="changeMavt">Fix trạng thái của dvt khi sửa focusDvt=false</param>
-        private void XuLyDonViTinhKhiChonMaVt(string mavt, bool changeMavt = true)
+        private void XuLyDonViTinhKhiChonMaVt(DataGridViewCell cell_mavt, DataGridViewRow grow, bool changeMavt = true)
         {
             try
             {
                 //Gán lại dvt và dvt1
-                var data = _maVt.Data;
-                if (data == null)
+                string ma_vt = cell_mavt.Value.ToString().Trim();
+                var data_mavt = cell_mavt.Tag as IDictionary<string, object>;
+                if (data_mavt == null)
                 {
-                    _dvt.ChangeText("");
-                    _dvt1.SetInitFilter("");
-                    _dvt1.ChangeText("");
+                    SetCellValue(grow.Cells["DVT"], ""); // !!!!_dvt.ChangeText(""); xulychondvt
+                    var dvt_column = dataGridView1.Columns["DVT"] as V6VvarDataGridViewColumn;
+                    if (dvt_column != null) dvt_column.InitFilter = ""; // _dvt1.SetInitFilter("");
+                    SetCellValue(grow.Cells["DVT1"], ""); // !!!!_dvt1.ChangeText("");
                     return;
                 }
 
                 if (changeMavt)
                 {
-                    _dvt.Text = data["dvt"].ToString().Trim();
-                    _dvt1.SetInitFilter("ma_vt='" + mavt + "'");
-                    _dvt1.Text = _dvt.Text;
-                    _dvt1.ExistRowInTable(true);
+                    SetCellValue(grow.Cells["DVT"], data_mavt["DVT"]);
+                    var dvt1_column = dataGridView1.Columns["DVT1"] as V6VvarDataGridViewColumn;
+                    if (dvt1_column != null) dvt1_column.InitFilter = "ma_vt='" + ma_vt + "'";
+                    SetCellValue(grow.Cells["DVT1"], data_mavt["DVT"]);
+                    // !!!!! _dvt1.ExistRowInTable(true);
                 }
 
-                if (data.Table.Columns.Contains("Nhieu_dvt"))
+                var column_dvt = dataGridView1.Columns["DVT1"];// as V6VvarDataGridViewColumn;
+                if (data_mavt.ContainsKey("NHIEU_DVT"))
                 {
-                    var nhieuDvt = data["Nhieu_dvt"].ToString().Trim();
+                    var nhieuDvt = data_mavt["NHIEU_DVT"].ToString().Trim();
                     if (nhieuDvt == "1")
                     {
-                        _dvt1.Tag = null;
-                        _dvt1.ReadOnly = false;
+                        column_dvt.ReadOnly = false;
                         if (changeMavt)
                         {
                             _he_so1T.Value = 1;
@@ -1436,11 +1199,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     }
                     else
                     {
-                        _dvt1.Tag = "readonly";
-                        _dvt1.ReadOnly = true;
-                        if (changeMavt) _dvt1.Focus();
+                        column_dvt.ReadOnly = true;
                         if (changeMavt)
                         {
+                            dataGridView1.CurrentCell = grow.Cells[column_dvt.Name];
                             _he_so1T.Value = 1;
                             _he_so1M.Value = 1;
                         }
@@ -1448,9 +1210,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 }
                 else
                 {
-                    _dvt1.ExistRowInTable(_dvt1.Text);
-                    _dvt1.Tag = "readonly";
-                    _dvt1.ReadOnly = true;
+                    // !!!!! _dvt1.ExistRowInTable(_dvt1.Text); lấy tên dvt????
+                    column_dvt.ReadOnly = true;
                 }
             }
             catch (Exception ex)
@@ -1459,14 +1220,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
-        public void GetGia()
+        public void GetGia(DataGridViewRow grow)
         {
             try
             {
                 if (txtMaGia.Text.Trim() == "") return;
-
+                
                 var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
-                        cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, "", txtMaGia.Text);
+                        cboMaNt.SelectedValue.ToString().Trim(), CELL_STRING(grow, "MA_VT"), CELL_STRING(grow, "DVT1"), "", txtMaGia.Text);
 
                 if (_gia_ban_nt != null && V6Options.GetValue("M_SOA_PRICE_INCLUDE_VAT") == "1")
                 {
@@ -1483,7 +1244,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 {
                     _giaNt21.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
 
-                    if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
+                    if (CELL_STRING(grow, "DVT").ToUpper() == CELL_STRING(grow, "DVT1").ToUpper())
                     {
                         _giaNt2.Value = _giaNt21.Value;
                     }
@@ -1502,27 +1263,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
-        private void XuLyThayDoiDvt1()
+        private void XuLyThayDoiDvt1(DataGridViewCell cell_dvt, DataGridViewRow grow)
         {
-            if (_dvt1.Data == null)
+            var data = cell_dvt.Tag as IDictionary<string, object>;
+            if (data == null)
             {
                 _he_so1T.Value = 1;
                 _he_so1M.Value = 1;
                 return;
             }
 
-            var he_soT = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soT"]);
-            var he_soM = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soM"]);
+            var he_soT = ObjectAndString.ObjectToDecimal(data["HE_SOT"]);
+            var he_soM = ObjectAndString.ObjectToDecimal(data["HE_SOM"]);
             if (he_soT == 0) he_soT = 1;
             if (he_soM == 0) he_soM = 1;
             _he_so1T.Value = he_soT;
             _he_so1M.Value = he_soM;
 
-            GetGia();
-            TinhTienNt2();
+            GetGia(grow);
+            TinhTienNt2(grow);
         }
 
-        public void TinhTienNt2(Control actionControl = null)
+        public void TinhTienNt2(DataGridViewRow grow, string actionControl = null)
         {
             try
             {
@@ -1535,7 +1297,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 }
 
-                TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
+                TinhChietKhauChiTiet_row(false, grow.Cells["CK"], grow.Cells["CK_NT"], txtTyGia,grow.Cells["TIEN_NT2"], grow.Cells["PT_CKI"]);
                 TinhGiaNt2();//!
                 TinhVanChuyen();
                 TinhGiamGiaCt();
@@ -1809,13 +1571,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     txtTyGia.Enabled = _maNt != _mMaNt0;
 
                     _tienNt2.Enabled = chkSuaTien.Checked;
-                    _dvt1.Enabled = true;
+                    //_dvt1.Enabled = true;
 
                     _tienNt.Enabled = chkSuaTien.Checked && _xuat_dd.Text!="";
 
                     //{Tuanmh 20/02/2016
-                    _ckNt.Enabled = !chkLoaiChietKhau.Checked;
-                    _ck.Enabled = !chkLoaiChietKhau.Checked;
+                    var ck_nt_column = dataGridView1.Columns["CK_NT"];
+                    if (ck_nt_column != null) ck_nt_column.ReadOnly = chkLoaiChietKhau.Checked;
+                    var ck_column = dataGridView1.Columns["CK"];
+                    if (ck_column != null) ck_column.ReadOnly = chkLoaiChietKhau.Checked;
+                    var gia21_column = dataGridView1.Columns["gia21"];
+                    if (gia21_column != null) gia21_column.ReadOnly = !(chkSuaTien.Checked && _giaNt21.Value == 0);
                     _gia21.Enabled = chkSuaTien.Checked && _giaNt21.Value==0;
                     _gia_nt.Enabled =  _xuat_dd.Text != "";
                     _gia.Enabled =  _xuat_dd.Text != "" && _gia_nt.Value==0;
@@ -2015,21 +1781,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             dataGridView1.CellBeginEdit += dataGridView1_CellBeginEdit;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+            dataGridView1.CurrentCellChanged += dataGridView1_CurrentCellChanged;
+            dataGridView1.CellLeave += dataGridView1_CellLeave;
         }
 
         void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            // Dùng như sự kiện V6_LostFocus
             string FIELD = null;
             try
             {
-                var row = dataGridView1.Rows[e.RowIndex];
+                var grow = dataGridView1.Rows[e.RowIndex];
                 var col = dataGridView1.Columns[e.ColumnIndex];
                 FIELD = col.DataPropertyName.ToUpper();
-                var cell = row.Cells[e.ColumnIndex];
-                var cell_MA_VT = row.Cells["MA_VT"];
-                var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
-                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
-                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                var cell = grow.Cells[e.ColumnIndex];
+                var cell_MA_VT = grow.Cells["MA_VT"];
+                var cell_SO_LUONG1 = grow.Cells["SO_LUONG1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1M"].Value);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
                 //decimal HE_SO = HE_SO1T / HE_SO1M;
@@ -2038,7 +1807,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 switch (FIELD)
                 {
+                    case "MA_VT":
+                        XuLyChonMaVt(cell_MA_VT, grow);
+                        break;
+                    case "DVT1":
+                        XuLyThayDoiDvt1(cell, grow);
+                        break;
+                    case "MA_KHO":
+                        grow.Cells["MA_KHO_I"].Value = grow.Cells["MA_KHO"].Value;
+                        break;
+                    case "MA_KHO_I":
+                        XuLyChonMaKhoI(grow, cell);
+                        break;
+                    case "MA_LO":
+                        CheckMaLo(grow);
+                        break;
                     case "SO_LUONG1":
+                        //SoLuong1_V6LostFocus(grow);
                         #region ==== SO_LUONG1 ====
 
                         V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT", Text = cell_MA_VT.Value.ToString() };
@@ -2052,71 +1837,127 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         }
 
                         //_soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO1T / HE_SO1M;
+                        grow.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO1T / HE_SO1M;
                         //TinhTienVon1(_soLuong1);
-                        row.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
-                            * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value), M_ROUND_NT);
-                        row.Cells["TIEN0"].Value = _maNt == _mMaNt0
-                            ? row.Cells["TIEN_NT2"].Value
-                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
+                        grow.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
+                            * ObjectAndString.ObjectToDecimal(grow.Cells["GIA_NT21"].Value), M_ROUND_NT);
+                        grow.Cells["TIEN0"].Value = _maNt == _mMaNt0
+                            ? grow.Cells["TIEN_NT2"].Value
+                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(grow.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
 
                         //TinhTienVon(_soLuong1);
-                        if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
-                        if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
-                        if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
+                        if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(grow, FIELD);
+                        if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(grow, FIELD);
+                        if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(grow, FIELD);
                         //_tienNt.Value = _tienNt0.Value;
                         //_tien.Value = _tien0.Value;
-                        row.Cells["TIEN_NT"].Value = row.Cells["TIEN_NT2"].Value;
-                        row.Cells["TIEN"].Value = row.Cells["TIEN0"].Value;
+                        grow.Cells["TIEN_NT"].Value = grow.Cells["TIEN_NT2"].Value;
+                        grow.Cells["TIEN"].Value = grow.Cells["TIEN0"].Value;
 
                         #endregion ==== SO_LUONG1 ====
                         break;
 
                     
                     case "SL_QD":
+                        //_sl_qd.V6LostFocus += delegate
+                        //{
+                        //    TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                        //    TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                        //    TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                        //    _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
+                        //    if (M_CAL_SL_QD_ALL == "1")
+                        //    {
+                        //        //CheckSoLuong1();
+                        //        chkT_THUE_NT.Checked = false;
+                        //        Tinh_thue_ct();
+                        //    }
+                        //};
+
                         #region ==== SL_QD ====
-                        if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
-                        if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
-                        if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
-                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO1T / HE_SO1M;
+                        if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(grow, FIELD);
+                        if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(grow, FIELD);
+                        if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(grow, FIELD);
+                        grow.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO1T / HE_SO1M;
                         if (M_CAL_SL_QD_ALL == "1")
                         {
                             //CheckSoLuong1_row(row, HE_SO1T, HE_SO1M, FIELD);
                             chkT_THUE_NT.Checked = false;
-                            Tinh_thue_ct_row_XUAT_TIEN2(row);
+                            Tinh_thue_ct_row_XUAT_TIEN2(grow);
                         }
                         #endregion ==== SL_QD ====
                         break;
 
+                    case "GIA_BAN_NT":
+                        _gia_ban.Value = V6BusinessHelper.Vround((_gia_ban_nt.Value * txtTyGia.Value), M_ROUND_GIA);
+                        if (_maNt == _mMaNt0)
+                        {
+                            _gia_ban.Value = _gia_ban_nt.Value;
+                        }
+
+                        TinhGiaNt21();
+                        TinhGiaNt2();
+                        chkT_THUE_NT.Checked = false;
+                        TinhTienNt2(grow, "GIA_BAN_NT");
+                        Tinh_thue_ct(grow);
+                        break;
+
                     case "GIA_NT21":
+                        //public void GiaNt21_V6LostFocus(object sender)
+                        //{
+                        //    chkT_THUE_NT.Checked = false;
+                        //    TinhTienNt2(grow, "GIA_NT21");
+                        //    Tinh_thue_ct();
+                        //}
                         #region ==== GIA_NT21 ====
 
                         //TinhTienVon1(_gia_nt21);
-                        row.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
-                            * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value), M_ROUND_NT);
-                        row.Cells["TIEN2"].Value = _maNt == _mMaNt0
-                            ? row.Cells["TIEN_NT2"].Value
-                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
+                        grow.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
+                            * ObjectAndString.ObjectToDecimal(grow.Cells["GIA_NT21"].Value), M_ROUND_NT);
+                        grow.Cells["TIEN2"].Value = _maNt == _mMaNt0
+                            ? grow.Cells["TIEN_NT2"].Value
+                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(grow.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
                         //TinhChietKhauChiTiet
-                        TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(false, row, txtTyGia.Value);
+                        TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(false, grow, txtTyGia.Value);
                         //TinhGiaVon();
-                        row.Cells["GIA21"].Value = _maNt == _mMaNt0
-                            ? row.Cells["GIA_NT21"].Value
-                            : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
+                        grow.Cells["GIA21"].Value = _maNt == _mMaNt0
+                            ? grow.Cells["GIA_NT21"].Value
+                            : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(grow.Cells["GIA_NT21"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
                         //TinhGiaNt2
-                        if (ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value) != 0)
+                        if (ObjectAndString.ObjectToDecimal(grow.Cells["SO_LUONG"].Value) != 0)
                         {
-                            row.Cells["GIA_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA_NT);
-                            row.Cells["GIA2"].Value = _maNt == _mMaNt0
-                                ? row.Cells["GIA_NT2"].Value
-                                : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN2"].Value)
-                                    / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA);
+                            grow.Cells["GIA_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(grow.Cells["TIEN_NT2"].Value) / ObjectAndString.ObjectToDecimal(grow.Cells["SO_LUONG"].Value), M_ROUND_GIA_NT);
+                            grow.Cells["GIA2"].Value = _maNt == _mMaNt0
+                                ? grow.Cells["GIA_NT2"].Value
+                                : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(grow.Cells["TIEN2"].Value)
+                                    / ObjectAndString.ObjectToDecimal(grow.Cells["SO_LUONG"].Value), M_ROUND_GIA);
                         }
-                        TinhVanChuyen_row(row);
-                        TinhGiamGiaCt_row(row);
-                        Tinh_thue_ct_row_XUAT_TIEN2(row);
+                        TinhVanChuyen_row(grow);
+                        TinhGiamGiaCt_row(grow);
+                        Tinh_thue_ct_row_XUAT_TIEN2(grow);
 
                         #endregion ==== GIA_NT21 ====
+                        break;
+                    case "PT_CKI":
+                        TinhChietKhauChiTiet(grow);
+                        Tinh_thue_ct(grow);
+                        break;
+                    case "CK_NT":
+                        Tinh_thue_ct(grow);
+                        break;
+                    case "GG":
+                        Tinh_thue_ct(grow);
+                        break;
+                    case "GG_NT":
+                        Tinh_thue_ct(grow);
+                        break;
+
+                    case "MA_THUE_I":
+                        XuLyThayDoiMaThue_i(grow);
+                        Tinh_thue_ct(grow);
+                        break;
+
+                    case "TANG":
+                        _tang_V6LostFocus(cell, grow);
                         break;
                     default:
                         break;
@@ -2155,6 +1996,145 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        }
+
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (NotAddEdit) return;
+            string FIELD = null;
+            try
+            {
+                var grow = dataGridView1.CurrentRow;
+                if (grow == null || grow.IsNewRow) return;
+                var cell = dataGridView1.CurrentCell;
+                var col = cell.OwningColumn;
+                FIELD = col.DataPropertyName.ToUpper();
+                
+                //var cell_MA_VT = row.Cells["MA_VT"];
+                //var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
+                //decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
+                //decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                //if (HE_SO1T == 0) HE_SO1T = 1;
+                //if (HE_SO1M == 0) HE_SO1M = 1;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
+
+                //ShowMainMessage("cell_end_edit: " + FIELD);
+
+                switch (FIELD)
+                {
+                    case "DVT1":
+                        var column_dvt = col as V6VvarDataGridViewColumn;
+                        if (column_dvt != null)
+                        {
+                            column_dvt.InitFilter = "ma_vt='" + grow.Cells["MA_VT"].Value.ToString().Trim() + "'"; // Chuyển vào begin_edit mới đúng.????
+                        }
+                        
+                        //_dvt1.ExistRowInTable(true);
+                        
+                        break;
+
+                    case "MA_LO":
+                        if (col.ReadOnly) return;
+                        var malo_column = col as V6VvarDataGridViewColumn;
+                        if (malo_column != null)
+                        {
+                            
+                            _maLo.SetInitFilter("ma_vt='" + grow.Cells["MA_VT"].Value.ToString().Trim() + "'");
+
+                            var cell_mavt = grow.Cells["MA_VT"];
+                            var cell_makhoi = grow.Cells["MA_KHO_I"];
+                            malo_column.CheckNotEmpty = IS(cell_mavt.Tag, "LO_YN") && IS(cell_makhoi.Tag, "LO_YN");
+                            malo_column.InitFilter = "ma_vt='" + cell_mavt.Value.ToString().Trim() + "'";
+                        }
+                        
+                        break;
+                    case "MA_LNX_I":
+                        var ma_lnx_i_column = col as V6VvarDataGridViewColumn;
+                        if (ma_lnx_i_column != null)
+                        {
+                            ma_lnx_i_column.InitFilter = "LOAI = 'X'";
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("CellChanged", ex);
+            }
+        }
+
+        private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            DoNothing();
+            if (NotAddEdit) return;
+            string FIELD = null;
+            try
+            {
+                var grow = dataGridView1.CurrentRow;
+                if (grow == null || grow.IsNewRow) return;
+                var cell = dataGridView1.CurrentCell;
+                var col = cell.OwningColumn;
+                FIELD = col.DataPropertyName.ToUpper();
+
+                //var cell_MA_VT = row.Cells["MA_VT"];
+                //var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
+                //decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
+                //decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                //if (HE_SO1T == 0) HE_SO1T = 1;
+                //if (HE_SO1M == 0) HE_SO1M = 1;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
+
+                //ShowMainMessage("cell_end_edit: " + FIELD);
+
+                switch (FIELD)
+                {
+                    case "DVT1":
+                        
+                        Dvt1_V6LostFocusNoChange(cell, grow);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("CellLeave", ex);
+            }
+        }
+
+        decimal CELL_DECIMAL(DataGridViewRow grow, string name)
+        {
+            return ObjectAndString.ObjectToDecimal(grow.Cells[name].Value);
+        }
+
+        decimal DECIMAL(DataGridViewCell cell)
+        {
+            return ObjectAndString.ObjectToDecimal(cell.Value);
+        }
+        /// <summary>
+        /// return grow.Cells[name].Value.ToString().Trim();
+        /// </summary>
+        /// <param name="grow"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        string CELL_STRING(DataGridViewRow grow, string name)
+        {
+            return grow.Cells[name].Value.ToString().Trim();
+        }
+        bool IS(object tag, string key)
+        {
+            return ObjectAndString.ObjectToBool(GetCellTag(tag, key));
+        }
+        bool IS_NOT(object tag, string key)
+        {
+            return !ObjectAndString.ObjectToBool(GetCellTag(tag, key));
+        }
+        object GetCellTag(object tag, string key)
+        {
+            if (tag is IDictionary<string, object>)
+            {
+                return ((IDictionary<string, object>) tag)[key];
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -2453,17 +2433,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
-        public void TinhChietKhauChiTiet()
+        public void TinhChietKhauChiTiet(DataGridViewRow grow)
         {
             try
             {
-                _ckNt.Value = V6BusinessHelper.Vround(_tienNt2.Value * _pt_cki.Value/100, M_ROUND_NT);
-                _ck.Value = V6BusinessHelper.Vround(_ckNt.Value * txtTyGia.Value, M_ROUND);
-
+                SetCellValue(grow.Cells["CK_NT"], V6BusinessHelper.Vround(DECIMAL(grow.Cells["TIEN_NT2"]) * DECIMAL(grow.Cells["PT_CKI"]) / 100, M_ROUND_NT));
+                
                 if (_maNt == _mMaNt0)
                 {
-                    _ck.Value = _ckNt.Value;
-
+                    SetCellValue(grow.Cells["CK"], grow.Cells["CK_NT"].Value);
+                }
+                else
+                {
+                    SetCellValue(grow.Cells["CK"], V6BusinessHelper.Vround(DECIMAL(grow.Cells["CK_NT"]) * txtTyGia.Value, M_ROUND));
                 }
                 
             }
@@ -2723,13 +2705,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             try
             {
                 string filter = V6Login.GetFilterKhoByDVCS(txtMaDVCS.Text.Trim());
-                _maKhoI.SetInitFilter(filter);
+                SetColumnInitFilter(dataGridView1, "MA_KHO_I", filter);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".XuLyThayDoiMaDVCS " + _sttRec, ex);
             }
         }
+
+        
 
         private void XuLyThayDoiMaNt()
         {
@@ -2948,16 +2932,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             TinhTongThanhToan("XuLyThayDoiMaThue");
         }
 
-        private void XuLyThayDoiMaThue_i()
+        private void XuLyThayDoiMaThue_i(DataGridViewRow grow)
         {
             try
             {
-                var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + _ma_thue_i.Text.Trim() + "'");
+                var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + CELL_STRING(grow, "MA_THUE_I") + "'");
                 if (alThue.TotalRows > 0)
                 {
-                    _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
-                    _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]);
-                    //txtTkThueNo.Text = txtManx.Text;
+                    SetCellValue(grow.Cells["TK_THUE_I"], alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim());
+                    SetCellValue(grow.Cells["THUE_SUAT_I"], ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]));
                 }
             }
             catch (Exception ex)
@@ -2967,12 +2950,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             //TinhTongThanhToan("XuLyThayDoiMaThue_i");
         }
 
-        public void Tinh_thue_ct()
+        public void Tinh_thue_ct(DataGridViewRow grow)
         {
             V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - M_SOA_MULTI_VAT = " + M_SOA_MULTI_VAT);
             if (M_SOA_MULTI_VAT == "1")
             {
-                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt2.Value - _ckNt.Value - _ggNt.Value, _tien2.Value - _ck.Value - _gg.Value, _thue_nt, _thue);
+                Tinh_TienThueNtVaTienThue_TheoThueSuat(DECIMAL(grow.Cells["THUE_SUAT_I"]),
+                    DECIMAL(grow.Cells["TIEN_NT2"]) - DECIMAL(grow.Cells["CK_NT"]) - DECIMAL(grow.Cells["GG_NT"]),
+                    DECIMAL(grow.Cells["TIEN2"]) - DECIMAL(grow.Cells["CK"]) - DECIMAL(grow.Cells["GG"]), _thue_nt, _thue);
                 V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Tinh thue ct M_SOA_MULTY_VAT = 1.");
             }
         }
@@ -4146,9 +4131,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         public override void SetDefaultDetail()
         {
-            if (_Ma_lnx_i != null && txtLoaiNX_PH.Text != string.Empty)
+            if (dataGridView1.Rows.Count > 0)
             {
-                if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                var grow = dataGridView1.Rows[dataGridView1.RowCount - 1];
+                var ma_lnx_i_column = dataGridView1.Columns["MA_LNX_I"];
+                if (ma_lnx_i_column != null && txtLoaiNX_PH.Text != string.Empty)
+                {
+                    SetCellValue(grow.Cells[ma_lnx_i_column.Name], txtLoaiNX_PH.Text);
+                }
             }
         }
 
@@ -4472,10 +4462,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             HuyBase();
         }
 
-        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
-        {
-            //ViewCurrentRowToDetail(dataGridView1, detail1);
-        }
+        
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
@@ -5049,10 +5036,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
 
                     //{ Tuanmh 31/08/2016 Them thong tin ALVT
+                    V6VvarTextBox _maVt = new V6VvarTextBox();
+                    _maVt.VVar = "MA_VT";
                     _maVt.Text = cMaVt;
                     var datavt = _maVt.Data;
-
-
                     if (datavt != null)
                     {
                         //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
@@ -5123,7 +5110,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
-            FixDataGridViewSize(dataGridView1);
+            ////FixDataGridViewSize(dataGridView1);
+            //var gpa = dataGridView1.Parent;
+            //if (gpa != null)
+            //{
+            //    dataGridView1.Top = 52;
+            //    if (HaveGridViewSummary(gpa))
+            //    {
+            //        dataGridView1.Height = gpa.Height - 75;
+            //    }
+            //    else
+            //    {
+            //        dataGridView1.Height = gpa.Height - 55;
+            //    }
+            //    dataGridView1.Left = 2;
+            //    dataGridView1.Width = gpa.Width - 5;
+            //}
         }
 
 
@@ -6072,10 +6074,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
+                if (dataGridView1.CurrentRow == null) return;
+                var grow = dataGridView1.CurrentRow;
                 if (txtLoaiNX_PH.Text != string.Empty)
                 {
                     V6ControlFormHelper.UpdateDKlist(AD, "MA_LNX_I", txtLoaiNX_PH.Text);
-                    if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                    SetCellValue(grow.Cells["MA_LNX_I"], txtLoaiNX_PH.Text);
                 }
             }
             catch (Exception ex)
@@ -6104,12 +6108,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             try
             {
                 if (NotAddEdit) return;
+                var grow = dataGridView1.CurrentRow;
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                string filter1 = _maVt.InitFilter;
+                string filter1 = GetCellTag(grow.Cells["MA_VT"], "INITFILTER").ToString(); // !!!!!!
                 var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                 if (setting.Contains(Invoice.Mact))
                     
@@ -6119,7 +6124,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     {
                         filter1 = newFilter;
                     }
-                    else if (!string.IsNullOrEmpty(newFilter) && !_maVt.InitFilter.Contains(newFilter))
+                    else if (!string.IsNullOrEmpty(newFilter) && ! GetCellTag(grow.Cells["MA_VT"], "INITFILTER").ToString().Contains(newFilter))
                     {
                         filter1 = string.Format("({0}) and ({1})", filter1, newFilter);
                     }
@@ -6142,15 +6147,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
-        private void DonDatHangBanDetail1_AddHandle()
-        {
 
-        }
-
-        private void DonDatHangBanDetail1_EditHandle()
-        {
-
-        }
+        
 
 
     }

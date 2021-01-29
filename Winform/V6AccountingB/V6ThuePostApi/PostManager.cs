@@ -25,6 +25,7 @@ using V6ThuePost.MInvoiceObject.Response;
 using V6ThuePost.MONET_Objects.Response;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.ViettelObjects;
+using V6ThuePost.ViettelV2Objects;
 using V6ThuePost.VnptObjects;
 using V6ThuePostBkavApi;
 using V6ThuePostBkavApi.PostObjects;
@@ -76,7 +77,7 @@ namespace V6ThuePostManager
         public static string _codetax = "";
         public static string _version = "";
         public static string _ma_dvcs = "";
-        public static string _baseUrl = "", _site = "", _createInvoiceUrl = "", _modifylink = "";
+        public static string _baseUrl = "", _site = "", _datetype = "", _createInvoiceUrl = "", _modifylink = "";
         /// <summary>
         /// InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)
         /// </summary>
@@ -254,6 +255,37 @@ namespace V6ThuePostManager
                 switch (paras.Branch)
                 {
                     case "1":
+                        if (_version == "V2")
+                        {
+                            var process = new Process
+                            {
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    WorkingDirectory = "ViettelV2",
+                                    FileName = "ViettelV2\\V6ThuePostViettelV2.exe",
+                                    UseShellExecute = false,
+                                    RedirectStandardOutput = true,
+                                    CreateNoWindow = true
+                                }
+                            };
+                            
+                            process.StartInfo.Arguments = "MTEST_JSON V6ThuePost.xml";
+                            process.Start();
+                            string process_result = process.StandardOutput.ReadToEnd();
+                            process.WaitForExit();
+                            // Phân tích Result tại đây.
+                            paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
+                            if (paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE != null && paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
+                            {
+                                return null;
+                            }
+                            if (paras.Result.V6ReturnValues.RESULT_STRING.Contains("\"errorCode\":\"TEMPLATE_NOT_FOUND\""))
+                            {
+                                return null;
+                            }
+
+                            return "Lỗi kết nối." + paras.Result.V6ReturnValues.RESULT_STRING;
+                        }
                         ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
                         result = viettel_ws.CheckConnection();
                         break;
@@ -342,6 +374,20 @@ namespace V6ThuePostManager
                 V6ControlFormHelper.WriteExLog("PostManager.PowerCheckConnection", ex);
             }
             return result;
+        }
+
+        static V6Return GetV6ReturnFromCallExe(string call_result)
+        {
+            var v6return = JsonConvert.DeserializeObject<V6Return>(call_result);
+            if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
+            {
+                v6return.RESULT_ERROR_MESSAGE = ChuyenMaTiengViet.TCVNtoUNICODE(v6return.RESULT_ERROR_MESSAGE);
+            }
+            if (!string.IsNullOrEmpty(v6return.RESULT_MESSAGE))
+            {
+                v6return.RESULT_MESSAGE = ChuyenMaTiengViet.TCVNtoUNICODE(v6return.RESULT_MESSAGE);
+            }
+            return v6return;
         }
         
         /// <summary>
@@ -2630,9 +2676,10 @@ namespace V6ThuePostManager
                     string process_result = process.StandardOutput.ReadToEnd();
                     process.WaitForExit();
                     // Phân tích Result tại đây.
-                    paras.Result.V6ReturnValues = JsonConvert.DeserializeObject<V6Return>(process_result);
+                    paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
                     result = paras.Result.V6ReturnValues.RESULT_STRING;
-                    
+                    CreateInvoiceResponseV2 resultObject = JsonConvert.DeserializeObject<V6ThuePost.ViettelV2Objects.CreateInvoiceResponseV2>(result);
+                    paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = resultObject.errorCode + resultObject.message;
                 }
                 else if (paras.Mode == "E_T1")
                 {
@@ -2670,7 +2717,7 @@ namespace V6ThuePostManager
                         string process_result = process.StandardOutput.ReadToEnd();
                         process.WaitForExit();
                         // Phân tích Result tại đây.
-                        paras.Result.V6ReturnValues = JsonConvert.DeserializeObject<V6Return>(process_result);
+                        paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
                         result = paras.Result.V6ReturnValues.RESULT_STRING;
                         //paras.Form.ShowInfoMessage(result);
                     }
@@ -2690,7 +2737,7 @@ namespace V6ThuePostManager
                         string process_result = process.StandardOutput.ReadToEnd();
                         process.WaitForExit();
                         // Phân tích Result tại đây.
-                        paras.Result.V6ReturnValues = JsonConvert.DeserializeObject<V6Return>(process_result);
+                        paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
                         result = paras.Result.V6ReturnValues.RESULT_STRING;
                     }
                 }
@@ -2728,7 +2775,7 @@ namespace V6ThuePostManager
                     string process_result = process.StandardOutput.ReadToEnd();
                     process.WaitForExit();
                     // Phân tích Result tại đây.
-                    paras.Result.V6ReturnValues = JsonConvert.DeserializeObject<V6Return>(process_result);
+                    paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
                     result = paras.Result.V6ReturnValues.RESULT_STRING;
                 }
 
@@ -2737,7 +2784,7 @@ namespace V6ThuePostManager
                 string message = "";
                 try
                 {
-                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
                     paras.Result.V6ReturnValues.RESULT_OBJECT = responseObject;
                     if (!string.IsNullOrEmpty(responseObject.description))
                     {
@@ -2752,14 +2799,22 @@ namespace V6ThuePostManager
                         message += " " + responseObject.result.invoiceNo;
                         
                     }
-                    else if (responseObject.errorCode == null)
+                    else if (responseObject.code == 400)
                     {
                         paras.Result.V6ReturnValues.SO_HD = paras.InvoiceNo;
-                        paras.Result.V6ReturnValues.RESULT_MESSAGE = responseObject.description;
+                        paras.Result.V6ReturnValues.RESULT_MESSAGE = result;
                     }
                     else
                     {
                         paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = responseObject.errorCode + ":" + responseObject.description;
+                        if (string.IsNullOrEmpty(responseObject.errorCode + "" + responseObject.description) && string.IsNullOrEmpty(paras.Result.V6ReturnValues.SO_HD))
+                        {
+                            paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "Không có số Hóa Đơn phản hồi.";
+                        }
+                        else
+                        {
+                            paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "Lỗi.";
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -2907,9 +2962,9 @@ namespace V6ThuePostManager
                         postObject.taxBreakdowns.Add(taxBreakdown);
                     }
                 }
-                
 
-                result = postObject.ToJson("VIETTEL");
+                if (string.IsNullOrEmpty(_datetype)) _datetype = "VIETTEL";
+                result = postObject.ToJson(_datetype);
             }
             catch (Exception ex)
             {
@@ -2925,12 +2980,53 @@ namespace V6ThuePostManager
         /// <returns>Trả về đường dẫn file pdf.</returns>
         public static string ViettelDownloadInvoicePDF(PostManagerParams paras)
         {
-            ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
+            if (_version == "V2")
+            {
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        WorkingDirectory = "ViettelV2",
+                        FileName = "ViettelV2\\V6ThuePostViettelV2.exe",
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true
+                    }
+                };
 
-            if (paras.Mode == "1") // Mode Thể hiện
-                return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern, V6Setting.V6SoftLocalAppData_Directory);
-            string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
-            return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, paras.InvoiceNo, strIssueDate, V6Setting.V6SoftLocalAppData_Directory);
+                string soseri_soct = paras.Serial + paras.InvoiceNo;//"XL/20E0000019"
+                string templateCode = paras.Pattern; // "01GTKT0/001" 
+                string uid = paras.Fkey_hd;//"bf0a819a-dd5f-4446-8850-bc81263beb04"
+                
+                if (paras.Mode == "1") // Thể hiện V6ThuePostViettelV2.exe P "V6ThuePost.xml" "XL/20E0000019" "01GTKT0/001" "bf0a819a-dd5f-4446-8850-bc81263beb04"
+                {
+                    process.StartInfo.Arguments = string.Format("P_JSON V6ThuePost.xml \"{0}\" \"{1}\" \"{2}\"", soseri_soct, templateCode, uid);
+                }
+                else // V6ThuePostViettelV2.exe P2 "V6ThuePost.xml" "XL/20E0000019" "05/10/2020"
+                {
+                    string str_ngay_ct = ObjectAndString.ObjectToString(paras.InvoiceDate, "dd/MM/yyyy");
+                    process.StartInfo.Arguments = string.Format("P2_JSON V6ThuePost.xml \"{0}\" \"{1}\"", soseri_soct, str_ngay_ct);
+                }
+
+                process.Start();
+                string process_result = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+                // Phân tích Result tại đây.
+                paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
+                return paras.Result.V6ReturnValues.PATH;
+                return process_result;
+            }
+            else
+            {
+                ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
+
+                if (paras.Mode == "1") // Mode Thể hiện
+                    return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern,
+                        V6Setting.V6SoftLocalAppData_Directory);
+                string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
+                return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, paras.InvoiceNo, strIssueDate,
+                    V6Setting.V6SoftLocalAppData_Directory);
+            }
         }
         
         #endregion viettel
@@ -4097,6 +4193,9 @@ namespace V6ThuePostManager
                                 case "loginsite":
                                 case "website":
                                     _site = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "datetype":
+                                    _datetype = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "createlink":
                                     _createInvoiceUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

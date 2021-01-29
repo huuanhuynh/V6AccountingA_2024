@@ -256,6 +256,15 @@ namespace V6Controls.Forms
             V6ControlFormHelper.SetControlValue(control, value, config);
         }
 
+        protected void SetCellValue(DataGridViewCell cell, object value)
+        {
+            V6ControlFormHelper.SetCellValue(cell, value);
+        }
+        protected void SetCellValue(DataGridViewCell cell, object value, DefineInfo config)
+        {
+            V6ControlFormHelper.SetCellValue(cell, value, config);
+        }
+
         /// <summary>
         /// Hàm hỗ trợ. Thường dùng để xử lý dữ liệu của bảng chính gửi vào.
         /// </summary>

@@ -93,7 +93,7 @@ namespace V6ThuePostViettelV2Api
             try
             {
                 //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
-                CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
                 v6return.RESULT_OBJECT = responseObject;
                 if (responseObject.result == null)
                 {
@@ -594,7 +594,9 @@ namespace V6ThuePostViettelV2Api
             
 
             //string result = GET_VIETTEL_TOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
+            //result = GET_VIETTEL_TOKEN("/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
             string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
+            //string result = POST_VIETTEL_COOKIESTOKEN("/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
             v6Return.RESULT_STRING = result;
             PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
             string fileName = objFile.fileName;
@@ -688,7 +690,7 @@ namespace V6ThuePostViettelV2Api
                 {
                     // {"errorCode":"","description":"","result":{}}
                     // {"code":400,"message":"TRANSACTION_UUID_INVALID","data":"Transaction Uuid đã được lập hóa đơn"}
-                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
                     v6return.RESULT_OBJECT = responseObject;
                     if (string.IsNullOrEmpty(responseObject.message))
                     {
@@ -731,7 +733,7 @@ namespace V6ThuePostViettelV2Api
                 try
                 {
                     //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
-                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
                     v6return.RESULT_OBJECT = responseObject;
                     if (responseObject.result == null)
                     {
@@ -780,17 +782,17 @@ namespace V6ThuePostViettelV2Api
             return result;
         }
 
-        public CreateInvoiceResponse POST_NEW_USBTOKEN(string json, string templateCode, string token_serial)
+        public CreateInvoiceResponseV2 POST_NEW_USBTOKEN(string json, string templateCode, string token_serial)
         {
             string result = null;
-            CreateInvoiceResponse responseObject = CreateInvoiceUsbTokenGetHash(json, out result);
+            CreateInvoiceResponseV2 responseObject = CreateInvoiceUsbTokenGetHash(json, out result);
 
             if (responseObject.result != null)
             {
                 V6Sign v6sign = new V6Sign();
                 string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
                 string result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
-                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result2);
+                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result2);
                 return responseObject;
             }
             else
@@ -808,7 +810,7 @@ namespace V6ThuePostViettelV2Api
             v6return = new V6Return();
             hash_result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
             v6return.RESULT_STRING = hash_result;
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(hash_result);
+            CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(hash_result);
             v6return.RESULT_OBJECT = responseObject;
             if (responseObject.result != null)
             {
@@ -816,7 +818,7 @@ namespace V6ThuePostViettelV2Api
                 string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
                 sign_result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
                 v6return.RESULT_STRING = sign_result2;
-                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(sign_result2);
+                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(sign_result2);
                 v6return.RESULT_OBJECT = responseObject;
                 if (responseObject.result == null)
                 {
@@ -840,10 +842,10 @@ namespace V6ThuePostViettelV2Api
         }
 
 
-        public CreateInvoiceResponse CreateInvoiceUsbTokenGetHash(string json, out string result)
+        public CreateInvoiceResponseV2 CreateInvoiceUsbTokenGetHash(string json, out string result)
         {
             result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+            CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
             return responseObject;
         }
 

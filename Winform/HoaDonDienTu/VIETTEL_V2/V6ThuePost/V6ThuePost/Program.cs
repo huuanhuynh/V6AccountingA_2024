@@ -153,6 +153,15 @@ namespace V6ThuePost
                             goto End;
                         }
                     }
+                    else if (mode.ToUpper() == "MTEST_JSON")
+                    {
+                        //ReadData(arg2, "M"); // đọc để lấy tên flag.
+                        jsonBody = "";
+                        result = _viettel_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                        EncodeV6Return(v6return);
+                        Console.Write(v6return.ToJson());
+                        goto End;
+                    }
                     else if (mode.StartsWith("M") && mode.EndsWith("_JSON"))
                     {
                         jsonBody = ReadText(arg2);
@@ -292,23 +301,27 @@ namespace V6ThuePost
                         MakeFlagNames(stt_rec);
                         File.Create(flagFileName1).Close();
                         result = _viettel_ws.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate);
+                        v6return.RESULT_STRING = result;
                     }
                     else if (mode.StartsWith("P"))
                     {
+                        string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
+                        if (!Directory.Exists(V6SoftLocalAppData_Directory))
+                            Directory.CreateDirectory(V6SoftLocalAppData_Directory);
                         string soseri_soct = arg2;
                         string templateCode = arg3;
                         string uid = arg4;
                         MakeFlagNames(uid);
                         File.Create(flagFileName1).Close();
-                        if (mode.EndsWith("2"))
+                        if (mode.StartsWith("P2") || mode.StartsWith("PP2"))
                         {
                             DateTime ngay_ct = ObjectAndString.StringToDate(arg3);
                             string strIssueDate = V6JsonConverter.ObjectToJson(ngay_ct, "VIETTEL");
-                            result = _viettel_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, startupPath, out v6return);
+                            result = _viettel_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
                         }
                         else
                         {
-                            result = _viettel_ws.DownloadInvoicePDF(_codetax, soseri_soct, templateCode, uid, startupPath, out v6return);
+                            result = _viettel_ws.DownloadInvoicePDF(_codetax, soseri_soct, templateCode, uid, V6SoftLocalAppData_Directory, out v6return);
                         }
                         
                         if (string.IsNullOrEmpty(result))
@@ -322,6 +335,11 @@ namespace V6ThuePost
 
                         }
                         // In
+
+                        if (mode.EndsWith("JSON")) // Không view, không in.
+                        {
+                            goto return_result;
+                        }
 
                         if (mode.StartsWith("PP"))
                         {
@@ -362,9 +380,10 @@ namespace V6ThuePost
                     }
 
                     //Phân tích result
-
+                    return_result:
                     if (mode.EndsWith("JSON"))
                     {
+                        EncodeV6Return(v6return);
                         Console.Write(v6return.ToJson());
                     }
                     else
@@ -392,8 +411,15 @@ namespace V6ThuePost
                     BaseMessage.Show(ex.Message, 500);
                 }
             End:
-                File.Create(flagFileName9).Close();
-                BaseMessage.Show(result, 500);
+                if (mode.EndsWith("JSON"))
+                {
+
+                }
+                else
+                {
+                    File.Create(flagFileName9).Close();
+                    BaseMessage.Show(result, 500);
+                }
             }
             else
             {
@@ -403,6 +429,18 @@ namespace V6ThuePost
             }
             //Environment.Exit(0);
             Process.GetCurrentProcess().Kill(); // AAARGHHHGHglglgghh...
+        }
+
+        private static void EncodeV6Return(V6Return v6return)
+        {
+            if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
+            {
+                v6return.RESULT_ERROR_MESSAGE = ChuyenMaTiengViet.UNICODEtoTCVN(v6return.RESULT_ERROR_MESSAGE);
+            }
+            if (!string.IsNullOrEmpty(v6return.RESULT_MESSAGE))
+            {
+                v6return.RESULT_MESSAGE = ChuyenMaTiengViet.UNICODEtoTCVN(v6return.RESULT_MESSAGE);
+            }
         }
 
         private static string ReadText(string fileName)
