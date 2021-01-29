@@ -262,6 +262,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 {
                     control.ReadOnlyTag();
                 }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL2");
                 switch (NAME)
                 {
                     case "SO_CT0":
@@ -426,7 +427,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         }
                         break;
                 }
-
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2_DETAIL2");
             }
 
             foreach (AlctControls control in detailControlList2.Values)

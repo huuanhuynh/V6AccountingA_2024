@@ -176,6 +176,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL2");
             }
 
             //Add detail controls
@@ -317,6 +318,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL3");
             }
 
             //Add detail controls

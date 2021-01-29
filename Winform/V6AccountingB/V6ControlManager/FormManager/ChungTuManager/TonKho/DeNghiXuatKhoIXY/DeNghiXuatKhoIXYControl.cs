@@ -1655,9 +1655,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     if (M_SOA_MULTI_VAT == "1")
                     {
                         _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
-                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
+                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
 
-                        V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["thue_suat"]);
+                        V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
 
                         var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + _ma_thue_i.Text.Trim() + "'");
                         if (alThue.TotalRows > 0)

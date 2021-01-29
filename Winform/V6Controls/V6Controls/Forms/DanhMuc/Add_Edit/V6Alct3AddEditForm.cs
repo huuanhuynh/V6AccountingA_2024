@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit.Alreport;
+using V6Controls.Forms.Editor;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -49,18 +52,82 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             lblNotEmpty.Visible = true;
             chkNotEmpty.Visible = true;
 
+            lblFvvar.Visible = true;
+            lblFvvarDescription.Visible = true;
+            txtFvvar.Visible = true;
+            lblCheckVvar.Visible = true;
+            chkCheckVvar.Visible = true;
+            lblNotEmpty.Visible = true;
+            chkNotEmpty.Visible = true;
             //txtDmethod.Visible = true;
             //lblXML.Visible = true;
             //btnEditXml.Visible = true;
-
-            //lblFilterM.Visible = true;
-            //txtFilter_M.Visible = true;
-            //btnEditFilterM.Visible = true;
-            //lblDmethodM.Visible = true;
-            //txtDmethod_M.Visible = true;
-            //btnEditXmlM.Visible = true;
+            lblFilterM.Visible = true;
+            txtFilter_M.Visible = true;
+            btnEditFilterM.Visible = true;
+            lblDmethodM.Visible = true;
+            txtDmethod_M.Visible = true;
+            btnEditXmlM.Visible = true;
+            
             txtLimits.Visible = true;
             base.V6CtrlF12Execute();
+        }
+
+        private void DoEditXml()
+        {
+            try
+            {
+                var file_xml = TxtFcolumn.Text.Trim().ToUpper() + ".xml";
+                new XmlEditorForm(txtDmethod, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml", ex);
+            }
+        }
+
+        private void DoEditFilter_M()
+        {
+            try
+            {
+                DefineInfoEditorForm f = new DefineInfoEditorForm(txtFilter_M.Text);
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    txtFilter_M.Text = f.FILTER_DEFINE;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditFilter_M", ex);
+            }
+        }
+
+        private void DoEditXml_M()
+        {
+            try
+            {
+                var file_xml = TxtFcolumn.Text.Trim().ToUpper() + "_M.xml";
+                new XmlEditorForm(txtDmethod_M, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml_M", ex);
+            }
+        }
+
+        private void btnEditXml_Click(object sender, EventArgs e)
+        {
+            DoEditXml();
+        }
+
+        private void btnEditFilterM_Click(object sender, EventArgs e)
+        {
+            DoEditFilter_M();
+        }
+
+        private void btnEditXmlM_Click(object sender, EventArgs e)
+        {
+            DoEditXml_M();
         }
     }
 }

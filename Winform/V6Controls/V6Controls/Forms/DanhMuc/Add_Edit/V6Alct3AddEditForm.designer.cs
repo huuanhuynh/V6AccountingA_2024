@@ -117,6 +117,18 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.txtFvvar = new V6Controls.V6ColorTextBox();
+            this.lblFvvar = new System.Windows.Forms.Label();
+            this.btnEditXmlM = new System.Windows.Forms.Button();
+            this.btnEditFilterM = new System.Windows.Forms.Button();
+            this.txtDmethod_M = new V6Controls.V6ColorTextBox();
+            this.lblDmethodM = new System.Windows.Forms.Label();
+            this.txtFilter_M = new V6Controls.V6ColorTextBox();
+            this.lblFilterM = new System.Windows.Forms.Label();
+            this.lblXML = new System.Windows.Forms.Label();
+            this.btnEditXml = new System.Windows.Forms.Button();
+            this.txtDmethod = new V6Controls.V6ColorTextBox();
+            this.lblFvvarDescription = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabCacTuyChon.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
@@ -235,6 +247,18 @@
             this.tabCacTuyChon.AccessibleDescription = "ADDEDITT00010";
             this.tabCacTuyChon.AutoScroll = true;
             this.tabCacTuyChon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabCacTuyChon.Controls.Add(this.txtFvvar);
+            this.tabCacTuyChon.Controls.Add(this.lblFvvar);
+            this.tabCacTuyChon.Controls.Add(this.btnEditXmlM);
+            this.tabCacTuyChon.Controls.Add(this.btnEditFilterM);
+            this.tabCacTuyChon.Controls.Add(this.txtDmethod_M);
+            this.tabCacTuyChon.Controls.Add(this.lblDmethodM);
+            this.tabCacTuyChon.Controls.Add(this.txtFilter_M);
+            this.tabCacTuyChon.Controls.Add(this.lblFilterM);
+            this.tabCacTuyChon.Controls.Add(this.lblXML);
+            this.tabCacTuyChon.Controls.Add(this.btnEditXml);
+            this.tabCacTuyChon.Controls.Add(this.txtDmethod);
+            this.tabCacTuyChon.Controls.Add(this.lblFvvarDescription);
             this.tabCacTuyChon.Controls.Add(this.v6ColorTextBox9);
             this.tabCacTuyChon.Controls.Add(this.label11);
             this.tabCacTuyChon.Controls.Add(this.v6ColorTextBox8);
@@ -253,7 +277,7 @@
             this.tabCacTuyChon.Margin = new System.Windows.Forms.Padding(4);
             this.tabCacTuyChon.Name = "tabCacTuyChon";
             this.tabCacTuyChon.Padding = new System.Windows.Forms.Padding(4);
-            this.tabCacTuyChon.Size = new System.Drawing.Size(742, 349);
+            this.tabCacTuyChon.Size = new System.Drawing.Size(742, 408);
             this.tabCacTuyChon.TabIndex = 2;
             this.tabCacTuyChon.Text = "Các tùy chọn";
             // 
@@ -268,7 +292,7 @@
             this.v6ColorTextBox9.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox9.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox9.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox9.Location = new System.Drawing.Point(111, 194);
+            this.v6ColorTextBox9.Location = new System.Drawing.Point(111, 232);
             this.v6ColorTextBox9.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox9.Name = "v6ColorTextBox9";
             this.v6ColorTextBox9.Size = new System.Drawing.Size(122, 23);
@@ -280,7 +304,7 @@
             this.label11.AccessibleDescription = "";
             this.label11.AccessibleName = "";
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(14, 198);
+            this.label11.Location = new System.Drawing.Point(14, 236);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 17);
@@ -299,7 +323,7 @@
             this.v6ColorTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox8.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox8.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox8.Location = new System.Drawing.Point(111, 163);
+            this.v6ColorTextBox8.Location = new System.Drawing.Point(111, 201);
             this.v6ColorTextBox8.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox8.Name = "v6ColorTextBox8";
             this.v6ColorTextBox8.Size = new System.Drawing.Size(122, 23);
@@ -311,7 +335,7 @@
             this.label10.AccessibleDescription = "";
             this.label10.AccessibleName = "";
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(14, 167);
+            this.label10.Location = new System.Drawing.Point(14, 205);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(75, 17);
@@ -330,7 +354,7 @@
             this.v6ColorTextBox7.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox7.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox7.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox7.Location = new System.Drawing.Point(111, 132);
+            this.v6ColorTextBox7.Location = new System.Drawing.Point(111, 170);
             this.v6ColorTextBox7.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox7.Name = "v6ColorTextBox7";
             this.v6ColorTextBox7.Size = new System.Drawing.Size(122, 23);
@@ -342,7 +366,7 @@
             this.label9.AccessibleDescription = "";
             this.label9.AccessibleName = "";
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 136);
+            this.label9.Location = new System.Drawing.Point(14, 174);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(47, 17);
@@ -361,7 +385,7 @@
             this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.Location = new System.Drawing.Point(111, 101);
+            this.v6ColorTextBox6.Location = new System.Drawing.Point(111, 139);
             this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(122, 23);
@@ -373,7 +397,7 @@
             this.label8.AccessibleDescription = "";
             this.label8.AccessibleName = "";
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(14, 105);
+            this.label8.Location = new System.Drawing.Point(14, 143);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 17);
@@ -392,7 +416,7 @@
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(111, 70);
+            this.v6ColorTextBox5.Location = new System.Drawing.Point(111, 108);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(122, 23);
@@ -404,7 +428,7 @@
             this.label7.AccessibleDescription = "";
             this.label7.AccessibleName = "";
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 74);
+            this.label7.Location = new System.Drawing.Point(14, 112);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 17);
@@ -423,7 +447,7 @@
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(111, 39);
+            this.v6ColorTextBox4.Location = new System.Drawing.Point(111, 77);
             this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(122, 23);
@@ -435,7 +459,7 @@
             this.label5.AccessibleDescription = "";
             this.label5.AccessibleName = "";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 43);
+            this.label5.Location = new System.Drawing.Point(14, 81);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(23, 17);
@@ -454,7 +478,7 @@
             this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.Location = new System.Drawing.Point(111, 8);
+            this.v6ColorTextBox1.Location = new System.Drawing.Point(111, 46);
             this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(122, 23);
@@ -466,7 +490,7 @@
             this.label4.AccessibleDescription = "";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 12);
+            this.label4.Location = new System.Drawing.Point(14, 50);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 17);
@@ -504,7 +528,7 @@
             this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(4);
             this.tabThongTinChinh.Name = "tabThongTinChinh";
             this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(4);
-            this.tabThongTinChinh.Size = new System.Drawing.Size(742, 349);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(742, 408);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
             // 
@@ -831,7 +855,7 @@
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(750, 381);
+            this.v6TabControl1.Size = new System.Drawing.Size(750, 440);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabThongTinNgamDinh
@@ -1535,6 +1559,197 @@
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
             // 
+            // txtFvvar
+            // 
+            this.txtFvvar.AccessibleName = "FVVAR";
+            this.txtFvvar.BackColor = System.Drawing.Color.White;
+            this.txtFvvar.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFvvar.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFvvar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFvvar.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFvvar.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFvvar.LeaveColor = System.Drawing.Color.White;
+            this.txtFvvar.Location = new System.Drawing.Point(114, 8);
+            this.txtFvvar.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFvvar.Name = "txtFvvar";
+            this.txtFvvar.Size = new System.Drawing.Size(621, 23);
+            this.txtFvvar.TabIndex = 39;
+            this.toolTipV6FormControl.SetToolTip(this.txtFvvar, "A0 tặng, A1, C0 vvar,\r\nC1-C2 valuefield : textfield : bfield1,bfield2 : nfield1, " +
+        "nfield2,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, N5 tỷ giá.\r\n" +
+        "D0 date null, D1 date pick.");
+            this.txtFvvar.Visible = false;
+            // 
+            // lblFvvar
+            // 
+            this.lblFvvar.AccessibleDescription = ".";
+            this.lblFvvar.AccessibleName = "";
+            this.lblFvvar.AutoSize = true;
+            this.lblFvvar.Location = new System.Drawing.Point(12, 9);
+            this.lblFvvar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFvvar.Name = "lblFvvar";
+            this.lblFvvar.Size = new System.Drawing.Size(43, 17);
+            this.lblFvvar.TabIndex = 38;
+            this.lblFvvar.Text = "Fvvar";
+            this.lblFvvar.Visible = false;
+            // 
+            // btnEditXmlM
+            // 
+            this.btnEditXmlM.AccessibleName = "";
+            this.btnEditXmlM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditXmlM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditXmlM.Location = new System.Drawing.Point(695, 321);
+            this.btnEditXmlM.Name = "btnEditXmlM";
+            this.btnEditXmlM.Size = new System.Drawing.Size(40, 25);
+            this.btnEditXmlM.TabIndex = 37;
+            this.btnEditXmlM.Text = "...";
+            this.btnEditXmlM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditXmlM.UseVisualStyleBackColor = true;
+            this.btnEditXmlM.Visible = false;
+            this.btnEditXmlM.Click += new System.EventHandler(this.btnEditXmlM_Click);
+            // 
+            // btnEditFilterM
+            // 
+            this.btnEditFilterM.AccessibleName = "";
+            this.btnEditFilterM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditFilterM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditFilterM.Location = new System.Drawing.Point(695, 263);
+            this.btnEditFilterM.Name = "btnEditFilterM";
+            this.btnEditFilterM.Size = new System.Drawing.Size(40, 25);
+            this.btnEditFilterM.TabIndex = 34;
+            this.btnEditFilterM.Text = "...";
+            this.btnEditFilterM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditFilterM.UseVisualStyleBackColor = true;
+            this.btnEditFilterM.Visible = false;
+            this.btnEditFilterM.Click += new System.EventHandler(this.btnEditFilterM_Click);
+            // 
+            // txtDmethod_M
+            // 
+            this.txtDmethod_M.AccessibleName = "DMETHOD_M";
+            this.txtDmethod_M.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDmethod_M.BackColor = System.Drawing.Color.White;
+            this.txtDmethod_M.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDmethod_M.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDmethod_M.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod_M.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod_M.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDmethod_M.LeaveColor = System.Drawing.Color.White;
+            this.txtDmethod_M.Location = new System.Drawing.Point(111, 325);
+            this.txtDmethod_M.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDmethod_M.Multiline = true;
+            this.txtDmethod_M.Name = "txtDmethod_M";
+            this.txtDmethod_M.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDmethod_M.Size = new System.Drawing.Size(577, 56);
+            this.txtDmethod_M.TabIndex = 36;
+            this.txtDmethod_M.Visible = false;
+            // 
+            // lblDmethodM
+            // 
+            this.lblDmethodM.AccessibleDescription = ".";
+            this.lblDmethodM.AutoSize = true;
+            this.lblDmethodM.Location = new System.Drawing.Point(8, 325);
+            this.lblDmethodM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDmethodM.Name = "lblDmethodM";
+            this.lblDmethodM.Size = new System.Drawing.Size(96, 17);
+            this.lblDmethodM.TabIndex = 35;
+            this.lblDmethodM.Text = "LookupB XML";
+            this.lblDmethodM.Visible = false;
+            // 
+            // txtFilter_M
+            // 
+            this.txtFilter_M.AccessibleName = "FILTER_M";
+            this.txtFilter_M.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilter_M.BackColor = System.Drawing.Color.White;
+            this.txtFilter_M.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFilter_M.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFilter_M.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFilter_M.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFilter_M.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFilter_M.LeaveColor = System.Drawing.Color.White;
+            this.txtFilter_M.Location = new System.Drawing.Point(111, 265);
+            this.txtFilter_M.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFilter_M.Multiline = true;
+            this.txtFilter_M.Name = "txtFilter_M";
+            this.txtFilter_M.Size = new System.Drawing.Size(577, 60);
+            this.txtFilter_M.TabIndex = 33;
+            this.txtFilter_M.Visible = false;
+            // 
+            // lblFilterM
+            // 
+            this.lblFilterM.AccessibleDescription = ".";
+            this.lblFilterM.AutoSize = true;
+            this.lblFilterM.Location = new System.Drawing.Point(8, 268);
+            this.lblFilterM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFilterM.Name = "lblFilterM";
+            this.lblFilterM.Size = new System.Drawing.Size(90, 17);
+            this.lblFilterM.TabIndex = 32;
+            this.lblFilterM.Text = "LookupB Def";
+            this.lblFilterM.Visible = false;
+            // 
+            // lblXML
+            // 
+            this.lblXML.AccessibleDescription = ".";
+            this.lblXML.AutoSize = true;
+            this.lblXML.Location = new System.Drawing.Point(228, 91);
+            this.lblXML.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblXML.Name = "lblXML";
+            this.lblXML.Size = new System.Drawing.Size(36, 17);
+            this.lblXML.TabIndex = 30;
+            this.lblXML.Text = "XML";
+            this.lblXML.Visible = false;
+            // 
+            // btnEditXml
+            // 
+            this.btnEditXml.AccessibleName = "";
+            this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditXml.Location = new System.Drawing.Point(695, 172);
+            this.btnEditXml.Name = "btnEditXml";
+            this.btnEditXml.Size = new System.Drawing.Size(40, 25);
+            this.btnEditXml.TabIndex = 31;
+            this.btnEditXml.Text = "...";
+            this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditXml.UseVisualStyleBackColor = true;
+            this.btnEditXml.Visible = false;
+            this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
+            // 
+            // txtDmethod
+            // 
+            this.txtDmethod.AccessibleName = "DMETHOD";
+            this.txtDmethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDmethod.BackColor = System.Drawing.Color.White;
+            this.txtDmethod.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDmethod.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDmethod.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDmethod.LeaveColor = System.Drawing.Color.White;
+            this.txtDmethod.Location = new System.Drawing.Point(277, 172);
+            this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDmethod.Multiline = true;
+            this.txtDmethod.Name = "txtDmethod";
+            this.txtDmethod.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDmethod.Size = new System.Drawing.Size(409, 85);
+            this.txtDmethod.TabIndex = 29;
+            this.txtDmethod.Visible = false;
+            // 
+            // lblFvvarDescription
+            // 
+            this.lblFvvarDescription.AccessibleDescription = ".";
+            this.lblFvvarDescription.AccessibleName = "";
+            this.lblFvvarDescription.AutoSize = true;
+            this.lblFvvarDescription.Location = new System.Drawing.Point(302, 40);
+            this.lblFvvarDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFvvarDescription.Name = "lblFvvarDescription";
+            this.lblFvvarDescription.Size = new System.Drawing.Size(433, 68);
+            this.lblFvvarDescription.TabIndex = 28;
+            this.lblFvvarDescription.Text = "A0 tặng, A1, C0 vvar,\r\nC1-C2 valuefield : textfield : bfield1,bfield2 : nfield1, " +
+    "nfield2,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, N5 tỷ giá.\r\n" +
+    "D0 date null, D1 date pick.";
+            this.lblFvvarDescription.Visible = false;
+            // 
             // V6Alct3AddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1544,7 +1759,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "V6Alct3AddEditForm";
-            this.Size = new System.Drawing.Size(758, 491);
+            this.Size = new System.Drawing.Size(758, 550);
             this.Load += new System.EventHandler(this.KhachHangFrom_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1650,5 +1865,17 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
+        private V6ColorTextBox txtFvvar;
+        private System.Windows.Forms.Label lblFvvar;
+        protected System.Windows.Forms.Button btnEditXmlM;
+        protected System.Windows.Forms.Button btnEditFilterM;
+        private V6ColorTextBox txtDmethod_M;
+        private System.Windows.Forms.Label lblDmethodM;
+        private V6ColorTextBox txtFilter_M;
+        private System.Windows.Forms.Label lblFilterM;
+        private System.Windows.Forms.Label lblXML;
+        protected System.Windows.Forms.Button btnEditXml;
+        private V6ColorTextBox txtDmethod;
+        private System.Windows.Forms.Label lblFvvarDescription;
     }
 }

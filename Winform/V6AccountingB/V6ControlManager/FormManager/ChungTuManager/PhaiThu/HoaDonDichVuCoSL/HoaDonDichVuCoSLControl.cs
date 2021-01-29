@@ -924,6 +924,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 {
                     control.ReadOnlyTag();
                 }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL3");
                 #region ==== Hứng control ====
                 if (NAME == "TK_I")
                 {
@@ -1031,7 +1032,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 }
 
                 #endregion hứng control
-
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2_DETAIL3");
             }
 
             foreach (AlctControls control in detailControlList3.Values)
@@ -2423,7 +2424,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     if (M_SOA_MULTI_VAT == "1")
                     {
                         _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
-                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
+                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
 
                         var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + _ma_thue_i.Text.Trim() + "'");
                         if (alThue.TotalRows > 0)

@@ -349,6 +349,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 {
                     control.ReadOnlyTag();
                 }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL2");
                 if (NAME == "SO_CT0")
                 {
                     _so_ct022 = control as V6ColorTextBox;
@@ -546,6 +547,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         //};
                     }
                 }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2_DETAIL2");
             }
 
             foreach (AlctControls control in detailControlList2.Values)

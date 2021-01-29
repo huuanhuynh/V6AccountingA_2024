@@ -260,8 +260,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 if (data != null)
                                 {
                                     _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
-                                    _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
-                                    V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["thue_suat"]);
+                                    _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
+                                    V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
                                     if(!chkT_THUE_NT.Checked) Tinh_thue_ct();
                                 }
                                 else
@@ -1111,6 +1111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     control.ReadOnlyTag();
                 }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL3");
                 #region ==== Hứng control ====
                 if (NAME == "TK_I")
                 {
@@ -1218,7 +1219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 #endregion hứng control
-
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2_DETAIL3");
             }
 
             foreach (AlctControls control in detailControlList3.Values)
@@ -3376,8 +3377,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (M_SOA_MULTI_VAT == "1")
                     {
                         _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
-                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
-                        V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["thue_suat"]);
+                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
+                        V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
 
                         var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + _ma_thue_i.Text.Trim() + "'");
                         if (alThue.TotalRows > 0)
@@ -7184,7 +7185,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
                 FormatGridView();
-                //XuLyThayDoiMaNt(); // chạy trong txtTyGia_V6LostFocus
+                XuLyThayDoiMaNt();
             }
 
             txtTyGia_V6LostFocus(sender);

@@ -664,6 +664,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 {
                     control.ReadOnlyTag();
                 }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL2");
                 switch (NAME)
                 {
                     case "SO_CT0":
@@ -814,7 +815,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         }
                         break;
                 }
-
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2_DETAIL2");
             }
             
             foreach (AlctControls control in detailControlList2.Values)
@@ -1070,8 +1071,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 if (data != null)
                 {
                     _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
-                    _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
-                    V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["thue_suat"]);
+                    _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
+                    V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
                     if (!chkT_THUE_NT.Checked) Tinh_thue_ct();
                 }
                 else
@@ -1270,8 +1271,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                     if (M_POA_MULTI_VAT == "1")
                     {
                         _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
-                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
-                        V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["thue_suat"]);
+                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
+                        V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
                     }
                 }
                 

@@ -119,7 +119,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void btnEditXml_Click(object sender, System.EventArgs e)
+        private void btnEditXml_Click(object sender, EventArgs e)
         {
             DoEditXml();
         }
