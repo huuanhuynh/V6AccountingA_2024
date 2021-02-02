@@ -2034,8 +2034,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        public void TinhChietKhauChiTiet_row(bool nhapTien, DataGridViewCell _ck_textbox, DataGridViewCell _ck_nt_textbox,
-            V6NumberTextBox txtTyGia, DataGridViewCell _tienNt2, DataGridViewCell _pt_cki)
+        public void TinhChietKhauChiTiet_row(bool nhapTien, DataGridViewCell cell_ck, DataGridViewCell cell_ck_nt,
+            V6NumberTextBox txtTyGia, DataGridViewCell cell_tien_nt2, DataGridViewCell cell_pt_cki)
         {
             try
             {
@@ -2043,24 +2043,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     if (_maNt == _mMaNt0)
                     {
-                        _ck_textbox.Value = _ck_nt_textbox.Value;
+                        cell_ck.Value = cell_ck_nt.Value;
                     }
                     else
                     {
-                        _ck_textbox.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt_textbox.Value) * txtTyGia.Value, M_ROUND);
+                        cell_ck.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_ck_nt.Value) * txtTyGia.Value, M_ROUND);
                     }
                 }
                 else
                 {
-                    _ck_nt_textbox.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_tienNt2.Value) * ObjectAndString.ObjectToDecimal(_pt_cki.Value) / 100, M_ROUND_NT);
+                    cell_ck_nt.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_tien_nt2.Value) * ObjectAndString.ObjectToDecimal(cell_pt_cki.Value) / 100, M_ROUND_NT);
                     
                     if (_maNt == _mMaNt0)
                     {
-                        _ck_textbox.Value = _ck_nt_textbox.Value;
+                        cell_ck.Value = cell_ck_nt.Value;
                     }
                     else
                     {
-                        _ck_textbox.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt_textbox.Value) * txtTyGia.Value, M_ROUND);
+                        cell_ck.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_ck_nt.Value) * txtTyGia.Value, M_ROUND);
                     }
                 }
             }
@@ -2919,8 +2919,26 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 // Tuanmh 04/01/2020 - xu ly khi (MaNt= MaNt0) 
                 var ty_gia = txtTyGia.Value;
 
-                if (MaNt != MaNt0) return;
-                if (ty_gia == 0 || chkSuaTien.Checked) return;
+                if (MaNt != MaNt0)
+                {
+                    M_ROUND_NT = V6Setting.RoundTienNt;
+                    M_ROUND = V6Setting.RoundTien;
+                    M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
+                    M_ROUND_GIA = V6Setting.RoundGia;
+                    return;
+                }
+                else
+                {
+                    M_ROUND = V6Setting.RoundTien;
+                    M_ROUND_GIA = V6Setting.RoundGia;
+                    M_ROUND_NT = M_ROUND;
+                    M_ROUND_GIA_NT = M_ROUND_GIA;
+                }
+
+                if (ty_gia == 0 || chkSuaTien.Checked)
+                {
+                    return;
+                }
 
                 {
 
@@ -4505,6 +4523,32 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + ".SetADSelectMoreControlValue", ex);
             }
         }
+        
+        public void SetADSelectMoreControlValue(V6InvoiceBase invoice, IDictionary<string, object> ma_vt_data)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(invoice.ADSELECTMORE)) return;
+
+                var d_list = ObjectAndString.SplitString(invoice.ADSELECTMORE);
+                foreach (string d_ in d_list)
+                {
+                    string D_ = d_.ToUpper().Trim();
+                    if (D_.StartsWith("D."))
+                    {
+                        string FIELD = D_.Substring(2).ToUpper();
+                        if (All_Objects.ContainsKey(FIELD))
+                        {
+                            SetControlValue(All_Objects[FIELD] as Control, ma_vt_data[FIELD]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SetADSelectMoreControlValue", ex);
+            }
+        }
 
 
         protected void GoToFirstFocus(Control defaultControl)
@@ -5192,7 +5236,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
 
-
-        
+        public void SetColumnInitFilter(V6ColorDataGridView dataGridView, string field, string filter)
+        {
+            var ma_kho_column = dataGridView.Columns[field] as V6VvarDataGridViewColumn;
+            if (ma_kho_column != null)
+            {
+                ma_kho_column.InitFilter = filter;
+            }
+        }
     }
 }

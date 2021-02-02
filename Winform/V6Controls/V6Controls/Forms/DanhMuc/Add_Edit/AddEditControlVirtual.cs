@@ -659,7 +659,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (!_TableStruct.ContainsKey(KEY)) continue;
                     var sct = _TableStruct[KEY];
                     if (!DataDic.ContainsKey(KEY)) return;
-                    key_old[KEY] = DataOld[KEY];
+                    if (DataOld != null && DataOld.ContainsKey(KEY)) key_old[KEY] = DataOld[KEY];
                     key_new[KEY] = DataDic[KEY];
                     var s_new = SqlGenerator.GenSqlStringValue(DataDic[KEY], sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
                     if (s_new.ToUpper().StartsWith("N'")) s_new = s_new.Substring(1);
