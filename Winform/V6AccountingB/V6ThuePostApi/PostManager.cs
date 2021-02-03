@@ -3002,10 +3002,9 @@ namespace V6ThuePostManager
                 {
                     process.StartInfo.Arguments = string.Format("P_JSON V6ThuePost.xml \"{0}\" \"{1}\" \"{2}\"", soseri_soct, templateCode, uid);
                 }
-                else // V6ThuePostViettelV2.exe P2 "V6ThuePost.xml" "XL/20E0000019" "05/10/2020"
+                else // V6ThuePostViettelV2.exe P2 "V6ThuePost.xml" "XL/20E0000019" "template" "uid"
                 {
-                    string str_ngay_ct = ObjectAndString.ObjectToString(paras.InvoiceDate, "dd/MM/yyyy");
-                    process.StartInfo.Arguments = string.Format("P2_JSON V6ThuePost.xml \"{0}\" \"{1}\"", soseri_soct, str_ngay_ct);
+                    process.StartInfo.Arguments = string.Format("P2_JSON V6ThuePost.xml \"{0}\" \"{1}\" \"{2}\"", soseri_soct, templateCode, uid);
                 }
 
                 process.Start();

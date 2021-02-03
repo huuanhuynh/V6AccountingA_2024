@@ -220,6 +220,7 @@ namespace V6ThuePostViettelV2Api
                     if (full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/cancelTransactionInvoice".ToLower())
                         || full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/updatePaymentStatus".ToLower())
                         || full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/createExchangeInvoiceFile".ToLower())
+                        || full_uri.ToLower().EndsWith("InvoiceAPI/InvoiceWS/searchInvoiceByTransactionUuid".ToLower())
                         )
                     {
                         request.ContentType = "application/x-www-form-urlencoded";
@@ -561,16 +562,18 @@ namespace V6ThuePostViettelV2Api
 
 
         /// <summary>
-        /// Download bản chuyển đổi.
+        /// Download bản chuyển đổi. application/x-www-form-urlencoded
         /// </summary>
         /// <param name="codeTax"></param>
         /// <param name="invoiceNo">Số hóa đơn hệ thống Viettel trả về.</param>
         /// <param name="strIssueDate"></param>
         /// <param name="savefolder"></param>
+        /// <param name="v6Return">Thông tin trả về</param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
         public string DownloadInvoicePDFexchange(string codeTax, string invoiceNo, string strIssueDate, string savefolder, out V6Return v6Return)
         {
             v6Return = new V6Return();
+            //invoiceNo = invoiceNo.Replace("/", "%2F");
             GetPDFFileRequestE objGetPdfFile = new GetPDFFileRequestE()
             {
                 supplierTaxCode = codeTax,
@@ -578,20 +581,10 @@ namespace V6ThuePostViettelV2Api
                 strIssueDate = strIssueDate,
                 exchangeUser = _username
             };
-            string request = objGetPdfFile.ToJson("VIETTEL");
-
-            //GetPDFFileRequest objGetFile = new GetPDFFileRequest();
-            //objGetFile.supplierTaxCode = codeTax;
-            //objGetFile.invoiceNo = invoiceNo;
-            //objGetFile.templateCode = templateCode;
-            //objGetFile.transactionUuid = uid;
-            //objGetFile.fileType = "pdf";
-            //string request2 = objGetFile.ToJson("VIETTEL");
-
-            string parameters =
-                string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}", codeTax, invoiceNo,
-                    strIssueDate, _username);
+            //string request = objGetPdfFile.ToJson("VIETTEL");
             
+            string parameters = string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}",
+                codeTax, invoiceNo, strIssueDate, _username);
 
             //string result = GET_VIETTEL_TOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
             //result = GET_VIETTEL_TOKEN("/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
@@ -627,6 +620,47 @@ namespace V6ThuePostViettelV2Api
             }
             
             return v6Return.PATH;
+        }
+
+        /// <summary>
+        /// Content-Type : application/x-www-form-urlencoded
+        /// </summary>
+        /// <param name="codeTax"></param>
+        /// <param name="uid"></param>
+        /// <param name="v6Return"></param>
+        /// <returns></returns>
+        public string SearchInvoiceByTransactionUuid(string codeTax, string uid, out V6Return v6Return)
+        {
+            v6Return = new V6Return();
+            
+            string parameters =
+                string.Format("?supplierTaxCode={0}&transactionUuid={1}", codeTax, uid);
+
+            string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/searchInvoiceByTransactionUuid", parameters.Substring(1));
+            //string result = POST_VIETTEL_COOKIESTOKEN("/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
+            v6Return.RESULT_STRING = result;
+            try
+            {
+                SearchInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<SearchInvoiceResponseV2>(result);
+                v6Return.RESULT_OBJECT = responseObject;
+                if (responseObject.result == null)
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                }
+                else
+                {
+                    v6Return.SO_HD = responseObject.result[0].invoiceNo;
+                    v6Return.ID = responseObject.result[0].transactionID;
+                    v6Return.SECRET_CODE = responseObject.result[0].reservationCode;
+                }
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+                v6Return.RESULT_ERROR_MESSAGE += ex.Message;
+            }
+            return result;
+            
         }
 
         /// <summary>

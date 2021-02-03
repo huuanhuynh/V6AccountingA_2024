@@ -7,5 +7,8 @@
         public string transactionID { get; set; }
         public string hashString { get; set; }
         public string reservationCode { get; set; }
+        public string issueDate { get; set; }
+        public string status { get; set; }
+
     }
 }

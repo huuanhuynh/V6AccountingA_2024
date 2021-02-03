@@ -256,6 +256,16 @@ namespace V6ThuePost
                         File.Create(flagFileName1).Close();
                         result = _viettel_ws.POST_REPLACE(jsonBody, out v6return);
                     }
+                    else if (mode == "GET_INVOICE" || mode == "GET_INVOICE_JSON")
+                    {
+                        // V6ThuePostViettelV2.exe GET_INVOICE "V6ThuePost.xml" "UID"
+                        string uid = arg2;
+                        MakeFlagNames(uid);
+                        File.Create(flagFileName1).Close();
+                        result = _viettel_ws.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
+
+
+                    }
                     else if (mode.StartsWith("G")) // call exe như mode M
                     {
                         //MakeFlagNames(arg2);
@@ -315,9 +325,19 @@ namespace V6ThuePost
                         File.Create(flagFileName1).Close();
                         if (mode.StartsWith("P2") || mode.StartsWith("PP2"))
                         {
-                            DateTime ngay_ct = ObjectAndString.StringToDate(arg3);
-                            string strIssueDate = V6JsonConverter.ObjectToJson(ngay_ct, "VIETTEL");
-                            result = _viettel_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
+                            MakeFlagNames(uid);
+                            //string strIssueDate = V6JsonConverter.ObjectToJson(ngay_ct, "VIETTEL");
+                            string info = _viettel_ws.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
+                            SearchInvoiceResponseV2 infoObj =  v6return.RESULT_OBJECT as SearchInvoiceResponseV2;
+                            if (infoObj != null)
+                            {
+                                string strIssueDate = infoObj.result[0].issueDate;
+                                result = _viettel_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
+                            }
+                            else
+                            {
+                                v6return.RESULT_ERROR_MESSAGE += "SearchError";
+                            }
                         }
                         else
                         {
