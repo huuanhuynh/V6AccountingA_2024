@@ -4636,6 +4636,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         private void txtPtCk_V6LostFocus(object sender)
         {
+            if (chkLoaiChietKhau.Checked && txtPtCk.Value == 0)
+            {
+                chkSuaPtck.Checked = false;
+            }
             //TinhChietKhauChiTiet;
 
             Tinh_thue_ct();

@@ -4631,8 +4631,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void txtPtCk_V6LostFocus(object sender)
         {
+            if (chkLoaiChietKhau.Checked && txtPtCk.Value == 0)
+            {
+                chkSuaPtck.Checked = false;
+            }
             TinhTongThanhToan("V6LostFocus txtPtCk_V6LostFocus ");
-
         }
 
         private void chkSuaTien_CheckedChanged(object sender, EventArgs e)

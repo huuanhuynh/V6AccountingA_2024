@@ -1336,9 +1336,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.txtTkThueNo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkThueNo.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkThueNo.LeaveColor = System.Drawing.Color.White;
-            this.txtTkThueNo.Location = new System.Drawing.Point(357, 19);
+            this.txtTkThueNo.Location = new System.Drawing.Point(316, 19);
             this.txtTkThueNo.Name = "txtTkThueNo";
-            this.txtTkThueNo.Size = new System.Drawing.Size(50, 20);
+            this.txtTkThueNo.Size = new System.Drawing.Size(91, 20);
             this.txtTkThueNo.TabIndex = 19;
             this.txtTkThueNo.VVar = "tk";
             // 
@@ -1346,7 +1346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             this.chkSuaTkThue.AccessibleName = "sua_tkthue";
             this.chkSuaTkThue.AutoSize = true;
-            this.chkSuaTkThue.Location = new System.Drawing.Point(333, 23);
+            this.chkSuaTkThue.Location = new System.Drawing.Point(295, 23);
             this.chkSuaTkThue.Name = "chkSuaTkThue";
             this.chkSuaTkThue.Size = new System.Drawing.Size(15, 14);
             this.chkSuaTkThue.TabIndex = 14;
@@ -1387,7 +1387,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             this.v6Label32.AccessibleDescription = "ASOCTSOAL00011";
             this.v6Label32.AutoSize = true;
-            this.v6Label32.Location = new System.Drawing.Point(279, 23);
+            this.v6Label32.Location = new System.Drawing.Point(241, 23);
             this.v6Label32.Name = "v6Label32";
             this.v6Label32.Size = new System.Drawing.Size(44, 13);
             this.v6Label32.TabIndex = 13;
@@ -1497,7 +1497,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             "0 - Chưa cập nhập",
             "1 - Cập nhập tất cả",
             "2 - Chỉ cập nhập vào kho"});
-            this.cboMaNt.Location = new System.Drawing.Point(682, 8);
+            this.cboMaNt.Location = new System.Drawing.Point(682, 9);
             this.cboMaNt.Name = "cboMaNt";
             this.cboMaNt.Size = new System.Drawing.Size(98, 21);
             this.cboMaNt.TabIndex = 7;

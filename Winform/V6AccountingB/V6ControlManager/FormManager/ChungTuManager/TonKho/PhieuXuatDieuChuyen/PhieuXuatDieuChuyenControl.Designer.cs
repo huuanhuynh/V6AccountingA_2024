@@ -245,7 +245,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.tabChiTiet.Location = new System.Drawing.Point(4, 22);
             this.tabChiTiet.Name = "tabChiTiet";
             this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet.Size = new System.Drawing.Size(879, 215);
+            this.tabChiTiet.Size = new System.Drawing.Size(879, 205);
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Tag = "cancelall";
             this.tabChiTiet.Text = "Chi tiết";
@@ -1920,9 +1920,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.group2.Controls.Add(this.v6Label8);
             this.group2.Controls.Add(this.v6ColorTextBox11);
             this.group2.Controls.Add(this.v6ColorTextBox1);
-            this.group2.Location = new System.Drawing.Point(425, -5);
+            this.group2.Location = new System.Drawing.Point(401, -5);
             this.group2.Name = "group2";
-            this.group2.Size = new System.Drawing.Size(474, 57);
+            this.group2.Size = new System.Drawing.Size(498, 57);
             this.group2.TabIndex = 1;
             this.group2.TabStop = false;
             // 
@@ -1938,7 +1938,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtLoaiNX_PHN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLoaiNX_PHN.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoaiNX_PHN.LeaveColor = System.Drawing.Color.White;
-            this.txtLoaiNX_PHN.Location = new System.Drawing.Point(210, 33);
+            this.txtLoaiNX_PHN.Location = new System.Drawing.Point(217, 33);
             this.txtLoaiNX_PHN.Name = "txtLoaiNX_PHN";
             this.txtLoaiNX_PHN.Size = new System.Drawing.Size(59, 20);
             this.txtLoaiNX_PHN.TabIndex = 8;
@@ -1949,7 +1949,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.lblLoaiNX_PHN.AccessibleDescription = "INVOICEL00011";
             this.lblLoaiNX_PHN.AutoSize = true;
-            this.lblLoaiNX_PHN.Location = new System.Drawing.Point(139, 36);
+            this.lblLoaiNX_PHN.Location = new System.Drawing.Point(149, 36);
             this.lblLoaiNX_PHN.Name = "lblLoaiNX_PHN";
             this.lblLoaiNX_PHN.Size = new System.Drawing.Size(56, 13);
             this.lblLoaiNX_PHN.TabIndex = 7;
@@ -1969,7 +1969,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtLoaiNX_PH.LeaveColor = System.Drawing.Color.White;
             this.txtLoaiNX_PH.Location = new System.Drawing.Point(75, 32);
             this.txtLoaiNX_PH.Name = "txtLoaiNX_PH";
-            this.txtLoaiNX_PH.Size = new System.Drawing.Size(59, 20);
+            this.txtLoaiNX_PH.Size = new System.Drawing.Size(73, 20);
             this.txtLoaiNX_PH.TabIndex = 6;
             this.txtLoaiNX_PH.VVar = "MA_LNX";
             this.txtLoaiNX_PH.V6LostFocus += new V6Controls.ControlEventHandle(this.txtLoaiNX_PH_V6LostFocus);
@@ -1996,7 +1996,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.Location = new System.Drawing.Point(375, 10);
+            this.v6VvarTextBox2.Location = new System.Drawing.Point(399, 10);
             this.v6VvarTextBox2.Name = "v6VvarTextBox2";
             this.v6VvarTextBox2.Size = new System.Drawing.Size(91, 20);
             this.v6VvarTextBox2.TabIndex = 4;
@@ -2014,7 +2014,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(261, 10);
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(285, 10);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
             this.v6VvarTextBox1.Size = new System.Drawing.Size(91, 20);
             this.v6VvarTextBox1.TabIndex = 3;
@@ -2024,7 +2024,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.v6Label38.AccessibleDescription = "AINCTIXBR00049";
             this.v6Label38.AutoSize = true;
-            this.v6Label38.Location = new System.Drawing.Point(275, 36);
+            this.v6Label38.Location = new System.Drawing.Point(278, 37);
             this.v6Label38.Name = "v6Label38";
             this.v6Label38.Size = new System.Drawing.Size(94, 13);
             this.v6Label38.TabIndex = 9;
@@ -2045,7 +2045,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label8.AccessibleDescription = "AINCTIXBL00031";
             this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(210, 13);
+            this.v6Label8.Location = new System.Drawing.Point(234, 13);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(41, 13);
             this.v6Label8.TabIndex = 2;
@@ -2066,7 +2066,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorTextBox11.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox11.Location = new System.Drawing.Point(375, 34);
             this.v6ColorTextBox11.Name = "v6ColorTextBox11";
-            this.v6ColorTextBox11.Size = new System.Drawing.Size(89, 20);
+            this.v6ColorTextBox11.Size = new System.Drawing.Size(113, 20);
             this.v6ColorTextBox11.TabIndex = 10;
             // 
             // v6ColorTextBox1
@@ -2084,7 +2084,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox1.Location = new System.Drawing.Point(75, 11);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
-            this.v6ColorTextBox1.Size = new System.Drawing.Size(132, 20);
+            this.v6ColorTextBox1.Size = new System.Drawing.Size(156, 20);
             this.v6ColorTextBox1.TabIndex = 1;
             // 
             // Txtma_nk
@@ -2117,7 +2117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.group1.Controls.Add(this.v6Label1);
             this.group1.Location = new System.Drawing.Point(5, -5);
             this.group1.Name = "group1";
-            this.group1.Size = new System.Drawing.Size(413, 57);
+            this.group1.Size = new System.Drawing.Size(390, 57);
             this.group1.TabIndex = 0;
             this.group1.TabStop = false;
             // 
@@ -2180,7 +2180,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.dateNgayLCT.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayLCT.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayLCT.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayLCT.Location = new System.Drawing.Point(302, 32);
+            this.dateNgayLCT.Location = new System.Drawing.Point(285, 31);
             this.dateNgayLCT.Name = "dateNgayLCT";
             this.dateNgayLCT.Size = new System.Drawing.Size(96, 20);
             this.dateNgayLCT.TabIndex = 4;
@@ -2196,7 +2196,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.dateNgayCT.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayCT.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayCT.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayCT.Location = new System.Drawing.Point(302, 10);
+            this.dateNgayCT.Location = new System.Drawing.Point(285, 9);
             this.dateNgayCT.Name = "dateNgayCT";
             this.dateNgayCT.Size = new System.Drawing.Size(96, 20);
             this.dateNgayCT.TabIndex = 3;
@@ -2206,7 +2206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.v6Label5.AccessibleDescription = "AINCTIXBL00003";
             this.v6Label5.AutoSize = true;
-            this.v6Label5.Location = new System.Drawing.Point(213, 34);
+            this.v6Label5.Location = new System.Drawing.Point(196, 33);
             this.v6Label5.Name = "v6Label5";
             this.v6Label5.Size = new System.Drawing.Size(92, 13);
             this.v6Label5.TabIndex = 6;
@@ -2216,7 +2216,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.v6Label3.AccessibleDescription = "AINCTIXBL00002";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(213, 13);
+            this.v6Label3.Location = new System.Drawing.Point(196, 12);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(83, 13);
             this.v6Label3.TabIndex = 4;

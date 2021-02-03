@@ -1569,9 +1569,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTkThueNo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkThueNo.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkThueNo.LeaveColor = System.Drawing.Color.White;
-            this.txtTkThueNo.Location = new System.Drawing.Point(360, 69);
+            this.txtTkThueNo.Location = new System.Drawing.Point(316, 69);
             this.txtTkThueNo.Name = "txtTkThueNo";
-            this.txtTkThueNo.Size = new System.Drawing.Size(50, 20);
+            this.txtTkThueNo.Size = new System.Drawing.Size(94, 20);
             this.txtTkThueNo.TabIndex = 23;
             this.txtTkThueNo.VVar = "tk";
             // 
@@ -1579,7 +1579,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // 
             this.chkSuaTkThue.AccessibleName = "sua_tkthue";
             this.chkSuaTkThue.AutoSize = true;
-            this.chkSuaTkThue.Location = new System.Drawing.Point(332, 69);
+            this.chkSuaTkThue.Location = new System.Drawing.Point(295, 69);
             this.chkSuaTkThue.Name = "chkSuaTkThue";
             this.chkSuaTkThue.Size = new System.Drawing.Size(15, 14);
             this.chkSuaTkThue.TabIndex = 22;
@@ -1590,7 +1590,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // 
             this.v6Label32.AccessibleDescription = "AARCTAR1C00059";
             this.v6Label32.AutoSize = true;
-            this.v6Label32.Location = new System.Drawing.Point(252, 69);
+            this.v6Label32.Location = new System.Drawing.Point(215, 69);
             this.v6Label32.Name = "v6Label32";
             this.v6Label32.Size = new System.Drawing.Size(59, 13);
             this.v6Label32.TabIndex = 21;

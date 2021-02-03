@@ -218,7 +218,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.tabControl1.Controls.Add(this.tabChiTiet);
             this.tabControl1.Controls.Add(this.tabVAT);
             this.tabControl1.Controls.Add(this.tabKhac);
-            this.tabControl1.Location = new System.Drawing.Point(8, 160);
+            this.tabControl1.Location = new System.Drawing.Point(9, 160);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -972,9 +972,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.group5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.group5.Controls.Add(this.panelVND);
             this.group5.Controls.Add(this.panelNT);
-            this.group5.Location = new System.Drawing.Point(428, 411);
+            this.group5.Location = new System.Drawing.Point(485, 411);
             this.group5.Name = "group5";
-            this.group5.Size = new System.Drawing.Size(467, 108);
+            this.group5.Size = new System.Drawing.Size(411, 108);
             this.group5.TabIndex = 5;
             this.group5.TabStop = false;
             // 
@@ -987,15 +987,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.panelVND.Controls.Add(this.txtTongThanhToan);
             this.panelVND.Location = new System.Drawing.Point(264, 11);
             this.panelVND.Name = "panelVND";
-            this.panelVND.Size = new System.Drawing.Size(197, 92);
+            this.panelVND.Size = new System.Drawing.Size(142, 92);
             this.panelVND.TabIndex = 1;
             // 
             // txtTongTien
             // 
             this.txtTongTien.AccessibleDescription = "";
             this.txtTongTien.AccessibleName = "t_tien";
-            this.txtTongTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTongTien.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongTien.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1004,7 +1002,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongTien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTongTien.HoverColor = System.Drawing.Color.Yellow;
             this.txtTongTien.LeaveColor = System.Drawing.Color.White;
-            this.txtTongTien.Location = new System.Drawing.Point(54, 8);
+            this.txtTongTien.Location = new System.Drawing.Point(3, 9);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.NumberFormatName = "M_IP_TIEN";
             this.txtTongTien.Size = new System.Drawing.Size(136, 20);
@@ -1022,8 +1020,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.txtTongThue.AccessibleDescription = "";
             this.txtTongThue.AccessibleName = "t_thue";
-            this.txtTongThue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTongThue.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongThue.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongThue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1032,7 +1028,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTongThue.HoverColor = System.Drawing.Color.Yellow;
             this.txtTongThue.LeaveColor = System.Drawing.Color.White;
-            this.txtTongThue.Location = new System.Drawing.Point(54, 32);
+            this.txtTongThue.Location = new System.Drawing.Point(3, 33);
             this.txtTongThue.Name = "txtTongThue";
             this.txtTongThue.NumberFormatName = "M_IP_TIEN";
             this.txtTongThue.Size = new System.Drawing.Size(136, 20);
@@ -1050,8 +1046,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.txtTongThanhToan.AccessibleDescription = "";
             this.txtTongThanhToan.AccessibleName = "t_tt";
-            this.txtTongThanhToan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTongThanhToan.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongThanhToan.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongThanhToan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1061,7 +1055,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongThanhToan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTongThanhToan.HoverColor = System.Drawing.Color.Yellow;
             this.txtTongThanhToan.LeaveColor = System.Drawing.Color.White;
-            this.txtTongThanhToan.Location = new System.Drawing.Point(54, 56);
+            this.txtTongThanhToan.Location = new System.Drawing.Point(3, 57);
             this.txtTongThanhToan.Name = "txtTongThanhToan";
             this.txtTongThanhToan.NumberFormatName = "M_IP_TIEN";
             this.txtTongThanhToan.Size = new System.Drawing.Size(136, 20);
@@ -1224,7 +1218,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.group4.Controls.Add(this.v6Label32);
             this.group4.Location = new System.Drawing.Point(5, 411);
             this.group4.Name = "group4";
-            this.group4.Size = new System.Drawing.Size(413, 108);
+            this.group4.Size = new System.Drawing.Size(474, 108);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
@@ -1251,7 +1245,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtSoct_tt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoct_tt.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoct_tt.LeaveColor = System.Drawing.Color.White;
-            this.txtSoct_tt.Location = new System.Drawing.Point(288, 33);
+            this.txtSoct_tt.Location = new System.Drawing.Point(348, 33);
             this.txtSoct_tt.Name = "txtSoct_tt";
             this.txtSoct_tt.Size = new System.Drawing.Size(120, 20);
             this.txtSoct_tt.TabIndex = 8;
@@ -1276,9 +1270,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Location = new System.Drawing.Point(286, 81);
+            this.cboChuyenData.Location = new System.Drawing.Point(348, 81);
             this.cboChuyenData.Name = "cboChuyenData";
-            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
+            this.cboChuyenData.Size = new System.Drawing.Size(120, 21);
             this.cboChuyenData.TabIndex = 13;
             this.cboChuyenData.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
@@ -1372,7 +1366,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
             this.v6Label28.AutoSize = true;
-            this.v6Label28.Location = new System.Drawing.Point(240, 86);
+            this.v6Label28.Location = new System.Drawing.Point(306, 84);
             this.v6Label28.Name = "v6Label28";
             this.v6Label28.Size = new System.Drawing.Size(36, 13);
             this.v6Label28.TabIndex = 12;
@@ -1436,9 +1430,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTkThueNo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTkThueNo.HoverColor = System.Drawing.Color.Yellow;
             this.txtTkThueNo.LeaveColor = System.Drawing.Color.White;
-            this.txtTkThueNo.Location = new System.Drawing.Point(269, 58);
+            this.txtTkThueNo.Location = new System.Drawing.Point(348, 58);
             this.txtTkThueNo.Name = "txtTkThueNo";
-            this.txtTkThueNo.Size = new System.Drawing.Size(50, 20);
+            this.txtTkThueNo.Size = new System.Drawing.Size(89, 20);
             this.txtTkThueNo.TabIndex = 11;
             this.txtTkThueNo.VVar = "tk";
             // 
@@ -1446,7 +1440,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.chkSuaTkThue.AccessibleName = "sua_tkthue";
             this.chkSuaTkThue.AutoSize = true;
-            this.chkSuaTkThue.Location = new System.Drawing.Point(245, 63);
+            this.chkSuaTkThue.Location = new System.Drawing.Point(319, 62);
             this.chkSuaTkThue.Name = "chkSuaTkThue";
             this.chkSuaTkThue.Size = new System.Drawing.Size(15, 14);
             this.chkSuaTkThue.TabIndex = 10;
@@ -1488,7 +1482,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.v6Label32.AccessibleDescription = "AAPCTAP2R00037";
             this.v6Label32.AutoSize = true;
-            this.v6Label32.Location = new System.Drawing.Point(191, 63);
+            this.v6Label32.Location = new System.Drawing.Point(265, 62);
             this.v6Label32.Name = "v6Label32";
             this.v6Label32.Size = new System.Drawing.Size(44, 13);
             this.v6Label32.TabIndex = 9;
@@ -1921,9 +1915,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.group2.Controls.Add(this.v6Label7);
             this.group2.Controls.Add(this.lblMaNX);
             this.group2.Controls.Add(this.txtOngBa);
-            this.group2.Location = new System.Drawing.Point(425, -5);
+            this.group2.Location = new System.Drawing.Point(401, -5);
             this.group2.Name = "group2";
-            this.group2.Size = new System.Drawing.Size(474, 54);
+            this.group2.Size = new System.Drawing.Size(498, 54);
             this.group2.TabIndex = 1;
             this.group2.TabStop = false;
             // 
@@ -1939,7 +1933,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtSoSeri0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoSeri0.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoSeri0.LeaveColor = System.Drawing.Color.White;
-            this.txtSoSeri0.Location = new System.Drawing.Point(226, 10);
+            this.txtSoSeri0.Location = new System.Drawing.Point(249, 10);
             this.txtSoSeri0.Name = "txtSoSeri0";
             this.txtSoSeri0.Size = new System.Drawing.Size(91, 20);
             this.txtSoSeri0.TabIndex = 1;
@@ -1957,9 +1951,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtManx.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtManx.HoverColor = System.Drawing.Color.Yellow;
             this.txtManx.LeaveColor = System.Drawing.Color.White;
-            this.txtManx.Location = new System.Drawing.Point(95, 10);
+            this.txtManx.Location = new System.Drawing.Point(81, 10);
             this.txtManx.Name = "txtManx";
-            this.txtManx.Size = new System.Drawing.Size(74, 20);
+            this.txtManx.Size = new System.Drawing.Size(117, 20);
             this.txtManx.TabIndex = 0;
             this.txtManx.VVar = "ma_nx";
             this.txtManx.V6LostFocus += new V6Controls.ControlEventHandle(this.txtManx_V6LostFocus);
@@ -1969,7 +1963,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.v6Label14.AccessibleDescription = "AAPCTAP2L00045";
             this.v6Label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label14.AutoSize = true;
-            this.v6Label14.Location = new System.Drawing.Point(317, 13);
+            this.v6Label14.Location = new System.Drawing.Point(341, 13);
             this.v6Label14.Name = "v6Label14";
             this.v6Label14.Size = new System.Drawing.Size(39, 13);
             this.v6Label14.TabIndex = 23;
@@ -1987,7 +1981,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtSoCt0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoCt0.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoCt0.LeaveColor = System.Drawing.Color.White;
-            this.txtSoCt0.Location = new System.Drawing.Point(371, 8);
+            this.txtSoCt0.Location = new System.Drawing.Point(395, 8);
             this.txtSoCt0.Name = "txtSoCt0";
             this.txtSoCt0.Size = new System.Drawing.Size(95, 20);
             this.txtSoCt0.TabIndex = 3;
@@ -1997,7 +1991,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.v6Label13.AccessibleDescription = "AAPCTAP2L00055";
             this.v6Label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label13.AutoSize = true;
-            this.v6Label13.Location = new System.Drawing.Point(317, 34);
+            this.v6Label13.Location = new System.Drawing.Point(341, 34);
             this.v6Label13.Name = "v6Label13";
             this.v6Label13.Size = new System.Drawing.Size(51, 13);
             this.v6Label13.TabIndex = 22;
@@ -2015,7 +2009,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtNgayCt0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNgayCt0.HoverColor = System.Drawing.Color.Yellow;
             this.txtNgayCt0.LeaveColor = System.Drawing.Color.White;
-            this.txtNgayCt0.Location = new System.Drawing.Point(371, 31);
+            this.txtNgayCt0.Location = new System.Drawing.Point(395, 31);
             this.txtNgayCt0.Name = "txtNgayCt0";
             this.txtNgayCt0.Size = new System.Drawing.Size(95, 20);
             this.txtNgayCt0.StringValue = "__/__/____";
@@ -2026,7 +2020,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.v6Label6.AccessibleDescription = "AAPCTAP2L00043";
             this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(175, 13);
+            this.v6Label6.Location = new System.Drawing.Point(204, 13);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(39, 13);
             this.v6Label6.TabIndex = 7;
@@ -2067,7 +2061,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtOngBa.LeaveColor = System.Drawing.Color.White;
             this.txtOngBa.Location = new System.Drawing.Point(95, 32);
             this.txtOngBa.Name = "txtOngBa";
-            this.txtOngBa.Size = new System.Drawing.Size(221, 20);
+            this.txtOngBa.Size = new System.Drawing.Size(245, 20);
             this.txtOngBa.TabIndex = 2;
             // 
             // group1
@@ -2082,7 +2076,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.group1.Controls.Add(this.txtSoPhieu);
             this.group1.Location = new System.Drawing.Point(5, -5);
             this.group1.Name = "group1";
-            this.group1.Size = new System.Drawing.Size(413, 57);
+            this.group1.Size = new System.Drawing.Size(390, 57);
             this.group1.TabIndex = 0;
             this.group1.TabStop = false;
             // 
@@ -2127,7 +2121,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.dateNgayLCT.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayLCT.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayLCT.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayLCT.Location = new System.Drawing.Point(302, 32);
+            this.dateNgayLCT.Location = new System.Drawing.Point(284, 32);
             this.dateNgayLCT.Name = "dateNgayLCT";
             this.dateNgayLCT.Size = new System.Drawing.Size(96, 20);
             this.dateNgayLCT.TabIndex = 3;
@@ -2143,7 +2137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.dateNgayCT.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayCT.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayCT.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayCT.Location = new System.Drawing.Point(302, 10);
+            this.dateNgayCT.Location = new System.Drawing.Point(284, 10);
             this.dateNgayCT.Name = "dateNgayCT";
             this.dateNgayCT.Size = new System.Drawing.Size(96, 20);
             this.dateNgayCT.TabIndex = 2;
@@ -2153,7 +2147,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.v6Label5.AccessibleDescription = "AAPCTAP2L00016";
             this.v6Label5.AutoSize = true;
-            this.v6Label5.Location = new System.Drawing.Point(213, 34);
+            this.v6Label5.Location = new System.Drawing.Point(195, 34);
             this.v6Label5.Name = "v6Label5";
             this.v6Label5.Size = new System.Drawing.Size(78, 13);
             this.v6Label5.TabIndex = 6;
@@ -2163,7 +2157,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.v6Label3.AccessibleDescription = "AAPCTAP2L00015";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(213, 13);
+            this.v6Label3.Location = new System.Drawing.Point(195, 13);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(83, 13);
             this.v6Label3.TabIndex = 4;
