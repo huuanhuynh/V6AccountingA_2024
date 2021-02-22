@@ -667,8 +667,9 @@ namespace V6AccountingBusiness.Invoices
                 //    where4Dvcs
                 //        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
+                //Tuanmh 04.02.2021 them +d.Stt_rec0 
 
-                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD81 WHERE Ma_ct = 'SOA' {0} {2}"
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec+d.Stt_rec0 in (SELECT Stt_rec+Stt_rec0 FROM AD81 WHERE Ma_ct = 'SOA' {0} {2}"
                                      + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                                      + "\n		{4})"
                     , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);

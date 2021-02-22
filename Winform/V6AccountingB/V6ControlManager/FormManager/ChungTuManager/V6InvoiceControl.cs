@@ -2153,6 +2153,17 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
+        public void Tinh_TienThue_TheoTienThueNt_row(DataGridViewRow grow, decimal tienThueNt, decimal tyGia, string thue_field, int round)
+        {
+            try
+            {
+                SetCellValue(grow.Cells[thue_field], V6BusinessHelper.Vround(tienThueNt * tyGia, round));
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
 
         /// <summary>
         /// Tính và gán vào control

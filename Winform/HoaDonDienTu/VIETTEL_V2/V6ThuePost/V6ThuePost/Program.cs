@@ -332,7 +332,15 @@ namespace V6ThuePost
                             if (infoObj != null)
                             {
                                 string strIssueDate = infoObj.result[0].issueDate;
-                                result = _viettel_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
+                                try
+                                {
+                                    result = _viettel_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
+                                }
+                                catch (Exception download_ex)
+                                {
+                                    result = download_ex.Message;
+                                    v6return.RESULT_ERROR_MESSAGE += result;
+                                }
                             }
                             else
                             {
@@ -341,7 +349,15 @@ namespace V6ThuePost
                         }
                         else
                         {
-                            result = _viettel_ws.DownloadInvoicePDF(_codetax, soseri_soct, templateCode, uid, V6SoftLocalAppData_Directory, out v6return);
+                            try
+                            {
+                                result = _viettel_ws.DownloadInvoicePDF(_codetax, soseri_soct, templateCode, uid, V6SoftLocalAppData_Directory, out v6return);
+                            }
+                            catch (Exception download_ex)
+                            {
+                                result = download_ex.Message;
+                                v6return.RESULT_ERROR_MESSAGE += result;
+                            }
                         }
                         
                         if (string.IsNullOrEmpty(result))

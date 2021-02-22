@@ -2901,7 +2901,7 @@ namespace V6ThuePostManager
                         else // if (metaItem.Value.DataType.ToLower() == "date")
                         {
                             metaItem.Value.DataType = "text";
-                            metadata["stringValue"] = GetValue(row0, metaItem.Value);
+                            metadata["stringValue"] = ObjectAndString.ObjectToString(GetValue(row0, metaItem.Value));
                         }
                         metadata["keyLabel"] = ObjectAndString.ObjectToString(metaItem.Value.MA_TD2);
                         metadata["isRequired"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD2);
