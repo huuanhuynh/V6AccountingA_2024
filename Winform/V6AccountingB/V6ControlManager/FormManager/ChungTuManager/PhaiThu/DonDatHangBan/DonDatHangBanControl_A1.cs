@@ -1327,11 +1327,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 if (_maNt == _mMaNt0)
                 {
-                    grow.Cells["GIA_21"].Value = grow.Cells["GIA_NT21"].Value;
+                    grow.Cells["GIA21"].Value = grow.Cells["GIA_NT21"].Value;
                 }
                 else
                 {
-                    grow.Cells["GIA_21"].Value = V6BusinessHelper.Vround(CELL_DECIMAL(grow, "GIA_NT21") * txtTyGia.Value, M_ROUND_GIA);
+                    grow.Cells["GIA21"].Value = V6BusinessHelper.Vround(CELL_DECIMAL(grow, "GIA_NT21") * txtTyGia.Value, M_ROUND_GIA);
                 }
 
                 if (CELL_DECIMAL(grow, "SO_LUONG") != 0)
@@ -1480,9 +1480,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     var grow = dataGridView1.CurrentRow;
                     if (grow != null)
                     {
-                        dataGridView1.Columns["TIEN_NT2"].ReadOnly = !chkSuaTien.Checked;
+                        dataGridView1.LockColumn("TIEN_NT2", !chkSuaTien.Checked);
                         //_dvt1.Enabled = true;
-                        dataGridView1.Columns["TIEN_NT"].ReadOnly = !(chkSuaTien.Checked && CELL_STRING_NULL(grow, "PX_GIA_DDI") != "");
+                        dataGridView1.LockColumn("TIEN_NT", !(chkSuaTien.Checked && CELL_STRING_NULL(grow, "PX_GIA_DDI") != ""));
                     }
                     
 
@@ -1493,9 +1493,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     if (ck_column != null) ck_column.ReadOnly = chkLoaiChietKhau.Checked;
                     var gia21_column = dataGridView1.Columns["gia21"];
                     if (gia21_column != null) gia21_column.ReadOnly = !(chkSuaTien.Checked && CELL_DECIMAL(grow, "GIA_NT21") == 0);
-                    dataGridView1.Columns["GIA21"].ReadOnly = !(chkSuaTien.Checked && CELL_DECIMAL(grow, "GIA_NT21") == 0);
-                    dataGridView1.Columns["GIA_NT"].ReadOnly = !(CELL_STRING_NULL(grow, "PX_GIA_DDI") != "");
-                    dataGridView1.Columns["GIA"].ReadOnly = !(CELL_STRING_NULL(grow, "PX_GIA_DDI") != "" && CELL_DECIMAL(grow, "GIA_NT") == 0);
+                    dataGridView1.LockColumn("GIA21", !(chkSuaTien.Checked && CELL_DECIMAL(grow, "GIA_NT21") == 0));
+                    dataGridView1.LockColumn("GIA_NT", !(CELL_STRING_NULL(grow, "PX_GIA_DDI") != ""));
+                    dataGridView1.LockColumn("GIA", !(CELL_STRING_NULL(grow, "PX_GIA_DDI") != "" && CELL_DECIMAL(grow, "GIA_NT") == 0));
 
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
 
@@ -1694,19 +1694,53 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             dataGridView1.CurrentCellChanged += dataGridView1_CurrentCellChanged;
             dataGridView1.CellLeave += dataGridView1_CellLeave;
+            dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;
         }
+
+        void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            //var txtEdit = (TextBox)e.Control;
+            //txtEdit.KeyDown += txtEdit_KeyDown;
+        }
+
+        private bool _celledit_enterkey = false;
+        void txtEdit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var cell = dataGridView1.CurrentCell;
+                SaveSelectedCellLocation(dataGridView1, 1);
+                var flag = cell.OwningColumn.DisplayIndex;
+                int count = 0;
+                foreach (DataGridViewColumn item in dataGridView1.Columns.OfType<DataGridViewColumn>()
+                    .OrderBy(x => x.DisplayIndex))
+                {
+                    if (count == flag+1)
+                    {
+                        _cellIndex[1] = item.Index;
+                        _celledit_enterkey = true;
+                        break;
+                    }
+
+                    count++;
+                }
+            }
+            //V6ControlFormHelper.SetGridviewCurrentCellByIndex(this, _saveRowIndex, _saveCellIndex, Parent);
+        }
+
 
         void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             // Dùng như sự kiện V6_LostFocus
             string FIELD = null;
+            DataGridViewCell cell = null;
             try
             {
                 var grow = dataGridView1.Rows[e.RowIndex];
                 var grow_data = grow.ToDataDictionary();
                 var col = dataGridView1.Columns[e.ColumnIndex];
                 FIELD = col.DataPropertyName.ToUpper();
-                var cell = grow.Cells[e.ColumnIndex];
+                cell = grow.Cells[e.ColumnIndex];
                 var cell_MA_VT = grow.Cells["MA_VT"];
                 var cell_SO_LUONG1 = grow.Cells["SO_LUONG1"];
                 decimal HE_SO1T = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1T"].Value);
@@ -1945,6 +1979,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+
+            {
+                //var cell = dataGridView1.CurrentCell;
+                SaveSelectedCellLocation(dataGridView1, 1);
+                var flag = cell.OwningColumn.DisplayIndex;
+                int count = 0;
+                foreach (DataGridViewColumn item in dataGridView1.Columns.OfType<DataGridViewColumn>().OrderBy(x => x.DisplayIndex))
+                {
+                    if (count == flag + 1)
+                    {
+                        _cellIndex[1] = item.Index;
+                        _rowIndex[1] = cell.RowIndex;
+                        _celledit_enterkey = true;
+                        break;
+                    }
+
+                    count++;
+                }
+            }
+            if (_celledit_enterkey) LoadSelectedCellLocation(dataGridView1, 1);
             TinhTongThanhToan("CellEndEdit_" + FIELD);
         }
 
@@ -2123,6 +2177,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         decimal CELL_DECIMAL(DataGridViewRow grow, string name)
         {
+            if (grow == null) return 0;
             return ObjectAndString.ObjectToDecimal(grow.Cells[name].Value);
         }
 
@@ -2148,7 +2203,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         /// <returns></returns>
         string CELL_STRING_NULL(DataGridViewRow grow, string name)
         {
-            if (!grow.DataGridView.Columns.Contains(name)) return null;
+            if (grow == null || !grow.DataGridView.Columns.Contains(name)) return null;
             return ObjectAndString.ObjectToString(grow.Cells[name].Value).Trim();
         }
         bool IS(object tag, string key)

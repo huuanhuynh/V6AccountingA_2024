@@ -2273,6 +2273,10 @@ namespace V6Controls
         {
             if (Columns.Contains(name)) Columns[name].ReadOnly = true;
         }
+        public void LockColumn(string name, bool read_only)
+        {
+            if (Columns.Contains(name)) Columns[name].ReadOnly = read_only;
+        }
         /// <summary>
         /// ReadOnly = false
         /// </summary>
