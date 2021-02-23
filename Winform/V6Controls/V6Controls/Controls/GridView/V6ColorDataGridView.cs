@@ -2265,6 +2265,23 @@ namespace V6Controls
             LockGridView = false;
         }
 
+        /// <summary>
+        /// ReadOnly = true
+        /// </summary>
+        /// <param name="name"></param>
+        public void LockColumn(string name)
+        {
+            if (Columns.Contains(name)) Columns[name].ReadOnly = true;
+        }
+        /// <summary>
+        /// ReadOnly = false
+        /// </summary>
+        /// <param name="name"></param>
+        public void UnLockColumn(string name)
+        {
+            if (Columns.Contains(name)) Columns[name].ReadOnly = false;
+        }
+
 
         public void EnableSelect()
         {
