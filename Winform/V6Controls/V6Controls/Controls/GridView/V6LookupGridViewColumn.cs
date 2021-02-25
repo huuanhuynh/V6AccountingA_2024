@@ -35,7 +35,7 @@ namespace V6Controls.Controls.GridView
             if (Visible)
             {
                 var cell = dataGridView.CurrentCell;
-                Text = ObjectAndString.ObjectToString(cell.Value).Trim();
+                if (cell != null) Text = ObjectAndString.ObjectToString(cell.Value).Trim();
                 //if (cell.OwningColumn.DefaultCellStyle.Format != null && cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
                 //    this.DecimalPlaces = ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
             }

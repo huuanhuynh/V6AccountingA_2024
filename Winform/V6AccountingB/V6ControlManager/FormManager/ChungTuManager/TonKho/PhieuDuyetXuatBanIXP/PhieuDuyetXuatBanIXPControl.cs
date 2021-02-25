@@ -1638,10 +1638,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                     SetControlValue(_tkDt, data["tk_dt"], Invoice.GetTemplateSettingAD("TK_DT"));
                     SetControlValue(_tkGv, data["tk_gv"], Invoice.GetTemplateSettingAD("TK_GV"));
                     SetControlValue(_soLuong1, data["PACKS1"], Invoice.GetTemplateSettingAD("PACKS1"));
-                    //_tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
+                    //_tkCkI.Text = (data["TK_CK"] ?? "").ToString().Trim();
                     if (M_SOA_HT_KM_CK == "1")
                     {
-                        _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
+                        _tkCkI.Text = (data["TK_CK"] ?? "").ToString().Trim();
                         _tkCkI.EnableTag(true);
                     }
                     else
@@ -1650,13 +1650,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                         _tkCkI.EnableTag(false);
                     }
 
-                    _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
+                    _tkVt.Text = (data["TK_VT"] ?? "").ToString().Trim();
                     _hs_qd1.Value = ObjectAndString.ObjectToDecimal(data["HS_QD1"]);
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);
 
                     if (M_SOA_MULTI_VAT == "1")
                     {
-                        _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
+                        _ma_thue_i.Text = (data["MA_THUE"] ?? "").ToString().Trim();
                         _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
 
                         V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);

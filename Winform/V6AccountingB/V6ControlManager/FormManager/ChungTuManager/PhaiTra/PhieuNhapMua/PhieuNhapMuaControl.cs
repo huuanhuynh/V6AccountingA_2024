@@ -1925,7 +1925,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 var data = _maVt.Data;
                 if (data != null)
                 {
-                    _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
+                    _ma_thue_i.Text = (data["MA_THUE"] ?? "").ToString().Trim();
                     _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
                     
                     V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
@@ -2128,13 +2128,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 else
                 {
                     SetADSelectMoreControlValue(Invoice, data);
-                    _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
+                    _tkVt.Text = (data["TK_VT"] ?? "").ToString().Trim();
                     _hs_qd1.Value = ObjectAndString.ObjectToDecimal(data["HS_QD1"]);
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);
 
                     if (M_POA_MULTI_VAT == "1")
                     {
-                        _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
+                        _ma_thue_i.Text = (data["MA_THUE"] ?? "").ToString().Trim();
                         _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
                         V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
                     }

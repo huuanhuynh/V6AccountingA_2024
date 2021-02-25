@@ -877,6 +877,18 @@ namespace V6Controls
             Text = "";
             _text_data = "";
             Data = null;
+            ResetLookupInfo();
+        }
+
+        public void ResetLookupInfo()
+        {
+            _lki = null;
+        }
+
+        public void ResetAutoCompleteSource()
+        {
+            auto1 = null;
+            LoadAutoCompleteSource();
         }
 
         private void SetNeighborValues()

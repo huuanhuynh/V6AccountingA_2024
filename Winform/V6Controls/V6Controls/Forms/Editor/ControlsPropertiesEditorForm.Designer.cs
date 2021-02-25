@@ -42,6 +42,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnUp = new System.Windows.Forms.Button();
+            this.btnNhapXml = new System.Windows.Forms.Button();
+            this.btnXuatXml = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -185,11 +187,35 @@
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
+            // btnNhapXml
+            // 
+            this.btnNhapXml.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNhapXml.Location = new System.Drawing.Point(827, 5);
+            this.btnNhapXml.Name = "btnNhapXml";
+            this.btnNhapXml.Size = new System.Drawing.Size(84, 29);
+            this.btnNhapXml.TabIndex = 12;
+            this.btnNhapXml.Text = "&Nhập xml";
+            this.btnNhapXml.UseVisualStyleBackColor = true;
+            this.btnNhapXml.Click += new System.EventHandler(this.btnNhapXml_Click);
+            // 
+            // btnXuatXml
+            // 
+            this.btnXuatXml.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXuatXml.Location = new System.Drawing.Point(737, 5);
+            this.btnXuatXml.Name = "btnXuatXml";
+            this.btnXuatXml.Size = new System.Drawing.Size(84, 29);
+            this.btnXuatXml.TabIndex = 11;
+            this.btnXuatXml.Text = "&Xuất xml";
+            this.btnXuatXml.UseVisualStyleBackColor = true;
+            this.btnXuatXml.Click += new System.EventHandler(this.btnXuatXml_Click);
+            // 
             // ControlsPropertiesEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 558);
+            this.Controls.Add(this.btnNhapXml);
+            this.Controls.Add(this.btnXuatXml);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.propertyGrid1);
@@ -201,6 +227,8 @@
             this.Controls.SetChildIndex(this.propertyGrid1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnUp, 0);
+            this.Controls.SetChildIndex(this.btnXuatXml, 0);
+            this.Controls.SetChildIndex(this.btnNhapXml, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -221,5 +249,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnNhapXml;
+        private System.Windows.Forms.Button btnXuatXml;
     }
 }

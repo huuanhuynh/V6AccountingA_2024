@@ -58,6 +58,7 @@ namespace V6Controls
             this.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.V6ColorDataGridView_EditingControlShowing);
             this.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.V6ColorDataGridView_RowPostPaint);
             this.SelectionChanged += new System.EventHandler(this.V6ColorDataGridView_SelectionChanged);
+            this.Enter += new System.EventHandler(this.V6ColorDataGridView_Enter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.V6ColorDataGridView_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -187,7 +188,44 @@ namespace V6Controls
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (LockGridView) e.Handled = true;
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    e.Handled = true;
+            //    ProcessDialogKey(Keys.Tab);
+            //}
             base.OnKeyDown(e);
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+                return base.ProcessDialogKey(Keys.Tab);
+            else
+                return base.ProcessDialogKey(keyData);
+        }
+
+        private void V6ColorDataGridView_Enter(object sender, EventArgs e)
+        {
+            ChangeEnterToTab();
+        }
+
+        private bool apply_keydown2;
+        private void ChangeEnterToTab()
+        {
+            if (!apply_keydown2)
+            {
+                this.KeyDown += V6ColorDataGridView_KeyDown2;
+                apply_keydown2 = true;
+            }
+        }
+
+        void V6ColorDataGridView_KeyDown2(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                ProcessDialogKey(Keys.Tab);
+            }
         }
 
         void V6ColorDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -204,6 +242,13 @@ namespace V6Controls
             //        textBox.Text = "" + CurrentCell.Value;
             //    }
             //}
+
+            var textBox = e.Control as V6VvarTextBox;
+            if (textBox != null)
+            {
+                textBox.ResetLookupInfo();
+                textBox.ResetAutoCompleteSource();
+            }
         }
 
         void V6ColorDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -2348,6 +2393,7 @@ namespace V6Controls
         {
             V6ControlFormHelper.SetGridviewCurrentCellByIndex(this, _saveRowIndex, _saveCellIndex, Parent);
         }
+
     }
 
     public class SelectRowEventArgs : DataGridViewRowEventArgs

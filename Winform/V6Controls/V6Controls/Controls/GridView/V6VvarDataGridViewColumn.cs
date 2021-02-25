@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Controls.GridView
@@ -33,15 +34,28 @@ namespace V6Controls.Controls.GridView
         void V6VvarDataGridViewEditingControl_VisibleChanged(object sender, EventArgs e)
         {
             if (Disposing) return;
+
+            var cell = dataGridView.CurrentCell;
             if (Visible)
             {
-                var cell = dataGridView.CurrentCell;
-                Text = ObjectAndString.ObjectToString(cell.Value).Trim();
+                if (cell != null) Text = ObjectAndString.ObjectToString(cell.Value).Trim();
                 //if (cell.OwningColumn.DefaultCellStyle.Format != null && cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
                 //    this.DecimalPlaces = ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
             }
             else
             {
+                if (cell != null)
+                {
+                    var cell_tagData = cell.Tag as IDictionary<string, object>;
+                    if (cell_tagData == null)
+                    {
+                        cell_tagData = new Dictionary<string, object>();
+                        cell.Tag = cell_tagData;
+                    }
+
+                    cell_tagData["VVAR_DATA"] = Data.ToDataDictionary();
+                }
+
                 // Gây sự kiện lên V6ColorDataGridView để Refresh form nếu cần thiết
                 if (dataGridView is V6ColorDataGridView)
                     ((V6ColorDataGridView)dataGridView).OnV6Changed();

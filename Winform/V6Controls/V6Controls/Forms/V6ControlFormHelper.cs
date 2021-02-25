@@ -7879,6 +7879,7 @@ namespace V6Controls.Forms
                         Image picture = null;
                         if (objectData is Image) picture = (Image) objectData;
                         else if (objectData is byte[]) picture = Picture.ByteArrayToImage((byte[]) objectData);
+                        else if (objectData is string) picture = Picture.ByteArrayToImage(Convert.FromBase64String((string)value));
 
                         pic.Image = picture;
                     }

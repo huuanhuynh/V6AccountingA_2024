@@ -1146,7 +1146,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 else
                 {
                     SetADSelectMoreControlValue(Invoice, data);
-                    _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();    
+                    _tkVt.Text = (data["TK_VT"] ?? "").ToString().Trim();    
                 }
                 
                 if (_maVt.LO_YN == false)

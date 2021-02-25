@@ -2492,7 +2492,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     SetControlValue(_soLuong1, data["PACKS1"], Invoice.GetTemplateSettingAD("PACKS1"));
                     if (V6Options.GetValue("M_SOA_HT_KM_CK") == "1")
                     {
-                        _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
+                        _tkCkI.Text = (data["TK_CK"] ?? "").ToString().Trim();
                         _tkCkI.EnableTag(true);
                     }
                     else
@@ -2501,7 +2501,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         _tkCkI.EnableTag(false);
                     }
 
-                    _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
+                    _tkVt.Text = (data["TK_VT"] ?? "").ToString().Trim();
 
                     _hs_qd1.Value = ObjectAndString.ObjectToDecimal(data["HS_QD1"]);
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);

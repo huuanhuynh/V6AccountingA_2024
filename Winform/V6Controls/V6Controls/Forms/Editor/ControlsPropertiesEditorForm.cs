@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6Init;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.Editor
 {
     public partial class ControlsPropertiesEditorForm : V6Form
     {
-        private Control _mainControl = null;
-        private Control _mouseControl = null;
+        /// <summary>
+        /// Form chứa.
+        /// </summary>
+        private readonly Control _mainControl;
+        /// <summary>
+        /// Đối tượng dưới con tro chuột.
+        /// </summary>
+        private readonly Control _mouseControl;
         public ControlsPropertiesEditorForm()
         {
             InitializeComponent();
@@ -130,6 +138,64 @@ namespace V6Controls.Forms.Editor
                 if (r != null) return r;
             }
             return null;
+        }
+
+        /// <summary>
+        /// Tải 1 file xml dạng dataset_table để lấy dữ liệu lên form.
+        /// </summary>
+        private void LoadMainControlDataXml()
+        {
+            try
+            {
+                var openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
+                if (string.IsNullOrEmpty(openFile)) return;
+                FileStream fs = new FileStream(openFile, FileMode.Open);
+                DataSet _ds = new DataSet();
+                _ds.ReadXml(fs);
+                fs.Close();
+                if (_ds.Tables.Count > 0 && _ds.Tables[0].Rows.Count > 0)
+                {
+                    V6ControlFormHelper.SetFormDataRow(_mainControl, _ds.Tables[0].Rows[0]);
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + ".LoadMainControlDataXml", ex);
+            }
+        }
+
+        /// <summary>
+        /// Lưu form data xuống file xml.
+        /// </summary>
+        private void SaveMainControlDataXml()
+        {
+            try
+            {
+                var _ds = new DataSet("FormData");
+                var formData = V6ControlFormHelper.GetFormDataDictionary(_mainControl);
+                DataTable data = new DataTable("Data");
+                data.AddRow(formData, true);
+                _ds.Tables.Add(data);
+                //var saveFile = V6ControlFormHelper.ChooseSaveFile("Xml|*.xml");
+                var saveFile = new SaveFileDialog
+                {
+                    Filter = "XML files (*.Xml)|*.xml",
+                    Title = "Xuất XML.",
+                    FileName = _mainControl.Name + "_FORM_DATA"
+                };
+                
+                if (saveFile.ShowDialog(this) == DialogResult.OK)
+                {
+                    if (string.IsNullOrEmpty(saveFile.FileName)) return;
+                    FileStream fs = new FileStream(saveFile.FileName, FileMode.Create);
+                    _ds.WriteXml(fs);
+                    fs.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + ".SaveMainControlDataXml", ex);
+            }
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -296,6 +362,16 @@ namespace V6Controls.Forms.Editor
                 //Control c = treeView1.SelectedNode.Tag as Control;
                 //if (c.Parent != null) SetSelectedTreeNode(c.Parent);
             }
+        }
+
+        private void btnNhapXml_Click(object sender, EventArgs e)
+        {
+            LoadMainControlDataXml();
+        }
+
+        private void btnXuatXml_Click(object sender, EventArgs e)
+        {
+            SaveMainControlDataXml();
         }
     }
 }

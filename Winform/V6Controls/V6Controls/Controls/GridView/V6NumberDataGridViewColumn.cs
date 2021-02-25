@@ -90,14 +90,17 @@ namespace V6Controls.Controls.GridView
         /// <param name="e"></param>
         void V6NumberGridViewEditingControl_VisibleChanged(object sender, EventArgs e)
         {
+            var cell = dataGridView.CurrentCell;
             if (Visible)
             {
-                var cell = dataGridView.CurrentCell;
-                Value = ObjectAndString.ObjectToDecimal(cell.Value);
-                if (cell.OwningColumn.DefaultCellStyle.Format != null &&
-                    cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
-                    this.DecimalPlaces =
-                        ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
+                if (cell != null)
+                {
+                    Value = ObjectAndString.ObjectToDecimal(cell.Value);
+                    if (cell.OwningColumn.DefaultCellStyle.Format != null &&
+                        cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
+                        this.DecimalPlaces =
+                            ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
+                }
             }
             else
             {

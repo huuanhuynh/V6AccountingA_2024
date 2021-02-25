@@ -1394,7 +1394,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 else
                 {
                     SetADSelectMoreControlValue(Invoice, data);
-                    _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
+                    _tkVt.Text = (data["TK_VT"] ?? "").ToString().Trim();
                     _hs_qd1.Value = ObjectAndString.ObjectToDecimal(data["HS_QD1"]);
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);
                 }

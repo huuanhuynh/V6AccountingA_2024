@@ -246,7 +246,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                                 var data = _maVt.Data;
                                 if (data != null)
                                 {
-                                    _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
+                                    _ma_thue_i.Text = (data["MA_THUE"] ?? "").ToString().Trim();
                                     _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
                                     V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
                                     if (!chkT_THUE_NT.Checked) Tinh_thue_ct();
@@ -1521,13 +1521,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     SetADSelectMoreControlValue(Invoice, data);
                     _tkDt.Text = (data["tk_dt"] ?? "").ToString().Trim();
                     _tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
-                    _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
-                    _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
+                    _tkCkI.Text = (data["TK_CK"] ?? "").ToString().Trim();
+                    _tkVt.Text = (data["TK_VT"] ?? "").ToString().Trim();
                     txtPMA_KHC.ChangeText(("" + data["PMA_KHC"]).Trim());
 
                     if (M_SOA_MULTI_VAT == "1")
                     {
-                        _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
+                        _ma_thue_i.Text = (data["MA_THUE"] ?? "").ToString().Trim();
                         _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["THUE_SUAT"]);
                         V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
 

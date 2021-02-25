@@ -736,25 +736,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         
         void Dvt1_V6LostFocusNoChange(DataGridViewCell cell_dvt1, DataGridViewRow grow)
         {
-            //_dvt1.ExistRowInTable(true); TEN_DVT
+            if (NotAddEdit) return;
 
-            var data = cell_dvt1.Tag as IDictionary<string, object>;
+            var data = CELL_VVAR_DATA(cell_dvt1);
             if (data != null)
             {
-                grow.Cells["TEN_DVT"].Value = data["TEN_DVT"];
-                var he_soT = ObjectAndString.ObjectToDecimal(data["HE_SOT"]);
-                var he_soM = ObjectAndString.ObjectToDecimal(data["HE_SOM"]);
+                if (dataGridView1.Columns.Contains("TEN_DVT")) grow.Cells["TEN_DVT"].Value = data["TEN_DVT"];
+                var he_soT = ObjectAndString.ObjectToDecimal(data["HE_SO1T"]);
+                var he_soM = ObjectAndString.ObjectToDecimal(data["HE_SO1M"]);
                 if (he_soT == 0) he_soT = 1;
                 if (he_soM == 0) he_soM = 1;
                 SetCellValue(grow.Cells["HE_SO1T"], he_soT);
                 SetCellValue(grow.Cells["HE_SO1M"], he_soM);
             }
-            else
-            {
-                grow.Cells["TEN_DVT"].Value = "";
-                SetCellValue(grow.Cells["HE_SO1T"], 1);
-                SetCellValue(grow.Cells["HE_SO1M"], 1);
-            }
+            //else
+            //{
+            //    if (dataGridView1.Columns.Contains("TEN_DVT")) SetCellValue(grow.Cells["TEN_DVT"], "");
+            //    SetCellValue(grow.Cells["HE_SO1T"], 1);
+            //    SetCellValue(grow.Cells["HE_SO1M"], 1);
+            //}
         }
 
         public void TienNt2_V6LostFocus(DataGridViewCell cell_tien_nt2, DataGridViewRow grow)
@@ -902,7 +902,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 {
                     if (CELL_STRING(grow, "MA_LO").Trim() != "")
                     {
-                        var data = grow.Cells["MA_LO"].Tag as IDictionary<string, object>;// _maLo.Data;
+                        var data = CELL_VVAR_DATA(grow.Cells["MA_LO"]);
                         if (data != null)
                             SetCellValue(grow.Cells["HSD"], ObjectAndString.ObjectToDate(data["NGAY_HHSD"]));
                     }
@@ -959,7 +959,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                var data = cell_mavt.Tag as IDictionary<string, object>;
+                var data = CELL_VVAR_DATA(cell_mavt);
                 
                 if (data == null)
                 {
@@ -979,6 +979,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     foreach (string field in ObjectAndString.SplitString(BrotherFields))
                     {
                         string FIELD = field.Trim().ToUpper();
+                        if (!dataGridView1.Columns.Contains(FIELD)) continue;
+
                         if (data.ContainsKey(FIELD)) SetCellValue(grow.Cells[FIELD], data[FIELD]);
                         else grow.Cells[FIELD].Value = DBNull.Value;
                     }
@@ -991,7 +993,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     
                     if (M_SOA_HT_KM_CK == "1")
                     {
-                        SetCellValue(grow.Cells["TK_CKI"], data["tk_ck"] ?? "");
+                        SetCellValue(grow.Cells["TK_CKI"], data["TK_CK"] ?? "");
                         dataGridView1.Columns["TK_CKI"].ReadOnly = false;
                     }
                     else
@@ -1000,13 +1002,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         dataGridView1.Columns["TK_CKI"].ReadOnly = true;
                     }
 
-                    SetCellValue(grow.Cells["TK_VT"], data["tk_vt"] ?? "");
+                    SetCellValue(grow.Cells["TK_VT"], data["TK_VT"] ?? "");
                     SetCellValue(grow.Cells["HS_QD1"], data["HS_QD1"]);
                     SetCellValue(grow.Cells["HS_QD2"], data["HS_QD2"]);
 
                     if (M_SOA_MULTI_VAT == "1")
                     {
-                        SetCellValue(grow.Cells["MA_THUE_I"], data["ma_thue"] ?? "");
+                        SetCellValue(grow.Cells["MA_THUE_I"], data["MA_THUE"] ?? "");
                         SetCellValue(grow.Cells["THUE_SUAT_I"], data["THUE_SUAT"]);
 
                         V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["THUE_SUAT"]);
@@ -1051,7 +1053,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 //Gán lại dvt và dvt1
                 string ma_vt = cell_mavt.Value.ToString().Trim();
-                var data_mavt = cell_mavt.Tag as IDictionary<string, object>;
+                var data_mavt = CELL_VVAR_DATA(cell_mavt);
                 if (data_mavt == null)
                 {
                     SetCellValue(grow.Cells["DVT"], ""); // !!!!_dvt.ChangeText(""); xulychondvt
@@ -1153,7 +1155,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void XuLyThayDoiDvt1(DataGridViewCell cell_dvt, DataGridViewRow grow)
         {
-            var data = cell_dvt.Tag as IDictionary<string, object>;
+            var data = CELL_VVAR_DATA(cell_dvt);
             if (data == null)
             {
                 SetCellValue(grow.Cells["HE_SO1T"], 1);
@@ -1161,12 +1163,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 return;
             }
 
-            var he_soT = ObjectAndString.ObjectToDecimal(data["HE_SOT"]);
-            var he_soM = ObjectAndString.ObjectToDecimal(data["HE_SOM"]);
+            var he_soT = ObjectAndString.ObjectToDecimal(data["HE_SO1T"]);
+            var he_soM = ObjectAndString.ObjectToDecimal(data["HE_SO1M"]);
             if (he_soT == 0) he_soT = 1;
             if (he_soM == 0) he_soM = 1;
             SetCellValue(grow.Cells["HE_SO1T"], he_soT);
             SetCellValue(grow.Cells["HE_SO1M"], he_soM);
+            if (dataGridView1.Columns.Contains("TEN_DVT")) grow.Cells["TEN_DVT"].Value = data["TEN_DVT"];
 
             GetGia(grow);
             TinhTienNt2(grow);
@@ -1787,9 +1790,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         //TinhTienVon1(_soLuong1);
                         grow.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
                             * ObjectAndString.ObjectToDecimal(grow.Cells["GIA_NT21"].Value), M_ROUND_NT);
-                        grow.Cells["TIEN0"].Value = _maNt == _mMaNt0
-                            ? grow.Cells["TIEN_NT2"].Value
-                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(grow.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
+                        if (dataGridView1.Columns.Contains("TIEN0"))
+                        {
+                            grow.Cells["TIEN0"].Value = _maNt == _mMaNt0
+                                ? grow.Cells["TIEN_NT2"].Value
+                                : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(grow.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
+                        }
 
                         //TinhTienVon(_soLuong1);
                         if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(grow, FIELD);
@@ -1797,8 +1803,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(grow, FIELD);
                         //_tienNt.Value = _tienNt0.Value;
                         //_tien.Value = _tien0.Value;
-                        grow.Cells["TIEN_NT"].Value = grow.Cells["TIEN_NT2"].Value;
-                        grow.Cells["TIEN"].Value = grow.Cells["TIEN0"].Value;
+                        grow.Cells["TIEN_NT"].Value = CELL_DECIMAL(grow, "TIEN_NT2");
+                        grow.Cells["TIEN"].Value = CELL_DECIMAL(grow, "TIEN0");
 
                         #endregion ==== SO_LUONG1 ====
                         break;
@@ -1980,24 +1986,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
-            {
-                //var cell = dataGridView1.CurrentCell;
-                SaveSelectedCellLocation(dataGridView1, 1);
-                var flag = cell.OwningColumn.DisplayIndex;
-                int count = 0;
-                foreach (DataGridViewColumn item in dataGridView1.Columns.OfType<DataGridViewColumn>().OrderBy(x => x.DisplayIndex))
-                {
-                    if (count == flag + 1)
-                    {
-                        _cellIndex[1] = item.Index;
-                        _rowIndex[1] = cell.RowIndex;
-                        _celledit_enterkey = true;
-                        break;
-                    }
-
-                    count++;
-                }
-            }
+            //{
+            //    //var cell = dataGridView1.CurrentCell;
+            //    SaveSelectedCellLocation(dataGridView1, 1);
+            //    var flag = cell.OwningColumn.DisplayIndex;
+            //    int count = 0;
+            //    foreach (DataGridViewColumn item in dataGridView1.Columns.OfType<DataGridViewColumn>().OrderBy(x => x.DisplayIndex))
+            //    {
+            //        if (count == flag + 1)
+            //        {
+            //            _cellIndex[1] = item.Index;
+            //            _rowIndex[1] = cell.RowIndex;
+            //            _celledit_enterkey = true;
+            //            break;
+            //        }
+            //        count++;
+            //    }
+            //}
             if (_celledit_enterkey) LoadSelectedCellLocation(dataGridView1, 1);
             TinhTongThanhToan("CellEndEdit_" + FIELD);
         }
@@ -2161,7 +2166,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 switch (FIELD)
                 {
                     case "DVT1":
-                        
                         Dvt1_V6LostFocusNoChange(cell, grow);
                         break;
                     case "MA_LO":
@@ -2206,6 +2210,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             if (grow == null || !grow.DataGridView.Columns.Contains(name)) return null;
             return ObjectAndString.ObjectToString(grow.Cells[name].Value).Trim();
         }
+        IDictionary<string, object> CELL_VVAR_DATA(DataGridViewCell cell)
+        {
+            var cell_tagData = cell.Tag as IDictionary<string, object>;
+            if (cell_tagData != null && cell_tagData.ContainsKey("VVAR_DATA"))
+            {
+                var vvar_data = cell_tagData["VVAR_DATA"] as IDictionary<string, object>;
+                return vvar_data;
+            }
+            else if (cell.Value.ToString().Trim() != "")
+            {
+                var col = cell.OwningColumn as V6VvarDataGridViewColumn;
+                if (col != null)
+                {
+                    V6VvarTextBox vvarTextBox = new V6VvarTextBox();
+                    vvarTextBox.VVar = col.Vvar;
+                    vvarTextBox.Text = cell.Value.ToString().Trim();
+                    if (vvarTextBox.Data != null)
+                    {
+                        if (cell_tagData == null) cell_tagData = new Dictionary<string, object>();
+                        var vvar_data = vvarTextBox.Data.ToDataDictionary();
+                        cell_tagData["VVAR_DATA"] = vvar_data;
+                        cell.Tag = cell_tagData;
+                        return vvar_data;
+                    }
+                }
+                
+            }
+
+            return null;
+        }
+
         bool IS(object tag, string key)
         {
             return ObjectAndString.ObjectToBool(GetCellTag(tag, key));

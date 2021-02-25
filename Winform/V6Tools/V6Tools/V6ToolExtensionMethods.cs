@@ -216,7 +216,11 @@ namespace V6Tools
                 {
                     if (!table.Columns.Contains(key))
                     {
-                        table.Columns.Add(key);
+                        if (data[key] != null && data[key].GetType() == typeof(byte[]))
+                        {
+                            table.Columns.Add(key, typeof(byte[]));
+                        }
+                        else table.Columns.Add(key);
                     }
                 }
             }

@@ -88,6 +88,7 @@ namespace V6Controls.Controls.GridView
         void V6DateTimePickerFullGridViewEditingControl_VisibleChanged(object sender, EventArgs e)
         {
             var cell = dataGridView.CurrentCell;
+            if (cell == null) return;
             if (Visible)
             {
                 Value = ObjectAndString.ObjectToFullDateTime(cell.Value);
