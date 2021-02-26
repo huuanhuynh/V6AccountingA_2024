@@ -318,10 +318,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     case "SO_LUONG1":
                         _soLuong1 = (V6NumberTextBox)control;
                         _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;
-                        _soLuong1.V6LostFocusNoChange += delegate
-                        {
-                            
-                        };
+                        
                         if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                         {
                             _soLuong1.ReadOnlyTag();
@@ -1529,7 +1526,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 if (_maNt == _mMaNt0)
                 {
                     _tien2.Value = _tienNt2.Value;
-
                 }
 
                 TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
@@ -2058,11 +2054,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
                         if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
                         if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
-                        //_tienNt.Value = _tienNt0.Value;
-                        //_tien.Value = _tien0.Value;
-                        row.Cells["TIEN_NT"].Value = row.Cells["TIEN_NT2"].Value;
-                        row.Cells["TIEN"].Value = row.Cells["TIEN0"].Value;
-
+                        
                         #endregion ==== SO_LUONG1 ====
                         break;
 
@@ -2092,7 +2084,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             ? row.Cells["TIEN_NT2"].Value
                             : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
                         //TinhChietKhauChiTiet
-                        TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(false, row, txtTyGia.Value);
+                        TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(row, txtTyGia.Value);
                         //TinhGiaVon();
                         row.Cells["GIA21"].Value = _maNt == _mMaNt0
                             ? row.Cells["GIA_NT21"].Value

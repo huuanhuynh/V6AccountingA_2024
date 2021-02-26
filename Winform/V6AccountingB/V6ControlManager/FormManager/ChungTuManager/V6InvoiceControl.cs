@@ -2004,12 +2004,43 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return V6BusinessHelper.TinhTong(AD_table, colName, true);
         }
 
-        public void TinhChietKhauChiTiet(bool nhapTien, V6NumberTextBox _ck_textbox, V6NumberTextBox _ck_nt_textbox,
+        /// <summary>
+        /// Lấy giá trị số của cell.
+        /// </summary>
+        /// <param name="cell"></param>
+        /// <returns></returns>
+        public decimal DEC(DataGridViewCell cell)
+        {
+            return ObjectAndString.ObjectToDecimal(cell.Value);
+        }
+
+
+        /// <summary>
+        /// return grow.Cells[name].Value.ToString().Trim();
+        /// </summary>
+        /// <param name="grow"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public string STR(DataGridViewRow grow, string name)
+        {
+            return ObjectAndString.ObjectToString(grow.Cells[name].Value).Trim();
+        }
+
+        /// <summary>
+        /// Tính ck_nt, ck khi nhập tiền hoặc số lượng ...
+        /// </summary>
+        /// <param name="nhap_ck_nt">Đang nhập tiền ck.</param>
+        /// <param name="_ck_textbox"></param>
+        /// <param name="_ck_nt_textbox"></param>
+        /// <param name="txtTyGia"></param>
+        /// <param name="_tienNt2"></param>
+        /// <param name="_pt_cki"></param>
+        public void TinhChietKhauChiTiet(bool nhap_ck_nt, V6NumberTextBox _ck_textbox, V6NumberTextBox _ck_nt_textbox,
             V6NumberTextBox txtTyGia, V6NumberTextBox _tienNt2, V6NumberTextBox _pt_cki)
         {
             try
             {
-                if (nhapTien)
+                if (nhap_ck_nt)
                 {
                     _ck_textbox.Value = V6BusinessHelper.Vround(_ck_nt_textbox.Value * txtTyGia.Value, M_ROUND);
                     if (_maNt == _mMaNt0)
@@ -2033,35 +2064,55 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".TinhChietKhauChiTiet " + _sttRec, ex);
             }
         }
-
-        public void TinhChietKhauChiTiet_row(bool nhapTien, DataGridViewCell cell_ck, DataGridViewCell cell_ck_nt,
+        public void TinhChietKhauChiTiet(DataGridViewRow grow, decimal ty_gia, bool nhap_ck_nt = false)
+        {
+            try
+            {
+                if (!nhap_ck_nt)
+                {
+                    SetCellValue(grow.Cells["CK_NT"], V6BusinessHelper.Vround(DEC(grow.Cells["TIEN_NT2"]) * DEC(grow.Cells["PT_CKI"]) / 100, M_ROUND_NT));
+                }
+                if (_maNt == _mMaNt0)
+                {
+                    SetCellValue(grow.Cells["CK"], grow.Cells["CK_NT"].Value);
+                }
+                else
+                {
+                    SetCellValue(grow.Cells["CK"], V6BusinessHelper.Vround(DEC(grow.Cells["CK_NT"]) * ty_gia, M_ROUND));
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+        /// <summary>
+        /// Tính ck_nt, ck khi nhập tiền hoặc số lượng ...
+        /// </summary>
+        /// <param name="nhap_ck_nt">Đang nhập tiền ck.</param>
+        /// <param name="cell_ck"></param>
+        /// <param name="cell_ck_nt"></param>
+        /// <param name="txtTyGia"></param>
+        /// <param name="cell_tien_nt2"></param>
+        /// <param name="cell_pt_cki"></param>
+        public void TinhChietKhauChiTiet_row(bool nhap_ck_nt, DataGridViewCell cell_ck, DataGridViewCell cell_ck_nt,
             V6NumberTextBox txtTyGia, DataGridViewCell cell_tien_nt2, DataGridViewCell cell_pt_cki)
         {
             try
             {
-                if (nhapTien)
+                if (!nhap_ck_nt)
+                    cell_ck_nt.Value = V6BusinessHelper.Vround(
+                        ObjectAndString.ObjectToDecimal(cell_tien_nt2.Value)
+                        * ObjectAndString.ObjectToDecimal(cell_pt_cki.Value)
+                        / 100, M_ROUND_NT);
+
+                if (_maNt == _mMaNt0)
                 {
-                    if (_maNt == _mMaNt0)
-                    {
-                        cell_ck.Value = cell_ck_nt.Value;
-                    }
-                    else
-                    {
-                        cell_ck.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_ck_nt.Value) * txtTyGia.Value, M_ROUND);
-                    }
+                    cell_ck.Value = cell_ck_nt.Value;
                 }
                 else
                 {
-                    cell_ck_nt.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_tien_nt2.Value) * ObjectAndString.ObjectToDecimal(cell_pt_cki.Value) / 100, M_ROUND_NT);
-                    
-                    if (_maNt == _mMaNt0)
-                    {
-                        cell_ck.Value = cell_ck_nt.Value;
-                    }
-                    else
-                    {
-                        cell_ck.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_ck_nt.Value) * txtTyGia.Value, M_ROUND);
-                    }
+                    cell_ck.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_ck_nt.Value) * txtTyGia.Value, M_ROUND);
                 }
             }
             catch (Exception ex)
@@ -2095,15 +2146,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        public void TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(bool nhapTien, DataGridViewRow row,
-            Decimal txtTyGia_Value)
+        public void TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(DataGridViewRow grow, Decimal txtTyGia_Value, bool nhapTien = false)
         {
             try
             {
-                var _ck = row.Cells["CK"];
-                var _ck_nt = row.Cells["CK_NT"];
-                var _pt_cki = row.Cells["PT_CKI"];
-                var _tien_nt2 = row.Cells["TIEN_NT2"];
+                var _ck = grow.Cells["CK"];
+                var _ck_nt = grow.Cells["CK_NT"];
+                var _pt_cki = grow.Cells["PT_CKI"];
+                var _tien_nt2 = grow.Cells["TIEN_NT2"];
                 if (nhapTien)
                 {
                     _ck.Value = _maNt == _mMaNt0 ? _ck_nt.Value : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt.Value) * txtTyGia_Value, M_ROUND);

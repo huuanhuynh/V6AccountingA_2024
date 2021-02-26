@@ -2169,7 +2169,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                             ? row.Cells["TIEN_NT"].Value
                             : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT"].Value) * txtTyGia.Value, M_ROUND);
                         //TinhChietKhauChiTiet
-                        TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(false, row, txtTyGia.Value);
+                        TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(row, txtTyGia.Value);
                         //TinhGiaVon();
                         row.Cells["GIA1"].Value = _maNt == _mMaNt0
                             ? row.Cells["GIA_NT1"].Value

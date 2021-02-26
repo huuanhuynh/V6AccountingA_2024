@@ -1715,7 +1715,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     row.Cells["TIEN2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
                 }
 
-                TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(false, row, txtTyGia.Value);
+                TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(row, txtTyGia.Value);
                 TinhGiaNt2_row(row, HE_SO1T, HE_SO1M);
                 TinhVanChuyen_row(row);
                 TinhGiamGiaCt_row(row);
@@ -2236,7 +2236,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                                 : V6BusinessHelper.Vround(
                                     ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value)*txtTyGia.Value, M_ROUND);
 
-                            TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(false, row, txtTyGia.Value);
+                            TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(row, txtTyGia.Value);
                             TinhGiaNt2_row(row, HE_SO1T, HE_SO1M);
                             TinhVanChuyen_row(row);
                             TinhGiamGiaCt_row(row);
@@ -2280,7 +2280,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                                 : V6BusinessHelper.Vround(
                                     ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
 
-                            TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(false, row, txtTyGia.Value);
+                            TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(row, txtTyGia.Value);
                             TinhGiaNt2_row(row, HE_SO1T, HE_SO1M);
                             TinhVanChuyen_row(row);
                             TinhGiamGiaCt_row(row);

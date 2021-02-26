@@ -1734,10 +1734,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
                         if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
                         if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
-                        //_tienNt.Value = _tienNt0.Value;
-                        //_tien.Value = _tien0.Value;
-                        row.Cells["TIEN_NT"].Value = row.Cells["TIEN_NT0"].Value;
-                        row.Cells["TIEN"].Value = row.Cells["TIEN0"].Value;
 
                         #endregion ==== SO_LUONG1 ====
                         break;
