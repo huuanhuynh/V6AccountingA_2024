@@ -366,7 +366,7 @@ namespace V6Controls.Controls.GridView
             if (txt != null)
             {
                 txt.Ma_dm = ((V6LookupGridViewColumn)DataGridView.CurrentCell.OwningColumn).MA_DM;
-                txt.CharacterCasing = CharacterCasing.Upper;
+                //txt.CharacterCasing = CharacterCasing.Upper;
                 txt.BorderStyle = BorderStyle.None;
                 //if (dataGridViewCellStyle.Format != null && dataGridViewCellStyle.Format.StartsWith("N"))
                 //    numEditBox.DecimalPlaces = ObjectAndString.ObjectToInt(dataGridViewCellStyle.Format.Substring(1));

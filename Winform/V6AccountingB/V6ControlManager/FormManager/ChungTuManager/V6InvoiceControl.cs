@@ -787,34 +787,68 @@ namespace V6ControlManager.FormManager.ChungTuManager
         #region ==== GETTONROW ====
         private DataTable _dataViTri;
 
-        public void GetTonRow(DataGridViewRow row, HD_Detail detail1, DateTime ngay_ct)
+        public void GetTonRow(DataGridViewRow grow, HD_Detail detail1, DateTime ngay_ct)
         {
             try
             {
-                var cell_MA_VT = row.Cells["MA_VT"];
-                var cell_MA_KHO_I = row.Cells["MA_KHO_I"];
-                var cell_MA_LO = row.Cells["MA_LO"];
+                var cell_MA_VT = grow.Cells["MA_VT"];
+                var cell_MA_KHO_I = grow.Cells["MA_KHO_I"];
+                var cell_MA_LO = grow.Cells["MA_LO"];
                 V6VvarTextBox txtmavt = new V6VvarTextBox() {VVar = "MA_VT"};
                 txtmavt.Text = cell_MA_VT.Value.ToString();
                 V6VvarTextBox txtmakhoi = new V6VvarTextBox() {VVar = "MA_KHO"};
                 txtmakhoi.Text = cell_MA_KHO_I.Value.ToString();
 
-                GetTon13Row(row, detail1, txtmavt, txtmakhoi, ngay_ct);
+                GetTon13Row(grow, detail1, txtmavt, txtmakhoi, ngay_ct);
                 if (txtmavt.VITRI_YN)
                 {
                     if (txtmavt.LO_YN && txtmavt.DATE_YN)
                     {
-                        GetViTriLoDateRow(row, detail1, txtmavt, txtmakhoi, ngay_ct);
+                        GetViTriLoDateRow(grow, detail1, txtmavt, txtmakhoi, ngay_ct);
                     }
                     else
                     {
-                        GetViTriRow(row, detail1, txtmavt, txtmakhoi, ngay_ct);
+                        GetViTriRow(grow, detail1, txtmavt, txtmakhoi, ngay_ct);
                     }
                 }
                 else
                 {
-                    if (cell_MA_LO.Value.ToString().Trim() == "") GetLoDateRow(row, detail1, txtmavt, txtmakhoi, ngay_ct);
-                    else GetLoDate13Row(row, detail1, txtmavt, txtmakhoi, ngay_ct);
+                    if (cell_MA_LO.Value.ToString().Trim() == "") GetLoDateRow(grow, detail1, txtmavt, txtmakhoi, ngay_ct);
+                    else GetLoDate13Row(grow, detail1, txtmavt, txtmakhoi, ngay_ct);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+        
+        public void GetTonRow_A1(DataGridViewRow grow, DateTime ngay_ct)
+        {
+            try
+            {
+                V6VvarTextBox txtmavt = new V6VvarTextBox() {VVar = "MA_VT"};
+                txtmavt.Text = STR(grow.Cells["MA_VT"]);
+                V6VvarTextBox txtmakhoi = new V6VvarTextBox() {VVar = "MA_KHO"};
+                txtmakhoi.Text = STR(grow.Cells["MA_KHO_I"]);
+
+                GetTon13Row_A1(grow, txtmavt, txtmakhoi, ngay_ct);
+                if (txtmavt.VITRI_YN)
+                {
+                    if (txtmavt.LO_YN && txtmavt.DATE_YN)
+                    {
+                        GetViTriLoDateRow_A1(grow, txtmavt, txtmakhoi, ngay_ct);
+                    }
+                    else
+                    {
+                        GetViTriRow_A1(grow, txtmavt, txtmakhoi, ngay_ct);
+                    }
+                }
+                else
+                {
+                    if (STR(grow.Cells["MA_LO"]) == "") GetLoDateRow_A1(grow, txtmavt, txtmakhoi, ngay_ct);
+                    else GetLoDate13Row_A1(grow, txtmavt, txtmakhoi, ngay_ct);
                 }
             }
             catch (Exception ex)
@@ -881,6 +915,89 @@ namespace V6ControlManager.FormManager.ChungTuManager
                                     //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
 
                                     if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                                    {
+                                        if (maVt == c_maVt && maKhoI == c_maKhoI)
+                                        {
+                                            new_soLuong -= c_soLuong;
+                                        }
+                                    }
+                                }
+
+                                //if (new_soLuong < 0) new_soLuong = 0;
+                                {
+                                    cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        cell_TON13.Value = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0} {1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+        
+        public void GetTon13Row_A1(DataGridViewRow grow, V6VvarTextBox txtmavt, V6VvarTextBox txtmakhoi, DateTime dateNgayCT)
+        {
+            try
+            {
+                //var cell_STT_REC0 = grow.Cells["STT_REC0"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
+                var cell_TON13 = grow.Cells["TON13"];
+                
+
+                if ((txtmavt.LO_YN || txtmavt.DATE_YN) && (txtmakhoi.LO_YN || txtmakhoi.DATE_YN))
+                    return;
+
+                string maVt = txtmavt.Text.Trim().ToUpper();
+                string maKhoI = txtmakhoi.Text.Trim().ToUpper();
+                // Get ton kho theo ma_kho,ma_vt 18/01/2016
+                //if (V6Options.M_CHK_XUAT == "0")
+                {
+                    _dataViTri = _invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Date);
+                    if (_dataViTri != null && _dataViTri.Rows.Count > 0)
+                    {
+                        string sttRec0 = STR(grow.Cells["STT_REC0"]);
+                        //Trừ dần
+                        for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                        {
+                            DataRow data_row = _dataViTri.Rows[i];
+                            string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                            string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+
+
+                            //Neu dung maVt va maKhoI
+                            if (maVt == data_maVt && maKhoI == data_maKhoI)
+                            {
+                                //- so luong
+                                decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton00"]);
+                                decimal new_soLuong = data_soLuong;
+
+                                foreach (DataRow row1 in AD.Rows) //Duyet qua cac dong chi tiet
+                                {
+                                    string c_sttRec0 = row1["Stt_rec0"].ToString().Trim();
+                                    string c_maVt = row1["Ma_vt"].ToString().Trim().ToUpper();
+                                    string c_maKhoI = row1["Ma_kho_i"].ToString().Trim().ToUpper();
+
+                                    decimal c_soLuong = ObjectAndString.ObjectToDecimal(row1["So_luong"]);
+
+                                    //Add 31-07-2016
+                                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+                                    //if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0)) // !!!
+                                    if (grow.DataGridView.EditingControl != null && c_sttRec0 != sttRec0)
                                     {
                                         if (maVt == c_maVt && maKhoI == c_maKhoI)
                                         {
@@ -1012,6 +1129,101 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+        
+        public void GetViTriLoDateRow_A1(DataGridViewRow grow, V6VvarTextBox txtmavt, V6VvarTextBox txtmakhoi, DateTime dateNgayCT)
+        {
+            try
+            {
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
+                
+                string sttRec0 = STR(grow.Cells["STT_REC0"]);
+                string maVt = txtmavt.Text.Trim().ToUpper();
+                string maKhoI = txtmakhoi.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!txtmavt.LO_YN || !txtmavt.DATE_YN || !txtmavt.VITRI_YN
+                    || !txtmakhoi.LO_YN || !txtmakhoi.DATE_YN)
+                    return;
+
+                if (maVt == "" || maKhoI == "") return;
+
+                _dataViTri = _invoice.GetViTriLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
+                if (_dataViTri.Rows.Count == 0)
+                {
+                    grow.Cells["TON13"].Value = 0;
+                    grow.Cells["MA_LO"].Value = "";
+                    grow.Cells["HSD"].Value = null;
+                    grow.Cells["TON13QD"].Value = 0;
+                }
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                //for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                for (int i = 0; i <= _dataViTri.Rows.Count - 1; i++)
+                {
+                    DataRow data_row = _dataViTri.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+                    if (data_maLo == "" || data_maViTri == "") continue;
+                    //Neu dung maVt va maKhoI
+                    if (maVt == data_maVt && maKhoI == data_maKhoI)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal data_soLuongQd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
+                        decimal new_soLuong = data_soLuong;
+                        decimal new_soLuongQd = data_soLuongQd;
+
+                        foreach (DataRow row1 in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+                            string c_sttRec0 = row1["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row1["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row1["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maLo = row1["Ma_lo"].ToString().Trim().ToUpper();
+                            string c_maViTri = row1["Ma_vitri"].ToString().Trim().ToUpper();
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row1["So_luong"]); //???
+                            decimal c_soLuongQd = ObjectAndString.ObjectToDecimal(row1["sl_qd"]); //???
+
+                            if ((grow.DataGridView.EditingControl != null && c_sttRec0 != sttRec0))
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo &&
+                                    data_maViTri == c_maViTri)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                    new_soLuongQd -= c_soLuongQd;
+                                }
+                            }
+                        }
+
+                        if (new_soLuong > 0)
+                        {
+                            SetCellValue(grow.Cells["TON13"],new_soLuong * HE_SO1M / HE_SO1T); // chia hệ số
+                            grow.Cells["MA_LO"].Value = data_row["Ma_lo"].ToString().Trim();
+                            grow.Cells["MA_VITRI"].Value = data_row["Ma_vitri"].ToString().Trim();
+                            grow.Cells["HSD"].Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
+                            grow.Cells["TON13QD"].Value = new_soLuongQd;
+                            break;
+                        }
+                        else
+                        {
+                            ResetTonLoHsdRow(grow.Cells["TON13"], grow.Cells["MA_LO"], grow.Cells["HSD"], grow.Cells["TON13QD"]);
+                            grow.Cells["MA_VITRI"].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
 
         public void GetViTriRow(DataGridViewRow row, HD_Detail detail1, V6VvarTextBox txtmavt, V6VvarTextBox txtmakhoi, DateTime dateNgayCT)
         {
@@ -1081,6 +1293,80 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
                             cell_MA_VITRI.Value = data_row["Ma_vitri"].ToString().Trim();
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+        
+        public void GetViTriRow_A1(DataGridViewRow grow, V6VvarTextBox txtmavt, V6VvarTextBox txtmakhoi, DateTime dateNgayCT)
+        {
+            try
+            {
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
+                
+                string sttRec0 = STR(grow.Cells["STT_REC0"]);
+                string maVt = txtmavt.Text.Trim().ToUpper();
+                string maKhoI = txtmakhoi.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!txtmavt.VITRI_YN)
+                    return;
+
+                if (maVt == "" || maKhoI == "") return;
+
+                _dataViTri = _invoice.GetViTri(maVt, maKhoI, _sttRec, dateNgayCT.Date);
+                if (_dataViTri.Rows.Count == 0)
+                {
+                    grow.Cells["TON13"].Value = 0;
+                }
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = _dataViTri.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+                    if (data_maViTri == "") continue;
+                    //Neu dung maVt va maKhoI
+                    if (maVt == data_maVt && maKhoI == data_maKhoI)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal new_soLuong = data_soLuong;
+
+                        foreach (DataRow row1 in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+                            string c_sttRec0 = row1["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row1["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row1["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maViTri = row1["Ma_vitri"].ToString().Trim().ToUpper();
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row1["So_luong"]); //???
+                            if (grow.DataGridView.EditingControl != null && c_sttRec0 != sttRec0)
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maViTri == c_maViTri)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                }
+                            }
+                        }
+
+                        //if (new_soLuong < 0) new_soLuong = 0;
+                        {
+                            grow.Cells["TON13"].Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
+                            grow.Cells["MA_VITRI"].Value = data_row["Ma_vitri"].ToString().Trim();
                             break;
                         }
                     }
@@ -1184,6 +1470,99 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+        
+        private void GetLoDateRow_A1(DataGridViewRow grow, V6VvarTextBox txtmavt, V6VvarTextBox txtmakhoi, DateTime dateNgayCT)
+        {
+            try
+            {
+                var cell_STT_REC0 = grow.Cells["STT_REC0"];
+                var cell_TON13 = grow.Cells["TON13"];
+                var cell_TON13QD = grow.Cells["TON13QD"];
+                //var cell_HE_SO1 = row.Cells["HE SO1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
+                var cell_MA_LO = grow.Cells["MA_LO"];
+                var cell_MA_VITRI = grow.Cells["MA_VITRI"];
+                var cell_HANSD = grow.Cells["HSD"];
+                string sttRec0 = cell_STT_REC0.Value.ToString().Trim();
+                string maVt = txtmavt.Text.Trim().ToUpper();
+                string maKhoI = txtmakhoi.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!txtmavt.LO_YN || !txtmavt.DATE_YN
+                    || !txtmakhoi.LO_YN || !txtmakhoi.DATE_YN)
+                    return;
+
+                if (maVt == "" || maKhoI == "") return;
+
+                _dataViTri = _invoice.GetLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
+                if (_dataViTri.Rows.Count == 0)
+                {
+                    ResetTonLoHsdRow(cell_TON13, cell_MA_LO, cell_HANSD, cell_TON13QD);
+                }
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = _dataViTri.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    if (data_maLo == "") continue;
+                    //Neu dung maVt va maKhoI
+                    if (maVt == data_maVt && maKhoI == data_maKhoI)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal data_soLuongQd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_QD"]);
+                        decimal new_soLuong = data_soLuong;
+                        decimal new_soLuongQd = data_soLuongQd;
+
+                        foreach (DataRow row1 in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+
+                            string c_sttRec0 = row1["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row1["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row1["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maLo = row1["Ma_lo"].ToString().Trim().ToUpper();
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row1["So_luong"]); //???
+                            decimal c_soLuongQd = ObjectAndString.ObjectToDecimal(row1["sl_qd"]); //???
+
+                            if (grow.DataGridView.EditingControl != null && c_sttRec0 != sttRec0)
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                    new_soLuongQd -= c_soLuongQd;
+                                }
+                            }
+                        }
+
+                        if (new_soLuong > 0)
+                        {
+                            cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
+                            cell_MA_LO.Value = data_row["Ma_lo"].ToString().Trim();
+                            cell_HANSD.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
+                            cell_TON13QD.Value = new_soLuongQd;
+                            break;
+                        }
+                        else
+                        {
+                            ResetTonLoHsdRow(cell_TON13, cell_MA_LO, cell_HANSD, cell_TON13QD);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
 
         private void GetLoDate13Row(DataGridViewRow row, HD_Detail detail1, V6VvarTextBox txtmavt, V6VvarTextBox txtmakhoi, DateTime dateNgayCT)
         {
@@ -1248,6 +1627,94 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             decimal c_soLuong = ObjectAndString.ObjectToDecimal(row1["So_luong"]); //???
                             decimal c_soLuongQd = ObjectAndString.ObjectToDecimal(row1["Sl_qd"]); //???
                             if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                    new_soLuongQd -= c_soLuongQd;
+                                }
+                            }
+                        }
+
+                        //if (new_soLuong < 0) new_soLuong = 0;
+                        {
+                            cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
+                            cell_HANSD.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
+                            cell_TON13QD.Value = new_soLuongQd;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+        
+        private void GetLoDate13Row_A1(DataGridViewRow grow, V6VvarTextBox txtmavt, V6VvarTextBox txtmakhoi, DateTime dateNgayCT)
+        {
+            try
+            {
+                var cell_STT_REC0 = grow.Cells["STT_REC0"];
+                var cell_TON13 = grow.Cells["TON13"];
+                var cell_TON13QD = grow.Cells["TON13QD"];
+                //var cell_HE_SO1 = row.Cells["HE SO1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
+                var cell_MA_LO = grow.Cells["MA_LO"];
+                var cell_MA_VITRI = grow.Cells["MA_VITRI"];
+                var cell_HANSD = grow.Cells["HSD"];
+                string sttRec0 = cell_STT_REC0.Value.ToString().Trim();
+                string maVt = txtmavt.Text.Trim().ToUpper();
+                string maKhoI = txtmakhoi.Text.Trim().ToUpper();
+                string maLo = cell_MA_LO.Value.ToString().Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!txtmavt.LO_YN || !txtmavt.DATE_YN || !txtmakhoi.LO_YN || !txtmakhoi.DATE_YN)
+                    return;
+
+                if (maVt == "" || maKhoI == "" || maLo == "") return;
+
+                _dataViTri = _invoice.GetLoDate13(maVt, maKhoI, maLo, _sttRec, dateNgayCT.Date);
+                if (_dataViTri.Rows.Count == 0)
+                {
+                    ResetTonLoHsdRow(cell_TON13, cell_MA_LO, cell_HANSD, cell_TON13QD);
+                }
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = _dataViTri.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt va maKhoI
+                    if (maVt == data_maVt && maKhoI == data_maKhoI && maLo == data_maLo)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal data_soLuongQd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_QD"]);
+                        decimal new_soLuong = data_soLuong;
+                        decimal new_soLuongQd = data_soLuongQd;
+
+                        foreach (DataRow row1 in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+
+                            string c_sttRec0 = row1["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row1["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row1["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maLo = row1["Ma_lo"].ToString().Trim().ToUpper();
+
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row1["So_luong"]); //???
+                            decimal c_soLuongQd = ObjectAndString.ObjectToDecimal(row1["Sl_qd"]); //???
+                            if (grow.DataGridView.EditingControl != null && c_sttRec0 != sttRec0)
                             {
                                 if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo)
                                 {
@@ -2024,6 +2491,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public string STR(DataGridViewRow grow, string name)
         {
             return ObjectAndString.ObjectToString(grow.Cells[name].Value).Trim();
+        }
+
+        public string STR(DataGridViewCell cell)
+        {
+            return ObjectAndString.ObjectToString(cell.Value).Trim();
         }
 
         /// <summary>

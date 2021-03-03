@@ -5020,8 +5020,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             if (table == null || table.Count == 0) return;
             var row0 = table[0];
             if (row0.ContainsKey("MA_VT") && row0.ContainsKey("MA_KHO_I")
-                                          && row0.ContainsKey("TIEN_NT0") && row0.ContainsKey("SO_LUONG1")
-                                          && row0.ContainsKey("GIA_NT01"))
+                                          && row0.ContainsKey("TIEN_NT2") && row0.ContainsKey("SO_LUONG1")
+                                          && row0.ContainsKey("GIA_NT21"))
             {
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
@@ -5054,22 +5054,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
                         if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
 
-                        var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT0"]);
-                        var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT01"]);
-                        var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);
-                        var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
+                        var __tien_nt2 = ObjectAndString.ToObject<decimal>(data["TIEN_NT2"]);
+                        var __gia_nt21 = ObjectAndString.ObjectToDecimal(data["GIA_NT21"]);
+                        var __tien2 = V6BusinessHelper.Vround(__tien_nt2 * txtTyGia.Value, M_ROUND);
+                        var __gia21 = V6BusinessHelper.Vround(__gia_nt21 * txtTyGia.Value, M_ROUND_GIA);
 
-                        if (!data.ContainsKey("TIEN0")) data.Add("TIEN0", __tien0);
-
-                        if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", data["TIEN_NT0"]);
-                        if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien0);
-                        if (!data.ContainsKey("GIA01")) data.Add("GIA01", __gia0);
-                        if (!data.ContainsKey("GIA0")) data.Add("GIA0", __gia0);
-                        if (!data.ContainsKey("GIA")) data.Add("GIA", __gia0);
-                        if (!data.ContainsKey("GIA1")) data.Add("GIA1", __gia0);
-                        if (!data.ContainsKey("GIA_NT0")) data.Add("GIA_NT0", data["GIA_NT01"]);
-                        if (!data.ContainsKey("GIA_NT")) data.Add("GIA_NT", data["GIA_NT01"]);
-                        if (!data.ContainsKey("GIA_NT1")) data.Add("GIA_NT1", data["GIA_NT01"]);
+                        if (!data.ContainsKey("TIEN2")) data.Add("TIEN2", __tien2);
+                        if (!data.ContainsKey("GIA21")) data.Add("GIA21", __gia21);
+                        if (!data.ContainsKey("GIA2")) data.Add("GIA2", __gia21);
+                        if (!data.ContainsKey("GIA_NT2")) data.Add("GIA_NT2", data["GIA_NT21"]);
                     }
                     //}
 

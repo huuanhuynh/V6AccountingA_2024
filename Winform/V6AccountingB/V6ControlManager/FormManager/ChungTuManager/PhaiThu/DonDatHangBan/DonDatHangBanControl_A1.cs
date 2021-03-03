@@ -2043,7 +2043,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 {
                     case "SO_LUONG1":
                         #region ==== SO_LUONG1 ====
-                        //GetTonRow(row, detail1, dateNgayCT.Value); !!!!!
+                        GetTonRow_A1(grow, dateNgayCT.Value);
                         #endregion ==== SO_LUONG1 ====
                         break;
                     default:

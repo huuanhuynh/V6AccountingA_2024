@@ -54,7 +54,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (V6Login.UserRight.AllowAdd(Name, "GL4"))
+                    if (V6Login.UserRight.AllowAdd(Name, "00GL4"))
                     {
 
                         var currentRow = dataGridView1.CurrentRow;
@@ -273,7 +273,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (V6Login.UserRight.AllowAdd(Name, "GL4"))
+                    if (V6Login.UserRight.AllowAdd(Name, "00GL4"))
                     {
 
                         var currentRow = dataGridView1.CurrentRow;

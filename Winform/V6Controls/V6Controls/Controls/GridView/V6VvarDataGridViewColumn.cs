@@ -457,7 +457,7 @@ namespace V6Controls.Controls.GridView
                 txt.CheckNotEmpty = vvarColumn.CheckNotEmpty;
                 txt.CheckOnLeave = vvarColumn.CheckOnLeave;
                 //txt.Carry = vvarColumn.Carry;
-                txt.CharacterCasing = CharacterCasing.Upper;
+                //txt.CharacterCasing = CharacterCasing.Upper;
                 txt.BorderStyle = BorderStyle.None;
                 //if (dataGridViewCellStyle.Format != null && dataGridViewCellStyle.Format.StartsWith("N"))
                 //    numEditBox.DecimalPlaces = ObjectAndString.ObjectToInt(dataGridViewCellStyle.Format.Substring(1));

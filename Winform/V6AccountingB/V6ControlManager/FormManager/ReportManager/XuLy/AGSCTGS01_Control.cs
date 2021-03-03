@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (V6Login.UserRight.AllowDelete("", "S07"))
+                    if (V6Login.UserRight.AllowDelete("", "BS07"))
 
                     {
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
@@ -113,7 +113,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 if (dataGridView1.CurrentRow == null) return;
-                if (!V6Login.UserRight.AllowEdit("", "S07"))
+                if (!V6Login.UserRight.AllowEdit("", "BS07"))
                 {
                     V6ControlFormHelper.NoRightWarning();
                     return;
@@ -167,7 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (!V6Login.UserRight.AllowAdd("", "S07"))
+                if (!V6Login.UserRight.AllowAdd("", "BS07"))
                 {
                     V6ControlFormHelper.NoRightWarning();
                     return;

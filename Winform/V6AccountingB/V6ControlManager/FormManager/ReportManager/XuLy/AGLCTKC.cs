@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
 
-                if (!V6Login.UserRight.AllowDelete(Name, "GL3"))
+                if (!V6Login.UserRight.AllowDelete(Name, "00GL3"))
                 {
                     this.ShowWarningMessage(V6Text.NoRight);
                     return;
@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (V6Login.UserRight.AllowAdd(Name, "GL3"))
+                    if (V6Login.UserRight.AllowAdd(Name, "00GL3"))
                     {
 
                         var currentRow = dataGridView1.CurrentRow;

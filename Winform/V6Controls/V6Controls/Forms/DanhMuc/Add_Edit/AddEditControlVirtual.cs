@@ -461,7 +461,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 All_Objects["data"] = DataDic;
                 All_Objects["dataDic"] = DataDic;
                 All_Objects["dataOld"] = DataOld;
-                ValidateData();
+                if (_aldmConfig.IS_ALDM)
+                {
+                    ValidateData_IsAldm();
+                }
+                else
+                {
+                    ValidateData();
+                }
+                
                 InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
                 InvokeFormEvent("BEFOREINSERTORUPDATE");
                 string checkV6Valid = CheckV6Valid(DataDic, CONFIG_TABLE_NAME);
@@ -825,6 +833,186 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public virtual void ValidateData()
         {
             
+        }
+
+        public void ValidateData_IsAldm()
+        {
+            var errors = "";
+
+            // check notempty
+            //foreach (KeyValuePair<string, DefineInfo> item in DefineInfo_Data)
+            //{
+            //    if (item.Value.NotEmpty)
+            //    {
+            //        if (DataDic.ContainsKey(item.Key))
+            //        {
+            //            if ((DataDic[item.Key] ?? "").ToString().Trim() == "")
+            //            {
+            //                errors += string.Format(V6Text.CheckInfor + "{0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
+            //            }
+            //        }
+            //        else
+            //        {
+            //            errors += string.Format(V6Text.CheckDeclare + "{0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
+            //        }
+            //    }
+            //}
+
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(FormDynamicEvent.VALIDATEDATA))
+                {
+                    var method_name = Event_Methods[FormDynamicEvent.VALIDATEDATA];
+                    All_Objects["ParentData"] = ParentData;
+                    All_Objects["DataOld"] = DataOld;
+                    errors += V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke VALIDATEDATA", ex1);
+            }
+
+            // check code
+            //_dataRow;// aldm
+            var GRD_COL = _aldmConfig.GRD_COL.ToUpper();
+            var KEY_LIST = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
+            string KEY1 = "", KEY2 = "", KEY3 = "", KEY4 = "";
+
+            if (GRD_COL == "AL" && KEY_LIST.Length > 0)
+            {
+                errors += CheckValid(_MA_DM, KEY_LIST);
+            }
+            else if (GRD_COL == "ONECODE" && KEY_LIST.Length > 0)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, KEY1,
+                     DataDic[KEY1].ToString(), DataOld[KEY1].ToString());
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0} = {1}", KEY1, DataDic[KEY1]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, KEY1,
+                        DataDic[KEY1].ToString(), DataDic[KEY1].ToString());
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.AddDenied + "{0} = {1}", KEY1, DataDic[KEY1]));
+                }
+            }
+            else if (GRD_COL == "TWOCODE" && KEY_LIST.Length > 1)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                KEY2 = KEY_LIST[1].Trim().ToUpper();
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidTwoCode_Full(_MA_DM, 0,
+                        KEY1, DataDic[KEY1].ToString(), DataOld[KEY1].ToString(),
+                        KEY2, DataDic[KEY2].ToString(), DataOld[KEY2].ToString());
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0},{1} = {2},{3}",
+                            KEY1, KEY2, DataDic[KEY1], DataDic[KEY2]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidTwoCode_Full(_MA_DM, 1,
+                        KEY1, DataDic[KEY1].ToString(), DataDic[KEY1].ToString(),
+                        KEY2, DataDic[KEY2].ToString(), DataDic[KEY2].ToString());
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.AddDenied + " {0},{1} = {2},{3}",
+                            KEY1, KEY2, DataDic[KEY1], DataDic[KEY2]));
+                }
+            }
+            else if (GRD_COL == "THREECODE" && KEY_LIST.Length > 2)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                KEY2 = KEY_LIST[1].Trim().ToUpper();
+                KEY3 = KEY_LIST[2].Trim().ToUpper();
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode(_MA_DM, 0,
+                        KEY1, DataDic[KEY1].ToString(), DataOld[KEY1].ToString(),
+                        KEY2, DataDic[KEY2].ToString(), DataOld[KEY2].ToString(),
+                        KEY3, DataDic[KEY3].ToString(), DataOld[KEY3].ToString());
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0},{1},{2} = {3},{4},{5}",
+                            KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode(_MA_DM, 1,
+                        KEY1, DataDic[KEY1].ToString(), DataDic[KEY1].ToString(),
+                        KEY2, DataDic[KEY2].ToString(), DataDic[KEY2].ToString(),
+                        KEY3, DataDic[KEY3].ToString(), DataDic[KEY3].ToString());
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.AddDenied + ": {0},{1},{2} = {3},{4},{5}",
+                            KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+            }
+            else if (GRD_COL == "TWOCODEONEDAY" && KEY_LIST.Length > 2)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                KEY2 = KEY_LIST[1].Trim().ToUpper();
+                KEY3 = KEY_LIST[2].Trim().ToUpper();
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidTwoCode_OneDate(_MA_DM, 0,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataOld[KEY1]),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataOld[KEY2]),
+                        KEY3, ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"), ObjectAndString.ObjectToString(DataOld[KEY3], "yyyyMMdd"));
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0},{1},{2} = {3},{4},{5}",
+                            KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidTwoCode_OneDate(_MA_DM, 1,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataDic[KEY1]),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataDic[KEY2]),
+                        KEY3, ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"), ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"));
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.AddDenied + " {0},{1},{2} = {3},{4},{5}",
+                            KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+            }
+            else if (GRD_COL == "THREECODEONEDAY" && KEY_LIST.Length > 3)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                KEY2 = KEY_LIST[1].Trim().ToUpper();
+                KEY3 = KEY_LIST[2].Trim().ToUpper();
+                KEY4 = KEY_LIST[3].Trim().ToUpper();
+
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode_OneDate(_MA_DM, 0,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataOld[KEY1]),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataOld[KEY2]),
+                        KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataOld[KEY3]),
+                        KEY4, ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"), ObjectAndString.ObjectToString(DataOld[KEY4], "yyyyMMdd"));
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0},{1},{2},{3} = {4},{5},{6},{7}",
+                            KEY1, KEY2, KEY3, KEY4, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3], DataDic[KEY4]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode_OneDate(_MA_DM, 1,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataDic[KEY1]),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataDic[KEY2]),
+                        KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataDic[KEY3]),
+                        KEY4, ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"), ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"));
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.AddDenied + " {0},{1},{2},{3} = {4},{5},{6},{7}",
+                            KEY1, KEY2, KEY3, KEY4, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3], DataDic[KEY4]));
+                }
+            }
+            else
+            {
+                DoNothing();
+            }
+
+        end:
+            if (errors.Length > 0) throw new Exception(errors);
         }
 
         protected virtual void GetNewID()
