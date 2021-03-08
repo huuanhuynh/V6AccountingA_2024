@@ -749,7 +749,7 @@ namespace V6Controls.Forms
 
             //var alct1 = Invoice.Alct1;
             var _orderList = new List<string>();
-            var _carryList = new List<Control>();
+            var _carryFieldList = new List<string>();
             var _alct1Dic = new SortedDictionary<string, DataRow>();
 
             Control temp_control = new Control();
@@ -930,13 +930,13 @@ namespace V6Controls.Forms
                     result.Add(fOrder, c);
                     if (carry)
                     {
-                        _carryList.Add(c);
+                        _carryFieldList.Add(fcolumn);
                     }
                 }
             }
             orderList = _orderList;
             alct1Dic = _alct1Dic;
-            //carryList = _carryList;
+            //carryFields = _carryFieldList;
             return result;
         }
 

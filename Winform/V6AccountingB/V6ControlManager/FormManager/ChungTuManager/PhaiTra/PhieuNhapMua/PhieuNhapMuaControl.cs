@@ -659,7 +659,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                                 _maLo.ExistRowInTable(true);
                             }
                         };
-                        _maLo.V6LostFocus += _maLo_V6LostFocus;
+                        _maLo.Leave += _maLo_V6LostFocus;
                         break;
                     case "HSD":
                         _hanSd = (V6DateTimeColor) control;
@@ -1622,11 +1622,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 _mau_bc22.Value =1;
             }
         }
-        void _maLo_V6LostFocus(object sender)
+
+        void _maLo_V6LostFocus(object sender, EventArgs eventArgs)
         {
-            //Check malo
-            //throw new NotImplementedException();
-            CheckMaLo();
+            if (detail1.IsAddOrEdit) CheckMaLo();
         }
         
         private void CheckMaLo()
@@ -1643,7 +1642,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 {
                     //Tuanmh 05/05/2018 Sai HSD
                     _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
-
+                    _maLo.ExistRowInTable(true);
                     var data = _maLo.Data;
                     if (data != null)
                     {
@@ -2140,15 +2139,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     }
                 }
 
-                if (_maVt.LO_YN == false)
+                if (_maVt.LO_YN)
+                {
+                    _maLo.Enabled = true;
+                    _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                    _maLo.ExistRowInTable(true);
+                    if (_maLo.Data != null)
+                    {
+                        _hanSd.Value = ObjectAndString.ObjectToDate(_maLo.Data["NGAY_HHSD"]);
+                    }
+                    else
+                    {
+                        _hanSd.Value = null;
+                    }
+                }
+                else
                 {
                     _maLo.Text = "";
                     _hanSd.Value = null;
                     _maLo.Enabled = false;
-                }
-                else
-                {
-                    _maLo.Enabled = true;
                 }
 
                 SetDefaultDataDetail(Invoice, detail1.panelControls);

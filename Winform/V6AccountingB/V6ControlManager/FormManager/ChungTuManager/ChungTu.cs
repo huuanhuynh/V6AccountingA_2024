@@ -224,14 +224,22 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="alct1"></param>
+        /// <param name="dataGridView1"></param>
+        /// <param name="_orderList"></param>
+        /// <param name="carryFields">Các trường giữ giá trị dùng lại khi thêm mới.</param>
+        /// <param name="_alct1Dic"></param>
         public static void ApplyAlct1toGridView(DataTable alct1, V6ColorDataGridView dataGridView1,
-            out List<string> _orderList, out SortedDictionary<string, DataRow> _alct1Dic)
+            out List<string> _orderList, out List<string> carryFields, out SortedDictionary<string, DataRow> _alct1Dic)
         {
             var result = new Dictionary<string, AlctColumns>();
 
             //var alct1 = Invoice.Alct1;
             _orderList = new List<string>();
-            var _carryList = new List<DataGridViewColumn>();
+            carryFields = new List<string>();
             _alct1Dic = new SortedDictionary<string, DataRow>();
 
             //Control temp_control = new Control();
@@ -293,7 +301,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                                 column.Vvar = fvvar;
                                 column.CheckOnLeave = checkvvar;
                                 column.CheckNotEmpty = notempty;
-                                //column.Carry = carry;
                                 column.LimitCharter = limits;
                                 column.Width = width;
                                 column.Visible = fstatus;
@@ -306,6 +313,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             if (column != null)
                             {
                                 column.HeaderText = fcaption;
+                                //column.Carry = carry;
                                 column.Width = width;
                                 column.Visible = fstatus;
                             }
@@ -405,7 +413,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             //num_column.CheckOnLeave = checkvvar;
                             //num_column.CheckNotEmpty = notempty;
                             //num_column.LimitCharter = limits;
-                            //column.Carry = carry;
                             num_column.Width = width;
                             num_column.Visible = fstatus;
                         }
@@ -495,11 +502,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     result.Add(FCOLUMN, new AlctColumns() { DetailControl = c_column, LookupButton = null, LabelText = fcaption, IsCarry = carry, FOrder = fOrder, IsVisible = fstatus });
                     if (carry)
                     {
-                        _carryList.Add(c_column);
+                        carryFields.Add(FCOLUMN);
                     }
                 }
             }
             //orderList = _orderList;
+            //carryFields = carryFields;
             //alct1Dic = _alct1Dic;
             string[] orderList = new string[5];
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, orderList);

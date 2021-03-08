@@ -45,6 +45,9 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnRowsToXml = new System.Windows.Forms.Button();
             this.btnImportXml = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtBy = new System.Windows.Forms.TextBox();
+            this.chkUID = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbExport.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -58,7 +61,7 @@
             this.listBoxTablesName.Location = new System.Drawing.Point(9, 22);
             this.listBoxTablesName.Name = "listBoxTablesName";
             this.listBoxTablesName.Size = new System.Drawing.Size(160, 511);
-            this.listBoxTablesName.TabIndex = 3;
+            this.listBoxTablesName.TabIndex = 1;
             this.listBoxTablesName.SelectedIndexChanged += new System.EventHandler(this.listBoxTablesName_SelectedIndexChanged);
             // 
             // label5
@@ -68,7 +71,7 @@
             this.label5.Location = new System.Drawing.Point(6, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 1;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Table list";
             // 
             // dataGridView1
@@ -102,14 +105,14 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(597, 398);
             this.dataGridView1.Space_Bar = true;
-            this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.TabIndex = 9;
             // 
             // btnExportExcel
             // 
-            this.btnExportExcel.Location = new System.Drawing.Point(17, 52);
+            this.btnExportExcel.Location = new System.Drawing.Point(6, 38);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnExportExcel.TabIndex = 8;
+            this.btnExportExcel.TabIndex = 4;
             this.btnExportExcel.Text = "Export Excel";
             this.btnExportExcel.UseVisualStyleBackColor = true;
             this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
@@ -123,10 +126,10 @@
             this.grbExport.Controls.Add(this.chkConvert);
             this.grbExport.Controls.Add(this.btnExportXml);
             this.grbExport.Controls.Add(this.btnExportExcel);
-            this.grbExport.Location = new System.Drawing.Point(186, 6);
+            this.grbExport.Location = new System.Drawing.Point(175, 6);
             this.grbExport.Name = "grbExport";
-            this.grbExport.Size = new System.Drawing.Size(200, 88);
-            this.grbExport.TabIndex = 12;
+            this.grbExport.Size = new System.Drawing.Size(211, 65);
+            this.grbExport.TabIndex = 2;
             this.grbExport.TabStop = false;
             this.grbExport.Text = "Export";
             // 
@@ -135,7 +138,7 @@
             this.txtTo.Location = new System.Drawing.Point(153, 16);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(31, 20);
-            this.txtTo.TabIndex = 12;
+            this.txtTo.TabIndex = 3;
             this.txtTo.Text = "A";
             // 
             // label9
@@ -145,7 +148,7 @@
             this.label9.Location = new System.Drawing.Point(131, 22);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(16, 13);
-            this.label9.TabIndex = 11;
+            this.label9.TabIndex = 2;
             this.label9.Text = "to";
             // 
             // txtFrom
@@ -153,7 +156,7 @@
             this.txtFrom.Location = new System.Drawing.Point(94, 16);
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(31, 20);
-            this.txtFrom.TabIndex = 10;
+            this.txtFrom.TabIndex = 1;
             this.txtFrom.Text = "U";
             // 
             // chkConvert
@@ -163,16 +166,16 @@
             this.chkConvert.Location = new System.Drawing.Point(6, 19);
             this.chkConvert.Name = "chkConvert";
             this.chkConvert.Size = new System.Drawing.Size(86, 17);
-            this.chkConvert.TabIndex = 9;
+            this.chkConvert.TabIndex = 0;
             this.chkConvert.Text = "Convert from";
             this.chkConvert.UseVisualStyleBackColor = true;
             // 
             // btnExportXml
             // 
-            this.btnExportXml.Location = new System.Drawing.Point(99, 52);
+            this.btnExportXml.Location = new System.Drawing.Point(118, 38);
             this.btnExportXml.Name = "btnExportXml";
             this.btnExportXml.Size = new System.Drawing.Size(75, 23);
-            this.btnExportXml.TabIndex = 8;
+            this.btnExportXml.TabIndex = 5;
             this.btnExportXml.Text = "Export Xml";
             this.btnExportXml.UseVisualStyleBackColor = true;
             this.btnExportXml.Click += new System.EventHandler(this.btnExportXml_Click);
@@ -186,7 +189,7 @@
             this.groupBox1.Location = new System.Drawing.Point(392, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(380, 123);
-            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SQL";
             // 
@@ -202,23 +205,54 @@
             // 
             // btnRowsToXml
             // 
-            this.btnRowsToXml.Location = new System.Drawing.Point(186, 103);
+            this.btnRowsToXml.Location = new System.Drawing.Point(175, 73);
             this.btnRowsToXml.Name = "btnRowsToXml";
             this.btnRowsToXml.Size = new System.Drawing.Size(75, 23);
-            this.btnRowsToXml.TabIndex = 8;
+            this.btnRowsToXml.TabIndex = 3;
             this.btnRowsToXml.Text = "Rows to Xml";
             this.btnRowsToXml.UseVisualStyleBackColor = true;
             this.btnRowsToXml.Click += new System.EventHandler(this.btnRowsToXml_Click);
             // 
             // btnImportXml
             // 
-            this.btnImportXml.Location = new System.Drawing.Point(285, 103);
+            this.btnImportXml.Location = new System.Drawing.Point(309, 73);
             this.btnImportXml.Name = "btnImportXml";
             this.btnImportXml.Size = new System.Drawing.Size(75, 23);
-            this.btnImportXml.TabIndex = 8;
+            this.btnImportXml.TabIndex = 5;
             this.btnImportXml.Text = "Import Xml";
             this.btnImportXml.UseVisualStyleBackColor = true;
             this.btnImportXml.Click += new System.EventHandler(this.btnImportXml_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(175, 102);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Update Xml By";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnUpdateXmlBy_Click);
+            // 
+            // txtBy
+            // 
+            this.txtBy.Location = new System.Drawing.Point(293, 104);
+            this.txtBy.Name = "txtBy";
+            this.txtBy.Size = new System.Drawing.Size(93, 20);
+            this.txtBy.TabIndex = 7;
+            this.txtBy.Text = "UID";
+            // 
+            // chkUID
+            // 
+            this.chkUID.AccessibleDescription = ".";
+            this.chkUID.AutoSize = true;
+            this.chkUID.Checked = true;
+            this.chkUID.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkUID.Location = new System.Drawing.Point(256, 77);
+            this.chkUID.Name = "chkUID";
+            this.chkUID.Size = new System.Drawing.Size(45, 17);
+            this.chkUID.TabIndex = 4;
+            this.chkUID.Text = "UID";
+            this.chkUID.UseVisualStyleBackColor = true;
             // 
             // FormExportSqlTableToFile
             // 
@@ -226,8 +260,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 542);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.txtBy);
+            this.Controls.Add(this.chkUID);
             this.Controls.Add(this.grbExport);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnImportXml);
             this.Controls.Add(this.btnRowsToXml);
             this.Controls.Add(this.listBoxTablesName);
@@ -239,8 +276,11 @@
             this.Controls.SetChildIndex(this.listBoxTablesName, 0);
             this.Controls.SetChildIndex(this.btnRowsToXml, 0);
             this.Controls.SetChildIndex(this.btnImportXml, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.grbExport, 0);
+            this.Controls.SetChildIndex(this.chkUID, 0);
+            this.Controls.SetChildIndex(this.txtBy, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -268,5 +308,8 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnRowsToXml;
         private System.Windows.Forms.Button btnImportXml;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtBy;
+        private System.Windows.Forms.CheckBox chkUID;
     }
 }

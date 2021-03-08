@@ -563,12 +563,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     case "MA_LO":
 
                         _maLo = (V6VvarTextBox)control;
-                        //_maLo.V6LostFocus += _maLo_V6LostFocus;
-                        //_maLo.V6LostFocusNoChange += delegate
-                        //{
-                        //    XuLyLayThongTinKhiChonMaLo();
-                       
-                        //};
                         _maLo.GotFocus += (s, e) =>
                         {
                             if (NotAddEdit || _maLo.ReadOnly) return;
@@ -773,11 +767,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
 
         private void CheckMaLo()
         {
-            //if (_maVt.Text != "")
-            //{
-            //    _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim()+"'");
-            //}
-            XuLyLayThongTinKhiChonMaLo();
+            if (detail1.IsAddOrEdit) XuLyLayThongTinKhiChonMaLo();
         }
 
         void _tang_V6LostFocus(object sender)
@@ -1403,6 +1393,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 {
                     if (_maLo.Text.Trim() != "")
                     {
+                        _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                        _maLo.ExistRowInTable(true);
                         var data = _maLo.Data;
                         if (data != null)
                             _hanSd.Value = ObjectAndString.ObjectToDate(data["NGAY_HHSD"]);
@@ -1416,8 +1408,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 {
                     _hanSd.Value = null;
                 }
-
-                
             }
             catch (Exception ex)
             {
@@ -1667,16 +1657,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         }
                     }
                 }
-                
-                if (_maVt.LO_YN == false)
-                {   
-                    _maLo.Text = "";
-                    _hanSd.Value = null;
-                    _maLo.Enabled = false;
+
+                if (_maVt.LO_YN)
+                {
+                    _maLo.Enabled = true;
+                    _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                    _maLo.ExistRowInTable(true);
+                    if (_maLo.Data != null)
+                    {
+                        _hanSd.Value = ObjectAndString.ObjectToDate(_maLo.Data["NGAY_HHSD"]);
+                    }
+                    else
+                    {
+                        _hanSd.Value = null;
+                    }
                 }
                 else
                 {
-                    _maLo.Enabled = true;
+                    _maLo.Text = "";
+                    _hanSd.Value = null;
+                    _maLo.Enabled = false;
                 }
 
                 SetDefaultDataDetail(Invoice, detail1.panelControls);

@@ -754,7 +754,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                 _maLo.ExistRowInTable(true);
                             }
                         };
-                        _maLo.V6LostFocus += _maLo_V6LostFocus;
+                        //_maLo.V6LostFocus += _maLo_V6LostFocus;
+                        _maLo.Leave += _maLo_Leave;
                         break;
                     case "HSD":
                         _hanSd = (V6DateTimeColor)control;
@@ -1622,16 +1623,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 _mau_bc22.Value = 1;
             }
         }
+
         void _maLo_V6LostFocus(object sender)
+        {
+            CheckMaLo();
+        }
+
+        void _maLo_Leave(object sender, EventArgs e)
         {
             CheckMaLo();
         }
         
         private void CheckMaLo()
         {
-           
-            XuLyLayThongTinKhiChonMaLo();
-           
+            if(detail1.IsAddOrEdit) XuLyLayThongTinKhiChonMaLo();
         }
         private void XuLyLayThongTinKhiChonMaLo()
         {
@@ -1641,7 +1646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 {
                     //Tuanmh 05/05/2018 Sai HSD
                     _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
-
+                    _maLo.ExistRowInTable(true);
                     var data = _maLo.Data;
                     if (data != null)
                     {
@@ -2134,15 +2139,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     }
                 }
 
-                if (_maVt.LO_YN == false)
+                if (_maVt.LO_YN)
+                {
+                    _maLo.Enabled = true;
+                    _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                    _maLo.ExistRowInTable(true);
+                    if (_maLo.Data != null)
+                    {
+                        _hanSd.Value = ObjectAndString.ObjectToDate(_maLo.Data["NGAY_HHSD"]);
+                    }
+                    else
+                    {
+                        _hanSd.Value = null;
+                    }
+                }
+                else
                 {
                     _maLo.Text = "";
                     _hanSd.Value = null;
                     _maLo.Enabled = false;
-                }
-                else
-                {
-                    _maLo.Enabled = true;
                 }
 
                 SetDefaultDataDetail(Invoice, detail1.panelControls);

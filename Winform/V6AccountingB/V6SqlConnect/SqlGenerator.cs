@@ -1013,7 +1013,33 @@ namespace V6SqlConnect
 
                     return GenSqlStringValueF(text, sqltype, defaultValue, allowNull, oper);
                     //break;
-                
+                case "bigint":
+                case "numeric":
+                case "bit":
+                case "smallint":
+
+                case "decimal":
+                case "smallmoney":
+                case "int":
+                case "tinyint":
+                case "money":
+                case "float":
+                case "real":
+                    if (objValue != null && objValue is string)
+                    {
+                        switch (objValue.ToString().Trim().ToLower())
+                        {
+                            case "true":
+                            case "ok":
+                            case "yes":
+                                return "1";
+                            case "false":
+                            case "no":
+                            case "cancel":
+                                return "0";
+                        }
+                    }
+                    break;
                 default:
                     if (objValue is DateTime)
                     {
@@ -1086,6 +1112,33 @@ namespace V6SqlConnect
 
                     return GenSqlStringValueF_oper(text, sqltype, defaultValue, allowNull, oper);
                 //break;
+                case "bigint":
+                case "numeric":
+                case "bit":
+                case "smallint":
+
+                case "decimal":
+                case "smallmoney":
+                case "int":
+                case "tinyint":
+                case "money":
+                case "float":
+                case "real":
+                    if (objValue != null && objValue is string)
+                    {
+                        switch (objValue.ToString().Trim().ToLower())
+                        {
+                            case "true":
+                            case "ok":
+                            case "yes":
+                                return "1";
+                            case "false":
+                            case "no":
+                            case "cancel":
+                                return "0";
+                        }
+                    }
+                    break;
                 default:
                     if (objValue is DateTime)
                     {
@@ -1206,8 +1259,22 @@ namespace V6SqlConnect
                     case "int":
                     case "tinyint":
                     case "money":
+                    case "float":
+                    case "real":
                         try
                         {
+                            switch (value.Trim().ToLower())
+                            {
+                                case "true":
+                                case "ok":
+                                case "yes":
+                                    return "1";
+                                case "false":
+                                case "no":
+                                case "cancel":
+                                    return "0";
+                            }
+
                             decimal tryp;
                             if (decimal.TryParse(value, out tryp)) s = value.Replace(_system_decimal_symbol, ".");
                             else s = "0";
@@ -1385,8 +1452,22 @@ namespace V6SqlConnect
                     case "int":
                     case "tinyint":
                     case "money":
+                    case "float":
+                    case "real":
                         try
                         {
+                            switch (value.Trim().ToLower())
+                            {
+                                case "true":
+                                case "ok":
+                                case "yes":
+                                    return "1";
+                                case "false":
+                                case "no":
+                                case "cancel":
+                                    return "0";
+                            }
+
                             decimal tryp;
                             if (decimal.TryParse(value, out tryp)) s = value.Replace(_system_decimal_symbol, ".");
                             else s = "0";
@@ -1450,6 +1531,8 @@ namespace V6SqlConnect
                     case "int":
                     case "tinyint":
                     case "money":
+                    case "float":
+                    case "real":
                         s = "0";
                         break;
                     case "uniqueidentifier":

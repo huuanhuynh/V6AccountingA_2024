@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -198,7 +199,7 @@ namespace V6ControlManager.FormManager.ToolManager
                     //}
 
                     // Bỏ cột UID
-                    if (exportData.Columns.Contains("UID"))
+                    if (!chkUID.Checked && exportData.Columns.Contains("UID"))
                     {
                         exportData.Columns.Remove("UID");
                     }
@@ -243,6 +244,55 @@ namespace V6ControlManager.FormManager.ToolManager
                         count++;
                     }
                     V6Message.Show("Xong. " + count, 500, this);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage("Import count: " + count + "\r\n" + ex.Message);
+            }
+        }
+        
+        private void btnUpdateXmlBy_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            int count_fail = 0;
+            string keys_fail = "";
+            try
+            {
+                string BY = txtBy.Text.Trim().ToUpper();
+                var openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
+                if (string.IsNullOrEmpty(openFile)) return;
+                FileStream fs = new FileStream(openFile, FileMode.Open);
+                var _ds = new DataSet();
+                _ds.ReadXml(fs);
+                fs.Close();
+                if (_ds.Tables.Count > 0)
+                {
+                    var importData = _ds.Tables[0];
+                    if (!importData.Columns.Contains(BY))
+                    {
+                        V6Message.ShowWarning("Không có cột dữ liệu: " + BY);
+                        return;
+                    }
+                    
+                    foreach (DataRow row in importData.Rows)
+                    {
+                        var row_data = row.ToDataDictionary();
+                        IDictionary<string, object> key = new Dictionary<string, object>();
+                        key[BY] = row_data[BY];
+                        if (V6BusinessHelper.Update(selectedTableName, row_data, key) > 0)
+                        {
+                            count++;
+                        }
+                        else
+                        {
+                            count_fail++;
+                            keys_fail += " " + key[BY];
+                        }
+                    }
+
+                    if (keys_fail.Length > 0) keys_fail = keys_fail.Substring(1);
+                    V6Message.Show(string.Format("Xong. {0}\nFail: {1}\nFail keys: {2}", count, count_fail, keys_fail) , 500, this);
                 }
             }
             catch (Exception ex)

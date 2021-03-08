@@ -229,6 +229,8 @@ namespace V6Controls.Controls.GridView
             //base.DefaultCellStyle.Format = "F" + this.DecimalLength.ToString();
         }
 
+        Dictionary<string, object> varDic = new Dictionary<string, object>();
+
         private V6LookupGridViewCell LookupCellTemplate
         {
             get
@@ -265,15 +267,12 @@ namespace V6Controls.Controls.GridView
             // Thuộc tính kiểu mới lưu trong Tag.
             get
             {
-                IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("MA_DM")) return tagDic["MA_DM"].ToString();
+                if (varDic.ContainsKey("MA_DM")) return varDic["MA_DM"].ToString();
                 return null;
             }
             set
             {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["MA_DM"] = value;
-                Tag = tagDic;
+                varDic["MA_DM"] = value;
             }
         }
 

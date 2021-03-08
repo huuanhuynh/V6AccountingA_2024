@@ -246,6 +246,8 @@ namespace V6Controls.Controls.GridView
             //base.DefaultCellStyle.Format = "F" + this.DecimalLength.ToString();
         }
 
+        Dictionary<string, object> varDic = new Dictionary<string, object>();
+
         private V6VvarDataGridViewCell VvarCellTemplate
         {
             get
@@ -279,54 +281,55 @@ namespace V6Controls.Controls.GridView
 
         public string Vvar
         {
-            // Thuộc tính kiểu mới lưu trong Tag.
             get
             {
-                IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("VVAR")) return "" + tagDic["VVAR"];
+                if (varDic.ContainsKey("VVAR")) return "" + varDic["VVAR"];
                 return null;
             }
             set
             {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["VVAR"] = value;
-                Tag = tagDic;
+                varDic["VVAR"] = value;
             }
         }
 
         public string InitFilter
         {
-            // Thuộc tính kiểu mới lưu trong Tag.
             get
             {
-                IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("INITFILTER")) return "" + tagDic["INITFILTER"];
+                if (varDic.ContainsKey("INITFILTER")) return "" + varDic["INITFILTER"];
                 return null;
             }
             set
             {
                 if (value == null) return;
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["INITFILTER"] = value;
-                Tag = tagDic;
+                varDic["INITFILTER"] = value;
+            }
+        }
+        
+        public bool FilterStart
+        {
+            get
+            {
+                if (varDic.ContainsKey("FILTERSTART")) return ObjectAndString.ObjectToBool(varDic["FILTERSTART"]);
+                return false;
+            }
+            set
+            {
+                varDic["FILTERSTART"] = value;
             }
         }
 
         public string LimitCharter
         {
-            // Thuộc tính kiểu mới lưu trong Tag.
             get
             {
-                IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("LIMITCHARTER")) return "" + tagDic["LIMITCHARTER"];
+                if (varDic.ContainsKey("LIMITCHARTER")) return "" + varDic["LIMITCHARTER"];
                 return null;
             }
             set
             {
                 if (value == null) return;
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["LIMITCHARTER"] = value;
-                Tag = tagDic;
+                varDic["LIMITCHARTER"] = value;
             }
         }
 
@@ -334,30 +337,25 @@ namespace V6Controls.Controls.GridView
         {
             get
             {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("CHECKNOTEMPTY")) return "1" == "" + tagDic["CHECKNOTEMPTY"];
+                if (varDic.ContainsKey("CHECKNOTEMPTY")) return "1" == "" + varDic["CHECKNOTEMPTY"];
                 return false;
             }
             set
             {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["CHECKNOTEMPTY"] = value ? "1" : "0";
-                Tag = tagDic;
+                varDic["CHECKNOTEMPTY"] = value ? "1" : "0";
             }
         }
+
         public bool CheckOnLeave
         {
             get
             {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("CHECKONLEAVE")) return "1" == "" + tagDic["CHECKONLEAVE"];
+                if (varDic.ContainsKey("CHECKONLEAVE")) return "1" == "" + varDic["CHECKONLEAVE"];
                 return false;
             }
             set
             {
-                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                tagDic["CHECKONLEAVE"] = value ? "1" : "0";
-                Tag = tagDic;
+                varDic["CHECKONLEAVE"] = value ? "1" : "0";
             }
         }
 
@@ -453,11 +451,12 @@ namespace V6Controls.Controls.GridView
                 
                 txt.VVar = vvarColumn.Vvar;
                 txt.SetInitFilter(vvarColumn.InitFilter);
+                txt.FilterStart = vvarColumn.FilterStart;
                 txt.LimitCharacters = vvarColumn.LimitCharter;
                 txt.CheckNotEmpty = vvarColumn.CheckNotEmpty;
                 txt.CheckOnLeave = vvarColumn.CheckOnLeave;
-                //txt.Carry = vvarColumn.Carry;
-                //txt.CharacterCasing = CharacterCasing.Upper;
+                
+                
                 txt.BorderStyle = BorderStyle.None;
                 //if (dataGridViewCellStyle.Format != null && dataGridViewCellStyle.Format.StartsWith("N"))
                 //    numEditBox.DecimalPlaces = ObjectAndString.ObjectToInt(dataGridViewCellStyle.Format.Substring(1));

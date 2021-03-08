@@ -229,6 +229,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public List<string> _orderList = new List<string>();
         public List<string> _orderList2 = new List<string>();
         public List<string> _orderList3 = new List<string>();
+        public List<string> _carryFields = new List<string>();
+        public IDictionary<string, object> _carryRowData = new SortedDictionary<string, object>();
 
         public SortedDictionary<string, DataRow> _alct1Dic;
         public SortedDictionary<string, DataRow> _alct2Dic;
@@ -2968,6 +2970,104 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             {
                                 var lbl = detail1.GetControlByName("lbl" + FIELD);
                                 if (lbl != null) label = lbl.Text;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
+                        }
+                    }
+
+                    //Trường vvar
+                    var a_field2s = ObjectAndString.SplitString(config.A_field2);
+                    foreach (string field2 in a_field2s)
+                    {
+                        var vvar = GetControlByAccessibleName(field2) as V6VvarTextBox;
+                        if (vvar != null)
+                        {
+                            if (vvar.CheckNotEmpty && vvar.CheckOnLeave && !vvar.ExistRowInTable(true))
+                            {
+                                error += V6Text.Wrong + " [" + field2 + "]\n";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    SetStatusText(V6Text.Text("NoInfo") + " V6Valid!");
+                }
+            }
+            catch (Exception ex)
+            {
+                //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
+                this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
+            }
+            return error;
+        }
+        
+        public string ValidateDetailData_Row(V6InvoiceBase Invoice, DataGridViewRow grow, out string firstField)
+        {
+            string error = null;
+            firstField = null;
+            var gridView = grow.DataGridView;
+            try
+            {
+                IDictionary<string, object> data = grow.ToDataDictionary();
+                string inv = "";
+                //All_Objects["detail1"] = detail1;
+                All_Objects["DETAILDATA"] = data;
+                inv += InvokeFormEvent(FormDynamicEvent.VALIDATEDETAILDATA);
+                V6Tag invTag = new V6Tag(inv);
+                if (invTag.Cancel)
+                {
+                    firstField = invTag.Field;
+                    error += invTag.DescriptionLang(V6Setting.IsVietnamese);
+                    return error;
+                }
+
+                var config = ConfigManager.GetV6ValidConfig(Invoice.Mact, 2);
+                
+                if (config != null && config.HaveInfo)
+                {
+                    //Trường bắt buột nhập dữ liệu.
+                    var a_fields = ObjectAndString.SplitString(config.A_field);
+                    foreach (string field in a_fields)
+                    {
+                        string FIELD = field.Trim().ToUpper();
+                        string label = FIELD;
+                        if (!data.ContainsKey(FIELD))
+                        {
+                            //error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
+                            continue;
+                        }
+
+                        V6ColumnStruct columnS = Invoice.ADStruct[FIELD];
+                        object value = data[FIELD];
+                        
+                        if (ObjectAndString.IsDateTimeType(columnS.DataType))
+                        {
+                            if (value == null)
+                            {
+                                var column = gridView.Columns[FIELD];
+                                if (column != null) label = column.HeaderText;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
+                        }
+                        else if (ObjectAndString.IsNumberType(columnS.DataType))
+                        {
+                            if (ObjectAndString.ObjectToDecimal(value) == 0)
+                            {
+                                var column = gridView.Columns[FIELD];
+                                if (column != null) label = column.HeaderText;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
+                        }
+                        else // string
+                        {
+                            if (("" + value).Trim() == "")
+                            {
+                                var column = gridView.Columns[FIELD];
+                                if (column != null) label = column.HeaderText;
                                 error += V6Text.NoInput + " [" + label + "]\n";
                                 if (firstField == null) firstField = FIELD;
                             }

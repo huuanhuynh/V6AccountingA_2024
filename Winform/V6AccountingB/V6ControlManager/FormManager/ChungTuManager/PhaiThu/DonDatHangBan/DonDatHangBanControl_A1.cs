@@ -154,7 +154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             SetGridViewData();
             //Lấy các control động
             //detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
-            ChungTu.ApplyAlct1toGridView(Invoice.Alct1, dataGridView1, out _orderList, out _alct1Dic);
+            ChungTu.ApplyAlct1toGridView(Invoice.Alct1, dataGridView1, out _orderList, out _carryFields, out _alct1Dic);
             
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
@@ -181,35 +181,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 switch (NAME)
                 {
-                    case "MA_VT": // !!!!! CHƯA XONG !!!!!
-                        
-                        
-                        //_mavt_default_initfilter = _maVt.InitFilter;
-                        //var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
-                        //if (setting.Contains(Invoice.Mact))
-                        //_maVt.Enter += (sender, args) =>
-                        //{
-                        //    string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
-                        //    if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
-                        //    else if (!string.IsNullOrEmpty(newFilter))
-                        //    {
-                        //        _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
-                        //    }
-                        //};
-                   
-                        //_maVt.V6LostFocus += MaVatTu_V6LostFocus;
-                        //_maVt.V6LostFocusNoChange += delegate
-                        //{
-                        //    if (_maVt.LO_YN)
-                        //    {
-                        //        _maLo.Enabled = true;
-                        //    }
-                        //    else
-                        //    {
-                        //        _maLo.Enabled = false;
-                        //    }
-                        //    GetTon13(dataGridView1.CurrentRow);
-                        //};
+                    case "MA_VT":
+                        //_mavt_default_initfilter = _maVt.InitFilter;!!
                         break;
                     case "MA_LNX_I":
                         
@@ -229,14 +202,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         
                         break;
                     case "DVT1":
-                        
                         //_dvt1.SetInitFilter("");
                         //_dvt1.BrotherFields = "ten_dvt";
-                        
-                        
-                        
                         break;
-                    
                     case "MA_KHO":
                         break;
                     case "MA_KHO_I":
@@ -525,7 +493,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             
             //detail1.SetStruct(Invoice.ADStruct);
             //detail1.MODE = detail1.MODE;
-            V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0); // !!!!!
+            V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0);
         }
 
         
@@ -711,8 +679,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             else if (keyData == Keys.F8)
             {
-                //if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
-                //    detail1.btnXoa.PerformClick();
+                if (NotAddEdit) return false;
+                if (dataGridView1.Focused && dataGridView1.EditingCell == null && dataGridView1.CurrentRow != null)
+                {
+                    XuLyXoaDetail();
+                    return true;
+                }
+
+                return false;
             }
             else if (keyData == Keys.F9)
             {
@@ -898,7 +872,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                if (IS(grow.Cells["MA_VT"].Tag, "LO_YN"))
+                if (IS(grow.Cells["MA_VT"], "LO_YN"))
                 {
                     if (STR(grow, "MA_LO").Trim() != "")
                     {
@@ -1045,7 +1019,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         /// <summary>
         /// Setinitfilter, readonly-tag...
         /// </summary>
-        /// <param name="mavt">Giá trị hiện tại của ô _mavt</param>
+        /// <param name="cell_mavt"></param>
+        /// <param name="grow"></param>
         /// <param name="changeMavt">Fix trạng thái của dvt khi sửa focusDvt=false</param>
         private void XuLyDonViTinhKhiChonMaVt(DataGridViewCell cell_mavt, DataGridViewRow grow, bool changeMavt = true)
         {
@@ -1090,7 +1065,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         column_dvt.ReadOnly = true;
                         if (changeMavt)
                         {
-                            dataGridView1.CurrentCell = grow.Cells[column_dvt.Name];
+                            //dataGridView1.CurrentCell = grow.Cells[column_dvt.Name]; // bỏ
                             SetCellValue(grow.Cells["HE_SO1T"], 1);
                             SetCellValue(grow.Cells["HE_SO1M"], 1);
                         }
@@ -1699,8 +1674,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             dataGridView1.CurrentCellChanged += dataGridView1_CurrentCellChanged;
             dataGridView1.CellLeave += dataGridView1_CellLeave;
             dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;
+
+            dataGridView1.Leave += dataGridView1_Leave;
         }
 
+        void dataGridView1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                var grow = dataGridView1.CurrentRow;
+                if (grow == null) return;
+                if (_edittingRow != null)
+                {
+                    bool validate = ValidateData_Detail_Row(_edittingRow);
+                    if (!validate)
+                    {
+                        DoNothing();
+                        return;
+                    }
+                    else
+                    {
+                        _edittingRow = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private DataGridViewCell _focusCell0 = null;
+        
         void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
             try
@@ -1712,6 +1717,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 // Tạo stt_rec0
                 _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                 SetCellValue(grow.Cells["STT_REC0"], _sttRec0);
+                SetDefaultDetail();
+                SetCarry(grow);
             }
             catch (Exception ex)
             {
@@ -1760,6 +1767,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 var grow = dataGridView1.Rows[e.RowIndex];
                 var grow_data = grow.ToDataDictionary();
+                _carryRowData = grow_data;
                 var col = dataGridView1.Columns[e.ColumnIndex];
                 FIELD = col.DataPropertyName.ToUpper();
                 cell = grow.Cells[e.ColumnIndex];
@@ -2027,12 +2035,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             TinhTongThanhToan("CellEndEdit_" + FIELD);
         }
 
+        private DataGridViewRow _edittingRow = null;
         void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             string FIELD = null;
             try
             {
                 var grow = dataGridView1.Rows[e.RowIndex];
+                _edittingRow = grow;
                 var col = dataGridView1.Columns[e.ColumnIndex];
                 _sttRec0 = STR(grow, "STT_REC0");
                 FIELD = col.DataPropertyName.ToUpper();
@@ -2060,6 +2070,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             if (NotAddEdit) return;
             string FIELD = null;
+            
             try
             {
                 var grow = dataGridView1.CurrentRow;
@@ -2067,7 +2078,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 var cell = dataGridView1.CurrentCell;
                 var col = cell.OwningColumn;
                 FIELD = col.DataPropertyName.ToUpper();
-                
+
+                if (_edittingRow != null && grow != _edittingRow)
+                {
+                    // Nhảy qua dòng khác.
+                    bool validate = ValidateData_Detail_Row(_edittingRow);
+                    if (!validate)
+                    {
+                        DoNothing();
+                        return;
+                    }
+                    else
+                    {
+                        _edittingRow = null;
+                    }
+                }
+
                 //var cell_MA_VT = row.Cells["MA_VT"];
                 //var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
                 //decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
@@ -2080,6 +2106,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 switch (FIELD)
                 {
+                    case "MA_VT":
+                        var column_ma_vt = col as V6VvarDataGridViewColumn;
+
+                        var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
+                        if (setting.Contains(Invoice.Mact) && column_ma_vt != null)
+                        {
+                            string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                            if (string.IsNullOrEmpty(_mavt_default_initfilter))
+                            {
+                                column_ma_vt.InitFilter = newFilter;
+                            }
+                            else if (!string.IsNullOrEmpty(newFilter))
+                            {
+                                column_ma_vt.InitFilter = string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter);
+                            }
+                        }
+                        
+                        break;
                     case "DVT1":
                         var column_dvt = col as V6VvarDataGridViewColumn;
                         if (column_dvt != null)
@@ -2108,7 +2152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                             var cell_mavt = grow.Cells["MA_VT"];
                             var cell_makhoi = grow.Cells["MA_KHO_I"];
-                            malo_column.CheckNotEmpty = IS(cell_mavt.Tag, "LO_YN") && IS(cell_makhoi.Tag, "LO_YN");
+                            malo_column.CheckNotEmpty = IS(cell_mavt, "LO_YN") && IS(cell_makhoi, "LO_YN");
                             malo_column.InitFilter = "ma_vt='" + cell_mavt.Value.ToString().Trim() + "'";
                         }
                         
@@ -2125,8 +2169,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (tk_dt_column != null)
                         {
                             tk_dt_column.InitFilter = "Loai_tk = 1";
-                            //tk_dt_column.FilterStart = true; // !!!!!
-                            //_tkDt.FilterStart = true;
+                            tk_dt_column.FilterStart = true;
                         }
                         break;
                     case "TK_CKI":
@@ -2134,7 +2177,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (tk_cki_column != null)
                         {
                             tk_cki_column.InitFilter = "Loai_tk = 1";
-                            //tk_cki_column.FilterStart = true; // !!!!!
+                            tk_cki_column.FilterStart = true;
                         }
                         break;
                     case "TK_VT":
@@ -2142,7 +2185,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (tk_vt_column != null)
                         {
                             tk_vt_column.InitFilter = "Loai_tk = 1";
-                            //tk_vt_column.FilterStart = true; // !!!!!
+                            tk_vt_column.FilterStart = true;
                         }
                         break;
                     case "TK_GV":
@@ -2150,7 +2193,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (tk_gv_column != null)
                         {
                             tk_gv_column.InitFilter = "Loai_tk = 1";
-                            //tk_gv_column.FilterStart = true; // !!!!!
+                            tk_gv_column.FilterStart = true;
                         }
                         break;
                 }
@@ -2186,6 +2229,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 switch (FIELD)
                 {
+                    case "MA_VT":
+                        var column_ma_lo = dataGridView1.Columns["MA_LO"];
+
+                        if (IS(cell, "LO_YN"))
+                        {
+                            column_ma_lo.ReadOnly = false;
+                        }
+                        else
+                        {
+                            column_ma_lo.ReadOnly = true;
+                        }
+                        GetTon13(dataGridView1.CurrentRow);
+                        
+                        break;
                     case "DVT1":
                         Dvt1_V6LostFocusNoChange(cell, grow);
                         break;
@@ -2217,6 +2274,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             if (grow == null || !grow.DataGridView.Columns.Contains(name)) return null;
             return ObjectAndString.ObjectToString(grow.Cells[name].Value).Trim();
         }
+
         IDictionary<string, object> CELL_VVAR_DATA(DataGridViewCell cell)
         {
             var cell_tagData = cell.Tag as IDictionary<string, object>;
@@ -2248,20 +2306,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             return null;
         }
 
-        bool IS(object tag, string key)
+        bool IS(DataGridViewCell cell, string KEY)
         {
-            return ObjectAndString.ObjectToBool(GetCellTag(tag, key));
+            var data = CELL_VVAR_DATA(cell);
+            if (data.ContainsKey(KEY)) return ObjectAndString.ObjectToBool(data[KEY]);
+            return false;
         }
-        bool IS_NOT(object tag, string key)
+        bool IS_NOT(DataGridViewCell cell, string KEY)
         {
-            return !ObjectAndString.ObjectToBool(GetCellTag(tag, key));
+            return !IS(cell, KEY);
         }
-        object GetCellTag(object tag, string key) // !!!!!!
+        object GetCellTag(DataGridViewCell cell, string KEY)
         {
-            if (tag is IDictionary<string, object>)
+            if (cell.Tag is IDictionary<string, object>)
             {
-                return ((IDictionary<string, object>) tag)[key];
+                var tagData =  ((IDictionary<string, object>)cell.Tag);
+                if (tagData.ContainsKey(KEY)) return tagData[KEY];
             }
+            //var data = CELL_VVAR_DATA(cell);
+            //if (data.ContainsKey(KEY))
+            //    return data[KEY];
 
             return null;
         }
@@ -3188,6 +3252,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 if (index >= 0 && index < AM.Rows.Count)
                 {
+                    ResetForm();
                     _sttRec = AM.Rows[index]["Stt_rec"].ToString().Trim();
                     CurrentIndex = index;
                     LoadAD(_sttRec);
@@ -3798,7 +3863,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     //else
                     //{
                     //    dataGridView1.Lock();
-                    //    SetDefaultDetail();
+                    
                     //}
                     GoToFirstFocus(txtMa_sonb);
                 }
@@ -4139,6 +4204,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void ResetAllVars()
         {
             _sttRec = "";
+            _carryRowData = new SortedDictionary<string, object>();
             CurrentIndex = -1;
         }
 
@@ -4278,6 +4344,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
+        public void SetCarry(DataGridViewRow grow)
+        {
+            try
+            {
+                foreach (string field in _carryFields)
+                {
+                    if (_carryRowData.ContainsKey(field))
+                    {
+                        SetCellValue(grow.Cells[field], _carryRowData[field]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
@@ -4401,12 +4485,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void XuLyXoaDetail()
         {
-            if (NotAddEdit)
-            {
-                this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
-                return;
-            }
-
             try
             {
                 var readonly_list = SetControlReadOnlyHide(new HD_Detail(){Name = "detail1"}, Invoice, Mode, V6Mode.Delete);
@@ -4532,62 +4610,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         }
         #endregion navi
 
-        #region ==== DonDatHangBanDetail Event ====
-        private void DonDatHangBanDetail1_ClickAdd(object sender, HD_Detail_Eventargs e)
-        {
-            if (e.Mode == V6Mode.Add)
-            {
-                XuLyDetailClickAdd();
-            }
-            else
-            {
-                dataGridView1.UnLock();
-                //ViewCurrentRowToDetail(dataGridView1, detail1);
-            }
-        }
-        private void DonDatHangBanDetail1_AddHandle(IDictionary<string, object> data)
-        {
-            if (ValidateData_Detail(data))
-            {
-                if (XuLyThemDetail(data))
-                {
-                    dataGridView1.UnLock();
-                    All_Objects["data"] = data;
-                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
-                    return;
-                }
-                throw new Exception(V6Text.AddFail);
-            }
-            throw new Exception(V6Text.ValidateFail);
-        }
-        private void DonDatHangBanDetail1_EditHandle(IDictionary<string, object> data)
-        {
-            if (ValidateData_Detail(data))
-            {
-                if (XuLySuaDetail(data))
-                {
-                    dataGridView1.UnLock();
-                    All_Objects["data"] = data;
-                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
-                    //GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
-                    return;
-                }
-                throw new Exception(V6Text.EditFail);
-            }
-            throw new Exception(V6Text.ValidateFail);
-        }
-        private void DonDatHangBanDetail1_ClickDelete(object sender, HD_Detail_Eventargs e)
-        {
-            XuLyXoaDetail();
-        }
-        private void DonDatHangBanDetail1_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
-        {
-            dataGridView1.UnLock();
-            //ViewCurrentRowToDetail(dataGridView1, detail1);
-        }
-
-        #endregion hoadoen detail event
-
+        
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
             if (!Invoice.M_NGAY_CT) dateNgayLCT.SetValue(dateNgayCT.Date);
@@ -4977,20 +5000,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             return false;
         }
 
-        private bool ValidateData_Detail(IDictionary<string, object> data)
+        
+        private bool ValidateData_Detail_Row(DataGridViewRow grow)
         {
             try
             {
                 string firstErrorField;
-                //string errors = ValidateDetailData(detail1, Invoice, data, out firstErrorField);
-                //if (!string.IsNullOrEmpty(errors))
-                //{
-                //    this.ShowWarningMessage(errors);
-                //    detail1.SetFormControlsReadOnly(false);
-                //    var c = detail1.GetControlByAccessibleName(firstErrorField);
-                //    if (c != null) c.Focus();
-                //    return false;
-                //}
+                string errors = ValidateDetailData_Row(Invoice, grow, out firstErrorField);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    //dataGridView1.LoadSelectedCellLocation();
+                    //var cell = grow.Cells[firstErrorField];
+                    //dataGridView1.CurrentCell = cell;
+                    //_focusCell = cell;
+                    //V6ControlFormHelper.SetGridviewCurrentCellByIndex(dataGridView1, cell.RowIndex, cell.ColumnIndex, this);
+                    //dataGridView1.ClearSelection();
+                    //cell.Selected = true;
+                    //dataGridView1.CurrentCell = _edittingRow.Cells[firstErrorField];
+                    //dataGridView1.CurrentCell.Selected = true;
+                    //  ??!!!  InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
@@ -6255,12 +6286,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 if (NotAddEdit) return;
                 var grow = dataGridView1.CurrentRow;
+                if (grow == null) return;
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                string filter1 = GetCellTag(grow.Cells["MA_VT"], "INITFILTER").ToString(); // !!!!!!
+                string filter1 = GetCellTag(grow.Cells["MA_VT"], "INITFILTER").ToString();
                 var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                 if (setting.Contains(Invoice.Mact))
                     
@@ -6284,7 +6316,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -6295,6 +6327,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
+            //try
+            //{
+            //    if (e.KeyCode == Keys.F8)
+            //    {
+            //        XuLyXoaDetail();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            //}
             //e.SuppressKeyPress = true;
             //int iColumn = dataGridView1.CurrentCell.ColumnIndex;
             //int iRow = dataGridView1.CurrentCell.RowIndex;

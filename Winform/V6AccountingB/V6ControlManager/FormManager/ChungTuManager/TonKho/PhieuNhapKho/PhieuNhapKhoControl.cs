@@ -625,13 +625,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     case "MA_LO":
 
                         _maLo = (V6VvarTextBox)control;
-                        _maLo.V6LostFocus += _maLo_V6LostFocus;
+                        _maLo.Leave += _maLo_V6LostFocus;
 
-                        _maLo.V6LostFocusNoChange += delegate
-                        {
-                            XuLyLayThongTinKhiChonMaLo();
-                       
-                        };
                         _maLo.GotFocus += (s, e) =>
                         {
                             if (NotAddEdit || _maLo.ReadOnly) return;
@@ -917,9 +912,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             return "(1=1)";
         }
 
-        void _maLo_V6LostFocus(object sender)
+        void _maLo_V6LostFocus(object sender, EventArgs eventArgs)
         {
-            CheckMaLo();
+            if (detail1.IsAddOrEdit) CheckMaLo();
         }
 
         private void CheckMaLo()
@@ -1283,6 +1278,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     {
                         //Tuanmh 05/05/2018 Sai HSD
                         _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                        _maLo.ExistRowInTable(true);
 
                         var data = _maLo.Data;
                         if (data != null)
@@ -1399,15 +1395,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);
                 }
 
-                if (_maVt.LO_YN == false)
+                if (_maVt.LO_YN)
+                {
+                    _maLo.Enabled = true;
+                    _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                    _maLo.ExistRowInTable(true);
+                    if (_maLo.Data != null)
+                    {
+                        _hanSd.Value = ObjectAndString.ObjectToDate(_maLo.Data["NGAY_HHSD"]);
+                    }
+                    else
+                    {
+                        _hanSd.Value = null;
+                    }
+                }
+                else
                 {
                     _maLo.Text = "";
                     _hanSd.Value = null;
                     _maLo.Enabled = false;
-                }
-                else
-                {
-                    _maLo.Enabled = true;
                 }
 
                 if (_Ma_nx_i.Text == "")

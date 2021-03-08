@@ -6095,7 +6095,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 string filter1 = _maVt.InitFilter;
                 var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                 if (setting.Contains(Invoice.Mact))
-                    
                 {
                     string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
                     if (string.IsNullOrEmpty(filter1))

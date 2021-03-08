@@ -23,6 +23,8 @@ namespace V6Structs
                     return typeof(Int64);
                 case "numeric":
                     return typeof(decimal);
+                case "float":
+                    return typeof(float);
                 case "bit":
                     return typeof(bool);
                 case "smallint":
