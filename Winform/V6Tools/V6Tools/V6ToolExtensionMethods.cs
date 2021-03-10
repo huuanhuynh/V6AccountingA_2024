@@ -261,8 +261,12 @@ namespace V6Tools
             foreach (DataColumn column in table.Columns)
             {
                 var KEY = column.ColumnName.ToUpper();
-                object value = ObjectAndString.ObjectTo(column.DataType, sourceTable.Columns.Contains(KEY) ?
-                        (column.DataType == typeof(Guid) ? data[KEY].ToString() : data[KEY]) : "") ?? DBNull.Value;
+                object value = ObjectAndString.ObjectTo(column.DataType,
+                    sourceTable.Columns.Contains(KEY) ? data[KEY] : "") ?? DBNull.Value;
+                if (KEY == "UID" || column.DataType == typeof(Guid))
+                {
+                    value = data[KEY].ToString();
+                }
                 
                 newRow[KEY] = value;
             }

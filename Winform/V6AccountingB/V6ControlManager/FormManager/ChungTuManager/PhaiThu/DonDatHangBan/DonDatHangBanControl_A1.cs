@@ -1690,6 +1690,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     if (!validate)
                     {
                         DoNothing();
+                        _edittingRow = null;
                         return;
                     }
                     else
@@ -1732,32 +1733,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             //txtEdit.KeyDown += txtEdit_KeyDown;
         }
 
-        private bool _celledit_enterkey = false;
-        void txtEdit_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                var cell = dataGridView1.CurrentCell;
-                SaveSelectedCellLocation(dataGridView1, 1);
-                var flag = cell.OwningColumn.DisplayIndex;
-                int count = 0;
-                foreach (DataGridViewColumn item in dataGridView1.Columns.OfType<DataGridViewColumn>()
-                    .OrderBy(x => x.DisplayIndex))
-                {
-                    if (count == flag+1)
-                    {
-                        _cellIndex[1] = item.Index;
-                        _celledit_enterkey = true;
-                        break;
-                    }
-
-                    count++;
-                }
-            }
-            //V6ControlFormHelper.SetGridviewCurrentCellByIndex(this, _saveRowIndex, _saveCellIndex, Parent);
-        }
-
-
+        //private bool _celledit_enterkey = false;
+        
         void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             // Dùng như sự kiện V6_LostFocus
@@ -1773,13 +1750,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 cell = grow.Cells[e.ColumnIndex];
                 var cell_MA_VT = grow.Cells["MA_VT"];
                 var cell_SO_LUONG1 = grow.Cells["SO_LUONG1"];
-                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1T"].Value);
-                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(grow.Cells["HE_SO1M"].Value);
+                decimal HE_SO1T = DEC(grow.Cells["HE_SO1T"]);
+                decimal HE_SO1M = DEC(grow.Cells["HE_SO1M"]);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
                 //decimal HE_SO = HE_SO1T / HE_SO1M;
 
-                ShowMainMessage("cell_end_edit: " + FIELD);
+                //ShowMainMessage("cell_end_edit: " + FIELD);
+                All_Objects["grow"] = grow;
+                All_Objects["col"] = col;
+                All_Objects["cell"] = cell;
+                All_Objects["FIELD"] = FIELD;
+                InvokeFormEvent(FormDynamicEvent.CELLENDEDIT);
 
                 switch (FIELD)
                 {
@@ -2031,7 +2013,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             //        count++;
             //    }
             //}
-            if (_celledit_enterkey) LoadSelectedCellLocation(dataGridView1, 1);
+            //if (_celledit_enterkey) LoadSelectedCellLocation(dataGridView1, 1);\
+            InvokeFormEvent(FormDynamicEvent.CELLENDEDIT2);
             TinhTongThanhToan("CellEndEdit_" + FIELD);
         }
 
@@ -2086,6 +2069,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     if (!validate)
                     {
                         DoNothing();
+                        _edittingRow = null;
                         return;
                     }
                     else
@@ -4904,6 +4888,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     this.ShowWarningMessage(V6Text.NoInputDetail);
                     return false;
                 }
+                else
+                {
+                    string message = "";
+                    foreach (DataGridViewRow grow in dataGridView1.Rows)
+                    {
+                        if (IS_NOT_VALIDATE(grow))
+                        {
+                            message += string.Format("\n\tMA_VT: {0} Line: {1}", MA_VT(grow), grow.Index + 1);
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        this.ShowWarningMessage(V6Text.DetailNotComplete + "\n" + message);
+                        return false;
+                    }
+                }
                 
 
                 //Tuanmh 24/07/2016 Check Debit Amount
@@ -5009,6 +5010,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 string errors = ValidateDetailData_Row(Invoice, grow, out firstErrorField);
                 if (!string.IsNullOrEmpty(errors))
                 {
+                    var cell = grow.Cells[firstErrorField];
+                    cell.Style.BackColor = Color.Red;
+                    
+                    
                     this.ShowWarningMessage(errors);
                     //dataGridView1.LoadSelectedCellLocation();
                     //var cell = grow.Cells[firstErrorField];
@@ -5021,6 +5026,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     //dataGridView1.CurrentCell.Selected = true;
                     //  ??!!!  InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                     return false;
+                }
+                else
+                {
+                    bool alt = 1 == grow.Index % 2;
+                    var rowBackColor =
+                        alt ? grow.DataGridView.AlternatingRowsDefaultCellStyle.BackColor
+                            : grow.DataGridView.RowsDefaultCellStyle.BackColor;
+                    foreach (DataGridViewCell cell in grow.Cells)
+                    {
+                        if (cell.Style.BackColor != rowBackColor) cell.Style.BackColor = rowBackColor;
+                    }
                 }
             }
             catch (Exception ex)

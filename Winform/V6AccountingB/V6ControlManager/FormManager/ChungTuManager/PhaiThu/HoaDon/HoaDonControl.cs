@@ -5677,6 +5677,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _fail = true;
                 this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
+
+            CheckTongTien_NT2("view_invoice");
         }
 
         private void FixValues()
@@ -5946,14 +5948,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
+        public void CheckTongTien_NT2(string debug = null)
+        {
+            try
+            {
+                var sum = TinhTong(AD, "TIEN_NT2");
+                var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
+                if (tPsNoNt == 0 && txtTongTienNt2.Value != sum)
+                {
+                    btnIn.Enabled = false;
+                    Logger.WriteToLog(string.Format("CheckTongTien_NT2 {0} {1} txt = {2} / Sum = {3}", _sttRec, debug, txtTongTienNt2.Value, sum));
+                }
+                else
+                {
+                    btnIn.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name + debug, _sttRec), ex);
+            }
+        }
+
         private void DoEdit()
         {
             try
             {
                 CheckForIllegalCrossThreadCalls = false;
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
+                CheckTongTien_NT2();
                 if (Invoice.UpdateInvoice(readyDataAM, readyDataAD, readyDataAD3, keys))
                 {
+                    CheckTongTien_NT2("AfterUpdate");
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
                     AD3Tables.Remove(_sttRec);

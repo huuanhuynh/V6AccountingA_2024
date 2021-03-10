@@ -82,6 +82,7 @@
         public static string TAOPACKING = "TAOPACKING";
         public static string TAOGRNO = "TAOGRNO";
         public static string TAORRNO = "TAORRNO";
-        
+        public static string CELLENDEDIT = "CELLENDEDIT";
+        public static string CELLENDEDIT2 = "CELLENDEDIT2";
     }
 }

@@ -2501,6 +2501,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
+        /// Lấy mã vật tư trong gridview_row.
+        /// </summary>
+        /// <param name="grow"></param>
+        /// <returns></returns>
+        public string MA_VT(DataGridViewRow grow)
+        {
+            return ObjectAndString.ObjectToString(grow.Cells["MA_VT"].Value).Trim();
+        }
+
+        /// <summary>
         /// Tính ck_nt, ck khi nhập tiền hoặc số lượng ...
         /// </summary>
         /// <param name="nhap_ck_nt">Đang nhập tiền ck.</param>
@@ -3020,6 +3030,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     firstField = invTag.Field;
                     error += invTag.DescriptionLang(V6Setting.IsVietnamese);
+                    SET_ROW_VALIDATE(grow, false);
                     return error;
                 }
 
@@ -3098,7 +3109,45 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
                 this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
             }
+            SET_ROW_VALIDATE(grow, string.IsNullOrEmpty(error));
             return error;
+        }
+
+        public bool IS_NOT_VALIDATE(DataGridViewRow grow)
+        {
+            return ObjectAndString.ObjectToBool(GetTagDicValue(grow.Tag, "NOTVALIDATED"));
+        }
+
+        public void SET_ROW_VALIDATE(DataGridViewRow grow, bool is_validated)
+        {
+            SetRowTagDicValue(grow, "NOTVALIDATED", !is_validated);
+        }
+
+        public object GetTagDicValue(object tag, string KEY)
+        {
+            if (tag is IDictionary<string, object>)
+            {
+                var tagData = (IDictionary<string, object>)tag;
+                if (tagData.ContainsKey(KEY)) return tagData[KEY];
+            }
+            return null;
+        }
+
+        public void SetRowTagDicValue(DataGridViewRow grow, string KEY, object value)
+        {
+            IDictionary<string, object> tagData;
+
+            if (grow.Tag is IDictionary<string, object>)
+            {
+                tagData = ((IDictionary<string, object>)grow.Tag);
+            }
+            else
+            {
+                tagData = new SortedDictionary<string, object>();
+                grow.Tag = tagData;
+            }
+
+            tagData[KEY] = value;
         }
 
         /// <summary>
@@ -4754,7 +4803,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                SetStatusText("InvokeFormEvent " + eventName);
+                //SetStatusText("InvokeFormEvent " + eventName);
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];

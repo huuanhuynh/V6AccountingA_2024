@@ -763,16 +763,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         //private List<string> updateFieldList0 = new List<string>();
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            var grow = dataGridView1.Rows[e.RowIndex];
             var cell = dataGridView1.CurrentCell;
             string FIELD = cell.OwningColumn.DataPropertyName.ToUpper();
+            All_Objects["grow"] = grow;
             All_Objects["cell"] = cell;
-            V6ControlsHelper.InvokeMethodDynamic(Event_program, FIELD + "_LOSTFOCUS", All_Objects);
-            
-            //var UPDATE_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
-            //Xu ly cong thuc tinh toan
-            //updateFieldList = new List<string>(); // Đổi qua dùng CongThuc trong datagridview.
-            //if (CheckUpdateField(UPDATE_FIELD)) XuLyCongThucTinhToan();
-
+            All_Objects["FIELD"] = FIELD;
+            V6ControlsHelper.InvokeMethodDynamic(Event_program, FIELD + "_LOSTFOCUS", All_Objects); // Invoke tên hàm
+            InvokeFormEvent(FormDynamicEvent.CELLENDEDIT);                                                  // Invoke tên sự kiện
             afterEditData = dataGridView1.CurrentRow.ToDataDictionary();
 
             UpdateData(e.RowIndex, e.ColumnIndex);

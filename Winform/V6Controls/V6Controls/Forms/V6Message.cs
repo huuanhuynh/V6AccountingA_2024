@@ -107,6 +107,15 @@ namespace V6Controls.Forms
             return mbox.ShowDialog(owner);
         }
 
+        
+        public static DialogResult ShowErrorMessage(string text, IWin32Window owner)
+        {
+            return Show(text, V6Setting.Language == "V" ? "Lỗi!" : "Error!", 0, MessageBoxButtons.OK, MessageBoxIcon.Error, owner);
+        }
+        public static DialogResult ShowInfoMessage(string text, IWin32Window owner)
+        {
+            return Show(text, V6Setting.Language == "V" ? "Thông tin:" : "Information:", 0, MessageBoxButtons.OK, MessageBoxIcon.Information, owner);
+        }
         public static DialogResult ShowWarning(string text)
         {
             return ShowWarning(text, null);

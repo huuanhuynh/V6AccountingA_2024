@@ -421,7 +421,7 @@ namespace V6Controls.Forms
         /// <param name="text"></param>
         public static void SetStatusText(string text)
         {
-            StatusTextViewControl.Text = text ?? "";
+            StatusTextViewControl.Text = (text + "-\\-" + StatusTextViewControl.Text).Left(100 + StatusTextViewControl.Width/10);
         }
         /// <summary>
         /// Gán status text phía dưới bên phải
@@ -1456,11 +1456,11 @@ namespace V6Controls.Forms
                         cNAME = control.AccessibleName.Trim().ToUpper();
                         if (!(control is RadioButton) && d.ContainsKey(cNAME))
                         {
-                            Control f = FindParent<V6Control>(control);
-                            var formName = (f == null ? "null" : f.Name);
-                            var formType = (f == null ? "null" : f.GetType().ToString());
+                            //Control f = FindParent<V6Control>(control);
+                            //var formName = (f == null ? "null" : f.Name);
+                            //var formType = (f == null ? "null" : f.GetType().ToString());
                             var message = string.Format("Form [{0}] type [{1}] trùng AccessibleName [{2}]",
-                                formName, formType, cNAME);
+                                container.Name, container.GetType(), cNAME);
                             ShowMainMessage(string.Format("Trùng AccessibleName [{0}]", cNAME));
                             WriteToLog("V6ControlFormHelper.GetFormDataDictionaryRecusive", message);
                         }
@@ -1474,17 +1474,16 @@ namespace V6Controls.Forms
                         foreach (KeyValuePair<string, object> keyValuePair in t)
                         {
                             cNAME = keyValuePair.Key;
-                            d.Add(keyValuePair.Key, keyValuePair.Value);
+                            d[keyValuePair.Key] = keyValuePair.Value;
                         }
                     }
-                
                 }
             }
             catch (Exception ex)
             {
                 errors += "\r\nAccessibleName: " + cNAME + "\r\nException: " + ex.Message;
             }
-        CANCELALL:
+            CANCELALL:
             return d;
         }
 

@@ -192,6 +192,12 @@ namespace V6ControlManager.FormManager.ToolManager
                             exportData.AddRow(((DataRowView)row.DataBoundItem).Row);
                         }
                     }
+
+                    if (exportData.Rows.Count == 0)
+                    {
+                        this.ShowInfoMessage("Chưa chọn dòng dữ liệu nào! Dùng Space hoặc Ctrl+A để chọn.");
+                        return;
+                    }
                     //if (chkConvert.Checked)
                     //{
                     //    string from = txtFrom.Text.Trim(), to = txtTo.Text.Trim();

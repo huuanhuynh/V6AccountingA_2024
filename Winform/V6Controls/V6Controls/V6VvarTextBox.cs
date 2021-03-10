@@ -482,6 +482,17 @@ namespace V6Controls
                     base.V6ColorTextBox_LostFocus(this, e);
                 }
             }
+            else if (_checkOnLeave && F2 && !ReadOnly && Visible && Enabled)
+            {
+                if (!Looking && gotfocustext != Text)
+                {
+                    CallDoV6LostFocus();
+                }
+                else
+                {
+                    CallDoV6LostFocusNoChange();
+                }
+            }
             else if (!_checkOnLeave && !ReadOnly && Visible && Enabled)
             {
                 ExistRowInTable(Text.Trim());
