@@ -3408,22 +3408,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
-                ChungTu.ViewMoney(lblDocSoTien, txtTongTienNt.Value, _maNt);
+                //ChungTu.ViewMoney(lblDocSoTien, txtTongTienNt.Value, _maNt);
                 if (NotAddEdit) return;
                 //Tính tổng thanh toán.//con phan nt va tien viet chua ro rang.
           
                 HienThiTongSoDong(lblTongSoDong);
                 //XuLyThayDoiTyGia();
                 TinhTongValues();
-    
-                if (string.IsNullOrEmpty(_mMaNt0)) return;
-                
-               
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongTienNt.Value, _maNt);
         }
 
         #endregion tính toán
@@ -3867,6 +3864,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongTienNt.Value, _maNt);
         }
         #endregion view invoice
 

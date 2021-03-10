@@ -2800,6 +2800,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             {
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
         }
 
         public void TinhTongThue_ct()
@@ -3376,6 +3377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             {
                 this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
         }
 
         private void FixValues()

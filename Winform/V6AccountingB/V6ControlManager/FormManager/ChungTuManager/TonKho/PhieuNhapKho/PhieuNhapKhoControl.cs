@@ -2194,6 +2194,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             {
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongTienNt.Value, _maNt);
         }
 
         #endregion tính toán
@@ -2641,6 +2642,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             {
                 this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongTienNt.Value, _maNt);
         }
         #endregion view invoice
 

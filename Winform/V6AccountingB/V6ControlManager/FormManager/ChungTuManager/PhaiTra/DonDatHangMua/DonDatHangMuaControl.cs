@@ -2475,19 +2475,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 var t_tt = txtTongTien0.Value - txtTongGiam.Value - txtTongCk.Value + txtTongThue.Value;
                 txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt, M_ROUND);
 
-                //var tygia = txtTyGia.Value;
-                //txtTongTien0.Value = V6BusinessHelper.Vround(t_tien_nt0*tygia, M_ROUND);
-                //txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
-                //txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
-                //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                // txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
-                //Co_Thay_Doi = true;
-                
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
         }
 
         public void TinhTongThue_ct()
@@ -3018,6 +3011,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             {
                 this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
         }
 
         #region ==== Add Thread ====

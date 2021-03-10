@@ -515,7 +515,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0});
             this.txtTongTienNt.Visible = false;
-            this.txtTongTienNt.TextChanged += new System.EventHandler(this.txtTongThanhToanNt_TextChanged);
             // 
             // txtTongTien
             // 
@@ -544,7 +543,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0});
             this.txtTongTien.Visible = false;
-            this.txtTongTien.TextChanged += new System.EventHandler(this.txtTongThanhToanNt_TextChanged);
             // 
             // txtMa_ct
             // 
@@ -1999,7 +1997,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0});
-            this.txtTongThanhToanNt.TextChanged += new System.EventHandler(this.txtTongThanhToanNt_TextChanged);
+            
             // 
             // v6Label38
             // 

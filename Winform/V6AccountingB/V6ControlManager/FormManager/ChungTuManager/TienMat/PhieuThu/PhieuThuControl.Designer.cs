@@ -1162,7 +1162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             0,
             0,
             0});
-            this.txtTongThanhToanNt.TextChanged += new System.EventHandler(this.txtTongThanhToanNt_TextChanged);
+            
             // 
             // group4
             // 

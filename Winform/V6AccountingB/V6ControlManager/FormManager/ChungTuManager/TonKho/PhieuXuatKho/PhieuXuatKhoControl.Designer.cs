@@ -1514,7 +1514,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             0,
             0,
             0});
-            this.txtTongTienNt.TextChanged += new System.EventHandler(this.txtTongTienNt_TextChanged);
+            
             // 
             // v6Label4
             // 

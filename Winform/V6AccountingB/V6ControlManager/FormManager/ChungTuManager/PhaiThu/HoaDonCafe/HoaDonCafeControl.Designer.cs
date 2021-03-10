@@ -1612,7 +1612,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             0,
             0,
             0});
-            this.txtTongThanhToanNt.TextChanged += new System.EventHandler(this.txtTongThanhToanNt_TextChanged);
+            
             // 
             // v6Label4
             // 

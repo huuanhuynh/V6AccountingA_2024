@@ -4934,6 +4934,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec + " " + debug_flag, "TTTT(" + debug + ")"), ex);
             }
 
+            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
+
             if(IsViewingAnInvoice)
             try // Log
             {
@@ -5679,6 +5681,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
 
             CheckTongTien_NT2("view_invoice");
+            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
         }
 
         private void FixValues()
@@ -7337,7 +7340,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void txtTongThanhToanNt_TextChanged(object sender, EventArgs e)
         {
-            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
+            
         }
 
         private void txtPtCk_V6LostFocus(object sender)

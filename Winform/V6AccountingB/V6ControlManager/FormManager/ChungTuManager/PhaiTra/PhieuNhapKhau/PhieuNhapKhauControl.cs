@@ -3778,17 +3778,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 TxtT_tc.Value = V6BusinessHelper.Vround(t_tc, M_ROUND);
                 txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt, M_ROUND);
 
-                //var tygia = txtTyGia.Value;
-                //txtTongTien0.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
-                //txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
-                //txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
-                //TxtT_tc.Value = V6BusinessHelper.Vround(t_tc_nt * tygia, M_ROUND);
-               
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
         }
 
         public void TinhTongCong()
@@ -4444,6 +4439,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
+            ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
         }
 
         #region ==== Add Thread ====
