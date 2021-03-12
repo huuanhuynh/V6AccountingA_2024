@@ -3583,7 +3583,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             get
             {
                 if (_timForm == null || _timForm.IsDisposed)
-                    _timForm = new Tim_DeNghiNhapKhoINY_Form(this);
+                    _timForm = new Tim_DeNghiNhapKhoINY_Form(Invoice, V6Mode.View);
                 return _timForm;
             }
         }
@@ -3596,8 +3596,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 {
                     SearchForm.ViewMode = true;
                     SearchForm.Refresh0();
-                    SearchForm.Visible = false;
-                    SearchForm.ShowDialog(this);
+                    if (SearchForm._locKetQua.dataGridView1.CurrentCell != null)
+                    {
+                        int cIndex = SearchForm._locKetQua.dataGridView1.CurrentCell.ColumnIndex;
+                        SearchForm._locKetQua.dataGridView1.CurrentCell =
+                            SearchForm._locKetQua.dataGridView1.Rows[CurrentIndex].Cells[cIndex];
+                    }
+
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK && SearchForm._formChungTu_AM != null)
+                    {
+                        AM = SearchForm._formChungTu_AM;
+                        ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    }
+
+                    btnSua.Focus();
                 }
             }
             catch (Exception ex)
@@ -3633,7 +3645,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         SearchForm.ViewMode = true;
                         SearchForm.SearchTopCuoiKy();
                     }
-                    SearchForm.ShowDialog(this);
+
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        AM = SearchForm._formChungTu_AM;
+                        ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    }
+
                     btnSua.Focus();
                 }
                 else

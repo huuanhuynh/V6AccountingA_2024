@@ -481,7 +481,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             this.Name = "TimHoaDonFormCafe";
             this.Text = "Tìm chứng từ";
             this.Activated += new System.EventHandler(this.TimHoaDonFormCafe_Activated);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimHoaDonFormCafe_FormClosing);
             this.Load += new System.EventHandler(this.TimHoaDonFormCafe_Load);
             this.VisibleChanged += new System.EventHandler(this.TimHoaDonFormCafe_VisibleChanged);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);

@@ -20,9 +20,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             _aldmConfig = ConfigManager.GetAldmConfig("SEARCH_" + _invoice.Mact);
             MyInitBase(dataGridView1, dataGridView2, AM, AD);
         }
-        
-        
-        
+
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (_cancel_SelectionChange)

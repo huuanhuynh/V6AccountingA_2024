@@ -7571,14 +7571,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void dataGridView3ChiPhi_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            V6ControlFormHelper.ApplyNumberTextBox(e.Control);
-            //e.Control.KeyPress += (sender1, e1) =>
-            //{
-            //    if (!char.IsControl(e1.KeyChar) && !char.IsDigit(e1.KeyChar) && e1.KeyChar != '.')
-            //    {
-            //        e1.Handled = true;
-            //    }
-            //};
+            
         }
 
         private void tabControl1_SizeChanged(object sender, EventArgs e)

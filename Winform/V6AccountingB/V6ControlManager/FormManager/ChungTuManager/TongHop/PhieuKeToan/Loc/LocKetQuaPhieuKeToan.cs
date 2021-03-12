@@ -18,6 +18,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
         {
             InitializeComponent();
             _invoice = invoice;
+            _aldmConfig = ConfigManager.GetAldmConfig("SEARCH_" + _invoice.Mact);
             MyInitBase(dataGridView1, dataGridView2, AM, AD);
         }
 

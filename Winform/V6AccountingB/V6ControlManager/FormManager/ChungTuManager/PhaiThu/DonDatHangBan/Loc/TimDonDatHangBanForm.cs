@@ -20,7 +20,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
 {
     public partial class TimDonDatHangBanForm : V6Form
     {
-        //private readonly DonDatHangBanControl _formChungTu;
         public DataTable _formChungTu_AM;
         public DataTable _formChungTu_AD;
         private V6Mode _mode;
@@ -49,9 +48,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
         public TimDonDatHangBanForm(V6Invoice91 invoice, V6Mode mode)
         {
             InitializeComponent();
-            //_formChungTu = formChungTu;
             _mode = mode;
-            _invoice = invoice;// formChungTu.Invoice;
+            _invoice = invoice;
             MyInit();
         }
 
@@ -260,8 +258,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
                 _w4Dvcs_2 = _invoice.GetMaDvcsFilterByMaKho(maKhach.Text, txtMaDVCS.Text);
             }
         }
-
-
 
 
         private void SearchThread()
@@ -675,6 +671,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             {
                 HideLocKetQua();
             }
+            InitTuyChon();
             InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
@@ -687,13 +684,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
         {
             dateNgayCt1.Focus();
         }
-
-        private void TimDonDatHangBanForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //e.Cancel = true;
-            //Hide();
-        }
-
+        
         public void UpdateAM(string sttRec, IDictionary<string, object> data, V6Mode mode)
         {
             try

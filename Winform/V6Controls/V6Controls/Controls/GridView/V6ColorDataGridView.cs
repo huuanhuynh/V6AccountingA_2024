@@ -232,7 +232,11 @@ namespace V6Controls
         {
             if (ObjectAndString.IsNumberType(EditingColumn.ValueType) && !(EditingColumn is V6NumberDataGridViewColumn))
             {
-                V6ControlFormHelper.ApplyNumberTextBox(e.Control);
+                ApplyNumberTextBox(e.Control);
+            }
+            else
+            {
+                DeApplyNumberTextBox(e.Control);
             }
             //var textBox = e.Control as TextBox;
             //if (textBox != null)
@@ -250,6 +254,50 @@ namespace V6Controls
                 textBox.ResetAutoCompleteSource();
             }
         }
+
+        private bool _numberTextBoxApplyed = false;
+        public void ApplyNumberTextBox(Control control)
+        {
+            if (!_numberTextBoxApplyed)
+            {
+                control.KeyPress += control_KeyPress;
+                _numberTextBoxApplyed = true;
+            }
+        }
+
+        public void DeApplyNumberTextBox(Control control)
+        {
+            try
+            {
+                if (_numberTextBoxApplyed) control.KeyPress -= control_KeyPress;
+            }
+            catch
+            {
+                //
+            }
+        }
+
+        static void control_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Control control = (Control)sender;
+            
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-')
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if (e.KeyChar == '.' && control.Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '-' && control.Text.Length > 0)
+            {
+                e.Handled = true;
+            }
+        }
+
 
         void V6ColorDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {

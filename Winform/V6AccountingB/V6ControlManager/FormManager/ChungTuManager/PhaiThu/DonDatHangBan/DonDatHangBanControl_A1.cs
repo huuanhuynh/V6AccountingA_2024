@@ -2214,8 +2214,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 switch (FIELD)
                 {
                     case "MA_VT":
+                        if (string.IsNullOrEmpty(STR(cell))) goto End;
                         var column_ma_lo = dataGridView1.Columns["MA_LO"];
-
+                        if (column_ma_lo == null) goto End;
+                        
                         if (IS(cell, "LO_YN"))
                         {
                             column_ma_lo.ReadOnly = false;
@@ -2234,6 +2236,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         XuLyLayThongTinKhiChonMaLo(grow);
                         break;
                 }
+                End: ;
             }
             catch (Exception ex)
             {
@@ -4027,13 +4030,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         SearchForm._locKetQua.dataGridView1.CurrentCell =
                             SearchForm._locKetQua.dataGridView1.Rows[CurrentIndex].Cells[cIndex];
                     }
-                    //SearchForm.Visible = false;
-                    //SearchForm.ShowDialog(this);
+
                     if (SearchForm.ShowDialog(this) == DialogResult.OK && SearchForm._formChungTu_AM != null)
                     {
                         AM = SearchForm._formChungTu_AM;
                         ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
                     }
+
+                    btnSua.Focus();
                 }
             }
             catch (Exception ex)
@@ -5033,7 +5037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             : grow.DataGridView.RowsDefaultCellStyle.BackColor;
                     foreach (DataGridViewCell cell in grow.Cells)
                     {
-                        if (cell.Style.BackColor != rowBackColor) cell.Style.BackColor = rowBackColor;
+                        if (cell.Style.BackColor == Color.Red) cell.Style.BackColor = rowBackColor;
                     }
                 }
             }

@@ -74,11 +74,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         }
 
-        private void SelectMultiIDForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
         private void btnOK_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;

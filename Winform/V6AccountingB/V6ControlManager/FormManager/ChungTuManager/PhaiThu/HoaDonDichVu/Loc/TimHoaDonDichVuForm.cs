@@ -19,10 +19,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
 {
     public partial class TimHoaDonDichVuForm : V6Form
     {
-        private readonly HoaDonDichVuControl _formChungTu;
+        public DataTable _formChungTu_AM;
+        public DataTable _formChungTu_AD;
+        private V6Mode _mode;
         private V6Invoice21 _invoice;
-        private LocKetQuaHoaDonDichVu _locKetQua;
-        
+        public LocKetQuaHoaDonDichVu _locKetQua;
         private bool _viewMode;
         
         public bool ViewMode
@@ -41,12 +42,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             InitializeComponent();
         }
 
-        public TimHoaDonDichVuForm(HoaDonDichVuControl formChungTu)
+        public TimHoaDonDichVuForm(V6Invoice21 invoice, V6Mode mode)
         {
             InitializeComponent();
-            _formChungTu = formChungTu;
-            _invoice = _formChungTu.Invoice;
-
+            _mode = mode;
+            _invoice = invoice;
             MyInit();
         }
 
@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
         {
             try
             {
-                _locKetQua =  new LocKetQuaHoaDonDichVu(_invoice, _formChungTu.AM, _formChungTu.AD)
+                _locKetQua =  new LocKetQuaHoaDonDichVu(_invoice, _formChungTu_AM, _formChungTu_AD)
                 { Dock = DockStyle.Fill, Visible = false };
                 
                 panel1.Controls.Add(_locKetQua);
@@ -102,8 +102,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
         {
             try
             {
-                _formChungTu.LoadAD(sttrec);
-                _locKetQua.SetAD(_formChungTu.AD);
+                _formChungTu_AD = _invoice.LoadAD(sttrec);
+                _locKetQua.SetAD(_formChungTu_AD);
             }
             catch (Exception ex)
             {
@@ -114,7 +114,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
         private void SetValueAndShowLocKetQua()
         {
             _locKetQua.SetAM(tempAM);
-            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, _formChungTu.MA_NT);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, V6Options.M_MA_NT0);
             ShowLocKetQua();
         }
 
@@ -146,10 +146,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             {
                 if (_locKetQua != null && _locKetQua.Visible)
                 {
-                    _formChungTu.AM = tempAM;
-                    _formChungTu.ResetADTables();
-                    _formChungTu.ViewInvoice(_locKetQua.CurrentSttRec, V6Mode.View);
-                    Hide();
+                    _formChungTu_AM = tempAM;
+                    DialogResult = DialogResult.OK;
                 }
                 else
                 {
@@ -211,9 +209,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
                 _w4Dvcs_2 = _invoice.GetMaDvcsFilterByMaKho(locThongTin1.maKhach.Text, txtMaDVCS.Text);
             }
         }
-
-
-
 
         private void SearchThread()
         {
@@ -389,7 +384,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
 
         private void Huy()
         {
-            if (!_viewMode && _locKetQua != null && _locKetQua.Visible)
+            if (_mode == V6Mode.Select)
+            {
+                DialogResult = DialogResult.Cancel;
+            }
+            else if (!_viewMode && _locKetQua != null && _locKetQua.Visible)
             {
                 HideLocKetQua();
             }
@@ -411,7 +410,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
 
         private void TimHoaDonDichVuForm_Load(object sender, EventArgs e)
         {
-            if (_formChungTu.AM != null && _viewMode)
+            if (_formChungTu_AM != null && _viewMode)
             {
                 ShowLocKetQua();
             }
@@ -419,6 +418,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             {
                 HideLocKetQua();
             }
+            InitTuyChon();
             InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
@@ -431,13 +431,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
         {
             locThoiGian1.Focus();
         }
-
-        private void TimHoaDonDichVuForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            Hide();
-        }
-
+        
         public void UpdateAM(string sttRec, IDictionary<string, object> data, V6Mode mode)
         {
             try
@@ -461,7 +455,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             {
                 this.WriteExLog(GetType() + ".UpdateAM", ex);
             }
-            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, _formChungTu.MA_NT);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, V6Options.M_MA_NT0);
         }
 
         private void TimHoaDonDichVuForm_VisibleChanged(object sender, EventArgs e)

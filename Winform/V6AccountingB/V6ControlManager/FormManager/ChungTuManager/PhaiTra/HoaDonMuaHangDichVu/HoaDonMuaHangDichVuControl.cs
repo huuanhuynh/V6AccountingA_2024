@@ -2866,7 +2866,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             get
             {
                 if (_timForm == null || _timForm.IsDisposed)
-                    _timForm = new TimHoaDonMuaHangDichVuForm(this);
+                    _timForm = new TimHoaDonMuaHangDichVuForm(Invoice, V6Mode.View);
                 return _timForm;
             }
         }
@@ -2879,8 +2879,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 {
                     SearchForm.ViewMode = true;
                     SearchForm.Refresh0();
-                    SearchForm.Visible = false;
-                    SearchForm.ShowDialog(this);
+                    if (SearchForm._locKetQua.dataGridView1.CurrentCell != null)
+                    {
+                        int cIndex = SearchForm._locKetQua.dataGridView1.CurrentCell.ColumnIndex;
+                        SearchForm._locKetQua.dataGridView1.CurrentCell =
+                            SearchForm._locKetQua.dataGridView1.Rows[CurrentIndex].Cells[cIndex];
+                    }
+
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK && SearchForm._formChungTu_AM != null)
+                    {
+                        AM = SearchForm._formChungTu_AM;
+                        ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    }
+
+                    btnSua.Focus();
                 }
             }
             catch (Exception ex)
@@ -2916,7 +2928,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                         SearchForm.ViewMode = true;
                         SearchForm.SearchTopCuoiKy();
                     }
-                    SearchForm.ShowDialog(this);
+
+                    if (SearchForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        AM = SearchForm._formChungTu_AM;
+                        ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
+                    }
+
                     btnSua.Focus();
                 }
                 else

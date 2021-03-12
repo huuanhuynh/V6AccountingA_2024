@@ -1311,7 +1311,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm chứng từ";
             this.Activated += new System.EventHandler(this.TimPhieuThuForm_Activated);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimPhieuThuForm_FormClosing);
             this.Load += new System.EventHandler(this.TimHoaDonForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TimPhieuThuForm_KeyDown);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);

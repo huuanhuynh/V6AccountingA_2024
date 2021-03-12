@@ -1680,7 +1680,6 @@
             this.Name = "TimHoaDonForm";
             this.Text = "Tìm chứng từ";
             this.Activated += new System.EventHandler(this.TimHoaDonForm_Activated);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimHoaDonForm_FormClosing);
             this.Load += new System.EventHandler(this.TimHoaDonForm_Load);
             this.VisibleChanged += new System.EventHandler(this.TimHoaDonForm_VisibleChanged);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);

@@ -480,7 +480,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm chứng từ";
             this.Activated += new System.EventHandler(this.TimDeNghiXuatKhoIXYForm_Activated);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimDeNghiXuatKhoIXYForm_FormClosing);
             this.Load += new System.EventHandler(this.TimDeNghiXuatKhoIXYForm_Load);
             this.VisibleChanged += new System.EventHandler(this.TimDeNghiXuatKhoIXYForm_VisibleChanged);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);

@@ -254,7 +254,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Chọn";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectMultiIDForm_FormClosing);
             this.Load += new System.EventHandler(this.SelectMultiIDForm_Load);
             this.SizeChanged += new System.EventHandler(this.AlvtSelectorForm_SizeChanged);
             this.Controls.SetChildIndex(this.panel1, 0);

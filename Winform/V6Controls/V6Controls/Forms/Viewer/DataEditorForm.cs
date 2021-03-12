@@ -21,13 +21,14 @@ namespace V6Controls.Forms.Viewer
 
         public V6ColorDataGridView DataGridView { get { return dataGridView1; } }
         private AldmConfig _config;
-        private Control _owner;
+        private readonly Control _owner;
         private object _data;
-        private string _tableName, _showFields;
+        private readonly string _tableName;
+        private string _showFields;
         private string[] _KEY_FIELDS;
-        private IDictionary<string, object> _defaultData = null;
+        private readonly IDictionary<string, object> _defaultData;
         private bool newRowNeeded;
-        private bool _updateDatabase;
+        private readonly bool _updateDatabase;
         public SortedDictionary<string, string> HideFields = new SortedDictionary<string, string>();
         public SortedDictionary<string, string> ReadOnlyFields = new SortedDictionary<string, string>();
         public sealed override string Text
@@ -300,7 +301,7 @@ namespace V6Controls.Forms.Viewer
             if ((bieu_thuc.Split('-').Length - 1) >
                 (bieu_thuc.Split(new[] {"*-"}, StringSplitOptions.None).Length +
                  bieu_thuc.Split(new[] {"/-"}, StringSplitOptions.None).Length +
-                 bieu_thuc.Split(new string[] {"^-"}, StringSplitOptions.None).Length - 3))
+                 bieu_thuc.Split(new[] {"^-"}, StringSplitOptions.None).Length - 3))
             {
 
                 var sp = bieu_thuc.IndexOf('-');
@@ -408,7 +409,7 @@ namespace V6Controls.Forms.Viewer
                             if (HideFields.ContainsKey(FIELD)) continue;
 
                             showFieldList.Add(FIELD);
-                            GetHeader(FIELD);
+                            //GetHeader(FIELD);
                             var column = dataGridView1.Columns[FIELD];
                             if (column != null && (ss[1].ToUpper() == "R" || ReadOnlyFields.ContainsKey(FIELD)))
                             {
@@ -420,7 +421,7 @@ namespace V6Controls.Forms.Viewer
                             string FIELD = field.Trim().ToUpper();
                             if (HideFields.ContainsKey(FIELD)) continue;
                             showFieldList.Add(FIELD);
-                            GetHeader(FIELD);
+                            //GetHeader(FIELD);
                             
                             if (ReadOnlyFields.ContainsKey(FIELD))
                             {
@@ -439,14 +440,14 @@ namespace V6Controls.Forms.Viewer
             }
         }
 
-        private void GetHeader(string field)
-        {
-            var column = dataGridView1.Columns[field];
-            if (column != null)
-            {
-                column.HeaderText = CorpLan2.GetFieldHeader(field);
-            }
-        }
+        //private void GetHeader(string field)
+        //{
+        //    var column = dataGridView1.Columns[field];
+        //    if (column != null)
+        //    {
+        //        column.HeaderText = CorpLan2.GetFieldHeader(field);
+        //    }
+        //}
 
         public event Action<Keys> HotKeyAction;
         protected virtual void OnHotKeyAction(Keys keyData)
@@ -483,7 +484,7 @@ namespace V6Controls.Forms.Viewer
                             var UPDATE_FIELD = field.ToUpper();
                             var update_value = dataGridView1.CurrentRow.Cells[field].Value;
                             keys.Add(UPDATE_FIELD, update_value);
-                            delete_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
+                            delete_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value);
                         }
                         if (keys.Count > 0) DeleteData(keys, selectedRowIndex);
                     }
@@ -666,12 +667,12 @@ namespace V6Controls.Forms.Viewer
                 var UPDATE_FIELD = dataGridView1.Columns[columnIndex].DataPropertyName.ToUpper();
                 var update_value = row.Cells[columnIndex].Value;
                 updateData.Add(UPDATE_FIELD, update_value);
-                update_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
+                update_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value);
                 foreach (string FIELD in updateFieldList)
                 {
                     update_value = row.Cells[FIELD].Value;
                     updateData[FIELD] = update_value;
-                    update_info += FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
+                    update_info += FIELD + " = " + ObjectAndString.ObjectToString(update_value);
                 }
 
                 var result = V6BusinessHelper.UpdateSimple(_tableName, updateData, keys);
@@ -775,7 +776,7 @@ namespace V6Controls.Forms.Viewer
                         if (field.Contains(":"))
                         {
                             var ss = field.Split(':');
-                            DataGridViewColumn column = null;
+                            DataGridViewColumn column = dataGridView1.Columns[ss[0]];
                             
                             if (ss.Length > 2)
                             {
@@ -787,7 +788,7 @@ namespace V6Controls.Forms.Viewer
                                 }
                                 else if (NM_IP.StartsWith("C")) // CVvar
                                 {
-                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6VvarDataGridViewColumn), null);
+                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6VvarDataGridViewColumn), NM_IP);
                                     ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
                                 }
                                 else if (NM_IP.StartsWith("D0")) // ColorDateTime

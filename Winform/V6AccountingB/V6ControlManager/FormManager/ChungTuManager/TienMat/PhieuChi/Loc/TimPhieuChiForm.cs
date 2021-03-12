@@ -13,17 +13,18 @@ using V6Init;
 using V6SqlConnect;
 using V6Structs;
 using V6Tools;
-using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
 {
     public partial class TimPhieuChiForm : V6Form
     {
-        private readonly PhieuChiControl _formChungTu;
+        public DataTable _formChungTu_AM;
+        public DataTable _formChungTu_AD;
+        public DataTable _formChungTu_AD2;
+        private V6Mode _mode;
         private readonly V6Invoice51 _invoice;
-        private LocKetQuaPhieuChi _locKetQua;
-        //private bool __ready = false;
+        public LocKetQuaPhieuChi _locKetQua;
         private bool _viewMode;
         private List<string> _orderListAD2;
 
@@ -43,11 +44,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             InitializeComponent();
         }
 
-        public TimPhieuChiForm(PhieuChiControl formChungTu, List<string> orderListAD2)
+        public TimPhieuChiForm(V6Invoice51 invoice, V6Mode mode, List<string> orderListAD2)
         {
             InitializeComponent();
-            _formChungTu = formChungTu;
-            _invoice = _formChungTu.Invoice;
+            _mode = mode;
+            _invoice = invoice;
             _orderListAD2 = orderListAD2;
             MyInit();
         }
@@ -58,6 +59,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             {
                 dateNgayCt1.SetValue(V6Setting.M_ngay_ct1);
                 dateNgayCt2.SetValue(V6Setting.M_ngay_ct2);
+                MyInit_ThongTin();
                 MyInit_TTCT();
                 InitTuyChon();
                 InitLocKetQua();
@@ -90,7 +92,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         {
             try
             {
-                _locKetQua = new LocKetQuaPhieuChi(_invoice, _formChungTu.AM, _formChungTu.AD)
+                _locKetQua = new LocKetQuaPhieuChi(_invoice, _formChungTu_AM, _formChungTu_AD)
                 {
                     Dock = DockStyle.Fill,
                     Visible = false
@@ -109,8 +111,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         {
             try
             {
-                _formChungTu.LoadAD(sttrec);
-                _locKetQua.SetAD(_formChungTu.AD, _formChungTu.AD2, _orderListAD2);
+                _formChungTu_AD = _invoice.LoadAD(sttrec);
+                _formChungTu_AD2 = _invoice.LoadAD2(sttrec);
+                _locKetQua.SetAD(_formChungTu_AD, _formChungTu_AD2, _orderListAD2);
             }
             catch (Exception ex)
             {
@@ -122,7 +125,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         {
             ShowLocKetQua();
             _locKetQua.SetAM(tempAM) ;
-            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, _formChungTu.MA_NT);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, V6Options.M_MA_NT0);
         }
 
         private void ShowLocKetQua()
@@ -153,16 +156,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             {
                 if (_locKetQua != null && _locKetQua.Visible)
                 {
-                    _formChungTu.AM = tempAM;
-                    _formChungTu.ResetADTables();
-                    _formChungTu.ViewInvoice(_locKetQua.CurrentSttRec, V6Mode.View);
-                    Hide();
+                    _formChungTu_AM = tempAM;
+                    DialogResult = DialogResult.OK;
                 }
                 else
                 {
                     SearchThread();
                 }
-
             }
             catch (Exception ex)
             {
@@ -215,8 +215,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "start");
         }
 
-
-        
         private void SearchThread()
         {
             //ReadyFor
@@ -319,8 +317,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             flagSearchFinish = true;
         }
 
-          
-        
+
         public string GetFilterSql_ThoiGian(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
@@ -605,7 +602,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
 
         private void Huy()
         {
-            if (!_viewMode && _locKetQua != null && _locKetQua.Visible)
+            if (_mode == V6Mode.Select)
+            {
+                DialogResult = DialogResult.Cancel;
+            }
+            else if (!_viewMode && _locKetQua != null && _locKetQua.Visible)
             {
                 HideLocKetQua();
             }
@@ -627,7 +628,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
 
         private void TimHoaDonForm_Load(object sender, EventArgs e)
         {
-            if (_formChungTu.AM != null && _viewMode)
+            if (_formChungTu_AM != null && _viewMode)
             {
                 ShowLocKetQua();
             }
@@ -635,6 +636,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             {
                 HideLocKetQua();
             }
+            InitTuyChon();
             InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
@@ -661,12 +663,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             Focus1();
         }
 
-        private void TimPhieuChiForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            Hide();
-        }
-
         public void UpdateAM(string sttRec, IDictionary<string, object> data, V6Mode mode)
         {
             try
@@ -690,7 +686,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             {
                 this.WriteExLog(GetType() + ".UpdateAM", ex);
             }
-            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, _formChungTu.MA_NT);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, V6Options.M_MA_NT0);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             InitializeComponent();
             _invoice = invoice;
+            _aldmConfig = ConfigManager.GetAldmConfig("SEARCH_" + _invoice.Mact);
             MyInitBase(dataGridView1, dataGridView2, AM, AD);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, _invoice.Mact);
         }
