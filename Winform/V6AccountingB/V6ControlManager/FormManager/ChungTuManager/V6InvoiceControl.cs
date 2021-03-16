@@ -5926,5 +5926,28 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 ma_kho_column.InitFilter = filter;
             }
         }
+
+        /// <summary>
+        /// Nếu ma_vt.GIA_TON == 5 gán sl_td1 = ma_vt.sl_td3, gia_nt = ma_vt.sl_td1.
+        /// </summary>
+        /// <param name="txt_ma_vt"></param>
+        /// <param name="txt_sl_td1"></param>
+        /// <param name="txt_gia_nt"></param>
+        public void GetGiaVonCoDinh(V6VvarTextBox txt_ma_vt, V6NumberTextBox txt_sl_td1, V6NumberTextBox txt_gia_nt)
+        {
+            try
+            {
+                if (txt_ma_vt.GIA_TON != 5) return;
+                if (_maNt != _mMaNt0) txt_sl_td1.Value = ObjectAndString.ObjectToDecimal(txt_ma_vt.Data["SL_TD3"]);
+                else txt_sl_td1.Value = 1;
+
+                txt_gia_nt.Value = ObjectAndString.ObjectToDecimal(txt_ma_vt.Data["SL_TD1"]);
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
     }
 }

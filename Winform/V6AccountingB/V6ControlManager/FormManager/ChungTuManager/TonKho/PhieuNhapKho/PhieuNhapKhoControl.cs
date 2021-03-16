@@ -1224,7 +1224,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             if ( _maKhoI.Text !="")
                 XuLyLayThongTinKhiChonMaKhoI();
             //}
-            GetGiaVonCoDinh();
+            //GetGiaVonCoDinh();
+            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt);
             GetTon13();
             TinhTienVon1();
         }
@@ -1325,24 +1326,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 this.WriteExLog(GetType() + ".XuLyThongTinKhiChonMaVitri " + _sttRec, ex);
             }
         }
-
-        //public void GetGiaVonCoDinh()
-        //{
-        //    try
-        //    {
-        //        if (_maVt.GIA_TON != 5) return;
-        //        if (_maNt != _mMaNt0) _sl_td1.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD3"]);
-        //        else _sl_td1.Value = 1;
-
-        //        _gia_nt01.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD1"]);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-        //    }
-        //}
-
+        
         private DataTable _dataViTri;
 
         public void GetTon13()
@@ -1520,8 +1504,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             try
             {
                 _tienNt0.Value = V6BusinessHelper.Vround(_soLuong1.Value * _gia_nt01.Value, M_ROUND_NT);
-                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * _sl_td1.Value), M_ROUND);
-                else _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
+                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * _sl_td1.Value, M_ROUND);
+                else _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * txtTyGia.Value, M_ROUND);
 
                 if (_maNt == _mMaNt0)
                 {
@@ -1588,8 +1572,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 }
                 else
                 {
-                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * _sl_td1.Value), M_ROUND);
-                    else _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * _sl_td1.Value, M_ROUND);
+                    else _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * txtTyGia.Value, M_ROUND);
                 }
 
                 _tien.Value = _tien0.Value;
@@ -1597,8 +1581,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
 
 
-                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia01.Value = V6BusinessHelper.Vround((_gia_nt01.Value * _sl_td1.Value), M_ROUND);
-                else _gia01.Value = V6BusinessHelper.Vround((_gia_nt01.Value * txtTyGia.Value), M_ROUND_GIA_NT);
+                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia01.Value = V6BusinessHelper.Vround(_gia_nt01.Value * _sl_td1.Value, M_ROUND);
+                else _gia01.Value = V6BusinessHelper.Vround(_gia_nt01.Value * txtTyGia.Value, M_ROUND_GIA_NT);
 
                 if (_maNt == _mMaNt0)
                 {

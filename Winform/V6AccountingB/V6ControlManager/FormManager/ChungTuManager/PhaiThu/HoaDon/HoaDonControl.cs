@@ -2841,7 +2841,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             //}
 
             GetGia();
-            GetGiaVonCoDinh();
+            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt);
             GetTon13();
             TinhTienNt2(null);
             if (_maVt.VITRI_YN)
@@ -3532,22 +3532,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        public void GetGiaVonCoDinh()
-        {
-            try
-            {
-                if (_maVt.GIA_TON != 5) return;
-                if (_maNt != _mMaNt0) _sl_td1.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD3"]);
-                else _sl_td1.Value = 1;
-
-                _gia_nt.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD1"]);
-
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
+        
 
         private void XuLyThayDoiDvt1()
         {
@@ -3693,16 +3678,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             TinhGiaNt();
 
-            _tienNt.Value = V6BusinessHelper.Vround((_soLuong.Value * _gia_nt.Value), M_ROUND_NT);
-            
+            _tienNt.Value = V6BusinessHelper.Vround(_soLuong.Value * _gia_nt.Value, M_ROUND_NT);
             if (_maNt == _mMaNt0)
             {
                 _tien.Value = _tienNt.Value;
             }
             else
             {
-                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * _sl_td1.Value), M_ROUND);
-                else _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
+                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * _sl_td1.Value, M_ROUND);
+                else _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
             }
         }
        
@@ -3715,13 +3699,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             else
             {
-                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * _sl_td1.Value), M_ROUND);
-                else _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
+                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * _sl_td1.Value, M_ROUND);
+                else _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
             }
 
             if (_soLuong.Value != 0)
             {
-                _gia_nt.Value = V6BusinessHelper.Vround((_tienNt.Value / _soLuong.Value), M_ROUND_GIA_NT);
+                if (_maVt.GIA_TON != 5)
+                {
+                    _gia_nt.Value = V6BusinessHelper.Vround(_tienNt.Value / _soLuong.Value, M_ROUND_GIA_NT);
+                }
+                
                 
                 if (_maNt == _mMaNt0)
                 {
@@ -3729,7 +3717,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
-                    _gia.Value = V6BusinessHelper.Vround((_tien.Value / _soLuong.Value), M_ROUND_GIA);
+                    _gia.Value = V6BusinessHelper.Vround(_tien.Value / _soLuong.Value, M_ROUND_GIA);
                 }
             }
         }

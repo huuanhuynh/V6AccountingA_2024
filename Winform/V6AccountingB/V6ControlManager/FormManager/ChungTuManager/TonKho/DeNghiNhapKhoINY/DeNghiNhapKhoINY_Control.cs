@@ -138,9 +138,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         #region ==== Khởi tạo Detail Form ====
         private V6ColorTextBox _dvt, txtPTEN_KHC, txtPONG_BAC, txtPDIEN_THOAIC;
         private V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho, _maKhoI, _tkVt, _maLo, _ma_thue_i, txtPMA_KHC;
-        private V6NumberTextBox _giaNt, _giaNt01, _tien0, _tienNt0, _gia0, _gia01, _gia, _gia_Nt0,
+        private V6NumberTextBox _gia_nt, _gia_nt01, _tien0, _tienNt0, _gia0, _gia01, _gia, _gia_Nt0,
             _ck, _ckNt, _pt_cki, _thue, _thue_nt, _thue_suat_i;
-        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _ton13, _ton13Qd, _tienNt, _tien, _mau_bc22;
+        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _ton13, _ton13Qd, _tienNt, _tien, _mau_bc22, _sl_td1;
         private V6NumberTextBox _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg, _tien_vcNt, _tien_vc, _cpNt, _cp;
         private V6DateTimeColor _hanSd;
         private V6ColorTextBox _so_ct022,_so_seri022,_ten_kh22, _dia_chi22,_ma_so_thue22;
@@ -364,11 +364,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         {
 
                         };
+                        _soLuong1.Leave += delegate
+                        {
+                            SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
+                        };
                         break;
                     //_soLuong1.Tag = "hide";
                     case "SO_LUONG":
                         _soLuong = (V6NumberTextBox)control;
                         _soLuong.Tag = "hide";
+                        break;
+                    case "SL_TD1":
+                        _sl_td1 = control as V6NumberTextBox;
                         break;
                     case "HE_SO1T":
                         _he_so1T = (V6NumberTextBox)control;
@@ -416,7 +423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         break;
                         break;
                     case "GIA_NT":
-                        _giaNt = (V6NumberTextBox)control;
+                        _gia_nt = (V6NumberTextBox)control;
                         break;
                     case "GIA":
                         _gia = (V6NumberTextBox)control;
@@ -432,8 +439,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         _gia_Nt0 = (V6NumberTextBox)control;
                         break;
                     case "GIA_NT01":
-                        _giaNt01 = (V6NumberTextBox)control;
-                        _giaNt01.V6LostFocus += GiaNt01_V6LostFocus;
+                        _gia_nt01 = (V6NumberTextBox)control;
+                        _gia_nt01.V6LostFocus += GiaNt01_V6LostFocus;
                         break;
                     case "TIEN":
                         _tien = (V6NumberTextBox)control;
@@ -454,7 +461,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                             _tienNt0.Tag = "disable";
                         }
                     
-                        _tienNt0.V6LostFocus += TienNt0_V6LostFocus;
+                        _tienNt0.V6LostFocus += delegate
+                        {
+                            TinhGiaNt();
+                            TinhTienVon_GiaVon();
+                        };
                         break;
                     case "TIEN0":
                         _tien0 = (V6NumberTextBox)control;
@@ -1104,16 +1115,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 if (_he_so1M.Value != 1) _he_so1M.Value = 1;
             }
         }
-
-        public void TienNt0_V6LostFocus(object sender)
-        {
-            TinhGiaNt();
-        }
         
         public void GiaNt01_V6LostFocus(object sender)
         {
             chkT_THUE_NT.Checked = false;
-            TinhTienNt0(_giaNt01);
+            TinhTienNt0(_gia_nt01);
             Tinh_thue_ct();
         }
         
@@ -1237,6 +1243,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             XuLyLayThongTinKhiChonMaVt();
             XuLyDonViTinhKhiChonMaVt(mavt);
             //  GetGia();
+            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt);
             TinhTienNt0();
             Tinh_thue_ct();
         }
@@ -1417,8 +1424,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         {
             try
             {
-                _tienNt0.Value = V6BusinessHelper.Vround((_soLuong1.Value * _giaNt01.Value), M_ROUND_NT);
-                _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
+                _tienNt0.Value = V6BusinessHelper.Vround(_soLuong1.Value * _gia_nt01.Value, M_ROUND_NT);
+                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * _sl_td1.Value, M_ROUND);
+                else _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * txtTyGia.Value, M_ROUND);
+
                 if (_maNt == _mMaNt0)
                 {
                     _tien0.Value = _tienNt0.Value;
@@ -1535,10 +1544,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             {
                 if (_soLuong1.Value != 0)
                 {
-                    _gia01.Value = V6BusinessHelper.Vround((_giaNt01.Value * txtTyGia.Value), M_ROUND_GIA_NT);
+                    _gia01.Value = V6BusinessHelper.Vround((_gia_nt01.Value * txtTyGia.Value), M_ROUND_GIA_NT);
                     if (_maNt == _mMaNt0)
                     {
-                        _gia01.Value = _giaNt01.Value;
+                        _gia01.Value = _gia_nt01.Value;
                     }
                 }
 
@@ -1547,13 +1556,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                     _gia_Nt0.Value = V6BusinessHelper.Vround((_tienNt0.Value / _soLuong.Value),M_ROUND_GIA_NT);
                     _gia0.Value = V6BusinessHelper.Vround((_tien0.Value / _soLuong.Value), M_ROUND_GIA);
 
-                    _giaNt.Value = V6BusinessHelper.Vround((_tienNt.Value / _soLuong.Value), M_ROUND_GIA_NT);
+                    _gia_nt.Value = V6BusinessHelper.Vround((_tienNt.Value / _soLuong.Value), M_ROUND_GIA_NT);
                     _gia.Value = V6BusinessHelper.Vround((_tien.Value / _soLuong.Value), M_ROUND_GIA);
 
                     if (_maNt == _mMaNt0)
                     {
                         _gia0.Value = _gia_Nt0.Value;
-                        _gia.Value = _giaNt.Value;
+                        _gia.Value = _gia_nt.Value;
                     }
                 }
             }
@@ -1562,7 +1571,60 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-               #endregion methods
+
+        public void TinhTienVon_GiaVon()
+        {
+            try
+            {
+                _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
+                if (_maNt == _mMaNt0)
+                {
+                    _tien0.Value = _tienNt0.Value;
+                }
+                else
+                {
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * _sl_td1.Value, M_ROUND);
+                    else _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * txtTyGia.Value, M_ROUND);
+                }
+
+                _tien.Value = _tien0.Value;
+                _tienNt.Value = _tienNt0.Value;
+
+
+
+                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia01.Value = V6BusinessHelper.Vround(_gia_nt01.Value * _sl_td1.Value, M_ROUND);
+                else _gia01.Value = V6BusinessHelper.Vround(_gia_nt01.Value * txtTyGia.Value, M_ROUND_GIA_NT);
+
+                if (_maNt == _mMaNt0)
+                {
+                    _gia01.Value = _gia_nt01.Value;
+                }
+
+                if (_soLuong.Value != 0)
+                {
+                    if (_he_so1T.Value == 1 && _he_so1M.Value == 1)
+                    {
+                        _gia_nt.Value = _gia_nt01.Value;
+                        _gia.Value = _gia01.Value;
+                    }
+                    else
+                    {
+                        _gia_nt.Value = V6BusinessHelper.Vround(_tienNt.Value / _soLuong.Value, M_ROUND_GIA_NT);
+                        _gia.Value = V6BusinessHelper.Vround(_tien.Value / _soLuong.Value, M_ROUND_GIA);
+                    }
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        _gia.Value = _gia_nt.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+        #endregion methods
         
 
         #endregion detail events
@@ -2050,6 +2112,122 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
 
         #region ==== Tính toán hóa đơn ====
+
+        public override void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSuaTien)
+        {
+            try
+            {
+                var ty_gia = txtTyGia.Value;
+                var ty_gia_von = txtTyGia.Value;
+
+
+                // Tuanmh 25/05/2017
+                if (ty_gia == 0 || chkSuaTien.Checked) return;
+
+                {
+                    foreach (DataRow row in AD.Rows)
+                    {
+                        string ma_vt = row["MA_VT"].ToString().Trim();
+                        V6VvarTextBox vvar_ma_vt = new V6VvarTextBox() { VVar = "MA_VT" };
+                        vvar_ma_vt.Text = ma_vt;
+                        if (vvar_ma_vt.Data != null)
+                        {
+                            decimal ma_vt_sl_td3 = ObjectAndString.ObjectToDecimal(vvar_ma_vt.Data["SL_TD3"]);
+                            if (vvar_ma_vt.GIA_TON == 5 && ma_vt_sl_td3 != 0) ty_gia_von = ma_vt_sl_td3;
+                        }
+
+                        FixTyGia(AD, row, ty_gia_von, "Tien", "Tien_nt", M_ROUND);
+                        FixTyGia(AD, row, ty_gia_von, "Tien0", "TIEN_NT0", M_ROUND);
+                        FixTyGia(AD, row, ty_gia_von, "GIA", "GIA_NT", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia_von, "GIA01", "GIA_NT01", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia_von, "GIA1", "GIA_NT1", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia_von, "GIA0", "GIA_NT0", M_ROUND_GIA);
+
+
+                        FixTyGia(AD, row, ty_gia, "Tien2", "Tien_nt2", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "Tien1", "Tien1_nt", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "Tien_vc", "Tien_vc_nt", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "Thue", "Thue_nt", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "CP", "CP_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "GIA2", "GIA_NT2", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia, "GIA21", "GIA_NT21", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia, "NK", "NK_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "CK", "CK_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "GG", "GG_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "TT", "TT_NT", M_ROUND);
+
+                        FixTyGia(AD, row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
+                    HD_Detail detailControl = GetControlByName("detail1") as HD_Detail;
+                    if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        if (_maVt.Data != null)
+                        {
+                            if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) ty_gia_von = _sl_td1.Value;
+                        }
+
+                        FixTyGiaDetail(AD, detailControl, ty_gia_von, "Tien", "Tien_nt", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia_von, "Tien0", "TIEN_NT0", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia_von, "GIA", "GIA_NT", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia_von, "GIA01", "GIA_NT01", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia_von, "GIA1", "GIA_NT1", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia_von, "GIA0", "GIA_NT0", M_ROUND_GIA);
+
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Tien2", "Tien_nt2", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Tien1", "Tien1_nt", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Tien_vc", "Tien_vc_nt", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Thue", "Thue_nt", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "CP", "CP_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GIA2", "GIA_NT2", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GIA21", "GIA_NT21", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "NK", "NK_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "CK", "CK_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GG", "GG_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "TT", "TT_NT", M_ROUND);
+
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
+                }
+
+                if (AD2 != null)
+                {
+                    foreach (DataRow row in AD2.Rows)
+                    {
+                        FixTyGia(AD2, row, ty_gia, "t_tien", "t_tien_nt", M_ROUND);
+                        FixTyGia(AD2, row, ty_gia, "t_thue", "t_thue_nt", M_ROUND);
+                        FixTyGia(AD2, row, ty_gia, "t_tt", "t_tt_nt", M_ROUND);
+                    }
+                    HD_Detail detailControl = GetControlByName("detail2") as HD_Detail;
+                    if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        FixTyGiaDetail(AD2, detailControl, ty_gia, "t_tien", "t_tien_nt", M_ROUND);
+                        FixTyGiaDetail(AD2, detailControl, ty_gia, "t_thue", "t_thue_nt", M_ROUND);
+                        FixTyGiaDetail(AD2, detailControl, ty_gia, "t_tt", "t_tt_nt", M_ROUND);
+                    }
+                }
+
+                if (AD3 != null)
+                {
+                    foreach (DataRow row in AD3.Rows)
+                    {
+                        FixTyGia(AD3, row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGia(AD3, row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
+                    HD_Detail detailControl = GetControlByName("detail3") as HD_Detail;
+                    if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        FixTyGiaDetail(AD3, detailControl, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGiaDetail(AD3, detailControl, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
         
         public void TinhTongValues()
         {

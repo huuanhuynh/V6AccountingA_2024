@@ -15,6 +15,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=5156F5A7_002D9F81_002D4B41_002D83B8_002D18BF669E5DC6_002Fd_003AFormManager_002Fd_003AChungTuManager_002Fd_003APhaiThu_002Fd_003AHoaDon_002Ff_003AHoaDonControl_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=5156F5A7_002D9F81_002D4B41_002D83B8_002D18BF669E5DC6_002Fd_003AFormManager_002Fd_003AChungTuManager_002Fd_003APhaiTra_002Fd_003APhieuNhapKhau_002Ff_003APhieuNhapKhauControl_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=5156F5A7_002D9F81_002D4B41_002D83B8_002D18BF669E5DC6_002Fd_003AFormManager_002Fd_003AChungTuManager_002Fd_003APhaiTra_002Fd_003APhieuNhapMua_002Ff_003APhieuNhapMuaControl_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=5156F5A7_002D9F81_002D4B41_002D83B8_002D18BF669E5DC6_002Fd_003AFormManager_002Fd_003AChungTuManager_002Fd_003ATonKho_002Fd_003APhieuXuatKho_002Ff_003APhieuXuatKhoControl_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:Boolean x:Key="/Default/CodeStyle/LiveTemplatesUseVar/PreferVar/@EntryValue">False</s:Boolean>
 	
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
