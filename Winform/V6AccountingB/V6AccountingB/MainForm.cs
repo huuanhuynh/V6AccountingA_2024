@@ -191,6 +191,7 @@ namespace V6AccountingB
                 timer1.Stop();
                 V6ControlFormHelper.CreateV6TopMessageForm();
                 V6ControlsHelper.CreateFlyLabelForm();
+                V6ControlsHelper.CreateFlyTextForm();
                 WindowState = FormWindowState.Maximized;
                 Focus();
                 timer2.Start();

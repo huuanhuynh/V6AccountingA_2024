@@ -1326,22 +1326,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
-        public void GetGiaVonCoDinh()
-        {
-            try
-            {
-                if (_maVt.GIA_TON != 5) return;
-                if (_maNt != _mMaNt0) _sl_td1.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD3"]);
-                else _sl_td1.Value = 1;
+        //public void GetGiaVonCoDinh()
+        //{
+        //    try
+        //    {
+        //        if (_maVt.GIA_TON != 5) return;
+        //        if (_maNt != _mMaNt0) _sl_td1.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD3"]);
+        //        else _sl_td1.Value = 1;
 
-                _gia_nt01.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD1"]);
+        //        _gia_nt01.Value = ObjectAndString.ObjectToDecimal(_maVt.Data["SL_TD1"]);
 
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+        //    }
+        //}
 
         private DataTable _dataViTri;
 

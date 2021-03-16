@@ -156,6 +156,12 @@
     <Compile Include="Forms\Editor\DicEditForm.designer.cs">
       <DependentUpon>DicEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FlyTextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FlyTextForm.Designer.cs">
+      <DependentUpon>FlyTextForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RichTextEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1688,6 +1694,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.resx">
       <DependentUpon>VatTuAddEditForm_A2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FlyTextForm.resx">
+      <DependentUpon>FlyTextForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RichTextEditorForm.resx">
       <DependentUpon>RichTextEditorForm.cs</DependentUpon>

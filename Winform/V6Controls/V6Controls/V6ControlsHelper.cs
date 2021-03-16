@@ -311,6 +311,7 @@ namespace V6Controls
         }
 
         public static FlyLabelForm FlyLabel_Form;
+        public static FlyTextForm FlyText_Form;
         /// <summary>
         /// Tạo sẵn form nổi vvar name.
         /// </summary>
@@ -323,6 +324,16 @@ namespace V6Controls
                 FlyLabel_Form.Show();
             }
         }
+        public static void CreateFlyTextForm()
+        {
+            if (FlyText_Form == null)
+            {
+                FlyText_Form = new FlyTextForm();
+                FlyText_Form.Top = -FlyText_Form.Height;
+                FlyText_Form.Show();
+            }
+        }
+
         /// <summary>
         /// Hiển thị một form TopMost chứa thông báo, (Không ảnh hưởng đến focus đang làm việc).
         /// </summary>
@@ -344,6 +355,21 @@ namespace V6Controls
                 {
                     FlyLabel_Form.Message = ObjectAndString.ObjectToString(owner.Data[sss[0]]);
                 }
+            }
+        }
+        
+        public static void ShowColorText(V6ColorTextBox txtBox)
+        {
+            if (FlyText_Form == null) return;
+            FlyText_Form.TargetControl = txtBox;
+            
+            if (TextRenderer.MeasureText(txtBox.Text, txtBox.Font).Width > txtBox.Width)
+            {
+                FlyText_Form.Message = txtBox.Text;
+            }
+            else
+            {
+                FlyText_Form.StopShow();
             }
         }
         

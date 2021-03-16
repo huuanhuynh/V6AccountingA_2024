@@ -121,6 +121,9 @@ namespace V6Controls
                 return false;
             }
         }
+        /// <summary>
+        /// Khi GIA_TON = 5, _gia_nt.Value = _maVt.Data["SL_TD1"]
+        /// </summary>
         public int GIA_TON
         {
             get
@@ -306,6 +309,14 @@ namespace V6Controls
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        private bool _showText = false;
+        /// <summary>
+        /// Hiển thị tên khi nhảy vào.
+        /// </summary>
+        [Category("V6")]
+        [DefaultValue(false)]
+        [Description("Bật hiển thị text khi gõ quá nhiều.")]
+        public bool ShowText { get { return _showText; } set { _showText = value; } }
         void V6ColorTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (ReadOnly || !Enabled)
@@ -343,6 +354,11 @@ namespace V6Controls
                         Text = Text.Substring(0, TextLength - 1) + c;
                     }
                 }
+            }
+
+            //if (_showText)
+            {
+                V6ControlsHelper.ShowColorText(this);
             }
         }
 
@@ -838,6 +854,10 @@ namespace V6Controls
         {
             gotfocustext = Text;
             Do_Enter_ColorEffect();
+            //if (_showText)
+            {
+                V6ControlsHelper.ShowColorText(this);
+            }
         }
 
         protected virtual void V6ColorTextBox_LostFocus(object sender, EventArgs e)

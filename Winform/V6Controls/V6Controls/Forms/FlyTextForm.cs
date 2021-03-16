@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace V6Controls.Forms
 {
-    public partial class FlyLabelForm : Form
+    public partial class FlyTextForm : Form
     {
         public string Message {
             get { return lblMessage.Text; }
@@ -25,7 +25,7 @@ namespace V6Controls.Forms
 
         public Control TargetControl { get; set; }
 
-        public FlyLabelForm()
+        public FlyTextForm()
         {
             InitializeComponent();
             MoveToTargetControl();
@@ -35,7 +35,7 @@ namespace V6Controls.Forms
         /// Khởi tạo hộp thông báo.
         /// </summary>
         /// <param name="text"></param>
-        public FlyLabelForm(string text)
+        public FlyTextForm(string text)
         {
             InitializeComponent();
             lblMessage.Text = text;

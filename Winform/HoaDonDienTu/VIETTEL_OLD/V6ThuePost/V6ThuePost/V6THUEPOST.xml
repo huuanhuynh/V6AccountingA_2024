@@ -94,7 +94,7 @@
 	<SummarizeInfo	Field='totalAmountWithTax'		FieldV6='T_TT'	Type='Field'/>
 	<SummarizeInfo	Field='totalAmountWithTaxInWords'		FieldV6='t_tt' Type='Field' DataType='N2CMANT'/>
 	<SummarizeInfo	Field='discountAmount'		FieldV6='T_CK'	Type='Field'/>
-	<SummarizeInfo	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field'/>
+	<SummarizeInfo	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field' Note='-2: không thuế-1: không kê khai tính/nộp thuế 0: 0% 5: 5% 10: 10%'/>
 	
 	
 	<TaxBreakdowns	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field'/>

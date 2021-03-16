@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Forms
 {
-    partial class FlyLabelForm
+    partial class FlyTextForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlyLabelForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlyTextForm));
             this.lblMessage = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblHole = new System.Windows.Forms.Label();
@@ -67,7 +67,7 @@
             this.lblHole.TabIndex = 1;
             this.lblHole.Text = "label1";
             // 
-            // FlyLabelForm
+            // FlyTextForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -81,7 +81,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(0, 15);
-            this.Name = "FlyLabelForm";
+            this.Name = "FlyTextForm";
             this.Opacity = 0D;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
