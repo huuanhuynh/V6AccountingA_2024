@@ -84,7 +84,7 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        internal V6InvoiceBase(string maCt)
+        public V6InvoiceBase(string maCt)
         {
             Mact = maCt;
             CodeMact = "00" + maCt;

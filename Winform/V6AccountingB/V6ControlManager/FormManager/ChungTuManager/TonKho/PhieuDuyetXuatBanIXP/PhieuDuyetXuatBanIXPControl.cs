@@ -332,6 +332,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                         };
                         _soLuong1.Leave += delegate
                         {
+                            if (!detail1.IsAddOrEdit) return;
                             SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
                         };
                         if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
@@ -519,6 +520,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                         {
                             _gia_nt.V6LostFocus += delegate
                             {
+                                TinhGia_Theo_GiaNt();
                                 TinhTienVon();
                             };
                             if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
@@ -1145,6 +1147,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 GetGia();
                 GetTon13();
                 TinhTienNt2();
+
+                TinhGia_Theo_GiaNt();
+                TinhTienVon();
             }
             catch (Exception ex)
             {
@@ -1925,6 +1930,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".TinhVanChuyenG " + _sttRec, ex);
+            }
+        }
+
+        public void TinhGia_Theo_GiaNt()
+        {
+            try
+            {
+                if (_maNt == _mMaNt0)
+                {
+                    _gia.Value = _gia_nt.Value;
+                }
+                else
+                {
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia.Value = V6BusinessHelper.Vround(_gia_nt.Value * _sl_td1.Value, M_ROUND);
+                    else _gia.Value = V6BusinessHelper.Vround(_gia_nt.Value * txtTyGia.Value, M_ROUND_GIA);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 

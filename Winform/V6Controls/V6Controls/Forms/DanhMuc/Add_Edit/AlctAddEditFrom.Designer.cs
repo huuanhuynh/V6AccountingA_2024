@@ -71,10 +71,11 @@
             this.v6ColorTextBox7 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
             this.tabThongTinNgamDinh = new System.Windows.Forms.TabPage();
+            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
+            this.txtResetCopy = new V6Controls.V6ColorTextBox();
             this.txtTYPE_VIEW = new V6Controls.V6VvarTextBox();
             this.lblTYPE_VIEW = new System.Windows.Forms.Label();
             this.lblResetCopy = new System.Windows.Forms.Label();
-            this.txtResetCopy = new V6Controls.V6ColorTextBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
             this.lblAMSELECTMORE = new System.Windows.Forms.Label();
             this.lblADSELECTMORE = new System.Windows.Forms.Label();
@@ -221,7 +222,6 @@
             this.label72 = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
-            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
@@ -935,6 +935,36 @@
             this.tabThongTinNgamDinh.TabIndex = 1;
             this.tabThongTinNgamDinh.Text = "Thông tin ngầm định";
             // 
+            // dicEditButton1
+            // 
+            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.Location = new System.Drawing.Point(713, 234);
+            this.dicEditButton1.Name = "dicEditButton1";
+            this.dicEditButton1.ReferenceControl = this.txtResetCopy;
+            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
+            this.dicEditButton1.TabIndex = 151;
+            // 
+            // txtResetCopy
+            // 
+            this.txtResetCopy.AccessibleName = "M_MA_HD";
+            this.txtResetCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtResetCopy.BackColor = System.Drawing.Color.White;
+            this.txtResetCopy.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtResetCopy.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtResetCopy.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtResetCopy.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtResetCopy.GrayText = "AM:field1,field2...;AD:field1,...";
+            this.txtResetCopy.HoverColor = System.Drawing.Color.Yellow;
+            this.txtResetCopy.LeaveColor = System.Drawing.Color.White;
+            this.txtResetCopy.Location = new System.Drawing.Point(196, 234);
+            this.txtResetCopy.Margin = new System.Windows.Forms.Padding(4);
+            this.txtResetCopy.Name = "txtResetCopy";
+            this.txtResetCopy.Size = new System.Drawing.Size(517, 23);
+            this.txtResetCopy.TabIndex = 21;
+            this.toolTipV6FormControl.SetToolTip(this.txtResetCopy, "Các trường dữ liệu reset về rỗng khi copy.");
+            this.txtResetCopy.Visible = false;
+            // 
             // txtTYPE_VIEW
             // 
             this.txtTYPE_VIEW.AccessibleName = "TYPE_VIEW";
@@ -976,27 +1006,6 @@
             this.lblResetCopy.TabIndex = 20;
             this.lblResetCopy.Text = "Reset khi copy";
             this.lblResetCopy.Visible = false;
-            // 
-            // txtResetCopy
-            // 
-            this.txtResetCopy.AccessibleName = "M_MA_HD";
-            this.txtResetCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtResetCopy.BackColor = System.Drawing.Color.White;
-            this.txtResetCopy.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtResetCopy.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtResetCopy.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtResetCopy.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtResetCopy.GrayText = "AM:field1,field2...;AD:field1,...";
-            this.txtResetCopy.HoverColor = System.Drawing.Color.Yellow;
-            this.txtResetCopy.LeaveColor = System.Drawing.Color.White;
-            this.txtResetCopy.Location = new System.Drawing.Point(196, 234);
-            this.txtResetCopy.Margin = new System.Windows.Forms.Padding(4);
-            this.txtResetCopy.Name = "txtResetCopy";
-            this.txtResetCopy.Size = new System.Drawing.Size(517, 23);
-            this.txtResetCopy.TabIndex = 21;
-            this.toolTipV6FormControl.SetToolTip(this.txtResetCopy, "Các trường dữ liệu reset về rỗng khi copy.");
-            this.txtResetCopy.Visible = false;
             // 
             // cboKieuPost
             // 
@@ -1656,6 +1665,7 @@
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
+            this.v6NumberTextBox1.LimitCharacters = "0;1;2;3";
             this.v6NumberTextBox1.Location = new System.Drawing.Point(598, 80);
             this.v6NumberTextBox1.Margin = new System.Windows.Forms.Padding(5);
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
@@ -3209,15 +3219,6 @@
             this.label74.Size = new System.Drawing.Size(63, 17);
             this.label74.TabIndex = 90;
             this.label74.Text = "Mã ĐN 1";
-            // 
-            // dicEditButton1
-            // 
-            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
-            this.dicEditButton1.Location = new System.Drawing.Point(713, 234);
-            this.dicEditButton1.Name = "dicEditButton1";
-            this.dicEditButton1.ReferenceControl = this.txtResetCopy;
-            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
-            this.dicEditButton1.TabIndex = 151;
             // 
             // AlctAddEditFrom
             // 

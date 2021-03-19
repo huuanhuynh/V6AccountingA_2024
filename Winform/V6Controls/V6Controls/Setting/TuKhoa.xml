@@ -50,6 +50,7 @@
 	<TuKhoa TenTuKhoa='ObjectToFullDateTime' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='SetValue' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='Show' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ShowWarning' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ShowMainMessage' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	
 	<TuKhoa TenTuKhoa='Button' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

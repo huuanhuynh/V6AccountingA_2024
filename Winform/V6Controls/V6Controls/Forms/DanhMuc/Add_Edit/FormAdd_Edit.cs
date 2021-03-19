@@ -117,6 +117,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             MyInit2();
         }
 
+        public void InitFormControl()
+        {
+            InitFormControl(null);
+        }
+
         /// <summary>
         /// Hàm này cần được gọi sau khi khởi tạo new()
         /// </summary>

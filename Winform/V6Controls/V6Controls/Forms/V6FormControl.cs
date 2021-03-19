@@ -112,7 +112,10 @@ namespace V6Controls.Forms
 
         public void LoadSelectedCellLocation(DataGridView dataGridView1, int saveIndex = 0)
         {
-            V6ControlFormHelper.SetGridviewCurrentCellByIndex(dataGridView1, _rowIndex[saveIndex], _cellIndex[saveIndex], this);
+            if (saveIndex >= 0 && saveIndex < _rowIndex.Count)
+            {
+                V6ControlFormHelper.SetGridviewCurrentCellByIndex(dataGridView1, _rowIndex[saveIndex], _cellIndex[saveIndex], this);
+            }
         }
 
         private void V6FormControl_Load(object sender, EventArgs e)

@@ -264,6 +264,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         };
                         _soLuong1.Leave += delegate
                         {
+                            if (!detail1.IsAddOrEdit) return;
                             SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
                         };
 
@@ -573,7 +574,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         {
                             _gia_nt01.V6LostFocus += delegate
                             {
-                                TinhTienVon1(_gia_nt01);
+                                //TinhTienVon1(_gia_nt01);
+                                TinhTienVon_GiaVon();
                             };
                             if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
@@ -1224,10 +1226,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             if ( _maKhoI.Text !="")
                 XuLyLayThongTinKhiChonMaKhoI();
             //}
-            //GetGiaVonCoDinh();
-            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt);
+            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt01);
             GetTon13();
-            TinhTienVon1();
+            //TinhTienVon1();
+            TinhTienVon_GiaVon();
         }
 
         private void XuLyChonMaKhoI()

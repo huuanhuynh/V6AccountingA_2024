@@ -291,6 +291,19 @@ namespace V6Init
         private static float m_r_fontsize0 = 0f;
 
         /// <summary>
+        /// nếu không có cấu hình thì = 6
+        /// </summary>
+        public static string M_RULE_PASS
+        {
+            get
+            {
+                var s = GetValueNull("M_RULE_PASS");
+                if (string.IsNullOrEmpty(s)) s = "6";
+                return s;
+            }
+        }
+
+        /// <summary>
         /// Roun all-> Numeric 0,1,2...
         /// </summary>
         public static int M_ROUND
@@ -472,7 +485,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 0;
-                return Convert.ToInt32(GetValue("M_LOCK_TIME"));
+                return Convert.ToInt32("0" + GetValue("M_LOCK_TIME"));
             }
         }
 

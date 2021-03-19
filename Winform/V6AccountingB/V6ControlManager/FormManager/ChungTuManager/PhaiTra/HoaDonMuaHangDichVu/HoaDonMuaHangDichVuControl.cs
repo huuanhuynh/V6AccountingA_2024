@@ -186,6 +186,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                         {
                             _dvt.Leave += delegate
                             {
+                                if (!detail1.IsAddOrEdit) return;
                                 if (_dvt.Text.Trim() == "")
                                 {
                                     _soLuong.Enabled = false;

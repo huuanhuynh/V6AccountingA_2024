@@ -363,6 +363,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         };
                         _soLuong1.Leave += delegate
                         {
+                            if (!detail1.IsAddOrEdit) return;
                             SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
                         };
                         if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
@@ -593,7 +594,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _gia_nt01 = control as V6NumberTextBox;
                         if (_gia_nt01 != null)
                         {
-                            _gia_nt01.V6LostFocus += GiaNt01_V6LostFocus;
+                            _gia_nt01.V6LostFocus += delegate
+                            {
+                                chkT_THUE_NT.Checked = false;
+                                TinhTienNt0(_gia_nt01);
+                                TinhThueNhapKhau();
+                                Tinh_thue_ct();
+                            };
                             if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia_nt01.InvisibleTag();
@@ -1981,14 +1988,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         }
         
-        public void GiaNt01_V6LostFocus(object sender)
-        {
-            chkT_THUE_NT.Checked = false;
-            TinhTienNt0(_gia_nt01);
-            TinhThueNhapKhau();
-            Tinh_thue_ct();
-        }
-        
         #endregion events
 
         #region Methods
@@ -2110,11 +2109,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 XuLyLayThongTinKhiChonMaKhoI();
             //}
             //  GetGia();
-            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt);
+            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt01);
             GetTon13();
-            TinhTienNt0();
+            chkT_THUE_NT.Checked = false;
+            TinhTienNt0(_maVt);
+            TinhThueNhapKhau();
             Tinh_thue_ct();
         }
+
         private void XuLyChonMaKhoI()
         {
             XuLyLayThongTinKhiChonMaKhoI();

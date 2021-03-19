@@ -23,9 +23,16 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class XuLy44Base : V6FormControl
+    public partial class XuLy48Base : V6FormControl
     {
         #region Biến toàn cục
+        private AldmConfig _config;
+        private string[] _KEY_FIELDS;
+        private readonly IDictionary<string, object> _defaultData = new Dictionary<string, object>();
+        private List<string> updateFieldList = new List<string>();
+        private readonly bool _updateDatabase;
+        public bool HaveChange { get; set; }
+
         protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
         protected List<DataRow> remove_list_d = new List<DataRow>(); 
 
@@ -44,7 +51,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         private Type Form_program;
         protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-
+        public ReportFilter44Base FilterControl { get; set; }
+        //protected void AddFilterControl(string program)
+        //{
+        //    FilterControl = Filter.Filter.GetFilterControl(program);
+        //    panel1.Controls.Add(FilterControl);
+        //    //FilterControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        //    FilterControl.Focus();
+        //}
         /// <summary>
         /// Gọi hàm động trong Event_Methods theo tên Event trên form.
         /// </summary>
@@ -325,12 +339,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
         #endregion 
-        public XuLy44Base()
+        public XuLy48Base()
         {
             InitializeComponent();
         }
 
-        public XuLy44Base(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2, bool viewDetail,
+        public XuLy48Base(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2, bool viewDetail,
             string reportFileF5 = "", string reportTitleF5 = "", string reportTitle2F5 = "")
         {
             m_itemId = itemId;
@@ -356,6 +370,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 Text = _reportCaption;
                 All_Objects["thisForm"] = this;
+                
+                GetConfig();
                 CreateFormProgram();
                 CreateFormControls();   //AddFilterControl(_program);
                 AddAllControlsToAll_Objects();
@@ -414,6 +430,38 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private void GetConfig()
+        {
+            try
+            {
+                _config = ConfigManager.GetAldmConfig(_program);
+
+                if (_config.HaveInfo)
+                {
+                    Text = _config.TITLE;
+                    if (!string.IsNullOrEmpty(_config.TABLE_KEY))
+                    {
+                        var T_KEYS = ObjectAndString.SplitString(_config.TABLE_KEY.ToUpper());
+                        var list = _KEY_FIELDS.ToList();
+                        foreach (string KEY in T_KEYS)
+                        {
+                            if (!list.Contains(KEY)) list.Add(KEY);
+                        }
+                        _KEY_FIELDS = list.ToArray();
+                    }
+                }
+
+                //if (string.IsNullOrEmpty(_showFields) && _config.HaveInfo)
+                //{
+                //    _showFields = _config.GRDS_V1;
+                //}
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
+            }
+        }
+
         private ToolStripMenuItem DefaultMenuItem = null;
 
         private void AddAllControlsToAll_Objects()
@@ -444,7 +492,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        void XuLy44Base_SizeChanged(object sender, EventArgs e)
+        void XuLy48Base_SizeChanged(object sender, EventArgs e)
         {
             FixGridViewSize();
         }
@@ -493,17 +541,238 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.WriteExLog(GetType() + ".GetSumCondition", ex);
             }
         }
-        
-        public ReportFilter44Base FilterControl { get; set; }
-        //protected void AddFilterControl(string program)
-        //{
-        //    FilterControl = Filter.Filter.GetFilterControl(program);
-        //    panel1.Controls.Add(FilterControl);
-        //    //FilterControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        //    FilterControl.Focus();
-        //}
-        
-        
+
+        private void XuLyCongThucTinhToan()
+        {
+            try
+            {
+                if (!_config.HaveInfo) return;
+                if (!string.IsNullOrEmpty(_config.CACH_TINH1))
+                {
+                    XuLyCongThucTinhToan(_config.CACH_TINH1);
+                }
+                if (!string.IsNullOrEmpty(_config.CACH_TINH2))
+                {
+                    XuLyCongThucTinhToan(_config.CACH_TINH2);
+                }
+                if (!string.IsNullOrEmpty(_config.CACH_TINH3))
+                {
+                    XuLyCongThucTinhToan(_config.CACH_TINH3);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XyLyCongThucTinhToan", ex);
+            }
+        }
+
+        private void XuLyCongThucTinhToan(string s)
+        {
+            var ss = s.Split('=');
+            if (ss.Length == 2)
+            {
+                var field = ss[0].Trim();
+                updateFieldList.Add(field.ToUpper());
+                var bieu_thuc = ss[1].Trim();
+
+                var cRow = dataGridView1.CurrentRow;
+                if (cRow != null) cRow.Cells[field].Value = Number.GiaTriBieuThuc(bieu_thuc, cRow.ToDataDictionary());// GiaTriBieuThuc(bieu_thuc);
+            }
+        }
+
+        private bool CheckUpdateField(string UPDATE_FIELD)
+        {
+            if (!_config.HaveInfo) return false;
+            if (!string.IsNullOrEmpty(_config.CACH_TINH1) && _config.CACH_TINH1.IndexOf(UPDATE_FIELD, _config.CACH_TINH1.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            if (!string.IsNullOrEmpty(_config.CACH_TINH2) && _config.CACH_TINH2.IndexOf(UPDATE_FIELD, _config.CACH_TINH2.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            if (!string.IsNullOrEmpty(_config.CACH_TINH3) && _config.CACH_TINH3.IndexOf(UPDATE_FIELD, _config.CACH_TINH3.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
+        /// </summary>
+        /// <param name="data">Dữ liệu đã sửa</param>
+        private void f_UpdateSuccess(IDictionary<string, object> data)
+        {
+            try
+            {
+                HaveChange = true;
+                if (data == null) return;
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+                V6ControlFormHelper.UpdateGridViewRow(row, data);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".f_UpdateSuccess", ex);
+            }
+        }
+
+        string delete_info = "";
+
+        /// <summary>
+        /// Thêm dữ liệu vào cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private IDictionary<string, object> AddData(IDictionary<string, object> data)
+        {
+            try
+            {
+                SetStatusText(V6Text.Add + _config.TABLE_NAME);
+
+                //Gán dữ liệu mặc định
+                if (_defaultData != null)
+                {
+                    data.AddRange(_defaultData, true);
+                }
+                //Remove UID in data
+                if (data.ContainsKey("UID")) data.Remove("UID");
+                //Tạo keys giả
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                foreach (string field in _KEY_FIELDS)
+                {
+                    var FIELD = field.ToUpper();
+                    if (FIELD != "UID")
+                    {
+                        object value = "0";
+                        if (_defaultData != null && _defaultData.ContainsKey(FIELD))
+                        {
+                            value = _defaultData[FIELD];
+                        }
+                        data[FIELD] = value;
+                        keys.Add(FIELD, value);
+                    }
+                }
+                //Full string keys neu key rong
+                if (keys.Count == 0)
+                {
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        string FIELD = column.DataPropertyName.ToUpper();
+                        if (FIELD != "TIME0" && FIELD != "TIME2"
+                            && column.ValueType == typeof(string))
+                        {
+                            if (data.ContainsKey(FIELD)) keys[FIELD] = data[FIELD];
+                        }
+                    }
+                    //keys.AddRange(data);
+                }
+
+                var result = V6BusinessHelper.Insert(_config.TABLE_NAME, data);
+                if (result)
+                {
+                    HaveChange = true;
+                    SetStatusText(string.Format("{0} {1}", _config.TABLE_NAME, V6Text.AddSuccess));
+
+                    var selectResult = V6BusinessHelper.Select(_config.TABLE_NAME, keys, "*");
+                    if (selectResult.TotalRows == 1)
+                    {
+                        return selectResult.Data.Rows[0].ToDataDictionary();
+                    }
+                    else if (selectResult.TotalRows > 1)
+                    {
+                        SetStatusText("Có 2 dòng gần giống nhau.");
+                        return selectResult.Data.Rows[selectResult.TotalRows - 1].ToDataDictionary();
+                    }
+                    else
+                    {
+                        SetStatusText("Dữ liệu không xác định.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SetStatusText(string.Format("{0} {1}", _config.TABLE_NAME, V6Text.AddFail));
+                this.WriteExLog(GetType() + ".AddData", ex);
+            }
+            return null;
+        }
+
+        private object _cellBeginEditValue;
+        /// <summary>
+        /// Update dữ liệu vào cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="rowIndex"></param>
+        /// <param name="columnIndex"></param>
+        private void UpdateData(int rowIndex, int columnIndex)
+        {
+            var update_info = "";
+            try
+            {
+                SetStatusText(string.Format("{0} {1}", V6Text.Edit, _config.TABLE_NAME));
+                var row = dataGridView1.Rows[rowIndex];
+                SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
+                foreach (string field in _KEY_FIELDS)
+                {
+                    var currentKeyFieldColumnIndex = row.Cells[field].ColumnIndex;
+                    if (columnIndex == currentKeyFieldColumnIndex)
+                    {
+                        keys.Add(field.ToUpper(), _cellBeginEditValue);
+                    }
+                    else
+                    {
+                        keys.Add(field.ToUpper(), row.Cells[field].Value);
+                    }
+                }
+
+                SortedDictionary<string, object> updateData = new SortedDictionary<string, object>();
+                var UPDATE_FIELD = dataGridView1.Columns[columnIndex].DataPropertyName.ToUpper();
+                var update_value = row.Cells[columnIndex].Value;
+                updateData.Add(UPDATE_FIELD, update_value);
+                update_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value);
+                foreach (string FIELD in updateFieldList)
+                {
+                    update_value = row.Cells[FIELD].Value;
+                    updateData[FIELD] = update_value;
+                    update_info += FIELD + " = " + ObjectAndString.ObjectToString(update_value);
+                }
+
+                var result = V6BusinessHelper.UpdateSimple(_config.TABLE_NAME, updateData, keys);
+                if (result > 0)
+                {
+                    HaveChange = true;
+                    SetStatusText(string.Format("{0} {1} {2}", _config.TABLE_NAME, V6Text.EditSuccess, update_info));
+                }
+            }
+            catch (Exception ex)
+            {
+                SetStatusText(string.Format("{0} {1} {2}", _config.TABLE_NAME, V6Text.EditFail, update_info));
+                Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".UpdateData",
+                    ex, V6ControlFormHelper.LastActionListString, Application.ProductName);
+            }
+        }
+
+
+        /// <summary>
+        /// Xóa dữ liệu trong cơ sở dữ liệu, nếu thành công xóa luôn trên dataGridview.
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <param name="rowIndex"></param>
+        private void DeleteData(IDictionary<string, object> keys, int rowIndex)
+        {
+            try
+            {
+                SetStatusText(string.Format("{0} {1} {2}", V6Text.Delete, _config.TABLE_NAME, delete_info));
+                if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+                {
+                    var result = V6BusinessHelper.Delete(_config.TABLE_NAME, keys);
+                    if (result > 0)
+                    {
+                        HaveChange = true;
+                        dataGridView1.Rows.RemoveAt(rowIndex);
+                        SetStatusText(string.Format("{0} {1} {2}", _config.TABLE_NAME, V6Text.DeleteSuccess, delete_info));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SetStatusText(string.Format("{0} {1} {2}", _config.TABLE_NAME, V6Text.DeleteFail, delete_info));
+                Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".UpdateData",
+                    ex, V6ControlFormHelper.LastActionListString, Application.ProductName);
+            }
+        }
+
         public void btnNhan_Click(object sender, EventArgs e)
         {
             if (_executing)
@@ -598,7 +867,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".LoadData XuLy44Base", ex);
+                this.WriteExLog(GetType() + ".LoadData XuLy48Base", ex);
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
@@ -936,6 +1205,34 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 XuLyF8();
             }
+            if (keyData == Keys.Delete && dataGridView1.AllowUserToDeleteRows && !dataGridView1.IsCurrentCellInEditMode)
+            {
+                if (!_updateDatabase)
+                {
+                    if (dataGridView1.CurrentRow != null) dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                    //toolStripStatusLabel1.Text = string.Format("{0} {1} {2}", _tableName, V6Text.DeleteSuccess, delete_info);
+                    return true;
+                }
+                if (dataGridView1.CurrentRow != null)
+                {
+                    var selectedRowIndex = dataGridView1.CurrentRow.Index;
+                    if (selectedRowIndex < dataGridView1.NewRowIndex)
+                    {
+                        //var rowData = dataGridView1.CurrentRow.ToDataDictionary();
+                        var keys = new SortedDictionary<string, object>();
+                        delete_info = "";
+                        foreach (string field in _KEY_FIELDS)
+                        {
+                            var UPDATE_FIELD = field.ToUpper();
+                            var update_value = dataGridView1.CurrentRow.Cells[field].Value;
+                            keys.Add(UPDATE_FIELD, update_value);
+                            delete_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value);
+                        }
+                        if (keys.Count > 0) DeleteData(keys, selectedRowIndex);
+                    }
+                }
+                return true;
+            }
             else if (keyData == Keys.F9 && FilterControl.F9)
             {
                 F9Thread();
@@ -977,7 +1274,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorException("XuLy44Base GridView1 KeyDown", ex);
+                this.ShowErrorException("XuLy48Base GridView1 KeyDown", ex);
             }
         }
 
@@ -995,7 +1292,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorException("XuLy44Base XuLyHienThiFormSuaChungTu", ex);
+                this.ShowErrorException("XuLy48Base XuLyHienThiFormSuaChungTu", ex);
             }
         }
 
@@ -1098,7 +1395,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected virtual void XuLyXemChiTietF5()
         {
             var oldKeys = FilterControl.GetFilterParameters();
-            var view = new XuLy44Base(m_itemId, _program + "F5", _program + "F5", _reportFile, _reportCaption, _reportCaption2, false);
+            var view = new XuLy48Base(m_itemId, _program + "F5", _program + "F5", _reportFile, _reportCaption, _reportCaption2, false);
             view.CodeForm = CodeForm;
             view.Dock = DockStyle.Fill;
             view.FilterControl.InitFilters = oldKeys;
@@ -1416,7 +1713,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if(FilterControl != null) FilterControl.SetStatus2Text();
         }
 
-        private void XuLy44Base_VisibleChanged(object sender, EventArgs e)
+        private void XuLy48Base_VisibleChanged(object sender, EventArgs e)
         {
             if (Visible)
             {
@@ -1446,6 +1743,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// </summary>
         protected bool _Ctrl_U = true;
 
+        
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             try
@@ -1485,6 +1783,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var row = dataGridView1.Rows[e.RowIndex];
             var field = dataGridView1.Columns[e.ColumnIndex].DataPropertyName;
             GridView1CellEndEdit(row, field.ToUpper(), row.Cells[field].Value);
+
+
+            // Mới thêm
+            var UPDATE_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
+            //Xu ly cong thuc tinh toan
+            updateFieldList = new List<string>();
+            if (CheckUpdateField(UPDATE_FIELD)) XuLyCongThucTinhToan();
+
+            if (_updateDatabase) UpdateData(e.RowIndex, e.ColumnIndex);
         }
 
         private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -1602,6 +1909,39 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void btnExport3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            int index = dataGridView1.Rows.GetLastRow(DataGridViewElementStates.None) - 1;
+            if (index < 0) return;
+            var row = dataGridView1.Rows[index];
+
+            if (_updateDatabase)
+            {
+                var newData = row.ToDataDictionary();
+                var afterData = AddData(newData);
+                if (afterData != null)
+                {
+                    foreach (KeyValuePair<string, object> item in afterData)
+                    {
+                        if (dataGridView1.Columns.Contains(item.Key))
+                        {
+                            row.Cells[item.Key].Value = item.Value;
+                        }
+                    }
+
+                    if (dataGridView1.EditingCell != null)
+                    {
+                        _cellBeginEditValue = dataGridView1.EditingCell.Value;
+                    }
+                }
+            }
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            _cellBeginEditValue = dataGridView1.CurrentCell.Value;
         }
 
         private void btnSuaLine_Click(object sender, EventArgs e)

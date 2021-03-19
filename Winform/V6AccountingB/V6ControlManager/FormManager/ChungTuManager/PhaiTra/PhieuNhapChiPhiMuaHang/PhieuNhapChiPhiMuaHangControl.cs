@@ -257,10 +257,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;
                         _soLuong1.V6LostFocusNoChange += delegate
                         {
-
+                            if (!detail1.IsAddOrEdit) return;
                         };
                         _soLuong1.Leave += delegate
                         {
+                            if (!detail1.IsAddOrEdit) return;
                             SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
                         };
                         break;
@@ -391,7 +392,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         _gia_nt01 = control as V6NumberTextBox;
                         if (_gia_nt01 != null)
                         {
-                            _gia_nt01.V6LostFocus += GiaNt01_V6LostFocus;
+                            _gia_nt01.V6LostFocus += delegate
+                            {
+                                TinhTienNt0(_gia_nt01);
+                            };
                             if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia_nt01.InvisibleTag();
@@ -1012,11 +1016,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             TinhTienNt0();
         }
 
-        public void GiaNt01_V6LostFocus(object sender)
-        {
-            TinhTienNt0(_gia_nt01);
-        }
-
         #endregion events
 
         #region Methods
@@ -1135,6 +1134,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             // GetGia();
             GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt);
             // TinhTienNt0();
+
+            TinhTienNt0(_maVt);
         }
         private void XuLyChonMaKhoI()
         {

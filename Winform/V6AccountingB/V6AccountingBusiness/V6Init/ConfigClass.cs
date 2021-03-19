@@ -250,6 +250,9 @@ namespace V6Init
         public string F_CT { get { return GetString("F_CT"); } }
         public string F_GT { get { return GetString("F_GT"); } }
         public string F_ARA00 { get { return GetString("F_ARA00"); } }
+        /// <summary>
+        /// Công thức 1. vd THANH_TIEN=SO_LUONG*DON_GIA
+        /// </summary>
         public string CACH_TINH1 { get { return GetString("CACH_TINH1"); } }
         public string CACH_TINH2 { get { return GetString("CACH_TINH2"); } }
         public string CACH_TINH3 { get { return GetString("CACH_TINH3"); } }

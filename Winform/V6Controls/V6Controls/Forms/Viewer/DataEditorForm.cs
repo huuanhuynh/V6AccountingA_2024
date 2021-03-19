@@ -115,7 +115,7 @@ namespace V6Controls.Forms.Viewer
 
                 dataGridView1.DataSource = _data;
                 FormatGridView();
-                GetCongThuc();
+                //GetCongThuc();
             }
             catch (Exception ex)
             {
@@ -133,47 +133,44 @@ namespace V6Controls.Forms.Viewer
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
         }
 
-        private string congthuc1 = "", congthuc2 = "", congthuc3 = "";
-        private void GetCongThuc()
-        {
-            try
-            {
-                IDictionary<string, object> keys = new SortedDictionary<string, object>();
-                keys.Add("MA_DM", _tableName);
-                var getData = V6BusinessHelper.Select("ALDM", keys, "*").Data;
-                if (getData.Rows.Count == 1)
-                {
-                    var row = getData.Rows[0];
-                    congthuc1 = row["CACH_TINH1"].ToString().Trim();
-                    congthuc2 = row["CACH_TINH2"].ToString().Trim();
-                    congthuc3 = row["CACH_TINH3"].ToString().Trim();
-                }
-                else
-                {
-                    congthuc1 = congthuc2 = congthuc3 = "";
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".GetCongThuc", ex);
-            }
-        }
+        //private string congthuc1 = "", congthuc2 = "", congthuc3 = "";
+        //private void GetCongThuc()
+        //{
+        //    try
+        //    {
+        //        if (_config.HaveInfo)
+        //        {
+        //            congthuc1 = _config.CACH_TINH1;
+        //            congthuc2 = _config.CACH_TINH2;
+        //            congthuc3 = _config.CACH_TINH3;
+        //        }
+        //        else
+        //        {
+        //            congthuc1 = congthuc2 = congthuc3 = "";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.WriteExLog(GetType() + ".GetCongThuc", ex);
+        //    }
+        //}
 
         private void XuLyCongThucTinhToan()
         {
             try
             {
-                if (!string.IsNullOrEmpty(congthuc1))
+                if (!_config.HaveInfo) return;
+                if (!string.IsNullOrEmpty(_config.CACH_TINH1))
                 {
-                    XuLyCongThucTinhToan(congthuc1);
+                    XuLyCongThucTinhToan(_config.CACH_TINH1);
                 }
-                if (!string.IsNullOrEmpty(congthuc2))
+                if (!string.IsNullOrEmpty(_config.CACH_TINH2))
                 {
-                    XuLyCongThucTinhToan(congthuc2);
+                    XuLyCongThucTinhToan(_config.CACH_TINH2);
                 }
-                if (!string.IsNullOrEmpty(congthuc3))
+                if (!string.IsNullOrEmpty(_config.CACH_TINH3))
                 {
-                    XuLyCongThucTinhToan(congthuc3);
+                    XuLyCongThucTinhToan(_config.CACH_TINH3);
                 }
             }
             catch (Exception ex)
@@ -708,9 +705,10 @@ namespace V6Controls.Forms.Viewer
 
         private bool CheckUpdateField(string UPDATE_FIELD)
         {
-            if (!string.IsNullOrEmpty(congthuc1) && congthuc1.IndexOf(UPDATE_FIELD, congthuc1.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
-            if (!string.IsNullOrEmpty(congthuc2) && congthuc2.IndexOf(UPDATE_FIELD, congthuc2.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
-            if (!string.IsNullOrEmpty(congthuc3) && congthuc3.IndexOf(UPDATE_FIELD, congthuc3.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            if (!_config.HaveInfo) return false;
+            if (!string.IsNullOrEmpty(_config.CACH_TINH1) && _config.CACH_TINH1.IndexOf(UPDATE_FIELD, _config.CACH_TINH1.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            if (!string.IsNullOrEmpty(_config.CACH_TINH2) && _config.CACH_TINH2.IndexOf(UPDATE_FIELD, _config.CACH_TINH2.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            if (!string.IsNullOrEmpty(_config.CACH_TINH3) && _config.CACH_TINH3.IndexOf(UPDATE_FIELD, _config.CACH_TINH3.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
             return false;
         }
 

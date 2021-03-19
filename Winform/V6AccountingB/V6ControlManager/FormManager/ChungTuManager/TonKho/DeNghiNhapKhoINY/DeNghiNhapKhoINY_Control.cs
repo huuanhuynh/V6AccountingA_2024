@@ -366,6 +366,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         };
                         _soLuong1.Leave += delegate
                         {
+                            if (!detail1.IsAddOrEdit) return;
                             SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
                         };
                         break;
@@ -440,7 +441,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         break;
                     case "GIA_NT01":
                         _gia_nt01 = (V6NumberTextBox)control;
-                        _gia_nt01.V6LostFocus += GiaNt01_V6LostFocus;
+                        _gia_nt01.V6LostFocus += delegate
+                        {
+                            chkT_THUE_NT.Checked = false;
+                            TinhTienNt0(_gia_nt01);
+                            Tinh_thue_ct();
+                        };
                         break;
                     case "TIEN":
                         _tien = (V6NumberTextBox)control;
@@ -1115,14 +1121,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 if (_he_so1M.Value != 1) _he_so1M.Value = 1;
             }
         }
-        
-        public void GiaNt01_V6LostFocus(object sender)
-        {
-            chkT_THUE_NT.Checked = false;
-            TinhTienNt0(_gia_nt01);
-            Tinh_thue_ct();
-        }
-        
+
         #endregion events
 
         #region Methods
@@ -1243,8 +1242,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             XuLyLayThongTinKhiChonMaVt();
             XuLyDonViTinhKhiChonMaVt(mavt);
             //  GetGia();
-            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt);
+            GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt01);
             TinhTienNt0();
+            Tinh_thue_ct();
+
+            chkT_THUE_NT.Checked = false;
+            TinhTienNt0(_maVt);
             Tinh_thue_ct();
         }
         private void XuLyChonMaKhoI()

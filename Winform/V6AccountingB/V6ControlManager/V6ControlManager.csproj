@@ -5057,6 +5057,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\XAGLAUTO_GL1_Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\XuLy48Base.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\XuLy48Base.designer.cs">
+      <DependentUpon>XuLy48Base.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\XuLy44Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -8523,6 +8529,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6EDITALAB.resx">
       <DependentUpon>V6EDITALAB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XuLy48Base.resx">
+      <DependentUpon>XuLy48Base.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\XuLy44Base.resx">
       <DependentUpon>XuLy44Base.cs</DependentUpon>

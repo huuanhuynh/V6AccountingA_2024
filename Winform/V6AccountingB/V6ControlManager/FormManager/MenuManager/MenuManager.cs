@@ -572,6 +572,29 @@ namespace V6ControlManager.FormManager.MenuManager
                                         c = new XuLy44Base(item_id, pro_old, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, false, repFileF5, repTitleF5, repTitle2F5);
                                     }
                                 }
+                                else if (codeform.StartsWith("Z48")) // Editor Không hiện chi tiết
+                                {
+                                    var programZ = codeform.Substring(3);
+                                    AldmConfig config = ConfigManager.GetAldmConfig(programZ);
+                                    if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                    {
+                                        check = CheckPassword(owner);
+                                    }
+                                    else if (config.HaveInfo && config.CHECK_V6)
+                                    {
+                                        check = CheckPasswordV6(owner);
+                                    }
+                                    if (!check) return null;
+
+                                    if (string.IsNullOrEmpty(pro_old))
+                                    {
+                                        c = new XuLy48Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, false, repFileF5, repTitleF5, repTitle2F5);
+                                    }
+                                    else
+                                    {
+                                        c = new XuLy48Base(item_id, pro_old, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, false, repFileF5, repTitleF5, repTitle2F5);
+                                    }
+                                }
                                 else
                                 {
                                     var programZ = codeform.Substring(1);
