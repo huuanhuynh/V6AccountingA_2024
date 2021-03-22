@@ -417,7 +417,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         {
                             _soLuong1.TextChanged += (sender, e) =>
                             {
-                                CheckShowTienNt2();
+                                if (!detail1.IsAddOrEdit) return;
+
+                                if (!chkSuaTien.Checked)
+                                {
+                                    CheckShowTienNt2();
+                                }
                             };
                             _soLuong1.V6LostFocus += (sender) =>
                             {
@@ -540,7 +545,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         {
                             _giaNt21.TextChanged += (sender, e) =>
                             {
-                                CheckShowTienNt2();
+                                if (!detail1.IsAddOrEdit) return;
+
+                                if (!chkSuaTien.Checked)
+                                {
+                                    CheckShowTienNt2();
+                                }
                             };
                             _giaNt21.V6LostFocus += GiaNt21_V6LostFocus;
                             if (!V6Login.IsAdmin && (Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_HIDE.ContainsStartsWith(NAME + ":")))
@@ -2671,7 +2681,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void CheckShowTienNt2()
         {
-            if (_soLuong1.Value == 0 && _giaNt21.Value == 0)
+            if (_soLuong1.Value == 0 || _giaNt21.Value == 0)
             {
                 _tienNt2.Enabled = true;
                 _tienNt2.ReadOnly = false;
