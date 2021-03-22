@@ -356,8 +356,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         if (string.IsNullOrEmpty(input.Name)) input.Name = "txt" + defineInfo.Field;
                         if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                         {
-                            SetControlValue(input, defineInfo.DefaultValue);
-                            //input.Text = defineInfo.DefaultValue;
+                            object defaultValue = V6ControlFormHelper.GetDefaultSystemValue(defineInfo.DefaultValue);
+                            SetControlValue(input, defaultValue);
                         }
                         input.Enabled = defineInfo.Enabled;
                         input.Visible = defineInfo.Visible;

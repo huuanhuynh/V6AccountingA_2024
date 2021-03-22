@@ -84,6 +84,7 @@ namespace V6ControlManager.FormManager.NhanSu
         private string _tableName;
         private string _viewName = "VPRDMNSTREE";
         private V6lookupConfig _v6LookupConfig;
+        private AldmConfig _aldmConfig = new AldmConfig();
         [DefaultValue(V6TableName.None)]
         public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -848,13 +849,30 @@ namespace V6ControlManager.FormManager.NhanSu
             //treeListViewAuto1.AddData(data);
         }
 
+        /// <summary>
+        /// Kiểm tra có cấu hình Fpass
+        /// </summary>
+        /// <param name="index">0 cho F3, 1 cho F6, 2 cho F8</param>
+        /// <returns></returns>
+        bool NO_CONFIG_FPASS(int index)
+        {
+            if (_aldmConfig.NoInfo) return true;
+            if (!_aldmConfig.EXTRA_INFOR.ContainsKey("F368_PASS")) return true;
+            string f368 = _aldmConfig.EXTRA_INFOR["F368_PASS"].Trim();
+            if (f368.Length > index && f368[index] == '1') return false;
+            return true;
+        }
+
 
         private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
             {
-                DoEdit();
+                if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+                {
+                    DoEdit();
+                }
             }
             else
             {
@@ -863,12 +881,18 @@ namespace V6ControlManager.FormManager.NhanSu
         }
         private void btnDoiMa_Click(object sender, EventArgs e)
         {
-            DoChangeCode();
+            if (NO_CONFIG_FPASS(1) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+            {
+                DoChangeCode();
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            DoDelete();
+            if (NO_CONFIG_FPASS(2) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+            {
+                DoDelete();
+            }
         }
 
 

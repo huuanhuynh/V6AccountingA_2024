@@ -384,6 +384,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 this.ShowErrorException(GetType() + ".Copy", ex);
             }
         }
+
         private void DoEdit()
         {
             try
@@ -908,6 +909,20 @@ namespace V6ControlManager.FormManager.SoDuManager
                 this.ShowErrorException(GetType() + ".Reload", ex);
             }
         }
+
+        /// <summary>
+        /// Kiểm tra có cấu hình Fpass
+        /// </summary>
+        /// <param name="index">0 cho F3, 1 cho F6, 2 cho F8</param>
+        /// <returns></returns>
+        bool NO_CONFIG_FPASS(int index)
+        {
+            if (_aldmConfig.NoInfo) return true;
+            if (!_aldmConfig.EXTRA_INFOR.ContainsKey("F368_PASS")) return true;
+            string f368 = _aldmConfig.EXTRA_INFOR["F368_PASS"].Trim();
+            if (f368.Length > index && f368[index] == '1') return false;
+            return true;
+        }
         
 
         private void btnFirst_Click(object sender, EventArgs e)
@@ -1077,7 +1092,10 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             if (V6Login.UserRight.AllowEdit("", "B" + _maCt))
             {
-                DoEdit();
+                if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+                {
+                    DoEdit();
+                }
             }
             else
             {
@@ -1091,7 +1109,10 @@ namespace V6ControlManager.FormManager.SoDuManager
             {
                 if (V6Login.UserRight.AllowDelete("", "B" + _maCt))
                 {
-                    DoDelete();
+                    if (NO_CONFIG_FPASS(2) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+                    {
+                        DoDelete();
+                    }
                 }
                 else
                 {
@@ -1304,7 +1325,10 @@ namespace V6ControlManager.FormManager.SoDuManager
             if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6")
                 && V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
             {
-                DoChangeCode();
+                if (NO_CONFIG_FPASS(1) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+                {
+                    DoChangeCode();
+                }
             }
             else
             {

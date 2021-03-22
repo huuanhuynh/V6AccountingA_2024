@@ -361,9 +361,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                         {
                             object defaultValue = V6ControlFormHelper.GetDefaultSystemValue(defineInfo.DefaultValue);
-                            //V6Setting.DataDVCS
                             SetControlValue(input, defaultValue);
-                            //input.Text = defineInfo.DefaultValue;
                         }
                         input.Enabled = defineInfo.Enabled;
                         input.Visible = defineInfo.Visible;

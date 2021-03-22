@@ -391,6 +391,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 this.ShowErrorException(GetType() + ".Copy", ex);
             }
         }
+
         private void DoEdit()
         {
             try
@@ -847,6 +848,20 @@ namespace V6ControlManager.FormManager.SoDuManager
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
+
+        /// <summary>
+        /// Kiểm tra có cấu hình Fpass
+        /// </summary>
+        /// <param name="index">0 cho F3, 1 cho F6, 2 cho F8</param>
+        /// <returns></returns>
+        bool NO_CONFIG_FPASS(int index)
+        {
+            if (_aldmConfig.NoInfo) return true;
+            if (!_aldmConfig.EXTRA_INFOR.ContainsKey("F368_PASS")) return true;
+            string f368 = _aldmConfig.EXTRA_INFOR["F368_PASS"].Trim();
+            if (f368.Length > index && f368[index] == '1') return false;
+            return true;
+        }
         
 
         private void btnFirst_Click(object sender, EventArgs e)
@@ -1014,7 +1029,10 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             if (V6Login.UserRight.AllowEdit("", _MA_DM + "6"))
             {
-                DoEdit();
+                if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+                {
+                    DoEdit();
+                }
             }
             else
             {
@@ -1026,7 +1044,10 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             if (V6Login.UserRight.AllowDelete("", _MA_DM + "6"))
             {
-                DoDelete();
+                if (NO_CONFIG_FPASS(2) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+                {
+                    DoDelete();
+                }
             }
             else
             {
