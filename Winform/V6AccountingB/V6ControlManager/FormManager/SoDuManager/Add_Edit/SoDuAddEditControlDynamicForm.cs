@@ -1346,18 +1346,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             CheckVvarTextBox();
             
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey(FormDynamicEvent.INIT2))
-                {
-                    var method_name = Event_Methods[FormDynamicEvent.INIT2];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke INIT2", ex1);
-            }
+            //try // Dynamic invoke // Đã có ở Virtual
+            //{
+            //    if (Event_Methods.ContainsKey(FormDynamicEvent.INIT2))
+            //    {
+            //        var method_name = Event_Methods[FormDynamicEvent.INIT2];
+            //        V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+            //    }
+            //}
+            //catch (Exception ex1)
+            //{
+            //    this.WriteExLog(GetType() + ".Dynamic invoke INIT2", ex1);
+            //}
         }
 
         private void CheckPhatSinh()

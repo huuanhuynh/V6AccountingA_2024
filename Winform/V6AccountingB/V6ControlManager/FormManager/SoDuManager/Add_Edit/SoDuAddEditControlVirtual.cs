@@ -194,6 +194,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
             InvokeFormEvent(FormDynamicEvent.INIT);
             LoadAll();
+            LoadTag(2, "", _MA_DM, ItemID);
         }
 
         protected void CreateFormProgram()

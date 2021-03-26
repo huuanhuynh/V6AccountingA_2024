@@ -133,7 +133,7 @@ namespace V6Controls
         {
             try
             {
-                if (Value <= 0) Value = V6Setting.M_SV_DATE.Year;
+                if (Value <= 1000 || Value > 9999) Value = V6Setting.M_SV_DATE.Year;
             }
             catch (Exception)
             {

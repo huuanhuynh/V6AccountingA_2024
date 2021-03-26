@@ -70,28 +70,16 @@ namespace V6ThuePostViettelV2Api
             string token = loginResponse.access_token;
             _viettel_token = token;
         }
-
-        //private void ABC_Login()
-        //{
-        //    try
-        //    {
-        //        string body = "{\"username\" : \""+_username+"\", \"password\" : \""+_password+"\"}";
-        //        string result = SendRequest(_baseurl + "/auth/login", body, "POST", "", "", "", true,
-        //            "10.61.11.42", 3128, true);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        //
-        //    }
-        //}
-
+        
         public string POST_CREATE_INVOICE(string body, out V6Return v6return)
         {
+            string result = "";
             v6return = new V6Return();
-            string result = POST_VIETTEL_COOKIESTOKEN(create_link + _codetax, body);
-            v6return.RESULT_STRING = result;
+            
             try
             {
+                result = POST_VIETTEL_COOKIESTOKEN(create_link + _codetax, body);
+                v6return.RESULT_STRING = result;
                 //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
                 CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
                 v6return.RESULT_OBJECT = responseObject;
@@ -110,6 +98,113 @@ namespace V6ThuePostViettelV2Api
             {
                 v6return.RESULT_ERROR_MESSAGE = ex1.Message;
             }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
+        /// </summary>
+        /// <param name="jsonBody"></param>
+        /// <param name="v6return"></param>
+        /// <returns></returns>
+        public string POST_REPLACE(string jsonBody, out V6Return v6return)
+        {
+            string result = null;
+            v6return = new V6Return();
+            try
+            {
+                result = POST_CREATE_INVOICE(jsonBody, out v6return);
+                v6return.RESULT_STRING = result;
+                //try
+                //{
+                //    //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
+                //    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                //    v6return.RESULT_OBJECT = responseObject;
+                //    if (responseObject.result == null)
+                //    {
+                //        v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                //    }
+                //    else
+                //    {
+                //        v6return.SO_HD = responseObject.result.invoiceNo;
+                //        v6return.ID = responseObject.result.transactionID;
+                //        v6return.SECRET_CODE = responseObject.result.reservationCode;
+                //    }
+                //}
+                //catch (Exception ex1)
+                //{
+                //    v6return.RESULT_ERROR_MESSAGE = ex1.Message;
+                //}
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+                v6return.RESULT_ERROR_MESSAGE += ex.Message;
+            }
+            Logger.WriteToLog("ViettelWS.POST_REPLACE " + result);
+            return result;
+        }
+
+        public string POST_DRAFT(string jsonBody, out V6Return v6return)
+        {
+            string result;
+            v6return = new V6Return();
+            try
+            {
+                result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+                v6return.RESULT_STRING = result;
+                try
+                {
+                    // {"errorCode":"","description":"","result":{}}
+                    // {"code":400,"message":"TRANSACTION_UUID_INVALID","data":"Transaction Uuid đã được lập hóa đơn"}
+                    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                    v6return.RESULT_OBJECT = responseObject;
+                    if (string.IsNullOrEmpty(responseObject.message))
+                    {
+                        v6return.SO_HD = responseObject.result.invoiceNo;
+                        v6return.ID = responseObject.result.transactionID;
+                        v6return.SECRET_CODE = responseObject.result.reservationCode;
+                    }
+                    else
+                    {
+                        v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                    }
+                }
+                catch (Exception ex1)
+                {
+                    v6return.RESULT_ERROR_MESSAGE = ex1.Message;
+                }
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+                v6return.RESULT_ERROR_MESSAGE += ex.Message;
+            }
+            Logger.WriteToLog("ViettelWS.POST_DRAFT " + result);
+            return result;
+        }
+
+
+        /// <summary>
+        /// Gửi điều chỉnh hóa đơn.
+        /// </summary>
+        /// <param name="jsonBody"></param>
+        /// <returns></returns>
+        public string POST_EDIT(string jsonBody, out V6Return v6return)
+        {
+            string result;
+            v6return = new V6Return();
+            try
+            {
+                result = POST_VIETTEL_COOKIESTOKEN("editlink", jsonBody);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+                v6return.RESULT_ERROR_MESSAGE += ex.Message;
+            }
+            Logger.WriteToLog("ViettelWS.POST_EDIT " + result);
             return result;
         }
 
@@ -709,110 +804,6 @@ namespace V6ThuePostViettelV2Api
         {
             string json = input.ToJson();
             string result = POST_VIETTEL_COOKIESTOKEN("InvoiceAPI/InvoiceUtilsWS/getInvoices/" + _codetax, json);
-            return result;
-        }
-
-        public string POST_DRAFT(string jsonBody, out V6Return v6return)
-        {
-            string result;
-            v6return = new V6Return();
-            try
-            {
-                result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
-                v6return.RESULT_STRING = result;
-                try
-                {
-                    // {"errorCode":"","description":"","result":{}}
-                    // {"code":400,"message":"TRANSACTION_UUID_INVALID","data":"Transaction Uuid đã được lập hóa đơn"}
-                    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
-                    v6return.RESULT_OBJECT = responseObject;
-                    if (string.IsNullOrEmpty(responseObject.message))
-                    {
-                        v6return.SO_HD = responseObject.result.invoiceNo;
-                        v6return.ID = responseObject.result.transactionID;
-                        v6return.SECRET_CODE = responseObject.result.reservationCode;
-                    }
-                    else
-                    {
-                        v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
-                    }
-                }
-                catch (Exception ex1)
-                {
-                    v6return.RESULT_ERROR_MESSAGE = ex1.Message;
-                }
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-                v6return.RESULT_ERROR_MESSAGE += ex.Message;
-            }
-            Logger.WriteToLog("ViettelWS.POST_DRAFT " + result);
-            return result;
-        }
-        
-        /// <summary>
-        /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
-        /// </summary>
-        /// <param name="jsonBody"></param>
-        /// <returns></returns>
-        public string POST_REPLACE(string jsonBody, out V6Return v6return)
-        {
-            string result = null;
-            v6return = new V6Return();
-            try
-            {
-                result = POST_CREATE_INVOICE(jsonBody, out v6return);
-                v6return.RESULT_STRING = result;
-                try
-                {
-                    //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
-                    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
-                    v6return.RESULT_OBJECT = responseObject;
-                    if (responseObject.result == null)
-                    {
-                        v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
-                    }
-                    else
-                    {
-                        v6return.SO_HD = responseObject.result.invoiceNo;
-                        v6return.ID = responseObject.result.transactionID;
-                        v6return.SECRET_CODE = responseObject.result.reservationCode;
-                    }
-                }
-                catch (Exception ex1)
-                {
-                    v6return.RESULT_ERROR_MESSAGE = ex1.Message;
-                }
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-                v6return.RESULT_ERROR_MESSAGE += ex.Message;
-            }
-            Logger.WriteToLog("ViettelWS.POST_REPLACE " + result);
-            return result;
-        }
-
-        /// <summary>
-        /// Gửi điều chỉnh hóa đơn.
-        /// </summary>
-        /// <param name="jsonBody"></param>
-        /// <returns></returns>
-        public string POST_EDIT(string jsonBody, out V6Return v6return)
-        {
-            string result;
-            v6return = new V6Return();
-            try
-            {
-                result = POST_VIETTEL_COOKIESTOKEN("editlink", jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-                v6return.RESULT_ERROR_MESSAGE += ex.Message;
-            }
-            Logger.WriteToLog("ViettelWS.POST_EDIT " + result);
             return result;
         }
 

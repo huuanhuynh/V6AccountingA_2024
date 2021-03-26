@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.DanhMucManager;
@@ -28,6 +29,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         #region Biến toàn cục
         private AldmConfig _config;
         private string[] _KEY_FIELDS;
+        public SortedDictionary<string, string> HideFields = new SortedDictionary<string, string>();
+        public SortedDictionary<string, string> ReadOnlyFields = new SortedDictionary<string, string>();
         private readonly IDictionary<string, object> _defaultData = new Dictionary<string, object>();
         private List<string> updateFieldList = new List<string>();
         private readonly bool _updateDatabase;
@@ -375,6 +378,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 CreateFormProgram();
                 CreateFormControls();   //AddFilterControl(_program);
                 AddAllControlsToAll_Objects();
+                ApplyConfigSetting();
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 if (ViewDetail)
                     ShowDetailGridView();
@@ -442,7 +446,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (!string.IsNullOrEmpty(_config.TABLE_KEY))
                     {
                         var T_KEYS = ObjectAndString.SplitString(_config.TABLE_KEY.ToUpper());
-                        var list = _KEY_FIELDS.ToList();
+                        var list = new List<string>();
                         foreach (string KEY in T_KEYS)
                         {
                             if (!list.Contains(KEY)) list.Add(KEY);
@@ -459,6 +463,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
+            }
+        }
+
+        private void ApplyConfigSetting()
+        {
+            try
+            {
+                // Cho phép gridview thêm sửa xóa
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.ReadOnly = true;
+                dataGridView1.AllowUserToDeleteRows = false;
+
+                if (_config.NoInfo) return;
+
+                if (_config.EXTRA_INFOR.ContainsKey("GRD_ALLOW"))
+                {
+                    var grd_allow = _config.EXTRA_INFOR["GRD_ALLOW"].Trim();
+                    if (grd_allow.Length > 0) dataGridView1.AllowUserToAddRows = grd_allow[0] == '1';
+                    if (grd_allow.Length > 1) dataGridView1.ReadOnly = grd_allow[1] != '1';
+                    if (grd_allow.Length > 2) dataGridView1.AllowUserToDeleteRows = grd_allow[2] == '1';
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _message), ex);
             }
         }
 
@@ -941,7 +970,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         dataGridView1.DataSource = null;
                         dataGridView1.DataSource = _tbl;
                         
-                        FormatGridViewBase();
+                        //FormatGridViewBase();
+                        FormatGridView();
                         FormatGridViewExtern();
                         dataGridView1.Focus();
                     }
@@ -1027,6 +1057,60 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private void FormatGridView()
+        {
+            try
+            {
+                if (_config.HaveInfo)
+                {
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _config.GRDS_V1, _config.GRDF_V1, V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1);
+                }
+
+                if (!string.IsNullOrEmpty(_config.GRDS_V1))
+                {
+                    var showFieldSplit = ObjectAndString.SplitString(_config.GRDS_V1);
+                    var showFieldList = new List<string>();
+                    foreach (string field in showFieldSplit)
+                    {
+                        if (field.Contains(":"))
+                        {
+                            var ss = field.Split(':');
+                            string FIELD = ss[0].Trim().ToUpper();
+                            // Rigth hide-readonly
+                            if (HideFields.ContainsKey(FIELD)) continue;
+
+                            showFieldList.Add(FIELD);
+                            //GetHeader(FIELD);
+                            var column = dataGridView1.Columns[FIELD];
+                            if (column != null && (ss[1].ToUpper() == "R" || ReadOnlyFields.ContainsKey(FIELD)))
+                            {
+                                column.ReadOnly = true;
+                            }
+                        }
+                        else
+                        {
+                            string FIELD = field.Trim().ToUpper();
+                            if (HideFields.ContainsKey(FIELD)) continue;
+                            showFieldList.Add(FIELD);
+                            //GetHeader(FIELD);
+
+                            if (ReadOnlyFields.ContainsKey(FIELD))
+                            {
+                                var column = dataGridView1.Columns[FIELD];
+                                if (column != null) column.ReadOnly = true;
+                            }
+                        }
+                    }
+
+                    dataGridView1.ShowColumns(true, showFieldList.ToArray());
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".FormatGridView " + ex.Message);
+            }
+        }
+
         /// <summary>
         /// Hàm luôn gọi sau hàm FormatGridViewBase.
         /// </summary>
@@ -1047,6 +1131,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //{
             //    this.ShowErrorMessage(GetType() + ".FormatGridViewExtern: " + ex.Message);
             //}
+        }
+
+        /// <summary>
+        /// Chỉ định các trường ẩn đi bắt buộc.
+        /// </summary>
+        /// <param name="fields"></param>
+        public void SetHideFields(params string[] fields)
+        {
+            foreach (string field in fields)
+            {
+                string FIELD = ObjectAndString.SplitStringBy(field, ':')[0].Trim().ToUpper();
+                HideFields[FIELD] = FIELD;
+            }
         }
 
         #endregion ==== LoadData MakeReport ====
@@ -1469,21 +1566,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             DataGridViewRow row = dataGridView1.CurrentRow;
             SaveSelectedCellLocation(dataGridView1);
 
-            if (row != null)
-            {
-                SortedDictionary<string, object> keys = new SortedDictionary<string, object> { { "UID", row.Cells["UID"].Value } };
-                string value_show = row.Cells["STT_REC"].Value.ToString();
-                if (V6Message.Show(V6Text.DeleteConfirm + " " + value_show, V6Text.DeleteConfirm, 0, MessageBoxButtons.YesNo, MessageBoxIcon.Question, 0, this)
-                    == DialogResult.Yes)
-                {
-                    int t = V6BusinessHelper.Delete("ARS82", keys);
-                    if (t > 0)
-                    {
-                        btnNhan.PerformClick();
-                        LoadSelectedCellLocation(dataGridView1);
-                    }
-                }
-            }
+            //if (row != null)
+            //{
+            //    SortedDictionary<string, object> keys = new SortedDictionary<string, object> { { "UID", row.Cells["UID"].Value } };
+            //    string value_show = row.Cells["STT_REC"].Value.ToString();
+            //    if (V6Message.Show(V6Text.DeleteConfirm + " " + value_show, V6Text.DeleteConfirm, 0, MessageBoxButtons.YesNo, MessageBoxIcon.Question, 0, this)
+            //        == DialogResult.Yes)
+            //    {
+            //        int t = V6BusinessHelper.Delete("ARS82", keys);
+            //        if (t > 0)
+            //        {
+            //            btnNhan.PerformClick();
+            //            LoadSelectedCellLocation(dataGridView1);
+            //        }
+            //    }
+            //}
         }
 
         #region ==== Xử lý F9 ====

@@ -1114,7 +1114,6 @@
             this.txtMaVt.BackColor = System.Drawing.Color.White;
             this.txtMaVt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaVt.CheckNotEmpty = true;
-            this.txtMaVt.Enabled = false;
             this.txtMaVt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaVt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaVt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1132,7 +1131,6 @@
             this.txtMaVitri.BackColor = System.Drawing.Color.White;
             this.txtMaVitri.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaVitri.CheckNotEmpty = true;
-            this.txtMaVitri.Enabled = false;
             this.txtMaVitri.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaVitri.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaVitri.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1150,7 +1148,6 @@
             this.txtMaKho.BackColor = System.Drawing.Color.White;
             this.txtMaKho.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaKho.CheckNotEmpty = true;
-            this.txtMaKho.Enabled = false;
             this.txtMaKho.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKho.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaKho.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

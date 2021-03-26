@@ -2833,11 +2833,7 @@ namespace V6ThuePostManager
 
             return result;
         }
-        
 
-        
-
-        
 
         public static string ReadData_Viettel(PostManagerParams paras)
         {

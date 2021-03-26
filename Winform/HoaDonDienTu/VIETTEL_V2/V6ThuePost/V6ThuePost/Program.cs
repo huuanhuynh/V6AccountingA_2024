@@ -250,6 +250,12 @@ namespace V6ThuePost
                         File.Create(flagFileName1).Close();
                         result = _viettel_ws.POST_EDIT(jsonBody, out v6return);
                     }
+                    else if (mode.StartsWith("T") && mode.EndsWith("_JSON"))
+                    {
+                        // Lưu ý dữ liệu mode Replace. (T)
+                        jsonBody = ReadText(arg2);
+                        result = _viettel_ws.POST_REPLACE(jsonBody, out v6return);
+                    }
                     else if (mode == "T")
                     {
                         jsonBody = ReadData(dbfFile, "T");

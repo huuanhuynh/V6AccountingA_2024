@@ -147,6 +147,7 @@ namespace V6AccountingB
             menuButton1.ListTable = "";
             menuButton1.MaChungTu = "";
             menuButton1.NhatKy = "";
+            menuButton1.Pro_old = "";
             menuButton1.ReportFile = null;
             menuButton1.ReportFileF5 = null;
             menuButton1.ReportTitle = null;
@@ -172,6 +173,7 @@ namespace V6AccountingB
             menuButton2.ListTable = "";
             menuButton2.MaChungTu = "";
             menuButton2.NhatKy = "";
+            menuButton2.Pro_old = "";
             menuButton2.ReportFile = null;
             menuButton2.ReportFileF5 = null;
             menuButton2.ReportTitle = null;
@@ -197,6 +199,7 @@ namespace V6AccountingB
             menuButton3.ListTable = "";
             menuButton3.MaChungTu = "";
             menuButton3.NhatKy = "";
+            menuButton3.Pro_old = "";
             menuButton3.ReportFile = null;
             menuButton3.ReportFileF5 = null;
             menuButton3.ReportTitle = null;
@@ -222,6 +225,7 @@ namespace V6AccountingB
             menuButton4.ListTable = "";
             menuButton4.MaChungTu = "";
             menuButton4.NhatKy = "";
+            menuButton4.Pro_old = "";
             menuButton4.ReportFile = null;
             menuButton4.ReportFileF5 = null;
             menuButton4.ReportTitle = null;
@@ -247,6 +251,7 @@ namespace V6AccountingB
             menuButton5.ListTable = "";
             menuButton5.MaChungTu = "";
             menuButton5.NhatKy = "";
+            menuButton5.Pro_old = "";
             menuButton5.ReportFile = null;
             menuButton5.ReportFileF5 = null;
             menuButton5.ReportTitle = null;
@@ -272,6 +277,7 @@ namespace V6AccountingB
             menuButton6.ListTable = "";
             menuButton6.MaChungTu = "";
             menuButton6.NhatKy = "";
+            menuButton6.Pro_old = "";
             menuButton6.ReportFile = null;
             menuButton6.ReportFileF5 = null;
             menuButton6.ReportTitle = null;
@@ -297,6 +303,7 @@ namespace V6AccountingB
             menuButton7.ListTable = "";
             menuButton7.MaChungTu = "";
             menuButton7.NhatKy = "";
+            menuButton7.Pro_old = "";
             menuButton7.ReportFile = null;
             menuButton7.ReportFileF5 = null;
             menuButton7.ReportTitle = null;
@@ -322,6 +329,7 @@ namespace V6AccountingB
             menuButton8.ListTable = "";
             menuButton8.MaChungTu = "";
             menuButton8.NhatKy = "";
+            menuButton8.Pro_old = "";
             menuButton8.ReportFile = null;
             menuButton8.ReportFileF5 = null;
             menuButton8.ReportTitle = null;
@@ -347,6 +355,7 @@ namespace V6AccountingB
             menuButton9.ListTable = "";
             menuButton9.MaChungTu = "";
             menuButton9.NhatKy = "";
+            menuButton9.Pro_old = "";
             menuButton9.ReportFile = null;
             menuButton9.ReportFileF5 = null;
             menuButton9.ReportTitle = null;
@@ -372,6 +381,7 @@ namespace V6AccountingB
             menuButton10.ListTable = "";
             menuButton10.MaChungTu = "";
             menuButton10.NhatKy = "";
+            menuButton10.Pro_old = "";
             menuButton10.ReportFile = null;
             menuButton10.ReportFileF5 = null;
             menuButton10.ReportTitle = null;

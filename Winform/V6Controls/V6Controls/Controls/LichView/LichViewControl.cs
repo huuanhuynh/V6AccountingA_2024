@@ -605,7 +605,7 @@ namespace V6Controls.Controls.LichView
                 //In đỏ ngày tết
                 if(lunarDate.LunarMonth == 1)
                 {
-                    if (lunarDate.LunarDay == 1 || lunarDate.LunarDay == 3 || lunarDate.LunarDay == 3)
+                    if (lunarDate.LunarDay == 1 || lunarDate.LunarDay == 2 || lunarDate.LunarDay == 3)
                     {
                         brush = new SolidBrush(Color.Red);
                     }

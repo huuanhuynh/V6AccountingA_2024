@@ -427,7 +427,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Gán Tag được lưu lên form.
         /// </summary>
-        /// <param name="loai">1ct 4report 5filter</param>
+        /// <param name="loai">1ct 2dm 4report 5filter</param>
         /// <param name="mact"></param>
         /// <param name="madm"></param>
         /// <param name="itemId"></param>

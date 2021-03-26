@@ -958,7 +958,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (e.KeyData == Keys.F5 && FilterControl.F5)
                 {
-                    if (dataGridView1.Focused) XuLyXemChiTietF5();
+                    if (dataGridView1.Focused) XuLyXemChiTietF5(); // !!!! Nếu có code động...
                 }
                 else if (e.KeyData == (Keys.Control | Keys.A))
                 {
@@ -1097,16 +1097,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected virtual void XuLyXemChiTietF5()
         {
-            var oldKeys = FilterControl.GetFilterParameters();
-            var view = new XuLy44Base(m_itemId, _program + "F5", _program + "F5", _reportFile, _reportCaption, _reportCaption2, false);
-            view.CodeForm = CodeForm;
-            view.Dock = DockStyle.Fill;
-            view.FilterControl.InitFilters = oldKeys;
-            view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
-            view.btnNhan_Click(null, null);
-            //view.autocl
-            view.ShowToForm(this, _reportCaption, true);
-
+            try
+            {
+                if (Event_Methods.ContainsKey(FormDynamicEvent.F5))
+                {
+                    InvokeFormEvent(FormDynamicEvent.F5);
+                }
+                else
+                {
+                    //Code base
+                    var oldKeys = FilterControl.GetFilterParameters();
+                    var view = new XuLy44Base(m_itemId, _program + "F5", _program + "F5", _reportFile, _reportCaption, _reportCaption2, false);
+                    view.CodeForm = CodeForm;
+                    view.Dock = DockStyle.Fill;
+                    view.FilterControl.InitFilters = oldKeys;
+                    view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                    view.btnNhan_Click(null, null);
+                    //view.autocl
+                    view.ShowToForm(this, _reportCaption, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF6", ex);
+            }
+            
             SetStatus2Text();
         }
 
