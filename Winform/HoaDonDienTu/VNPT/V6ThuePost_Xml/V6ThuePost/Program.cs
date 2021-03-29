@@ -29,6 +29,7 @@ namespace V6ThuePost
     {
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
+        public static VnptWS vnptWS = null;
         #region ===== VAR =====
         
         //private static string flagName = "";
@@ -72,18 +73,22 @@ namespace V6ThuePost
         /// <summary>
         /// admin
         /// </summary>
-        private static string account;
-        private static string accountpassword;
+        public static string account;
+
+        public static string accountpassword;
         /// <summary>
         /// Serial của chứng thư công ty đã đăng ký trong hệ thống.
         /// </summary>
-        private static string _SERIAL_CERT;
+        public static string _SERIAL_CERT;
         //Auto input setting
         private static string _token_password_title = "";
         private static string _token_password = "";
 
-        private static string _pattern, pattern_field;
-        private static string _seri, seri_field;
+        public static string _pattern;
+        private static string pattern_field;
+        public static string _seri;
+        private static string seri_field;
+
         private static string convert = "0";
         //Excel config
         private static string template_xls = "template.xls";
@@ -150,7 +155,7 @@ namespace V6ThuePost
                     if (args.Length > 4) arg4 = args[4];
                     
                     ReadXmlInfo(arg1_xmlFile);
-                    VnptWS vnptWS = new VnptWS(_baseLink, account, accountpassword, username, password);
+                    vnptWS = new VnptWS(_baseLink, account, accountpassword, username, password);
                     V6Return v6Return = null;
                     if (mode.ToLower() == "DownloadInvPDFFkey".ToLower())
                     {
@@ -209,7 +214,7 @@ namespace V6ThuePost
                         #region ==== mode M M1:tạo mới gửi excel có sẵn  M2:tạo mới+xuất excel rồi gửi.
                         var xml = ReadDataXml(arg2);
                         File.Create(flagFileName1).Close();
-                        result = ImportAndPublishInv(xml);
+                        //result = ImportAndPublishInv(xml);
                         if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
                             result = vnptWS.ImportAndPublishInv(xml, _pattern, _seri, out v6Return);

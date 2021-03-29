@@ -15,7 +15,7 @@ namespace V6ThuePostXmlApi
 
         public string PublishLink
         {
-            get { return _baseLink + PublishLink; }
+            get { return _baseLink + _publishLink; }
         }
         public string PortalLink
         {

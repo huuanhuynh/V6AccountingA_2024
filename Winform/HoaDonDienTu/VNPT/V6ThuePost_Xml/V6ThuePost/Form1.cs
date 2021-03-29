@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using V6ThuePost.ResponseObjects;
+using V6ThuePostXmlApi;
 
 namespace V6ThuePost
 {
@@ -22,6 +24,8 @@ namespace V6ThuePost
             btnTest.Enabled = true;
             btnSend.Enabled = true;
             btnSendS.Enabled = false;
+
+            Program.vnptWS = new VnptWS(Program._baseLink, Program.account, Program.accountpassword, Program.username, Program.password);
         }
         
         private void btnReadS_Click(object sender, EventArgs e)
@@ -66,16 +70,37 @@ namespace V6ThuePost
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            string result = Program.ImportAndPublishInv(richTextBox1.Text);
-            lblResult.Text = result;
-            if (result != null)
+            string result = null;
+            try
             {
-                BaseMessage.Show(result, 500, this);
+                BaseMessage.Show("CERT:" + Program._SERIAL_CERT, 0, this);
+                V6Return v6Return;
+                if (string.IsNullOrEmpty(Program._SERIAL_CERT))
+                {
+                    //result = Program.ImportAndPublishInv(richTextBox1.Text);
+                    result = Program.vnptWS.ImportAndPublishInv(richTextBox1.Text, Program._pattern, Program._seri, out v6Return);
+                }
+                else
+                {
+                    Program.StartAutoInputTokenPassword();
+                    result = Program.vnptWS.PublishInvWithToken_Dll(richTextBox1.Text, Program._pattern, Program._seri, Program._SERIAL_CERT, out v6Return);
+                }
+
+                lblResult.Text = result;
+                if (result != null)
+                {
+                    BaseMessage.Show(result, 500, this);
+                }
+                else
+                {
+                    BaseMessage.Show("Response is null!", 500, this);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                BaseMessage.Show("Response is null!", 500, this);
+                BaseMessage.Show("Error: " + ex.Message + "\n" + result, 0, this);
             }
+            
         }
 
         private void btnSendS_Click(object sender, EventArgs e)
