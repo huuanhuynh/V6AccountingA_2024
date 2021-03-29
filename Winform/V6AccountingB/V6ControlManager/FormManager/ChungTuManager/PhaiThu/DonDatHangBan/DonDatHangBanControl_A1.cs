@@ -273,7 +273,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         //{
                         //    _giaNt21.ReadOnlyTag();
                         //}
+                        //_gia_nt01.TextChanged += delegate
+                        //{
+                        //    if (!detail1.IsAddOrEdit) return;
 
+                        //    if (!chkSuaTien.Checked)
+                        //    {
+                        //        if (_gia_nt01.Value * _soLuong1.Value == 0)
+                        //        {
+                        //            _tien_nt0.Enabled = true;
+                        //            _tien_nt0.ReadOnly = false;
+                        //        }
+                        //        else
+                        //        {
+                        //            _tien_nt0.Enabled = false;
+                        //            _tien_nt0.ReadOnly = true;
+                        //        }
+                        //    }
+                        //};
                         break;
                     case "GIA_BAN":
                         //_gia_ban = control as V6NumberTextBox;

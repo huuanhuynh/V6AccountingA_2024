@@ -2520,7 +2520,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             try
             {
-                _tien0.Value = V6BusinessHelper.Vround((_tien_nt0.Value * txtTyGia.Value), M_ROUND);
+                _tien0.Value = V6BusinessHelper.Vround(_tien_nt0.Value * txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {
                     _tien0.Value = _tien_nt0.Value;

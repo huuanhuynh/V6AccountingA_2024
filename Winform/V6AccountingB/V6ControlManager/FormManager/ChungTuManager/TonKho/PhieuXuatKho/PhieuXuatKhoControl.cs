@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maKhoI, _maViTri;
         private V6ColorTextBox _soKhung, _soMay;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
-        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _gia1, _gia_nt1;
+        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tien_nt, _gia1, _gia_nt1;
         private V6DateTimeColor _hanSd;
 
         private void LoadDetailControls()
@@ -363,6 +363,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                     if (!detail1.IsAddOrEdit) return;
                                     SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
                                 };
+                                _soLuong1.TextChanged += delegate
+                                {
+                                    if (!detail1.IsAddOrEdit) return;
+                                    if (!chkSuaTien.Checked)
+                                    {
+                                        if (_gia_nt1.Value * _soLuong1.Value == 0)
+                                        {
+                                            _tien_nt.Enabled = true;
+                                            _tien_nt.ReadOnly = false;
+                                        }
+                                        else
+                                        {
+                                            _tien_nt.Enabled = false;
+                                            _tien_nt.ReadOnly = true;
+                                        }
+                                    }
+                                };
                                 if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                                 {
                                     _soLuong1.ReadOnlyTag();
@@ -435,31 +452,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             }
                             break;
                         case "TIEN_NT":
-                            _tienNt = control as V6NumberTextBox;
-                            if (_tienNt != null)
+                            _tien_nt = control as V6NumberTextBox;
+                            if (_tien_nt != null)
                             {
-                                _tienNt.Enabled = chkSuaTien.Checked;
+                                _tien_nt.Enabled = chkSuaTien.Checked;
                                 if (chkSuaTien.Checked)
                                 {
-                                    _tienNt.Tag = null;
+                                    _tien_nt.Tag = null;
                                 }
                                 else
                                 {
-                                    _tienNt.Tag = "disable";
+                                    _tien_nt.Tag = "disable";
                                 }
 
-                                _tienNt.V6LostFocus += delegate
+                                _tien_nt.V6LostFocus += delegate
                                 {
+                                    _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
+                                    if (_gia_nt1.Value == 0 && _soLuong1.Value != 0) TinhGiaNt1();
                                     TinhTienVon_GiaVon();
                                 };
-
                                 if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                                 {
-                                    _tienNt.InvisibleTag();
+                                    _tien_nt.InvisibleTag();
                                 }
                                 if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                                 {
-                                    _tienNt.ReadOnlyTag();
+                                    _tien_nt.ReadOnlyTag();
                                 }
                             }
                             break;
@@ -507,6 +525,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                     TinhTienVon1(_gia_nt1);
                                     TinhGiaVon();
                                 };
+                                _gia_nt1.TextChanged += delegate
+                                {
+                                    if (!detail1.IsAddOrEdit) return;
+
+                                    if (!chkSuaTien.Checked)
+                                    {
+                                        if (_gia_nt1.Value * _soLuong1.Value == 0)
+                                        {
+                                            _tien_nt.Enabled = true;
+                                            _tien_nt.ReadOnly = false;
+                                        }
+                                        else
+                                        {
+                                            _tien_nt.Enabled = false;
+                                            _tien_nt.ReadOnly = true;
+                                        }
+                                    }
+                                };
                                 if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                                 {
                                     _gia_nt1.InvisibleTag();
@@ -544,18 +580,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                         _gia_nt.Enabled = true;
                                         if (chkSuaTien.Checked)
                                         {
-                                            _tienNt.Enabled = true;
+                                            _tien_nt.Enabled = true;
                                         }
                                         else
                                         {
-                                            _tienNt.Enabled = false;
+                                            _tien_nt.Enabled = false;
                                         }
                                     }
                                     else
                                     {
                                         _gia_nt1.Enabled = false;
                                         _gia_nt.Enabled = false;
-                                        _tienNt.Enabled = false;
+                                        _tien_nt.Enabled = false;
                                         _tien.Enabled = false;
                                     }
                                 };
@@ -2656,14 +2692,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         /// <param name="actionControl"></param>
         public void TinhTienVon1(Control actionControl = null)
         {
-            _tienNt.Value = V6BusinessHelper.Vround(_soLuong1.Value * _gia_nt1.Value, M_ROUND_NT);
+            _tien_nt.Value = V6BusinessHelper.Vround(_soLuong1.Value * _gia_nt1.Value, M_ROUND_NT);
             if (_maNt == _mMaNt0)
             {
-                _tien.Value = _tienNt.Value;
+                _tien.Value = _tien_nt.Value;
             }
             else
             {
-                _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
+                _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
             }
         }
 
@@ -2671,16 +2707,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             try
             {
-                _tienNt.Value = V6BusinessHelper.Vround(_soLuong.Value * _gia_nt.Value, M_ROUND_NT);
+                _tien_nt.Value = V6BusinessHelper.Vround(_soLuong.Value * _gia_nt.Value, M_ROUND_NT);
                 
                 if (_maNt == _mMaNt0)
                 {
-                    _tien.Value = _tienNt.Value;
+                    _tien.Value = _tien_nt.Value;
                 }
                 else
                 {
-                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * _sl_td1.Value), M_ROUND);
-                    else _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround((_tien_nt.Value * _sl_td1.Value), M_ROUND);
+                    else _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
                 }
             }
             catch (Exception ex)
@@ -2708,7 +2744,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                 if (_soLuong.Value != 0)
                 {
-                    _gia_nt.Value = V6BusinessHelper.Vround(_tienNt.Value / _soLuong.Value, M_ROUND_GIA_NT);
+                    _gia_nt.Value = V6BusinessHelper.Vround(_tien_nt.Value / _soLuong.Value, M_ROUND_GIA_NT);
                     if (_maNt == _mMaNt0)
                     {
                         _gia.Value = _gia_nt.Value;
@@ -2724,6 +2760,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
+        public void TinhGiaNt1()
+        {
+            if (!chkSuaTien.Checked && _soLuong1.Value != 0)
+            {
+                _gia_nt1.Value = V6BusinessHelper.Vround(_tien_nt.Value / _soLuong1.Value, M_ROUND_GIA_NT);
+                if (_maNt == _mMaNt0)
+                {
+                    _gia1.Value = _gia_nt1.Value;
+                }
+                else
+                {
+                    _gia1.Value = V6BusinessHelper.Vround(_tien.Value / _soLuong1.Value, M_ROUND_GIA);
+                }
+            }
+        }
         
         public void TinhTienVon_GiaVon()
         {
@@ -2731,12 +2783,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 if (_maNt == _mMaNt0)
                 {
-                    _tien.Value = _tienNt.Value;
+                    _tien.Value = _tien_nt.Value;
                 }
                 else
                 {
-                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * _sl_td1.Value, M_ROUND);
-                    else _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * _sl_td1.Value, M_ROUND);
+                    else _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
                 }
 
                 if (_maNt == _mMaNt0)
@@ -2751,7 +2803,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                 if (_soLuong.Value != 0)
                 {
-                    _gia_nt.Value = V6BusinessHelper.Vround(_tienNt.Value / _soLuong.Value, M_ROUND_GIA_NT);
+                    _gia_nt.Value = V6BusinessHelper.Vround(_tien_nt.Value / _soLuong.Value, M_ROUND_GIA_NT);
                     _gia.Value = V6BusinessHelper.Vround(_tien.Value / _soLuong.Value, M_ROUND_GIA);
 
                     if (_maNt == _mMaNt0)
@@ -2799,8 +2851,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     //{Tuanmh 20/02/2016
                     bool is_gia_dichdanh = _maVt.GIA_TON == 2 || _xuat_dd.Text != "";
 
-                    _tienNt.Enabled = chkSuaTien.Checked && is_gia_dichdanh;
-                    _tien.Enabled = is_gia_dichdanh && _tienNt.Value == 0 && _maNt != _mMaNt0;
+                    _tien_nt.Enabled = chkSuaTien.Checked && is_gia_dichdanh;
+                    _tien.Enabled = is_gia_dichdanh && _tien_nt.Value == 0 && _maNt != _mMaNt0;
 
                     _gia_nt.Enabled = is_gia_dichdanh;
                     _gia.Enabled =  is_gia_dichdanh && _gia_nt.Value==0;
@@ -3538,7 +3590,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         textBox.DecimalPlaces = V6Options.M_IP_TIEN;
                 }
                 //AD
-                _tienNt.DecimalPlaces = decimalTienNt;
+                _tien_nt.DecimalPlaces = decimalTienNt;
             }
             catch (Exception ex)
             {
@@ -5127,15 +5179,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                _tienNt.Enabled = chkSuaTien.Checked && _xuat_dd.Text != "";
+                _tien_nt.Enabled = chkSuaTien.Checked && _xuat_dd.Text != "";
             }
             if (chkSuaTien.Checked)
             {
-                _tienNt.Tag = null;
+                _tien_nt.Tag = null;
             }
             else
             {
-                _tienNt.Tag = "disable";
+                _tien_nt.Tag = "disable";
             }
         }
         
