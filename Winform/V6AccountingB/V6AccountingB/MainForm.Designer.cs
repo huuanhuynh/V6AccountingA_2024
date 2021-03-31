@@ -676,7 +676,7 @@ namespace V6AccountingB
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "MainForm";
-            this.Text = "V6Accounting2016.NET - Công ty cổ phần phát triển ứng dụng phần mềm doanh nghiệp " +
+            this.Text = "V6Accounting2020.NET - Công ty cổ phần phát triển ứng dụng phần mềm doanh nghiệp " +
     "V6 (V6Business Software)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
