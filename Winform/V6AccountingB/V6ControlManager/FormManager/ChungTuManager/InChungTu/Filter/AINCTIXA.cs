@@ -80,16 +80,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
         public override void Call1(object s = null)
         {
             _tbl2Row = s as DataRow;
+            string LAN = V6Setting.Language;
             var parent = FindParent<InChungTuViewBase>() as InChungTuViewBase;
+            if (parent != null)
+            {
+                LAN = parent.LAN;
+            }
+            else
+            {
+                var parentDX = FindParent<InChungTuDX>() as InChungTuDX;
+                if (parentDX != null) LAN = parentDX.LAN;
+            }
             if (_tbl2Row != null && parent != null)
             {
                 var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN_NT2_IN"]);
                 var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN2_IN"]);
                 var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
 
-                RptExtraParameters["SOTIENVIETBANGCHU_TIENBANNT"] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, parent.LAN, ma_nt);
+                RptExtraParameters["SOTIENVIETBANGCHU_TIENBANNT"] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
 
-                RptExtraParameters["SOTIENVIETBANGCHU_TIENBAN"] = V6BusinessHelper.MoneyToWords(t_tien2_in, parent.LAN,
+                RptExtraParameters["SOTIENVIETBANGCHU_TIENBAN"] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
                     V6Options.M_MA_NT0);
 
             }

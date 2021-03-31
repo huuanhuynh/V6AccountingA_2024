@@ -22,12 +22,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             RptExtraParameters.Add("HOA_TENKH", false);
             RptExtraParameters.Add("HOA_DIACHIKH", false);
             
-            SetFieldValueEvent += ASOCTSOA_SetFieldValueEvent;
+            SetFieldValueEvent += Form_SetFieldValueEvent;
 
             SetHideFields("V");
         }
 
-        void ASOCTSOA_SetFieldValueEvent(string sttrec)
+        void Form_SetFieldValueEvent(string sttrec)
         {
             TxtStt_rec.Text = sttrec;
         }
@@ -98,15 +98,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
         public override void Call1(object s = null)
         {
             _tbl2Row = s as DataRow;
+            string LAN = V6Setting.Language;
             var parent = FindParent<InChungTuViewBase>() as InChungTuViewBase;
+            if (parent != null)
+            {
+                LAN = parent.LAN;
+            }
+            else
+            {
+                var parentDX = FindParent<InChungTuDX>() as InChungTuDX;
+                if (parentDX != null) LAN = parentDX.LAN;
+            }
             if (_tbl2Row != null && parent != null)
             {
                 var t_tien_nt = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN_NT"]);
                 var t_tien = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN"]);
                 var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
 
-                RptExtraParameters["SOTIENVIETBANGCHU_TIENBANNT"] = V6BusinessHelper.MoneyToWords(t_tien_nt, parent.LAN, ma_nt);
-                RptExtraParameters["SOTIENVIETBANGCHU_TIENBAN"] = V6BusinessHelper.MoneyToWords(t_tien, parent.LAN, V6Options.M_MA_NT0);
+                RptExtraParameters["SOTIENVIETBANGCHU_TIENBANNT"] = V6BusinessHelper.MoneyToWords(t_tien_nt, LAN, ma_nt);
+                RptExtraParameters["SOTIENVIETBANGCHU_TIENBAN"] = V6BusinessHelper.MoneyToWords(t_tien, LAN, V6Options.M_MA_NT0);
 
             }
         }

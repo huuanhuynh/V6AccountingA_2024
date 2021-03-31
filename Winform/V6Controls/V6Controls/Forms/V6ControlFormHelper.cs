@@ -64,7 +64,7 @@ namespace V6Controls.Forms
             }
         }
         
-        static void AddLastError(string s)
+        public static void AddLastError(string s)
         {
             LastErrorList.Add(s);
             while (LastErrorList.Count > MaxErrorListCount)
@@ -4523,7 +4523,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Cờ không mở file sau khi export 20210114 sau khi dùng xong cần đặt lại false
         /// </summary>
-        public static bool NoOpen = false;
+        public static bool NoOpen { get; set; }
 
         /// <summary>
         /// Xuất Excel ra file theo file mẫu.

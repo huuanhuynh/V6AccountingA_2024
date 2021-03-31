@@ -56,9 +56,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtKey1.Enabled = true;
             txtPicture.Enabled = true;
             txtKey3.Enabled = true;
+            txtPageX.Enabled = true;
 
             btnMenuHide.Enabled = true;
             btnMenuHide.Visible = true;
+            
             base.V6CtrlF12Execute();
         }
 
@@ -93,6 +95,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtKey1.Enabled = false;
             txtPicture.Enabled = false;
             txtKey3.Enabled = false;
+            txtPageX.Enabled = false;
         }
 
         private void btnMenuHide_Click(object sender, System.EventArgs e)

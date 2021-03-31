@@ -127,6 +127,8 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.lblUseXtra = new System.Windows.Forms.Label();
+            this.txtPageX = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabCacTuyChon.SuspendLayout();
@@ -319,7 +321,9 @@
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.txtPageX);
             this.tabThongTinChinh.Controls.Add(this.txtHotKey);
+            this.tabThongTinChinh.Controls.Add(this.lblUseXtra);
             this.tabThongTinChinh.Controls.Add(this.txtCode);
             this.tabThongTinChinh.Controls.Add(this.lblHotKey);
             this.tabThongTinChinh.Controls.Add(this.txtMaCt);
@@ -826,7 +830,7 @@
             this.tabCacTuyChon.Margin = new System.Windows.Forms.Padding(4);
             this.tabCacTuyChon.Name = "tabCacTuyChon";
             this.tabCacTuyChon.Padding = new System.Windows.Forms.Padding(4);
-            this.tabCacTuyChon.Size = new System.Drawing.Size(742, 339);
+            this.tabCacTuyChon.Size = new System.Drawing.Size(745, 339);
             this.tabCacTuyChon.TabIndex = 2;
             this.tabCacTuyChon.Text = "Các tùy chọn";
             // 
@@ -984,7 +988,7 @@
             this.tabThongTinNgamDinh.Margin = new System.Windows.Forms.Padding(4);
             this.tabThongTinNgamDinh.Name = "tabThongTinNgamDinh";
             this.tabThongTinNgamDinh.Padding = new System.Windows.Forms.Padding(4);
-            this.tabThongTinNgamDinh.Size = new System.Drawing.Size(742, 339);
+            this.tabThongTinNgamDinh.Size = new System.Drawing.Size(745, 339);
             this.tabThongTinNgamDinh.TabIndex = 1;
             this.tabThongTinNgamDinh.Text = "Thông tin ngầm định";
             // 
@@ -1039,7 +1043,7 @@
             this.tabTuDinhNghia.Margin = new System.Windows.Forms.Padding(4);
             this.tabTuDinhNghia.Name = "tabTuDinhNghia";
             this.tabTuDinhNghia.Padding = new System.Windows.Forms.Padding(4);
-            this.tabTuDinhNghia.Size = new System.Drawing.Size(742, 339);
+            this.tabTuDinhNghia.Size = new System.Drawing.Size(745, 339);
             this.tabTuDinhNghia.TabIndex = 3;
             this.tabTuDinhNghia.Text = "Tự định nghĩa";
             // 
@@ -1676,6 +1680,34 @@
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
             // 
+            // lblUseXtra
+            // 
+            this.lblUseXtra.AccessibleDescription = "";
+            this.lblUseXtra.AutoSize = true;
+            this.lblUseXtra.Location = new System.Drawing.Point(347, 299);
+            this.lblUseXtra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUseXtra.Name = "lblUseXtra";
+            this.lblUseXtra.Size = new System.Drawing.Size(154, 17);
+            this.lblUseXtra.TabIndex = 22;
+            this.lblUseXtra.Text = "Page (UserXtraReport)";
+            // 
+            // txtPageX
+            // 
+            this.txtPageX.AccessibleName = "PAGE";
+            this.txtPageX.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPageX.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPageX.Enabled = false;
+            this.txtPageX.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPageX.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPageX.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPageX.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPageX.LeaveColor = System.Drawing.Color.White;
+            this.txtPageX.Location = new System.Drawing.Point(517, 296);
+            this.txtPageX.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPageX.Name = "txtPageX";
+            this.txtPageX.Size = new System.Drawing.Size(56, 23);
+            this.txtPageX.TabIndex = 23;
+            // 
             // V6MenuAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1801,6 +1833,8 @@
         private System.Windows.Forms.Label lblPRO_OLD;
         private V6ColorTextBox txtHotKey;
         private System.Windows.Forms.Label lblHotKey;
+        private V6ColorTextBox txtPageX;
+        private System.Windows.Forms.Label lblUseXtra;
 
     }
 }

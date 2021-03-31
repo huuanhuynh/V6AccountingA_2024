@@ -77,7 +77,7 @@ namespace V6ControlManager.FormManager.MenuManager
                     var code = codeform.Substring(0, 1);
                     FORM_NAME = codeform.Substring(1).ToUpper();
                     TABLE_NAME = codeform.Substring(1).ToUpper();
-                    bool check = true, mouse_left = false, ctrl_is_down = false;
+                    bool check = true, mouse_left = false, ctrl_is_down = false, shift_is_down = false;
                     if (e == null || e.Button == MouseButtons.Left)
                     {
                         mouse_left = true;
@@ -85,6 +85,10 @@ namespace V6ControlManager.FormManager.MenuManager
                     if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
                     {
                         ctrl_is_down = true;
+                    }
+                    if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+                    {
+                        shift_is_down = true;
                     }
 
                     switch (code)
@@ -245,11 +249,22 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 program = codeform.Substring(2);
                                 if (string.IsNullOrEmpty(pro_old))
-                                    c = new ReportR44ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                {
+                                    if (mButton.UseXtraReport != shift_is_down)
+                                        c = new ReportR44_DX(item_id, program, program, repFile, repTitle, repTitle2,
+                                            repFileF5, repTitleF5, repTitle2F5);
+                                    else
+                                        c = new ReportR44ViewBase(item_id, program, program, repFile, repTitle,
+                                            repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                }
                                 else
-                                    c = new ReportR44ViewBase(item_id, pro_old, program, repFile, repTitle, repTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                {
+                                    if (mButton.UseXtraReport != shift_is_down)
+                                        c = new ReportR44_DX(item_id, pro_old, program, repFile, repTitle, repTitle2,
+                                            repFileF5, repTitleF5, repTitle2F5);
+                                    else
+                                        c = new ReportR44ViewBase(item_id, pro_old, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);}
                             }
                             else if (codeform.StartsWith("45")) // Không hiển thị report.
                             {
@@ -298,11 +313,19 @@ namespace V6ControlManager.FormManager.MenuManager
                             else
                             {
                                 if (string.IsNullOrEmpty(pro_old))
-                                    c = new ReportRViewBase(item_id, program, program, repFile, repTitle, repTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                {
+                                    if (mButton.UseXtraReport != shift_is_down)
+                                        c = new ReportR_DX(item_id, program, program, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    else
+                                        c = new ReportRViewBase(item_id, program, program, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                }
                                 else
-                                    c = new ReportRViewBase(item_id, pro_old, program, repFile, repTitle, repTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                {
+                                    if (mButton.UseXtraReport != shift_is_down)
+                                        c = new ReportR_DX(item_id, pro_old, program, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    else
+                                        c = new ReportRViewBase(item_id, pro_old, program, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                }
                             }
 
                             End_case_4:
@@ -490,12 +513,20 @@ namespace V6ControlManager.FormManager.MenuManager
                             if (codeform.StartsWith("WW"))
                             {
                                 programW = codeform.Substring(2);
-                                c = new ReportRWWView2Base(item_id, programW, programW, repFile, repTitle, repTitle2,
+                                if (mButton.UseXtraReport != shift_is_down)
+                                    c = new ReportRWWView2_DX(item_id, programW, programW, repFile, repTitle, repTitle2,
+                                    repFileF5, repTitleF5, repTitle2F5);
+                                else
+                                    c = new ReportRWWView2Base(item_id, programW, programW, repFile, repTitle, repTitle2,
                                     repFileF5, repTitleF5, repTitle2F5);
                             }
                             else
                             {
-                                c = new ReportRView2Base(item_id, programW, programW, repFile, repTitle, repTitle2,
+                                if (mButton.UseXtraReport != shift_is_down)
+                                    c = new ReportRView2_DX(item_id, programW, programW, repFile, repTitle, repTitle2,
+                                    repFileF5, repTitleF5, repTitle2F5);
+                                else
+                                    c = new ReportRView2Base(item_id, programW, programW, repFile, repTitle, repTitle2,
                                     repFileF5, repTitleF5, repTitle2F5);
                             }
 

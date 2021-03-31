@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ControlManager</RootNamespace>
     <AssemblyName>V6ControlManager</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -40,6 +42,57 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.1.Export, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v17.1.Extensions, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PdfiumViewer, Version=2.10.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
@@ -51,6 +104,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -75,6 +129,12 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\HistoryViewerForm.Designer.cs">
       <DependentUpon>HistoryViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\InChungTuDX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\InChungTuDX.designer.cs">
+      <DependentUpon>InChungTuDX.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl_A1.cs">
       <SubType>UserControl</SubType>
@@ -2099,6 +2159,36 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.designer.cs">
       <DependentUpon>DanhMucReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DXreport\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DXreport\DXreportManager.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumber.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumberGia.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumberGiaNT.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumberSL.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumberTT.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumberTTNT.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6XtraReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DXreport\V6XtraReport.Designer.cs">
+      <DependentUpon>V6XtraReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DXreport\XtraEditorForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DXreport\XtraEditorForm1.Designer.cs">
+      <DependentUpon>XtraEditorForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DXreport\XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DXreport\XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_IXB_IN1.cs">
       <SubType>UserControl</SubType>
@@ -4326,6 +4416,12 @@
     <Compile Include="FormManager\ReportManager\Filter\Xuly\ZACOSXLT_TINHGIA_Filter.Designer.cs">
       <DependentUpon>ZACOSXLT_TINHGIA_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\ReportD\ReportD99_DX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportD\ReportD99_DX.designer.cs">
+      <DependentUpon>ReportD99_DX.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportD\ReportD99ViewBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4573,6 +4669,12 @@
     <Compile Include="FormManager\ReportManager\Filter\FilterBase.Designer.cs">
       <DependentUpon>FilterBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ChartReportDXForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ChartReportDXForm.designer.cs">
+      <DependentUpon>ChartReportDXForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ChartReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4580,6 +4682,12 @@
       <DependentUpon>ChartReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\QuickReportManager.cs" />
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR44_DX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR44_DX.designer.cs">
+      <DependentUpon>ReportR44_DX.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportR45db2ViewBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4609,6 +4717,24 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportRView0Base.designer.cs">
       <DependentUpon>ReportRView0Base.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportRView2_DX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportRView2_DX.designer.cs">
+      <DependentUpon>ReportRView2_DX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportRWWView2_DX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportRWWView2_DX.designer.cs">
+      <DependentUpon>ReportRWWView2_DX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR_DX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR_DX.designer.cs">
+      <DependentUpon>ReportR_DX.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.cs">
       <SubType>UserControl</SubType>
@@ -5972,11 +6098,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="FormManager\ReportManager\DXreport\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="FormManager\ReportManager\DXreport\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="FormManager\ReportManager\DXreport\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Resources\newspaperplus.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormManager\ChungTuManager\HistoryViewerForm.resx">
       <DependentUpon>HistoryViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\InChungTuDX.resx">
+      <DependentUpon>InChungTuDX.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl_A1.resx">
       <DependentUpon>DonDatHangBanControl_A1.cs</DependentUpon>
@@ -6999,6 +7140,12 @@
     <EmbeddedResource Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.resx">
       <DependentUpon>DanhMucReportForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\DXreport\XtraEditorForm1.resx">
+      <DependentUpon>XtraEditorForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\DXreport\XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_IXB_IN1.resx">
       <DependentUpon>AAPPR_IXB_IN1.cs</DependentUpon>
@@ -8116,6 +8263,10 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\ZACOSXLT_TINHGIA_Filter.resx">
       <DependentUpon>ZACOSXLT_TINHGIA_Filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportD\ReportD99_DX.resx">
+      <DependentUpon>ReportD99_DX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportD\ReportD99ViewBase.resx">
       <DependentUpon>ReportD99ViewBase.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -8238,8 +8389,15 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ASOTH7.resx">
       <DependentUpon>ASOTH7.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ChartReportDXForm.resx">
+      <DependentUpon>ChartReportDXForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ChartReportForm.resx">
       <DependentUpon>ChartReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR44_DX.resx">
+      <DependentUpon>ReportR44_DX.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR45db2ViewBase.resx">
       <DependentUpon>ReportR45db2ViewBase.cs</DependentUpon>
@@ -8258,6 +8416,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRView0Base.resx">
       <DependentUpon>ReportRView0Base.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRView2_DX.resx">
+      <DependentUpon>ReportRView2_DX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRWWView2_DX.resx">
+      <DependentUpon>ReportRWWView2_DX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR_DX.resx">
+      <DependentUpon>ReportR_DX.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.resx">
@@ -8931,6 +9101,7 @@
     <EmbeddedResource Include="FormManager\VitriManager\VitriKhuCafeControl.resx">
       <DependentUpon>VitriKhuCafeControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

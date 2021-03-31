@@ -38,7 +38,7 @@
             this.btnHTMLview = new System.Windows.Forms.Button();
             this.btnPDF_HTMLview = new System.Windows.Forms.Button();
             this.btnXMLXSLview = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.btnXtraEditor = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.btnAmLich = new System.Windows.Forms.Button();
@@ -162,14 +162,15 @@
             this.btnXMLXSLview.UseVisualStyleBackColor = true;
             this.btnXMLXSLview.Click += new System.EventHandler(this.btnXMLXSLview_Click);
             // 
-            // button13
+            // btnXtraEditor
             // 
-            this.button13.Location = new System.Drawing.Point(130, 135);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(118, 23);
-            this.button13.TabIndex = 13;
-            this.button13.Text = "button1";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnXtraEditor.Location = new System.Drawing.Point(130, 135);
+            this.btnXtraEditor.Name = "btnXtraEditor";
+            this.btnXtraEditor.Size = new System.Drawing.Size(118, 23);
+            this.btnXtraEditor.TabIndex = 13;
+            this.btnXtraEditor.Text = "Xtra Editor";
+            this.btnXtraEditor.UseVisualStyleBackColor = true;
+            this.btnXtraEditor.Click += new System.EventHandler(this.btnXtraEditor_Click);
             // 
             // button14
             // 
@@ -309,7 +310,7 @@
             this.grbTools.Controls.Add(this.btnSQL);
             this.grbTools.Controls.Add(this.btnPDF_HTMLview);
             this.grbTools.Controls.Add(this.btnSendToV6);
-            this.grbTools.Controls.Add(this.button13);
+            this.grbTools.Controls.Add(this.btnXtraEditor);
             this.grbTools.Controls.Add(this.btnHTMLview);
             this.grbTools.Controls.Add(this.button14);
             this.grbTools.Controls.Add(this.button15);
@@ -442,7 +443,7 @@
         private System.Windows.Forms.Button btnHTMLview;
         private System.Windows.Forms.Button btnPDF_HTMLview;
         private System.Windows.Forms.Button btnXMLXSLview;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnXtraEditor;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button btnAmLich;

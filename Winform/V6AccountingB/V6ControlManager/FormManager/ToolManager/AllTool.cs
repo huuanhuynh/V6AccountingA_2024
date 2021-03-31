@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using V6ControlManager.FormManager.ReportManager.DXreport;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
@@ -313,6 +314,19 @@ namespace V6ControlManager.FormManager.ToolManager
                 string open_file_name = V6ControlFormHelper.ChooseOpenFile(this, "zip|*.zip");
                 XmlXslZipViewerForm view = new XmlXslZipViewerForm(open_file_name, "XML XSL", false);
                 view.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void btnXtraEditor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XtraEditorForm1 form1 = new XtraEditorForm1();
+                form1.Show(this);
             }
             catch (Exception ex)
             {

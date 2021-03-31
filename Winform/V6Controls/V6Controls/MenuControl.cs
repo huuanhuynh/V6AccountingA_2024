@@ -573,9 +573,10 @@ namespace V6Controls
         public string Key1;
         public string Key2, Key3, Key4;
         /// <summary>
-        /// XtraReport
+        /// field:page dùng cho rẽ nhánh XtraReport
         /// </summary>
         public string Xtra = null;
+        public bool UseXtraReport { get { return Xtra == "1"; } }
 
         protected string userControlViewName = "";
         [Description("User-defined data to be associated with the button"), Category("Appearance")]

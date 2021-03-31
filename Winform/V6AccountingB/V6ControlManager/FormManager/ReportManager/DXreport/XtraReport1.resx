@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTipV6FormControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="dataSet11.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="$this.ScriptsSource" xml:space="preserve">
+    <value>
+private void xrLabel2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {
+if (sender != null &amp;&amp; sender is XRLabel)
+((XRLabel)sender).Text = "TestScript";
+//V6Tools.V6Convert.ObjectAndString
+}
+</value>
+  </data>
 </root>

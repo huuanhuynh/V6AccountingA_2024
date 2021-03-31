@@ -4342,6 +4342,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 bool check_print = CheckPrint(Invoice);
                 if (!check_print)
                 {
@@ -4372,20 +4373,40 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
                         var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
-                        var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
-                            "", "", "", sttRec_In);
-                        c.TTT = tongThanhToan_Value;
-                        c.TTT_NT = tongThanhToanNT_Value;
-                        c.MA_NT = _maNt;
-                        c.Dock = DockStyle.Fill;
-                        c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                        if ((Invoice.AlctConfig.XtraReport && !shift_is_down) || (!Invoice.AlctConfig.XtraReport && shift_is_down))
                         {
-                            if (hoadon_nd51 > 0) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
-                            if (!sender.IsDisposed) sender.Dispose();
-                        };
-                        c.PrintMode = printMode;
-                        c.Close_after_print = closeAfterPrint;
-                        c.ShowToForm(this, Invoice.PrintTitle, true);
+                            var inDX = new InChungTuDX(Invoice, program, program, repFile, repTitle, repTitle2,
+                                "", "", "", sttRec_In);
+                            inDX.TTT = tongThanhToan_Value;
+                            inDX.TTT_NT = tongThanhToanNT_Value;
+                            inDX.MA_NT = _maNt;
+                            inDX.Dock = DockStyle.Fill;
+                            inDX.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                            {
+                                if (hoadon_nd51 > 0) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
+                                if (!sender.IsDisposed) sender.Dispose();
+                            };
+                            inDX.PrintMode = printMode;
+                            inDX.Close_after_print = closeAfterPrint;
+                            inDX.ShowToForm(this, Invoice.PrintTitle, true);
+                        }
+                        else
+                        {
+                            var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
+                                "", "", "", sttRec_In);
+                            c.TTT = tongThanhToan_Value;
+                            c.TTT_NT = tongThanhToanNT_Value;
+                            c.MA_NT = _maNt;
+                            c.Dock = DockStyle.Fill;
+                            c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                            {
+                                if (hoadon_nd51 > 0) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
+                                if (!sender.IsDisposed) sender.Dispose();
+                            };
+                            c.PrintMode = printMode;
+                            c.Close_after_print = closeAfterPrint;
+                            c.ShowToForm(this, Invoice.PrintTitle, true);
+                        }
                     }
                     else
                     {
