@@ -18,12 +18,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             RptExtraParameters.Add("HOA_TENKH", false);
             RptExtraParameters.Add("HOA_DIACHIKH", false);
             
-            SetFieldValueEvent += ASOCTSOA_SetFieldValueEvent;
+            SetFieldValueEvent += Form_SetFieldValueEvent;
 
             SetHideFields("V");
         }
 
-        void ASOCTSOA_SetFieldValueEvent(string sttrec)
+        void Form_SetFieldValueEvent(string sttrec)
         {
             TxtStt_rec.Text = sttrec;
         }

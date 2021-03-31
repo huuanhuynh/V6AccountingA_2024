@@ -48,7 +48,8 @@ namespace V6Structs
             switch (key.ToUpper())
             {
                 case "DECIMALS":
-                    int.TryParse(value, out Decimals);
+                    Decimals = value;
+                    //int.TryParse(value, out Decimals);
                     break;
                 //case "SQLTYPE":
                 //    sqltype = value.ToLower();
@@ -158,7 +159,7 @@ namespace V6Structs
         /// <summary>
         /// Số chữ số lẽ sau dấu thập phân.
         /// </summary>
-        public int Decimals = 0;
+        public string Decimals { get; set; }
         public string DecimalSymbol = ",";
         public string ThousandSymbol = " ";
         public int MaxLength = 0;

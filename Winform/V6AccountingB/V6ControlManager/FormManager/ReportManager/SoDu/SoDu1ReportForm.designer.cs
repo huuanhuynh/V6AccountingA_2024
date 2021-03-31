@@ -169,7 +169,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.exportToPdfMenu.Name = "exportToPdfMenu";
             this.exportToPdfMenu.Size = new System.Drawing.Size(207, 22);
             this.exportToPdfMenu.Text = "Export to PDF";
-            this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfMenu_Click);
             // 
             // viewInvoiceInfoMenu
             // 

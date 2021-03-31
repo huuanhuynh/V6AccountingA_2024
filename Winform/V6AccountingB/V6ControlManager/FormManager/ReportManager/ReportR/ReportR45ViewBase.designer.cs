@@ -154,7 +154,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToPdfMenu.Size = new System.Drawing.Size(208, 22);
             this.exportToPdfMenu.Text = "Export to PDF";
             this.exportToPdfMenu.Visible = false;
-            this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfMenu_Click);
             // 
             // viewInvoiceInfoMenu
             // 

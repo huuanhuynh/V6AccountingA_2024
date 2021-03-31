@@ -1983,7 +1983,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             //btnNhan.Focus();
         }
 
-        private void exportToPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportToPdfMenu_Click(object sender, EventArgs e)
         {
             //
         }

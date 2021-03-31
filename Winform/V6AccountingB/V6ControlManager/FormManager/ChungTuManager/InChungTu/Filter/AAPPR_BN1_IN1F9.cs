@@ -12,12 +12,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             F3 = false;
             F5 = false;
 
-            SetFieldValueEvent += ASOCTSOA_SetFieldValueEvent;
+            SetFieldValueEvent += Form_SetFieldValueEvent;
 
             SetHideFields("V");
         }
 
-        void ASOCTSOA_SetFieldValueEvent(string sttrec)
+        void Form_SetFieldValueEvent(string sttrec)
         {
             TxtStt_rec.Text = sttrec;
         }
