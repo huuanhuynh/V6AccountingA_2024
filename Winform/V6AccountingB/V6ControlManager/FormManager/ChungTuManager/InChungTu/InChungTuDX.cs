@@ -2029,29 +2029,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 SetCrossLineAll(repx1, repx2, repx3, repx4);
 
                 documentViewer1.DocumentSource = repx1;
+				documentViewer1.Zoom = Invoice.ExtraInfo_PrintVCzoom;
                 _repx10 = repx1;
                 _repx10.CreateDocument();
                 if (_soLienIn >= 2 && repx2 != null)
                 {
                     documentViewer2.DocumentSource = repx2;
+                    documentViewer2.Zoom = Invoice.ExtraInfo_PrintVCzoom;
                     _repx20 = repx2;
                     _repx20.CreateDocument();
                 }
                 if (_soLienIn >= 3 && repx3 != null)
                 {
                     documentViewer3.DocumentSource = repx3;
+                    documentViewer3.Zoom = Invoice.ExtraInfo_PrintVCzoom;
                     _repx30 = repx3;
                     _repx30.CreateDocument();
                 }
                 if (_soLienIn >= 4 && repx4 != null)
                 {
                     documentViewer4.DocumentSource = repx4;
+                    documentViewer4.Zoom = Invoice.ExtraInfo_PrintVCzoom;
                     _repx40 = repx4;
                     _repx40.CreateDocument();
                 }
 
                 documentViewer1.Show();
-                documentViewer1.Zoom = 1f;
                 documentViewer1.Visible = true;
                 documentViewer2.Visible = false;
                 documentViewer3.Visible = false;
@@ -2075,11 +2078,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 SetCrossLineAll(repx1, repx2, repx3, repx4);
 
                 documentViewer1.DocumentSource = repx1;
+                documentViewer1.Zoom = Invoice.ExtraInfo_PrintVCzoom;
                 if (_repx10 != null) _repx10.Dispose();
                 _repx10 = repx1;
                 repx1.CreateDocument();
                 //documentViewer1.Show();
-                documentViewer1.Zoom = 1f;
                 documentViewer1.Visible = true;
                 documentViewer2.Visible = false;
                 documentViewer3.Visible = false;
@@ -2685,6 +2688,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
+                if (_ds == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
                 if (MauTuIn == 1)
                 {
                     Dictionary<string, XtraReport> file_repx = new Dictionary<string, XtraReport>();

@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         public decimal TTT_NT { get; set; }
         public string MA_NT { get; set; }
 
-        private ReportDocument _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40;
+        private ReportDocument _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40;
 
         private string _reportProcedure;
         // _reportFile = ma_file
@@ -1590,7 +1590,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ViewReport();
                     if (PrintMode == V6PrintMode.AutoPrint)
                     {
-                        Print(PrinterName, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
+                        Print(PrinterName, _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40);
                         if (!IsDisposed) Dispose();
                     }
                     else if (PrintMode == V6PrintMode.AutoClickPrint)
@@ -1636,7 +1636,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ViewReport();
                     if (PrintMode == V6PrintMode.AutoPrint)
                     {
-                        Print(PrinterName, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
+                        Print(PrinterName, _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40);
                         if (!IsDisposed) Dispose();
                     }
                     else if (PrintMode == V6PrintMode.AutoClickPrint)
@@ -2006,7 +2006,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 crystalReportViewer1.ReportSource = rpDoc;
                 crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
                 
-                _rpDoc0 = rpDoc;
+                _rpDoc10 = rpDoc;
                 if (_soLienIn >= 2 && rpDoc2 != null)
                 {
                     crystalReportViewer2.ReportSource = rpDoc2;
@@ -2026,9 +2026,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     _rpDoc40 = rpDoc4;
                 }
 
-                //crystalReportViewer1.Show();
-                //crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
-                //crystalReportViewer1.Zoom(2);
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
@@ -2064,10 +2061,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 crystalReportViewer1.ReportSource = rpDoc;
                 crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
                 
-                _rpDoc0 = rpDoc;
-                //crystalReportViewer1.Show();
-                //crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
-                //crystalReportViewer1.Zoom(2);
+                _rpDoc10 = rpDoc;
+                
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
@@ -2327,7 +2322,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         protected override void ClearMyVars()
         {
-            List<ReportDocument> list = new List<ReportDocument>() {_rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40};
+            List<ReportDocument> list = new List<ReportDocument>() {_rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40};
             foreach (ReportDocument rpDoc in list)
             {
                 if (rpDoc != null)
@@ -2448,10 +2443,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         var selectedPrinter = printerst.PrinterName;
                         _printCopy = printerst.Copies;
-                        V6ControlFormHelper.SetCrystalReportPrinterOptions(printerst, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
+                        V6ControlFormHelper.SetCrystalReportPrinterOptions(printerst, _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40);
                         V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
                         //printting = true;
-                        Print(selectedPrinter, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
+                        Print(selectedPrinter, _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40);
                         PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
 
                         if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != DefaultPrinter)
@@ -2467,7 +2462,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
                 else
                 {
-                    Print(PrinterName, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
+                    Print(PrinterName, _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40);
                 }
                 
             }
@@ -2509,14 +2504,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     var selectedPrinter = printerst.PrinterName;
                     _printCopy = printerst.Copies;
                     
-                    var rpDoc = _rpDoc0;
-                    if (sender == inLien1Menu) rpDoc = _rpDoc0;
+                    var rpDoc = _rpDoc10;
+                    if (sender == inLien1Menu) rpDoc = _rpDoc10;
                     if (sender == inLien2Menu) rpDoc = _rpDoc20;
                     if (sender == inLien3Menu) rpDoc = _rpDoc30;
                     if (sender == inLien4Menu) rpDoc = _rpDoc40;
                     
                     V6ControlFormHelper.SetCrystalReportPrinterOptions(printerst, rpDoc);
-                    if (_rpDoc0.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(selectedPrinter);
+                    if (_rpDoc10.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(selectedPrinter);
                     V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
                     rpDoc.PrintToPrinter(_printCopy, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                     if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
@@ -2530,7 +2525,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             catch (Exception ex)
             {
-                if (_rpDoc0.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                if (_rpDoc10.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 
                 this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name + ((ToolStripMenuItem)sender).Name, ex);
             }
@@ -2858,13 +2853,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
-                if (_rpDoc0 == null)
+                if (_rpDoc10 == null)
                 {
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
                 string export_file = GetExportFileName();
-                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc0, export_file);
+                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc10, export_file);
                 if (MauTuIn == 1)
                 {
                     if (_soLienIn >= 2 && _rpDoc20 != null)

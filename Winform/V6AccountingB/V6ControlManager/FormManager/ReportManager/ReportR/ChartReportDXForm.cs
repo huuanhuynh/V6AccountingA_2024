@@ -8,6 +8,7 @@ using V6ControlManager.FormManager.ReportManager.DXreport;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
@@ -264,10 +265,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void btnSuaMau_Click(object sender, EventArgs e)
         {
-            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
-
             try
             {
+                if (_ds == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
                 var repxFile = cboLoaiBieuDo.SelectedValue.ToString().Trim();
                 var x = DXreportManager.LoadV6XtraReportFromFile(repxFile);
                 if (x != null)

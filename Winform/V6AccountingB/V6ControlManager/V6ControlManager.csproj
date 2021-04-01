@@ -4669,6 +4669,12 @@
     <Compile Include="FormManager\ReportManager\Filter\FilterBase.Designer.cs">
       <DependentUpon>FilterBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\ReportD\ReportD_DX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportD\ReportD_DX.designer.cs">
+      <DependentUpon>ReportD_DX.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ChartReportDXForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -8388,6 +8394,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ASOTH7.resx">
       <DependentUpon>ASOTH7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportD\ReportD_DX.resx">
+      <DependentUpon>ReportD_DX.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ChartReportDXForm.resx">
       <DependentUpon>ChartReportDXForm.cs</DependentUpon>

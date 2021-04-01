@@ -36,7 +36,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private XtraReport _repx0;
 
         private string _reportProcedure;
-        //private string _program, _reportFile, _reportTitle, _reportTitle2;
         private string _program, _Ma_File, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
@@ -137,7 +136,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
 
                 AddFilterControl(_program);
-                SetStatus2Text();
                 gridViewSummary1.Visible = FilterControl.ViewSum;
                 
                 var lineList = FilterControl.GetFilterLineList();
@@ -697,6 +695,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             string reportFile, string reportTitle, string reportTitle2,
             string reportFileF5, string reportTitleF5, string reportTitle2F5)
         {
+            V6ControlFormHelper.AddLastAction(GetType() + " " + program);
             m_itemId = itemId;
             Name = itemId;
             _program = program;
@@ -708,8 +707,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             _reportFileF5 = reportFileF5;
             _reportTitleF5 = reportTitleF5;
             _reportTitle2F5 = reportTitle2F5;
-
-            V6ControlFormHelper.AddLastAction(GetType() + " " + program);
             
             InitializeComponent();
             MyInit();
@@ -907,14 +904,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 else
                 {
                     V6ControlFormHelper.EnableControls(cboMauIn, btnSuaTTMauBC);
-                    //cboMauIn.Enabled = true;
-                    //btnSuaTTMauBC.Enabled = true;
-                    //btnThemMauBC.Enabled = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".SetFormReportFilter", ex);
             }
         }
 
@@ -927,9 +921,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 string title = row["title"].ToString();
                 txtReportTitle.Text = title;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".GetFormReportTitle", ex);
             }
         }
 
@@ -1940,6 +1934,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                if (_ds == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
                 var x = DXreportManager.LoadV6XtraReportFromFile(ReportFileFullDX);
                 if (x != null)
                 {

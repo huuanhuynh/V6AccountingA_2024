@@ -1764,7 +1764,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (sobangtach == 0 || current_report_index == 1)
                 return;
-            current_report_index = 1;
+            current_report_index = 0;
             
             ViewReportIndex(current_report_index);
         }

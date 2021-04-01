@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public SortedDictionary<string, string> ReadOnlyFields = new SortedDictionary<string, string>();
         private readonly IDictionary<string, object> _defaultData = new Dictionary<string, object>();
         private List<string> updateFieldList = new List<string>();
-        private readonly bool _updateDatabase;
+        private readonly bool _updateDatabase = true;
         public bool HaveChange { get; set; }
 
         protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();

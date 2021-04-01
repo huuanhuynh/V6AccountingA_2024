@@ -341,26 +341,58 @@ namespace V6ControlManager.FormManager.MenuManager
                                     program = codeform.Substring(2);
                                     if (string.IsNullOrEmpty(pro_old))
                                     {
-                                        c = new ReportD99ViewBase(item_id, program, program, repFile, repTitle,
+                                        if (mButton.UseXtraReport != shift_is_down)
+                                        {
+                                            c = new ReportD99_DX(item_id, program, program, repFile, repTitle,
+                                                repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                        }
+                                        else
+                                        {
+                                            c = new ReportD99ViewBase(item_id, program, program, repFile, repTitle,
                                             repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                        }
                                     }
                                     else
                                     {
-                                        c = new ReportD99ViewBase(item_id, pro_old, program, repFile, repTitle,
+                                        if (mButton.UseXtraReport != shift_is_down)
+                                        {
+                                            c = new ReportD99_DX(item_id, pro_old, program1, repFile, repTitle, repTitle2,
+                                                repFileF5, repTitleF5, repTitle2F5);
+                                        }
+                                        else
+                                        {
+                                            c = new ReportD99ViewBase(item_id, pro_old, program, repFile, repTitle,
                                             repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                        }
                                     }
                                 }
                                 else
                                 {
                                     if (string.IsNullOrEmpty(pro_old))
                                     {
-                                        c = new ReportDViewBase(item_id, program1, program1, repFile, repTitle, repTitle2,
+                                        if (mButton.UseXtraReport != shift_is_down)
+                                        {
+                                            c = new ReportD_DX(item_id, program1, program1, repFile, repTitle, repTitle2,
+                                                repFileF5, repTitleF5, repTitle2F5);
+                                        }
+                                        else
+                                        {
+                                            c = new ReportDViewBase(item_id, program1, program1, repFile, repTitle, repTitle2,
                                             repFileF5, repTitleF5, repTitle2F5);
+                                        }
                                     }
                                     else
                                     {
-                                        c = new ReportDViewBase(item_id, pro_old, program1, repFile, repTitle, repTitle2,
+                                        if (mButton.UseXtraReport != shift_is_down)
+                                        {
+                                            c = new ReportD_DX(item_id, pro_old, program1, repFile, repTitle, repTitle2,
+                                                repFileF5, repTitleF5, repTitle2F5);
+                                        }
+                                        else
+                                        {
+                                            c = new ReportDViewBase(item_id, pro_old, program1, repFile, repTitle, repTitle2,
                                             repFileF5, repTitleF5, repTitle2F5);
+                                        }
                                     }
                                 }
                             }

@@ -1635,6 +1635,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                if (_ds == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
                 var x = DXreportManager.LoadV6XtraReportFromFile(ReportFileFullDX);
                 if (x != null)
                 {
