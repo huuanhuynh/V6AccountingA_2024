@@ -86,10 +86,13 @@ namespace V6ControlManager.FormManager
                 switch (exportType.ToUpper())
                 {
                     case "EXCEL":
+                    case "EXCEL_RAW":
                     case "XLSX":
+                    case "XLSX_RAW":
                         filter = "Excel files (*.xlsx)|*.xlsx";
                         break;
                     case "XLS":
+                    case "XLS_RAW":
                         filter = "Excel files (*.xls)|*.xls";
                         break;
                     case "DOCX":
@@ -179,6 +182,7 @@ namespace V6ControlManager.FormManager
         {
             try
             {
+                ExportRepxToPdf_repx.ExportOptions.Xls.RawDataMode = false;
                 switch (ExportRepxToPdf_switch)
                 {
                     case "XLS":
