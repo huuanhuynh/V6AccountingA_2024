@@ -407,6 +407,194 @@ namespace V6AccountingBusiness.Invoices
 
             return false;
         }
+        public bool UpdateInvoice2_TH(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList3,
+            IDictionary<string, object> keys, bool post)
+        {
+            object stt_rec = amData["STT_REC"];
+            var insert_success = false;
+            int j = 0, j3 = 0;
+            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AMStruct.TableName, AMStruct, amData, keys);
+            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction2_TH("Update83");
+
+            try
+            {
+                //Delete AD
+                var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
+                //Delete AD3
+                var deleteAd3Sql = SqlGenerator.GenDeleteSql(AD3Struct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd3Sql);
+
+                //Update AM
+                insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
+
+
+                //Insert AD
+                foreach (IDictionary<string, object> adRow in adList)
+                {
+                    var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow, false);
+                    int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                    if (V6Setting.WriteExtraLog)
+                    {
+                        object stt_rec0 = adRow["STT_REC0"];
+                        Logger.WriteToLog(string.Format("{4} {5} {0} AD row {1} result {2}.\n{3}", stt_rec,
+                            stt_rec0, execute, adSql, GetType(), MethodBase.GetCurrentMethod().Name));
+                    }
+                    j += (execute > 0 ? 1 : 0);
+                }
+                //Insert AD3
+                foreach (IDictionary<string, object> adRow in adList3)
+                {
+                    var ad3Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
+                    int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql);
+                    if (V6Setting.WriteExtraLog)
+                    {
+                        object stt_rec0 = adRow["STT_REC0"];
+                        Logger.WriteToLog(string.Format("{4} {5} {0} AD row {1} result {2}.\n{3}", stt_rec,
+                            stt_rec0, execute, ad3Sql, GetType(), MethodBase.GetCurrentMethod().Name));
+                    }
+                    j3 += (execute > 0 ? 1 : 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                #region === Rollback ===
+                try
+                {
+                    TRANSACTION.Rollback();
+                }
+                catch (Exception exRollback)
+                {
+                    Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
+                }
+
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
+                V6Message = "Rollback: "
+                            + (!insert_success ? V6Text.Text("EAMUNSUCCESS") : "")
+                            + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "")
+                            + (j3 != adList3.Count ? V6Text.Text("AD3NOTCOMPLETE") : "");
+
+                #endregion Rollback
+
+                return false;
+            }
+
+            if (insert_success && j == adList.Count && j3 == adList3.Count)
+            {
+                TRANSACTION.Commit();
+                if (V6Setting.WriteExtraLog)
+                {
+                    Logger.WriteToLog(string.Format("{1} {2} TRANSACTION COMMITTED {0}", stt_rec, GetType(), MethodBase.GetCurrentMethod().Name));
+                }
+                if (!post)
+                {
+                    //message = "Update AM AD Success.";
+                    //Tuanmh  Post 1 phan 12/05/2017
+                    int apgia1 = 0;
+                    SqlParameter[] pList1 =
+                    {
+                        new SqlParameter("@Stt_rec", stt_rec),
+                        new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                        new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                        new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                        new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
+                        new SqlParameter("@Mode", "M"),
+                        new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
+                        new SqlParameter("@Ap_gia", apgia1),
+                        new SqlParameter("@UserID", V6Login.UserId),
+                        new SqlParameter("@Save_voucher", "1")
+                    };
+
+                    try
+                    {
+                        var result = SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_SOC_POST_MAIN_AMAD",
+                            pList1);
+                        V6Message = string.Format("Success, ({0} affected).", result);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        V6Message = ex.Message;
+                        V6Message = V6Text.Text("POSTLOI") + V6Message;
+                        return false;
+                    }
+                }
+
+                try
+                {
+                    int apgia = 0;
+                    SqlParameter[] pList =
+                    {
+                        new SqlParameter("@Stt_rec", stt_rec),
+                        new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                        new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                        new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                        new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
+                        new SqlParameter("@Mode", "S"),
+                        new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
+                        new SqlParameter("@Ap_gia", apgia),
+                        new SqlParameter("@UserID", V6Login.UserId),
+                        new SqlParameter("@Save_voucher", "1")
+                    };
+
+                    try
+                    {
+                        var result = SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_SOC_POST_MAIN", pList);
+                        V6Message = string.Format("Success, ({0} affected).", result);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        V6Message = ex.Message;
+                        if (V6Message.Contains("Rerun the transaction."))
+                        {
+                            Thread.Sleep(3000);
+                            try
+                            {
+                                pList = new[]
+                                {
+                                    new SqlParameter("@Stt_rec", stt_rec),
+                                    new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                                    new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                                    new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                                    new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
+                                    new SqlParameter("@Mode", "S"),
+                                    new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
+                                    new SqlParameter("@Ap_gia", apgia),
+                                    new SqlParameter("@UserID", V6Login.UserId),
+                                    new SqlParameter("@Save_voucher", "1")
+                                };
+                                var result = SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_SOC_POST_MAIN",
+                                    pList);
+                                V6Message = string.Format("Success, ({0} affected).", result);
+                                return true;
+                            }
+                            catch (Exception ex2)
+                            {
+                                V6Message = ex2.Message;
+                                V6Message = V6Text.Text("POST2LOI") + V6Message;
+                                return false;
+                            } //end catch2
+                        }
+                        else
+                        {
+                            V6Message = V6Text.Text("POSTLOI") + V6Message;
+                            return false;
+                        }
+                    } // end catch1
+                }
+                catch (Exception ex)
+                {
+                    V6Message = ex.Message;
+                    V6Message = V6Text.Text("POSTLOI") + V6Message;
+                    return false;
+                }
+            }
+
+            return false;
+        }
 
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2)
         {

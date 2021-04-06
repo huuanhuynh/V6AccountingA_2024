@@ -4655,6 +4655,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (Invoice.InsertInvoice(readyDataAM, readyDataAD, readyDataAD3, _post))
                 {
                     _AED_Success = true;
+                    if (Invoice.IS_AM2TH(readyDataAM))
+                        try
+                        {
+                            Invoice.InsertInvoice2_TH(readyDataAM, readyDataAD, readyDataAD3, _post);
+                        }
+                        catch (Exception ex2_TH)
+                        {
+                            this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex2_TH);
+                        }
                 }
                 else
                 {
@@ -4800,6 +4809,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     AD3Tables.Remove(_sttRec);
                     // WriteDBlog.
                     SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
+
+                    DoEdit2_TH_Thread(keys);
                 }
                 else
                 {
@@ -4818,6 +4829,49 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
+        }
+
+        private void DoEdit2_TH_Thread(SortedDictionary<string, object> keys)
+        {
+            try
+            {
+                _keys_TH = keys;
+                Thread edit2_TH = new Thread(DoEdit2_TH);
+                edit2_TH.Start();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private IDictionary<string, object> _keys_TH;
+        private void DoEdit2_TH()
+        {
+            // Nếu có cấu hình KEY_AM2TH, Xét đúng kiều kiện thì update nếu tồn tại hoặc insert. Sai điều kiện thì xóa.
+            try
+            {
+                if (Invoice.Have_KEY_AM2TH)
+                {
+
+                    if (Invoice.Exist2_TH(_sttRec))
+                    {
+                        if (Invoice.IS_AM2TH(readyDataAM))
+                            Invoice.UpdateInvoice2_TH(readyDataAM, readyDataAD, readyDataAD3, _keys_TH, _post);
+                        else Invoice.DeleteInvoice2_TH(_sttRec);
+                    }
+                    else
+                    {
+                        if (Invoice.IS_AM2TH(readyDataAM))
+                            Invoice.InsertInvoice2_TH(readyDataAM, readyDataAD, readyDataAD3, _post);
+                    }
+
+                }
+            }
+            catch (Exception ex2_TH)
+            {
+                this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex2_TH);
+            }
         }
         #endregion edit
 

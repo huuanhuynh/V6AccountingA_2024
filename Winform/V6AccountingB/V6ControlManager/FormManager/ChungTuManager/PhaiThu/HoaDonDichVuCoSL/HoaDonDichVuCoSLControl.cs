@@ -4469,7 +4469,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         #region ==== Add Thread ====
         public IDictionary<string, object> readyDataAM;
-        public List<IDictionary<string, object>> addDataAD, addDataAD3;
+        public List<IDictionary<string, object>> readyDataAD, readyDataAD3;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -4557,8 +4557,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
-                addDataAD = dataGridView1.GetData(_sttRec);
-                addDataAD3 = dataGridView3.GetData(_sttRec);
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
             }
             catch (Exception ex)
             {
@@ -4572,9 +4572,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 CheckForIllegalCrossThreadCalls = false;
 
-                if (Invoice.InsertInvoice(readyDataAM, addDataAD, addDataAD3))
+                if (Invoice.InsertInvoice(readyDataAM, readyDataAD, readyDataAD3))
                 {
                     _AED_Success = true;
+                    if (Invoice.IS_AM2TH(readyDataAM))
+                        try
+                        {
+                            Invoice.InsertInvoice2_TH(readyDataAM, readyDataAD, readyDataAD3);
+                        }
+                        catch (Exception ex2_TH)
+                        {
+                            this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex2_TH);
+                        }
                 }
                 else
                 {
@@ -4639,15 +4648,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 var am_TIME0 = AM.Rows[CurrentIndex]["Time0"];
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
-                addDataAD = dataGridView1.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in addDataAD)
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
-                addDataAD3 = dataGridView3.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in addDataAD3)
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD3)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -4711,13 +4720,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 CheckForIllegalCrossThreadCalls = false;
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
-                if (Invoice.UpdateInvoice(readyDataAM, addDataAD, addDataAD3, keys))
+                if (Invoice.UpdateInvoice(readyDataAM, readyDataAD, readyDataAD3, keys))
                 {
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
                     AD3Tables.Remove(_sttRec);
                     // WriteDBlog.
                     SaveEditLog(AM_current.ToDataDictionary(), readyDataAM);
+
+                    DoEdit2_TH_Thread(keys);
                 }
                 else
                 {
@@ -4736,6 +4747,49 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
+        }
+
+        private void DoEdit2_TH_Thread(SortedDictionary<string, object> keys)
+        {
+            try
+            {
+                _keys_TH = keys;
+                Thread edit2_TH = new Thread(DoEdit2_TH);
+                edit2_TH.Start();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private IDictionary<string, object> _keys_TH;
+        private void DoEdit2_TH()
+        {
+            // Nếu có cấu hình KEY_AM2TH, Xét đúng kiều kiện thì update nếu tồn tại hoặc insert. Sai điều kiện thì xóa.
+            try
+            {
+                if (Invoice.Have_KEY_AM2TH)
+                {
+
+                    if (Invoice.Exist2_TH(_sttRec))
+                    {
+                        if (Invoice.IS_AM2TH(readyDataAM))
+                            Invoice.UpdateInvoice2_TH(readyDataAM, readyDataAD, readyDataAD3, _keys_TH);
+                        else Invoice.DeleteInvoice2_TH(_sttRec);
+                    }
+                    else
+                    {
+                        if (Invoice.IS_AM2TH(readyDataAM))
+                            Invoice.InsertInvoice2_TH(readyDataAM, readyDataAD, readyDataAD3);
+                    }
+
+                }
+            }
+            catch (Exception ex2_TH)
+            {
+                this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex2_TH);
+            }
         }
         #endregion edit
 

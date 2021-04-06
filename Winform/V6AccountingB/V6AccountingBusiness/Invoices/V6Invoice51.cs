@@ -320,6 +320,129 @@ namespace V6AccountingBusiness.Invoices
                 return false;
             }
         }
+        public override bool UpdateInvoice2_TH(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList2,
+            List<IDictionary<string, object>> adList3,
+            IDictionary<string, object> keys)
+        {
+            object stt_rec = amData["STT_REC"];
+            bool insert_success = false;
+            int j = 0, j2 = 0, j3 = 0;
+            //POST MAIN BEFORE
+            int apgia0 = 0;
+            SqlParameter[] pList0 =
+                    {
+                        new SqlParameter("@Stt_rec", stt_rec),
+                        new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                        new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                        new SqlParameter("@Mode", "S"),
+                        new SqlParameter("@Tk", amData["TK"].ToString()),
+                        new SqlParameter("@Ma_gd", amData["MA_GD"].ToString()),
+                        new SqlParameter("@nRows", adList.Count),
+                        new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
+                        new SqlParameter("@Ap_gia", apgia0),
+                        new SqlParameter("@UserID", V6Login.UserId),
+                        new SqlParameter("@Save_voucher", "1")
+                    };
+            V6Message = "UpdateInvoice Start VPA_CA1_POST_MAIN_BEFORE " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_CA1_POST_MAIN_BEFORE", pList0);
+            V6Message = "UpdateInvoice Start VPA_CA1_POST_MAIN_BEFORE Finish " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
+            V6Message = "GenUpdateAMSql " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM_TableName, AMStruct, amData, keys);
+            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction2_TH("Invoice51Update");
+
+            try
+            {
+                //Delete AD
+                var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
+                //Delete AD2_TableName
+                var deleteAd2Sql = SqlGenerator.GenDeleteSql(AD2Struct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd2Sql);
+                //Delete AD3
+                var deleteAd3Sql = SqlGenerator.GenDeleteSql(AD3Struct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd3Sql);
+
+                //Update AM //??? co nen theo doi nhung thay doi tren form va truyen valueDic vua đủ.
+                insert_success = (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0);
+                var currentMethodName = MethodBase.GetCurrentMethod().Name;
+                j = InsertADlist(currentMethodName, TRANSACTION, adList, false);
+                j2 = InsertAD2list(currentMethodName, TRANSACTION, adList2, false);
+                j3 = InsertAD3list(currentMethodName, TRANSACTION, adList3, false);
+            }
+            catch (Exception ex)
+            {
+                #region === Rollback ===
+                try
+                {
+                    TRANSACTION.Rollback();
+                }
+                catch (Exception exRollback)
+                {
+                    Logger.WriteExLog(string.Format("{0} {1} TRANSACTION ROLLBACK_ERROR {2}", GetType(), MethodBase.GetCurrentMethod().Name, stt_rec), exRollback, "");
+                }
+
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
+                V6Message = "Rollback: "
+                    + (!insert_success ? V6Text.Text("EAMUNSUCCESS") : "")
+                    + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "")
+                    + (j2 != adList2.Count ? V6Text.Text("AD2NOTCOMPLETE") : "")
+                    + (j3 != adList3.Count ? V6Text.Text("AD3NOTCOMPLETE") : "");
+                #endregion Rollback
+
+                return false;
+            }
+
+            if (insert_success && j == adList.Count && j2 == adList2.Count && j3 == adList3.Count)
+            {
+                V6Message = "Update ok, begin Comit " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                TRANSACTION.Commit();
+                WriteLogTransactionComplete(stt_rec);
+                V6Message = "Update ok, end Comit " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                try
+                {
+                    int apgia = 0;
+                    SqlParameter[] pList =
+                    {
+                        new SqlParameter("@Stt_rec", stt_rec),
+                        new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                        new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                        new SqlParameter("@Mode", "S"),
+                        new SqlParameter("@Tk", amData["TK"].ToString()),
+                        new SqlParameter("@Ma_gd", amData["MA_GD"].ToString()),
+                        new SqlParameter("@nRows", adList.Count),
+                        new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
+                        new SqlParameter("@Ap_gia", apgia),
+                        new SqlParameter("@UserID", V6Login.UserId),
+                        new SqlParameter("@Save_voucher", "1")
+                    };
+                    V6Message = "VPA_CA1_POST_MAIN begin " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                    SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_CA1_POST_MAIN", pList);
+                    V6Message = "VPA_CA1_POST_MAIN end " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    V6Message = ex.Message;
+                    V6Message = V6Text.Text("POSTLOI") + V6Message;
+                    
+                    return false;
+                }
+            }
+            else
+            {
+                if (!insert_success) V6Message = V6Text.Text("AAMUNSUCCESS");
+                if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
+                if (j2 != adList2.Count) V6Message += V6Text.Text("AD2NOTCOMPLETE");
+                if (j3 != adList3.Count) V6Message += V6Text.Text("AD3NOTCOMPLETE");
+                V6Message += " Bắt đầu RollBack.";
+                TRANSACTION.Rollback();
+                V6Message += " RollBack xong.";
+                return false;
+            }
+        }
 
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2Dvcs,
             string where3AD, string where4NhVt)

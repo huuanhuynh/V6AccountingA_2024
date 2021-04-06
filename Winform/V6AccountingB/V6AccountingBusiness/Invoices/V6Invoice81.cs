@@ -968,6 +968,18 @@ namespace V6AccountingBusiness.Invoices
             SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_DELETE_MAIN", plist);
             return true;
         }
+        
+        public override bool DeleteInvoice2_TH(string sttrec)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Stt_rec", sttrec), 
+                new SqlParameter("@Ma_ct", Mact),
+                new SqlParameter("@UserID", V6Login.UserId)
+            };
+            SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_SOA_DELETE_MAIN", plist);
+            return true;
+        }
 
         public DataRow GetGiaBan(string field, string mact, DateTime ngayct,
             string mant, string mavt, string dvt1, string makh, string magia)
@@ -1069,32 +1081,6 @@ namespace V6AccountingBusiness.Invoices
             };
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_SOA_IXP", plist).Tables[0];
             return tbl;
-        }
-
-        public bool IS_AM2TH(IDictionary<string, object> readyDataAm)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(_alctConfig.KEY_AM2TH)) return false;
-                if (DatabaseConfig.ConnectionString2_TH == "") return false;
-                var dic = ObjectAndString.StringToDictionary(_alctConfig.KEY_AM2TH, ';', '=');
-                foreach (KeyValuePair<string, object> item in dic)
-                {
-                    if (!readyDataAm.ContainsKey(item.Key)) return false;
-                    string a = ("" + readyDataAm[item.Key]).Trim();
-                    string b = ObjectAndString
-                        .ObjectTo(readyDataAm[item.Key] == null ? typeof(string) : readyDataAm[item.Key].GetType(),
-                            item.Value).ToString().Trim();
-                    if (a != b) return false;
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteExLog(string.Format("{0} {1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _alctConfig.KEY_AM2TH), ex);
-            }
-
-            return false;
         }
 
     }

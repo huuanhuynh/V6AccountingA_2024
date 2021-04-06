@@ -1514,6 +1514,10 @@ namespace V6AccountingBusiness.Invoices
         {
             throw new NotImplementedException("InsertInvoice No override method.");
         }
+        public virtual bool InsertInvoice2_TH(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List)
+        {
+            throw new NotImplementedException("InsertInvoice2_TH No override method.");
+        }
         /// <summary>
         /// Thêm chứng từ.
         /// </summary>
@@ -1535,12 +1539,16 @@ namespace V6AccountingBusiness.Invoices
         /// <returns></returns>
         public virtual bool InsertInvoice2_TH(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List, List<IDictionary<string, object>> ad2List)
         {
-            throw new NotImplementedException("InsertInvoice No override method.");
+            throw new NotImplementedException("InsertInvoice2_TH No override method.");
         }
 
         public virtual bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, bool post)
         {
             throw new NotImplementedException("InsertInvoice No override method.");
+        }
+        public virtual bool InsertInvoice2_TH(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, bool post)
+        {
+            throw new NotImplementedException("InsertInvoice2_TH No override method.");
         }
 
         public virtual bool InsertInvoice(IDictionary<string, object> amData,
@@ -1550,8 +1558,19 @@ namespace V6AccountingBusiness.Invoices
         {
             throw new NotImplementedException("InsertInvoice No override method.");
         }
+        public virtual bool InsertInvoice2_TH(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList2,
+            List<IDictionary<string, object>> adList3)
+        {
+            throw new NotImplementedException("InsertInvoice2_TH No override method.");
+        }
 
         public virtual bool UpdateInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, IDictionary<string, object> keys)
+        {
+            throw new NotImplementedException("UpdateInvoice1detail No override method.");
+        }
+        public virtual bool UpdateInvoice2_TH(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, IDictionary<string, object> keys)
         {
             throw new NotImplementedException("UpdateInvoice1detail No override method.");
         }
@@ -1562,7 +1581,7 @@ namespace V6AccountingBusiness.Invoices
         
         public virtual bool UpdateInvoice2_TH(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, IDictionary<string, object> keys)
         {
-            throw new NotImplementedException("UpdateInvoice13details No override method.");
+            throw new NotImplementedException("UpdateInvoice13details2_TH No override method.");
         }
 
         public virtual bool UpdateInvoice(IDictionary<string, object> amData,
@@ -1573,10 +1592,38 @@ namespace V6AccountingBusiness.Invoices
         {
             throw new NotImplementedException("UpdateInvoice123details No override method.");
         }
+        public virtual bool UpdateInvoice2_TH(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList2,
+            List<IDictionary<string, object>> adList3,
+            IDictionary<string, object> keys)
+        {
+            throw new NotImplementedException("UpdateInvoice123details2_TH No override method.");
+        }
 
         public virtual bool DeleteInvoice(string sttrec)
         {
             throw new NotImplementedException("DeleteInvoice No override method.");
+        }
+        public virtual bool DeleteInvoice2_TH(string sttrec)
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Stt_rec", sttrec), 
+                    new SqlParameter("@Ma_ct", Mact),
+                    new SqlParameter("@UserID", V6Login.UserId)
+                };
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_" + Mact + "_DELETE_MAIN", plist);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                V6Message = ex.Message;
+                return false;
+            }
+            throw new NotImplementedException("DeleteInvoice2TH No override method.");
         }
 
         protected void WriteLogTransactionComplete(object stt_rec)
@@ -1668,11 +1715,53 @@ namespace V6AccountingBusiness.Invoices
             return null;
         }
 
+        public bool Have_KEY_AM2TH
+        {
+            get { return !string.IsNullOrEmpty(_alctConfig.KEY_AM2TH); }
+        }
+
+        /// <summary>
+        /// Xét đúng kiều kiện hay không. Không có đk tính là sai.
+        /// </summary>
+        /// <param name="readyDataAm"></param>
+        /// <returns></returns>
+        public bool IS_AM2TH(IDictionary<string, object> readyDataAm)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(_alctConfig.KEY_AM2TH)) return false;
+                if (DatabaseConfig.ConnectionString2_TH == "") return false;
+                var dic = ObjectAndString.StringToDictionary(_alctConfig.KEY_AM2TH, ';', '=');
+                foreach (KeyValuePair<string, object> item in dic)
+                {
+                    if (!readyDataAm.ContainsKey(item.Key)) return false;
+                    string a = ("" + readyDataAm[item.Key]).Trim();
+                    string b = ObjectAndString
+                        .ObjectTo(readyDataAm[item.Key] == null ? typeof(string) : readyDataAm[item.Key].GetType(),
+                            item.Value).ToString().Trim();
+                    if (a != b) return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog(string.Format("{0} {1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _alctConfig.KEY_AM2TH), ex);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Kiểm tra đã có dữ liệu dở Database2_TH hay chưa?
+        /// </summary>
+        /// <param name="sttRec"></param>
+        /// <returns></returns>
         public bool Exist2_TH(string sttRec)
         {
             IDictionary<string, object> data = new Dictionary<string, object>();
             data["STT_REC"] = sttRec;
             return V6BusinessHelper.CheckDataExist2_TH(AM_TableName, data, null);
         }
+
     }
 }
