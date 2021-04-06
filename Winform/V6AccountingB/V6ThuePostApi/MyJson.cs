@@ -22,20 +22,17 @@ namespace V6ThuePostManager
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        public static string ConvertToJson(Dictionary<string,object> obj)
-        {
-            JsonSerializerSettings set = new JsonSerializerSettings();
-            set.DateFormatString = "dd/MM/yyyy";
-
-            return JsonConvert.SerializeObject(obj, set);
-        }
-
-        public static string ConvertToJson<T>(T obj)
-        {
-            JsonSerializerSettings set = new JsonSerializerSettings();
-            set.DateFormatString = "dd/MM/yyyy";
-
-            return JsonConvert.SerializeObject(obj, set);
-        }
+        //public static string ConvertToJson(Dictionary<string,object> obj)
+        //{
+        //    JsonSerializerSettings set = new JsonSerializerSettings();
+        //    set.date.DateFormatString = "dd/MM/yyyy";
+        //    return JsonConvert.SerializeObject(obj, set);
+        //}
+        //public static string ConvertToJson<T>(T obj)
+        //{
+        //    JsonSerializerSettings set = new JsonSerializerSettings();
+        //    set.DateFormatString = "dd/MM/yyyy";
+        //    return JsonConvert.SerializeObject(obj, set);
+        //}
     }
 }

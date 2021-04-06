@@ -35,6 +35,7 @@ using V6ThuePostSoftDreamsApi;
 using V6ThuePostThaiSonApi;
 using V6ThuePostThaiSonApi.EinvoiceService;
 using V6ThuePostViettelApi;
+using V6ThuePostViettelV2Api;
 using V6ThuePostXmlApi;
 using V6ThuePostXmlApi.AttachmentService;
 using V6ThuePostXmlApi.BusinessService;
@@ -75,6 +76,9 @@ namespace V6ThuePostManager
         public static string _username = "";
         public static string _password = "";
         public static string _codetax = "";
+        /// <summary>
+        /// Mặc định rỗng. Viettel V2(V2 call EXE) V45(V2 ref)
+        /// </summary>
         public static string _version = "";
         public static string _ma_dvcs = "";
         public static string _baseUrl = "", _site = "", _datetype = "", _createInvoiceUrl = "", _modifylink = "";
@@ -286,8 +290,16 @@ namespace V6ThuePostManager
 
                             return "Lỗi kết nối." + paras.Result.V6ReturnValues.RESULT_STRING;
                         }
-                        ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
-                        result = viettel_ws.CheckConnection();
+                        else if (_version == "V45")
+                        {
+                            ViettelV2WS viettel_ws = new ViettelV2WS(_baseUrl, _username, _password, _codetax);
+                            result = viettel_ws.CheckConnection();
+                        }
+                        else
+                        {
+                            ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
+                            result = viettel_ws.CheckConnection();
+                        }
                         break;
                     case "2":
                     case "4":
@@ -2468,6 +2480,10 @@ namespace V6ThuePostManager
         private static string EXECUTE_VIETTEL(PostManagerParams paras)
         {
             if (_version == "V2") return EXECUTE_VIETTEL_V2CALL(paras);
+            else if (_version == "V45")
+            {
+                return EXECUTE_VIETTEL_V2_45(paras);
+            }
 
             string result = "";
             paras.Result = new PM_Result();
@@ -2626,6 +2642,164 @@ namespace V6ThuePostManager
             return result;
         }
 
+        private static string EXECUTE_VIETTEL_V2_45(PostManagerParams paras)
+        {
+            string result = "";
+            paras.Result = new PM_Result();
+            V6Return rd = new V6Return();
+            paras.Result.V6ReturnValues = rd;
+
+            try
+            {
+                string jsonBody = "";
+                //var _V6Http = new ViettelWS(_baseUrl, _username, _password);
+                ViettelV2WS viettel_ws = new ViettelV2WS(_baseUrl, _username, _password, _codetax);
+
+                if (paras.Mode == "TestView")
+                {
+                    var xml = ReadData_Viettel(paras);
+                    result = xml;
+                    paras.Result.ResultString = xml;
+                }
+                else if (paras.Mode == "E_G1") // Gạch nợ
+                {
+                    rd.RESULT_ERROR_MESSAGE = V6Text.NotSupported;
+                }
+                else if (paras.Mode == "E_H1") // Hủy hóa đơn
+                {
+
+                    DataRow row0 = am_table.Rows[0];
+                    var item = generalInvoiceInfoConfig["invoiceIssuedDate"];
+                    string strIssueDate = ((DateTime)GetValue(row0, item)).ToString("yyyyMMddHHmmss");
+                    string additionalReferenceDesc = paras.AM_new["STT_REC"].ToString();
+                    paras.InvoiceNo = paras.AM_new["SO_SERI"].ToString().Trim() + paras.AM_new["SO_CT"].ToString().Trim();
+                    result = viettel_ws.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
+
+                }
+                else if (paras.Mode == "E_T1")
+                {
+                    jsonBody = ReadData_Viettel(paras);
+                    result = viettel_ws.POST_REPLACE(jsonBody, out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode.StartsWith("M"))
+                {
+                    generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                    {
+                        Field = "adjustmentType",
+                        Value = "1",
+                    };
+                    Guid new_uid = Guid.NewGuid();
+                    if (paras.Mode == "MG")
+                    {
+                        generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
+                        {
+                            Field = "transactionUuid",
+                            Value = "" + new_uid,
+                        };
+                    }
+
+                    if (string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        jsonBody = ReadData_Viettel(paras);
+                        if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
+                        {
+                            result = viettel_ws.POST_DRAFT(jsonBody, out paras.Result.V6ReturnValues);
+                        }
+                        else
+                        {
+                            result = viettel_ws.POST_CREATE_INVOICE(jsonBody, out paras.Result.V6ReturnValues);
+                        }
+                    }
+                    else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                        jsonBody = ReadData_Viettel(paras);
+                        string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                        result = viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out paras.Result.V6ReturnValues);
+                    }
+                }
+                else if (paras.Mode.StartsWith("S"))
+                {
+                    if (paras.Mode.EndsWith("3"))
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "3",
+                        };
+                    }
+                    else if (paras.Mode.EndsWith("5"))
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "5",
+                        };
+                    }
+                    else
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "3",
+                        };
+                    }
+
+                    jsonBody = ReadData_Viettel(paras);
+                    //File.Create(flagFileName1).Close();
+                    result = viettel_ws.POST_EDIT(jsonBody, out paras.Result.V6ReturnValues);
+                }
+
+                //Phân tích result
+                paras.Result.V6ReturnValues.RESULT_STRING = result;
+                string message = "";
+                try
+                {
+                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    paras.Result.V6ReturnValues.RESULT_OBJECT = responseObject;
+                    if (!string.IsNullOrEmpty(responseObject.description))
+                    {
+                        message += " " + responseObject.description;
+                    }
+
+                    if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
+                    {
+                        paras.Result.V6ReturnValues.SO_HD = responseObject.result.invoiceNo;
+                        paras.Result.V6ReturnValues.ID = responseObject.result.transactionID;
+                        paras.Result.V6ReturnValues.SECRET_CODE = responseObject.result.reservationCode;
+                        message += " " + responseObject.result.invoiceNo;
+
+                    }
+                    else if (responseObject.errorCode == null)
+                    {
+                        paras.Result.V6ReturnValues.SO_HD = paras.InvoiceNo;
+                        paras.Result.V6ReturnValues.RESULT_MESSAGE = responseObject.description;
+                    }
+                    else
+                    {
+                        paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = responseObject.errorCode + ":" + responseObject.description;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "CONVERT EXCEPTION: " + ex.Message;
+                    Logger.WriteToLog("EXECUTE_VIETTEL ConverResultObjectException: " + paras.Fkey_hd + ex.Message);
+                    message = "Kết quả:";
+                }
+                result = message + "\n" + result;
+            }
+            catch (Exception ex)
+            {
+                paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
+                V6ControlFormHelper.WriteExLog("PostManager.EXECUTE_VIETTEL", ex);
+            }
+
+            return result;
+        }
         
         private static string EXECUTE_VIETTEL_V2CALL(PostManagerParams paras)
         {
@@ -3011,16 +3185,27 @@ namespace V6ThuePostManager
                 return paras.Result.V6ReturnValues.PATH;
                 return process_result;
             }
+            else if (_version == "V45")
+            {
+                ViettelV2WS viettel_ws = new ViettelV2WS(_baseUrl, _username, _password, _codetax);
+
+                if (paras.Mode == "1") // Mode Thể hiện
+                    return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern,
+                        V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
+                return viettel_ws.DownloadInvoicePDFexchange(_codetax, paras.InvoiceNo, strIssueDate,
+                    V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+            }
             else
             {
                 ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
 
                 if (paras.Mode == "1") // Mode Thể hiện
                     return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern,
-                        V6Setting.V6SoftLocalAppData_Directory);
+                        V6Setting.V6SoftLocalAppData_Directory); // !!! Cần update cho giống V2
                 string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
                 return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, paras.InvoiceNo, strIssueDate,
-                    V6Setting.V6SoftLocalAppData_Directory);
+                    V6Setting.V6SoftLocalAppData_Directory);  // !!! Cần update cho giống V2
             }
         }
         
