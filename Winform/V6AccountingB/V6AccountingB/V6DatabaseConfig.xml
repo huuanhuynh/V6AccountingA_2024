@@ -23,12 +23,16 @@
     <Stt>2</Stt>
     <Server>192.168.1.39\SQL2K8,3979</Server>
     <Server2>192.168.1.39\SQL2K8,3979</Server2>
+    <Server2_TH>192.168.1.113\SQL2K8,7172</Server2_TH>
     <Database>V6B_2016</Database>
     <Database2>V6B_2016</Database2>
+    <Database2_TH>XLTH2021</Database2_TH>
     <UserId>v6admsa</UserId>
     <UserId2>v6admsa</UserId2>
+    <UserId2_TH>v6admsa</UserId2_TH>
     <Epassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword>
     <Epassword2>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2>
+    <Epassword2_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2_TH>
     <Api>api</Api>
     <Api2>api</Api2>
     <TimeOut>120</TimeOut>

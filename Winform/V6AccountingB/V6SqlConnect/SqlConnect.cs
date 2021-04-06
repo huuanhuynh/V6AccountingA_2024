@@ -95,6 +95,15 @@ namespace V6SqlConnect
                 return con.BeginTransaction(IsolationLevel.Serializable, name);
             else return con.BeginTransaction(name);
         }
+        
+        public static SqlTransaction CreateSqlTransaction2_TH(string name)
+        {
+            var con = new SqlConnection(DatabaseConfig.ConnectionString2_TH);
+            con.Open();
+            if(DatabaseConfig.UseIsolation)
+                return con.BeginTransaction(IsolationLevel.Serializable, name);
+            else return con.BeginTransaction(name);
+        }
 
         public static int CountRows(string tableName, string where = "")
         {

@@ -37,6 +37,27 @@ namespace V6SqlConnect
                 return s;
             }
         }
+        
+        public static string ConnectionString2_TH
+        {
+            get
+            {
+                try
+                {
+                    if (EPassword2_TH == "") return "";
+                    var s = "Server=" + Server2_TH + ";Database=" + Database2_TH + ";User Id=" + UserId2_TH
+                            + ";Password=" + V6SqlconnectHelper.DeCrypt(EPassword2_TH + check_key) + ";";
+
+                    return s;
+                }
+                catch (Exception ex)
+                {
+                    return "";
+                }
+
+                return "";
+            }
+        }
 
         public static string ConfigDataDisplayMember = "Display";
         public static string ConfigDataValueMember = "STT";
@@ -67,6 +88,15 @@ namespace V6SqlConnect
                 UserId2 = selectedRow["UserId2"].ToString().Trim();
                 EPassword2 = selectedRow["EPassword2"].ToString().Trim();
                 Api2 = selectedRow["Api2"].ToString().Trim();
+
+                if (ConnectionConfigData.Columns.Contains("Server2_TH"))
+                {
+                    Server2_TH = selectedRow["Server2_TH"].ToString().Trim();
+                    Database2_TH = selectedRow["Database2_TH"].ToString().Trim();
+                    UserId2_TH = selectedRow["UserId2_TH"].ToString().Trim();
+                    EPassword2_TH = selectedRow["EPassword2_TH"].ToString().Trim();
+                }
+
 
                 try
                 {
@@ -155,6 +185,11 @@ namespace V6SqlConnect
         public static string EPassword2 = "";
         public static string Api2 = "";
 
+        public static string Server2_TH = "";
+        public static string Database2_TH = "";
+        public static string UserId2_TH = "";
+        public static string EPassword2_TH = "";
+        
         public static int TimeOut = 99;
         public static string Note = "";
         public static bool UseIsolation = false;

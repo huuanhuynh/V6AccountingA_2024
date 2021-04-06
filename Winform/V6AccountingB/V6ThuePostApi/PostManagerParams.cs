@@ -55,7 +55,7 @@ namespace V6ThuePostManager
         /// <summary>
         /// Dữ liệu hóa đơn mới.
         /// </summary>
-        public IDictionary<string, object> AM_new { get; set; }
+        public IDictionary<string, object> AM_data { get; set; }
         /// <summary>
         /// Mã tạo ra bởi server HĐĐT
         /// </summary>

@@ -1526,6 +1526,18 @@ namespace V6AccountingBusiness.Invoices
             throw new NotImplementedException("InsertInvoice No override method.");
         }
 
+        /// <summary>
+        /// Thêm chứng từ vào kết nối 2_TH
+        /// </summary>
+        /// <param name="amData"></param>
+        /// <param name="ad1List"></param>
+        /// <param name="ad2List"></param>
+        /// <returns></returns>
+        public virtual bool InsertInvoice2_TH(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List, List<IDictionary<string, object>> ad2List)
+        {
+            throw new NotImplementedException("InsertInvoice No override method.");
+        }
+
         public virtual bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, bool post)
         {
             throw new NotImplementedException("InsertInvoice No override method.");
@@ -1544,6 +1556,11 @@ namespace V6AccountingBusiness.Invoices
             throw new NotImplementedException("UpdateInvoice1detail No override method.");
         }
         public virtual bool UpdateInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, IDictionary<string, object> keys)
+        {
+            throw new NotImplementedException("UpdateInvoice13details No override method.");
+        }
+        
+        public virtual bool UpdateInvoice2_TH(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, IDictionary<string, object> keys)
         {
             throw new NotImplementedException("UpdateInvoice13details No override method.");
         }
@@ -1649,6 +1666,13 @@ namespace V6AccountingBusiness.Invoices
                 throw new Exception("InvoiceBase GetFilterMaViTriTon " + ex.Message);
             }
             return null;
+        }
+
+        public bool Exist2_TH(string sttRec)
+        {
+            IDictionary<string, object> data = new Dictionary<string, object>();
+            data["STT_REC"] = sttRec;
+            return V6BusinessHelper.CheckDataExist2_TH(AM_TableName, data, null);
         }
     }
 }

@@ -23,6 +23,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             dataGridView1.Control_S = true;
         }
 
+        private void AAPPR_EINVOICE1_Load(object sender, EventArgs e)
+        {
+            PostManager.ResetWS();
+        }
+
         public override void SetStatus2Text()
         {
             V6ControlFormHelper.SetStatusText2(string.Format("F6: {0}, F9: {1}", V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT")));
@@ -106,7 +111,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             Branch = FilterControl.String1,
                             Fkey_hd = fkey_hd,
                             V6PartnerID = row.Cells["V6PARTNER_ID"].Value.ToString().Trim(),
-                            AM_new = row_data,
+                            AM_data = row_data,
                         };
                         string result = PostManager.PowerPost(paras);
 
@@ -222,7 +227,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         DataSet = ds,
                         AM_old = am_old,
-                        AM_new = am_new,
+                        AM_data = am_new,
                         Mode = "E_T1",
                         Branch = FilterControl.String1,
                         Fkey_hd = fkey_hd,
@@ -392,5 +397,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(GetType() + ".AAPPR_SOA ViewDetails: " + ex.Message);
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // AAPPR_EINVOICE1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "AAPPR_EINVOICE1";
+            this.Load += new System.EventHandler(this.AAPPR_EINVOICE1_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+        
     }
 }

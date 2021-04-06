@@ -573,6 +573,22 @@ namespace V6AccountingBusiness
                 return false;
             }
         }
+        
+        public static bool CheckDataExist2_TH(string tableName, IDictionary<string, object> data, string filter)
+        {
+            try
+            {
+                var where = SqlGenerator.GenSqlWhere(data);
+                var sql = "select COUNT(*) count0 from [" + tableName + "] where " + where;
+                if (!string.IsNullOrEmpty(filter)) sql += " and " + filter;
+                var result = (int)SqlHelper.ExecuteScalar(DatabaseConfig.ConnectionString2_TH, CommandType.Text, sql);
+                return result >= 1;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Kiểm tra dữ liệu có tồn tại hay không, dữ liệu dư được bỏ qua

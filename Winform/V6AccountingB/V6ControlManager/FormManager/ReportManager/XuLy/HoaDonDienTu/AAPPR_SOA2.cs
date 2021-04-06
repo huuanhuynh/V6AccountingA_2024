@@ -29,6 +29,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             MyInit2();
         }
 
+
+        private void AAPPR_SOA2_Load(object sender, EventArgs e)
+        {
+            PostManager.ResetWS();
+        }
+
         private void MyInit2()
         {
             try
@@ -365,15 +371,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Controls.Add(this.btnTestViewXml);
             this.Name = "AAPPR_SOA2";
+            this.Load += new System.EventHandler(this.AAPPR_SOA2_Load);
+            this.Controls.SetChildIndex(this.btnSuaTTMauBC, 0);
+            this.Controls.SetChildIndex(this.btnThemMauBC, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnTestViewXml, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         private Button btnTestViewXml;
-
+        
     }
 
     //internal class ConfigLine

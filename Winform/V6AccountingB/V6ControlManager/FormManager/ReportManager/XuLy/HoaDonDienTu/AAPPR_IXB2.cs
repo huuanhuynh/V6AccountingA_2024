@@ -29,6 +29,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             dataGridView1.Control_S = true;
         }
 
+        private void AAPPR_IXB2_Load(object sender, EventArgs e)
+        {
+            PostManager.ResetWS();
+        }
+
         public override void SetStatus2Text()
         {
             V6ControlFormHelper.SetStatusText2("F4: Tạo HĐĐT trắng, F6: Sửa HĐĐT, F9: Chuyển.");
@@ -339,10 +344,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Controls.Add(this.btnTestViewXml);
             this.Name = "AAPPR_IXB2";
+            this.Load += new System.EventHandler(this.AAPPR_IXB2_Load);
+            this.Controls.SetChildIndex(this.btnSuaTTMauBC, 0);
+            this.Controls.SetChildIndex(this.btnThemMauBC, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnTestViewXml, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

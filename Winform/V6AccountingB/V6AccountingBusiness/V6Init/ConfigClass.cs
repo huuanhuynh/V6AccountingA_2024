@@ -207,6 +207,7 @@ namespace V6Init
         public string M_LIST_CT { get { return GetString("M_LIST_CT"); } }
         public string WRITE_LOG { get { return GetString("WRITE_LOG"); } }
         public string EXTRA_INFOR { get { return GetString("EXTRA_INFOR"); } }
+        public string KEY_AM2TH { get { return GetString("KEY_AM2TH"); } }
 
 
     }
