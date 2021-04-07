@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6SqlConnect;
 using V6Tools;
 using V6Tools.V6Convert;
 
@@ -18,6 +20,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
     {
         public string STT_REC { get; set; }
         public string MA_CT { get; set; }
+        /// <summary>
+        /// Cờ chuyển Database2_TH
+        /// </summary>
+        public bool Data2_TH { get; set; }
+
         private V6InvoiceBase Invoice;
         public InvoiceInfosViewForm()
         {
@@ -35,8 +42,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                
-                var data = V6BusinessHelper.Select("V6ViewInfo", "*", "loai='1'", "", "STT").Data;
+                DataTable data;
+                if (Data2_TH)
+                    data = V6BusinessHelper.Select2_TH("V6ViewInfo", "*", "loai='1'", "", "STT").Data;
+                else
+                    data = V6BusinessHelper.Select("V6ViewInfo", "*", "loai='1'", "", "STT").Data;
                 comboBox1.ValueMember = "Procedure";
                 comboBox1.DisplayMember = V6Setting.IsVietnamese ? "Bar" : "Bar2";
                 comboBox1.DataSource = data;
@@ -155,7 +165,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         new SqlParameter("@cTable", select),
                         new SqlParameter("@cMa_ct", MA_CT),
                     };
-                    var loadData = V6BusinessHelper.ExecuteProcedure(Procedure, plist).Tables[0];
+                    DataTable loadData;
+                    if (Data2_TH)
+                        loadData = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure,Procedure, plist).Tables[0];
+                    else
+                        loadData = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, CommandType.StoredProcedure,Procedure, plist).Tables[0];
+
                     dataGridView1.DataSource = loadData;
                     //FormatGridView();
                 }
@@ -187,6 +202,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private void ViewInfoData_Load(object sender, EventArgs e)
         {
             LoadCombobox();
+            if (Data2_TH)
+            {
+                Text += " " + DatabaseConfig.Database2_TH;
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -566,7 +566,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         //SupperAccess
                         if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                         {
-                            ViewFormVar();
+                            ViewFormVar() ;
                         }
                     } break;
             }
@@ -2126,6 +2126,23 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 if ((V6Login.IsAdmin || V6Login.Level != "05") && !string.IsNullOrEmpty(_sttRec))
                     new InvoiceInfosViewForm(invoice, _sttRec, invoice.Mact).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ShowViewInfoData " + _sttRec, ex);
+            }
+        }
+        
+        public void ShowViewInfoData2_TH(V6InvoiceBase invoice)
+        {
+            try
+            {
+                if ((V6Login.IsAdmin || V6Login.Level != "05") && !string.IsNullOrEmpty(_sttRec))
+                {
+                    var f = new InvoiceInfosViewForm(invoice, _sttRec, invoice.Mact);
+                    f.Data2_TH = true;
+                    f.ShowDialog(this);
+                }
             }
             catch (Exception ex)
             {

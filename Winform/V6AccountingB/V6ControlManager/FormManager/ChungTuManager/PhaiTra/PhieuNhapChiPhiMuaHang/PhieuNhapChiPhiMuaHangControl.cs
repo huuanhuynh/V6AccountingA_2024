@@ -2575,14 +2575,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 {
                     _AED_Success = true;
                     if (Invoice.IS_AM2TH(readyDataAM))
-                        try
-                        {
-                            Invoice.InsertInvoice2_TH(readyDataAM, readyDataAD, readyDataAD2);
-                        }
-                        catch (Exception ex2_TH)
-                        {
-                            this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex2_TH);
-                        }
+                    {
+                        DoAdd2_TH_Thread();
+                    }
                 }
                 else
                 {
@@ -2602,6 +2597,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
+        }
+
+        private void DoAdd2_TH_Thread()
+        {
+            try
+            {
+                Thread add2_TH = new Thread(DoAdd2_TH);
+                add2_TH.Start();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void DoAdd2_TH()
+        {
+            try
+            {
+                Invoice.InsertInvoice2_TH(readyDataAM, readyDataAD, readyDataAD2);
+            }
+            catch (Exception ex2_TH)
+            {
+                this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex2_TH);
+            }
         }
 #endregion add
 
@@ -2877,7 +2897,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             //Xóa xong view lại cái khác
             try
             {
-                
                 var row = AM.Rows[CurrentIndex];
                 _sttRec = row["Stt_rec"].ToString().Trim();
                 if (Invoice.DeleteInvoice(_sttRec))
@@ -2886,6 +2905,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     AM.Rows.Remove(row);
                     ADTables.Remove(_sttRec);
                     AD2Tables.Remove(_sttRec);
+                    if (Invoice.IS_AM2TH(row.ToDataDictionary()))
+                    {
+                        _sttRec2_TH = _sttRec;
+                        DoDelete2_TH_Thread();
+                    }
                 }
                 else
                 {
@@ -2893,7 +2917,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     deleteErrorMessage = V6Text.Text("XOA0");
                     Invoice.PostErrorLog(_sttRec, "X", "Invoice.DeleteInvoice return false.");
                 }
-                        
             }
             catch (Exception ex)
             {
@@ -2902,6 +2925,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 Invoice.PostErrorLog(_sttRec, "X " + _sttRec, ex);
             }
             _AED_Running = false;
+        }
+
+        private void DoDelete2_TH_Thread()
+        {
+            try
+            {
+                Thread delete2_TH = new Thread(DoDelete2_TH);
+                delete2_TH.Start();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private string _sttRec2_TH;
+        private void DoDelete2_TH()
+        {
+            try
+            {
+                Invoice.DeleteInvoice2_TH(_sttRec2_TH);
+            }
+            catch (Exception ex2_TH)
+            {
+                this.WriteExLog(string.Format("{0}.{1} 2_TH {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex2_TH);
+            }
         }
         #endregion delete
 
@@ -4795,7 +4844,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             if (shift_is_down)
             {
-                ViewFormVar();
+                ShowViewInfoData2_TH(Invoice);
             }
             else
             {

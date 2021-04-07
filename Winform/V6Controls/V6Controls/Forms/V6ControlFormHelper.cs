@@ -924,7 +924,30 @@ namespace V6Controls.Forms
                     //    string st = "";
                     //}
                 }
+                // Font size and style
+                string style = (row["STYLE"] + "").Trim();
+                if (style.Length > 0)
+                {
+                    float fsize = c.Font.Size;
+                    FontStyle fstyle = c.Font.Style;
+                    var styleDic = ObjectAndString.StringToStringDictionary(style, ';', '=');
+                    if (styleDic.ContainsKey("SIZE") || styleDic.ContainsKey("STYLE"))
+                    {
+                        fsize = (float)ObjectAndString.StringToDecimal(styleDic["SIZE"]);
+                        if (fsize < 8) fsize = 8;
+                    }
 
+                    if (styleDic.ContainsKey("STYLE"))
+                    {
+                        if (styleDic["STYLE"].Contains("B")) fstyle = fstyle | FontStyle.Bold;
+                        if (styleDic["STYLE"].Contains("I")) fstyle = fstyle | FontStyle.Italic;
+                        if (styleDic["STYLE"].Contains("S")) fstyle = fstyle | FontStyle.Strikeout;
+                        if (styleDic["STYLE"].Contains("U")) fstyle = fstyle | FontStyle.Underline;
+                    }
+
+                    c.Font = new Font(c.Font.FontFamily, fsize, fstyle);
+                }
+                
                 if (c != temp_control)
                 {
                     result.Add(fOrder, c);
@@ -1131,6 +1154,30 @@ namespace V6Controls.Forms
                     //    string st = "";
                     //    c.TabStopChanged += c_TabStopChanged;
                     //}
+                }
+
+                // Font size and style
+                string style = (row["STYLE"] + "").Trim();
+                if (style.Length > 0)
+                {
+                    float fsize = c.Font.Size;
+                    FontStyle fstyle = c.Font.Style;
+                    var styleDic = ObjectAndString.StringToStringDictionary(style, ';', '=');
+                    if (styleDic.ContainsKey("SIZE") || styleDic.ContainsKey("STYLE"))
+                    {
+                        fsize = (float)ObjectAndString.StringToDecimal(styleDic["SIZE"]);
+                        if (fsize < 8) fsize = 8;
+                    }
+
+                    if (styleDic.ContainsKey("STYLE"))
+                    {
+                        if (styleDic["STYLE"].Contains("B")) fstyle = fstyle | FontStyle.Bold;
+                        if (styleDic["STYLE"].Contains("I")) fstyle = fstyle | FontStyle.Italic;
+                        if (styleDic["STYLE"].Contains("S")) fstyle = fstyle | FontStyle.Strikeout;
+                        if (styleDic["STYLE"].Contains("U")) fstyle = fstyle | FontStyle.Underline;
+                    }
+
+                    c.Font = new Font(c.Font.FontFamily, fsize, fstyle);
                 }
 
                 if (c != temp_control)
@@ -3571,7 +3618,7 @@ namespace V6Controls.Forms
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
-            
+
             return a;
         }
         public static V6DateTimePicker CreateDateTimePicker(string accessibleName, string caption, int width, bool visible, bool carry = false)

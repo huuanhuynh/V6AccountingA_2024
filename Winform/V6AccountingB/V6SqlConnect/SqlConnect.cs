@@ -217,6 +217,38 @@ namespace V6SqlConnect
             }
             return null;
         }
+        public static V6SelectResult Select2_TH(string tableName, string fields, string where="", string group="", string sort = "", params SqlParameter[] prList)
+        {
+            if (CheckV6Key())
+            {
+                if (fields == null) fields = "*";
+                
+                var fieldsSelect = string.IsNullOrEmpty(fields) ? "*" : fields;
+                var whereClause = string.IsNullOrEmpty(where) ? "" : " WHERE " + where;
+                var groupClause = string.IsNullOrEmpty(group) ? "" : " GROUP BY " + group;
+                var sortOrder = string.IsNullOrEmpty(sort) ? "" : " ORDER BY " + sort;
+
+                var sql = string.Format("Select {0} from {1} {2} {3} {4}",
+                    fieldsSelect, tableName, whereClause, groupClause, sortOrder);
+                var ds = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString2_TH, CommandType.Text, sql, DatabaseConfig.TimeOut, prList);
+                var t = ds.Tables.Count > 0 ? ds.Tables[0] : null;
+
+
+                var result = new V6SelectResult
+                {
+                    Data = t,
+                    Page = 1
+                };
+
+                if (t != null)
+                {
+                    t.TableName = tableName;
+                    result.TotalRows = t.Rows.Count;
+                }
+                return result;
+            }
+            return null;
+        }
 
         public static DataTable SelectSimple(string tableName, string fields, string where="", string group="", string sort = "", params SqlParameter[] pList)
         {

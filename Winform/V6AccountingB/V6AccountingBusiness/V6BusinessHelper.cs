@@ -1416,6 +1416,12 @@ namespace V6AccountingBusiness
             if (!V6Login.UserRight.AllowSelect(V6TableHelper.ToV6TableName(tableName))) return new V6SelectResult();
             return SqlConnect.Select(tableName, fields, @where, groupby, @orderby, pList);
         }
+       public static V6SelectResult Select2_TH(string tableName, string fields = "*",
+            string where = "", string groupby = "", string orderby = "", params SqlParameter[] pList)
+        {
+            if (!V6Login.UserRight.AllowSelect(V6TableHelper.ToV6TableName(tableName))) return new V6SelectResult();
+            return SqlConnect.Select2_TH(tableName, fields, @where, groupby, @orderby, pList);
+        }
 
         public static int SelectCount(string tableName, string field = "*",
             string where = "", params SqlParameter[] pList)
