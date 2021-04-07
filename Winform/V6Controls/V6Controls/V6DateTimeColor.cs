@@ -102,7 +102,9 @@ namespace V6Controls
 
                     var day = int.Parse("" + valueArray[0] + valueArray[1]);
                     var month = int.Parse("" + valueArray[2] + valueArray[3]);
-                    var year = int.Parse("" + valueArray[4] + valueArray[5] + valueArray[6] + valueArray[7]);
+                    string syear = "" + valueArray[4] + valueArray[5] + valueArray[6] + valueArray[7];
+                    int year = DateTime.Now.Year;
+                    if (syear != "\0\0\0\0") year = int.Parse(syear);
                     if (year <= 99)
                     {
                         year = DateTime.Now.Year/100*100 + year;
