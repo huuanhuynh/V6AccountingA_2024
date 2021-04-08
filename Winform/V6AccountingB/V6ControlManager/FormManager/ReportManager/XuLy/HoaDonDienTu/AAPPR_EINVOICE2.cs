@@ -22,11 +22,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
             dataGridView1.Control_S = true;
+            PostManager.ResetWS();
         }
 
         private void AAPPR_EINVOICE2_Load(object sender, EventArgs e)
         {
-            PostManager.ResetWS();
+            
         }
 
         public override void SetStatus2Text()

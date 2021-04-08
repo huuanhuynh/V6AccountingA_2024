@@ -67,6 +67,14 @@
       <HintPath>..\..\..\packages\QrCode.Net.0.4.0.0\lib\net35\Gma.QrCodeNet.Encoding.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GsmModem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Hprojects\GsmModem\bin\Release\GsmModem.dll</HintPath>
+    </Reference>
+    <Reference Include="GsmSerialPort, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Hprojects\GsmSerialPort\bin\Release\GsmSerialPort.dll</HintPath>
+    </Reference>
     <Reference Include="PdfiumViewer, Version=2.10.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
@@ -90,6 +98,10 @@
       <HintPath>..\..\TreeListView\TreeListView\TreeListView\bin\Debug\System.Windows.Forms.TreeListView.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="V6Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\V6Tools\V6Tools\bin\Release\V6Tools.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -2389,14 +2401,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Hprojects\GsmModem\GsmModem.csproj">
-      <Project>{C76A2608-2BEF-4398-95EC-C8C418828DDE}</Project>
-      <Name>GsmModem</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Hprojects\GsmSerialPort\GsmSerialPort.csproj">
-      <Project>{0a85d3e6-9463-4e5a-a001-dd2401ec190a}</Project>
-      <Name>GsmSerialPort</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Hprojects\HaUtility\HaUtility.csproj">
       <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
       <Name>HaUtility</Name>
@@ -2412,10 +2416,6 @@
     <ProjectReference Include="..\..\V6AccountingB\V6Structs\V6Structs.csproj">
       <Project>{910141A1-9FC5-4A44-B682-425100FE9023}</Project>
       <Name>V6Structs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\V6Tools\V6Tools\V6Tools.csproj">
-      <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
-      <Name>V6Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

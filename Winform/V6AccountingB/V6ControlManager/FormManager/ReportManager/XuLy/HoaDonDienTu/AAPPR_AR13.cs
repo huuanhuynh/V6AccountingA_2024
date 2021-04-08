@@ -29,11 +29,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             InitializeComponent();
             dataGridView1.Control_S = true;
+            PostManager.ResetWS();
         }
 
         private void AAPPR_AR13_Load(object sender, EventArgs e)
         {
-            PostManager.ResetWS();
+            
         }
 
         public override void SetStatus2Text()

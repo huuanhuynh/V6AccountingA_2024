@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.IO;
 using System.Reflection;
 using V6AccountingBusiness;
 using V6Structs;
@@ -615,7 +616,7 @@ namespace V6Init
 
     }
 
-
+    
     public class ConfigManager
     {
         public static AlctConfig GetAlctConfig(string ma_ct)

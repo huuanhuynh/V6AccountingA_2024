@@ -16,6 +16,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             MyInit();
         }
 
+        /// <summary>
+        /// Dòng đang đứng.
+        /// </summary>
         public DataGridViewRow SelectedGridViewRow { get { return xuLyBase1.dataGridView1.CurrentRow; } }
 
         private void MyInit()

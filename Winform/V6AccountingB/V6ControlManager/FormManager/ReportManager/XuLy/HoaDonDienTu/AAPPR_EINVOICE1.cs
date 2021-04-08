@@ -21,11 +21,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
             dataGridView1.Control_S = true;
+            PostManager.ResetWS();
         }
 
         private void AAPPR_EINVOICE1_Load(object sender, EventArgs e)
         {
-            PostManager.ResetWS();
+            
         }
 
         public override void SetStatus2Text()
@@ -177,6 +178,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyF6()
         {
+            // Lấy hóa đơn từ form F6 thay cho dòng đang đứng.
             try
             {
                 f9Error = "";
@@ -190,16 +192,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 DataGridViewRow row = dataGridView1.CurrentRow;
-                var am_new = row.ToDataDictionary();
+                var am_E1 = row.ToDataDictionary();
 
                 try
                 {
                     // E_G1: gạch nợ    E_H1: hủy hóa đơn   E_S1: sửa hd    E_T1: thay thế hd
                     //string mode = form.SelectedMode;
-                    IDictionary<string, object> am_old = form.SelectedGridViewRow.ToDataDictionary();
-                    string soct = row.Cells["So_ct"].Value.ToString().Trim();
-                    string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                    string fkey_hd_tt = am_old["FKEY_HD_TT"].ToString().Trim();
+                    IDictionary<string, object> am_F6 = form.SelectedGridViewRow.ToDataDictionary();
+                    string soct = am_F6["SO_CT"].ToString().Trim();
+                    string fkey_hd = am_F6["FKEY_HD"].ToString().Trim();
+                    string fkey_hd_tt = am_E1["FKEY_HD"].ToString().Trim();
                     if (string.IsNullOrEmpty(fkey_hd_tt))
                     {
                         f9MessageAll = "Không có mã FKEY_HD_TT.";
@@ -207,13 +209,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
 
                     string info = string.Format("Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
-                        am_old["SO_CT"], am_old["T_TIEN2"], am_new["SO_CT"], am_new["T_TIEN2"]);
+                        am_E1["SO_CT"], am_E1["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
                     this.ShowMainMessage(info);
 
                     SqlParameter[] plist =
                     {
-                        new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
-                        new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                        new SqlParameter("@Stt_rec", am_F6["STT_REC"] + ""),
+                        new SqlParameter("@Ma_ct", am_F6["MA_CT"] + ""),
                         new SqlParameter("@HoaDonMau", "0"),
                         new SqlParameter("@isInvoice", "1"),
                         new SqlParameter("@ReportFile", ""),
@@ -226,8 +228,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var paras = new PostManagerParams
                     {
                         DataSet = ds,
-                        AM_old = am_old,
-                        AM_data = am_new,
+                        AM_old = am_E1,
+                        AM_data = am_F6,
                         Mode = "E_T1",
                         Branch = FilterControl.String1,
                         Fkey_hd = fkey_hd,
@@ -253,8 +255,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         SqlParameter[] plist2 =
                         {
-                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
-                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                            new SqlParameter("@Stt_rec", am_F6["STT_REC"].ToString().Trim()),
+                            new SqlParameter("@Ma_ct", am_F6["MA_CT"].ToString().Trim()),
                             new SqlParameter("@Action", paras.Mode),
                             new SqlParameter("@fkey_hd", paras.Result.Id),
                             new SqlParameter("@V6PARTNER_ID", paras.Result.Id),

@@ -51,6 +51,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\EasyInvoice.Client (.NET)\Project\bin\Debug\V6EasyInvoice.Client.dll</HintPath>
     </Reference>
+    <Reference Include="V6Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\V6Tools\V6Tools\bin\Release\V6Tools.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -68,10 +72,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\V6Tools\V6Tools\V6Tools.csproj">
-      <Project>{4F797E67-948D-4EEC-ACD7-758028E9166F}</Project>
-      <Name>V6Tools</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\PostObjects\V6ThuePostObjects.csproj">
       <Project>{14a2c520-1939-4b6a-b584-ee5797f26701}</Project>
       <Name>V6ThuePostObjects</Name>

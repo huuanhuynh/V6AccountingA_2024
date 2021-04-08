@@ -27,12 +27,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             InitializeComponent();
             MyInit2();
+            PostManager.ResetWS();
         }
 
 
         private void AAPPR_SOA2_Load(object sender, EventArgs e)
         {
-            PostManager.ResetWS();
+            
         }
 
         private void MyInit2()

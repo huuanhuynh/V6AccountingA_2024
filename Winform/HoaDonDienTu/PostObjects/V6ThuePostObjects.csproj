@@ -45,6 +45,10 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="V6Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\V6Tools\V6Tools\bin\Release\V6Tools.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigLine.cs" />
@@ -121,12 +125,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\V6Tools\V6Tools\V6Tools.csproj">
-      <Project>{4F797E67-948D-4EEC-ACD7-758028E9166F}</Project>
-      <Name>V6Tools</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViettelObjects\Request\" />

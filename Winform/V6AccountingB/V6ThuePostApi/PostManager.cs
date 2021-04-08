@@ -3036,7 +3036,7 @@ namespace V6ThuePostManager
                     postObject.generalInvoiceInfo["adjustmentType"] = "3";
                     //Các trường dữ liệu về hóa đơn gốc là bắt buộc
                     //originalInvoiceId
-                    postObject.generalInvoiceInfo["originalInvoiceId"] =  paras.Fkey_hd_tt;// .AM_old["FKEY_HD_TT"].ToString().Trim();  // AA/17E0003470
+                    postObject.generalInvoiceInfo["originalInvoiceId"] = paras.AM_old["SO_SERI"].ToString().Trim() + paras.AM_old["SO_CT"].ToString().Trim();//  paras.Fkey_hd_tt;// .AM_old["FKEY_HD_TT"].ToString().Trim();  // AA/17E0003470
                     //originalInvoiceIssueDate
                     postObject.generalInvoiceInfo["originalInvoiceIssueDate"] = paras.AM_old["NGAY_CT"];
 

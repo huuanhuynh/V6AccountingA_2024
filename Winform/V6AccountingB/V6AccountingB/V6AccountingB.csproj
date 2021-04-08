@@ -54,6 +54,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="V6Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\V6Tools\V6Tools\bin\Release\V6Tools.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AGLSO6.cs">
@@ -177,10 +181,6 @@
     <ProjectReference Include="..\..\V6Controls\V6Controls\V6Controls.csproj">
       <Project>{311B600D-E1AE-4172-9CC6-1A24DBCD67C2}</Project>
       <Name>V6Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\V6Tools\V6Tools\V6Tools.csproj">
-      <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
-      <Name>V6Tools</Name>
     </ProjectReference>
     <ProjectReference Include="..\V6AccountingBusiness\V6AccountingBusiness.csproj">
       <Project>{5128ff85-304f-4943-853e-f8e3535dfb55}</Project>
