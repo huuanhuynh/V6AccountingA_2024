@@ -93,6 +93,14 @@
     <Reference Include="DevExpress.XtraReports.v17.1.Extensions, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="GsmModem, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Hprojects\GsmModem\bin\Release\GsmModem.dll</HintPath>
+    </Reference>
+    <Reference Include="GsmSerialPort, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Hprojects\GsmSerialPort\bin\Release\GsmSerialPort.dll</HintPath>
+    </Reference>
     <Reference Include="PdfiumViewer, Version=2.10.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
@@ -120,6 +128,10 @@
     <Reference Include="V6RptEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\V6RptEditor.exe</HintPath>
+    </Reference>
+    <Reference Include="V6Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\V6Tools\V6Tools\bin\Release\V6Tools.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -2267,6 +2279,12 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL.designer.cs">
       <DependentUpon>AKBKVTSL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH1_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH1_Filter.Designer.cs">
+      <DependentUpon>V6IMDATA2TH1_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSAR1_Filter.cs">
       <SubType>UserControl</SubType>
@@ -5075,6 +5093,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH1_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6054,14 +6075,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Hprojects\GsmModem\GsmModem.csproj">
-      <Project>{C76A2608-2BEF-4398-95EC-C8C418828DDE}</Project>
-      <Name>GsmModem</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Hprojects\GsmSerialPort\GsmSerialPort.csproj">
-      <Project>{0a85d3e6-9463-4e5a-a001-dd2401ec190a}</Project>
-      <Name>GsmSerialPort</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Hprojects\HaUtility\HaUtility.csproj">
       <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
       <Name>HaUtility</Name>
@@ -6078,10 +6091,6 @@
       <Project>{311B600D-E1AE-4172-9CC6-1A24DBCD67C2}</Project>
       <Name>V6Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\V6Tools\V6Tools\V6Tools.csproj">
-      <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
-      <Name>V6Tools</Name>
-    </ProjectReference>
     <ProjectReference Include="..\7zip\SevenZip.csproj">
       <Project>{1FC63292-A994-4371-98C0-72564B12296F}</Project>
       <Name>SevenZip</Name>
@@ -6097,6 +6106,10 @@
     <ProjectReference Include="..\V6Structs\V6Structs.csproj">
       <Project>{910141A1-9FC5-4A44-B682-425100FE9023}</Project>
       <Name>V6Structs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6SyncLibrary2021\V6SyncLibrary2021.csproj">
+      <Project>{5693AF19-A306-4172-902E-F7F02D89D1BF}</Project>
+      <Name>V6SyncLibrary2021</Name>
     </ProjectReference>
     <ProjectReference Include="..\V6ThuePostApi\V6ThuePostManager.csproj">
       <Project>{4AF9BDE9-3E91-4035-BB20-2CFC1E0E54A6}</Project>
@@ -7191,6 +7204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AKBKVTSL.resx">
       <DependentUpon>AKBKVTSL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH1_Filter.resx">
+      <DependentUpon>V6IMDATA2TH1_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSAR1_Filter.resx">
       <DependentUpon>XLSAR1_Filter.cs</DependentUpon>
@@ -8634,6 +8650,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH1_Control.resx">
+      <DependentUpon>V6IMDATA2TH1_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.resx">
       <DependentUpon>V6IMPORT2XLS.cs</DependentUpon>

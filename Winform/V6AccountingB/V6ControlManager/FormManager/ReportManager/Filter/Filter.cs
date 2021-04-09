@@ -1046,6 +1046,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "V6IMDATA2":
                     result = new V6IMDATA2_Filter();
                     break;
+                case "V6IMDATA2TH1":
+                    result = new V6IMDATA2TH1_Filter();
+                    break;
                 case "XLSSOH":
                     result = new XLSSOH_Filter();
                     break;
