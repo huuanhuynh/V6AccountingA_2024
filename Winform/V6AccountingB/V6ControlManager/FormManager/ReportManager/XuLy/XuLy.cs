@@ -155,6 +155,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 case "V6IMDATA2TH1":
                     return new V6IMDATA2TH1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     break;
+                case "V6IMDATA2TH2":
+                    return new V6IMDATA2TH2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                    break;
                 case "AGLSO1T":
                     return new AGLSO1T(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AGSCTGS01":

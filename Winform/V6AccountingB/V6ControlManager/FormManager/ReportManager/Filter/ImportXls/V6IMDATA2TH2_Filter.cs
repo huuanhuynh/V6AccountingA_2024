@@ -9,9 +9,9 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class V6IMDATA2TH1_Filter: FilterBase
+    public partial class V6IMDATA2TH2_Filter: FilterBase
     {
-        public V6IMDATA2TH1_Filter()
+        public V6IMDATA2TH2_Filter()
         {
             InitializeComponent();
             F3 = false;

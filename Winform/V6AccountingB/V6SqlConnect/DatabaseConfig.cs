@@ -21,8 +21,8 @@ namespace V6SqlConnect
         }
 
         private const string ConfigFile = "V6DatabaseConfig.xml";
-        public static DataTable ConnectionConfigData = null;
-        public static DataTable ServerConfigData = null;
+        public static DataTable ConnectionConfigData;
+        public static DataTable ServerConfigData;
 
         /// <summary>
         /// Server=myServerName\myInstanceName;Database=myDataBase;User Id=myUsername;Password=myPassword;
@@ -50,12 +50,29 @@ namespace V6SqlConnect
 
                     return s;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return "";
                 }
+            }
+        }
+        
+        public static string ConnectionString3_TH
+        {
+            get
+            {
+                try
+                {
+                    if (EPassword3_TH == "") return "";
+                    var s = "Server=" + Server3_TH + ";Database=" + Database3_TH + ";User Id=" + UserId3_TH
+                            + ";Password=" + V6SqlconnectHelper.DeCrypt(EPassword3_TH + check_key) + ";";
 
-                return "";
+                    return s;
+                }
+                catch (Exception)
+                {
+                    return "";
+                }
             }
         }
 
@@ -96,6 +113,14 @@ namespace V6SqlConnect
                     UserId2_TH = selectedRow["UserId2_TH"].ToString().Trim();
                     EPassword2_TH = selectedRow["EPassword2_TH"].ToString().Trim();
                 }
+                
+                if (ConnectionConfigData.Columns.Contains("Server3_TH"))
+                {
+                    Server3_TH = selectedRow["Server3_TH"].ToString().Trim();
+                    Database3_TH = selectedRow["Database3_TH"].ToString().Trim();
+                    UserId3_TH = selectedRow["UserId3_TH"].ToString().Trim();
+                    EPassword3_TH = selectedRow["EPassword3_TH"].ToString().Trim();
+                }
 
 
                 try
@@ -120,13 +145,13 @@ namespace V6SqlConnect
                 CheckServer = serverConfigRow["CheckServer"].ToString().Trim();
                 PasswordV6 = serverConfigRow["PasswordV6"].ToString().Trim();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                
+                // ignored
             }
         }
 
-        private static int _selectedIndex = 0;
+        private static int _selectedIndex;
 
         public static int GetConfigDataRunIndex()
         {
@@ -190,9 +215,14 @@ namespace V6SqlConnect
         public static string UserId2_TH = "";
         public static string EPassword2_TH = "";
         
+        public static string Server3_TH = "";
+        public static string Database3_TH = "";
+        public static string UserId3_TH = "";
+        public static string EPassword3_TH = "";
+        
         public static int TimeOut = 99;
         public static string Note = "";
-        public static bool UseIsolation = false;
+        public static bool UseIsolation;
 
         //Phần chung
         public static string ServerName = "";

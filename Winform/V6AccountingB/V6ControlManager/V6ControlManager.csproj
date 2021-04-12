@@ -2280,6 +2280,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL.designer.cs">
       <DependentUpon>AKBKVTSL.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH2_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH2_Filter.Designer.cs">
+      <DependentUpon>V6IMDATA2TH2_Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH1_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5093,6 +5099,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH2_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH1_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7205,6 +7214,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AKBKVTSL.resx">
       <DependentUpon>AKBKVTSL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH2_Filter.resx">
+      <DependentUpon>V6IMDATA2TH2_Filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH1_Filter.resx">
       <DependentUpon>V6IMDATA2TH1_Filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -8650,6 +8662,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH2_Control.resx">
+      <DependentUpon>V6IMDATA2TH2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH1_Control.resx">
       <DependentUpon>V6IMDATA2TH1_Control.cs</DependentUpon>

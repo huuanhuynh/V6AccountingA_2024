@@ -18,7 +18,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public class V6IMDATA2TH1_Control : XuLyBase
+    public class V6IMDATA2TH2_Control : XuLyBase
     {
         //private readonly V6Categories _categories = new V6Categories();
         /// <summary>
@@ -38,7 +38,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         } 
 
-        public V6IMDATA2TH1_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public V6IMDATA2TH2_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
             try
@@ -197,7 +197,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 var ALFCOPY2LIST = V6BusinessHelper.Select("ALFCOPY2LIST", "*", "MA_FILE='" + _reportProcedure + "'").Data;
                 var ALFCOPY2DATA = V6BusinessHelper.Select("ALFCOPY2DATA", "*", "MA_FILE='" + _reportProcedure + "'").Data;
-                newMyThread = new MyThread(DatabaseConfig.ConnectionString, DatabaseConfig.ConnectionString2_TH, DatabaseConfig.ServerName, 0, _tbl.Rows[0]);
+                newMyThread = new MyThread(DatabaseConfig.ConnectionString, DatabaseConfig.ConnectionString3_TH, DatabaseConfig.ServerName, 0, _tbl.Rows[0]);
                 newMyThread.ALFCOPY2LIST = ALFCOPY2LIST;
                 newMyThread.ALFCOPY2DATA = ALFCOPY2DATA;
                 newMyThread.ThrowExceptionEvent += newMyThread_ThrowExceptionEvent;
@@ -285,10 +285,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.timerAutoF9.Interval = 1000;
             this.timerAutoF9.Tick += new System.EventHandler(this.timerAutoF9_Tick);
             // 
-            // V6IMDATA2TH1_Control
+            // V6IMDATA2TH2_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Name = "V6IMDATA2TH1_Control";
+            this.Name = "V6IMDATA2TH2_Control";
             this.ResumeLayout(false);
             this.PerformLayout();
 
