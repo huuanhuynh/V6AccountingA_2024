@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -124,8 +125,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowMainMessage("V6IMDATA2 " + ex.Message);
-                this.WriteExLog("V6IMDATA2.MakeReport2", ex);
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
         
@@ -167,7 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMainMessage("V6IMDATA2 " + V6Text.Text("NODATA"));
+                    this.ShowInfoMessage(V6Text.Text("NODATA"));
                 }
             }
             catch (Exception ex)
@@ -214,7 +214,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         void newMyThread_ThrowExceptionEvent(Exception ex)
         {
-            ShowMainMessage(ex.Message);
+            ShowMainMessage(_program + " " + ex.Message);
         }
 
 
@@ -234,12 +234,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     remove_list_d.RemoveAt(0);
                 }
 
-                var cError = f9Message;
+                var cError = newMyThread._Message;
                 if (cError.Length > 0)
                 {
-                    f9Message = f9Message.Substring(cError.Length);
                     V6ControlFormHelper.SetStatusText(cError);
-                    V6ControlFormHelper.ShowMainMessage("V6IMDATA2 F9 running: " + cError);
+                    
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    }
                 }
             }
             else
@@ -254,14 +257,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     remove_list_d.RemoveAt(0);
                 }
 
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                SetStatusText("V6IMDATA2 F9 finish " + newMyThread._Status + newMyThread._Message);
+                
+                if (newMyThread._Status == Status.Exception)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Red;
+                    this.ShowErrorMessage(newMyThread._Message);
                 }
-
-                //btnNhan.PerformClick();
-                V6ControlFormHelper.SetStatusText("V6IMDATA2 F9 finish " + newMyThread._Status + newMyThread._Message);
-                V6ControlFormHelper.ShowMainMessage("V6IMDATA2 F9 finish! " + newMyThread._Status + newMyThread._Message);
+                else if (newMyThread._Status == Status.Finish)
+                {
+                    this.ShowMessage(V6Text.Finish + " " + newMyThread._Message);
+                }
                 //V6ControlFormHelper.ShowInfoMessage("F9 finish: " + f9MessageAll, 500, this);
                 if (f9MessageAll.Length > 0)
                 {

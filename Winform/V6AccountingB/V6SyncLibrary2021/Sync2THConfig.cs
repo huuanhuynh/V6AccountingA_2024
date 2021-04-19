@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using V6Init;
+using V6Tools.V6Convert;
 
 namespace V6SyncLibrary2021
 {
@@ -44,5 +45,11 @@ namespace V6SyncLibrary2021
 
         public int HHFrom { get { return GetInt("HHFrom"); } }
         public int HHTo { get { return GetInt("HHTo"); } }
+        /// <summary>
+        /// Các trường cần đổi dữ liệu.
+        /// </summary>
+        public string[] fields { get { return ObjectAndString.SplitString(GetString("fields")); } }
+        public string NGAY_CT1 { get { return GetString("NGAY_CT1"); } }
+        public string NGAY_CT2 { get { return GetString("NGAY_CT2"); } }
     }
 }

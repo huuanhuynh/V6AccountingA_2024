@@ -30,7 +30,7 @@
         {
             this.txtSTT_ORDER = new V6Controls.V6NumberTextBox();
             this.lblSTT = new System.Windows.Forms.Label();
-            this.TxtMa_dvcs = new V6Controls.V6VvarTextBox();
+            this.txtMa_dvcs = new V6Controls.V6VvarTextBox();
             this.TxtNH_DVCS1 = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
@@ -153,23 +153,23 @@
             this.lblSTT.TabIndex = 30;
             this.lblSTT.Text = "Số thứ tự";
             // 
-            // TxtMa_dvcs
+            // txtMa_dvcs
             // 
-            this.TxtMa_dvcs.AccessibleName = "ma_dvcs";
-            this.TxtMa_dvcs.BackColor = System.Drawing.Color.White;
-            this.TxtMa_dvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_dvcs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtMa_dvcs.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_dvcs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_dvcs.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_dvcs.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_dvcs.Location = new System.Drawing.Point(167, 6);
-            this.TxtMa_dvcs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtMa_dvcs.Name = "TxtMa_dvcs";
-            this.TxtMa_dvcs.Size = new System.Drawing.Size(171, 23);
-            this.TxtMa_dvcs.TabIndex = 1;
-            this.TxtMa_dvcs.UseLimitCharacters0 = true;
+            this.txtMa_dvcs.AccessibleName = "ma_dvcs";
+            this.txtMa_dvcs.BackColor = System.Drawing.Color.White;
+            this.txtMa_dvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_dvcs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_dvcs.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_dvcs.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_dvcs.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_dvcs.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_dvcs.Location = new System.Drawing.Point(167, 6);
+            this.txtMa_dvcs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtMa_dvcs.Name = "txtMa_dvcs";
+            this.txtMa_dvcs.Size = new System.Drawing.Size(171, 23);
+            this.txtMa_dvcs.TabIndex = 1;
+            this.txtMa_dvcs.UseLimitCharacters0 = true;
             // 
             // TxtNH_DVCS1
             // 
@@ -714,7 +714,7 @@
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabThongTinChinh.Controls.Add(this.txtSTT_ORDER);
-            this.tabThongTinChinh.Controls.Add(this.TxtMa_dvcs);
+            this.tabThongTinChinh.Controls.Add(this.txtMa_dvcs);
             this.tabThongTinChinh.Controls.Add(this.lblSTT);
             this.tabThongTinChinh.Controls.Add(this.lblTenDVCS);
             this.tabThongTinChinh.Controls.Add(this.txtTenDvcs);
@@ -1587,7 +1587,7 @@
         private System.Windows.Forms.Label lblTenDVCS;
         private V6ColorTextBox TxtNH_DVCS1;
         private System.Windows.Forms.Label label3;
-        private V6VvarTextBox TxtMa_dvcs;
+        private V6VvarTextBox txtMa_dvcs;
         private V6ColorTextBox txtDiaChi2;
         private System.Windows.Forms.Label label7;
         private V6ColorTextBox txtMst;

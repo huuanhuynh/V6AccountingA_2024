@@ -24,15 +24,19 @@
     <Server>192.168.1.39\SQL2K8,3979</Server>
     <Server2>192.168.1.39\SQL2K8,3979</Server2>
     <Server2_TH>192.168.1.113\SQL2K8,7172</Server2_TH>
+    <Server3_TH>192.168.1.113\SQL2K8,7172</Server3_TH>
     <Database>V6B_2016</Database>
     <Database2>V6B_2016</Database2>
-    <Database2_TH>XLTH2021</Database2_TH>
+    <Database2_TH>XLVP2021</Database2_TH>
+    <Database3_TH>XLTH2021</Database3_TH>
     <UserId>v6admsa</UserId>
     <UserId2>v6admsa</UserId2>
     <UserId2_TH>v6admsa</UserId2_TH>
+    <UserId3_TH>v6admsa</UserId3_TH>
     <Epassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword>
     <Epassword2>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2>
     <Epassword2_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2_TH>
+    <Epassword3_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword3_TH>
     <Api>api</Api>
     <Api2>api</Api2>
     <TimeOut>120</TimeOut>
@@ -510,6 +514,33 @@
     <Run>1</Run>
     <Type>0</Type>
     <Key>OmEiyGpTDRNxnuzyp+HpMaE9HoOhT2FsGAiHzZXQW/4=</Key>
+  </DatabaseList>
+  <DatabaseList>
+    <Stt>28</Stt>
+    <Server>192.168.1.39\SQL2K8,3979</Server>
+    <Server2>192.168.1.39\SQL2K8,3979</Server2>
+    <Server2_TH>192.168.1.113\SQL2K8,7172</Server2_TH>
+    <Server3_TH>192.168.1.113\SQL2K8,7172</Server3_TH>
+    <Database>XLAG2021</Database>
+    <Database2>XLAG2021</Database2>
+    <Database2_TH>XLVP2021</Database2_TH>
+    <Database3_TH>XLTH2021</Database3_TH>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <UserId2_TH>v6admsa</UserId2_TH>
+    <UserId3_TH>v6admsa</UserId3_TH>
+    <Epassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword>
+    <Epassword2>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2>
+    <Epassword2_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2_TH>
+    <Epassword3_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword3_TH>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>XLAG AC 2021 </Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>+5iI48Y8IM5sK30xeTMq5cqIJ08N5+RcZTQiogoZsfNEjCzieZy5vQ==</Key>
   </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>

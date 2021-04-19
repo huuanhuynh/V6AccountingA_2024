@@ -26,21 +26,19 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         {
             IDictionary<string, XtraReport> file_repx = new Dictionary<string, XtraReport>();
             file_repx.Add(repxFile, repx);
-            _file_repx = file_repx;
+            _repxDic = file_repx;
             InitializeComponent();
             MyInit();
-
         }
 
-        public XtraEditorForm1(IDictionary<string, XtraReport> file_repx)
+        public XtraEditorForm1(IDictionary<string, XtraReport> repxDic)
         {
-            _file_repx = file_repx;
+            _repxDic = repxDic;
             InitializeComponent();
             MyInit();
-            
         }
         
-        IDictionary<string, XtraReport> _file_repx;
+        IDictionary<string, XtraReport> _repxDic = new Dictionary<string, XtraReport>();
         XRDesignPanel _first_design_panel = null;
 
         private void MyInit()
@@ -49,8 +47,8 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             {
                 reportDesigner1.DesignPanelLoaded += reportDesigner1_DesignPanelLoaded;
                 
-                if (_file_repx != null) // Open
-                foreach (KeyValuePair<string, XtraReport> item in _file_repx)
+                if (_repxDic != null) // Open
+                foreach (KeyValuePair<string, XtraReport> item in _repxDic)
                 {
                     reportDesigner1.OpenReport(item.Value);
                     reportDesigner1.ActiveDesignPanel.FileName = item.Key;
@@ -83,6 +81,14 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             try
             {
                  if (_first_design_panel != null) _first_design_panel.Focus();
+                 if (_repxDic.Count > 0)
+                 {
+                     foreach (KeyValuePair<string, XtraReport> item in _repxDic)
+                     {
+                         Text += " " + Path.GetFileNameWithoutExtension(item.Value.SourceUrl);
+                         break;
+                     }
+                 }
             }
             catch (Exception ex)
             {

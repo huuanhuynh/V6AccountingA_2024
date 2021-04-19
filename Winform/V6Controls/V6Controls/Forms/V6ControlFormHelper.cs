@@ -6325,7 +6325,7 @@ namespace V6Controls.Forms
                             var format = formatStrings[i].Trim();
                             var fff = format.Split(':');
 
-                            if (ObjectAndString.IsNumberType(dataType))
+                            if (ObjectAndString.IsNumberType(dataType) || format.StartsWith("N"))
                             {
                                 if (fff.Length == 1)
                                 {

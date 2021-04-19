@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -92,18 +93,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 FilterControl.UpdateValues();
-                var plist = new List<SqlParameter>();
-                plist.Add(new SqlParameter("@ngay_ct1", FilterControl.Date1.ToString("yyyyMMdd")));
-                plist.Add(new SqlParameter("@ngay_ct2", FilterControl.Date2.ToString("yyyyMMdd")));
-                plist.Add(new SqlParameter("@ngay_ct3", FilterControl.Date3.ToString("yyyyMMdd")));
-                plist.Add(new SqlParameter("@ma_dvcs", FilterControl.String1));
-                plist.Add(new SqlParameter("@dele_yn", FilterControl.Check1 ? "1" : "0"));
-                plist.Add(new SqlParameter("@auto_yn", FilterControl.Check2 ? "1" : "0"));
-                plist.Add(new SqlParameter("@auto_f9", FilterControl.Check3 ? "1" : "0"));
-                plist.Add(new SqlParameter("@HHFrom", (int)FilterControl.Number1));
-                plist.Add(new SqlParameter("@HHTo", (int)FilterControl.Number2));
-                plist.Add(new SqlParameter("@user_id", V6Login.UserId));
-                var ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, plist.ToArray());
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@ngay_ct1", FilterControl.Date1.ToString("yyyyMMdd")),
+                    new SqlParameter("@ngay_ct2", FilterControl.Date2.ToString("yyyyMMdd")),
+                    new SqlParameter("@ngay_ct3", FilterControl.Date3.ToString("yyyyMMdd")),
+                    new SqlParameter("@ma_dvcs", FilterControl.String1),
+                    new SqlParameter("@dele_yn", FilterControl.Check1 ? "1" : "0"),
+                    new SqlParameter("@auto_yn", FilterControl.Check2 ? "1" : "0"),
+                    new SqlParameter("@auto_f9", FilterControl.Check3 ? "1" : "0"),
+                    new SqlParameter("@HHFrom", (int) FilterControl.Number1),
+                    new SqlParameter("@HHTo", (int) FilterControl.Number2),
+                    new SqlParameter("@user_id", V6Login.UserId)
+                };
+                var ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, plist);
                 _tbl = ds.Tables[0];
                 
                                 
@@ -124,8 +127,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowMainMessage("V6IMDATA2 " + ex.Message);
-                this.WriteExLog("V6IMDATA2.MakeReport2", ex);
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
         
@@ -167,7 +169,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMainMessage("V6IMDATA2 " + V6Text.Text("NODATA"));
+                    this.ShowInfoMessage(V6Text.Text("NODATA"));
                 }
             }
             catch (Exception ex)
@@ -197,9 +199,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 var ALFCOPY2LIST = V6BusinessHelper.Select("ALFCOPY2LIST", "*", "MA_FILE='" + _reportProcedure + "'").Data;
                 var ALFCOPY2DATA = V6BusinessHelper.Select("ALFCOPY2DATA", "*", "MA_FILE='" + _reportProcedure + "'").Data;
-                newMyThread = new MyThread(DatabaseConfig.ConnectionString, DatabaseConfig.ConnectionString3_TH, DatabaseConfig.ServerName, 0, _tbl.Rows[0]);
+                newMyThread = new MyThread(DatabaseConfig.ConnectionString3_TH, DatabaseConfig.ConnectionString, DatabaseConfig.ServerName, 0, _tbl.Rows[0]);
                 newMyThread.ALFCOPY2LIST = ALFCOPY2LIST;
                 newMyThread.ALFCOPY2DATA = ALFCOPY2DATA;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@ngay_ct1", FilterControl.Date1.ToString("yyyyMMdd")),
+                    new SqlParameter("@ngay_ct2", FilterControl.Date2.ToString("yyyyMMdd")),
+                    new SqlParameter("@ngay_ct3", FilterControl.Date3.ToString("yyyyMMdd")),
+                    new SqlParameter("@ma_dvcs", FilterControl.String1),
+                    new SqlParameter("@dele_yn", FilterControl.Check1 ? "1" : "0"),
+                    new SqlParameter("@auto_yn", FilterControl.Check2 ? "1" : "0"),
+                    new SqlParameter("@auto_f9", FilterControl.Check3 ? "1" : "0"),
+                    new SqlParameter("@HHFrom", (int) FilterControl.Number1),
+                    new SqlParameter("@HHTo", (int) FilterControl.Number2),
+                    new SqlParameter("@user_id", V6Login.UserId)
+                };
+                var altkgop = V6BusinessHelper.ExecuteProcedureC(DatabaseConfig.ConnectionString3_TH, _reportProcedure + "_TKGOP", plist).Tables[0];
+                var replace_data = altkgop.ToStringDataDictionary("TK", "TK_GOP");
+                newMyThread.TKGOP_DIC = replace_data;
+
                 newMyThread.ThrowExceptionEvent += newMyThread_ThrowExceptionEvent;
                 
                 newMyThread.Start();
@@ -214,7 +233,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         void newMyThread_ThrowExceptionEvent(Exception ex)
         {
-            ShowMainMessage(ex.Message);
+            ShowMainMessage(_program + " " + ex.Message);
         }
 
 
@@ -234,12 +253,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     remove_list_d.RemoveAt(0);
                 }
 
+                f9Message = newMyThread._Message;
                 var cError = f9Message;
                 if (cError.Length > 0)
                 {
                     f9Message = f9Message.Substring(cError.Length);
-                    V6ControlFormHelper.SetStatusText(cError);
-                    V6ControlFormHelper.ShowMainMessage("V6IMDATA2 F9 running: " + cError);
+                    SetStatusText(cError);
                 }
             }
             else
@@ -259,10 +278,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     row.DefaultCellStyle.BackColor = Color.Red;
                 }
 
-                //btnNhan.PerformClick();
-                V6ControlFormHelper.SetStatusText("V6IMDATA2 F9 finish " + newMyThread._Status + newMyThread._Message);
-                V6ControlFormHelper.ShowMainMessage("V6IMDATA2 F9 finish! " + newMyThread._Status + newMyThread._Message);
-                //V6ControlFormHelper.ShowInfoMessage("F9 finish: " + f9MessageAll, 500, this);
+                ShowMainMessage("V6IMDATA2TH2 F9 finish " + newMyThread._Status + newMyThread._Message);
+                
+                if (newMyThread._Status == Status.Exception)
+                {
+                    this.ShowErrorMessage(newMyThread._Message);
+                }
+                else if (newMyThread._Status == Status.Finish)
+                {
+                    this.ShowMessage(V6Text.Finish + " " + newMyThread._Message);
+                }
                 if (f9MessageAll.Length > 0)
                 {
                     Logger.WriteToLog(V6Login.ClientName + " " + GetType() + "F9 " + f9MessageAll);

@@ -44,7 +44,7 @@ namespace V6Controls.Forms.Viewer
         /// </summary>
         /// <param name="owner">Control hoặc form đang đứng.</param>
         /// <param name="data">Dữ liệu cần chỉnh sửa.</param>
-        /// <param name="tableName">Tên bảng, MA_DM trong Aldm.</param>
+        /// <param name="tableName">Tên bảng hoặc MA_DM trong Aldm.</param>
         /// <param name="showFields">Field:EorR:CVvar,Field:E:N2,Field,E:D0...<para>Nếu để null sẽ dùng GRDS_V1 trong Aldm.</para></param>
         /// <param name="keyFields">Các trường khóa để update vào csdl, vd:MA_VT,MA_KHO</param>
         /// <param name="title">Tiêu đề của form hiện ra. Bỏ qua nếu đã có Aldm_config.</param>

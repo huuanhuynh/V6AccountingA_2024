@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
@@ -77,7 +78,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnSuaChiTieu_Click(object sender, EventArgs e)
         {
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             string tableName = "ALFCOPY2DATA";
+            if (shift_is_down) tableName = "ALFCOPY2LIST";
             string keys = "MA_FILE,FILE_SQL";
             var data = V6BusinessHelper.Select(tableName, "*", "MA_FILE = '"+_reportProcedure+"'").Data;
             V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false);

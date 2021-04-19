@@ -958,6 +958,11 @@ namespace V6AccountingBusiness
         {
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, procName, plist);
         }
+        
+        public static DataSet ExecuteProcedureC(string conString, string procName, params SqlParameter[] plist)
+        {
+            return SqlHelper.ExecuteDataset(conString, CommandType.StoredProcedure, procName, plist);
+        }
 
         /// <summary>
         /// Thực thi Procedure với các tham số theo thứ tự không cần tên.
@@ -1038,11 +1043,24 @@ namespace V6AccountingBusiness
         {
             return Insert(transaction, tableName.ToString(), dataDictionary);
         }
+        /// <summary>
+        /// Thêm dữ liệu vào csdl có kiểm tra cấu trúc để tạo query.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="dataDictionary"></param>
+        /// <returns></returns>
         public static bool Insert(string tableName, IDictionary<string, object> dataDictionary)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
             string sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, tableStruct, dataDictionary);
             int result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
+            return result > 0;
+        }
+        public static bool InsertC(string conString, string tableName, IDictionary<string, object> dataDictionary)
+        {
+            V6TableStruct tableStruct = GetTableStruct(tableName);
+            string sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, tableStruct, dataDictionary);
+            int result = SqlHelper.ExecuteNonQuery(conString, CommandType.Text, sql);
             return result > 0;
         }
 
@@ -1224,6 +1242,11 @@ namespace V6AccountingBusiness
         public static V6TableStruct GetTableStruct(string tableName)
         {
             return V6SqlconnectHelper.GetTableStruct(tableName);
+        }
+        
+        public static V6TableStruct GetTableStruct_C(string conString, string tableName)
+        {
+            return V6SqlconnectHelper.GetTableStruct_C(conString, tableName);
         }
 
         public static decimal GetMaxValueTable(string pTablename, string pFieldname, string pKey)

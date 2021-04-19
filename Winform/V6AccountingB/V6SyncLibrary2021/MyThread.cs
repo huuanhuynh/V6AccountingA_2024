@@ -4,7 +4,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Xml;
+using V6AccountingBusiness;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6SyncLibrary2021
 {
@@ -12,7 +14,7 @@ namespace V6SyncLibrary2021
     {
         #region ==== New Var ====
         
-        string DatabaseName;
+        //string DatabaseName;
         
         private string _CONSTRING_MAIN;
         private string _sqlConString2;
@@ -224,475 +226,11 @@ namespace V6SyncLibrary2021
         }
         #endregion ==== Convert Table ====
 
-
-        private string error = "";
-        private int UpdateDatabase(string _Con, string tableName, DataTable structTable, DataTable data)
-        {
-            int n = 0;
-            error = "";
-            foreach (DataRow row in data.Rows)
-            {
-                try
-                {
-                    UpdateOne(_Con, tableName, structTable, row);
-                    n++;
-                }
-                catch (Exception ex)
-                {
-                    if (error.Length > 0) error += "\n";
-                    error += ex.Message;
-                }
-            }
-            return n;
-        }
-
-        private int InsertDatabase(string _Con, string tableName, string primaryKey, DataTable structTable, DataTable data, string sqlWhere)
-        {
-            
-            int n = 0;
-            error = "";
-            foreach (DataRow row in data.Rows)
-            {
-                string curentkey = GenSqlStringValue(row[primaryKey], false);
-                
-                if (existRow(tableName, _Con, "[" + primaryKey + "]=" + curentkey, sqlWhere) == 0)
-                    try
-                    {
-                        _Message = "Insert sql [" + tableName + "]: " + curentkey;
-                        InsertOne(_Con, tableName, structTable, row);
-                        n++;
-                    }
-                    catch (Exception ex)
-                    {
-                        _Message = "Insert sql error: " + ex.Message;
-                        if (error.Length > 0) error += "\n";
-                        error += ex.Message;
-                    }
-            }
-            return n;
-        }
-
-        private void InsertOne(string _Con, string tableName, DataTable structTable, DataRow row)
-        {
-            string insertSql = GenInsertSql(tableName, structTable, row);
-            SqlHelper.ExecuteNonQuery(_Con, CommandType.Text, insertSql);
-        }
-        private void UpdateOne(string _Con, string tableName, DataTable structTable, DataRow row)
-        {
-            string PrimaryKeyField;
-            DataColumn[] primaricolumns = structTable.PrimaryKey;
-            if (primaricolumns.Length == 1)
-            {
-                PrimaryKeyField = primaricolumns[0].ColumnName;
-                string PrimaryKeyValue = row[PrimaryKeyField].ToString();
-                string updateSql = GenUpdateSql(tableName, PrimaryKeyField, PrimaryKeyValue, structTable, row);
-                SqlHelper.ExecuteNonQuery(_Con, CommandType.Text, updateSql);
-            }
-            else
-            {
-                throw new Exception("UpdateOne: Chưa hỗ trợ bảng nhiều khóa chính hoặc không có khóa chính");
-            }
-        }
-
-        public string GenUpdateSql(string tableName, string PrimaryKeyField, object PrimaryKeyValue, DataTable structTable, DataRow row)
-        {
-            //GetStructureTableAndColumnsStruct();
-            string sql = "Update [" + tableName + "] Set";// field = value[, field = value[...]]
-            string field = null;
-            string value = "";
-            for (int i = 0; i < structTable.Columns.Count; i++)
-            {
-                field = structTable.Columns[i].ColumnName;
-                if (field.ToLower() == PrimaryKeyField.ToLower())
-                    continue;
-
-
-                value = GenSqlStringValue(row[field], structTable.Columns[i].AllowDBNull);
-                sql += "\n[" + field + "] = " + value + ",";
-
-            }
-            sql = sql.TrimEnd(',');
-            sql += " Where [" + PrimaryKeyField + "] = " +
-                GenSqlStringValue(PrimaryKeyValue.ToString(), PrimaryKeyValue.GetType());
-
-            return sql;
-        }
-        public string GenInsertSql(string tableName, DataTable structTable, DataRow row)
-        {
-            //GetStructureTableAndColumnsStruct();
-            string sql = "Insert into [" + tableName + "] (";
-            string fields = "";
-            string values = "";
-            for (int i = 0; i < structTable.Columns.Count; i++)
-            {
-                if (true)
-                {
-                    string field = structTable.Columns[i].ColumnName;
-                    fields += ",[" + field + "]";
-                    if (row.Table.Columns.Contains(field))
-                    {
-                        values += "," + GenSqlStringValue(
-                            //---------
-                             row[field] ,
-                            structTable.Columns[i].AllowDBNull);
-                    }
-                    else
-                    {
-                        values += "," + GenSqlStringValue(null, structTable.Columns[i].DataType, structTable.Columns[i].AllowDBNull);
-                    }
-                }
-            }
-            if (fields.Length > 0)
-            {
-                fields = fields.TrimStart(',');
-            }
-            if (values.Length > 0)
-            {
-                values = values.TrimStart(',');
-            }
-            sql += fields + ") Values (" + values + ")";
-            return sql;
-        }
-
-
-        public string GenUpdateSql(string tableName, string PrimaryKeyField, DataTable structTable, DataRow row)
-        {
-            //GetStructureTableAndColumnsStruct();
-            string sql = "Update [" + tableName + "] Set";// field = value[, field = value[...]]
-            string field = null;
-            string value = "";
-            for (int i = 0; i < structTable.Columns.Count; i++)
-            {
-                field = structTable.Columns[i].ColumnName;
-                if (field.ToLower() == PrimaryKeyField.ToLower())
-                    continue;
-
-                value = GenSqlStringValue(row[field], structTable.Columns[i].AllowDBNull);
-                sql += " [" + field + "] = " + value + ",";
-
-            }
-            sql = sql.TrimEnd(',');
-            object PrimaryKeyValue = row[PrimaryKeyField];
-            sql += " Where [" + PrimaryKeyField + "] = " +
-                GenSqlStringValue(PrimaryKeyValue.ToString(), PrimaryKeyValue.GetType());
-
-            return sql;
-        }
-
-        public string RemoveSqlInjection(string value)
-        {
-            value = value.Replace("'", "''");
-            //value = value.Replace("drop", "");
-            //value = value.Replace("delete", "");
-            //value = value.Replace("insert", "");
-            //value = value.Replace("update", "");
-            //value = value.Replace("select", "");
-            return value;
-        }
-
-
-        public string GenSqlStringValue(string value, Type type)
-        {
-            return GenSqlStringValue(value, type, false);
-        }
-        /// <summary>
-        /// Loại bỏ injection, thêm single quote ('), chuyển mã U->A
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="type"></param>
-        /// <param name="AllowNull"></param>
-        /// <returns></returns>
-        public string GenSqlStringValue(string value, Type type, bool AllowNull)
-        {
-            if (!string.IsNullOrEmpty(value))
-                value = RemoveSqlInjection(value);
-
-            string s = "";
-            if (!string.IsNullOrEmpty(value))
-            {
-                switch (type.ToString())
-                {
-                    case "System.Char":
-                    case "System.String":
-                        s = "'" + value.Trim().Replace("'", "''") + "'";
-                        break;
-                    case "System.DateTime":
-                        try
-                        {
-                            s = "'" + DateTime.ParseExact(value, "d/M/yyyy", null)
-                                .ToString("yyyy/MM/dd") + "'";
-                        }
-                        catch
-                        {
-                            if (AllowNull)
-                                s = "null";
-                            else
-                                s = "'" + new DateTime(1900, 1, 1)
-                                    .ToString("yyyy/MM/dd") + "'";
-                        }
-                        break;
-                    case "System.Boolean":
-                        if (value.ToLower().Contains("true") || value.ToLower().Contains("yes") || value.Trim() == "1")
-                            s = "1";
-                        else s = "0";
-                        break;
-                    case "System.Byte":
-                    case "System.Int16":
-                    case "System.Int32":
-                    case "System.Int64":
-                    case "System.Decimal":
-                    case "System.Double":
-                        try
-                        {
-                            decimal tryp;
-                            if (decimal.TryParse(value, out tryp)) s = value;
-                            else s = "0";
-                        }
-                        catch
-                        {
-                            s = "0";
-                        }
-                        break;
-                    case "System.DBNull":
-                        s = "null";
-                        break;
-                    default:
-                        s = "'" + value + "'";
-                        break;
-                }
-            }
-            else if (AllowNull)
-            {
-                s = "null";
-            }
-            else
-            {
-                switch (type.ToString())
-                {
-                    case "System.Char":
-                    case "System.String":
-                        s = "''";
-                        break;
-                    case "System.DateTime":
-                        s = "'" + new DateTime(1900, 1, 1).ToString("yyyy/MM/dd") + "'";
-                        break;
-                    case "System.Boolean":
-                    case "System.Byte":
-                    case "System.Int16":
-                    case "System.Int32":
-                    case "System.Int64":
-                    case "System.Decimal":
-                    case "System.Double":
-                        s = "0";
-                        break;
-                    default:
-                        s = "''";
-                        break;
-                }
-            }
-
-            return s;
-        }
-        public string GenSqlStringValue(object value, bool AllowNull)
-        {
-            string s = "";
-            if (value != null)
-            {
-                switch (value.GetType().ToString())
-                {
-                    case "System.Char":
-                    case "System.String":
-                        s = "'" + value.ToString().Trim().Replace("'", "''") + "'";
-                        break;
-                    case "System.DateTime":
-                        try
-                        {
-                            s = "'" + ((DateTime)value)
-                                .ToString("yyyy/MM/dd") + "'";
-                        }
-                        catch
-                        {
-                            if (AllowNull)
-                                s = "null";
-                            else
-                                s = "'" + new DateTime(1900, 1, 1)
-                                    .ToString("yyyy/MM/dd") + "'";
-                        }
-                        break;
-                    case "System.Boolean":
-                        if ((bool)value == true)
-                            s = "1";
-                        else s = "0";
-                        break;
-                    case "System.Byte":
-                    case "System.Int16":
-                    case "System.Int32":
-                    case "System.Int64":
-                    case "System.Decimal":
-                    case "System.Double":
-                        try
-                        {
-                            s = value.ToString();
-                        }
-                        catch
-                        {
-                            s = "0";
-                        }
-                        break;
-                    case "System.DBNull":
-                        s = "null";
-                        break;
-                    default:
-                        s = "'" + value + "'";
-                        break;
-                }
-            }
-            else if (AllowNull)
-            {
-                s = "null";
-            }
-            else
-            {
-                //switch (value.GetType().ToString())
-                //{
-                //    case "System.Char":
-                //    case "System.String":
-                //        s = "''";
-                //        break;
-                //    case "System.DateTime":
-                //        s = "'" + new DateTime(1900, 1, 1).ToString("yyyy/MM/dd") + "'";
-                //        break;
-                //    case "System.Boolean":
-                //    case "System.Byte":
-                //    case "System.Int16":
-                //    case "System.Int32":
-                //    case "System.Int64":
-                //    case "System.Decimal":
-                //    case "System.Double":
-                //        s = "0";
-                //        break;
-                //    default:
-                        s = "''";
-                  //      break;
-                //}
-            }
-
-            return s;
-        }
-
-        public DataTable getTableStruct(string _ConString, string tableName)
-        {
-            DataTable structTable, _ColumnsStruct;
-            if (string.IsNullOrEmpty(tableName)) throw new Exception("V6ERRORNOTABLE");
-            try
-            {
-                structTable = SqlHelper.
-                    ExecuteDataset(_ConString, CommandType.Text,
-                    "Select * From [" + tableName + "] Where 1=0")
-                    .Tables[0];
-
-                _ColumnsStruct = SqlHelper.
-                    ExecuteDataset(_ConString, CommandType.Text,
-                    "Select ORDINAL_POSITION, COLUMN_NAME," +
-                    " DATA_TYPE, IS_NULLABLE, CHARACTER_MAXIMUM_LENGTH" +
-                    " From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = '" +
-                    tableName + "'" +
-                    " Order by ORDINAL_POSITION")
-                    .Tables[0];
-
-                foreach (DataRow row in _ColumnsStruct.Rows)
-                {
-                    structTable.Columns[row["COLUMN_NAME"].ToString()].AllowDBNull =
-                       "YES" == row["IS_NULLABLE"].ToString();
-
-                    if (row["CHARACTER_MAXIMUM_LENGTH"].ToString() != "")
-                        structTable.Columns[row["COLUMN_NAME"].ToString()].MaxLength =
-                            int.Parse(row["CHARACTER_MAXIMUM_LENGTH"].ToString());
-                }
-                //Get primary key
-                string[] pks = GetPrimaryColumnName(_ConString, tableName);
-                structTable.PrimaryKey = new DataColumn[] { structTable.Columns[pks[0]] };
-
-                return structTable;
-            }
-            catch// (Exception ex)
-            {
-                return new DataTable();
-                //throw;
-            }
-        }
-        public string[] GetPrimaryColumnName(string _Con, string tableName)
-        {
-            DataTable tableStruct = SqlHelper.ExecuteDataset(_Con, "sp_pkeys", tableName, null, null).Tables[0];
-            List<string> Lpk = new List<string>();
-            foreach (DataRow row in tableStruct.Rows)
-            {
-                Lpk.Add(row[3].ToString());
-            }
-            return Lpk.ToArray();
-        }
-        public void AddColumn(string _Con, string tableName, string columnName, Type type, int length)
-        {
-            try
-            {
-                string s = "";
-                switch (type.ToString())
-                {
-                    case "System.Char":
-                    case "System.String":
-                        s = "nvarchar(" + length + ")"; break;
-                    case "System.DateTime":
-                        s = "datetime"; break;
-                    case "System.Boolean":
-                        s = "bit"; break;
-                    case "System.Byte":
-                        s = "tinyint"; break;
-                    case "System.Int16":
-                    case "System.Int32":
-                        s = "int"; break;
-                    case "System.Int64":
-                        s = "bigint"; break;
-                    case "System.Float":
-                    case "System.Decimal":
-                    case "System.Double":
-                        s = "decimal";
-                        break;
-                    default:
-                        s = "nvarchar(" + length + ")";
-                        break;
-                }
-
-                string AddColumnSql =
-                        "IF NOT EXISTS (SELECT TABLE_NAME,COLUMN_NAME " +
-                        "FROM INFORMATION_SCHEMA.COLUMNS " +
-                        "WHERE COLUMN_NAME = @columnName " +
-                        "AND TABLE_NAME=@tableName " +
-                        "   AND (OBJECTPROPERTY(OBJECT_ID(TABLE_NAME), 'istable') = 1) ) " +
-                        "BEGIN " +
-                        "   ALTER TABLE [" + tableName + "] ADD [" + columnName + "] " + s + " " +
-                        "END";
-                List<SqlParameter> lp = new List<SqlParameter>();
-                lp.Add(new SqlParameter("@columnName", columnName));
-                lp.Add(new SqlParameter("@tableName", tableName));
-
-
-                SqlHelper.ExecuteNonQuery(_Con, CommandType.Text, AddColumnSql, lp.ToArray());
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteExLog(GetType() + ".AddColumn", ex, null, Application.ProductName);
-            }
-        }
-
-
-
-        private DataTable tb1, tb2, tb3, tb4;
         
-        private string V6Options_M_MA_NT0 = "VND";
-        private int V6Setting_RoundGia = 2;
-        private int V6Setting_RoundTien = 0;
+        private DataTable tb1, tb2, tb3, tb4;
         public DataTable ALFCOPY2LIST;
         public DataTable ALFCOPY2DATA;
+        public IDictionary<string, string> TKGOP_DIC = new Dictionary<string, string>();
 
         private void EXEC2()//********************* Type = 2 ***************************
         {
@@ -809,7 +347,7 @@ namespace V6SyncLibrary2021
 
                                 break;
                             case "B":
-                                RunSyncData2Data_B(rowc["FIELD_KEY"].ToString(), Sync2ThConfig.strlistws_id,
+                                RunSyncData2Data_B(rowc.ToDataDictionary(), rowc["FIELD_KEY"].ToString(), Sync2ThConfig.strlistws_id,
                                     rowc["COPY_ALL"].ToString(), rowc["STRSQL_KEY"].ToString(),
                                     rowc["STRSQL_KEY"].ToString(),
                                     rowc["FILE_TYPE"].ToString(), Sync2ThConfig.strlistdvcs, Sync2ThConfig.strlistws_id,
@@ -819,7 +357,7 @@ namespace V6SyncLibrary2021
                                     rowc["FILE_ARV20"].ToString(), rowc["FILE_ARV30"].ToString());
                                 break;
                             case "C":
-                                RunSyncData2Data_C(rowc["FIELD_KEY"].ToString(), Sync2ThConfig.strlistws_id,
+                                RunSyncData2Data_C(rowc.ToDataDictionary(), rowc["FIELD_KEY"].ToString(), Sync2ThConfig.strlistws_id,
                                     rowc["COPY_ALL"].ToString(), rowc["STRSQL_KEY"].ToString(),
                                     rowc["STRSQL_KEY"].ToString(),
                                     rowc["FILE_TYPE"].ToString(), Sync2ThConfig.strlistdvcs, Sync2ThConfig.strlistws_id,
@@ -829,7 +367,7 @@ namespace V6SyncLibrary2021
                                     rowc["FILE_ARV20"].ToString(), rowc["FILE_ARV30"].ToString());
                                 break;
                             case "F":
-                                RunSyncData2Data_F(rowc["PPROCEDURE"].ToString(), rowc["PPARANAME"].ToString(),
+                                RunSyncData2Data_F(rowc.ToDataDictionary(), rowc["PPROCEDURE"].ToString(), rowc["PPARANAME"].ToString(),
                                     rowc["PPARAVALUE"].ToString(), rowc["PPARACHECK"].ToString(),
                                     rowc["FIELD_KEY"].ToString(), Sync2ThConfig.strlistws_id,
                                     rowc["COPY_ALL"].ToString(), rowc["STRSQL_KEY"].ToString(),
@@ -852,9 +390,10 @@ namespace V6SyncLibrary2021
                 #endregion ==== SYNC DATA ====
                 _Status = Status.Finish;
             }
-            catch
+            catch(Exception ex)
             {
                 _Status = Status.Exception;
+                _Message = ex.Message;
             }
         }
 
@@ -935,10 +474,10 @@ namespace V6SyncLibrary2021
 
 
 
-            if (_pLoai == "" || _pkey_ma == "" || _pFile_type == "")
+            if (_pLoai == "" || _pkey_ma == "" || _pFile_type == "" || _pAl == "")
                 return;
 
-
+            var pal_struct = V6BusinessHelper.GetTableStruct(_pAl);
 
             // Scan Al _CON- Server , _CON2 : Client
             string strsql = "", _Key_ma = "", _Ma_code = "";
@@ -1075,11 +614,10 @@ namespace V6SyncLibrary2021
             else
                 _pAl = "";
 
-
-
-            if (_pLoai == "" || _pkey_ma == "" || _pFile_type == "")
+            if (_pLoai == "" || _pkey_ma == "" || _pFile_type == "" || _pAl == "")
                 return;
 
+            var pal_struct = V6BusinessHelper.GetTableStruct(_pAl);
 
 
             // Scan Al _CON- Server , sqlConString2 : Client
@@ -1097,15 +635,13 @@ namespace V6SyncLibrary2021
 
             // Ma_dvcs_i
 
-            if (tb1.Columns.Contains("MA_DVCS_I"))
-                if (_pUnits != "")
-                {
-                    _pkey_SQLF = _pkey_SQLF + " AND UPPER(RTRIM(LTRIM(Ma_dvcs_i)))=" + _pUnits.Trim().ToUpper();
-                    _pkey_SQL = _pkey_SQL + " AND UPPER(RTRIM(LTRIM(Ma_dvcs_i)))=" + _pUnits.Trim().ToUpper();
-                }
+            if (tb1.Columns.Contains("MA_DVCS_I") && _pUnits != "")
+            {
+                _pkey_SQLF = _pkey_SQLF + " AND UPPER(RTRIM(LTRIM(Ma_dvcs_i)))=" + _pUnits.Trim().ToUpper();
+                _pkey_SQL = _pkey_SQL + " AND UPPER(RTRIM(LTRIM(Ma_dvcs_i)))=" + _pUnits.Trim().ToUpper();
+            }
 
-
-            if (tb1.Columns.Contains("CHECK_SYNC"))
+            if (pal_struct.ContainsKey("CHECK_SYNC"))
             {
 
                 if (_pFile_type == "D") // List not MEMO
@@ -1144,14 +680,6 @@ namespace V6SyncLibrary2021
                             break;
                     }
                 }
-
-
-
-
-
-
-
-
             }
 
             //if (_pAl == "ALGIA2")
@@ -1163,9 +691,7 @@ namespace V6SyncLibrary2021
 
 
             strsql = " SELECT * FROM " + _pAl + " WHERE  " + _pkey_SQLF;
-
-
-
+            
             //MessageBox.Show(strsql);
 
             tb2 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
@@ -1180,7 +706,6 @@ namespace V6SyncLibrary2021
                         _Key_ma = rowc[_pkey_ma].ToString();
                     else
                         _Key_ma = "";
-
                 }
                 else
                 {
@@ -1188,149 +713,152 @@ namespace V6SyncLibrary2021
                 }
 
 
-
                 if (tb1.Columns.Contains("CHECK_SYNC"))
                     _Check_sync = rowc["CHECK_SYNC"].ToString();
-
-
-
-
+                
                 // Thread.Sleep(1000);
-                if (_Key_ma != "")
+                if (_Key_ma == "") continue;
+                
+                _Ma_code = _Key_ma;
+
+                if (_pLoai == "X")
                 {
-                    _Ma_code = _Key_ma;
 
-                    if (_pLoai == "X")
+                    _Message = _pUnits + " Sync ..list..  " + _pAl;
+
+                    // UpdaTE SERVER
+                    if (pal_struct.ContainsKey("CHECK_SYNC"))
                     {
-
-                        _Message = _pUnits + " Sync ..list..  " + _pAl;
-
-
-                        // UpdaTE SERVER
                         strsql = "UPDATE " + _pAl + " SET ";
                         strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
-
                         // strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
                         strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
-
                         SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                    }
+                        
 
-                        if (tb1.Columns.Contains("GC_TD1"))
+                    if (tb1.Columns.Contains("GC_TD1"))
+                    {
+                        _Gc_td1 = (rowc["GC_TD1"]).ToString();
+
+                        if (_Gc_td1 != "")
                         {
-                            _Gc_td1 = (rowc["GC_TD1"]).ToString();
+                            strsql = _pprocedure.Trim();
 
-                            if (_Gc_td1 != "")
+                            List<SqlParameter> lstProcParam = new List<SqlParameter>();
+
+                            string[] a_paraname = _pparaname.Split(',');
+                            string[] a_paravalue = _pparavalue.Split(',');
+                            string[] a_paracheck = _pparacheck.Split(',');
+
+                            for (int i = 0; i < a_paraname.Length; i++)
                             {
 
-
-
-                                strsql = _pprocedure.Trim();
-
-                                List<SqlParameter> lstProcParam = new List<SqlParameter>();
-
-                                string[] a_paraname = _pparaname.Split(',');
-                                string[] a_paravalue = _pparavalue.Split(',');
-                                string[] a_paracheck = _pparacheck.Split(',');
-
-                                for (int i = 0; i < a_paraname.Length; i++)
+                                switch (a_paracheck[i].Trim())
                                 {
+                                    case "1":
+                                        lstProcParam.Add(new SqlParameter(a_paraname[i].Trim(), a_paravalue[i]));
+                                        break;
+                                    case "2":
 
-                                    switch (a_paracheck[i].Trim())
-                                    {
-                                        case "1":
-                                            lstProcParam.Add(new SqlParameter(a_paraname[i].Trim(), a_paravalue[i]));
-                                            break;
-                                        case "2":
-
-                                            lstProcParam.Add(new SqlParameter(a_paraname[i].Trim(), rowc[a_paravalue[i]]));
-                                            break;
-                                        case "0":
-                                            break;
-
-
-                                    }
-
+                                        lstProcParam.Add(new SqlParameter(a_paraname[i].Trim(), rowc[a_paravalue[i]]));
+                                        break;
+                                    case "0":
+                                        break;
 
                                 }
+                            }
 
-                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray());
-                                //UtilityHelper.getDataTableFromProcedure(sqlConString2, strsql, lstProcParam);
+                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray());
+                            
+                            // Delete client
+                            strsql = "DELETE FROM " + _pAl;
+                            //strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
+                            strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
 
-                                // Delete client
-                                strsql = "DELETE FROM " + _pAl;
-                                //strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
-                                strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
+                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                        }
+                    }
+                }
+                #region ==== New + Edit List====
+                else
+                {
+                    _Message = _pUnits + " Sync ..list..  " + _pAl;
+                        
+                    strsql = _pprocedure.Trim();
 
-                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                    List<SqlParameter> lstProcParam = new List<SqlParameter>();
+
+                    string[] a_paraname = _pparaname.Split(',');
+                    string[] a_paravalue = _pparavalue.Split(',');
+                    string[] a_paracheck = _pparacheck.Split(',');
+
+                    for (int i = 0; i < a_paraname.Length; i++)
+                    {
+
+                        switch (a_paracheck[i].Trim())
+                        {
+                            case "1":
+                                lstProcParam.Add(new SqlParameter(a_paraname[i].Trim(), a_paravalue[i]));
+                                break;
+                            case "2":
+
+                                lstProcParam.Add(new SqlParameter(a_paraname[i].Trim(), rowc[a_paravalue[i]]));
+                                break;
+                            case "0":
+                                break;
+
+                        }
+                    }
+                    
+                    tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray()).Tables[0];
+
+                    _Check = tb3.Rows[0][0].ToString();
+                    if (_Check == "1")
+                    {
+
+                        //MessageBox.Show("M" + _Ma_code);
+
+                        string[] a_fieldskey = _pkey_ma.Split(',');
+
+                        if (a_fieldskey.Length > 0)
+                        {
+                            _Key_where = "";
+                            foreach (string fieldkey in a_fieldskey)
+                            {
+                                _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
+                            }
+                            _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
+                            // INSERT CLIENT
+                            Tranfer_Data2Data(_CONSTRING_MAIN, _sqlConString2, _pAl, _Key_where, _pAl, "1=0");
+
+                            // UpdaTE SERVER
+                            if (pal_struct.ContainsKey("CHECK_SYNC"))
+                            {
+                                strsql = "UPDATE " + _pAl + " SET ";
+                                strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
+                                strsql = strsql + "  WHERE " + _Key_where;
+                                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
                             }
                         }
                     }
-
-
-                    #region ==== New + Edit List====
-
-                    else
+                    else if (_pLoai == "S")
                     {
+                        // EDIT CLIENT
+                        //MessageBox.Show("S"+_Ma_code);
 
-
-                        _Message = _pUnits + " Sync ..list..  " + _pAl;
-
-
-
-                        strsql = _pprocedure.Trim();
-
-                        List<SqlParameter> lstProcParam = new List<SqlParameter>();
-
-                        string[] a_paraname = _pparaname.Split(',');
-                        string[] a_paravalue = _pparavalue.Split(',');
-                        string[] a_paracheck = _pparacheck.Split(',');
-
-                        for (int i = 0; i < a_paraname.Length; i++)
+                        if (_pFile_type == "D")
                         {
+                            strsql = "UPDATE " + _pAl + " SET ";
+                            string[] a_fields = plistfield.Split(',');
 
-                            switch (a_paracheck[i].Trim())
+                            foreach (string field in a_fields)
                             {
-                                case "1":
-                                    lstProcParam.Add(new SqlParameter(a_paraname[i].Trim(), a_paravalue[i]));
-                                    break;
-                                case "2":
-
-                                    lstProcParam.Add(new SqlParameter(a_paraname[i].Trim(), rowc[a_paravalue[i]]));
-                                    break;
-                                case "0":
-                                    break;
-
-
+                                strsql += field + "=" + MakeSqlValueString(rowc[field]) + ",";
                             }
 
+                            strsql = strsql.Substring(0, strsql.Length - 1);
 
-                        }
-
-                        //"EXEC VPA_isValidOneCode_FULL "  + " 'ALVT',1, 'MA_VT'," + "'" + ALLTRIM(M.MA_VT) + "',''"                                                                                                                                                                    
-
-                        /*
-
-                        strsql = "VPA_isValidOneCode_FULL";
-                        List<MyParamProcedure> lstProcParam = new List<MyParamProcedure>();
-
-                        lstProcParam.Add(new MyParamProcedure("@cInputTable", _pAl));
-                        lstProcParam.Add(new MyParamProcedure("@nStatus", 1));
-                        lstProcParam.Add(new MyParamProcedure("@cInputField", _pkey_ma));
-                        lstProcParam.Add(new MyParamProcedure("@cpInput", _Ma_code));
-                        lstProcParam.Add(new MyParamProcedure("@cOldItems", ""));
-
-                        */
-
-                        //MessageBox.Show(strsql);
-
-                        //tb3 = UtilityHelper.getDataTableFromProcedure(sqlConString2, strsql, lstProcParam);
-                        tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray()).Tables[0];
-
-                        _Check = tb3.Rows[0][0].ToString();
-                        if (_Check == "1")
-                        {
-
-                            //MessageBox.Show("M" + _Ma_code);
 
                             string[] a_fieldskey = _pkey_ma.Split(',');
 
@@ -1339,133 +867,62 @@ namespace V6SyncLibrary2021
                                 _Key_where = "";
                                 foreach (string fieldkey in a_fieldskey)
                                 {
-
                                     _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
-
-
                                 }
+
                                 _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
+
+
+                                strsql = strsql + "  WHERE " + _Key_where;
+
+                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+
+
+                                // UpdaTE SERVER
+                                if (pal_struct.ContainsKey("CHECK_SYNC"))
+                                {
+                                    strsql = "UPDATE " + _pAl + " SET ";
+                                    strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
+                                    strsql = strsql + "  WHERE " + _Key_where;
+                                    SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            string[] a_fieldskey = _pkey_ma.Split(',');
+
+                            if (a_fieldskey.Length > 0)
+                            {
+                                _Key_where = "";
+                                foreach (string fieldkey in a_fieldskey)
+                                {
+                                    _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
+                                }
+
+                                _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
+
+                                // DELETE CLIENT
+                                Delete_Data(_sqlConString2, _pAl, _Key_where);
+
                                 // INSERT CLIENT
                                 Tranfer_Data2Data(_CONSTRING_MAIN, _sqlConString2, _pAl, _Key_where, _pAl, "1=0");
 
                                 // UpdaTE SERVER
-                                strsql = "UPDATE " + _pAl + " SET ";
-                                strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
-                                strsql = strsql + "  WHERE " + _Key_where;
-
-                                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
-
-                            }
-
-                        }
-                        else
-                        {
-                            if (_pLoai == "S")
-                            {
-                                // EDIT CLIENT
-                                //MessageBox.Show("S"+_Ma_code);
-
-                                if (_pFile_type == "D")
+                                if (pal_struct.ContainsKey("CHECK_SYNC"))
                                 {
                                     strsql = "UPDATE " + _pAl + " SET ";
-                                    string[] a_fields = plistfield.Split(',');
-
-                                    foreach (string field in a_fields)
-                                    {
-
-                                        strsql += field + "=" + MakeSqlValueString(rowc[field]) + ",";
-
-
-                                    }
-
-                                    strsql = strsql.Substring(0, strsql.Length - 1);
-
-
-                                    string[] a_fieldskey = _pkey_ma.Split(',');
-
-                                    if (a_fieldskey.Length > 0)
-                                    {
-                                        _Key_where = "";
-                                        foreach (string fieldkey in a_fieldskey)
-                                        {
-
-                                            _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
-
-
-                                        }
-                                        _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
-
-
-                                        strsql = strsql + "  WHERE " + _Key_where;
-
-                                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
-
-
-                                        // UpdaTE SERVER
-                                        strsql = "UPDATE " + _pAl + " SET ";
-                                        strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
-                                        strsql = strsql + "  WHERE " + _Key_where;
-
-                                        SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
-
-                                    }
-
-
+                                    strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
+                                    strsql = strsql + "  WHERE " + _Key_where;
+                                    SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
                                 }
-                                else
-                                {
-                                    string[] a_fieldskey = _pkey_ma.Split(',');
-
-                                    if (a_fieldskey.Length > 0)
-                                    {
-                                        _Key_where = "";
-                                        foreach (string fieldkey in a_fieldskey)
-                                        {
-
-                                            _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
-
-
-                                        }
-                                        _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
-
-                                        // DELETE CLIENT
-                                        Delete_Data(_sqlConString2, _pAl, _Key_where);
-
-                                        // INSERT CLIENT
-                                        Tranfer_Data2Data(_CONSTRING_MAIN, _sqlConString2, _pAl, _Key_where, _pAl, "1=0");
-
-                                        // UpdaTE SERVER
-                                        strsql = "UPDATE " + _pAl + " SET ";
-                                        strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
-                                        strsql = strsql + "  WHERE " + _Key_where;
-
-                                        SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
-
-                                    }
-
-
-                                }
-
-
-
-
                             }
-
                         }
-
-
-
                     }
-
                 }
+                #endregion ==== New + Edit ====
 
-                    #endregion ==== New + Edit ====
-
-
-            }
-
-
-
+            } // end for
         }
 
         public void RunSyncList_server2clientF(string pprocedure, string pparaname, string pparavalue, string pparacheck, string plistws_id, string pcopy_all, string pkey_SQLF, string pkey_SQL, string plistfield, string pkey_ma, string pFile_type, string pLoai, string pUnits, string pWs, string pAl)
@@ -1544,10 +1001,10 @@ namespace V6SyncLibrary2021
 
 
 
-            if (_pLoai == "" || _pkey_ma == "" || _pFile_type == "")
+            if (_pLoai == "" || _pkey_ma == "" || _pFile_type == "" || _pAl == "")
                 return;
 
-
+            var pal_struct = V6BusinessHelper.GetTableStruct(_pAl);
 
             // Scan Al _CON- Server , sqlConString2 : Client
             string strsql = "", _Key_ma = "", _Check_sync = "", _Ma_code = "", _Check = "0", _Gc_td1 = "";
@@ -1661,13 +1118,14 @@ namespace V6SyncLibrary2021
 
 
                         // UpdaTE SERVER
-                        strsql = "UPDATE " + _pAl + " SET ";
-                        strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
-
-                        // strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
-                        strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
-
-                        SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                        if (pal_struct.ContainsKey("CHECK_SYNC"))
+                        {
+                            strsql = "UPDATE " + _pAl + " SET ";
+                            strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
+                            // strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
+                            strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
+                            SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                        }
 
                         if (tb1.Columns.Contains("GC_TD1"))
                         {
@@ -1706,8 +1164,7 @@ namespace V6SyncLibrary2021
                                 }
 
                                 SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray());
-                                //UtilityHelper.getDataTableFromProcedure(sqlConString2, strsql, lstProcParam);
-
+                                
                                 // Delete client
                                 strsql = "DELETE FROM " + _pAl;
                                 //strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
@@ -1755,24 +1212,6 @@ namespace V6SyncLibrary2021
                             }
                         }
 
-                        //"EXEC VPA_isValidOneCode_FULL "  + " 'ALVT',1, 'MA_VT'," + "'" + ALLTRIM(M.MA_VT) + "',''"                                                                                                                                                                    
-
-                        /*
-
-                        strsql = "VPA_isValidOneCode_FULL";
-                        List<MyParamProcedure> lstProcParam = new List<MyParamProcedure>();
-
-                        lstProcParam.Add(new MyParamProcedure("@cInputTable", _pAl));
-                        lstProcParam.Add(new MyParamProcedure("@nStatus", 1));
-                        lstProcParam.Add(new MyParamProcedure("@cInputField", _pkey_ma));
-                        lstProcParam.Add(new MyParamProcedure("@cpInput", _Ma_code));
-                        lstProcParam.Add(new MyParamProcedure("@cOldItems", ""));
-
-                        */
-
-                        //MessageBox.Show(strsql);
-
-                        //tb3 = UtilityHelper.getDataTableFromProcedure(sqlConString2, strsql, lstProcParam);
                         tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray()).Tables[0];
 
                         _Check = tb3.Rows[0][0].ToString();
@@ -1797,124 +1236,106 @@ namespace V6SyncLibrary2021
                                 // INSERT CLIENT
                                 Tranfer_Data2Data(_CONSTRING_MAIN, _sqlConString2, _pAl, _Key_where, _pAl, "1=0");
 
-                                // UpdaTE SERVER
-                                strsql = "UPDATE " + _pAl + " SET ";
-                                strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
-                                strsql = strsql + "  WHERE " + _Key_where;
-
-                                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
-
-                            }
-
-                        }
-                        else
-                        {
-                            if (_pLoai == "S")
-                            {
-                                // EDIT CLIENT
-                                //MessageBox.Show("S"+_Ma_code);
-
-                                if (_pFile_type == "D")
+                                if (pal_struct.ContainsKey("CHECK_SYNC"))
                                 {
+                                    // UpdaTE SERVER
                                     strsql = "UPDATE " + _pAl + " SET ";
-                                    string[] a_fields = plistfield.Split(',');
-
-                                    foreach (string field in a_fields)
-                                    {
-
-                                        strsql += field + "=" + MakeSqlValueString(rowc[field]) + ",";
-
-
-                                    }
-
-                                    strsql = strsql.Substring(0, strsql.Length - 1);
-
-
-                                    string[] a_fieldskey = _pkey_ma.Split(',');
-
-                                    if (a_fieldskey.Length > 0)
-                                    {
-                                        _Key_where = "";
-                                        foreach (string fieldkey in a_fieldskey)
-                                        {
-
-                                            _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
-
-
-                                        }
-                                        _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
-
-
-                                        strsql = strsql + "  WHERE " + _Key_where;
-
-                                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
-
-
-                                        // UpdaTE SERVER
-                                        strsql = "UPDATE " + _pAl + " SET ";
-                                        strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
-                                        strsql = strsql + "  WHERE " + _Key_where;
-
-                                        SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
-
-                                    }
-
-
+                                    strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
+                                    strsql = strsql + "  WHERE " + _Key_where;
+                                    SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
                                 }
-                                else
-                                {
-                                    string[] a_fieldskey = _pkey_ma.Split(',');
-
-                                    if (a_fieldskey.Length > 0)
-                                    {
-                                        _Key_where = "";
-                                        foreach (string fieldkey in a_fieldskey)
-                                        {
-
-                                            _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
-
-
-                                        }
-                                        _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
-
-                                        // DELETE CLIENT
-                                        Delete_Data(_sqlConString2, _pAl, _Key_where);
-
-                                        // INSERT CLIENT
-                                        Tranfer_Data2Data(_CONSTRING_MAIN, _sqlConString2, _pAl, _Key_where, _pAl, "1=0");
-
-                                        // UpdaTE SERVER
-                                        strsql = "UPDATE " + _pAl + " SET ";
-                                        strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
-                                        strsql = strsql + "  WHERE " + _Key_where;
-
-                                        SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
-
-                                    }
-
-
-                                }
-
-
-
-
                             }
-
                         }
+                        else if (_pLoai == "S")
+                        {
+                            // EDIT CLIENT
+                            //MessageBox.Show("S"+_Ma_code);
+
+                            if (_pFile_type == "D")
+                            {
+                                strsql = "UPDATE " + _pAl + " SET ";
+                                string[] a_fields = plistfield.Split(',');
+
+                                foreach (string field in a_fields)
+                                {
+
+                                    strsql += field + "=" + MakeSqlValueString(rowc[field]) + ",";
 
 
+                                }
 
+                                strsql = strsql.Substring(0, strsql.Length - 1);
+
+
+                                string[] a_fieldskey = _pkey_ma.Split(',');
+
+                                if (a_fieldskey.Length > 0)
+                                {
+                                    _Key_where = "";
+                                    foreach (string fieldkey in a_fieldskey)
+                                    {
+
+                                        _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
+
+
+                                    }
+
+                                    _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
+
+
+                                    strsql = strsql + "  WHERE " + _Key_where;
+
+                                    SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+
+
+                                    // UpdaTE SERVER
+                                    if (pal_struct.ContainsKey("CHECK_SYNC"))
+                                    {
+                                        strsql = "UPDATE " + _pAl + " SET ";
+                                        strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
+                                        strsql = strsql + "  WHERE " + _Key_where;
+                                        SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                string[] a_fieldskey = _pkey_ma.Split(',');
+
+                                if (a_fieldskey.Length > 0)
+                                {
+                                    _Key_where = "";
+                                    foreach (string fieldkey in a_fieldskey)
+                                    {
+
+                                        _Key_where += fieldkey + "=" + MakeSqlValueString(rowc[fieldkey]) + " AND ";
+
+
+                                    }
+
+                                    _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
+
+                                    // DELETE CLIENT
+                                    Delete_Data(_sqlConString2, _pAl, _Key_where);
+
+                                    // INSERT CLIENT
+                                    Tranfer_Data2Data(_CONSTRING_MAIN, _sqlConString2, _pAl, _Key_where, _pAl, "1=0");
+
+                                    // UpdaTE SERVER
+                                    if (pal_struct.ContainsKey("CHECK_SYNC"))
+                                    {
+                                        strsql = "UPDATE " + _pAl + " SET ";
+                                        strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
+                                        strsql = strsql + "  WHERE " + _Key_where;
+                                        SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                                    }
+                                }
+                            }
+                        }
                     }
-
                 }
-
-                    #endregion ==== New + Edit ====
-
-
+                #endregion ==== New + Edit ====
             }
-
-
-
         }
 
 
@@ -1963,7 +1384,7 @@ namespace V6SyncLibrary2021
                 _pWs = "";
 
             if (pAm != "" && pAm != ".")
-                _pAm = pAm;
+                _pAm = pAm.Trim();
             else
                 _pAm = "";
             if (pAd != "" && pAd != ".")
@@ -2002,16 +1423,9 @@ namespace V6SyncLibrary2021
             // Scan Am _CON- Server , _CON2 : Client
             string strsql = "", _Ngay_ct1, _Ngay_ct2;
 
-            // Ngay_ct 
-            strsql = "SELECT getdate()- " + Sync2ThConfig.date_num + " AS Ngay_ct1,getdate() as Ngay_ct2 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-            _Ngay_ct1 = tb1.Rows[0]["Ngay_ct1"].ToString();
-            _Ngay_ct2 = tb1.Rows[0]["Ngay_ct2"].ToString();
-
-            _Ngay_ct1 = Convert.ToDateTime(_Ngay_ct1).ToString("yyyyMMdd");
-            _Ngay_ct2 = Convert.ToDateTime(_Ngay_ct2).ToString("yyyyMMdd");
-
-
+            _Ngay_ct1 = Sync2ThConfig.NGAY_CT1;
+            _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
+            
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
             tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
             if (tb1.Columns.Contains("NGAY_CT"))
@@ -2059,15 +1473,7 @@ namespace V6SyncLibrary2021
             //MessageBox.Show(strsql);
 
             tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
-
-
-
-
-
-
-            // _Message = tb2.Rows.Count.ToString();
-
-
+            
             foreach (DataRow rowc in tb2.Rows)
             {
                 if (tb1.Columns.Contains("STT_REC"))
@@ -2154,7 +1560,6 @@ namespace V6SyncLibrary2021
                     SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
 
                 }
-
                 else // Table no column "stt_rec"
                 {
 
@@ -2166,9 +1571,8 @@ namespace V6SyncLibrary2021
 
             #region //1D.Delete CLient ->Delete Server (New 1->9, Edit 2-> 8)
             {
-
-
-                strsql = "SELECT dbo.VFV_iFsize('D_" + _pAm.Trim() + "','STT_REC','C') AS Check_field";
+                //var pAM_struct = V6BusinessHelper.GetTableStruct(_pAm);
+                strsql = "SELECT dbo.VFA_isExistColumnInTable('STT_REC', '"+_pAm+"') AS Check_field";
                 tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
 
                 if (Convert.ToInt16(tb3.Rows[0]["Check_field"]) > 0)
@@ -2328,7 +1732,6 @@ namespace V6SyncLibrary2021
                     SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
 
                 }
-
                 else // Table no column "stt_rec"
                 {
 
@@ -2340,8 +1743,8 @@ namespace V6SyncLibrary2021
 
             #region //2D.Delete Server ->Delete CLient (->D)
             {
-
-                strsql = "SELECT dbo.VFV_iFsize('D_" + _pAm.Trim() + "','STT_REC','C') AS Check_field";
+                strsql = "SELECT dbo.VFA_isExistColumnInTable('STT_REC', '" + _pAm.Trim() + "') AS Check_field";
+                
                 tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
 
                 if (Convert.ToInt16(tb3.Rows[0]["Check_field"]) > 0)
@@ -2392,8 +1795,8 @@ namespace V6SyncLibrary2021
             #endregion //1D.Delete CLient ->Delete Server
 
         }
-        
-        public void RunSyncData2Data_B(string pfield_key, string plistws_id, string pcopy_all, string pkey_SQLF, string pkey_SQL, string pFile_type, string pUnits, string pWs, string pAm, string pAd, string pAra00, string pAri70, string pArs20, string pArs30, string pArv20, string pArv30)
+
+        public void RunSyncData2Data_B(IDictionary<string, object> ALFCOPY2DATA_rowData, string pfield_key, string plistws_id, string pcopy_all, string pkey_SQLF, string pkey_SQL, string pFile_type, string pUnits, string pWs, string pAm, string pAd, string pAra00, string pAri70, string pArs20, string pArs30, string pArv20, string pArv30)
         {
 
             string _pfield_key, _plistws_id, _pcopy_all, _pkey_SQLF, _pkey_SQL, _pFile_type, _pUnits, _pWs, _pAm, _pAd, _pAra00, _pAri70, _pArs20, _pArs30, _pArv20, _pArv30;
@@ -2476,14 +1879,8 @@ namespace V6SyncLibrary2021
             // Scan Am _CON- Server , _CON2 : Client
             string strsql = "", _Ngay_ct1, _Ngay_ct2;
 
-            // Ngay_ct 
-            strsql = "SELECT getdate()- " + Sync2ThConfig.date_num + " AS Ngay_ct1,getdate() as Ngay_ct2 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-            _Ngay_ct1 = tb1.Rows[0]["Ngay_ct1"].ToString();
-            _Ngay_ct2 = tb1.Rows[0]["Ngay_ct2"].ToString();
-
-            _Ngay_ct1 = Convert.ToDateTime(_Ngay_ct1).ToString("yyyyMMdd");
-            _Ngay_ct2 = Convert.ToDateTime(_Ngay_ct2).ToString("yyyyMMdd");
+            _Ngay_ct1 = Sync2ThConfig.NGAY_CT1;
+            _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
 
 
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
@@ -2503,14 +1900,11 @@ namespace V6SyncLibrary2021
 
             // Ma_dvcs_i
 
-            if (tb1.Columns.Contains("MA_DVCS_I"))
-                if (_pUnits != "")
-                {
-                    _pkey_SQLF = _pkey_SQLF + " AND UPPER(RTRIM(LTRIM(Ma_dvcs_i)))=" + _pUnits.Trim().ToUpper();
-                    _pkey_SQL = _pkey_SQL + " AND UPPER(RTRIM(LTRIM(Ma_dvcs_i)))=" + _pUnits.Trim().ToUpper();
-                }
-
-
+            if (tb1.Columns.Contains("MA_DVCS_I") && _pUnits != "")
+            {
+                _pkey_SQLF = _pkey_SQLF + " AND UPPER(RTRIM(LTRIM(Ma_dvcs_i)))=" + _pUnits.Trim().ToUpper();
+                _pkey_SQL = _pkey_SQL + " AND UPPER(RTRIM(LTRIM(Ma_dvcs_i)))=" + _pUnits.Trim().ToUpper();
+            }
 
 
             #region //1. Post Client to Server
@@ -2526,14 +1920,11 @@ namespace V6SyncLibrary2021
             //tb3
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
             tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-
-
-            // _Message = tb2.Rows.Count.ToString();
-
+            var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
+            
 
             foreach (DataRow rowc in tb2.Rows)
             {
-
                 string _key_filter = "1=1";
 
                 //_pfield_key="STT_REC,DATE0,DATE2,TIME0,TIME2"
@@ -2546,13 +1937,7 @@ namespace V6SyncLibrary2021
                     _key_filter += " AND " + field + "=" + MakeSqlValueString(rowc[field]);
 
                 }
-
-
-                // MessageBox.Show(_key_filter);
-
-
-
-
+                
                 _Message = _pUnits + " Client->Server :  " + _pAm;
 
 
@@ -2567,10 +1952,23 @@ namespace V6SyncLibrary2021
                     {
                         // INSERT
                         //----------------AM------------------------------
-                        strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-                        tb4 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-
-                        Insert_datarow(_CONSTRING_MAIN, rowc, tb4, _pAm);
+                        var insert_data = rowc.ToDataDictionary();
+                        if (copy_type == "G")
+                        {
+                            foreach (string field in Sync2ThConfig.fields)
+                            {
+                                var FIELD = field.ToUpper().Trim();
+                                if (insert_data.ContainsKey(FIELD))
+                                {
+                                    var OLD_VALUE = insert_data[FIELD].ToString().Trim().ToUpper();
+                                    if (TKGOP_DIC.ContainsKey(OLD_VALUE))
+                                    {
+                                        insert_data[FIELD] = TKGOP_DIC[OLD_VALUE];
+                                    }
+                                }
+                            }
+                        }
+                        V6BusinessHelper.InsertC(_CONSTRING_MAIN, _pAm, insert_data);
                     }
                 }
                 else // Table no column "stt_rec"
@@ -2582,9 +1980,12 @@ namespace V6SyncLibrary2021
             
         }
 
-        public void RunSyncData2Data_F(string pprocedure, string pparaname, string pparavalue, string pparacheck, 
-            string pfield_key, string plistws_id, string pcopy_all, string pkey_SQLF, string pkey_SQL, string pFile_type,
-            string pUnits, string pWs, string pAm, string pAd, string pAra00, string pAri70, string pArs20, string pArs30, string pArv20, string pArv30)
+        public void RunSyncData2Data_F(IDictionary<string, object> ALFCOPY2DATA_rowData, string pprocedure,
+            string pparaname, string pparavalue, string pparacheck,
+            string pfield_key, string plistws_id, string pcopy_all, string pkey_SQLF, string pkey_SQL,
+            string pFile_type,
+            string pUnits, string pWs, string pAm, string pAd, string pAra00, string pAri70, string pArs20,
+            string pArs30, string pArv20, string pArv30)
         {
 
             string _pfield_key, _plistws_id, _pcopy_all, _pkey_SQLF, _pkey_SQL, _pFile_type, _pUnits, _pWs, _pAm, _pAd, _pAra00, _pAri70, _pArs20, _pArs30, _pArv20, _pArv30;
@@ -2668,14 +2069,8 @@ namespace V6SyncLibrary2021
             string strsql = "", _Ngay_ct1, _Ngay_ct2;
 
             // Ngay_ct 
-            strsql = "SELECT getdate()- " + Sync2ThConfig.date_num + " AS Ngay_ct1,getdate() as Ngay_ct2 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-            _Ngay_ct1 = tb1.Rows[0]["Ngay_ct1"].ToString();
-            _Ngay_ct2 = tb1.Rows[0]["Ngay_ct2"].ToString();
-
-            _Ngay_ct1 = Convert.ToDateTime(_Ngay_ct1).ToString("yyyyMMdd");
-            _Ngay_ct2 = Convert.ToDateTime(_Ngay_ct2).ToString("yyyyMMdd");
-
+            _Ngay_ct1 = Sync2ThConfig.NGAY_CT1;
+            _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
 
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
             tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
@@ -2746,11 +2141,8 @@ namespace V6SyncLibrary2021
             //tb3
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
             tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-
-
-            // _Message = tb2.Rows.Count.ToString();
-
-
+            var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
+            
             foreach (DataRow rowc in tb2.Rows)
             {
 
@@ -2758,7 +2150,7 @@ namespace V6SyncLibrary2021
 
                 //_pfield_key="STT_REC,DATE0,DATE2,TIME0,TIME2"
 
-                string[] a_fields = _pfield_key.Split(',');
+                string[] a_fields = ObjectAndString.SplitString(_pfield_key);
 
                 foreach (string field in a_fields)
                 {
@@ -2769,27 +2161,31 @@ namespace V6SyncLibrary2021
 
                 _Message = _pUnits + " Client->Server :  " + _pAm;
 
-
-
-                if (_key_filter != "1=1")
+                DataView vtb1 = new DataView(tb3);
+                vtb1.RowFilter = _key_filter;
+                
+                if (vtb1.Count == 0)
                 {
-
-                    DataView vtb1 = new DataView(tb3);
-                    vtb1.RowFilter = _key_filter;
-
-                    if (vtb1.Count == 0)
+                    // INSERT
+                    //----------------AM------------------------------
+                    var insert_data = rowc.ToDataDictionary();
+                    if (copy_type == "G")
                     {
-                        // INSERT
-                        //----------------AM------------------------------
-                        strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-                        tb4 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-
-                        Insert_datarow(_CONSTRING_MAIN, rowc, tb4, _pAm);
+                        foreach (string field in Sync2ThConfig.fields)
+                        {
+                            var FIELD = field.ToUpper().Trim();
+                            if (insert_data.ContainsKey(FIELD))
+                            {
+                                var OLD_VALUE = insert_data[FIELD].ToString().Trim().ToUpper();
+                                if (TKGOP_DIC.ContainsKey(OLD_VALUE))
+                                {
+                                    insert_data[FIELD] = TKGOP_DIC[OLD_VALUE];
+                                }
+                            }
+                        }
                     }
-                }
-                else // Table no column "stt_rec"
-                {
-
+                    V6BusinessHelper.InsertC(_CONSTRING_MAIN, _pAm, insert_data);
+                    
                 }
             }
             #endregion //1. Post Client to Server  2->4
@@ -2797,7 +2193,7 @@ namespace V6SyncLibrary2021
         }
 
 
-        public void RunSyncData2Data_C(string pfield_key, string plistws_id, string pcopy_all, string pkey_SQLF, string pkey_SQL, string pFile_type, string pUnits, string pWs, string pAm, string pAd, string pAra00, string pAri70, string pArs20, string pArs30, string pArv20, string pArv30)
+        public void RunSyncData2Data_C(IDictionary<string, object> ALFCOPY2DATA_rowData, string pfield_key, string plistws_id, string pcopy_all, string pkey_SQLF, string pkey_SQL, string pFile_type, string pUnits, string pWs, string pAm, string pAd, string pAra00, string pAri70, string pArs20, string pArs30, string pArv20, string pArv30)
         {
 
             string _pfield_key, _plistws_id, _pcopy_all, _pkey_SQLF, _pkey_SQL, _pFile_type, _pUnits, _pWs, _pAm, _pAd, _pAra00, _pAri70, _pArs20, _pArs30, _pArv20, _pArv30;
@@ -2881,14 +2277,8 @@ namespace V6SyncLibrary2021
             string strsql = "", _Ngay_ct1, _Ngay_ct2;
 
             // Ngay_ct 
-            strsql = "SELECT getdate()- " + Sync2ThConfig.date_num + " AS Ngay_ct1,getdate() as Ngay_ct2 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-            _Ngay_ct1 = tb1.Rows[0]["Ngay_ct1"].ToString();
-            _Ngay_ct2 = tb1.Rows[0]["Ngay_ct2"].ToString();
-
-            _Ngay_ct1 = Convert.ToDateTime(_Ngay_ct1).ToString("yyyyMMdd");
-            _Ngay_ct2 = Convert.ToDateTime(_Ngay_ct2).ToString("yyyyMMdd");
-
+            _Ngay_ct1 = Sync2ThConfig.NGAY_CT1;
+            _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
 
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
             tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
@@ -2935,7 +2325,8 @@ namespace V6SyncLibrary2021
             //tb3
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
             tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-
+            var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
+            
             //Status
             SortedList<string, object> lists = new SortedList<string, object>();
             if (tb1.Columns.Contains("STATUS"))
@@ -2970,10 +2361,23 @@ namespace V6SyncLibrary2021
                     {
                         // INSERT
                         //----------------AM------------------------------
-                        strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-                        tb4 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
-
-                        Insert_datarow(_CONSTRING_MAIN, rowc, tb4, _pAm);
+                        var insert_data = rowc.ToDataDictionary();
+                        if (copy_type == "G")
+                        {
+                            foreach (string field in Sync2ThConfig.fields)
+                            {
+                                var FIELD = field.ToUpper().Trim();
+                                if (insert_data.ContainsKey(FIELD))
+                                {
+                                    var OLD_VALUE = insert_data[FIELD].ToString().Trim().ToUpper();
+                                    if (TKGOP_DIC.ContainsKey(OLD_VALUE))
+                                    {
+                                        insert_data[FIELD] = TKGOP_DIC[OLD_VALUE];
+                                    }
+                                }
+                            }
+                        }
+                        V6BusinessHelper.InsertC(_CONSTRING_MAIN, _pAm, insert_data);
 
                         //Status
                         if (tb1.Columns.Contains("STATUS"))
@@ -2992,14 +2396,6 @@ namespace V6SyncLibrary2021
                 }
             }
             #endregion //1. Post Client to Server  2->4
-
-
-
-
-
-
-
-
         }
 
         public void Delete_Data(string pCON, string pTable, string pWhere)
@@ -3009,9 +2405,8 @@ namespace V6SyncLibrary2021
                 string strsql = "DELETE FROM " + pTable + " WHERE " + pWhere;
                 SqlHelper.ExecuteNonQuery(pCON, CommandType.Text, strsql);
             }
-
-
         }
+
         public void Tranfer_Data2Data(string pCONfrom, string pCONto, string pTablefrom, string pWherefrom, string pTableto, string pWhereto)
         {
             if (pTablefrom != "" && pWherefrom != "" && pTableto != "" && pWhereto != "")
@@ -3024,7 +2419,6 @@ namespace V6SyncLibrary2021
 
                 Insert_datatable(pCONto, tb3, tb4, pTableto);
             }
-
         }
 
         public void Change_Datatable(DataTable pDataTable, SortedList<string, object> lists)
@@ -3035,157 +2429,23 @@ namespace V6SyncLibrary2021
                 for (int j = 0; j < lists.Count; j++)
                 {
                     pDataTable.Rows[i][lists.Keys[j]] = lists.Values[j];
-
                 }
             }
         }
 
         public void Insert_datatable(string _CON0, DataTable tbfrom, DataTable tbto, string TableName)
         {
-
-            string insertsql = "";
-            string fields = "", paramlist = "";
-            for (int i = 0; i < tbto.Columns.Count; i++)
-            {
-                fields += "," + tbto.Columns[i].ColumnName;
-                paramlist += ",@" + tbto.Columns[i].ColumnName;
-            }
-            if (fields.Length > 0)
-            {
-                fields = fields.Substring(1);//bỏ đi cái dấu [,]
-            }
-            if (paramlist.Length > 0)
-            {
-                paramlist = paramlist.Substring(1);
-            }
-            insertsql = "Insert into [" + TableName + "]\n(" + fields + ")\nValues(" + paramlist + ")";
-
-            List<SqlParameter> insertParams;
             foreach (DataRow item in tbfrom.Rows)
             {
-                insertParams = new List<SqlParameter>();
-                for (int i = 0; i < tbto.Columns.Count; i++)
+                try
                 {
-                    string field = tbto.Columns[i].ColumnName;
-                    if (tbfrom.Columns.Contains(field))
-                        insertParams.Add(new SqlParameter(field, item[field]));
-                    else
-                    {
-                        if (tbto.Columns[i].AllowDBNull)
-                            insertParams.Add(new SqlParameter(field, null));
-                        else
-                        {
-                            switch (tbto.Columns[i].DataType.ToString())
-                            {
-                                case "System.Char":
-                                case "System.String":
-                                    insertParams.Add(new SqlParameter(field, ""));
-                                    break;
-                                case "System.DateTime":
-                                    insertParams.Add(new SqlParameter(field, DateTime.Now));
-                                    break;
-                                case "System.Boolean":
-                                    insertParams.Add(new SqlParameter(field, false));
-                                    break;
-                                case "System.Byte":
-                                case "System.Int16":
-                                case "System.Int32":
-                                case "System.Int64":
-                                case "System.Decimal":
-                                case "System.Double":
-                                    insertParams.Add(new SqlParameter(field, 0));
-                                    break;
-                                case "System.DBNull":
-                                    insertParams.Add(new SqlParameter(field, ""));
-                                    break;
-                                default:
-                                    insertParams.Add(new SqlParameter(field, ""));
-                                    break;
-                            }
-                        }
-                    }
+                    V6BusinessHelper.InsertC(_CON0, TableName, item.ToDataDictionary());
                 }
-                //Thực thi sql
-                // errormessage = insertsql;
-
-
-                SqlHelper.ExecuteNonQuery(_CON0, CommandType.Text, insertsql, insertParams.ToArray());
-
-            }
-        }
-
-        public void Insert_datarow(string _CON0, DataRow item, DataTable tbto, string TableName)
-        {
-
-            string insertsql = "";
-            string fields = "", paramlist = "";
-            for (int i = 0; i < tbto.Columns.Count; i++)
-            {
-                fields += "," + tbto.Columns[i].ColumnName;
-                paramlist += ",@" + tbto.Columns[i].ColumnName;
-            }
-            if (fields.Length > 0)
-            {
-                fields = fields.Substring(1);//bỏ đi cái dấu [,]
-            }
-            if (paramlist.Length > 0)
-            {
-                paramlist = paramlist.Substring(1);
-            }
-            insertsql = "Insert into [" + TableName + "]\n(" + fields + ")\nValues(" + paramlist + ")";
-
-            List<SqlParameter> insertParams;
-
-            insertParams = new List<SqlParameter>();
-            for (int i = 0; i < tbto.Columns.Count; i++)
-            {
-                string field = tbto.Columns[i].ColumnName;
-
-                if (item.Table.Columns.Contains(field))
-                    insertParams.Add(new SqlParameter(field, item[field]));
-                else
+                catch (Exception ex)
                 {
-                    if (tbto.Columns[i].AllowDBNull)
-                        insertParams.Add(new SqlParameter(field, null));
-                    else
-                    {
-                        switch (tbto.Columns[i].DataType.ToString())
-                        {
-                            case "System.Char":
-                            case "System.String":
-                                insertParams.Add(new SqlParameter(field, ""));
-                                break;
-                            case "System.DateTime":
-                                insertParams.Add(new SqlParameter(field, DateTime.Now));
-                                break;
-                            case "System.Boolean":
-                                insertParams.Add(new SqlParameter(field, false));
-                                break;
-                            case "System.Byte":
-                            case "System.Int16":
-                            case "System.Int32":
-                            case "System.Int64":
-                            case "System.Decimal":
-                            case "System.Double":
-                                insertParams.Add(new SqlParameter(field, 0));
-                                break;
-                            case "System.DBNull":
-                                insertParams.Add(new SqlParameter(field, ""));
-                                break;
-                            default:
-                                insertParams.Add(new SqlParameter(field, ""));
-                                break;
-                        }
-                    }
+                    _Message += ex.Message;
                 }
             }
-
-            //Thực thi sql
-            // errormessage = insertsql;
-
-
-            SqlHelper.ExecuteNonQuery(_CON0, CommandType.Text, insertsql, insertParams.ToArray());
-
         }
 
         public string MakeSqlValueString(object field_value)

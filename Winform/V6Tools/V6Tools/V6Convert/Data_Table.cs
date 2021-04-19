@@ -165,5 +165,20 @@ namespace V6Tools.V6Convert
             }
             return DataDic;
         }
+
+        public static Dictionary<string, string> ToStringDataDictionary(DataTable data, string keyField, string dataField)
+        {
+            if (!data.Columns.Contains(keyField))
+                throw new Exception(string.Format("No keyField [{0}] column.", keyField));
+            if (!data.Columns.Contains(dataField))
+                throw new Exception(string.Format("No dataField [{0}] column.", dataField));
+            var DataDic = new Dictionary<string, string>();
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                var row = data.Rows[i];
+                DataDic[(row[keyField]+"").Trim().ToUpper()] = row[dataField] + "";
+            }
+            return DataDic;
+        }
     }
 }

@@ -310,6 +310,10 @@ namespace V6Tools
         {
             return Data_Table.ToDataDictionary(data, keyField, dataField);
         }
+        public static Dictionary<string, string> ToStringDataDictionary(this DataTable data, string keyField, string dataField)
+        {
+            return Data_Table.ToStringDataDictionary(data, keyField, dataField);
+        }
 
         /// <summary>
         /// Biếnt thành Dic, key trùng sẽ lấy dòng sau cùng.
