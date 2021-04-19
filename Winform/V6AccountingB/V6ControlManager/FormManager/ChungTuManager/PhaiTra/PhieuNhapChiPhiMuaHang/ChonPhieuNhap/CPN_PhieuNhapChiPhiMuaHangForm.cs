@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -194,6 +195,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         {
                             V6ControlFormHelper.SetStatusText(V6Text.NoDefine + "_aldmConfig.EXTRA_INFOR.AD2AM");
                         }
+
+                        // Chỉnh sửa dữ liệu chi tiết đã chọn
+                        var tableData = new DataTable("listData");
+                        foreach (IDictionary<string, object> item in listData)
+                        {
+                            tableData.AddRow(item, true);
+                        }
+                        // AMAD73ACT
+                        //DataEditorForm dataEditor = new DataEditorForm(this, tableData, _locKetQua._aldmConfig.MA_DM + "CT", null, "",
+                        //    V6Text.Edit + ", bấm Delete đễ xóa dòng đang chọn.", false, true, true, false);
+                        //dataEditor.dataGridView1.ReadOnly = true;
+                        //dataEditor.Text = V6Text.Edit + ", bấm Delete đễ xóa dòng đang chọn.";
+                        //dataEditor.ShowDialog(this);
+                        DataSelectorForm dataSelector = new DataSelectorForm(tableData, null);
+                        var config_ct = ConfigManager.GetAldmConfig(_locKetQua._aldmConfig.MA_DM + "CT");
+                        if (config_ct.HaveInfo)
+                        {
+                            dataSelector.dataGridView1.Format(config_ct.GRDS_V1, config_ct.GRDF_V1, config_ct.GRDH_LANG_V1);
+                            dataSelector.dataGridView2.Format(config_ct.GRDS_V1, config_ct.GRDF_V1, config_ct.GRDH_LANG_V1);
+                        }
+                        
+                        dataSelector.ShowDialog(this);
+
                         ChonEventArgs e = new ChonEventArgs()
                         {
                             Loai_ct = _loai_ct_chon,
@@ -201,7 +225,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                             multiSelect = _multiSelect,
                             extraData = amData
                         };
-                        OnAcceptSelectEvent(listData, e);
+                        OnAcceptSelectEvent(dataSelector.dataGridView2.GetData(), e);
                         Close();
                     }
                     else
@@ -219,7 +243,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 {
                     SearchThread();
                 }
-
             }
             catch (Exception ex)
             {
