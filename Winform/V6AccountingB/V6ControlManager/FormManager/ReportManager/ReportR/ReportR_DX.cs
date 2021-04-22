@@ -1039,6 +1039,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {"M_NGAY_QD_CDKT2", V6Options.GetValue("M_NGAY_QD_CDKT2")},
 
                 {"M_RFONTNAME", V6Options.GetValue("M_RFONTNAME")},
+                {"M_RTFONT", V6Options.GetValue("M_RTFONT")},
+                {"M_RSFONT", V6Options.GetValue("M_RSFONT")},
                 {"M_R_FONTSIZE", V6Options.GetValue("M_R_FONTSIZE")},
             };
 

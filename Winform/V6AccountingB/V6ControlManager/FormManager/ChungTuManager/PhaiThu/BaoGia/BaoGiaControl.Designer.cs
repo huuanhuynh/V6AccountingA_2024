@@ -446,7 +446,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.tabKhac.Location = new System.Drawing.Point(4, 22);
             this.tabKhac.Name = "tabKhac";
             this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac.Size = new System.Drawing.Size(879, 208);
+            this.tabKhac.Size = new System.Drawing.Size(880, 208);
             this.tabKhac.TabIndex = 1;
             this.tabKhac.Text = "Khác";
             // 
@@ -1015,7 +1015,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.tabKhac2.Location = new System.Drawing.Point(4, 22);
             this.tabKhac2.Name = "tabKhac2";
             this.tabKhac2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac2.Size = new System.Drawing.Size(879, 208);
+            this.tabKhac2.Size = new System.Drawing.Size(880, 208);
             this.tabKhac2.TabIndex = 2;
             this.tabKhac2.Text = "Thông tin khác";
             // 
@@ -1885,7 +1885,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             0,
             0,
             0});
-            
             // 
             // v6Label4
             // 
@@ -3470,7 +3469,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(68, 32);
             this.btnXem.TabIndex = 12;
-            this.btnXem.Text = "Xem";
+            this.btnXem.Text = "X&em";
             this.btnXem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXem.UseVisualStyleBackColor = true;
             this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
@@ -3557,7 +3556,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(68, 32);
             this.btnCopy.TabIndex = 9;
-            this.btnCopy.Text = "Copy";
+            this.btnCopy.Text = "Co&py";
             this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);

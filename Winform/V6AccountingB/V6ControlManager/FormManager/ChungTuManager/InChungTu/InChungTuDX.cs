@@ -1331,68 +1331,54 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         /// </summary>
         private void SetAllReportParams(XtraReport repx1, XtraReport repx2, XtraReport repx3, XtraReport repx4)
         {
-            ReportDocumentParameters = new SortedDictionary<string, object>();
-            
-            ReportDocumentParameters.Add("Decimals", 0);
-            ReportDocumentParameters.Add("ThousandsSeparator", V6Options.M_NUM_SEPARATOR);
-            ReportDocumentParameters.Add("DecimalSymbol", V6Options.M_NUM_POINT);
-            ReportDocumentParameters.Add("DecimalsSL", V6Options.M_IP_R_SL);
-            ReportDocumentParameters.Add("DecimalsDG", V6Options.M_IP_R_GIA);
-            ReportDocumentParameters.Add("DecimalsDGNT", V6Options.M_IP_R_GIANT);
-            ReportDocumentParameters.Add("DecimalsTT", V6Options.M_IP_R_TIEN);
-            ReportDocumentParameters.Add("DecimalsTTNT", V6Options.M_IP_R_TIENNT);
-
-            ReportDocumentParameters.Add("Mau?", 0);
-            ReportDocumentParameters.Add("BanSao?", false);
-            ReportDocumentParameters.Add("ViewInfo", MauTuIn==1);
-            ReportDocumentParameters.Add(
-                "Info",
-                "In bởi  Phần mềm V6 Accounting2016.NET - Cty phần mềm V6 (www.v6corp.com) - MST: 0303180249 - ĐT: 028.62570563"
-            );
-            ReportDocumentParameters.Add("ViewCrossLine", true);
-
-
-            //ReportDocumentParameters.Add("CrossLineNum", crossLineNum + numCrossAdd.Value);
-
-            ReportDocumentParameters.Add("SoTienVietBangChu", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
-            ReportDocumentParameters.Add("SoTienVietBangChuNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
-            
-            //ReportDocumentParameters.Add("ChuoiMaHoa", V6BusinessHelper.GetChuoiMaHoa(""));
-
-            ReportDocumentParameters.Add("Title", txtReportTitle.Text.Trim());
-            // V6Soft
-            ReportDocumentParameters.Add("M_TEN_CTY", V6Soft.V6SoftValue["M_TEN_CTY"].ToUpper());
-            ReportDocumentParameters.Add("M_TEN_TCTY", V6Soft.V6SoftValue["M_TEN_TCTY"].ToUpper());
-            ReportDocumentParameters.Add("M_DIA_CHI", V6Soft.V6SoftValue["M_DIA_CHI"]);
-
-
-            ReportDocumentParameters.Add("M_TEN_CTY2", V6Soft.V6SoftValue["M_TEN_CTY2"].ToUpper());
-            ReportDocumentParameters.Add("M_TEN_TCTY2", V6Soft.V6SoftValue["M_TEN_TCTY2"].ToUpper());
-            ReportDocumentParameters.Add("M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]);
-            // V6option
-            ReportDocumentParameters.Add("M_MA_THUE", V6Options.GetValue("M_MA_THUE"));
-            ReportDocumentParameters.Add("M_RTEN_VSOFT", V6Options.GetValue("M_RTEN_VSOFT"));
-
-            ReportDocumentParameters.Add("M_TEN_NLB", txtM_TEN_NLB.Text.Trim());
-            ReportDocumentParameters.Add("M_TEN_NLB2", txtM_TEN_NLB2.Text.Trim());
-            ReportDocumentParameters.Add("M_TEN_KHO_BD", V6Options.GetValue("M_TEN_KHO_BD"));
-            ReportDocumentParameters.Add("M_TEN_KHO2_BD", V6Options.GetValue("M_TEN_KHO2_BD"));
-            ReportDocumentParameters.Add("M_DIA_CHI_BD", V6Options.GetValue("M_DIA_CHI_BD"));
-            ReportDocumentParameters.Add("M_DIA_CHI2_BD", V6Options.GetValue("M_DIA_CHI2_BD"));
-
-            ReportDocumentParameters.Add("M_TEN_GD", V6Options.GetValue("M_TEN_GD"));
-            ReportDocumentParameters.Add("M_TEN_GD2", V6Options.GetValue("M_TEN_GD2"));
-            ReportDocumentParameters.Add("M_TEN_KTT", V6Options.GetValue("M_TEN_KTT"));
-            ReportDocumentParameters.Add("M_TEN_KTT2", V6Options.GetValue("M_TEN_KTT2"));
-
-            ReportDocumentParameters.Add("M_SO_QD_CDKT", V6Options.GetValue("M_SO_QD_CDKT"));
-            ReportDocumentParameters.Add("M_SO_QD_CDKT2", V6Options.GetValue("M_SO_QD_CDKT2"));
-            ReportDocumentParameters.Add("M_NGAY_QD_CDKT", V6Options.GetValue("M_NGAY_QD_CDKT"));
-            ReportDocumentParameters.Add("M_NGAY_QD_CDKT2", V6Options.GetValue("M_NGAY_QD_CDKT2"));
-
-            ReportDocumentParameters.Add("M_RFONTNAME", V6Options.GetValue("M_RFONTNAME"));
-            ReportDocumentParameters.Add("M_R_FONTSIZE", V6Options.GetValue("M_R_FONTSIZE"));
-            
+            ReportDocumentParameters = new SortedDictionary<string, object>
+            {
+                {"Decimals", 0},
+                {"ThousandsSeparator", V6Options.M_NUM_SEPARATOR},
+                {"DecimalSymbol", V6Options.M_NUM_POINT},
+                {"DecimalsSL", V6Options.M_IP_R_SL},
+                {"DecimalsDG", V6Options.M_IP_R_GIA},
+                {"DecimalsDGNT", V6Options.M_IP_R_GIANT},
+                {"DecimalsTT", V6Options.M_IP_R_TIEN},
+                {"DecimalsTTNT", V6Options.M_IP_R_TIENNT},
+                {"Mau?", 0},
+                {"BanSao?", false},
+                {"ViewInfo", MauTuIn == 1},
+                {
+                    "Info",
+                    "In bởi  Phần mềm V6 Accounting2016.NET - Cty phần mềm V6 (www.v6corp.com) - MST: 0303180249 - ĐT: 028.62570563"
+                },
+                {"ViewCrossLine", true},
+                {"SoTienVietBangChu", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0)},
+                {"SoTienVietBangChuNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT)},
+                {"Title", txtReportTitle.Text.Trim()},
+                {"M_TEN_CTY", V6Soft.V6SoftValue["M_TEN_CTY"].ToUpper()},
+                {"M_TEN_TCTY", V6Soft.V6SoftValue["M_TEN_TCTY"].ToUpper()},
+                {"M_DIA_CHI", V6Soft.V6SoftValue["M_DIA_CHI"]},
+                {"M_TEN_CTY2", V6Soft.V6SoftValue["M_TEN_CTY2"].ToUpper()},
+                {"M_TEN_TCTY2", V6Soft.V6SoftValue["M_TEN_TCTY2"].ToUpper()},
+                {"M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]},
+                {"M_MA_THUE", V6Options.GetValue("M_MA_THUE")},
+                {"M_RTEN_VSOFT", V6Options.GetValue("M_RTEN_VSOFT")},
+                {"M_TEN_NLB", txtM_TEN_NLB.Text.Trim()},
+                {"M_TEN_NLB2", txtM_TEN_NLB2.Text.Trim()},
+                {"M_TEN_KHO_BD", V6Options.GetValue("M_TEN_KHO_BD")},
+                {"M_TEN_KHO2_BD", V6Options.GetValue("M_TEN_KHO2_BD")},
+                {"M_DIA_CHI_BD", V6Options.GetValue("M_DIA_CHI_BD")},
+                {"M_DIA_CHI2_BD", V6Options.GetValue("M_DIA_CHI2_BD")},
+                {"M_TEN_GD", V6Options.GetValue("M_TEN_GD")},
+                {"M_TEN_GD2", V6Options.GetValue("M_TEN_GD2")},
+                {"M_TEN_KTT", V6Options.GetValue("M_TEN_KTT")},
+                {"M_TEN_KTT2", V6Options.GetValue("M_TEN_KTT2")},
+                {"M_SO_QD_CDKT", V6Options.GetValue("M_SO_QD_CDKT")},
+                {"M_SO_QD_CDKT2", V6Options.GetValue("M_SO_QD_CDKT2")},
+                {"M_NGAY_QD_CDKT", V6Options.GetValue("M_NGAY_QD_CDKT")},
+                {"M_NGAY_QD_CDKT2", V6Options.GetValue("M_NGAY_QD_CDKT2")},
+                {"M_RFONTNAME", V6Options.GetValue("M_RFONTNAME")},
+                {"M_RTFONT", V6Options.GetValue("M_RTFONT")},
+                {"M_RSFONT", V6Options.GetValue("M_RSFONT")},
+                {"M_R_FONTSIZE", V6Options.GetValue("M_R_FONTSIZE")}
+            };
 
             V6Login.SetCompanyInfo(ReportDocumentParameters);
 

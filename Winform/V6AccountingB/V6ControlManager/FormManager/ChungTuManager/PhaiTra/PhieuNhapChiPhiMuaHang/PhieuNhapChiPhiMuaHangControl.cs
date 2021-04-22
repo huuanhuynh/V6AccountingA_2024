@@ -5520,5 +5520,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonTuExcel(shift);
         }
+
+        private void hoaDonDetail2_AddHandle()
+        {
+
+        }
+
+        private void hoaDonDetail2_EditHandle()
+        {
+
+        }
+
+        private void hoaDonDetail1_AddHandle()
+        {
+
+        }
     }
 }

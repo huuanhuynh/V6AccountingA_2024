@@ -551,7 +551,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(68, 32);
             this.btnXem.TabIndex = 12;
-            this.btnXem.Text = "Xem";
+            this.btnXem.Text = "X&em";
             this.btnXem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXem.UseVisualStyleBackColor = true;
             this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
@@ -674,7 +674,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(68, 32);
             this.btnCopy.TabIndex = 8;
-            this.btnCopy.Text = "Copy";
+            this.btnCopy.Text = "Co&py";
             this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);

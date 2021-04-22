@@ -1997,7 +1997,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0});
-            
             // 
             // v6Label38
             // 
@@ -3633,7 +3632,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(68, 32);
             this.btnXem.TabIndex = 12;
-            this.btnXem.Text = "Xem";
+            this.btnXem.Text = "X&em";
             this.btnXem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.toolTipV6FormControl.SetToolTip(this.btnXem, "View");
             this.btnXem.UseVisualStyleBackColor = true;
@@ -3742,7 +3741,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(68, 32);
             this.btnCopy.TabIndex = 8;
-            this.btnCopy.Text = "Copy";
+            this.btnCopy.Text = "Co&py";
             this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.toolTipV6FormControl.SetToolTip(this.btnCopy, "Copy");
             this.btnCopy.UseVisualStyleBackColor = true;
