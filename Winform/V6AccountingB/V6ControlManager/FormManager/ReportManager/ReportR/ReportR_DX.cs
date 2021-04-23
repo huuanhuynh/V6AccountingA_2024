@@ -998,54 +998,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private void SetAllReportParams(XtraReport repx)
         {
-            ReportDocumentParameters = new SortedDictionary<string, object>
-            {
-                {"Decimals", 0},
-                {"ThousandsSeparator", V6Options.M_NUM_SEPARATOR},
-
-                {"DecimalSymbol", V6Options.M_NUM_POINT},
-                {"DecimalsSL", V6Options.M_IP_R_SL},
-                {"DecimalsDG", V6Options.M_IP_R_GIA},
-                {"DecimalsDGNT", V6Options.M_IP_R_GIANT},
-                {"DecimalsTT", V6Options.M_IP_R_TIEN},
-                {"DecimalsTTNT", V6Options.M_IP_R_TIENNT},
-                {"Title", txtReportTitle.Text.Trim()},
-                // V6Soft
-                {"M_TEN_CTY", V6Soft.V6SoftValue["M_TEN_CTY"].ToUpper()},
-                {"M_TEN_TCTY", V6Soft.V6SoftValue["M_TEN_TCTY"].ToUpper()},
-                {"M_DIA_CHI", V6Soft.V6SoftValue["M_DIA_CHI"]},
-                {"M_TEN_CTY2", V6Soft.V6SoftValue["M_TEN_CTY2"].ToUpper()},
-                {"M_TEN_TCTY2", V6Soft.V6SoftValue["M_TEN_TCTY2"].ToUpper()},
-                {"M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]},
-                // V6option
-                {"M_MA_THUE", V6Options.GetValue("M_MA_THUE")},
-                {"M_RTEN_VSOFT", V6Options.GetValue("M_RTEN_VSOFT")},
-
-                {"M_TEN_NLB", txtM_TEN_NLB.Text.Trim()},
-                {"M_TEN_NLB2", txtM_TEN_NLB2.Text.Trim()},
-                {"M_TEN_KHO_BD", V6Options.GetValue("M_TEN_KHO_BD")},
-                {"M_TEN_KHO2_BD", V6Options.GetValue("M_TEN_KHO2_BD")},
-                {"M_DIA_CHI_BD", V6Options.GetValue("M_DIA_CHI_BD")},
-                {"M_DIA_CHI2_BD", V6Options.GetValue("M_DIA_CHI2_BD")},
-
-                {"M_TEN_GD", V6Options.GetValue("M_TEN_GD")},
-                {"M_TEN_GD2", V6Options.GetValue("M_TEN_GD2")},
-                {"M_TEN_KTT", V6Options.GetValue("M_TEN_KTT")},
-                {"M_TEN_KTT2", V6Options.GetValue("M_TEN_KTT2")},
-
-                {"M_SO_QD_CDKT", V6Options.GetValue("M_SO_QD_CDKT")},
-                {"M_SO_QD_CDKT2", V6Options.GetValue("M_SO_QD_CDKT2")},
-                {"M_NGAY_QD_CDKT", V6Options.GetValue("M_NGAY_QD_CDKT")},
-                {"M_NGAY_QD_CDKT2", V6Options.GetValue("M_NGAY_QD_CDKT2")},
-
-                {"M_RFONTNAME", V6Options.GetValue("M_RFONTNAME")},
-                {"M_RTFONT", V6Options.GetValue("M_RTFONT")},
-                {"M_RSFONT", V6Options.GetValue("M_RSFONT")},
-                {"M_R_FONTSIZE", V6Options.GetValue("M_R_FONTSIZE")},
-            };
-
+            ReportDocumentParameters = new SortedDictionary<string, object>();
+            DXreportManager.AddBaseParameters(ReportDocumentParameters);
             V6Login.SetCompanyInfo(ReportDocumentParameters);
-
+            ReportDocumentParameters["Title"] = txtReportTitle.Text;
+            ReportDocumentParameters["M_TEN_NLB"] = txtM_TEN_NLB.Text;
+            ReportDocumentParameters["M_TEN_NLB2"] = txtM_TEN_NLB2.Text;
+            
             if (FilterControl.RptExtraParameters != null)
             {
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);

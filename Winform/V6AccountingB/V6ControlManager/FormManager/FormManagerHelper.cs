@@ -235,6 +235,7 @@ namespace V6ControlManager.FormManager
             }
             catch (Exception ex)
             {
+                ExportRepxToPdf_running = false;
                 var methodInfo = MethodBase.GetCurrentMethod();
                 if (methodInfo.DeclaringType != null)
                 {

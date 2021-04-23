@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using V6Init;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -30,17 +33,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (new List<string>(){"M_RFONTNAME", "M_RSFONT", "M_RTFONT" }
                 .Contains(txtName.Text.Trim().ToUpper()))
             {
-                FontDialog f = new FontDialog();
-                //f.AllowScriptChange = false;
-                //f.AllowSimulations = false;
-                //f.AllowVectorFonts = false;
-                //f.AllowVerticalFonts = false;
+                string[] param_font = ObjectAndString.SplitString(txtval.Text);
+                string font_name = param_font[0];	
+                float font_size =	Font.Size;
+                FontStyle font_style = 0;
+                if (param_font.Length > 1) font_size = Single.Parse(param_font[1]);
+                if (param_font.Length > 2) font_style = (FontStyle)Int32.Parse(param_font[2]);
+                Font m_rfontname = new Font(font_name, font_size, font_style);
 
-                //f.ShowColor = false;
+                FontDialog f = new FontDialog();
+                f.Font = m_rfontname;
 
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
-                    txtval.Text = f.Font.Name;
+                    txtval.Text = f.Font.Name + ";" + f.Font.Size + ";" + (int)f.Font.Style;
                 }
             }
         }

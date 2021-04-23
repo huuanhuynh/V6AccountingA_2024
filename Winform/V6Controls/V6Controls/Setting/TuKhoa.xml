@@ -55,6 +55,7 @@
 	
 	<TuKhoa TenTuKhoa='Button' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DataGridViewRow' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DataRow' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DateTime' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='Exception' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -64,6 +65,9 @@
 	<TuKhoa TenTuKhoa='SortedDictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	   
 	<TuKhoa TenTuKhoa='SqlParameter[] plist = {new SqlParameter("@name", "value"),};' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='public static void Method(V6Control thisForm){&#10;try{&#10;&#10;}catch(Exception ex){V6Message.Show(ex.Message, thisForm);}}' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='UpdateSimple("AM81", data, key);
+          ' 		MauSac = 'Blue' 	AutoComplete = '1' />
   
 	<TuKhoa TenTuKhoa='string' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='int' 		MauSac = 'Blue' 	AutoComplete = '1' />
@@ -144,11 +148,12 @@
 	<TuKhoa TenTuKhoa='Tomato' 		MauSac = 'Tomato' 		AutoComplete = '1' />	
 	<TuKhoa TenTuKhoa='White' 		MauSac = 'White' 		AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='YellowGreen' MauSac = 'YellowGreen' 	AutoComplete = '1' />
+
+  <TuKhoaBatDau TuKhoaBatDau='//' 	MauSac = 'Green' 	AutoComplete = '0' />
+  <TuKhoaDoi TuKhoaBatDau='/*'	TuKhoaKetThuc='*/' 			MauSac = 'Green' 	AutoComplete = '0' />
+	<TuKhoaDoi0 TuKhoaBatDau='&lt;'		TuKhoaKetThuc='&gt;' 		MauSac = 'Red' 	AutoComplete = '0' />
+	<TuKhoaDoi0 TuKhoaBatDau='&apos;'		TuKhoaKetThuc='&apos;' 		MauSac = 'Red' 	AutoComplete = '0' />
+	<TuKhoaDoi0 TuKhoaBatDau='(&quot;'	TuKhoaKetThuc='&quot;)' 			MauSac = 'Tomato' 	AutoComplete = '0' />
+	<TuKhoaBatDau0 TuKhoaBatDau='--' 	MauSac = 'Green' 	AutoComplete = '0' />
 	
-	<TuKhoaDoi TuKhoaBatDau='&lt;'		TuKhoaKetThuc='&gt;' 		MauSac = 'Red' 	AutoComplete = '0' />
-	<TuKhoaDoi TuKhoaBatDau='&apos;'		TuKhoaKetThuc='&apos;' 		MauSac = 'Red' 	AutoComplete = '0' />
-	<TuKhoaDoi TuKhoaBatDau='(&quot;'	TuKhoaKetThuc='&quot;)' 			MauSac = 'Tomato' 	AutoComplete = '0' />
-	<TuKhoaDoi TuKhoaBatDau='/*'	TuKhoaKetThuc='*/' 			MauSac = 'Green' 	AutoComplete = '0' />
-	<TuKhoaBatDau TuKhoaBatDau='--' 	MauSac = 'Green' 	AutoComplete = '0' />
-	<TuKhoaBatDau TuKhoaBatDau='//' 	MauSac = 'Green' 	AutoComplete = '0' />
 </Root>

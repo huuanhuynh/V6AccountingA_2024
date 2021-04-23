@@ -10,6 +10,7 @@ using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
@@ -52,7 +53,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Ghi chú, F9: Xử lý chứng từ, F8: Hủy xử lý.");
+            V6ControlFormHelper.SetStatusText2("F7: In, F4: Ghi chú, F9: Xử lý chứng từ, F8: Hủy xử lý.");
         }
 
         protected override void MakeReport2()
@@ -162,7 +163,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        
+        protected override void XuLyF7()
+        {
+            InvokeFormEvent(FormDynamicEvent.F7);
+        }
+
         #region ==== Xử lý F9 ====
         
         private bool f9Running;
