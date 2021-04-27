@@ -3107,10 +3107,20 @@ namespace V6ThuePostManager
                 foreach (DataRow row in ad_table.Rows)
                 {
                     if (row["STT"].ToString() == "0") continue;
+                    string NOGEN_F = "";
+                    if (row.Table.Columns.Contains("NOGEN_F")) NOGEN_F = ";" + row["NOGEN_F"].ToString().Trim() + ";";
                     Dictionary<string, object> rowData = new Dictionary<string, object>();
                     foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
                     {
-                        rowData[item.Key] = GetValue(row, item.Value);
+                        var cell = GetValue(row, item.Value);
+                        if (item.Value.NoGen && NOGEN_F.Contains(";" + item.Value.FieldV6 + ";"))
+                        {
+                            // NOGEN
+                        }
+                        else
+                        {
+                            rowData[item.Key] = cell;
+                        }
                     }
                     postObject.itemInfo.Add(rowData);
                 }
@@ -4283,6 +4293,19 @@ namespace V6ThuePostManager
                                     fieldValue.ToString().ToLower() == "true" ||
                                     fieldValue.ToString().ToLower() == "yes");
                         }
+                    case "BOOLS":
+                        if (fieldValue is bool)
+                        {
+                            return fieldValue;
+                        }
+                        else
+                        {
+                            if ((fieldValue + "").Trim() == "") return null;
+
+                            return fieldValue.ToString() == "1" ||
+                                   fieldValue.ToString().ToLower() == "true" ||
+                                   fieldValue.ToString().ToLower() == "yes";
+                        }
                     case "DATE":
                     case "DATETIME":
                         return ObjectAndString.ObjectToDate(fieldValue, config.Format);
@@ -4580,6 +4603,8 @@ namespace V6ThuePostManager
             config.FieldV6 = reader["FieldV6"].ToString().Trim();
             config.Type = reader["Type"].ToString().Trim();
             config.DataType = reader["DataType"].ToString().Trim();
+            if (reader.Table.Columns.Contains("NoGen")) config.NoGen = reader["NoGen"].ToString().Trim() == "1";
+            if (reader.Table.Columns.Contains("NoGenCondition")) config.NoGenCondition = reader["NoGenCondition"].ToString().Trim();
             //config.Format = reader["Format"].ToString().Trim();
             config.MA_TD2 = ObjectAndString.ObjectToString(reader["MA_TD2"]);
             config.MA_TD3 = ObjectAndString.ObjectToString(reader["MA_TD3"]);

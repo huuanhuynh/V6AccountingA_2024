@@ -5639,7 +5639,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     i++;
                     var data = row.ToDataDictionary(_sttRec);
                     var cMaVt = data["MA_VT"].ToString().Trim();
-                    var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
+                    var cMaKhoI = ("" + data["MA_KHO_I"]).Trim();
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
                     var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
 
@@ -5690,18 +5690,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                     else
                     {
-                        if (!exist) _message += string.Format("{2}: {0} [{1}] ", i+1, V6Text.NotExist, cMaVt);
-                        if (!exist2)
-                        {
-                            if (string.IsNullOrEmpty(cMaKhoI))
-                            {
-                                _message += string.Format("{2}: {0} {1} ", i+1, dataGridView1.Columns["MA_KHO_I"].HeaderText, V6Text.Empty);
-                            }
-                            else
-                            {
-                                _message += string.Format("{2}: {0} [{1}] ", i+1, V6Text.NotExist, cMaKhoI);
-                            }
-                        }
+                        if (!exist) _message += string.Format("Dòng {0}: Vật tư {1}  {2}. ", i + 1, cMaVt, V6Text.NotExist);
+                        if (!exist2) _message += string.Format("Dòng {0}: Mã kho {1} {2}. ", i + 1, cMaKhoI, V6Text.Empty);
                     }
                 }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", add_count) + _message);

@@ -350,5 +350,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             currentTabIndex = tabControl1.SelectedIndex;
         }
 
+        private void tsMessage_Paint(object sender, PaintEventArgs e)
+        {
+            SolidBrush myBrush = new SolidBrush(Color.Blue);
+            int x = (tsMessage.Width - lblTitle.Width) / 2;
+            PointF point = new PointF(x, 0);
+            e.Graphics.DrawString(lblTitle.Text, lblTitle.Font, myBrush, point);
+        }
+
     }
 }

@@ -100,14 +100,16 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(3, 5);
+            this.lblTitle.Location = new System.Drawing.Point(701, 3);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(763, 19);
+            this.lblTitle.Size = new System.Drawing.Size(57, 18);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitle.Text = "lblTitle";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTitle.Visible = false;
             // 
             // tsMessage
             // 
@@ -119,6 +121,7 @@
             this.tsMessage.Size = new System.Drawing.Size(758, 33);
             this.tsMessage.TabIndex = 0;
             this.tsMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tsMessage.Paint += new System.Windows.Forms.PaintEventHandler(this.tsMessage_Paint);
             this.tsMessage.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tsMessage_MouseDoubleClick);
             // 
             // ChungTuChungContainer
@@ -136,6 +139,7 @@
             this.Size = new System.Drawing.Size(860, 609);
             this.Load += new System.EventHandler(this.ChungTuChungContainer_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

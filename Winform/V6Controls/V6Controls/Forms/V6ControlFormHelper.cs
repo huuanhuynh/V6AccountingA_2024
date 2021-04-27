@@ -6201,7 +6201,14 @@ namespace V6Controls.Forms
             else
             {
                 ((Timer)sender).Stop();
-                ShowMainMessage(V6Text.ExportFinish + ++time_count4);
+                if (V6Options.AutoOpenExcel)// && !NoOpen)
+                {
+                    OpenFileProcess(ExportRptToPdf_fileName);
+                }
+                else
+                {
+                    ShowMainMessage(V6Text.ExportFinish + ++time_count4);
+                }
             }
         }
 

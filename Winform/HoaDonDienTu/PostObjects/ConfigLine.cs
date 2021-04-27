@@ -31,5 +31,13 @@
         public string DataType { get; set; }
 
         public string Format { get; set; }
+        /// <summary>
+        /// Cờ không tạo object (khi đúng điều kiện)
+        /// </summary>
+        public bool NoGen { get; set; }
+        /// <summary>
+        /// V6Remark=3&&So_luong1=0 (chưa dùng)
+        /// </summary>
+        public string NoGenCondition { get; set; }
     }
 }

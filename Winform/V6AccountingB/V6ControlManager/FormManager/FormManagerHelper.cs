@@ -156,7 +156,7 @@ namespace V6ControlManager.FormManager
         {
             if (ExportRepxToPdf_running)
             {
-                V6ControlFormHelper.ShowMainMessage(V6Text.Exporting + ++time_count4);
+                //V6ControlFormHelper.ShowMainMessage(V6Text.Exporting + ++time_count4);
             }
             else
             {
