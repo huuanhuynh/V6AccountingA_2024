@@ -2627,6 +2627,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl(this);
+                f2.FormControl.All_Objects["IS_DX"] = "1";
                 f2.ShowDialog(this);
                 SetStatus2Text();
                 if (f2.InsertSuccess)

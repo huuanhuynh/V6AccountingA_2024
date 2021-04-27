@@ -17,15 +17,17 @@ namespace V6Init
         {
             try
             {
-                V6SelectResult selectResult = SqlConnect.Select("V6Option", "name,type,val");
+                V6SelectResult selectResult = SqlConnect.Select("V6Option", "name,type,val,defaul");
 
                 if (selectResult.Data != null)
                 {
                     _values = new SortedDictionary<string, string>();
+                    _defaul = new SortedDictionary<string, string>();
                     _types = new SortedDictionary<string, string>();
                     foreach (DataRow row in selectResult.Data.Rows)
                     {
                         _values[row["name"].ToString().Trim().ToUpper()] = row["val"].ToString().Trim();
+                        _defaul[row["name"].ToString().Trim().ToUpper()] = row["defaul"].ToString().Trim();
                         _types[row["name"].ToString().Trim().ToUpper()] = row["type"].ToString().Trim();
                     }
                 }
@@ -38,6 +40,7 @@ namespace V6Init
         }
 
         private static SortedDictionary<string, string> _values;
+        private static SortedDictionary<string, string> _defaul;
         private static SortedDictionary<string, string> _types;
         public static bool Test = true;
 
@@ -66,6 +69,17 @@ namespace V6Init
             try
             {
                 return V6OptionValues[name.ToUpper()];
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(name + " " + ex.Message);
+            }
+        }
+        public static string GetDefaul(string name)
+        {
+            try
+            {
+                return _defaul[name.ToUpper()];
             }
             catch (Exception ex)
             {
@@ -575,6 +589,55 @@ namespace V6Init
                 }
 
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Định nghĩa Font report Name;Size;Style
+        /// </summary>
+        public static object M_RFONTNAME
+        {
+            get
+            {
+                var s = GetValue("M_RFONTNAME");
+                if (string.IsNullOrEmpty(s))
+                {
+                    s = GetDefaul("M_RFONTNAME");
+                }
+
+                return s;
+            }
+        }
+        /// <summary>
+        /// Định nghĩa Font report title Name;Size;Style
+        /// </summary>
+        public static object M_RTFONT
+        {
+            get
+            {
+                var s = GetValue("M_RTFONT");
+                if (string.IsNullOrEmpty(s))
+                {
+                    s = GetDefaul("M_RTFONT");
+                }
+
+                return s;
+            }
+        }
+        /// <summary>
+        /// Định nghĩa Font report sign Name;Size;Style
+        /// </summary>
+        public static object M_RSFONT
+        {
+            get
+            {
+                var s = GetValue("M_RSFONT");
+                if (string.IsNullOrEmpty(s))
+                {
+                    s = GetDefaul("M_RSFONT");
+                }
+
+                return s;
             }
         }
     }

@@ -200,12 +200,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                         old_dir = DataOld["RPT_DIR"].ToString().Trim() + @"\";
                     }
 
-                    var ReportFileFullOld = @"Reports\" + old_dir
+                    string folder = @"Reports\";
+                    string r_ext = ".rpt";
+                    if (All_Objects.ContainsKey("IS_DX") && (string)All_Objects["IS_DX"] == "1")
+                    {
+                        folder = @"ReportsDX\";
+                        r_ext = ".repx";
+                    }
+
+                    var ReportFileFullOld = folder + old_dir
                                             + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
-                                            DataOld["REPORT"].ToString().Trim() + ".rpt";
-                    var ExcelFileFullOld = @"Reports\" + old_dir
-                                            + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
-                                            DataOld["REPORT"].ToString().Trim() + ".xls";
+                                            DataOld["REPORT"].ToString().Trim() + r_ext;
+                    var ExcelFileFullOld = folder + old_dir
+                                                  + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
+                                                  DataOld["REPORT"].ToString().Trim() + ".xls";
 
                     string new_dir = "";
                     if (DataDic.ContainsKey("RPT_DIR") && DataDic["RPT_DIR"].ToString().Trim() != "")
@@ -213,12 +221,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                         new_dir = DataDic["RPT_DIR"].ToString().Trim() + @"\";
                     }
 
-                    var ReportFileFullNew = @"Reports\" + new_dir
-                                            + DataDic["MAU"] + @"\" + DataDic["LAN"] + @"\" +
-                                            DataDic["REPORT"].ToString().Trim() + ".rpt";
-                    var ExcelFileFullNew = @"Reports\" + new_dir
-                                            + DataDic["MAU"] + @"\" + DataDic["LAN"] + @"\" +
-                                            DataDic["REPORT"].ToString().Trim() + ".xls";
+                    var ReportFileFullNew = folder + new_dir
+                                                   + DataDic["MAU"] + @"\" + DataDic["LAN"] + @"\" +
+                                                   DataDic["REPORT"].ToString().Trim() + r_ext;
+                    var ExcelFileFullNew = folder + new_dir
+                                                  + DataDic["MAU"] + @"\" + DataDic["LAN"] + @"\" +
+                                                  DataDic["REPORT"].ToString().Trim() + ".xls";
                     
                     if (ReportFileFullNew != ReportFileFullOld)
                     {
@@ -286,9 +294,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private void btnExcelTemplate_Click(object sender, EventArgs e)
         {
-            var EXCEL_FILE = @"Reports\"
-                + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" +
-                txtReportFileNew.Text.Trim() + ".xls";
+            string DX = "";
+            if (All_Objects.ContainsKey("IS_DX") && (string)All_Objects["IS_DX"] == "1")
+            {
+                DX = "DX";
+            }
+            var EXCEL_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + ".xls";
             V6ControlFormHelper.RunProcess(EXCEL_FILE);
         }
 
@@ -351,9 +362,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private void btnExcelTemplateView_Click(object sender, EventArgs e)
         {
-            var EXCEL_FILE = @"Reports\"
-                + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" +
-                txtReportFileNew.Text.Trim() + "_view.xls";
+            string DX = "";
+            if (All_Objects.ContainsKey("IS_DX") && (string)All_Objects["IS_DX"] == "1")
+            {
+                DX = "DX";
+            }
+            var EXCEL_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + "_view.xls";
             V6ControlFormHelper.RunProcess(EXCEL_FILE);
         }
 
