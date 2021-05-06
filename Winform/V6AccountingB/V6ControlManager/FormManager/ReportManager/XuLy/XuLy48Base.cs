@@ -378,7 +378,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 CreateFormProgram();
                 CreateFormControls();   //AddFilterControl(_program);
                 AddAllControlsToAll_Objects();
-                ApplyConfigSetting();
+                //ApplyConfigSetting();
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 if (ViewDetail)
                     ShowDetailGridView();
@@ -472,7 +472,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void ApplyConfigSetting()
+        public void ApplyConfigExtra_GRD_ALLOW()
         {
             try
             {
@@ -2069,6 +2069,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
+            }
+        }
+
+        private void btnEditGrid_Click(object sender, EventArgs e)
+        {
+            if (this.ShowMessage(V6Setting.IsVietnamese ? "Cho phép sửa số liệu?" : "Allow edit?") == DialogResult.OK)
+            {
+                ApplyConfigExtra_GRD_ALLOW();
             }
         }
         
