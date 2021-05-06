@@ -1045,7 +1045,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
             }
 
-            DXreportManager.SetReportFormatByTag(repx, ReportDocumentParameters);
             if (errors != "")
             {
                 this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFullDX + " " + errors);

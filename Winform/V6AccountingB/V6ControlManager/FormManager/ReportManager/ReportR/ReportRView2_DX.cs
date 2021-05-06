@@ -926,7 +926,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     errors += "\n" + item.Key + ": " + ex.Message;
                 }
             }
-            DXreportManager.SetReportFormatByTag(repx, ReportDocumentParameters);
+            
             if (errors != "")
             {
                 this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFullDX + " " + errors);

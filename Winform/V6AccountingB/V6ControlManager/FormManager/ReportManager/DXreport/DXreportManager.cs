@@ -207,8 +207,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
 
         }
 
-
-
+        
 
         public static void SetReportFormatByTag(XtraReport repx, IDictionary<string, object> parameters)
         {

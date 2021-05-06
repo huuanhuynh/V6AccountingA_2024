@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -2727,6 +2728,16 @@ namespace V6ThuePostManager
                         string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
                         result = viettel_V2WS.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out paras.Result.V6ReturnValues);
                     }
+
+                    // Nếu error null mà ko có so_hd thì chạy hàm lấy thông tin.
+                    if (string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE)
+                        && string.IsNullOrEmpty(paras.Result.V6ReturnValues.SO_HD))
+                    {
+                        Thread.Sleep(10000); // Chờ 10 giây.
+                        string oldTransactionID = paras.Result.V6ReturnValues.ID;
+                        viettel_V2WS.SearchInvoiceByTransactionUuid(_codetax, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                        paras.Result.V6ReturnValues.ID = oldTransactionID;
+                    }
                 }
                 else if (paras.Mode.StartsWith("S"))
                 {
@@ -2760,34 +2771,20 @@ namespace V6ThuePostManager
                     result = viettel_V2WS.POST_EDIT(jsonBody, out paras.Result.V6ReturnValues);
                 }
 
-                //Phân tích result
-                paras.Result.V6ReturnValues.RESULT_STRING = result;
+                //Phân tích result ra câu thông báo.
+                //paras.Result.V6ReturnValues.RESULT_STRING = result;
                 string message = "";
                 try
                 {
-                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
-                    paras.Result.V6ReturnValues.RESULT_OBJECT = responseObject;
-                    if (!string.IsNullOrEmpty(responseObject.description))
+                    //CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    //paras.Result.V6ReturnValues.RESULT_OBJECT = responseObject;
+                    if (!string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE))
                     {
-                        message += " " + responseObject.description;
+                        message += " " + paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE;
                     }
-
-                    if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
+                    else if (!string.IsNullOrEmpty(paras.Result.V6ReturnValues.SO_HD))
                     {
-                        paras.Result.V6ReturnValues.SO_HD = responseObject.result.invoiceNo;
-                        paras.Result.V6ReturnValues.ID = responseObject.result.transactionID;
-                        paras.Result.V6ReturnValues.SECRET_CODE = responseObject.result.reservationCode;
-                        message += " " + responseObject.result.invoiceNo;
-
-                    }
-                    else if (responseObject.errorCode == null)
-                    {
-                        paras.Result.V6ReturnValues.SO_HD = paras.InvoiceNo;
-                        paras.Result.V6ReturnValues.RESULT_MESSAGE = responseObject.description;
-                    }
-                    else
-                    {
-                        paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = responseObject.errorCode + ":" + responseObject.description;
+                        message += " " + paras.Result.V6ReturnValues.SO_HD;
                     }
                 }
                 catch (Exception ex)

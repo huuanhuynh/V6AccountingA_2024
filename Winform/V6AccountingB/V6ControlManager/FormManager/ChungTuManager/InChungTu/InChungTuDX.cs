@@ -1422,8 +1422,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     errors += "repx1 " + item.Key + ": " + ex.Message + "\n";
                 }
             }
-            DXreportManager.SetReportFormatByTag(repx1, ReportDocumentParameters);
-
+            
             if (MauTuIn == 1 && _soLienIn >= 2 && repx2 != null)
             {
                 foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
@@ -1454,8 +1453,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         errors += "repx2 " + item.Key + ": " + ex.Message + "\n";
                     }
                 }
-                DXreportManager.SetReportFormatByTag(repx2, ReportDocumentParameters);
             }
+
             if (MauTuIn == 1 && _soLienIn >= 3 && repx3 != null)
             {
                 foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
@@ -1486,8 +1485,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         errors += "repx3 " + item.Key + ": " + ex.Message + "\n";
                     }
                 }
-                DXreportManager.SetReportFormatByTag(repx3, ReportDocumentParameters);
             }
+
             if (MauTuIn == 1 && _soLienIn >= 4 && repx4 != null)
             {
                 foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
@@ -1518,7 +1517,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         errors += "repx4 " + item.Key + ": " + ex.Message + "\n";
                     }
                 }
-                DXreportManager.SetReportFormatByTag(repx4, ReportDocumentParameters);
             }
 
             if (errors != "")

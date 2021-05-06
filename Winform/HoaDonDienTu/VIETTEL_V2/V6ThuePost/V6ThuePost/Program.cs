@@ -26,7 +26,7 @@ namespace V6ThuePost
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
         #region ===== VAR =====
-        public static ViettelV2WS _viettel_ws = null;
+        public static ViettelV2WS _viettelV2_ws = null;
         /// <summary>
         /// Link host
         /// </summary>
@@ -80,6 +80,7 @@ namespace V6ThuePost
         /// key đầu ngữ
         /// </summary>
         private static string fkey0 = "";
+        private static string _uid = "";
         private static string _debug = "";
         /// <summary>
         /// key trong data
@@ -132,14 +133,14 @@ namespace V6ThuePost
                     }
                     string dbfFile = arg2;
 
-                    _viettel_ws = new ViettelV2WS(baseUrl, username, password, _codetax);
+                    _viettelV2_ws = new ViettelV2WS(baseUrl, username, password, _codetax);
 
                     if (mode.ToUpper() == "MTEST")
                     {
                         ReadData(arg2, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
-                        result = _viettel_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
                         if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
                         {
                             result = "Kết nối ổn. " + result;
@@ -157,7 +158,7 @@ namespace V6ThuePost
                     {
                         //ReadData(arg2, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
-                        result = _viettel_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
                         EncodeV6Return(v6return);
                         Console.Write(v6return.ToJson());
                         goto End;
@@ -168,11 +169,22 @@ namespace V6ThuePost
                         
                         if (mode.StartsWith("M_F4_"))
                         {
-                            result = _viettel_ws.POST_DRAFT(jsonBody, out v6return);
+                            result = _viettelV2_ws.POST_DRAFT(jsonBody, out v6return);
                         }
                         else
                         {
-                            result = _viettel_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                            result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                        }
+
+                        // Nếu error null mà ko có so_hd thì chạy hàm lấy thông tin.
+                        if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE)
+                            && string.IsNullOrEmpty(v6return.SO_HD))
+                        {
+                            Thread.Sleep(10000); // Chờ 10 giây.
+                            string oldTransactionID = v6return.ID;
+                            _uid = SearchUID(jsonBody);
+                            _viettelV2_ws.SearchInvoiceByTransactionUuid(_codetax, _uid, out v6return);
+                            v6return.ID = oldTransactionID;
                         }
                     }
                     else if (mode.StartsWith("M"))
@@ -197,14 +209,14 @@ namespace V6ThuePost
                         {
                             jsonBody = ReadData(dbfFile, "M");
                             File.Create(flagFileName1).Close();
-                            result = _viettel_ws.POST_DRAFT(jsonBody, out v6return);
+                            result = _viettelV2_ws.POST_DRAFT(jsonBody, out v6return);
                         }
                         else if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
                             jsonBody = ReadData(dbfFile, "M");
                             if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
                             File.Create(flagFileName1).Close();
-                            result = _viettel_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                            result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
@@ -216,7 +228,17 @@ namespace V6ThuePost
                             jsonBody = ReadData(dbfFile, "M");
                             if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                            result = _viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out v6return);
+                            result = _viettelV2_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out v6return);
+                        }
+
+                        // Nếu error null mà ko có so_hd thì chạy hàm lấy thông tin.
+                        if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE)
+                            && string.IsNullOrEmpty(v6return.SO_HD))
+                        {
+                            Thread.Sleep(10000); // Chờ 10 giây.
+                            string oldTransactionID = v6return.ID;
+                            _viettelV2_ws.SearchInvoiceByTransactionUuid(_codetax, _uid, out v6return);
+                            v6return.ID = oldTransactionID;
                         }
                     }
                     else if (mode.StartsWith("S"))
@@ -248,19 +270,19 @@ namespace V6ThuePost
 
                         jsonBody = ReadData(dbfFile, "S");
                         File.Create(flagFileName1).Close();
-                        result = _viettel_ws.POST_EDIT(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_EDIT(jsonBody, out v6return);
                     }
                     else if (mode.StartsWith("T") && mode.EndsWith("_JSON"))
                     {
                         // Lưu ý dữ liệu mode Replace. (T)
                         jsonBody = ReadText(arg2);
-                        result = _viettel_ws.POST_REPLACE(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_REPLACE(jsonBody, out v6return);
                     }
                     else if (mode == "T")
                     {
                         jsonBody = ReadData(dbfFile, "T");
                         File.Create(flagFileName1).Close();
-                        result = _viettel_ws.POST_REPLACE(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_REPLACE(jsonBody, out v6return);
                     }
                     else if (mode == "GET_INVOICE" || mode == "GET_INVOICE_JSON")
                     {
@@ -268,7 +290,7 @@ namespace V6ThuePost
                         string uid = arg2;
                         MakeFlagNames(uid);
                         File.Create(flagFileName1).Close();
-                        result = _viettel_ws.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
+                        result = _viettelV2_ws.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
 
 
                     }
@@ -285,7 +307,7 @@ namespace V6ThuePost
                             string buyerEmailAddress = postObject.buyerInfo["buyerEmail"].ToString();
                             string paymentType = postObject.generalInvoiceInfo["paymentType"].ToString();
                             string paymentTypeName = postObject.generalInvoiceInfo["paymentTypeName"].ToString();
-                            result = _viettel_ws.UpdatePaymentStatus(_codetax, invoiceNo, strIssueDate, templateCode,
+                            result = _viettelV2_ws.UpdatePaymentStatus(_codetax, invoiceNo, strIssueDate, templateCode,
                                 buyerEmailAddress, paymentType, paymentTypeName, "true", out v6return);
                         }
                         //else if (mode == "G2") // Gạch nợ hóa đơn theo lstInvToken(01GTKT2/001;AA/13E;10)
@@ -302,7 +324,7 @@ namespace V6ThuePost
                             string buyerEmailAddress = postObject.buyerInfo["buyerEmail"].ToString();
                             string paymentType = postObject.generalInvoiceInfo["paymentType"].ToString();
                             string paymentTypeName = postObject.generalInvoiceInfo["paymentTypeName"].ToString();
-                            result = _viettel_ws.UpdatePaymentStatus(_codetax, invoiceNo, strIssueDate, templateCode,
+                            result = _viettelV2_ws.UpdatePaymentStatus(_codetax, invoiceNo, strIssueDate, templateCode,
                                 buyerEmailAddress, paymentType, paymentTypeName, "false", out v6return);
                         }
 
@@ -316,7 +338,7 @@ namespace V6ThuePost
                         string stt_rec = arg4;
                         MakeFlagNames(stt_rec);
                         File.Create(flagFileName1).Close();
-                        result = _viettel_ws.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate);
+                        result = _viettelV2_ws.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate);
                         v6return.RESULT_STRING = result;
                     }
                     else if (mode.StartsWith("P"))
@@ -333,14 +355,14 @@ namespace V6ThuePost
                         {
                             MakeFlagNames(uid);
                             //string strIssueDate = V6JsonConverter.ObjectToJson(ngay_ct, "VIETTEL");
-                            string info = _viettel_ws.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
+                            string info = _viettelV2_ws.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
                             SearchInvoiceResponseV2 infoObj =  v6return.RESULT_OBJECT as SearchInvoiceResponseV2;
                             if (infoObj != null)
                             {
                                 string strIssueDate = infoObj.result[0].issueDate;
                                 try
                                 {
-                                    result = _viettel_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
+                                    result = _viettelV2_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
                                 }
                                 catch (Exception download_ex)
                                 {
@@ -357,7 +379,7 @@ namespace V6ThuePost
                         {
                             try
                             {
-                                result = _viettel_ws.DownloadInvoicePDF(_codetax, soseri_soct, templateCode, uid, V6SoftLocalAppData_Directory, out v6return);
+                                result = _viettelV2_ws.DownloadInvoicePDF(_codetax, soseri_soct, templateCode, uid, V6SoftLocalAppData_Directory, out v6return);
                             }
                             catch (Exception download_ex)
                             {
@@ -473,6 +495,15 @@ namespace V6ThuePost
             Process.GetCurrentProcess().Kill(); // AAARGHHHGHglglgghh...
         }
 
+        private static string SearchUID(string jsonBody)
+        {
+            //","transactionUuid":"1cc173cd-7a97-eb11-80f5-6c2b59a11324"
+            int index1 = jsonBody.IndexOf("\"transactionUuid\":\"") + "\"transactionUuid\":\"".Length;
+            int index2 = jsonBody.IndexOf("\"", index1) + "".Length;
+            string result = jsonBody.Substring(index1, index2 - index1);
+            return result;
+        }
+
         private static void EncodeV6Return(V6Return v6return)
         {
             if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
@@ -523,6 +554,7 @@ namespace V6ThuePost
                 row0 = data.Rows[0];
 
                 fkeyA = fkey0 + row0["STT_REC"];
+                _uid = "" + row0["UID"];
                 MakeFlagNames(fkeyA);
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)

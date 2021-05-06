@@ -54,7 +54,7 @@ namespace V6ThuePost
                 btnTest.Enabled = true;
                 btnSend.Enabled = true;
 
-                Program._viettel_ws = new ViettelV2WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
+                Program._viettelV2_ws = new ViettelV2WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
             }
             catch (Exception ex)
             {
@@ -64,10 +64,10 @@ namespace V6ThuePost
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            if (Program._viettel_ws != null)
+            if (Program._viettelV2_ws != null)
             {
                 V6Return v6return = null;
-                string result = Program._viettel_ws.POST_CREATE_INVOICE("", out v6return);
+                string result = Program._viettelV2_ws.POST_CREATE_INVOICE("", out v6return);
                 
                 string message = "";
                 if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
@@ -92,13 +92,13 @@ namespace V6ThuePost
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
                 
-                result = Program._viettel_ws.POST_CREATE_INVOICE(richTextBox1.Text, out v6Return);
+                result = Program._viettelV2_ws.POST_CREATE_INVOICE(richTextBox1.Text, out v6Return);
                 lblResult.Text = result;
             }
             else
             {
                 string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
-                result = Program._viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT, out v6Return);
+                result = Program._viettelV2_ws.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT, out v6Return);
                 lblResult.Text = result;
             }
             

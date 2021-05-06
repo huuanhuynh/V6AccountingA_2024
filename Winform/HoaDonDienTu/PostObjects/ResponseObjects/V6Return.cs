@@ -20,7 +20,7 @@ namespace V6ThuePost.ResponseObjects
         /// </summary>
         public string RESULT_STRING { get; set; }
         /// <summary>
-        /// Chuỗi lỗi nếu có lỗi.
+        /// Chuỗi lỗi nếu có lỗi. Được gán trong hàm WS.
         /// </summary>
         public string RESULT_ERROR_MESSAGE;
         /// <summary>
