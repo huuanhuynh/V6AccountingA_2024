@@ -828,6 +828,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 
                 txtReportTitle.Text = ReportTitle;
 
+                if (EXTRA_INFOR.ContainsKey("ENTER2TAB"))
+                {
+                    dataGridView1.enter_to_tab = ObjectAndString.ObjectToBool(EXTRA_INFOR["ENTER2TAB"]);
+                    //dataGridView2.enter_to_tab = dataGridView1.enter_to_tab;
+                }
+
                 InvokeFormEvent(FormDynamicEvent.INIT2);
                 Ready();
             }

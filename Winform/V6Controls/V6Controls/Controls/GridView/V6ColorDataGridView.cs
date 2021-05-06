@@ -196,9 +196,10 @@ namespace V6Controls
             base.OnKeyDown(e);
         }
 
+        // Chuyển Enter thành Tab khi Edit cell
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            if (keyData == Keys.Enter)
+            if (keyData == Keys.Enter && enter_to_tab)
                 return base.ProcessDialogKey(Keys.Tab);
             else
                 return base.ProcessDialogKey(keyData);
@@ -209,7 +210,13 @@ namespace V6Controls
             ChangeEnterToTab();
         }
 
+        /// <summary>
+        /// Cờ đã áp dụng chuyển Enter thành tab.
+        /// </summary>
         private bool apply_keydown2;
+        /// <summary>
+        /// Chuyển Enter thành Tab trong Gridview.
+        /// </summary>
         private void ChangeEnterToTab()
         {
             if (!apply_keydown2)
@@ -219,9 +226,14 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Cờ thay đổi tắt/bật enter_to_tab
+        /// </summary>
+        public bool enter_to_tab = true;
         void V6ColorDataGridView_KeyDown2(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (LockGridView) return;
+            if (e.KeyCode == Keys.Enter && enter_to_tab)
             {
                 e.Handled = true;
                 ProcessDialogKey(Keys.Tab);

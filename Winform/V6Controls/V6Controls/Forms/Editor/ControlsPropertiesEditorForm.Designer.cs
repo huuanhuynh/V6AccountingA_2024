@@ -44,6 +44,7 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnNhapXml = new System.Windows.Forms.Button();
             this.btnXuatXml = new System.Windows.Forms.Button();
+            this.lblControlType = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,9 +85,9 @@
             // 
             this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertyGrid1.Location = new System.Drawing.Point(303, 12);
+            this.propertyGrid1.Location = new System.Drawing.Point(303, 43);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(258, 534);
+            this.propertyGrid1.Size = new System.Drawing.Size(258, 503);
             this.propertyGrid1.TabIndex = 6;
             // 
             // panel1
@@ -209,11 +210,21 @@
             this.btnXuatXml.UseVisualStyleBackColor = true;
             this.btnXuatXml.Click += new System.EventHandler(this.btnXuatXml_Click);
             // 
+            // lblControlType
+            // 
+            this.lblControlType.AccessibleDescription = ".";
+            this.lblControlType.Location = new System.Drawing.Point(303, 13);
+            this.lblControlType.Name = "lblControlType";
+            this.lblControlType.Size = new System.Drawing.Size(258, 27);
+            this.lblControlType.TabIndex = 13;
+            this.lblControlType.Text = "ControlType";
+            // 
             // ControlsPropertiesEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 558);
+            this.Controls.Add(this.lblControlType);
             this.Controls.Add(this.btnNhapXml);
             this.Controls.Add(this.btnXuatXml);
             this.Controls.Add(this.btnUp);
@@ -229,6 +240,7 @@
             this.Controls.SetChildIndex(this.btnUp, 0);
             this.Controls.SetChildIndex(this.btnXuatXml, 0);
             this.Controls.SetChildIndex(this.btnNhapXml, 0);
+            this.Controls.SetChildIndex(this.lblControlType, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -251,5 +263,6 @@
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnNhapXml;
         private System.Windows.Forms.Button btnXuatXml;
+        private System.Windows.Forms.Label lblControlType;
     }
 }

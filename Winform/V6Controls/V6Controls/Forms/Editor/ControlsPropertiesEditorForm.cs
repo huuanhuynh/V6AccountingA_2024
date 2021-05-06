@@ -204,16 +204,18 @@ namespace V6Controls.Forms.Editor
             ShowControlInfo(e.Node.Tag as Control);
         }
 
-        private Control _label;
+        private Control _control;
         public string NewText { get { return textBox1.Text; } }
-        private void ShowControlInfo(Control label)
+        private void ShowControlInfo(Control control_)
         {
             try
             {
-                _label = label;
-                if (string.IsNullOrEmpty(_label.AccessibleDescription))
+                _control = control_;
+                lblControlType.Text = "" + _control.GetType();
+                // Thông tin ngông ngữ.
+                if (string.IsNullOrEmpty(_control.AccessibleDescription))
                 {
-                    if (label is V6Control || label is V6Form)
+                    if (control_ is V6Control || control_ is V6Form)
                     {
                         panel1.Visible = true;
                         label1.Visible = false;
@@ -227,9 +229,9 @@ namespace V6Controls.Forms.Editor
                         //{
                         //    sortedDictionary["(" + propertyInfo.Name + ")"] = "" + propertyInfo.GetValue(label, null);
                         //}
-                        foreach (FieldInfo fieldInfo in label.GetType().GetFields())
+                        foreach (FieldInfo fieldInfo in control_.GetType().GetFields())
                         {
-                            sortedDictionary["[" + fieldInfo.Name + "]"] = "" + fieldInfo.GetValue(label);
+                            sortedDictionary["[" + fieldInfo.Name + "]"] = "" + fieldInfo.GetValue(control_);
                         }
                         foreach (KeyValuePair<string, string> item in sortedDictionary)
                         {
@@ -259,7 +261,7 @@ namespace V6Controls.Forms.Editor
                     columnHeader1.Text = "Name";
                     columnHeader2.Text = "Value";
                 }
-                textBox1.Text = _label.Text;
+                textBox1.Text = _control.Text;
                 
                 if (V6Setting.IsVietnamese)
                 {
@@ -268,11 +270,11 @@ namespace V6Controls.Forms.Editor
                 }
 
                 listView1.Items.Clear();
-                listView1.Items.Add(new ListViewItem(new[] { V6Setting.IsVietnamese ? "Tên đối tượng" : "Object Name", _label.Name }));
-                listView1.Items.Add(new ListViewItem(new[] { V6Setting.IsVietnamese ? "Giá trị" : "Text", _label.Text }));
-                listView1.Items.Add(new ListViewItem(new[] { "AccessibleDescription", _label.AccessibleDescription }));
+                listView1.Items.Add(new ListViewItem(new[] { V6Setting.IsVietnamese ? "Tên đối tượng" : "Object Name", _control.Name }));
+                listView1.Items.Add(new ListViewItem(new[] { V6Setting.IsVietnamese ? "Giá trị" : "Text", _control.Text }));
+                listView1.Items.Add(new ListViewItem(new[] { "AccessibleDescription", _control.AccessibleDescription }));
 
-                row = CorpLan.GetRow(_label.AccessibleDescription);
+                row = CorpLan.GetRow(_control.AccessibleDescription);
                 if (row != null)
                 {
                     listView1.Items.Add(new ListViewItem(new[] { "DefaultText", row["D"].ToString() }));
@@ -281,13 +283,13 @@ namespace V6Controls.Forms.Editor
                     if (row.Table.Columns.Contains(V6Setting.Language))
                         listView1.Items.Add(new ListViewItem(new[] { "SelectedLang", row[V6Setting.Language].ToString() }));
                 }
-                else if (_label.AccessibleDescription != ".")
+                else if (_control.AccessibleDescription != ".")
                 {
                     listView1.Items.Add(new ListViewItem(new[] { "Error", "No CorpLan info." }));
 
-                    var parent = V6ControlFormHelper.FindParent<V6Control>(_label) ?? V6ControlFormHelper.FindParent<V6Form>(_label);
-                    this.WriteToLog((parent == null ? "" : parent.GetType() + ".") + _label.Name,
-                        "No CorpLan info: " + _label.AccessibleDescription);
+                    var parent = V6ControlFormHelper.FindParent<V6Control>(_control) ?? V6ControlFormHelper.FindParent<V6Form>(_control);
+                    this.WriteToLog((parent == null ? "" : parent.GetType() + ".") + _control.Name,
+                        "No CorpLan info: " + _control.AccessibleDescription);
                 }
             }
             catch (Exception ex)
@@ -304,15 +306,15 @@ namespace V6Controls.Forms.Editor
                 {
                     change_v = checkBox1.Checked ? "1" : "0";
                     updateText = NewText;
-                    updateId = _label.AccessibleDescription;
+                    updateId = _control.AccessibleDescription;
 
                     if (V6Setting.IsVietnamese && !checkBox1.Checked)
                     {
-                        _label.Text = row["V"].ToString();
+                        _control.Text = row["V"].ToString();
                     }
                     else
                     {
-                        _label.Text = updateText;
+                        _control.Text = updateText;
                     }
 
                     var T = new Thread(UpdateDatabase);

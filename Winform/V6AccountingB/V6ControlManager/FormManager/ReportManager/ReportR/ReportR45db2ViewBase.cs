@@ -690,6 +690,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, V6Options.M_R_FONTSIZE);
                 }
+
+                if (EXTRA_INFOR.ContainsKey("ENTER2TAB"))
+                {
+                    dataGridView1.enter_to_tab = ObjectAndString.ObjectToBool(EXTRA_INFOR["ENTER2TAB"]);
+                    //dataGridView2.enter_to_tab = dataGridView1.enter_to_tab;
+                }
+
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
