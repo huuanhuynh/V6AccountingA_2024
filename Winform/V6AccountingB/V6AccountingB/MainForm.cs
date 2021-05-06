@@ -47,11 +47,6 @@ namespace V6AccountingB
             V6ControlFormHelper.lblMenuMain = lblMenuShow;
             V6ControlFormHelper.MainMenu = menuMain;
             
-            lblMenuShow.MouseEnter += V6ControlFormHelper.HaveStatusControl_MouseEnter;
-            lblMenuShow.MouseHover += V6ControlFormHelper.HaveStatusControl_MouseHover;
-            lblMenuShow.MouseMove += V6ControlFormHelper.HaveStatusControl_MouseMove;
-            lblMenuShow.MouseLeave += V6ControlFormHelper.HaveStatusControl_MouseLeave;
-
             menuMain.Buttons.Clear();
             MakeMenu1();
             FixQuickMenu();

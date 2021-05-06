@@ -771,7 +771,6 @@ namespace V6Controls
                     {
                         br = new LinearGradientBrush(rect, parenT.GradientButtonSelectedDark,
                             parenT.GradientButtonSelectedLight, 90f);
-                        V6ControlFormHelper.SetStatusText(Text);
                     }
                     else
                     {
@@ -785,7 +784,6 @@ namespace V6Controls
                     {
                         br = new LinearGradientBrush(rect, parenT.GradientButtonHoverLight,
                             parenT.GradientButtonHoverDark, 90f);
-                        V6ControlFormHelper.SetStatusText(Text);
                     }
                     else
                     {

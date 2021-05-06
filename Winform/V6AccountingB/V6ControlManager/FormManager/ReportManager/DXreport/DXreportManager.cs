@@ -38,43 +38,6 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         //    return repx;
         //}
 
-        /// <summary>
-        /// Tạo chuỗi format số dùng trong XtraReport (test).
-        /// </summary>
-        /// <param name="v6Tag"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        public static string GetNumberFormatFromV6Tag(V6Tag v6Tag, IDictionary<string, object> parameters)
-        {
-            bool haveFormat = false;
-            string format = "{0:";
-            format += "#,#";
-            if (v6Tag.Decimals != null)
-            {
-                int v6tagdecimals;
-                if (!Int32.TryParse(v6Tag.Decimals, out v6tagdecimals))
-                {
-                    if (parameters.ContainsKey(v6Tag.Decimals))
-                    {
-                        v6tagdecimals = ObjectAndString.ObjectToInt(parameters[v6Tag.Decimals]);
-                    }
-                    else
-                    {
-                        V6ControlFormHelper.ShowMainMessage(V6Text.NotExist + v6Tag.Decimals);
-                        Logger.WriteToLog(V6Text.NotExist + v6Tag.Decimals);
-                    }
-                }
-                haveFormat = true;
-                format += ".";
-                for (int i = 0; i < v6tagdecimals; i++)
-                {
-                    format += "0";
-                }
-            }
-            format += "}";
-            if (haveFormat) return format;
-            return "";
-        }
 
         /// <summary>
         /// Tải file XtraReport. Nếu không có file trả về mẫu tạm XtraReport1.
@@ -208,32 +171,6 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         }
 
         
-
-        public static void SetReportFormatByTag(XtraReport repx, IDictionary<string, object> parameters)
-        {
-            try
-            {
-                //Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = V6Options.M_NUM_POINT;
-                // Vidu format SL
-                var dxControls = repx.AllControls<XRLabel>();
-                foreach (XRLabel xrLabel in dxControls)
-                {
-                    V6Tag v6Tag = new V6Tag(xrLabel.Tag);
-                    //if (!string.IsNullOrEmpty(v6Tag.Format))
-                    {
-                        string numberFormat = GetNumberFormatFromV6Tag(v6Tag, parameters);
-                        if (numberFormat != "") xrLabel.DataBindings["Text"].FormatString = numberFormat;
-                    }
-                }
-
-                // End vidu
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteExLog("DXreportManager.SetReportFormatByTag", ex);
-            }
-        }
-
         public static void AddBaseParameters(IDictionary<string, object> reportDocumentParameters)
         {
             reportDocumentParameters.AddRange(new SortedDictionary<string, object>

@@ -392,25 +392,25 @@ namespace V6Controls.Forms
         #endregion show hide message
 
         #region ==== SetStatusText ====
-        public static void HaveStatusControl_MouseEnter(object sender, EventArgs e)
-        {
-            SetStatusText(((Control)sender).Tag.ToString());
-        }
+        //public static void HaveStatusControl_MouseEnter(object sender, EventArgs e)
+        //{
+        //    SetStatusText(((Control)sender).Tag.ToString());
+        //}
 
-        public static void HaveStatusControl_MouseHover(object sender, EventArgs e)
-        {
-            SetStatusText(((Control)sender).Tag.ToString());
-        }
+        //public static void HaveStatusControl_MouseHover(object sender, EventArgs e)
+        //{
+        //    SetStatusText(((Control)sender).Tag.ToString());
+        //}
 
-        public static void HaveStatusControl_MouseMove(object sender, MouseEventArgs e)
-        {
-            SetStatusText(((Control)sender).Tag.ToString());
-        }
+        //public static void HaveStatusControl_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    SetStatusText(((Control)sender).Tag.ToString());
+        //}
 
-        public static void HaveStatusControl_MouseLeave(object sender, EventArgs e)
-        {
-            SetStatusText("");
-        }
+        //public static void HaveStatusControl_MouseLeave(object sender, EventArgs e)
+        //{
+        //    SetStatusText("");
+        //}
 
         public static ToolStripStatusLabel StatusTextViewControl { get; set; }
         public static ToolStripStatusLabel StatusTextViewControl2 { get; set; }
@@ -421,7 +421,7 @@ namespace V6Controls.Forms
         /// <param name="text"></param>
         public static void SetStatusText(string text)
         {
-            StatusTextViewControl.Text = (text + "-\\-" + StatusTextViewControl.Text).Left(100 + StatusTextViewControl.Width/10);
+            StatusTextViewControl.Text = (text + "     " + StatusTextViewControl.Text).Left(100 + StatusTextViewControl.Width/10);
         }
         /// <summary>
         /// Gán status text phía dưới bên phải
