@@ -5977,5 +5977,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
+        protected void SetGridViewFlag(params V6ColorDataGridView[] dataGridViews)
+        {
+            try
+            {
+                if (_invoice.EXTRA_INFOR.ContainsKey("ENTER2TAB"))
+                {
+                    bool e2t = ObjectAndString.ObjectToBool(_invoice.EXTRA_INFOR["ENTER2TAB"]);
+                    foreach (V6ColorDataGridView gridView in dataGridViews)
+                    {
+                        gridView.enter_to_tab = e2t;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
     }
 }

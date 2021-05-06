@@ -111,6 +111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
             SetGridViewFomular();
             SetGridViewEvent();
+            SetGridViewFlag(dataGridView1);
 
             cboKieuPost.SelectedIndex = 0;
 

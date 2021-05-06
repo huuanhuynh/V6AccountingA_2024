@@ -100,6 +100,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
             SetGridViewFomular();
             SetGridViewEvent();
+            SetGridViewFlag(dataGridView1);
 
             cboKieuPost.SelectedIndex = 0;
             if (!V6Setting.IsVietnamese)

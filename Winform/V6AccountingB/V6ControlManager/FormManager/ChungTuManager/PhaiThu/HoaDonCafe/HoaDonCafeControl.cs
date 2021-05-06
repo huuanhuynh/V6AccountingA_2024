@@ -212,6 +212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
             SetGridViewFomular();
             SetGridViewEvent();
+            SetGridViewFlag(dataGridView1, dataGridView3);
 
             cboKieuPost.SelectedIndex = 0;
 

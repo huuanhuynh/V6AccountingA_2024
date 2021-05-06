@@ -106,6 +106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
             SetGridViewFomular();
             SetGridViewEvent();
+            SetGridViewFlag(dataGridView1, dataGridView2);
             cboKieuPost.SelectedIndex = 0;
 
             All_Objects["thisForm"] = this;

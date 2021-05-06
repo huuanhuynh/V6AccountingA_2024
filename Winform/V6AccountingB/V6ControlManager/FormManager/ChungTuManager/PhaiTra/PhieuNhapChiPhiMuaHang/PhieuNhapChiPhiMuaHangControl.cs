@@ -94,6 +94,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             dataGridViewColumn = dataGridView1.Columns["STT_REC0"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
 
+            SetGridViewFlag(dataGridView1, dataGridView2);
             
             cboKieuPost.SelectedIndex = 0;
             if (!V6Setting.IsVietnamese)

@@ -129,7 +129,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             dataGridViewColumn = dataGridView3.Columns["STT_REC0"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
-            
+
+            SetGridViewFlag(dataGridView1, dataGridView3);
+
             cboKieuPost.SelectedIndex = 0;
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
