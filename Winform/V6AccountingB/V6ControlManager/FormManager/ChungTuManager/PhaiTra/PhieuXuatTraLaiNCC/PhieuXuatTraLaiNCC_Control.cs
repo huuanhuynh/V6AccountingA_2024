@@ -4019,43 +4019,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             }
         }
 
-        private void In()
-        {
-            try
-            {
-                if (IsViewingAnInvoice)
-                {
-                    if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
-                    {
-                        var program = Invoice.PrintReportProcedure;
-                        var repFile = Invoice.Alct["FORM"].ToString().Trim();
-                        var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
-                        var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
-
-                        var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
-                            "", "", "", _sttRec);
-                        c.TTT = txtTongThanhToan.Value;
-                        c.TTT_NT = txtTongThanhToanNt.Value;
-                        c.MA_NT = _maNt;
-                        c.Dock = DockStyle.Fill;
-                        c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
-                        {
-                            if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
-                            if (!sender.IsDisposed) sender.Dispose();
-                        };
-                        c.ShowToForm(this, V6Text.PrintIXC, true);
-                    }
-                    else
-                    {
-                        V6ControlFormHelper.NoRightWarning();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
 
         private TimPhieuXuatTraLaiNCCForm SearchForm
         {

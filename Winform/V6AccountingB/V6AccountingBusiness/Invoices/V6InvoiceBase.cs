@@ -1175,7 +1175,7 @@ namespace V6AccountingBusiness.Invoices
         {
             var sql = string.Format("Update {0} Set Sl_in = Sl_in+1 Where Stt_rec=@p", AM_TableName);
             var result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql, new SqlParameter("@p", sttRec));
-            if (am != null && result > 0)
+            if (am != null && am.Table.Columns.Contains("SL_IN") && result > 0)
             {
                 am["Sl_in"] = ObjectAndString.ObjectToInt(am["Sl_in"]) + 1;
             }

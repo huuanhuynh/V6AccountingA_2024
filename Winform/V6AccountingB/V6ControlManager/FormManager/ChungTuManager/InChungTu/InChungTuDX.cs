@@ -780,18 +780,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
         #endregion 
 
-        public delegate void PrintSuccessDelegate(InChungTuDX sender, string stt_rec, int mau_tu_in);
+        public delegate void PrintSuccessDelegate(InChungTuDX sender, string stt_rec, AlbcConfig albcConfig);
         public event PrintSuccessDelegate PrintSuccess;
         protected virtual void CallPrintSuccessEvent()
         {
             var handler = PrintSuccess;
-
             if (handler != null)
             {
-                int hoadon_nd51 = MauInView == null || cboMauIn.SelectedIndex < 0
-                    ? 0
-                    : ObjectAndString.ObjectToInt(MauInView.ToTable().Rows[cboMauIn.SelectedIndex]["ND51"]);
-                handler(this, Report_Stt_rec, hoadon_nd51);
+                AlbcConfig config = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
+                handler(this, Report_Stt_rec, config);
             }
         }
         
@@ -895,7 +892,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 if (MauInData.Rows.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    return ObjectAndString.ObjectToInt(MauInView.ToTable().Rows[cboMauIn.SelectedIndex]["MAU_TU_IN"]);
+                    return ObjectAndString.ObjectToInt(MauInSelectedRow["MAU_TU_IN"]);
                 }
                 return 0;
             }

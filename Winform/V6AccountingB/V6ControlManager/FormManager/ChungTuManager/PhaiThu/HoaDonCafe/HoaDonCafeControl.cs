@@ -5395,25 +5395,43 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
                     {
                         var program = Invoice.PrintReportProcedure;
-                        var repFile = Invoice.Alct["FORM"].ToString().Trim();
-                        var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
-                        var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
+                        var reportFile = Invoice.Alct["FORM"].ToString().Trim();
+                        var reportTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
+                        var reportTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
-                        var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
-                            "", "", "", sttRec_In);
-                        c.TTT = txtTongThanhToan.Value;
-                        c.TTT_NT = txtTongThanhToanNt.Value;
-                        c.MA_NT = _maNt;
-                        c.Dock = DockStyle.Fill;
-                        c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                        if (Invoice.AlctConfig.XtraReport)
                         {
-                            if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
-                            if (!sender.IsDisposed) sender.Dispose();
-                        };
-
-                        c.PrintMode = printMode;
-
-                        c.ShowToForm(this, V6Text.PrintSOC, true);
+                            var inDX = new InChungTuDX(Invoice, program, program, reportFile, reportTitle, reportTitle2,
+                                "", "", "", sttRec_In);
+                            inDX.PrintMode = printMode;
+                            inDX.TTT = txtTongThanhToan.Value;
+                            inDX.TTT_NT = txtTongThanhToanNt.Value;
+                            inDX.MA_NT = _maNt;
+                            inDX.Dock = DockStyle.Fill;
+                            inDX.PrintSuccess += (sender, stt_rec, albcConfig) =>
+                            {
+                                if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, null);
+                                if (!sender.IsDisposed) sender.Dispose();
+                            };
+                            inDX.Close_after_print = true;
+                            inDX.ShowToForm(this, Invoice.PrintTitle, true);
+                        }
+                        else
+                        {
+                            var c = new InChungTuViewBase(Invoice, program, program, reportFile, reportTitle, reportTitle2,
+                                "", "", "", sttRec_In);
+                            c.TTT = txtTongThanhToan.Value;
+                            c.TTT_NT = txtTongThanhToanNt.Value;
+                            c.MA_NT = _maNt;
+                            c.Dock = DockStyle.Fill;
+                            c.PrintSuccess += (sender, stt_rec, albcConfig) =>
+                            {
+                                if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, null);
+                                if (!sender.IsDisposed) sender.Dispose();
+                            };
+                            c.PrintMode = printMode;
+                            c.ShowToForm(this, Invoice.PrintTitle, true);
+                        }
                     }
                     else
                     {

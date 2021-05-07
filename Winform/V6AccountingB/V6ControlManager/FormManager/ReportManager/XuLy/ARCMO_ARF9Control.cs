@@ -605,55 +605,54 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     if (row.IsSelect())
                     {
-
                         var sttRec = (row.Cells["Stt_rec"].Value ?? "").ToString();
-
-                        var c = new InChungTuViewBase(Invoice, program, program, _reportFile, repTitle, repTitle2,
-                            "", "", "", sttRec);
-                        c.Text = V6Text.Text("InPXK");
-                        c.Report_Stt_rec = sttRec;
-                        c.TTT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT"].Value);
-                        c.TTT_NT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT_NT"].Value);
-                        c.MA_NT = row.Cells["MA_NT"].Value.ToString().Trim();
-                        c.Dock = DockStyle.Fill;
-                        //c.xong = false;
-                        c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                        if (Invoice.AlctConfig.XtraReport)
                         {
-                            if (hoadon_nd51 == 1)
+                            var inDX = new InChungTuDX(Invoice, program, program, _reportFile, repTitle, repTitle2,
+                                "", "", "", sttRec);
+                            inDX.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
+                            inDX.PrinterName = _PrinterName;
+                            inDX.PrintCopies = _PrintCopies;
+                            inDX.Report_Stt_rec = sttRec;
+                            inDX.TTT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT"].Value);
+                            inDX.TTT_NT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT_NT"].Value);
+                            inDX.MA_NT = row.Cells["MA_NT"].Value.ToString().Trim();
+                            inDX.Dock = DockStyle.Fill;
+                            inDX.PrintSuccess += (sender, stt_rec, albcConfig) =>
                             {
-                                var sql = "Update Am81 Set Sl_in = Sl_in+1 Where Stt_rec=@p";
-                                SqlConnect.ExecuteNonQuery(CommandType.Text, sql, new SqlParameter("@p", stt_rec));
-                            }
-                            sender.Dispose();
-                        };
-
-                        var f = new V6Form();
-                        f.StartPosition = FormStartPosition.CenterScreen;
-                        f.WindowState = FormWindowState.Maximized;
-                        f.Text = V6Text.PrintIXA;
-                        f.Controls.Add(c);
-
-                        c.Disposed += delegate
+                                if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, null);
+                                if (!sender.IsDisposed) sender.Dispose();
+                            };
+                            inDX.Close_after_print = true;
+                            inDX.ShowToForm(this, Invoice.PrintTitle, true);
+                        }
+                        else
                         {
-                            //c.xong = true;
-                            f.Close();
-                        };
+                            var c = new InChungTuViewBase(Invoice, program, program, _reportFile, repTitle, repTitle2,
+                                "", "", "", sttRec);
+                            c.Text = V6Text.Text("InPXK");
+                            c.Report_Stt_rec = sttRec;
+                            c.TTT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT"].Value);
+                            c.TTT_NT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT_NT"].Value);
+                            c.MA_NT = row.Cells["MA_NT"].Value.ToString().Trim();
+                            c.Dock = DockStyle.Fill;
+                            c.PrintSuccess += (sender, stt_rec, albcConfig) =>
+                            {
+                                if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, null);
+                                if (!sender.IsDisposed) sender.Dispose();
+                            };
+                            c.Close_after_print = true;
+                            c.ShowToForm(this, Invoice.PrintTitle, true);
+                        }
 
-                        c.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
-                        c.PrintCopies = _PrintCopies;
-
-                        f.ShowDialog(this);
-                        
                         remove_list_g.Add(row);
                     }
                 }
                 catch (Exception ex)
                 {
-                    
                     f9Error += ex.Message;
                     f9ErrorAll += ex.Message;
                 }
-
             }
             f9Running = false;
         }

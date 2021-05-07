@@ -251,22 +251,42 @@ namespace V6ControlManager.FormManager.VitriManager
                 var repTitle = hoadonCafe_Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
                 var repTitle2 = hoadonCafe_Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
-                var c = new InChungTuViewBase(hoadonCafe_Invoice, program, program, repFile, repTitle, repTitle2,
-                    "", "", "", clickButton.Stt_Rec);
-                c.TTT = clickButton.TongTT;
-                c.TTT_NT = clickButton.TongTT;
-                c.MA_NT = V6Options.M_MA_NT0;
-                c.Dock = DockStyle.Fill;
-                c.PrintSuccess += (sender, stt_rec, BaoGia_nd51) =>
+                if (hoadonCafe_Invoice.AlctConfig.XtraReport)
                 {
-                    if (BaoGia_nd51 == 1)
+                    var inDX = new InChungTuDX(hoadonCafe_Invoice, program, program, repFile, repTitle, repTitle2,
+                        "", "", "", clickButton.Stt_Rec);
+                    //inDX.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
+                    //inDX.PrinterName = _PrinterName;
+                    //inDX.PrintCopies = _PrintCopies;
+                    //inDX.Report_Stt_rec = sttRec;
+                    inDX.TTT = clickButton.TongTT;
+                    inDX.TTT_NT = clickButton.TongTT;
+                    inDX.MA_NT = V6Options.M_MA_NT0;
+                    inDX.Dock = DockStyle.Fill;
+                    inDX.PrintSuccess += (sender, stt_rec, albcConfig) =>
                     {
-                        hoadonCafe_Invoice.IncreaseSl_inAM(stt_rec, null);
-                    }
-                    sender.Dispose();
-                };
-
-                c.ShowToForm(this, V6Text.PrintSOC, true);
+                        if (albcConfig.ND51 > 0) hoadonCafe_Invoice.IncreaseSl_inAM(stt_rec, null);
+                        if (!sender.IsDisposed) sender.Dispose();
+                    };
+                    inDX.Close_after_print = true;
+                    inDX.ShowToForm(this, hoadonCafe_Invoice.PrintTitle, true);
+                }
+                else
+                {
+                    var c = new InChungTuViewBase(hoadonCafe_Invoice, program, program, repFile, repTitle, repTitle2,
+                        "", "", "", clickButton.Stt_Rec);
+                    c.TTT = clickButton.TongTT;
+                    c.TTT_NT = clickButton.TongTT;
+                    c.MA_NT = V6Options.M_MA_NT0;
+                    c.Dock = DockStyle.Fill;
+                    c.PrintSuccess += (sender, stt_rec, albcConfig) =>
+                    {
+                        if (albcConfig.ND51 > 0) hoadonCafe_Invoice.IncreaseSl_inAM(stt_rec, null);
+                        if (!sender.IsDisposed) sender.Dispose();
+                    };
+                    c.Close_after_print = true;
+                    c.ShowToForm(this, hoadonCafe_Invoice.PrintTitle, true);
+                }
             }
             catch (Exception ex)
             {

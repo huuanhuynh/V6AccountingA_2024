@@ -4398,9 +4398,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             inDX.TTT_NT = tongThanhToanNT_Value;
                             inDX.MA_NT = _maNt;
                             inDX.Dock = DockStyle.Fill;
-                            inDX.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                            inDX.PrintSuccess += (sender, stt_rec, albcConfig) =>
                             {
-                                if (hoadon_nd51 > 0) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
+                                if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
                                 if (!sender.IsDisposed) sender.Dispose();
                             };
                             inDX.PrintMode = printMode;
@@ -4415,9 +4415,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             c.TTT_NT = tongThanhToanNT_Value;
                             c.MA_NT = _maNt;
                             c.Dock = DockStyle.Fill;
-                            c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                            c.PrintSuccess += (sender, stt_rec, albcConfig) =>
                             {
-                                if (hoadon_nd51 > 0) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
+                                if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
                                 if (!sender.IsDisposed) sender.Dispose();
                             };
                             c.PrintMode = printMode;

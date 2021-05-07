@@ -416,7 +416,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (mact != mact_format)
                 {
                     mact_format = mact;
-                    //var alctconfig = ConfigManager.GetAlctConfig(mact);
                     var aldmConfig = ConfigManager.GetAldmConfig("AAPPR_AD_" + mact);
                     if (!aldmConfig.HaveInfo) return;
 

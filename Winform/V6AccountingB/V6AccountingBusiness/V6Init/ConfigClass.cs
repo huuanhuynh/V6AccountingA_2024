@@ -13,7 +13,6 @@ namespace V6Init
 {
     public class Config
     {
-        public string ma_dm;
         public IDictionary<string, object> DATA;
 
         public Config()
@@ -30,6 +29,18 @@ namespace V6Init
         public bool HaveInfo { get { return !NoInfo; } }
         public bool Error { get; set; }
 
+        public DateTime GetDate(string name)
+        {
+            name = name.ToUpper();
+            if (DATA != null && DATA.ContainsKey(name))
+            {
+                var date = ObjectAndString.ObjectToDate(DATA[name]);
+                if(date == null) return DateTime.MinValue;
+                return date.Value;
+            }
+            return DateTime.MinValue;
+        }
+        
         public int GetInt(string name)
         {
             name = name.ToUpper();
@@ -54,6 +65,109 @@ namespace V6Init
             }
             return null;
         }
+    }
+
+    public class AlbcConfig : Config
+    {
+        public AlbcConfig(IDictionary<string, object> data)
+            : base(data)
+        {
+        }
+
+        public AlbcConfig()
+        {
+            NoInfo = true;
+            Error = true;
+        }
+
+        public int STT { get { return GetInt("STT"); } }
+        public string MA_FILE { get { return GetString("MA_FILE"); } }
+        public string NHOM_BC { get { return GetString("NHOM_BC"); } }
+        public string MAU { get { return GetString("MAU"); } }
+        public string LAN { get { return GetString("LAN"); } }
+        public string REPORT { get { return GetString("REPORT"); } }
+        public string CAPTION { get { return GetString("CAPTION"); } }
+        public string CAPTION2 { get { return GetString("CAPTION2"); } }
+        public string TITLE { get { return GetString("TITLE"); } }
+        public int ISUSER { get { return GetInt("ISUSER"); } }
+        public int DEFAULT { get { return GetInt("DEFAULT"); } }
+        public string FILTER { get { return GetString("FILTER"); } }
+        public string SCRIPT { get { return GetString("SCRIPT"); } }
+        public string SUBREPORT { get { return GetString("SUBREPORT"); } }
+        public string REFREPORT { get { return GetString("REFREPORT"); } }
+        public int MAU_TU_IN { get { return GetInt("MAU_TU_IN"); } }
+        /// <summary>
+        /// Số int của 2bin ví dụ 2 = 10(2) chkCheckPrint = 1, chkND51(mauhd) = 0, 3=11(2)
+        /// <para>check > 0 để tăng sl_in</para>
+        /// </summary>
+        public int ND51 { get { return GetInt("ND51"); } }
+        /// <summary>
+        /// Chỉ in 1 lần. Bit 1 của ND51.
+        /// </summary>
+        public bool ND51_IN1
+        {
+            get { return (ND51 & (1<<1)) > 0; }
+        }
+        /// <summary>
+        /// Là mẫu hóa đơn. Bit 0 của ND51.
+        /// </summary>
+        public bool ND51_HD
+        {
+            get { return (ND51 & 1) > 0; }
+        }
+        public DateTime DUPDATE { get { return GetDate("DUPDATE"); } }
+        public int STATUS { get { return GetInt("STATUS"); } }
+        public string RPT_DIR { get { return GetString("RPT_DIR"); } }
+        public int HIDDEN { get { return GetInt("HIDDEN"); } }
+        public int SO_LIEN { get { return GetInt("SO_LIEN"); } }
+        public int SL_DONG { get { return GetInt("SL_DONG"); } }
+        public int PRE_SHOW { get { return GetInt("PRE_SHOW"); } }
+        public DateTime DATE0 { get { return GetDate("DATE0"); } }
+        public string TIME0 { get { return GetString("TIME0"); } }
+        public int USER_ID0 { get { return GetInt("USER_ID0"); } }
+        public DateTime DATE2 { get { return GetDate("DATE2"); } }
+        public string TIME2 { get { return GetString("TIME2"); } }
+        public int USER_ID2 { get { return GetInt("USER_ID2"); } }
+        public string UID { get { return GetString("UID"); } }
+        public string EXCEL2 { get { return GetString("EXCEL2"); } }
+        public string EXCEL1 { get { return GetString("EXCEL1"); } }
+        public string LIEN_TUC { get { return GetString("LIEN_TUC"); } }
+        public string FIELDV { get { return GetString("FIELDV"); } }
+        public string VALUEV { get { return GetString("VALUEV"); } }
+        public string BOLD_YN { get { return GetString("BOLD_YN"); } }
+        public string COLOR_YN { get { return GetString("COLOR_YN"); } }
+        public string COLORV { get { return GetString("COLORV"); } }
+        public string PRINTER_DEF { get { return GetString("PRINTER_DEF"); } }
+        public string PRINTER_YN { get { return GetString("PRINTER_YN"); } }
+        public string R_PRINT2 { get { return GetString("R_PRINT2"); } }
+        public int INHERIT_CH { get { return GetInt("INHERIT_CH"); } }
+        public string RIGHT_YN { get { return GetString("RIGHT_YN"); } }
+        public string GRDS_V1 { get { return GetString("GRDS_V1"); } }
+        public string GRDF_V1 { get { return GetString("GRDF_V1"); } }
+        public string GRDS_V2 { get { return GetString("GRDS_V2"); } }
+        public string GRDF_V2 { get { return GetString("GRDF_V2"); } }
+        public string GRDHV_V1 { get { return GetString("GRDHV_V1"); } }
+        public string GRDHE_V1 { get { return GetString("GRDHE_V1"); } }
+        public string GRDHV_V2 { get { return GetString("GRDHV_V2"); } }
+        public string GRDHE_V2 { get { return GetString("GRDHE_V2"); } }
+        public string GRDT_V1 { get { return GetString("GRDT_V1"); } }
+        public string GRDT_V2 { get { return GetString("GRDT_V2"); } }
+        public string OPERV { get { return GetString("OPERV"); } }
+        public string EXCEL2_VIEW { get { return GetString("EXCEL2_VIEW"); } }
+        public int FSTART { get { return GetInt("FSTART"); } }
+        public int FFIXCOLUMN { get { return GetInt("FFIXCOLUMN"); } }
+        public string RELOAD_DATA { get { return GetString("RELOAD_DATA"); } }
+        public string EXTRA_PARA { get { return GetString("EXTRA_PARA"); } }
+        public string MMETHOD { get { return GetString("MMETHOD"); } }
+        public string FIELD_MAX { get { return GetString("FIELD_MAX"); } }
+        public int DROP_MAX { get { return GetInt("DROP_MAX"); } }
+        public int ROW_MAX { get { return GetInt("ROW_MAX"); } }
+        public string FIELD_S { get { return GetString("FIELD_S"); } }
+        public string VALUE_S { get { return GetString("VALUE_S"); } }
+        public string OPER_S { get { return GetString("OPER_S"); } }
+        public string EXTRA_INFOR { get { return GetString("EXTRA_INFOR"); } }
+        public int FROZENV { get { return GetInt("FROZENV"); } }
+
     }
 
     public class AlctConfig : Config
@@ -215,6 +329,7 @@ namespace V6Init
 
     public class AldmConfig : Config
     {
+        public string ma_dm;
         public AldmConfig(IDictionary<string, object> data)
             : base(data)
         {
@@ -619,6 +734,41 @@ namespace V6Init
     
     public class ConfigManager
     {
+        public static AlbcConfig GetAlbcConfig(string mau, string lan, string report)
+        {
+            AlbcConfig lstConfig = null;
+            try
+            {
+                SqlParameter[] param =
+                {
+                    new SqlParameter("@p0", mau),
+                    new SqlParameter("@p1", lan),
+                    new SqlParameter("@p2", report),
+                };
+                var executeResult = V6BusinessHelper.Select("ALBC", "*", "mau=@p0 and lan=@p1 and report=@p2", "", "", param);
+                
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new AlbcConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig = new AlbcConfig();
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
         public static AlctConfig GetAlctConfig(string ma_ct)
         {
             AlctConfig config = new AlctConfig();
