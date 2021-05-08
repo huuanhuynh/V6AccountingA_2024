@@ -605,6 +605,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 if (!sender.IsDisposed) sender.Dispose();
                             };
                             inDX.Close_after_print = true;
+                            inDX.Disposed += delegate
+                            {
+                                ((Form)inDX.Parent).Close();
+                            };
                             inDX.ShowToForm(this, Invoice.PrintTitle, true);
                         }
                         else
@@ -622,9 +626,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, null);
                                 sender.Dispose();
                             };
-
                             c.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
                             c.PrintCopies = _PrintCopies;
+                            c.Close_after_print = true;
+                            c.Disposed += delegate
+                            {
+                                ((Form)c.Parent).Close();
+                            };
                             c.ShowToForm(this, V6Text.PrintIXA, true);
                         }
 

@@ -55,10 +55,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(12, 12);
+            this.treeView1.Location = new System.Drawing.Point(12, 5);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(285, 534);
+            this.treeView1.Size = new System.Drawing.Size(285, 541);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -213,9 +213,10 @@
             // lblControlType
             // 
             this.lblControlType.AccessibleDescription = ".";
-            this.lblControlType.Location = new System.Drawing.Point(303, 13);
+            this.lblControlType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblControlType.Location = new System.Drawing.Point(303, 2);
             this.lblControlType.Name = "lblControlType";
-            this.lblControlType.Size = new System.Drawing.Size(258, 27);
+            this.lblControlType.Size = new System.Drawing.Size(258, 38);
             this.lblControlType.TabIndex = 13;
             this.lblControlType.Text = "ControlType";
             // 

@@ -5414,6 +5414,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                 if (!sender.IsDisposed) sender.Dispose();
                             };
                             inDX.Close_after_print = true;
+                            inDX.Disposed += delegate
+                            {
+                                ((Form)inDX.Parent).Close();
+                            };
                             inDX.ShowToForm(this, Invoice.PrintTitle, true);
                         }
                         else
@@ -5430,6 +5434,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                 if (!sender.IsDisposed) sender.Dispose();
                             };
                             c.PrintMode = printMode;
+                            c.Close_after_print = true;
+                            c.Disposed += delegate
+                            {
+                                ((Form)c.Parent).Close();
+                            };
                             c.ShowToForm(this, Invoice.PrintTitle, true);
                         }
                     }

@@ -368,17 +368,13 @@ namespace V6Controls
                 control.Dock = DockStyle.Fill;
                 control.Disposed += delegate
                 {
-                    if (!f.IsDisposed) f.Dispose();
+                    if (!f.IsDisposed)
+                    {
+                        f.Dispose();
+                    }
                 };
                 f.KeyPreview = true;
-                //f.KeyDown += (s, e) =>
-                //{
-                //    if (e.KeyCode == Keys.Escape)
-                //    {
-                //        f.Close();
-                //    }
-                //};
-
+                
                 if (dialog)
                 {
                     return f.ShowDialog(owner);

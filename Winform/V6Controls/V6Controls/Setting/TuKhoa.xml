@@ -53,6 +53,11 @@
   <TuKhoa TenTuKhoa='ShowWarning' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ShowMainMessage' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	
+	<TuKhoa TenTuKhoa='AlbcConfig' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='AlctConfig' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='AldmConfig' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='AlreportConfig' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6lookupConfig' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='Button' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DataGridViewRow' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

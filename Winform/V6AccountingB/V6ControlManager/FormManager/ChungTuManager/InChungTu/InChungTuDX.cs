@@ -2459,8 +2459,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 // Kiểm tra pagecount > 1 trường hợp dùng ROW_MAX
                 if (IsInvoice && ROW_MAX > 0)
                 {
-                    var pv = (PageView)documentViewer1.Controls[0];
-                    var pagecount = pv.GetLastPageNumber();
+                    var pagecount = documentViewer1.Document.Pages.Count;
                     if (pagecount > 1)
                     {
                         this.ShowWarningMessage(V6Text.OverFlow);
