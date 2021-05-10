@@ -148,22 +148,39 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);
         }
+
         public void TinhGiaTriKhauHao()
         {
             try
             {
                 var ppkh = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_KH"));
-                txtgt_cl.Value = txtnguyen_gia.Value - Txtgt_da_kh.Value;
-                if (TxtSo_ky.Value > 0)
+                txtGt_cl.Value = txtNguyen_gia.Value - txtGt_da_kh.Value;
+                var GT = ppkh == 1 ? txtNguyen_gia.Value : txtGt_cl.Value;
+                if (txtSo_ky.Value > 0)
                 {
-                    Txtgt_kh_ky.Value = V6BusinessHelper.Vround(
-                        ppkh == 1
-                        ? txtnguyen_gia.Value / TxtSo_ky.Value
-                        : txtgt_cl.Value / TxtSo_ky.Value,
-                        V6Options.M_ROUND);
-
+                    txtGt_kh_ky.Value = V6BusinessHelper.Vround(GT / txtSo_ky.Value, V6Options.M_ROUND);
                 }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".TinhGiaTriKhauHao: " + ex.Message);
+            }
+        }
+
+        public void TinhGiaTriKhauHao_N()
+        {
+            try
+            {
+                var M_PP_KH = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_KH"));
+                txtGt_cl.Value = txtNguyen_gia.Value - txtGt_da_kh.Value;
+                var GT = M_PP_KH == 1 ? txtNguyen_gia.Value : txtGt_cl.Value;
                 
+                int soNgay = 0;
+                soNgay = (dateNgayCT.Value.AddMonths((int)txtSo_ky.Value) - dateNgayCT.Value).Days + 1;
+                if (soNgay != 0)// && gt_kh_ky_n.Value == 0)
+                {
+                    txtGt_kh_ky_n.Value = V6BusinessHelper.Vround(GT / soNgay, V6Options.M_ROUND);
+                }
             }
             catch (Exception ex)
             {
@@ -174,6 +191,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void txtnguyen_gia_V6LostFocus(object sender)
         {
             TinhGiaTriKhauHao();
+            TinhGiaTriKhauHao_N();
         }
         private void txtThang12_TextChanged(object sender, System.EventArgs e)
         {

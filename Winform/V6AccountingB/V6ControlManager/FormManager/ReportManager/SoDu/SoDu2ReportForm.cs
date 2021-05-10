@@ -120,6 +120,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
+            if (MauInSelectedRow == null) return;
             string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
             if (s != "")
             {

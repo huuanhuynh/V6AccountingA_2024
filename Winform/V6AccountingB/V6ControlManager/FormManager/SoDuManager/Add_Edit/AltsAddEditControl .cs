@@ -90,7 +90,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         }
 
         private V6VvarTextBox ma_nv;
-        private V6NumberTextBox nguyen_gia, gt_da_kh,  gt_cl, gt_kh_ky;
+        private V6NumberTextBox nguyen_gia, gt_da_kh,  gt_cl, gt_kh_ky, gt_kh_ky_n;
         private V6ColorTextBox so_ct, dien_giai;
         private V6DateTimeColor ngay_ct;
         private void LoadDetail2Controls()
@@ -120,6 +120,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             nguyen_gia.V6LostFocus += delegate
             {
                 TinhGiaTriKhauHao();
+                TinhGiaTriKhauHao_N();
             };
 
             gt_da_kh = new NumberTien()
@@ -130,6 +131,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             gt_da_kh.V6LostFocus += delegate
             {
                 TinhGiaTriKhauHao();
+                TinhGiaTriKhauHao_N();
             };
 
             gt_cl = new NumberTien()
@@ -152,6 +154,21 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     TinhGiaTriKhauHao();
                 }
+
+                TinhGiaTriKhauHao_N();
+            };
+
+            gt_kh_ky_n = new NumberTien()
+            {
+                AccessibleName = "gt_kh_ky_n",
+                GrayText = "Giá kh 1 ngày"
+            };
+            gt_kh_ky_n.V6LostFocus += delegate
+            {
+                if (gt_kh_ky_n.Value == 0)
+                {
+                    TinhGiaTriKhauHao_N();
+                }
             };
             
             dien_giai = new V6ColorTextBox()
@@ -170,7 +187,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             dynamicControlList2.Add(4, gt_da_kh);
             dynamicControlList2.Add(5, gt_cl);
             dynamicControlList2.Add(6, gt_kh_ky);
-            dynamicControlList2.Add(7, dien_giai);
+            dynamicControlList2.Add(7, gt_kh_ky_n);
+            dynamicControlList2.Add(8, dien_giai);
 
             foreach (KeyValuePair<int, Control> item in dynamicControlList2)
             {
@@ -216,6 +234,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     TinhGiaTriKhauHao(); //Da co tinh tong cong
+                    TinhGiaTriKhauHao_N();
                 }
                 else
                 {
@@ -232,17 +251,52 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                var ppkh = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_KH"));
+                var M_PP_KH = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_KH"));
                 gt_cl.Value = nguyen_gia.Value - gt_da_kh.Value;
+                var GT = M_PP_KH == 1 ? nguyen_gia.Value : gt_cl.Value;
+                
                 if (txtSoKyKhauHao.Value > 0)
                 {
-                    gt_kh_ky.Value = V6BusinessHelper.Vround(
-                        ppkh == 1
-                        ? nguyen_gia.Value/txtSoKyKhauHao.Value
-                        : gt_cl.Value/txtSoKyKhauHao.Value,
-                        V6Options.M_ROUND);
-                    
+                    gt_kh_ky.Value = V6BusinessHelper.Vround(GT / txtSoKyKhauHao.Value, V6Options.M_ROUND);
                 }
+
+                //int soNgay = 0;
+                //if (dateNgay_kh0.Value != null)
+                //    soNgay = (dateNgay_kh0.Value.Value.AddMonths((int) txtSoKyKhauHao.Value) - dateNgay_kh0.Value).Value.Days + 1;
+                //if (soNgay != 0 && gt_kh_ky_n.Value == 0)
+                //{
+                //    gt_kh_ky_n.Value = V6BusinessHelper.Vround(_Gt / soNgay, V6Options.M_ROUND);
+                //}
+                
+                TinhTongCong();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".TinhGiaTriKhauHao: " + ex.Message);
+            }
+        }
+        
+        public void TinhGiaTriKhauHao_N()
+        {
+            try
+            {
+                var M_PP_KH = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_KH"));
+                gt_cl.Value = nguyen_gia.Value - gt_da_kh.Value;
+                var GT = M_PP_KH == 1 ? nguyen_gia.Value : gt_cl.Value;
+                
+                //if (txtSoKyKhauHao.Value > 0)
+                //{
+                //    gt_kh_ky.Value = V6BusinessHelper.Vround(_Gt / txtSoKyKhauHao.Value, V6Options.M_ROUND);
+                //}
+
+                int soNgay = 0;
+                if (dateNgay_kh0.Value != null)
+                    soNgay = (dateNgay_kh0.Value.Value.AddMonths((int) txtSoKyKhauHao.Value) - dateNgay_kh0.Value).Value.Days + 1;
+                if (soNgay != 0)// && gt_kh_ky_n.Value == 0)
+                {
+                    gt_kh_ky_n.Value = V6BusinessHelper.Vround(GT / soNgay, V6Options.M_ROUND);
+                }
+                
                 TinhTongCong();
             }
             catch (Exception ex)
@@ -488,10 +542,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     txtTinh_kh.Value = 1;
                 else txtTinh_kh.Value = 0;
 
-                if (dateNgayTinhKh.Value != null)
+                if (dateNgay_kh0.Value != null)
                 {
-                    txtKy.Value = dateNgayTinhKh.Value.Value.Month;
-                    txtNam.Value = dateNgayTinhKh.Value.Value.Year;
+                    txtKy.Value = dateNgay_kh0.Value.Value.Month;
+                    txtNam.Value = dateNgay_kh0.Value.Value.Year;
                 }
                 DataDic = GetData();
                 UpdateDKlistAll(DataDic);
@@ -562,10 +616,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     txtTinh_kh.Value = 1;
                 else txtTinh_kh.Value = 0;
 
-                if (dateNgayTinhKh.Value != null)
+                if (dateNgay_kh0.Value != null)
                 {
-                    txtKy.Value = dateNgayTinhKh.Value.Value.Month;
-                    txtNam.Value = dateNgayTinhKh.Value.Value.Year;
+                    txtKy.Value = dateNgay_kh0.Value.Value.Month;
+                    txtNam.Value = dateNgay_kh0.Value.Value.Year;
                 }
                 DataDic = GetData();
                 UpdateDKlistAll(DataDic);

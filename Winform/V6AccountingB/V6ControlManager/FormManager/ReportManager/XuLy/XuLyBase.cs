@@ -202,8 +202,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             try
             {
-                if(MauInSelectedRow == null) throw new Exception(string.Format("{0} {1}", V6Text.NoDefine, V6Text.Text("MauIn")));
                 _extraInfor = new SortedDictionary<string, string>();
+                if (MauInSelectedRow == null) return;
                 string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
                 if (s != "")
                 {

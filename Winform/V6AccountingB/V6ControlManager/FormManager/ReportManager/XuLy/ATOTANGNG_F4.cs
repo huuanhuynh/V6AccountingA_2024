@@ -134,22 +134,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);
         }
-        public void TinhGiaTriKhauHao()
+
+        public void TinhGiaTriPhanBo()
         {
             try
             {
-                var ppkh = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
-                txtgt_cl.Value = txtnguyen_gia.Value - Txtgt_da_pb.Value;
-                if (TxtSo_ky.Value > 0)
+                var M_PP_PB = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
+                txtGt_cl.Value = txtNguyen_gia.Value - txtGt_da_pb.Value;
+                var GT = M_PP_PB == 1 ? txtNguyen_gia.Value : txtGt_cl.Value;
+                if (txtSo_ky.Value > 0)
                 {
-                    Txtgt_pb_ky.Value = V6BusinessHelper.Vround(
-                        ppkh == 1
-                        ? txtnguyen_gia.Value / TxtSo_ky.Value
-                        : txtgt_cl.Value / TxtSo_ky.Value,
-                        V6Options.M_ROUND);
-
+                    Txtgt_pb_ky.Value = V6BusinessHelper.Vround(GT / txtSo_ky.Value, V6Options.M_ROUND);
                 }
-                
             }
             catch (Exception ex)
             {
@@ -157,9 +153,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        public void TinhGiaTriPhanBo_N()
+        {
+            try
+            {
+                var M_PP_PB = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
+                txtGt_cl.Value = txtNguyen_gia.Value - txtGt_da_pb.Value;
+                var GT = M_PP_PB == 1 ? txtNguyen_gia.Value : txtGt_cl.Value;
+
+                int soNgay = 0;
+                soNgay = (dateNgayCT.Value.AddMonths((int)txtSo_ky.Value) - dateNgayCT.Value).Days + 1;
+                if (soNgay != 0)// && gt_kh_ky_n.Value == 0)
+                {
+                    txtGt_pb_ky_n.Value = V6BusinessHelper.Vround(GT / soNgay, V6Options.M_ROUND);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".TinhGiaTriPhanBoN " + ex.Message);
+            }
+        }
+
         private void txtnguyen_gia_V6LostFocus(object sender)
         {
-            TinhGiaTriKhauHao();
+            TinhGiaTriPhanBo();
+            TinhGiaTriPhanBo_N();
         }
         private void txtThang12_TextChanged(object sender, System.EventArgs e)
         {

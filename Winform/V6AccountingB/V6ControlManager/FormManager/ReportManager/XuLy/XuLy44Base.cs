@@ -167,6 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
+            if (MauInSelectedRow == null) return;
             string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
             if (s != "")
             {
