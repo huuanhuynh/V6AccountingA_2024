@@ -15,7 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtThang1.Value =V6Setting.M_ngay_ct1.Month;
             txtThang2.Value = V6Setting.M_ngay_ct2.Month;
             txtNam.Value = V6Setting.M_ngay_ct2.Year;
-            txtLoai_cc.VvarTextBox.Text = "01";
+            lineLoai_CC0.VvarTextBox.Text = "01";
 
             txtMa_tg_cc.VvarTextBox.SetInitFilter("Loai_tg_cc='T'");
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
@@ -36,8 +36,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-
-
             //@nam as int,
             //@tuKy as int,
             //@denKy as int,
@@ -51,11 +49,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@nam", (int)txtNam.Value));
             result.Add(new SqlParameter("@tuKy", (int)txtThang1.Value));
             result.Add(new SqlParameter("@denKy", (int)txtThang2.Value));
-
-
             result.Add(new SqlParameter("@ma_bpts", TxtMa_bp.Text.Trim()));
-            
-            
 
             var and = radAnd.Checked;
 

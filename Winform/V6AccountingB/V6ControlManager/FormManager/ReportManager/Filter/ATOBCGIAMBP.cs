@@ -15,7 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtThang1.Value =V6Setting.M_ngay_ct1.Month;
             txtThang2.Value = V6Setting.M_ngay_ct2.Month;
             txtNam.Value = V6Setting.M_ngay_ct2.Year;
-            txtLoai_cc.VvarTextBox.Text = "01";
+            lineLoai_CC0.VvarTextBox.Text = "01";
 
             txtMa_tg_cc.VvarTextBox.SetInitFilter("Loai_tg_cc='G'");
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;

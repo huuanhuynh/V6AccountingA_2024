@@ -85,7 +85,7 @@
             this.btnHuy.Location = new System.Drawing.Point(94, 366);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 16;
+            this.btnHuy.TabIndex = 34;
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHuy.UseVisualStyleBackColor = true;
@@ -101,7 +101,7 @@
             this.btnNhan.Location = new System.Drawing.Point(6, 366);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 15;
+            this.btnNhan.TabIndex = 33;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
@@ -124,7 +124,7 @@
             this.txtSo_the_cc.Name = "txtSo_the_cc";
             this.txtSo_the_cc.ReadOnly = true;
             this.txtSo_the_cc.Size = new System.Drawing.Size(147, 20);
-            this.txtSo_the_cc.TabIndex = 0;
+            this.txtSo_the_cc.TabIndex = 1;
             this.txtSo_the_cc.TabStop = false;
             // 
             // v6Label1
@@ -134,7 +134,7 @@
             this.v6Label1.Location = new System.Drawing.Point(9, 10);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(64, 13);
-            this.v6Label1.TabIndex = 8;
+            this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Mã công cụ";
             // 
             // TxtTen_ts
@@ -154,7 +154,7 @@
             this.TxtTen_ts.Name = "TxtTen_ts";
             this.TxtTen_ts.ReadOnly = true;
             this.TxtTen_ts.Size = new System.Drawing.Size(375, 20);
-            this.TxtTen_ts.TabIndex = 1;
+            this.TxtTen_ts.TabIndex = 2;
             this.TxtTen_ts.TabStop = false;
             this.TxtTen_ts.Tag = "disable";
             // 
@@ -165,7 +165,7 @@
             this.v6Label12.Location = new System.Drawing.Point(9, 335);
             this.v6Label12.Name = "v6Label12";
             this.v6Label12.Size = new System.Drawing.Size(48, 13);
-            this.v6Label12.TabIndex = 24;
+            this.v6Label12.TabIndex = 31;
             this.v6Label12.Text = "Diễn giải";
             // 
             // txtdien_giai
@@ -183,7 +183,7 @@
             this.txtdien_giai.Location = new System.Drawing.Point(112, 332);
             this.txtdien_giai.Name = "txtdien_giai";
             this.txtdien_giai.Size = new System.Drawing.Size(516, 20);
-            this.txtdien_giai.TabIndex = 14;
+            this.txtdien_giai.TabIndex = 32;
             // 
             // txtSoCt
             // 
@@ -198,7 +198,7 @@
             this.txtSoCt.Location = new System.Drawing.Point(112, 168);
             this.txtSoCt.Name = "txtSoCt";
             this.txtSoCt.Size = new System.Drawing.Size(146, 20);
-            this.txtSoCt.TabIndex = 8;
+            this.txtSoCt.TabIndex = 16;
             // 
             // v6Label7
             // 
@@ -222,7 +222,7 @@
             this.dateNgayCT.Location = new System.Drawing.Point(112, 145);
             this.dateNgayCT.Name = "dateNgayCT";
             this.dateNgayCT.Size = new System.Drawing.Size(146, 20);
-            this.dateNgayCT.TabIndex = 7;
+            this.dateNgayCT.TabIndex = 14;
             // 
             // v6Label3
             // 
@@ -231,7 +231,7 @@
             this.v6Label3.Location = new System.Drawing.Point(9, 148);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(77, 13);
-            this.v6Label3.TabIndex = 35;
+            this.v6Label3.TabIndex = 13;
             this.v6Label3.Text = "Ngày chứng từ";
             // 
             // txtNam
@@ -250,7 +250,7 @@
             this.txtNam.MaxNumLength = 4;
             this.txtNam.Name = "txtNam";
             this.txtNam.Size = new System.Drawing.Size(146, 20);
-            this.txtNam.TabIndex = 2;
+            this.txtNam.TabIndex = 4;
             this.txtNam.Text = "0";
             this.txtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNam.Value = new decimal(new int[] {
@@ -275,7 +275,7 @@
             this.txtThang1.MaxNumLength = 2;
             this.txtThang1.Name = "txtThang1";
             this.txtThang1.Size = new System.Drawing.Size(146, 20);
-            this.txtThang1.TabIndex = 3;
+            this.txtThang1.TabIndex = 6;
             this.txtThang1.Text = "0";
             this.txtThang1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtThang1.Value = new decimal(new int[] {
@@ -292,7 +292,7 @@
             this.v6Label9.Location = new System.Drawing.Point(9, 33);
             this.v6Label9.Name = "v6Label9";
             this.v6Label9.Size = new System.Drawing.Size(29, 13);
-            this.v6Label9.TabIndex = 39;
+            this.v6Label9.TabIndex = 3;
             this.v6Label9.Text = "Năm";
             // 
             // label1
@@ -302,7 +302,7 @@
             this.label1.Location = new System.Drawing.Point(9, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(19, 13);
-            this.label1.TabIndex = 37;
+            this.label1.TabIndex = 5;
             this.label1.Text = "Kỳ";
             // 
             // v6Label2
@@ -312,7 +312,7 @@
             this.v6Label2.Location = new System.Drawing.Point(9, 79);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(76, 13);
-            this.v6Label2.TabIndex = 41;
+            this.v6Label2.TabIndex = 7;
             this.v6Label2.Text = "Mã nguồn vốn";
             // 
             // TxtMa_NV
@@ -329,7 +329,7 @@
             this.TxtMa_NV.Location = new System.Drawing.Point(112, 76);
             this.TxtMa_NV.Name = "TxtMa_NV";
             this.TxtMa_NV.Size = new System.Drawing.Size(146, 20);
-            this.TxtMa_NV.TabIndex = 4;
+            this.TxtMa_NV.TabIndex = 8;
             this.TxtMa_NV.VVar = "MA_NV";
             // 
             // txtLyDoTang
@@ -350,7 +350,7 @@
             this.txtLyDoTang.Location = new System.Drawing.Point(112, 99);
             this.txtLyDoTang.Name = "txtLyDoTang";
             this.txtLyDoTang.Size = new System.Drawing.Size(146, 20);
-            this.txtLyDoTang.TabIndex = 5;
+            this.txtLyDoTang.TabIndex = 10;
             this.txtLyDoTang.VVar = "MA_TG_TS";
             // 
             // v6Label4
@@ -360,7 +360,7 @@
             this.v6Label4.Location = new System.Drawing.Point(9, 102);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(47, 13);
-            this.v6Label4.TabIndex = 43;
+            this.v6Label4.TabIndex = 9;
             this.v6Label4.Text = "Mã giảm";
             // 
             // v6Label5
@@ -370,7 +370,7 @@
             this.v6Label5.Location = new System.Drawing.Point(9, 125);
             this.v6Label5.Name = "v6Label5";
             this.v6Label5.Size = new System.Drawing.Size(57, 13);
-            this.v6Label5.TabIndex = 44;
+            this.v6Label5.TabIndex = 11;
             this.v6Label5.Text = "Ngày giảm";
             // 
             // txtNguyen_gia
@@ -389,7 +389,7 @@
             this.txtNguyen_gia.Location = new System.Drawing.Point(112, 191);
             this.txtNguyen_gia.Name = "txtNguyen_gia";
             this.txtNguyen_gia.Size = new System.Drawing.Size(147, 20);
-            this.txtNguyen_gia.TabIndex = 9;
+            this.txtNguyen_gia.TabIndex = 18;
             this.txtNguyen_gia.Text = "0";
             this.txtNguyen_gia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNguyen_gia.Value = new decimal(new int[] {
@@ -406,7 +406,7 @@
             this.v6Label6.Location = new System.Drawing.Point(9, 194);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(61, 13);
-            this.v6Label6.TabIndex = 46;
+            this.v6Label6.TabIndex = 17;
             this.v6Label6.Text = "Nguyên giá";
             // 
             // v6Label8
@@ -416,7 +416,7 @@
             this.v6Label8.Location = new System.Drawing.Point(9, 217);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(69, 13);
-            this.v6Label8.TabIndex = 48;
+            this.v6Label8.TabIndex = 20;
             this.v6Label8.Text = "Đã khấu hao";
             // 
             // txtGt_da_kh
@@ -435,7 +435,7 @@
             this.txtGt_da_kh.Location = new System.Drawing.Point(112, 214);
             this.txtGt_da_kh.Name = "txtGt_da_kh";
             this.txtGt_da_kh.Size = new System.Drawing.Size(147, 20);
-            this.txtGt_da_kh.TabIndex = 10;
+            this.txtGt_da_kh.TabIndex = 21;
             this.txtGt_da_kh.Text = "0";
             this.txtGt_da_kh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGt_da_kh.Value = new decimal(new int[] {
@@ -452,7 +452,7 @@
             this.v6Label10.Location = new System.Drawing.Point(9, 263);
             this.v6Label10.Name = "v6Label10";
             this.v6Label10.Size = new System.Drawing.Size(82, 13);
-            this.v6Label10.TabIndex = 52;
+            this.v6Label10.TabIndex = 24;
             this.v6Label10.Text = "Số kỳ khấu hao";
             // 
             // txtSo_ky
@@ -471,7 +471,7 @@
             this.txtSo_ky.Location = new System.Drawing.Point(112, 260);
             this.txtSo_ky.Name = "txtSo_ky";
             this.txtSo_ky.Size = new System.Drawing.Size(147, 20);
-            this.txtSo_ky.TabIndex = 12;
+            this.txtSo_ky.TabIndex = 25;
             this.txtSo_ky.Text = "0";
             this.txtSo_ky.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSo_ky.Value = new decimal(new int[] {
@@ -488,7 +488,7 @@
             this.v6Label11.Location = new System.Drawing.Point(9, 240);
             this.v6Label11.Name = "v6Label11";
             this.v6Label11.Size = new System.Drawing.Size(39, 13);
-            this.v6Label11.TabIndex = 50;
+            this.v6Label11.TabIndex = 22;
             this.v6Label11.Text = "Còn lại";
             // 
             // txtGt_cl
@@ -507,7 +507,7 @@
             this.txtGt_cl.Location = new System.Drawing.Point(112, 237);
             this.txtGt_cl.Name = "txtGt_cl";
             this.txtGt_cl.Size = new System.Drawing.Size(147, 20);
-            this.txtGt_cl.TabIndex = 11;
+            this.txtGt_cl.TabIndex = 23;
             this.txtGt_cl.Text = "0";
             this.txtGt_cl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGt_cl.Value = new decimal(new int[] {
@@ -524,7 +524,7 @@
             this.v6Label13.Location = new System.Drawing.Point(265, 194);
             this.v6Label13.Name = "v6Label13";
             this.v6Label13.Size = new System.Drawing.Size(73, 13);
-            this.v6Label13.TabIndex = 53;
+            this.v6Label13.TabIndex = 19;
             this.v6Label13.Text = "(Giảm 1 phần)";
             // 
             // v6Label14
@@ -534,7 +534,7 @@
             this.v6Label14.Location = new System.Drawing.Point(265, 263);
             this.v6Label14.Name = "v6Label14";
             this.v6Label14.Size = new System.Drawing.Size(73, 13);
-            this.v6Label14.TabIndex = 54;
+            this.v6Label14.TabIndex = 26;
             this.v6Label14.Text = "(Giảm 1 phần)";
             // 
             // DateNgay_tg
@@ -549,7 +549,7 @@
             this.DateNgay_tg.Location = new System.Drawing.Point(112, 122);
             this.DateNgay_tg.Name = "DateNgay_tg";
             this.DateNgay_tg.Size = new System.Drawing.Size(146, 20);
-            this.DateNgay_tg.TabIndex = 6;
+            this.DateNgay_tg.TabIndex = 12;
             // 
             // v6Label15
             // 
@@ -558,7 +558,7 @@
             this.v6Label15.Location = new System.Drawing.Point(9, 287);
             this.v6Label15.Name = "v6Label15";
             this.v6Label15.Size = new System.Drawing.Size(80, 13);
-            this.v6Label15.TabIndex = 57;
+            this.v6Label15.TabIndex = 27;
             this.v6Label15.Text = "Gt khấu hao kỳ";
             // 
             // txtGt_kh_ky
@@ -577,7 +577,7 @@
             this.txtGt_kh_ky.Location = new System.Drawing.Point(112, 283);
             this.txtGt_kh_ky.Name = "txtGt_kh_ky";
             this.txtGt_kh_ky.Size = new System.Drawing.Size(147, 20);
-            this.txtGt_kh_ky.TabIndex = 13;
+            this.txtGt_kh_ky.TabIndex = 28;
             this.txtGt_kh_ky.Text = "0";
             this.txtGt_kh_ky.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGt_kh_ky.Value = new decimal(new int[] {
@@ -602,7 +602,7 @@
             this.txtMaCt.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaCt.Name = "txtMaCt";
             this.txtMaCt.Size = new System.Drawing.Size(50, 20);
-            this.txtMaCt.TabIndex = 60;
+            this.txtMaCt.TabIndex = 37;
             this.txtMaCt.Visible = false;
             // 
             // txtTang_giam
@@ -620,7 +620,7 @@
             this.txtTang_giam.Location = new System.Drawing.Point(405, 51);
             this.txtTang_giam.Name = "txtTang_giam";
             this.txtTang_giam.Size = new System.Drawing.Size(16, 20);
-            this.txtTang_giam.TabIndex = 58;
+            this.txtTang_giam.TabIndex = 36;
             this.txtTang_giam.Tag = "cancelset";
             this.txtTang_giam.Text = "1";
             this.txtTang_giam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -646,7 +646,7 @@
             this.txtTs0.Location = new System.Drawing.Point(385, 51);
             this.txtTs0.Name = "txtTs0";
             this.txtTs0.Size = new System.Drawing.Size(16, 20);
-            this.txtTs0.TabIndex = 59;
+            this.txtTs0.TabIndex = 35;
             this.txtTs0.Tag = "cancelset";
             this.txtTs0.Text = "1";
             this.txtTs0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -673,7 +673,7 @@
             this.txtGt_kh_ky_n.Location = new System.Drawing.Point(112, 306);
             this.txtGt_kh_ky_n.Name = "txtGt_kh_ky_n";
             this.txtGt_kh_ky_n.Size = new System.Drawing.Size(147, 20);
-            this.txtGt_kh_ky_n.TabIndex = 13;
+            this.txtGt_kh_ky_n.TabIndex = 30;
             this.txtGt_kh_ky_n.Text = "0";
             this.txtGt_kh_ky_n.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGt_kh_ky_n.Value = new decimal(new int[] {
@@ -689,7 +689,7 @@
             this.v6Label16.Location = new System.Drawing.Point(9, 309);
             this.v6Label16.Name = "v6Label16";
             this.v6Label16.Size = new System.Drawing.Size(101, 13);
-            this.v6Label16.TabIndex = 57;
+            this.v6Label16.TabIndex = 29;
             this.v6Label16.Text = "Gt khấu hao 1 ngày";
             // 
             // AFAGIAMNG_F3

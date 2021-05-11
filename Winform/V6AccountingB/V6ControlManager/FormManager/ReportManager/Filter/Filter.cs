@@ -929,6 +929,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "ATOTANGNG":
                     result = new ATOTANGNG();
                     break;
+                case "ATOGIAMNG":
+                    result = new ATOGIAMNG();
+                    break;
                 case "ATODCBP":
                     result = new ATODCBP();
                     break;

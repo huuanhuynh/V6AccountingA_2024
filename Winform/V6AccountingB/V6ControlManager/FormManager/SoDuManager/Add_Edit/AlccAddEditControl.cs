@@ -94,7 +94,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         }
 
         private V6VvarTextBox ma_nv;
-        private V6NumberTextBox nguyen_gia, gt_da_pb,  gt_cl, gt_pb_ky;
+        private V6NumberTextBox nguyen_gia, gt_da_pb,  gt_cl, gt_pb_ky, gt_pb_ky_n;
         private V6ColorTextBox so_ct, dien_giai;
         private V6DateTimeColor ngay_ct;
         private void LoadDetail2Controls()
@@ -124,6 +124,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             nguyen_gia.V6LostFocus += delegate
             {
                 TinhGiaTriPhanBo();
+                TinhGiaTriPhanBo_N();
             };
 
             gt_da_pb = new NumberTien()
@@ -134,6 +135,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             gt_da_pb.V6LostFocus += delegate
             {
                 TinhGiaTriPhanBo();
+                TinhGiaTriPhanBo_N();
             };
 
             gt_cl = new NumberTien()
@@ -156,6 +158,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     TinhGiaTriPhanBo();
                 }
+                TinhGiaTriPhanBo_N();
+            };
+            
+            gt_pb_ky_n = new NumberTien()
+            {
+                AccessibleName = "gt_pb_ky_n",
+                GrayText = "Giá pb 1 ngày"
+            };
+            gt_pb_ky_n.V6LostFocus += delegate
+            {
+                if (gt_pb_ky_n.Value == 0)
+                {
+                    TinhGiaTriPhanBo_N();
+                }
             };
             
             dien_giai = new V6ColorTextBox()
@@ -174,7 +190,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             dynamicControlList2.Add(4, gt_da_pb);
             dynamicControlList2.Add(5, gt_cl);
             dynamicControlList2.Add(6, gt_pb_ky);
-            dynamicControlList2.Add(7, dien_giai);
+            dynamicControlList2.Add(7, gt_pb_ky_n);
+            dynamicControlList2.Add(8, dien_giai);
 
             foreach (KeyValuePair<int, Control> item in dynamicControlList2)
             {
@@ -235,22 +252,42 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                var pppb = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
+                var M_PP_PB = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
                 gt_cl.Value = nguyen_gia.Value - gt_da_pb.Value;
+                var GT = M_PP_PB == 1 ? nguyen_gia.Value : gt_cl.Value;
                 if (txtSoKyPhanBo.Value > 0)
                 {
-                    gt_pb_ky.Value = V6BusinessHelper.Vround(
-                        pppb == 1
-                        ? nguyen_gia.Value/txtSoKyPhanBo.Value
-                        : gt_cl.Value/txtSoKyPhanBo.Value,
-                        V6Options.M_ROUND);
-                    
+                    gt_pb_ky.Value = V6BusinessHelper.Vround(GT / txtSoKyPhanBo.Value, V6Options.M_ROUND);
                 }
                 TinhTongCong();
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".TinhGiaTriPhanBo: " + ex.Message);
+            }
+        }
+        
+        public void TinhGiaTriPhanBo_N()
+        {
+            try
+            {
+                var M_PP_PB = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
+                gt_cl.Value = nguyen_gia.Value - gt_da_pb.Value;
+                var GT = M_PP_PB == 1 ? nguyen_gia.Value : gt_cl.Value;
+
+                int soNgay = 0;
+                if (dateNgayTinhPb.Value != null)
+                    soNgay = (dateNgayTinhPb.Value.Value.AddMonths((int)txtSoKyPhanBo.Value) - dateNgayTinhPb.Value).Value.Days + 1;
+                if (soNgay != 0)
+                {
+                    gt_pb_ky_n.Value = V6BusinessHelper.Vround(GT / soNgay, V6Options.M_ROUND);
+                }
+
+                TinhTongCong();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".TinhGiaTriPhanBoN: " + ex.Message);
             }
         }
 

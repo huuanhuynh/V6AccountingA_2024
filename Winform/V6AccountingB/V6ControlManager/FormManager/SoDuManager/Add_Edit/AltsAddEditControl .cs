@@ -259,14 +259,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     gt_kh_ky.Value = V6BusinessHelper.Vround(GT / txtSoKyKhauHao.Value, V6Options.M_ROUND);
                 }
-
-                //int soNgay = 0;
-                //if (dateNgay_kh0.Value != null)
-                //    soNgay = (dateNgay_kh0.Value.Value.AddMonths((int) txtSoKyKhauHao.Value) - dateNgay_kh0.Value).Value.Days + 1;
-                //if (soNgay != 0 && gt_kh_ky_n.Value == 0)
-                //{
-                //    gt_kh_ky_n.Value = V6BusinessHelper.Vround(_Gt / soNgay, V6Options.M_ROUND);
-                //}
                 
                 TinhTongCong();
             }

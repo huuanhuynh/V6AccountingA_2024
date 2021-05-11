@@ -59,6 +59,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 txtMaCt.Text = "S03";
                 txtTang_giam.Value = 1;
                 txtcc0.Value = 0;
+                txtThang1.Value = V6Setting.M_SV_DATE.Month;
+                txtNam.Value = V6Setting.M_SV_DATE.Year;
                 txtLyDoTang.SetInitFilter("loai_tg_cc ='T'");
 
                 var length = V6BusinessHelper.VFV_iFsize("ADALCC", "So_ct");

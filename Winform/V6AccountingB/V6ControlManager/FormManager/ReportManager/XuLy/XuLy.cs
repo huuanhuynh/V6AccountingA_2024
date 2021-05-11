@@ -131,6 +131,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new ATOBTPBCCN(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ATOTANGNG":
                     return new ATOTANGNG(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "ATOGIAMNG":
+                    return new ATOGIAMNG(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ARSD0_AR0":
                     return new ARSD0_AR0(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ARSD0_AP0":

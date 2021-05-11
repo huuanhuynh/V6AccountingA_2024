@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
-            this.filterLineVvarTextBox1 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineLOAI_TS = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox16 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox15 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox9 = new V6ReportControls.FilterLineVvarTextBox();
@@ -75,7 +75,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.txtMaDvcs);
-            this.groupBox1.Controls.Add(this.filterLineVvarTextBox1);
+            this.groupBox1.Controls.Add(this.lineLOAI_TS);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox16);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox15);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox9);
@@ -101,17 +101,17 @@
             this.txtMaDvcs.TabIndex = 2;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
-            // filterLineVvarTextBox1
+            // lineLOAI_TS
             // 
-            this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00116";
-            this.filterLineVvarTextBox1.AccessibleName2 = "LOAI_TS";
-            this.filterLineVvarTextBox1.Caption = "Loại TS";
-            this.filterLineVvarTextBox1.FieldName = "LOAI_TS";
-            this.filterLineVvarTextBox1.Location = new System.Drawing.Point(9, 65);
-            this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
-            this.filterLineVvarTextBox1.Size = new System.Drawing.Size(282, 22);
-            this.filterLineVvarTextBox1.TabIndex = 3;
-            this.filterLineVvarTextBox1.Vvar = "LOAI_TS";
+            this.lineLOAI_TS.AccessibleDescription = "FILTERL00116";
+            this.lineLOAI_TS.AccessibleName2 = "LOAI_TS";
+            this.lineLOAI_TS.Caption = "Loại TS";
+            this.lineLOAI_TS.FieldName = "LOAI_TS";
+            this.lineLOAI_TS.Location = new System.Drawing.Point(9, 65);
+            this.lineLOAI_TS.Name = "lineLOAI_TS";
+            this.lineLOAI_TS.Size = new System.Drawing.Size(282, 22);
+            this.lineLOAI_TS.TabIndex = 3;
+            this.lineLOAI_TS.Vvar = "MA_PLTS";
             // 
             // filterLineVvarTextBox16
             // 
@@ -332,7 +332,7 @@
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox15;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox9;
         private V6ReportControls.FilterLineVvarTextBox TxtSO_THE_TS;
-        private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox1;
+        private V6ReportControls.FilterLineVvarTextBox lineLOAI_TS;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6VvarTextBox TxtMa_bp;

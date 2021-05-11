@@ -2286,6 +2286,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL.designer.cs">
       <DependentUpon>AKBKVTSL.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ATOGIAMNG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ATOGIAMNG.Designer.cs">
+      <DependentUpon>ATOGIAMNG.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH2_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4829,6 +4835,21 @@
     <Compile Include="FormManager\ReportManager\XuLy\AINGIA_DD_LO.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F3.designer.cs">
+      <DependentUpon>ATOGIAMNG_F3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F4.designer.cs">
+      <DependentUpon>ATOGIAMNG_F4.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7223,6 +7244,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AKBKVTSL.resx">
       <DependentUpon>AKBKVTSL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ATOGIAMNG.resx">
+      <DependentUpon>ATOGIAMNG.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2TH2_Filter.resx">
       <DependentUpon>V6IMDATA2TH2_Filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -8517,6 +8541,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_TBDD.resx">
       <DependentUpon>AINGIA_TBDD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOGIAMNG.resx">
+      <DependentUpon>ATOGIAMNG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F3.resx">
+      <DependentUpon>ATOGIAMNG_F3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F4.resx">
+      <DependentUpon>ATOGIAMNG_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE1.resx">
       <DependentUpon>AAPPR_EINVOICE1.cs</DependentUpon>
