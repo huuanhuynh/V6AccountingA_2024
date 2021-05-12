@@ -126,6 +126,7 @@
             this.txtSo_the_cc.Size = new System.Drawing.Size(147, 20);
             this.txtSo_the_cc.TabIndex = 1;
             this.txtSo_the_cc.TabStop = false;
+            this.txtSo_the_cc.UseChangeTextOnSetFormData = true;
             this.txtSo_the_cc.VVar = "SO_THE_CC";
             // 
             // v6Label1

@@ -300,7 +300,7 @@ namespace V6Tools
         }
 
         /// <summary>
-        /// Biếnt thành Dic, key trùng sẽ lấy dòng sau cùng.
+        /// Biến thành Dic, key trùng sẽ lấy dòng sau cùng.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="keyField"></param>
@@ -316,7 +316,7 @@ namespace V6Tools
         }
 
         /// <summary>
-        /// Biếnt thành Dic, key trùng sẽ lấy dòng sau cùng.
+        /// Biến thành Dic, key trùng sẽ lấy dòng sau cùng.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="keyField"></param>
