@@ -7126,6 +7126,109 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             InHoaDonDienTu();
         }
+
+        private void ChonViTriXuatMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtMaKhoX.Text == "" || txtMaKhoN.Text == "")
+                {
+                    this.ShowWarningMessage(string.Format("{0} {1} = ({2}), {3} = ({4})", V6Text.NoInput,
+                        lblMaKhoX, txtMaKhoX.Text == "" ? V6Text.Empty:txtMaKhoX.Text,
+                        lblMaKhoN, txtMaKhoN.Text == "" ? V6Text.Empty:txtMaKhoN.Text));
+                    return;
+                }
+
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+
+                var chonVitriXuat = new ChonVitriXuatForm();
+                chonVitriXuat.CheckFields = "MA_VT,MA_KHO_I,SO_LUONG1";
+                chonVitriXuat.lineMakho.SetValue(txtMaKhoX.Text);
+                chonVitriXuat.AcceptSelectEvent += chonViTriXuat_AcceptSelectEvent;
+                chonVitriXuat.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        void chonViTriXuat_AcceptSelectEvent(List<IDictionary<string, object>> dataList, ChonEventArgs e)
+        {
+            var count = 0;
+            _message = "";
+
+            //if (dataList.Columns.Contains("MA_VT") && dataList.Columns.Contains("MA_KHO"))
+            {
+                detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
+                {
+                    AD.Rows.Clear();
+                }
+
+                foreach (IDictionary<string, object> row in dataList)
+                {
+                    if (row["BOLD"].ToString().Trim() == "1") continue;
+
+                    var data = new Dictionary<string, object>(row);
+                    data["STT_REC"] = _sttRec;
+
+                    var cMaVt = data["MA_VT"].ToString().Trim();
+                    var cMaKhoI = data["MA_KHO"].ToString().Trim();
+                    //var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+                    //var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+
+                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
+                    _maVt.Text = cMaVt;
+                    var datavt = _maVt.Data;
+                    var tonCuoi = ObjectAndString.ObjectToDecimal(data["TON_CUOI"]);
+                    var duCuoi = ObjectAndString.ObjectToDecimal(data["DU_CUOI"]);
+                    if (cMaVt == "" || cMaKhoI == "" || (Math.Abs(tonCuoi) + Math.Abs(duCuoi) == 0)) continue;
+
+                    if (datavt != null)
+                    {
+                        //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
+                        if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("HE_SO1T")) data.Add("HE_SO1T", 1);
+                        if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
+                        if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["TON_CUOI"]);
+                        if (!data.ContainsKey("SO_LUONG1")) data.Add("SO_LUONG1", data["TON_CUOI"]);
+
+                        var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["DU_CUOI"]);
+                        var __tien0 = __tien_nt0;
+
+                        if (!data.ContainsKey("TIEN0")) data.Add("TIEN0", __tien0);
+
+                        if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", __tien_nt0);
+                        if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien0);
+
+                    }
+
+                    data["MA_KHO_I"] = cMaKhoI;
+                    data["MA_NX_I"] = data["TK_VT"];
+                    data["MA_LNX_I"] = txtLoaiNX_PH.Text;
+
+                    if (XuLyThemDetail(data))
+                    {
+                        count++;
+                        All_Objects["data"] = data;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    }
+                }
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+            }
+            //else
+            //{
+            //    ShowParentMessage(V6Text.Text("LACKINFO"));
+            //}
+        }
         
     }
 }

@@ -1514,7 +1514,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             0,
             0,
             0});
-            
             // 
             // v6Label4
             // 
@@ -1641,6 +1640,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             // btnChucNang2
             // 
+            this.btnChucNang2.AccessibleDescription = "ASOCTSOAB00048";
             this.btnChucNang2.Location = new System.Drawing.Point(216, 53);
             this.btnChucNang2.Menu = this.menuChucNang2;
             this.btnChucNang2.Name = "btnChucNang2";

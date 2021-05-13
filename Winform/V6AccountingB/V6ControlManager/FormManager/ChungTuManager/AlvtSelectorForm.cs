@@ -122,11 +122,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
             string ma_vt_value = rowData[MA_VT].ToString().Trim();
             // Check
-            if (!chk2.Checked)
+            if (!chkChonTrung.Checked)
             {
                 foreach (DataRow row0 in _targetTable.Rows)
                 {
-                    if (row0["MA_VT"].ToString().Trim().ToUpper() == ma_vt_value.ToUpper()) return;
+                    if (row0[MA_VT].ToString().Trim().ToUpper() == ma_vt_value.ToUpper()) return;
                 }
             }
 

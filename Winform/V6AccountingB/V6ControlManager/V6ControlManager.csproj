@@ -1543,6 +1543,12 @@
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\ChonDeNghiXuat\IXY_PXDC_KetQua.Designer.cs">
       <DependentUpon>IXY_PXDC_KetQua.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\ChonVitriXuatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\ChonVitriXuatForm.Designer.cs">
+      <DependentUpon>ChonVitriXuatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonPhieuNhapKhau\POB_PXK_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6879,6 +6885,9 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\ChonDeNghiXuat\IXY_PXDC_KetQua.resx">
       <DependentUpon>IXY_PXDC_KetQua.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\ChonVitriXuatForm.resx">
+      <DependentUpon>ChonVitriXuatForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\Loc\LocThoiGianPhieuXuatDieuChuyen.resx">
       <DependentUpon>LocThoiGianPhieuXuatDieuChuyen.cs</DependentUpon>
     </EmbeddedResource>
@@ -9364,6 +9373,7 @@
   <ItemGroup>
     <Content Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\GhiChu.txt" />
     <None Include="Resources\Anydesk32.png" />
+    <None Include="Resources\AldmSetting.png" />
     <Content Include="Resources\Box16.png" />
     <None Include="Resources\Excel32.ico" />
     <None Include="Resources\Excel16.png" />

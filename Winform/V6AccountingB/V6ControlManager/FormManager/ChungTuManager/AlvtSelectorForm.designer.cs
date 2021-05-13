@@ -47,7 +47,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnMove2Down = new System.Windows.Forms.Button();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chk2 = new V6Controls.V6CheckBox();
+            this.chkChonTrung = new V6Controls.V6CheckBox();
             this.btnThayThe = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -206,17 +206,17 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel1.Size = new System.Drawing.Size(450, 464);
             this.panel1.TabIndex = 0;
             // 
-            // chk2
+            // chkChonTrung
             // 
-            this.chk2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chk2.AutoSize = true;
-            this.chk2.Location = new System.Drawing.Point(629, 2);
-            this.chk2.Name = "chk2";
-            this.chk2.Size = new System.Drawing.Size(126, 17);
-            this.chk2.TabIndex = 6;
-            this.chk2.TabStop = false;
-            this.chk2.Text = "Cho phép chọn trùng";
-            this.chk2.UseVisualStyleBackColor = true;
+            this.chkChonTrung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkChonTrung.AutoSize = true;
+            this.chkChonTrung.Location = new System.Drawing.Point(629, 2);
+            this.chkChonTrung.Name = "chkChonTrung";
+            this.chkChonTrung.Size = new System.Drawing.Size(126, 17);
+            this.chkChonTrung.TabIndex = 6;
+            this.chkChonTrung.TabStop = false;
+            this.chkChonTrung.Text = "Cho phép chọn trùng";
+            this.chkChonTrung.UseVisualStyleBackColor = true;
             // 
             // btnThayThe
             // 
@@ -236,7 +236,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 518);
             this.Controls.Add(this.btnThayThe);
-            this.Controls.Add(this.chk2);
+            this.Controls.Add(this.chkChonTrung);
             this.Controls.Add(this.btnRemoveAll);
             this.Controls.Add(this.btnRemoveSelect);
             this.Controls.Add(this.btnMove2Down);
@@ -268,7 +268,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.Controls.SetChildIndex(this.btnRemoveSelect, 0);
             this.Controls.SetChildIndex(this.btnRemoveAll, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
-            this.Controls.SetChildIndex(this.chk2, 0);
+            this.Controls.SetChildIndex(this.chkChonTrung, 0);
             this.Controls.SetChildIndex(this.btnThayThe, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
@@ -291,7 +291,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private System.Windows.Forms.Button btnMove2Up;
         private System.Windows.Forms.Button btnMove2Down;
         private System.Windows.Forms.Panel panel1;
-        private V6CheckBox chk2;
+        private V6CheckBox chkChonTrung;
         private System.Windows.Forms.Button btnThayThe;
     }
 }

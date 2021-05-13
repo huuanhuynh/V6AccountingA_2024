@@ -255,20 +255,22 @@ namespace V6ControlManager.FormManager
                 case "CORPLAN":
                     if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
                     {
-                        //shift_is_down = true;
-                        return new DanhMucView(itemId, code, "CorpLan", "", "", new AldmConfig());
+                        V6ControlFormHelper.SetStatusText("Ngôn ngữ thông báo");
+                        return new DanhMucView(itemId, code, "CorpLan1", "", "", new AldmConfig());
                     }
                     else if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
                     {
-                        return new DanhMucView(itemId, code, "CorpLan1", "", "", new AldmConfig());
+                        V6ControlFormHelper.SetStatusText("Ngôn ngữ trường dữ liệu");
+                        return new DanhMucView(itemId, code, "CorpLan2", "", "", new AldmConfig());
                     }
                     else if ((Control.ModifierKeys & Keys.Alt) == Keys.Alt)
                     {
-                        return new DanhMucView(itemId, code, "CorpLan2", "", "", new AldmConfig());
+                        return new CorplanContainer(itemId);
                     }
                     else
                     {
-                        return new CorplanContainer(itemId);
+                        V6ControlFormHelper.SetStatusText("Ngôn ngữ giao diện");
+                        return new DanhMucView(itemId, code, "CorpLan", "", "", new AldmConfig());
                     }
                 case "V6TOOLS":
                     return new ToolManager.AllTool(itemId);

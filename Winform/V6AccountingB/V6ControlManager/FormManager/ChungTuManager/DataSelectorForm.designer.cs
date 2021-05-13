@@ -112,7 +112,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.lbldsdc.Size = new System.Drawing.Size(117, 13);
             this.lbldsdc.TabIndex = 5;
             this.lbldsdc.Text = "Danh sách được chọn:";
-            this.lbldsdc.Visible = false;
             // 
             // btnHuy
             // 

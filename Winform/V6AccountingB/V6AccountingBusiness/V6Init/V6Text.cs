@@ -379,7 +379,7 @@ namespace V6Init
         public static string DataExist { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
         public static string EditSuccess { get { return V6Setting.Language == "V" ? "Sửa xong!" : "Edit success!"; } }
         public static string EditFail { get { return V6Setting.Language == "V" ? "Sửa bị lỗi!" : "Edit fail!"; } }
-        public static object Empty { get { return V6Setting.Language == "V" ? "Rỗng" : "Empty"; } }
+        public static string Empty { get { return V6Setting.Language == "V" ? "Rỗng" : "Empty"; } }
         public static string Executing { get { return V6Setting.Language == "V" ? "Đang xử lý." : "Executing."; } }
         public static string F348 { get { return V6Setting.Language == "V" ? "F3: Sửa, F4: Thêm, F8: Xóa" : "F3: Edit, F4: Add New, F8: Delete "; } }
         

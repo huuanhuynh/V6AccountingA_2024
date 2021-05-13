@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
@@ -434,6 +435,78 @@ namespace V6Controls
                     FlyLabel_Form.Message = ObjectAndString.ObjectToString(owner.Data[sss[0].ToUpper()]);
                 }
             }
+        }
+
+        /// <summary>
+        /// 'a' #date# num
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="oper">= like start</param>
+        /// <returns></returns>
+        public static string GenRowFilterStringValue(object value, string oper = "=")
+        {
+            string s;
+            bool like = oper == "like";
+            bool start = oper == "start";
+            if (value != null)
+            {
+                switch (value.GetType().ToString())
+                {
+                    case "System.DateTime":
+                    case "System.DateTime?":
+                    case "System.Nullable`1[System.DateTime]":
+                        try
+                        {
+                            s = "#" + ((DateTime)value)
+                                .ToString("MM/dd/yyyy") + "#";
+                        }
+                        catch
+                        {
+                            //if (allowNull)
+                            //    s = "null";
+                            //else
+                                s = "#" + V6Setting.M_SV_DATE.ToString("MM/dd/yyyy") + "#";
+                        }
+                        break;
+                    case "System.Boolean":
+                        s = (bool)value ? "1" : "0";
+                        break;
+                    case "System.Byte":
+                    case "System.Int16":
+                    case "System.Int32":
+                    case "System.Int64":
+                    case "System.Decimal":
+                    case "System.Double":
+                        try
+                        {
+                            s = value.ToString(); //.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator, ".");
+                        }
+                        catch
+                        {
+                            s = "0";
+                        }
+                        break;
+                    case "System.DBNull":
+                        s = "null";
+                        break;
+                    default:
+                        s = "'" + (like? "%" : "")
+                            + value.ToString().Trim().Replace("'", "''")
+                            + (like || start ? "%" : "") + "'";
+                        break;
+                }
+            }
+            //else if (allowNull)
+            //{
+            //    s = "null";
+            //}
+            else
+            {
+                s = "''";
+            }
+
+            return s;
+        
         }
     }//end class
 }

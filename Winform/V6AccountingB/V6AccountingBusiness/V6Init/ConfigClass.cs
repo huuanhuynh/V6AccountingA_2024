@@ -531,7 +531,7 @@ namespace V6Init
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
-            string s = GetString("EXTRA_INFOR");
+            string s = "" + GetString("EXTRA_INFOR");
             if (s != "")
             {
                 var sss = s.Split(';');
