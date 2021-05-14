@@ -69,7 +69,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "LookupButtonDataViewForm";
             this.Text = "LookupButtonDataViewForm";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

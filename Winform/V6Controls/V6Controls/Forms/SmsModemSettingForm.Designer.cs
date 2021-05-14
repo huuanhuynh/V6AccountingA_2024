@@ -111,7 +111,6 @@
             this.Name = "SmsModemSettingForm";
             this.Opacity = 0.9D;
             this.Text = "SmsModemSetting";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.grbKetNoi, 0);
             this.grbKetNoi.ResumeLayout(false);
             this.grbKetNoi.PerformLayout();

@@ -878,7 +878,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             if (_tbl == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
 
@@ -984,7 +984,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             if (_tbl == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try

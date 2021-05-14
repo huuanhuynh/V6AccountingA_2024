@@ -230,7 +230,7 @@ namespace V6Controls.Controls
                 //var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
                 //if (result == 1)
                 //{
-                //    ShowTopLeftMessage(V6Text.Updated + FIELD);
+                //    ShowMainMessage(V6Text.Updated + FIELD);
                 //}
             }
             catch (Exception ex)

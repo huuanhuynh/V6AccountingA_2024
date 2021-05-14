@@ -119,7 +119,6 @@
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.button1, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.pdfViewer1, 0);
             this.ResumeLayout(false);
 

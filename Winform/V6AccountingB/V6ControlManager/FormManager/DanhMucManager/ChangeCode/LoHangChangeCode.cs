@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             try
             {
                 OnDoChangeCodeFinish(newData);
-                ShowTopLeftMessage(V6Text.Finish);
+                ShowMainMessage(V6Text.Finish);
                 Close();
             }
             catch (Exception ex)

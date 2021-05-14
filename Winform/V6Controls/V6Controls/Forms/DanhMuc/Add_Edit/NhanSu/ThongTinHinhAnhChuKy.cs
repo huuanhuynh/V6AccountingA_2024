@@ -40,7 +40,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "SIGNATURE");
+                    ShowMainMessage(V6Text.Updated + "SIGNATURE");
                 }
             }
             catch (Exception ex)
@@ -90,7 +90,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)
@@ -113,7 +113,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "SIGNATURE");
+                    ShowMainMessage(V6Text.Updated + "SIGNATURE");
                 }
             }
             catch (Exception ex)

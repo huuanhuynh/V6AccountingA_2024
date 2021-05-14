@@ -141,7 +141,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)
@@ -169,7 +169,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)

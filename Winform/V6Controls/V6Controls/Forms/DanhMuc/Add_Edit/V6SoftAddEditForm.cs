@@ -62,7 +62,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "LOGO");
+                    ShowMainMessage(V6Text.Updated + "LOGO");
                 }
             }
             catch (Exception ex)
@@ -85,7 +85,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "LOGO");
+                    ShowMainMessage(V6Text.Updated + "LOGO");
                 }
             }
             catch (Exception ex)

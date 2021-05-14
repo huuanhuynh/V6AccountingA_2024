@@ -1308,7 +1308,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             catch(Exception ex)
             {
                 if(flag == 3)
-                    ShowTopLeftMessage(string.Format(V6Text.Text("CHECKDROPLINEFIELD0"), checkField));
+                    ShowMainMessage(string.Format(V6Text.Text("CHECKDROPLINEFIELD0"), checkField));
                 this.WriteExLog(GetType() + ".SetCrossLineRpt", ex);
             }
         }
@@ -1767,7 +1767,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             if (_tbl_AD == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1871,7 +1871,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             if (_tbl_AD == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try

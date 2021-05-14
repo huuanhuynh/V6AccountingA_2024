@@ -555,7 +555,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 catch (Exception ex)
                 {
-                    view.ShowTopLeftMessage("UPDATEF9 " + ex.Message);
                     ShowMainMessage("UPDATEF9 Error: " + ex.Message);
                 }
                 view.Dispose();

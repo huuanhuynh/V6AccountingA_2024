@@ -109,7 +109,7 @@
             this.Name = "SoDuFormAddEdit";
             this.Text = "SoDuFormAdd_Edit";
             this.Load += new System.EventHandler(this.FormAdd_Edit_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnInfos, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);

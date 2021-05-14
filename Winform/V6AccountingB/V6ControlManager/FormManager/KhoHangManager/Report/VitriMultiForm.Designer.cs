@@ -72,7 +72,7 @@
             this.Controls.Add(this.lblTenHang);
             this.Name = "VitriMultiForm";
             this.Text = "VitriMultiForm";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.lblTenHang, 0);
             this.Controls.SetChildIndex(this.txtMavt, 0);
             this.ResumeLayout(false);

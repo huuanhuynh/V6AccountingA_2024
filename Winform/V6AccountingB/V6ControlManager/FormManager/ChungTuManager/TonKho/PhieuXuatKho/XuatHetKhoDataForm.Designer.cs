@@ -455,7 +455,7 @@
             this.MinimumSize = new System.Drawing.Size(780, 560);
             this.Name = "XuatHetKhoDataForm";
             this.Text = "XuatHetKhoDataForm";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.btnLoc, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);

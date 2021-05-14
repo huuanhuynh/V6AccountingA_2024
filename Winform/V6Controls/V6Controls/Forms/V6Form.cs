@@ -74,8 +74,6 @@ namespace V6Controls.Forms
         public V6Form()
         {
             InitializeComponent();
-            lblTopMessage.Top -= lblTopMessage.Height;
-            MessageLable = lblTopMessage;
         }
 
         public bool IsReady { get { return _ready; } }
@@ -365,62 +363,8 @@ namespace V6Controls.Forms
             V6ControlFormHelper.ShowMainMessage(message);
         }
 
-        public static V6Label MessageLable;
-        private static Timer _topMessageTimer;
         private static int _topTime = -1;
-        /// <summary>
-        /// Hiển thị một thông báo trượt xuống từ góc trên bên trái của form.
-        /// </summary>
-        /// <param name="message"></param>
-        public void ShowTopLeftMessage(string message)
-        {
-            if (_topMessageTimer != null && _topMessageTimer.Enabled)
-            {
-                _topMessageTimer.Stop();
-                //MessageLable.Top 
-            }
-            MessageLable.BringToFront();
-            MessageLable.Text = message;
-            
-            _topMessageTimer = new Timer { Interval = 200 };
-            _topMessageTimer.Tick += topMessageTimer_Tick;
-            _topTime = -1;
-            _topMessageTimer.Start();
-            MessageLable.Visible = true;
-        }
-
-        static void topMessageTimer_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                _topTime++;
-                
-                if (_topTime < 10)//Hiện ra
-                {
-                    MessageLable.Top -= MessageLable.Top / 3;
-
-                    if (MessageLable.Top == -1) MessageLable.Top = 0;
-                    if (MessageLable.Top == -2) MessageLable.Top = -1;
-                    return;
-                }
-                if (_topTime < 20)//Dừng lại
-                {
-                    return;
-                }
-                if (_topTime < 30)//Ẩn đi
-                {
-                    MessageLable.Top -= MessageLable.Bottom / 3;
-                    if (MessageLable.Bottom == 1) MessageLable.Top = -MessageLable.Height;
-                    if (MessageLable.Bottom == 2) MessageLable.Top = -MessageLable.Height + 1;
-                    return;
-                }
-                _topMessageTimer.Stop();
-            }
-            catch// (Exception)
-            {
-                // ignored
-            }
-        }
+        
 
         #endregion show hide message
     }

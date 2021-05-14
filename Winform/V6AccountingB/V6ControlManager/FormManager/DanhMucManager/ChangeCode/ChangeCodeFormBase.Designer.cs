@@ -177,7 +177,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             this.Name = "ChangeCodeFormBase";
             this.Text = "Đổi mã";
             this.Load += new System.EventHandler(this.KhachHangChangeCodeForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);

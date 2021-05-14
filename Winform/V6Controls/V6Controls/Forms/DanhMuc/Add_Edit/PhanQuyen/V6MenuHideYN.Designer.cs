@@ -121,7 +121,6 @@
             this.Name = "V6MenuHideYN";
             this.Text = "V6Menu.Hide_yn";
             this.Load += new System.EventHandler(this.PhanQuyen_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.treeListView1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);

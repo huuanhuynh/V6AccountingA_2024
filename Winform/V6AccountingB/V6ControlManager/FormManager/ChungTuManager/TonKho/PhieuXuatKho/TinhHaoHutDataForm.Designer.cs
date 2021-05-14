@@ -501,7 +501,7 @@
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.chkSoluong, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.dateNgay_ct1, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

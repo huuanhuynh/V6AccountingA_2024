@@ -687,7 +687,6 @@ namespace V6AccountingB
             this.Controls.SetChildIndex(this.panelMenu, 0);
             this.Controls.SetChildIndex(this.statusStrip1, 0);
             this.Controls.SetChildIndex(this.lblMainMessage, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panelMenu.ResumeLayout(false);

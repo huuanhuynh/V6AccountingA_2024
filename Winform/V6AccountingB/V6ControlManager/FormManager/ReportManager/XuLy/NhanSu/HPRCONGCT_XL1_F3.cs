@@ -271,7 +271,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 message += " Detail3";
             }
 
-            ShowTopLeftMessage(message);
+            ShowMainMessage(message);
         }
 
     }

@@ -903,7 +903,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     }
                     else
                     {
-                        if (showMessage) ShowTopLeftMessage(V6Text.UpdateFail);
+                        if (showMessage) ShowMainMessage(V6Text.UpdateFail);
                     }
 
                 }
@@ -953,7 +953,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     }
                     else
                     {
-                        if (showMessage) ShowTopLeftMessage(V6Text.AddFail);
+                        if (showMessage) ShowMainMessage(V6Text.AddFail);
                     }
                     return false;
                 }

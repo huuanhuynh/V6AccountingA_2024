@@ -289,7 +289,6 @@
             this.Controls.SetChildIndex(this.lblField, 0);
             this.Controls.SetChildIndex(this.chkFindNext, 0);
             this.Controls.SetChildIndex(this.chkFindOr, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

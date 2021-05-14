@@ -170,7 +170,6 @@
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.cboDatabase, 0);
             this.Controls.SetChildIndex(this.lblStatus, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.label8, 0);
             this.ResumeLayout(false);
             this.PerformLayout();

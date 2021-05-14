@@ -92,7 +92,6 @@
             this.Controls.Add(this.txtBieuThuc);
             this.Name = "ExpressionsCalculatorForm";
             this.Text = "Máy tính biểu thức";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.txtBieuThuc, 0);
             this.Controls.SetChildIndex(this.btnCopy, 0);
             this.Controls.SetChildIndex(this.txtKetQua, 0);

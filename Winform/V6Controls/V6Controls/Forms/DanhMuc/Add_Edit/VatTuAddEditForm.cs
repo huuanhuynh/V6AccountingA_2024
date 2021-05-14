@@ -186,7 +186,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)
@@ -209,7 +209,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)
@@ -249,7 +249,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)
@@ -284,7 +284,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         //        if (result == 1)
         //        {
-        //            ShowTopLeftMessage(V6Text.Updated + FIELD);
+        //            ShowMainMessage(V6Text.Updated + FIELD);
         //        }
         //    }
         //    catch (Exception ex)
@@ -303,7 +303,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopLeftMessage(V6Text.Updated + FIELD);
+                    ShowMainMessage(V6Text.Updated + FIELD);
                 }
             }
             catch (Exception ex)
@@ -323,7 +323,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
                 else
                 {
-                    ShowTopLeftMessage(V6Text.NoData);
+                    ShowMainMessage(V6Text.NoData);
                 }
             }
             catch (Exception ex)
@@ -355,7 +355,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
                 else
                 {
-                    ShowTopLeftMessage(V6Text.NotFound);
+                    ShowMainMessage(V6Text.NotFound);
                 }
             }
             catch (Exception ex)
@@ -414,7 +414,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                         if (result == 1)
                         {
-                            ShowTopLeftMessage(V6Text.Updated + FIELD);
+                            ShowMainMessage(V6Text.Updated + FIELD);
                         }
                     }
                     catch (Exception ex)
@@ -432,7 +432,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                         if (result == 1)
                         {
-                            ShowTopLeftMessage(V6Text.Updated + FIELD);
+                            ShowMainMessage(V6Text.Updated + FIELD);
                         }
                     }
                     catch (Exception ex)

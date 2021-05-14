@@ -97,7 +97,7 @@
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnFilter, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.ResumeLayout(false);
 
         }

@@ -541,7 +541,7 @@
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.lblDocSoTien, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.grbThoiGian.ResumeLayout(false);

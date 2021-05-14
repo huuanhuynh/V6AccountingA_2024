@@ -115,7 +115,6 @@
             this.Controls.SetChildIndex(this.gridViewSummary1, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.statusStrip1, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

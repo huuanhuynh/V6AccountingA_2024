@@ -113,7 +113,7 @@
             this.Name = "ChartReportForm";
             this.Text = "ChartReportForm";
             this.Load += new System.EventHandler(this.ChartReportForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.crystalReportViewer1, 0);
             this.Controls.SetChildIndex(this.cboLoaiReport, 0);
             this.Controls.SetChildIndex(this.cboLoaiBieuDo, 0);

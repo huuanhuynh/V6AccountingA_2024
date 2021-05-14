@@ -134,7 +134,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "XmlEditorForm";
             this.Text = "XmlEditor";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.btnXuatXml, 0);
             this.Controls.SetChildIndex(this.btnNhapXml, 0);

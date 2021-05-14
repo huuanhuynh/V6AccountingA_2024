@@ -533,7 +533,6 @@
             this.Controls.SetChildIndex(this.btnMR, 0);
             this.Controls.SetChildIndex(this.btnMC, 0);
             this.Controls.SetChildIndex(this.lblMemory, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.txtScreen, 0);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

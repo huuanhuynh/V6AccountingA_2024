@@ -1813,7 +1813,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             if (_tbl_AD == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1917,7 +1917,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             if (_tbl_AD == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try

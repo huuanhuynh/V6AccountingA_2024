@@ -234,7 +234,6 @@
             this.Controls.Add(this.treeView1);
             this.Name = "ControlsPropertiesEditorForm";
             this.Text = "ControlsPropertiesEditorForm";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.treeView1, 0);
             this.Controls.SetChildIndex(this.propertyGrid1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

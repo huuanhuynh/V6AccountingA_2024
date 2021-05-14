@@ -123,7 +123,7 @@
             this.Name = "ChartReportDXForm";
             this.Text = "ChartReportDXForm";
             this.Load += new System.EventHandler(this.ChartReportDXForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.cboLoaiReport, 0);
             this.Controls.SetChildIndex(this.cboLoaiBieuDo, 0);
             this.Controls.SetChildIndex(this.v6Label2, 0);

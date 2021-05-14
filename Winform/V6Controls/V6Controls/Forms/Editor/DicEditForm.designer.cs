@@ -269,7 +269,6 @@
             this.Controls.SetChildIndex(this.btnMove2Up, 0);
             this.Controls.SetChildIndex(this.btnMove2Down, 0);
             this.Controls.SetChildIndex(this.txtValue, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

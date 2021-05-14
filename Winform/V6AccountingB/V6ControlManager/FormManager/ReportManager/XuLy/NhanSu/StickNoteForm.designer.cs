@@ -121,7 +121,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "StickNoteForm";
             this.Load += new System.EventHandler(this.Form_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.lichView1, 0);

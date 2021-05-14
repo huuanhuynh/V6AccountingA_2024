@@ -149,7 +149,7 @@
             this.MinimizeBox = false;
             this.Name = "ChucNangThayTheForm";
             this.Text = "Thay thế";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.textBox1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);

@@ -443,11 +443,11 @@ namespace V6Controls.Forms
             {
                 if (owner is V6Form)
                 {
-                    ((V6Form)owner).ShowTopLeftMessage(V6Text.NotExist + "\n..." + file.Right(50));
+                    ((V6Form)owner).ShowMainMessage(V6Text.NotExist + "\n..." + file.Right(50));
                 }
                 else if (owner is V6Control)
                 {
-                    ((V6Control)owner).ShowTopLeftMessage(V6Text.NotExist + "\n..." + file.Right(50));
+                    ((V6Control)owner).ShowMainMessage(V6Text.NotExist + "\n..." + file.Right(50));
                 }
                 return;
             }

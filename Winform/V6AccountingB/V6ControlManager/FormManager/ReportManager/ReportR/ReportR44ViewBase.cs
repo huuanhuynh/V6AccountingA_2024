@@ -1422,7 +1422,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1780,7 +1780,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                ShowTopLeftMessage(string.Format("{0}: {1}", V6Text.Text("LOIIN"), ex.Message));
+                ShowMainMessage(string.Format("{0}: {1}", V6Text.Text("LOIIN"), ex.Message));
                 this.WriteExLog(GetType() + ".btnIn_Click", ex);
             }
         }
@@ -1968,7 +1968,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try
@@ -2027,7 +2027,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try

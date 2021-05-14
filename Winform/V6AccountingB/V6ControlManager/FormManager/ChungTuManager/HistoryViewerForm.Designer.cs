@@ -145,7 +145,7 @@
             this.Name = "HistoryViewerForm";
             this.Text = "Chi tiết thay đổi";
             this.Load += new System.EventHandler(this.HistoryViewerForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);

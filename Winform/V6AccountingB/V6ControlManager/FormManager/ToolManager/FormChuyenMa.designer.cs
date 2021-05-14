@@ -197,7 +197,7 @@
             this.Text = "Chuyển mã tiếng Việt";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.richTextBox1, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.richTextBox2, 0);
             this.Controls.SetChildIndex(this.btnChuyen, 0);
             this.Controls.SetChildIndex(this.grbNguon, 0);

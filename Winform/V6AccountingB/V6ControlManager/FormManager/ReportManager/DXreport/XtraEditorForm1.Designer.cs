@@ -1422,7 +1422,7 @@
             this.Controls.SetChildIndex(this.barDockControlLeft, 0);
             this.Controls.SetChildIndex(this.panelContainer1, 0);
             this.Controls.SetChildIndex(this.panelContainer4, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             ((System.ComponentModel.ISupportInitialize)(this.xrDesignBarManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recentlyUsedItemsComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.designRepositoryItemComboBox1)).EndInit();

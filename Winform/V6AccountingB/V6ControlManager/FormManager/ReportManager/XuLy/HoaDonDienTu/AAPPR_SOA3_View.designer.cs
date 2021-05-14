@@ -169,7 +169,7 @@
             this.Controls.SetChildIndex(this.v6Label8, 0);
             this.Controls.SetChildIndex(this.TxtMa_bp, 0);
             this.Controls.SetChildIndex(this.TxtMa_nvien, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.webBrowser1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();

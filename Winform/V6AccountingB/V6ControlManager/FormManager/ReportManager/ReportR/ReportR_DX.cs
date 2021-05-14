@@ -1344,7 +1344,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1961,7 +1961,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try
@@ -2021,7 +2021,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try

@@ -478,7 +478,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 progressBar1.Visible = false;
                 string message = string.Format("Đã chuyển {0}.", _updateCount);
                 if (_updateCount == 0) message += " Chọn dòng cần chuyển bằng SpaceBar hoặc Ctrl+A.";
-                ShowTopLeftMessage(message);
+                ShowMainMessage(message);
                 _changedList = new SortedDictionary<string, string>();
                 btnNhan.Enabled = true;
                 btnChuyenNhom.Enabled = true;

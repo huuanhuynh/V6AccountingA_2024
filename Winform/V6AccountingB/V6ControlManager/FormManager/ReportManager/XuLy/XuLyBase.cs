@@ -923,7 +923,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var data = dataGridView2.Focused ? _tbl2 : _tbl;
             if (data == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try
@@ -957,7 +957,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (_tbl == null)
             {
-                ShowTopLeftMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.NoData);
                 return;
             }
             try

@@ -223,7 +223,7 @@
             this.Name = "ChonKhuyenMaiForm";
             this.Text = "ChonKhuyenMai";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChonKhuyenMaiForm_FormClosing);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.dgvctkm, 0);
             this.Controls.SetChildIndex(this.dgvctck, 0);
             this.Controls.SetChildIndex(this.dgvctkmct, 0);

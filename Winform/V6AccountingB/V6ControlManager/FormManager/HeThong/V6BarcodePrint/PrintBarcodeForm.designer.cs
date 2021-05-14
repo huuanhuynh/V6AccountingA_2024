@@ -1038,7 +1038,7 @@
             this.Controls.SetChildIndex(this.grbStampSize, 0);
             this.Controls.SetChildIndex(this.grbFontSizeBold, 0);
             this.Controls.SetChildIndex(this.cboBarcodeType, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNgang)).EndInit();
             this.grbPaperSize.ResumeLayout(false);
             this.grbPaperSize.PerformLayout();

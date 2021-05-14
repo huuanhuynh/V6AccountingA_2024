@@ -267,7 +267,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.Controls.SetChildIndex(this.btnMove2Down, 0);
             this.Controls.SetChildIndex(this.btnRemoveSelect, 0);
             this.Controls.SetChildIndex(this.btnRemoveAll, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.chkChonTrung, 0);
             this.Controls.SetChildIndex(this.btnThayThe, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

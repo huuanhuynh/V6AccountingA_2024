@@ -309,7 +309,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             }
 
             Reload();
-            ShowTopLeftMessage(message);
+            ShowMainMessage(message);
         }
 
         private void lichView1_HoverCellChanged(LichViewEventArgs obj)

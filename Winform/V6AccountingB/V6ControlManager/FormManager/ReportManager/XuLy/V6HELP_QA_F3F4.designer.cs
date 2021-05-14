@@ -279,7 +279,7 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "V6HELP_QA_F3F4";
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.v6Label1, 0);

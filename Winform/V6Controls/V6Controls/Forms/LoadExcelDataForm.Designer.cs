@@ -268,7 +268,6 @@
             this.Name = "LoadExcelDataForm";
             this.Text = "LoadExcelDataForm";
             this.Load += new System.EventHandler(this.LoadExcelDataForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.txtFile, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.btnTim, 0);

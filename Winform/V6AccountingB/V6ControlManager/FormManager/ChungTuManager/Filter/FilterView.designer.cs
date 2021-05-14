@@ -179,7 +179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.statusStrip1, 0);
             this.Controls.SetChildIndex(this.gridViewSummary1, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

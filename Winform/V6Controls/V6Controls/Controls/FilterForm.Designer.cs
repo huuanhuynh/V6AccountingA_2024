@@ -92,7 +92,6 @@
             this.Name = "FilterForm";
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnFilter, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);

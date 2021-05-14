@@ -123,7 +123,6 @@
             this.ShowInTaskbar = false;
             this.Text = "AmLich";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.lichViewControl1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnThoat, 0);

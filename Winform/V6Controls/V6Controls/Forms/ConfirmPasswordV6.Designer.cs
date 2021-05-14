@@ -110,7 +110,6 @@
             this.MinimizeBox = false;
             this.Name = "ConfirmPasswordV6";
             this.Text = "ConfirmPasswordV6";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.lblUserName, 0);
             this.Controls.SetChildIndex(this.lblPassword, 0);
             this.Controls.SetChildIndex(this.txtUserName, 0);

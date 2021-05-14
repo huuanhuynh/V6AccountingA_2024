@@ -141,7 +141,6 @@ namespace V6AccountingB
             this.Controls.SetChildIndex(this.txtUserName, 0);
             this.Controls.SetChildIndex(this.txtPassword, 0);
             this.Controls.SetChildIndex(this.lblCompanyName, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

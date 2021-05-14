@@ -84,7 +84,7 @@
             this.Controls.Add(this.gridViewSummary1);
             this.Name = "HPRCONGCT_XL1_F5";
             this.Load += new System.EventHandler(this.Form_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.gridViewSummary1, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

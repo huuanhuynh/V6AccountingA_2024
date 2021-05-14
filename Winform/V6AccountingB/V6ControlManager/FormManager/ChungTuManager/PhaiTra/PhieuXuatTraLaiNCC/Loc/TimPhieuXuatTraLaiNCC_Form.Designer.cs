@@ -479,7 +479,7 @@
             this.Activated += new System.EventHandler(this.TimPhieuXuatTraLaiNCCForm_Activated);
             this.Load += new System.EventHandler(this.TimPhieuXuatTraLaiNCCForm_Load);
             this.VisibleChanged += new System.EventHandler(this.TimPhieuXuatTraLaiNCCForm_VisibleChanged);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

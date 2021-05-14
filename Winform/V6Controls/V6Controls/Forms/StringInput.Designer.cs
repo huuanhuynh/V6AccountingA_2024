@@ -106,7 +106,6 @@
             this.MinimizeBox = false;
             this.Name = "StringInput";
             this.Text = "StringInput";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.txtInput, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);

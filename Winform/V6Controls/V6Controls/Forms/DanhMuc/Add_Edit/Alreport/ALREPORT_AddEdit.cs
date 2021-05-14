@@ -97,7 +97,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                         };
                     }
 
-                    ShowTopLeftMessage(V6Setting.IsVietnamese 
+                    ShowMainMessage(V6Setting.IsVietnamese 
                         ? string.Format("Đã thêm {0} chi tiết.", add_count)
                         : string.Format("{0} detail(s) added.", add_count));
                 }
@@ -217,7 +217,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                             add_count++;
                         };
                     }
-                    ShowTopLeftMessage(V6Setting.IsVietnamese
+                    ShowMainMessage(V6Setting.IsVietnamese
                         ? string.Format("Đã xóa {0} và thêm {1} chi tiết.", delete_count, add_count)
                         : string.Format("{0} detail(s) deleted and {1} added.", delete_count, add_count));
                 }

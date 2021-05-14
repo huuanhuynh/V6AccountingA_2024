@@ -1683,7 +1683,7 @@
             this.Activated += new System.EventHandler(this.TimDonDatHangBanForm_Activated);
             this.Load += new System.EventHandler(this.TimDonDatHangBanForm_Load);
             this.VisibleChanged += new System.EventHandler(this.TimDonDatHangBanForm_VisibleChanged);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

@@ -81,7 +81,6 @@
             this.Text = "GridViewRowEditorForm";
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnThoat, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.ResumeLayout(false);
 
         }

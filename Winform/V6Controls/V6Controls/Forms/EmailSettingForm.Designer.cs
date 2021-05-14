@@ -236,7 +236,6 @@
             this.MinimizeBox = false;
             this.Name = "EmailSettingForm";
             this.Text = "EmailSetting";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnSend, 0);
             this.Controls.SetChildIndex(this.btnBrownFile, 0);
             this.Controls.SetChildIndex(this.label1, 0);

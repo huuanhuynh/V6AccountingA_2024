@@ -123,7 +123,6 @@
             this.Name = "CopyFromSelectForm";
             this.Text = "CopyFromSelectForm";
             this.Load += new System.EventHandler(this.CopyFromSelectForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.listBox1, 0);

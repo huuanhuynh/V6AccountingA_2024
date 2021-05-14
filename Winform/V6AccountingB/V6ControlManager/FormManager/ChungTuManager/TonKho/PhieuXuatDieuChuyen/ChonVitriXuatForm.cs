@@ -204,7 +204,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             result.Add(new SqlParameter("@Kieu_in", txtKieuIn.Text.Trim()));
             result.Add(new SqlParameter("@HSD_YN", chkTonHSD.Checked ? "1" : "0"));
             result.Add(new SqlParameter("@SL_GT", chkSoluong.Checked ? "1" : "2"));
-            
+            result.Add(new SqlParameter("@MA_KHON", lineMaKhoN.StringValueCheck));
 
             return result;
         }
@@ -560,10 +560,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private void btnAddSelect_Click(object sender, EventArgs e)
         {
             SortedDictionary<int, DataGridViewRow> rowDic = new SortedDictionary<int, DataGridViewRow>();
-            foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
+            // Lấy những dòng được chọn bằng spacebar.
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                int i = cell.RowIndex;
-                if (!rowDic.ContainsKey(i)) rowDic.Add(i, cell.OwningRow);
+                if (row.IsSelect())
+                {
+                    int i = row.Index;
+                    if (!rowDic.ContainsKey(i)) rowDic.Add(i, row);
+                }
+            }
+            // Nếu chưa có dòng được chọn thì chọn những ô được chọn.
+            if(rowDic.Count == 0)
+            {
+                foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
+                {
+                    int i = cell.RowIndex;
+                    if (!rowDic.ContainsKey(i)) rowDic.Add(i, cell.OwningRow);
+                }
             }
 
             foreach (KeyValuePair<int, DataGridViewRow> item in rowDic)
@@ -580,8 +593,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void btnRemoveSelect_Click(object sender, EventArgs e)
         {
-            RemoveRowsBySelectedCellsRight();
-            ApplyGenFilter();
+            try
+            {
+                RemoveRowsBySelectedCellsRight();
+                ApplyGenFilter();
+                dataGridView1.RecheckColor();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("btnRemoveSelect_Click", ex);
+            }
         }
 
         private void btnRemoveAll_Click(object sender, EventArgs e)
@@ -594,6 +615,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 }
                 SELECT_KEY_FILTER.Clear();
                 ApplyGenFilter();
+                dataGridView1.RecheckColor();
             }
             catch (Exception ex)
             {

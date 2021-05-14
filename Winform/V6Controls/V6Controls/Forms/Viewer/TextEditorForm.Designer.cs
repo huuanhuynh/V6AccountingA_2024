@@ -70,7 +70,6 @@
             this.Name = "TextEditorForm";
             this.Text = "TexEditorForm";
             this.Controls.SetChildIndex(this.statusStrip1, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.richTextBox1, 0);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

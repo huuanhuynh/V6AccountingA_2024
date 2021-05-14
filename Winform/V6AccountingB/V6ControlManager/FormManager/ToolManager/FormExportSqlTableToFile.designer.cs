@@ -282,7 +282,7 @@
             this.Controls.SetChildIndex(this.chkUID, 0);
             this.Controls.SetChildIndex(this.txtBy, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbExport.ResumeLayout(false);
             this.grbExport.PerformLayout();

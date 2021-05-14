@@ -1320,7 +1320,7 @@
             this.Load += new System.EventHandler(this.TimHoaDonForm_Load);
             this.VisibleChanged += new System.EventHandler(this.TimPhieuChiForm_VisibleChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TimPhieuChiForm_KeyDown);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

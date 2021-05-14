@@ -148,7 +148,6 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "ToChucTreeSelectForm";
             this.Text = "ToChucTreeSelectForm";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnThoat, 0);
             this.Controls.SetChildIndex(this.toChucTreeListView1, 0);

@@ -151,7 +151,6 @@
             this.Text = "Phần quyền người sử dụng";
             this.Load += new System.EventHandler(this.PhanQuyenSoNoiBo_Load);
             this.Controls.SetChildIndex(this.treeListView1, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnSelectAll, 0);

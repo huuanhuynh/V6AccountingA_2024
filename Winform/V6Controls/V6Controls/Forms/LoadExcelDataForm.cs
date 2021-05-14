@@ -219,7 +219,7 @@ namespace V6Controls.Forms
             //    }
             //    else
             //    {
-            //        ShowTopLeftMessage(string.Format("{0} [{1}]", V6Text.NotExist, file1));
+            //        ShowMainMessage(string.Format("{0} [{1}]", V6Text.NotExist, file1));
             //    }
             //}
             //catch (Exception ex)

@@ -103,7 +103,6 @@
             this.Name = "XmlXslZipViewerForm";
             this.Text = "XmlXslZipViewerForm";
             this.Load += new System.EventHandler(this.XmlXslZipViewerForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.webBrowser1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnPrint, 0);

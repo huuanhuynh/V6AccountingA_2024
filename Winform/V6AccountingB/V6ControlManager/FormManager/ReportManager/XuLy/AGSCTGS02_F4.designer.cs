@@ -213,7 +213,7 @@
             this.Controls.SetChildIndex(this.txtKy2, 0);
             this.Controls.SetChildIndex(this.v6Label3, 0);
             this.Controls.SetChildIndex(this.txtMaDvcs, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 

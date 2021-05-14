@@ -1279,7 +1279,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.Name = "STICK_NOTE_F3F4";
             this.Text = "Stick note";
             this.Load += new System.EventHandler(this.Form_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.v6TabControl1, 0);

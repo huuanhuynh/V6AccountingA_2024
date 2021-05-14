@@ -248,7 +248,7 @@
             this.Name = "PhanNhomForm";
             this.Text = "Phân nhóm";
             this.Load += new System.EventHandler(this.PhanNhomForm_Load);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.panel1.ResumeLayout(false);

@@ -2239,7 +2239,6 @@
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.v6TabControl1, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();

@@ -146,7 +146,6 @@
             this.Controls.SetChildIndex(this.treeListView1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnSelectAll, 0);
             this.Controls.SetChildIndex(this.btnUnSelect, 0);
             this.ResumeLayout(false);
