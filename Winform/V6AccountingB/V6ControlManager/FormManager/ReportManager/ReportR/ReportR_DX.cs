@@ -2239,6 +2239,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
         }
+
+        private void dataGridView1_FilterChange()
+        {
+            V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+        }
         
     }
 }

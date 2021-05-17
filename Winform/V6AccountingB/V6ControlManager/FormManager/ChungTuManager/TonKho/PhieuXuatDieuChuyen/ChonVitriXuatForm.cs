@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using DevExpress.XtraCharts;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Controls;

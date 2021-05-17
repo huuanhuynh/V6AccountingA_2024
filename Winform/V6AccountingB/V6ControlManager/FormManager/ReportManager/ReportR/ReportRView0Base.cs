@@ -1880,5 +1880,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        private void dataGridView1_FilterChange()
+        {
+            V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+        }
+
     }
 }

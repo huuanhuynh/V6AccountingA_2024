@@ -7229,6 +7229,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             //    ShowParentMessage(V6Text.Text("LACKINFO"));
             //}
         }
-        
+                
     }
 }

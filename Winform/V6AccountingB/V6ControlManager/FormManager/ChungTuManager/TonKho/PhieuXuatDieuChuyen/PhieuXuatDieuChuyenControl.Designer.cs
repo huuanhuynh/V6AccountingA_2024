@@ -89,7 +89,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
             this.cboChuyenData = new V6Controls.V6ComboBox();
             this.v6Label28 = new V6Controls.V6Label();
-            this.dropDownButton1 = new V6Controls.Controls.DropDownButton();
+            this.btnChucNang2 = new V6Controls.Controls.DropDownButton();
             this.menuChucNang2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.chonDeNghiXuatKhoTheoKhoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chon1PhieuNhapMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -996,7 +996,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.group4.Controls.Add(this.txtTongSoLuong);
             this.group4.Controls.Add(this.cboChuyenData);
             this.group4.Controls.Add(this.v6Label28);
-            this.group4.Controls.Add(this.dropDownButton1);
+            this.group4.Controls.Add(this.btnChucNang2);
             this.group4.Controls.Add(this.btnChucNang);
             this.group4.Controls.Add(this.chkSuaTien);
             this.group4.Controls.Add(this.txtTongSoLuong1);
@@ -1099,18 +1099,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label28.TabIndex = 39;
             this.v6Label28.Text = "DATA";
             // 
-            // dropDownButton1
+            // btnChucNang22
             // 
-            this.dropDownButton1.AccessibleDescription = "ASOCTSOAB00048";
-            this.dropDownButton1.Location = new System.Drawing.Point(206, 49);
-            this.dropDownButton1.Menu = this.menuChucNang2;
-            this.dropDownButton1.Name = "dropDownButton1";
-            this.dropDownButton1.Size = new System.Drawing.Size(90, 23);
-            this.dropDownButton1.TabIndex = 37;
-            this.dropDownButton1.Tag = "cancel";
-            this.dropDownButton1.Text = "Chức năng 2";
-            this.dropDownButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dropDownButton1.UseVisualStyleBackColor = true;
+            this.btnChucNang2.AccessibleDescription = "ASOCTSOAB00048";
+            this.btnChucNang2.Location = new System.Drawing.Point(206, 49);
+            this.btnChucNang2.Menu = this.menuChucNang2;
+            this.btnChucNang2.Name = "btnChucNang2";
+            this.btnChucNang2.Size = new System.Drawing.Size(90, 23);
+            this.btnChucNang2.TabIndex = 37;
+            this.btnChucNang2.Tag = "cancel";
+            this.btnChucNang2.Text = "Chức năng 2";
+            this.btnChucNang2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChucNang2.UseVisualStyleBackColor = true;
             // 
             // menuChucNang2
             // 
@@ -2934,7 +2934,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem inHoaDonDienTuMenu;
         private V6CheckBox chkAutoNext;
-        private DropDownButton dropDownButton1;
+        private DropDownButton btnChucNang2;
         private System.Windows.Forms.ContextMenuStrip menuChucNang2;
         private System.Windows.Forms.ToolStripMenuItem chonDeNghiXuatKhoTheoKhoMenu;
         private System.Windows.Forms.ToolStripMenuItem chon1PhieuNhapMuaMenu;

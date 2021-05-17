@@ -42,6 +42,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewDataMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToWordMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportEXCELXtraMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportEXCELDataMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToHTMLMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
@@ -77,10 +81,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
-            this.exportToWordMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportEXCELXtraMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportEXCELDataMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToHTMLMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -163,6 +163,34 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToPdfMenu.Size = new System.Drawing.Size(210, 22);
             this.exportToPdfMenu.Text = "Export to PDF";
             this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfMenu_Click);
+            // 
+            // exportToWordMenu
+            // 
+            this.exportToWordMenu.Name = "exportToWordMenu";
+            this.exportToWordMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportToWordMenu.Text = "Export to Word";
+            this.exportToWordMenu.Click += new System.EventHandler(this.exportToWordMenu_Click);
+            // 
+            // exportEXCELXtraMenu
+            // 
+            this.exportEXCELXtraMenu.Name = "exportEXCELXtraMenu";
+            this.exportEXCELXtraMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportEXCELXtraMenu.Text = "Export EXCEL (Xtra)";
+            this.exportEXCELXtraMenu.Click += new System.EventHandler(this.exportEXCELXtraMenu_Click);
+            // 
+            // exportEXCELDataMenu
+            // 
+            this.exportEXCELDataMenu.Name = "exportEXCELDataMenu";
+            this.exportEXCELDataMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportEXCELDataMenu.Text = "Export EXCEL (Data)";
+            this.exportEXCELDataMenu.Click += new System.EventHandler(this.exportEXCELDataMenu_Click);
+            // 
+            // exportToHTMLMenu
+            // 
+            this.exportToHTMLMenu.Name = "exportToHTMLMenu";
+            this.exportToHTMLMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportToHTMLMenu.Text = "Export to HTML";
+            this.exportToHTMLMenu.Click += new System.EventHandler(this.exportReportToHtmlMenu_Click);
             // 
             // viewInvoiceInfoMenu
             // 
@@ -283,6 +311,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(662, 293);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.FilterChange += new System.Action(this.dataGridView1_FilterChange);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
@@ -603,34 +632,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.documentViewer1.Status = "V6SOFT";
             this.documentViewer1.TabIndex = 19;
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
-            // 
-            // exportToWordMenu
-            // 
-            this.exportToWordMenu.Name = "exportToWordMenu";
-            this.exportToWordMenu.Size = new System.Drawing.Size(210, 22);
-            this.exportToWordMenu.Text = "Export to Word";
-            this.exportToWordMenu.Click += new System.EventHandler(this.exportToWordMenu_Click);
-            // 
-            // exportEXCELXtraMenu
-            // 
-            this.exportEXCELXtraMenu.Name = "exportEXCELXtraMenu";
-            this.exportEXCELXtraMenu.Size = new System.Drawing.Size(210, 22);
-            this.exportEXCELXtraMenu.Text = "Export EXCEL (Xtra)";
-            this.exportEXCELXtraMenu.Click += new System.EventHandler(this.exportEXCELXtraMenu_Click);
-            // 
-            // exportEXCELDataMenu
-            // 
-            this.exportEXCELDataMenu.Name = "exportEXCELDataMenu";
-            this.exportEXCELDataMenu.Size = new System.Drawing.Size(210, 22);
-            this.exportEXCELDataMenu.Text = "Export EXCEL (Data)";
-            this.exportEXCELDataMenu.Click += new System.EventHandler(this.exportEXCELDataMenu_Click);
-            // 
-            // exportToHTMLMenu
-            // 
-            this.exportToHTMLMenu.Name = "exportToHTMLMenu";
-            this.exportToHTMLMenu.Size = new System.Drawing.Size(210, 22);
-            this.exportToHTMLMenu.Text = "Export to HTML";
-            this.exportToHTMLMenu.Click += new System.EventHandler(this.exportReportToHtmlMenu_Click);
             // 
             // ReportR_DX
             // 
