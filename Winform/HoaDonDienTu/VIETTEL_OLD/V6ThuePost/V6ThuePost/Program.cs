@@ -25,7 +25,7 @@ namespace V6ThuePost
         /// <summary>
         /// Link host
         /// </summary>
-        public static string _baseUrl = "";
+        public static string _baseUrl = "", _datetype = "";
         
         //{
         //"supplierTaxCode":"0100109106",
@@ -440,8 +440,8 @@ namespace V6ThuePost
                 //        postObject.taxBreakdowns.Add(taxBreakdown);
                 //    }
                 //}
-
-                result = postObject.ToJson("VIETTEL");
+                if (string.IsNullOrEmpty(_datetype)) _datetype = "VIETTEL";
+                result = postObject.ToJson(_datetype);
             }
             //catch (Exception ex)
             {
@@ -875,6 +875,9 @@ namespace V6ThuePost
                                     //case "modifylink":
                                     //    modifyUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     //    break;
+                                    case "datetype":
+                                        _datetype = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                        break;
                                 }
                                 break;
                             }

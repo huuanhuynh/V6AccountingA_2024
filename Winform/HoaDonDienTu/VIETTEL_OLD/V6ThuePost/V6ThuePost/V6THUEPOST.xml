@@ -11,6 +11,7 @@
 	<V6Info Field='certificateSerial' 	Value='kt/nJFTlC155GrxHL1CLotBtpCbxeaXNghh0rjQD7Grp2CdF43g85g=='/>
   <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
   <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
+  <V6Info Field='datetype' 	Value='VIETTEL'	Note='VIETTEL=VIETTEL1,VIETTEL7,VIETTELNOW'/>
   
 	<V6Info Field='baselink' 	Value='UQL2EugVpi3xME/peQKMdCdZcQDd2k1SzF/sryJAHCytodGJelrl1w=='  Value0='UQL2EugVpi2UK60F+6oJmQTg/pet0ME5B1oK/prF4UUmf2yaMYFYwg==' Type=''/>
 	<V6Info Field='createlink' 	Value='ApVGcixL0L/ZAQbTph04SmvCWY+TDkm5dka0wKDVUTBClXa0XdDH9lGXBV2st+to' Type=''/>

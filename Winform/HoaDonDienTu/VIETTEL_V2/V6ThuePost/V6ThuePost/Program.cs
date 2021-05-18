@@ -30,7 +30,7 @@ namespace V6ThuePost
         /// <summary>
         /// Link host
         /// </summary>
-        public static string baseUrl = "";
+        public static string baseUrl = "", _dateType = "";
         
         //public static string mst = "";
         /// <summary>
@@ -676,7 +676,7 @@ namespace V6ThuePost
                 //    }
                 //}
 
-                result = postObject.ToJson("VIETTEL");
+                result = postObject.ToJson(_dateType);
             }
             //catch (Exception ex)
             {
@@ -1083,6 +1083,9 @@ namespace V6ThuePost
                                     //    break;
                                     case "debug":
                                         _debug = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                        break;
+                                    case "datetype":
+                                        _dateType = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                         break;
                                 }
                                 break;
