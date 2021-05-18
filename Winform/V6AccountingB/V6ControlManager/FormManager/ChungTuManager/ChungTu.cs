@@ -25,6 +25,7 @@ using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi;
 using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu;
 using V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIXP;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen;
@@ -555,6 +556,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     return new PhieuNhapKhoControl(maCt, itemId, sttRec) { Name = itemId };
                 case "INY":
                     return new DeNghiNhapKhoINY_Control(maCt, itemId, sttRec) { Name = itemId };
+                case "INT":
+                    return new PhieuDiDuongINT_Control(maCt, itemId, sttRec) { Name = itemId };
                 case "IXY":
                     return new DeNghiXuatKhoIXYControl(maCt, itemId, sttRec) { Name = itemId };
                 case "IXP":

@@ -12,7 +12,7 @@ namespace V6AccountingBusiness.Invoices
     /// <summary>
     /// INY: Đề nghị nhập kho
     /// </summary>
-    public class V6Invoice94INY: V6InvoiceBase
+    public class V6Invoice94INY : V6InvoiceBase
     {
         public V6Invoice94INY() : base("INY") { }
 

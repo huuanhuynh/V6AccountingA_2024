@@ -823,6 +823,66 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonDeNghiXuat\IXY_IXC86_KetQua.Designer.cs">
       <DependentUpon>IXY_IXC86_KetQua.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangBan\CDHB_PhieuDiDuongINT_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangBan\CDHB_PhieuDiDuongINT_Form.Designer.cs">
+      <DependentUpon>CDHB_PhieuDiDuongINT_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangBan\CDHB_PhieuDiDuongINT_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangBan\CDHB_PhieuDiDuongINT_KetQua.Designer.cs">
+      <DependentUpon>CDHB_PhieuDiDuongINT_KetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangMua\CDHM_INT_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangMua\CDHM_INT_Form.Designer.cs">
+      <DependentUpon>CDHM_INT_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangMua\CDHM_INT_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangMua\CDHM_INT_KetQua.Designer.cs">
+      <DependentUpon>CDHM_INT_KetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\PhieuDiDuongINT_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\PhieuDiDuongINT_Control.Designer.cs">
+      <DependentUpon>PhieuDiDuongINT_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocKetQua_PhieuDiDuongINT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocKetQua_PhieuDiDuongINT.Designer.cs">
+      <DependentUpon>LocKetQua_PhieuDiDuongINT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocThoiGian_PhieuDiDuongINT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocThoiGian_PhieuDiDuongINT.Designer.cs">
+      <DependentUpon>LocThoiGian_PhieuDiDuongINT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocThongTin_PhieuDiDuongINT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocThongTin_PhieuDiDuongINT.Designer.cs">
+      <DependentUpon>LocThongTin_PhieuDiDuongINT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocTTChiTiet_PhieuDiDuongINT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocTTChiTiet_PhieuDiDuongINT.Designer.cs">
+      <DependentUpon>LocTTChiTiet_PhieuDiDuongINT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\Tim_PhieuDiDuongINT_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\Tim_PhieuDiDuongINT_Form.Designer.cs">
+      <DependentUpon>Tim_PhieuDiDuongINT_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangBan\CDHB_DeNghiNhapKhoINYForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6534,6 +6594,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonDeNghiXuat\IXY_IXC86_KetQua.resx">
       <DependentUpon>IXY_IXC86_KetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangBan\CDHB_PhieuDiDuongINT_Form.resx">
+      <DependentUpon>CDHB_PhieuDiDuongINT_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangBan\CDHB_PhieuDiDuongINT_KetQua.resx">
+      <DependentUpon>CDHB_PhieuDiDuongINT_KetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangMua\CDHM_INT_Form.resx">
+      <DependentUpon>CDHM_INT_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangMua\CDHM_INT_KetQua.resx">
+      <DependentUpon>CDHM_INT_KetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\PhieuDiDuongINT_Control.resx">
+      <DependentUpon>PhieuDiDuongINT_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocKetQua_PhieuDiDuongINT.resx">
+      <DependentUpon>LocKetQua_PhieuDiDuongINT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocThoiGian_PhieuDiDuongINT.resx">
+      <DependentUpon>LocThoiGian_PhieuDiDuongINT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocThongTin_PhieuDiDuongINT.resx">
+      <DependentUpon>LocThongTin_PhieuDiDuongINT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\LocTTChiTiet_PhieuDiDuongINT.resx">
+      <DependentUpon>LocTTChiTiet_PhieuDiDuongINT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\Loc\Tim_PhieuDiDuongINT_Form.resx">
+      <DependentUpon>Tim_PhieuDiDuongINT_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangBan\CDHB_DeNghiNhapKhoINYForm.resx">
       <DependentUpon>CDHB_DeNghiNhapKhoINYForm.cs</DependentUpon>

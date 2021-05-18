@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Invoices\V6Invoice82.cs" />
     <Compile Include="Invoices\V6Invoice83.cs" />
+    <Compile Include="Invoices\V6Invoice97INT.cs" />
     <Compile Include="Invoices\V6Invoice96IXP.cs" />
     <Compile Include="Invoices\V6Invoice95IXY.cs" />
     <Compile Include="Invoices\V6Invoice94INY.cs" />

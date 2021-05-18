@@ -10,18 +10,15 @@ using V6Tools;
 namespace V6AccountingBusiness.Invoices
 {
     /// <summary>
-    /// POH: Đơn đặt hàng mua
+    /// INT: Phiếu đi đường
     /// </summary>
-    public class V6Invoice92: V6InvoiceBase
+    public class V6Invoice97INT : V6InvoiceBase
     {
-        /// <summary>
-        /// POH: Đơn đặt hàng mua
-        /// </summary>
-        public V6Invoice92() : base("POH") { }
+        public V6Invoice97INT() : base("INT") { }
 
         public override string PrintReportProcedure
         {
-            get { return "APOCTPOH"; }
+            get { return "APOCTINT"; }
         }
 
         private DataTable _alct2;
@@ -122,7 +119,7 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Save_voucher", "1")
                     };
 
-                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_POH_POST_MAIN", plist);
+                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_INT_POST_MAIN", plist);
                     return true;
                 }
                 catch (Exception ex)
@@ -218,7 +215,7 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Save_voucher", "1")
                     };
 
-                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_POH_POST_MAIN", plist);
+                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_INT_POST_MAIN", plist);
                     return true;
                 }
                 catch (Exception ex)
@@ -305,7 +302,7 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Save_voucher", "1")
                     };
 
-                    SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_POH_POST_MAIN", plist);
+                    SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_INT_POST_MAIN", plist);
                     return true;
                 }
                 catch (Exception ex)
@@ -342,7 +339,7 @@ namespace V6AccountingBusiness.Invoices
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
             var p2Template =
-                "\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
+                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";//" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 {4})"
             if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
@@ -389,7 +386,7 @@ namespace V6AccountingBusiness.Invoices
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
             var p2Template =
-                "\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
+                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";//" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 {4})"
             if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
@@ -425,7 +422,7 @@ namespace V6AccountingBusiness.Invoices
         public override DataTable LoadAD(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13, c.So_luong1*0 as Ton13Qd " + ADSELECTMORE + " FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13, c.So_luong1*0 as Ton13Qd" + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt ";
             sql += ADJOINMORE;
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
@@ -455,7 +452,7 @@ namespace V6AccountingBusiness.Invoices
                     new SqlParameter("@Ma_ct", Mact),
                     new SqlParameter("@UserID", V6Login.UserId)
                 };
-                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_POH_DELETE_MAIN", plist);
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_INT_DELETE_MAIN", plist);
                 return true;
             }
             catch (Exception ex)
@@ -499,7 +496,7 @@ namespace V6AccountingBusiness.Invoices
             return null;
         }
 
-        public DataTable SearchDonHang(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2, string advance, out string loai_ct_chon)
+        public DataTable SearchDonHang(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -509,23 +506,12 @@ namespace V6AccountingBusiness.Invoices
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
                 if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
-                if (string.IsNullOrEmpty(where4Dvcs_2))
-                {
-                    if (where4Dvcs.Length > 0)
-                    {
-                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
-                    }
-                }
-                else
-                {
-                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
-                }
-                //if (where4Dvcs.Length > 0)
-                //    where4Dvcs
-                //        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                if (where4Dvcs.Length > 0)
+                    where4Dvcs
+                        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
 
-                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD92 WHERE Ma_ct = 'POH' {0} {2}"
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = 'INT' {0} {2}"
                                      + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                                      + "\n		{4})"
                     , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
@@ -552,8 +538,8 @@ namespace V6AccountingBusiness.Invoices
             {
                 new SqlParameter("@sType",  "P"),
 	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
-	            new SqlParameter("@cTableAM", "AM92"), 
-	            new SqlParameter("@cTableAD", "AD92"), 
+	            new SqlParameter("@cTableAM", AM_TableName), 
+	            new SqlParameter("@cTableAD", AD_TableName), 
 	            new SqlParameter("@cKey1AM", where0Ngay),
 	            new SqlParameter("@cKey2AM", where1AM),
 	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
@@ -561,142 +547,7 @@ namespace V6AccountingBusiness.Invoices
 	            new SqlParameter("@Advance", advance),
 	            new SqlParameter("@Advance2", "")
             };
-            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_POH", plist).Tables[0];
-            return tbl;
-
-            //var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
-            //return tbl;
-        }
-
-        public DataTable SearchDonHangMua_INY(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2, string advance, out string loai_ct_chon)
-        {
-            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
-            if (where1AM.Length > 0) where1AM = "And " + where1AM;
-
-            var whereAD_Nhvt_Dvcs = "";
-            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
-            {
-                if (where2AD.Length > 0) where2AD = "And " + where2AD;
-                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
-                if (string.IsNullOrEmpty(where4Dvcs_2))
-                {
-                    if (where4Dvcs.Length > 0)
-                    {
-                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
-                    }
-                }
-                else
-                {
-                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
-                }
-                //if (where4Dvcs.Length > 0)
-                //    where4Dvcs
-                //        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
-
-
-                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD92 WHERE Ma_ct = 'POH' {0} {2}"
-                                     + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
-                                     + "\n		{4})"
-                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
-            }
-            else
-            {
-                whereAD_Nhvt_Dvcs = "";
-            }
-
-            if (!string.IsNullOrEmpty(where3NhVt))
-            {
-                if (string.IsNullOrEmpty(advance))
-                {
-                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
-                }
-                else
-                {
-                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
-                }
-            }
-
-            loai_ct_chon = "Y";
-            SqlParameter[] plist =
-            {
-                new SqlParameter("@sType",  "Y"),
-	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
-	            new SqlParameter("@cTableAM", "AM92"), 
-	            new SqlParameter("@cTableAD", "AD92"), 
-	            new SqlParameter("@cKey1AM", where0Ngay),
-	            new SqlParameter("@cKey2AM", where1AM),
-	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
-	            new SqlParameter("@cKey2AD", ""),
-	            new SqlParameter("@Advance", advance),
-	            new SqlParameter("@Advance2", "")
-            };
-            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_POH_INY", plist).Tables[0];
-            return tbl;
-        }
-
-        public DataTable SearchDonHangMua_INT(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2, string advance, out string loai_ct_chon)
-        {
-            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
-            if (where1AM.Length > 0) where1AM = "And " + where1AM;
-
-            var whereAD_Nhvt_Dvcs = "";
-            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
-            {
-                if (where2AD.Length > 0) where2AD = "And " + where2AD;
-                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
-                if (string.IsNullOrEmpty(where4Dvcs_2))
-                {
-                    if (where4Dvcs.Length > 0)
-                    {
-                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
-                    }
-                }
-                else
-                {
-                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
-                }
-                //if (where4Dvcs.Length > 0)
-                //    where4Dvcs
-                //        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
-
-
-                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD92 WHERE Ma_ct = 'POH' {0} {2}"
-                                     + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
-                                     + "\n		{4})"
-                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
-            }
-            else
-            {
-                whereAD_Nhvt_Dvcs = "";
-            }
-
-            if (!string.IsNullOrEmpty(where3NhVt))
-            {
-                if (string.IsNullOrEmpty(advance))
-                {
-                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
-                }
-                else
-                {
-                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
-                }
-            }
-
-            loai_ct_chon = "Y";
-            SqlParameter[] plist =
-            {
-                new SqlParameter("@sType",  "Y"),
-	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
-	            new SqlParameter("@cTableAM", "AM92"), 
-	            new SqlParameter("@cTableAD", "AD92"), 
-	            new SqlParameter("@cKey1AM", where0Ngay),
-	            new SqlParameter("@cKey2AM", where1AM),
-	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
-	            new SqlParameter("@cKey2AD", ""),
-	            new SqlParameter("@Advance", advance),
-	            new SqlParameter("@Advance2", "")
-            };
-            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_POH_INT", plist).Tables[0];
+            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_INT", plist).Tables[0];
             return tbl;
         }
 
@@ -715,7 +566,7 @@ namespace V6AccountingBusiness.Invoices
                         = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
 
-                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD92 WHERE Ma_ct = 'POH' {0} {2}"
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = 'INT' {0} {2}"
                                      + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                                      + "\n		{4})"
                     , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
@@ -727,10 +578,10 @@ namespace V6AccountingBusiness.Invoices
 
             var sql = string.Format("Select ' ' Tag,  v.ten_vt,v.tk_tl , d.*, d.STT_REC AS STT_REC_DH, d.STT_REC0 AS STT_REC0DH "
                 //"Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
-                + "\nFROM AD92 d "//" LEFT JOIN Alkh b ON d.Ma_kh=b.Ma_kh "
+                + "\nFROM " + AD_TableName + " d "//" LEFT JOIN Alkh b ON d.Ma_kh=b.Ma_kh "
                 //+ "\n LEFT JOIN alhttt AS g ON a.Ma_httt = g.Ma_httt "
                 + "\n LEFT JOIN Alvt v ON v.Ma_vt = d.Ma_vt "
-                + "\n  JOIN (SELECT Stt_rec FROM AM92 WHERE Ma_ct = 'POH'" + "\n {0} {1}) AS m ON d.Stt_rec = m.Stt_rec"
+                + "\n  JOIN (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = 'INT'" + "\n {0} {1}) AS m ON d.Stt_rec = m.Stt_rec"
                 + "\n {2}"
                 + "\n ORDER BY d.ngay_ct, d.so_ct, d.stt_rec",
                 where0Ngay, where1AM, whereAD_Nhvt_Dvcs);
@@ -739,39 +590,203 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public new DataRow GetGiaMua(string field, string mact, DateTime ngayct,
-            string mant, string mavt, string dvt1, string makh, string magia)
+        public DataTable SearchDeNghiNhap_PNMua(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2, string advance, out string loai_ct_chon)
         {
-            try
+            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (where1AM.Length > 0) where1AM = "And " + where1AM;
+
+            var whereAD_Nhvt_Dvcs = "";
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
             {
-
-                SqlParameter[] plist =
+                if (where2AD.Length > 0) where2AD = "And " + where2AD;
+                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
+                if (string.IsNullOrEmpty(where4Dvcs_2))
                 {
-                    new SqlParameter("@cField", field),
-                    new SqlParameter("@cVCID", mact),
-                    new SqlParameter("@dPrice", ngayct),
-                    new SqlParameter("@cFC", mant),
-                    new SqlParameter("@cItem", mavt),
-                    new SqlParameter("@cUOM", dvt1),
-                    new SqlParameter("@cCust", makh),
-                    new SqlParameter("@cMaGia", magia)
-                };
-
-                var resultData = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetPOHIDPrice", plist).Tables[0];
-                if (resultData != null && resultData.Rows.Count >= 1)
-                {
-                    return resultData.Rows[0];
+                    if (where4Dvcs.Length > 0)
+                    {
+                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                    }
                 }
                 else
                 {
-                    throw new Exception("GetGiaMua return null.");
+                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
+                }
+                //if (where4Dvcs.Length > 0)
+                //    where4Dvcs
+                //        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+
+
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = 'INT' {0} {2}"
+                                     + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
+                                     + "\n		{4})"
+                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
+            }
+            else
+            {
+                whereAD_Nhvt_Dvcs = "";
+            }
+
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("V6Invoice92 GetGiaMua " + ex.Message);
-            }
-        }
-    }
 
+            loai_ct_chon = "Y";
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@sType",  "Y"),
+	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
+	            new SqlParameter("@cTableAM", AM_TableName), 
+	            new SqlParameter("@cTableAD", AD_TableName), 
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
+	            new SqlParameter("@cKey2AD", ""),
+	            new SqlParameter("@Advance", advance),
+	            new SqlParameter("@Advance2", "")
+            };
+            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_INT", plist).Tables[0];
+            return tbl;
+        }
+
+        public DataTable SearchDeNghiNhap_PNKhau(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2, string advance, out string loai_ct_chon)
+        {
+            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (where1AM.Length > 0) where1AM = "And " + where1AM;
+
+            var whereAD_Nhvt_Dvcs = "";
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
+            {
+                if (where2AD.Length > 0) where2AD = "And " + where2AD;
+                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
+                if (string.IsNullOrEmpty(where4Dvcs_2))
+                {
+                    if (where4Dvcs.Length > 0)
+                    {
+                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                    }
+                }
+                else
+                {
+                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
+                }
+                //if (where4Dvcs.Length > 0)
+                //    where4Dvcs
+                //        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+
+
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = 'INT' {0} {2}"
+                                     + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
+                                     + "\n		{4})"
+                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
+            }
+            else
+            {
+                whereAD_Nhvt_Dvcs = "";
+            }
+
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+            }
+
+            loai_ct_chon = "Y";
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@sType",  "Y"),
+	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
+	            new SqlParameter("@cTableAM", AM_TableName),
+	            new SqlParameter("@cTableAD", AD_TableName),
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
+	            new SqlParameter("@cKey2AD", ""),
+	            new SqlParameter("@Advance", advance),
+	            new SqlParameter("@Advance2", "")
+            };
+            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_INT", plist).Tables[0];
+            return tbl;
+        }
+
+        public DataTable SearchDeNghiNhap_PNKho(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2, string advance, out string loai_ct_chon)
+        {
+            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (where1AM.Length > 0) where1AM = "And " + where1AM;
+
+            var whereAD_Nhvt_Dvcs = "";
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
+            {
+                if (where2AD.Length > 0) where2AD = "And " + where2AD;
+                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
+                if (string.IsNullOrEmpty(where4Dvcs_2))
+                {
+                    if (where4Dvcs.Length > 0)
+                    {
+                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                    }
+                }
+                else
+                {
+                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
+                }
+                //if (where4Dvcs.Length > 0)
+                //    where4Dvcs
+                //        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+
+
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = 'INT' {0} {2}"
+                                     + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
+                                     + "\n		{4})"
+                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
+            }
+            else
+            {
+                whereAD_Nhvt_Dvcs = "";
+            }
+
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+            }
+
+            loai_ct_chon = "Y";
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@sType",  "Y"),
+	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
+	            new SqlParameter("@cTableAM", AM_TableName), 
+	            new SqlParameter("@cTableAD", AD_TableName), 
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
+	            new SqlParameter("@cKey2AD", ""),
+	            new SqlParameter("@Advance", advance),
+	            new SqlParameter("@Advance2", "")
+            };
+            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_IND_INT", plist).Tables[0];
+            return tbl;
+        }
+
+    }
 }

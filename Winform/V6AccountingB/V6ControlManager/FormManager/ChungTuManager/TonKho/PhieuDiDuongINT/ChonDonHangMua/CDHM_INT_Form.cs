@@ -15,12 +15,12 @@ using V6Structs;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
-namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangMua
+namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT.ChonDonHangMua
 {
-    public partial class CDHM_INYForm : V6Form
+    public partial class CDHM_INT_Form : V6Form
     {
         //private readonly PhieuNhapMuaControl _PhieuNhapMuaForm;
-        private CDHM_INYKetQua _locKetQua;
+        private CDHM_INT_KetQua _locKetQua;
         V6Invoice92 Invoice = new V6Invoice92();
         private DateTime _ngayCt;
         private string _ma_dvcs, _ma_kh, _loai_ct_chon;
@@ -41,12 +41,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Ch
                 _viewMode = value;
             }
         }
-        public CDHM_INYForm()
+        public CDHM_INT_Form()
         {
             InitializeComponent();
         }
 
-        public CDHM_INYForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
+        public CDHM_INT_Form(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
             _ngayCt = ngayCt;
@@ -73,7 +73,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Ch
                 v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
                 v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
 
-                LoadDefaultData(4, "INY", "SEARCH_INY_POH", ItemID);
+                LoadDefaultData(4, "INT", "SEARCH_INT_POH", ItemID);
                 if (_locKetQua._aldmConfig.HaveInfo)
                 {
                     Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
@@ -97,7 +97,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Ch
         {
             try
             {
-                _locKetQua = new CDHM_INYKetQua(Invoice)
+                _locKetQua = new CDHM_INT_KetQua(Invoice)
                 {Dock = DockStyle.Fill, Visible = false};
                 panel1.Controls.Add(_locKetQua);
                 //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
@@ -252,7 +252,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Ch
         {
             try
             {
-                tAM = Invoice.SearchDonHangMua_INY(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _w4Dvcs_2, _advance, out _loai_ct_chon);
+                tAM = Invoice.SearchDonHangMua_INT(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _w4Dvcs_2, _advance, out _loai_ct_chon);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
@@ -623,13 +623,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Ch
             Huy();
         }
 
-        private void CDHM_INYForm_Load(object sender, EventArgs e)
+        private void CDHM_INT_Form_Load(object sender, EventArgs e)
         {
             HideLocKetQua();
             InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
-        private void CDHM_INYForm_VisibleChanged(object sender, EventArgs e)
+        private void CDHM_INT_Form_VisibleChanged(object sender, EventArgs e)
         {
             txtMaDVCS.Text = V6Login.Madvcs;
             if (Visible) v6ColorDateTimePick1.Focus();
