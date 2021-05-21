@@ -179,7 +179,162 @@ namespace V6AccountingBusiness.Invoices
                 if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
                 //if (j2 != adList2.Count) V6Message += V6Text.Text("AD2NOTCOMPLETE");
                 if (j3 != adList3.Count) V6Message += V6Text.Text("AD3NOTCOMPLETE");
-                Logger.WriteToLog(string.Format("{0} Invoice81.InsertInvoice else.{1} {2}", V6Login.ClientName, stt_rec, V6Message));
+                Logger.WriteToLog(string.Format("{0} Invoice82.InsertInvoice else.{1} {2}", V6Login.ClientName, stt_rec, V6Message));
+            }
+            return false;
+        }
+
+        public override bool InsertInvoice2_TH(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList3)
+        {
+            object stt_rec = amData["STT_REC"];
+            bool insert_success = false;
+            int j = 0, j3 = 0;
+            var insert_am_sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AMStruct, amData);
+            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction2_TH(AMStruct.TableName);
+            
+            try
+            {
+                //Delete AD
+                SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
+                {
+                    {"STT_REC", stt_rec}
+                };
+                var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
+                deleteAdSql = SqlGenerator.GenDeleteSql(AD3Struct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
+                //Delete AM
+                var deleteAMSql = SqlGenerator.GenDeleteSql(AMStruct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAMSql);
+
+                insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
+
+                foreach (IDictionary<string, object> adRow in adList)
+                {
+                    var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
+                    int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                    if (V6Setting.WriteExtraLog)
+                    {
+                        object stt_rec0 = adRow["STT_REC0"];
+                        Logger.WriteToLog(string.Format("InsertInvoice82 {0} AD row {1} result {2}.\n{3}", stt_rec,
+                            stt_rec0, execute, adSql));
+                    }
+                    j += (execute > 0 ? 1 : 0);
+                }
+                foreach (IDictionary<string, object> adRow in adList3)
+                {
+                    var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
+                    int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                    if (V6Setting.WriteExtraLog)
+                    {
+                        object stt_rec0 = adRow["STT_REC0"];
+                        Logger.WriteToLog(string.Format("InsertInvoice82 {0} AD3 row {1} result {2}.\n{3}", stt_rec,
+                            stt_rec0, execute, adSql));
+                    }
+                    j3 += (execute > 0 ? 1 : 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                #region === Rollback ===
+                try
+                {
+                    TRANSACTION.Rollback();
+                }
+                catch (Exception exRollback)
+                {
+                    Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
+                }
+
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
+                V6Message = "Rollback: "
+                    + (!insert_success ? V6Text.Text("AAMUNSUCCESS") : "")
+                    + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "")
+                    + (j3 != adList3.Count ? V6Text.Text("AD3NOTCOMPLETE") : "");
+                #endregion Rollback
+
+                return false;
+            }
+
+            if (insert_success && j == adList.Count && j3 == adList3.Count)
+            {
+                TRANSACTION.Commit();
+                if (V6Setting.WriteExtraLog)
+                {
+                    Logger.WriteToLog(string.Format("InsertInvoice82 {0} TRANSACTION COMMITTED.", stt_rec));
+                }
+                int apgia = 0;
+                SqlParameter[] pList =
+                {
+                    new SqlParameter("@Stt_rec", stt_rec),
+                    new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                    new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                    new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                    new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
+                    new SqlParameter("@Mode", "M"),
+                    new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
+                    new SqlParameter("@Ap_gia", apgia),
+                    new SqlParameter("@UserID", V6Login.UserId),
+                    new SqlParameter("@Save_voucher", "1")
+
+                };
+
+                try
+                {
+                    var result = SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_SOB_POST_MAIN", pList);
+                    V6Message = string.Format("Success, ({0} affected).", result);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    V6Message = ex.Message;
+                    if (V6Message.Contains("Rerun the transaction."))
+                    {
+                        Thread.Sleep(3000);
+                        try
+                        {
+                            pList = new[]
+                            {
+                                new SqlParameter("@Stt_rec", stt_rec),
+                                new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                                new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                                new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                                new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
+                                new SqlParameter("@Mode", "M"),
+                                new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
+                                new SqlParameter("@Ap_gia", apgia),
+                                new SqlParameter("@UserID", V6Login.UserId),
+                                new SqlParameter("@Save_voucher", "1")
+
+                            };
+                            var result = SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_SOB_POST_MAIN", pList);
+                            V6Message = string.Format("Success, ({0} affected).", result);
+                            return true;
+                        }
+                        catch (Exception ex2)
+                        {
+                            V6Message = ex2.Message;
+                            V6Message = V6Text.Text("POST2LOI") + V6Message;
+                            return false;
+                        }//end catch2
+                    }
+                    else
+                    {
+                        V6Message = V6Text.Text("POSTLOI") + V6Message;
+                        return false;
+                    }
+                }// end catch1
+            }
+            else // insert không đủ dòng.
+            {
+                TRANSACTION.Commit();
+                if (!insert_success) V6Message = V6Text.Text("AAMUNSUCCESS");
+                if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
+                //if (j2 != adList2.Count) V6Message += V6Text.Text("AD2NOTCOMPLETE");
+                if (j3 != adList3.Count) V6Message += V6Text.Text("AD3NOTCOMPLETE");
+                Logger.WriteToLog(string.Format("{0} Invoice82.InsertInvoice else.{1} {2}", V6Login.ClientName, stt_rec, V6Message));
             }
             return false;
         }

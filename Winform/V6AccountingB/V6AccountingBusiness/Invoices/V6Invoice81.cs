@@ -34,6 +34,12 @@ namespace V6AccountingBusiness.Invoices
             return InsertInvoice(amData, ad1List, new List<IDictionary<string, object>>());
         }
 
+        public override bool InsertInvoice2_TH(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List)
+        {
+            // Gọi lại ngay hàm bên dưới với chi tiết khác = rỗng.
+            return InsertInvoice2_TH(amData, ad1List, new List<IDictionary<string, object>>());
+        }
+
         public override bool InsertInvoice(
             IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList,
