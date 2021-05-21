@@ -33,6 +33,8 @@
                     return new APOCTPOH();
                 case "APOCTINY"://94
                     return new APOCTINY();
+                case "APOCTINT"://97
+                    return new APOCTINT();
 
                 case "AINCTIND"://74
                     return new AINCTIND();

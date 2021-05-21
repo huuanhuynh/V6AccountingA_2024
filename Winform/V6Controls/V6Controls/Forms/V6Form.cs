@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
-using V6Tools.V6Convert;
 
 namespace V6Controls.Forms
 {
@@ -362,9 +361,6 @@ namespace V6Controls.Forms
         {
             V6ControlFormHelper.ShowMainMessage(message);
         }
-
-        private static int _topTime = -1;
-        
 
         #endregion show hide message
     }

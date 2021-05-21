@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6AccountingBusiness.Invoices
 {
@@ -1082,7 +1080,6 @@ namespace V6AccountingBusiness.Invoices
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_SOA_IXP", plist).Tables[0];
             return tbl;
         }
-
     }
 
 }

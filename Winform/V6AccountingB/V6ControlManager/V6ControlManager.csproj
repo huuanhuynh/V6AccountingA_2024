@@ -148,6 +148,12 @@
     <Compile Include="FormManager\ChungTuManager\HistoryViewerForm.Designer.cs">
       <DependentUpon>HistoryViewerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTINT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTINT.designer.cs">
+      <DependentUpon>APOCTINT.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\InChungTuDX.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -822,6 +828,18 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonDeNghiXuat\IXY_IXC86_KetQua.Designer.cs">
       <DependentUpon>IXY_IXC86_KetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangDD\INT_to_INY_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangDD\INT_to_INY_Form.Designer.cs">
+      <DependentUpon>INT_to_INY_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangDD\INT_to_INY_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangDD\INT_to_INY_KetQua.Designer.cs">
+      <DependentUpon>INT_to_INY_KetQua.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangBan\CDHB_PhieuDiDuongINT_Form.cs">
       <SubType>Form</SubType>
@@ -6239,6 +6257,9 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\HistoryViewerForm.resx">
       <DependentUpon>HistoryViewerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTINT.resx">
+      <DependentUpon>APOCTINT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\InChungTuDX.resx">
       <DependentUpon>InChungTuDX.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -6594,6 +6615,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonDeNghiXuat\IXY_IXC86_KetQua.resx">
       <DependentUpon>IXY_IXC86_KetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangDD\INT_to_INY_Form.resx">
+      <DependentUpon>INT_to_INY_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangDD\INT_to_INY_KetQua.resx">
+      <DependentUpon>INT_to_INY_KetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDiDuongINT\ChonDonHangBan\CDHB_PhieuDiDuongINT_Form.resx">
       <DependentUpon>CDHB_PhieuDiDuongINT_Form.cs</DependentUpon>

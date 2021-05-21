@@ -10,6 +10,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangBan;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangDD;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangMua;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Loc;
 using V6Controls;
@@ -6070,6 +6071,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 this.ShowErrorException(GetType() + ".ChucNang ChonDonHangMua " + _sttRec, ex);
             }
         }
+        
+        private void ChucNang_ChonDonHangDD(bool add = false)
+        {
+            try
+            {
+                chon_accept_flag_add = add;
+                var ma_dvcs = txtMaDVCS.Text.Trim();
+                var message = "";
+                if (ma_dvcs != "")
+                {
+                    INT_to_INY_Form chon = new INT_to_INY_Form(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "INT";
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                    if (ma_dvcs == "") txtMaDVCS.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang ChonDonHangMua " + _sttRec, ex);
+            }
+        }
 
         private void ChucNang_ChonDonHangBan(bool add = false)
         {
@@ -6458,6 +6486,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         private void inKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
+        }
+
+        private void chonDonHangDiDuongMenu_Click(object sender, EventArgs e)
+        {
+            ChucNang_ChonDonHangDD((ModifierKeys & Keys.Shift) == Keys.Shift);
         }
 
     }

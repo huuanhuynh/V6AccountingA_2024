@@ -745,7 +745,8 @@ namespace V6AccountingBusiness.Invoices
 
         /// <summary>
         /// Zoom mặc định cho crystalreport khi in chứng từ.
-        /// <para>1 PageWidth, 2 AllPage, 50 is 50%</para>
+        /// <para>Crystal: 1 PageWidth, 2 AllPage, 50 is 50%</para>
+        /// <para>Xtra: 1 = 100%, >50 is this %</para>
         /// </summary>
         public int ExtraInfo_PrintVCzoom
         {
@@ -754,6 +755,17 @@ namespace V6AccountingBusiness.Invoices
                 int result = 2;
                 if (EXTRA_INFOR.ContainsKey("PRINTVCZOOM")) result = ObjectAndString.ObjectToInt(EXTRA_INFOR["PRINTVCZOOM"]);
                 return result;
+            }
+        }
+
+        public float ExtraInfo_PrintVCzoom_DX
+        {
+            get
+            {
+                int result = 100;
+                if (EXTRA_INFOR.ContainsKey("PRINTVCZOOM")) result = ObjectAndString.ObjectToInt(EXTRA_INFOR["PRINTVCZOOM"]);
+                if (result < 50) result = 100;
+                return (float) result / 100;
             }
         }
 

@@ -57,10 +57,6 @@ namespace V6ControlManager.FormManager.MenuManager
             {
                 AddMenu(row);
             }
-            //lblShowHide.MouseEnter += V6ControlFormHelper.HaveStatusControl_MouseEnter;
-            //lblShowHide.MouseHover += V6ControlFormHelper.HaveStatusControl_MouseHover;
-            //lblShowHide.MouseMove += V6ControlFormHelper.HaveStatusControl_MouseMove;
-            //lblShowHide.MouseLeave += V6ControlFormHelper.HaveStatusControl_MouseLeave;
         }
 
         private void AddMenu2Status(int num)

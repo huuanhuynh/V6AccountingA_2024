@@ -6,7 +6,6 @@ using System.Reflection;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6AccountingBusiness.Invoices
 {

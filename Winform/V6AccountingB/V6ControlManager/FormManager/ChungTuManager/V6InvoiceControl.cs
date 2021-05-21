@@ -566,7 +566,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         //SupperAccess
                         if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                         {
-                            ViewFormVar() ;
+                            ViewFormVar();
                         }
                     } break;
             }
@@ -5978,6 +5978,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// EXTRA_INFOR ENTER2TAB
+        /// </summary>
+        /// <param name="dataGridViews"></param>
         protected void SetGridViewFlag(params V6ColorDataGridView[] dataGridViews)
         {
             try
