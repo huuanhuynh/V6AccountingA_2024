@@ -63,6 +63,16 @@ namespace V6Tools.V6Convert
             return false;
         }
 
+        public static bool IsDateTime(object value)
+        {
+            if (value is DateTime
+            || value is DateTime? && value != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        
         public static bool IsDateTimeType(Type dataType)
         {
             if (dataType == typeof(DateTime))

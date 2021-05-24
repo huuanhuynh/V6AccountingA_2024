@@ -66,6 +66,10 @@
             this.Title = new DevExpress.XtraReports.Parameters.Parameter();
             this.lblTitle = new DevExpress.XtraReports.UI.XRLabel();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTongTT = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabelNguoiLapBieu = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabelKyTen2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabelKyTen1 = new DevExpress.XtraReports.UI.XRLabel();
@@ -75,13 +79,9 @@
             this.dataSet11 = new V6ControlManager.FormManager.ReportManager.DXreport.DataSet1();
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
-            this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellTongTT = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -192,7 +192,7 @@
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 17F;
+            this.BottomMargin.HeightF = 11.70839F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -201,15 +201,15 @@
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPageInfo1});
-            this.PageFooter.HeightF = 23F;
+            this.PageFooter.HeightF = 21F;
             this.PageFooter.Name = "PageFooter";
             // 
             // xrPageInfo1
             // 
-            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(687.7917F, 0F);
+            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(687.79F, 1F);
             this.xrPageInfo1.Name = "xrPageInfo1";
             this.xrPageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrPageInfo1.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrPageInfo1.SizeF = new System.Drawing.SizeF(103.2084F, 20F);
             this.xrPageInfo1.StylePriority.UseTextAlignment = false;
             this.xrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
@@ -428,8 +428,44 @@
             this.xrLabelKyTen2,
             this.xrLabelKyTen1,
             this.xrLabelKeToanTruong});
-            this.ReportFooter.HeightF = 100F;
+            this.ReportFooter.HeightF = 121.875F;
             this.ReportFooter.Name = "ReportFooter";
+            // 
+            // xrTable2
+            // 
+            this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrTable2.Name = "xrTable2";
+            this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow2});
+            this.xrTable2.SizeF = new System.Drawing.SizeF(791F, 22.91667F);
+            this.xrTable2.StylePriority.UseBorders = false;
+            // 
+            // xrTableRow2
+            // 
+            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell8,
+            this.cellTongTT});
+            this.xrTableRow2.Name = "xrTableRow2";
+            this.xrTableRow2.Weight = 1D;
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            this.xrTableCell8.Text = "Tổng cộng";
+            this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.xrTableCell8.Weight = 3.0224963128803655D;
+            // 
+            // cellTongTT
+            // 
+            this.cellTongTT.Name = "cellTongTT";
+            this.cellTongTT.StylePriority.UseTextAlignment = false;
+            this.cellTongTT.Text = "cellTongTT";
+            this.cellTongTT.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.cellTongTT.Weight = 1.044922642356116D;
             // 
             // xrLabelNguoiLapBieu
             // 
@@ -438,6 +474,7 @@
             this.xrLabelNguoiLapBieu.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabelNguoiLapBieu.SizeF = new System.Drawing.SizeF(214.5833F, 23F);
             this.xrLabelNguoiLapBieu.StylePriority.UseTextAlignment = false;
+            this.xrLabelNguoiLapBieu.Tag = "m_rsfont";
             this.xrLabelNguoiLapBieu.Text = "NGƯỜI LẬP BIỀU";
             this.xrLabelNguoiLapBieu.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
@@ -448,26 +485,29 @@
             this.xrLabelKyTen2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabelKyTen2.SizeF = new System.Drawing.SizeF(214.5833F, 23F);
             this.xrLabelKyTen2.StylePriority.UseTextAlignment = false;
+            this.xrLabelKyTen2.Tag = "m_rsfont";
             this.xrLabelKyTen2.Text = "(Ký, ghi rõ họ, tên)";
             this.xrLabelKyTen2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabelKyTen1
             // 
-            this.xrLabelKyTen1.LocationFloat = new DevExpress.Utils.PointFloat(86.75011F, 51.12498F);
+            this.xrLabelKyTen1.LocationFloat = new DevExpress.Utils.PointFloat(50.29166F, 51.12498F);
             this.xrLabelKyTen1.Name = "xrLabelKyTen1";
             this.xrLabelKyTen1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabelKyTen1.SizeF = new System.Drawing.SizeF(214.5833F, 23F);
             this.xrLabelKyTen1.StylePriority.UseTextAlignment = false;
+            this.xrLabelKyTen1.Tag = "m_rsfont";
             this.xrLabelKyTen1.Text = "(Ký, ghi rõ họ, tên)";
             this.xrLabelKyTen1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabelKeToanTruong
             // 
-            this.xrLabelKeToanTruong.LocationFloat = new DevExpress.Utils.PointFloat(86.75011F, 28.125F);
+            this.xrLabelKeToanTruong.LocationFloat = new DevExpress.Utils.PointFloat(50.29166F, 28.125F);
             this.xrLabelKeToanTruong.Name = "xrLabelKeToanTruong";
             this.xrLabelKeToanTruong.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabelKeToanTruong.SizeF = new System.Drawing.SizeF(214.5833F, 23F);
             this.xrLabelKeToanTruong.StylePriority.UseTextAlignment = false;
+            this.xrLabelKeToanTruong.Tag = "m_rsfont";
             this.xrLabelKeToanTruong.Text = "KẾ TOÁN TRƯỞNG";
             this.xrLabelKeToanTruong.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
@@ -512,42 +552,6 @@
             this.formattingRule1.Formatting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.formattingRule1.Name = "formattingRule1";
             // 
-            // xrTable2
-            // 
-            this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrTable2.Name = "xrTable2";
-            this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow2});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(791F, 22.91667F);
-            this.xrTable2.StylePriority.UseBorders = false;
-            // 
-            // xrTableRow2
-            // 
-            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell8,
-            this.cellTongTT});
-            this.xrTableRow2.Name = "xrTableRow2";
-            this.xrTableRow2.Weight = 1D;
-            // 
-            // xrTableCell8
-            // 
-            this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.StylePriority.UseTextAlignment = false;
-            this.xrTableCell8.Text = "Tổng cộng";
-            this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            this.xrTableCell8.Weight = 3.0224963128803655D;
-            // 
-            // cellTongTT
-            // 
-            this.cellTongTT.Name = "cellTongTT";
-            this.cellTongTT.StylePriority.UseTextAlignment = false;
-            this.cellTongTT.Text = "cellTongTT";
-            this.cellTongTT.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            this.cellTongTT.Weight = 1.044922642356116D;
-            // 
             // XtraReport1
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -562,7 +566,7 @@
             this.DataSource = this.dataSet11;
             this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
             this.formattingRule1});
-            this.Margins = new System.Drawing.Printing.Margins(32, 27, 28, 17);
+            this.Margins = new System.Drawing.Printing.Margins(32, 27, 28, 12);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.M_TEN_TCTY,
             this.M_TEN_CTY,
@@ -575,8 +579,8 @@
             this.xrControlStyle1});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

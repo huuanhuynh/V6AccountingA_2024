@@ -15,6 +15,17 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
 {
     public static class DXreportManager
     {
+
+        public static void Init()
+        {
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumber());
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberGia());
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberGiaNT());
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberSL());
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberTT());
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberTTNT());
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXToString());
+        }
         //public static XtraReport CreateXtraReport()
         //{
         //    XtraReport repx = new XtraReport();

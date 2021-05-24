@@ -14,7 +14,6 @@ using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu;
 using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager.DanhMuc;
-using V6ControlManager.FormManager.ReportManager.DXreport;
 using V6Controls;
 using V6Controls.Controls;
 using V6Controls.Forms;
@@ -29,12 +28,7 @@ namespace V6ControlManager.FormManager
     {
         public static void Init()
         {
-            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumber());
-            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberGia());
-            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberGiaNT());
-            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberSL());
-            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberTT());
-            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberTTNT());
+            
         }
 
         public static Menu3Control CurrentMenu3Control { get; set; }

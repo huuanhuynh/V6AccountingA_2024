@@ -1,8 +1,5 @@
 ﻿using DevExpress.Data.Filtering;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using V6Init;
 using V6Tools.V6Convert;
 

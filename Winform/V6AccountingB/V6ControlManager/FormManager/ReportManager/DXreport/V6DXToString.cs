@@ -5,7 +5,7 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.DXreport
 {
-    public class V6DXFormatNumber : ICustomFunctionOperatorBrowsable
+    public class V6DXToString : ICustomFunctionOperatorBrowsable
     {
         public FunctionCategory Category {
             get {
@@ -15,8 +15,8 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         public string Description {
             get {
                 if (V6Setting.IsVietnamese)
-                    return "FormatNumber(number, int decimals, decimal_, thousand_, show0=0)\r\nĐịnh dạng số hiển thị tùy chỉnh số lẻ, dấu thập phân và dấu nghìn.";
-                return "FormatNumber(number, int decimals, decimal_, thousand_, show0=0)\r\nFormat a number with custom decimalPlaces and separators.";
+                    return "ToString(object, string format)\r\nChuyển ngày thành chuỗi có định dạng hoặc object khác.";
+                return "ToString(object, string format)\r\nFormat date/object to string with format.";
             }
         }
         /// <summary>
@@ -25,14 +25,14 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         /// <param name="count"></param>
         /// <returns></returns>
         public bool IsValidOperandCount(int count) {
-            return count >=1 && count <= 4;
+            return count >=2 && count <= 2;
         }
         public bool IsValidOperandType(int operandIndex, int operandCount, Type type) {
             return true;
         }
         public int MaxOperandCount {
             get {
-                return 5;
+                return 2;
             }
         }
         public int MinOperandCount {
@@ -45,27 +45,26 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         /// </summary>
         /// <param name="operands"></param>
         /// <returns></returns>
-        public object Evaluate(params object[] operands) {
-            decimal number = ObjectAndString.ObjectToDecimal(operands[0]);
-            if (number == 0)
+        public object Evaluate(params object[] operands)
+        {
+            string res = "";
+            if (ObjectAndString.IsDateTimeType(operands[0].GetType()) || ObjectAndString.IsNumber(operands[0]))
             {
-                bool show0 = false; if (operands.Length > 4) show0 = ObjectAndString.ObjectToBool(operands[4]);
-                if (!show0)
-                {
-                    return "";
-                }
+                res = ObjectAndString.ObjectToString(operands[0], operands[1].ToString());
             }
-            int decimals = -1; if (operands.Length > 1) ObjectAndString.ObjectToInt(operands[1]);
-            string decimalSeparator = V6Options.M_NUM_POINT; if (operands.Length > 2) decimalSeparator = operands[2].ToString();
-            string thousandSeparator = V6Options.M_NUM_SEPARATOR; if (operands.Length > 3) thousandSeparator = operands[3].ToString();
+            else
+            {
+                res = ObjectAndString.ObjectToString(operands[0], operands[1].ToString());
+            }
             
-
-            string res = ObjectAndString.NumberToString(number, decimals, decimalSeparator, thousandSeparator);
             return res;
         }
+        /// <summary>
+        /// Tên hàm.
+        /// </summary>
         public string Name {
             get {
-                return "FormatNumber";
+                return "ToString";
             }
         }
         public Type ResultType(params Type[] operands) {

@@ -12,6 +12,7 @@ using V6ControlManager.FormManager;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong;
 using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager;
+using V6ControlManager.FormManager.ReportManager.DXreport;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6ControlManager.FormManager.ReportManager.XuLy.NhanSu;
 using V6Controls;
@@ -146,6 +147,7 @@ namespace V6AccountingB
                 V6ControlsHelper.DeleteAllFileInV6SoftLocalAppData();
                 V6ControlsHelper.DeleteAllRptTempFiles();
                 FormManagerHelper.Init();
+                DXreportManager.Init();
                 _complete = 5;
 
                 var total = menuMain.Buttons.Count;

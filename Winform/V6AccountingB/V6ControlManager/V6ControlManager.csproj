@@ -2268,6 +2268,7 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\DXreport\DXreportManager.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXToString.cs" />
     <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumber.cs" />
     <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumberGia.cs" />
     <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumberGiaNT.cs" />
