@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using V6ControlManager.FormManager.ReportManager.ReportD;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
@@ -111,8 +112,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Tk", TxtTk.Text.Trim()));
             result.Add(new SqlParameter("@noco", TxtGroupby.Text.Trim()));
             result.Add(new SqlParameter("@M_LAN", V6Setting.Language.Trim()));
-            var parent = this.Parent.Parent.Parent as ReportD.ReportDViewBase;
-            result.Add(new SqlParameter("@M_FC", parent.MAU));
+            var parent = this.Parent.Parent.Parent;
+            if (parent is ReportDViewBase)
+            {
+                result.Add(new SqlParameter("@M_FC", (parent as ReportDViewBase).MAU));
+            }
+            else if (parent is ReportD_DX)
+            {
+                result.Add(new SqlParameter("@M_FC", (parent as ReportD_DX).MAU));
+            }
             var and = radAnd.Checked;
 
             string cKey;

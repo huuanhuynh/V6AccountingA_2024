@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Init;
 
@@ -49,11 +50,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@tuKy", (int)txtThang1.Value));
             result.Add(new SqlParameter("@denKy", (int)txtThang2.Value));
             result.Add(new SqlParameter("@ma_bpts", TxtMa_bp.Text.Trim()));
-
-
-            var parent = this.Parent.Parent.Parent as ReportR.ReportRViewBase;
-
-
+            
             var and = radAnd.Checked;
 
             var cKey = "1=1";
@@ -68,7 +65,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
 
             result.Add(new SqlParameter("@condition", cKey));
-            result.Add(new SqlParameter("@M_LAN", parent.LAN));
+            var parent = this.Parent.Parent.Parent;
+            if (parent is ReportRViewBase)
+            {
+                result.Add(new SqlParameter("@M_LAN", (parent as ReportRViewBase).LAN));
+            }
+            else if (parent is ReportR_DX)
+            {
+                result.Add(new SqlParameter("@M_LAN", (parent as ReportR_DX).LAN));
+            }
             return result;
         }
 

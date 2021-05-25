@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
@@ -116,8 +117,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                      
 
             result.Add(new SqlParameter("@Advance", cKey));
-            var parent = this.Parent.Parent.Parent as ReportR.ReportRViewBase;
-            result.Add(new SqlParameter("@Lang",parent.LAN));
+            var parent = this.Parent.Parent.Parent;
+            if (parent is ReportRViewBase)
+            {
+                result.Add(new SqlParameter("@Lang", (parent as ReportRViewBase).LAN));
+            }
+            else if (parent is ReportR_DX)
+            {
+                result.Add(new SqlParameter("@Lang", (parent as ReportR_DX).LAN));
+            }
             result.Add(new SqlParameter("@User_id", V6Login.UserId));
             return result;
         }
