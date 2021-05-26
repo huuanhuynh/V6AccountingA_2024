@@ -2090,22 +2090,70 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void exportToWordMenu_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (_repx0 == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx0, "DOCX", ReportTitle);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "", ex);
+            }
         }
 
         private void exportEXCELXtraMenu_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (_repx0 == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx0, "XLSX", ReportTitle);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "", ex);
+            }
         }
 
         private void exportEXCELDataMenu_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (_repx0 == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx0, "XLSX_RAW", ReportTitle);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "", ex);
+            }
         }
 
         private void exportReportToHtmlMenu_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (_repx0 == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx0, "HTML", ReportTitle);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "", ex);
+            }
         }
 
         private void btnExport3_Click(object sender, EventArgs e)
