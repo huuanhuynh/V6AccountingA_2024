@@ -1881,15 +1881,32 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                var x = DXreportManager.LoadV6XtraReportFromFile(ReportFileFullDX);
-                if (x != null)
+                bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
+                bool alt = (ModifierKeys & Keys.Alt) == Keys.Alt;
+                XtraReport x;
+                if (ctrl && alt)
                 {
-                    x.DataSource = _ds.Copy();
-                    SetAllReportParams(x);
-                    XtraEditorForm1 form1 = new XtraEditorForm1(x, ReportFileFullDX);
-                    form1.Show(this);
-                    SetStatus2Text();
+                    x = DXreportManager.LoadV6XtraReportFromFile(DXreportManager.TemplateRepxFile);
+                    if (x != null)
+                    {
+                        x.DataSource = _ds.Copy();
+                        SetAllReportParams(x);
+                        XtraEditorForm1 form1 = new XtraEditorForm1(x, DXreportManager.TemplateRepxFile);
+                        form1.Show(this);
+                    }
                 }
+                else
+                {
+                    x = DXreportManager.LoadV6XtraReportFromFile(ReportFileFullDX);
+                    if (x != null)
+                    {
+                        x.DataSource = _ds.Copy();
+                        SetAllReportParams(x);
+                        XtraEditorForm1 form1 = new XtraEditorForm1(x, ReportFileFullDX);
+                        form1.Show(this);
+                    }
+                }
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

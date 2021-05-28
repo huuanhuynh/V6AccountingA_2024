@@ -15,9 +15,10 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
 {
     public static class DXreportManager
     {
-
+        public static readonly string TemplateRepxFile = Path.Combine(V6Login.StartupPath, "ReportsDX\\Template.repx");
         public static void Init()
         {
+            // Đăng ký hàm tự tạo
             DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumber());
             DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberGia());
             DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberGiaNT());
@@ -51,7 +52,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
 
 
         /// <summary>
-        /// Tải file XtraReport. Nếu không có file trả về mẫu tạm XtraReport1.
+        /// Tải file XtraReport. Nếu không có file trả về mẫu tạm Template.repx đặt sẵn trong thư mục ReportsDX.
         /// </summary>
         /// <param name="file">Đường dẫn file repx</param>
         /// <returns></returns>
@@ -65,7 +66,8 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             }
             else
             {
-                repx = new XtraReport1();
+                if(File.Exists(TemplateRepxFile)) repx = XtraReport.FromFile(TemplateRepxFile, true);
+                else repx = new XtraReport1();
                 repx.SaveLayoutToXml(file);
             }
             repx.Name = shortName;

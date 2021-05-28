@@ -48,6 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         public object Evaluate(params object[] operands)
         {
             string res = "";
+            if (operands[0] == null) return res;
             if (ObjectAndString.IsDateTimeType(operands[0].GetType()) || ObjectAndString.IsNumber(operands[0]))
             {
                 res = ObjectAndString.ObjectToString(operands[0], operands[1].ToString());

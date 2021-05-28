@@ -127,6 +127,10 @@ if (sender != null &amp;&amp; sender is XRLabel)
 ((XRLabel)sender).Text = "TestScript";
 //V6Tools.V6Convert.ObjectAndString
 }
+
+private void panel1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {
+	if (CurrentRowIndex == RowCount-1) panel1.BorderDashStyle = BorderDashStyle.Solid;
+}
 </value>
   </data>
 </root>
