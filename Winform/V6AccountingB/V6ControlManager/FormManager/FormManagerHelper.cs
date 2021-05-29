@@ -283,6 +283,8 @@ namespace V6ControlManager.FormManager
         /// <param name="All_Objects">Các đối tượng dùng làm tham số trong các hàm động.</param>
         public static void CreateAdvanceFormControls(Control thisForm, string ma_bc, Dictionary<string, object> All_Objects)
         {
+            // Có 1 bản sao ở V6ControlFormHelper (mất lButton)
+
             Type Event_program2 = thisForm.GetType();
             DataTable Alreport1Data = null;
             Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>();
@@ -377,7 +379,7 @@ namespace V6ControlManager.FormManager
                             AccessibleName = defineInfo.AccessibleName,
                             Text = defineInfo.TextLang(V6Setting.IsVietnamese),
                             UseVisualStyleBackColor = true,
-                            Height = 25,
+                            Height = 25
                         };
                     }
                     else if (defineInfo.ControlType.ToUpper() == "V6VVARTEXTBOX")
@@ -389,7 +391,7 @@ namespace V6ControlManager.FormManager
                             BrotherFields2 = defineInfo.BField2,
                             NeighborFields = defineInfo.NField,
                         };
-                        var tT = (V6VvarTextBox) input;
+                        var tT = (V6VvarTextBox)input;
                         tT.SetInitFilter(defineInfo.InitFilter);
                         tT.F2 = defineInfo.F2;
                     }
@@ -459,6 +461,18 @@ namespace V6ControlManager.FormManager
                         {
                             Name = "chk" + defineInfo.Field
                         };
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "DATETIME")
+                    {
+                        input = new V6DateTimePicker();
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "DATETIMEFULL")
+                    {
+                        input = new V6DateTimeFullPicker();
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "DATETIMECOLOR")
+                    {
+                        input = new V6DateTimeColor();
                     }
                     else
                     {
@@ -530,7 +544,6 @@ namespace V6ControlManager.FormManager
                     if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                     {
                         V6ControlFormHelper.SetControlValue(input, defineInfo.DefaultValue);
-                        //input.Text = defineInfo.DefaultValue;
                     }
                     input.Enabled = defineInfo.Enabled;
                     input.Visible = defineInfo.Visible;
@@ -541,7 +554,7 @@ namespace V6ControlManager.FormManager
                     input.Top = top;
                     if (defineInfo.MultiLine || (defineInfo.ControlType + "").ToUpper() == "RICHTEXTBOX")
                     {
-                        input.Height = rowHeight*2;
+                        input.Height = rowHeight * 2;
                         i_index++;
                     }
 
@@ -581,10 +594,9 @@ namespace V6ControlManager.FormManager
                             var alct = V6BusinessHelper.Select("Alct", "*", "ma_ct=@mact", "", "", new SqlParameter("@mact", e.MaCt)).Data;
                             if (alct != null && alct.Rows.Count == 1)
                             {
-                                title = alct.Rows[0][V6Setting.IsVietnamese?"Ten_ct":"Ten_ct2"].ToString();
+                                title = alct.Rows[0][V6Setting.IsVietnamese ? "Ten_ct" : "Ten_ct2"].ToString();
                             }
                             var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
-                            
                             hoaDonForm.ShowToForm(lButton, title, true, true, true);
                         };
                     }
@@ -657,7 +669,8 @@ namespace V6ControlManager.FormManager
                                         break;
 
                                     case "GOTFOCUS":
-                                        input.GotFocus += (s, e) =>
+                                    case "ENTER":
+                                        input.Enter += (s, e) =>
                                         {
                                             if (Event_program2 == null) return;
 
@@ -669,6 +682,7 @@ namespace V6ControlManager.FormManager
                                         break;
 
                                     case "LOSTFOCUS":
+                                    case "LEAVE":
                                         input.Leave += (s, e) =>
                                         {
                                             if (Event_program2 == null) return;

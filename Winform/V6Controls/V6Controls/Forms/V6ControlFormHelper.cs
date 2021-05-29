@@ -8362,8 +8362,10 @@ namespace V6Controls.Forms
         /// <param name="thisForm">Form chính.</param>
         /// <param name="ma_bc">TableName đối với danh mục, Ma_ct đối với chứng từ.</param>
         /// <param name="All_Objects">Các đối tượng dùng làm tham số trong các hàm động.</param>
-        public static void CreateAdvanceFormControls(Control thisForm, string ma_bc, Dictionary<string, object> All_Objects)
+        internal static void CreateAdvanceFormControls(Control thisForm, string ma_bc, Dictionary<string, object> All_Objects)
         {
+            // Copy từ bản chính ở V6ControlFormHelper (có lButton)
+
             Type Event_program2 = thisForm.GetType();
             DataTable Alreport1Data = null;
             Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>();
@@ -8413,7 +8415,7 @@ namespace V6Controls.Forms
                     ? defineInfo.Field.ToUpper()
                     : defineInfo.AccessibleName.ToUpper();
                 //Bỏ qua nếu đã tồn tại control trên form.
-                if (GetControlByAccessibleName(thisForm, AccessibleName_KEY) != null) continue;
+                if (V6ControlFormHelper.GetControlByAccessibleName(thisForm, AccessibleName_KEY) != null) continue;
 
                 DefineInfo_Data[AccessibleName_KEY.ToUpper()] = defineInfo;
                 //Label
@@ -8486,7 +8488,39 @@ namespace V6Controls.Forms
                             ShowTextField = defineInfo.Field2, //Trường text hiển thị
                             CheckOnLeave = true,
                             CheckNotEmpty = defineInfo.NotEmpty,
+                            F2 = defineInfo.F2,
                         };
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "V6LOOKUPPROC")
+                    {
+                        input = new V6LookupProc()
+                        {
+                            MA_CT = ma_bc,
+                            Name = "txt" + defineInfo.Field,
+                            Ma_dm = defineInfo.MA_DM, //Mã danh mục trong Aldm
+                            AccessibleName = defineInfo.AccessibleName, //Trường get dữ liệu
+                            AccessibleName2 = defineInfo.AccessibleName2, //Trường get text hiển thị
+                            ValueField = defineInfo.Field, //Trường dữ liệu
+                            ShowTextField = defineInfo.Field2, //Trường text hiển thị
+                            CheckOnLeave = true,
+                            CheckNotEmpty = defineInfo.NotEmpty,
+                            F2 = defineInfo.F2,
+                        };
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "NUMBERYEAR")
+                    {
+                        input = new NumberYear();
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "NUMBERMONTH")
+                    {
+                        input = new NumberMonth();
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "NUMBER" || defineInfo.ControlType.ToUpper() == "V6NUMBERTEXTBOX")
+                    {
+                        input = new V6NumberTextBox();
+                        var nT = (V6NumberTextBox)input;
+                        //nT.DecimalPlaces = defineInfo.Decimals;
+                        NumberTextBox_Decimals[nT] = defineInfo.Decimals;
                     }
                     else if (defineInfo.ControlType.ToUpper() == "RICHTEXTBOX")
                     {
@@ -8508,6 +8542,18 @@ namespace V6Controls.Forms
                         {
                             Name = "chk" + defineInfo.Field
                         };
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "DATETIME")
+                    {
+                        input = new V6DateTimePicker();
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "DATETIMEFULL")
+                    {
+                        input = new V6DateTimeFullPicker();
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "DATETIMECOLOR")
+                    {
+                        input = new V6DateTimeColor();
                     }
                     else
                     {
@@ -8578,7 +8624,7 @@ namespace V6Controls.Forms
                     if (string.IsNullOrEmpty(input.Name)) input.Name = "txt" + defineInfo.Field;
                     if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                     {
-                        SetControlValue(input, defineInfo.DefaultValue);
+                        V6ControlFormHelper.SetControlValue(input, defineInfo.DefaultValue);
                     }
                     input.Enabled = defineInfo.Enabled;
                     input.Visible = defineInfo.Visible;
@@ -8589,7 +8635,7 @@ namespace V6Controls.Forms
                     input.Top = top;
                     if (defineInfo.MultiLine || (defineInfo.ControlType + "").ToUpper() == "RICHTEXTBOX")
                     {
-                        input.Height = rowHeight*2;
+                        input.Height = rowHeight * 2;
                         i_index++;
                     }
 
@@ -8623,11 +8669,18 @@ namespace V6Controls.Forms
 
                         lButton.Visible = defineInfo_M.Visible;
 
-                        //lButton.LookupButtonF3Event += (sender, e) =>
-                        //{
-                        //    var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
-                        //    hoaDonForm.ShowToForm(lButton, "Title", true, true, true);
-                        //};
+                        lButton.LookupButtonF3Event += (sender, e) =>
+                        {
+                            ShowWarningMessage("V6ControlFormHelper.CreateAdvanceFormControls#lButton", thisForm);
+                            //string title = "Chứng từ " + e.MaCt;
+                            //var alct = V6BusinessHelper.Select("Alct", "*", "ma_ct=@mact", "", "", new SqlParameter("@mact", e.MaCt)).Data;
+                            //if (alct != null && alct.Rows.Count == 1)
+                            //{
+                            //    title = alct.Rows[0][V6Setting.IsVietnamese ? "Ten_ct" : "Ten_ct2"].ToString();
+                            //}
+                            //var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
+                            //hoaDonForm.ShowToForm(lButton, title, true, true, true);
+                        };
                     }
 
                     //Sự kiện của input

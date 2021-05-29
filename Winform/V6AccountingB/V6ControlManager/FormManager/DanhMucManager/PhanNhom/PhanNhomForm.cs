@@ -565,7 +565,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             try
             {
-                V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
             }
             catch (Exception ex)
             {

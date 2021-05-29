@@ -148,7 +148,10 @@
             this.txtF2 = new V6Controls.V6ColorTextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
+            this.txtMultiLine = new V6Controls.V6ColorTextBox();
+            this.lblMultiLine = new System.Windows.Forms.Label();
             this.txtToUpper = new V6Controls.V6ColorTextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.tabLookupButton = new System.Windows.Forms.TabPage();
@@ -168,9 +171,6 @@
             this.label77 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label73 = new System.Windows.Forms.Label();
-            this.lblMultiLine = new System.Windows.Forms.Label();
-            this.txtMultiLine = new V6Controls.V6ColorTextBox();
-            this.label46 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinThem.SuspendLayout();
@@ -821,6 +821,7 @@
             "VvarTextBox",
             "CheckBox",
             "DateTime",
+            "DateTimeFull",
             "DateTimeColor",
             "MauBC",
             "MAUALL",
@@ -1904,6 +1905,16 @@
             this.label19.TabIndex = 38;
             this.label19.Text = "Bật tắt chức năng lookup chọn nhiều mã";
             // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(283, 64);
+            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(89, 17);
+            this.label46.TabIndex = 40;
+            this.label46.Text = "Bật MultiLine";
+            // 
             // label40
             // 
             this.label40.AccessibleDescription = "ADDEDITC00043";
@@ -1914,6 +1925,34 @@
             this.label40.Size = new System.Drawing.Size(114, 17);
             this.label40.TabIndex = 40;
             this.label40.Text = "Bật Upper khi gõ";
+            // 
+            // txtMultiLine
+            // 
+            this.txtMultiLine.AccessibleName = "MultiLine";
+            this.txtMultiLine.BackColor = System.Drawing.Color.White;
+            this.txtMultiLine.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMultiLine.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMultiLine.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMultiLine.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMultiLine.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMultiLine.LeaveColor = System.Drawing.Color.White;
+            this.txtMultiLine.LimitCharacters = "01";
+            this.txtMultiLine.Location = new System.Drawing.Point(119, 60);
+            this.txtMultiLine.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMultiLine.Name = "txtMultiLine";
+            this.txtMultiLine.Size = new System.Drawing.Size(150, 23);
+            this.txtMultiLine.TabIndex = 39;
+            // 
+            // lblMultiLine
+            // 
+            this.lblMultiLine.AccessibleDescription = ".";
+            this.lblMultiLine.AutoSize = true;
+            this.lblMultiLine.Location = new System.Drawing.Point(7, 60);
+            this.lblMultiLine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMultiLine.Name = "lblMultiLine";
+            this.lblMultiLine.Size = new System.Drawing.Size(64, 17);
+            this.lblMultiLine.TabIndex = 42;
+            this.lblMultiLine.Text = "MultiLine";
             // 
             // txtToUpper
             // 
@@ -2184,44 +2223,6 @@
             this.label73.TabIndex = 0;
             this.label73.Text = "R_DataType";
             // 
-            // lblMultiLine
-            // 
-            this.lblMultiLine.AccessibleDescription = ".";
-            this.lblMultiLine.AutoSize = true;
-            this.lblMultiLine.Location = new System.Drawing.Point(7, 60);
-            this.lblMultiLine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMultiLine.Name = "lblMultiLine";
-            this.lblMultiLine.Size = new System.Drawing.Size(64, 17);
-            this.lblMultiLine.TabIndex = 42;
-            this.lblMultiLine.Text = "MultiLine";
-            // 
-            // txtMultiLine
-            // 
-            this.txtMultiLine.AccessibleName = "MultiLine";
-            this.txtMultiLine.BackColor = System.Drawing.Color.White;
-            this.txtMultiLine.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMultiLine.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMultiLine.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMultiLine.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMultiLine.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMultiLine.LeaveColor = System.Drawing.Color.White;
-            this.txtMultiLine.LimitCharacters = "01";
-            this.txtMultiLine.Location = new System.Drawing.Point(119, 60);
-            this.txtMultiLine.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMultiLine.Name = "txtMultiLine";
-            this.txtMultiLine.Size = new System.Drawing.Size(150, 23);
-            this.txtMultiLine.TabIndex = 39;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(283, 64);
-            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(89, 17);
-            this.label46.TabIndex = 40;
-            this.label46.Text = "Bật MultiLine";
-            // 
             // DefineInfoEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2236,9 +2237,6 @@
             this.Name = "DefineInfoEditorForm";
             this.Text = "DefineInfo editor";
             this.Load += new System.EventHandler(this.From_Load);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.v6TabControl1, 0);
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();
