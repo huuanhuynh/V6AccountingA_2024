@@ -126,8 +126,10 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
 
         private static void SetFontR(XRControl c, Font m_rfontname, Font m_rtfont, Font m_rsfont)
         {
-            string tag_string = ";" + c.Tag + ";";
+            string tag_string = (";" + c.Tag + ";").ToLower();
             if (!(c is XRLabel)) goto NEXT;
+
+            // Font
             if (tag_string.Contains(";nofont;"))
             {
                 // no apply.
@@ -172,6 +174,96 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
                 else
                 {
                     c.Font = m_rfontname;
+                }
+            }
+
+            // Number xrLabel1.DataBindings["Text"].FormatString = "{0:dd/MM/yyyy}";  
+            if (tag_string.Contains(";date;"))
+            {
+                c.DataBindings["Text"].FormatString = "{0:dd/MM/yyyy}";
+            }
+            if (tag_string.Contains(";number;"))
+            {
+                var viewControl = c.Parent.FindControl(c.Name + "_view", true);
+                if (viewControl != null)
+                {
+                    c.ForeColor = c.BackColor;
+                    viewControl.BeforePrint += (sender, args) =>
+                    {
+                        string viewText = ObjectAndString.NumberToString(((XRLabel)c).Summary.GetResult(), 0,
+                            V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
+                        viewControl.Text = viewText;
+                    };
+                }
+            }
+            else if (tag_string.Contains(";numbersl;"))
+            {
+                var viewControl = c.Parent.FindControl(c.Name + "_view", true);
+                if (viewControl != null)
+                {
+                    c.ForeColor = c.BackColor;
+                    viewControl.BeforePrint += (sender, args) =>
+                    {
+                        string viewText = ObjectAndString.NumberToString(((XRLabel)c).Summary.GetResult(), V6Options.M_IP_R_SL,
+                            V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
+                        viewControl.Text = viewText;
+                    };
+                }
+            }
+            else if (tag_string.Contains(";numberdg;"))
+            {
+                var viewControl = c.Parent.FindControl(c.Name + "_view", true);
+                if (viewControl != null)
+                {
+                    c.ForeColor = c.BackColor;
+                    viewControl.BeforePrint += (sender, args) =>
+                    {
+                        string viewText = ObjectAndString.NumberToString(((XRLabel)c).Summary.GetResult(), V6Options.M_IP_R_GIA,
+                            V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
+                        viewControl.Text = viewText;
+                    };
+                }
+            }
+            else if (tag_string.Contains(";numberdgnt;"))
+            {
+                var viewControl = c.Parent.FindControl(c.Name + "_view", true);
+                if (viewControl != null)
+                {
+                    c.ForeColor = c.BackColor;
+                    viewControl.BeforePrint += (sender, args) =>
+                    {
+                        string viewText = ObjectAndString.NumberToString(((XRLabel)c).Summary.GetResult(), V6Options.M_IP_R_GIANT,
+                            V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
+                        viewControl.Text = viewText;
+                    };
+                }
+            }
+            else if (tag_string.Contains(";numbertt;"))
+            {
+                var viewControl = c.Parent.FindControl(c.Name + "_view", true);
+                if (viewControl != null)
+                {
+                    c.ForeColor = c.BackColor;
+                    viewControl.BeforePrint += (sender, args) =>
+                    {
+                        string viewText = ObjectAndString.NumberToString(((XRLabel)c).Summary.GetResult(), V6Options.M_IP_R_TIEN,
+                            V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
+                        viewControl.Text = viewText;
+                    };
+                }
+            }
+            else if (tag_string.Contains(";numberttnt;"))
+            {
+                var viewControl = c.Parent.FindControl(c.Name + "_view", true);
+                if (viewControl != null)
+                {
+                    c.ForeColor = c.BackColor;
+                    viewControl.BeforePrint += (sender, args) =>
+                    {
+                        string viewText = ObjectAndString.NumberToString(((XRLabel)c).Summary.GetResult(), V6Options.M_IP_R_TIENNT,
+                            V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
+                        viewControl.Text = viewText;
+                    };
                 }
             }
 

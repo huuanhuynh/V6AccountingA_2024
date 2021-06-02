@@ -1981,7 +1981,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     x = DXreportManager.LoadV6XtraReportFromFile(DXreportManager.TemplateRepxFile);
                     if (x != null)
                     {
-                        x.DataSource = _ds.Copy();
+                        x.DataSource = _new_ds.Copy();
                         SetAllReportParams(x);
                         XtraEditorForm1 form1 = new XtraEditorForm1(x, DXreportManager.TemplateRepxFile);
                         form1.Show(this);
@@ -1992,7 +1992,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     x = DXreportManager.LoadV6XtraReportFromFile(ReportFileFullDX);
                     if (x != null)
                     {
-                        x.DataSource = _ds.Copy();
+                        x.DataSource = _new_ds.Copy();
                         SetAllReportParams(x);
                         XtraEditorForm1 form1 = new XtraEditorForm1(x, ReportFileFullDX);
                         form1.Show(this);

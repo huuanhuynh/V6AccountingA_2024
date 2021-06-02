@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
                     return "";
                 }
             }
-            int decimals = -1; if (operands.Length > 1) ObjectAndString.ObjectToInt(operands[1]);
+            int decimals = 0; if (operands.Length > 1) decimals = ObjectAndString.ObjectToInt(operands[1]);
             string decimalSeparator = V6Options.M_NUM_POINT; if (operands.Length > 2) decimalSeparator = operands[2].ToString();
             string thousandSeparator = V6Options.M_NUM_SEPARATOR; if (operands.Length > 3) thousandSeparator = operands[3].ToString();
             
