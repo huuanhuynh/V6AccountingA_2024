@@ -1596,8 +1596,9 @@ namespace V6Controls.Forms
         /// Name = "line" + lineInfo.Field.ToUpper()
         /// </summary>
         /// <param name="define">Chuỗi thông tin (field:ngay_ct1;textv:Từ ngày;textE:From;where_field:ngay_ct;type:D;loai_key:10;oper:and;sqltype:smalldatetime;limitchar:ABCabc123;defaultValue:m_ngay_ct1)</param>
+        /// <param name="toolTip">Đối tượng toolTip trên Form</param>
         /// <returns></returns>
-        public static UserControl MadeLineDynamicControl(string define)
+        public static UserControl MadeLineDynamicControl(string define, ToolTip toolTip)
         {
             //string define = row["filter"].ToString().Trim();
             DefineInfo lineInfo = new DefineInfo(define);
@@ -1759,6 +1760,10 @@ namespace V6Controls.Forms
             {
                 lineControl.AddDateTimePick();
             }
+            //else if (CONTROL_TYPE == "DATETIMEFULL")
+            //{
+            //    lineControl.AddDateTimeFull();
+            //}
             else if (CONTROL_TYPE == "DATETIMECOLOR")
             {
                 lineControl.AddDateTimeColor();
@@ -1812,13 +1817,22 @@ namespace V6Controls.Forms
             if (lineInfo.MaxLength > 0) lineControl.SetMaxLength(lineInfo.MaxLength);
             //NotEmpty
             if (lineInfo.NotEmpty) lineControl.SetNotEmpty(true);
-
+            // Add Description
+            if (toolTip != null)
+            {
+                string des = "" + lineInfo.DescriptionLang(V6Setting.IsVietnamese);
+                if (des.Trim() != "")
+                {
+                    toolTip.SetToolTip(lineControl.InputControl, des);
+                    toolTip.SetToolTip(lineControl, des);
+                }
+            }
             return lineControl;
         }
 
         #endregion
 
-#region ==== SELECT ====
+        #region ==== SELECT ====
 
         /// <summary>
         /// Hỗ trợ chọn Fields cho textBox.
@@ -1924,7 +1938,7 @@ namespace V6Controls.Forms
             }
             return result;
         }
-#endregion select
+        #endregion select
 
         #region ==== SEND ====
 

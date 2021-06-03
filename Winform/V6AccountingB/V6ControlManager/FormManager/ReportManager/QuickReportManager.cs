@@ -25,11 +25,11 @@ namespace V6ControlManager.FormManager.ReportManager
 {
     public static class QuickReportManager
     {
-        public static ReportFilter44Base AddFilterControl44Base(string program, string reportProcedure, Panel panel1)
+        public static ReportFilter44Base AddFilterControl44Base(string program, string reportProcedure, Panel panel1, ToolTip toolTip)
         {
             panel1.Controls.Clear();
 
-            var FilterControl = Filter.Filter.GetFilterControl44(program, reportProcedure);
+            var FilterControl = Filter.Filter.GetFilterControl44(program, reportProcedure, toolTip);
             panel1.Controls.Add(FilterControl);
             FilterControl.LoadLanguage();
             FilterControl.Focus();
@@ -42,7 +42,9 @@ namespace V6ControlManager.FormManager.ReportManager
         /// <param name="filterControl"></param>
         /// <param name="program"></param>
         /// <param name="all_Objects">sẽ được gán thêm filterControl và các line.NAME, các eventArgs (sender và e).</param>
-        public static void MadeFilterControls(ReportFilter44Base filterControl, string program, Dictionary<string, object> all_Objects)
+        /// <param name="toolTip">Đối tượng toolTip trên Form</param>
+        public static void MadeFilterControls(ReportFilter44Base filterControl, string program,
+            Dictionary<string, object> all_Objects, ToolTip toolTip)
         {
             Type Event_program = null;
             //Dictionary<string, object> All_Objects = new Dictionary<string, object>();
@@ -75,7 +77,7 @@ namespace V6ControlManager.FormManager.ReportManager
                         var defineInfo = new DefineInfo(define);
                         var defineInfo_M = new DefineInfo(define_M);
 
-                        var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define);
+                        var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define, toolTip);
                         all_Objects[lineControl0.Name] = lineControl0;
 
                         
@@ -255,7 +257,17 @@ namespace V6ControlManager.FormManager.ReportManager
                                     }
                                 }//end for
                             }
-                            
+
+                            // Add Description
+                            if (toolTip != null)
+                            {
+                                string des = "" + defineInfo.DescriptionLang(V6Setting.IsVietnamese);
+                                if (des.Trim() != "")
+                                {
+                                    toolTip.SetToolTip(lineControl.InputControl, des);
+                                    toolTip.SetToolTip(lineControl, des);
+                                }
+                            }
                         }
                         else if (lineControl0 is FilterGroup)
                         {

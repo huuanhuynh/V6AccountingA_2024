@@ -880,7 +880,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public FilterBase FilterControl { get; set; }
         private void AddFilterControl(string program)
         {
-            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure);
+            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, toolTipV6FormControl);
             panel1.Controls.Add(FilterControl);
             FilterControl.String1ValueChanged += FilterControl_String1ValueChanged;
             FilterControl.Check1ValueChanged += FilterControl_Check1ValueChanged;

@@ -62,7 +62,7 @@
         #endregion
 
         private System.Windows.Forms.ImageList _waitingImages;
-        protected System.Windows.Forms.ToolTip toolTipV6FormControl;
+        public System.Windows.Forms.ToolTip toolTipV6FormControl;
 
 
     }

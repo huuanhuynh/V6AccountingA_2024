@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms;
 using V6Controls;
 
 namespace V6ReportControls
@@ -56,6 +57,14 @@ namespace V6ReportControls
             get
             {
                 return v6VvarTextBox1.Text.Trim();
+            }
+        }
+
+        public override Control InputControl
+        {
+            get
+            {
+                return v6VvarTextBox1;
             }
         }
 

@@ -1966,11 +1966,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 LoadComboboxSource();
 
                 //Đổi filter mỗi lần chọn lại báo cáo.
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
                 All_Objects["thisForm"] = this;
                 All_Objects["FilterControl"] = FilterControl;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
-                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);
 
                 btnNhan_Click(null, null);
             }

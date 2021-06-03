@@ -92,6 +92,14 @@ namespace V6ReportControls
             }
         }
 
+        public virtual Control InputControl
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public virtual object ObjectValue
         {
             get { return "N'objectbase'"; }

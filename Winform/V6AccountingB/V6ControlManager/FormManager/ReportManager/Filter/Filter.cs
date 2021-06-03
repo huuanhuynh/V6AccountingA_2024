@@ -1,4 +1,5 @@
-﻿using V6ControlManager.FormManager.ReportManager.Filter.Base0;
+﻿using System.Windows.Forms;
+using V6ControlManager.FormManager.ReportManager.Filter.Base0;
 using V6ControlManager.FormManager.ReportManager.Filter.Base0.Sms;
 using V6ControlManager.FormManager.ReportManager.Filter.NhanSu;
 using V6ControlManager.FormManager.ReportManager.Filter.Xuly;
@@ -8,7 +9,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 {
     public static class Filter
     {
-        public static FilterBase GetFilterControl(string program, string reportProcedure)
+        public static FilterBase GetFilterControl(string program, string reportProcedure, ToolTip toolTip)
         {
             program = program.Trim().ToUpper();
             V6ControlFormHelper.AddLastAction("GetFilterControl " + program);
@@ -1625,17 +1626,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (result == null) result = new FilterBase() { Visible = false };
 
-            result.MyInitDynamic(program, reportProcedure);
+            result.MyInitDynamic(program, reportProcedure, toolTip);
 
             return result;
         }
 
-        public static ReportFilter44Base GetFilterControl44(string program, string reportProcedure)
+        public static ReportFilter44Base GetFilterControl44(string program, string reportProcedure, ToolTip toolTip)
         {
             if (program.StartsWith("ADVXNK01."))
             {
                 var result = new ReportFilter44Base(program.Substring("ADVXNK01.".Length), reportProcedure);
-                result.MyInitDynamic(program.Substring("ADVXNK01.".Length), reportProcedure);
+                result.MyInitDynamic(program.Substring("ADVXNK01.".Length), reportProcedure, toolTip);
                 return result;
             }
             return new ReportFilter44Base(program, reportProcedure);

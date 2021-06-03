@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Windows.Forms;
 using V6Controls;
 using V6Tools.V6Convert;
 
@@ -53,6 +54,13 @@ namespace V6ReportControls
             }
         }
 
+        public override Control InputControl
+        {
+            get
+            {
+                return v6NumberTextBox1;
+            }
+        }
 
         public override object ObjectValue
         {

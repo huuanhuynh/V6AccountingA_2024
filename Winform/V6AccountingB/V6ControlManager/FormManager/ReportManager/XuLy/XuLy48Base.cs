@@ -137,10 +137,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 //}
 
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
                 All_Objects["thisForm"] = this;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
-                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);
                 All_Objects["thisForm"] = this;
                 SetStatus2Text();
                 //gridViewSummary1.Visible = FilterControl.ViewSum;

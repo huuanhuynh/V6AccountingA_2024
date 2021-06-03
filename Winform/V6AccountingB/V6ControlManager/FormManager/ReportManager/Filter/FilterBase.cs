@@ -220,7 +220,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             FixFilterLineSize();
         }
 
-        public void MyInitDynamic(string program, string reportProcedure)
+        public void MyInitDynamic(string program, string reportProcedure, ToolTip toolTip)
         {
             _program = program;
             _reportProcedure = reportProcedure;
@@ -228,7 +228,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             try
             {
                 //Add filterLine dynamic.
-                MadeFilterControls(_program, new Dictionary<string,object>());
+                MadeFilterControls(_program, new Dictionary<string,object>(), toolTip);
             }
             catch (Exception ex)
             {
@@ -236,7 +236,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-        public void MadeFilterControls(string program, Dictionary<string, object> all_Objects)
+        public void MadeFilterControls(string program, Dictionary<string, object> all_Objects, ToolTip toolTip)
         {
             Type Event_program = null;
             all_Objects["filterControl"] = this;
@@ -276,7 +276,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         string define = row["filter"].ToString().Trim();
 
 
-                        var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define);
+                        var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define, toolTip);
                         all_Objects[lineControl0.Name] = lineControl0;
 
                         if (lineControl0 is FilterLineDynamic)

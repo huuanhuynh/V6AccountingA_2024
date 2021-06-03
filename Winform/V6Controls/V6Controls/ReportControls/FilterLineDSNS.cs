@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Forms;
 using V6Controls;
 
 namespace V6ReportControls
@@ -77,6 +78,14 @@ namespace V6ReportControls
             get
             {
                 return txtDSNS.Text;
+            }
+        }
+
+        public override Control InputControl
+        {
+            get
+            {
+                return txtDSNS;
             }
         }
 

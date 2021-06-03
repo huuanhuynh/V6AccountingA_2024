@@ -159,7 +159,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public FilterBase FilterControl { get; set; }
         protected void AddFilterControl(string program)
         {
-            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure);
+            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, toolTipV6FormControl);
             FilterControl.Height = panel1.Height;
             FilterControl.Width = panel1.Width;
             panel1.Controls.Add(FilterControl);

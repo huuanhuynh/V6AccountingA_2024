@@ -552,7 +552,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public FilterBase FilterControl { get; set; }
         public void AddFilterControl(string program)
         {
-            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure);
+            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, toolTipV6FormControl);
             panel1.Controls.Add(FilterControl);
             //FilterControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             FilterControl.Focus();

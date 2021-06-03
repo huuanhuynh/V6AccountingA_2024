@@ -142,9 +142,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 }
                 //}
 
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
-                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);
                 All_Objects["thisForm"] = this;
                 gridViewSummary1.Visible = FilterControl.ViewSum;
 

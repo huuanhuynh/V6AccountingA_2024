@@ -62,6 +62,18 @@ namespace V6Controls.Forms
             return V6ControlFormHelper.FindParent<T>(this, maxLevel);
         }
 
+        private ToolTip _toolTip;
+        public ToolTip ToolTipControl
+        {
+            get
+            {
+                if (_toolTip != null) return _toolTip;
+                V6FormControl parent = (this is V6FormControl ? this : FindParent<V6FormControl>()) as V6FormControl;
+                _toolTip = parent == null ? null : parent.toolTipV6FormControl;
+                return _toolTip;
+            }
+        }
+
         /// <summary>
         /// Tìm kiếm và trả về control nằm trong control này hoặc chính nó nếu trùng tên (ko phân biệt hoa thường).
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 using V6Controls;
 using V6Tools.V6Convert;
 
@@ -56,6 +57,14 @@ namespace V6ReportControls
                         ((DateTime)v6DateTimeTextBox1.Value).ToString("yyyyMMdd") : "");
                 }
                 return "";
+            }
+        }
+
+        public override Control InputControl
+        {
+            get
+            {
+                return v6DateTimeTextBox1;
             }
         }
 

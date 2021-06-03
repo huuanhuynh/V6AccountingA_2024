@@ -99,6 +99,14 @@ namespace V6ReportControls
             }
         }
 
+        public override Control InputControl
+        {
+            get
+            {
+                return cboMaubc;
+            }
+        }
+
         public override object ObjectValue
         {
             get { return StringValue; }

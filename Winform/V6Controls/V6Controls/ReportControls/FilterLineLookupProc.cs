@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms;
 using V6Controls;
 
 namespace V6ReportControls
@@ -73,6 +74,14 @@ namespace V6ReportControls
             get
             {
                 return lookupProc1.Text.Trim();
+            }
+        }
+
+        public override Control InputControl
+        {
+            get
+            {
+                return lookupProc1;
             }
         }
 
