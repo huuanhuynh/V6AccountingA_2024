@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
@@ -91,6 +92,45 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             else
             {
                 lblTenMau.BackColor = Color.FromName(cboColorList.Text);
+            }
+        }
+
+        private void btnV_Search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var temp = V6BusinessHelper.Select(txtVma_file.Text, "*", "1=0").Data;
+                V6ControlFormHelper.SelectFields(this, temp, txtV_Search.Text, txtV_Search);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void btnVFields_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var temp = V6BusinessHelper.Select(txtVma_file.Text, "*", "1=0").Data;
+                V6ControlFormHelper.SelectFields(this, temp, txtVFields.Text, txtVFields, txtVWidths, txtVHeaders, null);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void btnEFields_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var temp = V6BusinessHelper.Select(txtVma_file.Text, "*", "1=0").Data;
+                V6ControlFormHelper.SelectFields(this, temp, txtEFields.Text, txtEFields, null, null, txtEHeaders);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
 

@@ -71,17 +71,17 @@
             this.label22 = new System.Windows.Forms.Label();
             this.v6ColorTextBox20 = new V6Controls.V6ColorTextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox19 = new V6Controls.V6ColorTextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
+            this.txtV_Search = new V6Controls.V6ColorTextBox();
+            this.lblV_Search = new System.Windows.Forms.Label();
+            this.txtEHeaders = new V6Controls.V6ColorTextBox();
+            this.txtEFields = new V6Controls.V6ColorTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
+            this.txtVWidths = new V6Controls.V6ColorTextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
+            this.txtVHeaders = new V6Controls.V6ColorTextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
+            this.txtVFields = new V6Controls.V6ColorTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.v6ColorTextBox11 = new V6Controls.V6ColorTextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -154,6 +154,9 @@
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
+            this.btnV_Search = new System.Windows.Forms.Button();
+            this.btnVFields = new System.Windows.Forms.Button();
+            this.btnEFields = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabCacTuyChon.SuspendLayout();
             this.grbBold.SuspendLayout();
@@ -645,6 +648,9 @@
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.btnEFields);
+            this.tabThongTinChinh.Controls.Add(this.btnVFields);
+            this.tabThongTinChinh.Controls.Add(this.btnV_Search);
             this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox2);
             this.tabThongTinChinh.Controls.Add(this.label32);
             this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox24);
@@ -653,17 +659,17 @@
             this.tabThongTinChinh.Controls.Add(this.label22);
             this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox20);
             this.tabThongTinChinh.Controls.Add(this.label21);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox19);
-            this.tabThongTinChinh.Controls.Add(this.label20);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox4);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox13);
+            this.tabThongTinChinh.Controls.Add(this.txtV_Search);
+            this.tabThongTinChinh.Controls.Add(this.lblV_Search);
+            this.tabThongTinChinh.Controls.Add(this.txtEHeaders);
+            this.tabThongTinChinh.Controls.Add(this.txtEFields);
             this.tabThongTinChinh.Controls.Add(this.label11);
             this.tabThongTinChinh.Controls.Add(this.label15);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox5);
+            this.tabThongTinChinh.Controls.Add(this.txtVWidths);
             this.tabThongTinChinh.Controls.Add(this.label16);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox1);
+            this.tabThongTinChinh.Controls.Add(this.txtVHeaders);
             this.tabThongTinChinh.Controls.Add(this.label10);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox12);
+            this.tabThongTinChinh.Controls.Add(this.txtVFields);
             this.tabThongTinChinh.Controls.Add(this.label14);
             this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox11);
             this.tabThongTinChinh.Controls.Add(this.label7);
@@ -804,74 +810,74 @@
             this.label21.TabIndex = 19;
             this.label21.Text = "ListTable";
             // 
-            // v6ColorTextBox19
+            // txtV_Search
             // 
-            this.v6ColorTextBox19.AccessibleName = "V_SEARCH";
-            this.v6ColorTextBox19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtV_Search.AccessibleName = "V_SEARCH";
+            this.txtV_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox19.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox19.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox19.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox19.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox19.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox19.GrayText = "Field1,Field2...";
-            this.v6ColorTextBox19.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox19.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox19.Location = new System.Drawing.Point(111, 183);
-            this.v6ColorTextBox19.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox19.Name = "v6ColorTextBox19";
-            this.v6ColorTextBox19.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox19.TabIndex = 7;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox19, "Các trường search khi lookup, cách nhau bằng dấu phẩy (,)");
+            this.txtV_Search.BackColor = System.Drawing.Color.White;
+            this.txtV_Search.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtV_Search.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtV_Search.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtV_Search.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtV_Search.GrayText = "Field1,Field2...";
+            this.txtV_Search.HoverColor = System.Drawing.Color.Yellow;
+            this.txtV_Search.LeaveColor = System.Drawing.Color.White;
+            this.txtV_Search.Location = new System.Drawing.Point(111, 183);
+            this.txtV_Search.Margin = new System.Windows.Forms.Padding(4);
+            this.txtV_Search.Name = "txtV_Search";
+            this.txtV_Search.Size = new System.Drawing.Size(474, 23);
+            this.txtV_Search.TabIndex = 7;
+            this.toolTipV6FormControl.SetToolTip(this.txtV_Search, "Các trường search khi lookup, cách nhau bằng dấu phẩy (,)");
             // 
-            // label20
+            // lblV_Search
             // 
-            this.label20.AccessibleDescription = ".";
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(5, 186);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(68, 17);
-            this.label20.TabIndex = 16;
-            this.label20.Text = "v_Search";
+            this.lblV_Search.AccessibleDescription = ".";
+            this.lblV_Search.AutoSize = true;
+            this.lblV_Search.Location = new System.Drawing.Point(5, 186);
+            this.lblV_Search.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblV_Search.Name = "lblV_Search";
+            this.lblV_Search.Size = new System.Drawing.Size(68, 17);
+            this.lblV_Search.TabIndex = 16;
+            this.lblV_Search.Text = "v_Search";
             // 
-            // v6ColorTextBox4
+            // txtEHeaders
             // 
-            this.v6ColorTextBox4.AccessibleName = "EHEADERS";
-            this.v6ColorTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtEHeaders.AccessibleName = "EHEADERS";
+            this.txtEHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox4.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(111, 133);
-            this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox4.Name = "v6ColorTextBox4";
-            this.v6ColorTextBox4.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox4.TabIndex = 5;
+            this.txtEHeaders.BackColor = System.Drawing.Color.White;
+            this.txtEHeaders.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtEHeaders.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtEHeaders.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtEHeaders.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtEHeaders.HoverColor = System.Drawing.Color.Yellow;
+            this.txtEHeaders.LeaveColor = System.Drawing.Color.White;
+            this.txtEHeaders.Location = new System.Drawing.Point(111, 133);
+            this.txtEHeaders.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEHeaders.Name = "txtEHeaders";
+            this.txtEHeaders.Size = new System.Drawing.Size(474, 23);
+            this.txtEHeaders.TabIndex = 5;
             // 
-            // v6ColorTextBox13
+            // txtEFields
             // 
-            this.v6ColorTextBox13.AccessibleName = "EFIELDS";
-            this.v6ColorTextBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtEFields.AccessibleName = "EFIELDS";
+            this.txtEFields.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox13.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox13.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox13.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox13.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox13.GrayText = "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper";
-            this.v6ColorTextBox13.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox13.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox13.Location = new System.Drawing.Point(111, 83);
-            this.v6ColorTextBox13.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox13.Name = "v6ColorTextBox13";
-            this.v6ColorTextBox13.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox13.TabIndex = 3;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox13, "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper");
+            this.txtEFields.BackColor = System.Drawing.Color.White;
+            this.txtEFields.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtEFields.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtEFields.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtEFields.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtEFields.GrayText = "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper";
+            this.txtEFields.HoverColor = System.Drawing.Color.Yellow;
+            this.txtEFields.LeaveColor = System.Drawing.Color.White;
+            this.txtEFields.Location = new System.Drawing.Point(111, 83);
+            this.txtEFields.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEFields.Name = "txtEFields";
+            this.txtEFields.Size = new System.Drawing.Size(474, 23);
+            this.txtEFields.TabIndex = 3;
+            this.toolTipV6FormControl.SetToolTip(this.txtEFields, "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper");
             // 
             // label11
             // 
@@ -895,23 +901,23 @@
             this.label15.TabIndex = 8;
             this.label15.Text = "eFields";
             // 
-            // v6ColorTextBox5
+            // txtVWidths
             // 
-            this.v6ColorTextBox5.AccessibleName = "VWIDTHS";
-            this.v6ColorTextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtVWidths.AccessibleName = "VWIDTHS";
+            this.txtVWidths.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox5.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(111, 158);
-            this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox5.TabIndex = 6;
+            this.txtVWidths.BackColor = System.Drawing.Color.White;
+            this.txtVWidths.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtVWidths.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtVWidths.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtVWidths.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtVWidths.HoverColor = System.Drawing.Color.Yellow;
+            this.txtVWidths.LeaveColor = System.Drawing.Color.White;
+            this.txtVWidths.Location = new System.Drawing.Point(111, 158);
+            this.txtVWidths.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVWidths.Name = "txtVWidths";
+            this.txtVWidths.Size = new System.Drawing.Size(474, 23);
+            this.txtVWidths.TabIndex = 6;
             // 
             // label16
             // 
@@ -924,24 +930,24 @@
             this.label16.TabIndex = 14;
             this.label16.Text = "vWidths";
             // 
-            // v6ColorTextBox1
+            // txtVHeaders
             // 
-            this.v6ColorTextBox1.AccessibleName = "VHEADERS";
-            this.v6ColorTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtVHeaders.AccessibleName = "VHEADERS";
+            this.txtVHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox1.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox1.GrayText = "FieldCaption,Field2Caption...";
-            this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.Location = new System.Drawing.Point(111, 108);
-            this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox1.Name = "v6ColorTextBox1";
-            this.v6ColorTextBox1.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox1.TabIndex = 4;
+            this.txtVHeaders.BackColor = System.Drawing.Color.White;
+            this.txtVHeaders.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtVHeaders.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtVHeaders.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtVHeaders.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtVHeaders.GrayText = "FieldCaption,Field2Caption...";
+            this.txtVHeaders.HoverColor = System.Drawing.Color.Yellow;
+            this.txtVHeaders.LeaveColor = System.Drawing.Color.White;
+            this.txtVHeaders.Location = new System.Drawing.Point(111, 108);
+            this.txtVHeaders.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVHeaders.Name = "txtVHeaders";
+            this.txtVHeaders.Size = new System.Drawing.Size(474, 23);
+            this.txtVHeaders.TabIndex = 4;
             // 
             // label10
             // 
@@ -954,25 +960,25 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "vHeaders";
             // 
-            // v6ColorTextBox12
+            // txtVFields
             // 
-            this.v6ColorTextBox12.AccessibleName = "VFIELDS";
-            this.v6ColorTextBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtVFields.AccessibleName = "VFIELDS";
+            this.txtVFields.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox12.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox12.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox12.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox12.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox12.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox12.GrayText = "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper";
-            this.v6ColorTextBox12.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox12.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox12.Location = new System.Drawing.Point(111, 58);
-            this.v6ColorTextBox12.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox12.Name = "v6ColorTextBox12";
-            this.v6ColorTextBox12.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox12.TabIndex = 2;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox12, "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper");
+            this.txtVFields.BackColor = System.Drawing.Color.White;
+            this.txtVFields.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtVFields.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtVFields.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtVFields.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtVFields.GrayText = "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper";
+            this.txtVFields.HoverColor = System.Drawing.Color.Yellow;
+            this.txtVFields.LeaveColor = System.Drawing.Color.White;
+            this.txtVFields.Location = new System.Drawing.Point(111, 58);
+            this.txtVFields.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVFields.Name = "txtVFields";
+            this.txtVFields.Size = new System.Drawing.Size(474, 23);
+            this.txtVFields.TabIndex = 2;
+            this.toolTipV6FormControl.SetToolTip(this.txtVFields, "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper");
             // 
             // label14
             // 
@@ -1010,10 +1016,10 @@
             // label7
             // 
             this.label7.AccessibleDescription = "ADDEDITL00671";
-            this.label7.Location = new System.Drawing.Point(586, 61);
+            this.label7.Location = new System.Drawing.Point(623, 61);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(201, 45);
+            this.label7.Size = new System.Drawing.Size(164, 45);
             this.label7.TabIndex = 7;
             this.label7.Text = "Các trường hiển thị khi lookup";
             // 
@@ -1040,10 +1046,10 @@
             // label5
             // 
             this.label5.AccessibleDescription = "ADDEDITL00672";
-            this.label5.Location = new System.Drawing.Point(586, 186);
+            this.label5.Location = new System.Drawing.Point(620, 186);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(201, 46);
+            this.label5.Size = new System.Drawing.Size(167, 46);
             this.label5.TabIndex = 18;
             this.label5.Text = "Các trường Search khi lookup";
             // 
@@ -2187,6 +2193,51 @@
             this.label43.TabIndex = 90;
             this.label43.Text = "Mã ĐN 1";
             // 
+            // btnV_Search
+            // 
+            this.btnV_Search.AccessibleDescription = ".";
+            this.btnV_Search.AccessibleName = "";
+            this.btnV_Search.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnV_Search.Location = new System.Drawing.Point(588, 183);
+            this.btnV_Search.Name = "btnV_Search";
+            this.btnV_Search.Size = new System.Drawing.Size(25, 23);
+            this.btnV_Search.TabIndex = 30;
+            this.btnV_Search.TabStop = false;
+            this.btnV_Search.Text = "...";
+            this.btnV_Search.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnV_Search.UseVisualStyleBackColor = true;
+            this.btnV_Search.Click += new System.EventHandler(this.btnV_Search_Click);
+            // 
+            // btnVFields
+            // 
+            this.btnVFields.AccessibleDescription = ".";
+            this.btnVFields.AccessibleName = "";
+            this.btnVFields.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnVFields.Location = new System.Drawing.Point(588, 58);
+            this.btnVFields.Name = "btnVFields";
+            this.btnVFields.Size = new System.Drawing.Size(25, 23);
+            this.btnVFields.TabIndex = 31;
+            this.btnVFields.TabStop = false;
+            this.btnVFields.Text = "...";
+            this.btnVFields.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVFields.UseVisualStyleBackColor = true;
+            this.btnVFields.Click += new System.EventHandler(this.btnVFields_Click);
+            // 
+            // btnEFields
+            // 
+            this.btnEFields.AccessibleDescription = ".";
+            this.btnEFields.AccessibleName = "";
+            this.btnEFields.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEFields.Location = new System.Drawing.Point(588, 83);
+            this.btnEFields.Name = "btnEFields";
+            this.btnEFields.Size = new System.Drawing.Size(25, 23);
+            this.btnEFields.TabIndex = 32;
+            this.btnEFields.TabStop = false;
+            this.btnEFields.Text = "...";
+            this.btnEFields.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEFields.UseVisualStyleBackColor = true;
+            this.btnEFields.Click += new System.EventHandler(this.btnEFields_Click);
+            // 
             // V6lookupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2239,9 +2290,9 @@
         private V6ColorTextBox v6ColorTextBox15;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label46;
-        private V6ColorTextBox v6ColorTextBox13;
+        private V6ColorTextBox txtEFields;
         private System.Windows.Forms.Label label15;
-        private V6ColorTextBox v6ColorTextBox12;
+        private V6ColorTextBox txtVFields;
         private System.Windows.Forms.Label label14;
         private V6ColorTextBox v6ColorTextBox11;
         private System.Windows.Forms.Label label13;
@@ -2253,18 +2304,18 @@
         private System.Windows.Forms.Label label22;
         private V6ColorTextBox v6ColorTextBox20;
         private System.Windows.Forms.Label label21;
-        private V6ColorTextBox v6ColorTextBox19;
-        private System.Windows.Forms.Label label20;
+        private V6ColorTextBox txtV_Search;
+        private System.Windows.Forms.Label lblV_Search;
         private System.Windows.Forms.Label label5;
         private V6CheckBox v6CheckBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private V6ColorTextBox v6ColorTextBox4;
+        private V6ColorTextBox txtEHeaders;
         private System.Windows.Forms.Label label11;
-        private V6ColorTextBox v6ColorTextBox1;
+        private V6ColorTextBox txtVHeaders;
         private System.Windows.Forms.Label label10;
-        private V6ColorTextBox v6ColorTextBox5;
+        private V6ColorTextBox txtVWidths;
         private System.Windows.Forms.Label label16;
         private V6ColorTextBox txtEtitle;
         private V6ColorTextBox txtVtitle;
@@ -2343,5 +2394,8 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label43;
+        protected System.Windows.Forms.Button btnV_Search;
+        protected System.Windows.Forms.Button btnEFields;
+        protected System.Windows.Forms.Button btnVFields;
     }
 }

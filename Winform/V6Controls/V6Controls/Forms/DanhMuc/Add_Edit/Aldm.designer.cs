@@ -65,7 +65,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtFormCode = new V6Controls.V6ColorTextBox();
             this.lblFormCode = new System.Windows.Forms.Label();
-            this.v6ColorTextBox10 = new V6Controls.V6ColorTextBox();
+            this.txtTable_View = new V6Controls.V6ColorTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.v6CheckBox2 = new V6Controls.V6CheckBox();
             this.chkCheckLong = new V6Controls.V6CheckBox();
@@ -75,6 +75,9 @@
             this.ChkVisible = new V6Controls.V6CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tabThongTinNgamDinh = new System.Windows.Forms.TabPage();
+            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
+            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
+            this.lblThongTinThem = new System.Windows.Forms.Label();
             this.btnGRDS_V1 = new System.Windows.Forms.Button();
             this.txtGRDHE_V1 = new V6Controls.V6ColorTextBox();
             this.txtGRDHV_V1 = new V6Controls.V6ColorTextBox();
@@ -146,9 +149,7 @@
             this.lblMaDM = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
-            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
-            this.lblThongTinThem = new System.Windows.Forms.Label();
+            this.btnFsearch = new System.Windows.Forms.Button();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinNgamDinh.SuspendLayout();
@@ -179,6 +180,7 @@
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.btnFsearch);
             this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox7);
             this.tabThongTinChinh.Controls.Add(this.label32);
             this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox4);
@@ -213,7 +215,7 @@
             this.tabThongTinChinh.Controls.Add(this.label13);
             this.tabThongTinChinh.Controls.Add(this.txtFormCode);
             this.tabThongTinChinh.Controls.Add(this.lblFormCode);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox10);
+            this.tabThongTinChinh.Controls.Add(this.txtTable_View);
             this.tabThongTinChinh.Controls.Add(this.label17);
             this.tabThongTinChinh.Controls.Add(this.v6CheckBox2);
             this.tabThongTinChinh.Controls.Add(this.chkCheckLong);
@@ -515,7 +517,7 @@
             this.txtFsearch.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtFsearch.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtFsearch.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtFsearch.GrayText = "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper";
+            this.txtFsearch.GrayText = "Field1,Field2...";
             this.txtFsearch.HoverColor = System.Drawing.Color.Yellow;
             this.txtFsearch.LeaveColor = System.Drawing.Color.White;
             this.txtFsearch.Location = new System.Drawing.Point(528, 86);
@@ -744,23 +746,23 @@
             this.lblFormCode.TabIndex = 0;
             this.lblFormCode.Text = "FormCode";
             // 
-            // v6ColorTextBox10
+            // txtTable_View
             // 
-            this.v6ColorTextBox10.AccessibleName = "Table_view";
-            this.v6ColorTextBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtTable_View.AccessibleName = "Table_view";
+            this.txtTable_View.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox10.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox10.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox10.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox10.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox10.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox10.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox10.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox10.Location = new System.Drawing.Point(119, 8);
-            this.v6ColorTextBox10.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox10.Name = "v6ColorTextBox10";
-            this.v6ColorTextBox10.Size = new System.Drawing.Size(215, 23);
-            this.v6ColorTextBox10.TabIndex = 0;
+            this.txtTable_View.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTable_View.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTable_View.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTable_View.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTable_View.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTable_View.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTable_View.LeaveColor = System.Drawing.Color.White;
+            this.txtTable_View.Location = new System.Drawing.Point(119, 8);
+            this.txtTable_View.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTable_View.Name = "txtTable_View";
+            this.txtTable_View.Size = new System.Drawing.Size(215, 23);
+            this.txtTable_View.TabIndex = 0;
             // 
             // label17
             // 
@@ -889,6 +891,49 @@
             this.tabThongTinNgamDinh.Size = new System.Drawing.Size(796, 408);
             this.tabThongTinNgamDinh.TabIndex = 1;
             this.tabThongTinNgamDinh.Text = "Thông tin ngầm định";
+            // 
+            // dicEditButton1
+            // 
+            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.Location = new System.Drawing.Point(763, 148);
+            this.dicEditButton1.Name = "dicEditButton1";
+            this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
+            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
+            this.dicEditButton1.TabIndex = 12;
+            // 
+            // txtExtraInfo
+            // 
+            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
+            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExtraInfo.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
+            this.txtExtraInfo.Location = new System.Drawing.Point(171, 148);
+            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExtraInfo.Name = "txtExtraInfo";
+            this.txtExtraInfo.ReadOnly = true;
+            this.txtExtraInfo.Size = new System.Drawing.Size(592, 23);
+            this.txtExtraInfo.TabIndex = 11;
+            this.txtExtraInfo.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
+            this.txtExtraInfo.Visible = false;
+            // 
+            // lblThongTinThem
+            // 
+            this.lblThongTinThem.AccessibleDescription = "ADDEDITL00356";
+            this.lblThongTinThem.AutoSize = true;
+            this.lblThongTinThem.Location = new System.Drawing.Point(9, 151);
+            this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblThongTinThem.Name = "lblThongTinThem";
+            this.lblThongTinThem.Size = new System.Drawing.Size(103, 17);
+            this.lblThongTinThem.TabIndex = 10;
+            this.lblThongTinThem.Text = "Thông tin thêm";
+            this.lblThongTinThem.Visible = false;
             // 
             // btnGRDS_V1
             // 
@@ -1966,48 +2011,20 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
-            // dicEditButton1
+            // btnFsearch
             // 
-            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
-            this.dicEditButton1.Location = new System.Drawing.Point(763, 148);
-            this.dicEditButton1.Name = "dicEditButton1";
-            this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
-            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
-            this.dicEditButton1.TabIndex = 12;
-            // 
-            // txtExtraInfo
-            // 
-            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
-            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtExtraInfo.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
-            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
-            this.txtExtraInfo.Location = new System.Drawing.Point(171, 148);
-            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExtraInfo.Name = "txtExtraInfo";
-            this.txtExtraInfo.ReadOnly = true;
-            this.txtExtraInfo.Size = new System.Drawing.Size(592, 23);
-            this.txtExtraInfo.TabIndex = 11;
-            this.txtExtraInfo.TabStop = false;
-            this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
-            this.txtExtraInfo.Visible = false;
-            // 
-            // lblThongTinThem
-            // 
-            this.lblThongTinThem.AccessibleDescription = "ADDEDITL00356";
-            this.lblThongTinThem.AutoSize = true;
-            this.lblThongTinThem.Location = new System.Drawing.Point(9, 151);
-            this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblThongTinThem.Name = "lblThongTinThem";
-            this.lblThongTinThem.Size = new System.Drawing.Size(103, 17);
-            this.lblThongTinThem.TabIndex = 10;
-            this.lblThongTinThem.Text = "Thông tin thêm";
-            this.lblThongTinThem.Visible = false;
+            this.btnFsearch.AccessibleDescription = ".";
+            this.btnFsearch.AccessibleName = "";
+            this.btnFsearch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnFsearch.Location = new System.Drawing.Point(750, 86);
+            this.btnFsearch.Name = "btnFsearch";
+            this.btnFsearch.Size = new System.Drawing.Size(25, 23);
+            this.btnFsearch.TabIndex = 31;
+            this.btnFsearch.TabStop = false;
+            this.btnFsearch.Text = "...";
+            this.btnFsearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFsearch.UseVisualStyleBackColor = true;
+            this.btnFsearch.Click += new System.EventHandler(this.btnFsearch_Click);
             // 
             // Aldm
             // 
@@ -2068,7 +2085,7 @@
         private System.Windows.Forms.Label label14;
         private V6ColorTextBox v6ColorTextBox11;
         private System.Windows.Forms.Label label13;
-        private V6ColorTextBox v6ColorTextBox10;
+        private V6ColorTextBox txtTable_View;
         private System.Windows.Forms.Label label17;
         private V6ColorTextBox v6ColorTextBox24;
         private System.Windows.Forms.Label label23;
@@ -2157,5 +2174,6 @@
         private Controls.DicEditButton dicEditButton1;
         private V6ColorTextBox txtExtraInfo;
         private System.Windows.Forms.Label lblThongTinThem;
+        protected System.Windows.Forms.Button btnFsearch;
     }
 }

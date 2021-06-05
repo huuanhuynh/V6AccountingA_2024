@@ -31,13 +31,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txtTenLoai0 = new V6Controls.V6LabelTextBox();
             this.txtTk_dt = new V6Controls.V6ColorTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txttk_cp = new V6Controls.V6ColorTextBox();
@@ -45,11 +45,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label8 = new System.Windows.Forms.Label();
             this.TxtNam = new V6Controls.V6NumberTextBox();
             this.txtten_loai = new V6Controls.V6LabelTextBox();
+            this.txtLoai_PBCP0 = new V6Controls.V6VvarTextBox();
             this.txtloai_pbcp = new V6Controls.V6VvarTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label105 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtloai = new V6Controls.V6ColorTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.txtten_bpht = new V6Controls.V6LabelTextBox();
             this.v6Label6 = new V6Controls.V6Label();
@@ -145,7 +144,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabThongTinChinh.Controls.Add(this.label2);
+            this.tabThongTinChinh.Controls.Add(this.txtTenLoai0);
             this.tabThongTinChinh.Controls.Add(this.txtTk_dt);
             this.tabThongTinChinh.Controls.Add(this.label7);
             this.tabThongTinChinh.Controls.Add(this.txttk_cp);
@@ -153,11 +152,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabThongTinChinh.Controls.Add(this.label8);
             this.tabThongTinChinh.Controls.Add(this.TxtNam);
             this.tabThongTinChinh.Controls.Add(this.txtten_loai);
+            this.tabThongTinChinh.Controls.Add(this.txtLoai_PBCP0);
             this.tabThongTinChinh.Controls.Add(this.txtloai_pbcp);
             this.tabThongTinChinh.Controls.Add(this.label4);
-            this.tabThongTinChinh.Controls.Add(this.label105);
             this.tabThongTinChinh.Controls.Add(this.label5);
-            this.tabThongTinChinh.Controls.Add(this.txtloai);
             this.tabThongTinChinh.Controls.Add(this.checkBox1);
             this.tabThongTinChinh.Controls.Add(this.txtten_bpht);
             this.tabThongTinChinh.Controls.Add(this.v6Label6);
@@ -179,16 +177,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
             // 
-            // label2
+            // txtTenLoai0
             // 
-            this.label2.AccessibleDescription = "XULYL00177";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(226, 121);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(435, 17);
-            this.label2.TabIndex = 97;
-            this.label2.Text = "8: Tự ĐN 2,9 :Tự ĐN 3, B: (1: Bộ phận HT, 2: Sản phẩm) , C: SP-VV";
+            this.txtTenLoai0.AccessibleName = "TEN_LOAI0";
+            this.txtTenLoai0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtTenLoai0.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTenLoai0.Location = new System.Drawing.Point(318, 111);
+            this.txtTenLoai0.Name = "txtTenLoai0";
+            this.txtTenLoai0.ReadOnly = true;
+            this.txtTenLoai0.Size = new System.Drawing.Size(565, 16);
+            this.txtTenLoai0.TabIndex = 12;
+            this.txtTenLoai0.TabStop = false;
+            this.txtTenLoai0.Tag = "readonly";
             // 
             // txtTk_dt
             // 
@@ -204,7 +204,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTk_dt.Margin = new System.Windows.Forms.Padding(4);
             this.txtTk_dt.Name = "txtTk_dt";
             this.txtTk_dt.Size = new System.Drawing.Size(231, 23);
-            this.txtTk_dt.TabIndex = 7;
+            this.txtTk_dt.TabIndex = 19;
             // 
             // label7
             // 
@@ -214,7 +214,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 17);
-            this.label7.TabIndex = 105;
+            this.label7.TabIndex = 18;
             this.label7.Text = "Tài khoản có";
             // 
             // txttk_cp
@@ -231,7 +231,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txttk_cp.Margin = new System.Windows.Forms.Padding(4);
             this.txttk_cp.Name = "txttk_cp";
             this.txttk_cp.Size = new System.Drawing.Size(234, 23);
-            this.txttk_cp.TabIndex = 6;
+            this.txttk_cp.TabIndex = 17;
             // 
             // label6
             // 
@@ -241,7 +241,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 17);
-            this.label6.TabIndex = 103;
+            this.label6.TabIndex = 16;
             this.label6.Text = "Tài khoản nợ";
             // 
             // label8
@@ -252,7 +252,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label8.Location = new System.Drawing.Point(744, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 17);
-            this.label8.TabIndex = 102;
+            this.label8.TabIndex = 23;
             this.label8.Text = "Năm";
             // 
             // TxtNam
@@ -271,7 +271,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam.Name = "TxtNam";
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(71, 23);
-            this.TxtNam.TabIndex = 101;
+            this.TxtNam.TabIndex = 24;
             this.TxtNam.TabStop = false;
             this.TxtNam.Text = "0";
             this.TxtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -283,16 +283,37 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // txtten_loai
             // 
-            this.txtten_loai.AccessibleName = "TEN_LOAI";
+            this.txtten_loai.AccessibleName = "TEN_LOAI1";
             this.txtten_loai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtten_loai.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtten_loai.Location = new System.Drawing.Point(329, 142);
+            this.txtten_loai.Location = new System.Drawing.Point(318, 137);
             this.txtten_loai.Name = "txtten_loai";
             this.txtten_loai.ReadOnly = true;
-            this.txtten_loai.Size = new System.Drawing.Size(438, 16);
-            this.txtten_loai.TabIndex = 100;
+            this.txtten_loai.Size = new System.Drawing.Size(565, 16);
+            this.txtten_loai.TabIndex = 15;
             this.txtten_loai.TabStop = false;
             this.txtten_loai.Tag = "readonly";
+            // 
+            // txtLoai_PBCP0
+            // 
+            this.txtLoai_PBCP0.AccessibleName = "LOAI";
+            this.txtLoai_PBCP0.BackColor = System.Drawing.Color.White;
+            this.txtLoai_PBCP0.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLoai_PBCP0.BrotherFields = "TEN_LOAI";
+            this.txtLoai_PBCP0.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtLoai_PBCP0.CheckNotEmpty = true;
+            this.txtLoai_PBCP0.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLoai_PBCP0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLoai_PBCP0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLoai_PBCP0.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLoai_PBCP0.LeaveColor = System.Drawing.Color.White;
+            this.txtLoai_PBCP0.Location = new System.Drawing.Point(150, 108);
+            this.txtLoai_PBCP0.Name = "txtLoai_PBCP0";
+            this.txtLoai_PBCP0.NeighborFields = "TEN_LOAI0";
+            this.txtLoai_PBCP0.Size = new System.Drawing.Size(150, 23);
+            this.txtLoai_PBCP0.TabIndex = 11;
+            this.txtLoai_PBCP0.VVar = "LOAI_PBCP0";
+            this.txtLoai_PBCP0.TextChanged += new System.EventHandler(this.txtloai_pbcp_TextChanged);
             // 
             // txtloai_pbcp
             // 
@@ -301,6 +322,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtloai_pbcp.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtloai_pbcp.BrotherFields = "TEN_LOAI";
             this.txtloai_pbcp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtloai_pbcp.CheckNotEmpty = true;
             this.txtloai_pbcp.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtloai_pbcp.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtloai_pbcp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -308,8 +330,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtloai_pbcp.LeaveColor = System.Drawing.Color.White;
             this.txtloai_pbcp.Location = new System.Drawing.Point(150, 133);
             this.txtloai_pbcp.Name = "txtloai_pbcp";
+            this.txtloai_pbcp.NeighborFields = "TEN_LOAI1";
             this.txtloai_pbcp.Size = new System.Drawing.Size(150, 23);
-            this.txtloai_pbcp.TabIndex = 5;
+            this.txtloai_pbcp.TabIndex = 14;
             this.txtloai_pbcp.VVar = "LOAI_PBCP";
             this.txtloai_pbcp.TextChanged += new System.EventHandler(this.txtloai_pbcp_TextChanged);
             // 
@@ -321,20 +344,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 17);
-            this.label4.TabIndex = 98;
+            this.label4.TabIndex = 13;
             this.label4.Text = "Kiểu phân bổ";
-            // 
-            // label105
-            // 
-            this.label105.AccessibleDescription = "XULYL00176";
-            this.label105.AutoSize = true;
-            this.label105.Location = new System.Drawing.Point(226, 104);
-            this.label105.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label105.Name = "label105";
-            this.label105.Size = new System.Drawing.Size(541, 17);
-            this.label105.TabIndex = 96;
-            this.label105.Text = "1: Vụ việc, 2: Tự ĐN, 3: Bộ phận ht, 4: Sản phẩm,5: Hợp đồng, 6: Khế ước, 7: KM p" +
-    "hí";
             // 
             // label5
             // 
@@ -344,27 +355,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 17);
-            this.label5.TabIndex = 95;
+            this.label5.TabIndex = 10;
             this.label5.Text = "Loại phân bổ";
-            // 
-            // txtloai
-            // 
-            this.txtloai.AccessibleName = "LOAI";
-            this.txtloai.BackColor = System.Drawing.Color.White;
-            this.txtloai.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtloai.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtloai.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtloai.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtloai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtloai.HoverColor = System.Drawing.Color.Yellow;
-            this.txtloai.LeaveColor = System.Drawing.Color.White;
-            this.txtloai.LimitCharacters = "0123456789BbCc";
-            this.txtloai.Location = new System.Drawing.Point(150, 108);
-            this.txtloai.Margin = new System.Windows.Forms.Padding(4);
-            this.txtloai.MaxLength = 1;
-            this.txtloai.Name = "txtloai";
-            this.txtloai.Size = new System.Drawing.Size(39, 23);
-            this.txtloai.TabIndex = 4;
             // 
             // checkBox1
             // 
@@ -375,7 +367,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(232, 21);
-            this.checkBox1.TabIndex = 93;
+            this.checkBox1.TabIndex = 22;
             this.checkBox1.Text = "Tự động (giá thành công đoạn)?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -388,7 +380,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtten_bpht.Name = "txtten_bpht";
             this.txtten_bpht.ReadOnly = true;
             this.txtten_bpht.Size = new System.Drawing.Size(438, 16);
-            this.txtten_bpht.TabIndex = 92;
+            this.txtten_bpht.TabIndex = 9;
             this.txtten_bpht.TabStop = false;
             this.txtten_bpht.Tag = "readonly";
             // 
@@ -399,7 +391,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6Label6.Location = new System.Drawing.Point(5, 83);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(106, 17);
-            this.v6Label6.TabIndex = 91;
+            this.v6Label6.TabIndex = 7;
             this.v6Label6.Text = "Mã bộ phận HT";
             // 
             // txtma_bphtph
@@ -417,7 +409,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtma_bphtph.Location = new System.Drawing.Point(150, 83);
             this.txtma_bphtph.Name = "txtma_bphtph";
             this.txtma_bphtph.Size = new System.Drawing.Size(150, 23);
-            this.txtma_bphtph.TabIndex = 3;
+            this.txtma_bphtph.TabIndex = 8;
             this.txtma_bphtph.VVar = "MA_BPHT";
             // 
             // txtten_tk
@@ -429,7 +421,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtten_tk.Name = "txtten_tk";
             this.txtten_tk.ReadOnly = true;
             this.txtten_tk.Size = new System.Drawing.Size(439, 16);
-            this.txtten_tk.TabIndex = 85;
+            this.txtten_tk.TabIndex = 6;
             this.txtten_tk.TabStop = false;
             this.txtten_tk.Tag = "readonly";
             // 
@@ -440,7 +432,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6Label3.Location = new System.Drawing.Point(5, 58);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(82, 17);
-            this.v6Label3.TabIndex = 84;
+            this.v6Label3.TabIndex = 4;
             this.v6Label3.Text = "TK phân bổ";
             // 
             // txtTk
@@ -459,7 +451,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTk.Location = new System.Drawing.Point(150, 58);
             this.txtTk.Name = "txtTk";
             this.txtTk.Size = new System.Drawing.Size(150, 23);
-            this.txtTk.TabIndex = 2;
+            this.txtTk.TabIndex = 5;
             this.txtTk.VVar = "TK";
             // 
             // txtMaCt
@@ -477,7 +469,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaCt.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaCt.Name = "txtMaCt";
             this.txtMaCt.Size = new System.Drawing.Size(12, 23);
-            this.txtMaCt.TabIndex = 1;
+            this.txtMaCt.TabIndex = 21;
             this.txtMaCt.Visible = false;
             // 
             // txtSttRec
@@ -495,7 +487,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSttRec.Margin = new System.Windows.Forms.Padding(4);
             this.txtSttRec.Name = "txtSttRec";
             this.txtSttRec.Size = new System.Drawing.Size(12, 23);
-            this.txtSttRec.TabIndex = 1;
+            this.txtSttRec.TabIndex = 20;
             this.txtSttRec.Visible = false;
             // 
             // txtTen_bt
@@ -511,8 +503,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTen_bt.Location = new System.Drawing.Point(150, 33);
             this.txtTen_bt.Margin = new System.Windows.Forms.Padding(4);
             this.txtTen_bt.Name = "txtTen_bt";
-            this.txtTen_bt.Size = new System.Drawing.Size(606, 23);
-            this.txtTen_bt.TabIndex = 1;
+            this.txtTen_bt.Size = new System.Drawing.Size(626, 23);
+            this.txtTen_bt.TabIndex = 3;
             // 
             // label3
             // 
@@ -523,7 +515,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 17);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Số thứ tự";
             // 
             // lblTenBT
@@ -535,7 +527,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.lblTenBT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.lblTenBT.Name = "lblTenBT";
             this.lblTenBT.Size = new System.Drawing.Size(89, 17);
-            this.lblTenBT.TabIndex = 8;
+            this.lblTenBT.TabIndex = 2;
             this.lblTenBT.Text = "Tên bút toán";
             // 
             // txtstt
@@ -552,7 +544,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtstt.Location = new System.Drawing.Point(150, 8);
             this.txtstt.Name = "txtstt";
             this.txtstt.Size = new System.Drawing.Size(150, 23);
-            this.txtstt.TabIndex = 0;
+            this.txtstt.TabIndex = 1;
             this.txtstt.Text = "0";
             this.txtstt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtstt.Value = new decimal(new int[] {
@@ -1402,6 +1394,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail1.CarryData = null;
+            this.detail1.FixControl = 3;
             this.detail1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detail1.Location = new System.Drawing.Point(2, 2);
             this.detail1.MODE = V6Structs.V6Mode.Init;
@@ -1423,20 +1417,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TK,
@@ -1448,8 +1442,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(886, 199);
             this.dataGridView1.TabIndex = 1;
@@ -1556,10 +1550,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private V6Label v6Label6;
         private V6VvarTextBox txtma_bphtph;
         private V6CheckBox checkBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label105;
         private System.Windows.Forms.Label label5;
-        private V6ColorTextBox txtloai;
         private System.Windows.Forms.DataGridViewTextBoxColumn TK;
         private System.Windows.Forms.DataGridViewTextBoxColumn TEN_TK;
         private System.Windows.Forms.DataGridViewTextBoxColumn UID;
@@ -1616,5 +1607,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.Label lblMaDN3;
         private System.Windows.Forms.Label lblMaDN2;
         private System.Windows.Forms.Label lblMaDN1;
+        private V6LabelTextBox txtTenLoai0;
+        private V6VvarTextBox txtLoai_PBCP0;
     }
 }

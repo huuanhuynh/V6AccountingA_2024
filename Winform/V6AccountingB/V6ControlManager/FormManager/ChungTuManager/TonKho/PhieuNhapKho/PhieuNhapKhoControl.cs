@@ -593,7 +593,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         {
                             _gia_nt01.V6LostFocus += delegate
                             {
-                                //TinhTienVon1(_gia_nt01);
+                                TinhTienVon1(_gia_nt01);
                                 TinhTienVon_GiaVon();
                             };
                             _gia_nt01.TextChanged += delegate
@@ -686,17 +686,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         {
                             _maViTri.GotFocus += (s, e) =>
                             {
-                                _maViTri.CheckNotEmpty = _maVt.VITRI_YN;
-                                var filter = "Ma_kho='" + _maKhoI.Text.Trim() + "'";
-
-                                if (("," + V6Options.GetValue("M_LST_CT_DV") + ",").Contains(Invoice.Mact))
+                                try
                                 {
-                                    _dataViTri = Invoice.GetViTri("", _maKhoI.Text, _sttRec, dateNgayCT.Date);
-                                    var getFilter = GetFilterMaViTriNhap(_dataViTri, _sttRec0, "", _maKhoI.Text);
-                                    if (getFilter != "") filter += " and " + getFilter;
-                                }
+                                    _maViTri.CheckNotEmpty = _maVt.VITRI_YN;
+                                    var filter = "Ma_kho='" + _maKhoI.Text.Trim() + "'";
 
-                                _maViTri.SetInitFilter(filter);
+                                    if (("," + V6Options.GetValue("M_LST_CT_DV") + ",").Contains(Invoice.Mact))
+                                    {
+                                        _dataViTri = Invoice.GetViTri("", _maKhoI.Text, _sttRec, dateNgayCT.Date);
+                                        var getFilter = GetFilterMaViTriNhap(_dataViTri, _sttRec0, "", _maKhoI.Text);
+                                        if (getFilter != "") filter += " and " + getFilter;
+                                    }
+
+                                    _maViTri.SetInitFilter(filter);
+                                }
+                                catch (Exception ex)
+                                {
+                                    this.ShowErrorException("MA_VITRI_GOTFOCUS", ex);
+                                }
                             };
 
                             _maViTri.V6LostFocus += sender =>

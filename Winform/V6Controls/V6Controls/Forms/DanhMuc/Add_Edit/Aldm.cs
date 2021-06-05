@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
@@ -287,6 +288,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.ShowErrorException(GetType() + ".GetSourceFieldsInfo1", ex);
             }
             return new Dictionary<string, AlbcFieldInfo>();
+        }
+
+        private void btnFsearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable temp = null;
+                if (txtTable_View.Text.Trim() != "") temp = V6BusinessHelper.Select(txtTable_View.Text, "*", "1=0").Data;
+                else temp = V6BusinessHelper.Select(txtTable_name.Text, "*", "1=0").Data;
+                V6ControlFormHelper.SelectFields(this, temp, txtFsearch.Text, txtFsearch);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         
