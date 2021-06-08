@@ -2284,6 +2284,100 @@ namespace V6Controls
         }
 
         /// <summary>
+        /// Đổi kiểu cột và cho phép edit nếu E hoặc không định nghĩa.
+        /// </summary>
+        /// <param name="editFieldsFormat">Field:E:Cvvar;Field:E:N2;Field:E:D0;Field:R:D1...</param>
+        public void ChangeEditColumnType(string editFieldsFormat)
+        {
+            try
+            {
+                List<DataGridViewColumn> cList = new List<DataGridViewColumn>();
+                foreach (DataGridViewColumn column in Columns)
+                {
+                    cList.Add(column);
+                }
+                foreach (DataGridViewColumn column in cList)
+                {
+                    string FIELD = column.Name.Trim().ToUpper();
+                    DataGridViewColumn newTypeColumn = null;
+
+                    var editFieldDic = ObjectAndString.StringToStringDictionary(editFieldsFormat);
+                    if (editFieldDic.ContainsKey(column.Name.ToUpper()))
+                    {
+                        string EorR_FORMAT = editFieldDic[FIELD];
+                        var ss = EorR_FORMAT.Split(':');
+                        if (ss[0].ToUpper() != "E")
+                        {
+                            column.ReadOnly = true;
+                            continue;
+                        }
+                        if (!EorR_FORMAT.Contains(":")) goto Default;
+                        
+                        string NM_IP = ss[1].ToUpper(); // N2 hoac NM_IP_SL
+                        if (NM_IP.StartsWith("N"))
+                        {
+                            string newFormat = NM_IP.Length == 2 ? NM_IP : V6Options.GetValueNull(NM_IP.Substring(1));
+                            newTypeColumn = ChangeColumnType(FIELD, typeof(V6NumberDataGridViewColumn), newFormat);
+                            newTypeColumn.ReadOnly = false;
+                        }
+                        else if (NM_IP.StartsWith("C")) // CVvar
+                        {
+                            newTypeColumn = ChangeColumnType(FIELD, typeof(V6VvarDataGridViewColumn), null);
+                            ((V6VvarDataGridViewColumn)newTypeColumn).Vvar = NM_IP.Substring(1);
+                            newTypeColumn.ReadOnly = false;
+                        }
+                        else if (NM_IP.StartsWith("D0")) // ColorDateTime
+                        {
+                            newTypeColumn = ChangeColumnType(FIELD, typeof(V6DateTimeColorGridViewColumn), null);
+                            newTypeColumn.ReadOnly = false;
+                        }
+                        else if (NM_IP.StartsWith("D1")) // DateTimePicker
+                        {
+                            newTypeColumn = ChangeColumnType(FIELD, typeof(V6DateTimePickerGridViewColumn), null);
+                            newTypeColumn.ReadOnly = false;
+                        }
+
+                        continue;
+                    }
+
+                    goto Last;
+
+                Default:
+                    {
+                        if (ObjectAndString.IsNumberType(column.ValueType))
+                        {
+                            newTypeColumn = ChangeColumnType(column.Name, typeof(V6NumberDataGridViewColumn), null);
+                            newTypeColumn.ReadOnly = false;
+                        }
+                        //else if (NM_IP.StartsWith("C")) // CVvar
+                        //{
+                        //    column1 = dataGridView1.ChangeColumnType(ss[0], typeof(V6VvarDataGridViewColumn), null);
+                        //    ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
+                        //}
+                        else if (ObjectAndString.IsDateTimeType(column.ValueType)) // ColorDateTime
+                        {
+                            newTypeColumn = ChangeColumnType(column.Name, typeof(V6DateTimeColorGridViewColumn), null);
+                            newTypeColumn.ReadOnly = false;
+                        }
+                        //else if (NM_IP.StartsWith("D1")) // DateTimePicker
+                        //{
+                        //    column1 = dataGridView1.ChangeColumnType(ss[0], typeof(V6DateTimePickerGridViewColumn), null);
+                        //}
+                    }
+                Last:
+                    if (newTypeColumn != null)
+                    {
+                        newTypeColumn.Width = column.Width;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".dataGridView1_DataSourceChanged", ex);
+            }
+        }
+
+        /// <summary>
         /// Dữ liệu phục hồi cho field
         /// </summary>
         private string COLUMN_NAME_VALID = null;

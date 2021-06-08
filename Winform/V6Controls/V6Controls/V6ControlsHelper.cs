@@ -225,26 +225,35 @@ namespace V6Controls
         /// <returns></returns>
         public static object InvokeMethodDynamic(Type program, string methodName, IDictionary<string, object> All_Objects)
         {
-            if (program == null) return null;
-            All_Objects["All_Objects"] = All_Objects;
-            var method = program.GetMethod(methodName);
-            if (method != null)
+            try
             {
-                var parameters = method.GetParameters();
-                var listObj = new List<object>();
-                foreach (ParameterInfo info in parameters)
+                if (program == null) return null;
+                All_Objects["All_Objects"] = All_Objects;
+                var method = program.GetMethod(methodName);
+                if (method != null)
                 {
-                    if (All_Objects.ContainsKey(info.Name))
+                    var parameters = method.GetParameters();
+                    var listObj = new List<object>();
+                    foreach (ParameterInfo info in parameters)
                     {
-                        listObj.Add(All_Objects[info.Name]);
+                        if (All_Objects.ContainsKey(info.Name))
+                        {
+                            listObj.Add(All_Objects[info.Name]);
+                        }
+                        else
+                        {
+                            listObj.Add(null);
+                        }
                     }
-                    else
-                    {
-                        listObj.Add(null);
-                    }
+                    return method.Invoke(null, listObj.ToArray());
                 }
-                return method.Invoke(null, listObj.ToArray());
+                return null;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("InvokeMethodDynamic " + ex.Message);
+            }
+
             return null;
         }
 

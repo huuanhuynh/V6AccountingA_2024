@@ -488,7 +488,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     var grd_allow = _config.EXTRA_INFOR["GRD_ALLOW"].Trim();
                     if (grd_allow.Length > 0) dataGridView1.AllowUserToAddRows = grd_allow[0] == '1';
-                    if (grd_allow.Length > 1) dataGridView1.ReadOnly = grd_allow[1] != '1';
+                    if (grd_allow.Length > 1)
+                    {
+                        if (grd_allow[1] == '1')
+                        {
+                            dataGridView1.ReadOnly = false;
+                            dataGridView1.ChangeEditColumnType(_config.FIELD);
+                        }
+                    }
                     if (grd_allow.Length > 2) dataGridView1.AllowUserToDeleteRows = grd_allow[2] == '1';
                 }
             }
@@ -578,23 +585,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void XuLyCongThucTinhToan()
+        private void XuLyCongThucTinhToanAll(string EDIT_FIELD, string CHANGE_FIELD)
         {
             try
             {
                 if (!_config.HaveInfo) return;
-                if (!string.IsNullOrEmpty(_config.CACH_TINH1))
-                {
-                    XuLyCongThucTinhToan(_config.CACH_TINH1);
-                }
-                if (!string.IsNullOrEmpty(_config.CACH_TINH2))
-                {
-                    XuLyCongThucTinhToan(_config.CACH_TINH2);
-                }
-                if (!string.IsNullOrEmpty(_config.CACH_TINH3))
-                {
-                    XuLyCongThucTinhToan(_config.CACH_TINH3);
-                }
+                if (UpdateFieldOnRight(CHANGE_FIELD, _config.CACH_TINH1)) XuLyCongThucTinhToan1(EDIT_FIELD, _config.CACH_TINH1);
+                if (UpdateFieldOnRight(CHANGE_FIELD, _config.CACH_TINH2)) XuLyCongThucTinhToan1(EDIT_FIELD, _config.CACH_TINH2);
+                if (UpdateFieldOnRight(CHANGE_FIELD, _config.CACH_TINH3)) XuLyCongThucTinhToan1(EDIT_FIELD, _config.CACH_TINH3);
             }
             catch (Exception ex)
             {
@@ -602,26 +600,35 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void XuLyCongThucTinhToan(string s)
+        private void XuLyCongThucTinhToan1(string EDIT_FIELD, string congThuc)
         {
-            var ss = s.Split('=');
+            var ss = congThuc.Split('=');
             if (ss.Length == 2)
             {
-                var field = ss[0].Trim();
-                updateFieldList.Add(field.ToUpper());
+                var CACULATED_FIELD = ss[0].Trim().ToUpper();
+                if (CACULATED_FIELD == EDIT_FIELD) return;
+
+                updateFieldList.Add(CACULATED_FIELD);
                 var bieu_thuc = ss[1].Trim();
 
                 var cRow = dataGridView1.CurrentRow;
-                if (cRow != null) cRow.Cells[field].Value = Number.GiaTriBieuThuc(bieu_thuc, cRow.ToDataDictionary());// GiaTriBieuThuc(bieu_thuc);
+                if (cRow != null) cRow.Cells[CACULATED_FIELD].Value = Number.GiaTriBieuThuc(bieu_thuc, cRow.ToDataDictionary());
+                XuLyCongThucTinhToanAll(EDIT_FIELD, CACULATED_FIELD);
             }
         }
 
-        private bool CheckUpdateField(string UPDATE_FIELD)
+        /// <summary>
+        /// Kiểm tra EDIT_FIELD có nằm bên phải dấu = hay không?
+        /// </summary>
+        /// <param name="UPDATE_FIELD"></param>
+        /// <returns></returns>
+        private bool UpdateFieldOnRight(string UPDATE_FIELD, string congThuc)
         {
             if (!_config.HaveInfo) return false;
-            if (!string.IsNullOrEmpty(_config.CACH_TINH1) && _config.CACH_TINH1.IndexOf(UPDATE_FIELD, _config.CACH_TINH1.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
-            if (!string.IsNullOrEmpty(_config.CACH_TINH2) && _config.CACH_TINH2.IndexOf(UPDATE_FIELD, _config.CACH_TINH2.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
-            if (!string.IsNullOrEmpty(_config.CACH_TINH3) && _config.CACH_TINH3.IndexOf(UPDATE_FIELD, _config.CACH_TINH3.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            if (!string.IsNullOrEmpty(congThuc) && congThuc.IndexOf(UPDATE_FIELD, congThuc.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            //if (!string.IsNullOrEmpty(_config.CACH_TINH1) && _config.CACH_TINH1.IndexOf(EDIT_FIELD, _config.CACH_TINH1.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            //if (!string.IsNullOrEmpty(_config.CACH_TINH2) && _config.CACH_TINH2.IndexOf(EDIT_FIELD, _config.CACH_TINH2.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            //if (!string.IsNullOrEmpty(_config.CACH_TINH3) && _config.CACH_TINH3.IndexOf(EDIT_FIELD, _config.CACH_TINH3.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
             return false;
         }
 
@@ -761,7 +768,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     update_value = row.Cells[FIELD].Value;
                     updateData[FIELD] = update_value;
-                    update_info += FIELD + " = " + ObjectAndString.ObjectToString(update_value);
+                    update_info += "  " + FIELD + " = " + ObjectAndString.ObjectToString(update_value);
                 }
 
                 var result = V6BusinessHelper.UpdateSimple(_config.TABLE_NAME, updateData, keys);
@@ -1890,10 +1897,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
 
             // Mới thêm
-            var UPDATE_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
+            var EDIT_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
             //Xu ly cong thuc tinh toan
             updateFieldList = new List<string>();
-            if (CheckUpdateField(UPDATE_FIELD)) XuLyCongThucTinhToan();
+            XuLyCongThucTinhToanAll(EDIT_FIELD, EDIT_FIELD);
 
             if (_updateDatabase) UpdateData(e.RowIndex, e.ColumnIndex);
         }
@@ -2078,6 +2085,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (this.ShowMessage(V6Setting.IsVietnamese ? "Cho phép sửa số liệu?" : "Allow edit?") == DialogResult.OK)
             {
                 ApplyConfigExtra_GRD_ALLOW();
+                btnEditGrid.Enabled = false;
             }
         }
         

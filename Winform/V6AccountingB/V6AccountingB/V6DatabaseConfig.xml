@@ -542,6 +542,25 @@
     <Type>0</Type>
     <Key>+5iI48Y8IM5sK30xeTMq5cqIJ08N5+RcZTQiogoZsfNEjCzieZy5vQ==</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>29</Stt>
+    <Server>192.168.1.113\SQL2K8,7172</Server>
+    <Server2>192.168.1.113\SQL2K8,7172</Server2>
+    <Database>MOTEL_PL21</Database>
+    <Database2>MOTEL_PL21</Database2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <Epassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword>
+    <Epassword2>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>MOTEL PL 2021 </Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>fgMC4lf9MOCfJ9dpGo+6w9EVW/IiubSn0knBaFEVcuK5RdLCgKXnlA==</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

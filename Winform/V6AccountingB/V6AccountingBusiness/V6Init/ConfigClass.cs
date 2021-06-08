@@ -367,7 +367,9 @@ namespace V6Init
         public string F_GT { get { return GetString("F_GT"); } }
         public string F_ARA00 { get { return GetString("F_ARA00"); } }
         /// <summary>
-        /// Công thức 1. vd THANH_TIEN=SO_LUONG*DON_GIA
+        /// Công thức 1. vd THANH_TIEN=SO_LUONG*DON_GIA.
+        /// <para>Đã có xử lý tính nối tiếp ở xuly48.</para>
+        /// <para>Ví dụ gõ SO_MOI sẽ tính SO_LUONG, => tính tiếp THANH_TIEN.</para>
         /// </summary>
         public string CACH_TINH1 { get { return GetString("CACH_TINH1"); } }
         public string CACH_TINH2 { get { return GetString("CACH_TINH2"); } }
@@ -381,7 +383,7 @@ namespace V6Init
         public string SEARCH0 { get { return GetString("SEARCH0"); } }
         public string FILTER { get { return GetString("FILTER"); } }
         /// <summary>
-        /// Field:EorR:CVvar;Field:E:N2;Field,E:D0;Field:D1 Định nghĩa trường edit.
+        /// Field:EorR:CVvar;Field:E:N2;Field,E:D0;Field:R:D1 Định nghĩa trường edit.
         /// </summary>
         public string FIELD { get { return GetString("FIELD"); } }
         public string FIELD2 { get { return GetString("FIELD2"); } }
