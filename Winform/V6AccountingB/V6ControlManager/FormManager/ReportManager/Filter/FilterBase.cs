@@ -26,7 +26,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public DataSet _ds = null;
         public string _program;
         public string _reportProcedure;
-        public string MAU = "", LAN = "";
+        public string MAU = "", LAN = V6Login.SelectedLanguage;
         /// <summary>
         /// Tắt MadeFilterControls
         /// </summary>
@@ -712,21 +712,70 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }
-            if (parent00 is ReportRViewBase)
+            else if (parent00 is ReportD99ViewBase)
+            {
+                var parent44 = (ReportD99ViewBase)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportRViewBase)
             {
                 var parent44 = (ReportRViewBase)parent00;
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }
-            if (parent00 is ReportRView2Base)
+            else if (parent00 is ReportR44ViewBase)
+            {
+                var parent44 = (ReportR44ViewBase)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportRView2Base)
             {
                 var parent44 = (ReportRView2Base)parent00;
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }
-            if (parent00 is ReportTreeViewBase)
+            else if (parent00 is ReportTreeViewBase)
             {
                 var parent44 = (ReportTreeViewBase)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+
+            else if (parent00 is ReportD_DX)
+            {
+                var parent44 = (ReportD_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportD99_DX)
+            {
+                var parent44 = (ReportD99_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportR_DX)
+            {
+                var parent44 = (ReportR_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportR44_DX)
+            {
+                var parent44 = (ReportR44_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportRView2_DX)
+            {
+                var parent44 = (ReportRView2_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportRWWView2_DX)
+            {
+                var parent44 = (ReportRWWView2_DX)parent00;
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }

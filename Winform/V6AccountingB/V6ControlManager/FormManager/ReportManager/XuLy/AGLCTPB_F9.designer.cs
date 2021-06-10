@@ -37,6 +37,8 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.txtKy2 = new V6Controls.V6NumberTextBox();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
+            this.ngay2 = new V6Controls.V6DateTimePicker();
+            this.ngay1 = new V6Controls.V6DateTimePicker();
             this.SuspendLayout();
             // 
             // btnHuy
@@ -132,6 +134,7 @@
             0,
             0,
             0});
+            this.txtKy1.V6LostFocus += new V6Controls.ControlEventHandle(this.txtKy1_V6LostFocus);
             // 
             // v6Label2
             // 
@@ -176,10 +179,12 @@
             0,
             0,
             0});
+            this.txtKy2.V6LostFocus += new V6Controls.ControlEventHandle(this.txtKy2_V6LostFocus);
             // 
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "XULYL00040";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 96);
@@ -188,10 +193,42 @@
             this.txtMaDvcs.TabIndex = 3;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
+            // ngay2
+            // 
+            this.ngay2.AccessibleName = "NGAY2";
+            this.ngay2.CustomFormat = "dd/MM/yyyy";
+            this.ngay2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.ngay2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.ngay2.HoverColor = System.Drawing.Color.Yellow;
+            this.ngay2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.ngay2.LeaveColor = System.Drawing.Color.White;
+            this.ngay2.Location = new System.Drawing.Point(292, 65);
+            this.ngay2.Name = "ngay2";
+            this.ngay2.Size = new System.Drawing.Size(96, 20);
+            this.ngay2.TabIndex = 15;
+            this.ngay2.TabStop = false;
+            // 
+            // ngay1
+            // 
+            this.ngay1.AccessibleName = "NGAY1";
+            this.ngay1.CustomFormat = "dd/MM/yyyy";
+            this.ngay1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.ngay1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.ngay1.HoverColor = System.Drawing.Color.Yellow;
+            this.ngay1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.ngay1.LeaveColor = System.Drawing.Color.White;
+            this.ngay1.Location = new System.Drawing.Point(292, 38);
+            this.ngay1.Name = "ngay1";
+            this.ngay1.Size = new System.Drawing.Size(96, 20);
+            this.ngay1.TabIndex = 14;
+            this.ngay1.TabStop = false;
+            // 
             // AGLCTPB_F9
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ngay2);
+            this.Controls.Add(this.ngay1);
             this.Controls.Add(this.txtMaDvcs);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.txtKy2);
@@ -220,6 +257,8 @@
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6NumberTextBox txtKy2;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
+        private V6Controls.V6DateTimePicker ngay2;
+        private V6Controls.V6DateTimePicker ngay1;
 
 
 

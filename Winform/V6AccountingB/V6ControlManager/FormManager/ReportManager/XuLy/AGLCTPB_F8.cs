@@ -63,9 +63,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 txtNam.Value = _year;
                 txtKy1.Value = V6Setting.M_SV_DATE.Month;
                 txtKy2.Value = V6Setting.M_SV_DATE.Month;
-               
-
-
+                int one = 1, zero = 0;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Year", (int)txtNam.Value),
+                    new SqlParameter("@Month", (int)txtKy1.Value),
+                    new SqlParameter("@Day01", one),
+                };
+                object result = V6BusinessHelper.ExecuteFunctionScalar("VFV_YearMonthToDate", plist);
+                if (result is DateTime)
+                {
+                    ngay1.Value = (DateTime)result;
+                }
+                SqlParameter[] plist2 =
+                {
+                    new SqlParameter("@Year", (int)txtNam.Value),
+                    new SqlParameter("@Month", (int)txtKy2.Value),
+                    new SqlParameter("@Day01", zero),
+                };
+                object result2 = V6BusinessHelper.ExecuteFunctionScalar("VFV_YearMonthToDate", plist2);
+                if (result2 is DateTime)
+                {
+                    ngay2.Value = (DateTime)result2;
+                }
             }
             catch (Exception ex)
             {
@@ -73,8 +93,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        
-        
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             //SetStatus2Text();
@@ -111,7 +129,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         new SqlParameter("@Period2", txtKy2.Value),
                         new SqlParameter("@Stt_recs", _sttreclist),
                         new SqlParameter("@User_id", V6Login.UserId),
-                        new SqlParameter("@Ma_dvcs", "")
+                        new SqlParameter("@Ma_dvcs", ""),
+                        new SqlParameter("@ngay1", ngay1.Value.Date),
+                        new SqlParameter("@ngay2", ngay2.Value.Date),
 
                     };
                     string paramss = V6ControlFormHelper.PlistToString(plist);
@@ -158,6 +178,54 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler();
+        }
+
+        private void txtKy1_V6LostFocus(object sender)
+        {
+            try
+            {
+                // tạo ngay1 gọi proc function VFV_YearMonthToDate @Year @Month @Day01 => ngay1.Value = result.
+                int one = 1, zero = 0;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Year", (int)txtNam.Value),
+                    new SqlParameter("@Month", (int)txtKy1.Value),
+                    new SqlParameter("@Day01", one),
+                };
+                object result = V6BusinessHelper.ExecuteFunctionScalar("VFV_YearMonthToDate", plist);
+                if (result is DateTime)
+                {
+                    ngay1.Value = (DateTime)result;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".txtKy1_V6LostFocus", ex);
+            }
+        }
+
+        private void txtKy2_V6LostFocus(object sender)
+        {
+            try
+            {
+                // tạo ngay1 gọi proc function VFV_YearMonthToDate @Year @Month @Day01 => ngay1.Value = result.
+                int one = 1, zero = 0;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Year", (int)txtNam.Value),
+                    new SqlParameter("@Month", (int)txtKy2.Value),
+                    new SqlParameter("@Day01", zero),
+                };
+                object result = V6BusinessHelper.ExecuteFunctionScalar("VFV_YearMonthToDate", plist);
+                if (result is DateTime)
+                {
+                    ngay2.Value = (DateTime)result;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".txtKy2_V6LostFocus", ex);
+            }
         }
     }
 }

@@ -661,6 +661,81 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             RptExtraParameters = new SortedDictionary<string, object>();
             try
             {
+                var parent00 = Parent.Parent.Parent;
+                
+                if (parent00 is ReportDViewBase)
+                {
+                    var parent44 = (ReportDViewBase)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportD99ViewBase)
+                {
+                    var parent44 = (ReportD99ViewBase)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportRViewBase)
+                {
+                    var parent44 = (ReportRViewBase)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportR44ViewBase)
+                {
+                    var parent44 = (ReportR44ViewBase)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportRView2Base)
+                {
+                    var parent44 = (ReportRView2Base)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportTreeViewBase)
+                {
+                    var parent44 = (ReportTreeViewBase)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+
+                else if (parent00 is ReportD_DX)
+                {
+                    var parent44 = (ReportD_DX)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportD99_DX)
+                {
+                    var parent44 = (ReportD99_DX)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportR_DX)
+                {
+                    var parent44 = (ReportR_DX)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportR44_DX)
+                {
+                    var parent44 = (ReportR44_DX)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportRView2_DX)
+                {
+                    var parent44 = (ReportRView2_DX)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
+                else if (parent00 is ReportRWWView2_DX)
+                {
+                    var parent44 = (ReportRWWView2_DX)parent00;
+                    MAU = parent44.MAU;
+                    LAN = parent44.LAN;
+                }
                 string errors = "";
                 //Sample Info:
                 //Name:M_TEN_CTY;NOTEMPTY:1;Ptype:FILTER_BROTHER;Field:MA_DVCS;Fname:TEN_DVCS   // Lấy TEN_DVCS theo MA_DVCS trong FilterControl.

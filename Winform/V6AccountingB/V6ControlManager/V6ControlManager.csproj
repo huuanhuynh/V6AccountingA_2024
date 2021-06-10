@@ -2262,6 +2262,12 @@
     <Compile Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.designer.cs">
       <DependentUpon>DanhMucReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\DataSelectorTagForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DataSelectorTagForm.designer.cs">
+      <DependentUpon>DataSelectorTagForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\DXreport\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -7329,6 +7335,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.resx">
       <DependentUpon>DanhMucReportForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\DataSelectorTagForm.resx">
+      <DependentUpon>DataSelectorTagForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\DXreport\XtraEditorForm1.resx">
       <DependentUpon>XtraEditorForm1.cs</DependentUpon>

@@ -11,7 +11,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             InitializeComponent();
             
-            TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");
+            TxtTk.SetInitFilter("loai_tk=1");
         }
 
         public override void DoBeforeAdd()

@@ -34,11 +34,16 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtNam = new V6Controls.V6NumberTextBox();
-            this.txtKy1 = new V6Controls.V6NumberTextBox();
+            this.txtKy1 = new V6Controls.NumberMonth();
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
-            this.txtKy2 = new V6Controls.V6NumberTextBox();
+            this.txtKy2 = new V6Controls.NumberMonth();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
+            this.ngay2 = new V6Controls.V6DateTimePicker();
+            this.ngay1 = new V6Controls.V6DateTimePicker();
+            this.txtTyLeVV = new V6Controls.V6NumberTextBox();
+            this.lblTyLeVV = new V6Controls.V6Label();
+            this.btnChonVV = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // timerViewReport
@@ -57,7 +62,7 @@
             this.btnHuy.Location = new System.Drawing.Point(94, 197);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 5;
+            this.btnHuy.TabIndex = 10;
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHuy.UseVisualStyleBackColor = true;
@@ -73,7 +78,7 @@
             this.btnNhan.Location = new System.Drawing.Point(6, 197);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 4;
+            this.btnNhan.TabIndex = 9;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
@@ -86,7 +91,7 @@
             this.v6Label1.Location = new System.Drawing.Point(23, 10);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(29, 13);
-            this.v6Label1.TabIndex = 8;
+            this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Năm";
             // 
             // txtNam
@@ -100,13 +105,13 @@
             this.txtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNam.HoverColor = System.Drawing.Color.Yellow;
             this.txtNam.LeaveColor = System.Drawing.Color.White;
-            this.txtNam.Location = new System.Drawing.Point(185, 10);
+            this.txtNam.Location = new System.Drawing.Point(176, 10);
             this.txtNam.MaxLength = 4;
             this.txtNam.MaxNumLength = 4;
             this.txtNam.Name = "txtNam";
             this.txtNam.ReadOnly = true;
-            this.txtNam.Size = new System.Drawing.Size(100, 20);
-            this.txtNam.TabIndex = 0;
+            this.txtNam.Size = new System.Drawing.Size(111, 20);
+            this.txtNam.TabIndex = 1;
             this.txtNam.TabStop = false;
             this.txtNam.Text = "0";
             this.txtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -126,12 +131,12 @@
             this.txtKy1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtKy1.HoverColor = System.Drawing.Color.Yellow;
             this.txtKy1.LeaveColor = System.Drawing.Color.White;
-            this.txtKy1.Location = new System.Drawing.Point(185, 40);
+            this.txtKy1.Location = new System.Drawing.Point(176, 40);
             this.txtKy1.MaxLength = 2;
             this.txtKy1.MaxNumLength = 2;
             this.txtKy1.Name = "txtKy1";
-            this.txtKy1.Size = new System.Drawing.Size(100, 20);
-            this.txtKy1.TabIndex = 1;
+            this.txtKy1.Size = new System.Drawing.Size(111, 20);
+            this.txtKy1.TabIndex = 3;
             this.txtKy1.Text = "0";
             this.txtKy1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKy1.Value = new decimal(new int[] {
@@ -139,6 +144,7 @@
             0,
             0,
             0});
+            this.txtKy1.V6LostFocus += new V6Controls.ControlEventHandle(this.txtKy1_V6LostFocus);
             // 
             // v6Label2
             // 
@@ -147,7 +153,7 @@
             this.v6Label2.Location = new System.Drawing.Point(23, 40);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(50, 13);
-            this.v6Label2.TabIndex = 11;
+            this.v6Label2.TabIndex = 2;
             this.v6Label2.Text = "Từ tháng";
             // 
             // v6Label3
@@ -157,7 +163,7 @@
             this.v6Label3.Location = new System.Drawing.Point(23, 67);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(57, 13);
-            this.v6Label3.TabIndex = 13;
+            this.v6Label3.TabIndex = 4;
             this.v6Label3.Text = "Đến tháng";
             // 
             // txtKy2
@@ -170,12 +176,12 @@
             this.txtKy2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtKy2.HoverColor = System.Drawing.Color.Yellow;
             this.txtKy2.LeaveColor = System.Drawing.Color.White;
-            this.txtKy2.Location = new System.Drawing.Point(185, 67);
+            this.txtKy2.Location = new System.Drawing.Point(176, 67);
             this.txtKy2.MaxLength = 2;
             this.txtKy2.MaxNumLength = 2;
             this.txtKy2.Name = "txtKy2";
-            this.txtKy2.Size = new System.Drawing.Size(100, 20);
-            this.txtKy2.TabIndex = 2;
+            this.txtKy2.Size = new System.Drawing.Size(111, 20);
+            this.txtKy2.TabIndex = 5;
             this.txtKy2.Text = "0";
             this.txtKy2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKy2.Value = new decimal(new int[] {
@@ -183,22 +189,103 @@
             0,
             0,
             0});
+            this.txtKy2.V6LostFocus += new V6Controls.ControlEventHandle(this.txtKy2_V6LostFocus);
             // 
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "XULYL00040";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 96);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 6;
             this.txtMaDvcs.Vvar = "MA_DVCS";
+            // 
+            // ngay2
+            // 
+            this.ngay2.AccessibleName = "NGAY2";
+            this.ngay2.CustomFormat = "dd/MM/yyyy";
+            this.ngay2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.ngay2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.ngay2.HoverColor = System.Drawing.Color.Yellow;
+            this.ngay2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.ngay2.LeaveColor = System.Drawing.Color.White;
+            this.ngay2.Location = new System.Drawing.Point(293, 67);
+            this.ngay2.Name = "ngay2";
+            this.ngay2.Size = new System.Drawing.Size(96, 20);
+            this.ngay2.TabIndex = 12;
+            this.ngay2.TabStop = false;
+            // 
+            // ngay1
+            // 
+            this.ngay1.AccessibleName = "NGAY1";
+            this.ngay1.CustomFormat = "dd/MM/yyyy";
+            this.ngay1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.ngay1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.ngay1.HoverColor = System.Drawing.Color.Yellow;
+            this.ngay1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.ngay1.LeaveColor = System.Drawing.Color.White;
+            this.ngay1.Location = new System.Drawing.Point(293, 40);
+            this.ngay1.Name = "ngay1";
+            this.ngay1.Size = new System.Drawing.Size(96, 20);
+            this.ngay1.TabIndex = 11;
+            this.ngay1.TabStop = false;
+            // 
+            // txtTyLeVV
+            // 
+            this.txtTyLeVV.AccessibleName = "TI_LE_VV";
+            this.txtTyLeVV.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTyLeVV.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTyLeVV.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTyLeVV.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTyLeVV.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTyLeVV.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTyLeVV.LeaveColor = System.Drawing.Color.White;
+            this.txtTyLeVV.Location = new System.Drawing.Point(293, 126);
+            this.txtTyLeVV.Name = "txtTyLeVV";
+            this.txtTyLeVV.Size = new System.Drawing.Size(96, 20);
+            this.txtTyLeVV.TabIndex = 8;
+            this.txtTyLeVV.Text = "0,000";
+            this.txtTyLeVV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTyLeVV.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtTyLeVV.V6LostFocus += new V6Controls.ControlEventHandle(this.v6NumberTextBox1_V6LostFocus);
+            // 
+            // lblTyLeVV
+            // 
+            this.lblTyLeVV.AccessibleDescription = ".";
+            this.lblTyLeVV.AutoSize = true;
+            this.lblTyLeVV.Location = new System.Drawing.Point(23, 133);
+            this.lblTyLeVV.Name = "lblTyLeVV";
+            this.lblTyLeVV.Size = new System.Drawing.Size(68, 13);
+            this.lblTyLeVV.TabIndex = 7;
+            this.lblTyLeVV.Text = "Tỷ lệ vụ việc";
+            // 
+            // btnChonVV
+            // 
+            this.btnChonVV.Location = new System.Drawing.Point(293, 152);
+            this.btnChonVV.Name = "btnChonVV";
+            this.btnChonVV.Size = new System.Drawing.Size(96, 24);
+            this.btnChonVV.TabIndex = 13;
+            this.btnChonVV.TabStop = false;
+            this.btnChonVV.Text = "Chọn &Vụ Việc";
+            this.btnChonVV.UseVisualStyleBackColor = true;
+            this.btnChonVV.Click += new System.EventHandler(this.btnChonVV_Click);
             // 
             // AGLCTKC_F4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnChonVV);
+            this.Controls.Add(this.lblTyLeVV);
+            this.Controls.Add(this.txtTyLeVV);
+            this.Controls.Add(this.ngay2);
+            this.Controls.Add(this.ngay1);
             this.Controls.Add(this.txtMaDvcs);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.txtKy2);
@@ -223,11 +310,16 @@
         protected System.Windows.Forms.Button btnHuy;
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6NumberTextBox txtNam;
-        private V6Controls.V6NumberTextBox txtKy1;
+        private V6Controls.NumberMonth txtKy1;
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
-        private V6Controls.V6NumberTextBox txtKy2;
+        private V6Controls.NumberMonth txtKy2;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
+        private V6Controls.V6DateTimePicker ngay2;
+        private V6Controls.V6DateTimePicker ngay1;
+        private V6Controls.V6NumberTextBox txtTyLeVV;
+        private V6Controls.V6Label lblTyLeVV;
+        private System.Windows.Forms.Button btnChonVV;
 
 
 

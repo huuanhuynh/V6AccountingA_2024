@@ -60,15 +60,37 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                dateNam.SetValue(new DateTime(_year, 1, 1));
-                dateThang1.SetValue(V6Setting.M_SV_DATE);
-                dateThang2.SetValue(V6Setting.M_SV_DATE);
+                txtNam.Value = _year;
+                txtKy1.Value = V6Setting.M_SV_DATE.Month;
+                txtKy2.Value = V6Setting.M_SV_DATE.Month;
+                int one = 1, zero = 0;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Year", (int)txtNam.Value),
+                    new SqlParameter("@Month", (int)txtKy1.Value),
+                    new SqlParameter("@Day01", one),
+                };
+                object result = V6BusinessHelper.ExecuteFunctionScalar("VFV_YearMonthToDate", plist);
+                if (result is DateTime)
+                {
+                    ngay1.Value = (DateTime)result;
+                }
+                SqlParameter[] plist2 =
+                {
+                    new SqlParameter("@Year", (int)txtNam.Value),
+                    new SqlParameter("@Month", (int)txtKy2.Value),
+                    new SqlParameter("@Day01", zero),
+                };
+                object result2 = V6BusinessHelper.ExecuteFunctionScalar("VFV_YearMonthToDate", plist2);
+                if (result2 is DateTime)
+                {
+                    ngay2.Value = (DateTime)result2;
+                }
+
                 txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
                 if (V6Login.MadvcsCount <= 1){
                     txtMaDvcs.Enabled = false;
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -88,7 +110,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, dateThang2.Value.Month, dateNam.Value.Year);
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int) txtKy2.Value, (int) txtNam.Value);
                 if (check == 1)
                 {
                     this.ShowWarningMessage(V6Text.CheckLock);
@@ -105,12 +127,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 SqlParameter[] plist =
                 {
                     new SqlParameter("@Type", "NEW"),
-                    new SqlParameter("@Year", dateNam.Date.Year),
-                    new SqlParameter("@Period1", dateThang1.Date.Month),
-                    new SqlParameter("@Period2", dateThang2.Date.Month),
+                    new SqlParameter("@Year", (int) txtNam.Value),
+                    new SqlParameter("@Period1", (int) txtKy1.Value),
+                    new SqlParameter("@Period2", (int) txtKy2.Value),
                     new SqlParameter("@Stt_recs", _sttreclist),
                     new SqlParameter("@User_id", V6Login.UserId),
-                    new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue)
+                    new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue),
+                    new SqlParameter("@ngay1", ngay1.Value.Date),
+                    new SqlParameter("@ngay2", ngay2.Value.Date),
                 };
                 string paramss = V6ControlFormHelper.PlistToString(plist);
                 V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
@@ -151,6 +175,54 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler();
+        }
+
+        private void txtKy1_V6LostFocus(object sender)
+        {
+            try
+            {
+                // tạo ngay1 gọi proc function VFV_YearMonthToDate @Year @Month @Day01 => ngay1.Value = result.
+                int one = 1, zero = 0;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Year", (int)txtNam.Value),
+                    new SqlParameter("@Month", (int)txtKy1.Value),
+                    new SqlParameter("@Day01", one),
+                };
+                object result = V6BusinessHelper.ExecuteFunctionScalar("VFV_YearMonthToDate", plist);
+                if (result is DateTime)
+                {
+                    ngay1.Value = (DateTime)result;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".txtKy1_V6LostFocus", ex);
+            }
+        }
+
+        private void txtKy2_V6LostFocus(object sender)
+        {
+            try
+            {
+                // tạo ngay1 gọi proc function VFV_YearMonthToDate @Year @Month @Day01 => ngay1.Value = result.
+                int one = 1, zero = 0;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Year", (int)txtNam.Value),
+                    new SqlParameter("@Month", (int)txtKy2.Value),
+                    new SqlParameter("@Day01", zero),
+                };
+                object result = V6BusinessHelper.ExecuteFunctionScalar("VFV_YearMonthToDate", plist);
+                if (result is DateTime)
+                {
+                    ngay2.Value = (DateTime)result;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".txtKy2_V6LostFocus", ex);
+            }
         }
     }
 }
