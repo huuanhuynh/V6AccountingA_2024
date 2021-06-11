@@ -2,7 +2,9 @@
 using System.Data;
 using System.Windows.Forms;
 using V6Controls;
+using V6Controls.Controls.GridView;
 using V6Controls.Forms;
+using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
 
@@ -15,20 +17,27 @@ namespace V6ControlManager.FormManager.ReportManager
             InitializeComponent();
         }
 
-        public DataSelectorTagForm(DataTable data)
+        public DataSelectorTagForm(DataTable data, string ma_dm)
         {
             InitializeComponent();
             Data = data;
+            MA_DM = ma_dm;
             MyInit();
         }
 
         public DataTable Data;
+        public string MA_DM;
+        public AldmConfig _config;
         
         private void MyInit()
         {
             try
             {
                 dataGridView1.DataSource = Data;
+                _config = ConfigManager.GetAldmConfig(MA_DM);
+                if(_config.HaveInfo) dataGridView1.Format(_config.GRDS_V1, _config.GRDF_V1, _config.GRDH_LANG_V1);
+
+                dataGridView1.enter_to_tab = false;
             }
             catch (Exception ex)
             {
@@ -74,6 +83,8 @@ namespace V6ControlManager.FormManager.ReportManager
                 var column1 = dataGridView1.Columns["TI_LE_VV"];
                 if (column1 != null)
                 {
+                    column1 = dataGridView1.ChangeColumnType(column1.DataPropertyName, typeof(V6NumberDataGridViewColumn),
+                        column1.DefaultCellStyle.Format);
                     column1.ReadOnly = false;
                 }
             }
@@ -105,7 +116,7 @@ namespace V6ControlManager.FormManager.ReportManager
             {
                 if (dataGridView1.CurrentCell.OwningColumn == dataGridView1.Columns["TI_LE_VV"])
                 {
-                    decimal currentCellValue = ObjectAndString.ObjectToDecimal(dataGridView1.CurrentCell);
+                    decimal currentCellValue = ObjectAndString.ObjectToDecimal(dataGridView1.CurrentCell.Value);
                     if (currentCellValue > 100)
                     {
                         dataGridView1.CurrentCell.Value = 100;

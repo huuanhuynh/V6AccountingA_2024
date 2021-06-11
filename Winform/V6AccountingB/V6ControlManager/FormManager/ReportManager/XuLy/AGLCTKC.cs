@@ -164,14 +164,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 (currentRow.Cells["NAM"].Value);
 
                             var _numlist = "";
-
+                            bool checkChonVV = false;
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
                                 if (row.IsSelect())
                                 {
                                     var rowdata = row.ToDataDictionary();
                                     _numlist = _numlist + "," + rowdata["STT"].ToString().Trim();
-
+                                    if(!checkChonVV) checkChonVV = ObjectAndString.ObjectToBool(rowdata["KC_CHONVV"]);
                                 }
                             }
 
@@ -181,7 +181,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
 
                                 var fText = "Kết chuyển tự động ";
-                                var ketchuyenForm = new AGLCTKC_F4(_numlist, selectedNam, _reportProcedure);
+                                var ketchuyenForm = new AGLCTKC_F4(_numlist, selectedNam, _reportProcedure, checkChonVV);
 
                                 ketchuyenForm.UpdateSuccessEvent += delegate
                                 {

@@ -17,22 +17,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         #region Biến toàn cục
 
-        protected DataRow _am;
-        protected string _numlist, _text, _reportProcedure;
-        protected int _year;
+        public DataRow _am;
+        public string _numlist, _text, _reportProcedure;
+        public int _year;
+        public bool _checkChonVV;
 
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         public delegate void HandleF4Success();
 
         public event HandleF4Success UpdateSuccessEvent;
 
-        protected DataSet _ds;
-        protected DataTable _tbl, _tbl2;
+        public DataSet _ds;
+        public DataTable _tbl, _tbl2;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
         /// </summary>
-        protected List<SqlParameter> _pList;
+        public List<SqlParameter> _pList;
 
         public bool ViewDetail { get; set; }
         
@@ -48,11 +49,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AGLCTKC_F4(string numlist,int year,string reportProcedure)
+        public AGLCTKC_F4(string numlist,int year,string reportProcedure, bool checkChonVV)
         {
             _numlist = numlist;
             _year = year;
             _reportProcedure = reportProcedure;
+            _checkChonVV = checkChonVV;
 
             InitializeComponent();
             MyInit();
@@ -115,6 +117,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 return;
             }
 
+            if (_checkChonVV && (lstVV == null || lstVV.Count == 0))
+            {
+                this.ShowWarningMessage("Chưa chọn danh sách vụ việc!");
+                return;
+            }
+
             try
             {
                 int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)txtKy2.Value, (int)txtNam.Value);
@@ -138,7 +146,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        
+
         List<string> lstVV = new List<string>();
         List<string> lstVVNOT = new List<string>();
         List<string> lstTI_LE_VV = new List<string>();
@@ -173,12 +181,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 };
                 foreach (KeyValuePair<string, List<string>> item in _4NAME)
                 {
-                    for (int i = 1; i < 10; i++)
+                    for (int i = 1; i <= 10; i++)
                     {
                         string NAME = item.Key + i.ToString("00");
                         if (item.Value.Count >= i)
                         {
-                            plist.Add(new SqlParameter("@" + NAME, item.Value[i]));
+                            plist.Add(new SqlParameter("@" + NAME, item.Value[i-1]));
                         }
                         else
                         {
@@ -274,9 +282,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     new SqlParameter("@ngay1", ngay1.Value.Date),
                     new SqlParameter("@ngay2", ngay2.Value.Date),
                 };
-                var data = V6BusinessHelper.ExecuteProcedure("VPA_AGLKC_GetSDVV", plist).Tables[0];
+                var data = V6BusinessHelper.ExecuteProcedure("VPA_AGLKC_GETSDVV", plist).Tables[0];
                 V6ControlFormHelper.UpdateDKlist(data, "TI_LE_VV", txtTyLeVV.Value);
-                DataSelectorTagForm selectForm = new DataSelectorTagForm(data);
+                DataSelectorTagForm selectForm = new DataSelectorTagForm(data, "VPA_AGLKC_GETSDVV");
                 if (selectForm.ShowDialog(this) == DialogResult.OK)
                 {
                     string strMA_VV = "", strTI_LE_VV = "", strMA_VV_NOT = "", strTI_LE_VV_NOT = "";

@@ -103,6 +103,8 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.v6CheckBox1 = new V6Controls.V6CheckBox();
+            this.v6CheckBox2 = new V6Controls.V6CheckBox();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
@@ -117,7 +119,7 @@
             this.chk_kc_hd_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_hd_yn.Name = "chk_kc_hd_yn";
             this.chk_kc_hd_yn.Size = new System.Drawing.Size(198, 21);
-            this.chk_kc_hd_yn.TabIndex = 14;
+            this.chk_kc_hd_yn.TabIndex = 26;
             this.chk_kc_hd_yn.Text = "Kết chuyển  theo hợp đồng";
             this.chk_kc_hd_yn.UseVisualStyleBackColor = true;
             // 
@@ -135,7 +137,7 @@
             this.TxtMa_dvcs.Location = new System.Drawing.Point(374, 7);
             this.TxtMa_dvcs.Name = "TxtMa_dvcs";
             this.TxtMa_dvcs.Size = new System.Drawing.Size(165, 23);
-            this.TxtMa_dvcs.TabIndex = 1;
+            this.TxtMa_dvcs.TabIndex = 3;
             this.TxtMa_dvcs.VVar = "MA_DVCS";
             // 
             // lblMaDVCS
@@ -147,7 +149,7 @@
             this.lblMaDVCS.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.lblMaDVCS.Name = "lblMaDVCS";
             this.lblMaDVCS.Size = new System.Drawing.Size(60, 17);
-            this.lblMaDVCS.TabIndex = 124;
+            this.lblMaDVCS.TabIndex = 2;
             this.lblMaDVCS.Text = "Mã đvcs";
             // 
             // chk_kc_ku_yn
@@ -159,7 +161,7 @@
             this.chk_kc_ku_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_ku_yn.Name = "chk_kc_ku_yn";
             this.chk_kc_ku_yn.Size = new System.Drawing.Size(188, 21);
-            this.chk_kc_ku_yn.TabIndex = 13;
+            this.chk_kc_ku_yn.TabIndex = 25;
             this.chk_kc_ku_yn.Text = "Kết chuyển  theo khế ước";
             this.chk_kc_ku_yn.UseVisualStyleBackColor = true;
             this.chk_kc_ku_yn.CheckedChanged += new System.EventHandler(this.chk_kc_vv_yn_CheckedChanged);
@@ -173,7 +175,7 @@
             this.chk_kc_phi_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_phi_yn.Name = "chk_kc_phi_yn";
             this.chk_kc_phi_yn.Size = new System.Drawing.Size(180, 21);
-            this.chk_kc_phi_yn.TabIndex = 12;
+            this.chk_kc_phi_yn.TabIndex = 24;
             this.chk_kc_phi_yn.Text = "Kết chuyển  theo mã phí";
             this.chk_kc_phi_yn.UseVisualStyleBackColor = true;
             this.chk_kc_phi_yn.CheckedChanged += new System.EventHandler(this.chk_kc_vv_yn_CheckedChanged);
@@ -187,7 +189,7 @@
             this.chk_kc_td3_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_td3_yn.Name = "chk_kc_td3_yn";
             this.chk_kc_td3_yn.Size = new System.Drawing.Size(178, 21);
-            this.chk_kc_td3_yn.TabIndex = 11;
+            this.chk_kc_td3_yn.TabIndex = 23;
             this.chk_kc_td3_yn.Text = "Kết chuyển theo tự ĐN3";
             this.chk_kc_td3_yn.UseVisualStyleBackColor = true;
             this.chk_kc_td3_yn.CheckedChanged += new System.EventHandler(this.chk_kc_vv_yn_CheckedChanged);
@@ -201,7 +203,7 @@
             this.chk_kc_td2_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_td2_yn.Name = "chk_kc_td2_yn";
             this.chk_kc_td2_yn.Size = new System.Drawing.Size(178, 21);
-            this.chk_kc_td2_yn.TabIndex = 10;
+            this.chk_kc_td2_yn.TabIndex = 22;
             this.chk_kc_td2_yn.Text = "Kết chuyển theo tự ĐN2";
             this.chk_kc_td2_yn.UseVisualStyleBackColor = true;
             this.chk_kc_td2_yn.CheckedChanged += new System.EventHandler(this.chk_kc_vv_yn_CheckedChanged);
@@ -215,7 +217,7 @@
             this.chk_kc_td_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_td_yn.Name = "chk_kc_td_yn";
             this.chk_kc_td_yn.Size = new System.Drawing.Size(170, 21);
-            this.chk_kc_td_yn.TabIndex = 9;
+            this.chk_kc_td_yn.TabIndex = 21;
             this.chk_kc_td_yn.Text = "Kết chuyển theo tự ĐN";
             this.chk_kc_td_yn.UseVisualStyleBackColor = true;
             this.chk_kc_td_yn.CheckedChanged += new System.EventHandler(this.chk_kc_vv_yn_CheckedChanged);
@@ -229,7 +231,7 @@
             this.chk_kc_sp_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_sp_yn.Name = "chk_kc_sp_yn";
             this.chk_kc_sp_yn.Size = new System.Drawing.Size(200, 21);
-            this.chk_kc_sp_yn.TabIndex = 8;
+            this.chk_kc_sp_yn.TabIndex = 20;
             this.chk_kc_sp_yn.Text = "Kết chuyển  theo sản phẩm";
             this.chk_kc_sp_yn.UseVisualStyleBackColor = true;
             this.chk_kc_sp_yn.CheckedChanged += new System.EventHandler(this.chk_kc_vv_yn_CheckedChanged);
@@ -243,7 +245,7 @@
             this.chk_kc_bpht_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_bpht_yn.Name = "chk_kc_bpht_yn";
             this.chk_kc_bpht_yn.Size = new System.Drawing.Size(175, 21);
-            this.chk_kc_bpht_yn.TabIndex = 7;
+            this.chk_kc_bpht_yn.TabIndex = 19;
             this.chk_kc_bpht_yn.Text = "Kết chuyển  theo BPHT";
             this.chk_kc_bpht_yn.UseVisualStyleBackColor = true;
             this.chk_kc_bpht_yn.CheckedChanged += new System.EventHandler(this.chk_kc_vv_yn_CheckedChanged);
@@ -252,11 +254,11 @@
             // 
             this.label4.AccessibleDescription = "ADDEDITL00180";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 396);
+            this.label4.Location = new System.Drawing.Point(21, 436);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
-            this.label4.TabIndex = 16;
+            this.label4.TabIndex = 30;
             this.label4.Text = "Nhóm";
             // 
             // txtgroup_kc
@@ -264,11 +266,11 @@
             this.txtgroup_kc.AccessibleName = "group_kc";
             this.txtgroup_kc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtgroup_kc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtgroup_kc.Location = new System.Drawing.Point(137, 396);
+            this.txtgroup_kc.Location = new System.Drawing.Point(137, 436);
             this.txtgroup_kc.Name = "txtgroup_kc";
             this.txtgroup_kc.ReadOnly = true;
             this.txtgroup_kc.Size = new System.Drawing.Size(549, 16);
-            this.txtgroup_kc.TabIndex = 17;
+            this.txtgroup_kc.TabIndex = 31;
             this.txtgroup_kc.TabStop = false;
             this.txtgroup_kc.Tag = "readonly";
             // 
@@ -281,7 +283,7 @@
             this.chk_kc_vv_yn.Margin = new System.Windows.Forms.Padding(4);
             this.chk_kc_vv_yn.Name = "chk_kc_vv_yn";
             this.chk_kc_vv_yn.Size = new System.Drawing.Size(182, 21);
-            this.chk_kc_vv_yn.TabIndex = 6;
+            this.chk_kc_vv_yn.TabIndex = 18;
             this.chk_kc_vv_yn.Text = "Kết chuyển  theo vụ việc";
             this.chk_kc_vv_yn.UseVisualStyleBackColor = true;
             this.chk_kc_vv_yn.CheckedChanged += new System.EventHandler(this.chk_kc_vv_yn_CheckedChanged);
@@ -294,7 +296,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(356, 17);
-            this.label2.TabIndex = 119;
+            this.label2.TabIndex = 17;
             this.label2.Text = "3: Kết chuyển từ TK nợ -> Tk có (Nếu < 0 KC ngược lại)";
             // 
             // label105
@@ -305,7 +307,7 @@
             this.label105.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label105.Name = "label105";
             this.label105.Size = new System.Drawing.Size(418, 17);
-            this.label105.TabIndex = 118;
+            this.label105.TabIndex = 16;
             this.label105.Text = "1: Kết chuyển từ TK có -> Tk nợ, 2: Kết chuyển từ TK nợ -> Tk có";
             // 
             // label5
@@ -316,7 +318,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(108, 17);
-            this.label5.TabIndex = 117;
+            this.label5.TabIndex = 14;
             this.label5.Text = "Loại kết chuyển";
             // 
             // txtloai_kc
@@ -336,7 +338,7 @@
             this.txtloai_kc.MaxLength = 1;
             this.txtloai_kc.Name = "txtloai_kc";
             this.txtloai_kc.Size = new System.Drawing.Size(39, 23);
-            this.txtloai_kc.TabIndex = 5;
+            this.txtloai_kc.TabIndex = 15;
             // 
             // txtten_tk_co
             // 
@@ -347,7 +349,7 @@
             this.txtten_tk_co.Name = "txtten_tk_co";
             this.txtten_tk_co.ReadOnly = true;
             this.txtten_tk_co.Size = new System.Drawing.Size(408, 16);
-            this.txtten_tk_co.TabIndex = 115;
+            this.txtten_tk_co.TabIndex = 13;
             this.txtten_tk_co.TabStop = false;
             this.txtten_tk_co.Tag = "readonly";
             // 
@@ -358,7 +360,7 @@
             this.v6Label1.Location = new System.Drawing.Point(14, 85);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(90, 17);
-            this.v6Label1.TabIndex = 114;
+            this.v6Label1.TabIndex = 11;
             this.v6Label1.Text = "Tài khoản có";
             // 
             // txtTk_Co
@@ -378,7 +380,7 @@
             this.txtTk_Co.Name = "txtTk_Co";
             this.txtTk_Co.NeighborFields = "TEN_TK_CO";
             this.txtTk_Co.Size = new System.Drawing.Size(134, 23);
-            this.txtTk_Co.TabIndex = 4;
+            this.txtTk_Co.TabIndex = 12;
             this.txtTk_Co.VVar = "TK";
             // 
             // txtten_tk_no
@@ -390,7 +392,7 @@
             this.txtten_tk_no.Name = "txtten_tk_no";
             this.txtten_tk_no.ReadOnly = true;
             this.txtten_tk_no.Size = new System.Drawing.Size(408, 16);
-            this.txtten_tk_no.TabIndex = 112;
+            this.txtten_tk_no.TabIndex = 10;
             this.txtten_tk_no.TabStop = false;
             this.txtten_tk_no.Tag = "readonly";
             // 
@@ -401,7 +403,7 @@
             this.v6Label3.Location = new System.Drawing.Point(14, 59);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(91, 17);
-            this.v6Label3.TabIndex = 111;
+            this.v6Label3.TabIndex = 8;
             this.v6Label3.Text = "Tài khoản nợ";
             // 
             // txtTk_no
@@ -421,7 +423,7 @@
             this.txtTk_no.Name = "txtTk_no";
             this.txtTk_no.NeighborFields = "TEN_TK_NO";
             this.txtTk_no.Size = new System.Drawing.Size(134, 23);
-            this.txtTk_no.TabIndex = 3;
+            this.txtTk_no.TabIndex = 9;
             this.txtTk_no.VVar = "TK";
             // 
             // checkBox1
@@ -433,7 +435,7 @@
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(232, 21);
-            this.checkBox1.TabIndex = 15;
+            this.checkBox1.TabIndex = 27;
             this.checkBox1.Text = "Tự động (giá thành công đoạn)?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -451,7 +453,7 @@
             this.txtTen_bt.Margin = new System.Windows.Forms.Padding(4);
             this.txtTen_bt.Name = "txtTen_bt";
             this.txtTen_bt.Size = new System.Drawing.Size(548, 23);
-            this.txtTen_bt.TabIndex = 2;
+            this.txtTen_bt.TabIndex = 7;
             // 
             // lblSTT
             // 
@@ -462,7 +464,7 @@
             this.lblSTT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.lblSTT.Name = "lblSTT";
             this.lblSTT.Size = new System.Drawing.Size(65, 17);
-            this.lblSTT.TabIndex = 107;
+            this.lblSTT.TabIndex = 0;
             this.lblSTT.Text = "Số thứ tự";
             // 
             // lblTenBt
@@ -474,7 +476,7 @@
             this.lblTenBt.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.lblTenBt.Name = "lblTenBt";
             this.lblTenBt.Size = new System.Drawing.Size(89, 17);
-            this.lblTenBt.TabIndex = 108;
+            this.lblTenBt.TabIndex = 6;
             this.lblTenBt.Text = "Tên bút toán";
             // 
             // txtstt
@@ -491,7 +493,7 @@
             this.txtstt.Location = new System.Drawing.Point(137, 7);
             this.txtstt.Name = "txtstt";
             this.txtstt.Size = new System.Drawing.Size(134, 23);
-            this.txtstt.TabIndex = 0;
+            this.txtstt.TabIndex = 1;
             this.txtstt.Text = "0";
             this.txtstt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtstt.Value = new decimal(new int[] {
@@ -508,7 +510,7 @@
             this.label8.Location = new System.Drawing.Point(570, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 17);
-            this.label8.TabIndex = 104;
+            this.label8.TabIndex = 4;
             this.label8.Text = "Năm";
             // 
             // TxtNam
@@ -527,7 +529,7 @@
             this.TxtNam.Name = "TxtNam";
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(71, 23);
-            this.TxtNam.TabIndex = 2;
+            this.TxtNam.TabIndex = 5;
             this.TxtNam.TabStop = false;
             this.TxtNam.Text = "0";
             this.TxtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -547,7 +549,7 @@
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(757, 458);
+            this.v6TabControl1.Size = new System.Drawing.Size(796, 542);
             this.v6TabControl1.TabIndex = 3;
             // 
             // tabThongTinChinh
@@ -555,6 +557,7 @@
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.v6CheckBox2);
             this.tabThongTinChinh.Controls.Add(this.chk_kc_hd_yn);
             this.tabThongTinChinh.Controls.Add(this.lblSTT);
             this.tabThongTinChinh.Controls.Add(this.TxtMa_dvcs);
@@ -567,6 +570,7 @@
             this.tabThongTinChinh.Controls.Add(this.lblTenBt);
             this.tabThongTinChinh.Controls.Add(this.chk_kc_td3_yn);
             this.tabThongTinChinh.Controls.Add(this.txtTen_bt);
+            this.tabThongTinChinh.Controls.Add(this.v6CheckBox1);
             this.tabThongTinChinh.Controls.Add(this.chk_kc_td2_yn);
             this.tabThongTinChinh.Controls.Add(this.checkBox1);
             this.tabThongTinChinh.Controls.Add(this.chk_kc_td_yn);
@@ -589,7 +593,7 @@
             this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(4);
             this.tabThongTinChinh.Name = "tabThongTinChinh";
             this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(4);
-            this.tabThongTinChinh.Size = new System.Drawing.Size(749, 426);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(788, 510);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
             // 
@@ -644,7 +648,7 @@
             this.tabTuDinhNghia.Margin = new System.Windows.Forms.Padding(4);
             this.tabTuDinhNghia.Name = "tabTuDinhNghia";
             this.tabTuDinhNghia.Padding = new System.Windows.Forms.Padding(4);
-            this.tabTuDinhNghia.Size = new System.Drawing.Size(749, 426);
+            this.tabTuDinhNghia.Size = new System.Drawing.Size(788, 510);
             this.tabTuDinhNghia.TabIndex = 2;
             this.tabTuDinhNghia.Text = "Tự định nghĩa";
             // 
@@ -1281,6 +1285,32 @@
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
             // 
+            // v6CheckBox1
+            // 
+            this.v6CheckBox2.AccessibleDescription = "ADDEDITC00047";
+            this.v6CheckBox1.AccessibleName = "KC_CHONVV";
+            this.v6CheckBox1.AutoSize = true;
+            this.v6CheckBox1.Location = new System.Drawing.Point(137, 415);
+            this.v6CheckBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.v6CheckBox1.Name = "v6CheckBox1";
+            this.v6CheckBox1.Size = new System.Drawing.Size(181, 21);
+            this.v6CheckBox1.TabIndex = 29;
+            this.v6CheckBox1.Text = "Kết chuyển chọn vụ việc";
+            this.v6CheckBox1.UseVisualStyleBackColor = true;
+            // 
+            // v6CheckBox2
+            // 
+            this.v6CheckBox2.AccessibleDescription = "ADDEDITC00046";
+            this.v6CheckBox2.AccessibleName = "KC_SD";
+            this.v6CheckBox2.AutoSize = true;
+            this.v6CheckBox2.Location = new System.Drawing.Point(137, 392);
+            this.v6CheckBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.v6CheckBox2.Name = "v6CheckBox2";
+            this.v6CheckBox2.Size = new System.Drawing.Size(137, 21);
+            this.v6CheckBox2.TabIndex = 28;
+            this.v6CheckBox2.Text = "Kết chuyển số dư";
+            this.v6CheckBox2.UseVisualStyleBackColor = true;
+            // 
             // AlkcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1289,7 +1319,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AlkcAddEditForm";
-            this.Size = new System.Drawing.Size(765, 463);
+            this.Size = new System.Drawing.Size(800, 550);
             this.Load += new System.EventHandler(this.AlkcAddEditForm_Load);
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
@@ -1377,5 +1407,7 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
+        private V6CheckBox v6CheckBox2;
+        private V6CheckBox v6CheckBox1;
     }
 }
