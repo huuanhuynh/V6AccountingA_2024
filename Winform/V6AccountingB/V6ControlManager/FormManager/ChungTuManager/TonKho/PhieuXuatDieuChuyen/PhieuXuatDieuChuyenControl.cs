@@ -488,7 +488,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                             _tien_nt.V6LostFocus += delegate
                             {
-                                _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
+                                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * _sl_td1.Value, M_ROUND);
+                                else _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
                                 if (_maNt == _mMaNt0)
                                 {
                                     _tien.Value = _tien_nt.Value;
@@ -2984,7 +2985,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         public void TinhTienVon1(Control actionControl = null)
         {
             _tien_nt.Value = V6BusinessHelper.Vround(_soLuong1.Value * _gia_nt1.Value, M_ROUND_NT);
-            _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
+            if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * _sl_td1.Value, M_ROUND);
+            else _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
             if (_maNt == _mMaNt0)
             {
                 _tien.Value = _tien_nt.Value;

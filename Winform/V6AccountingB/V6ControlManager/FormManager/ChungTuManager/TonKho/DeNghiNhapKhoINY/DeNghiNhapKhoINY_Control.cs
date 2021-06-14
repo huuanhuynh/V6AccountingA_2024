@@ -511,7 +511,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         };
                         _tien_nt0.V6LostFocus += delegate
                         {
-                            _tien0.Value = V6BusinessHelper.Vround(_tien_nt0.Value * txtTyGia.Value, M_ROUND);
+                            if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien0.Value = V6BusinessHelper.Vround(_tien_nt0.Value * _sl_td1.Value, M_ROUND);
+                            else _tien0.Value = V6BusinessHelper.Vround(_tien_nt0.Value * txtTyGia.Value, M_ROUND);
                             TinhTienNt();// Trong TinhTienNt da co TinhGiaNt
                             if (_gia_nt01.Value == 0 && _soLuong1.Value != 0) TinhGiaNt01();
                             TinhTienVon_GiaVon();

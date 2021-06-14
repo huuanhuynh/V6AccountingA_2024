@@ -515,7 +515,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                             _tien_nt0.V6LostFocus += delegate
                             {
-                                _tien0.Value = V6BusinessHelper.Vround(_tien_nt0.Value * txtTyGia.Value, M_ROUND);
+                                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien0.Value = V6BusinessHelper.Vround(_tien_nt0.Value * _sl_td1.Value, M_ROUND);
+                                else _tien0.Value = V6BusinessHelper.Vround(_tien_nt0.Value * txtTyGia.Value, M_ROUND);
                                 if (_gia_nt01.Value == 0 && _soLuong1.Value != 0) TinhGiaNt01();
                                 TinhTienVon_GiaVon();
                             };
@@ -2108,11 +2109,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     foreach (DataRow row in AD.Rows)
                     {
                         string ma_vt = row["MA_VT"].ToString().Trim();
-                        V6VvarTextBox txtmavt = new V6VvarTextBox() { VVar = "MA_VT", Text = ma_vt };
-                        if (txtmavt.Data != null)
+                        V6VvarTextBox vvar_ma_vt = new V6VvarTextBox() { VVar = "MA_VT", Text = ma_vt };
+                        if (vvar_ma_vt.Data != null)
                         {
-                            decimal sl_td1 = ObjectAndString.ObjectToDecimal(txtmavt.Data["SL_TD1"]);
-                            if (txtmavt.GIA_TON == 5 && sl_td1 != 0) ty_gia_von = sl_td1;
+                            decimal ma_vt_sl_td3 = ObjectAndString.ObjectToDecimal(vvar_ma_vt.Data["SL_TD3"]);
+                            if (vvar_ma_vt.GIA_TON == 5 && ma_vt_sl_td3 != 0) ty_gia_von = ma_vt_sl_td3;
                         }
 
                         FixTyGia(AD, row, ty_gia_von, "Tien", "Tien_nt", M_ROUND);
