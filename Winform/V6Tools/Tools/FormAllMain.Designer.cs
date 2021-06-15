@@ -36,7 +36,7 @@
             this.btnCopyToV6 = new System.Windows.Forms.Button();
             this.btnParseDecimal = new System.Windows.Forms.Button();
             this.btnFilterTextFiles = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnTestHash = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -50,7 +50,13 @@
             this.button19 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.btnTestHash2 = new System.Windows.Forms.Button();
+            this.btnTestHash3 = new System.Windows.Forms.Button();
+            this.numOutLength = new System.Windows.Forms.NumericUpDown();
+            this.btnTestHash4 = new System.Windows.Forms.Button();
+            this.btnTestHash5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numOutLength)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -123,14 +129,15 @@
             this.btnFilterTextFiles.UseVisualStyleBackColor = true;
             this.btnFilterTextFiles.Click += new System.EventHandler(this.btnFilterTextFiles_Click);
             // 
-            // button8
+            // btnTestHash
             // 
-            this.button8.Location = new System.Drawing.Point(12, 215);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 23);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "button1";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnTestHash.Location = new System.Drawing.Point(12, 215);
+            this.btnTestHash.Name = "btnTestHash";
+            this.btnTestHash.Size = new System.Drawing.Size(100, 23);
+            this.btnTestHash.TabIndex = 0;
+            this.btnTestHash.Text = "Test Hash";
+            this.btnTestHash.UseVisualStyleBackColor = true;
+            this.btnTestHash.Click += new System.EventHandler(this.btnTestHash_Click);
             // 
             // button9
             // 
@@ -259,11 +266,71 @@
             0,
             0});
             // 
+            // btnTestHash2
+            // 
+            this.btnTestHash2.Location = new System.Drawing.Point(118, 215);
+            this.btnTestHash2.Name = "btnTestHash2";
+            this.btnTestHash2.Size = new System.Drawing.Size(100, 23);
+            this.btnTestHash2.TabIndex = 0;
+            this.btnTestHash2.Text = "Test Hash 2";
+            this.btnTestHash2.UseVisualStyleBackColor = true;
+            this.btnTestHash2.Click += new System.EventHandler(this.btnTestHash_Click);
+            // 
+            // btnTestHash3
+            // 
+            this.btnTestHash3.Location = new System.Drawing.Point(224, 215);
+            this.btnTestHash3.Name = "btnTestHash3";
+            this.btnTestHash3.Size = new System.Drawing.Size(100, 23);
+            this.btnTestHash3.TabIndex = 0;
+            this.btnTestHash3.Text = "Test Hash 3";
+            this.btnTestHash3.UseVisualStyleBackColor = true;
+            this.btnTestHash3.Click += new System.EventHandler(this.btnTestHash_Click);
+            // 
+            // numOutLength
+            // 
+            this.numOutLength.Location = new System.Drawing.Point(557, 218);
+            this.numOutLength.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numOutLength.Name = "numOutLength";
+            this.numOutLength.Size = new System.Drawing.Size(59, 20);
+            this.numOutLength.TabIndex = 2;
+            this.numOutLength.ThousandsSeparator = true;
+            this.numOutLength.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
+            // btnTestHash4
+            // 
+            this.btnTestHash4.Enabled = false;
+            this.btnTestHash4.Location = new System.Drawing.Point(330, 215);
+            this.btnTestHash4.Name = "btnTestHash4";
+            this.btnTestHash4.Size = new System.Drawing.Size(100, 23);
+            this.btnTestHash4.TabIndex = 0;
+            this.btnTestHash4.Text = "Test Hash 4";
+            this.btnTestHash4.UseVisualStyleBackColor = true;
+            this.btnTestHash4.Click += new System.EventHandler(this.btnTestHash_Click);
+            // 
+            // btnTestHash5
+            // 
+            this.btnTestHash5.Location = new System.Drawing.Point(330, 244);
+            this.btnTestHash5.Name = "btnTestHash5";
+            this.btnTestHash5.Size = new System.Drawing.Size(100, 23);
+            this.btnTestHash5.TabIndex = 0;
+            this.btnTestHash5.Text = "Test Hash 5";
+            this.btnTestHash5.UseVisualStyleBackColor = true;
+            this.btnTestHash5.Click += new System.EventHandler(this.btnTestHash_Click);
+            // 
             // FormAllMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 577);
+            this.Controls.Add(this.numOutLength);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button19);
@@ -280,7 +347,11 @@
             this.Controls.Add(this.button9);
             this.Controls.Add(this.btnDBF);
             this.Controls.Add(this.button14);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.btnTestHash5);
+            this.Controls.Add(this.btnTestHash4);
+            this.Controls.Add(this.btnTestHash3);
+            this.Controls.Add(this.btnTestHash2);
+            this.Controls.Add(this.btnTestHash);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.btnFilterTextFiles);
@@ -290,6 +361,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAllMain";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numOutLength)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,7 +376,7 @@
         private System.Windows.Forms.Button btnCopyToV6;
         private System.Windows.Forms.Button btnParseDecimal;
         private System.Windows.Forms.Button btnFilterTextFiles;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnTestHash;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
@@ -318,5 +390,10 @@
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button btnTestHash2;
+        private System.Windows.Forms.Button btnTestHash3;
+        private System.Windows.Forms.NumericUpDown numOutLength;
+        private System.Windows.Forms.Button btnTestHash4;
+        private System.Windows.Forms.Button btnTestHash5;
     }
 }

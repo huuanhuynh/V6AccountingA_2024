@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 
 
@@ -1137,6 +1138,300 @@ namespace V6Tools.V6Convert
             }
             
             return "" == o.ToString().Trim();
+        }
+
+
+        static string ABC = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        static int ABC_lengh = ABC.Length;
+        static char GetABC(char A, int l, int i)
+        {
+            int i1 = (A + l*i + i) % ABC.Length;
+            return ABC[i1];
+        }
+
+        static char GetChar(char A)
+        {
+            return ABC[A % ABC_lengh];
+        }
+
+        static string HConvert(string input)
+        {
+            string result = "";
+            foreach (char c in input)
+            {
+                result += GetChar(c);
+            }
+
+            return result;
+        }
+        static char Dichj(char A, int d)
+        {
+            int A_index = ABC.IndexOf(A);
+            int D_index = A_index + d;
+            while (D_index<0)
+            {
+                D_index += ABC_lengh;
+            }
+            return ABC[D_index % ABC_lengh];
+        }
+        /// <summary>
+        /// Tạo chuỗi mã khác biệt.
+        /// </summary>
+        /// <param name="input">Dữ liệu vào.</param>
+        /// <param name="length_out">Độ dài chuỗi ra.</param>
+        /// <returns></returns>
+        public static string Hash1(string input, int length_out)
+        {
+            string result0 = "";
+            char[] result1 = new char[length_out];
+            // Tạo chuỗi ban đầu.
+            for (int i = 0; i < length_out; i++)
+            {
+                result1[i] = GetABC(input[(i+length_out) % input.Length], length_out, i);
+                result0 += result1[i];
+            }
+            // Xáo trộn (hash)
+            for (int i = 0; i < length_out; i++)
+            {
+                result1[i] = ABC[(ABC.IndexOf(result1[i]) + input[(length_out - i)%input.Length]) % ABC_lengh];
+            }
+
+            return new string(result1);
+        }
+
+        public static string Hash2(string input0, int length_out)
+        {
+            string input_convert = HConvert(input0);
+            string out_0 = "";
+            if (input_convert.Length < length_out)
+            {
+                out_0 = input_convert;
+                while (out_0.Length<length_out)
+                {
+                    out_0 += input_convert.Length;
+                }
+
+                if (out_0.Length > length_out)
+                {
+                    out_0 = out_0.Substring(0, length_out);
+                }
+            }
+            else
+            {
+                char[] list_out_0 = new char[length_out];
+
+                out_0 = input_convert.Substring(0, length_out);
+                list_out_0 = out_0.ToCharArray();
+                string rest = input_convert.Substring(length_out);
+                for (int i = 0; i < rest.Length; i++)
+                {
+                    char c = rest[i];
+                    // dịch out0
+                    list_out_0[i] = Dichj(list_out_0[i], c);
+                }
+                out_0 = new string(list_out_0);
+            }
+
+            // XOR
+            char[] list_out_1 = out_0.ToCharArray();
+            for (int i = 0; i < length_out; i++)
+            {
+                int dich_x = list_out_1[i] ^ i ^ length_out;
+                //if (dich_x % 2 == 0)
+                    list_out_1[i] = Dichj(list_out_1[i], dich_x);
+                //else list_out_1[i] = Dichj(list_out_1[i], -dich_x);
+            }
+
+            // KET QUA
+
+            string result = new string(list_out_1);
+            return result;
+
+        }
+
+
+        private static string lap_day = "~!@#$%^&*()";
+        public static string Hash3(string input0, int length_out)
+        {
+            //input0 += lap_day;
+
+            string input_convert = HConvert(input0);
+            string out_0 = "";
+            if (input_convert.Length < length_out)
+            {
+                int old_length = input_convert.Length;
+                out_0 = input_convert;
+                while (out_0.Length < length_out)
+                {
+                    //out_0 += ABC.Substring(old_length);
+                    out_0 += lap_day;
+                }
+
+                if (out_0.Length > length_out)
+                {
+                    out_0 = out_0.Substring(0, length_out);
+                }
+
+                var list_out_0 = out_0.ToCharArray();
+                string rest0 = out_0.Substring(old_length);
+                while (rest0.Length > 0)
+                {
+                    string rest2 = "";
+                    if (rest0.Length > length_out)
+                    {
+                        rest2 = rest0.Substring(0, length_out);
+                        rest0 = rest0.Substring(length_out);
+                    }
+                    else
+                    {
+                        rest2 = rest0;
+                        rest0 = "";
+                    }
+
+                    for (int i = 0; i < rest2.Length; i++)
+                    {
+                        char c = rest2[i];
+                        // dịch out0
+                        list_out_0[i] = Dichj(list_out_0[i], c);
+                    }
+                }
+
+                out_0 = new string(list_out_0);
+            }
+            else
+            {
+                char[] list_out_0 = new char[length_out];
+
+                out_0 = input_convert.Substring(0, length_out);
+                list_out_0 = out_0.ToCharArray();
+                string rest0 = input_convert.Substring(length_out);
+                while (rest0.Length>0)
+                {
+                    string rest2 = "";
+                    if (rest0.Length > length_out)
+                    {
+                        rest2 = rest0.Substring(0, length_out);
+                        rest0 = rest0.Substring(length_out);
+                    }
+                    else
+                    {
+                        rest2 = rest0;
+                        rest0 = "";
+                    }
+
+                    for (int i = 0; i < rest2.Length; i++)
+                    {
+                        char c = rest2[i];
+                        // dịch out0
+                        list_out_0[i] = Dichj(list_out_0[i], c);
+                    }
+                }
+                
+                out_0 = new string(list_out_0);
+            }
+
+            return out_0;
+        }
+
+        static int hebase32 = 32;
+        private static int hephan = 90 - 32 + 1;
+
+
+        /// <summary>
+        /// 32-126 (hệ thập phân)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private static long PrintASCIIstringToNumber(string input)
+        {
+            long value = 0;
+            for (int i = input.Length-1; i >= 0; i--)
+            {
+                char c = input[i];
+                value += (c-32)*(int)Math.Pow(hephan, i);
+            }
+
+            return value;
+        }
+
+        private static string NumberToHeBase(long number)
+        {
+            Stack<long> stack = new Stack<long>();
+            while (number>0)
+            {
+                stack.Push(number%hephan);
+                number /= hephan;
+            }
+
+            string result = "";
+            while (stack.Count>0)
+            {
+                result += ABC[(int) stack.Pop()];
+            }
+
+            return result;
+        }
+        public static string Hash4(string input, int length_out)
+        {
+            long number = PrintASCIIstringToNumber(input);
+            string ssss = NumberToHeBase(number);
+            return ssss;
+        }
+
+        public static string Hash5(string input, int length_out)
+        {
+            string _11111111 = CreateMD5_1111111(input);//.Substring(0, length_out);
+            int take_bit = 11;
+            string _ABC = ABC_from_11111(_11111111, take_bit);
+            if (_ABC.Length > length_out) _ABC = _ABC.Substring(0, length_out);
+            else _ABC = _ABC.PadLeft(length_out, ABC[0]);
+            return _ABC;
+        }
+
+        private static string ABC_from_11111(string _11111111, int take_bit)
+        {
+            string result = "";
+            while (_11111111.Length>0)
+            {
+                string _11111;
+                if (_11111111.Length > take_bit)
+                {
+                    _11111 = _11111111.Substring(0, take_bit);
+                    _11111111 = _11111111.Substring(take_bit);
+                }
+                else
+                {
+                    _11111 = _11111111;
+                    _11111111 = "";
+                }
+
+                result += ABC[Convert.ToInt32(_11111, 2) % ABC_lengh];
+            }
+
+            return result;
+        }
+
+        public static string CreateMD5_1111111(string input)
+        {
+            // Use input string to calculate MD5 hash
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            {
+                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                //StringBuilder sb = new StringBuilder();
+                string result = "";
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    //sb.Append(hashBytes[i].ToString(""));
+                    // Append 7bit
+                    result += Convert.ToString(hashBytes[i], 2).PadLeft(7, '0');
+                    //sb.Append(Convert.ToString(hashBytes[i], 64));
+                }
+                
+                return result;
+            }
         }
     }
 }
