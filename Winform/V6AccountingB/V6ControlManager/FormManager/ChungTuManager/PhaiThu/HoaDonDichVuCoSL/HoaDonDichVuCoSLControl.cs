@@ -205,15 +205,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         _mavt_default_initfilter = _maVt.InitFilter;
                         var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                         if (setting.Contains(Invoice.Mact))
-                        _maVt.Enter += (sender, args) =>
-                        {
-                            string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
-                            if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
-                            else if (!string.IsNullOrEmpty(newFilter))
+                            _maVt.Enter += (sender, args) =>
                             {
-                                _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
-                            }
-                        };
+                                string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                                if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
+                                else if (!string.IsNullOrEmpty(newFilter))
+                                {
+                                    _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
+                                }
+                            };
                    
                         _maVt.V6LostFocus += MaVatTu_V6LostFocus;
                         _maVt.V6LostFocusNoChange += delegate
@@ -309,7 +309,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         _maKhoI.GotFocus += delegate
                         {
                             if(_maKhoI.Text.Trim() == "")
-                            _maKhoI.Text = V6Setting.M_Ma_kho_default;
+                                _maKhoI.Text = V6Setting.M_Ma_kho_default;
                         };
                         _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
                         break;
@@ -8052,9 +8052,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 if (NotAddEdit) return;
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
-                //var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMaDVCS.Text.Trim();
-                var message = "";
                 string filter1 = _maVt.InitFilter;
                 var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                 if (setting.Contains(Invoice.Mact))
@@ -8069,7 +8066,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     {
                         filter1 = string.Format("({0}) and ({1})", filter1, newFilter);
                     }
-                };
+                }
 
                 var form = new AlvtSelectorForm(Invoice, filter1);
                 if (form.ShowDialog(this) == DialogResult.OK)

@@ -214,15 +214,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         _mavt_default_initfilter = _maVt.InitFilter;
                         var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                         if (setting.Contains(Invoice.Mact))
-                        _maVt.Enter += (sender, args) =>
-                        {
-                            string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
-                            if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
-                            else if (!string.IsNullOrEmpty(newFilter))
+                            _maVt.Enter += (sender, args) =>
                             {
-                                _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
-                            }
-                        };
+                                string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                                if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
+                                else if (!string.IsNullOrEmpty(newFilter))
+                                {
+                                    _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
+                                }
+                            };
                         _maVt.V6LostFocus += MaVatTu_V6LostFocus;
                         _maVt.V6LostFocusNoChange += delegate
                         {
@@ -1025,10 +1025,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         break;
                     case "MA_THUE":
                         _ma_thue22 = control as V6VvarTextBox;
-                        _ma_thue22.CheckNotEmpty = true;
-                        _ma_thue22.CheckOnLeave = true;
+                        
                         if (_ma_thue22 != null)
                         {
+                            _ma_thue22.CheckNotEmpty = true;
+                            _ma_thue22.CheckOnLeave = true;
                             _ma_thue22.V6LostFocus += delegate
                             {
                                 if (_ma_thue22.Data != null)
@@ -1103,55 +1104,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView2, _alct2Dic, _maNt, _mMaNt0);
         }
 
-
-        // Tuanmh 07/10/2016
-        //public void TinhTien22()
-        //{
-        //    try
-        //    {
-        //        _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * txtTyGia.Value, M_ROUND);
-        //        if (_maNt == _mMaNt0)
-        //        {
-        //            _t_tien22.Enabled = false;
-        //            _t_tien22.Value = _t_tien_nt22.Value;
-        //        }
-        //        else
-        //        {
-        //            _t_tien22.Enabled = true;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowErrorException(GetType() + ".TinhTien22 " + _sttRec, ex);
-        //    }
-        //}
-
-        //public void TinhTienThue22()
-        //{
-        //    try
-        //    {
-        //        _t_thue_nt22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * _thue_suat22.Value / 100, M_ROUND_NT);
-        //        _t_thue22.Value = V6BusinessHelper.Vround(_t_tien22.Value * _thue_suat22.Value / 100, M_ROUND);
-        //        if (_maNt == _mMaNt0)
-        //        {
-        //            _t_thue22.Enabled = false;
-        //            _t_thue22.Value = _t_thue_nt22.Value;
-        //        }
-        //        else
-        //        {
-        //            _t_thue22.Enabled = true;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowErrorException(GetType() + ".TinhTienThue22 " + _sttRec, ex);
-        //    }
-        //}
-
         
         private V6ColorTextBox _operTT_33, _nh_dk_33;
         private V6VvarTextBox _tk_i_33, _ma_kh_i_33;
-        private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33, _mau_bc_33,
+        private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33,
             _gia_nt_33, _tien_nt_33, _gia_33, _tien_33;
 
         private void LoadDetail3Controls()
@@ -8450,8 +8406,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMaDVCS.Text.Trim();
-                var message = "";
                 string filter1 = _maVt.InitFilter;
                 var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                 if (setting.Contains(Invoice.Mact))
@@ -8466,7 +8420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         filter1 = string.Format("({0}) and ({1})", filter1, newFilter);
                     }
-                };
+                }
 
                 var form = new AlvtSelectorForm(Invoice, filter1);
                 if (form.ShowDialog(this) == DialogResult.OK)

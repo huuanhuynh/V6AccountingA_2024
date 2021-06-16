@@ -1723,7 +1723,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
-        private DataGridViewCell _focusCell0 = null;
+        //private DataGridViewCell _focusCell0 = null;
         
         void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
@@ -3880,12 +3880,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 InvokeFormEvent(FormDynamicEvent.BEFORELUU);
 
-                if (false )//detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                {
-                    this.ShowWarningMessage(V6Text.DetailNotComplete);
-                    EnableFunctionButtons();
-                }
-                else
                 {
                     if (chkAuto_Ck.Checked && (V6Options.M_SOA_TINH_CK_KM == "11" || V6Options.M_SOA_TINH_CK_KM == "12"))
                     {
@@ -4237,12 +4231,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                if (false )//detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                {
-                    ShowMainMessage(V6Text.DetailNotComplete);
-                    return;
-                }
-
                 _print_flag = true;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
@@ -5462,11 +5450,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     return;
                 }
                 if (AD == null || AD.Rows.Count == 0) return;
-                if (false )//detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                {
-                    this.ShowWarningMessage(V6Text.DetailNotComplete);
-                    return;
-                }
+                
                 if (txtMaGia.Text.Trim() == "")
                 {
                     ShowParentMessage(V6Text.NoInput + btnApGia.Text);
@@ -5723,12 +5707,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void btnTinhCKKM_Click(object sender, EventArgs e)
         {
-            if (false )//detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-            {
-                ShowParentMessage(V6Text.DetailNotComplete);
-                return;
-            }
-
             bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             if (shift_is_down)
             {

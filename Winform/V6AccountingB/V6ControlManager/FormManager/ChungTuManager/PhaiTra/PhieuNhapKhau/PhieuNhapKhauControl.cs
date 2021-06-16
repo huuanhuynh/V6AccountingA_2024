@@ -229,15 +229,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _mavt_default_initfilter = _maVt.InitFilter;
                         var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                         if (setting.Contains(Invoice.Mact))
-                        _maVt.Enter += (sender, args) =>
-                        {
-                            string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
-                            if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
-                            else if (!string.IsNullOrEmpty(newFilter))
+                            _maVt.Enter += (sender, args) =>
                             {
-                                _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
-                            }
-                        };
+                                string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                                if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
+                                else if (!string.IsNullOrEmpty(newFilter))
+                                {
+                                    _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
+                                }
+                            };
                         _maVt.V6LostFocus += MaVatTu_V6LostFocus;
                         _maVt.V6LostFocusNoChange += delegate
                         {
@@ -1151,7 +1151,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private V6ColorTextBox _operTT_33, _nh_dk_33;
         private V6VvarTextBox _tk_i_33, _ma_kh_i_33;
-        private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33, _mau_bc_33,
+        private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33,
             _gia_nt_33, _tien_nt_33, _gia_33, _tien_33;
         private void LoadDetail3Controls()
         {
@@ -1683,10 +1683,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
         }
 
-        void _maLo_V6LostFocus(object sender)
-        {
-            CheckMaLo();
-        }
 
         void _maLo_Leave(object sender, EventArgs e)
         {
@@ -2662,8 +2658,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 var row = dataGridView1.Rows[e.RowIndex];
                 var col = dataGridView1.Columns[e.ColumnIndex];
                 FIELD = col.DataPropertyName.ToUpper();
-                var cell = row.Cells[e.ColumnIndex];
-                var cell_MA_VT = row.Cells["MA_VT"];
+                //var cell = row.Cells[e.ColumnIndex];
+                //var cell_MA_VT = row.Cells["MA_VT"];
                 var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
                 decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
                 decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
@@ -8431,8 +8427,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMaDVCS.Text.Trim();
-                var message = "";
                 string filter1 = _maVt.InitFilter;
                 var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                 if (setting.Contains(Invoice.Mact))
@@ -8447,7 +8441,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     {
                         filter1 = string.Format("({0}) and ({1})", filter1, newFilter);
                     }
-                };
+                }
 
                 var form = new AlvtSelectorForm(Invoice, filter1);
                 if (form.ShowDialog(this) == DialogResult.OK)

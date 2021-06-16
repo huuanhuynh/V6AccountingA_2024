@@ -4342,7 +4342,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
         public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
-            bool success = false;
             if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);

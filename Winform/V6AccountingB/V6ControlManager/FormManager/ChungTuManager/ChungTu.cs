@@ -461,7 +461,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             datetemp_column.Visible = fstatus;
                         }
                         break;
-                        break;
                     #endregion
                 }
 

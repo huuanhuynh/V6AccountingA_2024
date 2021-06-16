@@ -1145,7 +1145,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         var _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM);
                                         var KEYS = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
                                         var datas = "";
-                                        var data_old = "";
                                         foreach (string KEY in KEYS)
                                         {
                                             if (!_TableStruct.ContainsKey(KEY)) continue;

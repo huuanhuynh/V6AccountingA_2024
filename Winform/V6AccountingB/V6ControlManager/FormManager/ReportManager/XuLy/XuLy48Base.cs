@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.DanhMucManager;
@@ -1493,7 +1492,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         MessageBox.Show(ex.Message);
                     }
-                };
+                }
             }
             catch (Exception ex)
             {
@@ -1602,9 +1601,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
-        private string _oldDefaultPrinter, _PrinterName;
-        private int _PrintCopies;
-        private bool printting;
+        private string _oldDefaultPrinter;
+
         protected void XuLyF9()
         {
             try

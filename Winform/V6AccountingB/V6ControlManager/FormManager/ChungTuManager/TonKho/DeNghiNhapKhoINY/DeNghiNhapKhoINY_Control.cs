@@ -441,7 +441,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                             }
                         };
                         break;
-                        break;
                     case "GIA_NT":
                         _gia_nt = (V6NumberTextBox)control;
                         break;

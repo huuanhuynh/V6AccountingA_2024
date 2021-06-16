@@ -5741,8 +5741,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
 
                 string return_file_name = "";
-                string tableName = "V6MAPINFO";
-                string keys = "UID,MA_TD1"; //+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
+                //string tableName = "V6MAPINFO";
+                //string keys = "UID,MA_TD1"; //+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
                 //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
                 SqlParameter[] plist0 =
                 {

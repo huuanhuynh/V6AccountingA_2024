@@ -168,27 +168,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
         
 
-        
-
-        private void InitDebug()
-        {
-            try
-            {
-                tabKhac.VisibleChanged += (sender, args) =>
-                {
-                    DoNothing();
-                };
-                lblMaKH.VisibleChanged += (sender, args) =>
-                {
-                    DoNothing();
-                };
-            }
-            catch (Exception ex)
-            {
-                DoNothing();
-            }
-        }
-
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
@@ -241,15 +220,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _mavt_default_initfilter = _maVt.InitFilter;
                         var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                         if (setting.Contains(Invoice.Mact))
-                        _maVt.Enter += (sender, args) =>
-                        {
-                            string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
-                            if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
-                            else if (!string.IsNullOrEmpty(newFilter) && !_maVt.InitFilter.Contains(newFilter))
+                            _maVt.Enter += (sender, args) =>
                             {
-                                _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
-                            }
-                        };
+                                string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                                if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
+                                else if (!string.IsNullOrEmpty(newFilter) && !_maVt.InitFilter.Contains(newFilter))
+                                {
+                                    _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
+                                }
+                            };
 
                         _maVt.V6LostFocus += MaVatTu_V6LostFocus;
                         _maVt.V6LostFocusNoChange += delegate
@@ -345,7 +324,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _maKhoI.GotFocus += delegate
                         {
                             if(_maKhoI.Text.Trim() == "")
-                            _maKhoI.Text = V6Setting.M_Ma_kho_default;
+                                _maKhoI.Text = V6Setting.M_Ma_kho_default;
                         };
                         _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
                         break;
@@ -602,7 +581,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             {
                                 
                             };
-                            _gia_ban_nt.V6LostFocus += delegate(object sender)
+                            _gia_ban_nt.V6LostFocus += delegate
                             {
                                 _gia_ban.Value = V6BusinessHelper.Vround((_gia_ban_nt.Value * txtTyGia.Value), M_ROUND_GIA);
                                 if (_maNt == _mMaNt0)
@@ -916,7 +895,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         break;
                     case "HS_QD4":
                         _hs_qd4 = (V6NumberTextBox)control;
-                        _hs_qd4.V6LostFocus += delegate (object sender)
+                        _hs_qd4.V6LostFocus += delegate
                         {
                             TinhGiamGiaCt();
                         };
@@ -925,7 +904,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _hs_qd3 = (V6NumberTextBox)control;
                         if (_hs_qd3 != null)
                         {
-                            _hs_qd3.V6LostFocus += delegate(object sender)
+                            _hs_qd3.V6LostFocus += delegate
                             {
                                 TinhVanChuyen();
                             };
@@ -1050,7 +1029,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                                 soKhung_proc.ExistRowInTable();
                             };
-                            soKhung_proc.V6LostFocus += delegate(object sender)
+                            soKhung_proc.V6LostFocus += delegate
                             {
                                 _soMay.Text = soKhung_proc.Data == null ? "" : soKhung_proc.Data["SO_MAY"].ToString().Trim();
                                 if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
@@ -1142,7 +1121,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private V6ColorTextBox _operTT_33, _nh_dk_33;
         private V6VvarTextBox _tk_i_33, _ma_kh_i_33;
-        private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33, _mau_bc_33,
+        private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33,
             _gia_nt_33, _tien_nt_33, _gia_33, _tien_33;
 
         private void LoadDetail3Controls()
@@ -1679,7 +1658,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 Invoice.GetAlLoTon(dateNgayCT.Date, _sttRec, _maVt.Text, _maKhoI.Text);
-                FixAlLoTon(Invoice.AlLoTon, AD);
+                FixAlLoTon(Invoice.AlLoTon);
 
                 var inputUpper = _maLo.Text.Trim().ToUpper();
                 if (Invoice.AlLoTon != null && Invoice.AlLoTon.Rows.Count > 0)
@@ -1829,7 +1808,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         //    }
         //}
 
-        private void FixAlLoTon(DataTable alLoTon, DataTable ad)
+        private void FixAlLoTon(DataTable alLoTon)
         {
             try
             {
@@ -9819,9 +9798,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (NotAddEdit) return;
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
-                //var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMaDVCS.Text.Trim();
-                var message = "";
+                
                 string filter1 = _maVt.InitFilter;
                 var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                 if (setting.Contains(Invoice.Mact))
@@ -9835,7 +9812,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         filter1 = string.Format("({0}) and ({1})", filter1, newFilter);
                     }
-                };
+                }
 
                 var form = new AlvtSelectorForm(Invoice, filter1);
                 if (form.ShowDialog(this) == DialogResult.OK)

@@ -1216,9 +1216,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
-        private string _oldDefaultPrinter, _PrinterName;
-        private int _PrintCopies;
-        private bool printting;
+        private string _oldDefaultPrinter;
         protected void XuLyF9()
         {
             try

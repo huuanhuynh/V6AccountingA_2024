@@ -7088,9 +7088,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 if (NotAddEdit) return;
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
-                //var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMaDVCS.Text.Trim();
-                var message = "";
+
                 string filter1 = _maVt.InitFilter;
                 var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
                 if (setting.Contains(Invoice.Mact))
@@ -7105,7 +7103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         filter1 = string.Format("({0}) and ({1})", filter1, newFilter);
                     }
-                };
+                }
 
                 var form = new AlvtSelectorForm(Invoice, filter1);
                 if (form.ShowDialog(this) == DialogResult.OK)
