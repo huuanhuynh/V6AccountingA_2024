@@ -292,6 +292,7 @@ namespace V6AccountingB
             Application.SetCompatibleTextRenderingDefault(false);
 
             V6Login.StartupPath = Application.StartupPath;
+            V6Login.FileInfo = new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
             V6Login.ClientName = Dns.GetHostName().ToUpper();
 
             var seri = "!";

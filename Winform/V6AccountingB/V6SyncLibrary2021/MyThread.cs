@@ -1486,7 +1486,7 @@ namespace V6SyncLibrary2021
                     _so_ct = rowc["SO_CT"].ToString();
 
                 if (tb1.Columns.Contains("NGAY_CT"))
-                    _ngay_ct = Convert.ToDateTime(rowc["NGAY_CT"].ToString()).ToString("dd/MM/yyyy");
+                    _ngay_ct = ObjectAndString.ObjectToString(rowc["NGAY_CT"]);
 
                 _Message = _pUnits + " Client->Server :  " + _pAm + " : " + _ngay_ct + " -->" + _so_ct.Trim();
 

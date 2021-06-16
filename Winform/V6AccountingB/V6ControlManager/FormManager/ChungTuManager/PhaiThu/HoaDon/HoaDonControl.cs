@@ -8423,7 +8423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var showtext0 = V6Setting.Language == "V" ? "Công nợ cũ " : "Current balance ";
 
                     string message = string.Format(showtext0 + ": {0}", text_duno0) + "\n";
-                        message += string.Format(showtext + ": {0}--> {1}", dateNgayCT.Date.ToString("dd/MM/yyyy"), text_duno);
+                        message += string.Format(showtext + ": {0}--> {1}", ObjectAndString.ObjectToString(dateNgayCT.Date), text_duno);
                     this.ShowMessage(message);
                 }
                 else

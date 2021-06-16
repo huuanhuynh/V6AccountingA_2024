@@ -33,7 +33,7 @@ namespace V6Init
                 return "";
             }
         }
-        private static string _path = "";
+
         public static string Seri = "";
         public static string Key = "";
         /// <summary>
@@ -42,7 +42,6 @@ namespace V6Init
         /// <param name="path"></param>
         public static string GetSeri(string path)
         {
-            _path = path;
             var result = "";
             try
             {
@@ -270,14 +269,14 @@ namespace V6Init
         private static void UpdateLicenseV6OnlineCodeName(string seri, string key, string codeName)
         {
             var NAME = V6Login.ClientName;
-            IDictionary<string, object> data = new SortedDictionary<string, object>();
             IDictionary<string, object> keys = new SortedDictionary<string, object>();
             keys.Add("NAME", NAME);
             keys.Add("SERI", seri);
             keys.Add("KEY", key);
-
+            IDictionary<string, object> data = new SortedDictionary<string, object>();
             data.Add("ALLOW", 1);
             data.Add("CODE_NAME", codeName);
+            data.Add("V6UPDATE", V6Login.V6UpdateInfo);
             
             int u = V6BusinessHelper.Update("V6ONLINES", data, keys);
         }

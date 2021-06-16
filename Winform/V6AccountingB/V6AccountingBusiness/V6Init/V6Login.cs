@@ -248,6 +248,14 @@ namespace V6Init
         /// Lưu đường dẫn start của chương trình.
         /// </summary>
         public static string StartupPath { get; set; }
+        public static FileInfo FileInfo { get; set; }
+        public static string V6UpdateInfo
+        {
+            get
+            {
+                return string.Format("Path:{0};FileInfo:{1:dd/MM/yyyy HH:mm:ss}", FileInfo.FullName, FileInfo.LastWriteTime);
+            }
+        }
         /// <summary>
         /// Exe
         /// </summary>
@@ -724,6 +732,7 @@ namespace V6Init
                     {"CHECKCODE", checkCode},
                     {"CODE_NAME", UtilityHelper.EnCrypt(ClientName+"1"+checkCode)},
                     {"STATUS", "1"},
+                    {"V6UPDATE", V6UpdateInfo},
                 };
                 var keys = new SortedDictionary<string, object>
                 {
@@ -780,8 +789,12 @@ namespace V6Init
                         }
                     }
                 }
-                
-                if (!have)
+
+                if (have)
+                {
+                    UpdateClientInfo();
+                }
+                else
                 {
                     InsertNewClient(ClientName);
                 }
@@ -789,8 +802,60 @@ namespace V6Init
             else
             {
                 is_allow = true;
+                UpdateOnlineInfo();
             }
             return is_allow;
+        }
+
+        private static void UpdateClientInfo()
+        {
+            try
+            {
+                var data = new SortedDictionary<string, object>
+                {
+                    {"V6UPDATE", V6UpdateInfo},
+                };
+                var keys = new SortedDictionary<string, object>
+                {
+                    {"NAME", ClientName}
+                };
+
+                var tableName = "V6Clients";
+                var tStruct = V6SqlconnectHelper.GetTableStruct(tableName);
+                var sql = SqlGenerator.GenUpdateSqlSimple(UserId, tableName, tStruct, data, keys);
+                SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
+                
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("V6Login UpdateClientInfo: " + ex.Message, "V6Init");
+            }
+        }
+        
+        private static void UpdateOnlineInfo()
+        {
+            try
+            {
+                var data = new SortedDictionary<string, object>
+                {
+                    {"V6UPDATE", V6UpdateInfo},
+                };
+                var keys = new SortedDictionary<string, object>
+                {
+                    {"NAME", ClientName},
+                    {"SERI", License.Seri},
+                    {"KEY", License.Key},
+                };
+                var tableName = "V6ONLINES";
+                var tStruct = V6SqlconnectHelper.GetTableStruct(tableName);
+                var sql = SqlGenerator.GenUpdateSqlSimple(UserId, tableName, tStruct, data, keys);
+                SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
+                
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("V6Login UpdateOnlineInfo: " + ex.Message, "V6Init");
+            }
         }
 
         public static bool CheckAllowVersion(string version)

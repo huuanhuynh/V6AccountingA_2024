@@ -369,7 +369,7 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// chuyển một object thành chuỗi hiển thị.
+        /// chuyển một object thành chuỗi hiển thị. formatString mặc định là dd/MM/yyyy
         /// </summary>
         /// <param name="o"></param>
         /// <param name="formatString">vd dd/MM/yyyy  (hoặc cho kiểu số N2)</param>
@@ -439,14 +439,17 @@ namespace V6Tools.V6Convert
                         result0 = result0.Replace("yyyy", date_object.Year.ToString("0000"));
                         result0 = result0.Replace("yy", date_object.Year.ToString("00"));
 
-                        result0 = result0.Replace("HH", date_object.ToString("HH"));
-                        result0 = result0.Replace("H", date_object.ToString("H"));
-                        result0 = result0.Replace("hh", date_object.ToString("hh"));
-                        result0 = result0.Replace("h", date_object.ToString("h"));
-                        result0 = result0.Replace("mm", date_object.ToString("mm"));
-                        result0 = result0.Replace("m", date_object.ToString("m"));
-                        result0 = result0.Replace("ss", date_object.ToString("ss"));
-                        result0 = result0.Replace("s", date_object.ToString("s"));
+                        if (result0.Contains("H") || result0.Contains("h") || result0.Contains("m"))
+                        {
+                            result0 = result0.Replace("HH", date_object.Hour.ToString("00"));
+                            result0 = result0.Replace("H", date_object.Hour.ToString());
+                            result0 = result0.Replace("hh", (date_object.Hour % 12).ToString("00"));
+                            result0 = result0.Replace("h", (date_object.Hour % 12).ToString());
+                            result0 = result0.Replace("mm", date_object.Minute.ToString("00"));
+                            result0 = result0.Replace("m", date_object.Minute.ToString());
+                            result0 = result0.Replace("ss", date_object.Second.ToString("00"));
+                            result0 = result0.Replace("s", date_object.Second.ToString());
+                        }
 
                         result = result0;
                     }

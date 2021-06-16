@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Net;
 using V6Structs;
+using V6Tools.V6Convert;
 
 
 namespace V6SqlConnect
@@ -1043,7 +1044,7 @@ namespace V6SqlConnect
                 default:
                     if (objValue is DateTime)
                     {
-                        objValue = ((DateTime)objValue).ToString("dd/MM/yyyy");
+                        objValue = ObjectAndString.ObjectToString(objValue);
                     }
                     break;
             }
@@ -1142,7 +1143,7 @@ namespace V6SqlConnect
                 default:
                     if (objValue is DateTime)
                     {
-                        objValue = ((DateTime)objValue).ToString("dd/MM/yyyy");
+                        objValue = ObjectAndString.ObjectToString(objValue);
                     }
                     break;
             }
