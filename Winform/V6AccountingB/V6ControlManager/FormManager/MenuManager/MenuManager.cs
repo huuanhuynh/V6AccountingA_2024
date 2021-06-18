@@ -833,13 +833,17 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (string.IsNullOrEmpty(pro_old))
                                 {
-                                    c = new ReportTreeViewBase(item_id, programT, programT, repFile, repTitle, repTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                    if (mButton.UseXtraReport != shift_is_down)
+                                        c = new ReportTreeView_DX(item_id, programT, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    else
+                                        c = new ReportTreeViewBase(item_id, programT, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
                                 }
                                 else
                                 {
-                                    c = new ReportTreeViewBase(item_id, pro_old, programT, repFile, repTitle, repTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                    if (mButton.UseXtraReport != shift_is_down)
+                                        c = new ReportTreeView_DX(item_id, pro_old, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    else
+                                        c = new ReportTreeViewBase(item_id, pro_old, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
                                 }
                             }
                             else

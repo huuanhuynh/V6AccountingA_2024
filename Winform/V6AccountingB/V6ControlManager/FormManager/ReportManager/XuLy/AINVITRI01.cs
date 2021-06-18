@@ -72,7 +72,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        void khoHangContainer_V6Click(System.Collections.Generic.IDictionary<string, object> data)
+        void khoHangContainer_V6Click(IDictionary<string, object> data)
         {
             try
             {

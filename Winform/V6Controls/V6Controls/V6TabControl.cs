@@ -68,10 +68,15 @@ namespace V6Controls
         /// </summary>
         private void InitializeComponent()
         {
-            _components = new System.ComponentModel.Container();
-            //SetStyle(System.Windows.Forms.ControlStyles.DoubleBuffer, true);
+            this.SuspendLayout();
+            // 
+            // V6TabControl
+            // 
             this.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.ItemSize = new System.Drawing.Size(230, 24);
+            this.Enter += new System.EventHandler(this.V6TabControl_Enter);
+            this.ResumeLayout(false);
+
         }
         #endregion
 
@@ -289,6 +294,11 @@ namespace V6Controls
                 };
                 graphics.FillPolygon(Brushes.Red, points);
             }
+        }
+
+        private void V6TabControl_Enter(object sender, EventArgs e)
+        {
+            SelectNextControl(this.TabPages[SelectedIndex], true, true, true, true);
         }
 
         //private void RePaintBackground(object sender, PaintEventArgs e)

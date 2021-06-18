@@ -35,7 +35,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private string _program, _Ma_File, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
-        /// Advance filter get albc
+        /// Advance filter get albc, nhận từ filter cha để lọc.
         /// </summary>
         public string Advance = "";
 
@@ -116,6 +116,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     if (dataRow.Table.Columns.Contains(GET_FIELD))
                         txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 }
+
                 //{ Tuanmh Get name 27/08/2018
                 var TEN_NLB_LOGIN = V6Login.XmlInfo.TEN_NLB_LOGIN.Trim();
                 var TEN_NLB_LOGIN2 = V6Login.XmlInfo.TEN_NLB_LOGIN2.Trim();
@@ -128,8 +129,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     txtM_TEN_NLB2.Text = TEN_NLB_LOGIN2;
                 }
                 //}
-                AddFilterControl(_program);
 
+
+                AddFilterControl(_program);
+				SetStatus2Text();
                 FilterControl.Call1(imageList1);
                 treeListViewAuto1.SetGroupAndNameFieldList(
                     FilterControl.String1.Split(','),
@@ -152,8 +155,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        public DataSet DataSet
+        {
+            get { return _ds; }
+            set { _ds = value; }
+        }
         private DataSet _ds;
         private DataTable _tbl1, _tbl2, _tbl3;
+        private DataView _view1, _view2, _view3;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
@@ -161,6 +170,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private List<SqlParameter> _pList;
 
         public bool AutoPrint { get; set; }
+        /// <summary>
+        /// Tên file excel tự động xuất.
+        /// </summary>
+        public string AutoExportExcel = null;
+        public bool AutoClickNhan { get; set; }
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -203,13 +217,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public string MAU
         {
             get { return rTienViet.Checked ? "VN" : "FC"; }
-            set { rTienViet.Checked = value == "VN"; }
+            set {
+                switch (value)
+                {
+                    case "VN":
+                        rTienViet.Checked = true;
+                        break;
+                    case "FC":
+                        rNgoaiTe.Checked = true;
+                        break;
+                }
+            }
         }
 
         public string LAN
         {
-            get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : rBothLang.Checked ? "B" : V6Login.SelectedLanguage; }
-            set
+            get
+            {
+                return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : rBothLang.Checked ? "B" : V6Login.SelectedLanguage;
+            }
+            set 
             {
                 switch (value)
                 {
@@ -252,7 +279,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private SortedDictionary<string, string> _extraInfor;
+        private SortedDictionary<string, string> _extraInfor = null;
 
         private void GetExtraInfor()
         {
@@ -522,9 +549,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                     if(y_n) V6BusinessHelper.Update(V6TableName.Albc, udata, AlbcKeys);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    
+                    this.WriteExLog(GetType() + ".SetDefaultPrinter", ex);
                 }
             }
         }
@@ -752,7 +779,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     rCurrent.Checked = true;
                 }
                 LoadComboboxSource();
-                txtReportTitle.Text = ReportTitle;
                 LoadDefaultData(4, "", _Ma_File, m_itemId, "");
 
                 string key3 = "1";
@@ -794,13 +820,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         case '7': DefaultMenuItem = exportToPdfMenu; break;
                         //case '8': DefaultMenuItem = viewInvoiceInfoMenu; break;
                     }
+                
+                txtReportTitle.Text = ReportTitle;
 
                 InvokeFormEvent(FormDynamicEvent.INIT2);
                 Ready();
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Init2", ex);
+                this.WriteExLog(GetType() + ".Init2 " + ReportFileFull, ex);
             }
         }
         private ToolStripMenuItem DefaultMenuItem = null;
@@ -833,7 +861,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-
                 MauInView.RowFilter = "mau='" + MAU + "'" + " and lan='" + LAN + "'"
                     + (chkHienTatCa.Checked ? "" : " and status='1'");
 
@@ -845,9 +872,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 else
                 {
-                    cboMauIn.Enabled = true;
-                    btnSuaTTMauBC.Enabled = true;
-                    btnThemMauBC.Enabled = true;
+                    V6ControlFormHelper.EnableControls(cboMauIn, btnSuaTTMauBC);
                 }
             }
             catch (Exception)
@@ -874,10 +899,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void Form_Load(object sender, EventArgs e)
         {
             MyInit2();
+            if (_ds != null && _ds.Tables.Count > 0)
+            {
+                SetTBLdata();
+                ViewFooter();
+                ShowReport();
+            }
+            else if (AutoClickNhan)
+            {
+                btnNhan.PerformClick();
+            }
         }
 
         
         public FilterBase FilterControl { get; set; }
+        public IDictionary<string, object> SelectedRowData { get; set; }
+        
         private void AddFilterControl(string program)
         {
             FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, toolTipV6FormControl);
@@ -925,8 +962,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
             try
             {
-                FormManagerHelper.HideMainMenu();
                 btnNhanImage = btnNhan.Image;
+                FormManagerHelper.HideMainMenu();
                 MakeReport2();
             }
             catch (Exception ex)
@@ -1055,6 +1092,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
 
                 _executing = true;
+                _executesuccess = false;
                 var proc = "";
                 if (!string.IsNullOrEmpty(FilterControl.ProcedureName))
                 {
@@ -1069,33 +1107,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     proc = _reportProcedure;
                 }
                 _ds = V6BusinessHelper.ExecuteProcedure(proc, _pList.ToArray());
-                if (_ds.Tables.Count > 0)
-                {
-                    _tbl1 = _ds.Tables[0];
-                    _tbl1.TableName = "DataTable1";
-                }
-                if (_ds.Tables.Count > 1)
-                {
-                    _tbl2 = _ds.Tables[1];
-                    _tbl2.TableName = "DataTable2";
-                }
-                else
-                {
-                    _tbl2 = null;
-                }
+                SetTBLdata();
 
-                if (_ds.Tables.Count > 2)
-                {
-                    _tbl3 = _ds.Tables[2];
-                    _tbl3.TableName = "DataTable3";
-                }
-                else
-                {
-                    _tbl3 = null;
-                }
-                
                 _executesuccess = true;
-                _executing = false;
             }
             catch (Exception ex)
             {
@@ -1106,9 +1120,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 _tbl1 = null;
                 _tbl2 = null;
                 _ds = null;
-                _executing = false;
                 _executesuccess = false;
             }
+            _executing = false;
         }
         /// <summary>
         /// GenerateProcedureParameters();//Add các key
@@ -1127,7 +1141,39 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 tLoadData.Start();
                 timerViewReport.Start();
             }
+        }		
+
+        private void SetTBLdata()
+        {
+            if (_ds.Tables.Count > 0)
+            {
+                _tbl1 = _ds.Tables[0];
+                _tbl1.TableName = "DataTable1";
+                _view1 = new DataView(_tbl1);
+            }
+            if (_ds.Tables.Count > 1)
+            {
+                _tbl2 = _ds.Tables[1];
+                _tbl2.TableName = "DataTable2";
+                _view2 = new DataView(_tbl2);
+            }
+            else
+            {
+                _tbl2 = null;
+            }
+
+            if (_ds.Tables.Count > 2)
+            {
+                _tbl3 = _ds.Tables[2];
+                _tbl3.TableName = "DataTable3";
+                _view3 = new DataView(_tbl3);
+            }
+            else
+            {
+                _tbl3 = null;
+            }
         }
+
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
             if (_executesuccess)
@@ -1137,29 +1183,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 
                 try
                 {
-                    FilterControl.LoadDataFinish(_ds);
-                    All_Objects["_ds"] = _ds;
-                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
-                    treeListViewAuto1.SetData(_tbl3, Report_GRDSV1,
-                        V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1, Report_GRDFV1);
-                    //treeListViewAuto1.ExpandAll();
-
-                    //VPA_GetFormatGridView]@Codeform VARCHAR(50),@Type VARCHAR(20)
-                    string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-                    object VALUEV;
-                    V6BusinessHelper.GetFormatGridView(CodeForm.Substring(1), "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
-                    //Color.MediumAquamarine
-                    //V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
-                    FormatGridView();
-                    //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
-                    ViewReport();
-                    if (AutoPrint)
-                    {
-                        Print(PrinterName);
-                        Dispose();
-                    }
-                    //gridViewSummary1.NoSumColumns = Report_GRDT_V1;
-
+                    ShowReport();
                     _executesuccess = false;
                 }
                 catch (Exception ex)
@@ -1182,7 +1206,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void Print(string printerName)
+        private void Print(string printerName, ReportDocument rpDoc)
         {
             bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
             
@@ -1190,8 +1214,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 try
                 {
-                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, _rpDoc0);
-                    V6ControlFormHelper.PrintRptToPrinter(_rpDoc0, printerName, _printCopy, 0, 0);
+                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc);
+                    V6ControlFormHelper.PrintRptToPrinter(rpDoc, printerName, _printCopy, 0, 0);
                     CallPrintSuccessEvent();
                 }
                 catch (Exception ex)
@@ -1241,10 +1265,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
 
         #endregion ==== LoadData MakeReport ====
-
-        
-        
-        
         
 
         #region Linh tinh        
@@ -1264,33 +1284,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
         
         #endregion Linh tinh
-
-        private void exportToExcelMenu_Click(object sender, EventArgs e)
-        {
-            if (_tbl1 == null)
-            {
-                ShowMainMessage(V6Text.NoData);
-                return;
-            }
-            try
-            {
-                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, GetExportFileName(), txtReportTitle.Text);
-
-                if (V6Options.AutoOpenExcel)
-                {
-                    V6ControlFormHelper.OpenFileProcess(fileName);
-                }
-                else
-                {
-                    this.ShowInfoMessage(V6Text.ExportFinish);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".exportToExcelMenu_Click " + ReportFileFull, ex);
-            }
-        }
-
 
         private void rbtTienTe_CheckedChanged(object sender, EventArgs e)
         {
@@ -1318,13 +1311,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private bool _radioChange;
+        private bool _radioChange = false;
         private bool _radioRunning;
         private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 if (!IsReady) return;
+
                 if (((RadioButton)sender).Checked)
                 {
                     _radioRunning = true;
@@ -1349,9 +1343,52 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             _radioRunning = false;
         }
 
+        void ShowReport()
+        {
+            try
+            {
+                FilterControl.LoadDataFinish(_ds);
+                All_Objects["_ds"] = _ds;
+                InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
+                treeListViewAuto1.SetData(_tbl3, Report_GRDSV1,
+                    V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1, Report_GRDFV1);
+                //treeListViewAuto1.ExpandAll();
+
+                //VPA_GetFormatGridView]@Codeform VARCHAR(50),@Type VARCHAR(20)
+                string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
+                object VALUEV;
+                V6BusinessHelper.GetFormatGridView(CodeForm.Substring(1), "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
+                //Color.MediumAquamarine
+                //V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
+                FormatGridView();
+                //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
+                ViewReport();
+                if (AutoPrint)
+                {
+                    Print(PrinterName, _rpDoc0);
+                    Dispose();
+                }
+                //gridViewSummary1.NoSumColumns = Report_GRDT_V1;
+
+                treeListViewAuto1.Focus();
+            }
+            catch (Exception ex)
+            {
+                timerViewReport.Stop();
+                _executesuccess = false;
+                this.ShowErrorException(GetType() + ".ShowReport", ex);
+            }
+        }
+
 
         void ViewReport()
         {
+			if (_ds == null) return;
+            if (_ds.Tables[0].Rows.Count == 0)
+			{
+                this.ShowInfoMessage(V6Text.NoData, 500);
+                return;
+            }
             try
             {
                 if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
@@ -1363,9 +1400,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 CleanUp();
                 var rpDoc = new ReportDocument();
                 rpDoc.Load(ReportFileFull);
+
                 rpDoc.SetDataSource(_ds);
 
                 SetAllReportParams(rpDoc);
+                var infos = EXTRA_INFOR;
+                if (infos.ContainsKey("RPTHIDE"))
+                {
+                    var names = ObjectAndString.SplitString(infos["RPTHIDE"]);
+                    RPTHIDE(rpDoc, names);
+                }
 
                 crystalReportViewer1.ReportSource = rpDoc;
                 _rpDoc0 = rpDoc;
@@ -1377,7 +1421,94 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 this.ShowErrorException(GetType() + ".ViewReport " + ReportFileFull, ex);
             }
         }
-        
+
+        private void RPTHIDE(ReportDocument rpDoc, IList<string> names)
+        {
+            try
+            {
+                if (rpDoc == null) return;
+                var all_objects = new SortedDictionary<string, ReportObject>();
+                foreach (ReportObject o in rpDoc.ReportDefinition.ReportObjects)
+                {
+                    all_objects[o.Name.ToUpper()] = o;
+                }
+
+                foreach (string name in names)
+                {
+                    string NAME = name.ToUpper();
+                    if (all_objects.ContainsKey(NAME))
+                    {
+                        all_objects[NAME].ObjectFormat.EnableSuppress = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".RPTHIDE", ex);
+            }
+        }
+
+        private void ViewFooter()
+        {
+            try
+            {
+                var tbl2_row = _tbl2.Rows[0];
+                string config_string = ""; // [rten_dau_ky]:DAU_KY:N2,[rten_cuoi_ky]:CUOI_KY:N2
+                if (EXTRA_INFOR.ContainsKey("FOOTER"))
+                {
+                    config_string = EXTRA_INFOR["FOOTER"];
+                    lblSummary.Visible = true;
+                }
+                else
+                {
+                    return;
+                }
+                var configs = ObjectAndString.SplitString(config_string);
+                string viewText = "";
+                foreach (string config in configs)
+                {
+                    var sss = config.Split(':');
+                    string value_field = sss[1];
+                    if (!_tbl2.Columns.Contains(value_field)) continue;
+
+                    int decimal_place = 2;
+                    if (sss.Length > 2 && sss[2].Length>1)
+                    {
+                        decimal_place = ObjectAndString.ObjectToInt(sss[2].Substring(1));
+                    }
+                    string field_header_template = sss[0];
+                    // Text and [Field] and [Another_Field]
+                    int i = 0;
+                    while (i < field_header_template.Length && field_header_template.IndexOf("[", i, StringComparison.Ordinal) >= 0)
+                    {
+                        int i0 = field_header_template.IndexOf("[", i, StringComparison.Ordinal);
+                        int i1 = field_header_template.IndexOf("]", i, StringComparison.Ordinal);
+                        if (i1 < i0)
+                        {
+                            i++;
+                            continue;
+                        }
+                        string field = field_header_template.Substring(i0 + 1, i1 - i0 - 1);
+                        if (_tbl2.Columns.Contains(field))
+                        {
+                            field_header_template = field_header_template.Replace("[" + field + "]",
+                                ObjectAndString.ObjectToString(tbl2_row[field]));
+                        }
+                        i = i1;
+                    }
+
+                    viewText += string.Format("   {0} {1}", field_header_template, ObjectAndString.NumberToString
+                        (tbl2_row[value_field], decimal_place, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR));
+                }
+
+                if (viewText.Length > 3) viewText = viewText.Substring(3);
+                lblSummary.Text = viewText;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ViewFooter", ex);
+            }
+        }
         
         private void dataGridView1_CellDoubleClick(object sender, MouseEventArgs mouseEventArgs)
         {
@@ -1392,6 +1523,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 treeListViewAuto1.Left = grbDieuKienLoc.Left;
 
                 treeListViewAuto1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+				
+				lblSummary.Left = treeListViewAuto1.Left;
+                lblSummary.Top = treeListViewAuto1.Bottom + 26;
+                crystalReportViewer1.Visible = false;
             }
             else
             {
@@ -1400,6 +1535,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 treeListViewAuto1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - 5;
                 treeListViewAuto1.Width = crystalReportViewer1.Width;
                 treeListViewAuto1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+
+                lblSummary.Left = treeListViewAuto1.Left;
+                lblSummary.Top = treeListViewAuto1.Bottom + 26;
+                crystalReportViewer1.Visible = true;
             }
         }
 
@@ -1437,6 +1576,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         {
                             selectedMaCt = "IXB"; // phiếu xuất điều chuyển
                             selectedSttRec = selectedSttRec.Left(10) + selectedMaCt;
+                        }
+                        else if (",AP1,POA,POB,POC,".Contains(selectedMaCt) && treeListViewAuto1.SelectedItemData.ContainsKey("STT_REC_PN"))
+                        {
+                            selectedSttRec = treeListViewAuto1.SelectedItemData["STT_REC_PN"].ToString().Trim();
                         }
 
                         if (!string.IsNullOrEmpty(selectedSttRec) && !string.IsNullOrEmpty(selectedMaCt))
@@ -1495,11 +1638,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                     view.FilterControl.SetParentRow(treeListViewAuto1.SelectedItemData);
 
-                    var f = new V6Form();
-                    f.WindowState = FormWindowState.Maximized;
-                    f.Controls.Add(view);
-                    view.btnNhan_Click(null, null);
-                    f.ShowDialog(this);
+                    view.AutoClickNhan = true;
+                    view.ShowToForm(this, "Chi tiết", true);
+
                     SetStatus2Text();
                 }
             }
@@ -1515,11 +1656,24 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 new ChartReportForm(FilterControl, ReportFileFullF7, _tbl1, _tbl2.Copy(), ReportDocumentParameters)
                     .ShowDialog(this);
-                SetStatus2Text();
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".XuLyVeDoThiF7: " + ex.Message);
+            }
+            SetStatus2Text();
+        }
+
+        protected override void ClearMyVars()
+        {
+            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc0 };
+            foreach (ReportDocument rpDoc in list)
+            {
+                if (rpDoc != null)
+                {
+                    rpDoc.Close();
+                    rpDoc.Dispose();
+                }
             }
         }
 
@@ -1552,30 +1706,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             return true;
         }
 
+        public override void SetStatus2Text()
+        {
+            FilterControl.SetStatus2Text();
+        }
+
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.F5 && FilterControl.F5)
             {
                 if(treeListViewAuto1.Focused) XuLyXemChiTietF5();
             }
-        }
-
-        protected override void ClearMyVars()
-        {
-            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc0 };
-            foreach (ReportDocument rpDoc in list)
-            {
-                if (rpDoc != null)
-                {
-                    rpDoc.Close();
-                    rpDoc.Dispose();
-                }
-            }
-        }
-
-        public override void SetStatus2Text()
-        {
-            FilterControl.SetStatus2Text();
         }
 
         private void ReportTreeViewBase_VisibleChanged(object sender, EventArgs e)
@@ -1614,13 +1755,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                ShowMainMessage(string.Format("{0}: {1}", V6Text.Text("LOIIN"), ex.Message));
-                this.WriteExLog(GetType() + ".btnIn_Click", ex);
+                this.ShowErrorException(GetType() + ".btnIn_Click " + V6Text.Text("LOIIN"), ex);
             }
         }
 
-        private bool _updateDataRow;
-        private void cboMauIn_SelectedIndexChanged (object sender, EventArgs e)
+        private bool _updateDataRow = false;
+        private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
@@ -1729,7 +1869,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var f = new FormRptEditor();
                 f.rptPath = ReportFileFull;
                 f.ShowDialog(this);
-                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1771,10 +1910,63 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             return result;
         }
 
+        private void exportToExcelMenu_Click(object sender, EventArgs e)
+        {
+            if (_tbl1 == null)
+            {
+                ShowMainMessage(V6Text.NoData);
+                return;
+            }
+            try
+            {
+                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, GetExportFileName(), txtReportTitle.Text);
+
+                if (V6Options.AutoOpenExcel)
+                {
+                    V6ControlFormHelper.OpenFileProcess(fileName);
+                }
+                else
+                {
+                    this.ShowInfoMessage(V6Text.ExportFinish);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".exportToExcelMenu_Click " + ReportFileFull, ex);
+            }
+        }
+
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
             V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl1, _tbl2, ReportDocumentParameters,
                 MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+        }
+
+        private void exportToExcelView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string excelColumns = Report_GRDSV1;
+                string excelHeaders = V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1;
+                if (string.IsNullOrEmpty(excelColumns) || string.IsNullOrEmpty(excelHeaders))
+                {
+                    exportToExcelMenu_Click(sender, e);
+                }
+                else
+                {
+                    DataTable data = _tbl1;
+                    //if (dataGridView1.DataSource is DataView)
+                    //{
+                    //    data = ((DataView)dataGridView1.DataSource).ToTable();
+                    //}
+                    V6ControlFormHelper.ExportExcelTemplateD(this, data, _tbl2, "V", ReportDocumentParameters,
+                        MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".ExportToExcelView " + ex.Message);
+            }
         }
 
         private void exportToXmlMenu_Click(object sender, EventArgs e)
@@ -1811,7 +2003,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void viewDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void viewDataMenu_Click(object sender, EventArgs e)
         {
             treeListViewAuto1.ViewDataToNewForm();
         }
@@ -1821,33 +2013,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             LoadComboboxSource();
         }
 
-        private void exportToExcelView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string excelColumns = Report_GRDSV1;
-                string excelHeaders = V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1;
-                if (string.IsNullOrEmpty(excelColumns) || string.IsNullOrEmpty(excelHeaders))
-                {
-                    exportToExcelMenu_Click(sender, e);
-                }
-                else
-                {
-                    DataTable data = _tbl1;
-                    //if (dataGridView1.DataSource is DataView)
-                    //{
-                    //    data = ((DataView)dataGridView1.DataSource).ToTable();
-                    //}
-                    V6ControlFormHelper.ExportExcelTemplateD(this, data, _tbl2, "V", ReportDocumentParameters,
-                        MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".ExportToExcelView " + ex.Message);
-            }
-        }
-
+        
         private void panel1_Leave(object sender, EventArgs e)
         {
             //btnNhan.Focus();
@@ -1867,6 +2033,31 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Export PDF", ex);
+            }
+        }
+
+        private void btnSuaLine_Click(object sender, EventArgs e)
+        {
+            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                var title = V6Setting.IsVietnamese ? "Sửa báo cáo động" : "Edit dynamic report";
+                var f = new DanhMucView(ItemID, title, "Alreport", "ma_bc='" + _program + "'",
+                    V6TableHelper.GetDefaultSortField(V6TableName.Alreport), new AldmConfig());
+                f.EnableAdd = false;
+                f.EnableCopy = false;
+                f.EnableDelete = false;
+                f.EnableFullScreen = false;
+
+                f.ShowToForm(this, title);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
             }
         }
 

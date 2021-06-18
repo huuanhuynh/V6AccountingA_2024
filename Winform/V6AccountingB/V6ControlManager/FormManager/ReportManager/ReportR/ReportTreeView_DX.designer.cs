@@ -3,7 +3,7 @@ using V6Controls.Controls;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
-    partial class ReportTreeViewBase
+    partial class ReportTreeView_DX
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTreeViewBase));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTreeView_DX));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcelViewMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +52,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtReportTitle = new System.Windows.Forms.TextBox();
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.treeListViewAuto1 = new V6Controls.Controls.TreeView.TreeListViewAuto();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
@@ -76,6 +75,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
             this.btnSuaMau = new V6Controls.Controls.V6FormButton();
             this.lblSummary = new System.Windows.Forms.Label();
+            this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
+            this.exportEXCELXtraMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportEXCELDataMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToHTMLMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToWordMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
             this.panel0.SuspendLayout();
@@ -93,10 +99,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.printGridMenu,
             this.viewDataMenu,
             this.exportToPdfMenu,
+            this.exportToWordMenu,
             this.viewInvoiceInfoMenu,
-            this.viewListInfoMenu});
+            this.viewListInfoMenu,
+            this.exportEXCELXtraMenu,
+            this.exportEXCELDataMenu,
+            this.exportToHTMLMenu,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 202);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 334);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -194,7 +206,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.label2.Location = new System.Drawing.Point(637, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
-            this.label2.TabIndex = 9;
+            this.label2.TabIndex = 11;
             this.label2.Text = "Người lập biểu 1/2";
             // 
             // txtM_TEN_NLB2
@@ -204,7 +216,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.txtM_TEN_NLB2.Location = new System.Drawing.Point(854, 38);
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
             this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
-            this.txtM_TEN_NLB2.TabIndex = 12;
+            this.txtM_TEN_NLB2.TabIndex = 13;
             // 
             // txtM_TEN_NLB
             // 
@@ -213,7 +225,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.txtM_TEN_NLB.Location = new System.Drawing.Point(736, 38);
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
             this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
-            this.txtM_TEN_NLB.TabIndex = 10;
+            this.txtM_TEN_NLB.TabIndex = 12;
             // 
             // label4
             // 
@@ -244,28 +256,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.txtReportTitle.Size = new System.Drawing.Size(868, 20);
             this.txtReportTitle.TabIndex = 2;
             // 
-            // crystalReportViewer1
-            // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.DisplayStatusBar = false;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(307, 425);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ShowCloseButton = false;
-            this.crystalReportViewer1.ShowCopyButton = false;
-            this.crystalReportViewer1.ShowGroupTreeButton = false;
-            this.crystalReportViewer1.ShowLogo = false;
-            this.crystalReportViewer1.ShowParameterPanelButton = false;
-            this.crystalReportViewer1.ShowRefreshButton = false;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(662, 224);
-            this.crystalReportViewer1.TabIndex = 14;
-            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.crystalReportViewer1.DoubleClick += new System.EventHandler(this.crystalReportViewer1_DoubleClick);
-            // 
             // treeListViewAuto1
             // 
             this.treeListViewAuto1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -281,7 +271,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.treeListViewAuto1.Name = "treeListViewAuto1";
             this.treeListViewAuto1.Size = new System.Drawing.Size(662, 338);
             this.treeListViewAuto1.SmallImageList = this.imageList1;
-            this.treeListViewAuto1.TabIndex = 13;
+            this.treeListViewAuto1.TabIndex = 14;
             this.treeListViewAuto1.UseCompatibleStateImageBehavior = false;
             this.treeListViewAuto1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             this.treeListViewAuto1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_CellDoubleClick);
@@ -501,7 +491,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaTTMauBC.Location = new System.Drawing.Point(366, 33);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(30, 30);
-            this.btnSuaTTMauBC.TabIndex = 5;
+            this.btnSuaTTMauBC.TabIndex = 6;
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
             // 
@@ -512,7 +502,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC.Location = new System.Drawing.Point(396, 33);
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(30, 30);
-            this.btnThemMauBC.TabIndex = 6;
+            this.btnThemMauBC.TabIndex = 7;
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
@@ -524,7 +514,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa.Location = new System.Drawing.Point(307, 42);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
-            this.chkHienTatCa.TabIndex = 8;
+            this.chkHienTatCa.TabIndex = 5;
             this.chkHienTatCa.Text = "All";
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
@@ -539,7 +529,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnExport3.Name = "btnExport3";
             this.btnExport3.Size = new System.Drawing.Size(50, 30);
             this.btnExport3.SplitMenuStrip = this.contextMenuStrip1;
-            this.btnExport3.TabIndex = 18;
+            this.btnExport3.TabIndex = 10;
             this.btnExport3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
@@ -551,7 +541,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaLine.Location = new System.Drawing.Point(456, 33);
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(30, 30);
-            this.btnSuaLine.TabIndex = 20;
+            this.btnSuaLine.TabIndex = 9;
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
             // 
@@ -563,7 +553,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaMau.Location = new System.Drawing.Point(426, 33);
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(30, 30);
-            this.btnSuaMau.TabIndex = 19;
+            this.btnSuaMau.TabIndex = 8;
             this.btnSuaMau.UseVisualStyleBackColor = true;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
             // 
@@ -575,14 +565,74 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.lblSummary.Location = new System.Drawing.Point(307, 405);
             this.lblSummary.Name = "lblSummary";
             this.lblSummary.Size = new System.Drawing.Size(126, 15);
-            this.lblSummary.TabIndex = 21;
+            this.lblSummary.TabIndex = 15;
             this.lblSummary.Text = "Summary FOOTER";
             this.lblSummary.Visible = false;
             // 
-            // ReportTreeViewBase
+            // documentViewer1
+            // 
+            this.documentViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.documentViewer1.IsMetric = false;
+            this.documentViewer1.Location = new System.Drawing.Point(307, 421);
+            this.documentViewer1.LookAndFeel.SkinName = "Seven Classic";
+            this.documentViewer1.Name = "documentViewer1";
+            this.documentViewer1.RequestDocumentCreation = false;
+            this.documentViewer1.Size = new System.Drawing.Size(662, 224);
+            this.documentViewer1.Status = "V6SOFT";
+            this.documentViewer1.TabIndex = 16;
+            this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
+            // 
+            // exportEXCELXtraMenu
+            // 
+            this.exportEXCELXtraMenu.Name = "exportEXCELXtraMenu";
+            this.exportEXCELXtraMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportEXCELXtraMenu.Text = "Export EXCEL (Xtra)";
+            this.exportEXCELXtraMenu.Click += new System.EventHandler(this.exportEXCELXtraMenu_Click);
+            // 
+            // exportEXCELDataMenu
+            // 
+            this.exportEXCELDataMenu.Name = "exportEXCELDataMenu";
+            this.exportEXCELDataMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportEXCELDataMenu.Text = "Export EXCEL (Data)";
+            this.exportEXCELDataMenu.Click += new System.EventHandler(this.exportEXCELDataMenu_Click);
+            // 
+            // exportToHTMLMenu
+            // 
+            this.exportToHTMLMenu.Name = "exportToHTMLMenu";
+            this.exportToHTMLMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportToHTMLMenu.Text = "Export to HTML";
+            this.exportToHTMLMenu.Click += new System.EventHandler(this.exportReportToHtmlMenu_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.AccessibleDescription = "INVOICEM00048";
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem1.Text = "Xem thông tin chứng từ";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.AccessibleDescription = "INVOICEM00049";
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem2.Text = "Xem thông tin danh mục";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.viewListInfoMenu_Click);
+            // 
+            // exportToWordMenu
+            // 
+            this.exportToWordMenu.Name = "exportToWordMenu";
+            this.exportToWordMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportToWordMenu.Text = "Export to Word";
+            this.exportToWordMenu.Click += new System.EventHandler(this.exportToWordMenu_Click);
+            // 
+            // ReportTreeView_DX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.documentViewer1);
             this.Controls.Add(this.lblSummary);
             this.Controls.Add(this.btnSuaLine);
             this.Controls.Add(this.btnSuaMau);
@@ -597,14 +647,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtReportTitle);
-            this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.treeListViewAuto1);
             this.Controls.Add(this.grbDieuKienLoc);
             this.FilterType = "4";
-            this.Name = "ReportTreeViewBase";
+            this.Name = "ReportTreeView_DX";
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);
-            this.VisibleChanged += new System.EventHandler(this.ReportTreeViewBase_VisibleChanged);
+            this.VisibleChanged += new System.EventHandler(this.ReportTreeView_DX_VisibleChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);
             this.panel0.ResumeLayout(false);
@@ -635,7 +684,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.RadioButton rTiengViet;
         private System.Windows.Forms.RadioButton rEnglish;
         private System.Windows.Forms.RadioButton rBothLang;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         private System.Windows.Forms.TextBox txtReportTitle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -661,6 +709,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private V6FormButton btnSuaLine;
         private V6FormButton btnSuaMau;
         private Label lblSummary;
+        private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer1;
+        private ToolStripMenuItem exportEXCELXtraMenu;
+        private ToolStripMenuItem exportEXCELDataMenu;
+        private ToolStripMenuItem exportToHTMLMenu;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem exportToWordMenu;
 
 
 

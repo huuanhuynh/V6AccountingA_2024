@@ -14,8 +14,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         #region Biến toàn cục
 
         private IDictionary<string, object> _data1, _data2;
-        private string _stt_rec, _text, _uid;
-        
         public event HandleResultData UpdateSuccessEvent;
         protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {

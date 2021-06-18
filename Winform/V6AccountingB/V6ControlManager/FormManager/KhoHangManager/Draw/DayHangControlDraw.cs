@@ -4,8 +4,6 @@ using System.Data;
 using System.Drawing;
 using System.Reflection;
 using HaUtility.Helper;
-using V6ControlManager.FormManager.ReportManager.ReportR;
-using V6Controls;
 using V6Controls.Forms;
 
 namespace V6ControlManager.FormManager.KhoHangManager.Draw
@@ -15,9 +13,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
     /// </summary>
     public class DayHangControlDraw
     {
-        private Point _p0;
         private SortedList<string, KeHangControlDraw> _listKeHang = new SortedList<string, KeHangControlDraw>();
-        private SortedDictionary<string, string> _columnsCode = new SortedDictionary<string, string>(); 
         public KhoParams KhoParams { get; set; }
         public DataRow DataRow { get; set; }
         /// <summary>
@@ -50,8 +46,6 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             //MA_KHO = row["MA_KHO"].ToString().Trim();
             //TYPE = row["TYPE"].ToString().Trim();
             //ID_DAY = MA_KHO + CODE_DAY;
-            v6VeticalLable1_HideText = ID_DAY;
-            v6VeticalLable1_ShowText = ID_DAY;
             //AddRow(row);
         }
 
@@ -89,46 +83,6 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             }
         }
 
-        //private void Resort(int oneHeight)
-        //{
-        //    oneHeight += 0;
-        //    try
-        //    {
-        //        var maxTop = _listKeHang.Count*oneHeight - oneHeight;
-        //        for (int i = 0; i < _listKeHang.Count; i++)
-        //        {
-        //            var keHang = _listKeHang.Values[i];
-        //            keHang.Top = maxTop - i*oneHeight;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        V6ControlFormHelper.WriteExLog(GetType() + ".Resort", ex);
-        //    }
-        //}
-
-        private SortedDictionary<string, object> plistData;
-        private int v6VeticalLable1_Top;
-        private int v6VeticalLable1_Right;
-        private string v6VeticalLable1_ShowText;
-        private string v6VeticalLable1_HideText;
-        private Point keHang_Location;
-        
-
-        private void DoPrint()
-        {
-            try
-            {
-                var f = new ReportRViewBase("m_itemId",  KhoParams.Program + "AF7", KhoParams.Program + "AF7", KhoParams.ReportFile  + "AF7", "caption", "2", "", "", "");
-                f.FilterControl.SetData(plistData);
-                f.btnNhan_Click(null, null);
-                f.ShowToForm(null, GetType() + "_F7");
-            }
-            catch (Exception ex)
-            {
-                V6ControlFormHelper.ShowErrorMessage(GetType() + ".DoPrint: " + ex.Message);
-            }
-        }
 
         public void ClearDataVitriVaTu()
         {
@@ -168,16 +122,6 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             DrawBorder(graphics, basePoint);
         }
 
-        /// <summary>
-        /// Đường viền của dãy hàng. được tạo lúc khởi tạo
-        /// </summary>
-        Point[] borderPolygon =
-            {
-                new Point(1,1),
-                new Point(100,1),
-                new Point(100,100),
-                new Point(1,100),
-            };
         private void DrawBorder(Graphics graphics, Point basePoint)
         {
             Point[] drawPolygon =

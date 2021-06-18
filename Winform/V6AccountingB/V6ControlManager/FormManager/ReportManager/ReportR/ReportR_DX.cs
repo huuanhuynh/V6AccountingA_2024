@@ -750,7 +750,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 documentViewer1.InvisibleTag();
                 if (no_print)
                 {
-                    while (contextMenuStrip1.Items.Count>0)
+                    while (contextMenuStrip1.Items.Count > 0)
                     {
                         contextMenuStrip1.Items.RemoveAt(0);
                     }
@@ -1003,6 +1003,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>
+		/// <param name="rpDoc"></param>
         private void SetAllReportParams(XtraReport repx)
         {
             ReportDocumentParameters = new SortedDictionary<string, object>();
@@ -1056,7 +1057,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFullDX + " " + errors);
             }
-
         }
 
 
@@ -1833,6 +1833,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
             }
+            SetStatus2Text();
         }
 
         void f_AfterInitControl(object sender, EventArgs e)
@@ -1896,6 +1897,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorMessage(GetType() + ".ThemMauBC_Click: " + ex.Message);
             }
+            SetStatus2Text();
         }
 
         private void btnSuaMau_Click(object sender, EventArgs e)

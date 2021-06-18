@@ -24,6 +24,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 TxtMa_kho.SetInitFilter("LO_YN=1");
                 TxtMa_vt.SetInitFilter("LO_YN=1");
                 TxtMa_vitri.Enabled = false;
+                txtMaVuViec.Enabled = false;
 
                 if (V6Options.GetValueNull("M_QLY_TON_QD") == "1")
                 {
@@ -79,6 +80,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 var data = TxtMa_vt.Data;
 
                 TxtMa_vitri.Enabled = ObjectAndString.ObjectToInt(data["VITRI_YN"]) == 1;
+                txtMaVuViec.Enabled = ObjectAndString.ObjectToInt(data["VV_YN"]) == 1;
                 TxtMa_lo.SetInitFilter("ma_vt='" + TxtMa_vt.Text.Trim() + "'");
             }
             catch (Exception ex)

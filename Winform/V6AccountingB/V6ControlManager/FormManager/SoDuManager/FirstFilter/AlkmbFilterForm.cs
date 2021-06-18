@@ -2,18 +2,12 @@
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
-using V6Structs;
 
 namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
 {
     public partial class AlkmbFilterForm : V6Form
     {
-        //public delegate void FilterOkHandle(string query);
-        //public event FilterOkHandle FilterOkClick;
-        
         public string QueryString { get; set; }
-        private V6TableStruct _structTable;
-        private string[] _fields;
 
         public AlkmbFilterForm()
         {
