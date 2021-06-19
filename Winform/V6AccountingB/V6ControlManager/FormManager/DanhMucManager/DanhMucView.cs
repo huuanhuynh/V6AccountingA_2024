@@ -1719,6 +1719,33 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
+                if (_aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("F4_RELOAD") && _aldmConfig.EXTRA_INFOR["F4_RELOAD"].Trim() != "")
+                {
+                    // F4_RELOAD:FIELD1,FIELD2
+                    string[] sss = ObjectAndString.SplitStringBy(_aldmConfig.EXTRA_INFOR["F4_RELOAD"], ':');
+                    string[] keys_field = sss[0].ToUpper().Split(',');
+                    V6TableStruct structTable = V6BusinessHelper.GetTableStruct(LOAD_TABLE);
+                    IDictionary<string, object> keys = new Dictionary<string, object>();
+                    foreach (string KEY in keys_field)
+                    {
+                        if (data.ContainsKey(KEY))
+                        {
+                            keys[KEY] = data[KEY];
+                        }
+                        else
+                        {
+                            goto Default_Reload;
+                        }
+                    }
+
+                    // FIELD1 like 'Value1%' and FIELD2 like 'Value2%'
+                    string new_query = SqlGenerator.GenWhere2_oper(structTable, keys, "start");
+                    FilterFilterApplyEvent(new_query);
+                    
+                    return;
+                }
+
+                Default_Reload:
                 ReLoad();
             }
             catch (Exception ex)
@@ -1880,6 +1907,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
         }
 
+        /// <summary>
+        /// Thay đổi search query và tải lại ở trang 1.
+        /// </summary>
+        /// <param name="query">Câu truy vấn.</param>
         void FilterFilterApplyEvent(string query)
         {
             _search = query;

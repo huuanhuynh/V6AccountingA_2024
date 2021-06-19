@@ -14,11 +14,11 @@ namespace V6ControlManager.FormManager.SoDuManager
     {
         public delegate void FilterOkHandle(string query);
 
-        public event FilterOkHandle FilterOkClick;
+        public event FilterOkHandle FilterApplyEvent;
 
         protected virtual void CallFilterOkClick()
         {
-            FilterOkHandle handler = FilterOkClick;
+            FilterOkHandle handler = FilterApplyEvent;
             if (handler != null) handler(QueryString);
         }
 

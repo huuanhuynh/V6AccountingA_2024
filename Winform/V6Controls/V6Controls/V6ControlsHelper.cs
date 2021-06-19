@@ -251,7 +251,8 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show("InvokeMethodDynamic " + ex.Message);
+                V6Message.Show((V6Setting.IsVietnamese ? "Lỗi thực hiện hàm bổ sung " : "Error Invoke Dynamic Method ") + methodName + "\n" + ex.Message,
+                    (All_Objects.ContainsKey("thisForm") ? All_Objects["thisForm"] : null) as Control);
             }
 
             return null;

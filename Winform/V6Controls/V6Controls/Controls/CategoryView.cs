@@ -11,6 +11,7 @@ using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -1152,7 +1153,41 @@ namespace V6Controls.Controls
         //Reload
         private void f_InsertSuccess(IDictionary<string, object> data)
         {
-            ReLoad();
+            try
+            {
+                if (_aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("F4_RELOAD") && _aldmConfig.EXTRA_INFOR["F4_RELOAD"].Trim() != "")
+                {
+                    // F4_RELOAD:FIELD1,FIELD2
+                    string[] sss = ObjectAndString.SplitStringBy(_aldmConfig.EXTRA_INFOR["F4_RELOAD"], ':');
+                    string[] keys_field = sss[0].ToUpper().Split(',');
+                    V6TableStruct structTable = V6BusinessHelper.GetTableStruct(LOAD_TABLE);
+                    IDictionary<string, object> keys = new Dictionary<string, object>();
+                    foreach (string KEY in keys_field)
+                    {
+                        if (data.ContainsKey(KEY))
+                        {
+                            keys[KEY] = data[KEY];
+                        }
+                        else
+                        {
+                            goto Default_Reload;
+                        }
+                    }
+
+                    // FIELD1 like 'Value1%' and FIELD2 like 'Value2%'
+                    string new_query = SqlGenerator.GenWhere2_oper(structTable, keys, "start");
+                    FilterFilterApplyEvent(new_query);
+
+                    return;
+                }
+
+                Default_Reload:
+                ReLoad();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".f_InsertSuccess", ex);
+            }
         }
 
         /// <summary>
