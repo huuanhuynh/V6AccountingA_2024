@@ -65,7 +65,7 @@
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
-            this.btnHuy.Location = new System.Drawing.Point(91, 219);
+            this.btnHuy.Location = new System.Drawing.Point(93, 219);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
             this.btnHuy.TabIndex = 6;
@@ -109,11 +109,6 @@
             this.Name = "SoDuFormAddEdit";
             this.Text = "SoDuFormAdd_Edit";
             this.Load += new System.EventHandler(this.FormAdd_Edit_Load);
-            
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.btnInfos, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

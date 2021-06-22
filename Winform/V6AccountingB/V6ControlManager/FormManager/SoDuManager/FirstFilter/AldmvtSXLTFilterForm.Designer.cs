@@ -55,11 +55,14 @@
             this.btnCancel.AccessibleDescription = "FILTERB00008";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(93, 128);
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Location = new System.Drawing.Point(103, 130);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 32);
+            this.btnCancel.Size = new System.Drawing.Size(88, 40);
             this.btnCancel.TabIndex = 2;
+            this.btnCancel.Tag = "Escape";
             this.btnCancel.Text = "Đóng";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -67,11 +70,14 @@
             // 
             this.btnFilter.AccessibleDescription = "FILTERB00007";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFilter.Location = new System.Drawing.Point(12, 128);
+            this.btnFilter.Image = global::V6ControlManager.Properties.Resources.Apply;
+            this.btnFilter.Location = new System.Drawing.Point(12, 130);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(75, 32);
+            this.btnFilter.Size = new System.Drawing.Size(88, 40);
             this.btnFilter.TabIndex = 1;
+            this.btnFilter.Tag = "Return, Control";
             this.btnFilter.Text = "&Nhận";
+            this.btnFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
@@ -92,7 +98,7 @@
             this.panel1.Controls.Add(this.txtMaSP);
             this.panel1.Location = new System.Drawing.Point(1, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(532, 121);
+            this.panel1.Size = new System.Drawing.Size(532, 127);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
@@ -105,7 +111,7 @@
             this.groupBox1.Controls.Add(this.lblFrom);
             this.groupBox1.Location = new System.Drawing.Point(319, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(202, 115);
+            this.groupBox1.Size = new System.Drawing.Size(202, 119);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Copy định mức";
@@ -146,11 +152,13 @@
             // 
             this.btnCopyDinhMuc.AccessibleDescription = "FILTERB00009";
             this.btnCopyDinhMuc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCopyDinhMuc.Image = global::V6ControlManager.Properties.Resources.Copy;
             this.btnCopyDinhMuc.Location = new System.Drawing.Point(69, 75);
             this.btnCopyDinhMuc.Name = "btnCopyDinhMuc";
-            this.btnCopyDinhMuc.Size = new System.Drawing.Size(114, 32);
+            this.btnCopyDinhMuc.Size = new System.Drawing.Size(114, 40);
             this.btnCopyDinhMuc.TabIndex = 4;
             this.btnCopyDinhMuc.Text = "&Copy";
+            this.btnCopyDinhMuc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCopyDinhMuc.UseVisualStyleBackColor = true;
             this.btnCopyDinhMuc.Click += new System.EventHandler(this.btnCopyDinhMuc_Click);
             // 
@@ -226,7 +234,7 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã sản phẩm";
             // 
-            // txtNhomVt3
+            // txtNhomVT3
             // 
             this.txtNhomVT3.AccessibleName = "NH_VT3";
             this.txtNhomVT3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -245,7 +253,7 @@
             this.txtNhomVT3.TabIndex = 7;
             this.txtNhomVT3.VVar = "NH_VT";
             // 
-            // txtNhomVt2
+            // txtNhomVT2
             // 
             this.txtNhomVT2.AccessibleName = "NH_VT2";
             this.txtNhomVT2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -264,7 +272,7 @@
             this.txtNhomVT2.TabIndex = 5;
             this.txtNhomVT2.VVar = "NH_VT";
             // 
-            // txtNhomVt1
+            // txtNhomVT1
             // 
             this.txtNhomVT1.AccessibleName = "NH_VT1";
             this.txtNhomVT1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -283,7 +291,7 @@
             this.txtNhomVT1.TabIndex = 3;
             this.txtNhomVT1.VVar = "NH_VT";
             // 
-            // txtMaSp
+            // txtMaSP
             // 
             this.txtMaSP.AccessibleName = "MA_SP";
             this.txtMaSP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -308,7 +316,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(534, 163);
+            this.ClientSize = new System.Drawing.Size(534, 175);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.panel1);
@@ -320,12 +328,9 @@
             this.MinimumSize = new System.Drawing.Size(500, 200);
             this.Name = "AldmvtSXLTFilterForm";
             this.ShowInTaskbar = false;
+            this.Tag = "Return, Control";
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.btnFilter, 0);
-            this.Controls.SetChildIndex(this.btnCancel, 0);
-            
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

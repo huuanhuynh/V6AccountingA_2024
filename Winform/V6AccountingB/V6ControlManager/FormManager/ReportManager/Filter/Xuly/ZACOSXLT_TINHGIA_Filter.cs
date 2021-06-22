@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Init;
 using V6Tools.V6Convert;
@@ -23,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 dateNgay_ct1.SetValue(V6Setting.M_SV_DATE.AddMonths(-1));
                 dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
-                LoadListBoxData();
+                //LoadListBoxData();
                 F9 = true;
                 F7 = true;
             }
@@ -35,7 +36,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void ZACOSXLT_TINHGIA_Filter_Load(object sender, EventArgs e)
         {
-            dateNgay_ct1.Focus();
+            try
+            {
+                dateNgay_ct1.Focus();
+                LoadListBoxData();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ZACOSXLT_TINHGIA_Filter_Load", ex);
+            }
         }
 
         /// <summary>
@@ -79,9 +88,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void LoadListBoxData()
         {
             //acosxlt_proc
+            string report_proc = "";
+            XuLyBase parent = FindParent<XuLyBase>() as XuLyBase;
+            if (parent != null) report_proc = parent._reportProcedure;
             listBox1.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
             listBox1.ValueMember = "Proc";
-            listBox1.DataSource = V6BusinessHelper.Select("acosxlt_proc", "", "Status='1'", "", "Stt").Data;
+            listBox1.DataSource = V6BusinessHelper.Select("acosxlt_proc", "", string.Format("Status='1' and MA_BC0='{0}'", report_proc), "", "Stt").Data;
             listBox1.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
             listBox1.ValueMember = "Proc";
         }

@@ -40,11 +40,14 @@
             this.btnCancel.AccessibleDescription = "V6YEARR00002";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(100, 67);
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Location = new System.Drawing.Point(100, 61);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(88, 32);
+            this.btnCancel.Size = new System.Drawing.Size(88, 40);
             this.btnCancel.TabIndex = 3;
+            this.btnCancel.Tag = "Escape";
             this.btnCancel.Text = "Đóng";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -52,11 +55,14 @@
             // 
             this.btnFilter.AccessibleDescription = "V6YEARR00001";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFilter.Location = new System.Drawing.Point(12, 67);
+            this.btnFilter.Image = global::V6ControlManager.Properties.Resources.Apply;
+            this.btnFilter.Location = new System.Drawing.Point(12, 61);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(88, 32);
+            this.btnFilter.Size = new System.Drawing.Size(88, 40);
             this.btnFilter.TabIndex = 2;
+            this.btnFilter.Tag = "Return, Control";
             this.btnFilter.Text = "&Nhận";
+            this.btnFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
@@ -119,11 +125,6 @@
             this.ShowInTaskbar = false;
             this.Text = "Lọc năm";
             this.Load += new System.EventHandler(this.FilterForm_Load);
-            
-            this.Controls.SetChildIndex(this.btnFilter, 0);
-            this.Controls.SetChildIndex(this.txtYear, 0);
-            this.Controls.SetChildIndex(this.btnCancel, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

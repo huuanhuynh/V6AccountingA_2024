@@ -44,6 +44,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 40);
             this.btnCancel.TabIndex = 1;
+            this.btnCancel.Tag = "Escape";
             this.btnCancel.Text = "&Hủy";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -90,10 +91,6 @@
             this.Name = "SoDuFilterForm";
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.btnFilter, 0);
-            this.Controls.SetChildIndex(this.btnCancel, 0);
-            
             this.ResumeLayout(false);
 
         }

@@ -46,11 +46,14 @@
             this.btnCancel.AccessibleDescription = "FILTERB00008";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(93, 127);
+            this.btnCancel.Image = global::V6ControlManager.Properties.Resources.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(103, 117);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 32);
+            this.btnCancel.Size = new System.Drawing.Size(88, 40);
             this.btnCancel.TabIndex = 2;
+            this.btnCancel.Tag = "Escape";
             this.btnCancel.Text = "Đóng";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -58,11 +61,14 @@
             // 
             this.btnFilter.AccessibleDescription = "FILTERB00007";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFilter.Location = new System.Drawing.Point(12, 127);
+            this.btnFilter.Image = ((System.Drawing.Image)(resources.GetObject("btnFilter.Image")));
+            this.btnFilter.Location = new System.Drawing.Point(12, 117);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(75, 32);
+            this.btnFilter.Size = new System.Drawing.Size(88, 40);
             this.btnFilter.TabIndex = 1;
+            this.btnFilter.Tag = "Return, Control";
             this.btnFilter.Text = "&Nhận";
+            this.btnFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
@@ -80,7 +86,7 @@
             this.panel1.Controls.Add(this.txtMaDVCS);
             this.panel1.Location = new System.Drawing.Point(1, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(532, 120);
+            this.panel1.Size = new System.Drawing.Size(532, 110);
             this.panel1.TabIndex = 0;
             // 
             // v6Label2
@@ -141,7 +147,7 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Mã đơn vị";
             // 
-            // txtMaDvcs
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -180,10 +186,6 @@
             this.ShowInTaskbar = false;
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.btnFilter, 0);
-            this.Controls.SetChildIndex(this.btnCancel, 0);
-            
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
