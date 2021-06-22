@@ -74,18 +74,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                var AlbcData = V6BusinessHelper.Select(V6TableName.Albc, AlbcKeys, "*").Data;
-                if (AlbcData.Rows.Count == 0) return;
-
-                var dataRow = AlbcData.Rows[0];
-                var xml = dataRow["MMETHOD"].ToString().Trim();
-                if (xml == "") return;
+                var _albcConfig = ConfigManager.GetAlbcConfig(_Ma_File, MAU, LAN, ReportFile);
+                if (_albcConfig.NoInfo) return;
+                if (_albcConfig.MMETHOD.Trim() == "") return;
+                
                 DataSet ds = new DataSet();
-                ds.ReadXml(new StringReader(xml));
+                ds.ReadXml(new StringReader(_albcConfig.MMETHOD));
                 if (ds.Tables.Count <= 0) return;
-
                 var data = ds.Tables[0];
-
                 string using_text = "";
                 string method_text = "";
                 foreach (DataRow event_row in data.Rows)

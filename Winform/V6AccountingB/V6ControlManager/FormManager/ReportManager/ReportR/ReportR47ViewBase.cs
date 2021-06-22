@@ -1970,7 +1970,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 All_Objects["thisForm"] = this;
                 All_Objects["FilterControl"] = FilterControl;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
-                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);
+                //QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);
+                FilterControl.MadeFilterControls(_program, All_Objects, toolTipV6FormControl);
 
                 btnNhan_Click(null, null);
             }

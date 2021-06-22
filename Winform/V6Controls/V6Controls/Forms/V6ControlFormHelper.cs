@@ -8997,6 +8997,22 @@ namespace V6Controls.Forms
                         defaultValue = V6Options.GetValueNull(d_f[1]);
                     }
                 }
+                else if (defaultValue.ToString() == "M_NGAY_CT1")
+                {
+                    return V6Setting.M_ngay_ct1;
+                }
+                else if (defaultValue.ToString() == "M_NGAY_CT2")
+                {
+                    return V6Setting.M_ngay_ct2;
+                }
+                else if (defaultValue.ToString() == "M_USER_ID")
+                {
+                    return V6Login.UserId;
+                }
+                else if (defaultValue.ToString().StartsWith("M_"))
+                {
+                    return defaultValue;
+                }
             }
             return defaultValue;
         }

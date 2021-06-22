@@ -11,6 +11,7 @@ using V6AccountingBusiness;
 using V6ControlManager.FormManager.ReportManager.ReportD;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6ReportControls;
@@ -265,7 +266,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (groupBox1 != null)
                     foreach (Control control in groupBox1.Controls)
                     {
-                        if(lineTop < control.Top + 35) lineTop = control.Top + 35;
+                        if (lineTop < control.Top + 35) lineTop = control.Top + 35;
                     }
 
                 foreach (DataRow row in dataALREPORT1.Rows)
@@ -274,7 +275,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     try
                     {
                         string define = row["filter"].ToString().Trim();
-
+                        string define_M = row["filter_M"].ToString().Trim();
+                        var defineInfo = new DefineInfo(define);
+                        var defineInfo_M = new DefineInfo(define_M);
 
                         var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define, toolTip);
                         all_Objects[lineControl0.Name] = lineControl0;
@@ -302,6 +305,33 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             }
                             AddLineControls(lineControl);
                             //panel1.Controls.Add(lineControl);
+                            //Lookup Button
+                            if (defineInfo_M.Visible)
+                            {
+                                LookupButton lButton = new LookupButton();
+                                groupBox1.Controls.Add(lButton);
+                                lButton.ReferenceControl = lineControl0;
+
+                                lButton.Name = "lbt" + defineInfo.Field;
+
+                                lButton.R_DataType = defineInfo_M.R_DataType;
+                                //lButton.R_Value = defineInfo_M.R_Value;
+                                //lButton.R_Vvar = defineInfo_M.R_Vvar;
+                                //lButton.R_Stt_rec = defineInfo_M.R_Stt_rec;
+                                lButton.R_Ma_ct = defineInfo_M.R_Ma_ct;
+
+                                lButton.M_DataType = defineInfo_M.M_DataType;
+                                lButton.M_Value = defineInfo_M.M_Value;
+                                lButton.M_Vvar = defineInfo_M.M_Vvar;
+                                lButton.M_Stt_Rec = defineInfo_M.M_Stt_Rec;
+                                lButton.M_Ma_ct = defineInfo_M.M_Ma_ct;
+
+                                lButton.M_Type = defineInfo_M.M_Type;
+                                //lButton.M_User_id = defineInfo_M.M_User_id;
+                                //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
+
+                                lButton.Visible = defineInfo_M.Visible;
+                            }
 
                             //Giữ lại control ngày.
                             if (lineControl.DefineInfo.DefaultValue == "M_SV_DATE")
@@ -312,11 +342,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             if (lineControl.DefineInfo.DefaultValue == "M_NGAY_CT1")
                             {
                                 lineNgay_ct1 = lineControl;
+                                lineNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
                             }
-
                             if (lineControl.DefineInfo.DefaultValue == "M_NGAY_CT2")
                             {
                                 lineNgay_ct2 = lineControl;
+                                lineNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
                             }
                             //Giu lai tiente, ngonnguBC
                             if (lineControl.DefineInfo.DefaultValue == "M_MAU_BC")
@@ -453,6 +484,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                 }//end for
                             }
 
+                            // Add Description
+                            if (toolTip != null)
+                            {
+                                string des = "" + defineInfo.DescriptionLang(V6Setting.IsVietnamese);
+                                if (des.Trim() != "")
+                                {
+                                    toolTip.SetToolTip(lineControl.InputControl, des);
+                                    toolTip.SetToolTip(lineControl, des);
+                                }
+                            }
                         }
                         else if (lineControl0 is FilterGroup)
                         {
@@ -675,12 +716,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         public List<SqlParameter> GetFilterParameters2()
         {
-            //if (lineNgay_ct1 != null)
-            //    V6Setting.M_ngay_ct1 = ObjectAndString.ObjectToFullDateTime(lineNgay_ct1.ObjectValue);
-            //if (lineNgay_ct2 != null)
-            //    V6Setting.M_ngay_ct2 = ObjectAndString.ObjectToFullDateTime(lineNgay_ct2.ObjectValue);
-
-            
             var parent00 = Parent.Parent.Parent;
             //if (parent00 is ReportD99ViewBase)
             //{
@@ -784,8 +819,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
             if (lineLAN != null)
                 lineLAN.SetValue(LAN);
-            if (lineUserID != null)
-                lineUserID.SetValue(V6Login.UserId);
 
             RadioButton radAnd = GetControlByName("radAnd") as RadioButton;
             var and = true;

@@ -43,7 +43,7 @@ namespace V6ControlManager.FormManager.ReportManager
         /// <param name="program"></param>
         /// <param name="all_Objects">sẽ được gán thêm filterControl và các line.NAME, các eventArgs (sender và e).</param>
         /// <param name="toolTip">Đối tượng toolTip trên Form</param>
-        public static void MadeFilterControls(ReportFilter44Base filterControl, string program,
+        public static void MadeFilterControls0(ReportFilter44Base filterControl, string program,
             Dictionary<string, object> all_Objects, ToolTip toolTip)
         {
             Type Event_program = null;
@@ -134,17 +134,34 @@ namespace V6ControlManager.FormManager.ReportManager
 
                             //Giữ lại control ngày.
                             if (lineControl.DefineInfo.DefaultValue == "M_NGAY_CT1")
+                            {
                                 filterControl.lineNgay_ct1 = lineControl;
+                                lineControl.SetValue(V6Setting.M_ngay_ct1);
+                            }
+
                             if (lineControl.DefineInfo.DefaultValue == "M_NGAY_CT2")
+                            {
                                 filterControl.lineNgay_ct2 = lineControl;
+                                lineControl.SetValue(V6Setting.M_ngay_ct2);
+                            }
                             //Giu lai tiente, ngonnguBC
                             if (lineControl.DefineInfo.DefaultValue == "M_MAU_BC")
+                            {
                                 filterControl.lineMauBC = lineControl;
+                                //lineControl.SetValue(MAU == "VN" ? "0" : "1");
+                            }
+
                             if (lineControl.DefineInfo.DefaultValue == "M_LAN")
+                            {
                                 filterControl.lineLAN = lineControl;
+                                //lineLAN.SetValue(LAN);
+                            }
                             //Giữ lại user_id
                             if (lineControl.DefineInfo.DefaultValue == "M_USER_ID")
+                            {
                                 filterControl.lineUserID = lineControl;
+                                lineControl.SetValue(V6Login.UserId);
+                            }
 
                             string xml = row["DMETHOD"].ToString().Trim();
                             if (!string.IsNullOrEmpty(xml))

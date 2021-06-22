@@ -39,7 +39,26 @@ namespace V6Init
             }
             return DateTime.MinValue;
         }
-        
+
+        protected SortedDictionary<string, string> _extraInfor = null;
+        protected void GetExtraInfor()
+        {
+            _extraInfor = new SortedDictionary<string, string>();
+            string s = "" + GetString("EXTRA_INFOR");
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+        }
+
         public int GetInt(string name)
         {
             name = name.ToUpper();
@@ -157,6 +176,9 @@ namespace V6Init
         public int FFIXCOLUMN { get { return GetInt("FFIXCOLUMN"); } }
         public string RELOAD_DATA { get { return GetString("RELOAD_DATA"); } }
         public string EXTRA_PARA { get { return GetString("EXTRA_PARA"); } }
+        /// <summary>
+        /// xml code động.
+        /// </summary>
         public string MMETHOD { get { return GetString("MMETHOD"); } }
         public string FIELD_MAX { get { return GetString("FIELD_MAX"); } }
         public int DROP_MAX { get { return GetInt("DROP_MAX"); } }
@@ -164,7 +186,17 @@ namespace V6Init
         public string FIELD_S { get { return GetString("FIELD_S"); } }
         public string VALUE_S { get { return GetString("VALUE_S"); } }
         public string OPER_S { get { return GetString("OPER_S"); } }
-        public string EXTRA_INFOR { get { return GetString("EXTRA_INFOR"); } }
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    GetExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
         public int FROZENV { get { return GetInt("FROZENV"); } }
 
     }
@@ -320,7 +352,17 @@ namespace V6Init
         public string MMETHOD { get { return GetString("MMETHOD"); } }
         public string M_LIST_CT { get { return GetString("M_LIST_CT"); } }
         public string WRITE_LOG { get { return GetString("WRITE_LOG"); } }
-        public string EXTRA_INFOR { get { return GetString("EXTRA_INFOR"); } }
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    GetExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
         public string KEY_AM2TH { get { return GetString("KEY_AM2TH"); } }
 
 
@@ -482,7 +524,7 @@ namespace V6Init
         /// Code form tùy chỉnh cho từng khách hàng của V6 (Dùng form khác cho cùng 1 danh mục).
         /// </summary>
         public string FormCode { get { return GetString("FORMCODE"); } }
-        //public string EXTRA_INFOR { get { return GetString("EXTRA_INFOR"); } }
+        
         public SortedDictionary<string, string> EXTRA_INFOR
         {
             get
@@ -528,29 +570,7 @@ namespace V6Init
             }
         }
 
-        private SortedDictionary<string, string> _extraInfor = null;
-        private void GetExtraInfor()
-        {
-            _extraInfor = new SortedDictionary<string, string>();
-            string s = "" + GetString("EXTRA_INFOR");
-            if (s != "")
-            {
-                var sss = s.Split(';');
-                foreach (string ss in sss)
-                {
-                    //var ss1 = ss.Split(':');
-                    //if (ss1.Length > 1)
-                    //{
-                    //    _extraInfor[ss1[0].ToUpper()] = ss1[1];
-                    //}
-                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
-                    if (indexOf > 0)
-                    {
-                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
-                    }
-                }
-            }
-        }
+        
     }
 
     public class V6FieldInfo
@@ -735,18 +755,19 @@ namespace V6Init
     
     public class ConfigManager
     {
-        public static AlbcConfig GetAlbcConfig(string mau, string lan, string report)
+        public static AlbcConfig GetAlbcConfig(string mau, string lan, string ma_file, string report)
         {
             AlbcConfig lstConfig = null;
             try
             {
                 SqlParameter[] param =
                 {
-                    new SqlParameter("@p0", mau),
-                    new SqlParameter("@p1", lan),
-                    new SqlParameter("@p2", report),
+                    new SqlParameter("@p0", ma_file),
+                    new SqlParameter("@p1", mau),
+                    new SqlParameter("@p2", lan),
+                    new SqlParameter("@p3", report),
                 };
-                var executeResult = V6BusinessHelper.Select("ALBC", "*", "mau=@p0 and lan=@p1 and report=@p2", "", "", param);
+                var executeResult = V6BusinessHelper.Select("ALBC", "*", "ma_file=@p0 and mau=@p1 and lan=@p2 and report=@p3", "", "", param);
                 
                 if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
                 {
