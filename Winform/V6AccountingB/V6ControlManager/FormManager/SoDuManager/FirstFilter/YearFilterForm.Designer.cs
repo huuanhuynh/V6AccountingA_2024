@@ -41,7 +41,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(100, 61);
+            this.btnCancel.Location = new System.Drawing.Point(102, 59);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 40);
             this.btnCancel.TabIndex = 3;
@@ -56,7 +56,7 @@
             this.btnFilter.AccessibleDescription = "V6YEARR00001";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFilter.Image = global::V6ControlManager.Properties.Resources.Apply;
-            this.btnFilter.Location = new System.Drawing.Point(12, 61);
+            this.btnFilter.Location = new System.Drawing.Point(12, 59);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(88, 40);
             this.btnFilter.TabIndex = 2;

@@ -98,7 +98,7 @@
             this.panel1.Controls.Add(this.txtMaSP);
             this.panel1.Location = new System.Drawing.Point(1, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(532, 121);
+            this.panel1.Size = new System.Drawing.Size(532, 126);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
@@ -111,7 +111,7 @@
             this.groupBox1.Controls.Add(this.btnCopyDinhMuc);
             this.groupBox1.Location = new System.Drawing.Point(319, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(202, 115);
+            this.groupBox1.Size = new System.Drawing.Size(202, 121);
             this.groupBox1.TabIndex = 112;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Copy định mức";
@@ -176,11 +176,13 @@
             // 
             this.btnCopyDinhMuc.AccessibleDescription = "FILTERB00009";
             this.btnCopyDinhMuc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCopyDinhMuc.Location = new System.Drawing.Point(77, 75);
+            this.btnCopyDinhMuc.Image = global::V6ControlManager.Properties.Resources.Copy;
+            this.btnCopyDinhMuc.Location = new System.Drawing.Point(77, 76);
             this.btnCopyDinhMuc.Name = "btnCopyDinhMuc";
-            this.btnCopyDinhMuc.Size = new System.Drawing.Size(114, 32);
+            this.btnCopyDinhMuc.Size = new System.Drawing.Size(114, 40);
             this.btnCopyDinhMuc.TabIndex = 1;
             this.btnCopyDinhMuc.Text = "&Copy";
+            this.btnCopyDinhMuc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCopyDinhMuc.UseVisualStyleBackColor = true;
             this.btnCopyDinhMuc.Click += new System.EventHandler(this.btnCopyDinhMuc_Click);
             // 

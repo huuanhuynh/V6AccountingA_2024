@@ -42,8 +42,8 @@
             this.btnCancel.AccessibleDescription = "V6YEARR00002";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::V6ControlManager.Properties.Resources.Close;
-            this.btnCancel.Location = new System.Drawing.Point(102, 69);
+            this.btnCancel.Image = global::V6ControlManager.Properties.Resources.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(102, 68);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 40);
             this.btnCancel.TabIndex = 3;
@@ -58,7 +58,7 @@
             this.btnFilter.AccessibleDescription = "V6YEARR00001";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFilter.Image = global::V6ControlManager.Properties.Resources.Apply;
-            this.btnFilter.Location = new System.Drawing.Point(12, 69);
+            this.btnFilter.Location = new System.Drawing.Point(12, 68);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(88, 40);
             this.btnFilter.TabIndex = 2;
@@ -157,7 +157,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(200, 112);
+            this.ClientSize = new System.Drawing.Size(200, 111);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TxtThang);
             this.Controls.Add(this.label1);

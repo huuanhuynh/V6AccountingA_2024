@@ -730,7 +730,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                         ((SoDuView2)c).AddInitFilter(where);
                                     }
                                 }
-                                if (maCt == "S10" + "") // acosxlt_aldmvt
+                                else if (maCt == "S10" + "") // acosxlt_aldmvt
                                 {
                                     var filterForm = new AldmvtSXLTFilterForm();
                                     if (filterForm.ShowDialog(owner) == DialogResult.OK)
@@ -746,7 +746,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                         ((SoDuView2)c).AddInitFilter(where);
                                     }
                                 }
-                                if (maCt == "S11" + "") // acosxlt_aldmvt
+                                else if (maCt == "S11" + "") // acosxlt_aldmvt
                                 {
                                     var filterForm = new AldmvtSXDHFilterForm();
                                     if (filterForm.ShowDialog(owner) == DialogResult.OK)
