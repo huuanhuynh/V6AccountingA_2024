@@ -79,7 +79,7 @@ namespace V6Controls.Forms.Viewer
             _data = data;
             _tableName = tableName;
             _showFields = showFields;
-            _KEY_FIELDS = ObjectAndString.SplitString(keyFields.ToUpper());
+            _KEY_FIELDS = ObjectAndString.SplitString((""+keyFields).ToUpper());
             
         }
 
@@ -700,7 +700,7 @@ namespace V6Controls.Forms.Viewer
             updateFieldList = new List<string>();
             if(CheckUpdateField(UPDATE_FIELD)) XuLyCongThucTinhToan();
             
-            if(_updateDatabase) UpdateData(e.RowIndex, e.ColumnIndex);
+            if(_updateDatabase && _KEY_FIELDS.Length > 0) UpdateData(e.RowIndex, e.ColumnIndex);
         }
 
         private bool CheckUpdateField(string UPDATE_FIELD)

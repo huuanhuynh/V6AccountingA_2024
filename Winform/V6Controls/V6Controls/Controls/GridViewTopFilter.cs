@@ -94,7 +94,7 @@ namespace V6Controls.Controls
             }
         }
 
-        private void DeConnectGridView()
+        public void DeConnectGridView()
         {
             if (_dgv != null)
             {

@@ -10,9 +10,9 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class ZACOSXLT_TINHGIA_Filter: FilterBase
+    public partial class ACOSXLSX_TINHGIA_Filter: FilterBase
     {
-        public ZACOSXLT_TINHGIA_Filter()
+        public ACOSXLSX_TINHGIA_Filter()
         {
             InitializeComponent();
             MyInit();
@@ -35,7 +35,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-        private void ZACOSXLT_TINHGIA_Filter_Load(object sender, EventArgs e)
+        private void ACOSXLSX_TINHGIA_Filter_Load(object sender, EventArgs e)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ZACOSXLT_TINHGIA_Filter_Load", ex);
+                this.ShowErrorException(GetType() + ".ACOSXLSX_TINHGIA_Filter_Load", ex);
             }
         }
 
@@ -109,7 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             if (parent != null) report_proc = parent._reportProcedure;
             listBox1.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
             listBox1.ValueMember = "Proc";
-            listBox1.DataSource = V6BusinessHelper.Select("acosxlt_proc", "", string.Format("Status='1' and MA_BC0='{0}'", report_proc), "", "Stt").Data;
+            listBox1.DataSource = V6BusinessHelper.Select("acosxlsx_proc", "", string.Format("Status='1' and MA_BC0='{0}'", report_proc), "", "Stt").Data;
             listBox1.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
             listBox1.ValueMember = "Proc";
         }

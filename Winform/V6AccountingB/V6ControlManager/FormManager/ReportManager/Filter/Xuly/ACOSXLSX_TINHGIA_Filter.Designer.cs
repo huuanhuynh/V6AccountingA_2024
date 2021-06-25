@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    partial class ZACOSXLT_TINHGIA_Filter
+    partial class ACOSXLSX_TINHGIA_Filter
     {
         /// <summary> 
         /// Required designer variable.
@@ -146,7 +146,7 @@
             this.lblMota.TabIndex = 8;
             this.lblMota.Text = "Mô tả:";
             // 
-            // ZACOSXLT_TINHGIA_Filter
+            // ACOSXLSX_TINHGIA_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,9 +158,9 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ZACOSXLT_TINHGIA_Filter";
+            this.Name = "ACOSXLSX_TINHGIA_Filter";
             this.Size = new System.Drawing.Size(298, 493);
-            this.Load += new System.EventHandler(this.ZACOSXLT_TINHGIA_Filter_Load);
+            this.Load += new System.EventHandler(this.ACOSXLSX_TINHGIA_Filter_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

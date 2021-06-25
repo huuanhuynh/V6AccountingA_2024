@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using V6AccountingBusiness.Invoices;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools.V6Convert;
@@ -55,6 +56,21 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
 
                     if(_grid2 != null) V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
+                }
+
+                if (_aldmConfig != null && _aldmConfig.HaveInfo
+                                        && _aldmConfig.EXTRA_INFOR.ContainsKey("OFF_TOPFILTER")
+                                        && ObjectAndString.ObjectToBool(_aldmConfig.EXTRA_INFOR["OFF_TOPFILTER"]))
+                {
+                    var gridViewTopFilter1 = this.GetControlByName("gridViewTopFilter1") as GridViewTopFilter;
+                    if (gridViewTopFilter1 == null) return;
+                    var dataGridView1 = this.GetControlByName("dataGridView1") as DataGridView;
+                    if (dataGridView1 == null) return;
+
+                    gridViewTopFilter1.DeConnectGridView();
+                    dataGridView1.Top -= gridViewTopFilter1.Height;
+                    dataGridView1.Height += gridViewTopFilter1.Height;
+                    gridViewTopFilter1.Dispose();
                 }
             }
             catch (Exception ex)

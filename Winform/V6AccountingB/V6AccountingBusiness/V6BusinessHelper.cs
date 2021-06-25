@@ -2556,6 +2556,187 @@ namespace V6AccountingBusiness
             }
         }
 
-        
+
+        public static void TinhGia_TB(int thang1, int nam1, int thang2, int nam2, string ma_kho, string ma_vt,
+            int dk_cl, int tinh_giatb, string advance)
+        {
+            try
+            {
+                var ds1 = TinhGia_TB1(thang1, nam1, thang2, nam2, ma_kho, ma_vt, dk_cl, tinh_giatb, advance);
+                var MaxCal = ds1.Tables[0];
+                var count = ObjectAndString.ObjectToInt(MaxCal.Rows[0][0] ?? 0) + 2;
+
+
+                var m_giavt = ObjectAndString.ObjectToString(V6Options.GetValue("M_GIA_VT"));
+                if (m_giavt == "1" || m_giavt == "0")
+                {
+                    count = 1;
+                }
+
+                for (int no = 0; no < count; no++)
+                {
+                    var tb2 = TinhGia_TB2(thang1, nam1, thang2, nam2, ma_kho, ma_vt, dk_cl, tinh_giatb, advance).Tables[0];
+                    var row = tb2.Rows[0];
+                    var @Ngay_ct1 = ObjectAndString.ObjectToDate(row["Ngay_ct1"]);
+                    var @Ngay_ct2 = ObjectAndString.ObjectToDate(row["Ngay_ct2"]);
+                    var @Gia_vt = row["Gia_vt"];
+                    var @Ma_Kho = row["Ma_Kho"];
+                    var @Ma_vt = row["Ma_vt"];
+                    var @Tinh_giatb = row["Tinh_giatb"];
+                    var @Advance = row["Advance"].ToString().Trim();
+                    V6BusinessHelper.WriteV6UserLog("ItemID", "V6Business." + MethodBase.GetCurrentMethod().Name, string.Format("TinhGia_TB Ngay_ct1:{0} Ngay_ct2:{1} Gia_vt:{2} Ma_kho:{3} Ma_vt:{4}", Ngay_ct1, Ngay_ct2, Gia_vt, Ma_Kho, Ma_vt));
+                    if (Ngay_ct1 != null)
+                        for (DateTime i = Ngay_ct1.Value; i <= Ngay_ct2; i = i.AddDays(1))
+                        {
+                            SqlParameter[] plist =
+                            {
+                                new SqlParameter("@Ngay_ct1", i), 
+                                new SqlParameter("@Ngay_ct2", i), 
+                                new SqlParameter("@Gia_vt", Gia_vt), 
+                                new SqlParameter("@Ma_Kho", Ma_Kho), 
+                                new SqlParameter("@Ma_vt", Ma_vt), 
+                                new SqlParameter("@Tinh_giatb", Tinh_giatb), 
+                                new SqlParameter("@Advance", Advance), 
+                            };
+                            //_message = "Đang cập nhật giá ... " + i.ToString("dd/MM/yyyy");
+                            //SetStatusText(_message);
+                            TinhGia_TB3(plist);
+                        }
+                }
+
+
+                TinhGia_TB4();
+                if (dk_cl != 0)
+                {
+                    //SetStatusText("Đang tạo chênh lệch ... ");
+                    var plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@Period1", thang1));
+                    plist.Add(new SqlParameter("@Year1", nam1));
+                    plist.Add(new SqlParameter("@Period2", thang2));
+                    plist.Add(new SqlParameter("@Year2", nam2));
+
+                    plist.Add(new SqlParameter("@Ma_kho", ma_kho == "" ? "%" : ma_kho));
+                    plist.Add(new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt));
+
+                    plist.Add(new SqlParameter("@Dk_cl", dk_cl));
+                    plist.Add(new SqlParameter("@Tinh_giatb", tinh_giatb));
+                    plist.Add(new SqlParameter("@Advance", advance));
+                    TinhGia_TB5(plist.ToArray());
+                }
+
+                TinhGia_TB6();
+                //SetStatusText(V6Text.Finish);
+                //_executesuccess = true;
+                //_executing = false;
+            }
+            catch (Exception ex)
+            {
+                //_executing = false;
+                //_executesuccess = false;
+                Logger.WriteToLog("V6Business.TinhGia_TB " + ex.Message);
+                //SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
+            }
+        }
+
+        private static DataSet TinhGia_TB1(int thang1, int nam1, int thang2, int nam2, string ma_kho, string ma_vt,
+            int dk_cl, int tinh_giatb, string advance)
+        {
+            try
+            {
+                var plist = new List<SqlParameter>();
+                plist.Add(new SqlParameter("@Period1", thang1));
+                plist.Add(new SqlParameter("@Year1", nam1));
+                plist.Add(new SqlParameter("@Period2", thang2));
+                plist.Add(new SqlParameter("@Year2", nam2));
+
+                plist.Add(new SqlParameter("@Ma_kho", ma_kho == "" ? "%" : ma_kho));
+                plist.Add(new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt));
+
+                plist.Add(new SqlParameter("@Dk_cl", dk_cl));
+                plist.Add(new SqlParameter("@Tinh_giatb", tinh_giatb));
+                plist.Add(new SqlParameter("@Advance", advance));
+
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A1", plist.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TB1 " + ex.Message);
+            }
+
+            return null;
+        }
+
+        private static DataSet TinhGia_TB2(int thang1, int nam1, int thang2, int nam2, string ma_kho, string ma_vt,
+            int dk_cl, int tinh_giatb, string advance)
+        {
+            try
+            {
+                var plist = new List<SqlParameter>();
+                plist.Add(new SqlParameter("@Period1", thang1));
+                plist.Add(new SqlParameter("@Year1", nam1));
+                plist.Add(new SqlParameter("@Period2", thang2));
+                plist.Add(new SqlParameter("@Year2", nam2));
+
+                plist.Add(new SqlParameter("@Ma_kho", ma_kho == "" ? "%" : ma_kho));
+                plist.Add(new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt));
+
+                plist.Add(new SqlParameter("@Dk_cl", dk_cl));
+                plist.Add(new SqlParameter("@Tinh_giatb", tinh_giatb));
+                plist.Add(new SqlParameter("@Advance", advance));
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A2", plist.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TB2 " + ex.Message);
+            }
+        }
+
+        private static void TinhGia_TB3(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A3", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TB3 " + ex.Message);
+            }
+        }
+
+        private static void TinhGia_TB4()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TB4 " + ex.Message);
+            }
+        }
+
+        private static void TinhGia_TB5(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A5", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TB5 " + ex.Message);
+            }
+        }
+
+        private static void TinhGia_TB6()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TB6 " + ex.Message);
+            }
+        }
     }
 }

@@ -7,14 +7,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public static class XuLy
     {
-        public static XuLyBase GetXuLyControl(string itemId, string program, string procedure, string reportFile,
+        public static V6FormControl GetXuLyControl(string itemId, string program, string procedure, string reportFile,
             string reportCaption, string reportCaption2, string repFileF5, string repTitleF5, string repTitle2F5)
         {
             return GetXuLyControl(itemId, program, procedure, reportFile, reportCaption, reportCaption2, repFileF5,
                     repTitleF5, repTitle2F5, null);
         }
 
-        public static XuLyBase GetXuLyControl(string itemId, string program, string procedure, string reportFile, string reportCaption, string reportCaption2,
+        public static V6FormControl GetXuLyControl(string itemId, string program, string procedure, string reportFile, string reportCaption, string reportCaption2,
             string repFileF5, string repTitleF5, string repTitle2F5, string pro_old)
         {
             switch (program)
@@ -198,6 +198,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 case "HPRCONGCT":
                     return new HPRCONGCT_XL1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+
+
+                case "ACOSXLSX_TINHGIA":
+                    return new ZACOSXLSX_TINHGIA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ACOSXLT_TINHGIA":
                     return new ZACOSXLT_TINHGIA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 

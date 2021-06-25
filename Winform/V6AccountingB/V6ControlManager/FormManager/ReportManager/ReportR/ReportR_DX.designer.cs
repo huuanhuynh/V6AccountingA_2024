@@ -678,8 +678,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private V6Controls.V6ColorDataGridView dataGridView1;
         private System.Windows.Forms.GroupBox grbDieuKienLoc;
-        private System.Windows.Forms.Button btnNhan;
-        private System.Windows.Forms.Button btnHuy;
+        public System.Windows.Forms.Button btnNhan;
+        public System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelMenu;
         private System.Windows.Forms.ToolStripMenuItem printGridMenu;
@@ -697,7 +697,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.TextBox txtM_TEN_NLB2;
         private System.Windows.Forms.TextBox txtM_TEN_NLB;
         public System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnIn;
+        public System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.Label lblMauIn;
         private V6Controls.V6ComboBox cboMauIn;
         private V6FormButton btnSuaMau;

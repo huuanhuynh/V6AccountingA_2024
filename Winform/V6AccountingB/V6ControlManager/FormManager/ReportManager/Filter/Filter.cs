@@ -1538,12 +1538,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     break;
                 case "AINVTBAR5":
                     result = new AINVTBAR5();
+                    break;
 
+                case "ACOSXLSX_TINHGIA":
+                    result = new ZACOSXLT_TINHGIA_Filter();
                     break;
                 case "ACOSXLT_TINHGIA":
                     result = new ZACOSXLT_TINHGIA_Filter();
-
                     break;
+                
+
                 case "AMAP01":
                     result = new AMAP01Filter();
                     break;

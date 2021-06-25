@@ -11,7 +11,7 @@ using V6Structs;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class ZACOSXLT_TINHGIA_F3 : V6Form
+    public partial class ZACOSXLSX_TINHGIA_F3 : V6Form
     {
         #region Biến toàn cục
 
@@ -51,12 +51,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
 
         #endregion properties
-        public ZACOSXLT_TINHGIA_F3()
+        public ZACOSXLSX_TINHGIA_F3()
         {
             InitializeComponent();
         }
 
-        public ZACOSXLT_TINHGIA_F3(V6Mode mode, string uID, IDictionary<string, object> data)
+        public ZACOSXLSX_TINHGIA_F3(V6Mode mode, string uID, IDictionary<string, object> data)
         {
             _mode = mode;
             _uID = uID;

@@ -4541,6 +4541,12 @@
     <Compile Include="FormManager\ReportManager\Filter\Xuly\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL.Designer.cs">
       <DependentUpon>AAPPR_INPUT_ALL.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\ACOSXLSX_TINHGIA_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\ACOSXLSX_TINHGIA_Filter.Designer.cs">
+      <DependentUpon>ACOSXLSX_TINHGIA_Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\ZACOSXLT_TINHGIA_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4927,28 +4933,28 @@
     <Compile Include="FormManager\ReportManager\SoDu\SoDuReportForm_Old.designer.cs">
       <DependentUpon>SoDuReportForm_Old.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_XULY_ALL_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_XULY_ALL_F4.designer.cs">
       <DependentUpon>AAPPR_XULY_ALL_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINGIA_DD_LO.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINGIA_DD_LO.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG_F3.designer.cs">
       <DependentUpon>ATOGIAMNG_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG_F4.designer.cs">
       <DependentUpon>ATOGIAMNG_F4.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE2.cs">
@@ -4960,55 +4966,55 @@
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE1_F6.designer.cs">
       <DependentUpon>AAPPR_EINVOICE1_F6.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_F10.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IND_F10.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_F10.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IND_F10.designer.cs">
       <DependentUpon>AAPPR_IND_F10.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IXB_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IXB_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IXA_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IXA_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IND_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IXC_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IXC_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_BN1_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_BN1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_BC1_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_BC1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IND.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IND_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IND_F4.designer.cs">
       <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POB_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_POB_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POA_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_POA_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POA.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_POA.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POA_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_POA_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POA_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_POA_F4.designer.cs">
       <DependentUpon>AAPPR_POA_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE1.cs">
@@ -5020,7 +5026,7 @@
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE1_F9.designer.cs">
       <DependentUpon>AAPPR_EINVOICE1_F9.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XL_LIST_ALL.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_XL_LIST_ALL.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_AR12.cs">
@@ -5050,7 +5056,7 @@
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_SOA3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA4.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1.cs">
@@ -5071,37 +5077,37 @@
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_SOA2.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA1_F9.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA1_F9.designer.cs">
       <DependentUpon>AAPPR_SOA1_F9.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_XULY_ALL.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_SOA.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_XULY_SOA.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOC_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOC_F4.designer.cs">
       <DependentUpon>AAPPR_SOC_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F10.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOC_F10.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F10.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOC_F10.designer.cs">
       <DependentUpon>AAPPR_SOC_F10.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOC_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_TA1_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_TA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOF_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOF_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ACPDDCK_F4.cs">
@@ -5110,25 +5116,25 @@
     <Compile Include="FormManager\ReportManager\XuLy\ACPDDCK_F4.designer.cs">
       <DependentUpon>ACPDDCK_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLGSSO4T.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLGSSO4T.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR5_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR5_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR5_Control.Designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR5_Control.Designer.cs">
       <DependentUpon>AINVTBAR5_Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR3_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR3_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR3_Control.Designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR3_Control.Designer.cs">
       <DependentUpon>AINVTBAR3_Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR2_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.Designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR2_Control.Designer.cs">
       <DependentUpon>AINVTBAR2_Control.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AVGLGSSO6A.cs">
@@ -5137,16 +5143,16 @@
     <Compile Include="FormManager\ReportManager\XuLy\AVGLGSSO5A.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLTH1T.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLTH1T.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINABVITRI2N.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINABVITRI2N.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINSO3T.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINSO3T.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI05.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI05.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL.cs">
@@ -5173,58 +5179,58 @@
     <Compile Include="FormManager\ReportManager\XuLy\AMAPEDIT.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI04.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI04.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI03.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI03.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI02.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI02.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI01.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI01.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI03_REPORT.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI03_REPORT.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI03_REPORT.Designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI03_REPORT.Designer.cs">
       <DependentUpon>AINVITRI03_REPORT.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI03_F3F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI03_F3F4.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI03_F3F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVITRI03_F3F4.designer.cs">
       <DependentUpon>AINVITRI03_F3F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCBP.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCBP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCBP_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCBP_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCBP_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCBP_F3.designer.cs">
       <DependentUpon>ATODCBP_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCBP_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCBP_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCBP_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCBP_F4.designer.cs">
       <DependentUpon>ATODCBP_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F3.designer.cs">
       <DependentUpon>ATODCCTBP_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH2_Control.cs">
@@ -5359,6 +5365,15 @@
     <Compile Include="FormManager\ReportManager\XuLy\XuLy44Base.designer.cs">
       <DependentUpon>XuLy44Base.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ZACOSXLSX_TINHGIA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ZACOSXLSX_TINHGIA_F3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ZACOSXLSX_TINHGIA_F3.designer.cs">
+      <DependentUpon>ZACOSXLSX_TINHGIA_F3.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ZACOSXLT_TINHGIA_F3.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5383,10 +5398,10 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPSO1T.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINSO1T.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINSO1T.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLABTK2N.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLABTK2N.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ACOABVV2N.cs">
@@ -5419,13 +5434,13 @@
     <Compile Include="FormManager\ReportManager\XuLy\ARCMO_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINABLO2N.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINABLO2N.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINGIA_NTXT.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINGIA_NTXT.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINGIA_TBDD.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINGIA_TBDD.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\APDMO_F9F3.cs">
@@ -5446,10 +5461,10 @@
     <Compile Include="FormManager\ReportManager\XuLy\PhanBo\PhanBoForm.Designer.cs">
       <DependentUpon>PhanBoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR1_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR1_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR1_Control.Designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR1_Control.Designer.cs">
       <DependentUpon>AINVTBAR1_Control.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\V6HELP_QA_F3F4.cs">
@@ -5482,10 +5497,10 @@
     <Compile Include="FormManager\ReportManager\XuLy\AGSCTGS01_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLSO1T.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLSO1T.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINABVT2N.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINABVT2N.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\V6HELP_QA.cs">
@@ -5515,25 +5530,25 @@
     <Compile Include="FormManager\ReportManager\XuLy\V6LEVELDOWN.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN3F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN3F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN3F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN3F3.designer.cs">
       <DependentUpon>AAPPR_SOA_IN3F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN3F10.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN3F10.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN3F10.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN3F10.designer.cs">
       <DependentUpon>AAPPR_SOA_IN3F10.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_F10.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_F10.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_F10.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_F10.designer.cs">
       <DependentUpon>AAPPR_SOA_F10.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN3.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ACPDDCK.cs">
@@ -5560,13 +5575,13 @@
     <Compile Include="FormManager\ReportManager\XuLy\ARSD_AR.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLTHUE20_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE20_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLTHUE20_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE20_F4.designer.cs">
       <DependentUpon>AGLTHUE20_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLTHUE30.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE30.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ARSD0_AP0.cs">
@@ -5578,13 +5593,13 @@
     <Compile Include="FormManager\ReportManager\XuLy\ARSD0_AP0_F4.designer.cs">
       <DependentUpon>ARSD0_AP0_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLTHUE20.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE20.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLTHUE30_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE30_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLTHUE30_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE30_F4.designer.cs">
       <DependentUpon>AGLTHUE30_F4.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ARSD0_AR0_F4.cs">
@@ -5596,166 +5611,166 @@
     <Compile Include="FormManager\ReportManager\XuLy\ARSD0_AR0.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTKC_F8.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTKC_F8.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTKC_F8.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTKC_F8.designer.cs">
       <DependentUpon>AGLCTKC_F8.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTKC_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTKC_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTKC_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTKC_F4.designer.cs">
       <DependentUpon>AGLCTKC_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTKC.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTKC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCCTBP_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCCTBP_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCCTBP_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCCTBP_F3.designer.cs">
       <DependentUpon>AFADCCTBP_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCCTBP_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCCTBP_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCCTBP_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCCTBP_F4.designer.cs">
       <DependentUpon>AFADCCTBP_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCCTBP.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCCTBP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCBP_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCBP_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCBP_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCBP_F4.designer.cs">
       <DependentUpon>AFADCBP_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFAGIAMNG.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFAGIAMNG.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFAGIAMNG_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFAGIAMNG_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFAGIAMNG_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFAGIAMNG_F4.designer.cs">
       <DependentUpon>AFAGIAMNG_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFAGIAMNG_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFAGIAMNG_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFAGIAMNG_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFAGIAMNG_F3.designer.cs">
       <DependentUpon>AFAGIAMNG_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCBP.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCBP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCBP_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCBP_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFADCBP_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFADCBP_F3.designer.cs">
       <DependentUpon>AFADCBP_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFATANGNG_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFATANGNG_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFATANGNG_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFATANGNG_F3.designer.cs">
       <DependentUpon>AFATANGNG_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFATANGNG_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFATANGNG_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFATANGNG_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFATANGNG_F4.designer.cs">
       <DependentUpon>AFATANGNG_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFATANGNG.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFATANGNG.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFABTPBTSN.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFABTPBTSN.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTPB.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTPB_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTPB_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F4.designer.cs">
       <DependentUpon>AGLCTPB_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTPB_F8.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F8.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTPB_F8.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F8.designer.cs">
       <DependentUpon>AGLCTPB_F8.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTPB_F9.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F9.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AGLCTPB_F9.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F9.designer.cs">
       <DependentUpon>AGLCTPB_F9.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ACACNTG.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOBTPBCCN.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOBTPBCCN.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOSUAPB_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOSUAPB_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOSUAPB_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOSUAPB_F3.designer.cs">
       <DependentUpon>ATOSUAPB_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOSUAPB.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOSUAPB.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFASUAKH_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFASUAKH_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFASUAKH_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFASUAKH_F3.designer.cs">
       <DependentUpon>AFASUAKH_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFASUAKH.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFASUAKH.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOTANGNG.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOTANGNG.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOTANGNG_F3.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOTANGNG_F3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOTANGNG_F3.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOTANGNG_F3.designer.cs">
       <DependentUpon>ATOTANGNG_F3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOTANGNG_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOTANGNG_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOTANGNG_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOTANGNG_F4.designer.cs">
       <DependentUpon>ATOTANGNG_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ATOTINHPB.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOTINHPB.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AFATINHKH.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AFA\AFATINHKH.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AINGIA_TB.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINGIA_TB.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN2.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN2.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA1_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA1_F4.designer.cs">
       <DependentUpon>AAPPR_SOA1_F4.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORTXLS.cs">
@@ -5791,14 +5806,14 @@
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSALKH_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\XuLy.cs" />
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_F4.designer.cs">
       <DependentUpon>AAPPR_SOA_F4.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\XuLyBase0.cs">
@@ -8473,6 +8488,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL.resx">
       <DependentUpon>AAPPR_INPUT_ALL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\ACOSXLSX_TINHGIA_Filter.resx">
+      <DependentUpon>ACOSXLSX_TINHGIA_Filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\ZACOSXLT_TINHGIA_Filter.resx">
       <DependentUpon>ZACOSXLT_TINHGIA_Filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -8683,22 +8701,22 @@
       <DependentUpon>SoDuReportForm_Old.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_XULY_ALL_F4.resx">
       <DependentUpon>AAPPR_XULY_ALL_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_DD_LO.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINGIA_DD_LO.resx">
       <DependentUpon>AINGIA_DD_LO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_TBDD.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINGIA_TBDD.resx">
       <DependentUpon>AINGIA_TBDD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOGIAMNG.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG.resx">
       <DependentUpon>ATOGIAMNG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG_F3.resx">
       <DependentUpon>ATOGIAMNG_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOGIAMNG_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG_F4.resx">
       <DependentUpon>ATOGIAMNG_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE1.resx">
@@ -8707,17 +8725,17 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE1_F6.resx">
       <DependentUpon>AAPPR_EINVOICE1_F6.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F10.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IND_F10.resx">
       <DependentUpon>AAPPR_IND_F10.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_IND_F4.resx">
       <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE1_F9.resx">
       <DependentUpon>AAPPR_EINVOICE1_F9.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_XL_LIST_ALL.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_XL_LIST_ALL.resx">
       <DependentUpon>AAPPR_XL_LIST_ALL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_AR12.resx">
@@ -8753,31 +8771,31 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1_F9.resx">
       <DependentUpon>AAPPR_POH1_F9.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA1_F9.resx">
       <DependentUpon>AAPPR_SOA1_F9.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA1_F4.resx">
       <DependentUpon>AAPPR_SOA1_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_POA_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_POA_F4.resx">
       <DependentUpon>AAPPR_POA_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOC_F4.resx">
       <DependentUpon>AAPPR_SOC_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F10.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOC_F10.resx">
       <DependentUpon>AAPPR_SOC_F10.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN3F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN3F3.resx">
       <DependentUpon>AAPPR_SOA_IN3F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN3F10.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_IN3F10.resx">
       <DependentUpon>AAPPR_SOA_IN3F10.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA_F10.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_F10.resx">
       <DependentUpon>AAPPR_SOA_F10.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_XULY_ALL.resx">
       <DependentUpon>AAPPR_XULY_ALL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ACPDDCK.resx">
@@ -8786,19 +8804,19 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ACPDDCK_F4.resx">
       <DependentUpon>ACPDDCK_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_NTXT.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINGIA_NTXT.resx">
       <DependentUpon>AINGIA_NTXT.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI05.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINVITRI05.resx">
       <DependentUpon>AINVITRI05.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR5_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR5_Control.resx">
       <DependentUpon>AINVTBAR5_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR3_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR3_Control.resx">
       <DependentUpon>AINVTBAR3_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR2_Control.resx">
       <DependentUpon>AINVTBAR2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL_F4.resx">
@@ -8810,7 +8828,7 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.resx">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_TB.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINGIA_TB.resx">
       <DependentUpon>AINGIA_TB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\APDMO_APControl.resx">
@@ -8837,22 +8855,22 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ARCMO_F9F3.resx">
       <DependentUpon>ARCMO_F9F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCBP.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATODCBP.resx">
       <DependentUpon>ATODCBP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCBP_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATODCBP_F3.resx">
       <DependentUpon>ATODCBP_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCBP_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATODCBP_F4.resx">
       <DependentUpon>ATODCBP_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP.resx">
       <DependentUpon>ATODCCTBP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F3.resx">
       <DependentUpon>ATODCCTBP_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH2_Control.resx">
@@ -8927,13 +8945,13 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\PhanBo\PhanBoForm.resx">
       <DependentUpon>PhanBoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR1_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINVTBAR1_Control.resx">
       <DependentUpon>AINVTBAR1_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI03_REPORT.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINVITRI03_REPORT.resx">
       <DependentUpon>AINVITRI03_REPORT.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI03_F3F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINVITRI03_F3F4.resx">
       <DependentUpon>AINVITRI03_F3F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6COPY_VAO.resx">
@@ -8947,6 +8965,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\XuLy44Base.resx">
       <DependentUpon>XuLy44Base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ZACOSXLSX_TINHGIA.resx">
+      <DependentUpon>ZACOSXLSX_TINHGIA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ZACOSXLSX_TINHGIA_F3.resx">
+      <DependentUpon>ZACOSXLSX_TINHGIA_F3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ZACOSXLT_TINHGIA_F3.resx">
       <DependentUpon>ZACOSXLT_TINHGIA_F3.cs</DependentUpon>
@@ -8984,10 +9008,10 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ARSD_AR.resx">
       <DependentUpon>ARSD_AR.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLTHUE20_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE20_F4.resx">
       <DependentUpon>AGLTHUE20_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLTHUE30.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE30.resx">
       <DependentUpon>AGLTHUE30.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ARSD0_AP0.resx">
@@ -8996,10 +9020,10 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ARSD0_AP0_F4.resx">
       <DependentUpon>ARSD0_AP0_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLTHUE20.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE20.resx">
       <DependentUpon>AGLTHUE20.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLTHUE30_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLTHUE30_F4.resx">
       <DependentUpon>AGLTHUE30_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ARSD0_AR0_F4.resx">
@@ -9008,88 +9032,88 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ARSD0_AR0.resx">
       <DependentUpon>ARSD0_AR0.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLCTKC_F8.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLCTKC_F8.resx">
       <DependentUpon>AGLCTKC_F8.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLCTKC_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLCTKC_F4.resx">
       <DependentUpon>AGLCTKC_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLCTKC.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLCTKC.resx">
       <DependentUpon>AGLCTKC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFADCCTBP_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFADCCTBP_F3.resx">
       <DependentUpon>AFADCCTBP_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFADCCTBP_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFADCCTBP_F4.resx">
       <DependentUpon>AFADCCTBP_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFADCCTBP.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFADCCTBP.resx">
       <DependentUpon>AFADCCTBP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFADCBP_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFADCBP_F4.resx">
       <DependentUpon>AFADCBP_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFAGIAMNG.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFAGIAMNG.resx">
       <DependentUpon>AFAGIAMNG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFAGIAMNG_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFAGIAMNG_F4.resx">
       <DependentUpon>AFAGIAMNG_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFAGIAMNG_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFAGIAMNG_F3.resx">
       <DependentUpon>AFAGIAMNG_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFADCBP.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFADCBP.resx">
       <DependentUpon>AFADCBP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFADCBP_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFADCBP_F3.resx">
       <DependentUpon>AFADCBP_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFATANGNG_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFATANGNG_F3.resx">
       <DependentUpon>AFATANGNG_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFATANGNG_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFATANGNG_F4.resx">
       <DependentUpon>AFATANGNG_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFATANGNG.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFATANGNG.resx">
       <DependentUpon>AFATANGNG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFABTPBTSN.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFABTPBTSN.resx">
       <DependentUpon>AFABTPBTSN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLCTPB_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F4.resx">
       <DependentUpon>AGLCTPB_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLCTPB_F8.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F8.resx">
       <DependentUpon>AGLCTPB_F8.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGLCTPB_F9.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AGL\AGLCTPB_F9.resx">
       <DependentUpon>AGLCTPB_F9.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOBTPBCCN.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOBTPBCCN.resx">
       <DependentUpon>ATOBTPBCCN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOSUAPB_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOSUAPB_F3.resx">
       <DependentUpon>ATOSUAPB_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOSUAPB.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOSUAPB.resx">
       <DependentUpon>ATOSUAPB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFASUAKH.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFASUAKH.resx">
       <DependentUpon>AFASUAKH.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFASUAKH_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFASUAKH_F3.resx">
       <DependentUpon>AFASUAKH_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFATINHKH.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AFA\AFATINHKH.resx">
       <DependentUpon>AFATINHKH.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOTANGNG.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOTANGNG.resx">
       <DependentUpon>ATOTANGNG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOTANGNG_F3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOTANGNG_F3.resx">
       <DependentUpon>ATOTANGNG_F3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATOTANGNG_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOTANGNG_F4.resx">
       <DependentUpon>ATOTANGNG_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6HELP_QA.resx">
@@ -9134,7 +9158,7 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSALVT_Control.resx">
       <DependentUpon>XLSALVT_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR\AAPPR_SOA_F4.resx">
       <DependentUpon>AAPPR_SOA_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\XuLyBase0.resx">

@@ -984,6 +984,7 @@ namespace V6ControlManager.FormManager.MenuManager
                     c.Dock = DockStyle.Fill;
                     c.Name = item_id;
                     c.CodeForm = codeform;
+                    c.MenuButton = mButton;
                 }
                 return c;
             }

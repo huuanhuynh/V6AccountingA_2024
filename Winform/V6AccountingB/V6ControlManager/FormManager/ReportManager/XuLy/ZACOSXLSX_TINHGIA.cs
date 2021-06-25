@@ -15,10 +15,10 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public class ZACOSXLT_TINHGIA : XuLy48Base
+    public class ZACOSXLSX_TINHGIA : XuLy48Base
     {
 
-        public ZACOSXLT_TINHGIA(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public ZACOSXLSX_TINHGIA(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
             dataGridView1.KeyDown += dataGridView1_KeyDown;
@@ -322,7 +322,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var selected_uid = row.Cells["UID"].Value.ToString();
                     var currentRowData = row.ToDataDictionary();
 
-                    var form = new ZACOSXLT_TINHGIA_F3(V6Mode.Edit, selected_uid, currentRowData);
+                    var form = new ZACOSXLSX_TINHGIA_F3(V6Mode.Edit, selected_uid, currentRowData);
                     form.UpdateSuccessEvent += data =>
                     {
                         V6ControlFormHelper.UpdateGridViewRow(row, data);

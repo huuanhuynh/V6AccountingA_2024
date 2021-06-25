@@ -26,19 +26,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public partial class XuLy48Base : V6FormControl
     {
         #region Biến toàn cục
-        private AldmConfig _config;
+        private AldmConfig _aldmConfig;
         private string[] _KEY_FIELDS;
         public SortedDictionary<string, string> HideFields = new SortedDictionary<string, string>();
         public SortedDictionary<string, string> ReadOnlyFields = new SortedDictionary<string, string>();
         private readonly IDictionary<string, object> _defaultData = new Dictionary<string, object>();
-        private List<string> updateFieldList = new List<string>();
-        private readonly bool _updateDatabase = true;
+        public List<string> updateFieldList = new List<string>();
+        protected readonly bool _updateDatabase = true;
         public bool HaveChange { get; set; }
 
         protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
-        protected List<DataRow> remove_list_d = new List<DataRow>(); 
+        protected List<DataRow> remove_list_d = new List<DataRow>();
 
-        protected string _reportProcedure, _reportFile;
+        public string _reportProcedure;
+        protected string _reportFile;
         protected string _program, _reportCaption, _reportCaption2;
         protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
 
@@ -53,14 +54,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         private Type Form_program;
         protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-        public ReportFilter44Base FilterControl { get; set; }
-        //protected void AddFilterControl(string program)
-        //{
-        //    FilterControl = Filter.Filter.GetFilterControl(program);
-        //    panel1.Controls.Add(FilterControl);
-        //    //FilterControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        //    FilterControl.Focus();
-        //}
+        public FilterBase FilterControl { get; set; }
+        public void AddFilterControl(string program)
+        {
+            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, toolTipV6FormControl);
+            panel1.Controls.Add(FilterControl);
+            //FilterControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            FilterControl.Focus();
+        }
         /// <summary>
         /// Gọi hàm động trong Event_Methods theo tên Event trên form.
         /// </summary>
@@ -378,6 +379,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 GetConfig();
                 CreateFormProgram();
                 CreateFormControls();   //AddFilterControl(_program);
+                if (((ReportFilter44Base) FilterControl).alreportConfig.NoInfo)
+                {
+                    FilterControl.Dispose();
+                    AddFilterControl(_program);
+                }
                 AddAllControlsToAll_Objects();
                 //ApplyConfigSetting();
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
@@ -445,14 +451,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                _config = ConfigManager.GetAldmConfig(_program);
+                _aldmConfig = ConfigManager.GetAldmConfig(_program);
 
-                if (_config.HaveInfo)
+                if (_aldmConfig.HaveInfo)
                 {
-                    Text = _config.TITLE;
-                    if (!string.IsNullOrEmpty(_config.TABLE_KEY))
+                    Text = _aldmConfig.TITLE;
+                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_KEY))
                     {
-                        var T_KEYS = ObjectAndString.SplitString(_config.TABLE_KEY.ToUpper());
+                        var T_KEYS = ObjectAndString.SplitString(_aldmConfig.TABLE_KEY.ToUpper());
                         var list = new List<string>();
                         foreach (string KEY in T_KEYS)
                         {
@@ -473,7 +479,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        public void ApplyConfigExtra_GRD_ALLOW()
+        public void ApplyConfigExtra_GRD_ALLOW(AldmConfig config)
         {
             try
             {
@@ -482,18 +488,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 dataGridView1.ReadOnly = true;
                 dataGridView1.AllowUserToDeleteRows = false;
 
-                if (_config.NoInfo) return;
+                if (config.NoInfo) return;
 
-                if (_config.EXTRA_INFOR.ContainsKey("GRD_ALLOW"))
+                if (config.EXTRA_INFOR.ContainsKey("GRD_ALLOW"))
                 {
-                    var grd_allow = _config.EXTRA_INFOR["GRD_ALLOW"].Trim();
+                    var grd_allow = config.EXTRA_INFOR["GRD_ALLOW"].Trim();
                     if (grd_allow.Length > 0) dataGridView1.AllowUserToAddRows = grd_allow[0] == '1';
                     if (grd_allow.Length > 1)
                     {
                         if (grd_allow[1] == '1')
                         {
                             dataGridView1.ReadOnly = false;
-                            dataGridView1.ChangeEditColumnType(_config.FIELD);
+                            dataGridView1.ChangeEditColumnType(config.FIELD);
                         }
                     }
                     if (grd_allow.Length > 2) dataGridView1.AllowUserToDeleteRows = grd_allow[2] == '1';
@@ -585,14 +591,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void XuLyCongThucTinhToanAll(string EDIT_FIELD, string CHANGE_FIELD)
+        protected void XuLyCongThucTinhToanAll(string EDIT_FIELD, string CHANGE_FIELD, AldmConfig config)
         {
             try
             {
-                if (!_config.HaveInfo) return;
-                if (UpdateFieldOnRight(CHANGE_FIELD, _config.CACH_TINH1)) XuLyCongThucTinhToan1(EDIT_FIELD, _config.CACH_TINH1);
-                if (UpdateFieldOnRight(CHANGE_FIELD, _config.CACH_TINH2)) XuLyCongThucTinhToan1(EDIT_FIELD, _config.CACH_TINH2);
-                if (UpdateFieldOnRight(CHANGE_FIELD, _config.CACH_TINH3)) XuLyCongThucTinhToan1(EDIT_FIELD, _config.CACH_TINH3);
+                if (!config.HaveInfo) return;
+                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH1, config)) XuLyCongThucTinhToan1(EDIT_FIELD, config.CACH_TINH1, config);
+                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH2, config)) XuLyCongThucTinhToan1(EDIT_FIELD, config.CACH_TINH2, config);
+                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH3, config)) XuLyCongThucTinhToan1(EDIT_FIELD, config.CACH_TINH3, config);
             }
             catch (Exception ex)
             {
@@ -600,7 +606,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void XuLyCongThucTinhToan1(string EDIT_FIELD, string congThuc)
+        private void XuLyCongThucTinhToan1(string EDIT_FIELD, string congThuc, AldmConfig config)
         {
             var ss = congThuc.Split('=');
             if (ss.Length == 2)
@@ -613,7 +619,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 var cRow = dataGridView1.CurrentRow;
                 if (cRow != null) cRow.Cells[CACULATED_FIELD].Value = Number.GiaTriBieuThuc(bieu_thuc, cRow.ToDataDictionary());
-                XuLyCongThucTinhToanAll(EDIT_FIELD, CACULATED_FIELD);
+                XuLyCongThucTinhToanAll(EDIT_FIELD, CACULATED_FIELD, config);
             }
         }
 
@@ -621,14 +627,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// Kiểm tra EDIT_FIELD có nằm bên phải dấu = hay không?
         /// </summary>
         /// <param name="UPDATE_FIELD"></param>
+        /// <param name="congThuc"></param>
+        /// <param name="config"></param>
         /// <returns></returns>
-        private bool UpdateFieldOnRight(string UPDATE_FIELD, string congThuc)
+        private bool UpdateFieldOnRight(string UPDATE_FIELD, string congThuc, AldmConfig config)
         {
-            if (!_config.HaveInfo) return false;
-            if (!string.IsNullOrEmpty(congThuc) && congThuc.IndexOf(UPDATE_FIELD, congThuc.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
-            //if (!string.IsNullOrEmpty(_config.CACH_TINH1) && _config.CACH_TINH1.IndexOf(EDIT_FIELD, _config.CACH_TINH1.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
-            //if (!string.IsNullOrEmpty(_config.CACH_TINH2) && _config.CACH_TINH2.IndexOf(EDIT_FIELD, _config.CACH_TINH2.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
-            //if (!string.IsNullOrEmpty(_config.CACH_TINH3) && _config.CACH_TINH3.IndexOf(EDIT_FIELD, _config.CACH_TINH3.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0) return true;
+            if (!config.HaveInfo) return false;
+            if (!string.IsNullOrEmpty(congThuc) && congThuc.IndexOf(UPDATE_FIELD, congThuc.IndexOf("=", StringComparison.Ordinal), StringComparison.Ordinal) >= 0)
+                return true;
+            
             return false;
         }
 
@@ -662,7 +669,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                SetStatusText(V6Text.Add + _config.TABLE_NAME);
+                SetStatusText(V6Text.Add + _aldmConfig.TABLE_NAME);
 
                 //Gán dữ liệu mặc định
                 if (_defaultData != null)
@@ -702,13 +709,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //keys.AddRange(data);
                 }
 
-                var result = V6BusinessHelper.Insert(_config.TABLE_NAME, data);
+                var result = V6BusinessHelper.Insert(_aldmConfig.TABLE_NAME, data);
                 if (result)
                 {
                     HaveChange = true;
-                    SetStatusText(string.Format("{0} {1}", _config.TABLE_NAME, V6Text.AddSuccess));
+                    SetStatusText(string.Format("{0} {1}", _aldmConfig.TABLE_NAME, V6Text.AddSuccess));
 
-                    var selectResult = V6BusinessHelper.Select(_config.TABLE_NAME, keys, "*");
+                    var selectResult = V6BusinessHelper.Select(_aldmConfig.TABLE_NAME, keys, "*");
                     if (selectResult.TotalRows == 1)
                     {
                         return selectResult.Data.Rows[0].ToDataDictionary();
@@ -726,24 +733,32 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                SetStatusText(string.Format("{0} {1}", _config.TABLE_NAME, V6Text.AddFail));
+                SetStatusText(string.Format("{0} {1}", _aldmConfig.TABLE_NAME, V6Text.AddFail));
                 this.WriteExLog(GetType() + ".AddData", ex);
             }
             return null;
         }
 
         private object _cellBeginEditValue;
+
         /// <summary>
         /// Update dữ liệu vào cơ sở dữ liệu.
         /// </summary>
-        /// <param name="rowIndex"></param>
-        /// <param name="columnIndex"></param>
-        private void UpdateData(int rowIndex, int columnIndex)
+        /// <param name="rowIndex">Dòng đang sửa.</param>
+        /// <param name="columnIndex">Cột đang sửa.</param>
+        /// <param name="config">Cấu hình aldm.</param>
+        protected void UpdateData(int rowIndex, int columnIndex, AldmConfig config)
         {
+            if (config == null || config.NoInfo)
+            {
+                SetStatusText("No config");
+                return;
+            }
             var update_info = "";
+            string[] _KEY_FIELDS = ObjectAndString.SplitString(config.TABLE_KEY);
             try
             {
-                SetStatusText(string.Format("{0} {1}", V6Text.Edit, _config.TABLE_NAME));
+                SetStatusText(string.Format("{0} {1}", V6Text.Edit, config.TABLE_NAME));
                 var row = dataGridView1.Rows[rowIndex];
                 SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
                 foreach (string field in _KEY_FIELDS)
@@ -771,16 +786,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     update_info += "  " + FIELD + " = " + ObjectAndString.ObjectToString(update_value);
                 }
 
-                var result = V6BusinessHelper.UpdateSimple(_config.TABLE_NAME, updateData, keys);
+                var result = V6BusinessHelper.UpdateSimple(config.TABLE_NAME, updateData, keys);
                 if (result > 0)
                 {
                     HaveChange = true;
-                    SetStatusText(string.Format("{0} {1} {2}", _config.TABLE_NAME, V6Text.EditSuccess, update_info));
+                    SetStatusText(string.Format("{0} {1} {2}", config.TABLE_NAME, V6Text.EditSuccess, update_info));
                 }
             }
             catch (Exception ex)
             {
-                SetStatusText(string.Format("{0} {1} {2}", _config.TABLE_NAME, V6Text.EditFail, update_info));
+                SetStatusText(string.Format("{0} {1} {2}", config.TABLE_NAME, V6Text.EditFail, update_info));
                 Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".UpdateData",
                     ex, V6ControlFormHelper.LastActionListString, Application.ProductName);
             }
@@ -796,21 +811,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                SetStatusText(string.Format("{0} {1} {2}", V6Text.Delete, _config.TABLE_NAME, delete_info));
+                SetStatusText(string.Format("{0} {1} {2}", V6Text.Delete, _aldmConfig.TABLE_NAME, delete_info));
                 if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
                 {
-                    var result = V6BusinessHelper.Delete(_config.TABLE_NAME, keys);
+                    var result = V6BusinessHelper.Delete(_aldmConfig.TABLE_NAME, keys);
                     if (result > 0)
                     {
                         HaveChange = true;
                         dataGridView1.Rows.RemoveAt(rowIndex);
-                        SetStatusText(string.Format("{0} {1} {2}", _config.TABLE_NAME, V6Text.DeleteSuccess, delete_info));
+                        SetStatusText(string.Format("{0} {1} {2}", _aldmConfig.TABLE_NAME, V6Text.DeleteSuccess, delete_info));
                     }
                 }
             }
             catch (Exception ex)
             {
-                SetStatusText(string.Format("{0} {1} {2}", _config.TABLE_NAME, V6Text.DeleteFail, delete_info));
+                SetStatusText(string.Format("{0} {1} {2}", _aldmConfig.TABLE_NAME, V6Text.DeleteFail, delete_info));
                 Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".UpdateData",
                     ex, V6ControlFormHelper.LastActionListString, Application.ProductName);
             }
@@ -1075,14 +1090,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (_config.HaveInfo)
+                if (_aldmConfig.HaveInfo)
                 {
-                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _config.GRDS_V1, _config.GRDF_V1, V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1);
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1, V6Setting.IsVietnamese ? _aldmConfig.GRDHV_V1 : _aldmConfig.GRDHE_V1);
                 }
 
-                if (!string.IsNullOrEmpty(_config.GRDS_V1))
+                if (!string.IsNullOrEmpty(_aldmConfig.GRDS_V1))
                 {
-                    var showFieldSplit = ObjectAndString.SplitString(_config.GRDS_V1);
+                    var showFieldSplit = ObjectAndString.SplitString(_aldmConfig.GRDS_V1);
                     var showFieldList = new List<string>();
                     foreach (string field in showFieldSplit)
                     {
@@ -1291,11 +1306,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 btnNhan.PerformClick();
             }
-            else if (keyData == Keys.F3 && FilterControl.F3)
+            else if ((keyData & Keys.F3) == Keys.F3 && FilterControl.F3)
             {
                 XuLyHienThiFormSuaChungTuF3();
             }
-            else if (keyData == Keys.F4)// && FilterControl.F4)
+            else if ((keyData & Keys.F4) == Keys.F4)// && FilterControl.F4)
             {
                 XuLyBoSungThongTinChungTuF4();
             }
@@ -1308,7 +1323,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 XuLyF6();
             }
-            else if (keyData == Keys.F7 && FilterControl.F7)
+            else if ((keyData & Keys.F7) == Keys.F7 && FilterControl.F7)
             {
                 XuLyF7();
             }
@@ -1346,8 +1361,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else if (keyData == Keys.F9 && FilterControl.F9)
             {
-                F9Thread();
-                //XuLyF9();
+                //F9Thread();
+                XuLyF9();
             }
             else if (keyData == Keys.F10 && FilterControl.F10)
             {
@@ -1604,7 +1619,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9ErrorAll = "";
         private string _oldDefaultPrinter;
 
-        protected void XuLyF9()
+        protected virtual void XuLyF9()
         {
             try
             {
@@ -1684,7 +1699,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f10Message = "";
         private string f10ErrorAll = "";
 
-        protected void XuLyF10()
+        protected virtual void XuLyF10()
         {
             try
             {
@@ -1770,7 +1785,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //Viết code ở lớp kế thừa
         }
 
-        public virtual void GridView1CellEndEdit(DataGridViewRow row, string FIELD, object fieldData)
+        public virtual void GridView1CellEndEdit_Extern(DataGridViewRow row, string FIELD, object fieldData)
         {
             //Viết code ở lớp kế thừa
         }
@@ -1890,25 +1905,30 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            dataGridView1_CellEndEdit_Virtual(sender, e);
+        }
+
+        public virtual void dataGridView1_CellEndEdit_Virtual(object sender, DataGridViewCellEventArgs e)
+        {
             var row = dataGridView1.Rows[e.RowIndex];
             var field = dataGridView1.Columns[e.ColumnIndex].DataPropertyName;
-            GridView1CellEndEdit(row, field.ToUpper(), row.Cells[field].Value);
-
-
+            updateFieldList = new List<string>();
+            GridView1CellEndEdit_Extern(row, field.ToUpper(), row.Cells[field].Value);
+            
             // Mới thêm
             var EDIT_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
             //Xu ly cong thuc tinh toan
-            updateFieldList = new List<string>();
-            XuLyCongThucTinhToanAll(EDIT_FIELD, EDIT_FIELD);
+            
+            XuLyCongThucTinhToanAll(EDIT_FIELD, EDIT_FIELD, _aldmConfig);
 
-            if (_updateDatabase) UpdateData(e.RowIndex, e.ColumnIndex);
+            if (_updateDatabase) UpdateData(e.RowIndex, e.ColumnIndex, _aldmConfig);
         }
 
         private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var row = dataGridView2.Rows[e.RowIndex];
             var field = dataGridView2.Columns[e.ColumnIndex].DataPropertyName;
-            GridView1CellEndEdit(row, field.ToUpper(), row.Cells[field].Value);
+            GridView1CellEndEdit_Extern(row, field.ToUpper(), row.Cells[field].Value);
         }
 
         private void btnThemMauBC_Click(object sender, EventArgs e)
@@ -2083,7 +2103,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (this.ShowMessage(V6Setting.IsVietnamese ? "Cho phép sửa số liệu?" : "Allow edit?") == DialogResult.OK)
             {
-                ApplyConfigExtra_GRD_ALLOW();
+                ApplyConfigExtra_GRD_ALLOW(_aldmConfig);
                 btnEditGrid.Enabled = false;
             }
         }

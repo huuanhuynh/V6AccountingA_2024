@@ -30,6 +30,7 @@ namespace V6Controls.Forms
 
         [DefaultValue(null)]
         public string CodeForm { get; set; }
+        public MenuButton MenuButton { get; set; }
         /// <summary>
         /// Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo
         /// </summary>

@@ -401,26 +401,63 @@ namespace V6ControlManager.FormManager.ReportManager
 
         public static void ShowReportR(IWin32Window owner, QuickReportParams quickParams)
         {
-            var view = new ReportRViewBase(quickParams.ItemID, quickParams.Program, quickParams.ReportProcedure,
-                quickParams.ReportFile, quickParams.ReportCaption, quickParams.ReportCaption2,
-                quickParams.ReportFileF5, quickParams.ReportTitleF5, quickParams.ReportTitle2F5);
-            view.CodeForm = quickParams.CodeForm;
-            view.FilterControl.String1 = quickParams.FilterControlString1;
-            view.FilterControl.String2 = quickParams.FilterControlString2;
-            view.FilterControl.ParentFilterData = quickParams.FilterControlFilterData;
-            view.Dock = DockStyle.Fill;
-            view.FilterControl.InitFilters = quickParams.FilterControlInitFilters;
-            view.FilterControl.SetParentRow(quickParams.ParentRowData);
-            if(quickParams.FilterData != null)
-            view.FilterControl.SetData(quickParams.FilterData);
-
-            if (quickParams.DataSet == null || quickParams.DataSet.Tables.Count == 0)
+            V6FormControl view0 = null;
+            if (quickParams.UseXtraReport != quickParams.Shift)
             {
-                if(quickParams.AutoRun) view.btnNhan_Click(null, null);
-            }
-            else view.DataSet = quickParams.DataSet;
+                view0 = new ReportR_DX(quickParams.ItemID, quickParams.Program, quickParams.ReportProcedure,
+                 quickParams.ReportFile, quickParams.ReportCaption, quickParams.ReportCaption2,
+                 quickParams.ReportFileF5, quickParams.ReportTitleF5, quickParams.ReportTitle2F5);
 
-            view.ShowToForm(owner, quickParams.FormTitle, true);
+                var view = (ReportR_DX)view0;
+                view.CodeForm = quickParams.CodeForm;
+                view.FilterControl.String1 = quickParams.FilterControlString1;
+                view.FilterControl.String2 = quickParams.FilterControlString2;
+                view.FilterControl.ParentFilterData = quickParams.FilterControlFilterData;
+                view.Dock = DockStyle.Fill;
+                view.FilterControl.InitFilters = quickParams.FilterControlInitFilters;
+                view.FilterControl.SetParentRow(quickParams.ParentRowData);
+                if (quickParams.FilterData != null)
+                    view.FilterControl.SetData(quickParams.FilterData);
+
+                if (quickParams.DataSet == null || quickParams.DataSet.Tables.Count == 0)
+                {
+                    if (quickParams.AutoRun) view.btnNhan_Click(null, null);
+                }
+                else
+                {
+                    view.DataSet = quickParams.DataSet;
+                    if (quickParams.DisableBtnNhan) view.btnNhan.Enabled = false;
+                }
+            }
+            else
+            {
+                view0 = new ReportRViewBase(quickParams.ItemID, quickParams.Program, quickParams.ReportProcedure,
+                    quickParams.ReportFile, quickParams.ReportCaption, quickParams.ReportCaption2,
+                    quickParams.ReportFileF5, quickParams.ReportTitleF5, quickParams.ReportTitle2F5);
+
+                var view = (ReportRViewBase)view0;
+                view.CodeForm = quickParams.CodeForm;
+                view.FilterControl.String1 = quickParams.FilterControlString1;
+                view.FilterControl.String2 = quickParams.FilterControlString2;
+                view.FilterControl.ParentFilterData = quickParams.FilterControlFilterData;
+                view.Dock = DockStyle.Fill;
+                view.FilterControl.InitFilters = quickParams.FilterControlInitFilters;
+                view.FilterControl.SetParentRow(quickParams.ParentRowData);
+                if (quickParams.FilterData != null)
+                    view.FilterControl.SetData(quickParams.FilterData);
+
+                if (quickParams.DataSet == null || quickParams.DataSet.Tables.Count == 0)
+                {
+                    if (quickParams.AutoRun) view.btnNhan_Click(null, null);
+                }
+                else
+                {
+                    view.DataSet = quickParams.DataSet;
+                    if (quickParams.DisableBtnNhan) view.btnNhan.Enabled = false;
+                }
+            }            
+
+            view0.ShowToForm(owner, quickParams.FormTitle, true);
         }
         
         /// <summary>
@@ -806,5 +843,9 @@ namespace V6ControlManager.FormManager.ReportManager
         public IDictionary<string, object> FilterControlFilterData { get; set; }
         public IDictionary<string, object> FilterData { get; set; }
         public bool AutoRun { get; set; }
+        public bool DisableBtnNhan { get; set; }
+        public bool UseXtraReport { get; set; }
+        public bool Shift { get; set; }
+        
     }
 }

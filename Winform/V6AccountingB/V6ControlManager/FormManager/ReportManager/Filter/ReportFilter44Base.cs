@@ -76,27 +76,28 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
+        public AlreportConfig alreportConfig;
         private void LoadProgramInfo()
         {
             try
             {
-                var config = ConfigManager.GetAlreportConfig(_program);
-                if (config.HaveInfo)
+                alreportConfig = ConfigManager.GetAlreportConfig(_program);
+                if (alreportConfig.HaveInfo)
                 {
-                    ComboboxData = config.Combo_data;
-                    ExtraParameterInfo = config.Extra_para;
-                    F3 = config.F_KEYS_CHECK("F3");
-                    F4 = config.F_KEYS_CHECK("F4");
-                    F5 = config.F_KEYS_CHECK("F5");
-                    F6 = config.F_KEYS_CHECK("F6");
-                    F7 = config.F_KEYS_CHECK("F7");
-                    F8 = config.F_KEYS_CHECK("F8");
-                    F9 = config.F_KEYS_CHECK("F9");
-                    F10 = config.F_KEYS_CHECK("F10");
+                    ComboboxData = alreportConfig.Combo_data;
+                    ExtraParameterInfo = alreportConfig.Extra_para;
+                    F3 = alreportConfig.F_KEYS_CHECK("F3");
+                    F4 = alreportConfig.F_KEYS_CHECK("F4");
+                    F5 = alreportConfig.F_KEYS_CHECK("F5");
+                    F6 = alreportConfig.F_KEYS_CHECK("F6");
+                    F7 = alreportConfig.F_KEYS_CHECK("F7");
+                    F8 = alreportConfig.F_KEYS_CHECK("F8");
+                    F9 = alreportConfig.F_KEYS_CHECK("F9");
+                    F10 = alreportConfig.F_KEYS_CHECK("F10");
                     
-                    ViewSum = config.VIEWSUM;
-                    Alreport_advance = config.ADVANCE;
-                    _status2Text = V6Setting.IsVietnamese ? config.vbrowse1 : config.ebrowse1;
+                    ViewSum = alreportConfig.VIEWSUM;
+                    Alreport_advance = alreportConfig.ADVANCE;
+                    _status2Text = V6Setting.IsVietnamese ? alreportConfig.vbrowse1 : alreportConfig.ebrowse1;
                 }
             }
             catch (Exception ex)
