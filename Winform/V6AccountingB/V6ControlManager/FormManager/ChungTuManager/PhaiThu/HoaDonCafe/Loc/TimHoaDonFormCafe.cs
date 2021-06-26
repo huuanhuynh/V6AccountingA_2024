@@ -172,10 +172,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
 
                     _formChungTu_AM = tempAM;
                     DialogResult = DialogResult.OK;
-                    //_formChungTu.ResetADTables();
-                    //_formChungTu.ViewInvoice(_locKetQua.CurrentSttRec, V6Mode.View);
-                    //_formChungTu.FixStatusByData();
-                    
                 }
                 else
                 {

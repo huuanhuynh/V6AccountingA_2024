@@ -5559,6 +5559,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     if (SearchForm.ShowDialog(this) == DialogResult.OK)
                     {
                         AM = SearchForm._formChungTu_AM;
+                        ResetADTables();
                         ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
                     }
                     btnSua.Focus();
@@ -8458,20 +8459,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
                 {
                     FormManagerHelper.HideMainMenu();
-                    TimDonDatHangMuaForm searchForm = new TimDonDatHangMuaForm(new V6Invoice92(), V6Mode.Select);
-                    searchForm.ViewMode = false;
-                    if (searchForm.ShowDialog(this) == DialogResult.OK)
+                    TimDonDatHangMuaForm chonForm = new TimDonDatHangMuaForm(new V6Invoice92(), V6Mode.Select);
+                    chonForm.ViewMode = false;
+                    if (chonForm.ShowDialog(this) == DialogResult.OK)
                     {
-                        var CHON1AM = searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary();
+                        var CHON1AM = chonForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary();
                         All_Objects["CHON1AM"] = CHON1AM;
-                        All_Objects["CHON1AD"] = searchForm._formChungTu_AD;
-                        InvokeFormEvent("CHON1" + searchForm._invoice.Mact + Invoice.Mact);
+                        All_Objects["CHON1AD"] = chonForm._formChungTu_AD;
+                        InvokeFormEvent("CHON1" + chonForm._invoice.Mact + Invoice.Mact);
                         
                         // Tạo mới chứng từ
                         Mode = V6Mode.Add;
                         GetSttRec(Invoice.Mact);
                         SetData(CHON1AM);
-                        foreach (DataRow row in searchForm._formChungTu_AD.Rows)
+                        foreach (DataRow row in chonForm._formChungTu_AD.Rows)
                         {
                             var newData = row.ToDataDictionary();
                             newData["STT_RECDH"] = newData["STT_REC"];

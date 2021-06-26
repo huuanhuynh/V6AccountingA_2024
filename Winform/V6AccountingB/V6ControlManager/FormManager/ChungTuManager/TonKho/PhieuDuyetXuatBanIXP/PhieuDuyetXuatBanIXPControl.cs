@@ -4462,6 +4462,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                     if (SearchForm.ShowDialog(this) == DialogResult.OK)
                     {
                         AM = SearchForm._formChungTu_AM;
+                        ResetADTables();
                         ViewInvoice(SearchForm._locKetQua.CurrentSttRec, V6Mode.View);
                     }
 
