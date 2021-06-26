@@ -151,9 +151,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
                 if (_locKetQua != null && _locKetQua.Visible)
                 {
                     _formChungTu_AM = tempAM;
-                    //_formChungTu.ResetADTables();
-                    //_formChungTu.ViewInvoice(_locKetQua.CurrentSttRec, V6Mode.View);
-                    //Hide();
                     DialogResult = DialogResult.OK;
                 }
                 else

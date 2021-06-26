@@ -2557,6 +2557,8 @@ namespace V6AccountingBusiness
         }
 
 
+        #region ==== TINH_GIA_TB ====
+
         public static void TinhGia_TB(int thang1, int nam1, int thang2, int nam2, string ma_kho, string ma_vt,
             int dk_cl, int tinh_giatb, string advance)
         {
@@ -2738,5 +2740,639 @@ namespace V6AccountingBusiness
                 throw new Exception("TinhGia_TB6 " + ex.Message);
             }
         }
+
+        #endregion TINH_GIA_TB
+
+
+        #region ==== TINH_GIA_TBDD ====
+        public static void TinhGia_TBDD(int thang1, int nam1, int thang2, int nam2, string ma_kho, string ma_vt,
+            int dk_cl, int tinh_giatb, string advance)
+        {
+            try
+            {
+                SqlParameter[] plist1 =
+                {
+                    new SqlParameter("@Period1", thang1),
+                    new SqlParameter("@Year1", nam1),
+                    new SqlParameter("@Period2", thang2),
+                    new SqlParameter("@Year2", nam2),
+                    new SqlParameter("@Ma_kho", ma_kho == "" ? "%" : ma_kho),
+                    new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                    new SqlParameter("@Dk_cl", dk_cl),
+                    new SqlParameter("@Tinh_giatb", tinh_giatb),
+                    new SqlParameter("@Advance", advance)
+                };
+
+                var ds1 = TinhGia_TBDD_A1(plist1);
+                var MaxCal = ds1.Tables[0];
+                var count = ObjectAndString.ObjectToInt(MaxCal.Rows[0][0] ?? 0) + 2;
+
+
+                var m_giavt = ObjectAndString.ObjectToString(V6Options.GetValue("M_GIA_VT"));
+                if (m_giavt == "1" || m_giavt == "0")
+                {
+                    count = 1;
+                }
+
+                for (int no = 0; no < count; no++)
+                {
+                    SqlParameter[] plist2 =
+                    {
+                        new SqlParameter("@Period1", thang1),
+                        new SqlParameter("@Year1", nam1),
+                        new SqlParameter("@Period2", thang2),
+                        new SqlParameter("@Year2", nam2),
+                        new SqlParameter("@Ma_kho", ma_kho == "" ? "%" : ma_kho),
+                        new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                        new SqlParameter("@Dk_cl", dk_cl),
+                        new SqlParameter("@Tinh_giatb", tinh_giatb),
+                        new SqlParameter("@Advance", advance)
+                    };
+                    var tb2 = TinhGia_TBDD2(plist2).Tables[0];
+                    var row = tb2.Rows[0];
+                    var @Ngay_ct1 = ObjectAndString.ObjectToDate(row["Ngay_ct1"]);
+                    var @Ngay_ct2 = ObjectAndString.ObjectToDate(row["Ngay_ct2"]);
+                    var @Gia_vt = row["Gia_vt"];
+                    var @Ma_Kho = row["Ma_Kho"];
+                    var @Ma_vt = row["Ma_vt"];
+                    var @Tinh_giatb = row["Tinh_giatb"];
+                    var @Advance = row["Advance"].ToString().Trim();
+
+                    if (Ngay_ct1 != null)
+                        for (DateTime i = Ngay_ct1.Value; i <= Ngay_ct2; i = i.AddDays(1))
+                        {
+                            SqlParameter[] plist =
+                            {
+                                new SqlParameter("@Ngay_ct1", i), 
+                                new SqlParameter("@Ngay_ct2", i), 
+                                new SqlParameter("@Gia_vt", Gia_vt), 
+                                new SqlParameter("@Ma_Kho", Ma_Kho), 
+                                new SqlParameter("@Ma_vt", Ma_vt), 
+                                new SqlParameter("@Tinh_giatb", Tinh_giatb), 
+                                new SqlParameter("@Advance", Advance), 
+                            };
+                            TinhGia_TBDD_A3(plist);
+                        }
+                }
+
+
+                TinhGia_TBDD4();
+                if (dk_cl != 0)
+                {
+                    SqlParameter[] plist_A5 =
+                    {
+                        new SqlParameter("@Period1", thang1),
+                        new SqlParameter("@Year1", nam1),
+                        new SqlParameter("@Period2", thang2),
+                        new SqlParameter("@Year2", nam2),
+                        new SqlParameter("@Ma_kho", ma_kho == "" ? "%" : ma_kho),
+                        new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                        new SqlParameter("@Dk_cl", dk_cl),
+                        new SqlParameter("@Tinh_giatb", tinh_giatb),
+                        new SqlParameter("@Advance", advance)
+                    };
+                    TinhGia_TBDD_A5(plist_A5);
+                }
+
+                TinhGia_TBDD6();
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("V6Buiness.TinhGia_TBDD " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_TBDD6()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TBDD6 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_TBDD_A5(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_TBDD_A5", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TBDD5 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_TBDD4()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TBDD4 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_TBDD_A3(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_TBDD_A3", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TBDD_A3 " + ex.Message);
+            }
+        }
+        public static void TinhGia_TBDD_A3_All(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_TBDD_A3", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TBDD_A3 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_TBDD2(SqlParameter[] pList)
+        {
+            try
+            {
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_TBDD_A2", pList);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TBDD2 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_TBDD_A1(SqlParameter[] plist)
+        {
+            try
+            {
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_TBDD_A1", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_TBDD_A1 " + ex.Message);
+            }
+        }
+
+        #endregion TINH_GIA_TBDD
+
+
+        #region ==== TINH_GIA_NTXT ====
+
+        public static void TinhGia_NTXT(int thang1, int nam1, int thang2, string ma_vt, int warning, int tinh_giatb, string advance)
+        {
+            try
+            {
+                //Các tham số
+                //@Year int,
+                //@Period1 int,
+                //@Period2 int,
+                //@Ma_vt VARCHAR(50),
+                //@Warning int,
+                //@Tinh_giatb int,
+                //@Advance VARCHAR(255) = ''
+
+                var plist_A1 = new SqlParameter[]
+                {
+                    new SqlParameter("@Year", nam1),
+                    new SqlParameter("@Period1", thang1),
+                    new SqlParameter("@Period2", thang2),
+                    new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                    new SqlParameter("@Warning", warning),
+                    new SqlParameter("@Tinh_giatb", tinh_giatb),
+                    new SqlParameter("@Advance", advance)
+                };
+                //Lấy danh sách vật tư.
+                DataSet ds = TinhGia_NTXT_A1(plist_A1);
+                DataTable alvt = ds.Tables[0];
+
+                // Lặp tháng
+                
+                for (int i = thang1; i <= thang2; i++)
+                {
+                    //EXEC2
+                    var date01 = new DateTime(nam1, i, 1);
+                    var date02 = new DateTime(nam1, i, DateTime.DaysInMonth(nam1, i));
+                    var plist_A2 = new SqlParameter[]
+                    {
+                        new SqlParameter("@Year", nam1),
+                        new SqlParameter("@Period1", thang1),
+                        new SqlParameter("@Period2", thang2),
+                        new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                        new SqlParameter("@Warning", warning),
+                        new SqlParameter("@Tinh_giatb", tinh_giatb),
+                        new SqlParameter("@Advance", advance)
+                    };
+                    var ds_i = TinhGia_NTXT_A2(date01, date02, plist_A2);//Tra ve V_ALVT
+                    var tbl_i = ds_i.Tables[0];
+                    //EXEC3
+                    var plist_A3 = new SqlParameter[]
+                    {
+                        new SqlParameter("@Year", nam1),
+                        new SqlParameter("@Period1", thang1),
+                        new SqlParameter("@Period2", thang2),
+                        new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                        new SqlParameter("@Warning", warning),
+                        new SqlParameter("@Tinh_giatb", tinh_giatb),
+                        new SqlParameter("@Advance", advance)
+                    };
+                    TinhGia_NTXT_A3(nam1, i, date01, date02, plist_A3);
+                    //Lặp vật tư @Year, @m, @Vt, @Ngay_ct, @M_MA_NT0
+                    foreach (DataRow row in tbl_i.Rows)
+                    {
+                        //@Year, @m, @Vt, @Ngay_ct, @M_MA_NT0
+                        if (row["NGAY_CT"] == null) continue;
+                        var c_mavt = row["MA_VT"].ToString().Trim();
+
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@Year", nam1),
+                            new SqlParameter("@Period1", thang1),
+                            new SqlParameter("@Period2", thang2),
+                            new SqlParameter("@Ma_vt", c_mavt),
+                            new SqlParameter("@Warning", warning),
+                            new SqlParameter("@Tinh_giatb", tinh_giatb),
+                            new SqlParameter("@Advance", advance),
+                            new SqlParameter("@Period", i),
+                            new SqlParameter("@Ngay_ct", row["NGAY_CT"]),
+                            new SqlParameter("@M_MA_NT0", V6Options.M_MA_NT0),
+                        };
+                        TinhGia_NTXT_A4(plist);
+                        TinhGia_NTXT_A5(plist);
+                    }
+
+                    //EXEC8 @Year,@Ngay_ct1, @Ngay_ct2, @Tinh_giatb, @M_MA_NT0
+                    var plist_A8 = new SqlParameter[]
+                    {
+                        new SqlParameter("@Year", nam1),
+                        new SqlParameter("@Period1", thang1),
+                        new SqlParameter("@Period2", thang2),
+                        new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                        new SqlParameter("@Warning", warning),
+                        new SqlParameter("@Tinh_giatb", tinh_giatb),
+                        new SqlParameter("@Advance", advance)
+                    };
+                    TinhGia_NTXT_A8(date01, date02, plist_A8);
+                    //EXEC6 @Year, @m, @Ngay1, @Ngay2
+                    var plist_A6 = new SqlParameter[]
+                    {
+                        new SqlParameter("@Year", nam1),
+                        new SqlParameter("@Period1", thang1),
+                        new SqlParameter("@Period2", thang2),
+                        new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                        new SqlParameter("@Warning", warning),
+                        new SqlParameter("@Tinh_giatb", tinh_giatb),
+                        new SqlParameter("@Advance", advance)
+                    };
+                    TinhGia_NTXT_A6(i, date01, date02, plist_A6);
+                    //EXEC7 @Ngay_ct1, @Ngay_ct2, @Tinh_giatb, @M_MA_NT0
+                    var plist_A7 = new SqlParameter[]
+                    {
+                        new SqlParameter("@Year", nam1),
+                        new SqlParameter("@Period1", thang1),
+                        new SqlParameter("@Period2", thang2),
+                        new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                        new SqlParameter("@Warning", warning),
+                        new SqlParameter("@Tinh_giatb", tinh_giatb),
+                        new SqlParameter("@Advance", advance)
+                    };
+                    TinhGia_NTXT_A7(date01, date02, plist_A7);
+                    //EXEC90 @Year, @Period2, @Ngay_ct1, @Ngay_ct2
+                    var plist_A90 = new SqlParameter[]
+                    {
+                        new SqlParameter("@Year", nam1),
+                        new SqlParameter("@Period1", thang1),
+                        new SqlParameter("@Period2", thang2),
+                        new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                        new SqlParameter("@Warning", warning),
+                        new SqlParameter("@Tinh_giatb", tinh_giatb),
+                        new SqlParameter("@Advance", advance)
+                    };
+                    if (warning == 1) TinhGia_NTXT_A90(i, date01, date02, plist_A90);
+                    //EXEC91
+                    for (DateTime j = date01; j <= date02; j = j.AddDays(1))
+                    {
+                        var plist_A91 = new SqlParameter[]
+                        {
+                            new SqlParameter("@Year", nam1),
+                            new SqlParameter("@Period1", thang1),
+                            new SqlParameter("@Period2", thang2),
+                            new SqlParameter("@Ma_vt", ma_vt == "" ? "%" : ma_vt),
+                            new SqlParameter("@Warning", warning),
+                            new SqlParameter("@Tinh_giatb", tinh_giatb),
+                            new SqlParameter("@Advance", advance)
+                        };
+                        TinhGia_NTXT_A91(j, plist_A91);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("V6Business.TinhGia_NTXT " + ex.Message);
+            }
+        }
+
+
+        private static DataSet TinhGia_NTXT2(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                SqlParameter[] plist = new[]
+                {
+                    new SqlParameter("@Ngay_ct1", startDate),
+                    new SqlParameter("@Ngay_ct2", endDate),
+                };
+                return V6BusinessHelper.ExecuteProcedure("[VPA_Ingia_ntxt_2]", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT2 " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Hàm tính toán có trả về danh sách V_ALVT trong tháng
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="plistA2"></param>
+        /// <returns></returns>
+        private static DataSet TinhGia_NTXT_A2(DateTime startDate, DateTime endDate, SqlParameter[] plistA2)
+        {
+            try
+            {
+                var plist = new List<SqlParameter>();
+                plist.AddRange(plistA2);
+                plist.Add(new SqlParameter("@Ngay_ct1", startDate.ToString("yyyyMMdd")));
+                plist.Add(new SqlParameter("@Ngay_ct2", endDate.ToString("yyyyMMdd")));
+
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_ntxt_A2", plist.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A2 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_NTXT3(params object[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_ntxt_3", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("VPA_Ingia_ntxt_3 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_NTXT_A3(int year, int month, DateTime ngay1, DateTime ngay2, SqlParameter[] plistA3)
+        {
+            try
+            {
+                List<SqlParameter> plist = new List<SqlParameter>();
+                plist.AddRange(plistA3);
+                plist.Add(new SqlParameter("@Period", year));
+                plist.Add(new SqlParameter("@Ngay_ct1", ngay1.ToString("yyyyMMdd")));
+                plist.Add(new SqlParameter("@Ngay_ct2", ngay2.ToString("yyyyMMdd")));
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_ntxt_A3", plist.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A3 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_NTXT3_All(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_NTXT_A3", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT3 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_NTXT_A4(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_NTXT_A4", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A4 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_NTXT_5(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_NTXT_5", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_5 " + ex.Message);
+            }
+        }
+
+        public static void TinhGia_NTXT_A5(SqlParameter[] plist)
+        {
+            try
+            {
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_NTXT_A5", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A5 " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Trả về danh sách vật tư cần tính toán.
+        /// </summary>
+        /// <param name="plist"></param>
+        /// <returns></returns>
+        private static DataSet TinhGia_NTXT_A1(SqlParameter[] plist)
+        {
+            try
+            {
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_ntxt_A1", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("VPA_Ingia_ntxt_A1 " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Lặp vật tư, Gom EXEC4 và 5 vào trong 1 th
+        /// </summary>
+        public static void TinhGia_NTXT_A45(int year, int month, string ma_vt, int warning, int tinh_giatb, string advance)
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@year", year),
+                    new SqlParameter("@month", month),
+                    new SqlParameter("@Ma_vt", ma_vt),
+                    new SqlParameter("@Warning", warning),
+                    new SqlParameter("@Tinh_giatb", tinh_giatb),
+                    new SqlParameter("@Advance", advance),
+                };
+                V6BusinessHelper.ExecuteProcedure("[VPA_Ingia_ntxt_A45]", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT4 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_NTXT_A6(int period, DateTime ngay1, DateTime ngay2, SqlParameter[] plistA6)
+        {
+            try
+            {
+                List<SqlParameter> list = new List<SqlParameter>();
+                list.AddRange(plistA6);
+                list.Add(new SqlParameter("@Period", period));
+                list.Add(new SqlParameter("@Ngay_ct1", ngay1.ToString("yyyyMMdd")));
+                list.Add(new SqlParameter("@Ngay_ct2", ngay2.ToString("yyyyMMdd")));
+                return V6BusinessHelper.ExecuteProcedure("VPA_ingia_ntxt_A6", list.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A6 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_NTXT7(params object[] objects)
+        {
+            try
+            {
+                return V6BusinessHelper.ExecuteProcedure("VPA_ingia_ntxt_7", objects);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT7 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_NTXT_A7(DateTime ngay1, DateTime ngay2, SqlParameter[] plistA7)
+        {
+            try
+            {
+                List<SqlParameter> list = new List<SqlParameter>();
+                list.AddRange(plistA7);
+                list.Add(new SqlParameter("@Ngay_ct1", ngay1.ToString("yyyyMMdd")));
+                list.Add(new SqlParameter("@Ngay_ct2", ngay2.ToString("yyyyMMdd")));
+                list.Add(new SqlParameter("@M_MA_NT0", V6Options.M_MA_NT0));
+                return V6BusinessHelper.ExecuteProcedure("VPA_ingia_ntxt_A7", list.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A7 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_NTXT8(params object[] objects)
+        {
+            try
+            {
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_ntxt_8", objects);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT8 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_NTXT_A8(DateTime ngay1, DateTime ngay2, SqlParameter[] plistA8)
+        {
+            try
+            {
+                List<SqlParameter> list = new List<SqlParameter>(plistA8);
+                list.Add(new SqlParameter("@Ngay_ct1", ngay1.ToString("yyyyMMdd")));
+                list.Add(new SqlParameter("@Ngay_ct2", ngay2.ToString("yyyyMMdd")));
+                list.Add(new SqlParameter("@M_MA_NT0", V6Options.M_MA_NT0));
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_ntxt_A8", list.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A8 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_NTXT90(params object[] objects)
+        {
+            try
+            {
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_NTXT_90", objects);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT90 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_NTXT_A90(int period, DateTime date01, DateTime date02, SqlParameter[] plistA90)
+        {
+            try
+            {
+                List<SqlParameter> list = new List<SqlParameter>(plistA90);
+                list.Add(new SqlParameter("@Period", period));
+                list.Add(new SqlParameter("@Ngay_ct1", date01.ToString("yyyyMMdd")));
+                list.Add(new SqlParameter("@Ngay_ct2", date02.ToString("yyyyMMdd")));
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_NTXT_A90", list.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A90 " + ex.Message);
+            }
+        }
+
+        private static DataSet TinhGia_NTXT_A91(DateTime date, SqlParameter[] plistA91)
+        {
+            try
+            {
+                List<SqlParameter> list = new List<SqlParameter>(plistA91);
+                list.Add(new SqlParameter("@Ngay_ct", date.ToString("yyyyMMdd")));
+
+                return V6BusinessHelper.ExecuteProcedure("[VPA_Ingia_ntxt_A91]", list.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_NTXT_A91 " + ex.Message);
+            }
+        }
+
+        private static DataSet VPA_Ingia_ntxt(SqlParameter[] plist)
+        {
+            try
+            {
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_ntxt", plist);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("VPA_Ingia_ntxt " + ex.Message);
+            }
+        }
+
+        #endregion TINH_GIA_NTXT
+
     }
 }

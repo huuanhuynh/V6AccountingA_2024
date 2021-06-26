@@ -173,7 +173,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     c_proc = list_proc[i];
                     c_vitri = list_vitri[i];
 
-                    Call_TinhGia_TB(c_vitri);
+                    Call_TinhGia_ALL(c_vitri);
                     V6BusinessHelper.ExecuteProcedureNoneQuery(c_proc, _pList.ToArray());
                 }
 
@@ -181,7 +181,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 c_proc = list_proc[list_proc.Count - 2];
                 c_vitri = list_vitri[list_proc.Count - 2];
                 c_index = list_proc.Count - 2;
-                Call_TinhGia_TB(c_vitri);
+                Call_TinhGia_ALL(c_vitri);
                 _ds = V6BusinessHelper.ExecuteProcedure(c_proc, _pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
@@ -209,7 +209,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 c_proc = list_proc[list_proc.Count - 1];
                 c_vitri = list_vitri[list_proc.Count - 1];
                 c_index = list_proc.Count - 1;
-                Call_TinhGia_TB(c_vitri);
+                Call_TinhGia_ALL(c_vitri);
                 _ds = V6BusinessHelper.ExecuteProcedure(c_proc, _pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
@@ -243,7 +243,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             _executing = false;
         }
 
-        public void Call_TinhGia_TB(string cvitri_description)
+        public void Call_TinhGia_ALL(string cvitri_description)
         {
             if (cvitri_description.StartsWith("AINGIA_TB:"))
             {
@@ -276,6 +276,65 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 V6BusinessHelper.TinhGia_TB(FilterControl.Date1.Month, FilterControl.Date1.Year, FilterControl.Date2.Month, FilterControl.Date2.Year,
                     ma_kho, ma_vt, dk_cl, tinh_giatb, advance);
+            }
+            else if (cvitri_description.StartsWith("AINGIA_TBDD:"))
+            {
+                string description = cvitri_description.Substring(cvitri_description.IndexOf(':') + 1);
+                var temp_dic = ObjectAndString.StringToStringDictionary(description);
+                string ma_kho = "";
+                if (temp_dic.ContainsKey("MA_KHO"))
+                {
+                    ma_kho = temp_dic["MA_KHO"];
+                }
+                string ma_vt = "";
+                if (temp_dic.ContainsKey("MA_VT"))
+                {
+                    ma_vt = temp_dic["MA_VT"];
+                }
+                int dk_cl = 0;
+                if (temp_dic.ContainsKey("DK_CL"))
+                {
+                    dk_cl = ObjectAndString.ObjectToInt(temp_dic["DK_CL"]);
+                }
+                int tinh_giatb = 0;
+                if (temp_dic.ContainsKey("TINH_GIATB"))
+                {
+                    tinh_giatb = ObjectAndString.ObjectToInt(temp_dic["TINH_GIATB"]);
+                }
+                string advance = "";
+                if (temp_dic.ContainsKey("ADVANCE"))
+                {
+                    advance = temp_dic["ADVANCE"];
+                }
+                V6BusinessHelper.TinhGia_TBDD(FilterControl.Date1.Month, FilterControl.Date1.Year, FilterControl.Date2.Month, FilterControl.Date2.Year,
+                    ma_kho, ma_vt, dk_cl, tinh_giatb, advance);
+            }
+            else if (cvitri_description.StartsWith("AINGIA_NTXT:"))
+            {
+                string description = cvitri_description.Substring(cvitri_description.IndexOf(':') + 1);
+                var temp_dic = ObjectAndString.StringToStringDictionary(description);
+               
+                string ma_vt = "";
+                if (temp_dic.ContainsKey("MA_VT"))
+                {
+                    ma_vt = temp_dic["MA_VT"];
+                }
+                int warning = 0;
+                if (temp_dic.ContainsKey("WARNING"))
+                {
+                    warning = ObjectAndString.ObjectToInt(temp_dic["WARNING"]);
+                }
+                int tinh_giatb = 0;
+                if (temp_dic.ContainsKey("TINH_GIATB"))
+                {
+                    tinh_giatb = ObjectAndString.ObjectToInt(temp_dic["TINH_GIATB"]);
+                }
+                string advance = "";
+                if (temp_dic.ContainsKey("ADVANCE"))
+                {
+                    advance = temp_dic["ADVANCE"];
+                }
+                V6BusinessHelper.TinhGia_NTXT(FilterControl.Date1.Month, FilterControl.Date1.Year, FilterControl.Date2.Month, ma_vt, warning, tinh_giatb, advance);
             }
         }
         
@@ -464,7 +523,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     c_vitri = ":";
                 }
-                Call_TinhGia_TB(c_vitri);
+                Call_TinhGia_ALL(c_vitri);
                 _ds = V6BusinessHelper.ExecuteProcedure(c_proc, _pList.ToArray());
                 _tbl = null;
                 _tbl2 = null;

@@ -36,8 +36,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtMa_bpht.Text.Trim() == "")
-                errors += V6Text.NoInput + lblMaBPHT.Text;
+            
             if (TxtMa_sp.Text.Trim() == "")
             {
                 throw new Exception(V6Text.Text("LACKINFO"));

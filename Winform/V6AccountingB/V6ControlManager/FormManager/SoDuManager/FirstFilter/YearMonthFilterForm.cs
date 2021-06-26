@@ -27,7 +27,7 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
         {
             try
             {
-                txtYear.Value = V6Setting.M_Nam_bd;
+                txtYear.Value = V6Setting.M_SV_DATE.Year;
                 TxtThang.Value = V6Setting.M_SV_DATE.Month;
             }
             catch (Exception ex)
