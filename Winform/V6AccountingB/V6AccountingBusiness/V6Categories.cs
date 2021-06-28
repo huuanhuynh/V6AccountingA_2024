@@ -178,6 +178,25 @@ namespace V6AccountingBusiness
             return result;
         }
 
+        public int UpdateChangedData(string tableName, IDictionary<string, object> dataOld, IDictionary<string, object> dataNew,
+            IDictionary<string, object> keys, SqlTransaction transaction = null)
+        {
+            var tableStruct = V6SqlconnectHelper.GetTableStruct(tableName);
+            var changes = new Dictionary<string, object>();
+            foreach (KeyValuePair<string, object> item in dataNew)
+            {
+                if (!dataOld.ContainsKey(item.Key) || "" + item.Value != "" + dataOld[item.Key])
+                {
+                    changes[item.Key] = item.Value;
+                }
+            }
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, changes, keys, tableStruct);
+            var result = transaction == null
+                ? SqlConnect.ExecuteNonQuery(CommandType.Text, sql)
+                : SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);
+            return result;
+        }
+
         public int UpdateSimple(string tableName, IDictionary<string, object> data, IDictionary<string, object> keys, SqlTransaction transaction = null)
         {
             var structTable = V6SqlconnectHelper.GetTableStruct(tableName);

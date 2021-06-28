@@ -322,7 +322,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 int warning = 0;
                 if (temp_dic.ContainsKey("WARNING"))
                 {
-                    warning = ObjectAndString.ObjectToInt(temp_dic["DK_CL"]);
+                    warning = ObjectAndString.ObjectToInt(temp_dic["WARNING"]);
                 }
                 int tinh_giatb = 0;
                 if (temp_dic.ContainsKey("TINH_GIATB"))

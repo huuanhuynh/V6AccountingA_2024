@@ -2097,7 +2097,7 @@ namespace V6Controls.Forms
             
             try
             {
-                if (V6Setting.IsVietnamese || string.IsNullOrEmpty(fields2))
+                if (V6Setting.IsVietnamese)
                 {
                     fields = "," + fields.ToLower() + ",";
                     foreach (Control c in parent.Controls)
@@ -2125,35 +2125,33 @@ namespace V6Controls.Forms
                     {
                         string f1 = field1list[i];
                         string f2 = field2list[i];
-                        Control c = GetControlByAccessibleName(parent, f1);
-                        if (c != null)
+                        Control c2 = GetControlByAccessibleName(parent, f2);
+                        if (c2 != null)
                         {
                             if (row == null || !row.Table.Columns.Contains(f2))
                             {
-                                SetControlValue(c, null);
+                                SetControlValue(c2, null);
                             }
                             else
                             {
-                                SetControlValue(c, row[f2]);
+                                SetControlValue(c2, row[f2]);
                             }
                         }
-                    }
-                    return;
-                    fields2 = "," + fields2.ToLower() + ",";
-                    foreach (Control c in parent.Controls)
-                    {
-                        if (string.IsNullOrEmpty(c.AccessibleName)) continue;
-                        string baseFIELD = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
-                        //Chỉ xử lý các control có AccessibleName trong fields2
-                        if (fields2.Contains("," + baseFIELD.ToLower() + ","))
+                        else
                         {
-                            if (row == null || !row.Table.Columns.Contains(baseFIELD))
+                            Control c1 = GetControlByAccessibleName(parent, f1);
+                            if (c1 != null)
                             {
-                                //Gán rỗng hoặc mặc định
-                                SetControlValue(c, null);
-                                continue;
+                                c1.AccessibleName = f2; // Đảo AccessibleName cho ngôn ngữ khác V
+                                if (row == null || !row.Table.Columns.Contains(f2))
+                                {
+                                    SetControlValue(c1, null);
+                                }
+                                else
+                                {
+                                    SetControlValue(c1, row[f2]);
+                                }
                             }
-                            SetControlValue(c, row[baseFIELD]);
                         }
                     }
                 }
@@ -2164,23 +2162,23 @@ namespace V6Controls.Forms
             }
         } 
         
-        public static void SetBrotherDataProc(Control control, IDictionary<string, object> row, string fields, string fields2)
+        public static void SetBrotherDataProc(Control control, IDictionary<string, object> row, string fields1, string fields2)
         {
             Control parent = control.Parent;
             if (parent == null) return;
-            if (string.IsNullOrEmpty(fields)) return;
+            if (string.IsNullOrEmpty(fields1)) return;
             
             try
             {
-                if (V6Setting.IsVietnamese || string.IsNullOrEmpty(fields2))
+                if (V6Setting.IsVietnamese)
                 {
-                    fields = "," + fields.ToLower() + ",";
+                    fields1 = "," + fields1.ToLower() + ",";
                     foreach (Control c in parent.Controls)
                     {
                         if (string.IsNullOrEmpty(c.AccessibleName)) continue;
                         string baseFIELD = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
                         //Chỉ xử lý các control có AccessibleName trong fields
-                        if (fields.Contains("," + baseFIELD.ToLower() + ","))
+                        if (fields1.Contains("," + baseFIELD.ToLower() + ","))
                         {
                             //if (row == null || !row.Table.Columns.Contains(baseFIELD))
                             if (row == null || !row.ContainsKey(baseFIELD))
@@ -2195,23 +2193,38 @@ namespace V6Controls.Forms
                 }
                 else
                 {
-                    var field1list = ObjectAndString.SplitString(fields);
-                    var field2list = ObjectAndString.SplitString(fields2);
-                    for (int i = 0; i < field2list.Length; i++)
+                    var FIELD1_LIST = ObjectAndString.SplitString(fields1.ToUpper());
+                    var FIELD2_LIST = ObjectAndString.SplitString(fields2.ToUpper());
+                    for (int i = 0; i < FIELD2_LIST.Length; i++)
                     {
-                        string f1 = field1list[i];
-                        string f2 = field2list[i];
-                        Control c = GetControlByAccessibleName(parent, f1);
-                        if (c != null)
+                        string FIELD1 = FIELD1_LIST[i];
+                        string FIELD2 = FIELD2_LIST[i];
+                        Control c2 = GetControlByAccessibleName(parent, FIELD2);
+                        if (c2 != null)
                         {
-                            //if (row == null || !row.Table.Columns.Contains(f2))
-                            if (row == null || !row.ContainsKey(f2.ToUpper()))
+                            if (row == null || !row.ContainsKey(FIELD2))
                             {
-                                SetControlValue(c, null);
+                                SetControlValue(c2, null);
                             }
                             else
                             {
-                                SetControlValue(c, row[f2.ToUpper()]);
+                                SetControlValue(c2, row[FIELD2]);
+                            }
+                        }
+                        else
+                        {
+                            Control c1 = GetControlByAccessibleName(parent, FIELD1);
+                            if (c1 != null)
+                            {
+                                c1.AccessibleName = FIELD2; // Đảo AccessibleName cho ngôn ngữ khác V
+                                if (row == null || !row.ContainsKey(FIELD2))
+                                {
+                                    SetControlValue(c1, null);
+                                }
+                                else
+                                {
+                                    SetControlValue(c1, row[FIELD2]);
+                                }
                             }
                         }
                     }
@@ -2231,10 +2244,6 @@ namespace V6Controls.Forms
         /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ</param>
         public static void SetNeighborData(Control control, DataRow row, IDictionary<string, string> neighbor_field)
         {
-            //if (string.IsNullOrEmpty(fields)) return;
-            //if (string.IsNullOrEmpty(fields2)) return;
-
-            //fields = "," + fields.ToLower() + ",";
             try
             {
                 //if (row == null) return;

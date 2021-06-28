@@ -774,7 +774,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     _keys["ID"] = DataOld["ID"];
                 }
-                var result = Categories.Update(CONFIG_TABLE_NAME, DataDic, _keys);
+                Dictionary<string, object> updateData = new Dictionary<string, object>(DataDic);
+                if (_aldmConfig != null && _aldmConfig.HaveInfo)
+                {
+                    if (_aldmConfig.EXTRA_INFOR.ContainsKey("NOUPDATE"))
+                    {
+                        foreach (string FIELD in ObjectAndString.SplitString(_aldmConfig.EXTRA_INFOR["NOUPDATE"].ToUpper()))
+                        {
+                            if (updateData.ContainsKey(FIELD)) updateData.Remove(FIELD);
+                        }
+                    }
+                }
+                var result = Categories.Update(CONFIG_TABLE_NAME, updateData, _keys);
                 return result;
             }
             catch (Exception ex)
