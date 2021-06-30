@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
-using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;

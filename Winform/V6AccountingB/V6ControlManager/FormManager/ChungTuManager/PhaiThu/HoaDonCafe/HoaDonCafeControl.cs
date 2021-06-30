@@ -4347,7 +4347,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     "MA_THUE = '" + txtMa_thue.Text.Trim() + "'");
                 if (alThue.TotalRows > 0)
                 {
-                    txtTkThueCo.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
+                    var txtTkThueCo_Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
+                    if (chkSuaTkThue.Checked)
+                    {
+                        if (txtTkThueCo.Text == "") txtTkThueCo.Text = txtTkThueCo_Text;
+                    }
+                    else
+                    {
+                        txtTkThueCo.Text = txtTkThueCo_Text;
+                    }
                     txtThueSuat.Value = ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]);
                     if (txtTkThueNo.Text.Trim() == "") txtTkThueNo.Text = txtManx.Text;
                 }

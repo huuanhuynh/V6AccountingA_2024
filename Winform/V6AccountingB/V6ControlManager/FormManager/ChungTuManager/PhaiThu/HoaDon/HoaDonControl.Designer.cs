@@ -2381,7 +2381,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtMa_thue.Size = new System.Drawing.Size(48, 20);
             this.txtMa_thue.TabIndex = 7;
             this.txtMa_thue.Tag = "";
-            this.txtMa_thue.UseChangeTextOnSetFormData = true;
             this.txtMa_thue.VVar = "ma_thue";
             this.txtMa_thue.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_thue_V6LostFocus);
             // 

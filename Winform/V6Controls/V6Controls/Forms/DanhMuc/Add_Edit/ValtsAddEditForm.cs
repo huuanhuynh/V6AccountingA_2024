@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -88,7 +89,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     _keys["UID"] = DataOld["UID"];
                 }
-                var result = Categories.Update(_MA_DM, DataDic, _keys);
+                Dictionary<string, object> updateData = new Dictionary<string, object>(DataDic);
+                if (_aldmConfig != null && _aldmConfig.HaveInfo)
+                {
+                    if (_aldmConfig.EXTRA_INFOR.ContainsKey("NOUPDATE"))
+                    {
+                        foreach (string FIELD in ObjectAndString.SplitString(_aldmConfig.EXTRA_INFOR["NOUPDATE"].ToUpper()))
+                        {
+                            if (updateData.ContainsKey(FIELD)) updateData.Remove(FIELD);
+                        }
+                    }
+                }
+                var result = Categories.Update(_MA_DM, updateData, _keys);
                 return result>0;
             }
             return false;

@@ -9,6 +9,7 @@ namespace V6Controls
             InitializeComponent();
             ParentChanged += V6LabelTextBox_ParentChanged;
             KeyDown += V6LabelTextBox_KeyDown;
+            TabStop = false;
         }
 
         void V6LabelTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -35,6 +36,7 @@ namespace V6Controls
             // 
             this.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ReadOnly = true;
+            this.TabStop = false;
             this.Tag = "readonly";
             this.ResumeLayout(false);
 

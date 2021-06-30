@@ -71,32 +71,43 @@ namespace V6ThuePostViettelV2Api
             _viettel_token = token;
         }
         
-        public string POST_CREATE_INVOICE(string body, out V6Return v6return)
+        public string POST_CREATE_INVOICE(string jsonBody, out V6Return v6Return)
         {
             string result = "";
-            v6return = new V6Return();
+            v6Return = new V6Return();
             
             try
             {
-                result = POST_VIETTEL_COOKIESTOKEN(create_link + _codetax, body);
-                v6return.RESULT_STRING = result;
+                result = POST_VIETTEL_COOKIESTOKEN(create_link + _codetax, jsonBody);
+                v6Return.RESULT_STRING = result;
                 //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
                 CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
-                v6return.RESULT_OBJECT = responseObject;
+                v6Return.RESULT_OBJECT = responseObject;
+                if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+                {
+                    // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                    Login();
+                    // sau đó gửi lại.
+                    result = POST_VIETTEL_COOKIESTOKEN(create_link + _codetax, jsonBody);
+                    v6Return.RESULT_STRING = result;
+                    responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                    v6Return.RESULT_OBJECT = responseObject;
+                }
+
                 if (responseObject.result == null)
                 {
-                    v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                    v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
                 }
                 else
                 {
-                    v6return.SO_HD = responseObject.result.invoiceNo;
-                    v6return.ID = responseObject.result.transactionID;
-                    v6return.SECRET_CODE = responseObject.result.reservationCode;
+                    v6Return.SO_HD = responseObject.result.invoiceNo;
+                    v6Return.ID = responseObject.result.transactionID;
+                    v6Return.SECRET_CODE = responseObject.result.reservationCode;
                 }
             }
             catch (Exception ex1)
             {
-                v6return.RESULT_ERROR_MESSAGE = ex1.Message;
+                v6Return.RESULT_ERROR_MESSAGE = ex1.Message;
             }
             return result;
         }
@@ -106,80 +117,71 @@ namespace V6ThuePostViettelV2Api
         /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
         /// </summary>
         /// <param name="jsonBody"></param>
-        /// <param name="v6return"></param>
+        /// <param name="v6Return"></param>
         /// <returns></returns>
-        public string POST_REPLACE(string jsonBody, out V6Return v6return)
+        public string POST_REPLACE(string jsonBody, out V6Return v6Return)
         {
             string result = null;
-            v6return = new V6Return();
+            v6Return = new V6Return();
             try
             {
-                result = POST_CREATE_INVOICE(jsonBody, out v6return);
-                v6return.RESULT_STRING = result;
-                //try
-                //{
-                //    //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
-                //    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
-                //    v6return.RESULT_OBJECT = responseObject;
-                //    if (responseObject.result == null)
-                //    {
-                //        v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
-                //    }
-                //    else
-                //    {
-                //        v6return.SO_HD = responseObject.result.invoiceNo;
-                //        v6return.ID = responseObject.result.transactionID;
-                //        v6return.SECRET_CODE = responseObject.result.reservationCode;
-                //    }
-                //}
-                //catch (Exception ex1)
-                //{
-                //    v6return.RESULT_ERROR_MESSAGE = ex1.Message;
-                //}
+                result = POST_CREATE_INVOICE(jsonBody, out v6Return);
+                v6Return.RESULT_STRING = result;
             }
             catch (Exception ex)
             {
                 result = ex.Message;
-                v6return.RESULT_ERROR_MESSAGE += ex.Message;
+                v6Return.RESULT_ERROR_MESSAGE += ex.Message;
             }
             Logger.WriteToLog("ViettelWS.POST_REPLACE " + result);
             return result;
         }
 
-        public string POST_DRAFT(string jsonBody, out V6Return v6return)
+        public string POST_DRAFT(string jsonBody, out V6Return v6Return)
         {
             string result;
-            v6return = new V6Return();
+            v6Return = new V6Return();
             try
             {
                 result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
-                v6return.RESULT_STRING = result;
+                v6Return.RESULT_STRING = result;
                 try
                 {
                     // {"errorCode":"","description":"","result":{}}
                     // {"code":400,"message":"TRANSACTION_UUID_INVALID","data":"Transaction Uuid đã được lập hóa đơn"}
                     CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
-                    v6return.RESULT_OBJECT = responseObject;
+                    v6Return.RESULT_OBJECT = responseObject;
+                    if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+                    {
+                        // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                        Login();
+                        // sau đó gửi lại.
+                        result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+                        v6Return.RESULT_STRING = result;
+                        responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                        v6Return.RESULT_OBJECT = responseObject;
+                    }
+
                     if (string.IsNullOrEmpty(responseObject.message))
                     {
-                        v6return.SO_HD = responseObject.result.invoiceNo;
-                        v6return.ID = responseObject.result.transactionID;
-                        v6return.SECRET_CODE = responseObject.result.reservationCode;
+                        v6Return.SO_HD = responseObject.result.invoiceNo;
+                        v6Return.ID = responseObject.result.transactionID;
+                        v6Return.SECRET_CODE = responseObject.result.reservationCode;
                     }
                     else
                     {
-                        v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                        v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
                     }
                 }
                 catch (Exception ex1)
                 {
-                    v6return.RESULT_ERROR_MESSAGE = ex1.Message;
+                    v6Return.RESULT_ERROR_MESSAGE = ex1.Message;
                 }
             }
             catch (Exception ex)
             {
                 result = ex.Message;
-                v6return.RESULT_ERROR_MESSAGE += ex.Message;
+                v6Return.RESULT_ERROR_MESSAGE += ex.Message;
             }
             Logger.WriteToLog("ViettelWS.POST_DRAFT " + result);
             return result;
@@ -190,11 +192,12 @@ namespace V6ThuePostViettelV2Api
         /// Gửi điều chỉnh hóa đơn.
         /// </summary>
         /// <param name="jsonBody"></param>
+        /// <param name="v6Return">Đối tượng trả về chung V6.</param>
         /// <returns></returns>
-        public string POST_EDIT(string jsonBody, out V6Return v6return)
+        public string POST_EDIT(string jsonBody, out V6Return v6Return)
         {
             string result;
-            v6return = new V6Return();
+            v6Return = new V6Return();
             try
             {
                 result = POST_VIETTEL_COOKIESTOKEN("editlink", jsonBody);
@@ -202,7 +205,7 @@ namespace V6ThuePostViettelV2Api
             catch (Exception ex)
             {
                 result = ex.Message;
-                v6return.RESULT_ERROR_MESSAGE += ex.Message;
+                v6Return.RESULT_ERROR_MESSAGE += ex.Message;
             }
             Logger.WriteToLog("ViettelWS.POST_EDIT " + result);
             return result;
@@ -410,12 +413,12 @@ namespace V6ThuePostViettelV2Api
         /// <param name="paymentType">TM</param>
         /// <param name="paymentTypeName">TM</param>
         /// <param name="cusGetInvoiceRight">true/false</param>
-        /// <param name="v6return">Kết quả trả về v6</param>
+        /// <param name="v6Return">Kết quả trả về v6</param>
         /// <returns></returns>
         public string UpdatePaymentStatus(string codeTax, string invoiceNo, string strIssueDate, string templateCode,
-            string buyerEmailAddress, string paymentType, string paymentTypeName, string cusGetInvoiceRight, out V6Return v6return)
+            string buyerEmailAddress, string paymentType, string paymentTypeName, string cusGetInvoiceRight, out V6Return v6Return)
         {
-            v6return = new V6Return();
+            v6Return = new V6Return();
             //@"supplierTaxCode=0100109106-712
             //&invoiceNo=AA%2F20E0000002
             //&strIssueDate=1600154781000
@@ -435,24 +438,24 @@ namespace V6ThuePostViettelV2Api
                 + @"&paymentTypeName=" + paymentTypeName
                 + @"&cusGetInvoiceRight=" + cusGetInvoiceRight;
             string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/updatePaymentStatus", request);
-            v6return.RESULT_STRING = result;
+            v6Return.RESULT_STRING = result;
             // Sample result
             //{"errorCode":null,"description":null,"result":true,"paymentTime":null,"paymentMethod":null}   // word
             //{\"code\":400,\"message\":\"EMAIL_INVALID\",\"data\":\"Email không hợp lệ\"}                  // test
             //{"errorCode":null,"description":null,"result":true,"paymentTime":1601463363413,"paymentMethod":"TC"}  //test
             UpdatePaymentResponse responseObject = JsonConvert.DeserializeObject<UpdatePaymentResponse>(result);
-            v6return.RESULT_OBJECT = responseObject;
+            v6Return.RESULT_OBJECT = responseObject;
             if (responseObject.result)
             {
-                v6return.RESULT_MESSAGE = "OK";
+                v6Return.RESULT_MESSAGE = "OK";
             }
             else if (responseObject.code != 0)
             {
-                v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
             }
             else
             {
-                v6return.RESULT_MESSAGE = responseObject.message;
+                v6Return.RESULT_MESSAGE = responseObject.message;
             }
             return result;
         }
@@ -624,9 +627,21 @@ namespace V6ThuePostViettelV2Api
 
             string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile", request);
             v6Return.RESULT_STRING = result;
-            PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
-            string fileName = objFile.fileName;
-            if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
+            PDFFileResponse responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+
+            if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+            {
+                // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                Login();
+                // sau đó gửi lại.
+                result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile", request);
+                v6Return.RESULT_STRING = result;
+                responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+                v6Return.RESULT_OBJECT = responseObject;
+            }
+
+            string fileName = responseObject.fileName;
+            if (string.IsNullOrEmpty(fileName) || responseObject.fileToBytes == null)
             {
                 v6Return.RESULT_ERROR_MESSAGE = "Download no file!";
                 throw new Exception("Download no file!");
@@ -649,7 +664,7 @@ namespace V6ThuePostViettelV2Api
             }
             if (!File.Exists(v6Return.PATH))
             {
-                File.WriteAllBytes(v6Return.PATH, objFile.fileToBytes);
+                File.WriteAllBytes(v6Return.PATH, responseObject.fileToBytes);
             }
 
             return v6Return.PATH;
@@ -686,9 +701,21 @@ namespace V6ThuePostViettelV2Api
             string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
             //string result = POST_VIETTEL_COOKIESTOKEN("/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
             v6Return.RESULT_STRING = result;
-            PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
-            string fileName = objFile.fileName;
-            if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
+            PDFFileResponse responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+            v6Return.RESULT_OBJECT = responseObject;
+            if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+            {
+                // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                Login();
+                // sau đó gửi lại.
+                result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
+                v6Return.RESULT_STRING = result;
+                responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+                v6Return.RESULT_OBJECT = responseObject;
+            }
+
+            string fileName = responseObject.fileName;
+            if (string.IsNullOrEmpty(fileName) || responseObject.fileToBytes == null)
             {
                 v6Return.RESULT_ERROR_MESSAGE = "Download no file!";
                 throw new Exception("Download no file!");
@@ -711,7 +738,7 @@ namespace V6ThuePostViettelV2Api
             }
             if (!File.Exists(v6Return.PATH))
             {
-                File.WriteAllBytes(v6Return.PATH, objFile.fileToBytes);
+                File.WriteAllBytes(v6Return.PATH, responseObject.fileToBytes);
             }
             
             return v6Return.PATH;
@@ -738,6 +765,17 @@ namespace V6ThuePostViettelV2Api
             {
                 SearchInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<SearchInvoiceResponseV2>(result);
                 v6Return.RESULT_OBJECT = responseObject;
+                if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+                {
+                    // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                    Login();
+                    // sau đó gửi lại.
+                    result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/searchInvoiceByTransactionUuid", parameters.Substring(1));
+                    v6Return.RESULT_STRING = result;
+                    responseObject = JsonConvert.DeserializeObject<SearchInvoiceResponseV2>(result);
+                    v6Return.RESULT_OBJECT = responseObject;
+                }
+
                 if (responseObject.result == null)
                 {
                     v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
@@ -764,15 +802,15 @@ namespace V6ThuePostViettelV2Api
         /// <returns></returns>
         public string CheckConnection()
         {
-            V6Return v6return;
-            string result = POST_CREATE_INVOICE("", out v6return);
-            if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
+            V6Return v6Return;
+            string result = POST_CREATE_INVOICE("", out v6Return);
+            if (v6Return.RESULT_ERROR_MESSAGE != null && v6Return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
             {
                 return null;
             }
             else
             {
-                return v6return.RESULT_ERROR_MESSAGE;
+                return v6Return.RESULT_ERROR_MESSAGE;
             }
         }
 
@@ -828,37 +866,49 @@ namespace V6ThuePostViettelV2Api
             }
         }
 
-        public string CreateInvoiceUsbTokenGetHash_Sign(string json, string templateCode, string token_serial, out V6Return v6return)
+        public string CreateInvoiceUsbTokenGetHash_Sign(string json, string templateCode, string token_serial, out V6Return v6Return)
         {
             string hash_result = null;
             string sign_result2 = null;
-            v6return = new V6Return();
+            v6Return = new V6Return();
             hash_result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            v6return.RESULT_STRING = hash_result;
+            v6Return.RESULT_STRING = hash_result;
             CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(hash_result);
-            v6return.RESULT_OBJECT = responseObject;
+            v6Return.RESULT_OBJECT = responseObject;
+            if (responseObject.message == "GENERAL" && hash_result.Contains("\"error\":\"Internal Server Error\""))
+            {
+                // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                Login();
+                // sau đó gửi lại.
+                hash_result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
+                v6Return.RESULT_STRING = hash_result;
+                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(hash_result);
+                v6Return.RESULT_OBJECT = responseObject;
+            }
+
+
             if (responseObject.result != null)
             {
                 V6Sign v6sign = new V6Sign();
                 string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
                 sign_result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
-                v6return.RESULT_STRING = sign_result2;
+                v6Return.RESULT_STRING = sign_result2;
                 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(sign_result2);
-                v6return.RESULT_OBJECT = responseObject;
+                v6Return.RESULT_OBJECT = responseObject;
                 if (responseObject.result == null)
                 {
-                    v6return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                    v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
                 }
                 else
                 {
-                    v6return.SO_HD = responseObject.result.invoiceNo;
-                    v6return.ID = responseObject.result.transactionID;
-                    v6return.SECRET_CODE = responseObject.result.reservationCode;
+                    v6Return.SO_HD = responseObject.result.invoiceNo;
+                    v6Return.ID = responseObject.result.transactionID;
+                    v6Return.SECRET_CODE = responseObject.result.reservationCode;
                 }
             }
             else
             {
-                v6return.RESULT_ERROR_MESSAGE = hash_result;
+                v6Return.RESULT_ERROR_MESSAGE = hash_result;
                 Logger.WriteToLog("" + hash_result);
                 return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
             }

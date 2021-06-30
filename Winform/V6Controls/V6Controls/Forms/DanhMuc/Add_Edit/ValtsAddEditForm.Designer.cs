@@ -102,6 +102,7 @@
             this.txtTenTS.ReadOnly = true;
             this.txtTenTS.Size = new System.Drawing.Size(376, 16);
             this.txtTenTS.TabIndex = 12;
+            this.txtTenTS.TabStop = false;
             this.txtTenTS.Tag = "readonly";
             // 
             // DateNgay_khc

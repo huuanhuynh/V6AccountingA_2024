@@ -252,7 +252,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 if (alThue.TotalRows > 0)
                                 {
                                     _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
-                                    txtTkThueCo.Text = _tk_thue_i.Text;
+                                    if (chkSuaTkThue.Checked)
+                                    {
+                                        if (txtTkThueCo.Text == "") txtTkThueCo.Text = _tk_thue_i.Text;
+                                    }
+                                    else
+                                    {
+                                        txtTkThueCo.Text = _tk_thue_i.Text;
+                                    }
                                 }
                             }
 
@@ -3421,7 +3428,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (alThue.TotalRows > 0)
                         {
                             _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
-                            txtTkThueCo.Text = _tk_thue_i.Text;
+                            if (chkSuaTkThue.Checked)
+                            {
+                                if (txtTkThueCo.Text == "") txtTkThueCo.Text = _tk_thue_i.Text;
+                            }
+                            else
+                            {
+                                txtTkThueCo.Text = _tk_thue_i.Text;
+                            }
                         }
                     }
                 }
@@ -4880,7 +4894,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             {
                                 var tk_thue_i_Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
                                 row["TK_THUE_I"] = tk_thue_i_Text;
-                                txtTkThueCo.Text = tk_thue_i_Text;
+                                if (chkSuaTkThue.Checked)
+                                {
+                                    if (txtTkThueCo.Text == "") txtTkThueCo.Text = tk_thue_i_Text;
+                                }
+                                else
+                                {
+                                    txtTkThueCo.Text = tk_thue_i_Text;
+                                }
                             }
                         }
                     }
@@ -5332,11 +5353,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                var alThue = V6BusinessHelper.Select("ALTHUE", "*",
-                    "MA_THUE = '" + txtMa_thue.Text.Trim() + "'");
+                if (NotAddEdit) return;
+                var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + txtMa_thue.Text.Trim() + "'");
                 if (alThue.TotalRows > 0)
                 {
-                    txtTkThueCo.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
+                    var txtTkThueCo_Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
+                    if (chkSuaTkThue.Checked)
+                    {
+                        if (txtTkThueCo.Text == "") txtTkThueCo.Text = txtTkThueCo_Text;
+                    }
+                    else
+                    {
+                        txtTkThueCo.Text = txtTkThueCo_Text;
+                    }
                     txtThueSuat.Value = ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]);
                     if (txtTkThueNo.Text.Trim() == "") txtTkThueNo.Text = txtManx.Text;
                 }
@@ -9862,21 +9891,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
                 {
                     FormManagerHelper.HideMainMenu();
-                    TimDonDatHangBanForm searchForm = new TimDonDatHangBanForm(new V6Invoice91(), V6Mode.Select);
-                    searchForm.ViewMode = false;
+                    TimDonDatHangBanForm chonForm = new TimDonDatHangBanForm(new V6Invoice91(), V6Mode.Select);
+                    chonForm.ViewMode = false;
                     
-                    if (searchForm.ShowDialog(this) == DialogResult.OK)
+                    if (chonForm.ShowDialog(this) == DialogResult.OK)
                     {
-                        var CHON1AM = searchForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary();
+                        var CHON1AM = chonForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary();
                         All_Objects["CHON1AM"] = CHON1AM;
-                        All_Objects["CHON1AD"] = searchForm._formChungTu_AD;
-                        InvokeFormEvent("CHON1" + searchForm._invoice.Mact + Invoice.Mact);
+                        All_Objects["CHON1AD"] = chonForm._formChungTu_AD;
+                        InvokeFormEvent("CHON1" + chonForm._invoice.Mact + Invoice.Mact);
                         
                         // Tạo mới chứng từ
                         Mode = V6Mode.Add;
                         GetSttRec(Invoice.Mact);
                         SetData(CHON1AM);
-                        foreach (DataRow row in searchForm._formChungTu_AD.Rows)
+                        foreach (DataRow row in chonForm._formChungTu_AD.Rows)
                         {
                             var newData = row.ToDataDictionary();
                             newData["STT_RECDH"] = newData["STT_REC"];
