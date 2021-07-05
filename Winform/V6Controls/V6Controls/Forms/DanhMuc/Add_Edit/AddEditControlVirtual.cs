@@ -477,6 +477,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     this.ShowInfoMessage(checkV6Valid, 500);
                     return false;
                 }
+
+                string checkChar = CheckChar(DataDic);
+                if (!string.IsNullOrEmpty(checkChar))
+                {
+                    this.ShowWarningMessage(checkChar);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
@@ -1270,6 +1277,41 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 this.WriteExLog(GetType() + "EnableFormControls_Alctct", ex);
             }
+        }
+
+        private string CheckChar(IDictionary<string, object> data)
+        {
+            string error = "";
+            if (_aldmConfig != null && _aldmConfig.HaveInfo && !string.IsNullOrEmpty(_aldmConfig.VALID_CHARS))
+            {
+                var check_items = ObjectAndString.StringToStringDictionary(_aldmConfig.VALID_CHARS);
+                foreach (KeyValuePair<string, string> item in check_items)
+                {
+                    string FIELD = item.Key.Trim().ToUpper();
+                    if (!_TableStruct.ContainsKey(FIELD)) continue;
+                    if (!data.ContainsKey(FIELD)) continue;
+                    if (!(data[FIELD] is string)) continue;
+                    if (ObjectAndString.IsNumberType(_TableStruct[FIELD].DataType)) continue;
+                    if (ObjectAndString.IsDateTimeType(_TableStruct[FIELD].DataType)) continue;
+
+                    string value = data[FIELD].ToString();
+                    string error1 = "";
+                    foreach (char c in value)
+                    {
+                        if (_aldmConfig.VALID_CHARS.IndexOf(c) < 0)
+                        {
+                            error1 += " [" + c + "]";
+                        }
+                    }
+
+                    if (error1.Length > 0)
+                    {
+                        if (error.Length > 0) error += "\n";
+                        error += string.Format("[{0}] {1}:{2}", FIELD, V6Text.NotAllowChars, error1);
+                    }
+                }
+            }
+            return error;
         }
 
         /// <summary>

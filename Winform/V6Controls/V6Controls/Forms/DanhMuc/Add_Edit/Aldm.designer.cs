@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Aldm));
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
+            this.btnFsearch = new System.Windows.Forms.Button();
             this.v6ColorTextBox7 = new V6Controls.V6ColorTextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
@@ -75,9 +76,12 @@
             this.ChkVisible = new V6Controls.V6CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tabThongTinNgamDinh = new System.Windows.Forms.TabPage();
+            this.btnValidChars = new V6Controls.Controls.DicEditButton();
+            this.txtValidChars = new V6Controls.V6ColorTextBox();
             this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
             this.txtExtraInfo = new V6Controls.V6ColorTextBox();
-            this.lblThongTinThem = new System.Windows.Forms.Label();
+            this.lblValidChars = new System.Windows.Forms.Label();
+            this.lblExtraInfo = new System.Windows.Forms.Label();
             this.btnGRDS_V1 = new System.Windows.Forms.Button();
             this.txtGRDHE_V1 = new V6Controls.V6ColorTextBox();
             this.txtGRDHV_V1 = new V6Controls.V6ColorTextBox();
@@ -149,7 +153,6 @@
             this.lblMaDM = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnFsearch = new System.Windows.Forms.Button();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinNgamDinh.SuspendLayout();
@@ -231,6 +234,21 @@
             this.tabThongTinChinh.Size = new System.Drawing.Size(796, 408);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
+            // 
+            // btnFsearch
+            // 
+            this.btnFsearch.AccessibleDescription = ".";
+            this.btnFsearch.AccessibleName = "";
+            this.btnFsearch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnFsearch.Location = new System.Drawing.Point(750, 86);
+            this.btnFsearch.Name = "btnFsearch";
+            this.btnFsearch.Size = new System.Drawing.Size(25, 23);
+            this.btnFsearch.TabIndex = 31;
+            this.btnFsearch.TabStop = false;
+            this.btnFsearch.Text = "...";
+            this.btnFsearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFsearch.UseVisualStyleBackColor = true;
+            this.btnFsearch.Click += new System.EventHandler(this.btnFsearch_Click);
             // 
             // v6ColorTextBox7
             // 
@@ -870,8 +888,11 @@
             this.tabThongTinNgamDinh.AccessibleDescription = "ADDEDITT00009";
             this.tabThongTinNgamDinh.AutoScroll = true;
             this.tabThongTinNgamDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinNgamDinh.Controls.Add(this.btnValidChars);
             this.tabThongTinNgamDinh.Controls.Add(this.dicEditButton1);
-            this.tabThongTinNgamDinh.Controls.Add(this.lblThongTinThem);
+            this.tabThongTinNgamDinh.Controls.Add(this.lblValidChars);
+            this.tabThongTinNgamDinh.Controls.Add(this.lblExtraInfo);
+            this.tabThongTinNgamDinh.Controls.Add(this.txtValidChars);
             this.tabThongTinNgamDinh.Controls.Add(this.txtExtraInfo);
             this.tabThongTinNgamDinh.Controls.Add(this.btnGRDS_V1);
             this.tabThongTinNgamDinh.Controls.Add(this.txtGRDHE_V1);
@@ -892,6 +913,36 @@
             this.tabThongTinNgamDinh.TabIndex = 1;
             this.tabThongTinNgamDinh.Text = "Thông tin ngầm định";
             // 
+            // btnValidChars
+            // 
+            this.btnValidChars.Image = ((System.Drawing.Image)(resources.GetObject("btnValidChars.Image")));
+            this.btnValidChars.Location = new System.Drawing.Point(763, 173);
+            this.btnValidChars.Name = "btnValidChars";
+            this.btnValidChars.ReferenceControl = this.txtValidChars;
+            this.btnValidChars.Size = new System.Drawing.Size(21, 21);
+            this.btnValidChars.TabIndex = 16;
+            // 
+            // txtValidChars
+            // 
+            this.txtValidChars.AccessibleName = "VALID_CHARS";
+            this.txtValidChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtValidChars.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtValidChars.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtValidChars.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtValidChars.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtValidChars.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtValidChars.HoverColor = System.Drawing.Color.Yellow;
+            this.txtValidChars.LeaveColor = System.Drawing.Color.White;
+            this.txtValidChars.Location = new System.Drawing.Point(171, 173);
+            this.txtValidChars.Margin = new System.Windows.Forms.Padding(4);
+            this.txtValidChars.Name = "txtValidChars";
+            this.txtValidChars.ReadOnly = true;
+            this.txtValidChars.Size = new System.Drawing.Size(592, 23);
+            this.txtValidChars.TabIndex = 15;
+            this.txtValidChars.TabStop = false;
+            this.txtValidChars.Visible = false;
+            // 
             // dicEditButton1
             // 
             this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
@@ -899,7 +950,7 @@
             this.dicEditButton1.Name = "dicEditButton1";
             this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
             this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
-            this.dicEditButton1.TabIndex = 12;
+            this.dicEditButton1.TabIndex = 13;
             // 
             // txtExtraInfo
             // 
@@ -918,22 +969,34 @@
             this.txtExtraInfo.Name = "txtExtraInfo";
             this.txtExtraInfo.ReadOnly = true;
             this.txtExtraInfo.Size = new System.Drawing.Size(592, 23);
-            this.txtExtraInfo.TabIndex = 11;
+            this.txtExtraInfo.TabIndex = 12;
             this.txtExtraInfo.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
             this.txtExtraInfo.Visible = false;
             // 
-            // lblThongTinThem
+            // lblValidChars
             // 
-            this.lblThongTinThem.AccessibleDescription = "ADDEDITL00356";
-            this.lblThongTinThem.AutoSize = true;
-            this.lblThongTinThem.Location = new System.Drawing.Point(9, 151);
-            this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblThongTinThem.Name = "lblThongTinThem";
-            this.lblThongTinThem.Size = new System.Drawing.Size(103, 17);
-            this.lblThongTinThem.TabIndex = 10;
-            this.lblThongTinThem.Text = "Thông tin thêm";
-            this.lblThongTinThem.Visible = false;
+            this.lblValidChars.AccessibleDescription = "ADDEDITL00811";
+            this.lblValidChars.AutoSize = true;
+            this.lblValidChars.Location = new System.Drawing.Point(9, 176);
+            this.lblValidChars.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblValidChars.Name = "lblValidChars";
+            this.lblValidChars.Size = new System.Drawing.Size(98, 17);
+            this.lblValidChars.TabIndex = 14;
+            this.lblValidChars.Text = "Validate chars";
+            this.lblValidChars.Visible = false;
+            // 
+            // lblExtraInfo
+            // 
+            this.lblExtraInfo.AccessibleDescription = "ADDEDITL00356";
+            this.lblExtraInfo.AutoSize = true;
+            this.lblExtraInfo.Location = new System.Drawing.Point(9, 151);
+            this.lblExtraInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblExtraInfo.Name = "lblExtraInfo";
+            this.lblExtraInfo.Size = new System.Drawing.Size(103, 17);
+            this.lblExtraInfo.TabIndex = 11;
+            this.lblExtraInfo.Text = "Thông tin thêm";
+            this.lblExtraInfo.Visible = false;
             // 
             // btnGRDS_V1
             // 
@@ -943,7 +1006,7 @@
             this.btnGRDS_V1.Location = new System.Drawing.Point(759, 18);
             this.btnGRDS_V1.Name = "btnGRDS_V1";
             this.btnGRDS_V1.Size = new System.Drawing.Size(25, 23);
-            this.btnGRDS_V1.TabIndex = 10;
+            this.btnGRDS_V1.TabIndex = 2;
             this.btnGRDS_V1.Text = "...";
             this.btnGRDS_V1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGRDS_V1.UseVisualStyleBackColor = true;
@@ -965,7 +1028,7 @@
             this.txtGRDHE_V1.Margin = new System.Windows.Forms.Padding(4);
             this.txtGRDHE_V1.Name = "txtGRDHE_V1";
             this.txtGRDHE_V1.Size = new System.Drawing.Size(613, 23);
-            this.txtGRDHE_V1.TabIndex = 7;
+            this.txtGRDHE_V1.TabIndex = 8;
             // 
             // txtGRDHV_V1
             // 
@@ -983,7 +1046,7 @@
             this.txtGRDHV_V1.Margin = new System.Windows.Forms.Padding(4);
             this.txtGRDHV_V1.Name = "txtGRDHV_V1";
             this.txtGRDHV_V1.Size = new System.Drawing.Size(613, 23);
-            this.txtGRDHV_V1.TabIndex = 5;
+            this.txtGRDHV_V1.TabIndex = 6;
             // 
             // lblGRDHE_V1
             // 
@@ -993,7 +1056,7 @@
             this.lblGRDHE_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGRDHE_V1.Name = "lblGRDHE_V1";
             this.lblGRDHE_V1.Size = new System.Drawing.Size(85, 17);
-            this.lblGRDHE_V1.TabIndex = 6;
+            this.lblGRDHE_V1.TabIndex = 7;
             this.lblGRDHE_V1.Text = "Tiêu đề Anh";
             // 
             // lblGRDHV_V1
@@ -1004,7 +1067,7 @@
             this.lblGRDHV_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGRDHV_V1.Name = "lblGRDHV_V1";
             this.lblGRDHV_V1.Size = new System.Drawing.Size(84, 17);
-            this.lblGRDHV_V1.TabIndex = 4;
+            this.lblGRDHV_V1.TabIndex = 5;
             this.lblGRDHV_V1.Text = "Tiêu đề Việt";
             // 
             // txtGRDF_V1
@@ -1023,7 +1086,7 @@
             this.txtGRDF_V1.Margin = new System.Windows.Forms.Padding(4);
             this.txtGRDF_V1.Name = "txtGRDF_V1";
             this.txtGRDF_V1.Size = new System.Drawing.Size(613, 23);
-            this.txtGRDF_V1.TabIndex = 3;
+            this.txtGRDF_V1.TabIndex = 4;
             // 
             // txtGRDT_V1
             // 
@@ -1041,7 +1104,7 @@
             this.txtGRDT_V1.Margin = new System.Windows.Forms.Padding(4);
             this.txtGRDT_V1.Name = "txtGRDT_V1";
             this.txtGRDT_V1.Size = new System.Drawing.Size(613, 23);
-            this.txtGRDT_V1.TabIndex = 9;
+            this.txtGRDT_V1.TabIndex = 10;
             // 
             // txtGRDS_V1
             // 
@@ -1069,7 +1132,7 @@
             this.lblGRDT_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGRDT_V1.Name = "lblGRDT_V1";
             this.lblGRDT_V1.Size = new System.Drawing.Size(127, 17);
-            this.lblGRDT_V1.TabIndex = 8;
+            this.lblGRDT_V1.TabIndex = 9;
             this.lblGRDT_V1.Text = "Trường không sum";
             // 
             // lblGRDF_V1
@@ -1080,7 +1143,7 @@
             this.lblGRDF_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGRDF_V1.Name = "lblGRDF_V1";
             this.lblGRDF_V1.Size = new System.Drawing.Size(73, 17);
-            this.lblGRDF_V1.TabIndex = 2;
+            this.lblGRDF_V1.TabIndex = 3;
             this.lblGRDF_V1.Text = "Định dạng";
             // 
             // lblGRDS_V1
@@ -2011,21 +2074,6 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
-            // btnFsearch
-            // 
-            this.btnFsearch.AccessibleDescription = ".";
-            this.btnFsearch.AccessibleName = "";
-            this.btnFsearch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFsearch.Location = new System.Drawing.Point(750, 86);
-            this.btnFsearch.Name = "btnFsearch";
-            this.btnFsearch.Size = new System.Drawing.Size(25, 23);
-            this.btnFsearch.TabIndex = 31;
-            this.btnFsearch.TabStop = false;
-            this.btnFsearch.Text = "...";
-            this.btnFsearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnFsearch.UseVisualStyleBackColor = true;
-            this.btnFsearch.Click += new System.EventHandler(this.btnFsearch_Click);
-            // 
             // Aldm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2173,7 +2221,10 @@
         protected System.Windows.Forms.Button btnGRDS_V1;
         private Controls.DicEditButton dicEditButton1;
         private V6ColorTextBox txtExtraInfo;
-        private System.Windows.Forms.Label lblThongTinThem;
+        private System.Windows.Forms.Label lblExtraInfo;
         protected System.Windows.Forms.Button btnFsearch;
+        private System.Windows.Forms.Label lblValidChars;
+        private V6ColorTextBox txtValidChars;
+        private Controls.DicEditButton btnValidChars;
     }
 }

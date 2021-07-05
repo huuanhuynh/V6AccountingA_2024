@@ -772,6 +772,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                     V6ControlFormHelper.UpdateGridViewRow(row, data);
                 }
+
+                if(CONFIG_TABLE_NAME.ToUpper() == "ALNT")
+                {
+                    V6Alnt.LoadValue();
+                }
             }
             catch (Exception ex)
             {

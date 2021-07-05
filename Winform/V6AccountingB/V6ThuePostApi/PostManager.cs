@@ -3084,7 +3084,7 @@ namespace V6ThuePostManager
                                 continue;
                             }
                         }
-                        else // if (metaItem.Value.DataType.ToLower() == "date")
+                        else
                         {
                             metadata["stringValue"] = ObjectAndString.ObjectToString(GetValue(row0, metaItem.Value));
                             //metaItem.Value.DataType = "text";

@@ -243,6 +243,7 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 ControlsDictionary.Remove(cName);
                                 FormManagerHelper.ShowCurrentMenu3Menu();
+                                CleanUp();
                             }
                             catch (Exception ex)
                             {
