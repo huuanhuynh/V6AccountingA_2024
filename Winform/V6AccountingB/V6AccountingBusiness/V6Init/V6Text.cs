@@ -409,7 +409,8 @@ namespace V6Init
         public static string NotValid { get { return V6Setting.Language == "V" ? "Không hợp lệ." : "Not valid."; } }
         public static string NoUID { get { return V6Setting.Language == "V" ? "Không có UID." : "No UID."; } }
         
-        public static string NotAllow { get { return V6Setting.Language == "V" ? "Không được phép!" : "Not Allow!"; } }
+        public static string NotAllow { get { return V6Setting.Language == "V" ? "Không được phép" : "Not Allow"; } }
+        public static string NotAllowChars { get { return V6Setting.Language == "V" ? "Các ký tự không được phép" : "Not Allow chars"; } }
         public static string NotAllowed { get { return V6Setting.Language == "V" ? "Chưa được phép!" : "Not Allowed!"; } }
         public static string NotAnAdmin { get { return V6Setting.Language == "V" ? "Không phải admin." : "Not an admin."; } }
         public static string OverFlow { get { return V6Setting.Language == "V" ? "Tràn dữ liệu!" : "OverFlow!"; } }

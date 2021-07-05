@@ -999,14 +999,14 @@ namespace V6Tools
         {
             string words = "";
             decimal intPart;
-            decimal decPart = 0;
+            string decPart = "";
             if (inputNumber == 0)
                 return "zero";
             try
             {
                 string[] splitter = inputNumber.ToString(CultureInfo.InvariantCulture).Split('.');
                 intPart = decimal.Parse(splitter[0]);
-                decPart = decimal.Parse(splitter[1]);
+                decPart = splitter[1];
             }
             catch
             {
@@ -1014,8 +1014,9 @@ namespace V6Tools
             }
 
             words = NumWords(intPart);
+            string decWords = DecPartWord(decPart);
 
-            if (decPart > 0)
+            if (!string.IsNullOrEmpty(decWords))
             {
                 if (words != "")
                 {
@@ -1025,11 +1026,14 @@ namespace V6Tools
                     }
                     words += string.Format(" {0} ", point2);
                 }
-                words += DecPartWord((int)decPart);
+                //words += DecPartWord((int)decPart);
+                words += decWords;
                 if (!string.IsNullOrEmpty(endPoint2))
                 {
                     words += " " + endPoint2;
                 }
+                //words += NumWords((int)decPart);
+                
                 //int counter = decPart.ToString(CultureInfo.InvariantCulture).Length;
                 //switch (counter)
                 //{
@@ -1047,10 +1051,11 @@ namespace V6Tools
                 if (words != "" && !string.IsNullOrEmpty(end2))
                 {
                     words += " " + end2;
-                    if (!string.IsNullOrEmpty(only2))
-                    {
-                        words += " " + only2;
-                    }
+                }
+
+                if (!string.IsNullOrEmpty(only2))
+                {
+                    words += " " + only2;
                 }
             }
 
@@ -1066,16 +1071,47 @@ namespace V6Tools
             
         }
 
-        private static string DecPartWord(int num)
+        /// <summary>
+        /// 80 eighty / 81 eighty one / 08 eight / 811 eight one one / 081 zero eight one
+        /// </summary>
+        /// <param name="numString"></param>
+        /// <returns></returns>
+        private static string DecPartWord(string numString)
         {
-            string[] numbersArr = new string[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-            string numString = num.ToString();
-            string words = "";
-            while (num>0)
+            // Xử lý chuỗi
+            while (numString.EndsWith("0"))
             {
-                words = numbersArr[num%10] + " " + words;
-                num /= 10;
+                numString = numString.Substring(0, numString.Length - 1);
             }
+
+            if (numString.Length == 1)
+            {
+                numString += "0";
+            }
+
+            if (numString.Length > 2)
+            {
+                numString = numString.Substring(0, 2);
+            }
+
+            if (numString.Length == 2)
+            {
+                return NumWords(Convert.ToInt32(numString));
+            }
+
+            string[] numbersArr = new string[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            string words = "";
+            foreach (char c in numString)
+            {
+                words += " " + numbersArr[c - '0'];
+            }
+
+            //if (words.Length > 1) words = words.Substring(1);
+            //while (num>0)
+            //{
+            //    words = numbersArr[num%10] + " " + words;
+            //    num /= 10;
+            //}
             return words;
         }
 
