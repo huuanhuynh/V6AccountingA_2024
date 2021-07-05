@@ -1,11 +1,12 @@
 ﻿using DevExpress.Data.Filtering;
 using System;
+using V6AccountingBusiness;
 using V6Init;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.DXreport
 {
-    public class V6DXToString : ICustomFunctionOperatorBrowsable
+    public class V6DXMoneyToWords : ICustomFunctionOperatorBrowsable
     {
         public FunctionCategory Category {
             get {
@@ -13,26 +14,29 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             }
         }
         public string Description {
-            get {
+            get
+            {
                 if (V6Setting.IsVietnamese)
-                    return "ToString(object, string format)\r\nChuyển ngày thành chuỗi có định dạng hoặc object khác.";
-                return "ToString(object, string format)\r\nFormat date/object to string with format.";
+                    return "MoneyToWords(decimal, string lang, string ma_nt)\r\nĐọc số tiền. lang là V hoặc E.";
+                return "MoneyToWords(decimal, string lang, string ma_nt)\r\nRead the amount. lang is V or E.";
             }
         }
+
         /// <summary>
         /// Kiểm tra có đủ tham số truyền vào chưa?
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public bool IsValidOperandCount(int count) {
-            return count >=1 && count <= 2;
+        public bool IsValidOperandCount(int count)
+        {
+            return count >= MinOperandCount && count <= MaxOperandCount;
         }
         public bool IsValidOperandType(int operandIndex, int operandCount, Type type) {
             return true;
         }
         public int MaxOperandCount {
             get {
-                return 2;
+                return 3;
             }
         }
         public int MinOperandCount {
@@ -47,25 +51,33 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         /// <returns></returns>
         public object Evaluate(params object[] operands)
         {
-            string res = "";
-            if (operands[0] == null) return res;
-            if (operands.Length == 1)
+            string result = "";
+            if (operands[0] == null) return result;
+            decimal money = 0;
+            string lang = V6Setting.Language;
+            string ma_nt = "VND";
+            if (operands.Length > 0)
             {
-                res = ObjectAndString.ObjectToString(operands[0]);
+                money = ObjectAndString.ObjectToDecimal(operands[0]);
             }
-            else if (operands.Length == 2)
+            if (operands.Length > 1)
             {
-                res = ObjectAndString.ObjectToString(operands[0], operands[1].ToString());
+                lang = operands[1].ToString();
             }
-            
-            return res;
+            if (operands.Length > 2)
+            {
+                ma_nt = operands[2].ToString();
+            }
+
+            result = V6BusinessHelper.MoneyToWords(money, lang, ma_nt);
+            return result;
         }
         /// <summary>
         /// Tên hàm.
         /// </summary>
         public string Name {
             get {
-                return "ToString";
+                return "MoneyToWords";
             }
         }
         public Type ResultType(params Type[] operands) {

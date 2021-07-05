@@ -85,7 +85,7 @@
 
 
   <!--SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/-->
-  <SummarizeInfo	Field='Total'	Note='Tổng tiền trước thuế'	FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo	Field='Total'	Note='Tổng tiền trước thuế'	FieldV6='T_TIEN2-T_CK'	Type='Field'/>
   <SummarizeInfo	Field='Discount'		FieldV6='PT_CK'	Type='Field'	DataType=''/>
   <SummarizeInfo	Field='DiscountAmount'		FieldV6='T_CK'	Type='Field'	DataType='long'/>
   <SummarizeInfo	Field='VATRate'		FieldV6='THUE_SUAT'	Type='Field'		DataType='long'/>

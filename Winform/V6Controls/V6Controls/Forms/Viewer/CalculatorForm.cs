@@ -19,12 +19,31 @@ namespace V6Controls.Forms.Viewer
             Chia,
             Bang,
             None
-        };
+        }
+
+        private decimal _memory;
 
         private string monitorData {get { return _monitor; } set { _monitor = value;
             ViewMonitorDataToScreen();
         }}
         private string _monitor = "0";
+
+        private bool _error;
+
+        //bool inCaculator;
+        /// <summary>
+        /// đang nhập số.
+        /// </summary>
+        bool _inInput;
+        /// <summary>
+        /// Đã bấm dấu .
+        /// </summary>
+        bool _dotPressed;
+        decimal _resultValue;
+        decimal so_hang_2;
+        //decimal secondValue0;
+
+        Operation _oldOperation;
 
         private void ViewMonitorDataToScreen()
         {
@@ -70,8 +89,6 @@ namespace V6Controls.Forms.Viewer
             }
         }
 
-        decimal _memory;
-
         private void ViewMemoryToScreen()
         {
             int decimals = _memory.ToString(CultureInfo.InvariantCulture).Split('.').Length > 1
@@ -86,25 +103,7 @@ namespace V6Controls.Forms.Viewer
             lblMemory.Text = "";
         }
 
-        private bool _error = false;
-        /// <summary>
-        /// Trong dòng tính toán.
-        /// </summary>
-        //bool inCaculator;
-        /// <summary>
-        /// đang nhập số.
-        /// </summary>
-        bool _inInput;
-        /// <summary>
-        /// Đã bấm dấu .
-        /// </summary>
-        bool _dotPressed;
-        decimal _resultValue;
-        decimal so_hang_2;
-        //decimal secondValue0;
         
-        Operation _oldOperation;
-
         public CalculatorForm()
         {
             InitializeComponent();
@@ -156,7 +155,6 @@ namespace V6Controls.Forms.Viewer
         void SetStringToMonitorData(string text)
         {
             monitorData = text;
-            return;
         }
 
         public override bool DoHotKey0(Keys keyData)
@@ -169,67 +167,112 @@ namespace V6Controls.Forms.Viewer
                 int key9 = (int)Keys.D9;
                 int k0 = (int)Keys.NumPad0;
                 int k9 = (int)Keys.NumPad9;
+                
+                //else if (keyCode >= k0 && keyCode <= k9)
+                //{
+                //    if (_inInput)
+                //    {
+                //        if (monitorData == "0")
+                //            SetStringToMonitorData((keyCode - k0).ToString());
+                //        else
+                //            AppendStringToMonitorData((keyCode - k0).ToString());
+                //    }
+                //    else
+                //    {
+                //        _inInput = true;
+                //        SetStringToMonitorData((keyCode - k0).ToString());
+                //    }
+                //    return true;
+                //}
 
-                if (keyCode >= key0 && keyCode <= key9)
+                if ((keyCode >= key0 && keyCode <= key9) || (keyCode >= k0 && keyCode <= k9))
                 {
+                    int input_number = keyCode - key0;
+                    if (input_number < 0 || input_number > 9)
+                    {
+                        input_number = keyCode - k0;
+                    }
+
+                    switch (input_number)
+                    {
+                        case 0:
+                            btn0.Focus();
+                            break;
+                        case 1:
+                            btn1.Focus();
+                            break;
+                        case 2:
+                            btn2.Focus();
+                            break;
+                        case 3:
+                            btn3.Focus();
+                            break;
+                        case 4:
+                            btn4.Focus();
+                            break;
+                        case 5:
+                            btn5.Focus();
+                            break;
+                        case 6:
+                            btn6.Focus();
+                            break;
+                        case 7:
+                            btn7.Focus();
+                            break;
+                        case 8:
+                            btn8.Focus();
+                            break;
+                        case 9:
+                            btn9.Focus();
+                            break;
+                    }
+
                     if (_inInput)
                     {
                         if (monitorData == "0")
-                            SetStringToMonitorData((keyCode - key0).ToString());
+                            SetStringToMonitorData(input_number.ToString());
                         else
-                            AppendStringToMonitorData((keyCode - key0).ToString());
+                            AppendStringToMonitorData(input_number.ToString());
                     }
-                    else
+                    else // Nhập số mới.
                     {
                         _inInput = true;
-                        SetStringToMonitorData((keyCode - key0).ToString());
-                    }
-                    return true;
-                }
-                else if (keyCode >= k0 && keyCode <= k9)
-                {
-                    if (_inInput)
-                    {
-                        if (monitorData == "0")
-                            SetStringToMonitorData((keyCode - k0).ToString());
-                        else
-                            AppendStringToMonitorData((keyCode - k0).ToString());
-                    }
-                    else
-                    {
-                        _inInput = true;
-                        SetStringToMonitorData((keyCode - k0).ToString());
+                        SetStringToMonitorData(input_number.ToString());
                     }
                     return true;
                 }
                 else if (keyData == Keys.Decimal || keyData == Keys.Oemcomma || keyData == Keys.OemPeriod)
                 {
-                    btnDot_Click(btnDot, null);
+                    btnDot.Focus();
+                    btnDot.PerformClick();
                     return true;
                 }
-                //else if (keyData == (Keys.Control | Keys.C))
+                //else if (keyData == (Keys.Control | Keys.C))  // Menu design
                 //{
                 //    Copy();
                 //    return true;
                 //}
-                //else if (keyData == (Keys.Control | Keys.V))
+                //else if (keyData == (Keys.Control | Keys.V))  // Menu design
                 //{
                 //    Paste();
                 //    return true;
                 //}
                 else if (eKeyCode == Keys.Enter)
                 {
-                    btnCalculate_Click(btnEqual, null);
+                    btnEqual.Focus();
+                    btnEqual.PerformClick();
                     return true;
                 }
                 else if (eKeyCode == Keys.Back)
                 {
-                    btnBackSpace_Click(null, null);
+                    btnBackSpace.Focus();
+                    btnBackSpace.PerformClick();
                     return true;
                 }
                 else if (eKeyCode == Keys.Insert)
                 {
-                    btnMPlus_Click(btnMPlus, null);
+                    btnPlus.Focus();
+                    btnPlus.PerformClick();
                     return true;
                 }
                 else if (eKeyCode == Keys.Delete)
@@ -261,6 +304,7 @@ namespace V6Controls.Forms.Viewer
                     }
                     if (currentButton != null)
                     {
+                        currentButton.Focus();
                         btnCalculate_Click(currentButton, null);
                         return true;
                     }
@@ -318,21 +362,37 @@ namespace V6Controls.Forms.Viewer
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
+            // Cộng Nhân Chia Trừ Bằng
             if (_error) return;
 
             Operation newOperation = Operation.None;
             Button currentButton = (Button) sender;
 
             if (currentButton == btnPlus)
+            {
+                //btnPlus.Focus();
                 newOperation = Operation.Cong;
+            }
             else if (currentButton == btnMultiply)
+            {
+                //btnMultiply.Focus();
                 newOperation = Operation.Nhan;
+            }
             else if (currentButton == btnDivide)
+            {
+                //btnDivide.Focus();
                 newOperation = Operation.Chia;
+            }
             else if (currentButton == btnSubtract)
+            {
+                //btnSubtract.Focus();
                 newOperation = Operation.Tru;
+            }
             else if (currentButton == btnEqual)
+            {
+                //btnEqual.Focus();
                 newOperation = Operation.Bang;
+            }
 
             CalculateResult(newOperation);
         }
@@ -358,28 +418,28 @@ namespace V6Controls.Forms.Viewer
 
                 // Tính toán theo phép tính cũ nếu có
                 if(operationButton == Operation.Bang || _inInput)
-                switch (_oldOperation)
-                {
-                    case Operation.Cong:
-                        _resultValue += so_hang_2;
-                        haveNewResult = true;
-                        break;
-                    case Operation.Tru:
-                        _resultValue -= so_hang_2;
-                        haveNewResult = true;
-                        break;
-                    case Operation.Nhan:
-                        _resultValue *= so_hang_2;
-                        haveNewResult = true;
-                        break;
-                    case Operation.Chia:
-                        _resultValue /= so_hang_2;
-                        haveNewResult = true;
-                        break;
-                    default: // Đưa số hạng 2 vào số hạng 1.
-                        _resultValue = so_hang_2;
-                        break;
-                }
+                    switch (_oldOperation)
+                    {
+                        case Operation.Cong:
+                            _resultValue += so_hang_2;
+                            haveNewResult = true;
+                            break;
+                        case Operation.Tru:
+                            _resultValue -= so_hang_2;
+                            haveNewResult = true;
+                            break;
+                        case Operation.Nhan:
+                            _resultValue *= so_hang_2;
+                            haveNewResult = true;
+                            break;
+                        case Operation.Chia:
+                            _resultValue /= so_hang_2;
+                            haveNewResult = true;
+                            break;
+                        default: // Đưa số hạng 2 vào số hạng 1.
+                            _resultValue = so_hang_2;
+                            break;
+                    }
                 
                 //Lưu lại phép tính cũ (không tính dấu bằng).
                 if (operationButton != Operation.Bang)
@@ -445,6 +505,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnOver_Click(object sender, EventArgs e)
         {
+            // 1/x
             if (_error) return;
             decimal screen_value = ObjectAndString.StringToDecimal(monitorData);
             if (screen_value != 0)
@@ -536,7 +597,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnHide_Click(object sender, EventArgs e)
         {
-            Opacity = Math.Abs(Opacity - 1) < 0.1 ? 0.75 : 1;
+            Opacity = Math.Abs(Opacity - 1) < 0.1 ? 0.65 : 1;
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
