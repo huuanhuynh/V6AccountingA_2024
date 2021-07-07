@@ -358,7 +358,9 @@ namespace V6Controls
                 if (closeConfirm)
                 f.FormClosing += (sender, e) =>
                 {
-                    if (!f.IsDisposed && f.ShowConfirmMessage(V6Text.CloseConfirm) != DialogResult.Yes)
+                    if (!control.IsDisposed && !control.Disposing   // không hỏi khi form control đã tự hủy.
+                        && !f.IsDisposed && !f.Disposing
+                        && f.ShowConfirmMessage(V6Text.CloseConfirm) != DialogResult.Yes)
                     {
                         e.Cancel = true;
                     }
@@ -370,7 +372,8 @@ namespace V6Controls
                 {
                     if (!f.IsDisposed)
                     {
-                        f.Dispose();
+                        f.Close();
+                        //f.Dispose();        // còn form tàng hình.                
                     }
                 };
                 f.KeyPreview = true;

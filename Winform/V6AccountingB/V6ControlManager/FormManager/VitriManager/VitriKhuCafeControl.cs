@@ -271,7 +271,14 @@ namespace V6ControlManager.FormManager.VitriManager
                     inDX.Close_after_print = true;
                     inDX.Disposed += delegate
                     {
-                        ((Form)inDX.Parent).Close();
+                        try
+                        {
+                            if (inDX.Parent != null) ((Form)inDX.Parent).Close();
+                        }
+                        catch
+                        {
+                            //
+                        }
                     };
                     inDX.ShowToForm(this, hoadonCafe_Invoice.PrintTitle, true);
                 }
@@ -291,7 +298,14 @@ namespace V6ControlManager.FormManager.VitriManager
                     c.Close_after_print = true;
                     c.Disposed += delegate
                     {
-                        ((Form)c.Parent).Close();
+                        try
+                        {
+                            if (c.Parent != null) ((Form)c.Parent).Close();
+                        }
+                        catch
+                        {
+                            //
+                        }
                     };
                     c.ShowToForm(this, hoadonCafe_Invoice.PrintTitle, true);
                 }
