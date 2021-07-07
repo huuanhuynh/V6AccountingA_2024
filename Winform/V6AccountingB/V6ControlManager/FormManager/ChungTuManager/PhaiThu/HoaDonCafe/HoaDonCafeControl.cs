@@ -4912,7 +4912,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             try
             {
-                ReadyForDelete();
+                //ReadyForDelete();
 
                 //if (Mode == V6Mode.View)
                 {
@@ -4989,12 +4989,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void ReadyForDelete()
-        {
-            _deleteRow = AM.Rows[CurrentIndex];
-        }
-
-        private DataRow _deleteRow;
         private string _delete_SttRec;
 
         private void DoDelete()
@@ -5002,19 +4996,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             //Xóa xong view lại cái khác (trong timer tick)
             try
             {
-                //var row = AM.Rows[CurrentIndex];
-                _delete_SttRec = _deleteRow["Stt_rec"].ToString().Trim();
+                var row = AM.Rows[CurrentIndex];
+                _delete_SttRec = row["Stt_rec"].ToString().Trim();
                 if (Invoice.DeleteInvoice(_delete_SttRec))
                 {
-                    _AED_Success = true;
-                    AM.Rows.Remove(_deleteRow);
-                    ADTables.Remove(_delete_SttRec);
-                    AD3Tables.Remove(_delete_SttRec);
-                    if (Invoice.IS_AM2TH(_deleteRow.ToDataDictionary()))
+                    if (Invoice.IS_AM2TH(row.ToDataDictionary()))
                     {
                         _sttRec2_TH = _delete_SttRec;
                         DoDelete2_TH_Thread();
                     }
+                    _AED_Success = true;
+                    AM.Rows.Remove(row);
+                    ADTables.Remove(_delete_SttRec);
+                    AD3Tables.Remove(_delete_SttRec);
                 }
                 else
                 {
@@ -5392,74 +5386,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".SetNewValues " + _sttRec, ex);
-            }
-        }
-
-        private void In(string sttRec_In, V6PrintMode printMode, int sec = 3)
-        {
-            try
-            {
-                if (IsViewingAnInvoice)
-                {
-                    if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
-                    {
-                        var program = Invoice.PrintReportProcedure;
-                        var reportFile = Invoice.Alct["FORM"].ToString().Trim();
-                        var reportTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
-                        var reportTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
-
-                        if (Invoice.AlctConfig.XtraReport)
-                        {
-                            var inDX = new InChungTuDX(Invoice, program, program, reportFile, reportTitle, reportTitle2,
-                                "", "", "", sttRec_In);
-                            inDX.PrintMode = printMode;
-                            inDX.TTT = txtTongThanhToan.Value;
-                            inDX.TTT_NT = txtTongThanhToanNt.Value;
-                            inDX.MA_NT = _maNt;
-                            inDX.Dock = DockStyle.Fill;
-                            inDX.PrintSuccess += (sender, stt_rec, albcConfig) =>
-                            {
-                                if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, null);
-                                if (!sender.IsDisposed) sender.Dispose();
-                            };
-                            inDX.Close_after_print = true;
-                            inDX.Disposed += delegate
-                            {
-                                ((Form)inDX.Parent).Close();
-                            };
-                            inDX.ShowToForm(this, Invoice.PrintTitle, true);
-                        }
-                        else
-                        {
-                            var c = new InChungTuViewBase(Invoice, program, program, reportFile, reportTitle, reportTitle2,
-                                "", "", "", sttRec_In);
-                            c.TTT = txtTongThanhToan.Value;
-                            c.TTT_NT = txtTongThanhToanNt.Value;
-                            c.MA_NT = _maNt;
-                            c.Dock = DockStyle.Fill;
-                            c.PrintSuccess += (sender, stt_rec, albcConfig) =>
-                            {
-                                if (albcConfig.ND51 > 0) Invoice.IncreaseSl_inAM(stt_rec, null);
-                                if (!sender.IsDisposed) sender.Dispose();
-                            };
-                            c.PrintMode = printMode;
-                            c.Close_after_print = true;
-                            c.Disposed += delegate
-                            {
-                                ((Form)c.Parent).Close();
-                            };
-                            c.ShowToForm(this, Invoice.PrintTitle, true);
-                        }
-                    }
-                    else
-                    {
-                        V6ControlFormHelper.NoRightWarning();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -6580,7 +6506,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (Invoice.PrintModeCT == "2") printMode = V6PrintMode.AutoClickPrint;
                 if (Invoice.PrintModeCT == "3") printMode = V6PrintMode.AutoExportT;
             }
-            In(_sttRec, printMode);
+
+            BasePrint(Invoice, _sttRec_In, printMode, TongThanhToan, TongThanhToanNT, true);
+
             SetStatus2Text();
         }
 
