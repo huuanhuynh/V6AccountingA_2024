@@ -901,8 +901,8 @@ namespace V6AccountingBusiness.Invoices
 
         public void PostErrorLog(string sttRec, string mode, Exception ex)
         {
-            Logger.WriteToLog(string.Format("{0} PostErrorLog Mact: {1} Stt_rec: {2} Mode: {3} Message: {4}\r\nStackTrace: {5}",
-                V6Login.ClientName, Mact, sttRec, mode, ex.Message, ex.StackTrace));
+            Logger.WriteToLog(string.Format("{0} PostErrorLog Mact: {1} Stt_rec: {2} Mode: {3} Message: {4}\r\nStackTrace: {5}\r\nEx type: {6}",
+                V6Login.ClientName, Mact, sttRec, mode, ex.Message, ex.StackTrace, ex.GetType()));
             PostErrorLog(Mact, sttRec, mode, ex.Message);
         }
 

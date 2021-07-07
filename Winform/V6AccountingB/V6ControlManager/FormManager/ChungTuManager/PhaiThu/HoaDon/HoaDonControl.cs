@@ -6236,16 +6236,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _sttRec = row["Stt_rec"].ToString().Trim();
                 if (Invoice.DeleteInvoice(_sttRec))
                 {
-                    _AED_Success = true;
-                    AM.Rows.Remove(row);
-                    ADTables.Remove(_sttRec);
-                    AD3Tables.Remove(_sttRec);
-
                     if (Invoice.IS_AM2TH(row.ToDataDictionary()))
                     {
                         _sttRec2_TH = _sttRec;
                         DoDelete2_TH_Thread();
                     }
+                    _AED_Success = true;
+                    AM.Rows.Remove(row);
+                    ADTables.Remove(_sttRec);
+                    AD3Tables.Remove(_sttRec);                    
                 }
                 else
                 {
