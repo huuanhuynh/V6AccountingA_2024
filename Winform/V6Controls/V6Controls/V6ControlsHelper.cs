@@ -258,6 +258,50 @@ namespace V6Controls
             return null;
         }
 
+        /// <summary>
+        /// Gọi hàm trong type
+        /// </summary>
+        /// <param name="program">Đối tượng class đưa vào.</param>
+        /// <param name="methodName">Hàm trong class.</param>
+        /// <returns></returns>
+        public static object InvokeTypeMethod(Type program, string methodName, object[] params_object)
+        {
+            try
+            {
+                //Type t = typeof(ObjectAndString);
+                if (program == null) return null;
+                var method = program.GetMethod(methodName);
+                if (method != null)
+                {
+                    var parameters = method.GetParameters();
+                    var listObj = new List<object>();
+                    int index = 0;
+                    foreach (ParameterInfo info in parameters)
+                    {
+                        if (index< params_object.Length)//.ContainsKey(info.Name))
+                        {
+                            listObj.Add(params_object[index]);
+                        }
+                        else
+                        {
+                            listObj.Add(null);
+                        }
+
+                        index++;
+                    }
+                    return method.Invoke(null, listObj.ToArray());
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                V6Message.Show((V6Setting.IsVietnamese ? "Lỗi thực hiện gọi hàm " : "Error Invoke Method ")
+                               + program + "." + methodName + "\n" + ex.Message);
+            }
+
+            return null;
+        }
+
         public static void SetBrotherFields(V6VvarTextBox txt, IDictionary<string, string> brothers)
         {
             var dataRow = txt.Data;
@@ -369,14 +413,14 @@ namespace V6Controls
             }
         }
         
-        public static void ShowColorText(V6ColorTextBox txtBox)
+        public static void ShowColorText(V6ColorTextBox txtBox, string key_press)
         {
             if (FlyText_Form == null) return;
             FlyText_Form.TargetControl = txtBox;
             
             if (TextRenderer.MeasureText(txtBox.Text, txtBox.Font).Width > txtBox.Width)
             {
-                FlyText_Form.Message = txtBox.Text;
+                FlyText_Form.Message = txtBox.Text + key_press;
             }
             else
             {

@@ -358,7 +358,7 @@ namespace V6Controls
 
             //if (_showText)
             {
-                V6ControlsHelper.ShowColorText(this);
+                V6ControlsHelper.ShowColorText(this, "" + e.KeyChar);
             }
         }
 
@@ -856,7 +856,7 @@ namespace V6Controls
             Do_Enter_ColorEffect();
             //if (_showText)
             {
-                V6ControlsHelper.ShowColorText(this);
+                V6ControlsHelper.ShowColorText(this, null);
             }
         }
 
