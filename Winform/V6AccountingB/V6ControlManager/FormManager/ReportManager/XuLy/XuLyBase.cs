@@ -27,7 +27,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
         public List<DataRow> remove_list_d = new List<DataRow>();
 
-        public bool AutoClickNhan { get; set; }
+        public bool AutoClickNhan = false;
         public string _reportProcedure, _reportFile;
         public string _program, _reportCaption, _reportCaption2;
         public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
@@ -935,6 +935,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 };
                 if (save.ShowDialog(this) == DialogResult.OK)
                 {
+                    var exportData = data.Copy();
+                    if (exportData.Columns.Contains("UID")) exportData.Columns.Remove("UID");
                     try
                     {   
                         V6Tools.V6Export.ExportData.ToExcel(data, save.FileName, _reportCaption, true);

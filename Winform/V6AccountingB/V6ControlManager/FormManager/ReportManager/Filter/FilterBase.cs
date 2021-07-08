@@ -543,7 +543,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             GroupBox groupBox1 = GetControlByName("groupBox1") as GroupBox;
             if (groupBox1 == null)
             {
-                this.ShowMessage("groupBox1 null.");
+                SetStatusText(DateTime.Now + " groupBox1 null.");
                 return;
             }
 

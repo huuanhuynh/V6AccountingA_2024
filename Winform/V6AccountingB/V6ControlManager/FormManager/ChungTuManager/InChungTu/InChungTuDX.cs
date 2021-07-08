@@ -2173,12 +2173,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             {
                                 //rpDoc.PrintToPrinter(1, false, 1, 1);
                                 var printTool = new ReportPrintTool(rpDoc); // In 1 trang ?????
+                                printTool.PrintingSystem.ShowMarginsWarning = false;
                                 printTool.Print(printerName);
                             }
                             else
                             {
                                 //rpDoc.PrintToPrinter(1, false, 0, 0);
                                 var printTool = new ReportPrintTool(rpDoc);
+                                printTool.PrintingSystem.ShowMarginsWarning = false;
                                 printTool.Print(printerName);
                             }
                             intDaGuiDenMayIn++;
@@ -2195,12 +2197,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                 {
                                     //rpDoc2.PrintToPrinter(1, false, 1, 1);
                                     var printTool = new ReportPrintTool(rpDoc2);
+                                    printTool.PrintingSystem.ShowMarginsWarning = false;
                                     printTool.Print(printerName);
                                 }
                                 else
                                 {
                                     //rpDoc2.PrintToPrinter(1, false, 0, 0);
                                     var printTool = new ReportPrintTool(rpDoc2);
+                                    printTool.PrintingSystem.ShowMarginsWarning = false;
                                     printTool.Print(printerName);
                                 }
                                 intDaGuiDenMayIn++;
@@ -2217,12 +2221,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                 {
                                     //rpDoc3.PrintToPrinter(1, false, 1, 1);
                                     var printTool = new ReportPrintTool(rpDoc3);
+                                    printTool.PrintingSystem.ShowMarginsWarning = false;
                                     printTool.Print(printerName);
                                 }
                                 else
                                 {
                                     //rpDoc3.PrintToPrinter(1, false, 0, 0);
                                     var printTool = new ReportPrintTool(rpDoc3);
+                                    printTool.PrintingSystem.ShowMarginsWarning = false;
                                     printTool.Print(printerName);
                                 }
                                 intDaGuiDenMayIn++;
@@ -2240,12 +2246,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                 {
                                     //rpDoc4.PrintToPrinter(1, false, 1, 1);
                                     var printTool = new ReportPrintTool(rpDoc4);
+                                    printTool.PrintingSystem.ShowMarginsWarning = false;
                                     printTool.Print(printerName);
                                 }
                                 else
                                 {
                                     //rpDoc4.PrintToPrinter(1, false, 0, 0);
                                     var printTool = new ReportPrintTool(rpDoc4);
+                                    printTool.PrintingSystem.ShowMarginsWarning = false;
                                     printTool.Print(printerName);
                                 }
                                 //if (rpDoc4.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
@@ -2266,12 +2274,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             {
                                 //rpDoc.PrintToPrinter(_soLienIn, false, 1, 1);
                                 var printTool = new ReportPrintTool(rpDoc);
+                                printTool.PrintingSystem.ShowMarginsWarning = false;
                                 printTool.Print(printerName);
                             }
                             else
                             {
                                 //rpDoc.PrintToPrinter(_soLienIn*_printCopy, false, 0, 0);
                                 var printTool = new ReportPrintTool(rpDoc);
+                                printTool.PrintingSystem.ShowMarginsWarning = false;
                                 printTool.Print(printerName);
                             }
                             //if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
@@ -2478,7 +2488,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 if (string.IsNullOrEmpty(PrinterName))
                 {
                     _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
-
+                    //ReportDocument.PrintingSystem.ShowMarginsWarning = false;
                     PrintDialog p = new PrintDialog();
                     p.PrinterSettings.PrinterName = dfp;
                     p.AllowCurrentPage = false;

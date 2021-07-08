@@ -1684,6 +1684,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
                 //in thường
                 var printTool = new ReportPrintTool(_repx0);
+                printTool.PrintingSystem.ShowMarginsWarning = false;
                 printTool.PrintDialog();
             }
             catch (Exception ex)

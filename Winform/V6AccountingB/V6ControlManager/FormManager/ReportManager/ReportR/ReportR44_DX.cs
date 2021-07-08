@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// <summary>
         /// Danh sách event_method của Form_program.
         /// </summary>
-        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>(); 
+        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         private Type Form_program;
         private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
@@ -163,8 +163,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        public bool AutoPrint { get; set; }
-        public bool AutoClickNhan { get; set; }
+        public bool AutoPrint = false;
+        public bool AutoClickNhan = false;
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -279,6 +279,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         #endregion EXTRA_INFOR
 
+        public string Extra_para
+        {
+            get
+            {
+                var result = "";
+                if (MauInSelectedRow != null)
+                {
+                    result = MauInSelectedRow["Extra_para"].ToString().Trim();
+                }
+                return result;
+            }
+        }
+
         public string ReportFile
         {
             get
@@ -308,7 +321,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                var result = "";
+                var result = _reportTitle2;
                 if (MauInSelectedRow != null)
                 {
                     result = MauInSelectedRow["Caption2"].ToString().Trim();
@@ -488,9 +501,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             result = (MauInSelectedRow["Printer_def"] ?? "").ToString().Trim();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    
+                    this.WriteExLog(GetType() + "getDefaultPrinter", ex);
                 }
                 return result;
             }
@@ -511,11 +524,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             break;
                         }
                     }
-                    if(y_n) V6BusinessHelper.Update(V6TableName.Albc, udata, AlbcKeys);
+                    if (y_n) V6BusinessHelper.Update(V6TableName.Albc, udata, AlbcKeys);
                 }
                 catch (Exception)
                 {
-                    
+                    // ignored
                 }
             }
         }
@@ -657,10 +670,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
         #endregion 
-        //public ReportR44_DX()
-        //{
-        //    InitializeComponent();
-        //}
+        
 
         public ReportR44_DX(string itemId, string program, string reportProcedure,
             string reportFile, string reportTitle, string reportTitle2,
@@ -754,7 +764,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     rCurrent.Checked = true;
                 }
                 LoadComboboxSource();
-                LoadDefaultData(4, "", _Ma_File, m_itemId, "");
+                txtReportTitle.Text = ReportTitle;
+                LoadDefaultData(4, "", _Ma_File, m_itemId);
 
                 string key3 = "1";
                 var menuRow = V6Menu.GetRowByMact(ItemID);
@@ -796,8 +807,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         case '7': DefaultMenuItem = exportToPdfMenu; break;
                         //case '8': DefaultMenuItem = viewInvoiceInfoMenu; break;
                     }
-
-                txtReportTitle.Text = ReportTitle;
 
                 if (EXTRA_INFOR.ContainsKey("ENTER2TAB"))
                 {
@@ -853,7 +862,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             FilterControl.SetStatus2Text();
         }
-
+        
         private void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(_Ma_File, "", "", Advance);
@@ -882,7 +891,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-
                 MauInView.RowFilter = "mau='" + MAU + "'" + " and lan='" + LAN + "'"
                     + (chkHienTatCa.Checked ? "" : " and status='1'");
 
@@ -899,9 +907,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     btnThemMauBC.Enabled = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".SetFormReportFilter", ex, ProductName);
             }
         }
 
@@ -914,9 +922,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 string title = row["title"].ToString();
                 txtReportTitle.Text = title;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".GetFormReportTitle", ex, ProductName);
             }
         }
 
@@ -956,7 +964,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".ReportError", ex);
             }
         }
        
@@ -965,17 +973,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 _pList = new List<SqlParameter>();
-                var tList = FilterControl.GetFilterParameters();
-                foreach (SqlParameter p in tList)
-                {
-                    _pList.Add(new SqlParameter(p.ParameterName, p.Value));
-                }
+                _pList.AddRange(FilterControl.GetFilterParameters());
                 //_pList.Add(new SqlParameter("@cKey", "1=1" + (sKey.Length>0?" And " +sKey:"")));
                 return true;
             }
             catch (Exception ex)
             {
-                this.ShowWarningMessage("GenerateProcedureParameters: " + ex.Message);
+                this.ShowErrorException("GenerateProcedureParameters", ex);
                 return false;
             }
         }
@@ -998,6 +1002,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (FilterControl.RptExtraParameters != null)
             {
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
+            }
+
+            var rptExtraParametersD = FilterControl.GetRptParametersD(Extra_para, LAN);
+            if (rptExtraParametersD != null)
+            {
+                ReportDocumentParameters.AddRange(rptExtraParametersD, true);
             }
 
             string errors = "";
@@ -1222,11 +1232,20 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 btnNhan.Image = btnNhanImage;
                 ii = 0;
 
-                FilterControl.LoadDataFinish(_ds);
-                All_Objects["_ds"] = _ds;
-                InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
-                ViewFooter();
-                ShowReport();
+                try
+                {
+                    FilterControl.LoadDataFinish(_ds);
+                    All_Objects["_ds"] = _ds;
+                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
+                    ViewFooter();
+                    ShowReport();
+                }
+                catch (Exception ex)
+                {
+                    timerViewReport.Stop();
+                    _executesuccess = false;
+                    this.ShowErrorException(GetType() + ".TimerView: ", ex);
+                }
             }
             else if (_executing)
             {
@@ -1250,6 +1269,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 try
                 {
                     var printTool = new ReportPrintTool(repx);
+                    printTool.PrintingSystem.ShowMarginsWarning = false;
                     printTool.Print(printerName);
 
                     CallPrintSuccessEvent();
@@ -1425,6 +1445,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
+                //dataGridView2.DataSource = null;
+                //FilterDetail();
 
                 FormatGridView();
                 gridViewTopFilter1.MadeFilterItems();
@@ -1626,7 +1648,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ReportR44_DX XuLyHienThiFormSuaChungTu:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".ReportR44_DX XuLyHienThiFormSuaChungTu:\n", ex);
             }
         }
 
@@ -1669,7 +1691,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyXemChiTiet " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyXemChiTiet ", ex);
             }
         }
 
@@ -1683,7 +1705,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyVeDoThiF7: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyVeDoThiF7: ", ex);
             }
             SetStatus2Text();
         }
@@ -1721,11 +1743,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (e.KeyData == Keys.F5 && FilterControl.F5)
             {
-                if(dataGridView1.Focused) XuLyXemChiTietF5();
+                if (dataGridView1.Focused) XuLyXemChiTietF5();
             }
         }
-
-        
 
         private void ReportR44_DX_VisibleChanged(object sender, EventArgs e)
         {
@@ -1760,6 +1780,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 //in thường
                 var printTool = new ReportPrintTool(_repx0);
+                printTool.PrintingSystem.ShowMarginsWarning = false;
                 printTool.PrintDialog();
             }
             catch (Exception ex)
@@ -1804,7 +1825,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
+                this.ShowErrorException(GetType() + ".btnSuaTTMauBC_Click: ", ex);
             }
             SetStatus2Text();
         }
@@ -1868,7 +1889,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ThemMauBC_Click: " + ex.Message);
+                this.ShowErrorException(GetType() + ".ThemMauBC_Click: ", ex);
             }
             SetStatus2Text();
         }
@@ -1911,10 +1932,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
+                this.ShowErrorException(GetType() + ".SuaMau_Click: ", ex);
             }
         }
-        
+
         private void btnSuaLine_Click(object sender, EventArgs e)
         {
             if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK)
@@ -1996,7 +2017,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ExportFail\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".ExportFail", ex);
             }
         }
 
@@ -2055,7 +2076,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                     catch (Exception ex)
                     {
-                        this.ShowErrorMessage(GetType() + ".ExportFail: " + ex.Message);
+                        this.ShowErrorException(GetType() + ".ExportFail: ", ex);
                         return;
                     }
                     this.ShowInfoMessage(V6Text.ExportFinish);
@@ -2063,7 +2084,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Error!\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".Error!", ex);
             }
         }
 
@@ -2086,6 +2107,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void panel1_Leave(object sender, EventArgs e)
         {
+            //if (FilterControl.CancelFocusBtnNhan)
+            //{
+            //    FilterControl.CancelFocusBtnNhan = false;
+            //    return;
+            //}
             //btnNhan.Focus();
         }
 

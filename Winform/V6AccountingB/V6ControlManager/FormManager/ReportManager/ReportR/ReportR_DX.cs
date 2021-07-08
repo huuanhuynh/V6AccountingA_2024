@@ -165,12 +165,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        public bool AutoPrint { get; set; }
+        public bool AutoPrint = false;
         /// <summary>
         /// Tên file excel tự động xuất.
         /// </summary>
         public string AutoExportExcel = null;
-        public bool AutoClickNhan { get; set; }
+        public bool AutoClickNhan = false;
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -1184,6 +1184,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 try
                 {
                     var printTool = new ReportPrintTool(repx);
+                    printTool.PrintingSystem.ShowMarginsWarning = false;
                     printTool.Print(printerName);
 
                     //if (!xemMau)
@@ -1762,6 +1763,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 //in thường
                 var printTool = new ReportPrintTool(_repx0);
+                printTool.PrintingSystem.ShowMarginsWarning = false;
                 printTool.PrintDialog();
                 return;
 
@@ -1770,6 +1772,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 //var report = new XtraReport1();
                 //var cachedReportSource = new CachedReportSource(report, storage);
                 //var printTool = new ReportPrintTool(cachedReportSource);
+                //printTool.PrintingSystem.ShowMarginsWarning = false;
                 //// Invoke the Print dialog. 
                 //printTool.PrintDialog();
 

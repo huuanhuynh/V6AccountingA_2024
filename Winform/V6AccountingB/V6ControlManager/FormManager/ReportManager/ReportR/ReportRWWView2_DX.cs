@@ -1492,6 +1492,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 //in thường
                 var printTool = new ReportPrintTool(_repx0);
+                printTool.PrintingSystem.ShowMarginsWarning = false;
                 printTool.PrintDialog();
             }
             catch (Exception ex)

@@ -168,12 +168,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        public bool AutoPrint { get; set; }
+        public bool AutoPrint = false;
         /// <summary>
         /// Tên file excel tự động xuất.
         /// </summary>
         public string AutoExportExcel = null;
-        public bool AutoClickNhan { get; set; }
+        public bool AutoClickNhan = false;
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -942,6 +942,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         
         public FilterBase FilterControl { get; set; }
+        //public ReportFilter44Base ParentFilterControl { get; set; }
         public IDictionary<string, object> SelectedRowData { get; set; }
         
         private void AddFilterControl(string program)
