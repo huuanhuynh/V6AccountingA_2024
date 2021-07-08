@@ -516,10 +516,7 @@ namespace V6Controls
                         }
                         catch
                         {
-                            //if (allowNull)
-                            //    s = "null";
-                            //else
-                                s = "#" + V6Setting.M_SV_DATE.ToString("MM/dd/yyyy") + "#";
+                            s = "#" + V6Setting.M_SV_DATE.ToString("MM/dd/yyyy") + "#";
                         }
                         break;
                     case "System.Boolean":
@@ -544,7 +541,7 @@ namespace V6Controls
                         s = "null";
                         break;
                     default:
-                        s = "'" + (like? "%" : "")
+                        s = "'" + (like ? "%" : "")
                             + value.ToString().Trim().Replace("'", "''")
                             + (like || start ? "%" : "") + "'";
                         break;
@@ -560,7 +557,6 @@ namespace V6Controls
             }
 
             return s;
-        
         }
     }//end class
 }

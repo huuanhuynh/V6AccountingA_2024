@@ -126,17 +126,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 if (!sender.IsDisposed) sender.Dispose();
                             };
                             inDX.Close_after_print = true;
-                            inDX.Disposed += delegate
-                            {
-                                try
-                                {
-                                    if (inDX.Parent != null) ((Form)inDX.Parent).Close();
-                                }
-                                catch
-                                {
-                                    //
-                                }
-                            };
                             inDX.ShowToForm(this, Invoice.PrintTitle, true);
                         }
                         else
@@ -157,20 +146,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 if (!sender.IsDisposed) sender.Dispose();
                             };
                             c.Close_after_print = true;
-                            c.Disposed += delegate
-                            {
-                                try
-                                {
-                                    if (c.Parent != null) ((Form)c.Parent).Close();
-                                }
-                                catch
-                                {
-                                    //
-                                }
-                            };
                             c.ShowToForm(this, Invoice.PrintTitle, true);
                         }
-
                         remove_list_g.Add(row);
                     }
                 }
