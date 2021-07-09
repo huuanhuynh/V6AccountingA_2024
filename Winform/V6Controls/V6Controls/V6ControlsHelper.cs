@@ -1,9 +1,6 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.Linq;
-using System.Data;
-using System.Globalization;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;

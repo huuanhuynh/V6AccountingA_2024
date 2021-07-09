@@ -1608,7 +1608,6 @@
     </Compile>
     <Compile Include="MyDataTable.cs" />
     <Compile Include="V6ControlsHelper.cs" />
-    <Compile Include="ControlFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="V6VvarTextBoxForm.cs">
       <SubType>Form</SubType>

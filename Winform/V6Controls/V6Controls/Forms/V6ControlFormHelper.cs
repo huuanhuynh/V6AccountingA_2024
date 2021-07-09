@@ -198,13 +198,20 @@ namespace V6Controls.Forms
             }
 
             TabPage tab = control as TabPage;
-            if (tab != null && visible == false)
+            if (tab != null)
             {
-                //((TabControl)tab.Parent).TabPages.Remove(tab);
-                var listControl = GetAllControls(tab);
-                foreach (Control control1 in listControl)
+                if (!visible)
                 {
-                    control1.AddTagString("hide");
+                    ((TabControl) tab.Parent).TabPages.Remove(tab);
+                }
+
+                if (!enabled)
+                {
+                    var listControl = GetAllControls(tab);
+                    foreach (Control control1 in listControl)
+                    {
+                        control1.AddTagString("disable");
+                    }
                 }
             }
             var textbox = control as TextBox;
@@ -2320,11 +2327,8 @@ namespace V6Controls.Forms
             var tagString = string.Format(";{0};", control.Tag ?? "");
 
             var cancelall = tagString.Contains(";cancelall;");
-            if (cancelall)
-                goto CANCELALL;
-            var cancel = tagString != "" && tagString.Contains(";cancel;");
-            if (cancel) goto CANCEL;
-
+            var cancelset = tagString != "" && tagString.Contains(";cancelset;");
+            
             var readonl2 = tagString.Contains(";readonly;");
             var disable = tagString.Contains(";disable;");
             var enable = tagString.Contains(";enable;");
@@ -2382,7 +2386,7 @@ namespace V6Controls.Forms
             //    else control.Enabled = true;
             //}
             
-            CANCEL:
+            if(cancelall || cancelset) goto CANCELALL;
             if (control.Controls.Count > 0)
             {
                 foreach (Control c in control.Controls)
@@ -2396,24 +2400,18 @@ namespace V6Controls.Forms
         public static void SetFormMenuItemReadOnly(ToolStripMenuItem menuItem, bool readOnly)
         {
             var tagString = string.Format(";{0};", menuItem.Tag ?? "");
-
             var cancelall = tagString.Contains(";cancelall;");
-            if (cancelall)
-                goto CANCELALL;
-            var cancel = tagString != "" && tagString.Contains(";cancel;");
-            if (cancel) goto CANCEL;
-
+            var cancelset = tagString != "" && tagString.Contains(";cancelset;");
+            if (cancelall || cancelset) goto CANCEL;
             var readonl2 = tagString.Contains(";readonly;");
             var disable = tagString.Contains(";disable;");
             var enable = tagString.Contains(";enable;");
-
-
+            
             menuItem.Enabled = !(readOnly || readonl2);
             if (disable) menuItem.Enabled = false;
             if (enable) menuItem.Enabled = true;
 
         CANCEL:
-        CANCELALL:
             ;
         }
 
@@ -2480,7 +2478,7 @@ namespace V6Controls.Forms
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
                 var canceldata = tagString != "" && tagString.Contains(";canceldata;");
-                if (canceldata) goto CANCELALL;
+                if (canceldata) goto CANCEL;
 
                 {
                     #region === Gán giá trị ===
@@ -2513,7 +2511,7 @@ namespace V6Controls.Forms
                         UseCarryValuesRecursive(c);
                     }
                 }
-            CANCELALL: ;
+                CANCEL: ;
             }
             catch (Exception ex)
             {
@@ -2607,7 +2605,7 @@ namespace V6Controls.Forms
                 var canceldata = tagString.Contains(";canceldata;");
                 var cancelset = tagString.Contains(";cancelset;");
                 if (canceldata||cancelset||cancelall)
-                    goto CANCELALL;
+                    goto CANCEL;
                 
                 var NAME = "" + (control is RadioButton ? control.Name : control.AccessibleName);
                 NAME = NAME.ToUpper();
@@ -2638,7 +2636,7 @@ namespace V6Controls.Forms
                         result.AddRange(result1);
                     }
                 }
-            CANCELALL: ;
+            CANCEL: ;
             }
             catch (Exception ex)
             {
@@ -2696,7 +2694,7 @@ namespace V6Controls.Forms
                 var cancelall = tagString.Contains(";cancelall;");
                 var canceldata = tagString.Contains(";canceldata;");
                 var cancelset = tagString.Contains(";cancelset;");
-                if (canceldata || cancelset || cancelall) goto CANCELALL;
+                if (canceldata || cancelset || cancelall) goto CANCEL;
 
                 var NAME = control.Name;
                 if (tagData != null && !string.IsNullOrEmpty(NAME) && tagData.ContainsKey(NAME.ToUpper()))
@@ -2704,7 +2702,7 @@ namespace V6Controls.Forms
                     NAME = NAME.ToUpper();
                     AddTagString(control, tagData[NAME]);
                 }
-            CANCELALL: ;
+                CANCEL: ;
             }
             catch (Exception ex)
             {
@@ -2749,8 +2747,7 @@ namespace V6Controls.Forms
                 var cancelall = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";cancelall;");
                 var canceldata = tagString.Contains(";canceldata;");
                 var cancelset = tagString.Contains(";cancelset;");
-                if (canceldata || cancelset || cancelall) goto CANCELALL;
-
+                
                 var NAME = control.Name;
                 if (tagData != null && !string.IsNullOrEmpty(NAME) && tagData.ContainsKey(NAME.ToUpper()))
                 {
@@ -2758,15 +2755,6 @@ namespace V6Controls.Forms
 
                     control.AddTagString(tagData[NAME]);
                 }
-
-                if (control.Controls.Count > 0)
-                {
-                    foreach (Control c in control.Controls)
-                    {
-                        SetFormTagDicRecursive(c, tagData);
-                    }
-                }
-
                 // Dò qua menu
                 if (control is DropDownButton)
                 {
@@ -2784,13 +2772,23 @@ namespace V6Controls.Forms
                         SetMenuItemTag(item, tagData);
                     }
                 }
-
                 control.ControlAdded += (object sender, ControlEventArgs e) =>
                 {
                     SetFormTagDicRecursive(e.Control, tagData);
                 };
-        
-            CANCELALL: ;
+
+                if (canceldata || cancelset || cancelall) goto CANCELALL;
+                if (control.Controls.Count > 0)
+                {
+                    foreach (Control c in control.Controls)
+                    {
+                        SetFormTagDicRecursive(c, tagData);
+                    }
+                }
+
+                CANCELALL: ;
+                CANCELSET: ;
+                CANCELDATA: ;
             }
             catch (Exception ex)
             {
@@ -2805,10 +2803,9 @@ namespace V6Controls.Forms
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
                 var cancelall = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";cancelall;");
-                //var canceldata = tagString.Contains(";canceldata;");
-                //var cancelset = tagString.Contains(";cancelset;");
-                if (cancelall) goto CANCELALL;
-
+                var canceldata = tagString.Contains(";canceldata;");
+                var cancelset = tagString.Contains(";cancelset;");
+                
                 var NAME = control.Name;
                 if (textData != null && !string.IsNullOrEmpty(NAME) && textData.ContainsKey(NAME.ToUpper()))
                 {
@@ -2816,15 +2813,6 @@ namespace V6Controls.Forms
 
                     SetControlValue(control, textData[NAME]);
                 }
-
-                if (control.Controls.Count > 0)
-                {
-                    foreach (Control c in control.Controls)
-                    {
-                        SetFormTextDicRecursive(c, textData);
-                    }
-                }
-
                 // Dò qua menu
                 if (control is DropDownButton)
                 {
@@ -2847,8 +2835,17 @@ namespace V6Controls.Forms
                 {
                     SetFormTextDicRecursive(e.Control, textData);
                 };
-        
-            CANCELALL: ;
+
+                if (cancelall || canceldata || cancelset) goto CANCELALL;
+                if (control.Controls.Count > 0)
+                {
+                    foreach (Control c in control.Controls)
+                    {
+                        SetFormTextDicRecursive(c, textData);
+                    }
+                }
+
+                CANCELALL: ;
             }
             catch (Exception ex)
             {
@@ -3114,12 +3111,9 @@ namespace V6Controls.Forms
             try
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
-
                 var cancelall = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";cancelall;");
-                if (cancelall) goto CANCELALL;
-                var cancel = tagString != "" && tagString.Contains(";cancel;");
-                if (cancel) goto CANCEL;
-
+                var cancelset = tagString != "" && tagString.Contains(";cancelset;");
+                
                 var NAME = control.AccessibleName;
 
                 if (control is TextBox && !string.IsNullOrEmpty(NAME)
@@ -3235,7 +3229,8 @@ namespace V6Controls.Forms
                         
                     }
                 }
-                CANCEL:
+
+                if (cancelall || cancelset) goto CANCELALL;
                 if (control.Controls.Count > 0)
                 {
                     foreach (Control c in control.Controls)
@@ -3243,8 +3238,8 @@ namespace V6Controls.Forms
                         SetFormStruct(c, structTable);
                     }
                 }
-                CANCELALL:
-                ;
+
+                CANCELALL: ;
             }
             catch (Exception ex)
             {
@@ -7699,7 +7694,9 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".SetControlReadOnly " + control.Name + "." + control.AccessibleName, ex);
+                WriteExLog(
+                    MethodBase.GetCurrentMethod().DeclaringType + ".SetControlReadOnly " + control + "."
+                    + (control == null ? "" : control.AccessibleName), ex);
             }
         }
 
