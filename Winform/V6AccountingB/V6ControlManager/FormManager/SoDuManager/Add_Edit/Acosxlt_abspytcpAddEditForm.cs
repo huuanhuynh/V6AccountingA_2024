@@ -2,6 +2,7 @@
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 {
@@ -33,32 +34,24 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtMa_bpht.Text.Trim() == "") errors += V6Text.NoInput + lblMaBPHT.Text;
-            if (txtma_ytcp.Text.Trim() == "") errors += V6Text.NoInput + lblMaYTCP.Text;
-            if (TxtMa_sp.Text.Trim() == "") errors += V6Text.NoInput + lblMaSP.Text;
+
+            string checkV6Valid = CheckV6Valid(DataDic, _MA_DM);
+            if (!string.IsNullOrEmpty(checkV6Valid))
+            {
+                errors += checkV6Valid;
+            }
+            if (errors.Length > 0) throw new Exception(errors);
+
+            errors = "";
+            AldmConfig config = ConfigManager.GetAldmConfig(_MA_DM);
+            if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
+            {
+                var key_list = ObjectAndString.SplitString(config.KEY);
+                errors += CheckValid(_MA_DM, key_list);
+            }
 
             if (errors.Length > 0) throw new Exception(errors);
-            // Check data 
-            if (Mode == V6Mode.Edit)
-            {
-                bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(_MA_DM, 0,
-                    "MA_YTCP", txtma_ytcp.Text.Trim(), DataOld["MA_YTCP"].ToString(),
-                    "MA_SP", TxtMa_sp.Text.Trim(), DataOld["MA_SP"].ToString(),
-                    "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
 
-                if (!b)
-                    throw new Exception(V6Text.Exist + V6Text.EditDenied);
-            }
-            else if (Mode == V6Mode.Add)
-            {
-                bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(_MA_DM, 1,
-                    "MA_YTCP", txtma_ytcp.Text.Trim(), txtma_ytcp.Text.Trim(),
-                    "MA_SP", TxtMa_sp.Text.Trim(), TxtMa_sp.Text,
-                    "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
-
-                if (!b)
-                    throw new Exception(V6Text.Exist + V6Text.AddDenied);
-            }
         }
     }
 }

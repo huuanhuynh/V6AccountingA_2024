@@ -1273,7 +1273,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             //}
             GetGiaVonCoDinh(_maVt, _sl_td1, _gia_nt01);
             GetTon13();
-            //TinhTienVon1();
+            TinhTienVon1();
             TinhTienVon_GiaVon();
         }
 

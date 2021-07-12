@@ -2546,6 +2546,7 @@ namespace V6Controls.Forms
             try
             {
                 _errors = "";
+                if (!set_default && (data == null || data.Count == 0)) return result;
                 result = SetFormDataDicRecursive(control, data, set_default);
             }
             catch (Exception ex)
@@ -2651,6 +2652,7 @@ namespace V6Controls.Forms
             try
             {
                 _errors = "";
+                if (tagData == null || tagData.Count == 0) return;
                 SetFormTagDicRecursive(control, tagData);
             }
             catch (Exception ex)
@@ -2671,6 +2673,7 @@ namespace V6Controls.Forms
             try
             {
                 _errors = "";
+                if (textData == null || textData.Count == 0) return;
                 SetFormTextDicRecursive(control, textData);
             }
             catch (Exception ex)
@@ -3280,6 +3283,7 @@ namespace V6Controls.Forms
 
         private static void SetFormTextRecursive(Control control, SortedDictionary<string, string> textDic)
         {
+            if (textDic == null || textDic.Count == 0) return;
             if (!string.IsNullOrEmpty(control.AccessibleDescription))
             {
                 var KEY = (control.AccessibleDescription??"").ToUpper();
