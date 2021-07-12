@@ -2,6 +2,7 @@
 <Root>
 
   <TuKhoa TenTuKhoa='AddEditControlVirtual' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ComboBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='DateTimePicker' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineBase' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineDateTimeTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -10,6 +11,7 @@
   <TuKhoa TenTuKhoa='FilterLineNumberTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineVvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectAndString' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='SqlParameter' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ColorComboBox ' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -121,7 +123,8 @@
 	<TuKhoa TenTuKhoa='this' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='throw' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='true' 		MauSac = 'Blue' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='try' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='try' 		MauSac = 'Blue' 	AutoComplete = '0' />
+  <TuKhoa TenTuKhoa='try{&#10;&#10;}catch(Exception ex){V6Message.Show(ex.Message, thisForm);}' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='typeof' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='virtual' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='void' 		MauSac = 'Blue' 	AutoComplete = '1' />

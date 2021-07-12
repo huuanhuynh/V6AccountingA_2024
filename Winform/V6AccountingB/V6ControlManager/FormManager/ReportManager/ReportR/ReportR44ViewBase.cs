@@ -801,7 +801,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //dataGridView2.enter_to_tab = dataGridView1.enter_to_tab;
                 }
 
-                InvokeFormEvent(FormDynamicEvent.INIT2);
                 Ready();
             }
             catch (Exception ex)
