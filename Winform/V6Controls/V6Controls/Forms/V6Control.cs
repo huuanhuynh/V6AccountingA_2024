@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Windows.Forms;
 using V6Init;
 using V6Structs;
@@ -94,6 +95,38 @@ namespace V6Controls.Forms
         public Control GetControlByAccessibleName(string accessibleName)
         {
             return V6ControlFormHelper.GetControlByAccessibleName(this, accessibleName);
+        }
+
+        /// <summary>
+        /// Lấy Property hoặc Field trong V6Control.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public object GetProperty(string name)
+        {
+            try
+            {
+                string NAME = name.ToUpper();
+                
+                foreach (FieldInfo fieldInfo in GetType().GetFields())
+                {
+                    if (fieldInfo.Name.ToUpper() == NAME)
+                    {
+                        return fieldInfo.GetValue(this);
+                    }
+                }
+                foreach (PropertyInfo propertyInfo in GetType().GetProperties())
+                {
+                    if(propertyInfo.Name.ToUpper() == NAME && propertyInfo.CanRead)
+                        return propertyInfo.GetValue(this, null);
+                }
+            }
+            catch
+            {
+                //
+            }
+
+            return null;
         }
 
         protected override void OnHandleDestroyed(EventArgs e)

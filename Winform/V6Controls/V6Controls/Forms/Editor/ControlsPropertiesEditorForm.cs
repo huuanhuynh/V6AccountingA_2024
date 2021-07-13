@@ -212,6 +212,7 @@ namespace V6Controls.Forms.Editor
             {
                 _control = control_;
                 lblControlType.Text = "" + _control.GetType();
+                lblControlName.Text = _control.Name;
                 // Thông tin ngông ngữ.
                 if (string.IsNullOrEmpty(_control.AccessibleDescription))
                 {

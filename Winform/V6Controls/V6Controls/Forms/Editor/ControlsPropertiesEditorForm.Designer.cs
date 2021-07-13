@@ -45,6 +45,7 @@
             this.btnNhapXml = new System.Windows.Forms.Button();
             this.btnXuatXml = new System.Windows.Forms.Button();
             this.lblControlType = new System.Windows.Forms.Label();
+            this.lblControlName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,10 +56,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(12, 5);
+            this.treeView1.Location = new System.Drawing.Point(12, 43);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(285, 541);
+            this.treeView1.Size = new System.Drawing.Size(285, 503);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -220,11 +221,22 @@
             this.lblControlType.TabIndex = 13;
             this.lblControlType.Text = "ControlType";
             // 
+            // lblControlName
+            // 
+            this.lblControlName.AccessibleDescription = ".";
+            this.lblControlName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblControlName.Location = new System.Drawing.Point(12, 2);
+            this.lblControlName.Name = "lblControlName";
+            this.lblControlName.Size = new System.Drawing.Size(285, 38);
+            this.lblControlName.TabIndex = 14;
+            this.lblControlName.Text = "ControlName";
+            // 
             // ControlsPropertiesEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 558);
+            this.Controls.Add(this.lblControlName);
             this.Controls.Add(this.lblControlType);
             this.Controls.Add(this.btnNhapXml);
             this.Controls.Add(this.btnXuatXml);
@@ -234,13 +246,6 @@
             this.Controls.Add(this.treeView1);
             this.Name = "ControlsPropertiesEditorForm";
             this.Text = "ControlsPropertiesEditorForm";
-            this.Controls.SetChildIndex(this.treeView1, 0);
-            this.Controls.SetChildIndex(this.propertyGrid1, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.btnUp, 0);
-            this.Controls.SetChildIndex(this.btnXuatXml, 0);
-            this.Controls.SetChildIndex(this.btnNhapXml, 0);
-            this.Controls.SetChildIndex(this.lblControlType, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -264,5 +269,6 @@
         private System.Windows.Forms.Button btnNhapXml;
         private System.Windows.Forms.Button btnXuatXml;
         private System.Windows.Forms.Label lblControlType;
+        private System.Windows.Forms.Label lblControlName;
     }
 }

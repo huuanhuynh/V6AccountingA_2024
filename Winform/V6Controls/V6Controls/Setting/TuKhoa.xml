@@ -11,12 +11,14 @@
   <TuKhoa TenTuKhoa='FilterLineNumberTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineVvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectAndString' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ReportFilter44Base' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='SqlParameter' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ColorComboBox ' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ColorDataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ColorTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Control' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Controls' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ControlFormHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ControlsHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -47,6 +49,7 @@
 	<TuKhoa TenTuKhoa='ExistRowInTable' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='GetControlByAccessibleName' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='GetControlByName' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='GetProperty' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectToDecimal' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectToDate' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectToFullDateTime' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
