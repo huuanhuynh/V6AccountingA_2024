@@ -798,5 +798,6 @@ namespace V6ControlManager.FormManager
             Event_program2 = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + ma_bc, using_text2,
                 method_text2);
         }
+
     }
 }

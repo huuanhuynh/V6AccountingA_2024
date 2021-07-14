@@ -12,8 +12,11 @@
   <TuKhoa TenTuKhoa='FilterLineVvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectAndString' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ReportFilter44Base' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ReportR44_DX' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ReportR44ViewBase' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='SqlParameter' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteProcedure(proc, pList);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ColorComboBox ' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ColorDataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -71,13 +74,13 @@
 	<TuKhoa TenTuKhoa='Exception' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='MessageBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='Dictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Dictionary&lt;string, object&gt; dic = new Dictionary&lt;string, object&gt;()' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='IDictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='SortedDictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	   
-	<TuKhoa TenTuKhoa='SqlParameter[] plist = {new SqlParameter("@name", "value"),};' 		MauSac = 'Blue' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='public static void Method(V6Control thisForm){&#10;try{&#10;&#10;}catch(Exception ex){V6Message.Show(ex.Message, thisForm);}}' 		MauSac = 'Blue' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='UpdateSimple("AM81", data, key);
-          ' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='SqlParameter[] plist = {new SqlParameter("@name", "value"), ...};' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='public static void Method(V6Control thisForm){&#10;try{&#10;&#10;}catch(Exception ex){&#10;V6Message.Show(ex.Message, thisForm);&#10;}}' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='UpdateSimple("AM81", data, key);' 		MauSac = 'Blue' 	AutoComplete = '1' />
   
 	<TuKhoa TenTuKhoa='string' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='int' 		MauSac = 'Blue' 	AutoComplete = '1' />

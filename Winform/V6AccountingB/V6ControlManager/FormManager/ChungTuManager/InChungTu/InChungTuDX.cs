@@ -2729,33 +2729,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
                 else
                 {
-                    bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
-                    bool alt = (ModifierKeys & Keys.Alt) == Keys.Alt;
-                    XtraReport x;
-                    if (ctrl && alt)
-                    {
-                        x = DXreportManager.LoadV6XtraReportFromFile(DXreportManager.TemplateRepxFile);
-                        if (x != null)
-                        {
-                            x.DataSource = _ds.Copy();
-                            SetAllReportParams(x, null, null, null);
-                            XtraEditorForm1 form1 = new XtraEditorForm1(x, DXreportManager.TemplateRepxFile);
-                            form1.Show(this);
-                        }
-                    }
-                    else
-                    {
-                        x = DXreportManager.LoadV6XtraReportFromFile(ReportFileFullDX);
-                        if (x != null)
-                        {
-                            x.DataSource = _ds.Copy();
-                            SetAllReportParams(x, null, null, null);
-                            XtraEditorForm1 form1 = new XtraEditorForm1(x, ReportFileFullDX);
-                            form1.Show(this);
-                        }
-                    }
-                    SetStatus2Text();
-                }                
+                    DXreportManager.EditRepx(ReportFileFullDX, _ds, ReportDocumentParameters, this);
+                }
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

@@ -999,7 +999,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>
-		/// <param name="rpDoc"></param>
+        /// <param name="repx"></param>
         private void SetAllReportParams(XtraReport repx)
         {
             ReportDocumentParameters = new SortedDictionary<string, object>();
@@ -1908,31 +1908,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
-                bool alt = (ModifierKeys & Keys.Alt) == Keys.Alt;
-                XtraReport x;
-                if (ctrl && alt)
-                {
-                    x = DXreportManager.LoadV6XtraReportFromFile(DXreportManager.TemplateRepxFile);
-                    if (x != null)
-                    {
-                        x.DataSource = _ds.Copy();
-                        SetAllReportParams(x);
-                        XtraEditorForm1 form1 = new XtraEditorForm1(x, DXreportManager.TemplateRepxFile);
-                        form1.Show(this);
-                    }
-                }
-                else
-                {
-                    x = DXreportManager.LoadV6XtraReportFromFile(ReportFileFullDX);
-                    if (x != null)
-                    {
-                        x.DataSource = _ds.Copy();
-                        SetAllReportParams(x);
-                        XtraEditorForm1 form1 = new XtraEditorForm1(x, ReportFileFullDX);
-                        form1.Show(this);
-                    }
-                }
+                DXreportManager.EditRepx(ReportFileFullDX, _ds, ReportDocumentParameters, this);
                 SetStatus2Text();
             }
             catch (Exception ex)

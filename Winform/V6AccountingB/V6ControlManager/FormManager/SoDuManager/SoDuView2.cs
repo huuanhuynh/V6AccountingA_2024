@@ -499,6 +499,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
                 if (row != null)
                 {
+                    _data = row.ToDataDictionary();
                     if (selectedData.ContainsKey("STT_REC") && selectedData.ContainsKey("MA_CT"))
                     {
                         var stt_rec = selectedData["STT_REC"].ToString();
@@ -548,7 +549,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                                     {
                                         if (!_TableStruct.ContainsKey(KEY)) continue;
                                         var sct = _TableStruct[KEY];
-                                        if (!_data.ContainsKey(KEY)) return;
+                                        if (!_data.ContainsKey(KEY)) goto AfterDelete;
                                         var o_new = _data[KEY];
                                         datas += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
 
@@ -565,7 +566,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                                         };
                                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELE_AL_ALL", plist);
                                 }
-                                //AfterDelete
+                                AfterDelete:
                                 {
                                     All_Objects["data"] = _data;
                                     InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
@@ -583,8 +584,6 @@ namespace V6ControlManager.FormManager.SoDuManager
                     else
                     {
                         this.ShowWarningMessage("Không có khóa STT_REC và MA_CT.");
-
-                        _data = row.ToDataDictionary();
                         _categories.Delete(_MA_DM, _data);
                     }
                 }

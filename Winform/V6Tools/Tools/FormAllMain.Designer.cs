@@ -37,7 +37,7 @@
             this.btnParseDecimal = new System.Windows.Forms.Button();
             this.btnFilterTextFiles = new System.Windows.Forms.Button();
             this.btnTestHash = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnTestDatabaseConfig = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -139,14 +139,15 @@
             this.btnTestHash.UseVisualStyleBackColor = true;
             this.btnTestHash.Click += new System.EventHandler(this.btnTestHash_Click);
             // 
-            // button9
+            // btnTestDatabaseConfig
             // 
-            this.button9.Location = new System.Drawing.Point(12, 244);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 23);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "button1";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnTestDatabaseConfig.Location = new System.Drawing.Point(468, 12);
+            this.btnTestDatabaseConfig.Name = "btnTestDatabaseConfig";
+            this.btnTestDatabaseConfig.Size = new System.Drawing.Size(206, 23);
+            this.btnTestDatabaseConfig.TabIndex = 0;
+            this.btnTestDatabaseConfig.Text = "Test V6Database Config";
+            this.btnTestDatabaseConfig.UseVisualStyleBackColor = true;
+            this.btnTestDatabaseConfig.Click += new System.EventHandler(this.btnTestDatabaseConfig_Click);
             // 
             // button10
             // 
@@ -317,7 +318,7 @@
             // 
             // btnTestHash5
             // 
-            this.btnTestHash5.Location = new System.Drawing.Point(330, 244);
+            this.btnTestHash5.Location = new System.Drawing.Point(436, 215);
             this.btnTestHash5.Name = "btnTestHash5";
             this.btnTestHash5.Size = new System.Drawing.Size(100, 23);
             this.btnTestHash5.TabIndex = 0;
@@ -344,7 +345,7 @@
             this.Controls.Add(this.button10);
             this.Controls.Add(this.btnUploadFTP);
             this.Controls.Add(this.button15);
-            this.Controls.Add(this.button9);
+            this.Controls.Add(this.btnTestDatabaseConfig);
             this.Controls.Add(this.btnDBF);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.btnTestHash5);
@@ -377,7 +378,7 @@
         private System.Windows.Forms.Button btnParseDecimal;
         private System.Windows.Forms.Button btnFilterTextFiles;
         private System.Windows.Forms.Button btnTestHash;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnTestDatabaseConfig;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;

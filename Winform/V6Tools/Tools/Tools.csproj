@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseConfig.cs" />
     <Compile Include="FormConvertTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +123,12 @@
     <Compile Include="ToolExportSqlToExcel.Designer.cs">
       <DependentUpon>ToolExportSqlToExcel.cs</DependentUpon>
     </Compile>
+    <Compile Include="V6DatabaseConfogTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="V6DatabaseConfogTestForm.Designer.cs">
+      <DependentUpon>V6DatabaseConfogTestForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormAllMain.resx">
       <DependentUpon>FormAllMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,6 +165,9 @@
     </Compile>
     <EmbeddedResource Include="ToolExportSqlToExcel.resx">
       <DependentUpon>ToolExportSqlToExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="V6DatabaseConfogTestForm.resx">
+      <DependentUpon>V6DatabaseConfogTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

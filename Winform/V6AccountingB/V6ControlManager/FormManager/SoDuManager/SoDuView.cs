@@ -447,6 +447,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 SaveSelectedCellLocation(dataGridView1);
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 if (row == null) return;
+                _data = row.ToDataDictionary();
 
                 if (_MA_DM == "ABVT")
                 {
@@ -492,7 +493,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                                 {
                                     if (!_TableStruct.ContainsKey(KEY)) continue;
                                     var sct = _TableStruct[KEY];
-                                    if (!_data.ContainsKey(KEY)) return;
+                                    if (!_data.ContainsKey(KEY)) goto AfterDelete;
                                     var o_new = _data[KEY];
                                     datas += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
 
@@ -509,7 +510,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                                         };
                                 V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELE_AL_ALL", plist);
                             }
-                            //AfterDelete
+                            AfterDelete:
                             {
                                 All_Objects["data"] = _data;
                                 InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
@@ -526,7 +527,6 @@ namespace V6ControlManager.FormManager.SoDuManager
                 else
                 {
                     this.ShowWarningMessage(V6Text.Text("NOKEY"));
-                    _data = row.ToDataDictionary();
                     _categories.Delete(DELETE_TABLE, _data);
                 }
 

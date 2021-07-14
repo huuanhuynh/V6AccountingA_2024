@@ -69,9 +69,11 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         /// <param name="e"></param>
         void reportDesigner1_DesignPanelLoaded(object sender, DesignerLoadedEventArgs e)
         {
-            XRDesignPanel panel = (XRDesignPanel)sender;
-            string a = panel.FileName;
+            //XRDesignPanel panel = (XRDesignPanel)sender;
+            //string a = panel.Report.Name;
+            //string b = panel.Report.SourceUrl;
             //panel.FileName = _repx.
+            //panel.AddCommandHandler(new OpenCommandHandler(panel, xrDesignDockManager1));
             //panel.AddCommandHandler(new SaveCommandHandler(panel));
             //panel.AddCommandHandler(new SaveAsCommandHandler(panel));
         }
@@ -94,6 +96,42 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             {
 
             }
+        }
+    }
+
+    public class OpenCommandHandler : ICommandHandler
+    {
+        XRDesignPanel panel;
+        XRDesignDockManager designManager;
+        public OpenCommandHandler(XRDesignPanel panel, XRDesignDockManager designManager)
+        {
+            this.panel = panel;
+            this.designManager = designManager;
+        }
+        public virtual void HandleCommand(ReportCommand command, object[] args, ref bool handled)
+        {
+            if (!CanHandleCommand(command)) return;
+            OpenReport();
+            handled = true;
+        }
+        public virtual bool CanHandleCommand(ReportCommand command)
+        {
+            return command == ReportCommand.OpenFile;
+        }
+        private void OpenReport()
+        {
+            //my own code here
+        }
+
+        public void HandleCommand(ReportCommand command, object[] args)
+        {
+            ;
+        }
+
+        public bool CanHandleCommand(ReportCommand command, ref bool useNextHandler)
+        {
+            //throw new NotImplementedException();
+            return false;
         }
     }
 

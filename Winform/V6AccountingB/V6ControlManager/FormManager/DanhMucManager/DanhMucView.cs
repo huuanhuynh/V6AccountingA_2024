@@ -1154,7 +1154,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         {
                                             if (!_TableStruct.ContainsKey(KEY)) continue;
                                             var sct = _TableStruct[KEY];
-                                            if (!_data.ContainsKey(KEY)) return;
+                                            if (!_data.ContainsKey(KEY)) goto AfterDelete;
                                             var o_new = _data[KEY];
                                             datas += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
                                             
@@ -1171,7 +1171,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         };
                                         V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELE_AL_ALL", plist);
                                     }
-                                    //AfterDelete
+                                    AfterDelete:
                                     {
                                         All_Objects["data"] = _data;
                                         InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);

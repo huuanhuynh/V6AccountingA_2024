@@ -1,10 +1,14 @@
 ﻿using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
+using DevExpress.XtraReports.Parameters;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
@@ -321,6 +325,72 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
                 {"M_RSFONT", V6Options.M_RSFONT},
                 {"M_R_FONTSIZE", V6Options.GetValue("M_R_FONTSIZE")},
             });
+        }
+
+        /// <summary>
+        /// Mở form chỉnh sửa file XtraReport
+        /// </summary>
+        /// <param name="file">File repx cần sửa.</param>
+        /// <param name="ds">Dữ liệu mẫu</param>
+        /// <param name="reportDocumentParameters">Các param.</param>
+        /// <param name="owner">Form hiện tại.</param>
+        public static void EditRepx(string file, DataSet ds, IDictionary<string, object> reportDocumentParameters, IWin32Window owner = null)
+        {
+            bool ctrl = (Control.ModifierKeys & Keys.Control) == Keys.Control;
+            bool shift = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+            bool alt = (Control.ModifierKeys & Keys.Alt) == Keys.Alt;
+            //string file = ReportFileFullDX;
+            if (shift)
+            {
+                file = V6ControlFormHelper.ChooseOpenFile(owner, "XtraReport|*.repx");
+            }
+            else if (ctrl && alt)
+            {
+                file = TemplateRepxFile;
+            }
+            XtraReport x = LoadV6XtraReportFromFile(file);
+            if (x != null)
+            {
+                x.DataSource = ds.Copy();
+                //SetAllReportParams(x);
+                string errors = "";
+                foreach (KeyValuePair<string, object> item in reportDocumentParameters)
+                {
+                    try
+                    {
+                        if (x.Parameters[item.Key] != null)
+                        {
+                            x.Parameters[item.Key].Value = item.Value;
+                        }
+                        else
+                        {
+                            // missing parameters warning!
+                            //errors += "\n" + item.Key + ":\t " + V6Text.NotExist;
+                            // Auto create Paramter for easy edit.
+                            x.Parameters.Add(new Parameter()
+                            {
+                                Name = item.Key,
+                                Value = item.Value,
+                                Visible = false,
+                                Type = item.Value.GetType(),
+                                Description = item.Key,
+                            });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errors += "\n" + item.Key + ": " + ex.Message;
+                    }
+                }
+
+                if (errors.Length > 0)
+                {
+                    owner.ShowInfoMessage(errors);
+                }
+
+                XtraEditorForm1 form1 = new XtraEditorForm1(x, file);
+                form1.Show(owner);
+            }
         }
     }
 }

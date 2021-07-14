@@ -2199,5 +2199,10 @@ Tiles of Fate                   32k PRG / 32k CHR       H       AVE (79)
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnTestDatabaseConfig_Click(object sender, EventArgs e)
+        {
+            new V6DatabaseConfogTestForm().Show();
+        }
     }
 }

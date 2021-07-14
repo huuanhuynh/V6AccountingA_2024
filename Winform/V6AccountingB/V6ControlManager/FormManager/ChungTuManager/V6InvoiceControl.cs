@@ -4446,28 +4446,56 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 string repFile = "APRINT_HACHTOAN";
                 var repTitle = "PHIẾU HẠCH TOÁN";
                 var repTitle2 = "GENERAL VOUCHER";
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if ((Invoice.AlctConfig.XtraReport && !shift_is_down) || (!Invoice.AlctConfig.XtraReport && shift_is_down))
+                {
+                    var c = new ReportR_DX(Invoice.Mact, program, program, repFile,
+                        repTitle, repTitle2, "", "", "");
 
-                var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
-                    repTitle, repTitle2, "", "", "");
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@STT_REC", sttRec_In));
+                    plist.Add(new SqlParameter("@isInvoice", "0"));
+                    plist.Add(new SqlParameter("@ReportFile", repFile));
+                    plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                    c.FilterControl.InitFilters = plist;
 
-                List<SqlParameter> plist = new List<SqlParameter>();
-                plist.Add(new SqlParameter("@STT_REC", sttRec_In));
-                plist.Add(new SqlParameter("@isInvoice", "0"));
-                plist.Add(new SqlParameter("@ReportFile", repFile));
-                plist.Add(new SqlParameter("@user_id", V6Login.UserId));
-                c.FilterControl.InitFilters = plist;
+                    //Tạo Extra parameters.
+                    SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
+                    decimal TTT = tongThanhToan_Value;
+                    decimal TTT_NT = tongThanhToanNT_Value;
+                    string LAN = c.LAN;
+                    //string MA_NT = _maNt;
+                    parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+                    parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+                    c.FilterControl.RptExtraParameters = parameterData;
+                    c.AutoClickNhan = true;
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
+                else
+                {
+                    var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
+                        repTitle, repTitle2, "", "", "");
 
-                //Tạo Extra parameters.
-                SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
-                decimal TTT = tongThanhToan_Value;
-                decimal TTT_NT = tongThanhToanNT_Value;
-                string LAN = c.LAN;
-                //string MA_NT = _maNt;
-                parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
-                parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
-                c.FilterControl.RptExtraParameters = parameterData;
-                c.AutoClickNhan = true;
-                c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@STT_REC", sttRec_In));
+                    plist.Add(new SqlParameter("@isInvoice", "0"));
+                    plist.Add(new SqlParameter("@ReportFile", repFile));
+                    plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                    c.FilterControl.InitFilters = plist;
+
+                    //Tạo Extra parameters.
+                    SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
+                    decimal TTT = tongThanhToan_Value;
+                    decimal TTT_NT = tongThanhToanNT_Value;
+                    string LAN = c.LAN;
+                    //string MA_NT = _maNt;
+                    parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+                    parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+                    c.FilterControl.RptExtraParameters = parameterData;
+                    c.AutoClickNhan = true;
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -4484,27 +4512,56 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var repTitle = "PHIẾU THU TIỀN";
                 var repTitle2 = "RECEIPTS VOUCHER";
 
-                var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
-                    repTitle, repTitle2, "", "", "");
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if ((Invoice.AlctConfig.XtraReport && !shift_is_down) || (!Invoice.AlctConfig.XtraReport && shift_is_down))
+                {
+                    var c = new ReportR_DX(Invoice.Mact, program, program, repFile,
+                        repTitle, repTitle2, "", "", "");
 
-                List<SqlParameter> plist = new List<SqlParameter>();
-                plist.Add(new SqlParameter("@STT_REC", sttRec_In));
-                plist.Add(new SqlParameter("@isInvoice", "0"));
-                plist.Add(new SqlParameter("@ReportFile", repFile));
-                plist.Add(new SqlParameter("@user_id", V6Login.UserId));
-                c.FilterControl.InitFilters = plist;
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@STT_REC", sttRec_In));
+                    plist.Add(new SqlParameter("@isInvoice", "0"));
+                    plist.Add(new SqlParameter("@ReportFile", repFile));
+                    plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                    c.FilterControl.InitFilters = plist;
 
-                //Tạo Extra parameters.
-                SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
-                decimal TTT = tongThanhToan_Value;
-                decimal TTT_NT = tongThanhToanNT_Value;
-                string LAN = c.LAN;
-                //string MA_NT = _maNt;
-                parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
-                parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
-                c.FilterControl.RptExtraParameters = parameterData;
-                c.AutoClickNhan = true;
-                c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                    //Tạo Extra parameters.
+                    SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
+                    decimal TTT = tongThanhToan_Value;
+                    decimal TTT_NT = tongThanhToanNT_Value;
+                    string LAN = c.LAN;
+                    //string MA_NT = _maNt;
+                    parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+                    parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+                    c.FilterControl.RptExtraParameters = parameterData;
+                    c.AutoClickNhan = true;
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
+                else
+                {
+                    var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
+                        repTitle, repTitle2, "", "", "");
+
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@STT_REC", sttRec_In));
+                    plist.Add(new SqlParameter("@isInvoice", "0"));
+                    plist.Add(new SqlParameter("@ReportFile", repFile));
+                    plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                    c.FilterControl.InitFilters = plist;
+
+                    //Tạo Extra parameters.
+                    SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
+                    decimal TTT = tongThanhToan_Value;
+                    decimal TTT_NT = tongThanhToanNT_Value;
+                    string LAN = c.LAN;
+                    //string MA_NT = _maNt;
+                    parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+                    parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+                    c.FilterControl.RptExtraParameters = parameterData;
+                    c.AutoClickNhan = true;
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
