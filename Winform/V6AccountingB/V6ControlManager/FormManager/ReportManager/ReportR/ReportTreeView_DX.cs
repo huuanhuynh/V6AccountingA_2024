@@ -2019,7 +2019,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx0, "PDF", GetExportFileName());
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx0, "PDF", GetExportFileName());
             }
             catch (Exception ex)
             {
@@ -2056,7 +2056,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx0, "IMAGE", ReportTitle);
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx0, "IMAGE", ReportTitle);
             }
             catch (Exception ex)
             {

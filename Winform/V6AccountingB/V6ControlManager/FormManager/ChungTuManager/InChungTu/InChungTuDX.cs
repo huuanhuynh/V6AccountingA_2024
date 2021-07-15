@@ -2967,20 +2967,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx10, "PDF", ReportTitle);
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx10, "PDF", ReportTitle);
                 if (MauTuIn == 1)
                 {
                     if (_soLienIn >= 2 && _repx20 != null)
                     {
-                        FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx20, "PDF", ReportTitle);
+                        DXreportManager.ExportRepxToPdfInThread_As(this, _repx20, "PDF", ReportTitle);
                     }
                     if (_soLienIn >= 3 && _repx30 != null)
                     {
-                        FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx30, "PDF", ReportTitle);
+                        DXreportManager.ExportRepxToPdfInThread_As(this, _repx30, "PDF", ReportTitle);
                     }
                     if (_soLienIn >= 4 && _repx40 != null)
                     {
-                        FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx40, "PDF", ReportTitle);
+                        DXreportManager.ExportRepxToPdfInThread_As(this, _repx40, "PDF", ReportTitle);
                     }
                 }
             }
@@ -3029,7 +3029,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx10, "EXCEL", ReportTitle);
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx10, "EXCEL", ReportTitle);
             }
             catch (Exception ex)
             {
@@ -3046,7 +3046,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx10, "XLS", ReportTitle);
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx10, "XLS", ReportTitle);
             }
             catch (Exception ex)
             {
@@ -3063,7 +3063,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx10, "DOCX", ReportTitle);
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx10, "DOCX", ReportTitle);
             }
             catch (Exception ex)
             {
@@ -3080,7 +3080,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx10, "HTML", ReportTitle);
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx10, "HTML", ReportTitle);
             }
             catch (Exception ex)
             {
@@ -3097,7 +3097,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx10, "IMAGE", ReportTitle);
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx10, "IMAGE", ReportTitle);
             }
             catch (Exception ex)
             {

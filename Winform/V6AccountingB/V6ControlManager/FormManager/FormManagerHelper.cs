@@ -1,12 +1,9 @@
-using DevExpress.XtraPrinting;
-using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
@@ -19,7 +16,6 @@ using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
-using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager
@@ -60,188 +56,7 @@ namespace V6ControlManager.FormManager
             else
                 f.Show();
         }
-
-        /// <summary>
-        /// Xuất repx ra file.
-        /// </summary>
-        /// <param name="owner"></param>
-        /// <param name="repx"></param>
-        /// <param name="exportType">PDF,WORD-DOCX,HTML,IMAGE,EXCEL-XLSX-XLS</param>
-        /// <param name="defaultSaveName"></param>
-        public static void ExportRepxToPdfInThread_As(IWin32Window owner, XtraReport repx, string exportType, string defaultSaveName)
-        {
-            if (repx == null)
-            {
-                return;
-            }
-            try
-            {
-                string filter = "Pdf files (*.pdf)|*.pdf";
-                switch (exportType.ToUpper())
-                {
-                    case "EXCEL":
-                    case "EXCEL_RAW":
-                    case "XLSX":
-                    case "XLSX_RAW":
-                        filter = "Excel files (*.xlsx)|*.xlsx";
-                        break;
-                    case "XLS":
-                    case "XLS_RAW":
-                        filter = "Excel files (*.xls)|*.xls";
-                        break;
-                    case "DOCX":
-                    case "WORD":
-                        filter = "Word files (*.docx)|*.docx";
-                        break;
-                    case "HTML":
-                        filter = "Html files (*.html)|*.html";
-                        break;
-                    case "IMAGE":
-                    case "IMG":
-                    case "PNG":
-                        filter = "Image files (*.png)|*.png";
-                        break;
-                    case "PDF":
-                    default:
-                        
-                        break;
-                }
-                
-
-                var save = new SaveFileDialog
-                {
-                    Filter = filter,
-                    Title = V6Text.Export,
-                    FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
-                };
-                if (save.ShowDialog(owner) == DialogResult.OK)
-                {
-                    ExportRepxToPdfInThread(owner, repx, exportType, save.FileName);
-                }
-            }
-            catch (Exception ex)
-            {
-                var methodInfo = MethodBase.GetCurrentMethod();
-                if (methodInfo.DeclaringType != null)
-                {
-                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    V6ControlFormHelper.ShowErrorException(address, ex);
-                }
-            }
-        }
-
-        public static void ExportRepxToPdfInThread(IWin32Window owner, XtraReport repx, string exportType, string fileName)
-        {
-            ExportRepxToPdf_owner = owner;
-            ExportRepxToPdf_repx = repx;
-            ExportRepxToPdf_switch = exportType;
-            ExportRepxToPdf_fileName = fileName;
-            var thread1 = new System.Threading.Thread(ExportRepxToPdf_Thread);
-            ExportRepxToPdf_running = true;
-            thread1.Start();
-            Timer timer = new Timer();
-            timer.Interval = 1000;
-            timer.Tick += timer4_Tick;
-            time_count4 = 0;
-            timer.Start();
-        }
-
-        static void timer4_Tick(object sender, EventArgs e)
-        {
-            if (ExportRepxToPdf_running)
-            {
-                //V6ControlFormHelper.ShowMainMessage(V6Text.Exporting + ++time_count4);
-            }
-            else
-            {
-                ((Timer)sender).Stop();
-                if (V6Options.AutoOpenExcel)// && !NoOpen)
-                {
-                    V6ControlFormHelper.OpenFileProcess(ExportRepxToPdf_fileName);
-                }
-                else
-                {
-                    V6ControlFormHelper.ShowInfoMessage(V6Text.ExportFinish + ++time_count4, 500);
-                }
-            }
-        }
-
-        private static IWin32Window ExportRepxToPdf_owner;
-        private static XtraReport ExportRepxToPdf_repx;
-        private static string ExportRepxToPdf_fileName;
-        private static string ExportRepxToPdf_switch = "PDF";
-        private static bool ExportRepxToPdf_running;
-        private static int time_count4 = 0;
-        public static void ExportRepxToPdf_Thread()
-        {
-            try
-            {
-                ExportRepxToPdf_repx.ExportOptions.Xls.RawDataMode = false;
-                switch (ExportRepxToPdf_switch)
-                {
-                    case "XLS":
-                        ExportRepxToPdf_repx.ExportToXls(ExportRepxToPdf_fileName);
-                        break;
-                    case "XLS_RAW":
-                        ExportRepxToPdf_repx.ExportOptions.Xls.RawDataMode = true;
-                        ExportRepxToPdf_repx.ExportToXls(ExportRepxToPdf_fileName);
-                        break;
-                    case "EXCEL":
-                    case "XLSX":
-                        ExportRepxToPdf_repx.ExportToXlsx(ExportRepxToPdf_fileName);
-                        break;
-                    case "EXCEL_RAW":
-                    case "XLSX_RAW":
-                        ExportRepxToPdf_repx.ExportOptions.Xlsx.RawDataMode = true;
-                        ExportRepxToPdf_repx.ExportToXlsx(ExportRepxToPdf_fileName);
-                        break;
-                    case "WORD":
-                    case "DOCX":
-                        DocxExportOptions docx_options = new DocxExportOptions();
-                        docx_options.ExportMode = DocxExportMode.SingleFile;
-                        docx_options.KeepRowHeight = true;
-                        docx_options.TableLayout = true;
-                        ExportRepxToPdf_repx.ExportToDocx(ExportRepxToPdf_fileName, docx_options);
-                        break;
-                    case "HTML":
-                        ExportRepxToPdf_repx.ExportToHtml(ExportRepxToPdf_fileName);
-                        break;
-                    case "IMAGE":
-                        ExportRepxToPdf_repx.ExportToImage(ExportRepxToPdf_fileName);
-                        break;
-                    case "PDF":
-                    default:
-                        PdfExportOptions pdf_options = new PdfExportOptions();
-                        pdf_options.PdfACompatibility = PdfACompatibility.PdfA1b;
-                        //pdf_options.PasswordSecurityOptions.PermissionsPassword = "pwd";
-                        //pdf_options.ShowPrintDialogOnOpen = true;
-                        pdf_options.DocumentOptions.Application = Application.ProductName;
-                        pdf_options.DocumentOptions.Author = Application.CompanyName;
-                        pdf_options.DocumentOptions.Subject = "V6";
-                        pdf_options.DocumentOptions.Title = "V6";
-                        IList<string> result = pdf_options.Validate();
-                        if (result.Count > 0)
-                            Console.WriteLine(String.Join(Environment.NewLine, result));
-                        else
-                            ExportRepxToPdf_repx.ExportToPdf(ExportRepxToPdf_fileName, pdf_options);
-                        break;
-                }                
-            }
-            catch (Exception ex)
-            {
-                ExportRepxToPdf_running = false;
-                var methodInfo = MethodBase.GetCurrentMethod();
-                if (methodInfo.DeclaringType != null)
-                {
-                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    V6ControlFormHelper.ShowErrorException(address, ex);
-                }
-            }
-            //return false;
-            ExportRepxToPdf_running = false;
-        }
-
-
+        
         public static V6FormControl GetGeneralControl(string code, string itemId)
         {
             switch (code)

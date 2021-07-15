@@ -1808,7 +1808,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                FormManagerHelper.ExportRepxToPdfInThread_As(this, _repx0, "PDF", GetExportFileName());
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx0, "PDF", GetExportFileName());
             }
             catch (Exception ex)
             {
