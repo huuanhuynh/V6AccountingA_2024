@@ -770,7 +770,7 @@ namespace V6Tools.V6Convert
             return new Dictionary<string, object>();
         }
 
-        public static IDictionary<string, object> StringToDictionary(string tag, char group_char = ';', char element_char = ':')
+        public static Dictionary<string, object> StringToDictionary(string tag, char group_char = ';', char element_char = ':')
         {
             Dictionary<string,object> result = new Dictionary<string, object>();
             string[] sss = string.IsNullOrEmpty(tag) ? new string[]{} : tag.Split(new []{group_char}, StringSplitOptions.RemoveEmptyEntries);
@@ -789,7 +789,7 @@ namespace V6Tools.V6Convert
             return result;
         }
         
-        public static IDictionary<string, string> StringToStringDictionary(string tag, char group_char = ';', char element_char = ':')
+        public static Dictionary<string, string> StringToStringDictionary(string tag, char group_char = ';', char element_char = ':')
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
             string[] sss = string.IsNullOrEmpty(tag) ? new string[]{} : tag.Split(new []{group_char}, StringSplitOptions.RemoveEmptyEntries);

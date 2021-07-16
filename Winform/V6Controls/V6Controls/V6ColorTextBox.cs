@@ -9,6 +9,7 @@ using System.Linq;
 using V6Controls.Forms;
 using V6Controls.Functions;
 using V6Init;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls
@@ -317,6 +318,8 @@ namespace V6Controls
         [DefaultValue(false)]
         [Description("Bật hiển thị text khi gõ quá nhiều.")]
         public bool ShowText { get { return _showText; } set { _showText = value; } }
+        string autocorrect_spaces = " .:,;?!>\")]}-+_=/\\|";
+
         void V6ColorTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (ReadOnly || !Enabled)
@@ -356,10 +359,60 @@ namespace V6Controls
                 }
             }
 
+            
+            if (V6Options.AutoCorrect_On && autocorrect_spaces.IndexOf(e.KeyChar) != -1)
+            {
+                string ma_crect = GetLeftWord(Text, SelectionStart);
+                string value_out;
+                if (V6AutoCorrect.GetText(ma_crect, out value_out))
+                {
+                    if (this is V6VvarTextBox)
+                    {
+                        string vvar = ((V6VvarTextBox) this).VVar.Trim().ToUpper();
+                        if (!V6Options.AutoCorrect_Vvar.Contains("," + vvar + ","))
+                        {
+                            goto EndAutoCorrect;
+                        }
+                    }
+                    // Thực hiện AutoCorrect
+                    e.Handled = true;
+                    if (V6Options.AutoCorrect_Cap)
+                    {
+                        if (ma_crect == ChuyenMaTiengViet.HoaTatCa(ma_crect))
+                        {
+                            value_out = ChuyenMaTiengViet.HoaTatCa(value_out);
+                        }
+                        else if (ma_crect == ChuyenMaTiengViet.HoaDauDoan(ma_crect))
+                        {
+                            value_out = ChuyenMaTiengViet.HoaDauTu(value_out);
+                        }
+                    }
+                    // replace.
+
+                    string left = Text.Substring(0, SelectionStart - ma_crect.Length);
+                    string right = null;
+                    if (SelectionStart < TextLength) right = Text.Substring(SelectionStart);
+                    Text = left + value_out + e.KeyChar + right;
+                    SelectionStart = left.Length + value_out.Length + 1;
+                }
+            }
+            EndAutoCorrect:
+
             //if (_showText)
             {
                 V6ControlsHelper.ShowColorText(this, "" + e.KeyChar);
             }
+        }
+
+        private string GetLeftWord(string text, int position)
+        {
+            string result = "";
+            for (int i = position-1; i >= 0; i--)
+            {
+                if (autocorrect_spaces.IndexOf(text[i]) >= 0) break;
+                result = text[i] + result;
+            }
+            return result;
         }
 
         /// <summary>

@@ -91,6 +91,7 @@
     <Compile Include="Invoices\V6InvoiceBase.cs" />
     <Compile Include="V6DataExtension.cs" />
     <Compile Include="V6Init\ConfigClass.cs" />
+    <Compile Include="V6Init\V6AutoCorrect.cs" />
     <Compile Include="V6Init\CorpLan.cs" />
     <Compile Include="V6Init\CorpLan1.cs" />
     <Compile Include="V6Init\CorpLan2.cs" />

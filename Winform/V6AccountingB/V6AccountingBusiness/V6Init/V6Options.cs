@@ -4,6 +4,7 @@ using System.Data;
 using System.Globalization;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Init
 {
@@ -638,6 +639,50 @@ namespace V6Init
                 }
 
                 return s;
+            }
+        }
+
+        /// <summary>
+        /// M_RULE_AUTOCORRECT ON:1;CAPTITALS:1;VVAR:A,B,C
+        /// </summary>
+        public static string M_RULE_AUTOCORRECT
+        {
+            get
+            {
+                if (_m_rule_autocorrect == null)
+                {
+                    _m_rule_autocorrect = GetValueNull("M_RULE_AUTOCORRECT");
+                    _m_rule_autocorrect_dic = ObjectAndString.StringToStringDictionary(_m_rule_autocorrect);
+                }
+                return _m_rule_autocorrect;
+            }
+        }
+
+        private static string _m_rule_autocorrect = null;
+        private static IDictionary<string, string> _m_rule_autocorrect_dic = null;
+
+        public static bool AutoCorrect_On
+        {
+            get
+            {
+                if (M_RULE_AUTOCORRECT != null && _m_rule_autocorrect_dic.ContainsKey("ON")) return _m_rule_autocorrect_dic["ON"] == "1";
+                return false;
+            }
+        }
+        public static bool AutoCorrect_Cap
+        {
+            get
+            {
+                if (_m_rule_autocorrect_dic.ContainsKey("CAPITALS")) return _m_rule_autocorrect_dic["CAPITALS"] == "1";
+                return false;
+            }
+        }
+        public static string AutoCorrect_Vvar
+        {
+            get
+            {
+                if (_m_rule_autocorrect_dic.ContainsKey("VVAR")) return ",," + _m_rule_autocorrect_dic["VVAR"].ToUpper() + ",";
+                return null;
             }
         }
     }
