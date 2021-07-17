@@ -5545,9 +5545,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
 
         public void chonExcel_AcceptData(DataTable table)
         {
-            chonExcel_AcceptData(table.ToListDataDictionary());
+            chonExcel_AcceptData(table.ToListDataDictionary(), new ChonEventArgs());
         }
-        public void chonExcel_AcceptData(List<IDictionary<string,object>> table)
+        public override void chonExcel_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
         {
             var count = 0;
             _message = "";
@@ -5566,6 +5566,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     AD.Rows.Clear();
                 }
 
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
+
                 foreach (IDictionary<string, object> row in table)
                 {
                     var data = row;
@@ -5577,7 +5580,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     //{ Tuanmh 31/08/2016 Them thong tin ALVT
                     _maVt.Text = cMaVt;
                     var datavt = _maVt.Data;
-
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
 
                     if (datavt != null)
                     {
@@ -5626,6 +5635,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
                     }
                 }
+
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
             else
@@ -5660,7 +5674,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         }
 
 
-        private bool _flag_next = false;
+        private bool _flag_next;
         public override void ApGiaBan(bool auto = false)
         {
             try
@@ -6344,25 +6358,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
 
         #endregion tinh khuyen mai
 
-        public override void XuLyKhac(string program)
-        {
-            try
-            {
-                if (NotAddEdit) return;
-                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                chon_accept_flag_add = shift;
-
-                ReportR45db2SelectorForm r45Selector = new ReportR45db2SelectorForm(Invoice, program);
-                if (r45Selector.ShowDialog(this) == DialogResult.OK)
-                {
-                    chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData());
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
         private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
             string program = "A" + Invoice.Mact + "_XULYKHAC";

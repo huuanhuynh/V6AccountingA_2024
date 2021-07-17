@@ -6058,9 +6058,35 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        public virtual void XuLyKhac(string program)
+        /// <summary>
+        /// ReportR45db2SelectorForm
+        /// </summary>
+        /// <param name="program"></param>
+        public void XuLyKhac(string program)
         {
-            throw new NotImplementedException(V6Text.NoDefine);
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+
+                ReportR45db2SelectorForm r45Selector = new ReportR45db2SelectorForm(_invoice, program);
+                if (r45Selector.ShowDialog(this) == DialogResult.OK)
+                {
+                    ChonEventArgs chonE = new ChonEventArgs();
+                    chonE.AD2AM = r45Selector.AD2AM;
+                    chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData(), chonE);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public virtual void chonExcel_AcceptData(List<IDictionary<string, object>> getSelectedData, ChonEventArgs chonE)
+        {
+            throw new NotImplementedException();
         }
     }
 }

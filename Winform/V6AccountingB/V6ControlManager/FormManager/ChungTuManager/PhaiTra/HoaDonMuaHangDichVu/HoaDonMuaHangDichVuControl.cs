@@ -4442,25 +4442,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             }
         }
 
-        public override void XuLyKhac(string program)
-        {
-            try
-            {
-                if (NotAddEdit) return;
-                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                chon_accept_flag_add = shift;
-
-                ReportR45db2SelectorForm r45Selector = new ReportR45db2SelectorForm(Invoice, program);
-                if (r45Selector.ShowDialog(this) == DialogResult.OK)
-                {
-                    chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData());
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
         private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
             string program = "A" + Invoice.Mact + "_XULYKHAC";
@@ -4601,9 +4582,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
 
         public void chonExcel_AcceptData(DataTable table)
         {
-            chonExcel_AcceptData(table.ToListDataDictionary());
+            chonExcel_AcceptData(table.ToListDataDictionary(), new ChonEventArgs());
         }
-        public void chonExcel_AcceptData(List<IDictionary<string, object>> table)
+        public override void chonExcel_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
         {
             var count = 0;
             _message = "";
@@ -4628,12 +4609,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     }
                 }
 
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
+
                 foreach (IDictionary<string, object> row in table)
                 {
                     var data = row;
                     var cTK_VT = data["TK_VT"].ToString().Trim();
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALTK", "TK", cTK_VT);
-                    
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
                     var __tien_nt = ObjectAndString.ToObject<decimal>(data["TIEN_NT"]);
                     var __tien = V6BusinessHelper.Vround(__tien_nt * txtTyGia.Value, M_ROUND);
                     if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien);
@@ -4649,8 +4639,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     }
                     else
                     {
-                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cTK_VT);
+                        _message += string.Format("{0} [{1}]", V6Text.NotExist, cTK_VT);
                     }
+                }
+
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
                 }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
