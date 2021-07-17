@@ -1737,7 +1737,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        void chonExcel_AcceptData(DataTable table)
+        public void chonExcel_AcceptData(DataTable table)
         {
             var count = 0;
             _message = "";

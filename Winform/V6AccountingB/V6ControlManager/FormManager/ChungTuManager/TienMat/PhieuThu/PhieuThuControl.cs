@@ -1568,8 +1568,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
                 }
 
-                if (IsViewingAnInvoice && Mode == V6Mode.View) btnChonHD.Enabled = true;
-                else btnChonHD.Enabled = false;
+                if (IsViewingAnInvoice && Mode == V6Mode.View) chonHDMenu.Enabled = true;
+                else chonHDMenu.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -4948,14 +4948,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             ChucNang_ThuCuocCont(shift);
         }
 
-        private void xuLyKhacMenu_Click(object sender, EventArgs e)
+        public override void XuLyKhac(string program)
         {
             try
             {
                 if (NotAddEdit) return;
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
-                ReportR45db2SelectorForm r45Selector = new ReportR45db2SelectorForm(Invoice);
+
+                ReportR45db2SelectorForm r45Selector = new ReportR45db2SelectorForm(Invoice, program);
                 if (r45Selector.ShowDialog(this) == DialogResult.OK)
                 {
                     chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData());
@@ -4965,6 +4966,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        }
+        private void xuLyKhacMenu_Click(object sender, EventArgs e)
+        {
+            string program = "A" + Invoice.Mact + "_XULYKHAC";
+            XuLyKhac(program);
         }
 
         private void txtLoaiPhieu_V6LostFocusNoChange(object sender)
@@ -5201,11 +5207,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        void chonExcel_AcceptData(DataTable table)
+        public void chonExcel_AcceptData(DataTable table)
         {
             chonExcel_AcceptData(table.ToListDataDictionary());
         }
-        void chonExcel_AcceptData(List<IDictionary<string, object>> table)
+        public void chonExcel_AcceptData(List<IDictionary<string, object>> table)
         {
             var count = 0;
             _message = "";
@@ -5256,6 +5262,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 ShowParentMessage(V6Text.Text("LACKINFO"));
             }
+        }
+
+        private void xuLyKhac1Menu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.XULYKHAC1);
+        }
+
+        private void xuLyKhac2Menu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.XULYKHAC2);
         }
     }
 }

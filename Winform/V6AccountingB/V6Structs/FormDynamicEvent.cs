@@ -84,5 +84,7 @@
         public static string TAORRNO = "TAORRNO";
         public static string CELLENDEDIT = "CELLENDEDIT";
         public static string CELLENDEDIT2 = "CELLENDEDIT2";
+        public static string XULYKHAC1 = "XULYKHAC1";
+        public static string XULYKHAC2 = "XULYKHAC2";
     }
 }

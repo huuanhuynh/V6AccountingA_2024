@@ -26,7 +26,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private V6InvoiceBase _invoice = null;
         private ReportR45db2ViewBase _r45;
         public V6ColorDataGridView dataGridView1;
-        
+        public string AD2AM;
+
         private void MyInit()
         {
             try
@@ -77,6 +78,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             else
             {
+                AD2AM = _r45.EXTRA_INFOR_AD2AM;
                 this.DialogResult = DialogResult.OK;
             }
         }

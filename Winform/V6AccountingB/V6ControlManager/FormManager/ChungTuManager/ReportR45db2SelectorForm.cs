@@ -15,24 +15,25 @@ namespace V6ControlManager.FormManager.ChungTuManager
             InitializeComponent();
         }
 
-        public ReportR45db2SelectorForm(V6InvoiceBase invoice)
+        public ReportR45db2SelectorForm(V6InvoiceBase invoice, string program)
         {
             InitializeComponent();
             _invoice = invoice;
-
+            _program = program;
             MyInit();
         }
 
         private V6InvoiceBase _invoice = null;
+        private string _program;
         private ReportR45db2ViewBase _r45;
         public V6ColorDataGridView dataGridView1;
-        
+        public string AD2AM;
+
         private void MyInit()
         {
             try
             {
-                string program = "A" + _invoice.Mact + "_XULYKHAC";
-                _r45 = new ReportR45db2ViewBase(ItemID, program, program, program, "", "", "", "", "");
+                _r45 = new ReportR45db2ViewBase(ItemID, _program, _program, _program, "", "", "", "", "");
                 _r45.FilterControl.groupBox1.AutoSize = true;
                 _r45.FilterControl.groupBox1.Height = 10;
                 
@@ -77,6 +78,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             else
             {
+                AD2AM = _r45.EXTRA_INFOR_AD2AM;
                 this.DialogResult = DialogResult.OK;
             }
         }

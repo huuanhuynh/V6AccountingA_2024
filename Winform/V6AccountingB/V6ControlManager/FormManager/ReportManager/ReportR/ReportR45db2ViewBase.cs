@@ -271,6 +271,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        public string EXTRA_INFOR_AD2AM
+        {
+            get
+            {
+                if (EXTRA_INFOR.ContainsKey("AD2AM")) return EXTRA_INFOR["AD2AM"];
+                return null;
+            }
+        }
+
         #endregion EXTRA_INFOR
 
         public string ReportFile

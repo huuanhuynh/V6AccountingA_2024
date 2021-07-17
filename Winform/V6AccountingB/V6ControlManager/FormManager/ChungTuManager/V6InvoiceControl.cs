@@ -6057,5 +6057,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
+        public virtual void XuLyKhac(string program)
+        {
+            throw new NotImplementedException(V6Text.NoDefine);
+        }
     }
 }

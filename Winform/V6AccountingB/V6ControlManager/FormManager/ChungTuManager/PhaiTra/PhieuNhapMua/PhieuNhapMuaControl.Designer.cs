@@ -152,6 +152,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.chon1PhieuNhapKhauMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.xuLyKhac2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonPhieuXuatMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyKhac1Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyKhac2BMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
@@ -1991,7 +1993,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             0,
             0,
             0});
-            
             // 
             // v6Label4
             // 
@@ -2062,9 +2063,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.chon1DonHangMuaMenu,
             this.chon1PhieuNhapKhauMenu,
             this.xuLyKhac2Menu,
-            this.chonPhieuXuatMenu});
+            this.chonPhieuXuatMenu,
+            this.xuLyKhac1Menu,
+            this.xuLyKhac2BMenu});
             this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(254, 114);
+            this.menuChucNang2.Size = new System.Drawing.Size(254, 158);
             // 
             // chonDeNghiXuatKhoTheoKhoMenu
             // 
@@ -2096,10 +2099,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // chonPhieuXuatMenu
             // 
+            this.xuLyKhac1Menu.AccessibleDescription = "APOCTPOAM00003";
             this.chonPhieuXuatMenu.Name = "chonPhieuXuatMenu";
             this.chonPhieuXuatMenu.Size = new System.Drawing.Size(253, 22);
             this.chonPhieuXuatMenu.Text = "Chọn phiếu xuất";
             this.chonPhieuXuatMenu.Click += new System.EventHandler(this.chonPhieuXuatMenu_Click);
+            // 
+            // xuLyKhac1Menu
+            // 
+            this.xuLyKhac1Menu.AccessibleDescription = "APOCTPOAM00001";
+            this.xuLyKhac1Menu.Name = "xuLyKhac1Menu";
+            this.xuLyKhac1Menu.Size = new System.Drawing.Size(253, 22);
+            this.xuLyKhac1Menu.Text = "Xử lý khác 1";
+            this.xuLyKhac1Menu.Click += new System.EventHandler(this.xuLyKhac1Menu_Click);
+            // 
+            // xuLyKhac2BMenu
+            // 
+            this.xuLyKhac2Menu.AccessibleDescription = "APOCTPOAM00002";
+            this.xuLyKhac2BMenu.Name = "xuLyKhac2BMenu";
+            this.xuLyKhac2BMenu.Size = new System.Drawing.Size(253, 22);
+            this.xuLyKhac2BMenu.Text = "Xử lý khác 2";
+            this.xuLyKhac2BMenu.Click += new System.EventHandler(this.xuLyKhac2BMenu_Click);
             // 
             // chkTempSuaCT
             // 
@@ -4252,5 +4272,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private System.Windows.Forms.ToolStripMenuItem xuLyKhac2Menu;
         private DropDownButton btnChucNang2;
         private System.Windows.Forms.ToolStripMenuItem chonPhieuXuatMenu;
+        private System.Windows.Forms.ToolStripMenuItem xuLyKhac1Menu;
+        private System.Windows.Forms.ToolStripMenuItem xuLyKhac2BMenu;
     }
 }
