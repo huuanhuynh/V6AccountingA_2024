@@ -472,6 +472,8 @@ namespace V6ThuePostManager
                 error = ex.Message;
                 V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
             }
+
+            error = paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE;
             return result;
         }
 

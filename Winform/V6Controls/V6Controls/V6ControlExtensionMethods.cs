@@ -356,15 +356,15 @@ namespace V6Controls
                 };
                 if (fullScreen) f.WindowState = FormWindowState.Maximized;
                 if (closeConfirm)
-                f.FormClosing += (sender, e) =>
-                {
-                    if (!control.IsDisposed && !control.Disposing   // không hỏi khi form control đã tự hủy.
-                        && !f.IsDisposed && !f.Disposing
-                        && f.ShowConfirmMessage(V6Text.CloseConfirm) != DialogResult.Yes)
+                    f.FormClosing += (sender, e) =>
                     {
-                        e.Cancel = true;
-                    }
-                };
+                        if (!control.IsDisposed && !control.Disposing   // không hỏi khi form control đã tự hủy.
+                            && !f.IsDisposed && !f.Disposing
+                            && f.ShowConfirmMessage(V6Text.CloseConfirm) != DialogResult.Yes)
+                        {
+                            e.Cancel = true;
+                        }
+                    };
                 
                 f.Controls.Add(control);
                 control.Dock = DockStyle.Fill;

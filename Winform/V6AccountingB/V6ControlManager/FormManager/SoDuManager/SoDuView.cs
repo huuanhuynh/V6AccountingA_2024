@@ -308,8 +308,8 @@ namespace V6ControlManager.FormManager.SoDuManager
                         this.ShowWarningMessage(V6Text.NoRight + " F9");
                         return;
                     }
-                    //All_Objects["dataGridView1"] = dataGridView1;
-                    //InvokeFormEvent(FormDynamicEvent.F9);
+                    All_Objects["dataGridView1"] = dataGridView1;
+                    InvokeFormEvent(FormDynamicEvent.F9);
                 }
                 else if (keyData == Keys.Up || keyData == Keys.Down || keyData == Keys.Left || keyData == Keys.Right)
                 {

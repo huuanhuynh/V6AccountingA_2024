@@ -4,6 +4,8 @@
   <TuKhoa TenTuKhoa='AddEditControlVirtual' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ComboBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='DateTimePicker' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='EventArgs' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='KeyEventArgs' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineBase' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineDateTimeTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineDateTimeNullable' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -14,6 +16,7 @@
   <TuKhoa TenTuKhoa='ReportFilter44Base' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ReportR44_DX' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ReportR44ViewBase' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='SqlHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
   <TuKhoa TenTuKhoa='SqlParameter' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteProcedure(proc, pList);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -32,6 +35,7 @@
   <TuKhoa TenTuKhoa='V6Init' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6InvoiceControl' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6NumberTextBox' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='NumberMonth' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Options' 				MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ReportControls' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Setting' 				MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -41,11 +45,13 @@
 	<TuKhoa TenTuKhoa='V6VvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Mode' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Message' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Message.Show(("Đã tồn tại. Có chắc chắn xử lý?", "Xác nhận", 0, MessageBoxButtons.YesNo, MessageBoxIcon.Question, 0, thisForm);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	
   <TuKhoa TenTuKhoa='ContainsKey'   MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='CopyToVPN'   MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='DataGridViewRowToDataDictionary(row)'   MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteFunctionScalar(funcName, plist);' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ExecuteNonQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteProcedure' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteProcedureNoneQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteProcedureScalar' 		MauSac = 'Chocolate' 	AutoComplete = '1' />

@@ -833,6 +833,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                         return;
                     }
                     All_Objects["dataGridView1"] = dataGridView1;
+                    All_Objects["dataGridView2"] = dataGridView2;
                     InvokeFormEvent(FormDynamicEvent.F9);
                 }
             }

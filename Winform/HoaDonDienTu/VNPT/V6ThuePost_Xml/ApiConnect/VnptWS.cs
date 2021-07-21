@@ -700,7 +700,7 @@ namespace V6ThuePostXmlApi
                 v6Return.RESULT_ERROR_MESSAGE = result;
             }
 
-            return result;
+            return null;
         }
 
         /// <summary>

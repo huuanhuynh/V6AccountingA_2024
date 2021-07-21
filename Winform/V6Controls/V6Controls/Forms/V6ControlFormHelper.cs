@@ -3950,14 +3950,16 @@ namespace V6Controls.Forms
                 {
                     Text = title,
                     AutoSize = true,
-                    FormBorderStyle = FormBorderStyle.FixedSingle,
-                    Size = new Size(800, 600)
+                    FormBorderStyle = FormBorderStyle.Sizable,//.FixedSingle,
+                    Size = new Size(200, 100)
                 };
                 if (fullScreen) f.WindowState = FormWindowState.Maximized;
                 if (closeConfirm)
                     f.FormClosing += (sender, e) =>
                     {
-                        if (!f.IsDisposed && f.ShowConfirmMessage(V6Text.CloseConfirm) != DialogResult.Yes)
+                        if (!control.IsDisposed && !control.Disposing   // không hỏi khi form control đã tự hủy.
+                                                && !f.IsDisposed && !f.Disposing
+                                                && f.ShowConfirmMessage(V6Text.CloseConfirm) != DialogResult.Yes)
                         {
                             e.Cancel = true;
                         }
@@ -3967,16 +3969,13 @@ namespace V6Controls.Forms
                 control.Dock = DockStyle.Fill;
                 control.Disposed += delegate
                 {
-                    if (!f.IsDisposed) f.Dispose();
-                };
-                f.KeyPreview = true;
-                f.KeyDown += (s, e) =>
-                {
-                    if (e.KeyCode == Keys.Escape)
+                    if (!f.IsDisposed)
                     {
                         f.Close();
+                        //f.Dispose();        // còn form tàng hình.                
                     }
                 };
+                f.KeyPreview = true;
 
                 if (dialog)
                 {
