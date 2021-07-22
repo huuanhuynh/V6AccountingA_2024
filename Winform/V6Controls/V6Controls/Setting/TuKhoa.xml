@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0"?>
 <Root>
-
-  <TuKhoa TenTuKhoa='AddEditControlVirtual' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ComboBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='DateTimePicker' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='EventArgs' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='KeyEventArgs' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='FilterLineBase' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='FilterLineDateTimeTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='FilterLineDateTimeNullable' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='FilterLineDynamic' 		      MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='FilterLineNumberTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='FilterLineVvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='AddEditControlVirtual' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ComboBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DateTimePicker' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='EventArgs' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='KeyEventArgs' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='FilterLineBase' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='FilterLineDateTimeTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='FilterLineDateTimeNullable' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='FilterLineDynamic' 		      MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='FilterLineNumberTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='FilterLineVvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectAndString' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ReportFilter44Base' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ReportR44_DX' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ReportR44ViewBase' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='SqlHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
-  <TuKhoa TenTuKhoa='SqlParameter' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
-  <TuKhoa TenTuKhoa='UtilityHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
+	<TuKhoa TenTuKhoa='ReportFilter44Base' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ReportR44_DX' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ReportR44ViewBase' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='SqlHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
+	<TuKhoa TenTuKhoa='SqlParameter' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
+	<TuKhoa TenTuKhoa='UtilityHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteProcedure(proc, pList);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6ColorComboBox ' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6ColorDataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6ColorTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6ColorComboBox ' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6ColorDataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6ColorTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Control' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Controls' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ControlFormHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ControlsHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6DateTimeColor'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6DateTimePicker'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6FileIO' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6Label' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6Init' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6InvoiceControl' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6NumberTextBox' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='NumberMonth' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6DateTimeColor'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6DateTimePicker'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6FileIO' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Label' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Init' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6InvoiceControl' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6NumberTextBox' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='NumberMonth' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Options' 				MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='V6ReportControls' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6ReportControls' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Setting' 				MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6SyncSetting'			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6TableName' 		  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6TableStruct' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ToolExtensionMethods' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -48,15 +48,15 @@
 	<TuKhoa TenTuKhoa='V6Message' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Message.Show(("Đã tồn tại. Có chắc chắn xử lý?", "Xác nhận", 0, MessageBoxButtons.YesNo, MessageBoxIcon.Question, 0, thisForm);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	
-  <TuKhoa TenTuKhoa='ContainsKey'   MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='CopyToVPN'   MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='DataGridViewRowToDataDictionary(row)'   MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='EnCrypt' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ExecuteFunctionScalar(funcName, plist);' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ExecuteNonQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ExecuteProcedure' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ExecuteProcedureNoneQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ExecuteProcedureScalar' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ContainsKey'   MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='CopyToVPN'   MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DataGridViewRowToDataDictionary(row)'   MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='EnCrypt' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ExecuteFunctionScalar(funcName, plist);' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ExecuteNonQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ExecuteProcedure' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ExecuteProcedureNoneQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ExecuteProcedureScalar' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ExistRowInTable' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='GetControlByAccessibleName' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='GetControlByName' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
@@ -64,10 +64,10 @@
 	<TuKhoa TenTuKhoa='ObjectToDecimal' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectToDate' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectToFullDateTime' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='SetValue' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='Show' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ShowWarning' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
-  <TuKhoa TenTuKhoa='ShowMainMessage' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='SetValue' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Show' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ShowWarning' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ShowMainMessage' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	
 	<TuKhoa TenTuKhoa='AlbcConfig' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='AlctConfig' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -89,6 +89,7 @@
 	<TuKhoa TenTuKhoa='SqlParameter[] plist = {new SqlParameter("@name", "value"), ...};' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='public static void Method(V6Control thisForm){&#10;try{&#10;&#10;}catch(Exception ex){&#10;V6Message.Show(ex.Message, thisForm);&#10;}}' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='UpdateSimple("AM81", data, key);' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V67z.Run7z_Zip(filename, toZipFile, true);' 		MauSac = 'Blue' 	AutoComplete = '1' />
   
 	<TuKhoa TenTuKhoa='string' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='int' 		MauSac = 'Blue' 	AutoComplete = '1' />
@@ -138,7 +139,7 @@
 	<TuKhoa TenTuKhoa='throw' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='true' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='try' 		MauSac = 'Blue' 	AutoComplete = '0' />
-  <TuKhoa TenTuKhoa='try{&#10;&#10;}catch(Exception ex){V6Message.Show(ex.Message, thisForm);}' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='try{&#10;&#10;}catch(Exception ex){V6Message.Show(ex.Message, thisForm);}' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='typeof' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='virtual' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='void' 		MauSac = 'Blue' 	AutoComplete = '1' />
@@ -171,8 +172,8 @@
 	<TuKhoa TenTuKhoa='White' 		MauSac = 'White' 		AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='YellowGreen' MauSac = 'YellowGreen' 	AutoComplete = '1' />
 
-  <TuKhoaBatDau TuKhoaBatDau='//' 	MauSac = 'Green' 	AutoComplete = '0' />
-  <TuKhoaDoi TuKhoaBatDau='/*'	TuKhoaKetThuc='*/' 			MauSac = 'Green' 	AutoComplete = '0' />
+	<TuKhoaBatDau TuKhoaBatDau='//' 	MauSac = 'Green' 	AutoComplete = '0' />
+	<TuKhoaDoi TuKhoaBatDau='/*'	TuKhoaKetThuc='*/' 			MauSac = 'Green' 	AutoComplete = '0' />
 	<TuKhoaDoi0 TuKhoaBatDau='&lt;'		TuKhoaKetThuc='&gt;' 		MauSac = 'Red' 	AutoComplete = '0' />
 	<TuKhoaDoi0 TuKhoaBatDau='&apos;'		TuKhoaKetThuc='&apos;' 		MauSac = 'Red' 	AutoComplete = '0' />
 	<TuKhoaDoi0 TuKhoaBatDau='(&quot;'	TuKhoaKetThuc='&quot;)' 			MauSac = 'Tomato' 	AutoComplete = '0' />

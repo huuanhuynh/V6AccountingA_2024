@@ -58,6 +58,7 @@
             this.btnHDSD2 = new System.Windows.Forms.Button();
             this.btnHDSDDT = new System.Windows.Forms.Button();
             this.btnChuyenMa = new System.Windows.Forms.Button();
+            this.btnChuyenMaExcel = new System.Windows.Forms.Button();
             this.grbOptions.SuspendLayout();
             this.grbTools.SuspendLayout();
             this.grbFunctions.SuspendLayout();
@@ -331,6 +332,7 @@
             this.grbFunctions.Controls.Add(this.btnTeamViewer);
             this.grbFunctions.Controls.Add(this.btnHDSD2);
             this.grbFunctions.Controls.Add(this.btnHDSDDT);
+            this.grbFunctions.Controls.Add(this.btnChuyenMaExcel);
             this.grbFunctions.Controls.Add(this.btnChuyenMa);
             this.grbFunctions.Controls.Add(this.btnAmLich);
             this.grbFunctions.Location = new System.Drawing.Point(3, 12);
@@ -413,6 +415,16 @@
             this.btnChuyenMa.UseVisualStyleBackColor = true;
             this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
             // 
+            // btnChuyenMaExcel
+            // 
+            this.btnChuyenMaExcel.Location = new System.Drawing.Point(8, 338);
+            this.btnChuyenMaExcel.Name = "btnChuyenMaExcel";
+            this.btnChuyenMaExcel.Size = new System.Drawing.Size(118, 23);
+            this.btnChuyenMaExcel.TabIndex = 5;
+            this.btnChuyenMaExcel.Text = "Chuyển mã Excel";
+            this.btnChuyenMaExcel.UseVisualStyleBackColor = true;
+            this.btnChuyenMaExcel.Click += new System.EventHandler(this.btnChuyenMaExcel_Click);
+            // 
             // AllTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,5 +475,6 @@
         private System.Windows.Forms.Button btnQuayRa;
         private System.Windows.Forms.CheckBox chkAllowAdd;
         private System.Windows.Forms.Button btnAnyDesk;
+        private System.Windows.Forms.Button btnChuyenMaExcel;
     }
 }

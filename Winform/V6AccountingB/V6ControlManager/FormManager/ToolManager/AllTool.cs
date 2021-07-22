@@ -183,6 +183,11 @@ namespace V6ControlManager.FormManager.ToolManager
             new FormChuyenMa().Show(this);
         }
 
+        private void btnChuyenMaExcel_Click(object sender, EventArgs e)
+        {
+            new FormConvertExcel().Show(this);
+        }
+
         private void btnTeamViewer_Click(object sender, EventArgs e)
         {
             try

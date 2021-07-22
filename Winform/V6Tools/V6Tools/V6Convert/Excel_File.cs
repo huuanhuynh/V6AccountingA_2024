@@ -6,22 +6,7 @@ namespace V6Tools.V6Convert
 {
     public class Excel_File
     {
-
-        private static void ChuyenMaTiengViet(string fileName, string from, string to, string saveAs)
-        {
-            try
-            {
-                throw new NotImplementedException();
-                //return true;
-            }
-            catch (Exception ex)
-            {
-                //return false;
-                throw new ConvertException(ex.Message);
-            }
-        }
-
-        /// <summary>
+                /// <summary>
         /// Đọc sheet1 của file excel vào bảng dữ liệu.
         /// </summary>
         /// <param name="fileName">Đường dẫn file excel xls xlsx.</param>
@@ -290,6 +275,111 @@ namespace V6Tools.V6Convert
                 throw new Exception("ExcelToDataSet " + ex.Message);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Thực hiện đổi mã, lưu file (ghi đè) và trả về DataSet
+        /// </summary>
+        /// <param name="fileName">file nguồn.</param>
+        /// <param name="from">mã nguồn</param>
+        /// <param name="to">mã đích</param>
+        /// <param name="saveFile">file đích.</param>
+        /// <returns>DataSet</returns>
+        public static DataSet ChangeCode(string fileName, string from, string to, string saveFile)
+        {
+            DataSet result = new DataSet();
+            try
+            {
+                string ext = Path.GetExtension(fileName).ToLower();
+                SmartXLS.WorkBook workbook = new SmartXLS.WorkBook();
+                #region ==== workbook try to read file ====
+
+                try
+                {
+                    try
+                    {
+                        try
+                        {
+
+                            if (ext == ".xls")
+                                workbook.read(fileName);
+                            else if (ext == ".xlsx")
+                                workbook.readXLSX(fileName);
+                            else if (ext == ".xml")
+                                workbook.readXML(fileName);
+                        }
+                        catch
+                        {
+                            workbook.readXLSX(fileName);
+                        }
+                    }
+                    catch
+                    {
+                        workbook.readXML(fileName);
+                    }
+                }
+                catch
+                {
+                    workbook.read(fileName);
+                }
+                #endregion
+
+                int sheetCount = workbook.NumSheets;
+
+                string cellText;
+
+                for (int sheetIndex = 0; sheetIndex < sheetCount; sheetIndex++)
+                {
+                    //select sheet
+                    workbook.Sheet = sheetIndex;
+                    string sheetName = workbook.getSheetName(sheetIndex);
+                    DataTable sheetTable = new DataTable(sheetName);
+
+                    //0base
+                    int lastRow = workbook.LastRow; if (lastRow < 1) continue;
+                    int lastCol = workbook.LastCol; if (lastCol < 1) continue;
+
+                    //Lay du lieu tu row 1
+                    for (int rowIndex = 1; rowIndex <= lastRow; rowIndex++)
+                    {
+                        //get the last column of this row.
+                        int lastColForRow = workbook.getLastColForRow(rowIndex);
+                        for (int colIndex = 0; colIndex <= lastColForRow; colIndex++)
+                        {
+                            cellText = workbook.getText(rowIndex, colIndex);
+                            if (!string.IsNullOrEmpty(cellText) && NaN(cellText))
+                            {
+                                cellText = ChuyenMaTiengViet.VIETNAM_CONVERT(cellText, from, to);
+                                workbook.setText(rowIndex, colIndex, cellText);
+                            }
+                        }
+                    } // finish sheet
+
+                    sheetTable = workbook.ExportDataTable(0, 0, lastRow + 1, lastCol + 1, true, true);
+                    result.Tables.Add(sheetTable);
+
+                }// finish all sheets
+
+                workbook.writeXLSX(saveFile);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ExcelToDataSet " + ex.Message);
+            }
+            return result;
+        }
+
+        private static bool NaN(string s)
+        {
+            if (s == null) return false;
+            foreach (char c in s)
+            {
+                if (char.IsWhiteSpace(c)) continue;
+                if (!char.IsNumber(c)) return true;
+            }
+
+            return false;
         }
 
         /// <summary>

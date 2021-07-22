@@ -6130,6 +6130,12 @@
     <Compile Include="FormManager\ToolManager\AllTool.designer.cs">
       <DependentUpon>AllTool.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ToolManager\FormConvertExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ToolManager\FormConvertExcel.designer.cs">
+      <DependentUpon>FormConvertExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ToolManager\FormConvertTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -9321,6 +9327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\AllTool.resx">
       <DependentUpon>AllTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ToolManager\FormConvertExcel.resx">
+      <DependentUpon>FormConvertExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormConvertTable.resx">
       <DependentUpon>FormConvertTable.cs</DependentUpon>
