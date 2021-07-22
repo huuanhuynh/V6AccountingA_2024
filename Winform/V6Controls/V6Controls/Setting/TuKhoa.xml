@@ -18,6 +18,7 @@
   <TuKhoa TenTuKhoa='ReportR44ViewBase' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='SqlHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
   <TuKhoa TenTuKhoa='SqlParameter' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
+  <TuKhoa TenTuKhoa='UtilityHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteProcedure(proc, pList);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -50,6 +51,7 @@
   <TuKhoa TenTuKhoa='ContainsKey'   MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='CopyToVPN'   MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='DataGridViewRowToDataDictionary(row)'   MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='EnCrypt' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteFunctionScalar(funcName, plist);' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteNonQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteProcedure' 		MauSac = 'Chocolate' 	AutoComplete = '1' />

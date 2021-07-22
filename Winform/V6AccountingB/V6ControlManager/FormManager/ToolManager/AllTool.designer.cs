@@ -75,10 +75,10 @@
             // 
             // btnConvertTable
             // 
-            this.btnConvertTable.Location = new System.Drawing.Point(6, 48);
+            this.btnConvertTable.Location = new System.Drawing.Point(8, 309);
             this.btnConvertTable.Name = "btnConvertTable";
             this.btnConvertTable.Size = new System.Drawing.Size(118, 23);
-            this.btnConvertTable.TabIndex = 1;
+            this.btnConvertTable.TabIndex = 6;
             this.btnConvertTable.Text = "Convert Table";
             this.btnConvertTable.UseVisualStyleBackColor = true;
             this.btnConvertTable.Click += new System.EventHandler(this.button2_Click);
@@ -299,7 +299,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grbTools.Controls.Add(this.btnTableToFile);
-            this.grbTools.Controls.Add(this.btnConvertTable);
             this.grbTools.Controls.Add(this.btnTestInvoice);
             this.grbTools.Controls.Add(this.btnDBF);
             this.grbTools.Controls.Add(this.btnModelHelp);
@@ -327,6 +326,7 @@
             this.grbFunctions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.grbFunctions.Controls.Add(this.btnQuayRa);
+            this.grbFunctions.Controls.Add(this.btnConvertTable);
             this.grbFunctions.Controls.Add(this.btnAnyDesk);
             this.grbFunctions.Controls.Add(this.btnTeamViewer);
             this.grbFunctions.Controls.Add(this.btnHDSD2);
@@ -348,7 +348,7 @@
             this.btnQuayRa.Location = new System.Drawing.Point(8, 515);
             this.btnQuayRa.Name = "btnQuayRa";
             this.btnQuayRa.Size = new System.Drawing.Size(118, 41);
-            this.btnQuayRa.TabIndex = 6;
+            this.btnQuayRa.TabIndex = 7;
             this.btnQuayRa.Tag = "Escape";
             this.btnQuayRa.Text = "&Quay ra";
             this.btnQuayRa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

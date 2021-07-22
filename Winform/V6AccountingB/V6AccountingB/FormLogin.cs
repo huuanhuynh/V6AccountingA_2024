@@ -107,6 +107,7 @@ namespace V6AccountingB
         }
 
         private string lblStatusSuccess = "______________________________________________";
+        private string lblStatusSuccessIP = "________________________________";
         private string lblStatusFail = "___________ / _";
         private void CheckCrystalReportInstaled()
         {
@@ -182,11 +183,19 @@ namespace V6AccountingB
                 ((Timer)sender).Stop();
                 if (flagCheckConnectSuccess && _tblsLoaded)
                 {
-                    lblStatus.Text = lblStatusSuccess;
+                    if (DatabaseConfig.IsIPServer)
+                    {
+                        lblStatus.Text = "____" + DatabaseConfig.Server_IP + lblStatusSuccessIP;
+                    }
+                    else
+                    {
+                        lblStatus.Text = lblStatusSuccess;
+                    }
+                    
                     panel1.Enabled = true;
                     txtUserName.Focus();
                     V6Options.LoadValue();
-                    this.Text = "LOGIN - Version " + Application.ProductVersion;
+                    this.Text = "LOGIN - Version " + Application.ProductVersion;                    
                     //Ready();
                 }
                 else

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 
 namespace V6SqlConnect
@@ -88,23 +89,59 @@ namespace V6SqlConnect
                 GetConfigValues(_selectedIndex);
             }
         }
+        private static int _selectedIndex;
 
         private static void GetConfigValues(int index)
         {
             try
             {
                 var selectedRow = ConnectionConfigData.Rows[index];
+                STT = selectedRow["Stt"].ToString().Trim();
                 Server = selectedRow["Server"].ToString().Trim();
                 Database = selectedRow["Database"].ToString().Trim();
                 UserId = selectedRow["UserId"].ToString().Trim();
                 EPassword = selectedRow["EPassword"].ToString().Trim();
                 Api = selectedRow["Api"].ToString().Trim();
+                Key = selectedRow["Key"].ToString().Trim();
 
                 Server2 = selectedRow["Server2"].ToString().Trim();
                 Database2 = selectedRow["Database2"].ToString().Trim();
                 UserId2 = selectedRow["UserId2"].ToString().Trim();
                 EPassword2 = selectedRow["EPassword2"].ToString().Trim();
                 Api2 = selectedRow["Api2"].ToString().Trim();
+                if (ConnectionConfigData.Columns.Contains("Key2")) Key2 = selectedRow["Key2"].ToString().Trim();
+
+                if (ConnectionConfigData.Columns.Contains("IPServer"))
+                {
+                    // Kiểm tra IPServer (nơi trungg gian ghi nhận lưu trữ IP cho các máy chủ khác nhau) có kết nối thì đổi Server.
+                    string IPName = selectedRow["IPName"].ToString().Trim();
+                    string IPServer = selectedRow["IPServer"].ToString().Trim();
+                    if (IPServer == "") goto Next1;
+                    string IPDatabase = selectedRow["IPDatabase"].ToString().Trim();
+                    string IPUserId = selectedRow["IPUserId"].ToString().Trim();
+                    string IPEPassword = selectedRow["IPEPassword"].ToString().Trim();
+                    var ip_constring = "Server=" + IPServer + ";Database=" + IPDatabase + ";User Id=" + IPUserId
+                                       + ";Password=" + V6SqlconnectHelper.DeCrypt(IPEPassword + check_key) + ";";
+                    if (CheckConnectionString(ip_constring))
+                    {
+                        string server = GetServerFromIPServer(ip_constring, IPName, out Server_IP);
+                        if (!string.IsNullOrEmpty(server))
+                        {
+                            Server = server;
+                            IsIPServer = true;
+                        }
+                        else
+                        {
+                            IsIPServer = false;
+                        }
+                        
+                    }
+                    else
+                    {
+                        IsIPServer = false;
+                    }
+                }
+                Next1:
 
                 if (ConnectionConfigData.Columns.Contains("Server2_TH"))
                 {
@@ -151,7 +188,72 @@ namespace V6SqlConnect
             }
         }
 
-        private static int _selectedIndex;
+        private static string GetServerFromIPServer(string ipConstring, string name, out string ip_name)
+        {
+            string server = "";
+            ip_name = "";
+            try
+            {
+                SqlParameter[] param =
+                {
+                    new SqlParameter("@name", name),
+                };
+
+                var data = SqlHelper.ExecuteDataset(ipConstring, CommandType.Text,
+                    "Select [IP_NAME], [KEY] from V6IP_CUSTS"
+                    + " Where [name]=@name", param).Tables[0];
+                if (data.Rows.Count == 1)
+                {
+                    string key = data.Rows[0]["KEY"].ToString().Trim();
+                    server = V6Tools.UtilityHelper.DeCrypt(key);
+                    ip_name = data.Rows[0]["IP_NAME"].ToString().Trim();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return server;
+        }
+
+
+        public static bool CheckConnectionString(string conString)
+        {
+            int check = 0;
+            try
+            {
+                SqlConnection con = new SqlConnection(conString);
+                con.Open();
+                if (con.State == ConnectionState.Open)
+                {
+                    //richTextBox1.AppendText(DatabaseConfig.Database + " Connection open ok.\n");
+                    check++;
+                }
+                con.Close();
+                if (con.State == ConnectionState.Closed)
+                {
+                    //richTextBox1.AppendText(DatabaseConfig.Database + " Connection closed ok.\n");
+                    check++;
+                }
+                //richTextBox1.AppendText("==============================================\n");
+                //richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                //richTextBox1.ScrollToCaret();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error: " + ex.Message);
+                //richTextBox1.AppendText(DatabaseConfig.Database + " Error.\n");
+                //richTextBox1.AppendText(ex.Message + "\n");
+                //richTextBox1.AppendText("==============================================\n");
+                //richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                //richTextBox1.ScrollToCaret();
+                check = -1;
+            }
+
+            return check == 2;
+        }
+
 
         public static int GetConfigDataRunIndex()
         {
@@ -173,42 +275,62 @@ namespace V6SqlConnect
         public static int ChangeConnection()
         {
             //Lưu tạm
+            var tstt = STT;
             var ts = Server;
             var td = Database;
             var tu = UserId;
             var te = EPassword;
             var ta = Api;
-            //Gán mới
-            Server = Server2;
-            Database = Database2;
-            UserId = UserId2;
-            EPassword = EPassword2;
-            Api = Api2;
-            //Gán cũ
-            Server2 = ts;
-            Database2 = td;
-            UserId2 = tu;
-            EPassword2 = te;
-            Api2 = ta;
+            var tkey = Key;
+            
+            // Check key
+            var trueKey2 = V6SqlconnectHelper.EnCrypt(STT + Server2 + Database2);
+            if (trueKey2 == Key2)
+            {
+                //Gán mới
+                Server = Server2;
+                Database = Database2;
+                UserId = UserId2;
+                EPassword = EPassword2;
+                Api = Api2;
+                Key = Key2;
+                //Gán cũ
+                Server2 = ts;
+                Database2 = td;
+                UserId2 = tu;
+                EPassword2 = te;
+                Api2 = ta;
+                Key2 = tkey;
 
-            _currentConnection = 3 - _currentConnection;
+                _currentConnection = 3 - _currentConnection;
+            }
+
+            
             return _currentConnection;
         }
 
+        public static bool IsIPServer = false;
+        public static string STT = "";
         /// <summary>
         /// Tên server dữ liệu, có thể là IP.
         /// </summary>
         public static string Server { get; set; }
+        /// <summary>
+        /// Lưu giữ phần IP của Server nếu trường hợp get IP động
+        /// </summary>
+        public static string Server_IP = "";
         public static string Database = "";
         public static string UserId = "";
         public static string EPassword = "";
         public static string Api = "";
+        public static string Key = "";
 
         public static string Server2 = "";
         public static string Database2 = "";
         public static string UserId2 = "";
         public static string EPassword2 = "";
         public static string Api2 = "";
+        public static string Key2 = "";
 
         public static string Server2_TH = "";
         public static string Database2_TH = "";
@@ -285,6 +407,7 @@ namespace V6SqlConnect
 
         private static void FixConfigData(string fileName)
         {
+            // Cờ ghi nhận cần thêm trường trong config.
             var change = false;
 
             #region ==== ConnectionConfigData ====
@@ -367,7 +490,7 @@ namespace V6SqlConnect
                 change = true;
             }
             
-            //Check Key
+            //Check Key // Remove if false
             for (int i = ConnectionConfigData.Rows.Count; i > 0; i--)
             {
                 var cRow = ConnectionConfigData.Rows[i-1];
