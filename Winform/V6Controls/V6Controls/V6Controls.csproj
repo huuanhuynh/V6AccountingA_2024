@@ -2400,10 +2400,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Hprojects\HaUtility\HaUtility.csproj">
-      <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
-      <Name>HaUtility</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\V6AccountingB\V6AccountingBusiness\V6AccountingBusiness.csproj">
       <Project>{5128ff85-304f-4943-853e-f8e3535dfb55}</Project>
       <Name>V6AccountingBusiness</Name>

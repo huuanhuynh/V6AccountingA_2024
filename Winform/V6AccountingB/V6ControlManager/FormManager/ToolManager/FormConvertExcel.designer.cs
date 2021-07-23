@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnLoadExcel = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radFromVNI = new System.Windows.Forms.RadioButton();
             this.radFromUNI = new System.Windows.Forms.RadioButton();
@@ -42,40 +39,12 @@
             this.radToABC = new System.Windows.Forms.RadioButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnLoadExcel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnLoadExcel
-            // 
-            this.btnLoadExcel.Location = new System.Drawing.Point(12, 12);
-            this.btnLoadExcel.Name = "btnLoadExcel";
-            this.btnLoadExcel.Size = new System.Drawing.Size(75, 48);
-            this.btnLoadExcel.TabIndex = 1;
-            this.btnLoadExcel.Text = "Load Excel";
-            this.btnLoadExcel.UseVisualStyleBackColor = true;
-            this.btnLoadExcel.Click += new System.EventHandler(this.btnLoadExcel_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(353, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 48);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Convert";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(697, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 48);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Save table as...";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // groupBox1
             // 
@@ -83,9 +52,9 @@
             this.groupBox1.Controls.Add(this.radFromUNI);
             this.groupBox1.Controls.Add(this.radFromABC);
             this.groupBox1.Controls.Add(this.radFromAuto);
-            this.groupBox1.Location = new System.Drawing.Point(93, 10);
+            this.groupBox1.Location = new System.Drawing.Point(131, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(254, 50);
+            this.groupBox1.Size = new System.Drawing.Size(216, 50);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "From";
@@ -138,9 +107,9 @@
             this.groupBox2.Controls.Add(this.radToVNI);
             this.groupBox2.Controls.Add(this.radToUNI);
             this.groupBox2.Controls.Add(this.radToABC);
-            this.groupBox2.Location = new System.Drawing.Point(446, 10);
+            this.groupBox2.Location = new System.Drawing.Point(472, 10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(242, 50);
+            this.groupBox2.Size = new System.Drawing.Size(178, 50);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "To";
@@ -148,7 +117,7 @@
             // radToVNI
             // 
             this.radToVNI.AutoSize = true;
-            this.radToVNI.Location = new System.Drawing.Point(164, 19);
+            this.radToVNI.Location = new System.Drawing.Point(108, 19);
             this.radToVNI.Name = "radToVNI";
             this.radToVNI.Size = new System.Drawing.Size(43, 17);
             this.radToVNI.TabIndex = 0;
@@ -159,7 +128,7 @@
             // 
             this.radToUNI.AutoSize = true;
             this.radToUNI.Checked = true;
-            this.radToUNI.Location = new System.Drawing.Point(114, 19);
+            this.radToUNI.Location = new System.Drawing.Point(58, 19);
             this.radToUNI.Name = "radToUNI";
             this.radToUNI.Size = new System.Drawing.Size(44, 17);
             this.radToUNI.TabIndex = 0;
@@ -170,7 +139,7 @@
             // radToABC
             // 
             this.radToABC.AutoSize = true;
-            this.radToABC.Location = new System.Drawing.Point(62, 19);
+            this.radToABC.Location = new System.Drawing.Point(6, 19);
             this.radToABC.Name = "radToABC";
             this.radToABC.Size = new System.Drawing.Size(46, 17);
             this.radToABC.TabIndex = 0;
@@ -184,18 +153,55 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 66);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(362, 484);
+            this.tabControl1.Size = new System.Drawing.Size(374, 484);
             this.tabControl1.TabIndex = 3;
             // 
             // tabControl2
             // 
             this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.tabControl2.Location = new System.Drawing.Point(410, 66);
+            this.tabControl2.Location = new System.Drawing.Point(398, 66);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(362, 484);
+            this.tabControl2.Size = new System.Drawing.Size(374, 484);
             this.tabControl2.TabIndex = 4;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Image = global::V6ControlManager.Properties.Resources.Save;
+            this.button3.Location = new System.Drawing.Point(659, 13);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 48);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Save table as...";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Image = global::V6ControlManager.Properties.Resources.ArrowRightBlue3D;
+            this.button2.Location = new System.Drawing.Point(353, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(113, 48);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Convert";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnLoadExcel
+            // 
+            this.btnLoadExcel.Image = global::V6ControlManager.Properties.Resources.Excel32;
+            this.btnLoadExcel.Location = new System.Drawing.Point(12, 12);
+            this.btnLoadExcel.Name = "btnLoadExcel";
+            this.btnLoadExcel.Size = new System.Drawing.Size(113, 48);
+            this.btnLoadExcel.TabIndex = 1;
+            this.btnLoadExcel.Text = "Load Excel";
+            this.btnLoadExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLoadExcel.UseVisualStyleBackColor = true;
+            this.btnLoadExcel.Click += new System.EventHandler(this.btnLoadExcel_Click);
             // 
             // FormConvertExcel
             // 

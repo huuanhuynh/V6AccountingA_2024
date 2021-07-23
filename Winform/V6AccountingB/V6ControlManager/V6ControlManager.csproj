@@ -101,6 +101,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Hprojects\GsmSerialPort\bin\Release\GsmSerialPort.dll</HintPath>
     </Reference>
+    <Reference Include="HaUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Hprojects\HaUtility\bin\Release\HaUtility.dll</HintPath>
+    </Reference>
     <Reference Include="PdfiumViewer, Version=2.10.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
@@ -2050,17 +2054,6 @@
     <Compile Include="FormManager\HeThong\ThongTinChuongTrinh.Designer.cs">
       <DependentUpon>ThongTinChuongTrinh.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\KhoHangManager\Draw\DayHangControlDraw.cs" />
-    <Compile Include="FormManager\KhoHangManager\Draw\KeHangControlDraw.cs" />
-    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.Designer.cs">
-      <DependentUpon>KhoHangContainerDraw.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangControlDraw.cs" />
-    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangObject.cs" />
-    <Compile Include="FormManager\KhoHangManager\Draw\ViTriControlDraw.cs" />
     <Compile Include="FormManager\KhoHangManager\KhoHangContainerAll.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2255,6 +2248,12 @@
     </Compile>
     <Compile Include="FormManager\NhanSu\View\TwoGridControl.Designer.cs">
       <DependentUpon>TwoGridControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DanhMuc\DanhMucReportFormDX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\DanhMuc\DanhMucReportFormDX.designer.cs">
+      <DependentUpon>DanhMucReportFormDX.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.cs">
       <SubType>Form</SubType>
@@ -6178,12 +6177,6 @@
     <Compile Include="FormManager\ToolManager\FormModelHelp.designer.cs">
       <DependentUpon>FormModelHelp.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ToolManager\FormHdocumentEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormManager\ToolManager\FormHdocumentEditor.designer.cs">
-      <DependentUpon>FormHdocumentEditor.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ToolManager\FormSearchRpt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6234,14 +6227,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Hprojects\HaUtility\HaUtility.csproj">
-      <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
-      <Name>HaUtility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Hprojects\Hdocument\H_Document.csproj">
-      <Project>{c4ac374f-b5a7-4c2f-91ff-92284233f9a2}</Project>
-      <Name>H_Document</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\V6BarcodeLib\V6BarcodeLib.csproj">
       <Project>{f8646414-0c9c-49bb-9da3-3923bf78a398}</Project>
       <Name>V6BarcodeLib</Name>
@@ -7263,12 +7248,6 @@
     <EmbeddedResource Include="FormManager\HeThong\ThongTinChuongTrinh.resx">
       <DependentUpon>ThongTinChuongTrinh.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\KhoHangManager\Draw\DayHangControlDraw.resx">
-      <DependentUpon>DayHangControlDraw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.resx">
-      <DependentUpon>KhoHangContainerDraw.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\KhoHangManager\KhoHangContainerAll.resx">
       <DependentUpon>KhoHangContainerAll.cs</DependentUpon>
     </EmbeddedResource>
@@ -7360,6 +7339,10 @@
       <DependentUpon>TwoGridControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Add_Edit\Report1.rdlc" />
+    <EmbeddedResource Include="FormManager\ReportManager\DanhMuc\DanhMucReportFormDX.resx">
+      <DependentUpon>DanhMucReportFormDX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.resx">
       <DependentUpon>DanhMucReportForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -9352,9 +9335,6 @@
     <EmbeddedResource Include="FormManager\ToolManager\FormModelHelp.resx">
       <DependentUpon>FormModelHelp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ToolManager\FormHdocumentEditor.resx">
-      <DependentUpon>FormHdocumentEditor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormSearchRpt.resx">
       <DependentUpon>FormSearchRpt.cs</DependentUpon>
     </EmbeddedResource>
@@ -9487,7 +9467,6 @@
     <None Include="Resources\Help.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FormManager\KhoHangManager\Draw\NewFolder1\" />
     <Folder Include="FormManager\Other\" />
     <Folder Include="FormManager\ReportManager\Filter\Report\" />
   </ItemGroup>
@@ -9549,6 +9528,16 @@
     <Content Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\GhiChu.txt" />
     <None Include="Resources\Anydesk32.png" />
     <None Include="Resources\AldmSetting.png" />
+    <None Include="Resources\ArrowDownBlue3D.png" />
+    <None Include="Resources\ArrowDownLeftBlue3D.png" />
+    <None Include="Resources\ArrowDownRightBlue3D.png" />
+    <None Include="Resources\ArrowLeftBlue3D.png" />
+    <None Include="Resources\ArrowLeftGreen3D.png" />
+    <None Include="Resources\ArrowRightBlue3D.png" />
+    <None Include="Resources\ArrowRightGreen3D.png" />
+    <None Include="Resources\ArrowUpBlue3D.png" />
+    <None Include="Resources\ArrowUpLeftBlue3D.png" />
+    <None Include="Resources\ArrowUpRightBlue3D.png" />
     <Content Include="Resources\Box16.png" />
     <None Include="Resources\Excel32.ico" />
     <None Include="Resources\Excel16.png" />
@@ -9568,6 +9557,7 @@
     <None Include="Resources\SettingAdd24.png" />
     <None Include="Resources\Setting24.png" />
     <None Include="Resources\SendEmail32.png" />
+    <None Include="Resources\RefreshGreen.png" />
     <Content Include="Resources\ToolBox16.png" />
     <Content Include="Resources\TreeBlack16.png" />
     <Content Include="Resources\TreeFolderYellowk16.png" />

@@ -57,8 +57,8 @@
             this.btnTeamViewer = new System.Windows.Forms.Button();
             this.btnHDSD2 = new System.Windows.Forms.Button();
             this.btnHDSDDT = new System.Windows.Forms.Button();
-            this.btnChuyenMa = new System.Windows.Forms.Button();
             this.btnChuyenMaExcel = new System.Windows.Forms.Button();
+            this.btnChuyenMa = new System.Windows.Forms.Button();
             this.grbOptions.SuspendLayout();
             this.grbTools.SuspendLayout();
             this.grbFunctions.SuspendLayout();
@@ -223,7 +223,7 @@
             // 
             // btnTestInvoice
             // 
-            this.btnTestInvoice.Location = new System.Drawing.Point(6, 251);
+            this.btnTestInvoice.Location = new System.Drawing.Point(6, 48);
             this.btnTestInvoice.Name = "btnTestInvoice";
             this.btnTestInvoice.Size = new System.Drawing.Size(118, 23);
             this.btnTestInvoice.TabIndex = 8;
@@ -405,16 +405,6 @@
             this.btnHDSDDT.UseVisualStyleBackColor = true;
             this.btnHDSDDT.Click += new System.EventHandler(this.btnHDSDDT_Click);
             // 
-            // btnChuyenMa
-            // 
-            this.btnChuyenMa.Location = new System.Drawing.Point(8, 280);
-            this.btnChuyenMa.Name = "btnChuyenMa";
-            this.btnChuyenMa.Size = new System.Drawing.Size(118, 23);
-            this.btnChuyenMa.TabIndex = 5;
-            this.btnChuyenMa.Text = "Chuyển mã";
-            this.btnChuyenMa.UseVisualStyleBackColor = true;
-            this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
-            // 
             // btnChuyenMaExcel
             // 
             this.btnChuyenMaExcel.Location = new System.Drawing.Point(8, 338);
@@ -424,6 +414,16 @@
             this.btnChuyenMaExcel.Text = "Chuyển mã Excel";
             this.btnChuyenMaExcel.UseVisualStyleBackColor = true;
             this.btnChuyenMaExcel.Click += new System.EventHandler(this.btnChuyenMaExcel_Click);
+            // 
+            // btnChuyenMa
+            // 
+            this.btnChuyenMa.Location = new System.Drawing.Point(8, 280);
+            this.btnChuyenMa.Name = "btnChuyenMa";
+            this.btnChuyenMa.Size = new System.Drawing.Size(118, 23);
+            this.btnChuyenMa.TabIndex = 5;
+            this.btnChuyenMa.Text = "Chuyển mã";
+            this.btnChuyenMa.UseVisualStyleBackColor = true;
+            this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
             // 
             // AllTool
             // 

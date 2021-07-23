@@ -468,7 +468,7 @@ namespace V6Controls.Forms
         private static bool _isMoving;
         private static string _selectedText = "";
         static Timer _hide, _show;
-        private static int _menuLever = 0;
+        private static int _menuLever;
 
         public static void SetHideMenuLabel(V6VeticalLabel label, string selectedText)
         {
@@ -672,25 +672,6 @@ namespace V6Controls.Forms
                 img = new Bitmap(bmpTemp);
             }
             return img;
-
-            //Image im;
-            //byte[] data = File.ReadAllBytes(path);
-            //im = GetImage(data);
-            //return im;
-
-            //using (Image im = Image.FromFile(path))
-            //{
-            //    bm = new Bitmap(im);
-            //}
-            //return bm;
-        }
-
-        private static Image GetImage(byte[] data)
-        {
-            using (MemoryStream ms = new MemoryStream(data))
-            {
-                return Image.FromStream(ms);
-            }
         }
         
         public static void MoveTo(Control c, Point p)
@@ -720,235 +701,6 @@ namespace V6Controls.Forms
                 sum += tabControl1.GetTabRect(i).Width;
             }
             return sum;
-        }
-
-        /// <summary>
-        /// Lấy động danh sách control (textbox) từ bảng Alct
-        /// </summary>
-        /// <param name="alct1"></param>
-        /// <param name="orderList">Dùng để xắp xếp lại gridview_columns khi cần.</param>
-        /// <param name="alct1Dic">Dùng để lấy thông tin field khi cần.</param>
-        /// <returns></returns>
-        public static SortedDictionary<int, Control> GetDynamicControlsAlct0(DataTable alct1,
-            out List<string> orderList, out SortedDictionary<string, DataRow> alct1Dic)
-        {
-            //exec [VPA_GET_AUTO_COLULMN] 'SOA','','','','';//08/12/2015
-            var result = new SortedDictionary<int, Control>();
-
-            //var alct1 = Invoice.Alct1;
-            var _orderList = new List<string>();
-            var _carryFieldList = new List<string>();
-            var _alct1Dic = new SortedDictionary<string, DataRow>();
-
-            Control temp_control = new Control();
-            foreach (DataRow row in alct1.Rows)
-            {
-                var read_only = 1 == ObjectAndString.ObjectToInt(row["visible"]);
-                //if (!visible) continue;
-
-                var fcolumn = row["fcolumn"].ToString().Trim().ToUpper();
-                _orderList.Add(fcolumn);
-                _alct1Dic.Add(fcolumn, row);
-
-                var fcaption = row[V6Setting.Language == "V" ? "caption" : "caption2"].ToString().Trim();
-                var limits = row["limits"].ToString().Trim();
-                var fvvar = row["fvvar"].ToString().Trim();
-                var fstatus = Convert.ToBoolean(row["fstatus"]);
-
-                var width = ObjectAndString.ObjectToInt(row["width"]);
-                var ftype = row["ftype"].ToString().Trim();
-                var fOrder = ObjectAndString.ObjectToInt(row["forder"]);
-                var carry = ObjectAndString.ObjectToInt(row["carry"]) == 1;
-
-                int decimals;
-
-                Control c = temp_control;
-                switch (ftype)
-                {
-                    #region Create controls
-                    case "A0":
-                        if (fcolumn == "TANG")
-                        {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
-                        }
-                        else if (fcolumn == "PX_GIA_DDI")
-                        {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
-                        }
-                        else if (fcolumn == "PN_GIA_TBI")
-                        {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
-                        }
-                        break;
-                    case "A1":
-                        c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
-                        break;
-                    case "C0":
-                        if (fvvar != "")
-                        {
-                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
-                            var notempty = Convert.ToBoolean(row["notempty"]);
-                            c = CreateVvarTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
-                        }
-                        else
-                        {
-                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
-                        }
-                        break;
-                    case "C1":  // LookupTextBox
-                        if (fvvar != "")
-                        {
-                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
-                            var notempty = Convert.ToBoolean(row["notempty"]);
-                            string ma_dm = row["MA_DM"].ToString().Trim();
-                            string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
-                            string value_field = ss[0];
-                            string text_field = ss[1];
-                            string bfields = ss[2];
-                            string nfields = ss[3];
-                            c = CreateLookupTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
-                        }
-                        else
-                        {
-                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
-                        }
-                        break;
-                    case "C2":  // LookupProc
-                        if (fvvar != "")
-                        {
-                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
-                            var notempty = Convert.ToBoolean(row["notempty"]);
-                            string ma_dm = row["MA_DM"].ToString().Trim();
-                            string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
-                            string value_field = ss[0];
-                            string text_field = ss[1];
-                            string bfields = ss[2];
-                            string nfields = ss[3];
-                            c = CreateLookupProcTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
-                        }
-                        else
-                        {
-                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
-                        }
-                        break;
-                    case "C3":  // LookupData
-                        if (fvvar != "")
-                        {
-                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
-                            var notempty = Convert.ToBoolean(row["notempty"]);
-                            c = CreateLookupDataTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
-                        }
-                        else
-                        {
-                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
-                        }
-                        break;
-                    case "N9"://Kieu so bat ky
-                        decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
-                        c = CreateNumberTextBox(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
-
-                        break;
-
-                    case "N0"://Tien
-                        decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
-                        c = CreateNumberTien(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
-
-                        break;
-
-                    case "N1"://Ngoai te
-                        decimals = V6Options.M_IP_TIEN_NT;
-
-                        c = CreateNumberTienNt(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
-                        break;
-                    case "N2"://so luong
-
-                        decimals = V6Options.M_IP_SL;
-
-                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
-
-                        break;
-                    case "N3"://GIA
-
-                        decimals = V6Options.M_IP_GIA;
-                        //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
-                        c = CreateNumberGia(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
-
-
-                        break;
-                    case "N4"://Gia nt
-
-                        decimals = V6Options.M_IP_GIA_NT;
-                        //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
-                        c = CreateNumberGiaNt(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
-
-                        break;
-                    case "N5"://Ty gia
-                        decimals = V6Options.M_IP_TY_GIA;
-
-                        c = CreateNumberTyGia(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
-
-                        break;
-                    case "D0": // Allow null
-                        c = CreateDateTimeColor(fcolumn, fcaption, width, fstatus, carry);
-                        break;
-                    case "D1": // Not null
-                        c = CreateDateTimePicker(fcolumn, fcaption, width, fstatus, carry);
-                        break;
-                    case "D2": // Not null + time
-                        c = CreateDateTimeFullPicker(fcolumn, fcaption, width, fstatus, carry);
-                        break;
-                    case "D3": // Date + time null
-                        c = CreateDateTimeFullPickerNull(fcolumn, fcaption, width, fstatus, carry);
-                        break;
-                    #endregion
-                }
-
-                if (read_only)
-                {
-                    AddTagString(c, "readonly");
-                    c.TabStop = false;
-                    //if (c.AccessibleName.StartsWith("DVTP"))
-                    //{
-                    //    string st = "";
-                    //}
-                }
-                // Font size and style
-                string style = (row["STYLE"] + "").Trim();
-                if (style.Length > 0)
-                {
-                    float fsize = c.Font.Size;
-                    FontStyle fstyle = c.Font.Style;
-                    var styleDic = ObjectAndString.StringToStringDictionary(style, ';', '=');
-                    if (styleDic.ContainsKey("SIZE") || styleDic.ContainsKey("STYLE"))
-                    {
-                        fsize = (float)ObjectAndString.StringToDecimal(styleDic["SIZE"]);
-                        if (fsize < 8) fsize = 8;
-                    }
-
-                    if (styleDic.ContainsKey("STYLE"))
-                    {
-                        if (styleDic["STYLE"].Contains("B")) fstyle = fstyle | FontStyle.Bold;
-                        if (styleDic["STYLE"].Contains("I")) fstyle = fstyle | FontStyle.Italic;
-                        if (styleDic["STYLE"].Contains("S")) fstyle = fstyle | FontStyle.Strikeout;
-                        if (styleDic["STYLE"].Contains("U")) fstyle = fstyle | FontStyle.Underline;
-                    }
-
-                    c.Font = new Font(c.Font.FontFamily, fsize, fstyle);
-                }
-                
-                if (c != temp_control)
-                {
-                    result.Add(fOrder, c);
-                    if (carry)
-                    {
-                        _carryFieldList.Add(fcolumn);
-                    }
-                }
-            }
-            orderList = _orderList;
-            alct1Dic = _alct1Dic;
-            //carryFields = _carryFieldList;
-            return result;
         }
 
         /// <summary>
@@ -1211,10 +963,6 @@ namespace V6Controls.Forms
             return result;
         }
 
-        static void c_TabStopChanged(object sender, EventArgs e)
-        {
-            string st = "";
-        }
 
         /// <summary>
         /// Lấy 1 giá trị thông qua AccessibleName
@@ -1447,7 +1195,7 @@ namespace V6Controls.Forms
             return ControlList;
         }
 
-        static List<string> _debugList = new List<string>(); 
+        public static List<string> _debugList = new List<string>(); 
         /// <summary>
         /// Lấy dữ liệu qua AccessibleName
         /// Khong biet co nen dung AccessibleDescription de danh dau data khong.
@@ -1875,7 +1623,7 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                
+                ShowMainMessage(ex.Message);
             }
         }
 
@@ -1903,7 +1651,7 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                //this.ShowErrorException(GetType() + ".GetSourceFieldsInfo", ex);
+                ShowMainMessage(ex.Message);
             }
             return result;
         }
@@ -1941,7 +1689,7 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                
+                ShowMainMessage(ex.Message);
             }
             return result;
         }
@@ -2624,7 +2372,7 @@ namespace V6Controls.Forms
                     result[NAME] = control;
                     if (control.AccessibleName == "MA_XULY")
                     {
-                        ;
+                        
                     }
                     SetControlValue(control, null);
                 }
@@ -2775,7 +2523,7 @@ namespace V6Controls.Forms
                         SetMenuItemTag(item, tagData);
                     }
                 }
-                control.ControlAdded += (object sender, ControlEventArgs e) =>
+                control.ControlAdded += delegate(object sender, ControlEventArgs e)
                 {
                     SetFormTagDicRecursive(e.Control, tagData);
                 };
@@ -3276,8 +3024,8 @@ namespace V6Controls.Forms
             catch (Exception ex)
             {
                 Logger.WriteExLog(string.Format("{0} {1}.{2}", V6Login.ClientName,
-                MethodBase.GetCurrentMethod().DeclaringType, MethodBase.GetCurrentMethod().Name),
-                ex, LastActionListString);
+                        form.GetType() + "." + MethodBase.GetCurrentMethod().DeclaringType,
+                        MethodBase.GetCurrentMethod().Name), ex, LastActionListString);
             }
         }
 
@@ -4055,7 +3803,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Lưu giữ PrinterSettings.
         /// </summary>
-        public static PrinterSettings PrinterSettings = null;
+        public static PrinterSettings PrinterSettings;
 
         /// <summary>
         /// Chọn máy in, Lưu giữ PrinterSettings vào V6ControlFormHelper, trả về PrinterSettings. Nếu không chọn trả về null (vẫn lưu trạng thái cũ).
@@ -4063,6 +3811,7 @@ namespace V6Controls.Forms
         /// <param name="owner"></param>
         /// <param name="printerName">Tên máy in chọn sẵn.</param>
         /// <param name="allowSomePage">Cho phép in lẻ tẻ.</param>
+        /// <param name="allowSelection"></param>
         /// <returns></returns>
         public static PrinterSettings ChoosePrinter(IWin32Window owner, string printerName, bool allowSomePage = true, bool allowSelection = true)
         {
@@ -4549,7 +4298,7 @@ namespace V6Controls.Forms
             
             try
             {
-                if (data == null) return fileName;
+                if (data == null) return null;
                 fileName = ChooseSaveFile(owner, "Excel files (*.xls)|*.xls|Xlsx|*.xlsx", ChuyenMaTiengViet.ToUnSign(defaultSaveName));
                 if (string.IsNullOrEmpty(fileName)) return fileName;
                 ExportData.ToExcel(CookingDataForExcel(data), fileName, title, true);
@@ -7125,133 +6874,7 @@ namespace V6Controls.Forms
             txtApplyLookup.Disposed += ApplyLookup_Disposed;
         }
 
-        private static void InsertStringValue(TextBox txt, char s)
-        {
-            string StringValue = txt.Text.Replace(" ", "");
-            //if (true || StringValue.Length < MaxLength || (MaxLength == 1 && !string.IsNullOrEmpty(LimitCharacters)))
-            {
-                int dotIndex = StringValue.IndexOf(".", StringComparison.Ordinal);
-                //int sls = SelectionStart;
-                int right = txt.TextLength - txt.SelectionStart;
-                int i = GetRealSelectionIndex(txt);
-                int l = GetRealSelectionLength(txt);
-
-                if (txt.MaxLength == 1)// && !string.IsNullOrEmpty(LimitCharacters))
-                {
-                    StringValue = "";
-                }
-                else if (txt.TextLength >= txt.MaxLength && dotIndex < 0)
-                {
-                    if (i <= StringValue.Length)
-                    {
-                        if (l > 0)//có bôi đen thì xử lý
-                        {
-                            StringValue = StringValue.Remove(i, l);
-                            txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
-                            right = StringValue.Length - i;
-
-                            if ((i == 0 || i == 1) && StringValue.StartsWith("0"))
-                            {
-                                StringValue = s + StringValue.Substring(1);
-                                txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
-                                //if (right > 0) right--;
-                            }
-                            else
-                            {
-                                StringValue = StringValue.Insert(i, s.ToString());
-                                txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
-                            }
-
-                            var sls = txt.TextLength - right + ((dotIndex > 0 && i > dotIndex) ? 1 : 0);
-                            if (sls <= 0) sls = 1;
-                            txt.SelectionStart = sls;
-                        }
-                    }
-                    return;
-                }
-                else if (dotIndex > 0 && ((txt.TextLength >= txt.MaxLength && i <= dotIndex) || txt.SelectionStart == txt.TextLength))
-                {
-                    return;
-                }
-
-
-                try
-                {
-                    if (i <= StringValue.Length)
-                    {
-                        if (l > 0)//có bôi đen
-                        {
-                            StringValue = StringValue.Remove(i, l);
-                            txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
-                            right = StringValue.Length - i;
-                        }
-
-                        if ((i == 0 || i == 1) && StringValue.StartsWith("0"))
-                        {
-                            StringValue = s + StringValue.Substring(1);
-                            txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
-                            //if (right > 0) right--;
-                        }
-                        else
-                        {
-                            StringValue = StringValue.Insert(i, s.ToString());
-                            txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
-                        }
-                    }
-
-                    var sls = txt.TextLength - right + ((dotIndex > 0 && i > dotIndex) ? 1 : 0);
-                    if (sls <= 0) sls = 1;
-                    txt.SelectionStart = sls;
-                }
-                catch { }
-
-                
-            }
-        }
-
-        private static int GetRealSelectionIndex(TextBox txt, int i = -1)
-        {
-            string StringValue = txt.Text.Replace(" ", "");
-            if (i == -1) i = txt.SelectionStart;
-
-            int returnInt = 0;
-            //Lấy chuỗi tạm đến vị trí con trỏ
-            string s = txt.Text.Substring(0, i);
-            //Xử lý bỏ những thứ không cần thiết trong chuỗi
-            //ký hiệu tiền tệ, dấu cách phần ngàn, khoảng trắng)
-            //if (CurrencySymbolAtFirst && _currencySymbol.Length > 0 && s.Length >= _currencySymbol.Length)            
-            //    s = s.Substring(_currencySymbol.Length);// .Replace(mCSymbol, "");
-            if (s.Length > 0 && " ".Length > 0)
-                s = s.Replace(" ", "");
-            if (s.Length > 0)
-                s = s.Replace(" ", "");
-            if (s.Length > 0)
-                s = s.Replace("-", "");
-
-            returnInt = s.Length;
-            if (returnInt > StringValue.Length) returnInt = StringValue.Length;
-            return returnInt;
-        }
-
-        private static int GetRealSelectionLength(TextBox txt)
-        {
-            int i = txt.SelectionStart;
-            int l = txt.SelectionLength;
-            if (l == 0) return 0;
-            int r = 0;
-            string s = txt.Text.Substring(i, l);
-
-            if (s.Length > 0)
-                s = s.Replace(" ", "");
-            if (s.Length > 0)
-                s = s.Replace("-", "");
-
-            r = s.Length;
-            return r;
-        }
-
-
-
+        
         private static void RemoveLookupResource()
         {
             Aldm_config = null;
@@ -7263,19 +6886,7 @@ namespace V6Controls.Forms
         {
             RemoveLookupResource();
         }
-
-        private static void ApplyLookup_GotFocus(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadAutoCompleteSource((TextBox)sender);
-            }
-            catch (Exception ex)
-            {
-                ShowErrorMessage("V6LookupTextBox_GotFocus: " + ex.Message);
-            }
-        }
-
+        
         private static void ApplyLookup_KeyDown(object sender, KeyEventArgs e)
         {
             IWin32Window owner =  sender as IWin32Window;
@@ -7435,55 +7046,12 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage(ex.Message);
+                ShowErrorMessage(ex.Message);
                 return false;
             }
             return false;
         }
 
-        private static void LoadAutoCompleteSource(TextBox txt)
-        {
-            //if (auto1 != null) return;
-            if (Aldm_config.NoInfo) return;
-
-            if (!string.IsNullOrEmpty(Aldm_config.TABLE_NAME) && !string.IsNullOrEmpty(Aldm_config.F_NAME) && auto1 == null)
-            {
-                try
-                {
-                    auto1 = new AutoCompleteStringCollection();
-
-                    var selectTop = "";
-
-                    if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
-                    {
-                        var tableName = Aldm_config.TABLE_NAME;
-                        var filter = InitFilter;
-                        if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-                        var where = " 1=1 " + filter;
-
-                        var tbl1 = V6BusinessHelper.Select(tableName,
-                            selectTop + " [" + LookupInfo_F_NAME + "]",
-                            where, "", "", null).Data;
-
-                        for (int i = 0; i < tbl1.Rows.Count; i++)
-                        {
-                            auto1.Add(tbl1.Rows[i][0].ToString().Trim());
-                        }
-                        V6ControlsHelper.DisableLookup = true;
-                        txt.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txt.AutoCompleteCustomSource = auto1;
-                        txt.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                        V6ControlsHelper.DisableLookup = false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".LoadAutoCompleteSource " + Aldm_config.TABLE_NAME, ex);
-                    V6ControlsHelper.DisableLookup = false;
-                }
-            }
-
-        }
 
         #endregion apply lookup
 
@@ -8080,8 +7648,6 @@ namespace V6Controls.Forms
             
 
             d[cNAME] = control.Text;
-            //return control.Text;
-            return;
         }
 
         /// <summary>

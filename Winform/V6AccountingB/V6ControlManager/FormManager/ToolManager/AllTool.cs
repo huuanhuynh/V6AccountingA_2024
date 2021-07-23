@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
-                new FormHdocumentEditor().Show();
+                //new FormHdocumentEditor().Show();
             }
             catch (Exception ex)
             {

@@ -62,7 +62,6 @@
             this.Name = "FormAmLich";
             this.Text = "AmLich";
             this.Load += new System.EventHandler(this.Form1_Load);
-            
             this.Controls.SetChildIndex(this.lichViewControl1, 0);
             this.ResumeLayout(false);
 

@@ -789,6 +789,13 @@ namespace V6Tools.V6Convert
             return result;
         }
         
+        /// <summary>
+        /// Phân tích chuỗi thành từ điển kiểu Hate:Ghét;Love:Yêu
+        /// </summary>
+        /// <param name="tag">Chuỗi cần phần tích</param>
+        /// <param name="group_char">Ký tự ngăn cách các cặp từ.</param>
+        /// <param name="element_char">Ký tự ngăn cách giữa từ và nghĩa, khóa và giá trị (Key and Value)</param>
+        /// <returns></returns>
         public static Dictionary<string, string> StringToStringDictionary(string tag, char group_char = ';', char element_char = ':')
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
@@ -804,15 +811,6 @@ namespace V6Tools.V6Convert
                 {
                     result.Add(s, s);
                 }
-                //string[] ss = s.Split(new[] { element_char }, StringSplitOptions.RemoveEmptyEntries);
-                //if (ss.Length == 1)
-                //{
-                //    result.Add("VALUE", ss[0]);
-                //}
-                //else if (ss.Length > 1)
-                //{
-                //    result.Add(ss[0].Trim().ToUpper(), ss[1]);
-                //}
             }
             return result;
         }
