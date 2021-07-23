@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Printing;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -28,9 +26,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
     public partial class DanhMucReportForm : V6Form
     {
         #region Biến toàn cục
-        DataGridViewPrinter MyDataGridViewPrinter;
         private ReportDocument _rpDoc0;
-        private string _tableName, _ma_File, _reportTitle, _reportTitle2;
+        private string _tableName, _Ma_File, _reportTitle, _reportTitle2;
         /// <summary>
         /// Advance filter get albc
         /// </summary>
@@ -54,7 +51,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             {
                 var keys = new SortedDictionary<string, object>
                     {
-                        {"MA_FILE", _ma_File},
+                        {"MA_FILE", _Ma_File},
                         {"MAU", MAU},
                         {"LAN", LAN},
                         {"REPORT", ReportFile}
@@ -92,6 +89,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             }
         }
 
+        public AlbcConfig _albcConfig;
+
         public DataRow MauInSelectedRow
         {
             get
@@ -115,25 +114,13 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             }
         }
 
-        private SortedDictionary<string, string> _extraInfor = null;
+        private SortedDictionary<string, string> _extraInfor;
 
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
             if (MauInSelectedRow == null) return;
-            string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
-            if (s != "")
-            {
-                var sss = s.Split(';');
-                foreach (string ss in sss)
-                {
-                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
-                    if (indexOf > 0)
-                    {
-                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
-                    }
-                }
-            }
+            _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
         }
 
         #endregion EXTRA_INFOR
@@ -155,34 +142,10 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             get
             {
-                var result = _ma_File;
+                var result = _Ma_File;
                 if (MauInSelectedRow != null)
                 {
                     result = cboMauIn.SelectedValue.ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string ReportCaption
-        {
-            get
-            {
-                var result = _reportTitle;
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["Caption"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string ReportCaption2
-        {
-            get
-            {
-                var result = _reportTitle2;
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["Caption2"].ToString().Trim();
                 }
                 return result;
             }
@@ -205,11 +168,10 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             get
             {
                 string result = "";
-                if (MauInSelectedRow != null)
-                if (MauInData != null && (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null))
+                if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
-                    string rpt_dir = MauInSelectedRow["RPT_DIR"].ToString().Trim();
-                    if (rpt_dir != "") result += rpt_dir + @"\";
+                    result = _albcConfig.RPT_DIR;
+                    if (result != "") result += result + @"\";
                 }
                 return result;
             }
@@ -229,7 +191,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                     result = @"Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
-                       + _ma_File + ".rpt";//_reportFile gốc
+                       + _Ma_File + ".rpt";//_reportFile gốc
                 }
                 return result;
             }
@@ -249,133 +211,12 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                     result = @"Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
-                       + _ma_File + ".xls";
+                       + _Ma_File + ".xls";
                 }
                 return result;
             }
         }
-
-        private bool print_one = false;
-
-        private string DefaultPrinter
-        {
-            get
-            {
-                var result = "";
-                try
-                {
-                    if (MauInSelectedRow != null)
-                    {
-                        var y_n = (MauInSelectedRow["Printer_yn"] ?? "").ToString().Trim();
-                        if (y_n == "1" || print_one)
-                            result = (MauInSelectedRow["Printer_def"] ?? "").ToString().Trim();
-                    }
-                }
-                catch (Exception)
-                {
-
-                }
-                return result;
-            }
-        }
-
-        private string Report_GRDSV1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDS_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDSV2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDS_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDFV1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDF_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDFV2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDF_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDHV_V1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDHV_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDHE_V1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDHE_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDHV_V2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDHV_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDHE_V2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDHE_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-
+        
         private string QueryString
         {
             get
@@ -417,7 +258,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         public DanhMucReportForm(string tableName, string reportFile, string reportTitle, string reportTitle2)
         {
             _tableName = tableName;
-            _ma_File = reportFile;
+            _Ma_File = reportFile;
             _reportTitle = reportTitle;
             _reportTitle2 = reportTitle2;
             
@@ -583,7 +424,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(_ma_File, "", "", Advance);
+            MauInData = Albc.GetMauInData(_Ma_File, "", "", Advance);
             
             if (MauInData.Rows.Count > 0)
             {
@@ -605,57 +446,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 //btnThemMauBC.Enabled = false;
             }
         }
-
-        ///// <summary>
-        ///// Gán dữ liệu mặc định lên form.
-        ///// </summary>
-        ///// <param name="loai">1ct 4report</param>
-        ///// <param name="mact"></param>
-        ///// <param name="madm"></param>
-        ///// <param name="itemId"></param>
-        ///// <param name="adv"></param>
-        //protected void LoadDefaultData(int loai, string mact, string madm, string itemId, string adv = "")
-        //{
-        //    try
-        //    {
-        //        var data = GetDefaultData(V6Setting.Language, 4, mact, madm, itemId, adv);
-        //        var data0 = new SortedDictionary<string, object>();
-        //        data0.AddRange(data);
-        //        V6ControlFormHelper.SetFormDataDictionary(this, data0, false);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.WriteExLog(GetType() + ".LoadDefaultData", ex);
-        //    }
-        //}
-        ///// <summary>
-        ///// Tải dữ liệu và trả về DefaultData.
-        ///// </summary>
-        ///// <param name="lang"></param>
-        ///// <param name="loai">1ct, 4report</param>
-        ///// <param name="mact"></param>
-        ///// <param name="madm"></param>
-        ///// <param name="itemId"></param>
-        ///// <param name="adv"></param>
-        ///// <returns></returns>
-        //private SortedDictionary<string, string> GetDefaultData(string lang, int loai, string mact, string madm, string itemId, string adv = "")
-        //{
-        //    if (defaultData != null && defaultData.Count > 0) return defaultData;
-        //    if (alinitData == null || alinitData.Rows.Count == 0)
-        //        alinitData = V6BusinessHelper.GetDefaultValueData(loai, mact, madm, itemId, adv);
-        //    var result = new SortedDictionary<string, string>();
-        //    foreach (DataRow row in alinitData.Rows)
-        //    {
-        //        var cell = row["Default" + lang]; if (cell == null) continue;
-        //        var value = cell.ToString().Trim(); if (value == "") continue;
-
-        //        var name = row["NameVal"].ToString().Trim().ToUpper();
-        //        result[name] = value;
-        //    }
-        //    defaultData = result;
-        //    return result;
-        //}
-
+        
         private void SetFormReportFilter()
         {
             try
@@ -686,65 +477,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             MyInit2();
         }
-
-        private void MadeFilterControls(params string[] fields)
-        {
-            string err = "";
-            try
-            {
-                int i = 0;
-                foreach (string field in fields)
-                {
-                    try
-                    {
-                        MadeLineControl(i, field.Trim());
-                        i++;
-                    }
-                    catch (Exception e1)
-                    {
-                        err += "\n" + i + " " + field + ": " + e1.Message;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                err += "\n" + ex.Message;
-            }
-
-            if (err.Length > 0)
-            {
-                this.WriteToLog(GetType() + ".MadeControls error!", err);
-            }
-        }
-
-        private void MadeLineControl(int index, string fieldName)
-        {
-            var lineControl = new FilterLineDynamic(fieldName)
-            {
-                FieldName = fieldName.ToUpper(),
-                Caption = CorpLan2.GetFieldHeader(fieldName)
-            };
-            if (_tStruct.ContainsKey(fieldName.Trim().ToUpper()))
-            {
-                if (",nchar,nvarchar,ntext,char,varchar,text,xml,"
-                    .Contains("," + _tStruct[fieldName.ToUpper()].sql_data_type_string + ","))
-                {
-                    lineControl.AddTextBox();
-                }
-                else if (",date,smalldatetime,datetime,"
-                    .Contains("," + _tStruct[fieldName.ToUpper()].sql_data_type_string + ","))
-                {
-                    lineControl.AddDateTimePick();
-                }
-                else
-                {
-                    lineControl.AddNumberTextBox();
-                }
-            }
-            lineControl.Location = new Point(10, 10 + 25 * index);
-            panel1.Controls.Add(lineControl);
-        }
-
         
         private void btnNhan_Click(object sender, EventArgs e)
         {
@@ -764,28 +496,12 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
             }
         }
+
         private void GenerateKeys()
         {
-            //var keys = GetData();
-            //sKey = SqlGenerator.GenWhere2(_tStruct, keys, "like");
             sKey = QueryString;
         }
-
-        private void GetFormReportTitle(int selectedIndex)
-        {
-            try
-            {
-                DataTable data = MauInView.ToTable();
-                DataRow row = data.Rows[selectedIndex];
-                string title = row["title"].ToString();
-                txtReportTitle.Text = title;
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
-        }
-
+        
         private void AddProcParams()
         {
             var _order = V6TableHelper.GetDefaultSortField(V6TableHelper.ToV6TableName(_tableName));
@@ -1136,12 +852,11 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             try
             {
-                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
-                //if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
-                if (MauInSelectedRow != null)
+                if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
-                    int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
-                    dataGridView1.SetFrozen(frozen);
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1,
+                        _albcConfig.GRDS_V1, _albcConfig.GRDF_V1, _albcConfig.GRDH_LANG_V1);
+                    dataGridView1.SetFrozen(_albcConfig.FROZENV);
                 }
             }
             catch (Exception ex)
@@ -1155,28 +870,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
          #region Linh tinh        
 
-        
-        private void FormBaoCaoHangTonKho_V2_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //if (_hardExit)
-            //{
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        //if (V6Message.Show(myMessage.Exit"), "V6Soft", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-            //        //{
-            //        //    e.Cancel = true;
-            //        //}
-            //        //else
-            //    }
-            //    catch
-            //    {
-            //        // ignored
-            //    }
-            //}
-        }
         private void btnHuy_Click(object sender, EventArgs e)
         {
             Close();
@@ -1357,12 +1050,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             _radioRunning = false;
         }
 
-        private void crystalReportViewer1_DoubleClick(object sender, EventArgs e)
-        {
-            
-        }
-        
-
         private void printGrid_Click(object sender, EventArgs e)
         {
             if (_tbl == null)
@@ -1482,6 +1169,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
 
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
                 MakeReport2();
@@ -1495,7 +1183,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             {
                 var keys = new SortedDictionary<string, object>
                     {
-                        {"MA_FILE", _ma_File},
+                        {"MA_FILE", _Ma_File},
                         {"MAU", MAU},
                         {"LAN", LAN},
                         {"REPORT", ReportFile}
@@ -1668,6 +1356,42 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
         }
 
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (crystalReportViewer1.Visible)
+            {
+                // Phóng lớn dataGridView
+                dataGridView1.BringToFront();
+                dataGridView1.Height = crystalReportViewer1.Bottom - 5;
+                dataGridView1.Top = 5;
+                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+                crystalReportViewer1.Visible = false;
+            }
+            else
+            {
+                dataGridView1.Top = grbDieuKienLoc.Bottom + 3;
+                dataGridView1.Height = crystalReportViewer1.Top - 3 - dataGridView1.Top;
+                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+
+                crystalReportViewer1.Visible = true;
+            }
+        }
+
+        private void crystalReportViewer1_DoubleClick(object sender, EventArgs e)
+        {
+            if (crystalReportViewer1.Top > dataGridView1.Bottom)
+            {
+                // Phóng lớn crystalReportViewer1
+                crystalReportViewer1.BringToFront();
+                crystalReportViewer1.Height = crystalReportViewer1.Bottom - 5;
+                crystalReportViewer1.Top = 5;
+            }
+            else
+            {
+                crystalReportViewer1.Height = crystalReportViewer1.Bottom - dataGridView1.Bottom - 5;
+                crystalReportViewer1.Top = dataGridView1.Bottom + 5;
+            }
+        }
         
     }
 }

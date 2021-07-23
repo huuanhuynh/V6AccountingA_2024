@@ -48,9 +48,12 @@ namespace V6ControlManager.FormManager
                 CurrentMenu3Control.ShowMenu();
         }
 
-        public static void ShowDanhMucPrint(IWin32Window owner, string tableName, string reportFile, string reportTitle, string reportTitle2, bool dialog = true)
+        public static void ShowDanhMucPrint(IWin32Window owner, string tableName, string reportFile, string reportTitle, string reportTitle2, bool dialog, bool is_DX)
         {
-            var f = new DanhMucReportForm(tableName, reportFile, reportTitle, reportTitle2);
+            V6Form f;
+            if (is_DX) f = new DanhMucReportFormDX(tableName, reportFile, reportTitle, reportTitle2);
+            else f = new DanhMucReportForm(tableName, reportFile, reportTitle, reportTitle2);
+
             if(dialog)
                 f.ShowDialog(owner);
             else

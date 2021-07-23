@@ -2,7 +2,7 @@
 
 namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 {
-    partial class DanhMucReportForm
+    partial class DanhMucReportFormDX
     {
         /// <summary>
         /// Required designer variable.
@@ -31,9 +31,9 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +58,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
             this.panel1 = new V6ReportControls.PanelFilter();
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.txtReportTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -73,6 +72,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
+            this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -85,27 +85,27 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Control_S = true;
             this.dataGridView1.Location = new System.Drawing.Point(2, 235);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.Size = new System.Drawing.Size(763, 59);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -383,28 +383,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.panel1.TabIndex = 0;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
-            // crystalReportViewer1
-            // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.DisplayStatusBar = false;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(2, 300);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ShowCloseButton = false;
-            this.crystalReportViewer1.ShowCopyButton = false;
-            this.crystalReportViewer1.ShowGroupTreeButton = false;
-            this.crystalReportViewer1.ShowLogo = false;
-            this.crystalReportViewer1.ShowParameterPanelButton = false;
-            this.crystalReportViewer1.ShowRefreshButton = false;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(766, 352);
-            this.crystalReportViewer1.TabIndex = 15;
-            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.crystalReportViewer1.DoubleClick += new System.EventHandler(this.crystalReportViewer1_DoubleClick);
-            // 
             // timerViewReport
             // 
             this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
@@ -549,12 +527,28 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
             // 
-            // DanhMucReportForm
+            // documentViewer1
+            // 
+            this.documentViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.documentViewer1.IsMetric = false;
+            this.documentViewer1.Location = new System.Drawing.Point(2, 300);
+            this.documentViewer1.LookAndFeel.SkinName = "Seven Classic";
+            this.documentViewer1.Name = "documentViewer1";
+            this.documentViewer1.RequestDocumentCreation = false;
+            this.documentViewer1.Size = new System.Drawing.Size(766, 352);
+            this.documentViewer1.Status = "V6SOFT";
+            this.documentViewer1.TabIndex = 20;
+            this.documentViewer1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.documentViewer1_MouseDoubleClick);
+            // 
+            // DanhMucReportFormDX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;
             this.ClientSize = new System.Drawing.Size(766, 654);
+            this.Controls.Add(this.documentViewer1);
             this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaMau);
@@ -568,11 +562,10 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.Controls.Add(this.txtM_TEN_NLB2);
             this.Controls.Add(this.txtM_TEN_NLB);
             this.Controls.Add(this.txtReportTitle);
-            this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.grbDieuKienLoc);
             this.FilterType = "2";
-            this.Name = "DanhMucReportForm";
+            this.Name = "DanhMucReportFormDX";
             this.Text = "Báo cáo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.F_FormClosed);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
@@ -609,7 +602,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private System.Windows.Forms.RadioButton rTiengViet;
         private System.Windows.Forms.RadioButton rEnglish;
         private System.Windows.Forms.RadioButton rBothLang;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         private System.Windows.Forms.TextBox txtReportTitle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtM_TEN_NLB;
@@ -631,6 +623,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private wyDay.Controls.SplitButton btnExport3;
         private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
         private System.Windows.Forms.ToolStripMenuItem viewListInfoMenu;
+        private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer1;
 
 
 

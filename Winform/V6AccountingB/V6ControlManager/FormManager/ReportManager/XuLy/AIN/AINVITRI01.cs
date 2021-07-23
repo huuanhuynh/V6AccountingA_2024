@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 using V6ControlManager.FormManager.KhoHangManager;
-using V6ControlManager.FormManager.KhoHangManager.Draw;
+//using V6ControlManager.FormManager.KhoHangManager.Draw;
 using V6Controls;
 using V6Controls.Forms;
 
@@ -12,7 +12,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public class AINVITRI01 : XuLyBase0
     {
         private KhoHangContainer khoHangContainer;
-        private KhoHangContainerDraw khoHangContainerDraw;
+        //private KhoHangContainerDraw khoHangContainerDraw;
         private KhoHangContainerAll khoHangContainerAll;
 
         public AINVITRI01(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
@@ -106,10 +106,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 khoHangContainerAll.GetAndSetData();
             }
-            else
-            {
-                khoHangContainerDraw.GetAndSetData();
-            }
+            //else
+            //{
+            //    khoHangContainerDraw.GetAndSetData();
+            //}
         }
 
     }

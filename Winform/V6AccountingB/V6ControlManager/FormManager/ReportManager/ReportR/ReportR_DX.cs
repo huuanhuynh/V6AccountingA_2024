@@ -23,7 +23,6 @@ using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6ReportControls;
-using V6RptEditor;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -267,10 +266,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                //if (_extraInfor == null || _extraInfor.Count == 0)
-                {
-                    GetExtraInfor();
-                }
+                GetExtraInfor();
                 return _extraInfor;
             }
         }
@@ -281,19 +277,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             _extraInfor = new SortedDictionary<string, string>();
             if (MauInSelectedRow == null) return;
-            string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
-            if (s != "")
-            {
-                var sss = s.Split(';');
-                foreach (string ss in sss)
-                {
-                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
-                    if (indexOf > 0)
-                    {
-                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
-                    }
-                }
-            }
+            _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
         }
 
         #endregion EXTRA_INFOR
@@ -1765,29 +1749,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var printTool = new ReportPrintTool(_repx0);
                 printTool.PrintingSystem.ShowMarginsWarning = false;
                 printTool.PrintDialog();
-                return;
-
-                // in nawjng
-                //var storage = new MemoryDocumentStorage();
-                //var report = new XtraReport1();
-                //var cachedReportSource = new CachedReportSource(report, storage);
-                //var printTool = new ReportPrintTool(cachedReportSource);
-                //printTool.PrintingSystem.ShowMarginsWarning = false;
-                //// Invoke the Print dialog. 
-                //printTool.PrintDialog();
-
-                //in có kiểm soát.
-                //var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _repx0, DefaultPrinter);
-                //if (!string.IsNullOrEmpty(selectedPrinter))
-                //{
-                //    print_one = true;
-                //    if (selectedPrinter != DefaultPrinter)
-                //    {
-                //        DefaultPrinter = selectedPrinter;
-                //    }
-                //    //Thao tác sau khi in xong.
-                //    CallPrintSuccessEvent();
-                //}
             }
             catch (Exception ex)
             {

@@ -10,6 +10,7 @@ using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
+using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
@@ -65,23 +66,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private IDictionary<string, string> GetExtraInfor(string infoText)
         {
             var _extraInfor = new SortedDictionary<string, string>();
-            if (infoText != "")
-            {
-                var sss = infoText.Split(';');
-                foreach (string ss in sss)
-                {
-                    //var ss1 = ss.Split(':');
-                    //if (ss1.Length > 1)
-                    //{
-                    //    _extraInfor[ss1[0].ToUpper()] = ss1[1];
-                    //}
-                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
-                    if (indexOf > 0)
-                    {
-                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
-                    }
-                }
-            }
+            _extraInfor.AddRange(ObjectAndString.StringToStringDictionary(infoText));
             return _extraInfor;
         }
 

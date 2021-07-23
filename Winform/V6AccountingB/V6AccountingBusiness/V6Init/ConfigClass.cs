@@ -164,6 +164,7 @@ namespace V6Init
         public string GRDF_V1 { get { return GetString("GRDF_V1"); } }
         public string GRDS_V2 { get { return GetString("GRDS_V2"); } }
         public string GRDF_V2 { get { return GetString("GRDF_V2"); } }
+        public string GRDH_LANG_V1 { get { return V6Setting.IsVietnamese ? GRDHV_V1 : GRDHE_V1; } }
         public string GRDHV_V1 { get { return GetString("GRDHV_V1"); } }
         public string GRDHE_V1 { get { return GetString("GRDHE_V1"); } }
         public string GRDHV_V2 { get { return GetString("GRDHV_V2"); } }

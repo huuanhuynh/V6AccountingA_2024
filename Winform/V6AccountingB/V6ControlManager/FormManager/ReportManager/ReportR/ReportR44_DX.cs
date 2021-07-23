@@ -262,19 +262,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             _extraInfor = new SortedDictionary<string, string>();
             if (MauInSelectedRow == null) return;
-            string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
-            if (s != "")
-            {
-                var sss = s.Split(';');
-                foreach (string ss in sss)
-                {
-                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
-                    if (indexOf > 0)
-                    {
-                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
-                    }
-                }
-            }
+            _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
         }
 
         #endregion EXTRA_INFOR
