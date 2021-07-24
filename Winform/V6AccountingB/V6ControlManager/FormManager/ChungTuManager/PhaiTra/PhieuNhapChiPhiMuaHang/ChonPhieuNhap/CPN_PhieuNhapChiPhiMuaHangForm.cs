@@ -6,7 +6,6 @@ using System.Threading;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
-using V6Controls.Forms.Viewer;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -202,12 +201,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         {
                             tableData.AddRow(item, true);
                         }
-                        // AMAD73ACT
-                        //DataEditorForm dataEditor = new DataEditorForm(this, tableData, _locKetQua._aldmConfig.MA_DM + "CT", null, "",
-                        //    V6Text.Edit + ", bấm Delete đễ xóa dòng đang chọn.", false, true, true, false);
-                        //dataEditor.dataGridView1.ReadOnly = true;
-                        //dataEditor.Text = V6Text.Edit + ", bấm Delete đễ xóa dòng đang chọn.";
-                        //dataEditor.ShowDialog(this);
                         DataSelectorForm dataSelector = new DataSelectorForm(tableData, null);
                         var config_ct = ConfigManager.GetAldmConfig(_locKetQua._aldmConfig.MA_DM + "CT");
                         if (config_ct.HaveInfo)

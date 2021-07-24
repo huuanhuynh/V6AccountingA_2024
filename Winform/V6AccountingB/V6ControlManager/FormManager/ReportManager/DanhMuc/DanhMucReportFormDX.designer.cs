@@ -1,4 +1,5 @@
-﻿using V6Controls.Controls;
+﻿using System;
+using V6Controls.Controls;
 
 namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 {
@@ -540,7 +541,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.documentViewer1.Size = new System.Drawing.Size(766, 352);
             this.documentViewer1.Status = "V6SOFT";
             this.documentViewer1.TabIndex = 20;
-            this.documentViewer1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.documentViewer1_MouseDoubleClick);
+            this.documentViewer1.DoubleClick += new EventHandler(this.documentViewer1_DoubleClick);
             // 
             // DanhMucReportFormDX
             // 

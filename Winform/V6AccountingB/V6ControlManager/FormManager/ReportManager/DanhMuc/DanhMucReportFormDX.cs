@@ -1439,7 +1439,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             }
         }
 
-        private void documentViewer1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void documentViewer1_DoubleClick(object sender, EventArgs e)
         {
             if (documentViewer1.Top > dataGridView1.Bottom)
             {
