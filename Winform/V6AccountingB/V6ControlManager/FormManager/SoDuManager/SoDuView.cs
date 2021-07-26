@@ -575,8 +575,19 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void DoPrint()
         {
-            var f = new SoDu1ReportForm(_MA_DM, ReportFile, ReportTitle, ReportTitle2, InitFilter);
-            f.Show(this);
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            bool is_DX = _aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("XTRAREPORT") && _aldmConfig.EXTRA_INFOR["XTRAREPORT"] == "1";
+            if (shift) is_DX = !is_DX;
+            if (is_DX)
+            {
+                var f = new SoDu1ReportFormDX(_MA_DM, ReportFile, ReportTitle, ReportTitle2, InitFilter);
+                f.Show(this);
+            }
+            else
+            {
+                var f = new SoDu1ReportForm(_MA_DM, ReportFile, ReportTitle, ReportTitle2, InitFilter);
+                f.Show(this);
+            }
         }
 
         #endregion do method

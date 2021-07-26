@@ -7,29 +7,29 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
+using DevExpress.XtraReports.Parameters;
+using DevExpress.XtraReports.UI;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.DanhMucManager;
+using V6ControlManager.FormManager.ReportManager.DXreport;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6ReportControls;
-using V6RptEditor;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.SoDu
 {
-    public partial class SoDu1ReportForm : V6Form
+    public partial class SoDu2ReportFormDX : V6Form
     {
         #region Biến toàn cục
-        DataGridViewPrinter MyDataGridViewPrinter;
-        private ReportDocument _rpDoc0;
-        private string _tableName, _Ma_File, _reportTitle, _reportTitle2, _inifilter;
+        private XtraReport _repx0;
+        private string _tableName, _maCt, _Ma_File, _reportTitle, _reportTitle2, _inifilter;
         /// <summary>
         /// Advance filter get albc
         /// </summary>
@@ -41,8 +41,8 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private DataTable MauInData;
         private DataView MauInView;
         private DataSet _ds;
-        private DataTable _tbl1, _tbl2;
-
+        private DataTable _tbl1, _tbl2, _tbl3;
+        private DataView _tbl2View;
 
         /// <summary>
         /// MA_FILE, MAU, LAN, REPORT
@@ -113,7 +113,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             }
         }
 
-        private SortedDictionary<string, string> _extraInfor = null;
+        private SortedDictionary<string, string> _extraInfor;
 
         private void GetExtraInfor()
         {
@@ -168,11 +168,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             get
             {
                 string result = "";
-                if (MauInSelectedRow != null)
-                if (MauInData != null && (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null))
+                if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
-                    string rpt_dir = MauInSelectedRow["RPT_DIR"].ToString().Trim();
-                    if (rpt_dir != "") result += rpt_dir + @"\";
+                    result = _albcConfig.RPT_DIR;
+                    if (result != "") result += result + @"\";
                 }
                 return result;
             }
@@ -183,16 +182,56 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             get
             {
                 var result = @"Reports\"
-                    + RPT_DIR
-                       + MAU + @"\"
-                       + LAN + @"\"
-                       + ReportFile + ".rpt";
+                             + RPT_DIR
+                             + MAU + @"\"
+                             + LAN + @"\"
+                             + ReportFile + ".rpt";
                 if (!File.Exists(result))
                 {
                     result = @"Reports\"
-                       + MAU + @"\"
-                       + LAN + @"\"
-                       + _Ma_File + ".rpt";//_reportFile gốc
+                             + MAU + @"\"
+                             + LAN + @"\"
+                             + _Ma_File + ".rpt";//_reportFile gốc
+                }
+                return result;
+            }
+        }
+
+        public string ReportFileFullDX
+        {
+            get
+            {
+                var result = @"ReportsDX\"
+                             + RPT_DIR
+                             + MAU + @"\"
+                             + LAN + @"\"
+                             + ReportFile + ".repx";//ReportFile co su thay doi khi chon o combobox
+                if (!File.Exists(result))
+                {
+                    result = @"ReportsDX\"
+                             + MAU + @"\"
+                             + LAN + @"\"
+                             + _Ma_File + ".repx";//_reportFile gốc
+                }
+                return result;
+            }
+        }
+
+        public string ReportFileFullDXF7
+        {
+            get
+            {
+                var result = @"ReportsDX\"
+                             + RPT_DIR
+                             + MAU + @"\"
+                             + LAN + @"\"
+                             + ReportFile + "F7.repx";//ReportFile co su thay doi khi chon o combobox
+                if (!File.Exists(result))
+                {
+                    result = @"ReportsDX\"
+                             + MAU + @"\"
+                             + LAN + @"\"
+                             + _Ma_File + "F7.repx";//_reportFile gốc
                 }
                 return result;
             }
@@ -217,7 +256,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 return result;
             }
         }
-
+        
         private string QueryString
         {
             get
@@ -257,9 +296,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         /// <param name="reportTitle">title</param>
         /// <param name="reportTitle2">title2</param>
         /// <param name="inifilter"></param>
-        public SoDu1ReportForm(string tableName, string reportFile, string reportTitle, string reportTitle2, string inifilter)
+        public SoDu2ReportFormDX(string tableName, string maCt, string reportFile, string reportTitle, string reportTitle2, string inifilter)
         {
             _tableName = tableName;
+            _maCt = maCt;
             _Ma_File = reportFile;
             _reportTitle = reportTitle;
             _reportTitle2 = reportTitle2;
@@ -314,13 +354,13 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
             {
                 no_print = true;
-                crystalReportViewer1.ShowPrintButton = false;
-                crystalReportViewer1.ShowExportButton = false;
+                //documentViewer1.ShowPrintButton = false; !!!!!
+                //documentViewer1.ShowExportButton = false; !!!!!
                 contextMenuStrip1.Items.Remove(exportToPdfMenu);
             }
             if (!V6Login.UserRight.AllowView(ItemID, ItemID))
             {
-                crystalReportViewer1.InvisibleTag();
+                documentViewer1.InvisibleTag();
                 if (no_print)
                 {
                     while (contextMenuStrip1.Items.Count > 0)
@@ -391,7 +431,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     switch (key3[0])
                     {
                         case '1': DefaultMenuItem = exportToExcelTemplateMenu; break;
-                        //case '2': DefaultMenuItem = exportToExcelView; break;
+                        //case '2': DefaultMenuItem = exportToExcelViewMenu; break;
                         case '3': DefaultMenuItem = exportToExcelMenu; break;
                         case '4': DefaultMenuItem = exportToXmlMenu; break;
                         case '5': DefaultMenuItem = printGridMenu; break;
@@ -577,64 +617,36 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 }
             }
         }
-
+        
         private void AddProcParams()
         {
             var _order = V6TableHelper.GetDefaultSortField(V6TableHelper.ToV6TableName(_tableName));
             
+            pList.Add(new SqlParameter("@cMa_ct", _maCt));
             pList.Add(new SqlParameter("@cTable", _tableName));
             pList.Add(new SqlParameter("@cOrder", _order));
             pList.Add(new SqlParameter("@cKey", "1=1" + (sKey.Length>0?" And " +sKey:"")));
         }
 
         private IDictionary<string, object> ReportDocumentParameters; 
+        
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>
-        private void SetAllReportParams(ReportDocument rpDoc)
+        /// <param name="repx"></param>
+        private void SetAllReportParams(XtraReport repx)
         {
-            ReportDocumentParameters = new SortedDictionary<string, object>
-            {
-                {"Decimals", 0},
-                {"ThousandsSeparator", V6Options.M_NUM_SEPARATOR},
-                {"DecimalSymbol", V6Options.M_NUM_POINT},
-                {"DecimalsSL", V6Options.M_IP_R_SL},
-                {"DecimalsDG", V6Options.M_IP_R_GIA},
-                {"DecimalsDGNT", V6Options.M_IP_R_GIANT},
-                {"DecimalsTT", V6Options.M_IP_R_TIEN},
-                {"DecimalsTTNT", V6Options.M_IP_R_TIENNT},
-
-                {"Title", txtReportTitle.Text.Trim()},
-                // V6Soft
-                {"M_TEN_CTY", V6Soft.V6SoftValue["M_TEN_CTY"].ToUpper()},
-                {"M_TEN_TCTY", V6Soft.V6SoftValue["M_TEN_TCTY"].ToUpper()},
-                {"M_DIA_CHI", V6Soft.V6SoftValue["M_DIA_CHI"]},
-
-
-                {"M_TEN_CTY2", V6Soft.V6SoftValue["M_TEN_CTY2"].ToUpper()},
-                {"M_TEN_TCTY2", V6Soft.V6SoftValue["M_TEN_TCTY2"].ToUpper()},
-                {"M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]},
-                // V6option
-                {"M_MA_THUE", V6Options.GetValue("M_MA_THUE")},
-                {"M_RTEN_VSOFT", V6Options.GetValue("M_RTEN_VSOFT")},
-
-                {"M_TEN_NLB", txtM_TEN_NLB.Text.Trim()},
-                {"M_TEN_NLB2", txtM_TEN_NLB2.Text.Trim()},
-                {"M_TEN_KHO_BD", V6Options.GetValue("M_TEN_KHO_BD")},
-                {"M_TEN_KHO2_BD", V6Options.GetValue("M_TEN_KHO2_BD")},
-                {"M_DIA_CHI_BD", V6Options.GetValue("M_DIA_CHI_BD")},
-                {"M_DIA_CHI2_BD", V6Options.GetValue("M_DIA_CHI2_BD")},
-
-                {"M_TEN_GD", V6Options.GetValue("M_TEN_GD")},
-                {"M_TEN_GD2", V6Options.GetValue("M_TEN_GD2")},
-                {"M_TEN_KTT", V6Options.GetValue("M_TEN_KTT")},
-                {"M_TEN_KTT2", V6Options.GetValue("M_TEN_KTT2")},
-
-                {"M_RFONTNAME", V6Options.GetValue("M_RFONTNAME")},
-                {"M_R_FONTSIZE", V6Options.GetValue("M_R_FONTSIZE")},
-            };
-
+            ReportDocumentParameters = new SortedDictionary<string, object>();
+            DXreportManager.AddBaseParameters(ReportDocumentParameters);
             V6Login.SetCompanyInfo(ReportDocumentParameters);
+            ReportDocumentParameters["Title"] = txtReportTitle.Text;
+            ReportDocumentParameters["M_TEN_NLB"] = txtM_TEN_NLB.Text;
+            ReportDocumentParameters["M_TEN_NLB2"] = txtM_TEN_NLB2.Text;
+
+            //if (FilterControl.RptExtraParameters != null)
+            //{
+            //    ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
+            //}
 
             var rptExtraParametersD = GetRptParametersD(Extra_para, LAN);
             if (rptExtraParametersD != null)
@@ -647,16 +659,34 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             {
                 try
                 {
-                    rpDoc.SetParameterValue(item.Key, item.Value);
+                    if (repx.Parameters[item.Key] != null)
+                    {
+                        repx.Parameters[item.Key].Value = item.Value;
+                    }
+                    else
+                    {
+                        // missing parameters warning!
+                        //errors += "\n" + item.Key + ":\t " + V6Text.NotExist;
+                        // Auto create Paramter for easy edit.
+                        repx.Parameters.Add(new Parameter()
+                        {
+                            Name = item.Key,
+                            Value = item.Value,
+                            Visible = false,
+                            Type = item.Value.GetType(),
+                            Description = item.Key,
+                        });
+                    }
                 }
                 catch (Exception ex)
                 {
                     errors += "\n" + item.Key + ": " + ex.Message;
                 }
             }
+
             if (errors != "")
             {
-                this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFull + " " + errors);
+                this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFullDX + " " + errors);
             }
         }
 
@@ -851,7 +881,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 _dataloading = true;
                 _dataloaded = false;
                 error_message = "";
-                _ds = V6BusinessHelper.ExecuteProcedure("VPA_R_AL_ALL", pList.ToArray());
+                _ds = V6BusinessHelper.ExecuteProcedure("VPA_R_AL2_ALL", pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
                     _tbl1 = _ds.Tables[0];
@@ -865,6 +895,17 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 else
                 {
                     _tbl2 = null;
+                }
+                if (_ds.Tables.Count > 2)
+                {
+                    _tbl3 = _ds.Tables[2];
+                    _tbl3.TableName = "DataTable3";
+                    exportToExcelGroupMenu.Visible = true;
+                    exportToExcelTemplateMenu.Visible = false;
+                }
+                else
+                {
+                    _tbl3 = null;
                 }
                 _dataloaded = true;
                 _dataloading = false;
@@ -898,10 +939,11 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl1;
+                    _tbl2View = new DataView(_tbl2);
+                    FilterDetail();
 
                     FormatGridView();
                     ViewReport();
-
                     dataGridView1.Focus();
                 }
                 catch (Exception ex)
@@ -938,6 +980,22 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".FormatGridView", ex);
+            }
+        }
+
+        private void FormatGridView2()
+        {
+            try
+            {
+                if (_albcConfig != null && _albcConfig.HaveInfo)
+                {
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2,
+                        _albcConfig.GRDS_V2, _albcConfig.GRDF_V2, _albcConfig.GRDH_LANG_V1);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".FormatGridView2: ", ex);
             }
         }
 
@@ -1150,23 +1208,27 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         
         void ViewReport()
         {
+            if (_ds == null) return;
+            if (_ds.Tables[0].Rows.Count == 0)
+            {
+                this.ShowInfoMessage(V6Text.NoData, 500);
+                return;
+            }
             try
             {
                 CleanUp();
-                var rpDoc = new ReportDocument();
-                rpDoc.Load(ReportFileFull);
-                rpDoc.SetDataSource(_ds);
-
-                SetAllReportParams(rpDoc);
-
-                crystalReportViewer1.ReportSource = rpDoc;
-                _rpDoc0 = rpDoc;
-                //crystalReportViewer1.Show();
-                crystalReportViewer1.Zoom(1);
+                XtraReport x = DXreportManager.LoadV6XtraReportFromFile(ReportFileFullDX);
+                x.PrintingSystem.ShowMarginsWarning = false;
+                x.DataSource = _ds;
+                SetAllReportParams(x);
+                documentViewer1.DocumentSource = x;
+                x.CreateDocument();
+                documentViewer1.Zoom = 1f;
+                _repx0 = x;
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ViewReport " + ReportFileFull, ex);
+                this.ShowErrorException(GetType() + ".ViewReport " + ReportFileFullDX, ex);
             }
         }
         
@@ -1197,7 +1259,11 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     this.ShowErrorMessage(V6Text.NoData);
                     return;
                 }
-                crystalReportViewer1.PrintReport();
+
+                //in thường
+                var printTool = new ReportPrintTool(_repx0);
+                printTool.PrintingSystem.ShowMarginsWarning = false;
+                printTool.PrintDialog();
             }
             catch (Exception ex)
             {
@@ -1207,12 +1273,11 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
 
         protected override void ClearMyVars()
         {
-            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc0 };
-            foreach (ReportDocument rpDoc in list)
+            List<XtraReport> list = new List<XtraReport>() { _repx0 };
+            foreach (XtraReport rpDoc in list)
             {
                 if (rpDoc != null)
                 {
-                    rpDoc.Close();
                     rpDoc.Dispose();
                 }
             }
@@ -1350,8 +1415,12 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             try
             {
-                var f = new FormRptEditor {rptPath = ReportFileFull};
-                f.ShowDialog(this);
+                if (_ds == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+                DXreportManager.EditRepx(ReportFileFullDX, _ds, ReportDocumentParameters, this);
             }
             catch (Exception ex)
             {
@@ -1373,17 +1442,49 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             try
             {
-                if (_rpDoc0 == null)
+                if (_repx0 == null)
                 {
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc0, GetExportFileName());
+                DXreportManager.ExportRepxToPdfInThread_As(this, _repx0, "PDF", GetExportFileName());
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Export PDF", ex);
             }
+        }
+
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
+        {
+            FilterDetail();
+        }
+
+        private void FilterDetail()
+        {
+            try
+            {
+                if (_tbl2View != null && dataGridView1.CurrentRow != null)
+                {
+                    var key = dataGridView1.CurrentRow.Cells["Ref_key"].Value.ToString();
+                    _tbl2View.RowFilter = string.Format("{0} = '{1}'", "Ref_key", key);
+                    if (dataGridView2.DataSource == null)
+                    {
+                        dataGridView2.DataSource = _tbl2View;
+                        FormatGridView2();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".FilterDetail: ", ex);
+            }
+        }
+
+        private void exportToExcelGroupMenu_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.ExportExcelGroup_ChooseFile(this, _tbl1, _tbl2, _tbl3, ReportDocumentParameters,
+                MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
         }
 
         private void btnExport3_Click(object sender, EventArgs e)
@@ -1397,6 +1498,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             try
             {
                 if (dataGridView1.CurrentRow == null || !dataGridView1.Columns.Contains("MA_CT") || !dataGridView1.Columns.Contains("STT_REC")) return;
+                
                 var row = dataGridView1.CurrentRow;
                 string ma_ct = row.Cells["MA_CT"].Value.ToString().Trim();
                 string stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
@@ -1424,21 +1526,43 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
         }
-
-        private void crystalReportViewer1_DoubleClick(object sender, EventArgs e)
+        
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (crystalReportViewer1.Top > dataGridView1.Bottom)
+            if (documentViewer1.Visible)
             {
-                // Phóng lớn documentViewer1
-                crystalReportViewer1.BringToFront();
-                crystalReportViewer1.Height = crystalReportViewer1.Bottom - 5;
-                crystalReportViewer1.Top = 5;
+                // Phóng lớn dataGridView
+                dataGridView1.BringToFront();
+                dataGridView1.Height = documentViewer1.Bottom - 5;
+                dataGridView1.Top = 5;
+                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+                documentViewer1.Visible = false;
             }
             else
             {
-                crystalReportViewer1.Height = crystalReportViewer1.Bottom - dataGridView1.Bottom - 5;
-                crystalReportViewer1.Top = dataGridView1.Bottom + 5;
+                dataGridView1.Top = grbDieuKienLoc.Bottom + 3;
+                dataGridView1.Height = documentViewer1.Top - 3 - dataGridView1.Top;
+                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+
+                documentViewer1.Visible = true;
             }
-        }        
+        }
+
+        private void documentViewer1_DoubleClick(object sender, EventArgs e)
+        {
+            if (documentViewer1.Top > dataGridView1.Bottom)
+            {
+                // Phóng lớn documentViewer1
+                documentViewer1.BringToFront();
+                documentViewer1.Height = documentViewer1.Bottom - 5;
+                documentViewer1.Top = 5;
+            }
+            else
+            {
+                documentViewer1.Height = documentViewer1.Bottom - dataGridView1.Bottom - 5;
+                documentViewer1.Top = dataGridView1.Bottom + 5;
+            }
+        }
+        
     }
 }

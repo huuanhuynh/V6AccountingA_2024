@@ -573,7 +573,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.FilterType = "2";
             this.Name = "SoDu1ReportForm";
             this.Text = "Báo cáo";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBaoCaoHangTonKho_V2_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.F_FormClosed);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.ResizeEnd += new System.EventHandler(this.F_ResizeEnd);

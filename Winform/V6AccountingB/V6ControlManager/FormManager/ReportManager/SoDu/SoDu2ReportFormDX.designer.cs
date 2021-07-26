@@ -2,7 +2,7 @@
 
 namespace V6ControlManager.FormManager.ReportManager.SoDu
 {
-    partial class SoDu2ReportForm
+    partial class SoDu2ReportFormDX
     {
         /// <summary>
         /// Required designer variable.
@@ -47,6 +47,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.viewGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.btnIn = new System.Windows.Forms.Button();
@@ -62,7 +63,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
             this.panel1 = new V6ReportControls.PanelFilter();
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.txtReportTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
-            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -115,6 +115,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(491, 90);
             this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // contextMenuStrip1
@@ -130,7 +131,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.viewInvoiceInfoMenu,
             this.viewListInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(208, 224);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(208, 202);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -163,7 +164,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.exportToXmlMenu.Name = "exportToXmlMenu";
             this.exportToXmlMenu.Size = new System.Drawing.Size(207, 22);
             this.exportToXmlMenu.Text = "Export to xml";
-            this.exportToXmlMenu.Click += new System.EventHandler(this.exportToXmlMenuItem_Click);
+            this.exportToXmlMenu.Click += new System.EventHandler(this.exportToXmlMenu_Click);
             // 
             // printGridMenu
             // 
@@ -195,6 +196,14 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.viewInvoiceInfoMenu.Size = new System.Drawing.Size(207, 22);
             this.viewInvoiceInfoMenu.Text = "Xem thông tin chứng từ";
             this.viewInvoiceInfoMenu.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
+            // 
+            // viewListInfoMenu
+            // 
+            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
+            this.viewListInfoMenu.Name = "viewListInfoMenu";
+            this.viewListInfoMenu.Size = new System.Drawing.Size(207, 22);
+            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
+            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -421,28 +430,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.panel1.TabIndex = 0;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
-            // crystalReportViewer1
-            // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.DisplayStatusBar = false;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(2, 327);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ShowCloseButton = false;
-            this.crystalReportViewer1.ShowCopyButton = false;
-            this.crystalReportViewer1.ShowGroupTreeButton = false;
-            this.crystalReportViewer1.ShowLogo = false;
-            this.crystalReportViewer1.ShowParameterPanelButton = false;
-            this.crystalReportViewer1.ShowRefreshButton = false;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(784, 325);
-            this.crystalReportViewer1.TabIndex = 15;
-            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.crystalReportViewer1.DoubleClick += new System.EventHandler(this.crystalReportViewer1_DoubleClick);
-            // 
             // timerViewReport
             // 
             this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
@@ -587,20 +574,28 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
             // 
-            // viewListInfoMenu
+            // documentViewer1
             // 
-            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
-            this.viewListInfoMenu.Name = "viewListInfoMenu";
-            this.viewListInfoMenu.Size = new System.Drawing.Size(207, 22);
-            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
-            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
+            this.documentViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.documentViewer1.IsMetric = false;
+            this.documentViewer1.Location = new System.Drawing.Point(2, 327);
+            this.documentViewer1.LookAndFeel.SkinName = "Seven Classic";
+            this.documentViewer1.Name = "documentViewer1";
+            this.documentViewer1.RequestDocumentCreation = false;
+            this.documentViewer1.Size = new System.Drawing.Size(784, 325);
+            this.documentViewer1.Status = "V6SOFT";
+            this.documentViewer1.TabIndex = 22;
+            this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
-            // SoDu2ReportForm
+            // SoDu2ReportFormDX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;
             this.ClientSize = new System.Drawing.Size(784, 654);
+            this.Controls.Add(this.documentViewer1);
             this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaMau);
@@ -614,30 +609,13 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.Controls.Add(this.txtM_TEN_NLB2);
             this.Controls.Add(this.txtM_TEN_NLB);
             this.Controls.Add(this.txtReportTitle);
-            this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.grbDieuKienLoc);
             this.FilterType = "2";
-            this.Name = "SoDu2ReportForm";
+            this.Name = "SoDu2ReportFormDX";
             this.Text = "Báo cáo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.F_FormClosed);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.ResizeEnd += new System.EventHandler(this.F_ResizeEnd);
-            
-            this.Controls.SetChildIndex(this.grbDieuKienLoc, 0);
-            this.Controls.SetChildIndex(this.crystalReportViewer1, 0);
-            this.Controls.SetChildIndex(this.txtReportTitle, 0);
-            this.Controls.SetChildIndex(this.txtM_TEN_NLB, 0);
-            this.Controls.SetChildIndex(this.txtM_TEN_NLB2, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.cboMauIn, 0);
-            this.Controls.SetChildIndex(this.btnThemMauBC, 0);
-            this.Controls.SetChildIndex(this.btnSuaTTMauBC, 0);
-            this.Controls.SetChildIndex(this.btnSuaMau, 0);
-            this.Controls.SetChildIndex(this.chkHienTatCa, 0);
-            this.Controls.SetChildIndex(this.btnExport3, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);
@@ -671,7 +649,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private System.Windows.Forms.RadioButton rTiengViet;
         private System.Windows.Forms.RadioButton rEnglish;
         private System.Windows.Forms.RadioButton rBothLang;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         private System.Windows.Forms.TextBox txtReportTitle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtM_TEN_NLB;
@@ -695,6 +672,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private wyDay.Controls.SplitButton btnExport3;
         private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
         private System.Windows.Forms.ToolStripMenuItem viewListInfoMenu;
+        private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer1;
 
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -107,10 +108,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             get
             {
-                //if (_extraInfor == null || _extraInfor.Count == 0)
-                {
-                    GetExtraInfor();
-                }
+                GetExtraInfor();
                 return _extraInfor;
             }
         }
@@ -120,8 +118,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
-            if (MauInSelectedRow == null) return;
-            _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
+            if (_albcConfig == null) return;
+            _extraInfor.AddRange(_albcConfig.EXTRA_INFOR);
         }
 
         #endregion EXTRA_INFOR
@@ -151,6 +149,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 return result;
             }
         }
+        
         private string ReportTitle
         {
             get
@@ -267,7 +266,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 return result;
             }
         }
-        #endregion 
+        #endregion
 
         /// <summary>
         /// Ctor
@@ -315,6 +314,10 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 var fields_vvar_filter = V6Lookup.GetValueByTableName(_tableName, "vLfScatter");
                 MadeControls(_tableName, fields_vvar_filter);
                 CheckRightReport();
+                if (V6Options.M_R_FONTSIZE > 8)
+                {
+                    dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, V6Options.M_R_FONTSIZE);
+                }
                 //InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
@@ -1106,26 +1109,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             {
                 this.ShowErrorException(GetType() + ".ViewReport " + ReportFileFullDX, ex);
             }
-
-
-            //try
-            //{
-            //    CleanUp();
-            //    var rpDoc = new ReportDocument();
-            //    rpDoc.Load(ReportFileFull);
-            //    rpDoc.SetDataSource(_ds);
-
-            //    SetAllReportParams(rpDoc);
-
-            //    documentViewer1.ReportSource = rpDoc;
-            //    _rpDoc0 = rpDoc;
-            //    //crystalReportViewer1.Show();
-            //    documentViewer1.Zoom(1);
-            //}
-            //catch (Exception ex)
-            //{
-            //    this.ShowErrorException(GetType() + ".ViewReport " + ReportFileFull, ex);
-            //}
         }
         
         private void F_FormClosed(object sender, FormClosedEventArgs e)
@@ -1165,26 +1148,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             {
                 this.ShowErrorException(GetType() + ".btnIn_Click " + V6Text.Text("LOIIN"), ex);
             }
-
-
-            //try
-            //{
-            //    if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
-            //    {
-            //        V6ControlFormHelper.NoRightWarning();
-            //        return;
-            //    }
-            //    if (_ds == null)
-            //    {
-            //        this.ShowErrorMessage(V6Text.NoData);
-            //        return;
-            //    }
-            //    documentViewer1.PrintReport();
-            //}
-            //catch (Exception ex)
-            //{
-            //    this.ShowErrorException(GetType() + ".btnIn_Click " + V6Text.Text("LOIIN"), ex);
-            //}
         }
 
         protected override void ClearMyVars()
@@ -1412,12 +1375,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
         }
-
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
-        }
-
+        
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (documentViewer1.Visible)

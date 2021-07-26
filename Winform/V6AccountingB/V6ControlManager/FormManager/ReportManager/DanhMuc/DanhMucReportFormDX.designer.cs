@@ -110,7 +110,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.dataGridView1.Size = new System.Drawing.Size(763, 59);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             // 
             // contextMenuStrip1
             // 

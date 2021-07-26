@@ -636,8 +636,19 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                var f = new SoDu2ReportForm(_alctConfig.TableNameAM, _maCt, ReportFile, ReportTitle, ReportTitle2, InitFilter);
-                f.ShowDialog(this);
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                bool is_DX = _aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("XTRAREPORT") && _aldmConfig.EXTRA_INFOR["XTRAREPORT"] == "1";
+                if (shift) is_DX = !is_DX;
+                if (is_DX)
+                {
+                    var f = new SoDu2ReportFormDX(_alctConfig.TableNameAM, _maCt, ReportFile, ReportTitle, ReportTitle2, InitFilter);
+                    f.Show(this);
+                }
+                else
+                {
+                    var f = new SoDu2ReportForm(_alctConfig.TableNameAM, _maCt, ReportFile, ReportTitle, ReportTitle2, InitFilter);
+                    f.Show(this);
+                }
             }
             catch (Exception ex)
             {
