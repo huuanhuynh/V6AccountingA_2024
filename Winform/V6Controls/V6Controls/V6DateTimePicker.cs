@@ -215,7 +215,7 @@ namespace V6Controls
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SendTab_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(V6DateTimePick_KeyUp);
             this.Leave += new System.EventHandler(V6DateTimePick_LostFocus);
-            this.MouseLeave += new System.EventHandler(this.V6ColorTextBox_MouseLeave);
+            //this.MouseLeave += new System.EventHandler(this.V6ColorTextBox_MouseLeave);
             this.ValueChanged += V6DateTimePick_ValueChanged;
 
             this.ResumeLayout(false);

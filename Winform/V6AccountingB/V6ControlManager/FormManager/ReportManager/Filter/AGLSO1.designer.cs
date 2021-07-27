@@ -61,7 +61,7 @@
             this.Txtten_tk.Name = "Txtten_tk";
             this.Txtten_tk.ReadOnly = true;
             this.Txtten_tk.Size = new System.Drawing.Size(284, 46);
-            this.Txtten_tk.TabIndex = 43;
+            this.Txtten_tk.TabIndex = 6;
             this.Txtten_tk.TabStop = false;
             // 
             // v6Label9
@@ -71,7 +71,7 @@
             this.v6Label9.Location = new System.Drawing.Point(5, 57);
             this.v6Label9.Name = "v6Label9";
             this.v6Label9.Size = new System.Drawing.Size(55, 13);
-            this.v6Label9.TabIndex = 15;
+            this.v6Label9.TabIndex = 4;
             this.v6Label9.Text = "Tài khoản";
             // 
             // TxtTk
@@ -89,7 +89,7 @@
             this.TxtTk.Location = new System.Drawing.Point(131, 55);
             this.TxtTk.Name = "TxtTk";
             this.TxtTk.Size = new System.Drawing.Size(100, 20);
-            this.TxtTk.TabIndex = 3;
+            this.TxtTk.TabIndex = 5;
             this.TxtTk.VVar = "TK";
             // 
             // rdo_goptk
@@ -100,7 +100,7 @@
             this.rdo_goptk.Location = new System.Drawing.Point(161, 135);
             this.rdo_goptk.Name = "rdo_goptk";
             this.rdo_goptk.Size = new System.Drawing.Size(92, 17);
-            this.rdo_goptk.TabIndex = 5;
+            this.rdo_goptk.TabIndex = 8;
             this.rdo_goptk.Text = "Gộp tài khoản";
             this.rdo_goptk.UseVisualStyleBackColor = true;
             // 
@@ -113,7 +113,7 @@
             this.rdo_khonggoptk.Location = new System.Drawing.Point(25, 135);
             this.rdo_khonggoptk.Name = "rdo_khonggoptk";
             this.rdo_khonggoptk.Size = new System.Drawing.Size(93, 17);
-            this.rdo_khonggoptk.TabIndex = 4;
+            this.rdo_khonggoptk.TabIndex = 7;
             this.rdo_khonggoptk.TabStop = true;
             this.rdo_khonggoptk.Text = "Không gộp Tk";
             this.rdo_khonggoptk.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(131, 29);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 2;
+            this.dateNgay_ct2.TabIndex = 3;
             // 
             // dateNgay_ct1
             // 
@@ -176,7 +176,7 @@
             this.groupBox1.Location = new System.Drawing.Point(0, 152);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 82);
-            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
             // 
@@ -209,12 +209,13 @@
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName = "";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 45);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 2;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // AGLSO1

@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager
             if(dialog)
                 f.ShowDialog(owner);
             else
-                f.Show();
+                f.ShowDialog();
         }
         
         public static V6FormControl GetGeneralControl(string code, string itemId)

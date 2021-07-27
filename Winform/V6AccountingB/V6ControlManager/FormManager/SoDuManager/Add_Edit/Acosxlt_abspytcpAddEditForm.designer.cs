@@ -216,7 +216,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // txttien_dd_nt
             // 
-            this.txttien_dd_nt.AccessibleName = "tien_dd_nt";
+            this.txttien_dd_nt.AccessibleName = "TIEN_DK_NT";
             this.txttien_dd_nt.BackColor = System.Drawing.Color.White;
             this.txttien_dd_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txttien_dd_nt.DecimalPlaces = 0;
@@ -265,18 +265,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // lblDuDauNT
             // 
-            this.lblDuDauNT.AccessibleDescription = "FILTERL00225";
+            this.lblDuDauNT.AccessibleDescription = "FILTERL00283";
             this.lblDuDauNT.AccessibleName = "";
             this.lblDuDauNT.AutoSize = true;
             this.lblDuDauNT.Location = new System.Drawing.Point(14, 122);
             this.lblDuDauNT.Name = "lblDuDauNT";
-            this.lblDuDauNT.Size = new System.Drawing.Size(77, 17);
+            this.lblDuDauNT.Size = new System.Drawing.Size(131, 17);
             this.lblDuDauNT.TabIndex = 12;
-            this.lblDuDauNT.Text = "Dư đầu NT";
+            this.lblDuDauNT.Text = "Dở dang đầu kỳ NT";
             // 
             // txttien_dd
             // 
-            this.txttien_dd.AccessibleName = "tien_dd";
+            this.txttien_dd.AccessibleName = "TIEN_DK";
             this.txttien_dd.BackColor = System.Drawing.Color.White;
             this.txttien_dd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txttien_dd.DecimalPlaces = 0;
@@ -299,14 +299,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // lblDuDau
             // 
-            this.lblDuDau.AccessibleDescription = "FILTERL00224";
+            this.lblDuDau.AccessibleDescription = "FILTERL00282";
             this.lblDuDau.AccessibleName = "";
             this.lblDuDau.AutoSize = true;
             this.lblDuDau.Location = new System.Drawing.Point(14, 94);
             this.lblDuDau.Name = "lblDuDau";
-            this.lblDuDau.Size = new System.Drawing.Size(54, 17);
+            this.lblDuDau.Size = new System.Drawing.Size(108, 17);
             this.lblDuDau.TabIndex = 10;
-            this.lblDuDau.Text = "Dư đầu";
+            this.lblDuDau.Text = "Dở dang đầu kỳ";
             // 
             // TxtMa_sp
             // 

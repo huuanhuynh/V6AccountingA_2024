@@ -642,12 +642,12 @@ namespace V6ControlManager.FormManager.SoDuManager
                 if (is_DX)
                 {
                     var f = new SoDu2ReportFormDX(_alctConfig.TableNameAM, _maCt, ReportFile, ReportTitle, ReportTitle2, InitFilter);
-                    f.Show(this);
+                    f.ShowDialog(this);
                 }
                 else
                 {
                     var f = new SoDu2ReportForm(_alctConfig.TableNameAM, _maCt, ReportFile, ReportTitle, ReportTitle2, InitFilter);
-                    f.Show(this);
+                    f.ShowDialog(this);
                 }
             }
             catch (Exception ex)

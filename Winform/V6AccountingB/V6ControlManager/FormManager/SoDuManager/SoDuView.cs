@@ -581,12 +581,12 @@ namespace V6ControlManager.FormManager.SoDuManager
             if (is_DX)
             {
                 var f = new SoDu1ReportFormDX(_MA_DM, ReportFile, ReportTitle, ReportTitle2, InitFilter);
-                f.Show(this);
+                f.ShowDialog(this);
             }
             else
             {
                 var f = new SoDu1ReportForm(_MA_DM, ReportFile, ReportTitle, ReportTitle2, InitFilter);
-                f.Show(this);
+                f.ShowDialog(this);
             }
         }
 

@@ -85,17 +85,18 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.InteropServices.APIs">
-      <HintPath>..\..\..\Lib\Winform\System.Runtime.InteropServices.APIs.dll</HintPath>
+    <Reference Include="System.Runtime.InteropServices.APIs, Version=1.0.5942.27082, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\TreeListView\TreeListView\TreeListView\bin\Release\System.Runtime.InteropServices.APIs.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.TreeListView, Version=1.0.6367.18256, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="System.Windows.Forms.TreeListView, Version=1.0.6808.31935, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TreeListView\TreeListView\TreeListView\bin\Debug\System.Windows.Forms.TreeListView.dll</HintPath>
+      <HintPath>..\..\TreeListView\TreeListView\TreeListView\bin\Release\System.Windows.Forms.TreeListView.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="V6Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

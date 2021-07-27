@@ -7,7 +7,7 @@ namespace System.Windows.Forms
 	/// <summary>
 	/// Represents the collection of items in a TreeListView control or in a TreeListViewItem
 	/// </summary>
-	public class TreeListViewItemCollection : CollectionBase
+	public class TreeListViewItemCollection : CollectionBase, ITreeListViewItemComparer
 	{
 		/// <summary>
 		/// Comparer for TreeListViewItem
@@ -123,7 +123,10 @@ namespace System.Windows.Forms
 				set{Comparer.SortOrder = value;
 					Sort(false);}
 			}
-			#endregion
+
+            public int Column { get; set; }
+
+            #endregion
 			#region Comparer
 			private ITreeListViewItemComparer _comparer = new TreeListViewItemCollectionComparer(SortOrder.Ascending);
 			/// <summary>
@@ -566,5 +569,23 @@ namespace System.Windows.Forms
 			return(index);
 		}
 		#endregion
-	}
+
+        public int Compare(object x, object y)
+        {
+            TreeListViewItem a = (TreeListViewItem)x;
+            TreeListViewItem b = (TreeListViewItem)y;
+            int res = 1;
+            if (Column < a.SubItems.Count && Column < b.SubItems.Count)
+                res = string.CompareOrdinal(a.SubItems[Column].Text.ToUpper(), b.SubItems[Column].Text.ToUpper());
+            switch (SortOrder)
+            {
+                case SortOrder.Ascending:
+                    return (res);
+                case SortOrder.Descending:
+                    return (-res);
+                default:
+                    return (1);
+            }
+        }
+    }
 }

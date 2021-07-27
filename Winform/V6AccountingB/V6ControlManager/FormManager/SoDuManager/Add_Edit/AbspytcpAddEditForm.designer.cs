@@ -225,7 +225,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // txttien_dd_nt
             // 
-            this.txttien_dd_nt.AccessibleName = "tien_dd_nt";
+            this.txttien_dd_nt.AccessibleName = "TIEN_DK_NT";
             this.txttien_dd_nt.BackColor = System.Drawing.Color.White;
             this.txttien_dd_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txttien_dd_nt.DecimalPlaces = 0;
@@ -275,18 +275,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label4
             // 
-            this.label4.AccessibleDescription = "FILTERL00225";
+            this.label4.AccessibleDescription = "FILTERL00283";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 119);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 17);
+            this.label4.Size = new System.Drawing.Size(131, 17);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Dư đầu NT";
+            this.label4.Text = "Dở dang đầu kỳ NT";
             // 
             // txttien_dd
             // 
-            this.txttien_dd.AccessibleName = "tien_dd";
+            this.txttien_dd.AccessibleName = "TIEN_DK";
             this.txttien_dd.BackColor = System.Drawing.Color.White;
             this.txttien_dd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txttien_dd.DecimalPlaces = 0;
@@ -309,14 +309,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "FILTERL00224";
+            this.label2.AccessibleDescription = "FILTERL00282";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 17);
+            this.label2.Size = new System.Drawing.Size(108, 17);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Dư đầu";
+            this.label2.Text = "Dở dang đầu kỳ";
             // 
             // TxtMa_sp
             // 
