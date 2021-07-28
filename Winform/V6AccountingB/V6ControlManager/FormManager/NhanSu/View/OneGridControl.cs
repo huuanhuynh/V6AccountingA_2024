@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -18,11 +19,12 @@ namespace V6ControlManager.FormManager.NhanSu.View
 {
     public partial class OneGridControl : V6FormControl
     {
-        private readonly string _formname;
-        private string _stt_rec, _table_name;
-        private DataTable _gridViewData, _inforData;
-        private V6FormControl ThongTinControl1;
-        private V6FormControl ThongTinControl2;
+        public readonly string _formname;
+        public string _stt_rec, _table_name;
+        public AldmConfig _aldmConfig;
+        public DataTable _gridViewData, _inforData;
+        public V6FormControl ThongTinControl1;
+        public V6FormControl ThongTinControl2;
         public OneGridControl()
         {
             InitializeComponent();
@@ -41,6 +43,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
+                _aldmConfig = ConfigManager.GetAldmConfigByTableName(_table_name);
                 AddFilterControl(_formname);
                 ThongTinControl1 = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
                 if (ThongTinControl1 != null)
@@ -48,6 +51,11 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl1, true);
                     ThongTinControl1.Dock = DockStyle.Fill;
                     panelControl.Controls.Add(ThongTinControl1);
+                    if (ThongTinControl1 is AddEditControlVirtual)
+                    {
+                        V6ControlFormHelper.LoadAndSetFormInfoDefine(_table_name, ThongTinControl1, this);
+                        LoadAdvanceControls(ThongTinControl1, _table_name);
+                    }
                 }
 
                 ThongTinControl2 = NhanSuManager.GetControl(ItemID, "HINFOR_NS") as V6FormControl;
@@ -57,11 +65,61 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     panelControl2.Controls.Add(ThongTinControl2);
                 }
 
+                All_Objects["thisForm"] = this;
+                CreateFormProgram();
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
                 // SetData...
             }
             catch (Exception ex)
             {
                 this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _formname), ex);
+            }
+        }
+
+        private void OneGridControl_Load(object sender, EventArgs e)
+        {
+            InvokeFormEvent(ControlDynamicEvent.INIT2);
+        }
+
+        protected void CreateFormProgram()
+        {
+            try
+            {
+                All_Objects["thisForm"] = this;
+                //DMETHOD
+                if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
+                {
+                    return;
+                }
+
+                string using_text = "";
+                string method_text = "";
+                //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+                {
+                    var xml = _aldmConfig.DMETHOD;
+                    if (xml == "") return;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) return;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    }
+                }
+
+                Build:
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
             }
         }
 
@@ -140,16 +198,6 @@ namespace V6ControlManager.FormManager.NhanSu.View
                             keys.Add("UID", row.Cells["UID"].Value);
                         keys["STT_REC"] = _stt_rec;
 
-                        //if (KeyFields != null)
-                        //    foreach (var keyField in KeyFields)
-                        //    {
-                        //        if (gridView1.Columns.Contains(keyField))
-                        //        {
-                        //            keys[keyField] = row.Cells[keyField].Value;
-                        //        }
-                        //    }
-
-                        //var _data = row.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Edit, keys, null);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl(this);
@@ -200,7 +248,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
                                 if (t > 0)
                                 {
-                                    
+                                    All_Objects["data"] = _data;
+                                    InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
                                 }
                             }
                         }
@@ -225,25 +274,6 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         }
                     }
 
-                    //var aev = AddEditManager.Init_Control(CurrentTable); //ảo
-                    //if (!string.IsNullOrEmpty(aev.KeyField1))
-                    //{
-                    //    var oldKey1 = _data[aev.KeyField1].ToString().Trim();
-                    //    var oldKey2 = "";
-                    //    if (!string.IsNullOrEmpty(aev.KeyField2) && _data.ContainsKey(aev.KeyField2))
-                    //        oldKey2 = _data[aev.KeyField2].ToString().Trim();
-                    //    var oldKey3 = "";
-                    //    if (!string.IsNullOrEmpty(aev.KeyField3) && _data.ContainsKey(aev.KeyField3))
-                    //        oldKey3 = _data[aev.KeyField3].ToString().Trim();
-
-                    //    var uid = _data.ContainsKey("UID") ? _data["UID"].ToString() : "";
-
-                    //    V6ControlFormHelper.Copy_Here2Data(CurrentTable, V6Mode.Delete,
-                    //        aev.KeyField1, aev.KeyField2, aev.KeyField3,
-                    //        oldKey1, oldKey2, oldKey3,
-                    //        oldKey1, oldKey2, oldKey3,
-                    //        uid);
-                    //}
                 }
             }
             catch (Exception ex)
@@ -379,9 +409,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
-                var config = ConfigManager.GetAldmConfigByTableName(_table_name);
-                V6ControlFormHelper.FormatGridViewAndHeader(gridView1, config.GRDS_V1, config.GRDF_V1,
-                    V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1);
+                V6ControlFormHelper.FormatGridViewAndHeader(gridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1,
+                    V6Setting.IsVietnamese ? _aldmConfig.GRDHV_V1 : _aldmConfig.GRDHE_V1);
             }
             catch (Exception ex)
             {
@@ -394,6 +423,20 @@ namespace V6ControlManager.FormManager.NhanSu.View
             FilterControl.SetParentRow(nhanSuData);
             //V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
             ThongTinControl2.SetData(nhanSuData);
+        }
+
+        /// <summary>
+        /// Kiểm tra có cấu hình Fpass
+        /// </summary>
+        /// <param name="index">0 cho F3, 1 cho F6, 2 cho F8</param>
+        /// <returns></returns>
+        bool NO_CONFIG_FPASS(int index)
+        {
+            if (_aldmConfig.NoInfo) return true;
+            if (!_aldmConfig.EXTRA_INFOR.ContainsKey("F368_PASS")) return true;
+            string f368 = _aldmConfig.EXTRA_INFOR["F368_PASS"].Trim();
+            if (f368.Length > index && f368[index] == '1') return false;
+            return true;
         }
        
         private void gridView1_SelectionChanged(object sender, EventArgs e)
@@ -422,7 +465,17 @@ namespace V6ControlManager.FormManager.NhanSu.View
             {
                 if (e.KeyCode == Keys.F3)
                 {
-                    DoEdit();
+                    if (V6Login.UserRight.AllowEdit("", _table_name.ToUpper() + "6"))
+                    {
+                        if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+                        {
+                            DoEdit();
+                        }
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.NoRightWarning();
+                    }
                 }
                 else if (e.KeyCode == Keys.F4)
                 {
@@ -430,7 +483,17 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 }
                 else if (e.KeyCode == Keys.F8)
                 {
-                    DoDelete();
+                    if (V6Login.UserRight.AllowDelete("", _table_name.ToUpper() + "6"))
+                    {
+                        if (NO_CONFIG_FPASS(2) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
+                        {
+                            DoDelete();
+                        }
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.NoRightWarning();
+                    }
                 }
             }
             catch (Exception ex)
@@ -448,5 +511,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             Dispose();
         }
+
+        
     }
 }

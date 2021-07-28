@@ -6,6 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Controls.RicherTextBox;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -189,6 +190,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 //FormManagerHelper.CreateAdvanceFormControls(this, _MA_DM, All_Objects);
+                // Replace by:
+                //var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, null, someData);
+                //f.AfterInitControl += f_AfterInitControl;
+                //f.InitFormControl(this);
             }
             catch (Exception ex)
             {

@@ -45,7 +45,35 @@ namespace V6Controls.Forms
         [DefaultValue(true)]
         public bool EnableCtrlF12 { get { return _enableCtrlF12; } set { _enableCtrlF12 = value; } }
         protected bool _enableCtrlF12 = true;
-        
+
+        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        /// <summary>
+        /// Code động.
+        /// </summary>
+        public Type Event_program;
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        /// <summary>
+        /// Gọi hàm động theo tên event đã định nghĩa.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
+        public object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
+        }
+
         public V6FormControl()
         {
             InitializeComponent();

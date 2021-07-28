@@ -204,12 +204,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
         public string ReportTitle { get; set; }
         public string ReportTitle2 { get; set; }
 
-        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        /// <summary>
-        /// Code động từ aldmConfig.
-        /// </summary>
-        protected Type Event_program;
-        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
         #endregion var
 
         public DanhMucView()
@@ -417,29 +411,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 this.WriteExLog(GetType() + ".CreateProgram0", ex);
             }
         }
-
-        /// <summary>
-        /// Gọi hàm động theo tên event đã định nghĩa.
-        /// </summary>
-        /// <param name="eventName"></param>
-        /// <returns></returns>
-        public object InvokeFormEvent(string eventName)
-        {
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey(eventName))
-                {
-                    var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
-            }
-            return null;
-        }
-        
 
         private void btnThem_EnabledChanged(object sender, EventArgs e)
         {
