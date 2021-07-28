@@ -701,6 +701,44 @@ namespace V6Controls
             //StatusNumber = 5;
         }
 
+        public MenuButton(IDictionary<string, object> menuRowData)
+        {
+            parenT = new MenuControl(); // set it to a dummy outlookbar control
+            text = "";
+            ViewStatusNumber = V6Setting.ViewMenuStatus;
+            try
+            {
+                ItemID = menuRowData["ITEMID"].ToString().Trim().ToUpper();
+                Text = V6Setting.IsVietnamese
+                    ? menuRowData["VBAR"].ToString().Trim()
+                    : menuRowData["VBAR2"].ToString().Trim();
+                CodeForm = menuRowData["CODEFORM"].ToString().Trim();
+                Pro_old = menuRowData["PRO_OLD"] == null ? null : menuRowData["PRO_OLD"].ToString().Trim();
+                Exe = menuRowData["PROGRAM"].ToString().Trim();
+                MaChungTu = menuRowData["MA_CT"].ToString().Trim();
+                NhatKy = menuRowData["NHAT_KY"].ToString().Trim();
+
+                ReportFile = menuRowData["REP_FILE"].ToString().Trim();
+                ReportTitle = menuRowData["TITLE"].ToString().Trim();
+                ReportTitle2 = menuRowData["TITLE2"].ToString().Trim();
+                ReportFileF5 = menuRowData["REP_FILEF5"].ToString().Trim();
+                ReportTitleF5 = menuRowData["TITLEF5"].ToString().Trim();
+                ReportTitle2F5 = menuRowData["TITLE2F5"].ToString().Trim();
+
+                Key1 = menuRowData["KEY1"].ToString().Trim();
+                Key2 = menuRowData["KEY2"].ToString().Trim();
+                Key3 = menuRowData["KEY3"].ToString().Trim();
+                Key4 = menuRowData["KEY4"].ToString().Trim();
+
+                Xtra = menuRowData["PAGE"].ToString().Trim();
+
+            }
+            catch (Exception ex)
+            {
+                //
+            }
+        }
+
         protected MenuControl parenT;
 
 

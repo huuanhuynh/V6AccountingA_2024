@@ -34,7 +34,7 @@
             this.lblTotalPage = new System.Windows.Forms.Label();
             this.tochucTree1 = new V6Controls.Controls.ToChucTree.ToChucTreeListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxMenu = new System.Windows.Forms.ListBox();
             this.panelView = new System.Windows.Forms.Panel();
             this.txtLoc = new V6Controls.V6ColorTextBox();
             this.btnLoc = new System.Windows.Forms.Button();
@@ -90,14 +90,14 @@
             // 
             // listBox1
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(3, 279);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(242, 303);
-            this.listBox1.TabIndex = 24;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            this.listBoxMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBoxMenu.FormattingEnabled = true;
+            this.listBoxMenu.Location = new System.Drawing.Point(3, 279);
+            this.listBoxMenu.Name = "listBoxMenu";
+            this.listBoxMenu.Size = new System.Drawing.Size(242, 303);
+            this.listBoxMenu.TabIndex = 24;
+            this.listBoxMenu.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxMenu.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // panelView
             // 
@@ -142,7 +142,7 @@
             this.Controls.Add(this.btnLoc);
             this.Controls.Add(this.txtLoc);
             this.Controls.Add(this.panelView);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxMenu);
             this.Controls.Add(this.lblTotalPage);
             this.Controls.Add(this.tochucTree1);
             this.Name = "NhanSuView2";
@@ -158,7 +158,7 @@
         private System.Windows.Forms.Label lblTotalPage;
         private System.Windows.Forms.ImageList imageList1;
         private V6Controls.Controls.ToChucTree.ToChucTreeListView tochucTree1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxMenu;
         private System.Windows.Forms.Panel panelView;
         private V6Controls.V6ColorTextBox txtLoc;
         private System.Windows.Forms.Button btnLoc;

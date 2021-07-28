@@ -41,6 +41,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             }
         }
 
+        public override SortedDictionary<string, object> GetData()
+        {
+            var data = base.GetData();
+            if (data.ContainsKey("BIRTH_DATE"))
+            {
+                data["BIRTH_DATE"] = ("" + data["BIRTH_DATE"]).Replace("-", "/");
+            }
+
+            return data;
+        }
+
         public override void SetDataKeys(SortedDictionary<string, object> keyData)
         {
             try

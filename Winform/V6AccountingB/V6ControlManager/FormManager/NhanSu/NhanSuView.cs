@@ -675,9 +675,8 @@ namespace V6ControlManager.FormManager.NhanSu
 
         private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
         {
-            try {
-                //SaveSelectedCellLocation(dataGridView1);
-                //if (page < 1) page = 1;
+            try
+            {
                 CurrentTable = tableName;
 
                 //var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(where), sortField, ascending);

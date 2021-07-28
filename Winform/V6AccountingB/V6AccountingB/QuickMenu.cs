@@ -49,30 +49,7 @@ namespace V6AccountingB
                 //view.RowFilter = "1=0";
                 textBox1.Text = "";
 
-                MenuButton mButton = new MenuButton()
-                {
-                    ItemID = rowView["itemid"].ToString().Trim().ToUpper(),
-                    Text = V6Setting.IsVietnamese
-                        ? rowView["vbar"].ToString().Trim()
-                        : rowView["vbar2"].ToString().Trim(),
-                    CodeForm = rowView["codeform"].ToString().Trim(),
-                    Pro_old = rowView["pro_old"] == null ? null : rowView["pro_old"].ToString().Trim(),
-                    Exe = rowView["program"].ToString().Trim(),
-                    MaChungTu = rowView["ma_ct"].ToString().Trim(),
-                    NhatKy = rowView["nhat_ky"].ToString().Trim(),
-
-                    ReportFile = rowView["rep_file"].ToString().Trim(),
-                    ReportTitle = rowView["title"].ToString().Trim(),
-                    ReportTitle2 = rowView["title2"].ToString().Trim(),
-                    ReportFileF5 = rowView["rep_fileF5"].ToString().Trim(),
-                    ReportTitleF5 = rowView["titleF5"].ToString().Trim(),
-                    ReportTitle2F5 = rowView["title2F5"].ToString().Trim(),
-
-                    Key1 = rowView["Key1"].ToString().Trim(),
-                    Key2 = rowView["Key2"].ToString().Trim(),
-                    Key3 = rowView["Key3"].ToString().Trim(),
-                    Key4 = rowView["Key4"].ToString().Trim(),
-                };
+                MenuButton mButton = new MenuButton(rowView.Row.ToDataDictionary());
 
                 var c = MenuManager.GenControl(this, mButton, null);
                 if (c is ChungTuChungContainer)

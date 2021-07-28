@@ -339,30 +339,7 @@ namespace V6ControlManager.FormManager.ReportManager
                 
                 var row = data.Rows[0];
                 
-                MenuButton mButton = new MenuButton()
-                {
-                    ItemID = row["itemid"].ToString().Trim().ToUpper(),
-                    Text = V6Setting.IsVietnamese
-                        ? row["vbar"].ToString().Trim()
-                        : row["vbar2"].ToString().Trim(),
-                    CodeForm = row["codeform"].ToString().Trim(),
-                    Pro_old = row["pro_old"] == null ? null : row["pro_old"].ToString().Trim(),
-                    Exe = row["program"].ToString().Trim(),
-                    MaChungTu = row["ma_ct"].ToString().Trim(),
-                    NhatKy = row["nhat_ky"].ToString().Trim(),
-
-                    ReportFile = row["rep_file"].ToString().Trim(),
-                    ReportTitle = row["title"].ToString().Trim(),
-                    ReportTitle2 = row["title2"].ToString().Trim(),
-                    ReportFileF5 = row["rep_fileF5"].ToString().Trim(),
-                    ReportTitleF5 = row["titleF5"].ToString().Trim(),
-                    ReportTitle2F5 = row["title2F5"].ToString().Trim(),
-
-                    Key1 = row["Key1"].ToString().Trim(),
-                    Key2 = row["Key2"].ToString().Trim(),
-                    Key3 = row["Key3"].ToString().Trim(),
-                    Key4 = row["Key4"].ToString().Trim(),
-                };
+                MenuButton mButton = new MenuButton(row.ToDataDictionary());
                 var c = MenuManager.MenuManager.GenControl(owner, mButton, null);
                 //auto click
                 if (c is ReportRViewBase)

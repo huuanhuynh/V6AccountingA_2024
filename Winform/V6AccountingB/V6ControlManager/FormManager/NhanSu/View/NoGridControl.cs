@@ -255,7 +255,15 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     //V6ControlFormHelper.SetFormDataRow(ThongTinControl2, datarow);
                     //V6ControlFormHelper.SetFormDataRow(ThongTinControl, datarow);
                 }
-
+                if (ds.Tables.Count > 1)
+                {
+                    DataRow datarow = ds.Tables[1].Rows[0];
+                    var dataDic = datarow.ToDataDictionary();
+                    
+                    ThongTinControl.SetSomeData(dataDic);
+                    //V6ControlFormHelper.SetFormDataRow(ThongTinControl2, datarow);
+                    //V6ControlFormHelper.SetFormDataRow(ThongTinControl, datarow);
+                }
 
             }
             catch (Exception ex)

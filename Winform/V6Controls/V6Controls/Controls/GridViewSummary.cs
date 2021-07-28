@@ -109,8 +109,7 @@ namespace V6Controls.Controls
                     dgv6.RowSelectChanged += dgv_SelectionChanged_row;
                 }
                 dgv.Paint += dgv_Paint;
-                //dgv.DataSourceChanged += dgv_DataSourceChanged;
-                dgv.DataBindingComplete += dgv_DataSourceChanged;
+                dgv.DataSourceChanged += dgv_DataSourceChanged;
                 dgv.SizeChanged += dgv_SizeChanged;
                 dgv.LocationChanged += dgv_LocationChanged;
                 //DrawSummary();
