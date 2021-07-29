@@ -111,16 +111,12 @@ namespace V6Controls
                     V6ControlFormHelper.ShowErrorException(GetType() + ".KhoiTaoDataGridView", ex);
                 }
             }
-            else
-            {
-                //LibraryHelper.Log("V6LookupDataFormDAO.KhoiTaoDataGridView : \"tableRoot\" không được null");
-            }
         }
 
-        BindingSource source = null;
-        public DataView myView = null;
-        public DataView tempView = null;
-        public DataTable tempTable = null;
+        private BindingSource source = null;
+        public DataView myView;
+        //public DataView tempView = null;
+        public DataTable tempTable;
         public DataTable LayTatCaDanhMuc(string vSearchFilter = "")
         {
             //Khi bấm nút "ALL" thì sẽ không có điều kiện lọc
@@ -148,7 +144,7 @@ namespace V6Controls
                 }
                 catch (Exception)
                 {
-
+                    //
                 }
             }
             else if (_lookupMode == LookupMode.Single)
@@ -214,9 +210,8 @@ namespace V6Controls
                             where += string.Format("{0}({1})", where.Length > 0 ? " and " : "", right_proc);
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-
                         //ShowMainMessage("DanhMucView GetWhereAl " + ex.Message);
                     }
 
@@ -524,7 +519,7 @@ namespace V6Controls
                             {
                                 {"UID", uid}
                             };
-                            var f = new FormAddEdit(_config.vMa_file, V6Mode.View, keys);
+                            var f = new FormAddEdit(_config.vMa_file, V6Mode.View, keys, null);
                             f.AfterInitControl += f_AfterInitControl;
                             f.InitFormControl(this);
                             f.ParentData = _senderTextBox.ParentData;
@@ -559,7 +554,7 @@ namespace V6Controls
                             {
                                 {"UID", uid}
                             };
-                            var f = new FormAddEdit(_config.vMa_file, V6Mode.Edit, keys);
+                            var f = new FormAddEdit(_config.vMa_file, V6Mode.Edit, keys, null);
                             f.AfterInitControl += f_AfterInitControl;
                             f.InitFormControl(this);
                             f.ParentData = _senderTextBox.ParentData;
@@ -607,8 +602,9 @@ namespace V6Controls
                 V6ControlFormHelper.ShowErrorException(GetType() + ".ProcessCmdKey", ex);
                 return false;
             }
-            if(dataGridView1.Focused)
-            dataGridView1_KeyDown(dataGridView1, new KeyEventArgs(keyData));
+
+            if(dataGridView1.Focused) dataGridView1_KeyDown(dataGridView1, new KeyEventArgs(keyData));
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 

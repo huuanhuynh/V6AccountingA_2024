@@ -9,7 +9,6 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
-using V6ReportControls;
 using V6Structs;
 using V6Tools;
 
@@ -177,7 +176,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     }
                     else
                     {
-                        var f = new FormAddEdit(CurrentTable.ToString());
+                        var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, null, null);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl(FindParent<V6FormControl>());
                         f.InsertSuccessEvent += f_InsertSuccess;

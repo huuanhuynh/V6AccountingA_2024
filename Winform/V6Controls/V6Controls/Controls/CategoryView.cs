@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -24,7 +23,7 @@ namespace V6Controls.Controls
     /// </summary>
     public partial class CategoryView : V6FormControl
     {
-        private bool _cancel;
+        private readonly bool _cancel;
 
         public CategoryView()
         {
@@ -54,8 +53,7 @@ namespace V6Controls.Controls
             
             _hideColumnDic = _categories.GetHideColumns(ma_dm);
             InitFilter = initFilter;
-            SelectResult = new V6SelectResult();
-            SelectResult.SortField = sort;
+            SelectResult = new V6SelectResult {SortField = sort};
 
             //bool is_aldm = false, check_admin = false, check_v6 = false;
             
@@ -99,16 +97,16 @@ namespace V6Controls.Controls
             MakeStatus2Text();
         }
 
-        private AldmConfig _aldmConfig;
-        private V6lookupConfig _v6LookupConfig;
+        public AldmConfig _aldmConfig;
+        public V6lookupConfig _v6LookupConfig;
 
         private readonly V6Categories _categories = new V6Categories();
-        private SortedDictionary<string, string> _hideColumnDic;
-        private IDictionary<string, object> _parentData;
+        public SortedDictionary<string, string> _hideColumnDic;
+        public IDictionary<string, object> _parentData;
         /// <summary>
         /// Tên gốc gửi vào
         /// </summary>
-        private string _MA_DM;
+        private readonly string _MA_DM;
         private string CONFIG_TABLE_NAME
         {
             get
@@ -158,12 +156,7 @@ namespace V6Controls.Controls
                 return load_table;
             }
         }
-        /// <summary>
-        /// Tên theo enum V6TableName
-        /// </summary>
-        [DefaultValue(V6TableName.None)]
-        [Description("Tên theo enum V6TableName")]
-        public V6TableName CurrentTable0 { get; set; }
+        
         /// <summary>
         /// Nơi chứa dữ liệu
         /// </summary>
@@ -357,7 +350,7 @@ namespace V6Controls.Controls
                 }
                 else
                 {
-                    f = new FormAddEdit(_MA_DM);
+                    f = new FormAddEdit(_MA_DM, V6Mode.Add, null, null);
 
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl(this);
@@ -396,7 +389,6 @@ namespace V6Controls.Controls
             try
             {
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-                FormAddEdit f;
                 if (row != null)
                 {
                     var keys = new SortedDictionary<string, object>();
@@ -413,11 +405,8 @@ namespace V6Controls.Controls
                         }
 
                     _data = row.ToDataDictionary();
-                    // PHAT 23/08/2017
-
-                    f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
-
-
+                    
+                    var f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl(this);
                     f.ParentData = _parentData;
@@ -440,7 +429,6 @@ namespace V6Controls.Controls
             try
             {
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-                FormAddEdit f;
                 if (row != null)
                 {
                     var keys = new SortedDictionary<string, object>();
@@ -457,8 +445,7 @@ namespace V6Controls.Controls
                         }
                     _data = row.ToDataDictionary();
                     
-                    f = new FormAddEdit(_MA_DM, V6Mode.Edit, keys, _data);
-                    
+                    var f = new FormAddEdit(_MA_DM, V6Mode.Edit, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl(this);
                     f.ParentData = _parentData;
@@ -512,14 +499,10 @@ namespace V6Controls.Controls
                     if (_MA_DM == "V_ALTS")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
-                        SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-
-
-                        data.Add("MA_GIAM_TS", "");
-                        data.Add("NGAY_GIAM", null);
-                        data.Add("LY_DO_GIAM", "");
-                        data.Add("SO_CT", "");
-
+                        SortedDictionary<string, object> data = new SortedDictionary<string, object>
+                        {
+                            {"MA_GIAM_TS", ""}, {"NGAY_GIAM", null}, {"LY_DO_GIAM", ""}, {"SO_CT", ""}
+                        };
 
                         var so_the_ts = row.Cells["SO_THE_TS"].Value.ToString().Trim();
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" + so_the_ts, V6Text.Delete)
@@ -540,14 +523,10 @@ namespace V6Controls.Controls
                     else if (_MA_DM == "V_ALCC")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
-                        SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-
-
-                        data.Add("MA_GIAM_CC", "");
-                        data.Add("NGAY_GIAM", "");
-                        data.Add("LY_DO_GIAM", "");
-                        data.Add("SO_CT", "");
-
+                        SortedDictionary<string, object> data = new SortedDictionary<string, object>
+                        {
+                            {"MA_GIAM_CC", ""}, {"NGAY_GIAM", ""}, {"LY_DO_GIAM", ""}, {"SO_CT", ""}
+                        };
 
                         var so_the_cc = row.Cells["SO_THE_CC"].Value.ToString().Trim();
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" + so_the_cc, "Xóa?")
@@ -568,8 +547,7 @@ namespace V6Controls.Controls
                     else if (_MA_DM == "V_ALTS01")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
-                        SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                        data.Add("NGAY_KH1", "");
+                        SortedDictionary<string, object> data = new SortedDictionary<string, object> {{"NGAY_KH1", ""}};
                         var so_the_ts = row.Cells["SO_THE_TS"].Value.ToString().Trim();
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" + so_the_ts, "Xóa?")
                             == DialogResult.Yes)
@@ -589,8 +567,7 @@ namespace V6Controls.Controls
                     else if (_MA_DM == "V_ALCC01")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
-                        SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                        data.Add("NGAY_PB1", "");
+                        SortedDictionary<string, object> data = new SortedDictionary<string, object> {{"NGAY_PB1", ""}};
                         var so_the_cc = row.Cells["SO_THE_CC"].Value.ToString().Trim();
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" + so_the_cc, "Xóa?")
                             == DialogResult.Yes)
@@ -777,7 +754,6 @@ namespace V6Controls.Controls
             try
             {
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-                FormAddEdit f;
                 if (row != null)
                 {
                     var keys = new SortedDictionary<string, object>();
@@ -795,7 +771,7 @@ namespace V6Controls.Controls
 
                     _data = row.ToDataDictionary();
                     
-                    f = new FormAddEdit(_MA_DM, V6Mode.View, keys, _data);
+                    var f = new FormAddEdit(_MA_DM, V6Mode.View, keys, _data);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl(this);
                     f.ShowDialog(this);
@@ -831,7 +807,7 @@ namespace V6Controls.Controls
             LoadTable(1, pageSize, sort, true);
         }
 
-        private void LoadTable(int page, int size, string sortField, bool @ascending)
+        private void LoadTable(int page, int size, string sortField, bool ascending)
         {
             try
             {
@@ -847,7 +823,7 @@ namespace V6Controls.Controls
                 }
 
                 _last_filter = GetWhere();
-                var sr = _categories.SelectPaging(LOAD_TABLE, "*", page, size, _last_filter, sortField, @ascending);
+                var sr = _categories.SelectPaging(LOAD_TABLE, "*", page, size, _last_filter, sortField, ascending);
 
                 SelectResult.Data = sr.Data;
                 SelectResult.Page = sr.Page;
@@ -887,16 +863,16 @@ namespace V6Controls.Controls
                         : SortOrder.Descending;
             }
 
-            //var st = V6BusinessHelper.GetTableStruct("V6struct1".ToString());
-            
             if(SelectResult.FieldsHeaderDictionary != null && SelectResult.FieldsHeaderDictionary.Count>0)
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
             {
-                var field = dataGridView1.Columns[i].DataPropertyName.ToUpper();
-                if(SelectResult.FieldsHeaderDictionary.ContainsKey(field))
+                for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 {
-                    dataGridView1.Columns[i].HeaderText =
-                        SelectResult.FieldsHeaderDictionary[field];
+                    var field = dataGridView1.Columns[i].DataPropertyName.ToUpper();
+                    if(SelectResult.FieldsHeaderDictionary.ContainsKey(field))
+                    {
+                        dataGridView1.Columns[i].HeaderText =
+                            SelectResult.FieldsHeaderDictionary[field];
+                    }
                 }
             }
 
@@ -939,8 +915,9 @@ namespace V6Controls.Controls
 
         public void First()
         {
-            try { 
-            LoadTable(1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            {
+                LoadTable(1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -950,8 +927,9 @@ namespace V6Controls.Controls
 
         public void Previous()
         {
-            try { 
-            LoadTable(SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            {
+                LoadTable(SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -974,8 +952,9 @@ namespace V6Controls.Controls
 
         public void Last()
         {
-            try { 
-            LoadTable(SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            {
+                LoadTable(SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {

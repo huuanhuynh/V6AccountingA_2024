@@ -12,8 +12,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         {
             FilterControl.Visible = false;
 
-            string tableName = program, initFilter = "", sort = "";
-            Control tochucViewContainer = new ToChucView(itemId, reportCaption, tableName, initFilter, sort);
+            string tableName = program, initFilter = "";
+            Control tochucViewContainer = new ToChucView(itemId, reportCaption, tableName, initFilter);
             tochucViewContainer.Dock = DockStyle.Fill;
             panel1.Controls.Add(tochucViewContainer);
             tochucViewContainer.Disposed += tochucViewContainer_Disposed;

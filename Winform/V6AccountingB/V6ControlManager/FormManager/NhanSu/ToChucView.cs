@@ -37,21 +37,22 @@ namespace V6ControlManager.FormManager.NhanSu
             }
         }
 
-        public ToChucView(string itemId, string title, string procedure, string initFilter = "", string sort="")
+        public ToChucView(string itemId, string title, string procedure, string initFilter = "")
         {
             m_itemId = itemId;
             Title = title;
             _procedure = procedure;
             TABLE_NAME = "HRPERSONAL";
             _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(TABLE_NAME);
+            _aldmConfig = ConfigManager.GetAldmConfigByTableName(TABLE_NAME);
             InitializeComponent();
             MyInit();
             
-            _hideColumnDic = _categories.GetHideColumns(procedure);
             InitFilter = initFilter;
             SelectResult = new V6SelectResult();
 
-            LoadTable(TABLE_NAME, sort);
+            CloseFilterForm();
+            LoadData();
         }
 
         private void ToChucView_Load(object sender, EventArgs e)
@@ -60,13 +61,11 @@ namespace V6ControlManager.FormManager.NhanSu
             MakeStatus2Text();
         }
 
-        private readonly V6Categories _categories = new V6Categories();
-        private SortedDictionary<string, string> _hideColumnDic; 
-        private string _procedure;
-        private string TABLE_NAME;
-        private string VIEW_NAME = "VPRDMNS";
-        private V6lookupConfig _v6LookupConfig;
-        private AldmConfig _aldmConfig = new AldmConfig();
+        public string _procedure;
+        public string TABLE_NAME;
+        public string VIEW_NAME = "VPRDMNS";
+        public V6lookupConfig _v6LookupConfig;
+        public AldmConfig _aldmConfig = new AldmConfig();
         [DefaultValue(V6TableName.None)]
         //public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -130,22 +129,13 @@ namespace V6ControlManager.FormManager.NhanSu
                 }
                 else if (keyData == Keys.F9)
                 {
-                    //if (!V6BusinessHelper.CheckRightKey("", "F9", _tableName)) return;
-                    //All_Objects["dataGridView1"] = dataGridView1;
-                    //InvokeFormEvent(FormDynamicEvent.F9);
+                    if (!V6BusinessHelper.CheckRightKey("", "F9", TABLE_NAME)) return;
+                    InvokeFormEvent(FormDynamicEvent.F9);
                 }
                 else if (keyData == Keys.Up || keyData == Keys.Down || keyData == Keys.Left || keyData == Keys.Right)
                 {
                     return;
                 }
-                //else if (keyData == Keys.PageUp)
-                //{
-                //    if (btnPrevious.Enabled) btnPrevious.PerformClick();
-                //}
-                //else if (keyData == Keys.PageDown)
-                //{
-                //    if (btnNext.Enabled) btnNext.PerformClick();
-                //}
             }
             catch (Exception ex)
             {
@@ -167,10 +157,9 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                int level = toChucTreeListView1.SelectedItems[0].Level;
+                //int level = toChucTreeListView1.SelectedItems[0].Level;
                 //if (level != ) return;
-
-                var tag = toChucTreeListView1.SelectedItems[0].Tag;
+                //var tag = toChucTreeListView1.SelectedItems[0].Tag;
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName = "";
@@ -265,10 +254,9 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                int level = toChucTreeListView1.SelectedItems[0].Level;
+                //int level = toChucTreeListView1.SelectedItems[0].Level;
                 //if (level != ) return;
-
-                var tag = toChucTreeListView1.SelectedItems[0].Tag;
+                //var tag = toChucTreeListView1.SelectedItems[0].Tag;
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
@@ -279,15 +267,12 @@ namespace V6ControlManager.FormManager.NhanSu
                     tableName = "Hrpersonal";
                     IDictionary<string, object> keys = new Dictionary<string, object>();
 
-                    if (fSort == 9)
+                    keys["STT_REC"] = selectedItemData["NODE"];
+                    var selectResult = V6BusinessHelper.Select(tableName, keys, "*");
+                    if (selectResult.TotalRows == 1)
                     {
-                        keys["STT_REC"] = selectedItemData["NODE"];
-                        var selectResult = V6BusinessHelper.Select(tableName, keys, "*");
-                        if (selectResult.TotalRows == 1)
-                        {
-                            var row = selectResult.Data.Rows[0];
-                            someData = row.ToDataDictionary();
-                        }
+                        var row = selectResult.Data.Rows[0];
+                        someData = row.ToDataDictionary();
                     }
                 }
                 else
@@ -335,10 +320,9 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                int level = toChucTreeListView1.SelectedItems[0].Level;
+                //int level = toChucTreeListView1.SelectedItems[0].Level;
                 //if (level != ) return;
-
-                var tag = toChucTreeListView1.SelectedItems[0].Tag;
+                //var tag = toChucTreeListView1.SelectedItems[0].Tag;
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
@@ -349,15 +333,12 @@ namespace V6ControlManager.FormManager.NhanSu
                     tableName = "Hrpersonal";
                     IDictionary<string, object> keys = new Dictionary<string, object>();
 
-                    if (fSort == 9)
+                    keys["STT_REC"] = selectedItemData["NODE"];
+                    var selectResult = V6BusinessHelper.Select(tableName, keys, "*");
+                    if (selectResult.TotalRows == 1)
                     {
-                        keys["STT_REC"] = selectedItemData["NODE"];
-                        var selectResult = V6BusinessHelper.Select(tableName, keys, "*");
-                        if (selectResult.TotalRows == 1)
-                        {
-                            var row = selectResult.Data.Rows[0];
-                            someData = row.ToDataDictionary();
-                        }
+                        var row = selectResult.Data.Rows[0];
+                        someData = row.ToDataDictionary();
                     }
                 }
                 else
@@ -401,10 +382,6 @@ namespace V6ControlManager.FormManager.NhanSu
             }
         }
 
-        private void FCallReloadEvent(object sender, EventArgs eventArgs)
-        {
-            ReLoad();
-        }
         /// <summary>
         /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
@@ -425,10 +402,9 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                int level = toChucTreeListView1.SelectedItems[0].Level;
+                //int level = toChucTreeListView1.SelectedItems[0].Level;
                 //if (level != ) return;
-
-                var tag = toChucTreeListView1.SelectedItems[0].Tag;
+                //var tag = toChucTreeListView1.SelectedItems[0].Tag;
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
@@ -442,19 +418,16 @@ namespace V6ControlManager.FormManager.NhanSu
                     //aldm_config = V6BusinessHelper.GetAldmConfigByTableName(tableName);
                     //v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
                     IDictionary<string, object> keys = new Dictionary<string, object>();
-                    if (fSort == 9)
+                    keys["STT_REC"] = selectedItemData["NODE"];
+                    var selectResult = V6BusinessHelper.Select(tableName, keys, "*");
+                    if (selectResult.TotalRows == 1)
                     {
-                        keys["STT_REC"] = selectedItemData["NODE"];
-                        var selectResult = V6BusinessHelper.Select(tableName, keys, "*");
-                        if (selectResult.TotalRows == 1)
-                        {
-                            var row = selectResult.Data.Rows[0];
-                            someData = row.ToDataDictionary();
-                        }
-                        else
-                        {
-                            this.ShowWarningMessage(V6Text.CheckData);
-                        }
+                        var row = selectResult.Data.Rows[0];
+                        someData = row.ToDataDictionary();
+                    }
+                    else
+                    {
+                        this.ShowWarningMessage(V6Text.CheckData);
                     }
                 }
                 else
@@ -490,7 +463,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     V6ControlFormHelper.NoRightWarning();
                 }
-             }
+            }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _procedure, ex.Message));
@@ -506,11 +479,11 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                int level = toChucTreeListView1.SelectedItems[0].Level;
+                //int level = toChucTreeListView1.SelectedItems[0].Level;
                 //if (level != ) return;
                 var t = 0;
                 string confirm_value1 = "";
-                var tag = toChucTreeListView1.SelectedItems[0].Tag;
+                //var tag = toChucTreeListView1.SelectedItems[0].Tag;
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
@@ -522,29 +495,24 @@ namespace V6ControlManager.FormManager.NhanSu
                 if (fSort == 9)
                 {
                     tableName = "Hrpersonal";
-                    //aldm_config = V6BusinessHelper.GetAldmConfigByTableName(tableName);
                     v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
 
                     IDictionary<string, object> select_keys = new Dictionary<string, object>();
 
-                    if (fSort == 9)
+                    select_keys["STT_REC"] = selectedItemData["NODE"];
+                    var selectResult = V6BusinessHelper.Select(tableName, select_keys, "*");
+                    if (selectResult.TotalRows == 1)
                     {
-                        select_keys["STT_REC"] = selectedItemData["NODE"];
-                        var selectResult = V6BusinessHelper.Select(tableName, select_keys, "*");
-                        if (selectResult.TotalRows == 1)
-                        {
-                            var row = selectResult.Data.Rows[0];
-                            row0 = row;
-                            delete_keys["UID"] = row["UID"];
-                            confirm_value1 = row["EMP_ID"].ToString();
-                        }
+                        var row = selectResult.Data.Rows[0];
+                        row0 = row;
+                        delete_keys["UID"] = row["UID"];
+                        confirm_value1 = row["EMP_ID"].ToString();
                     }
                 }
                 else
                 {
                     tableName = "HRLSTORGUNIT";
                     aldm_config = ConfigManager.GetAldmConfigByTableName(tableName);
-                    //v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
                     IDictionary<string, object> keys = new Dictionary<string, object>();
                     keys.Add("ID", selectedItemData["NODE"]);
                     var selectResult = V6BusinessHelper.Select("HRLSTORGUNIT", keys, "*");
@@ -569,7 +537,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
                 if (V6Login.UserRight.AllowDelete("", tableName.ToUpper() + "6"))
                 {
-                    var data = row0.ToDataDictionary();
+                    //var data = row0.ToDataDictionary();
                     var id = aldm_config.HaveInfo ? aldm_config.TABLE_KEY : v6lookup_config.vValue;
                     var id_check = aldm_config.HaveInfo ? aldm_config.DOI_MA : v6lookup_config.DOI_MA;
                     var listTable = aldm_config.HaveInfo ? aldm_config.F8_TABLE : v6lookup_config.ListTable;
@@ -578,7 +546,7 @@ namespace V6ControlManager.FormManager.NhanSu
                     {
                         //if (data.ContainsKey(id.ToUpper()))
                         //    checkValid_value = data[id.ToUpper()].ToString().Trim();
-                        var v = _categories.IsExistOneCode_List(listTable, id_check, row0[id].ToString().Trim());
+                        var v = V6BusinessHelper.IsExistOneCode_List(listTable, id_check, row0[id].ToString().Trim());
                         if (v)
                         {
                             //khong duoc
@@ -596,17 +564,13 @@ namespace V6ControlManager.FormManager.NhanSu
                                 new SqlParameter("@UID", delete_keys["UID"].ToString()));
                         }
 
-                        t = _categories.Delete(tableName, delete_keys);
+                        t = V6BusinessHelper.Delete(tableName, delete_keys);
 
                         if (t > 0)
                         {
                             ReLoad();
                             V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                         }
-                    }
-                    else
-                    {
-                        return;
                     }
                 }
                 else
@@ -624,10 +588,9 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                int level = toChucTreeListView1.SelectedItems[0].Level;
+                //int level = toChucTreeListView1.SelectedItems[0].Level;
                 //if (level != ) return;
-
-                var tag = toChucTreeListView1.SelectedItems[0].Tag;
+                //var tag = toChucTreeListView1.SelectedItems[0].Tag;
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
@@ -638,15 +601,12 @@ namespace V6ControlManager.FormManager.NhanSu
                     tableName = "Hrpersonal";
                     IDictionary<string, object> keys = new Dictionary<string, object>();
 
-                    if (fSort == 9)
+                    keys["STT_REC"] = selectedItemData["NODE"];
+                    var selectResult = V6BusinessHelper.Select(tableName, keys, "*");
+                    if (selectResult.TotalRows == 1)
                     {
-                        keys["STT_REC"] = selectedItemData["NODE"];
-                        var selectResult = V6BusinessHelper.Select(tableName, keys, "*");
-                        if (selectResult.TotalRows == 1)
-                        {
-                            var row = selectResult.Data.Rows[0];
-                            someData = row.ToDataDictionary();
-                        }
+                        var row = selectResult.Data.Rows[0];
+                        someData = row.ToDataDictionary();
                     }
                 }
                 else
@@ -688,14 +648,14 @@ namespace V6ControlManager.FormManager.NhanSu
         {
              try
             {
-                int level = toChucTreeListView1.SelectedItems[0].Level;
+                //int level = toChucTreeListView1.SelectedItems[0].Level;
                 //if (level != ) return;
 
-                var tag = toChucTreeListView1.SelectedItems[0].Tag;
+                //var tag = toChucTreeListView1.SelectedItems[0].Tag;
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
-                IDictionary<string, object> someData = new SortedDictionary<string, object>();
+                //IDictionary<string, object> someData = new SortedDictionary<string, object>();
                 AldmConfig aldm_config = new AldmConfig();
                 V6lookupConfig v6lookup_config = new V6lookupConfig();
                 string reportFile = "", reportTitle = "", reportTitle2 = "";
@@ -728,8 +688,6 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     V6ControlFormHelper.NoRightWarning();
                 }
-                    
-                
             }
             catch (Exception ex)
             {
@@ -739,22 +697,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
         #endregion do method
 
-
-        /// <summary>
-        /// Được gọi từ DanhMucControl
-        /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="sort"></param>
-        public void LoadTable(string tableName, string sort)
-        {
-            SelectResult = new V6SelectResult();
-            CloseFilterForm();
-            int pageSize = 0;
-            
-            LoadData(tableName, 1, pageSize, sort, true);
-        }
-
-        private void LoadData(string tableName, int page, int size, string sortField, bool ascending)
+        private void LoadData()
         {
             try
             {
@@ -781,13 +724,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _procedure), ex);
             }
         }
-
-        private void LoadAtPage(int page)
-        {
-            LoadData(TABLE_NAME, page, 0, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-        }
-
-
+        
         public void ViewResultToForm()
         {
             AldmConfig config = ConfigManager.GetAldmConfigByTableName(_procedure);
@@ -805,56 +742,6 @@ namespace V6ControlManager.FormManager.NhanSu
                     : (V6Setting.IsVietnamese ? "(Đã lọc)" : "(filtered)"));
         }
 
-
-        public void First()
-        {
-            try {
-                LoadData(TABLE_NAME, 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _procedure, ex.Message));
-            }
-        }
-
-        public void Previous()
-        {
-            try {
-                LoadData(TABLE_NAME, SelectResult.Page - 1, SelectResult.PageSize,
-                SelectResult.SortField, SelectResult.IsSortOrderAscending);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _procedure, ex.Message));
-            }
-        }
-
-        public void Next()
-        {
-            try
-            {
-                if (SelectResult.Page == SelectResult.TotalPages) return;
-                LoadData(TABLE_NAME, SelectResult.Page + 1, SelectResult.PageSize,
-                    SelectResult.SortField, SelectResult.IsSortOrderAscending);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _procedure, ex.Message));
-            }
-        }
-
-        public void Last()
-        {
-            try {
-                LoadData(TABLE_NAME, SelectResult.TotalPages, SelectResult.PageSize,
-                SelectResult.SortField, SelectResult.IsSortOrderAscending);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _procedure, ex.Message));
-            }
-        }
-
         /// <summary>
         /// Reload and setFormatGridView
         /// </summary>
@@ -862,8 +749,7 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                LoadData(TABLE_NAME, SelectResult.Page, SelectResult.PageSize,
-                    SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -902,7 +788,6 @@ namespace V6ControlManager.FormManager.NhanSu
         private void f_InsertSuccess(IDictionary<string, object> data)
         {
             ReLoad();
-            //treeListViewAuto1.AddData(data);
         }
 
         /// <summary>
@@ -920,7 +805,6 @@ namespace V6ControlManager.FormManager.NhanSu
         }
 
 
-        private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
@@ -1002,13 +886,13 @@ namespace V6ControlManager.FormManager.NhanSu
         void FilterFilterApplyEvent(string query)
         {
             _search = query;
-            LoadAtPage(1);
+            ReLoad();
         }
 
         private void btnAll_Click(object sender, EventArgs e)
         {
             _search = "";
-            LoadAtPage(1);
+            ReLoad();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -1054,15 +938,6 @@ namespace V6ControlManager.FormManager.NhanSu
             V6ControlFormHelper.SetStatusText2(status2text);
         }
         
-        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            e.Column.SortMode = DataGridViewColumnSortMode.Programmatic;
-            if (_hideColumnDic.ContainsKey(e.Column.DataPropertyName.ToUpper()))
-            {
-                e.Column.Visible = false;
-            }
-        }
-
         private void btnFull_Click(object sender, EventArgs e)
         {
             var container = Parent;

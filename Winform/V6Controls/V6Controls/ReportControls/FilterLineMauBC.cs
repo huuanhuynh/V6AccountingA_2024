@@ -12,6 +12,7 @@ using V6Init;
 using V6Structs;
 using V6Tools;
 
+// ReSharper disable once CheckNamespace
 namespace V6ReportControls
 {
     public partial class FilterLineMauBC : FilterLineDynamic
@@ -38,7 +39,7 @@ namespace V6ReportControls
             }
         }
 
-        private DataTable maubcData = null;
+        private DataTable maubcData;
         private void LoadAlmaubc()
         {
             try
@@ -216,7 +217,7 @@ namespace V6ReportControls
                 }
                 else
                 {
-                    var f = new FormAddEdit(CurrentTable);
+                    var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, null);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl(FindParent<V6FormControl>());
                     f.InsertSuccessEvent += f_InsertSuccess;

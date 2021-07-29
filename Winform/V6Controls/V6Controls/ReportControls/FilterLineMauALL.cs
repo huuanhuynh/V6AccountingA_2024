@@ -38,7 +38,7 @@ namespace V6ReportControls
             }
         }
 
-        private DataTable cboData = null;
+        private DataTable cboData;
         private void LoadDanhSach()
         {
             try
@@ -221,7 +221,7 @@ namespace V6ReportControls
                 }
                 else
                 {
-                    var f = new FormAddEdit(TableName);
+                    var f = new FormAddEdit(TableName, V6Mode.Add, null, null);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl(FindParent<V6FormControl>());
                     f.InsertSuccessEvent += f_InsertSuccess;

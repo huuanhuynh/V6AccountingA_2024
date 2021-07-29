@@ -168,7 +168,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     }
                     else
                     {
-                        var f = new FormAddEdit(CurrentTable.ToString());
+                        var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, null, null);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl(FindParent<V6FormControl>());
                         f.InsertSuccessEvent += f_InsertSuccess;

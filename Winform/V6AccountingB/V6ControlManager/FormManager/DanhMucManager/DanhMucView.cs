@@ -594,7 +594,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else
                 {
-                    f = new FormAddEdit(_MA_DM);
+                    f = new FormAddEdit(_MA_DM, V6Mode.Add, null, null);
                     f.AfterInitControl += f_AfterInitControl;
                     //f.InsertSuccessEvent += f_InsertSuccess;
                     f.InitFormControl(this);
@@ -1261,70 +1261,60 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     PhanNhomForm form = new PhanNhomForm("Alnhkh", "Alkh");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhvt)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhvt", "Alvt");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhvv)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhvv", "Alvv");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhvitri)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhvitri", "Alvitri");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhphi)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhphi", "Alphi");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhts)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhts", "Alts");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhcc)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhcc", "Alcc");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhhd)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhhd", "Alhd");
                     
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhtk)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhtk", "Altk0");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (name == V6TableName.Alnhku)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhku", "Alku");
 
                     form.ShowDialog(this);
-                    return;
                 }
                 else if (_aldmConfig.IS_ALDM && _aldmConfig.IsGroup)
                 {
@@ -1334,7 +1324,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         PhanNhomForm form = new PhanNhomForm(_MA_DM, sss[0], sss[1], sss[2]);
                         form.ShowDialog(this);
-                        return;
                     }
                 }
             }

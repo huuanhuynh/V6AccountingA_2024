@@ -48,8 +48,8 @@ namespace V6ControlManager.FormManager.NhanSu
             
             InitFilter = initFilter;
             SelectResult = new V6SelectResult();
-
-            LoadTable(TABLE_NAME, sort);
+            CloseFilterForm();
+            LoadTable(TABLE_NAME, GetWhere(), sort);
         }
 
         private void NhanSuView2_Load(object sender, EventArgs e)
@@ -464,22 +464,15 @@ namespace V6ControlManager.FormManager.NhanSu
 
 
         /// <summary>
-        /// Được gọi từ DanhMucControl
+        /// 
         /// </summary>
         /// <param name="tableName"></param>
-        /// <param name="sort"></param>
-        public void LoadTable(string tableName, string sort)
+        /// <param name="where"></param>
+        /// <param name="sortField"></param>
+        private void LoadTable(string tableName, string where, string sortField)
         {
-            SelectResult = new V6SelectResult();
-            CloseFilterForm();
-            int pageSize = 0;
-            
-            LoadTable(tableName, 1, pageSize, GetWhere(), sort, true);
-        }
-
-        private void LoadTable(string tableName, int page, int size, string where, string sortField, bool ascending)
-        {
-            try {
+            try
+            {
                 TABLE_NAME = tableName.ToUpper();
 
                 _last_filter = GetNewWhere(where);
@@ -520,13 +513,7 @@ namespace V6ControlManager.FormManager.NhanSu
             string listParent = V6BusinessHelper.ExecuteProcedureScalar("VPH_GetParentNodeList", plist).ToString().Trim();
             return string.Format("{0} or(dbo.VFV_InList0(node,'{1}',',')=1)", where, listParent);
         }
-
-        private void LoadAtPage(int page)
-        {
-            LoadTable(TABLE_NAME, page, 0, SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-        }
-
-
+        
         public void ViewResultToForm()
         {
             #region --- NhanSuTreeView
@@ -554,7 +541,9 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                LoadTable(TABLE_NAME, "");
+                SelectResult = new V6SelectResult();
+                CloseFilterForm();
+                LoadTable(TABLE_NAME, GetWhere(), SelectResult.SortField);
             }
             catch (Exception ex)
             {

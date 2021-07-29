@@ -12,7 +12,6 @@ using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.NhanSu
 {
@@ -28,11 +27,7 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                //vTitle, eTitle
-                var groupFields = ObjectAndString.SplitString(_v6LookupConfig.vTitle);
-                var groupNameFields = ObjectAndString.SplitString(_v6LookupConfig.eTitle);
                 
-                //LoadListMenu();
             }
             catch (Exception ex)
             {
@@ -44,18 +39,15 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             m_itemId = itemId;
             Title = title;
-            _tableName = tableName;
-            _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+            TABLE_NAME = tableName.ToUpper();
+            _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(TABLE_NAME);
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
 
             InitializeComponent();
             MyInit();
             
-            _hideColumnDic = _categories.GetHideColumns(tableName);
             InitFilter = initFilter;
             SelectResult = new V6SelectResult();
-
-            //SetFormatGridView();
 
             if (CurrentTable == V6TableName.V_alts || CurrentTable == V6TableName.V_alcc
                 || CurrentTable == V6TableName.V_alts01 || CurrentTable == V6TableName.V_alcc01)
@@ -65,13 +57,13 @@ namespace V6ControlManager.FormManager.NhanSu
                 btnIn.Visible = false;
             }
 
+            CloseFilterForm();
             LoadTable(CurrentTable, sort);
         }
 
         private void NhanSuView_Load(object sender, EventArgs e)
         {
             FormManagerHelper.HideMainMenu();
-            //dataGridView01.Focus();
             if (CurrentTable == V6TableName.Hlns)
             {
                 KeyFields = new[] { "MA_BP", "MA_CV", "MA_NS" };
@@ -79,10 +71,8 @@ namespace V6ControlManager.FormManager.NhanSu
             MakeStatus2Text();
         }
 
-        private readonly V6Categories _categories = new V6Categories();
-        private SortedDictionary<string, string> _hideColumnDic; 
-        private string _tableName;
-        private string _viewName = "VPRDMNSTREE";
+        private string TABLE_NAME;
+        private string VIEW_NAME = "VPRDMNSTREE";
         private V6lookupConfig _v6LookupConfig;
         private AldmConfig _aldmConfig = new AldmConfig();
         [DefaultValue(V6TableName.None)]
@@ -135,11 +125,6 @@ namespace V6ControlManager.FormManager.NhanSu
             btnCopy.Enabled = btnThem.Enabled;
         }
         
-        private void SetFormatGridView()
-        {
-            
-        }
-
         #region ==== Do method ====
 
         public override void DoHotKey(Keys keyData)
@@ -152,22 +137,13 @@ namespace V6ControlManager.FormManager.NhanSu
                 }
                 else if (keyData == Keys.F9)
                 {
-                    //if (!V6BusinessHelper.CheckRightKey("", "F9", _tableName)) return;
-                    //All_Objects["dataGridView1"] = dataGridView1;
-                    //InvokeFormEvent(FormDynamicEvent.F9);
+                    if (!V6BusinessHelper.CheckRightKey("", "F9", TABLE_NAME)) return;
+                    InvokeFormEvent(FormDynamicEvent.F9);
                 }
                 else if (keyData == Keys.Up || keyData == Keys.Down || keyData == Keys.Left || keyData == Keys.Right)
                 {
                     return;
                 }
-                //else if (keyData == Keys.PageUp)
-                //{
-                //    if (btnPrevious.Enabled) btnPrevious.PerformClick();
-                //}
-                //else if (keyData == Keys.PageDown)
-                //{
-                //    if (btnNext.Enabled) btnNext.PerformClick();
-                //}
             }
             catch (Exception ex)
             {
@@ -224,7 +200,6 @@ namespace V6ControlManager.FormManager.NhanSu
                                 //if (treeListViewAuto1.SelectedItems[0].Level != 2)
                                 {
                                     DoNothing();
-                                    return;
                                 }
                             }
                         }
@@ -410,10 +385,7 @@ namespace V6ControlManager.FormManager.NhanSu
             }
         }
 
-        private void FCallReloadEvent(object sender, EventArgs eventArgs)
-        {
-            ReLoad();
-        }
+        
         /// <summary>
         /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
@@ -423,12 +395,6 @@ namespace V6ControlManager.FormManager.NhanSu
             try
             {
                 ReLoad();
-
-                //if (data == null) return;
-                //var dictionary = new SortedDictionary<string, string>();
-                //dictionary.AddRange(data);
-                //treeListViewAuto1.UpdateSelectedItemData(data);
-                //SetFormatGridView();
             }
             catch (Exception ex)
             {
@@ -450,14 +416,12 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        //DataGridViewRow row = dataGridView01.GetFirstSelectedRow();
                         if (treeListViewAuto1.SelectedItems[0] != null)
-                            //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                         {
                             IDictionary<string, object> data = new SortedDictionary<string, object>();
                             data.AddRange(treeListViewAuto1.SelectedItems[0].ToNhanSuDictionary());
 
-                            var f = DanhMucManager.ChangeCode.ChangeCodeManager.GetChangeCodeControl(_tableName, data);
+                            var f = DanhMucManager.ChangeCode.ChangeCodeManager.GetChangeCodeControl(TABLE_NAME, data);
                             if (f != null)
                             {
                                 f.DoChangeCodeFinish += f_DoChangeCodeFinish;
@@ -477,7 +441,7 @@ namespace V6ControlManager.FormManager.NhanSu
              }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, TABLE_NAME, ex.Message));
             }
         }
 
@@ -506,7 +470,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         {
                             if(data.ContainsKey(id.ToUpper()))
                                 value = data[id.ToUpper()].ToString().Trim();
-                            var v = _categories.IsExistOneCode_List(listTable, id, value);
+                            var v = V6BusinessHelper.IsExistOneCode_List(listTable, id, value);
                             if (v)
                             {
                                 //khong duoc
@@ -534,7 +498,7 @@ namespace V6ControlManager.FormManager.NhanSu
                                 {
                                     isDeleted = 1;
                                 }
-                                if (_categories.Delete(CurrentTable, keys) > 0)
+                                if (V6BusinessHelper.Delete(CurrentTable, keys) > 0)
                                 {
                                     isDeleted++;
                                 }
@@ -643,7 +607,7 @@ namespace V6ControlManager.FormManager.NhanSu
                     bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                     bool is_DX = _aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("XTRAREPORT") && _aldmConfig.EXTRA_INFOR["XTRAREPORT"] == "1";
                     if (shift) is_DX = !is_DX;
-                    FormManagerHelper.ShowDanhMucPrint(this, _tableName, ReportFile, ReportTitle, ReportTitle2, true, is_DX);
+                    FormManagerHelper.ShowDanhMucPrint(this, TABLE_NAME, ReportFile, ReportTitle, ReportTitle2, true, is_DX);
                 }
                 else
                 {
@@ -652,7 +616,7 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, TABLE_NAME, ex.Message));
             }
         }
 
@@ -660,28 +624,18 @@ namespace V6ControlManager.FormManager.NhanSu
 
 
         /// <summary>
-        /// Được gọi từ DanhMucControl
+        /// 
         /// </summary>
         /// <param name="tableName"></param>
-        /// <param name="sort"></param>
-        public void LoadTable(V6TableName tableName, string sort)
-        {
-            SelectResult = new V6SelectResult();
-            CloseFilterForm();
-            int pageSize = 0;
-            
-            LoadTable(tableName, 1, pageSize, sort, true);
-        }
-
-        private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
+        /// <param name="sortField"></param>
+        private void LoadTable(V6TableName tableName, string sortField)
         {
             try
             {
                 CurrentTable = tableName;
 
-                //var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(where), sortField, ascending);
                 _last_filter = GetWhere();
-                var sr = V6BusinessHelper.Select(_viewName, "*", _last_filter, "", sortField);
+                var sr = V6BusinessHelper.Select(VIEW_NAME, "*", _last_filter, "", sortField);
                 
                 SelectResult.Data = sr.Data;
                 
@@ -699,100 +653,37 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _viewName), ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, VIEW_NAME), ex);
             }
         }
-
-        private void LoadAtPage(int page)
-        {
-            LoadTable(CurrentTable, page, 0, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-        }
-
-
+        
         public void ViewResultToForm()
         {
-            #region --- NhanSuTreeView
-
-            //nhanSuTreeView1.FieldsHeaderDictionary = SelectResult.FieldsHeaderDictionary;
-            //nhanSuTreeView1.HideColumnDic = _hideColumnDic;
-            //nhanSuTreeView1.DataSource = SelectResult.Data;
-            //LoadSelectedCellLocation(dataGridView1);
-
             string showFields = _v6LookupConfig.GRDS_V1;
             string headerString = V6Setting.IsVietnamese ? _v6LookupConfig.GRDHV_V1 : _v6LookupConfig.GRDHE_V1;
             string formatStrings = _v6LookupConfig.GRDF_V1;
             
             treeListViewAuto1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
-            #endregion nhansutreeview
-
-
+            
             lblTotalPage.Text = string.Format(V6Setting.IsVietnamese ? "Tổng cộng: {0} " : "Total {0} ",
                 SelectResult.TotalRows,
                 string.IsNullOrEmpty(_last_filter)
                     ? ""
                     : (V6Setting.IsVietnamese ? "(Đã lọc)" : "(filtered)"));
         }
-
-
-        public void First()
-        {
-            try { 
-            LoadTable(CurrentTable, 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
-            }
-        }
-
-        public void Previous()
-        {
-            try { 
-            LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
-            }
-        }
-
-        public void Next()
-        {
-            try
-            {
-                if (SelectResult.Page == SelectResult.TotalPages) return;
-                LoadTable(CurrentTable, SelectResult.Page + 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
-            }
-        }
-
-        public void Last()
-        {
-            try { 
-            LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
-            }
-        }
-
+        
         /// <summary>
-        /// Reload and setFormatGridView
+        /// Reload
         /// </summary>
         public void ReLoad()
         {
             try
             {
-                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-                //SetFormatGridView();
+                LoadTable(CurrentTable, SelectResult.SortField);
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, TABLE_NAME, ex.Message));
             }
         }
         
@@ -866,7 +757,7 @@ namespace V6ControlManager.FormManager.NhanSu
         }
 
 
-        private IDictionary<string, object> _data = new SortedDictionary<string, object>();
+        //private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
@@ -899,7 +790,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
 
         private FilterForm _filterForm;
-        private string InitFilter;
+        private readonly string InitFilter;
         private string _search;
 
         private string GetWhere()
@@ -956,13 +847,13 @@ namespace V6ControlManager.FormManager.NhanSu
         void FilterFilterApplyEvent(string query)
         {
             _search = query;
-            LoadAtPage(1);
+            ReLoad();
         }
 
         private void btnAll_Click(object sender, EventArgs e)
         {
             _search = "";
-            LoadAtPage(1);
+            ReLoad();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -1008,15 +899,6 @@ namespace V6ControlManager.FormManager.NhanSu
             V6ControlFormHelper.SetStatusText2(status2text);
         }
         
-        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            e.Column.SortMode = DataGridViewColumnSortMode.Programmatic;
-            if (_hideColumnDic.ContainsKey(e.Column.DataPropertyName.ToUpper()))
-            {
-                e.Column.Visible = false;
-            }
-        }
-
         private void btnFull_Click(object sender, EventArgs e)
         {
             var container = Parent;

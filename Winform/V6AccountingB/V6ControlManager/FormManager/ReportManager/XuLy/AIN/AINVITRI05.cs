@@ -479,7 +479,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        f = new FormAddEdit(_tableName);
+                        f = new FormAddEdit(_tableName, V6Mode.Add, null, null);
                     }
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl(this);
