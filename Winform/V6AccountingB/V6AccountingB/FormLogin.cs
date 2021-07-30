@@ -254,9 +254,15 @@ namespace V6AccountingB
 
                 V6Login.MadvcsTotal = countDvcs;
 
-                var key = V6Login.IsAdmin
-                    ? ""
-                    : countDvcs > 0 ? "dbo.VFA_Inlist_MEMO(ma_dvcs, '" + V6Login.UserInfo["r_dvcs"] + "')=1" : "";
+                var key = "";
+                if (V6Login.UserInfo == null)
+                {
+                    key = "1=0";
+                }
+                else if (!V6Login.IsAdmin)
+                {
+                    key = countDvcs > 0 ? "dbo.VFA_Inlist_MEMO(ma_dvcs, '" + V6Login.UserInfo["r_dvcs"] + "')=1" : "";
+                }
                 
                 DataTable agentData = V6Login.GetAgentTable(key);
                 V6Login.MadvcsCount = agentData.Rows.Count;
@@ -326,7 +332,7 @@ namespace V6AccountingB
                     V6Login.SelectedModule = cboModule.SelectedValue.ToString();
                     var dvcs = (cboAgent.SelectedValue ?? "").ToString().Trim();
 
-                    if (V6Login.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim(), dvcs))
+                    if (cboAgent.SelectedIndex >=0 && V6Login.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim(), dvcs))
                     {
                         V6Setting.IsLoggedIn = true;
                         V6ControlsHelper.CreateKtmpDirectory();
@@ -400,7 +406,10 @@ namespace V6AccountingB
                         {
                             DialogResult = DialogResult.No;
                         }
+
                         errorProvider1.SetError(label0, "Nhập sai " + _count + " lần!\n" + V6Login.Message);
+                        txtUserName.Focus();
+                        txtUserName.SelectAll();
                     }
                 }
                 else // Hiển thị form nhập code_name = mahoa (tenmay + 1 + checkcode) 

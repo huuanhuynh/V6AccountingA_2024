@@ -219,6 +219,24 @@ namespace V6AccountingB
         private void ShowDVCS()
         {
             lblDVCS.Text = "Agent: " + V6Login.Madvcs;
+            switch (V6Login.SelectedModule)
+            {
+                case "A": // ACCOUNTING
+                    label2.Top = lblModule.Top;
+                    break;
+                case "H": // HRM
+                    label2.Top = lblModule.Top + 18;
+                    break;
+                case "C": // CRM
+                    label2.Top = lblModule.Top + 18*2;
+                    break;
+                case "I": // INVENTORY
+                    label2.Top = lblModule.Top + 18*3;
+                    break;
+                case "E": // ERP
+                    label2.Top = lblModule.Top + 18*4;
+                    break;
+            }
         }
 
         

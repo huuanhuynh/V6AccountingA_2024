@@ -50,7 +50,6 @@ namespace V6AccountingB
             this.lblStatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.menuMain = new V6Controls.MenuControl();
-            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.panelLogin = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +70,9 @@ namespace V6AccountingB
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
+            this.lblModule = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -423,17 +425,6 @@ namespace V6AccountingB
             this.menuMain.Click += new V6Controls.MenuControl.ButtonClickEventHandler(this.menuMain_Click);
             this.menuMain.Load += new System.EventHandler(this.menuMain_Load);
             // 
-            // quickMenu1
-            // 
-            this.quickMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.quickMenu1.BackColor = System.Drawing.Color.AliceBlue;
-            this.quickMenu1.Location = new System.Drawing.Point(0, 322);
-            this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
-            this.quickMenu1.Name = "quickMenu1";
-            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
-            this.quickMenu1.TabIndex = 0;
-            // 
             // panelLogin
             // 
             this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
@@ -611,6 +602,8 @@ namespace V6AccountingB
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelView.AutoScroll = true;
             this.panelView.BackColor = System.Drawing.Color.Transparent;
+            this.panelView.Controls.Add(this.label2);
+            this.panelView.Controls.Add(this.lblModule);
             this.panelView.Controls.Add(this.lblCompanyName);
             this.panelView.Controls.Add(this.progressBar1);
             this.panelView.Location = new System.Drawing.Point(171, 13);
@@ -659,6 +652,41 @@ namespace V6AccountingB
             this.lblV6Message.Text = ".....";
             this.lblV6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lblModule
+            // 
+            this.lblModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblModule.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModule.Location = new System.Drawing.Point(39, 430);
+            this.lblModule.Name = "lblModule";
+            this.lblModule.Size = new System.Drawing.Size(246, 90);
+            this.lblModule.TabIndex = 2;
+            this.lblModule.Text = "ACCOUNTING\r\nHRM\r\nCRM\r\nINVENTORY\r\nERP";
+            this.lblModule.UseMnemonic = false;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(13, 430);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 18);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "●";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.UseMnemonic = false;
+            // 
+            // quickMenu1
+            // 
+            this.quickMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.quickMenu1.BackColor = System.Drawing.Color.AliceBlue;
+            this.quickMenu1.Location = new System.Drawing.Point(0, 322);
+            this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
+            this.quickMenu1.Name = "quickMenu1";
+            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
+            this.quickMenu1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -681,12 +709,6 @@ namespace V6AccountingB
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
-            this.Controls.SetChildIndex(this.lblV6Message, 0);
-            this.Controls.SetChildIndex(this.panelView, 0);
-            this.Controls.SetChildIndex(this.panelMenuShow, 0);
-            this.Controls.SetChildIndex(this.panelMenu, 0);
-            this.Controls.SetChildIndex(this.statusStrip1, 0);
-            this.Controls.SetChildIndex(this.lblMainMessage, 0);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panelMenu.ResumeLayout(false);
@@ -731,6 +753,8 @@ namespace V6AccountingB
         private System.Windows.Forms.Label lblDVCS;
         private ToolStripMenuItem stickNoteToolStripMenuItem;
         private PictureBox picLOGO;
+        private Label lblModule;
+        private Label label2;
         
     }
 }
