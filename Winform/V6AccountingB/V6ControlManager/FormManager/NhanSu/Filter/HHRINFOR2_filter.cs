@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.NhanSu.View;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Init;
@@ -15,6 +16,26 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
         {
             InitializeComponent();
             SetParentRowEvent += HRAPPFAMILY_filter_SetParentRowEvent;
+            lineMaNS.VvarTextBox.V6LostFocus += VvarTextBox_V6LostFocus;
+            lineMaNS.VvarTextBox.CheckOnLeave = true;
+            lineMaNS.VvarTextBox.F2 = false;
+        }
+
+        void VvarTextBox_V6LostFocus(object sender)
+        {
+            NoGridControl parent = FindParent<NoGridControl>() as NoGridControl;
+            if (parent != null)
+            {
+                parent.btnNhan.PerformClick();
+            }
+            else
+            {
+                OneGridControl parent1 = FindParent<OneGridControl>() as OneGridControl;
+                if (parent1 != null)
+                {
+                    parent1.btnNhan.PerformClick();
+                }
+            }
         }
 
         void HRAPPFAMILY_filter_SetParentRowEvent(IDictionary<string, object> data)
@@ -23,8 +44,6 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
             {
                 if (data.ContainsKey("STT_REC")) txtSttRec.Text = data["STT_REC"].ToString().Trim();
                 if (data.ContainsKey("MA_NS")) lineMaNS.VvarTextBox.Text = data["MA_NS"].ToString().Trim();
-
-                
             }
         }
 

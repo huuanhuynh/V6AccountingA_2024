@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.NhanSu.View;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Init;
@@ -23,9 +24,10 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
             try
             {
                 SetParentRowEvent += HRAPPFAMILY_filter_SetParentRowEvent;
-                lineMaNS.VvarTextBox.CheckNotEmpty = true;
-                lineMaNS.VvarTextBox.CheckOnLeave = true;
+                //lineMaNS.VvarTextBox.CheckNotEmpty = true;
                 lineMaNS.VvarTextBox.V6LostFocus += VvarTextBox_V6LostFocus;
+                lineMaNS.VvarTextBox.CheckOnLeave = true;
+                lineMaNS.VvarTextBox.F2 = false;
             }
             catch (Exception ex)
             {
@@ -35,7 +37,8 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
 
         void VvarTextBox_V6LostFocus(object sender)
         {
-            
+            OneGridControl parent = FindParent<OneGridControl>() as OneGridControl;
+            if (parent != null) parent.btnNhan.PerformClick();
         }
 
         void HRAPPFAMILY_filter_SetParentRowEvent(IDictionary<string, object> data)
@@ -54,7 +57,6 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
                     "stt_rec = '" + txtSttRec.Text.Trim() + "'");
             if (infor.TotalRows > 0)
             {
-
                 if (ObjectAndString.ObjectToString((infor.Data.Rows[0]["MID_NAME"])) != "")
                 {
                     Txtten_ns.Text =
@@ -62,7 +64,7 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
                          infor.Data.Rows[0]["MID_NAME"].ToString().Trim() + " " +
                          infor.Data.Rows[0]["FIRST_NAME"].ToString().Trim()).ToUpper();
 
-                    Txtten_ns.Text = Txtten_ns.Text+"\r\n"+ " ( " + infor.Data.Rows[0]["EMP_ID"].ToString().Trim() + ")";
+                    Txtten_ns.Text = Txtten_ns.Text+ "\r\n ( " + infor.Data.Rows[0]["EMP_ID"].ToString().Trim() + ")";
 
                 }
                 else
@@ -70,30 +72,18 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
                     Txtten_ns.Text = (infor.Data.Rows[0]["LAST_NAME"].ToString().Trim() + " " +
                                       infor.Data.Rows[0]["FIRST_NAME"].ToString().Trim()).ToUpper();
 
-                    Txtten_ns.Text = Txtten_ns.Text + "\r\n" + " ( " + infor.Data.Rows[0]["EMP_ID"].ToString().Trim() + ")";
+                    Txtten_ns.Text = Txtten_ns.Text + "\r\n ( " + infor.Data.Rows[0]["EMP_ID"].ToString().Trim() + ")";
                 }
-
             }
         }
 
-
-        //public override void SetData(IDictionary<string, object> data)
-        //{
-        //    //base.SetData(data);
-        //}
-
+        
         /// <summary>
         /// Lay cac tham so cho procedure
         /// </summary>
         /// <returns>cKey</returns>
-        
         public override List<SqlParameter> GetFilterParameters()
         {
-            //@stt_rec varchar(50),
-            //@ma_ns varchar(50),
-            //@Advance nvarchar(max),
-            //@User_id int =1
-
             var result = new List<SqlParameter>();
 
             if (lineMaNS.VvarTextBox.Data == null) throw new Exception("Chọn ma_ns!");

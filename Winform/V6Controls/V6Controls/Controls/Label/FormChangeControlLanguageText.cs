@@ -62,13 +62,13 @@ namespace V6Controls.Controls.Label
                     listView1.Items.Add(new ListViewItem(new[] { "VietText", string.Format("{0} ({1})", row["V"], ObjectAndString.ObjectToBool(row["CHANGE_V"]) ? "áp dụng" : "không áp dụng") }));
                     listView1.Items.Add(new ListViewItem(new[] {"EngText", row["E"].ToString()}));
                     if(row.Table.Columns.Contains(V6Setting.Language))
-                    listView1.Items.Add(new ListViewItem(new[] {"SelectedLang", row[V6Setting.Language].ToString()}));
+                        listView1.Items.Add(new ListViewItem(new[] {"SelectedLang", row[V6Setting.Language].ToString()}));
                 }
                 else if (_label.AccessibleDescription != ".")
                 {
                     listView1.Items.Add(new ListViewItem(new[] { "Error", "No CorpLan info." }));
 
-                    var parent = V6ControlFormHelper.FindParent<V6Control>(_label) ?? V6ControlFormHelper.FindParent<V6Form>(_label);
+                    Control parent = V6ControlFormHelper.FindParent<V6Control>(_label) ?? (Control) V6ControlFormHelper.FindParent<V6Form>(_label);
                     this.WriteToLog((parent == null ? "" : parent.GetType() + ".") + _label.Name,
                         "No CorpLan info: " + _label.AccessibleDescription);
                 }

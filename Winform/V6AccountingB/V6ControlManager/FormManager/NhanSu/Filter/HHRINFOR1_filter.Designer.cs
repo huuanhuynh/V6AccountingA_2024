@@ -62,7 +62,7 @@
             this.txtSttRec.LeaveColor = System.Drawing.Color.White;
             this.txtSttRec.Location = new System.Drawing.Point(112, 3);
             this.txtSttRec.Name = "txtSttRec";
-            this.txtSttRec.Size = new System.Drawing.Size(100, 20);
+            this.txtSttRec.Size = new System.Drawing.Size(141, 20);
             this.txtSttRec.TabIndex = 5;
             this.txtSttRec.Visible = false;
             this.txtSttRec.VVar = "MA_CT";
@@ -79,7 +79,7 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(0, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(290, 139);
+            this.groupBox1.Size = new System.Drawing.Size(264, 139);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -87,7 +87,6 @@
             // Txtten_ns
             // 
             this.Txtten_ns.AccessibleName = "";
-            this.Txtten_ns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Txtten_ns.BackColor = System.Drawing.Color.AntiqueWhite;
             this.Txtten_ns.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtten_ns.EnterColor = System.Drawing.Color.PaleGreen;
@@ -96,12 +95,12 @@
             this.Txtten_ns.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtten_ns.HoverColor = System.Drawing.Color.Yellow;
             this.Txtten_ns.LeaveColor = System.Drawing.Color.White;
-            this.Txtten_ns.Location = new System.Drawing.Point(16, 74);
+            this.Txtten_ns.Location = new System.Drawing.Point(5, 74);
             this.Txtten_ns.Margin = new System.Windows.Forms.Padding(4);
             this.Txtten_ns.Multiline = true;
             this.Txtten_ns.Name = "Txtten_ns";
             this.Txtten_ns.ReadOnly = true;
-            this.Txtten_ns.Size = new System.Drawing.Size(213, 61);
+            this.Txtten_ns.Size = new System.Drawing.Size(252, 61);
             this.Txtten_ns.TabIndex = 44;
             this.Txtten_ns.TabStop = false;
             // 
@@ -109,11 +108,12 @@
             // 
             this.lineMaNS.AccessibleDescription = "FILTERL00235";
             this.lineMaNS.AccessibleName2 = "MA_NS";
+            this.lineMaNS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaNS.Caption = "Mã nhân sự";
             this.lineMaNS.FieldName = "MA_NS";
-            this.lineMaNS.Location = new System.Drawing.Point(0, 47);
+            this.lineMaNS.Location = new System.Drawing.Point(2, 47);
             this.lineMaNS.Name = "lineMaNS";
-            this.lineMaNS.Size = new System.Drawing.Size(284, 22);
+            this.lineMaNS.Size = new System.Drawing.Size(257, 22);
             this.lineMaNS.TabIndex = 2;
             this.lineMaNS.Vvar = "MA_NS";
             this.lineMaNS.Leave += new System.EventHandler(this.lineMaNS_Leave);
@@ -124,11 +124,12 @@
             this.radOr.AutoSize = true;
             this.radOr.Location = new System.Drawing.Point(133, 18);
             this.radOr.Name = "radOr";
-            this.radOr.Size = new System.Drawing.Size(156, 17);
+            this.radOr.Size = new System.Drawing.Size(47, 17);
             this.radOr.TabIndex = 1;
             this.radOr.TabStop = true;
-            this.radOr.Text = "Một trong các điều kiện (or)";
+            this.radOr.Text = "(OR)";
             this.radOr.UseVisualStyleBackColor = true;
+            this.radOr.Visible = false;
             // 
             // radAnd
             // 
@@ -137,11 +138,12 @@
             this.radAnd.Checked = true;
             this.radAnd.Location = new System.Drawing.Point(4, 18);
             this.radAnd.Name = "radAnd";
-            this.radAnd.Size = new System.Drawing.Size(130, 17);
+            this.radAnd.Size = new System.Drawing.Size(54, 17);
             this.radAnd.TabIndex = 0;
             this.radAnd.TabStop = true;
-            this.radAnd.Text = "Tất cả điều kiện (and)";
+            this.radAnd.Text = "(AND)";
             this.radAnd.UseVisualStyleBackColor = true;
+            this.radAnd.Visible = false;
             // 
             // HHRINFOR1_filter
             // 
@@ -151,7 +153,7 @@
             this.Controls.Add(this.txtSttRec);
             this.Controls.Add(this.groupBox1);
             this.Name = "HHRINFOR1_filter";
-            this.Size = new System.Drawing.Size(296, 174);
+            this.Size = new System.Drawing.Size(265, 174);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

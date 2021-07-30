@@ -337,6 +337,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             if (errors.Length > 0) throw new Exception(errors);
 
+            string s = txtTenLoai0.Text.Trim() + "/" + txtten_loai.Text.Trim();
+            if (s!= "/") DataDic["TEN_LOAI"] = s;
             V6ControlFormHelper.UpdateDKlistAll(DataDic, new []{"MA_CT"}, AD);
         }
 
@@ -609,15 +611,15 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private void txtloai_pbcp_TextChanged(object sender, EventArgs e)
+        private void txtloai_PBCP_TextChanged(object sender, EventArgs e)
         {
-            string list_loai = ",04,A1,A3,A4,A5,";
+            if (!IsReady) return;
 
-            if (list_loai.Contains(","+txtloai_pbcp.Text.Trim()+","))
+            string list_loai = ",04,A1,A3,A4,A5,";
+            if (list_loai.Contains(","+txtloai_PBCP.Text.Trim()+","))
             {
                 txttk_cp.Enabled = true;
                 txtTk_dt.Enabled = true;
-
             }
             else
             {
@@ -626,12 +628,34 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 txttk_cp.Text = "";
                 txtTk_dt.Text = "";
             }
-
         }
 
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void txtloai_PBCP_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (txtloai_PBCP.Data != null && txtloai_PBCP.Data["MA_TD1"].ToString().Trim() == "TK")
+                {
+                    txttk_cp.Enabled = true;
+                    txtTk_dt.Enabled = true;
+                }
+                else
+                {
+                    txttk_cp.Enabled = false;
+                    txtTk_dt.Enabled = false;
+                    txttk_cp.Text = "";
+                    txtTk_dt.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".detail1_ClickEdit", ex);
+            }
         }
 
     }

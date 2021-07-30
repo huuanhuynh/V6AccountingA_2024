@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
     public partial class OneGridControl : V6FormControl
     {
         public readonly string _formname;
-        public string _stt_rec, _table_name;
+        public string _stt_rec, TABLE_NAME;
         public AldmConfig _aldmConfig;
         public DataTable _gridViewData, _inforData;
         public V6FormControl ThongTinControl1;
@@ -34,7 +34,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             m_itemId = itemID;
             _formname = formname;
-            _table_name = _formname.Substring(1);
+            TABLE_NAME = _formname.Substring(1).ToUpper();
             InitializeComponent();
             MyInit();
         }
@@ -43,7 +43,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
-                _aldmConfig = ConfigManager.GetAldmConfigByTableName(_table_name);
+                _aldmConfig = ConfigManager.GetAldmConfigByTableName(TABLE_NAME);
                 AddFilterControl(_formname);
                 ThongTinControl1 = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
                 if (ThongTinControl1 != null)
@@ -53,8 +53,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     panelControl.Controls.Add(ThongTinControl1);
                     if (ThongTinControl1 is AddEditControlVirtual)
                     {
-                        V6ControlFormHelper.LoadAndSetFormInfoDefine(_table_name, ThongTinControl1, this);
-                        LoadAdvanceControls(ThongTinControl1, _table_name);
+                        V6ControlFormHelper.LoadAndSetFormInfoDefine(TABLE_NAME, ThongTinControl1, this);
+                        LoadAdvanceControls(ThongTinControl1, TABLE_NAME);
                     }
                 }
 
@@ -244,7 +244,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                                 == DialogResult.Yes)
                             {
                                 confirm = true;
-                                t = V6BusinessHelper.Delete(_table_name, keys);
+                                t = V6BusinessHelper.Delete(TABLE_NAME, keys);
 
                                 if (t > 0)
                                 {
@@ -465,7 +465,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
             {
                 if (e.KeyCode == Keys.F3)
                 {
-                    if (V6Login.UserRight.AllowEdit("", _table_name.ToUpper() + "6"))
+                    if (V6Login.UserRight.AllowEdit("", TABLE_NAME.ToUpper() + "6"))
                     {
                         if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
                         {
@@ -483,7 +483,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 }
                 else if (e.KeyCode == Keys.F8)
                 {
-                    if (V6Login.UserRight.AllowDelete("", _table_name.ToUpper() + "6"))
+                    if (V6Login.UserRight.AllowDelete("", TABLE_NAME.ToUpper() + "6"))
                     {
                         if (NO_CONFIG_FPASS(2) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
                         {

@@ -288,7 +288,7 @@ namespace V6Controls.Forms.Editor
                 {
                     listView1.Items.Add(new ListViewItem(new[] { "Error", "No CorpLan info." }));
 
-                    var parent = V6ControlFormHelper.FindParent<V6Control>(_control) ?? V6ControlFormHelper.FindParent<V6Form>(_control);
+                    Control parent = V6ControlFormHelper.FindParent<V6Control>(_control) ?? (Control)V6ControlFormHelper.FindParent<V6Form>(_control);
                     this.WriteToLog((parent == null ? "" : parent.GetType() + ".") + _control.Name,
                         "No CorpLan info: " + _control.AccessibleDescription);
                 }

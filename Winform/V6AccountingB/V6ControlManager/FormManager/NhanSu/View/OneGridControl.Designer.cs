@@ -160,7 +160,7 @@
         private System.Windows.Forms.Panel panelControl;
         private System.Windows.Forms.Panel panelFilter;
         protected System.Windows.Forms.Button btnHuy;
-        protected System.Windows.Forms.Button btnNhan;
+        public System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.Panel panelControl2;
     }
 }

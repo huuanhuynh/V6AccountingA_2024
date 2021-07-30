@@ -31,9 +31,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
@@ -46,7 +46,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam = new V6Controls.V6NumberTextBox();
             this.txtten_loai = new V6Controls.V6LabelTextBox();
             this.txtLoai_PBCP0 = new V6Controls.V6VvarTextBox();
-            this.txtloai_pbcp = new V6Controls.V6VvarTextBox();
+            this.txtloai_PBCP = new V6Controls.V6VvarTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabThongTinChinh.Controls.Add(this.TxtNam);
             this.tabThongTinChinh.Controls.Add(this.txtten_loai);
             this.tabThongTinChinh.Controls.Add(this.txtLoai_PBCP0);
-            this.tabThongTinChinh.Controls.Add(this.txtloai_pbcp);
+            this.tabThongTinChinh.Controls.Add(this.txtloai_PBCP);
             this.tabThongTinChinh.Controls.Add(this.label4);
             this.tabThongTinChinh.Controls.Add(this.label5);
             this.tabThongTinChinh.Controls.Add(this.checkBox1);
@@ -313,28 +313,27 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLoai_PBCP0.Size = new System.Drawing.Size(150, 23);
             this.txtLoai_PBCP0.TabIndex = 11;
             this.txtLoai_PBCP0.VVar = "LOAI_PBCP0";
-            this.txtLoai_PBCP0.TextChanged += new System.EventHandler(this.txtloai_pbcp_TextChanged);
             // 
-            // txtloai_pbcp
+            // txtloai_PBCP
             // 
-            this.txtloai_pbcp.AccessibleName = "LOAI_PBCP";
-            this.txtloai_pbcp.BackColor = System.Drawing.Color.White;
-            this.txtloai_pbcp.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtloai_pbcp.BrotherFields = "TEN_LOAI";
-            this.txtloai_pbcp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtloai_pbcp.CheckNotEmpty = true;
-            this.txtloai_pbcp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtloai_pbcp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtloai_pbcp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtloai_pbcp.HoverColor = System.Drawing.Color.Yellow;
-            this.txtloai_pbcp.LeaveColor = System.Drawing.Color.White;
-            this.txtloai_pbcp.Location = new System.Drawing.Point(150, 133);
-            this.txtloai_pbcp.Name = "txtloai_pbcp";
-            this.txtloai_pbcp.NeighborFields = "TEN_LOAI1";
-            this.txtloai_pbcp.Size = new System.Drawing.Size(150, 23);
-            this.txtloai_pbcp.TabIndex = 14;
-            this.txtloai_pbcp.VVar = "LOAI_PBCP";
-            this.txtloai_pbcp.TextChanged += new System.EventHandler(this.txtloai_pbcp_TextChanged);
+            this.txtloai_PBCP.AccessibleName = "LOAI_PBCP";
+            this.txtloai_PBCP.BackColor = System.Drawing.Color.White;
+            this.txtloai_PBCP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtloai_PBCP.BrotherFields = "TEN_LOAI";
+            this.txtloai_PBCP.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtloai_PBCP.CheckNotEmpty = true;
+            this.txtloai_PBCP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtloai_PBCP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtloai_PBCP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtloai_PBCP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtloai_PBCP.LeaveColor = System.Drawing.Color.White;
+            this.txtloai_PBCP.Location = new System.Drawing.Point(150, 133);
+            this.txtloai_PBCP.Name = "txtloai_PBCP";
+            this.txtloai_PBCP.NeighborFields = "TEN_LOAI1";
+            this.txtloai_PBCP.Size = new System.Drawing.Size(150, 23);
+            this.txtloai_PBCP.TabIndex = 14;
+            this.txtloai_PBCP.VVar = "LOAI_PBCP";
+            this.txtloai_PBCP.V6LostFocus += new V6Controls.ControlEventHandle(this.txtloai_PBCP_V6LostFocus);
             // 
             // label4
             // 
@@ -376,7 +375,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtten_bpht.AccessibleName = "ten_bpht";
             this.txtten_bpht.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtten_bpht.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtten_bpht.Location = new System.Drawing.Point(325, 87);
+            this.txtten_bpht.Location = new System.Drawing.Point(318, 87);
             this.txtten_bpht.Name = "txtten_bpht";
             this.txtten_bpht.ReadOnly = true;
             this.txtten_bpht.Size = new System.Drawing.Size(438, 16);
@@ -417,7 +416,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtten_tk.AccessibleName = "ten_tk";
             this.txtten_tk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtten_tk.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtten_tk.Location = new System.Drawing.Point(325, 60);
+            this.txtten_tk.Location = new System.Drawing.Point(318, 60);
             this.txtten_tk.Name = "txtten_tk";
             this.txtten_tk.ReadOnly = true;
             this.txtten_tk.Size = new System.Drawing.Size(439, 16);
@@ -1417,20 +1416,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TK,
@@ -1442,8 +1441,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(886, 199);
             this.dataGridView1.TabIndex = 1;
@@ -1557,7 +1556,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC0;
         private V6LabelTextBox txtten_loai;
-        private V6VvarTextBox txtloai_pbcp;
+        private V6VvarTextBox txtloai_PBCP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private V6NumberTextBox TxtNam;

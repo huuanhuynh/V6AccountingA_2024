@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -10,6 +11,7 @@ using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
+using V6Init;
 using V6Structs;
 using V6Tools;
 
@@ -17,20 +19,23 @@ namespace V6ControlManager.FormManager.NhanSu.View
 {
     public partial class NoGridControl : V6FormControl
     {
-        private readonly string _formname;
-        private string _stt_rec, _table_name;
-        private V6FormControl ThongTinControl;
-        private V6FormControl ThongTinControl2;
+        private readonly string FORM_NAME;
+        private string _stt_rec, TABLE_NAME;
+        private AldmConfig _aldmConfig;
+        private V6FormControl TopControl;
+        private V6FormControl BottomControl;
+
         public NoGridControl()
         {
             InitializeComponent();
         }
 
-        public NoGridControl(string itemID, string formname)
+        public NoGridControl(string itemID, string formName)
         {
             m_itemId = itemID;
-            _formname = formname;
-            _table_name = _formname.Substring(1);
+            FORM_NAME = formName;
+            TABLE_NAME = FORM_NAME.Substring(1).ToUpper();
+            _aldmConfig = ConfigManager.GetAldmConfigByTableName(TABLE_NAME);
             InitializeComponent();
             MyInit();
         }
@@ -39,26 +44,75 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
-                AddFilterControl(_formname);
-                ThongTinControl = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
-                if (ThongTinControl != null)
+                AddFilterControl(FORM_NAME);
+                BottomControl = NhanSuManager.GetControl(ItemID, FORM_NAME) as V6FormControl;
+                if (BottomControl != null)
                 {
-                    ThongTinControl.Dock = DockStyle.Fill;
-                    panelControl.Controls.Add(ThongTinControl);
+                    BottomControl.Dock = DockStyle.Fill;
+                    panelBottom.Controls.Add(BottomControl);
                 }
 
-                ThongTinControl2 = NhanSuManager.GetControl(ItemID, "HINFOR_NS") as V6FormControl;
-                if (ThongTinControl2 != null)
+                TopControl = NhanSuManager.GetControl(ItemID, "HINFOR_NS") as V6FormControl;
+                if (TopControl != null)
                 {
-                    V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl2, true);
-                    panelControl2.Controls.Add(ThongTinControl2);
+                    V6ControlFormHelper.SetFormControlsReadOnly(TopControl, true);
+                    panelTop.Controls.Add(TopControl);
                 }
 
-                // SetData...
+                All_Objects["thisForm"] = this;
+                CreateFormProgram();
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _formname), ex);
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, FORM_NAME), ex);
+            }
+        }
+
+        private void NoGridControl_Load(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.INIT2);
+        }
+
+        protected void CreateFormProgram()
+        {
+            try
+            {
+                All_Objects["thisForm"] = this;
+                //DMETHOD
+                if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
+                {
+                    return;
+                }
+
+                string using_text = "";
+                string method_text = "";
+                //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+                {
+                    var xml = _aldmConfig.DMETHOD;
+                    if (xml == "") return;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) return;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    }
+                }
+
+                Build:
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
             }
         }
 
@@ -76,10 +130,10 @@ namespace V6ControlManager.FormManager.NhanSu.View
             {
                 //SaveSelectedCellLocation
 
-                var CurrentTable = V6TableHelper.ToV6TableName(_formname.Substring(1));
+                var CurrentTable = V6TableHelper.ToV6TableName(FORM_NAME.Substring(1));
                 if (CurrentTable == V6TableName.None)
                 {
-                    this.ShowWarningMessage("TableError! " + _formname);
+                    this.ShowWarningMessage("TableError! " + FORM_NAME);
                 }
                 else
                 {
@@ -127,7 +181,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
         public void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, _formname.Substring(1));
+            LoadAdvanceControls((Control)sender, FORM_NAME.Substring(1));
         }
 
         protected void LoadAdvanceControls(Control form, string ma_ct)
@@ -138,63 +192,10 @@ namespace V6ControlManager.FormManager.NhanSu.View
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _formname, ex);
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + FORM_NAME, ex);
             }
         }
 
-        private void DoEdit()
-        {
-            try
-            {
-                //SaveSelectedCellLocation
-                var CurrentTable = V6TableHelper.ToV6TableName(_formname.Substring(1));
-                if (CurrentTable == V6TableName.None)
-                {
-                    this.ShowWarningMessage("TableError! " + CurrentTable);
-                }
-                else
-                {
-                   
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".DoEdit", ex);
-            }
-        }
-
-        private void DoDelete()
-        {
-            try
-            {
-               
-               
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".DoDelete", ex);
-            }
-        }
-
-        /// <summary>
-        /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
-        /// </summary>
-        /// <param name="data">Dữ liệu đã sửa</param>
-        private void f_UpdateSuccess(IDictionary<string, object> data)
-        {
-            try
-            {
-              }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".f_UpdateSuccess", ex);
-            }
-        }
-
-        private void FCallReloadEvent(object sender, EventArgs eventArgs)
-        {
-            ReLoad();
-        }
 
         private void f_InsertSuccess(IDictionary<string, object> data)
         {
@@ -210,7 +211,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
         private void ReLoad()
         {
-            LoadData(_formname);
+            LoadData(FORM_NAME);
         }
 
         public void HideFilterControl()
@@ -220,14 +221,14 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 panelFilter.Visible = false;
                 btnNhan.Visible = false;
                 btnHuy.Visible = false;
-                panelControl.Left = 1;
-                panelControl.Width = Width - 2;
-                panelControl2.Left = 1;
-                panelControl2.Width = Width - 2;
+                panelBottom.Left = 1;
+                panelBottom.Width = Width - 2;
+                panelTop.Left = 1;
+                panelTop.Width = Width - 2;
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _formname), ex);
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, FORM_NAME), ex);
             }
         }
 
@@ -245,24 +246,20 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         break;
                     }
                 }
-                var ds = V6BusinessHelper.ExecuteProcedure(_formname, plist);
+                var ds = V6BusinessHelper.ExecuteProcedure(FORM_NAME, plist);
                 if (ds.Tables.Count > 0)
                 {
                     DataRow datarow = ds.Tables[0].Rows[0];
                     var dataDic = datarow.ToDataDictionary();
-                    ThongTinControl2.SetData(dataDic);
-                    ThongTinControl.SetData(dataDic);
-                    //V6ControlFormHelper.SetFormDataRow(ThongTinControl2, datarow);
-                    //V6ControlFormHelper.SetFormDataRow(ThongTinControl, datarow);
+                    TopControl.SetData(dataDic);
+                    BottomControl.SetData(dataDic);
                 }
                 if (ds.Tables.Count > 1)
                 {
                     DataRow datarow = ds.Tables[1].Rows[0];
                     var dataDic = datarow.ToDataDictionary();
                     
-                    ThongTinControl.SetSomeData(dataDic);
-                    //V6ControlFormHelper.SetFormDataRow(ThongTinControl2, datarow);
-                    //V6ControlFormHelper.SetFormDataRow(ThongTinControl, datarow);
+                    BottomControl.SetSomeData(dataDic);
                 }
 
             }
@@ -277,7 +274,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             FilterControl.SetParentRow(nhanSuData);
             //V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
-            ThongTinControl2.SetData(nhanSuData);
+            TopControl.SetData(nhanSuData);
         }
        
        
@@ -291,5 +288,6 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             Dispose();
         }
+        
     }
 }

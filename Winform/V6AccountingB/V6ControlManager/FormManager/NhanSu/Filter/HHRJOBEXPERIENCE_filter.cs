@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.NhanSu.View;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Init;
@@ -23,19 +24,32 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
             try
             {
                 SetParentRowEvent += HRAPPFAMILY_filter_SetParentRowEvent;
-                lineMaNS.VvarTextBox.CheckNotEmpty = true;
-                lineMaNS.VvarTextBox.CheckOnLeave = true;
+                //lineMaNS.VvarTextBox.CheckNotEmpty = true;
                 lineMaNS.VvarTextBox.V6LostFocus += VvarTextBox_V6LostFocus;
+                lineMaNS.VvarTextBox.CheckOnLeave = true;
+                lineMaNS.VvarTextBox.F2 = false;
             }
             catch (Exception ex)
             {
                 this.WriteExLog(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
             }
         }
-
+        
         void VvarTextBox_V6LostFocus(object sender)
         {
-            
+            NoGridControl parent = FindParent<NoGridControl>() as NoGridControl;
+            if (parent != null)
+            {
+                parent.btnNhan.PerformClick();
+            }
+            else
+            {
+                OneGridControl parent1 = FindParent<OneGridControl>() as OneGridControl;
+                if (parent1 != null)
+                {
+                    parent1.btnNhan.PerformClick();
+                }
+            }
         }
 
         void HRAPPFAMILY_filter_SetParentRowEvent(IDictionary<string, object> data)
