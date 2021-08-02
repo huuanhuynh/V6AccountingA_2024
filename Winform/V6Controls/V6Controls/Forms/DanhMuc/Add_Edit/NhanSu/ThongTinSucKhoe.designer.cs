@@ -80,6 +80,7 @@
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabThongTinKhac = new System.Windows.Forms.TabPage();
+            this.btnInfos = new System.Windows.Forms.Button();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
@@ -101,7 +102,7 @@
             this.txtSttRec.Margin = new System.Windows.Forms.Padding(5);
             this.txtSttRec.Name = "txtSttRec";
             this.txtSttRec.Size = new System.Drawing.Size(109, 23);
-            this.txtSttRec.TabIndex = 13;
+            this.txtSttRec.TabIndex = 4;
             this.txtSttRec.Visible = false;
             // 
             // txthealth_type
@@ -123,7 +124,7 @@
             this.txthealth_type.ParentData = null;
             this.txthealth_type.ShowTextField = "";
             this.txthealth_type.Size = new System.Drawing.Size(434, 23);
-            this.txthealth_type.TabIndex = 0;
+            this.txthealth_type.TabIndex = 1;
             this.txthealth_type.ValueField = "";
             // 
             // lblHealthType
@@ -134,7 +135,7 @@
             this.lblHealthType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHealthType.Name = "lblHealthType";
             this.lblHealthType.Size = new System.Drawing.Size(134, 17);
-            this.lblHealthType.TabIndex = 129;
+            this.lblHealthType.TabIndex = 0;
             this.lblHealthType.Text = "Tình trạng sức khỏe";
             // 
             // lblBlood
@@ -145,7 +146,7 @@
             this.lblBlood.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBlood.Name = "lblBlood";
             this.lblBlood.Size = new System.Drawing.Size(76, 17);
-            this.lblBlood.TabIndex = 130;
+            this.lblBlood.TabIndex = 2;
             this.lblBlood.Text = "Nhóm máu";
             // 
             // txtblood
@@ -168,7 +169,7 @@
             this.txtblood.ParentData = null;
             this.txtblood.ShowTextField = "NAME";
             this.txtblood.Size = new System.Drawing.Size(95, 23);
-            this.txtblood.TabIndex = 1;
+            this.txtblood.TabIndex = 3;
             this.txtblood.ValueField = "ID";
             // 
             // lblDiUng
@@ -179,7 +180,7 @@
             this.lblDiUng.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDiUng.Name = "lblDiUng";
             this.lblDiUng.Size = new System.Drawing.Size(49, 17);
-            this.lblDiUng.TabIndex = 132;
+            this.lblDiUng.TabIndex = 5;
             this.lblDiUng.Text = "Dị ứng";
             // 
             // txtallergies
@@ -198,7 +199,7 @@
             this.txtallergies.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtallergies.Name = "txtallergies";
             this.txtallergies.Size = new System.Drawing.Size(185, 23);
-            this.txtallergies.TabIndex = 2;
+            this.txtallergies.TabIndex = 6;
             // 
             // lblBenhTat
             // 
@@ -208,7 +209,7 @@
             this.lblBenhTat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBenhTat.Name = "lblBenhTat";
             this.lblBenhTat.Size = new System.Drawing.Size(61, 17);
-            this.lblBenhTat.TabIndex = 134;
+            this.lblBenhTat.TabIndex = 7;
             this.lblBenhTat.Text = "Bệnh tật";
             // 
             // txtdiseaseds
@@ -227,7 +228,7 @@
             this.txtdiseaseds.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtdiseaseds.Name = "txtdiseaseds";
             this.txtdiseaseds.Size = new System.Drawing.Size(185, 23);
-            this.txtdiseaseds.TabIndex = 3;
+            this.txtdiseaseds.TabIndex = 8;
             // 
             // lblTatNguyen
             // 
@@ -237,7 +238,7 @@
             this.lblTatNguyen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTatNguyen.Name = "lblTatNguyen";
             this.lblTatNguyen.Size = new System.Drawing.Size(80, 17);
-            this.lblTatNguyen.TabIndex = 136;
+            this.lblTatNguyen.TabIndex = 9;
             this.lblTatNguyen.Text = "Tật nguyền";
             // 
             // txthandicaps
@@ -256,7 +257,7 @@
             this.txthandicaps.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txthandicaps.Name = "txthandicaps";
             this.txthandicaps.Size = new System.Drawing.Size(185, 23);
-            this.txthandicaps.TabIndex = 4;
+            this.txthandicaps.TabIndex = 10;
             // 
             // lblTiemVacXin
             // 
@@ -266,7 +267,7 @@
             this.lblTiemVacXin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTiemVacXin.Name = "lblTiemVacXin";
             this.lblTiemVacXin.Size = new System.Drawing.Size(86, 17);
-            this.lblTiemVacXin.TabIndex = 138;
+            this.lblTiemVacXin.TabIndex = 11;
             this.lblTiemVacXin.Text = "Tiêm vắc xin";
             // 
             // txtvaccinations
@@ -285,7 +286,7 @@
             this.txtvaccinations.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtvaccinations.Name = "txtvaccinations";
             this.txtvaccinations.Size = new System.Drawing.Size(185, 23);
-            this.txtvaccinations.TabIndex = 5;
+            this.txtvaccinations.TabIndex = 12;
             // 
             // lblKhac
             // 
@@ -295,7 +296,7 @@
             this.lblKhac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblKhac.Name = "lblKhac";
             this.lblKhac.Size = new System.Drawing.Size(40, 17);
-            this.lblKhac.TabIndex = 140;
+            this.lblKhac.TabIndex = 13;
             this.lblKhac.Text = "Khác";
             // 
             // txtothers
@@ -314,7 +315,7 @@
             this.txtothers.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtothers.Name = "txtothers";
             this.txtothers.Size = new System.Drawing.Size(185, 23);
-            this.txtothers.TabIndex = 6;
+            this.txtothers.TabIndex = 14;
             // 
             // lblChieuCao
             // 
@@ -324,7 +325,7 @@
             this.lblChieuCao.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblChieuCao.Name = "lblChieuCao";
             this.lblChieuCao.Size = new System.Drawing.Size(71, 17);
-            this.lblChieuCao.TabIndex = 142;
+            this.lblChieuCao.TabIndex = 15;
             this.lblChieuCao.Text = "Chiều cao";
             // 
             // lblCanNang
@@ -335,7 +336,7 @@
             this.lblCanNang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCanNang.Name = "lblCanNang";
             this.lblCanNang.Size = new System.Drawing.Size(69, 17);
-            this.lblCanNang.TabIndex = 143;
+            this.lblCanNang.TabIndex = 17;
             this.lblCanNang.Text = "Cân nặng";
             // 
             // lblGhiChu
@@ -346,7 +347,7 @@
             this.lblGhiChu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGhiChu.Name = "lblGhiChu";
             this.lblGhiChu.Size = new System.Drawing.Size(57, 17);
-            this.lblGhiChu.TabIndex = 146;
+            this.lblGhiChu.TabIndex = 19;
             this.lblGhiChu.Text = "Ghi chú";
             // 
             // txtremarks
@@ -365,7 +366,7 @@
             this.txtremarks.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtremarks.Name = "txtremarks";
             this.txtremarks.Size = new System.Drawing.Size(434, 23);
-            this.txtremarks.TabIndex = 9;
+            this.txtremarks.TabIndex = 20;
             // 
             // buttonSua
             // 
@@ -376,7 +377,7 @@
             this.buttonSua.Location = new System.Drawing.Point(10, 393);
             this.buttonSua.Name = "buttonSua";
             this.buttonSua.Size = new System.Drawing.Size(88, 40);
-            this.buttonSua.TabIndex = 10;
+            this.buttonSua.TabIndex = 1;
             this.buttonSua.Tag = "Return, Control";
             this.buttonSua.Text = "&Sửa";
             this.buttonSua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -393,7 +394,7 @@
             this.buttonHuy.Location = new System.Drawing.Point(198, 393);
             this.buttonHuy.Name = "buttonHuy";
             this.buttonHuy.Size = new System.Drawing.Size(88, 40);
-            this.buttonHuy.TabIndex = 12;
+            this.buttonHuy.TabIndex = 4;
             this.buttonHuy.Tag = "Escape";
             this.buttonHuy.Text = "&Hủy";
             this.buttonHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -409,7 +410,7 @@
             this.buttonNhan.Location = new System.Drawing.Point(104, 393);
             this.buttonNhan.Name = "buttonNhan";
             this.buttonNhan.Size = new System.Drawing.Size(88, 40);
-            this.buttonNhan.TabIndex = 11;
+            this.buttonNhan.TabIndex = 3;
             this.buttonNhan.Tag = "Return, Control";
             this.buttonNhan.Text = "&Nhận";
             this.buttonNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -430,7 +431,7 @@
             this.txtheight.Location = new System.Drawing.Point(146, 186);
             this.txtheight.Name = "txtheight";
             this.txtheight.Size = new System.Drawing.Size(95, 23);
-            this.txtheight.TabIndex = 7;
+            this.txtheight.TabIndex = 16;
             this.txtheight.Text = "0,00";
             this.txtheight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtheight.Value = new decimal(new int[] {
@@ -453,7 +454,7 @@
             this.txtweight.Location = new System.Drawing.Point(146, 211);
             this.txtweight.Name = "txtweight";
             this.txtweight.Size = new System.Drawing.Size(95, 23);
-            this.txtweight.TabIndex = 8;
+            this.txtweight.TabIndex = 18;
             this.txtweight.Text = "0,00";
             this.txtweight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtweight.Value = new decimal(new int[] {
@@ -476,7 +477,7 @@
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
             this.v6TabControl1.Size = new System.Drawing.Size(600, 388);
-            this.v6TabControl1.TabIndex = 147;
+            this.v6TabControl1.TabIndex = 0;
             // 
             // tabThongTinChinh
             // 
@@ -979,10 +980,24 @@
             this.tabThongTinKhac.TabIndex = 2;
             this.tabThongTinKhac.Text = "Thông tin khác";
             // 
+            // btnInfos
+            // 
+            this.btnInfos.AccessibleDescription = "ADDEDITB00003";
+            this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInfos.Location = new System.Drawing.Point(336, 404);
+            this.btnInfos.Name = "btnInfos";
+            this.btnInfos.Size = new System.Drawing.Size(256, 29);
+            this.btnInfos.TabIndex = 5;
+            this.btnInfos.TabStop = false;
+            this.btnInfos.Text = "&Thông tin về các trường định nghĩa";
+            this.btnInfos.UseVisualStyleBackColor = true;
+            this.btnInfos.Click += new System.EventHandler(this.btnInfos_Click);
+            // 
             // ThongTinSucKhoe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnInfos);
             this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.buttonSua);
             this.Controls.Add(this.buttonHuy);
@@ -1053,5 +1068,6 @@
         private V6DateTimeColor v6ColorDateTimePick2;
         private V6DateTimeColor v6ColorDateTimePick1;
         private System.Windows.Forms.TabPage tabThongTinKhac;
+        private System.Windows.Forms.Button btnInfos;
     }
 }

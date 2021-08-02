@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
@@ -35,10 +36,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 {
                     LunarDate lunar = new LunarDate((DateTime)date);
                     lblAmLich.Text = lunar.ToString();
+
+                    lblTuoi.Text = TinhTuoi((DateTime)date) + " T";
                 }
                 else
                 {
                     lblAmLich.Text = "";
+                    lblTuoi.Text = "";
                 }
             }
             catch
@@ -47,5 +51,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             }
         }
 
+        private int TinhTuoi(DateTime date)
+        {
+            return V6Setting.M_SV_DATE.Year - date.Year;
+        }
     }
 }

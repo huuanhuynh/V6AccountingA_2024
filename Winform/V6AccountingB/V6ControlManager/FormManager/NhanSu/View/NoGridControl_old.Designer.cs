@@ -28,49 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelControl2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this.panelFull = new System.Windows.Forms.Panel();
+            this.panelFull.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelControl2
+            // panelTop
             // 
-            this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl2.AutoScroll = true;
-            this.panelControl2.Location = new System.Drawing.Point(0, 0);
-            this.panelControl2.Margin = new System.Windows.Forms.Padding(0);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(441, 56);
-            this.panelControl2.TabIndex = 4;
+            this.panelTop.AutoScroll = true;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(441, 56);
+            this.panelTop.TabIndex = 4;
             // 
-            // panel1
+            // panelFull
             // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.panelControl2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(441, 330);
-            this.panel1.TabIndex = 2;
+            this.panelFull.AutoScroll = true;
+            this.panelFull.Controls.Add(this.panelTop);
+            this.panelFull.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFull.Location = new System.Drawing.Point(0, 0);
+            this.panelFull.Margin = new System.Windows.Forms.Padding(0);
+            this.panelFull.Name = "panelFull";
+            this.panelFull.Size = new System.Drawing.Size(441, 330);
+            this.panelFull.TabIndex = 2;
             // 
-            // NoGridControl
+            // NoGridControl_old
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
-            this.Name = "NoGridControl";
+            this.Controls.Add(this.panelFull);
+            this.Name = "NoGridControl_old";
             this.Size = new System.Drawing.Size(441, 330);
-            this.panel1.ResumeLayout(false);
+            this.panelFull.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelControl2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Panel panelFull;
 
     }
 }

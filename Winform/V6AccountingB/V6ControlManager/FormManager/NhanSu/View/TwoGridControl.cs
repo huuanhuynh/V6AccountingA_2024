@@ -9,7 +9,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
     public partial class TwoGridControl : V6Control
     {
         private readonly string _formname;
-        private V6FormControl ThongTinControl;
+        private V6FormControl BottomControl;
         public TwoGridControl()
         {
             InitializeComponent();
@@ -27,11 +27,11 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
-                ThongTinControl = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
-                if (ThongTinControl != null)
+                BottomControl = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
+                if (BottomControl != null)
                 {
                     //ThongTinControl.Dock = DockStyle.Fill;
-                    panel1.Controls.Add(ThongTinControl);
+                    panelBottom.Controls.Add(BottomControl);
                 }
                 // SetData...
             }
@@ -45,9 +45,9 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
-                if (ThongTinControl != null)
+                if (BottomControl != null)
                 {
-                    ThongTinControl.LoadData(code);
+                    BottomControl.LoadData(code);
                 }
                 gridView1.Focus();
             }
@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
             {
                 if (gridView2.CurrentRow != null)
                 {
-                    ThongTinControl.SetData(gridView2.CurrentRow.ToDataDictionary());
+                    BottomControl.SetData(gridView2.CurrentRow.ToDataDictionary());
                 }
             }
             catch (Exception ex)

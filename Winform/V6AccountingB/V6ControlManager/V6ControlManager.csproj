@@ -2157,6 +2157,12 @@
     <Compile Include="FormManager\NhanSu\Filter\HHRJOBEXPERIENCE_filter.Designer.cs">
       <DependentUpon>HHRJOBEXPERIENCE_filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\MA_NS_filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\MA_NS_filter.Designer.cs">
+      <DependentUpon>MA_NS_filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\NhanSu\Filter\HRAPPFAMILY_filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2224,12 +2230,6 @@
     </Compile>
     <Compile Include="FormManager\NhanSu\ThongTin\KhoanLuongPhu.Designer.cs">
       <DependentUpon>KhoanLuongPhu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\NhanSu\View\NoGridControl_old.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\NhanSu\View\NoGridControl_old.Designer.cs">
-      <DependentUpon>NoGridControl_old.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\NhanSu\View\NoGridControl.cs">
       <SubType>UserControl</SubType>
@@ -7302,6 +7302,9 @@
     <EmbeddedResource Include="FormManager\NhanSu\Filter\HHRJOBEXPERIENCE_filter.resx">
       <DependentUpon>HHRJOBEXPERIENCE_filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\NhanSu\Filter\MA_NS_filter.resx">
+      <DependentUpon>MA_NS_filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\Filter\HRAPPFAMILY_filter.resx">
       <DependentUpon>HRAPPFAMILY_filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -7331,9 +7334,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\ThongTin\KhoanLuongPhu.resx">
       <DependentUpon>KhoanLuongPhu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\NhanSu\View\NoGridControl_old.resx">
-      <DependentUpon>NoGridControl_old.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\View\NoGridControl.resx">
       <DependentUpon>NoGridControl.cs</DependentUpon>

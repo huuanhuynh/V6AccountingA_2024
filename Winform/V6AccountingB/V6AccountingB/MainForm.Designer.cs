@@ -50,6 +50,7 @@ namespace V6AccountingB
             this.lblStatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.menuMain = new V6Controls.MenuControl();
+            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.panelLogin = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,18 +62,17 @@ namespace V6AccountingB
             this.btnExit = new System.Windows.Forms.Button();
             this.lblComment = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblUser_ = new System.Windows.Forms.Label();
             this.panelMenuShow = new System.Windows.Forms.Panel();
             this.lblMenuShow = new V6Controls.V6VeticalLabel();
             this.lblMainMessage = new V6Controls.V6Label();
             this.panelView = new System.Windows.Forms.Panel();
+            this.lblModule_Dot = new System.Windows.Forms.Label();
+            this.lblModule = new System.Windows.Forms.Label();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
-            this.lblModule = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -425,6 +425,17 @@ namespace V6AccountingB
             this.menuMain.Click += new V6Controls.MenuControl.ButtonClickEventHandler(this.menuMain_Click);
             this.menuMain.Load += new System.EventHandler(this.menuMain_Load);
             // 
+            // quickMenu1
+            // 
+            this.quickMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.quickMenu1.BackColor = System.Drawing.Color.AliceBlue;
+            this.quickMenu1.Location = new System.Drawing.Point(0, 322);
+            this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
+            this.quickMenu1.Name = "quickMenu1";
+            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
+            this.quickMenu1.TabIndex = 0;
+            // 
             // panelLogin
             // 
             this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
@@ -435,7 +446,7 @@ namespace V6AccountingB
             this.panelLogin.Controls.Add(this.btnExit);
             this.panelLogin.Controls.Add(this.lblComment);
             this.panelLogin.Controls.Add(this.lblUserName);
-            this.panelLogin.Controls.Add(this.label1);
+            this.panelLogin.Controls.Add(this.lblUser_);
             this.panelLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelLogin.Location = new System.Drawing.Point(0, 361);
             this.panelLogin.Name = "panelLogin";
@@ -546,16 +557,16 @@ namespace V6AccountingB
             this.lblUserName.TabIndex = 0;
             this.lblUserName.Text = "UserName";
             // 
-            // label1
+            // lblUser_
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "User:";
+            this.lblUser_.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblUser_.AutoSize = true;
+            this.lblUser_.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser_.Location = new System.Drawing.Point(3, 67);
+            this.lblUser_.Name = "lblUser_";
+            this.lblUser_.Size = new System.Drawing.Size(37, 13);
+            this.lblUser_.TabIndex = 0;
+            this.lblUser_.Text = "User:";
             // 
             // panelMenuShow
             // 
@@ -602,7 +613,7 @@ namespace V6AccountingB
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelView.AutoScroll = true;
             this.panelView.BackColor = System.Drawing.Color.Transparent;
-            this.panelView.Controls.Add(this.label2);
+            this.panelView.Controls.Add(this.lblModule_Dot);
             this.panelView.Controls.Add(this.lblModule);
             this.panelView.Controls.Add(this.lblCompanyName);
             this.panelView.Controls.Add(this.progressBar1);
@@ -610,6 +621,30 @@ namespace V6AccountingB
             this.panelView.Name = "panelView";
             this.panelView.Size = new System.Drawing.Size(670, 551);
             this.panelView.TabIndex = 0;
+            // 
+            // lblModule_Dot
+            // 
+            this.lblModule_Dot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblModule_Dot.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModule_Dot.ForeColor = System.Drawing.Color.Red;
+            this.lblModule_Dot.Location = new System.Drawing.Point(13, 430);
+            this.lblModule_Dot.Name = "lblModule_Dot";
+            this.lblModule_Dot.Size = new System.Drawing.Size(20, 18);
+            this.lblModule_Dot.TabIndex = 3;
+            this.lblModule_Dot.Text = "●";
+            this.lblModule_Dot.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblModule_Dot.UseMnemonic = false;
+            // 
+            // lblModule
+            // 
+            this.lblModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblModule.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModule.Location = new System.Drawing.Point(39, 430);
+            this.lblModule.Name = "lblModule";
+            this.lblModule.Size = new System.Drawing.Size(246, 90);
+            this.lblModule.TabIndex = 2;
+            this.lblModule.Text = "ACCOUNTING\r\nHRM\r\nCRM\r\nINVENTORY\r\nERP";
+            this.lblModule.UseMnemonic = false;
             // 
             // lblCompanyName
             // 
@@ -651,41 +686,6 @@ namespace V6AccountingB
             this.lblV6Message.TabIndex = 4;
             this.lblV6Message.Text = ".....";
             this.lblV6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblModule
-            // 
-            this.lblModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblModule.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModule.Location = new System.Drawing.Point(39, 430);
-            this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(246, 90);
-            this.lblModule.TabIndex = 2;
-            this.lblModule.Text = "ACCOUNTING\r\nHRM\r\nCRM\r\nINVENTORY\r\nERP";
-            this.lblModule.UseMnemonic = false;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(13, 430);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "●";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label2.UseMnemonic = false;
-            // 
-            // quickMenu1
-            // 
-            this.quickMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.quickMenu1.BackColor = System.Drawing.Color.AliceBlue;
-            this.quickMenu1.Location = new System.Drawing.Point(0, 322);
-            this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
-            this.quickMenu1.Name = "quickMenu1";
-            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
-            this.quickMenu1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -730,7 +730,7 @@ namespace V6AccountingB
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelView;
         private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblUser_;
         private MenuControl menuMain;
         private System.Windows.Forms.Label lblComment;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -754,7 +754,7 @@ namespace V6AccountingB
         private ToolStripMenuItem stickNoteToolStripMenuItem;
         private PictureBox picLOGO;
         private Label lblModule;
-        private Label label2;
+        private Label lblModule_Dot;
         
     }
 }

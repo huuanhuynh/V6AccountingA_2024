@@ -222,19 +222,19 @@ namespace V6AccountingB
             switch (V6Login.SelectedModule)
             {
                 case "A": // ACCOUNTING
-                    label2.Top = lblModule.Top;
+                    lblModule_Dot.Top = lblModule.Top;
                     break;
                 case "H": // HRM
-                    label2.Top = lblModule.Top + 18;
+                    lblModule_Dot.Top = lblModule.Top + 18;
                     break;
                 case "C": // CRM
-                    label2.Top = lblModule.Top + 18*2;
+                    lblModule_Dot.Top = lblModule.Top + 18*2;
                     break;
                 case "I": // INVENTORY
-                    label2.Top = lblModule.Top + 18*3;
+                    lblModule_Dot.Top = lblModule.Top + 18*3;
                     break;
                 case "E": // ERP
-                    label2.Top = lblModule.Top + 18*4;
+                    lblModule_Dot.Top = lblModule.Top + 18*4;
                     break;
             }
         }
@@ -258,6 +258,8 @@ namespace V6AccountingB
                     if (!panelView.Contains(item.Value))
                     {
                         panelView.Controls.Add(item.Value);
+                        //item.Value.BringToFront();
+                        RemoveSomeControl();
                     }
 
                     if (currentControl is Menu2Control)
@@ -288,7 +290,7 @@ namespace V6AccountingB
                 c.Dock = DockStyle.Fill;
                 panelView.Controls.Add(c);
                 controlsDictionary.Add(v2ID, c);
-
+                c.BringToFront();
                 {
                     FormManagerHelper.CurrentMenu3Control
                          = ((Menu2Control)c).CurrentMenu3Control;
@@ -297,6 +299,28 @@ namespace V6AccountingB
 
             if (BackgroundImage != null)
                 BackgroundImage = null;
+        }
+
+        private bool removesomecontrl;
+        private void RemoveSomeControl()
+        {
+            try
+            {
+                if (!removesomecontrl)
+                {
+                    lblCompanyName.Dispose();
+                    lblModule_Dot.Dispose();
+                    lblModule.Dispose();
+                    BackgroundImage.Dispose();
+                    progressBar1.Dispose();
+
+                    removesomecontrl = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                //
+            }
         }
 
 

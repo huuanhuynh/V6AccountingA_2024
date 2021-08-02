@@ -117,5 +117,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
             V6ControlFormHelper.SetFormControlsReadOnly(this, true);
         }
+
+        private void btnInfos_Click(object sender, EventArgs e)
+        {
+            //if (FormControl.Mode == V6Mode.Add || FormControl.Mode == V6Mode.Edit)
+            {
+                V6ControlFormHelper.ProcessUserDefineInfo("HRHEALTHPROFILE", this, this.Parent, "HRHEALTHPROFILE");
+            }
+        }
     }
 }

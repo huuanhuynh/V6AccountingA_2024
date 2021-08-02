@@ -5,6 +5,7 @@ using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.NhanSu.ThongTin;
 using V6ControlManager.FormManager.SoDuManager.FirstFilter;
 using V6Controls.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Controls.Forms.DanhMuc.Add_Edit.NhanSu;
 using V6Init;
 
@@ -53,7 +54,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
 
                 default:
-                    
+                    return new DynamicAddEditForm(code.Substring(1), ConfigManager.GetAldmConfig(code.Substring(1)));
                     break;
             }
             return null;

@@ -855,16 +855,28 @@ namespace V6ControlManager.FormManager.MenuManager
                         case "C": // NhanSu NoGridControl
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                //var programX = codeform.Substring(1);
-                                c = new NoGridControl(item_id, FORM_NAME);
+                                if (string.IsNullOrEmpty(pro_old))
+                                {
+                                    c = new NoGridControl(item_id, FORM_NAME, FORM_NAME);
+                                }
+                                else
+                                {
+                                    c = new NoGridControl(item_id, pro_old, FORM_NAME);
+                                }
                             }
                             break;
 
                         case "D": // NhanSu OneGridControl
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                //var programX = codeform.Substring(1);
-                                c = new OneGridControl(item_id, FORM_NAME);
+                                if (string.IsNullOrEmpty(pro_old))
+                                {
+                                    c = new OneGridControl(item_id, FORM_NAME, FORM_NAME);
+                                }
+                                else
+                                {
+                                    c = new OneGridControl(item_id, pro_old, FORM_NAME); // , FORM_NAME_T);
+                                }
                             }
                             break;
 

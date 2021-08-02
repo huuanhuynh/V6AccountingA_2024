@@ -19,22 +19,23 @@ namespace V6ControlManager.FormManager.NhanSu.View
 {
     public partial class OneGridControl : V6FormControl
     {
-        public readonly string _formname;
+        public readonly string FORM_NAME_0, FORM_NAME_NEW;
         public string _stt_rec, TABLE_NAME;
         public AldmConfig _aldmConfig;
         public DataTable _gridViewData, _inforData;
-        public V6FormControl ThongTinControl1;
-        public V6FormControl ThongTinControl2;
+        public V6FormControl BottomControl;
+        public V6FormControl TopControl;
         public OneGridControl()
         {
             InitializeComponent();
         }
 
-        public OneGridControl(string itemID, string formname)
+        public OneGridControl(string itemID, string formName0, string formNameNew)
         {
             m_itemId = itemID;
-            _formname = formname;
-            TABLE_NAME = _formname.Substring(1).ToUpper();
+            FORM_NAME_0 = formName0;
+            FORM_NAME_NEW = formNameNew;
+            TABLE_NAME = formNameNew.Substring(1).ToUpper();
             InitializeComponent();
             MyInit();
         }
@@ -44,42 +45,41 @@ namespace V6ControlManager.FormManager.NhanSu.View
             try
             {
                 _aldmConfig = ConfigManager.GetAldmConfigByTableName(TABLE_NAME);
-                AddFilterControl(_formname);
-                ThongTinControl1 = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
-                if (ThongTinControl1 != null)
+                AddFilterControl(FORM_NAME_NEW);
+                BottomControl = NhanSuManager.GetControl(ItemID, FORM_NAME_NEW) as V6FormControl;
+                if (BottomControl != null)
                 {
-                    V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl1, true);
-                    ThongTinControl1.Dock = DockStyle.Fill;
-                    panelControl.Controls.Add(ThongTinControl1);
-                    if (ThongTinControl1 is AddEditControlVirtual)
+                    BottomControl.Dock = DockStyle.Fill;
+                    panelBottom.Controls.Add(BottomControl);
+                    if (BottomControl is AddEditControlVirtual)
                     {
-                        V6ControlFormHelper.LoadAndSetFormInfoDefine(TABLE_NAME, ThongTinControl1, this);
-                        LoadAdvanceControls(ThongTinControl1, TABLE_NAME);
+                        V6ControlFormHelper.LoadAndSetFormInfoDefine(TABLE_NAME, BottomControl, this);
+                        LoadAdvanceControls(BottomControl, TABLE_NAME);
                     }
+                    V6ControlFormHelper.SetFormControlsReadOnly(BottomControl, true);
                 }
 
-                ThongTinControl2 = NhanSuManager.GetControl(ItemID, "HINFOR_NS") as V6FormControl;
-                if (ThongTinControl2 != null)
+                TopControl = NhanSuManager.GetControl(ItemID, "HINFOR_NS") as V6FormControl;
+                if (TopControl != null)
                 {
-                    V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl2, true);
-                    panelControl2.Controls.Add(ThongTinControl2);
+                    V6ControlFormHelper.SetFormControlsReadOnly(TopControl, true);
+                    panelTop.Controls.Add(TopControl);
                 }
 
                 All_Objects["thisForm"] = this;
                 CreateFormProgram();
                 V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
-                // SetData...
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _formname), ex);
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, FORM_NAME_NEW), ex);
             }
         }
 
         private void OneGridControl_Load(object sender, EventArgs e)
         {
-            InvokeFormEvent(ControlDynamicEvent.INIT2);
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         protected void CreateFormProgram()
@@ -137,22 +137,14 @@ namespace V6ControlManager.FormManager.NhanSu.View
             {
                 SaveSelectedCellLocation(gridView1);
 
-                var CurrentTable = V6TableHelper.ToV6TableName(_formname.Substring(1));
-                if (CurrentTable == V6TableName.None)
-                {
-                    this.ShowWarningMessage("TableError! " + _formname);
-                }
-                else
-                {
-                    SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
-                    _data["STT_REC"] = _stt_rec;
-                    _data["STT_REC0"] = V6BusinessHelper.GetNewSttRec0(_gridViewData);
-                    var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, null, _data);
-                    f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl(this);
-                    f.InsertSuccessEvent += f_InsertSuccess;
-                    f.ShowDialog(this);
-                }
+                SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
+                _data["STT_REC"] = _stt_rec;
+                _data["STT_REC0"] = V6BusinessHelper.GetNewSttRec0(_gridViewData);
+                var f = new FormAddEdit(TABLE_NAME, V6Mode.Add, null, _data);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl(this);
+                f.InsertSuccessEvent += f_InsertSuccess;
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -162,18 +154,18 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
         void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, _formname.Substring(1));
+            LoadAdvanceControls((Control)sender, FORM_NAME_NEW.Substring(1));
         }
 
-        protected void LoadAdvanceControls(Control form, string ma_ct)
+        protected void LoadAdvanceControls(Control form, string ma_bc)
         {
             try
             {
-                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_bc, new Dictionary<string, object>());
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".LoadAdvanceControls " + ma_ct, ex);
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + ma_bc, ex);
             }
         }
 
@@ -182,33 +174,25 @@ namespace V6ControlManager.FormManager.NhanSu.View
             try
             {
                 SaveSelectedCellLocation(gridView1);
-                var CurrentTable = V6TableHelper.ToV6TableName(_formname.Substring(1));
-                if (CurrentTable == V6TableName.None)
+                
+                DataGridViewRow row = gridView1.GetFirstSelectedRow();
+                if (row != null)
                 {
-                    this.ShowWarningMessage("TableError! " + CurrentTable);
+                    var keys = new SortedDictionary<string, object>();
+                    if (gridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+                    keys["STT_REC"] = _stt_rec;
+
+                    var f = new FormAddEdit(TABLE_NAME, V6Mode.Edit, keys, null);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl(this);
+                    f.UpdateSuccessEvent += f_UpdateSuccess;
+                    f.CallReloadEvent += FCallReloadEvent;
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    DataGridViewRow row = gridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        var keys = new SortedDictionary<string, object>();
-                        if (gridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row.Cells["UID"].Value);
-                        keys["STT_REC"] = _stt_rec;
-
-                        var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Edit, keys, null);
-                        f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl(this);
-                        f.UpdateSuccessEvent += f_UpdateSuccess;
-                        f.CallReloadEvent += FCallReloadEvent;
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -321,8 +305,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
         private void ReLoad()
         {
-            LoadData(_formname);
-
+            LoadData(FORM_NAME_NEW);
         }
 
         public void HideFilterControl()
@@ -334,14 +317,14 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 btnHuy.Visible = false;
                 gridView1.Left = 1;
                 gridView1.Width = Width - 2;
-                panelControl.Left = 1;
-                panelControl.Width = Width - 2;
-                panelControl2.Left = 1;
-                panelControl2.Width = Width - 2;
+                panelBottom.Left = 1;
+                panelBottom.Width = Width - 2;
+                panelTop.Left = 1;
+                panelTop.Width = Width - 2;
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _formname), ex);
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, FORM_NAME_NEW), ex);
             }
         }
 
@@ -352,8 +335,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 FormManagerHelper.HideMainMenu();
 
                 // Reset
-                V6ControlFormHelper.SetFormDataDictionary(ThongTinControl1,null);
-                V6ControlFormHelper.SetFormDataDictionary(ThongTinControl2, null);
+                V6ControlFormHelper.SetFormDataDictionary(BottomControl,null);
+                V6ControlFormHelper.SetFormDataDictionary(TopControl, null);
                 _gridViewData = null;
                 gridView1.DataSource = null;
                 
@@ -368,7 +351,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         break;
                     }
                 }
-                var ds = V6BusinessHelper.ExecuteProcedure(_formname, plist);
+                var ds = V6BusinessHelper.ExecuteProcedure(FORM_NAME_NEW, plist);
                 
                 if (ds.Tables.Count > 0)
                 {
@@ -378,7 +361,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     _inforData = ds.Tables[0];
                     if (_inforData.Rows.Count > 0)
                     {
-                        V6ControlFormHelper.SetFormDataDictionary(ThongTinControl2, _inforData.Rows[0].ToDataDictionary());
+                        V6ControlFormHelper.SetFormDataDictionary(TopControl, _inforData.Rows[0].ToDataDictionary());
                     }
 
 
@@ -391,7 +374,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         gridView1.Focus();
                         if (_gridViewData.Rows.Count > 0)
                         {
-                            V6ControlFormHelper.SetFormDataDictionary(ThongTinControl1, _gridViewData.Rows[0].ToDataDictionary());
+                            V6ControlFormHelper.SetFormDataDictionary(BottomControl, _gridViewData.Rows[0].ToDataDictionary());
                         }
                     }
                     gridView1.Focus();
@@ -414,7 +397,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _formname), ex);
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, FORM_NAME_NEW), ex);
             }
         }
 
@@ -422,7 +405,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             FilterControl.SetParentRow(nhanSuData);
             //V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
-            ThongTinControl2.SetData(nhanSuData);
+            TopControl.SetData(nhanSuData);
         }
 
         /// <summary>
@@ -446,7 +429,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 if (gridView1.CurrentRow != null && _gridViewData != null)
                 {
                     var selectedData = gridView1.CurrentRow.ToDataDictionary();
-                    V6ControlFormHelper.SetFormDataDictionary(ThongTinControl1, selectedData);
+                    V6ControlFormHelper.SetFormDataDictionary(BottomControl, selectedData);
                     //V6ControlFormHelper.SetFormDataDictionary(ThongTinControl2, selectedData);
 
                     //Làm lại. Lấy key dữ liệu. Tải đúng bảng dữ liệu rồi gán lên form.
@@ -455,7 +438,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _formname), ex);
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, FORM_NAME_NEW), ex);
             }
         }
 
@@ -498,7 +481,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0}.{1} {2} {3}", GetType(), MethodBase.GetCurrentMethod().Name, _formname, ex.Message));
+                this.ShowErrorMessage(string.Format("{0}.{1} {2} {3}", GetType(), MethodBase.GetCurrentMethod().Name, FORM_NAME_NEW, ex.Message));
             }
         }
 

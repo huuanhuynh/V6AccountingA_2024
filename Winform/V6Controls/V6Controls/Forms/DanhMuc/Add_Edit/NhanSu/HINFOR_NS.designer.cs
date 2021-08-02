@@ -36,6 +36,7 @@
             this.v6Label1 = new V6Controls.V6Label();
             this.lblHoVaTen = new V6Controls.V6Label();
             this.lblAmLich = new V6Controls.V6Label();
+            this.lblTuoi = new V6Controls.V6Label();
             this.SuspendLayout();
             // 
             // gioiTinh1
@@ -98,7 +99,7 @@
             this.txtTEN_NS.Location = new System.Drawing.Point(199, 0);
             this.txtTEN_NS.Margin = new System.Windows.Forms.Padding(5);
             this.txtTEN_NS.Name = "txtTEN_NS";
-            this.txtTEN_NS.Size = new System.Drawing.Size(431, 23);
+            this.txtTEN_NS.Size = new System.Drawing.Size(372, 23);
             this.txtTEN_NS.TabIndex = 15;
             // 
             // lblNgaySinh
@@ -137,17 +138,29 @@
             // 
             this.lblAmLich.AccessibleDescription = "ADDEDITL00770";
             this.lblAmLich.AutoSize = true;
-            this.lblAmLich.Location = new System.Drawing.Point(367, 28);
+            this.lblAmLich.Location = new System.Drawing.Point(367, 26);
             this.lblAmLich.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAmLich.Name = "lblAmLich";
             this.lblAmLich.Size = new System.Drawing.Size(89, 17);
             this.lblAmLich.TabIndex = 12;
             this.lblAmLich.Text = "Ngày âm lịch";
             // 
+            // lblTuoi
+            // 
+            this.lblTuoi.AccessibleDescription = "ADDEDITL00770";
+            this.lblTuoi.AutoSize = true;
+            this.lblTuoi.Location = new System.Drawing.Point(580, 3);
+            this.lblTuoi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTuoi.Name = "lblTuoi";
+            this.lblTuoi.Size = new System.Drawing.Size(36, 17);
+            this.lblTuoi.TabIndex = 18;
+            this.lblTuoi.Text = "Tuổi";
+            // 
             // HINFOR_NS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTuoi);
             this.Controls.Add(this.gioiTinh1);
             this.Controls.Add(this.TXTNGAY_SINH);
             this.Controls.Add(this.txtMA_NS);
@@ -175,5 +188,6 @@
         private V6ColorTextBox TXTNGAY_SINH;
         private Controls.GioiTinhControl gioiTinh1;
         private V6Label lblAmLich;
+        private V6Label lblTuoi;
     }
 }

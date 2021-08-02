@@ -722,13 +722,13 @@ namespace V6ControlManager.FormManager.NhanSu
                     Dispose();
                 }
             }
-            else if (keyData == Keys.F5)
-            {
-                if (this.ShowConfirmMessage(V6Text.ReloadConfirm) == DialogResult.Yes)
-                {
-                    ReLoad();
-                }
-            }
+            //else if (keyData == Keys.F5)
+            //{
+            //    if (this.ShowConfirmMessage(V6Text.ReloadConfirm) == DialogResult.Yes)
+            //    {
+            //        ReLoad();
+            //    }
+            //}
             else
             {
                 return base.DoHotKey0(keyData);
