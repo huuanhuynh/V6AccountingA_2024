@@ -120,4 +120,12 @@
   <metadata name="toolTipV6FormControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="txtAfield3.ToolTip" xml:space="preserve">
+    <value>Table|filter:*field-data?alvt.lo_yn=1,field2...
+Table: tên bảng kiểm tra.
+|filter: lọc bớt dữ liệu trên Table. Có thể bỏ qua.
+*FIELD: trường kiểm tra trong Table, có * là bắt buộc có. không * thì có thể rỗng.
+DATA: trường dữ liệu trên form (chi tiết).
+Sau ? là điều kiện count = 0 sẽ không kiểm tra (where DATA = detail[DATA] and ?).</value>
+  </data>
 </root>

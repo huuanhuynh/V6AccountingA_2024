@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6valid));
             this.txtSTT = new V6Controls.V6NumberTextBox();
             this.txtMa = new V6Controls.V6VvarTextBox();
             this.txtTen = new V6Controls.V6VvarTextBox();
@@ -259,15 +260,14 @@
             this.txtAfield3.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtAfield3.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtAfield3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtAfield3.GrayText = "Table:*field-data,field2...;table2...";
+            this.txtAfield3.GrayText = "Table|filter:*field-data?alvt.lo_yn=1,field2...";
             this.txtAfield3.HoverColor = System.Drawing.Color.Yellow;
             this.txtAfield3.LeaveColor = System.Drawing.Color.White;
             this.txtAfield3.Location = new System.Drawing.Point(161, 261);
             this.txtAfield3.Name = "txtAfield3";
             this.txtAfield3.Size = new System.Drawing.Size(581, 23);
             this.txtAfield3.TabIndex = 21;
-            this.toolTipV6FormControl.SetToolTip(this.txtAfield3, "Table:*field-data,field2...;Table2...\r\nTable: tên bảng kiểm tra.\r\nfield: trường k" +
-        "iểm tra, có * là bắt buộc.\r\ndata: trường dữ liệu trên form (chi tiết).");
+            this.toolTipV6FormControl.SetToolTip(this.txtAfield3, resources.GetString("txtAfield3.ToolTip"));
             // 
             // txtAfield2
             // 
@@ -279,13 +279,14 @@
             this.txtAfield2.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtAfield2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtAfield2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtAfield2.GrayText = "Field1,Field2...";
             this.txtAfield2.HoverColor = System.Drawing.Color.Yellow;
             this.txtAfield2.LeaveColor = System.Drawing.Color.White;
             this.txtAfield2.Location = new System.Drawing.Point(161, 233);
             this.txtAfield2.Name = "txtAfield2";
             this.txtAfield2.Size = new System.Drawing.Size(581, 23);
             this.txtAfield2.TabIndex = 19;
-            this.toolTipV6FormControl.SetToolTip(this.txtAfield2, "Aname của vvar");
+            this.toolTipV6FormControl.SetToolTip(this.txtAfield2, "Aname của vvarTextbox cần kiểm tra đúng giá trị");
             // 
             // txtAfield
             // 
@@ -361,6 +362,8 @@
             this.lblAfield3.Size = new System.Drawing.Size(63, 17);
             this.lblAfield3.TabIndex = 20;
             this.lblAfield3.Text = "A Field 3";
+            this.toolTipV6FormControl.SetToolTip(this.lblAfield3, "Click xem thông tin");
+            this.lblAfield3.Click += new System.EventHandler(this.lblAfield3_Click);
             // 
             // label3
             // 
@@ -384,6 +387,8 @@
             this.lblAfield2.Size = new System.Drawing.Size(63, 17);
             this.lblAfield2.TabIndex = 18;
             this.lblAfield2.Text = "A Field 2";
+            this.toolTipV6FormControl.SetToolTip(this.lblAfield2, "Click xem thông tin");
+            this.lblAfield2.Click += new System.EventHandler(this.lblAfield2_Click);
             // 
             // label4
             // 
@@ -406,6 +411,8 @@
             this.lblAfield.Size = new System.Drawing.Size(51, 17);
             this.lblAfield.TabIndex = 16;
             this.lblAfield.Text = "A Field";
+            this.toolTipV6FormControl.SetToolTip(this.lblAfield, "Click xem thông tin");
+            this.lblAfield.Click += new System.EventHandler(this.lblAfield_Click);
             // 
             // label9
             // 

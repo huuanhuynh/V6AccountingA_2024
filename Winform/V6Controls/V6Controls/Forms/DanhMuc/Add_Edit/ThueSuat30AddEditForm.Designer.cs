@@ -38,9 +38,9 @@
             this.txtma_thue = new V6Controls.V6VvarTextBox();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
-            this.v6ColorTextBox6 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
+            this.txtTK_THUE_NO = new V6Controls.V6VvarTextBox();
+            this.txtTK_THUE_CO = new V6Controls.V6VvarTextBox();
+            this.txtTen_Thue2 = new V6Controls.V6ColorTextBox();
             this.txtten_thue = new V6Controls.V6ColorTextBox();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
@@ -144,7 +144,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(192, 17);
-            this.label5.TabIndex = 11;
+            this.label5.TabIndex = 10;
             this.label5.Text = "Tk GTGT đầu vào được giảm";
             // 
             // label6
@@ -166,7 +166,7 @@
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 17);
-            this.label7.TabIndex = 13;
+            this.label7.TabIndex = 12;
             this.label7.Text = "Trạng thái";
             // 
             // txtma_thue
@@ -218,57 +218,59 @@
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(107, 21);
-            this.checkBox1.TabIndex = 14;
+            this.checkBox1.TabIndex = 13;
             this.checkBox1.Text = "Có sử dụng?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // v6ColorTextBox6
+            // txtTK_THUE_NO
             // 
-            this.v6ColorTextBox6.AccessibleName = "tk_thue_no";
-            this.v6ColorTextBox6.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.Location = new System.Drawing.Point(244, 161);
-            this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox6.Name = "v6ColorTextBox6";
-            this.v6ColorTextBox6.Size = new System.Drawing.Size(132, 23);
-            this.v6ColorTextBox6.TabIndex = 12;
+            this.txtTK_THUE_NO.AccessibleName = "tk_thue_no";
+            this.txtTK_THUE_NO.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTK_THUE_NO.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTK_THUE_NO.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTK_THUE_NO.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTK_THUE_NO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTK_THUE_NO.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTK_THUE_NO.LeaveColor = System.Drawing.Color.White;
+            this.txtTK_THUE_NO.Location = new System.Drawing.Point(244, 161);
+            this.txtTK_THUE_NO.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTK_THUE_NO.Name = "txtTK_THUE_NO";
+            this.txtTK_THUE_NO.Size = new System.Drawing.Size(132, 23);
+            this.txtTK_THUE_NO.TabIndex = 11;
+            this.txtTK_THUE_NO.VVar = "TK";
             // 
-            // v6ColorTextBox5
+            // txtTK_THUE_CO
             // 
-            this.v6ColorTextBox5.AccessibleName = "tk_thue_co";
-            this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(244, 130);
-            this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.Size = new System.Drawing.Size(132, 23);
-            this.v6ColorTextBox5.TabIndex = 9;
+            this.txtTK_THUE_CO.AccessibleName = "tk_thue_co";
+            this.txtTK_THUE_CO.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTK_THUE_CO.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTK_THUE_CO.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTK_THUE_CO.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTK_THUE_CO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTK_THUE_CO.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTK_THUE_CO.LeaveColor = System.Drawing.Color.White;
+            this.txtTK_THUE_CO.Location = new System.Drawing.Point(244, 130);
+            this.txtTK_THUE_CO.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTK_THUE_CO.Name = "txtTK_THUE_CO";
+            this.txtTK_THUE_CO.Size = new System.Drawing.Size(132, 23);
+            this.txtTK_THUE_CO.TabIndex = 9;
+            this.txtTK_THUE_CO.VVar = "TK";
             // 
-            // v6ColorTextBox3
+            // txtTen_Thue2
             // 
-            this.v6ColorTextBox3.AccessibleName = "ten_thue2";
-            this.v6ColorTextBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.Location = new System.Drawing.Point(244, 68);
-            this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox3.Name = "v6ColorTextBox3";
-            this.v6ColorTextBox3.Size = new System.Drawing.Size(497, 23);
-            this.v6ColorTextBox3.TabIndex = 5;
+            this.txtTen_Thue2.AccessibleName = "ten_thue2";
+            this.txtTen_Thue2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTen_Thue2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTen_Thue2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTen_Thue2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTen_Thue2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTen_Thue2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTen_Thue2.LeaveColor = System.Drawing.Color.White;
+            this.txtTen_Thue2.Location = new System.Drawing.Point(244, 68);
+            this.txtTen_Thue2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTen_Thue2.Name = "txtTen_Thue2";
+            this.txtTen_Thue2.Size = new System.Drawing.Size(497, 23);
+            this.txtTen_Thue2.TabIndex = 5;
             // 
             // txtten_thue
             // 
@@ -297,7 +299,7 @@
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
             this.v6TabControl1.Size = new System.Drawing.Size(757, 406);
-            this.v6TabControl1.TabIndex = 3;
+            this.v6TabControl1.TabIndex = 0;
             // 
             // tabThongTinChinh
             // 
@@ -309,11 +311,11 @@
             this.tabThongTinChinh.Controls.Add(this.label4);
             this.tabThongTinChinh.Controls.Add(this.checkBox1);
             this.tabThongTinChinh.Controls.Add(this.label5);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox6);
+            this.tabThongTinChinh.Controls.Add(this.txtTK_THUE_NO);
             this.tabThongTinChinh.Controls.Add(this.label3);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox5);
+            this.tabThongTinChinh.Controls.Add(this.txtTK_THUE_CO);
             this.tabThongTinChinh.Controls.Add(this.label6);
-            this.tabThongTinChinh.Controls.Add(this.v6ColorTextBox3);
+            this.tabThongTinChinh.Controls.Add(this.txtTen_Thue2);
             this.tabThongTinChinh.Controls.Add(this.label2);
             this.tabThongTinChinh.Controls.Add(this.txtten_thue);
             this.tabThongTinChinh.Controls.Add(this.label7);
@@ -1043,9 +1045,9 @@
         private System.Windows.Forms.Label label7;
         private V6NumberTextBox v6NumberTextBox1;
         private V6Controls.V6CheckBox checkBox1;
-        private V6ColorTextBox v6ColorTextBox6;
-        private V6ColorTextBox v6ColorTextBox5;
-        private V6ColorTextBox v6ColorTextBox3;
+        private V6VvarTextBox txtTK_THUE_NO;
+        private V6VvarTextBox txtTK_THUE_CO;
+        private V6ColorTextBox txtTen_Thue2;
         private V6ColorTextBox txtten_thue;
         private V6VvarTextBox txtma_thue;
         private V6TabControl v6TabControl1;

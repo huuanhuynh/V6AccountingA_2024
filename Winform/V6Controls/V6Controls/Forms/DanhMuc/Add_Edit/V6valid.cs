@@ -58,5 +58,28 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (errors.Length > 0) throw new Exception(errors);
         }
 
+
+        private void lblAfield_Click(object sender, EventArgs e)
+        {
+            this.ShowInfoMessage(@"AField: Các trường bắc buộc nhập cách nhau bằng dấu phẩy (,)");
+        }
+        private void lblAfield2_Click(object sender, EventArgs e)
+        {
+            this.ShowInfoMessage(@"AField2: Aname của vvarTextbox cần kiểm tra đúng giá trị");
+        }
+        private void lblAfield3_Click(object sender, EventArgs e)
+        {
+            this.ShowInfoMessage(@"Table|filter:*field-data?alvt.lo_yn=1,field2...
+Table: tên bảng kiểm tra.
+|filter: lọc bớt dữ liệu trên Table. Có thể bỏ qua.
+*FIELD: trường kiểm tra trong Table, có * là bắt buộc có. không * thì có thể rỗng.
+DATA: trường dữ liệu trên form (chi tiết).
+Sau ? là điều kiện count = 0 sẽ không kiểm tra (where DATA = detail[DATA] and ?).");
+        }
+
+        
+
+        
+
     }
 }

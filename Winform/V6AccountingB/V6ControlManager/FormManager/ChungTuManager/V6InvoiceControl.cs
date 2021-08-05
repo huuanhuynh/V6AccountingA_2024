@@ -2931,10 +2931,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         /// <param name="detail1"></param>
         /// <param name="Invoice"></param>
-        /// <param name="data"></param>
+        /// <param name="DETAIL_DATA"></param>
         /// <param name="firstField"></param>
         /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
-        public string ValidateDetailData(HD_Detail detail1, V6InvoiceBase Invoice, IDictionary<string, object> data, out string firstField)
+        public string ValidateDetailData(HD_Detail detail1, V6InvoiceBase Invoice, IDictionary<string, object> DETAIL_DATA, out string firstField)
         {
             string error = null;
             firstField = null;
@@ -2942,7 +2942,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 string inv = "";
                 All_Objects["detail1"] = detail1;
-                All_Objects["DETAILDATA"] = data;
+                All_Objects["DETAILDATA"] = DETAIL_DATA;
                 inv += InvokeFormEvent(FormDynamicEvent.VALIDATEDETAILDATA);
                 V6Tag invTag = new V6Tag(inv);
                 if (invTag.Cancel)
@@ -2962,14 +2962,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         string FIELD = field.Trim().ToUpper();
                         string label = FIELD;
-                        if (!data.ContainsKey(FIELD))
+                        if (!DETAIL_DATA.ContainsKey(FIELD))
                         {
                             //error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
                             continue;
                         }
 
                         V6ColumnStruct columnS = Invoice.ADStruct[FIELD];
-                        object value = data[FIELD];
+                        object value = DETAIL_DATA[FIELD];
                         
                         if (ObjectAndString.IsDateTimeType(columnS.DataType))
                         {
@@ -3014,6 +3014,76 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             {
                                 error += V6Text.Wrong + " [" + field2 + "]\n";
                             }
+                        }
+                    }
+
+                    //Trường dữ liệu cần nhập đúng
+                    var a_fields3 = ObjectAndString.SplitStringBy(config.A_field3, ';');
+                    foreach (string afield3 in a_fields3)
+                    {
+                        // afield3 = Table|filter:*field-data?alvt.lo_yn=1,field2... // data?alvt.lo_yn=1
+                        // Table|filter, Nếu không có | thì không có filer.
+                        // *field-data?alvt.lo_yn=1 field_data_where trường kiểm tra, trường dữ liệu, filter
+                        // nếu check count data where ? = 0 thì bỏ qua. Nếu có check tồn tại field = detail[data]
+                        int index = afield3.IndexOf(':');
+                        string table_filter = afield3.Substring(0, index);
+                        var field_data_list = ObjectAndString.SplitStringBy(afield3.Substring(index + 1), ',');
+                        string table = table_filter;
+                        string init_filter = null;
+                        if (table_filter.Contains("|"))
+                        {
+                            index = table_filter.IndexOf('|');
+                            table = table_filter.Substring(0, index);
+                            init_filter = table_filter.Substring(index + 1);
+                        }
+
+                        //foreach (DataRow row in AD.Rows) // Chỉ check 1row (detail2_data)
+                        {
+                            foreach (string field_data_where in field_data_list)
+                            {
+                                string star_field = "", data = ""; // *field, sau xử lý sẽ mất *
+                                string description = null;
+                                IDictionary<string, object> keys = new Dictionary<string, object>();
+                                index = field_data_where.IndexOf('-');
+                                star_field = field_data_where.Substring(0, index);
+                                bool star = false; // bắt buộc có dữ liệu
+                                if (star_field.StartsWith("*"))
+                                {
+                                    star = true;
+                                    star_field = star_field.Substring(1);
+                                }
+                                string data_where = field_data_where.Substring(index + 1);
+                                data = data_where;
+                                index = data_where.IndexOf('?');
+                                if (index > 0) // Nếu có ?
+                                {
+                                    data = data_where.Substring(0, index);
+                                    var where = data_where.Substring(index + 1);
+
+                                    //check where table.whereclause
+                                    var checkwhere = where.Split('.');
+                                    string where_clause = "" + data + "='" + DETAIL_DATA[data.ToUpper()] + "' and " + checkwhere[1];
+                                    int count = V6BusinessHelper.SelectCount(checkwhere[0], "*", where_clause);
+                                    if (count == 0) goto next_row;
+                                }
+                                // Check field_data valid in table
+                                object o = DETAIL_DATA[data.ToUpper()];
+                                if (!star && o.ToString().Trim() == "") goto next_row; // bỏ qua không kiểm tra
+
+                                keys.Add(star_field, o);
+                                description += string.Format("\r\n{0}:{1}={2}", table, star_field, o);
+
+                                bool exist = V6BusinessHelper.CheckDataExist(table, keys, init_filter);
+                                if (!exist)
+                                {
+                                    error += (error != null && error.Length > 1 ? "\r\n" : "") + V6Text.Wrong + description;
+                                    if (firstField == null) firstField = data;
+                                }
+                            }
+
+                            
+                        next_row:
+                            ;
                         }
                     }
                 }
@@ -3037,10 +3107,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
             var gridView = grow.DataGridView;
             try
             {
-                IDictionary<string, object> data = grow.ToDataDictionary();
+                IDictionary<string, object> DETAIL_DATA = grow.ToDataDictionary();
                 string inv = "";
                 //All_Objects["detail1"] = detail1;
-                All_Objects["DETAILDATA"] = data;
+                All_Objects["DETAILDATA"] = DETAIL_DATA;
                 inv += InvokeFormEvent(FormDynamicEvent.VALIDATEDETAILDATA);
                 V6Tag invTag = new V6Tag(inv);
                 if (invTag.Cancel)
@@ -3061,14 +3131,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         string FIELD = field.Trim().ToUpper();
                         string label = FIELD;
-                        if (!data.ContainsKey(FIELD))
+                        if (!DETAIL_DATA.ContainsKey(FIELD))
                         {
                             //error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
                             continue;
                         }
 
                         V6ColumnStruct columnS = Invoice.ADStruct[FIELD];
-                        object value = data[FIELD];
+                        object value = DETAIL_DATA[FIELD];
                         
                         if (ObjectAndString.IsDateTimeType(columnS.DataType))
                         {
@@ -3113,6 +3183,72 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             {
                                 error += V6Text.Wrong + " [" + field2 + "]\n";
                             }
+                        }
+                    }
+
+                    //Trường dữ liệu cần nhập đúng
+                    var a_fields3 = ObjectAndString.SplitStringBy(config.A_field3, ';');
+                    foreach (string afield3 in a_fields3)
+                    {
+                        // afield3 = Table|filter:*field-data?alvt.lo_yn=1,field2... // data?alvt.lo_yn=1
+                        int index = afield3.IndexOf(':');
+                        string table_filter = afield3.Substring(0, index);
+                        var field_data_list = ObjectAndString.SplitStringBy(afield3.Substring(index + 1), ',');
+                        string table = table_filter;
+                        string init_filter = null;
+                        if (table_filter.Contains("|"))
+                        {
+                            index = table_filter.IndexOf('|');
+                            table = table_filter.Substring(0, index);
+                            init_filter = table_filter.Substring(index + 1);
+                        }
+
+                        //foreach (DataRow row in AD2.Rows) // Chỉ check 1row (detail2_data)
+                        {
+                            foreach (string field_data_where in field_data_list)
+                            {
+                                string star_field = "", data = ""; // *field, sau xử lý sẽ mất *
+                                string description = null;
+                                IDictionary<string, object> keys = new Dictionary<string, object>();
+                                index = field_data_where.IndexOf('-');
+                                star_field = field_data_where.Substring(0, index);
+                                bool star = false; // bắt buộc có dữ liệu
+                                if (star_field.StartsWith("*"))
+                                {
+                                    star = true;
+                                    star_field = star_field.Substring(1);
+                                }
+                                string data_where = field_data_where.Substring(index + 1);
+                                data = data_where;
+                                index = data_where.IndexOf('?');
+                                if (index > 0)
+                                {
+                                    data = data_where.Substring(0, index);
+                                    var where = data_where.Substring(index + 1);
+
+                                    //check where table.whereclause
+                                    var checkwhere = where.Split('.');
+                                    string where_clause = "" + data + "='" + DETAIL_DATA[data.ToUpper()] + "' and " + checkwhere[1];
+                                    int count = V6BusinessHelper.SelectCount(checkwhere[0], "*", where_clause);
+                                    if (count == 0) goto next_row;
+                                }
+                                // Check field_data valid in table
+                                object o = DETAIL_DATA[data.ToUpper()];
+                                if (!star && o.ToString().Trim() == "") goto next_row; // bỏ qua không kiểm tra
+
+                                keys.Add(star_field, o);
+                                description += string.Format("\r\n{0}:{1}={2}", table, star_field, o);
+
+                                bool exist = V6BusinessHelper.CheckDataExist(table, keys, init_filter);
+                                if (!exist)
+                                {
+                                    error += (error != null && error.Length > 1 ? "\r\n" : "") + V6Text.Wrong + description;
+                                    if (firstField == null) firstField = data;
+                                }
+                            }
+
+                            next_row:
+                            ;
                         }
                     }
                 }
@@ -3200,12 +3336,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         
                         foreach (DataRow row in AD.Rows)
                         {
-                            IDictionary<string, object> keys = new Dictionary<string, object>();
-                            string description = null;
                             foreach (string field_data_where in field_data_list)
                             {
+                                string star_field = "", data = ""; // *field, sau xử lý sẽ mất *
+                                string description = null;
+                                IDictionary<string, object> keys = new Dictionary<string, object>();
                                 index = field_data_where.IndexOf('-');
-                                string star_field = field_data_where.Substring(0, index);
+                                star_field = field_data_where.Substring(0, index);
                                 bool star = false; // bắt buộc có dữ liệu
                                 if (star_field.StartsWith("*"))
                                 {
@@ -3213,7 +3350,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                                     star_field = star_field.Substring(1);
                                 }
                                 string data_where = field_data_where.Substring(index + 1);
-                                string data = data_where;
+                                data = data_where;
                                 index = data_where.IndexOf('?');
                                 if (index > 0)
                                 {
@@ -3232,14 +3369,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
                                 
                                 keys.Add(star_field, o);
                                 description += string.Format("\r\n{0}:{1}={2}", table, star_field, o);
+                                bool exist = V6BusinessHelper.CheckDataExist(table, keys, init_filter);
+                                if (!exist)
+                                {
+                                    error += (error != null && error.Length > 1 ? "\r\n" : "") + V6Text.Wrong + description;
+                                    //if (firstField == null) firstField = data;
+                                }
                             }
 
-                            bool exist = V6BusinessHelper.CheckDataExist(table, keys, init_filter);
-                            if (!exist)
-                            {
-                                error += (error != null && error.Length > 1 ? "\r\n" : "") + V6Text.NotExist + description;
-                            }
-                        next_row:
+                            next_row:
                             ;
                         }
                     }
@@ -3262,10 +3400,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         /// <param name="detail3"></param>
         /// <param name="Invoice"></param>
-        /// <param name="data"></param>
+        /// <param name="DETAIL2_DATA"></param>
         /// <param name="firstField"></param>
         /// <returns></returns>
-        public string ValidateDetail2Data(HD_Detail detail3, V6InvoiceBase Invoice, IDictionary<string, object> data, out string firstField)
+        public string ValidateDetail2Data(HD_Detail detail3, V6InvoiceBase Invoice, IDictionary<string, object> DETAIL2_DATA, out string firstField)
         {
             string error = "";
             firstField = null;
@@ -3281,14 +3419,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         string FIELD = field.Trim().ToUpper();
                         string label = FIELD;
-                        if (!data.ContainsKey(FIELD))
+                        if (!DETAIL2_DATA.ContainsKey(FIELD))
                         {
                             //error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
                             continue;
                         }
 
-                        V6ColumnStruct columnS = Invoice.ADStruct[FIELD];
-                        object value = data[FIELD];
+                        V6ColumnStruct columnS = Invoice.AD2Struct[FIELD];
+                        object value = DETAIL2_DATA[FIELD];
                         
                         if (ObjectAndString.IsDateTimeType(columnS.DataType))
                         {
@@ -3333,6 +3471,71 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             {
                                 error += V6Text.Wrong + " [" + field2 + "]\n";
                             }
+                        }
+                    }
+
+                    //Trường dữ liệu cần nhập đúng
+                    var a_fields3 = ObjectAndString.SplitStringBy(config.A_field3, ';');
+                    foreach (string afield3 in a_fields3)
+                    {
+                        // afield3 = Table|filter:*field-data?alvt.lo_yn=1,field2... // data?alvt.lo_yn=1
+                        int index = afield3.IndexOf(':');
+                        string table_filter = afield3.Substring(0, index);
+                        var field_data_list = ObjectAndString.SplitStringBy(afield3.Substring(index + 1), ',');
+                        string table = table_filter;
+                        string init_filter = null;
+                        if (table_filter.Contains("|"))
+                        {
+                            index = table_filter.IndexOf('|');
+                            table = table_filter.Substring(0, index);
+                            init_filter = table_filter.Substring(index + 1);
+                        }
+
+                        //foreach (DataRow row in AD2.Rows) // Chỉ check 1row (detail2_data)
+                        {
+                            foreach (string field_data_where in field_data_list)
+                            {
+                                string star_field = "", data = ""; // *field, sau xử lý sẽ mất *
+                                string description = null;
+                                IDictionary<string, object> keys = new Dictionary<string, object>();
+                                index = field_data_where.IndexOf('-');
+                                star_field = field_data_where.Substring(0, index);
+                                bool star = false; // bắt buộc có dữ liệu
+                                if (star_field.StartsWith("*"))
+                                {
+                                    star = true;
+                                    star_field = star_field.Substring(1);
+                                }
+                                string data_where = field_data_where.Substring(index + 1);
+                                data = data_where;
+                                index = data_where.IndexOf('?');
+                                if (index > 0)
+                                {
+                                    data = data_where.Substring(0, index);
+                                    var where = data_where.Substring(index + 1);
+
+                                    //check where table.whereclause
+                                    var checkwhere = where.Split('.');
+                                    string where_clause = "" + data + "='" + DETAIL2_DATA[data.ToUpper()] + "' and " + checkwhere[1];
+                                    int count = V6BusinessHelper.SelectCount(checkwhere[0], "*", where_clause);
+                                    if (count == 0) goto next_row;
+                                }
+                                // Check field_data valid in table
+                                object o = DETAIL2_DATA[data.ToUpper()];
+                                if (!star && o.ToString().Trim() == "") goto next_row; // bỏ qua không kiểm tra
+
+                                keys.Add(star_field, o);
+                                description += string.Format("\r\n{0}:{1}={2}", table, star_field, o);
+                                bool exist = V6BusinessHelper.CheckDataExist(table, keys, init_filter);
+                                if (!exist)
+                                {
+                                    error += (error != null && error.Length > 1 ? "\r\n" : "") + V6Text.Wrong + description;
+                                    if (firstField == null) firstField = data;
+                                }
+                            }
+
+                            next_row:
+                            ;
                         }
                     }
                 }
