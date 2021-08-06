@@ -131,7 +131,11 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                if (keyData == (Keys.Control | Keys.F6))
+                if (keyData == Keys.Escape)
+                {
+                    btnBack.PerformClick();
+                }
+                else if (keyData == (Keys.Control | Keys.F6))
                 {
 
                 }

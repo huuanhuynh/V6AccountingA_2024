@@ -23,7 +23,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         private new string _MA_DM;//Đè kiểu cũ. Các hàm cũ đã override.
-        private new AldmConfig _aldmConfig;
+        //public AldmConfig _aldmConfig; xài biến base
         private DataTable AlreportData = null;
         private DataTable Alreport1Data = null;
         private Dictionary<V6NumberTextBox, int> NumberTextBox_Decimals = new Dictionary<V6NumberTextBox, int>();

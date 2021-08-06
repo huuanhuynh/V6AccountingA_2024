@@ -84,6 +84,8 @@ namespace V6ThuePostManager
         /// Kết quả trả về của Web_service đã được phân tích.
         /// </summary>
         public PM_Result Result = null;
+
+        public string Version = null;
     }
 
     /// <summary>

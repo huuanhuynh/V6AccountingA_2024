@@ -212,8 +212,19 @@ namespace V6ControlManager.FormManager.NhanSu.View
             //V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
             TopControl.SetData(nhanSuData);
         }
-       
-       
+
+        public override bool DoHotKey0(Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                btnHuy.PerformClick();
+            }
+            else
+            {
+                return base.DoHotKey0(keyData);
+            }
+            return true;
+        }
         
         private void btnNhan_Click(object sender, EventArgs e)
         {

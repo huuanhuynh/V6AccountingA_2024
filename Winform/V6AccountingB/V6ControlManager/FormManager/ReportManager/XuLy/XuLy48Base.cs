@@ -914,6 +914,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".LoadData XuLy48Base", ex);
+                _message = ex.Message;
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
@@ -1016,6 +1017,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
+                ShowMainMessage(_message);
             }
         }
 

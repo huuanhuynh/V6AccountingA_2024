@@ -2881,11 +2881,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public bool ValidateMasterData(V6InvoiceBase Invoice)
         {
-            var v6validConfig = ConfigManager.GetV6ValidConfig(Invoice.Mact, 1);
+            var v6ValidConfig = ConfigManager.GetV6ValidConfig(Invoice.Mact, 1);
             
-            if (v6validConfig != null && v6validConfig.HaveInfo)
+            if (v6ValidConfig != null && v6ValidConfig.HaveInfo)
             {
-                var a_fields = v6validConfig.A_field.Split(',');
+                var a_fields = v6ValidConfig.A_field.Split(',');
                 foreach (string field in a_fields)
                 {
                     var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
@@ -2916,6 +2916,87 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             return false;
                         }
                     }
+                }
+
+                //Trường dữ liệu cần nhập đúng
+                string firstField = null, error = null;
+                var a_fields3 = ObjectAndString.SplitStringBy(v6ValidConfig.A_field3, ';');
+                foreach (string afield3 in a_fields3)
+                {
+                    // afield3 = Table|filter:*field-data?alvt.lo_yn=1,field2... // data?alvt.lo_yn=1
+                    // Table|filter, Nếu không có | thì không có filer.
+                    // *field-data?alvt.lo_yn=1 field_data_where trường kiểm tra, trường dữ liệu, filter
+                    // nếu check count data where ? = 0 thì bỏ qua. Nếu có check tồn tại field = detail[data]
+                    int index = afield3.IndexOf(':');
+                    string table_filter = afield3.Substring(0, index);
+                    var field_data_list = ObjectAndString.SplitStringBy(afield3.Substring(index + 1), ',');
+                    string table = table_filter;
+                    string init_filter = null;
+                    if (table_filter.Contains("|"))
+                    {
+                        index = table_filter.IndexOf('|');
+                        table = table_filter.Substring(0, index);
+                        init_filter = table_filter.Substring(index + 1);
+                    }
+
+                    //foreach (DataRow row in AD.Rows) // Chỉ check 1row (detail2_data)
+                    {
+                        foreach (string field_data_where in field_data_list)
+                        {
+                            string star_field = "", data = ""; // *field, sau xử lý sẽ mất *
+                            string description = null;
+                            IDictionary<string, object> keys = new Dictionary<string, object>();
+                            index = field_data_where.IndexOf('-');
+                            star_field = field_data_where.Substring(0, index);
+                            bool star = false; // bắt buộc có dữ liệu
+                            if (star_field.StartsWith("*"))
+                            {
+                                star = true;
+                                star_field = star_field.Substring(1);
+                            }
+                            string data_where = field_data_where.Substring(index + 1);
+                            data = data_where;
+                            index = data_where.IndexOf('?');
+                            if (index > 0) // Nếu có ?
+                            {
+                                data = data_where.Substring(0, index);
+                                var where = data_where.Substring(index + 1);
+
+                                //check where table.whereclause
+                                var checkwhere = where.Split('.');
+                                string where_clause = "" + data + "='"
+                                                      + V6ControlFormHelper.GetControlValue(GetControlByAccessibleName(data))
+                                                      + "' and " + checkwhere[1];
+                                int count = V6BusinessHelper.SelectCount(checkwhere[0], "*", where_clause);
+                                if (count == 0) goto next_row;
+                            }
+                            // Check field_data valid in table
+                            object o = V6ControlFormHelper.GetControlValue(GetControlByAccessibleName(data));
+                            if (!star && o.ToString().Trim() == "") goto next_row; // bỏ qua không kiểm tra
+
+                            keys.Add(star_field, o);
+                            description += string.Format("\r\n{0}:{1}={2}", table, star_field, o);
+
+                            bool exist = V6BusinessHelper.CheckDataExist(table, keys, init_filter);
+                            if (!exist)
+                            {
+                                error += (error != null && error.Length > 1 ? "\r\n" : "") + V6Text.Wrong + description;
+                                if (firstField == null) firstField = data;
+                            }
+                        }
+
+
+                    next_row:
+                        ;
+                    }
+                }
+
+                if (error != null)
+                {
+                    var control = GetControlByAccessibleName(firstField);
+                    if (control != null) control.Focus();
+                    this.ShowWarningMessage(error);
+                    return false;
                 }
             }
             else

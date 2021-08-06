@@ -82,7 +82,7 @@ namespace V6Controls
                     return _data;
                 else
                 {
-                    ExistRowInTable(Text);
+                    //ExistRowInTable(Text);
                 }
                 return _data;
             }

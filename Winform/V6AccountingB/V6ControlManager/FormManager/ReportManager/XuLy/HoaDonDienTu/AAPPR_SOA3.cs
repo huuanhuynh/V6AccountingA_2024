@@ -154,6 +154,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
                             string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
                             DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
+                            string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
 
                             var pmparams1 = new PostManagerParams
                             {
@@ -161,6 +162,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 Branch = FilterControl.String1,
                                 InvoiceNo = invoiceNo,
                                 InvoiceDate = ngay_ct,
+                                Fkey_hd = fkey_hd,
                                 Pattern = pattern,
                                 Serial = serial,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],

@@ -298,7 +298,7 @@ namespace V6ThuePostManager
 
                             return "Lỗi kết nối." + paras.Result.V6ReturnValues.RESULT_STRING;
                         }
-                        else if (_version == "V45")
+                        else if (_version == "V45" || _version == "V45I")
                         {
                             if (viettel_V2WS == null) viettel_V2WS = new ViettelV2WS(_baseUrl, _username, _password, _codetax);
                             result = viettel_V2WS.CheckConnection();
@@ -2490,8 +2490,9 @@ namespace V6ThuePostManager
         private static string EXECUTE_VIETTEL(PostManagerParams paras)
         {
             if (_version == "V2") return EXECUTE_VIETTEL_V2CALL(paras);
-            else if (_version == "V45")
+            else if (_version == "V45" || _version == "V45I")
             {
+                paras.Version = _version;
                 return EXECUTE_VIETTEL_V2_45(paras);
             }
 
@@ -2676,19 +2677,24 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_H1") // Hủy hóa đơn
                 {
-
                     DataRow row0 = am_table.Rows[0];
                     var item = generalInvoiceInfoConfig["invoiceIssuedDate"];
                     string strIssueDate = ((DateTime)GetValue(row0, item)).ToString("yyyyMMddHHmmss");
+                    if (_version == "V45I")
+                    {
+                        // V45 yyyyMMddHHmmss nhưng khi lên V45I đã thay đổi.
+                        strIssueDate = V6JsonConverter.ObjectToJson((DateTime)GetValue(row0, item), "VIETTEL");
+                    }
                     string additionalReferenceDesc = paras.AM_data["STT_REC"].ToString();
                     paras.InvoiceNo = paras.AM_data["SO_SERI"].ToString().Trim() + paras.AM_data["SO_CT"].ToString().Trim();
-                    result = viettel_V2WS.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
+                    result = viettel_V2WS.CancelTransactionInvoice(_codetax, paras.InvoiceNo,
+                        strIssueDate, additionalReferenceDesc, strIssueDate, out paras.Result.V6ReturnValues);
 
                 }
                 else if (paras.Mode == "E_T1")
                 {
                     jsonBody = ReadData_Viettel(paras);
-                    result = viettel_V2WS.POST_REPLACE(jsonBody, out paras.Result.V6ReturnValues);
+                    result = viettel_V2WS.POST_REPLACE(jsonBody, _version == "V45I", out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("M"))
                 {
@@ -2716,7 +2722,7 @@ namespace V6ThuePostManager
                         }
                         else
                         {
-                            result = viettel_V2WS.POST_CREATE_INVOICE(jsonBody, out paras.Result.V6ReturnValues);
+                            result = viettel_V2WS.POST_CREATE_INVOICE(jsonBody, out paras.Result.V6ReturnValues, paras.Version == "V45I");
                         }
                     }
                     else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
@@ -3214,7 +3220,7 @@ namespace V6ThuePostManager
                 return paras.Result.V6ReturnValues.PATH;
                 return process_result;
             }
-            else if (_version == "V45")
+            else if (_version == "V45" || _version == "V45I")
             {
                 if (viettel_V2WS == null) viettel_V2WS = new ViettelV2WS(_baseUrl, _username, _password, _codetax);
 

@@ -174,7 +174,7 @@ namespace V6ReportControls
             {
                 if (_textBox != null) return _textBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
-                if (_lookupTextBox != null) return _lookupTextBox.Value.ToString();
+                if (_lookupTextBox != null) return _lookupTextBox.Value == null ? null : _lookupTextBox.Value.ToString();
                 if (_lookupProc != null) return _lookupProc.Value.ToString();
                 if (_numberTextBox != null) return _numberTextBox.Value.ToString(CultureInfo.InvariantCulture);
                 if (_dateTimePick != null) return _dateTimePick.YYYYMMDD;

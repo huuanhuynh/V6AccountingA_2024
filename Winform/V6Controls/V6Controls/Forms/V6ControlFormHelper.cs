@@ -3867,7 +3867,10 @@ namespace V6Controls.Forms
                 }
                 else
                 {
-                    rpt.PrintOptions.PaperSource = PrintingConverter.PaperSourceKindToPaperSource(printer.DefaultPageSettings.PaperSource.Kind);
+                    if (printer.DefaultPageSettings.PaperSource.Kind > 0)
+                    {
+                        rpt.PrintOptions.PaperSource = PrintingConverter.PaperSourceKindToPaperSource(printer.DefaultPageSettings.PaperSource.Kind);
+                    }
                     rpt.PrintOptions.CustomPaperSource = null;
                 }
             }

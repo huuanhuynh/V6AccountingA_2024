@@ -275,10 +275,12 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
-                if (data == null) return;
-                DataGridViewRow row = gridView1.GetFirstSelectedRow();
-                V6ControlFormHelper.UpdateGridViewRow(row, data);
-                gridView1_SelectionChanged(null, null);
+                ReLoad();
+
+                //if (data == null) return;
+                //DataGridViewRow row = gridView1.GetFirstSelectedRow();
+                //V6ControlFormHelper.UpdateGridViewRow(row, data);
+                //gridView1_SelectionChanged(null, null);
             }
             catch (Exception ex)
             {
@@ -306,6 +308,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
         private void ReLoad()
         {
             LoadData(FORM_NAME_NEW);
+            LoadSelectedCellLocation(gridView1);
+            gridView1_SelectionChanged(null, null);
         }
 
         public void HideFilterControl()
@@ -406,6 +410,19 @@ namespace V6ControlManager.FormManager.NhanSu.View
             FilterControl.SetParentRow(nhanSuData);
             //V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
             TopControl.SetData(nhanSuData);
+        }
+
+        public override bool DoHotKey0(Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                btnHuy.PerformClick();
+            }
+            else
+            {
+                return base.DoHotKey0(keyData);
+            }
+            return true;
         }
 
         /// <summary>

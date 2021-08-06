@@ -110,6 +110,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             DataSet = ds,
                             Mode = mode,
                             Branch = FilterControl.String1,
+                            InvoiceDate = (DateTime)row.Cells["NGAY_CT"].Value,
                             Fkey_hd = fkey_hd,
                             V6PartnerID = row.Cells["V6PARTNER_ID"].Value.ToString().Trim(),
                             AM_data = row_data,

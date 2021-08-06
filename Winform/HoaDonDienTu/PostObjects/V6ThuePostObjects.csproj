@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ConfigLine.cs" />
     <Compile Include="ViettelV2Objects\buyerInfo.cs" />
+    <Compile Include="ViettelV2Objects\Response\CancelResponse.cs" />
     <Compile Include="ViettelV2Objects\SearchInvoiceResponseV2.cs" />
     <Compile Include="ViettelV2Objects\CreateInvoiceResponseV2.cs" />
     <Compile Include="ViettelV2Objects\CreateInvoiceResponse_Result.cs" />

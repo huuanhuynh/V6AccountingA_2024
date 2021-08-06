@@ -78,7 +78,6 @@
             this.xuLyBase1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xuLyBase1.AutoClickNhan = false;
             this.xuLyBase1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.xuLyBase1.FilterControl = null;
             this.xuLyBase1.FilterType = "4";
@@ -98,12 +97,8 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_EINVOICE1_F6";
-            this.Text = "Chọn hóa mới";
+            this.Text = "Chọn hóa đơn mới";
             this.Load += new System.EventHandler(this.Form_Load);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
-            
-            this.Controls.SetChildIndex(this.xuLyBase1, 0);
             this.ResumeLayout(false);
 
         }

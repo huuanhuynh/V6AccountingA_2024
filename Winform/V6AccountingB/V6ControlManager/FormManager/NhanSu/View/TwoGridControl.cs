@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
 using V6Tools;
@@ -56,6 +57,19 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 this.WriteExLog(GetType() + ".LoadData", ex);
             }
         }
+
+        //public override bool DoHotKey0(Keys keyData)
+        //{
+        //    if (keyData == Keys.Escape)
+        //    {
+        //        btnHuy.PerformClick();
+        //    }
+        //    else
+        //    {
+        //        return base.DoHotKey0(keyData);
+        //    }
+        //    return true;
+        //}
 
         private void gridView2_SelectionChanged(object sender, EventArgs e)
         {
