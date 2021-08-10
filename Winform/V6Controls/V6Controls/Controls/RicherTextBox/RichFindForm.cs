@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace V6Controls.Controls.RicherTextBox
 {
-    public partial class FindForm : Form
+    public partial class RichFindForm : Form
     {
         int lastFound = 0;
         RichTextBox rtbInstance = null;
@@ -19,7 +19,7 @@ namespace V6Controls.Controls.RicherTextBox
             get { return txtSearchText.Text; }
         }
 
-        public FindForm()
+        public RichFindForm()
         {
             InitializeComponent();
             this.TopMost = true;

@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Controls.RicherTextBox
 {
-    partial class FindForm
+    partial class RichFindForm
     {
         /// <summary>
         /// Required designer variable.

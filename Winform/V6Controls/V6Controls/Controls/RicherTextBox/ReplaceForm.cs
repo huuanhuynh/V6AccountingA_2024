@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace V6Controls.Controls.RicherTextBox
 {
-    public partial class ReplaceForm : FindForm
+    public partial class ReplaceForm : RichFindForm
     {
         public new RichTextBox RtbInstance
         {

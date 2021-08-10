@@ -58,6 +58,10 @@ namespace V6Controls.Forms
                 btnSelectAll.PerformClick();
                 return true;
             }
+            //if (keyData == (Keys.Control | Keys.F))
+            //{
+            //    DoFind();
+            //}
             if (keyData == (Keys.Control | Keys.U))
             {
                 btnUnSelect.PerformClick();
@@ -65,6 +69,10 @@ namespace V6Controls.Forms
             }
             return base.DoHotKey0(keyData);
         }
+
+        
+
+        
 
         private void SetSelectedIDs()
         {

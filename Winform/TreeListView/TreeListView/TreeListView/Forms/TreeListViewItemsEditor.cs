@@ -210,7 +210,7 @@ namespace System.Windows.Forms
 		{
 			try
 			{
-				TreeListViewItem newitem = new TreeListViewItem("treeListView" + _items.Owner.ItemsCount.ToString());
+				TreeListViewItem newitem = new TreeListViewItem("treeListView" + _items.Owner.ItemsCountAllChild.ToString());
 				TreeNode node = new TreeNode(newitem.Text);
 				node.Tag = newitem;
 				if(treeView1.SelectedNode != null)

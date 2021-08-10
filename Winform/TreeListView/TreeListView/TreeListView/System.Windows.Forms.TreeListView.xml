@@ -4,6 +4,28 @@
         <name>System.Windows.Forms.TreeListView</name>
     </assembly>
     <members>
+        <member name="F:V6Controls.Forms.FindForm._first">
+            <summary>
+            Tìm lần đầu khi vừa thay đổi nội dung tìm kiếm.
+            </summary>
+        </member>
+        <member name="F:V6Controls.Forms.FindForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:V6Controls.Forms.FindForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:V6Controls.Forms.FindForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:System.Windows.Forms.TreeListViewItemsEditorForm">
             <summary>
             Editor for the TreeListView.Items property

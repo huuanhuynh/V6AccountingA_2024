@@ -9,10 +9,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Controls;
+using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
@@ -31,6 +33,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public SortedDictionary<string, string> HideFields = new SortedDictionary<string, string>();
         public SortedDictionary<string, string> ReadOnlyFields = new SortedDictionary<string, string>();
         private readonly IDictionary<string, object> _defaultData = new Dictionary<string, object>();
+        /// <summary>
+        /// Các trường thay đổi sau khi xử lý tính toán. Khi xử lý update sẽ kết hợp thêm trường hiện tại (currentColumn).
+        /// </summary>
         public List<string> updateFieldList = new List<string>();
         protected readonly bool _updateDatabase = true;
         public bool HaveChange { get; set; }
@@ -579,14 +584,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        protected void XuLyCongThucTinhToanAll(string EDIT_FIELD, string CHANGE_FIELD, AldmConfig config)
+        protected void XuLyCongThucTinhToanAll(DataGridViewRow cRow, string EDIT_FIELD, string CHANGE_FIELD, AldmConfig config)
         {
             try
             {
                 if (!config.HaveInfo) return;
-                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH1, config)) XuLyCongThucTinhToan1(EDIT_FIELD, config.CACH_TINH1, config);
-                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH2, config)) XuLyCongThucTinhToan1(EDIT_FIELD, config.CACH_TINH2, config);
-                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH3, config)) XuLyCongThucTinhToan1(EDIT_FIELD, config.CACH_TINH3, config);
+                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH1, config)) XuLyCongThucTinhToan1(cRow, EDIT_FIELD, config.CACH_TINH1, config);
+                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH2, config)) XuLyCongThucTinhToan1(cRow, EDIT_FIELD, config.CACH_TINH2, config);
+                if (UpdateFieldOnRight(CHANGE_FIELD, config.CACH_TINH3, config)) XuLyCongThucTinhToan1(cRow, EDIT_FIELD, config.CACH_TINH3, config);
             }
             catch (Exception ex)
             {
@@ -594,7 +599,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void XuLyCongThucTinhToan1(string EDIT_FIELD, string congThuc, AldmConfig config)
+        private void XuLyCongThucTinhToan1(DataGridViewRow cRow, string EDIT_FIELD, string congThuc, AldmConfig config)
         {
             var ss = congThuc.Split('=');
             if (ss.Length == 2)
@@ -605,9 +610,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 updateFieldList.Add(CACULATED_FIELD);
                 var bieu_thuc = ss[1].Trim();
 
-                var cRow = dataGridView1.CurrentRow;
+                //var cRow = dataGridView1.CurrentRow;
                 if (cRow != null) cRow.Cells[CACULATED_FIELD].Value = Number.GiaTriBieuThuc(bieu_thuc, cRow.ToDataDictionary());
-                XuLyCongThucTinhToanAll(EDIT_FIELD, CACULATED_FIELD, config);
+                XuLyCongThucTinhToanAll(cRow, EDIT_FIELD, CACULATED_FIELD, config);
             }
         }
 
@@ -732,10 +737,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// Update dữ liệu vào cơ sở dữ liệu.
         /// </summary>
-        /// <param name="rowIndex">Dòng đang sửa.</param>
+        /// <param name="row">Dòng thực hiện updateDatabase</param>
         /// <param name="columnIndex">Cột đang sửa.</param>
         /// <param name="config">Cấu hình aldm.</param>
-        protected void UpdateData(int rowIndex, int columnIndex, AldmConfig config)
+        protected void UpdateData(DataGridViewRow row, int columnIndex, AldmConfig config)
         {
             if (config == null || config.NoInfo)
             {
@@ -747,7 +752,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 SetStatusText(string.Format("{0} {1}", V6Text.Edit, config.TABLE_NAME));
-                var row = dataGridView1.Rows[rowIndex];
                 SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
                 foreach (string field in _KEY_FIELDS)
                 {
@@ -1908,10 +1912,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // Mới thêm
             var EDIT_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
             //Xu ly cong thuc tinh toan
-            
-            XuLyCongThucTinhToanAll(EDIT_FIELD, EDIT_FIELD, _aldmConfig);
+            XuLyCongThucTinhToanAll(row, EDIT_FIELD, EDIT_FIELD, _aldmConfig);
 
-            if (_updateDatabase) UpdateData(e.RowIndex, e.ColumnIndex, _aldmConfig);
+            if (_updateDatabase) UpdateData(row, e.ColumnIndex, _aldmConfig);
         }
 
         private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -2097,6 +2100,87 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 btnEditGrid.Enabled = false;
             }
         }
-        
+
+        private void thayTheMenu_Click(object sender, EventArgs e)
+        {
+            ThayThe_GiaTri(dataGridView1.CurrentCell);
+        }
+
+
+        /// <summary>
+        /// Chức năng sửa hàng loạt một cột dữ liệu. Lấy giá trị ô hiện tại gán xuống các ô dòng dưới nó.
+        /// </summary>
+        /// <param name="currentCell"></param>
+        public void ThayThe_GiaTri(DataGridViewCell currentCell)
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+
+                if (!_aldmConfig.EXTRA_INFOR.ContainsKey("CT_REPLACE"))
+                {
+                    ShowMainMessage(V6Text.NoDefine + "EXTRA_INFOR[CT_REPLACE]");
+                    return;
+                }
+                var listFieldCanReplace = ObjectAndString.SplitString(_aldmConfig.EXTRA_INFOR["CT_REPLACE"]);
+
+                int field_index = dataGridView1.CurrentCell.ColumnIndex;
+                string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
+                object VALUE = dataGridView1.CurrentCell.Value;
+
+                if (!listFieldCanReplace.Contains(FIELD))
+                {
+                    ShowMainMessage(V6Text.NoDefine + " CT_REPLACE:" + FIELD);
+                    return;
+                }
+
+                V6ColorTextBox textBox = new V6ColorTextBox();
+                if (dataGridView1.Columns[FIELD] is V6VvarDataGridViewColumn) textBox = new V6VvarTextBox();
+                else if (dataGridView1.Columns[FIELD] is V6DateTimeColorGridViewColumn) textBox = new V6DateTimeColor();
+                else if (dataGridView1.Columns[FIELD] is V6NumberDataGridViewColumn) textBox = new V6NumberTextBox();
+
+                Type valueType = dataGridView1.CurrentCell.OwningColumn.ValueType;
+
+                //Check
+                if (textBox == null)
+                {
+                    ShowMainMessage(V6Text.Text("UNKNOWNOBJECT"));
+                    return;
+                }
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Index <= dataGridView1.CurrentRow.Index) continue;
+                    if (row.IsNewRow) continue;
+
+                    //object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
+                    if (ObjectAndString.IsDateTimeType(valueType) && VALUE != null)
+                    {
+                        DateTime newDate = (DateTime)VALUE;
+                        if (newDate < new DateTime(1700, 1, 1))
+                        {
+                            VALUE = null;
+                        }
+                    }
+
+                    SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                    newData.Add(FIELD, VALUE);
+                    V6ControlFormHelper.UpdateGridViewRow(row, newData);
+                    updateFieldList = new List<string>();
+                    //Xu ly cong thuc tinh toan
+                    XuLyCongThucTinhToanAll(row, FIELD, FIELD, _aldmConfig);
+                    // Update database
+                    UpdateData(row, currentCell.ColumnIndex, _aldmConfig);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang_ThayThe ", ex);
+            }
+        }
     }
 }

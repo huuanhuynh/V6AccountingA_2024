@@ -965,7 +965,7 @@ namespace V6Controls.Controls.RicherTextBox
         #region Find and Replace
         private void tsbtnFind_Click(object sender, EventArgs e)
         {
-            FindForm findForm = new FindForm();
+            RichFindForm findForm = new RichFindForm();
             findForm.RtbInstance = this.rtbDocument;
             findForm.InitialText = this.tstxtSearchText.Text;
             findForm.Show();

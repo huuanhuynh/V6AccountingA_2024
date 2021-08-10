@@ -26,9 +26,72 @@ namespace V6Controls.Controls.ToChucTree
             // ToChucTreeListView
             // 
             this.SelectedIndexChanged += new System.EventHandler(this.ToChucTreeListView_SelectedIndexChanged);
+            //this.KeyDown += ToChucTreeListView_KeyDown;
             this.ResumeLayout(false);
 
         }
+
+        //void ToChucTreeListView_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    //bool ctrl = (Control.ModifierKeys & Keys.Control) == Keys.Control;
+        //    //if (ctrl && e.KeyData == Keys.F)
+        //    //{
+        //    //    DoFind();
+        //    //}
+        //}
+
+        
+
+        //void f_Find(string text, bool up, bool first)
+        //{
+        //    text = text.ToLower();
+        //    int currentItemIndex = -1;
+        //    TreeListViewItem currentItem = null;
+        //    if (!up)
+        //    {
+        //        if (SelectedItemData != null)
+        //        {
+        //            currentItem = SelectedItems[0];
+        //            currentItemIndex = currentItem.Index;
+        //        }
+
+        //        for (int i = currentItemIndex + 1; i < ItemsCountAllChild; i++)
+        //        {
+        //            var item = GetTreeListViewItemFromIndex(i);
+        //            if (item.Text.ToLower().Contains(text))
+        //            {
+        //                if (currentItem != null) currentItem.Selected = false;
+        //                item.Selected = true;
+        //                item.Focused = true;
+        //                TopItem = item;
+        //                return;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        currentItemIndex = ItemsCount;
+        //        if (SelectedItemData != null)
+        //        {
+        //            currentItem = SelectedItems[0];
+        //            currentItemIndex = currentItem.Index;
+        //        }
+
+        //        for (int i = currentItemIndex - 1; i >= 0; i--)
+        //        {
+        //            var item = GetTreeListViewItemFromIndex(i);
+        //            if (item.Text.ToLower().Contains(text))
+        //            {
+        //                if (currentItem != null) currentItem.Selected = false;
+        //                item.Selected = true;
+        //                item.Focused = true;
+        //                TopItem = item;
+        //                return;
+        //            }
+        //        }
+        //    }
+
+        //}
 
         private void ToChucTreeListView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -137,7 +200,7 @@ namespace V6Controls.Controls.ToChucTree
         //}
 
         /// <summary>
-        /// Dữ liệu của dòng đang chọn.
+        /// Dữ liệu của dòng đang chọn. Nếu không có trả về null.
         /// </summary>
         [Browsable(false)]
         public IDictionary<string, object> SelectedItemData
@@ -515,7 +578,7 @@ namespace V6Controls.Controls.ToChucTree
 
         public TreeListViewItem FindNode(string id)
         {
-            if (Items == null || ItemsCount == 0) return null;
+            if (Items == null || ItemsCountAllChild == 0) return null;
             foreach (TreeListViewItem item in Items)
             {
                 return FindNodeRecursive(item, id);

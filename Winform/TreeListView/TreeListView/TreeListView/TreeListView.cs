@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.APIs;
 using System.Diagnostics;
+using V6Controls.Forms;
 
 namespace System.Windows.Forms
 {
@@ -440,7 +441,7 @@ namespace System.Windows.Forms
 			/// Get the number of items recursively
 			/// </summary>
 			[Browsable(false)]
-			public int ItemsCount
+			public int ItemsCountAllChild
 			{
 				get
 				{
@@ -920,13 +921,168 @@ namespace System.Windows.Forms
 		}
 		#region KeyFunction
 			#region OnKeyDown
-			/// <summary>
+            private void DoFind()
+            {
+                try
+                {
+                    var f = new FindForm(this);
+                    f.Location = this.PointToScreen(new Point(f.Width, 0));
+                    f.Find += f_Find;
+                    f.Show(this);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(GetType() + ".DoFind " + ex.Message);
+                }
+            }
+
+            void f_Find(string text, bool up, bool word, bool first)
+            {
+                text = text.ToLower();
+                int currentItemIndex = -1;
+                TreeListViewItem currentItem = null;
+                if (!up)
+                {
+                    if (SelectedItems != null && SelectedItems.Count > 0)
+                    {
+                        currentItem = SelectedItems[0];
+                        currentItemIndex = currentItem.Index;
+                    }
+
+                    if (currentItem != null && currentItem.Items != null && currentItem.Items.Count > 0)
+                    {
+                        foreach (TreeListViewItem c_item in Items)
+                        {
+                            var x = f_Find_Child(c_item, text, word, up);
+                            if (x != null)
+                            {
+                                currentItem.Selected = false;
+                                ExpandToRoot(x);
+                                x.Selected = true;
+                                x.Focused = true;
+
+                                TopItem = x;
+                                return;
+                            }
+                        }
+                    }
+
+                    for (int i = currentItemIndex + 1; i < ItemsCountAllChild; i++)
+                    {
+                        var c_item = GetTreeListViewItemFromIndex(i);
+                        var x = f_Find_Child(c_item, text, word, up);
+                        if (x != null)
+                        {
+                            if (currentItem != null) currentItem.Selected = false;
+                            ExpandToRoot(x);
+                            x.Selected = true;
+                            x.Focused = true;
+                            
+                            TopItem = x;
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    currentItemIndex = ItemsCountAllChild;
+                    if (SelectedItems != null && SelectedItems.Count > 0)
+                    {
+                        currentItem = SelectedItems[0];
+                        currentItemIndex = currentItem.Index;
+                    }
+
+                    for (int i = currentItemIndex - 1; i >= 0; i--)
+                    {
+                        var c_item = GetTreeListViewItemFromIndex(i);
+                        var x = f_Find_Child(c_item, text, word, up);
+                        if (x != null)
+                        {
+                            if (currentItem != null && currentItem.Parent != null && x == currentItem)
+                                continue;
+                            if (x.Index > currentItemIndex)
+                                continue;
+
+                            if (currentItem != null) currentItem.Selected = false;
+                            ExpandToRoot(x);
+                            x.Selected = true;
+                            x.Focused = true;
+                            TopItem = x;
+                            return;
+                        }
+                    }
+                }
+
+            }
+
+            private TreeListViewItem f_Find_Child(TreeListViewItem item, string text, bool word, bool up)
+            {
+                if (item == null) return item;
+                if (FindCompare(item.Text.ToLower(),text, word))
+                {
+                    return item;
+                }
+                if (item.Items.Count == 0) return null;
+                if (!up)
+                {
+                    for (int i = 0; i < item.Items.Count; i++)
+                    {
+                        var x = f_Find_Child(item.Items[i], text, word, up);
+                        if (x != null) return x;
+                    }
+                }
+                else
+                {
+                    for (int i = item.Items.Count-1; i >= 0; i--)
+                    {
+                        var x = f_Find_Child(item.Items[i], text,word, up);
+                        if (x != null) return x;
+                    }
+                }
+
+                return null;
+            }
+
+            private bool FindCompare(string itemText, string text, bool word)
+            {
+                if (word)
+                {
+                    var ss = itemText.Split(' ');
+                    foreach (string s in ss)
+                    {
+                        if (s == text) return true;
+                    }
+                }
+                else
+                {
+                    return itemText.Contains(text);
+                }
+
+                return false;
+            }
+
+            public void ExpandToRoot(TreeListViewItem item)
+            {
+                while (item.Parent != null)
+                {
+                    item = item.Parent;
+                    if(!item.IsExpanded) item.Expand();
+                }
+            }
+
+            /// <summary>
 			/// Raises the KeyDown event
 			/// </summary>
 			/// <param name="e"></param>
 			protected override void OnKeyDown(KeyEventArgs e)
 			{
 				Keys key = e.KeyCode;
+
+                if (e.KeyCode == Keys.F && (Control.ModifierKeys & Keys.Control) == Keys.Control)
+                {
+                    DoFind();
+                }
+
 				if(FocusedItem == null)
 				{
 					if(base.Items.Count > 0 &&

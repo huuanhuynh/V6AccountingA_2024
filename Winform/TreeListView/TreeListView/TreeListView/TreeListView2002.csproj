@@ -104,6 +104,12 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindForm.designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TreeListViewItemsEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     <Compile Include="TreeListViewSubItemEdit.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\TreeListViewItemsEditor.resx">
       <DependentUpon>TreeListViewItemsEditor.cs</DependentUpon>
     </EmbeddedResource>

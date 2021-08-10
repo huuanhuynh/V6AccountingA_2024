@@ -51,6 +51,7 @@
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
             this.btnEditGrid = new V6Controls.Controls.V6FormButton();
+            this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -61,9 +62,10 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportToExcelMenu,
-            this.printGridMenu});
+            this.printGridMenu,
+            this.thayTheMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 70);
             // 
             // exportToExcelMenu
             // 
@@ -282,6 +284,15 @@
             this.btnEditGrid.UseVisualStyleBackColor = true;
             this.btnEditGrid.Click += new System.EventHandler(this.btnEditGrid_Click);
             // 
+            // thayTheMenu
+            // 
+            this.thayTheMenu.AccessibleDescription = "REPORTM00011";
+            this.thayTheMenu.Name = "thayTheMenu";
+            this.thayTheMenu.Size = new System.Drawing.Size(153, 22);
+            this.thayTheMenu.Text = "Thay thế";
+            this.thayTheMenu.ToolTipText = "Thay thế giá trị các ô bên dưới giống với ô hiện tại.";
+            this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
+            // 
             // XuLy48Base
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,6 +341,7 @@
         private wyDay.Controls.SplitButton btnExport3;
         private V6Controls.Controls.V6FormButton btnSuaLine;
         public V6Controls.Controls.V6FormButton btnEditGrid;
+        private System.Windows.Forms.ToolStripMenuItem thayTheMenu;
 
 
 

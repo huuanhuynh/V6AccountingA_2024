@@ -114,6 +114,43 @@ namespace V6Controls.Forms.Editor
             return dsc;
         }
 
+        private DataSet CloneCWithEncrype_yn(DataSet ds)
+        {
+            var dsc = ds.Clone();
+            foreach (DataTable table in ds.Tables)
+            {
+                if (table.Columns.Contains("Value") && table.Columns.Contains("Encrypt_yn"))
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+
+                        string yn = row["Encrypt_yn"].ToString().Trim();
+                        if (yn == "1")
+                        {
+                            string value = row["Value"].ToString();
+                            if (value != "" && UtilityHelper.DeCrypt(value.Trim()) == "")
+                            {
+                                row["Value"] = UtilityHelper.EnCrypt(value);
+                            }
+                        }
+                    }
+                }
+
+                if (dataGridView1.DataSource == table)
+                {
+                    var dsc_table = dsc.Tables[table.TableName];
+                    foreach (DataGridViewRow grow in dataGridView1.Rows)
+                    {
+                        if (grow.Selected)
+                        {
+                            dsc_table.AddRow(grow.ToDataDictionary());
+                        }
+                    }
+                }
+            }
+            return dsc;
+        }
+
         private void Write()
         {
             try
@@ -142,6 +179,30 @@ namespace V6Controls.Forms.Editor
                     if (string.IsNullOrEmpty(saveFile.FileName)) return;
                     FileStream fs = new FileStream(saveFile.FileName, FileMode.Create);
                     CloneWithEncrype_yn(_ds).WriteXml(fs);
+                    fs.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + ".WriteToFile", ex);
+            }
+        }
+
+        private void WriteToFileC()
+        {
+            try
+            {
+                var saveFile = new SaveFileDialog
+                {
+                    Filter = "XML files (*.Xml)|*.xml",
+                    Title = "Xuất XML.",
+                    FileName = _file_xml
+                };
+                if (saveFile.ShowDialog(this) == DialogResult.OK)
+                {
+                    if (string.IsNullOrEmpty(saveFile.FileName)) return;
+                    FileStream fs = new FileStream(saveFile.FileName, FileMode.Create);
+                    CloneCWithEncrype_yn(_ds).WriteXml(fs);
                     fs.Close();
                 }
             }
@@ -187,6 +248,11 @@ namespace V6Controls.Forms.Editor
         private void btnNhapXml_Click(object sender, EventArgs e)
         {
             LoadFromFile();
+        }
+
+        private void btnXuatXmlC_Click(object sender, EventArgs e)
+        {
+            WriteToFileC();
         }
 
     }

@@ -661,7 +661,7 @@ namespace V6Controls.Forms
                     if (tree_list_view.SelectedItems.Count>0 &&
                         (keyData == Keys.Left || keyData == Keys.Right ||
                          (keyData == Keys.Up && tree_list_view.SelectedItems[0].Index > 0) ||
-                         (keyData == Keys.Down && tree_list_view.SelectedItems[0].Index < tree_list_view.ItemsCount - 1)))
+                         (keyData == Keys.Down && tree_list_view.SelectedItems[0].Index < tree_list_view.ItemsCountAllChild - 1)))
                         return false;
                 }
 

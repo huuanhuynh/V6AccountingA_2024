@@ -414,9 +414,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var EDIT_FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
             //Xu ly cong thuc tinh toan
             
-            XuLyCongThucTinhToanAll(EDIT_FIELD, EDIT_FIELD, _aldmConfig6);
+            XuLyCongThucTinhToanAll(row, EDIT_FIELD, EDIT_FIELD, _aldmConfig6);
 
-            if (_updateDatabase) UpdateData(e.RowIndex, e.ColumnIndex, _aldmConfig6);
+            if (_updateDatabase) UpdateData(row, e.ColumnIndex, _aldmConfig6);
         }
 
         public override void GridView1CellEndEdit_Extern(DataGridViewRow row, string FIELD, object fieldData)

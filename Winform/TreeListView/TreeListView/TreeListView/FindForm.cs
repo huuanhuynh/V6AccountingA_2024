@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using V6Init;
 
 namespace V6Controls.Forms
 {
-    public partial class FindForm : V6Form
+    public partial class FindForm : Form
     {
-        public FindForm()
+        public FindForm(Control parent)
         {
             InitializeComponent();
             MyInit();
@@ -14,15 +13,15 @@ namespace V6Controls.Forms
 
         private void MyInit()
         {
-            if (V6Login.SelectedLanguage != "V")
-            {
-                Text = "Find";
-                btnFind.Text = "FindNext";
-                btnCancel.Text = "Cancel";
-                groupBox1.Text = "Direction";
-                radUp.Text = "Up";
-                radDown.Text = "Down";
-            }
+            //if (V6Login.SelectedLanguage != "V")
+            //{
+            //    Text = "Find";
+            //    btnFind.Text = "FindNext";
+            //    btnCancel.Text = "Cancel";
+            //    groupBox1.Text = "Direction";
+            //    radUp.Text = "Up";
+            //    radDown.Text = "Down";
+            //}
         }
 
         /// <summary>
@@ -30,13 +29,13 @@ namespace V6Controls.Forms
         /// </summary>
         private bool _first = true;
 
-        public delegate void FindFormHandler(string text, bool up, bool first);
+        public delegate void FindFormHandler(string text, bool up, bool word, bool first);
 
         public event FindFormHandler Find;
         protected virtual void OnFind()
         {
             var handler = Find;
-            if (handler != null) handler(txtFindText.Text, radUp.Checked, _first);
+            if (handler != null) handler(txtFindText.Text, radUp.Checked, chkWord.Checked, _first);
             _first = false;
         }
 
@@ -48,7 +47,7 @@ namespace V6Controls.Forms
             }
             else
             {
-                txtFindText.Alert();
+                //txtFindText.Alert();
             }
         }
 

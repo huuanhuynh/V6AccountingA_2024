@@ -36,6 +36,7 @@
             this.btnNhapXml = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
+            this.btnXuatXmlC = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,11 +123,23 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
+            // btnXuatXmlC
+            // 
+            this.btnXuatXmlC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXuatXmlC.Location = new System.Drawing.Point(213, 378);
+            this.btnXuatXmlC.Name = "btnXuatXmlC";
+            this.btnXuatXmlC.Size = new System.Drawing.Size(84, 29);
+            this.btnXuatXmlC.TabIndex = 7;
+            this.btnXuatXmlC.Text = "Xuất xml &Chọn";
+            this.btnXuatXmlC.UseVisualStyleBackColor = true;
+            this.btnXuatXmlC.Click += new System.EventHandler(this.btnXuatXmlC_Click);
+            // 
             // XmlEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 412);
+            this.Controls.Add(this.btnXuatXmlC);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.btnNhapXml);
@@ -134,11 +147,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "XmlEditorForm";
             this.Text = "XmlEditor";
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
-            this.Controls.SetChildIndex(this.btnXuatXml, 0);
-            this.Controls.SetChildIndex(this.btnNhapXml, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -151,5 +159,6 @@
         private System.Windows.Forms.Button btnNhapXml;
         protected System.Windows.Forms.Button btnHuy;
         protected System.Windows.Forms.Button btnNhan;
+        private System.Windows.Forms.Button btnXuatXmlC;
     }
 }

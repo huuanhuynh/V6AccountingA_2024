@@ -83,7 +83,7 @@
             this.btnTimTatCa.Location = new System.Drawing.Point(257, 10);
             this.btnTimTatCa.Name = "btnTimTatCa";
             this.btnTimTatCa.Size = new System.Drawing.Size(75, 23);
-            this.btnTimTatCa.TabIndex = 1;
+            this.btnTimTatCa.TabIndex = 2;
             this.btnTimTatCa.Text = "Tìm giống";
             this.btnTimTatCa.UseVisualStyleBackColor = true;
             this.btnTimTatCa.Click += new System.EventHandler(this.btnTimTatCa_Click);
@@ -99,7 +99,7 @@
             this.btnHuy.Location = new System.Drawing.Point(100, 472);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 12;
+            this.btnHuy.TabIndex = 11;
             this.btnHuy.Tag = "Escape";
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -116,7 +116,7 @@
             this.btnNhan.Location = new System.Drawing.Point(12, 472);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 11;
+            this.btnNhan.TabIndex = 10;
             this.btnNhan.Tag = "Return, Control";
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -128,7 +128,7 @@
             this.btnMove2Up.Location = new System.Drawing.Point(257, 38);
             this.btnMove2Up.Name = "btnMove2Up";
             this.btnMove2Up.Size = new System.Drawing.Size(28, 43);
-            this.btnMove2Up.TabIndex = 5;
+            this.btnMove2Up.TabIndex = 6;
             this.btnMove2Up.Text = "▲";
             this.btnMove2Up.UseVisualStyleBackColor = true;
             this.btnMove2Up.Click += new System.EventHandler(this.btnMove2Up_Click);
@@ -138,7 +138,7 @@
             this.btnMove2Down.Location = new System.Drawing.Point(257, 87);
             this.btnMove2Down.Name = "btnMove2Down";
             this.btnMove2Down.Size = new System.Drawing.Size(28, 43);
-            this.btnMove2Down.TabIndex = 6;
+            this.btnMove2Down.TabIndex = 7;
             this.btnMove2Down.Text = "▼";
             this.btnMove2Down.UseVisualStyleBackColor = true;
             this.btnMove2Down.Click += new System.EventHandler(this.btnMove2Down_Click);
@@ -161,7 +161,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtValue.Size = new System.Drawing.Size(453, 384);
-            this.txtValue.TabIndex = 33;
+            this.txtValue.TabIndex = 9;
             this.txtValue.Leave += new System.EventHandler(this.txtValue_Leave);
             // 
             // btnThem
@@ -169,7 +169,7 @@
             this.btnThem.Location = new System.Drawing.Point(338, 10);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
-            this.btnThem.TabIndex = 1;
+            this.btnThem.TabIndex = 3;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
@@ -187,7 +187,7 @@
             this.txtName.Location = new System.Drawing.Point(298, 38);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(453, 29);
-            this.txtName.TabIndex = 0;
+            this.txtName.TabIndex = 8;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // btnXoa
@@ -195,7 +195,7 @@
             this.btnXoa.Location = new System.Drawing.Point(419, 10);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
-            this.btnXoa.TabIndex = 1;
+            this.btnXoa.TabIndex = 4;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
@@ -227,7 +227,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(236, 412);
-            this.dataGridView1.TabIndex = 34;
+            this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // DicEditForm
@@ -258,18 +258,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectMultiIDForm_FormClosing);
             this.Load += new System.EventHandler(this.SelectMultiIDForm_Load);
             this.SizeChanged += new System.EventHandler(this.DicEditForm_SizeChanged);
-            this.Controls.SetChildIndex(this.txtNewKey, 0);
-            this.Controls.SetChildIndex(this.txtName, 0);
-            this.Controls.SetChildIndex(this.btnTimTiep, 0);
-            this.Controls.SetChildIndex(this.btnTimTatCa, 0);
-            this.Controls.SetChildIndex(this.btnThem, 0);
-            this.Controls.SetChildIndex(this.btnXoa, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.btnMove2Up, 0);
-            this.Controls.SetChildIndex(this.btnMove2Down, 0);
-            this.Controls.SetChildIndex(this.txtValue, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
