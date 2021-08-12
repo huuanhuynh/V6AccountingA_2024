@@ -2722,7 +2722,7 @@ namespace V6ThuePostManager
                         }
                         else
                         {
-                            result = viettel_V2WS.POST_CREATE_INVOICE(jsonBody, out paras.Result.V6ReturnValues, paras.Version == "V45I");
+                            result = viettel_V2WS.POST_CREATE_INVOICE(jsonBody, paras.Version == "V45I", out paras.Result.V6ReturnValues);
                         }
                     }
                     else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
