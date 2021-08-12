@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
+using System.IO;
 using System.Windows.Forms;
 using PdfiumViewer;
 
@@ -65,7 +66,7 @@ namespace V6Controls.Forms.Viewer
 
         protected int _oldIndex = -1;
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
             //var d = pdfViewer1.Document.CreatePrintDocument(PdfPrintMode.ShrinkToMargin);
             //d.Print();
@@ -133,6 +134,22 @@ namespace V6Controls.Forms.Viewer
         private void AAPPR_SOA3_ViewPDF_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(pdfViewer1.Document != null) pdfViewer1.Document.Dispose();
+        }
+
+        private void btnDownloadPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "PDF|*.pdf", Path.GetFileName(_fileName));
+                if (!string.IsNullOrEmpty(saveFile))
+                {
+                    File.Copy(_fileName, saveFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(this.GetType() + ".btnDownloadPDF_Click", ex);
+            }
         }
         
     }

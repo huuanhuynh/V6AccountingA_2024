@@ -383,6 +383,16 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DownloadPDF {
+            get {
+                object obj = ResourceManager.GetObject("DownloadPDF", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Edit24 {
             get {
                 object obj = ResourceManager.GetObject("Edit24", resourceCulture);

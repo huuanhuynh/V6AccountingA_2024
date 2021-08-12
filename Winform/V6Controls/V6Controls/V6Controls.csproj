@@ -2674,6 +2674,7 @@
     <None Include="Resources\OutdentHS.bmp" />
     <None Include="Resources\ZoomIn.bmp" />
     <None Include="Resources\ZoomOut.bmp" />
+    <None Include="Resources\DownloadPDF.png" />
     <Content Include="Setting\TuKhoa.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

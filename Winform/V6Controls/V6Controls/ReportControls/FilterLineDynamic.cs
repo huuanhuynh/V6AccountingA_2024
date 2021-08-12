@@ -248,9 +248,9 @@ namespace V6ReportControls
                 var oper = Operator;
                 if (oper == "start") oper = "like";
 
-                if (_vtextBox != null && _vtextBox.F2 && sValue.Contains(","))
+                if (_vtextBox != null && (sValue.Contains(",") || sValue.Contains("|")))
                 {
-                    string[] sss = sValue.Split(',');
+                    string[] sss = sValue.Split(',', '|');
                     foreach (string s in sss)
                     {
                         if (oper == "<>")
