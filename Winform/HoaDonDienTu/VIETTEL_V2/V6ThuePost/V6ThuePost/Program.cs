@@ -45,6 +45,7 @@ namespace V6ThuePost
         /// Mã số thuế.
         /// </summary>
         public static string _codetax = "";
+        public static string _version = "";
         /// <summary>
         /// Seri usb token.
         /// </summary>
@@ -140,7 +141,7 @@ namespace V6ThuePost
                         ReadData(arg2, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
-                        result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
                         if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
                         {
                             result = "Kết nối ổn. " + result;
@@ -158,7 +159,7 @@ namespace V6ThuePost
                     {
                         //ReadData(arg2, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
-                        result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
                         EncodeV6Return(v6return);
                         Console.Write(v6return.ToJson());
                         goto End;
@@ -173,7 +174,7 @@ namespace V6ThuePost
                         }
                         else
                         {
-                            result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                            result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
                         }
 
                         // Nếu error null mà ko có so_hd thì chạy hàm lấy thông tin.
@@ -216,7 +217,7 @@ namespace V6ThuePost
                             jsonBody = ReadData(dbfFile, "M");
                             if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
                             File.Create(flagFileName1).Close();
-                            result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, out v6return);
+                            result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
@@ -276,13 +277,13 @@ namespace V6ThuePost
                     {
                         // Lưu ý dữ liệu mode Replace. (T)
                         jsonBody = ReadText(arg2);
-                        result = _viettelV2_ws.POST_REPLACE(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
                     }
                     else if (mode == "T")
                     {
                         jsonBody = ReadData(dbfFile, "T");
                         File.Create(flagFileName1).Close();
-                        result = _viettelV2_ws.POST_REPLACE(jsonBody, out v6return);
+                        result = _viettelV2_ws.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
                     }
                     else if (mode == "GET_INVOICE" || mode == "GET_INVOICE_JSON")
                     {
@@ -338,8 +339,7 @@ namespace V6ThuePost
                         string stt_rec = arg4;
                         MakeFlagNames(stt_rec);
                         File.Create(flagFileName1).Close();
-                        result = _viettelV2_ws.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate);
-                        v6return.RESULT_STRING = result;
+                        result = _viettelV2_ws.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate, out v6return);
                     }
                     else if (mode.StartsWith("P"))
                     {
@@ -739,55 +739,98 @@ namespace V6ThuePost
                 }
                 else
                 {
-                    var fields = ObjectAndString.SplitStringBy(config.FieldV6.Replace("\\+", "~plus~"), '+');
-                    fieldValue = null;
-                    string fieldValueString = null;
-                    decimal fieldValueNumber = 0m;
-                    bool still_number = true;
-                    foreach (string s in fields)
+                    decimal giatribt;
+                    if (Number.GiaTriBieuThucTry(config.FieldV6, row.ToDataDictionary(), out giatribt))
                     {
-                        string field = s.Trim();
-                        if (table.Columns.Contains(field))
-                        {
-                            fieldValueString += ObjectAndString.ObjectToString(row[field]).Trim();
-                            if (still_number && ObjectAndString.IsNumberType(table.Columns[field].DataType))
-                            {
-                                fieldValueNumber += ObjectAndString.ObjectToDecimal(row[field]);
-                            }
-                            else
-                            {
-                                still_number = false;
-                            }
-                        }
-                        else
-                        {
-                            if (still_number)
-                            {
-                                fieldValueString += field;
-                                decimal tempNumber;
-                                if (Decimal.TryParse(field, out tempNumber))
-                                {
-                                    fieldValueNumber += tempNumber;
-                                }
-                                else
-                                {
-                                    still_number = false;
-                                }
-                            }
-                            else
-                            {
-                                if (field.StartsWith("\"") && field.EndsWith("\""))
-                                {
-                                    field = field.Substring(1, field.Length - 2);
-                                }
-                                fieldValueString += field;
-                            }
-                        }
+                        fieldValue = giatribt;
                     }
-                    // Chốt.
-                    if (still_number) fieldValue = fieldValueNumber;
-                    else fieldValue = fieldValueString.Replace("~plus~", "+");
+                    else
+                    {
+                        var fields = ObjectAndString.SplitStringBy(config.FieldV6.Replace("\\+", "~plus~"), '+');
+
+                        string fieldValueString = "";
+
+                        foreach (string s in fields)
+                        {
+                            string field = s.Trim();
+                            if (table.Columns.Contains(field))
+                            {
+                                fieldValueString += ObjectAndString.ObjectToString(row[field]).Trim();
+                            }
+                            else
+                            {
+                                //if (field.StartsWith("\"") && field.EndsWith("\""))
+                                //{
+                                //    field = field.Substring(1, field.Length - 2);
+                                //}
+                                fieldValueString += field;
+                            }
+                        }
+                        // Chốt.
+                        fieldValue = fieldValueString.Replace("~plus~", "+");
+                    }// end else giatribieuthuc
                 }
+                //// FieldV6 sẽ có dạng thông thường là (Field) hoặc dạng ghép là (Field1 + Field2) hoặc (Field1 + "abc" + field2)
+                //if (table.Columns.Contains(config.FieldV6))
+                //{
+                //    fieldValue = row[config.FieldV6];
+                //    if (table.Columns[config.FieldV6].DataType == typeof(string))
+                //    {
+                //        //Trim
+                //        fieldValue = fieldValue.ToString().Trim();
+                //    }
+                //}
+                //else
+                //{
+                //    var fields = ObjectAndString.SplitStringBy(config.FieldV6.Replace("\\+", "~plus~"), '+');
+                //    fieldValue = null;
+                //    string fieldValueString = null;
+                //    decimal fieldValueNumber = 0m;
+                //    bool still_number = true;
+                //    foreach (string s in fields)
+                //    {
+                //        string field = s.Trim();
+                //        if (table.Columns.Contains(field))
+                //        {
+                //            fieldValueString += ObjectAndString.ObjectToString(row[field]).Trim();
+                //            if (still_number && ObjectAndString.IsNumberType(table.Columns[field].DataType))
+                //            {
+                //                fieldValueNumber += ObjectAndString.ObjectToDecimal(row[field]);
+                //            }
+                //            else
+                //            {
+                //                still_number = false;
+                //            }
+                //        }
+                //        else
+                //        {
+                //            if (still_number)
+                //            {
+                //                fieldValueString += field;
+                //                decimal tempNumber;
+                //                if (Decimal.TryParse(field, out tempNumber))
+                //                {
+                //                    fieldValueNumber += tempNumber;
+                //                }
+                //                else
+                //                {
+                //                    still_number = false;
+                //                }
+                //            }
+                //            else
+                //            {
+                //                if (field.StartsWith("\"") && field.EndsWith("\""))
+                //                {
+                //                    field = field.Substring(1, field.Length - 2);
+                //                }
+                //                fieldValueString += field;
+                //            }
+                //        }
+                //    }
+                //    // Chốt.
+                //    if (still_number) fieldValue = fieldValueNumber;
+                //    else fieldValue = fieldValueString.Replace("~plus~", "+");
+                //}
             }
 
             if (!string.IsNullOrEmpty(configDATATYPE))
@@ -1091,6 +1134,9 @@ namespace V6ThuePost
                                         break;
                                     case "codetax":
                                         _codetax = UtilityHelper.DeCrypt(line.Value);
+                                        break;
+                                    case "version":
+                                        _version = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "serialcert":
                                     case "certificateserial":

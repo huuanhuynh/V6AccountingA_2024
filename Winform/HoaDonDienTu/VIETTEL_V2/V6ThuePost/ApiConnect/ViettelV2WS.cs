@@ -78,10 +78,10 @@ namespace V6ThuePostViettelV2Api
         /// 
         /// </summary>
         /// <param name="jsonBody"></param>
-        /// <param name="v6Return"></param>
         /// <param name="invalidate">Mặc định false.</param>
+        /// <param name="v6Return"></param>
         /// <returns></returns>
-        public string POST_CREATE_INVOICE(string jsonBody, out V6Return v6Return, bool invalidate)
+        public string POST_CREATE_INVOICE(string jsonBody, bool invalidate, out V6Return v6Return)
         {
             string result = "";
             v6Return = new V6Return();
@@ -138,8 +138,7 @@ namespace V6ThuePostViettelV2Api
             v6Return = new V6Return();
             try
             {
-                result = POST_CREATE_INVOICE(jsonBody, out v6Return, invalidate);
-                v6Return.RESULT_STRING = result;
+                result = POST_CREATE_INVOICE(jsonBody, invalidate, out v6Return);
             }
             catch (Exception ex)
             {
@@ -836,7 +835,7 @@ namespace V6ThuePostViettelV2Api
         public string CheckConnection()
         {
             V6Return v6Return;
-            string result = POST_CREATE_INVOICE("", out v6Return, false);
+            string result = POST_CREATE_INVOICE("", false, out v6Return);
             if (v6Return.RESULT_ERROR_MESSAGE != null && v6Return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
             {
                 return null;

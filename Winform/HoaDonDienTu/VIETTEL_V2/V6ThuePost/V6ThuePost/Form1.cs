@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.ViettelObjects;
-using V6ThuePostViettelApi;
 using V6ThuePostViettelV2Api;
 using V6Tools;
 
@@ -67,7 +66,7 @@ namespace V6ThuePost
             if (Program._viettelV2_ws != null)
             {
                 V6Return v6return = null;
-                string result = Program._viettelV2_ws.POST_CREATE_INVOICE("", out v6return);
+                string result = Program._viettelV2_ws.POST_CREATE_INVOICE("", Program._version == "V45I", out v6return);
                 
                 string message = "";
                 if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
@@ -91,8 +90,8 @@ namespace V6ThuePost
             V6Return v6Return;
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
-                
-                result = Program._viettelV2_ws.POST_CREATE_INVOICE(richTextBox1.Text, out v6Return);
+
+                result = Program._viettelV2_ws.POST_CREATE_INVOICE(richTextBox1.Text, Program._version == "V45I", out v6Return);
                 lblResult.Text = result;
             }
             else
