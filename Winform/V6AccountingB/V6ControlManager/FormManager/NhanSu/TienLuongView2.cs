@@ -447,7 +447,7 @@ namespace V6ControlManager.FormManager.NhanSu
                     bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                     bool is_DX = false; // _aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("XTRAREPORT") && _aldmConfig.EXTRA_INFOR["XTRAREPORT"] == "1";
                     if (shift) is_DX = !is_DX;
-                    FormManagerHelper.ShowDanhMucPrint(this, TABLE_NAME, ReportFile, ReportTitle, ReportTitle2, true, is_DX);
+                    FormManagerHelper.ShowDanhMucPrint(this, TABLE_NAME, ItemID, ReportFile, ReportTitle, ReportTitle2, true, is_DX);
                 }
                 else
                 {

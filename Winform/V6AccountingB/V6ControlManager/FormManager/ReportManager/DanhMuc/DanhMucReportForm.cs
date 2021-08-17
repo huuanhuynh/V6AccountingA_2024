@@ -246,18 +246,21 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 return result;
             }
         }
-        #endregion 
+        #endregion
 
         /// <summary>
         /// Ctor
         /// </summary>
         /// <param name="tableName">Tên bảng</param>
+        /// <param name="itemId"></param>
         /// <param name="reportFile">use as ma_file</param>
         /// <param name="reportTitle">title</param>
         /// <param name="reportTitle2">title2</param>
-        public DanhMucReportForm(string tableName, string reportFile, string reportTitle, string reportTitle2)
+        public DanhMucReportForm(string tableName, string itemId, string reportFile, string reportTitle,
+            string reportTitle2)
         {
             _tableName = tableName;
+            m_itemId = itemId;
             _Ma_File = reportFile;
             _reportTitle = reportTitle;
             _reportTitle2 = reportTitle2;

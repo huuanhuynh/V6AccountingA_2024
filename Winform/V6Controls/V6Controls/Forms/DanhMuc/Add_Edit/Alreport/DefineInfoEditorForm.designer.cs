@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DefineInfoEditorForm));
             this.txtAccessibleName = new V6Controls.V6VvarTextBox();
             this.txtField = new V6Controls.V6VvarTextBox();
             this.txtNotEmpty = new V6Controls.V6ColorTextBox();
@@ -53,7 +54,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
+            this.lblD_LoaiKey = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -79,10 +80,6 @@
             this.label44 = new System.Windows.Forms.Label();
             this.txtUseLimitChars0 = new V6Controls.V6ColorTextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.lblControlTypeVvarTextBox = new System.Windows.Forms.Label();
-            this.lblControlTypeLookupTextBox = new System.Windows.Forms.Label();
-            this.lblControlTypeTextBox = new System.Windows.Forms.Label();
-            this.lblControlType = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.txtNField = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
@@ -171,6 +168,7 @@
             this.label77 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label73 = new System.Windows.Forms.Label();
+            this.lblNFD = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinThem.SuspendLayout();
@@ -361,7 +359,7 @@
             this.txtLoaiKey.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLoaiKey.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoaiKey.LeaveColor = System.Drawing.Color.White;
-            this.txtLoaiKey.Location = new System.Drawing.Point(120, 408);
+            this.txtLoaiKey.Location = new System.Drawing.Point(120, 383);
             this.txtLoaiKey.Margin = new System.Windows.Forms.Padding(4);
             this.txtLoaiKey.Name = "txtLoaiKey";
             this.txtLoaiKey.Size = new System.Drawing.Size(150, 23);
@@ -400,7 +398,7 @@
             this.txtInitFilter.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtInitFilter.HoverColor = System.Drawing.Color.Yellow;
             this.txtInitFilter.LeaveColor = System.Drawing.Color.White;
-            this.txtInitFilter.Location = new System.Drawing.Point(120, 383);
+            this.txtInitFilter.Location = new System.Drawing.Point(120, 358);
             this.txtInitFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtInitFilter.Name = "txtInitFilter";
             this.txtInitFilter.Size = new System.Drawing.Size(150, 23);
@@ -410,7 +408,7 @@
             // 
             this.label34.AccessibleDescription = ".";
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(10, 408);
+            this.label34.Location = new System.Drawing.Point(10, 383);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(65, 17);
@@ -470,7 +468,7 @@
             // 
             this.label26.AccessibleDescription = ".";
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(10, 380);
+            this.label26.Location = new System.Drawing.Point(10, 355);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(57, 17);
@@ -523,20 +521,18 @@
             this.label3.TabIndex = 26;
             this.label3.Text = "Text E";
             // 
-            // label33
+            // lblD_LoaiKey
             // 
-            this.label33.AccessibleDescription = ".";
-            this.label33.AccessibleName = "";
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(1, 435);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(782, 26);
-            this.label33.TabIndex = 56;
-            this.label33.Text = "10:ngay,11:1value,30:advance,21,22,23,24,25,26,27,28,29,2A,2B,2C,2D,2E,2F,2G(KH,V" +
-    "T,TK,VV,PHI,HD,KU,SP,LO,BP,NVIEN,BPHT,THAU,SONB,DVCS,KHO)- \r\nA1 check use advanc" +
-    "e cho albc con.";
+            this.lblD_LoaiKey.AccessibleDescription = ".";
+            this.lblD_LoaiKey.AccessibleName = "";
+            this.lblD_LoaiKey.AutoSize = true;
+            this.lblD_LoaiKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblD_LoaiKey.Location = new System.Drawing.Point(274, 385);
+            this.lblD_LoaiKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblD_LoaiKey.Name = "lblD_LoaiKey";
+            this.lblD_LoaiKey.Size = new System.Drawing.Size(451, 52);
+            this.lblD_LoaiKey.TabIndex = 56;
+            this.lblD_LoaiKey.Text = resources.GetString("lblD_LoaiKey.Text");
             // 
             // label22
             // 
@@ -575,7 +571,7 @@
             // 
             this.label25.AccessibleDescription = "ADDEDITL00689";
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(284, 388);
+            this.label25.Location = new System.Drawing.Point(284, 363);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(99, 17);
@@ -718,12 +714,9 @@
             this.tabThongTinChinh.Controls.Add(this.label30);
             this.tabThongTinChinh.Controls.Add(this.txtUseLimitChars0);
             this.tabThongTinChinh.Controls.Add(this.label6);
+            this.tabThongTinChinh.Controls.Add(this.lblNFD);
             this.tabThongTinChinh.Controls.Add(this.label4);
             this.tabThongTinChinh.Controls.Add(this.label29);
-            this.tabThongTinChinh.Controls.Add(this.lblControlTypeVvarTextBox);
-            this.tabThongTinChinh.Controls.Add(this.lblControlTypeLookupTextBox);
-            this.tabThongTinChinh.Controls.Add(this.lblControlTypeTextBox);
-            this.tabThongTinChinh.Controls.Add(this.lblControlType);
             this.tabThongTinChinh.Controls.Add(this.label5);
             this.tabThongTinChinh.Controls.Add(this.txtNotEmpty);
             this.tabThongTinChinh.Controls.Add(this.label1);
@@ -737,7 +730,7 @@
             this.tabThongTinChinh.Controls.Add(this.label10);
             this.tabThongTinChinh.Controls.Add(this.label21);
             this.tabThongTinChinh.Controls.Add(this.label22);
-            this.tabThongTinChinh.Controls.Add(this.label33);
+            this.tabThongTinChinh.Controls.Add(this.lblD_LoaiKey);
             this.tabThongTinChinh.Controls.Add(this.txtTextE);
             this.tabThongTinChinh.Controls.Add(this.label3);
             this.tabThongTinChinh.Controls.Add(this.label35);
@@ -829,7 +822,7 @@
             "FileButton",
             "NumberMonth",
             "NumberYear"});
-            this.cboControlType.Location = new System.Drawing.Point(640, 8);
+            this.cboControlType.Location = new System.Drawing.Point(287, 8);
             this.cboControlType.Name = "cboControlType";
             this.cboControlType.Size = new System.Drawing.Size(121, 24);
             this.cboControlType.TabIndex = 6;
@@ -945,54 +938,6 @@
             this.label29.Size = new System.Drawing.Size(64, 17);
             this.label29.TabIndex = 10;
             this.label29.Text = "Key data";
-            // 
-            // lblControlTypeVvarTextBox
-            // 
-            this.lblControlTypeVvarTextBox.AccessibleDescription = ".";
-            this.lblControlTypeVvarTextBox.AutoSize = true;
-            this.lblControlTypeVvarTextBox.Location = new System.Drawing.Point(516, 10);
-            this.lblControlTypeVvarTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlTypeVvarTextBox.Name = "lblControlTypeVvarTextBox";
-            this.lblControlTypeVvarTextBox.Size = new System.Drawing.Size(87, 17);
-            this.lblControlTypeVvarTextBox.TabIndex = 5;
-            this.lblControlTypeVvarTextBox.Text = "VvarTextBox";
-            this.lblControlTypeVvarTextBox.Click += new System.EventHandler(this.lblControlType_Click);
-            // 
-            // lblControlTypeLookupTextBox
-            // 
-            this.lblControlTypeLookupTextBox.AccessibleDescription = ".";
-            this.lblControlTypeLookupTextBox.AutoSize = true;
-            this.lblControlTypeLookupTextBox.Location = new System.Drawing.Point(403, 10);
-            this.lblControlTypeLookupTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlTypeLookupTextBox.Name = "lblControlTypeLookupTextBox";
-            this.lblControlTypeLookupTextBox.Size = new System.Drawing.Size(105, 17);
-            this.lblControlTypeLookupTextBox.TabIndex = 4;
-            this.lblControlTypeLookupTextBox.Text = "LookupTextBox";
-            this.lblControlTypeLookupTextBox.Click += new System.EventHandler(this.lblControlType_Click);
-            // 
-            // lblControlTypeTextBox
-            // 
-            this.lblControlTypeTextBox.AccessibleDescription = ".";
-            this.lblControlTypeTextBox.AutoSize = true;
-            this.lblControlTypeTextBox.Location = new System.Drawing.Point(336, 10);
-            this.lblControlTypeTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlTypeTextBox.Name = "lblControlTypeTextBox";
-            this.lblControlTypeTextBox.Size = new System.Drawing.Size(58, 17);
-            this.lblControlTypeTextBox.TabIndex = 3;
-            this.lblControlTypeTextBox.Text = "TextBox";
-            this.lblControlTypeTextBox.Click += new System.EventHandler(this.lblControlType_Click);
-            // 
-            // lblControlType
-            // 
-            this.lblControlType.AccessibleDescription = ".";
-            this.lblControlType.AutoSize = true;
-            this.lblControlType.Location = new System.Drawing.Point(284, 10);
-            this.lblControlType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlType.Name = "lblControlType";
-            this.lblControlType.Size = new System.Drawing.Size(49, 17);
-            this.lblControlType.TabIndex = 2;
-            this.lblControlType.Text = "Button";
-            this.lblControlType.Click += new System.EventHandler(this.lblControlType_Click);
             // 
             // label21
             // 
@@ -2223,6 +2168,17 @@
             this.label73.TabIndex = 0;
             this.label73.Text = "R_DataType";
             // 
+            // lblNFD
+            // 
+            this.lblNFD.AccessibleDescription = ".";
+            this.lblNFD.AutoSize = true;
+            this.lblNFD.Location = new System.Drawing.Point(284, 135);
+            this.lblNFD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNFD.Name = "lblNFD";
+            this.lblNFD.Size = new System.Drawing.Size(211, 17);
+            this.lblNFD.TabIndex = 25;
+            this.lblNFD.Text = "Các trường ánh xạ BrotherFields";
+            // 
             // DefineInfoEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2283,7 +2239,7 @@
         private System.Windows.Forms.Label label30;
         private V6ColorTextBox txtLoaiKey;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label lblD_LoaiKey;
         private V6ColorTextBox txtBField;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
@@ -2311,7 +2267,6 @@
         private System.Windows.Forms.Label label42;
         private V6Controls.V6ColorTextBox txtControlType;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Label lblControlType;
         private V6ColorTextBox txtDescriptionV;
         private System.Windows.Forms.Label label45;
         private V6ColorTextBox txtDescriptionE;
@@ -2330,10 +2285,7 @@
         private System.Windows.Forms.Label label54;
         private V6VvarTextBox txtAccessibleName2;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label lblControlTypeLookupTextBox;
-        private System.Windows.Forms.Label lblControlTypeTextBox;
         private V6ColorTextBox txtNField;
-        private System.Windows.Forms.Label lblControlTypeVvarTextBox;
         private System.Windows.Forms.ComboBox cboControlType;
         private V6ColorTextBox txtUseLimitChars0;
         private V6ColorTextBox txtLimitChars0;
@@ -2395,5 +2347,6 @@
         private System.Windows.Forms.Label label46;
         private V6ColorTextBox txtMultiLine;
         private System.Windows.Forms.Label lblMultiLine;
+        private System.Windows.Forms.Label lblNFD;
     }
 }

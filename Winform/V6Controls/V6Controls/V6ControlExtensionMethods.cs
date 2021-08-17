@@ -352,7 +352,8 @@ namespace V6Controls
                     Text = title,
                     AutoSize = true,
                     FormBorderStyle = FormBorderStyle.Sizable,//.FixedSingle,
-                    Size = new Size(200, 100)
+                    Size = new Size(600, 300),
+                    MinimumSize = new Size(600, 300),
                 };
                 if (fullScreen) f.WindowState = FormWindowState.Maximized;
                 if (closeConfirm)
@@ -403,7 +404,8 @@ namespace V6Controls
             {
                 WindowState = FormWindowState.Maximized,
                 ShowInTaskbar = false,
-                FormBorderStyle = FormBorderStyle.None
+                FormBorderStyle = FormBorderStyle.None,                
+                MinimumSize = new Size(600, 300),
             };
             f.Controls.Add(child);
             f.FormClosing += (se, a) =>
@@ -605,7 +607,8 @@ namespace V6Controls
                     ShowInTaskbar = false,
                     //FormBorderStyle = FormBorderStyle.None
                     Text = title,
-                    Size = new Size(800,600)
+                    Size = new Size(800,600),
+                    MinimumSize = new Size(600, 300),
                 };
 
                 child.Location = new Point(0,0);

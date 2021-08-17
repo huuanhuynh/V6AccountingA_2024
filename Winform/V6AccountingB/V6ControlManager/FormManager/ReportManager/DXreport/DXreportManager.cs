@@ -305,6 +305,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
                 {"M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]},
                 // V6option
                 {"M_MA_THUE", V6Options.GetValue("M_MA_THUE")},
+                {"M_MA_NT0", V6Options.M_MA_NT0},
                 {"M_RTEN_VSOFT", V6Options.GetValue("M_RTEN_VSOFT")},
                 //{"M_TEN_NLB", txtM_TEN_NLB.Text.Trim()},
                 //{"M_TEN_NLB2", txtM_TEN_NLB2.Text.Trim()},
