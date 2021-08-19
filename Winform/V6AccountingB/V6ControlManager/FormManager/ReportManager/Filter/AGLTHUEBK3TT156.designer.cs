@@ -212,6 +212,7 @@
             // 
             this.filterLineVvarTextBox11.AccessibleDescription = "FILTERL00004";
             this.filterLineVvarTextBox11.AccessibleName2 = "MA_CT";
+            this.filterLineVvarTextBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox11.Caption = "Mã chứng từ";
             this.filterLineVvarTextBox11.FieldName = "MA_CT";
             this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 108);
@@ -224,6 +225,7 @@
             // 
             this.txtTk_thue_no.AccessibleDescription = "FILTERL00142";
             this.txtTk_thue_no.AccessibleName2 = "TK_THUE_NO";
+            this.txtTk_thue_no.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtTk_thue_no.Caption = "Tài khoản thuế";
             this.txtTk_thue_no.FieldName = "TK_THUE_NO";
             this.txtTk_thue_no.Location = new System.Drawing.Point(6, 131);
@@ -236,6 +238,7 @@
             // 
             this.Txtma_kh.AccessibleDescription = "FILTERL00007";
             this.Txtma_kh.AccessibleName2 = "MA_KH";
+            this.Txtma_kh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtma_kh.Caption = "Mã khách";
             this.Txtma_kh.FieldName = "MA_KH";
             this.Txtma_kh.Location = new System.Drawing.Point(6, 85);
@@ -248,6 +251,7 @@
             // 
             this.Txtmau_bc.AccessibleDescription = "FILTERL00141";
             this.Txtmau_bc.AccessibleName2 = "MAU_BC";
+            this.Txtmau_bc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtmau_bc.Caption = "Mẫu BC";
             this.Txtmau_bc.FieldName = "MAU_BC";
             this.Txtmau_bc.Location = new System.Drawing.Point(6, 62);
@@ -284,6 +288,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 39);

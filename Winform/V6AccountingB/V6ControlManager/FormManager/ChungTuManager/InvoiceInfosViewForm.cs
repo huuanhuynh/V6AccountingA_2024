@@ -43,10 +43,23 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 DataTable data;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Ma_ct", Invoice.Mact),
+                    new SqlParameter("@Loai", "1"),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                };
                 if (Data2_TH)
-                    data = V6BusinessHelper.Select2_TH("V6ViewInfo", "*", "loai='1'", "", "STT").Data;
+                {
+                    data = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure, "VPA_GET_V6VIEWINFO", DatabaseConfig.TimeOut, plist).Tables[0];
+                    //V6BusinessHelper.Select2_TH("V6ViewInfo", "*", "loai='1'", "", "STT").Data;
+                }
                 else
-                    data = V6BusinessHelper.Select("V6ViewInfo", "*", "loai='1'", "", "STT").Data;
+                {
+                    data = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6VIEWINFO", plist).Tables[0];
+                    //V6BusinessHelper.Select("V6ViewInfo", "*", "loai='1'", "", "STT").Data;
+                }
+
                 comboBox1.ValueMember = "Procedure";
                 comboBox1.DisplayMember = V6Setting.IsVietnamese ? "Bar" : "Bar2";
                 comboBox1.DataSource = data;
@@ -63,6 +76,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                if (!V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                    return;
+                }
+
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 var selectedValue = comboBox1.SelectedValue.ToString().Trim();
 
                 if (dataGridView1.RowCount == 0)
@@ -108,40 +128,70 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     repTitle2 = "VOUCHER INFORMATION";
                 }
 
-                //var c0 = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
-                //        "", "", "", _sttRec);
-                //c0.TTT = ObjectAndString.ObjectToDecimal(data["T_PS_NO"]);// txtTongThanhToan.Value;
-                //c0.TTT_NT = ObjectAndString.ObjectToDecimal(data["T_PS_NO_NT"]);// txtTongThanhToanNt.Value;
-                //c0.MA_NT = ObjectAndString.ObjectToString(data["MA_NT"]);
-
-                var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
-                    repTitle, repTitle2, "", "", "");
-                
-                //Gán dữ liệu filter stt_rec
-                //IDictionary<string, object> filterData = new SortedDictionary<string, object>();
-                //filterData.Add("STT_REC", _sttRec);
-                //c.FilterControl.SetData(filterData);
-                List<SqlParameter> plist = new List<SqlParameter>();
-                plist.Add(new SqlParameter("@STT_REC", _sttRec));
-                plist.Add(new SqlParameter("@isInvoice", "0"));
-                plist.Add(new SqlParameter("@ReportFile", repFile));
-                c.FilterControl.InitFilters = plist;
-                
-                if (selectedValue == "PRINT_AMAD")
+                if (Invoice.AlctConfig.XtraReport != shift_is_down)
                 {
-                    //Tạo Extra parameters.
-                    SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
-                    decimal TTT = ObjectAndString.ObjectToDecimal(data["T_PS_NO"]);
-                    decimal TTT_NT = ObjectAndString.ObjectToDecimal(data["T_PS_NO_NT"]);
-                    string LAN = c.LAN;
-                    string MA_NT = ObjectAndString.ObjectToString(data["MA_NT"]);
-                    parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
-                    parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
-                    c.FilterControl.RptExtraParameters = parameterData;
-                }
+                    var c = new ReportR_DX(Invoice.Mact, program, program, repFile,
+                        repTitle, repTitle2, "", "", "");
 
-                c.btnNhan_Click(null, null);
-                c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                    //Gán dữ liệu filter stt_rec
+                    //IDictionary<string, object> filterData = new SortedDictionary<string, object>();
+                    //filterData.Add("STT_REC", _sttRec);
+                    //c.FilterControl.SetData(filterData);
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@STT_REC", _sttRec));
+                    plist.Add(new SqlParameter("@isInvoice", "0"));
+                    plist.Add(new SqlParameter("@ReportFile", repFile));
+                    c.FilterControl.InitFilters = plist;
+
+                    if (selectedValue == "PRINT_AMAD")
+                    {
+                        //Tạo Extra parameters.
+                        SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
+                        decimal TTT = ObjectAndString.ObjectToDecimal(data["T_PS_NO"]);
+                        decimal TTT_NT = ObjectAndString.ObjectToDecimal(data["T_PS_NO_NT"]);
+                        string LAN = c.LAN;
+                        string MA_NT = ObjectAndString.ObjectToString(data["MA_NT"]);
+                        parameterData.Add("SOTIENVIETBANGCHU",
+                            V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+                        parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+                        c.FilterControl.RptExtraParameters = parameterData;
+                    }
+
+                    c.btnNhan_Click(null, null);
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
+                else
+                {
+                    var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
+                        repTitle, repTitle2, "", "", "");
+
+                    //Gán dữ liệu filter stt_rec
+                    //IDictionary<string, object> filterData = new SortedDictionary<string, object>();
+                    //filterData.Add("STT_REC", _sttRec);
+                    //c.FilterControl.SetData(filterData);
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@STT_REC", _sttRec));
+                    plist.Add(new SqlParameter("@isInvoice", "0"));
+                    plist.Add(new SqlParameter("@ReportFile", repFile));
+                    c.FilterControl.InitFilters = plist;
+
+                    if (selectedValue == "PRINT_AMAD")
+                    {
+                        //Tạo Extra parameters.
+                        SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
+                        decimal TTT = ObjectAndString.ObjectToDecimal(data["T_PS_NO"]);
+                        decimal TTT_NT = ObjectAndString.ObjectToDecimal(data["T_PS_NO_NT"]);
+                        string LAN = c.LAN;
+                        string MA_NT = ObjectAndString.ObjectToString(data["MA_NT"]);
+                        parameterData.Add("SOTIENVIETBANGCHU",
+                            V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+                        parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+                        c.FilterControl.RptExtraParameters = parameterData;
+                    }
+
+                    c.btnNhan_Click(null, null);
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
             }
             catch (Exception ex)
             {

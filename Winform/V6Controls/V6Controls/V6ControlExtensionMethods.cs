@@ -563,13 +563,23 @@ namespace V6Controls
             control.Tag = "hide";
         }
 
+        /// <summary>
+        /// Kiểm tra control chưa bị khóa tag.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
         public static bool IsVisibleTag(this Control control)
         {
-            return !control.IsTag("hide");
+            return !control.IsTag("hide") && !control.IsTag("invisible");
         }
+        /// <summary>
+        /// Kiểm tra control đã bị khóa tag.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
         public static bool IsInvisibleTag(this Control control)
         {
-            return control.IsTag("hide");
+            return control.IsTag("hide") || control.IsTag("invisible");
         }
 
         public static bool IsTag(this Control control, string tag)

@@ -2124,8 +2124,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                if ((V6Login.IsAdmin || V6Login.Level != "05") && !string.IsNullOrEmpty(_sttRec))
+                if (!string.IsNullOrEmpty(_sttRec))
+                {
                     new InvoiceInfosViewForm(invoice, _sttRec, invoice.Mact).ShowDialog(this);
+                }
             }
             catch (Exception ex)
             {
@@ -2137,7 +2139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                if ((V6Login.IsAdmin || V6Login.Level != "05") && !string.IsNullOrEmpty(_sttRec))
+                if (!string.IsNullOrEmpty(_sttRec))
                 {
                     var f = new InvoiceInfosViewForm(invoice, _sttRec, invoice.Mact);
                     f.Data2_TH = true;
@@ -4674,7 +4676,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
                         var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
-                        if ((Invoice.AlctConfig.XtraReport && !shift_is_down) || (!Invoice.AlctConfig.XtraReport && shift_is_down))
+                        if (Invoice.AlctConfig.XtraReport != shift_is_down)
                         {
                             var inDX = new InChungTuDX(Invoice, program, program, repFile, repTitle, repTitle2,
                                 "", "", "", sttRec_In);

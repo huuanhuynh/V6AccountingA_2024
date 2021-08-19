@@ -85,10 +85,15 @@ namespace V6Controls
 
         public override DataObject GetClipboardContent()
         {
+            if (lock_copy)
+            {
+                return new DataObject(CurrentCell == null ? "" : CurrentCell.Value);
+            }
             if (use_v6_copy && EditingCell == null && (ModifierKeys & Keys.Shift) == Keys.Shift)
             {
                 return GetClipboardContentV6();
             }
+
             return base.GetClipboardContent();
         }
 
@@ -935,6 +940,11 @@ namespace V6Controls
         public bool Space_Bar { get { return space_bar; } set { space_bar = value; } }
         private bool space_bar = false;
 
+        [DefaultValue(false)]
+        [Description("Khóa copy nhiều ô.")]
+        public bool LockCopy { get { return lock_copy; } set { lock_copy = value; } }
+        private bool lock_copy = false;
+
         [DefaultValue(true)]
         [Description("Dùng hàm GetClipboardContentV6 để lấy dữ liệu khi Shift copy.")]
         public bool UseV6Copy { get { return use_v6_copy; } set { use_v6_copy = value; } }
@@ -1586,7 +1596,11 @@ namespace V6Controls
                 {
                     //object o = GetClipboardContent() ?? (object) "";
                     object o = null;
-                    if (use_v6_copy)
+                    if (lock_copy)
+                    {
+                        o = new DataObject(CurrentCell == null ? "" : CurrentCell.Value);
+                    }
+                    else if (use_v6_copy)
                     {
                         o = GetClipboardContentV6();
                     }

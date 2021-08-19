@@ -318,10 +318,13 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             if (!V6Login.UserRight.AllowView(ItemID, ItemID))
             {
                 crystalReportViewer1.InvisibleTag();
+                dataGridView1.Height = Height - dataGridView1.Top - 40;
                 if (no_print)
                 {
+                    dataGridView1.LockCopy = true;
                     while (contextMenuStrip1.Items.Count > 0)
                     {
+                        contextMenuStrip1.Items[0].Enabled = false;
                         contextMenuStrip1.Items.RemoveAt(0);
                     }
                 }
@@ -1277,6 +1280,10 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             try
             {
+                if (crystalReportViewer1.IsInvisibleTag())
+                {
+                    return;
+                }
                 var f = new FormRptEditor {rptPath = ReportFileFull};
                 f.ShowDialog(this);
             }
@@ -1316,20 +1323,25 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private void btnExport3_Click(object sender, EventArgs e)
         {
             if (DefaultMenuItem != null && DefaultMenuItem.Enabled)
+            {
                 DefaultMenuItem.PerformClick();
+            }
         }
 
         private void viewInvoiceInfoMenu_Click(object sender, EventArgs e)
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if (dataGridView1.CurrentRow == null || !dataGridView1.Columns.Contains("MA_CT") || !dataGridView1.Columns.Contains("STT_REC")) return;
                 
                 var row = dataGridView1.CurrentRow;
                 string ma_ct = row.Cells["MA_CT"].Value.ToString().Trim();
                 string stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
                 if (ma_ct == String.Empty || stt_rec == String.Empty) return;
-                new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
+                var f = new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct);
+                f.Data2_TH = shift_is_down;
+                f.ShowDialog(this);
 
             }
             catch (Exception ex)
@@ -1370,13 +1382,19 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
                 crystalReportViewer1.Visible = false;
             }
-            else
+            else if (crystalReportViewer1.IsVisibleTag())
             {
-                dataGridView1.Top = grbDieuKienLoc.Bottom + 3;
+                dataGridView1.Top = grbDieuKienLoc.Bottom;
                 dataGridView1.Height = crystalReportViewer1.Top - 3 - dataGridView1.Top;
                 dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 
                 crystalReportViewer1.Visible = true;
+            }
+            else
+            {
+                dataGridView1.Top = grbDieuKienLoc.Bottom;
+                dataGridView1.Height = Height - dataGridView1.Top - 40;
+                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
             }
         }
 

@@ -751,7 +751,7 @@ namespace V6Controls
                 //}
                 //else
                 {
-                    V6ControlFormHelper.ShowErrorMessage(ex.Message);
+                    V6ControlFormHelper.ShowErrorMessage("V6VvarTextBox ExistRowInTable " +ex.Message);
                 }
                 return false;
             }

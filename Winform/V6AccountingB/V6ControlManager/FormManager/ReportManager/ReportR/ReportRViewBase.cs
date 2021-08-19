@@ -32,17 +32,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         #region Biến toàn cục
         private ReportDocument _rpDoc0;
 
-        private string _reportProcedure;
-        //private string _program, _reportFile, _reportTitle, _reportTitle2;
-        private string _program, _Ma_File, _reportTitle, _reportTitle2;
-        private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
+        public string _reportProcedure;
+        //public string _program, _reportFile, _reportTitle, _reportTitle2;
+        public string _program, _Ma_File, _reportTitle, _reportTitle2;
+        public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
         /// Advance filter get albc, nhận từ filter cha để lọc.
         /// </summary>
         public string Advance = "";
 
-        private DataTable MauInData;
-        private DataView MauInView;
+        public DataTable MauInData;
+        public DataView MauInView;
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -2116,13 +2116,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if (dataGridView1.CurrentRow == null || !dataGridView1.Columns.Contains("MA_CT") || !dataGridView1.Columns.Contains("STT_REC")) return;
                 
                 var row = dataGridView1.CurrentRow;
                 string ma_ct = row.Cells["MA_CT"].Value.ToString().Trim();
                 string stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
                 if (ma_ct == String.Empty || stt_rec == String.Empty) return;
-                new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
+                var f = new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct);
+                f.Data2_TH = shift_is_down;
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {

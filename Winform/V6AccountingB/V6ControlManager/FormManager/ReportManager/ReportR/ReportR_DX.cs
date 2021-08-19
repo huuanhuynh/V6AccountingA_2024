@@ -34,16 +34,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         #region Biến toàn cục
         private XtraReport _repx0;
 
-        private string _reportProcedure;
-        private string _program, _Ma_File, _reportTitle, _reportTitle2;
-        private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
+        public string _reportProcedure;
+        public string _program, _Ma_File, _reportTitle, _reportTitle2;
+        public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
         /// Advance filter get albc, nhận từ filter cha để lọc.
         /// </summary>
         public string Advance = "";
 
-        private DataTable MauInData;
-        private DataView MauInView;
+        public DataTable MauInData;
+        public DataView MauInView;
+        public AlbcConfig _albcConfig;
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -73,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                var _albcConfig = ConfigManager.GetAlbcConfig(_Ma_File, MAU, LAN, ReportFile);
+                _albcConfig = ConfigManager.GetAlbcConfig(_Ma_File, MAU, LAN, ReportFile);
                 if (_albcConfig.NoInfo) return;
                 if (_albcConfig.MMETHOD.Trim() == "") return;
                 
@@ -833,14 +834,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                gridViewSummary1.NoSumColumns = Report_GRDT_V1;
-                if (MauInSelectedRow != null)
+                gridViewSummary1.NoSumColumns = _albcConfig.GRDT_V1;
+                if (_albcConfig.HaveInfo)
                 {
                     gridViewSummary1.SumCondition = new Condition()
                     {
-                        FIELD = MauInSelectedRow["FIELD_S"].ToString().Trim(),
-                        OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
-                        VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
+                        FIELD = _albcConfig.FIELD_S,
+                        OPER = _albcConfig.OPER_S,
+                        VALUE = _albcConfig.VALUE_S
                     };
                     if (!string.IsNullOrEmpty(gridViewSummary1.SumConditionString)) toolTipV6FormControl.SetToolTip(gridViewSummary1, gridViewSummary1.SumConditionString);
                 }
@@ -1227,9 +1228,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
                 if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
 
-                if (MauInSelectedRow != null)
+                if (_albcConfig.HaveInfo)
                 {
-                    int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
+                    int frozen = ObjectAndString.ObjectToInt(_albcConfig.FROZENV);
                     dataGridView1.SetFrozen(frozen);
                 }
             }
@@ -1761,6 +1762,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
+            if (MauInSelectedRow == null) return;
+            
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
 
             GetSumCondition();
 
@@ -1786,6 +1790,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
                     _updateDataRow = false;
                 }
             }
@@ -2165,13 +2170,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                
                 if (dataGridView1.CurrentRow == null || !dataGridView1.Columns.Contains("MA_CT") || !dataGridView1.Columns.Contains("STT_REC")) return;
                 
                 var row = dataGridView1.CurrentRow;
                 string ma_ct = row.Cells["MA_CT"].Value.ToString().Trim();
                 string stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
                 if (ma_ct == String.Empty || stt_rec == String.Empty) return;
-                new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
+                var f = new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct);
+                f.Data2_TH = shift_is_down;
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {

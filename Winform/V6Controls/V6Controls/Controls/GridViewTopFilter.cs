@@ -459,7 +459,19 @@ namespace V6Controls.Controls
             }
         }
 
-        private void RelocationAll()
+        /// <summary>
+        /// Sắp xếp lại các control sau 1.2 giây. Nếu gọi lại hàm khi chưa tới 1.2 giây 
+        /// </summary>
+        public void RelocationAll()
+        {
+            count_down = 3;
+            //do_relocation_flag = true;
+            if(!timer1.Enabled) timer1.Start();
+        }
+
+        private int count_down = 0;
+        //private bool do_relocation_flag = false;
+        private void DoRelocation()
         {
             try
             {
@@ -603,6 +615,16 @@ namespace V6Controls.Controls
             catch (Exception ex)
             {
                 
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            count_down--;
+            if (count_down <= 0)
+            {
+                timer1.Stop();
+                DoRelocation();
             }
         }
     }

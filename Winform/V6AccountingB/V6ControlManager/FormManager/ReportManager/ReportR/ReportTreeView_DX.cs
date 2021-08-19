@@ -2087,12 +2087,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 var rowData = treeListViewAuto1.SelectedItemData;
                 if (rowData == null || !rowData.ContainsKey("MA_CT") || !rowData.ContainsKey("STT_REC")) return;
                 string ma_ct = rowData["MA_CT"].ToString().Trim();
                 string stt_rec = rowData["STT_REC"].ToString().Trim();
                 if (ma_ct == String.Empty || stt_rec == String.Empty) return;
-                new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
+                var f = new InvoiceInfosViewForm(V6InvoiceBase.GetInvoiceBase(ma_ct), stt_rec, ma_ct);
+                f.Data2_TH = shift_is_down;
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {

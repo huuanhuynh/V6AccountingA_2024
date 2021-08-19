@@ -429,7 +429,7 @@ namespace V6Tools.V6Convert
                         result = result.Replace(" ", "");
                     }
 
-                    if (formatString.Contains("/") && !result.Contains("/"))
+                    if ((formatString.Contains("/") && !result.Contains("/")) || ((formatString.Contains("-") && !result.Contains("-"))))
                     {
                         string result0 = formatString;
                         result0 = result0.Replace("dd", date_object.Day.ToString("00"));

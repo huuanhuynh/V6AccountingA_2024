@@ -879,8 +879,7 @@ namespace V6Controls
 
         protected void DoRemoveMultiLine()
         {
-            if (!Text.Contains("\n")) return;
-            if (!Multiline && !_allowMultiLine)
+            if (!_allowMultiLine)
             {
                 Text = Text.Replace("\r\n", "").Replace("\n", "");
             }

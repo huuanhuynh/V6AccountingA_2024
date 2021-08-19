@@ -299,25 +299,32 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
                 // V6Soft
                 {"M_TEN_CTY", V6Soft.V6SoftValue["M_TEN_CTY"].ToUpper()},
                 {"M_TEN_TCTY", V6Soft.V6SoftValue["M_TEN_TCTY"].ToUpper()},
-                {"M_DIA_CHI", V6Soft.V6SoftValue["M_DIA_CHI"]},
+                
                 {"M_TEN_CTY2", V6Soft.V6SoftValue["M_TEN_CTY2"].ToUpper()},
                 {"M_TEN_TCTY2", V6Soft.V6SoftValue["M_TEN_TCTY2"].ToUpper()},
+                {"M_DIA_CHI", V6Soft.V6SoftValue["M_DIA_CHI"]},
                 {"M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]},
                 // V6option
+                {"M_DIA_CHI_BD", V6Options.GetValue("M_DIA_CHI_BD")},
+                {"M_DIA_CHI2_BD", V6Options.GetValue("M_DIA_CHI2_BD")},
+                
                 {"M_MA_THUE", V6Options.GetValue("M_MA_THUE")},
                 {"M_MA_NT0", V6Options.M_MA_NT0},
                 {"M_RTEN_VSOFT", V6Options.GetValue("M_RTEN_VSOFT")},
-                //{"M_TEN_NLB", txtM_TEN_NLB.Text.Trim()},
-                //{"M_TEN_NLB2", txtM_TEN_NLB2.Text.Trim()},
+                
+                {"M_TEN_GOI_KTT", V6Options.GetValue("M_TEN_GOI_KTT")},
+                {"M_TEN_GOI_KTT2", V6Options.GetValue("M_TEN_GOI_KTT2")},
+                {"M_TEN_GOI_GD", V6Options.GetValue("M_TEN_GOI_GD")},
+                {"M_TEN_GOI_GD2", V6Options.GetValue("M_TEN_GOI_GD2")},
+                //{"M_TEN_NLB", txtM_TEN_NLB.Text.Trim()}, // Trên form
+                //{"M_TEN_NLB2", txtM_TEN_NLB2.Text.Trim()}, // Trên form
                 {"M_TEN_KHO_BD", V6Options.GetValue("M_TEN_KHO_BD")},
                 {"M_TEN_KHO2_BD", V6Options.GetValue("M_TEN_KHO2_BD")},
-                {"M_DIA_CHI_BD", V6Options.GetValue("M_DIA_CHI_BD")},
-                {"M_DIA_CHI2_BD", V6Options.GetValue("M_DIA_CHI2_BD")},
-
                 {"M_TEN_GD", V6Options.GetValue("M_TEN_GD")},
                 {"M_TEN_GD2", V6Options.GetValue("M_TEN_GD2")},
                 {"M_TEN_KTT", V6Options.GetValue("M_TEN_KTT")},
                 {"M_TEN_KTT2", V6Options.GetValue("M_TEN_KTT2")},
+                
                 {"M_SO_QD_CDKT", V6Options.GetValue("M_SO_QD_CDKT")},
                 {"M_SO_QD_CDKT2", V6Options.GetValue("M_SO_QD_CDKT2")},
                 {"M_NGAY_QD_CDKT", V6Options.GetValue("M_NGAY_QD_CDKT")},

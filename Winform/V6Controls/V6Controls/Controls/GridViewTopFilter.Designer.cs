@@ -32,6 +32,7 @@
             this.lblHelp = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.lblReset = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblHelp
@@ -53,6 +54,11 @@
             this.toolTip1.SetToolTip(this.lblReset, "Reset");
             this.lblReset.Click += new System.EventHandler(this.lblReset_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 400;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // GridViewTopFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -73,5 +79,6 @@
         private System.Windows.Forms.Label lblHelp;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label lblReset;
+        private System.Windows.Forms.Timer timer1;
     }
 }

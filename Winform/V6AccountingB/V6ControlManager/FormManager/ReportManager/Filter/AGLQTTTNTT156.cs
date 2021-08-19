@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -25,7 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             txtThang1.Value = V6Setting.M_ngay_ct1.Month;
             txtThang2.Value = V6Setting.M_ngay_ct2.Month;
-            txtNam.Value = V6Setting.M_ngay_ct2.Year;
+            txtNam1.Value = V6Setting.M_ngay_ct2.Year;
             txtNam2.Value = V6Setting.M_ngay_ct2.Year;
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
@@ -148,7 +151,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
 
             result.Add(new SqlParameter("@Period1", (int)txtThang1.Value));
-            result.Add(new SqlParameter("@Year1", (int)txtNam.Value));
+            result.Add(new SqlParameter("@Year1", (int)txtNam1.Value));
             result.Add(new SqlParameter("@Period2", (int)txtThang2.Value));
             result.Add(new SqlParameter("@Year2", (int)txtNam2.Value));
             result.Add(new SqlParameter("@Mau", maubc));
@@ -419,6 +422,175 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             LoadAlmaubc();
         }
 
-        
+        private void txtALINFOR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cboMaubc.SelectedIndex == -1) return;
+
+                string tableName = "ALINFOR";
+                DataTable data = V6BusinessHelper.Select(tableName, "*",
+                    "MA_INFOR = '" + cboMaubc.SelectedValue + "' and STATUS = '1' order by stt", "", "").Data;
+                V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, "UID", false, false, false, true, null);
+            }
+            catch (Exception ex)
+            {
+                V6Message.Show(ex.Message, this);
+            }
+        }
+
+        private void btnChon_Click(object sender, EventArgs e)
+        {
+            string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "XML files (*.xml)|*.xml", txtFileName.Text);
+
+            if (!string.IsNullOrEmpty(saveFile))
+            {
+                txtFileName.Text = saveFile;
+            }
+        }
+
+        string procName = null;
+        private void btnKetXuatXmlHTKK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtFileName.Text == "")
+                {
+                    if (!Directory.Exists("C:\\V6EXCEL")) Directory.CreateDirectory("C:\\V6EXCEL");
+                    txtFileName.Text = string.Format("C:\\V6EXCEL\\" + "TOKHAI_QTTTNDN_{0:00}_{1:0000}_{2:00}_{3:0000}.xml",
+                        txtThang1.Value, txtNam1.Value, txtThang2.Value, txtNam2.Value);
+                }
+
+                string xmlTemplateFile = "Reports\\XML\\" + cboMaubc.SelectedValue.ToString().Trim() + ".xml";
+
+                if (procName == null)
+                {
+                    var parent = FindParent<ReportR_DX>() as ReportR_DX;
+                    if (parent != null)
+                    {
+                        procName = parent._reportProcedure + "_XML";
+                    }
+                    else
+                    {
+                        var p = FindParent<ReportRViewBase>() as ReportRViewBase;
+                        if (p != null) procName = p._reportProcedure + "_XML";
+                    }
+                }
+
+                var plist = GetFilterParameters();
+                var data = V6BusinessHelper.ExecuteProcedure(procName, plist.ToArray()).Tables[0];
+                string xml = File.ReadAllText(xmlTemplateFile);
+                foreach (DataRow row in data.Rows)
+                {
+                    //      [KEY_MAP]=mst,
+                    //      [var_type]='C'
+                    //      [Value_C]='0303180249'
+                    //      [Value_N]=Null
+                    //      [Value_D]=Null
+                    //      [Value_DT]=Null
+                    //      [DATA_TYPE]=Null
+                    string xmlKey = row["KEY_MAP"].ToString().Trim();
+                    string var_type = row["var_type"].ToString().Trim().ToUpper();
+                    string xmlValue = "";
+                    if (var_type == "C") xmlValue = GetValue(row["Value_C"], row["DATA_TYPE"].ToString()).ToString();
+                    else if (var_type == "N") xmlValue = GetValue(row["Value_N"], row["DATA_TYPE"].ToString()).ToString();
+                    else if (var_type == "D") xmlValue = ObjectAndString.ObjectToString
+                        (GetValue(row["Value_D"], row["DATA_TYPE"].ToString()), "yyyy-MM-dd");
+                    else if (var_type == "T") xmlValue = ObjectAndString.ObjectToString
+                        (GetValue(row["Value_DT"], row["DATA_TYPE"].ToString()), "yyyy-MM-dd HH:mm:ss");
+                    
+                    ReplaceXmlValue(ref xml, xmlKey, xmlValue);
+                }
+
+                File.WriteAllText(txtFileName.Text, xml);
+                ShowMainMessage(V6Text.Finish);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private object GetValue(object fieldValue, string configDATATYPE)
+        {
+            switch (configDATATYPE.ToUpper())
+            {
+                case "BOOL":
+                    if (fieldValue is bool)
+                    {
+                        return fieldValue;
+                    }
+                    else
+                    {
+                        return fieldValue != null &&
+                            (fieldValue.ToString() == "1" ||
+                                fieldValue.ToString().ToLower() == "true" ||
+                                fieldValue.ToString().ToLower() == "yes");
+                    }
+                case "BOOLS":
+                    if (fieldValue is bool)
+                    {
+                        return fieldValue;
+                    }
+                    else
+                    {
+                        if ((fieldValue + "").Trim() == "") return null;
+
+                        return fieldValue.ToString() == "1" ||
+                               fieldValue.ToString().ToLower() == "true" ||
+                               fieldValue.ToString().ToLower() == "yes";
+                    }
+                case "DATE":
+                case "DATETIME":
+                    return ObjectAndString.ObjectToDate(fieldValue);
+                    break;
+                case "N2C":
+                    return V6BusinessHelper.MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND");
+                case "N2CE":
+                    return V6BusinessHelper.MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", "VND");
+                //case "N2CMANT":
+                //    return V6BusinessHelper.MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", row["MA_NT"].ToString().Trim());
+                //case "N2CMANTE":
+                //    return V6BusinessHelper.MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim());
+                //case "N2C0VNDE":
+                //    {
+                //        string ma_nt = row["MA_NT"].ToString().Trim().ToUpper();
+                //        if (ma_nt != "VND")
+                //        {
+                //            return V6BusinessHelper.MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim());
+                //        }
+                //        else
+                //        {
+                //            return "";
+                //        }
+                //    }
+                case "DECIMAL":
+                case "MONEY":
+                case "NUMBER":
+                    return ObjectAndString.ObjectToDecimal(fieldValue);
+                case "INT":
+                    return ObjectAndString.ObjectToInt(fieldValue);
+                case "INT64":
+                case "LONG":
+                    return ObjectAndString.ObjectToInt64(fieldValue);
+                //case "UPPER": // Chỉ dùng ở exe gọi bằng Foxpro.
+                //    return (fieldValue + "").ToUpper();
+                case "INTSTRING": // Đưa kiểu số về chuỗi nguyên (không lấy phần thập phân).
+                    return ObjectAndString.ObjectToInt(fieldValue).ToString();
+                case "STRING":
+                    return "" + fieldValue;
+                default:    // Kiểu nguyên mẫu của dữ liệu.
+                    return fieldValue;
+            }
+        }
+
+        private void ReplaceXmlValue(ref string xml, string xmlKey, string xmlValue)
+        {
+            int startIndex = xml.IndexOf("<" + xmlKey + ">", StringComparison.InvariantCulture) + xmlKey.Length + 2;
+            int endIndex = xml.IndexOf("</" + xmlKey + ">", StringComparison.InvariantCulture);
+            xml = xml.Substring(0, startIndex)
+                  + xmlValue
+                  + xml.Substring(endIndex);
+        }
     }
 }

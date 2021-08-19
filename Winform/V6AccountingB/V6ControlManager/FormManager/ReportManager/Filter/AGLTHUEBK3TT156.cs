@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
@@ -203,12 +205,38 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnChuyenExcelHTKK_Click(object sender, EventArgs e)
         {
-            XuatExcelHTKK();
+            try
+            {
+                if (txtFileName.Text == "")
+                {
+                    if (!Directory.Exists("C:\\V6EXCEL")) Directory.CreateDirectory("C:\\V6EXCEL");
+                    txtFileName.Text = string.Format("C:\\V6EXCEL\\" + "HTKK_MUAVAO_{0:yyyyMMdd}_{1:yyyyMMdd}.xls",
+                        dateNgay_ct1.Value, dateNgay_ct2.Value);
+                }
+                XuatExcelHTKK();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         private void btnChuyenExcelTaxOnline_Click(object sender, EventArgs e)
         {
-            XuatExcelTaxOnline();
+            try
+            {
+                if (txtFileName.Text == "")
+                {
+                    if (!Directory.Exists("C:\\V6EXCEL")) Directory.CreateDirectory("C:\\V6EXCEL");
+                    txtFileName.Text = string.Format("C:\\V6EXCEL\\" + "HTKK_BANRA_{0:yyyyMMdd}_{1:yyyyMMdd}.xls",
+                        dateNgay_ct1.Value, dateNgay_ct2.Value);
+                }
+                XuatExcelTaxOnline();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         private void btnChon_Click(object sender, EventArgs e)

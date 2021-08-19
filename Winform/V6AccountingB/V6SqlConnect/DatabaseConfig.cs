@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 
 namespace V6SqlConnect
 {
@@ -113,9 +114,10 @@ namespace V6SqlConnect
 
                 if (ConnectionConfigData.Columns.Contains("IPServer"))
                 {
+                    
                     // Kiểm tra IPServer (nơi trungg gian ghi nhận lưu trữ IP cho các máy chủ khác nhau) có kết nối thì đổi Server.
                     string IPName = selectedRow["IPName"].ToString().Trim();
-                    string IPServer = selectedRow["IPServer"].ToString().Trim();
+                    string IPServer = selectedRow["IPServer"].ToString().Trim(); // Đây là server (V6) cố định lưu trữ ip máy chủ data.
                     if (IPServer == "") goto Next1;
                     string IPDatabase = selectedRow["IPDatabase"].ToString().Trim();
                     string IPUserId = selectedRow["IPUserId"].ToString().Trim();
@@ -124,22 +126,33 @@ namespace V6SqlConnect
                                        + ";Password=" + V6SqlconnectHelper.DeCrypt(IPEPassword + check_key) + ";";
                     if (CheckConnectionString(ip_constring))
                     {
-                        string server = GetServerFromIPServer(ip_constring, IPName, out Server_IP);
+                        string _key;
+                        string server = GetServerFromIPServer(ip_constring, IPName, out Server_IP, out _key);
                         if (!string.IsNullOrEmpty(server))
                         {
                             Server = server;
                             IsIPServer = true;
+                            var _setting = new H.Setting(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Setting.ini"));
+                            if (_setting.GetSetting("DynamicIP") != _key)
+                            {
+                                _setting.SetSetting("DynamicIP", _key, "server ip");
+                                _setting.SaveSetting();
+                            }
                         }
                         else
                         {
                             IsIPServer = false;
                         }
-                        
                     }
                     else
                     {
-                        IsIPServer = false;
+                        var _setting = new H.Setting(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Setting.ini"));
+                        string _key = _setting.GetSetting("DynamicIP");
+                        Server = V6Tools.UtilityHelper.DeCrypt(_key);
+                        IsIPServer = true;
                     }
+                    
+                    
                 }
                 Next1:
 
@@ -188,10 +201,11 @@ namespace V6SqlConnect
             }
         }
 
-        private static string GetServerFromIPServer(string ipConstring, string name, out string ip_name)
+        private static string GetServerFromIPServer(string ipConstring, string name, out string ip_name, out string key)
         {
             string server = "";
             ip_name = "";
+            key = "";
             try
             {
                 SqlParameter[] param =
@@ -204,7 +218,7 @@ namespace V6SqlConnect
                     + " Where [name]=@name", param).Tables[0];
                 if (data.Rows.Count == 1)
                 {
-                    string key = data.Rows[0]["KEY"].ToString().Trim();
+                    key = data.Rows[0]["KEY"].ToString().Trim();
                     server = V6Tools.UtilityHelper.DeCrypt(key);
                     ip_name = data.Rows[0]["IP_NAME"].ToString().Trim();
                 }
@@ -309,7 +323,7 @@ namespace V6SqlConnect
             return _currentConnection;
         }
 
-        public static bool IsIPServer = false;
+        public static bool IsIPServer { get; set; }
         public static string STT = "";
         /// <summary>
         /// Tên server dữ liệu, có thể là IP.
