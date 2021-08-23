@@ -85,6 +85,7 @@
             this.btnNhapXml.Size = new System.Drawing.Size(84, 29);
             this.btnNhapXml.TabIndex = 4;
             this.btnNhapXml.Text = "&Nhập xml";
+            this.toolTipV6FormControl.SetToolTip(this.btnNhapXml, "Giữ Shift để nhập thêm.");
             this.btnNhapXml.UseVisualStyleBackColor = true;
             this.btnNhapXml.Click += new System.EventHandler(this.btnNhapXml_Click);
             // 

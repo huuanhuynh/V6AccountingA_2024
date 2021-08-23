@@ -37,6 +37,7 @@
             this.lblTen = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
+            this.lblTenLoai = new System.Windows.Forms.Label();
             this.txtTK_DD = new V6Controls.V6VvarTextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtten_ngan2 = new V6Controls.V6ColorTextBox();
@@ -49,9 +50,8 @@
             this.txtloai_pb = new V6Controls.V6ColorTextBox();
             this.txtDS_YTCP = new V6Controls.V6VvarTextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtloai_cp = new V6Controls.V6ColorTextBox();
+            this.txtLOAI_CP = new V6Controls.V6VvarTextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.v6LabelTextBox1 = new V6Controls.V6LabelTextBox();
             this.txtten_loai_yt = new V6Controls.V6LabelTextBox();
@@ -237,6 +237,7 @@
             // 
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.lblTenLoai);
             this.tabThongTinChinh.Controls.Add(this.txtTK_DD);
             this.tabThongTinChinh.Controls.Add(this.label31);
             this.tabThongTinChinh.Controls.Add(this.txtten_ngan2);
@@ -249,9 +250,8 @@
             this.tabThongTinChinh.Controls.Add(this.txtloai_pb);
             this.tabThongTinChinh.Controls.Add(this.txtDS_YTCP);
             this.tabThongTinChinh.Controls.Add(this.label15);
-            this.tabThongTinChinh.Controls.Add(this.txtloai_cp);
+            this.tabThongTinChinh.Controls.Add(this.txtLOAI_CP);
             this.tabThongTinChinh.Controls.Add(this.label14);
-            this.tabThongTinChinh.Controls.Add(this.label13);
             this.tabThongTinChinh.Controls.Add(this.label12);
             this.tabThongTinChinh.Controls.Add(this.v6LabelTextBox1);
             this.tabThongTinChinh.Controls.Add(this.txtten_loai_yt);
@@ -274,6 +274,16 @@
             this.tabThongTinChinh.Size = new System.Drawing.Size(768, 343);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
+            // 
+            // lblTenLoai
+            // 
+            this.lblTenLoai.AccessibleDescription = ".";
+            this.lblTenLoai.AccessibleName = "TEN_LOAI";
+            this.lblTenLoai.Location = new System.Drawing.Point(251, 135);
+            this.lblTenLoai.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTenLoai.Name = "lblTenLoai";
+            this.lblTenLoai.Size = new System.Drawing.Size(505, 17);
+            this.lblTenLoai.TabIndex = 30;
             // 
             // txtTK_DD
             // 
@@ -460,24 +470,25 @@
             this.label15.TabIndex = 18;
             this.label15.Text = "Chọn ds yếu tố cp";
             // 
-            // txtloai_cp
+            // txtLOAI_CP
             // 
-            this.txtloai_cp.AccessibleName = "loai_cp";
-            this.txtloai_cp.BackColor = System.Drawing.SystemColors.Window;
-            this.txtloai_cp.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtloai_cp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtloai_cp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtloai_cp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtloai_cp.HoverColor = System.Drawing.Color.Yellow;
-            this.txtloai_cp.LeaveColor = System.Drawing.Color.White;
-            this.txtloai_cp.LimitCharacters = "12";
-            this.txtloai_cp.Location = new System.Drawing.Point(171, 132);
-            this.txtloai_cp.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtloai_cp.MaxLength = 1;
-            this.txtloai_cp.Name = "txtloai_cp";
-            this.txtloai_cp.Size = new System.Drawing.Size(29, 23);
-            this.txtloai_cp.TabIndex = 13;
-            this.txtloai_cp.Text = "1";
+            this.txtLOAI_CP.AccessibleName = "LOAI_CP";
+            this.txtLOAI_CP.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLOAI_CP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLOAI_CP.BrotherFields = "TEN_LOAI";
+            this.txtLOAI_CP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLOAI_CP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLOAI_CP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLOAI_CP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLOAI_CP.LeaveColor = System.Drawing.Color.White;
+            this.txtLOAI_CP.Location = new System.Drawing.Point(171, 132);
+            this.txtLOAI_CP.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtLOAI_CP.MaxLength = 1;
+            this.txtLOAI_CP.Name = "txtLOAI_CP";
+            this.txtLOAI_CP.Size = new System.Drawing.Size(29, 23);
+            this.txtLOAI_CP.TabIndex = 13;
+            this.txtLOAI_CP.UseChangeTextOnSetFormData = true;
+            this.txtLOAI_CP.VVar = "LOAI_CP";
             // 
             // label14
             // 
@@ -488,16 +499,6 @@
             this.label14.Size = new System.Drawing.Size(137, 17);
             this.label14.TabIndex = 15;
             this.label14.Text = "Kiểu phân bổ chi phí";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(266, 135);
-            this.label13.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(234, 17);
-            this.label13.TabIndex = 14;
-            this.label13.Text = "1 - Trực tiếp, 2 - Bộ phận hạch toán";
             // 
             // label12
             // 
@@ -563,6 +564,7 @@
             this.TXTLOAI_YT.NeighborFields = "TEN_LOAI_YT";
             this.TXTLOAI_YT.Size = new System.Drawing.Size(171, 23);
             this.TXTLOAI_YT.TabIndex = 7;
+            this.TXTLOAI_YT.UseChangeTextOnSetFormData = true;
             this.TXTLOAI_YT.VVar = "LOAI_YT";
             // 
             // label4
@@ -660,6 +662,7 @@
             this.txtNhom.Name = "txtNhom";
             this.txtNhom.Size = new System.Drawing.Size(171, 23);
             this.txtNhom.TabIndex = 10;
+            this.txtNhom.UseChangeTextOnSetFormData = true;
             this.txtNhom.VVar = "NHOM_SXLSX";
             // 
             // label7
@@ -1636,9 +1639,8 @@
         private V6ColorTextBox txtloai_pb;
         private V6VvarTextBox txtDS_YTCP;
         private System.Windows.Forms.Label label15;
-        private V6ColorTextBox txtloai_cp;
+        private V6VvarTextBox txtLOAI_CP;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private V6LabelTextBox v6LabelTextBox1;
         private V6LabelTextBox txtten_loai_yt;
@@ -1676,5 +1678,6 @@
         private V6VvarTextBox txttk_co_ps;
         private System.Windows.Forms.Label label1;
         private V6VvarTextBox txttk_no_ps;
+        private System.Windows.Forms.Label lblTenLoai;
     }
 }

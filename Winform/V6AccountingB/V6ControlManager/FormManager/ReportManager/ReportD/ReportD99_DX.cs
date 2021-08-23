@@ -969,7 +969,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
             try
             {
-                if (beforeLoadData != null && !(bool)beforeLoadData)
+                if (beforeLoadData != null && !ObjectAndString.ObjectToBool(beforeLoadData))
                 {
                     _message = V6Text.CheckInfor;
                     _executing = false;
@@ -1683,14 +1683,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private void btnFirst_Click(object sender, EventArgs e)
         {
-            if (sobangtach == 0 || current_report_index == 1)
-                return;
-            current_report_index = 0;
-            //if (FilterControl.ReportType == "T")
-            //    cbbLoaiBaoCao.SelectedIndex = 0;
-            //else
-            //    cbbLoaiBaoCao.SelectedIndex = 1;
-            ViewReportIndex(current_report_index);
+            if (current_report_index > 0)
+            {
+                ViewReportIndex(0);
+            }
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -1900,7 +1896,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                DXreportManager.EditRepx(ReportFileFullDX, _ds, ReportDocumentParameters, this);
+                DXreportManager.EditRepx(ReportFileFullDX, _new_ds, ReportDocumentParameters, this);
                 SetStatus2Text();
             }
             catch (Exception ex)

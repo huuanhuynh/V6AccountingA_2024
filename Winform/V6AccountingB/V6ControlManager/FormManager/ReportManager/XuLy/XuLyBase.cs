@@ -559,7 +559,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 FormManagerHelper.HideMainMenu();
                 btnNhanImage = btnNhan.Image;
                 object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
-                if (beforeLoadData != null && !(bool)beforeLoadData)
+                if (beforeLoadData != null && !ObjectAndString.ObjectToBool(beforeLoadData))
                 {
                     _message = V6Text.CheckInfor;
                     SetStatusText(_message);

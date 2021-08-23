@@ -15,6 +15,7 @@ using V6Init;
 using V6SqlConnect;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
@@ -267,7 +268,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             _message = string.Empty;
             All_Objects["_plist"] = _pList;
             object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
-            if (beforeLoadData != null && !(bool)beforeLoadData)
+            if (beforeLoadData != null && !ObjectAndString.ObjectToBool(beforeLoadData))
             {
                 _message = V6Text.CheckInfor;
                 SetStatusText(_message);

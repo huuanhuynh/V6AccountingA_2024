@@ -140,13 +140,13 @@ namespace V6Controls
         /// </summary>
         [DefaultValue(false)]
         [Description("Cho phép ký tự xuống dòng trong trường không không dùng multiline.")]
-        public bool AllowMultiLine
+        public bool AllowDropLine
         {
-            get { return _allowMultiLine; }
-            set { _allowMultiLine = value; }
+            get { return _allowDropLine; }
+            set { _allowDropLine = value; }
         }
 
-        protected bool _allowMultiLine = false;
+        protected bool _allowDropLine = false;
 
         /// <summary>
         /// Bật chức năng mang theo giá trị được gán cuối cùng
@@ -879,7 +879,7 @@ namespace V6Controls
 
         protected void DoRemoveMultiLine()
         {
-            if (!_allowMultiLine)
+            if (!_allowDropLine && !Multiline)
             {
                 Text = Text.Replace("\r\n", "").Replace("\n", "");
             }

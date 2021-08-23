@@ -559,7 +559,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
             try
             {
-                if (beforeLoadData != null && !(bool)beforeLoadData)
+                if (beforeLoadData != null && !ObjectAndString.ObjectToBool(beforeLoadData))
                 {
                     _message = V6Text.CheckInfor;
                     _executing = false;

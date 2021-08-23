@@ -216,11 +216,27 @@ namespace V6Controls.Forms.Editor
         {
             try
             {
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 var openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
                 if (string.IsNullOrEmpty(openFile)) return;
                 FileStream fs = new FileStream(openFile, FileMode.Open);
-                _ds.Clear();
-                _ds.ReadXml(fs);
+                if (shift)
+                {
+                    var load_ds = new DataSet();
+                    load_ds.ReadXml(fs);
+                    if (load_ds.Tables.Count > 0 && _ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow row in load_ds.Tables[0].Rows)
+                        {
+                            _ds.Tables[0].AddRow(row);
+                        }
+                    }
+                }
+                else
+                {
+                    _ds.Clear();
+                    _ds.ReadXml(fs);
+                }                
                 fs.Close();
             }
             catch (Exception ex)

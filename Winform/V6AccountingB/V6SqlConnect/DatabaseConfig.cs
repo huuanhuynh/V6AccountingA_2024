@@ -135,7 +135,8 @@ namespace V6SqlConnect
                             var _setting = new H.Setting(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Setting.ini"));
                             if (_setting.GetSetting("DynamicIP") != _key)
                             {
-                                _setting.SetSetting("DynamicIP", _key, "server ip");
+                                _setting.SetSetting("DynamicIP", _key);
+                                _setting.SetSetting("DynamicIP0", Server_IP);
                                 _setting.SaveSetting();
                             }
                         }
@@ -147,9 +148,18 @@ namespace V6SqlConnect
                     else
                     {
                         var _setting = new H.Setting(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Setting.ini"));
-                        string _key = _setting.GetSetting("DynamicIP");
-                        Server = V6Tools.UtilityHelper.DeCrypt(_key);
-                        IsIPServer = true;
+
+                        string _key = _setting.GetSetting("DynamicIP"); // Giá trị Server đã lưu lại trước đó.
+                        if (!string.IsNullOrEmpty(_key))
+                        {
+                            Server = V6Tools.UtilityHelper.DeCrypt(_key);
+                            Server_IP = _setting.GetSetting("DynamicIP0"); // Name Server.
+                            IsIPServer = true;
+                        }
+                        else
+                        {
+                            IsIPServer = false;
+                        }                        
                     }
                     
                     
@@ -323,7 +333,7 @@ namespace V6SqlConnect
             return _currentConnection;
         }
 
-        public static bool IsIPServer { get; set; }
+        public static bool IsIPServer { get; private set; }
         public static string STT = "";
         /// <summary>
         /// Tên server dữ liệu, có thể là IP.

@@ -1083,7 +1083,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
             try
             {
-                if (beforeLoadData != null && !(bool)beforeLoadData)
+                if (beforeLoadData != null && !ObjectAndString.ObjectToBool(beforeLoadData))
                 {
                     _message = V6Text.CheckInfor;
                     _executing = false;

@@ -42,6 +42,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (GenerateProcedureParameters())
                 {
+                    All_Objects["_plist"] = _pList;
+                    object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
+                    if (beforeLoadData != null && !ObjectAndString.ObjectToBool(beforeLoadData))
+                    {
+                        _message = V6Text.CheckInfor;
+                        _executing = false;
+                        return;
+                    }
+
                     int check = V6BusinessHelper.CheckDataLocked("1", FilterControl.Date1, (int)FilterControl.Number1, (int)FilterControl.Number2);
                     if (check == 1)
                     {
