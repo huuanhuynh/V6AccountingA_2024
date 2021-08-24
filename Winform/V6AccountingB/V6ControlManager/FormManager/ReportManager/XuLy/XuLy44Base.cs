@@ -36,7 +36,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
         private DataTable MauInData;
-        //private V6TableStruct _tStruct;
+        public AlbcConfig _albcConfig;
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -71,13 +71,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys.Add("MA_FILE", _program);
-                var AlreportData = V6BusinessHelper.Select(V6TableName.Albc, keys, "*").Data;
-                if (AlreportData.Rows.Count == 0) return;
-
-                var dataRow = AlreportData.Rows[0];
-                var xml = dataRow["MMETHOD"].ToString().Trim();
+                var albcConfig_program = ConfigManager.GetAlbcConfigByMA_FILE(_program); // ma_file = program.
+                if (albcConfig_program.NoInfo) return;
+                var xml = albcConfig_program.MMETHOD;
                 if (xml == "") return;
                 DataSet ds = new DataSet();
                 ds.ReadXml(new StringReader(xml));
@@ -424,6 +420,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(_reportFile, "", "", "");
+            _albcConfig = ConfigManager.GetAlbcConfigByMA_FILE(_reportFile);
         }
 
         private void FixGridViewSize()

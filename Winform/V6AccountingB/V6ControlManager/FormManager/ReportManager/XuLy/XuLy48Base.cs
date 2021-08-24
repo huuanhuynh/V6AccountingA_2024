@@ -93,14 +93,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys.Add("MA_FILE", _program);
-                var AlreportData = V6BusinessHelper.Select(V6TableName.Albc, keys, "*").Data;
-                if (AlreportData.Rows.Count == 0) return;
-
-                var dataRow = AlreportData.Rows[0];
-                var xml = dataRow["MMETHOD"].ToString().Trim();
+                var albcConfig_program = ConfigManager.GetAlbcConfigByMA_FILE(_program); // ma_file = program.
+                if (albcConfig_program.NoInfo) return;
+                var xml = albcConfig_program.MMETHOD;
                 if (xml == "") return;
+
                 DataSet ds = new DataSet();
                 ds.ReadXml(new StringReader(xml));
                 if (ds.Tables.Count <= 0) return;

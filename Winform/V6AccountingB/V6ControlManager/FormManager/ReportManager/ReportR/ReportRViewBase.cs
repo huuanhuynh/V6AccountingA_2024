@@ -864,8 +864,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
-
-                GetSumCondition();
             }
             else
             {

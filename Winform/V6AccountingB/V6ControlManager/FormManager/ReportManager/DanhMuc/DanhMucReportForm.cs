@@ -355,6 +355,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 
                 txtReportTitle.Text = ReportTitle;
                 //LoadDefaultData(4, "", _Ma_File, m_itemId, "");
+                //GetSumCondition();
 
                 string key3 = "1";
                 var menuRow = V6Menu.GetRowByMact(ItemID);
@@ -442,8 +443,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
-
-                //GetSumCondition();
             }
             else
             {
@@ -1175,6 +1174,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
 
+            //GetSumCondition();
             _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")

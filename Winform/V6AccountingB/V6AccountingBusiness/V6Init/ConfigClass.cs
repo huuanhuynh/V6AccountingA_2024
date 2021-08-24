@@ -176,6 +176,14 @@ namespace V6Init
         public int FSTART { get { return GetInt("FSTART"); } }
         public int FFIXCOLUMN { get { return GetInt("FFIXCOLUMN"); } }
         public string RELOAD_DATA { get { return GetString("RELOAD_DATA"); } }
+        /// <summary>
+        /// Thông tin các Parameter thêm cho Báo cáo. 
+        /// <para>Extra_para: R_MA_KH là tên parameter trong rpt,</para>
+        /// <para>Field là dữ liệu table2 hoặc filterLine...</para>
+        /// <para>Ptype:TABLE2, FILTER-lấy dữ liệu của filter,</para>
+        /// <para>FILTER_BROTHER-lấy dữ liệu của filterLine.Data,</para>
+        /// <para>PARENT - chưa định nghĩa.</para>
+        /// </summary>
         public string EXTRA_PARA { get { return GetString("EXTRA_PARA"); } }
         /// <summary>
         /// xml code động.
@@ -771,6 +779,39 @@ namespace V6Init
                 };
                 var executeResult = V6BusinessHelper.Select("ALBC", "*", "ma_file=@p0 and mau=@p1 and lan=@p2 and report=@p3", "", "", param);
                 
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new AlbcConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig = new AlbcConfig();
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
+        public static AlbcConfig GetAlbcConfigByMA_FILE(string ma_file)
+        {
+            AlbcConfig lstConfig = null;
+            try
+            {
+                SqlParameter[] param =
+                {
+                    new SqlParameter("@p0", ma_file)
+                };
+                var executeResult = V6BusinessHelper.Select("ALBC", "*", "ma_file=@p0", "", "", param);
+
                 if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
                 {
                     var tbl = executeResult.Data;

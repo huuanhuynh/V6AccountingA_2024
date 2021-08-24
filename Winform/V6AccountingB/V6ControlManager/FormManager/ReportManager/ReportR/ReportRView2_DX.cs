@@ -695,6 +695,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 LoadComboboxSource();
                 txtReportTitle.Text = ReportTitle;
                 LoadDefaultData(4, "", _Ma_File, m_itemId);
+                GetSumCondition();
 
                 string key3 = "1";
                 var menuRow = V6Menu.GetRowByMact(ItemID);
@@ -814,8 +815,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
-
-                GetSumCondition();
             }
             else
             {

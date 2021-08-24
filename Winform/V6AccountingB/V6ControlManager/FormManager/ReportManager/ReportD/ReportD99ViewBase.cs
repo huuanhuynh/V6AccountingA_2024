@@ -677,6 +677,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 LoadComboboxSource();
                 txtReportTitle.Text = ReportTitle;
                 LoadDefaultData(4, "", _Ma_File, m_itemId);
+                GetSumCondition();
                 SetToolTip(txtNumber, V6Text.Text("NSVNEDNBC"));
 
                 string key3 = "1";
@@ -764,8 +765,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
-
-                GetSumCondition();
             }
             else
             {
