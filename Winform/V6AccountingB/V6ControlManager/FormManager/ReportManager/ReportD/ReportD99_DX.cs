@@ -625,6 +625,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     dataGridView1.Font = new Font(dataGridView1.Font.FontFamily, V6Options.M_R_FONTSIZE);
                 }
+                dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
@@ -1330,6 +1331,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     config_string = EXTRA_INFOR["FOOTER"];
                     lblSummary.Visible = true;
+                    dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 }
                 else
                 {
@@ -1464,15 +1466,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             //nút tới
             btnNext.Enabled = current_report_index < sobangtach-1;
         }
-        
+
+        private int SummaryHeight
+        {
+            get
+            {
+                int summaryHeight = 0;
+                if (gridViewSummary1.Visible) summaryHeight += gridViewSummary1.Height;
+                if (lblSummary.Visible) summaryHeight += lblSummary.Height;
+                return summaryHeight + 5;
+            }
+        }
+
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (documentViewer1.Visible)
             {
-                //Phóng lớn dataGridView
+                // Phóng lớn dataGridView
                 dataGridView1.BringToFront();
                 gridViewSummary1.BringToFront();
-                dataGridView1.Height = Height - grbDieuKienLoc.Top - 25 - 25 - gridViewTopFilter1.Height; // 25 cho gviewSummary, 25 cho lblSummary
+                dataGridView1.Height = Height - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 dataGridView1.Width = Width - 5;
                 dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Left;
@@ -1483,11 +1496,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 lblSummary.Top = dataGridView1.Bottom + 26;
                 documentViewer1.Visible = false;
             }
-            else
+            else // Thu nhỏ dataGridView
             {
                 dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Right + 5;
-                dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - 25 - 25 - gridViewTopFilter1.Height;
+                dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 dataGridView1.Width = documentViewer1.Width;
                 dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 
@@ -1510,7 +1523,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             else
             {
                 documentViewer1.Left = grbDieuKienLoc.Right + 5;
-                documentViewer1.Top = dataGridView1.Bottom + 25 + 25;
+                documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
                 documentViewer1.Height = Height - documentViewer1.Top - 10;
                 documentViewer1.Width = dataGridView1.Width;
             }

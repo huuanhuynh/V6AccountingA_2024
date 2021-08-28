@@ -32,10 +32,10 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtNam = new V6Controls.V6NumberTextBox();
-            this.txtKy1 = new V6Controls.V6NumberTextBox();
+            this.txtKy1 = new V6Controls.NumberMonth();
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
-            this.txtKy2 = new V6Controls.V6NumberTextBox();
+            this.txtKy2 = new V6Controls.NumberMonth();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.ngay2 = new V6Controls.V6DateTimePicker();
             this.ngay1 = new V6Controls.V6DateTimePicker();
@@ -252,10 +252,10 @@
         protected System.Windows.Forms.Button btnHuy;
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6NumberTextBox txtNam;
-        private V6Controls.V6NumberTextBox txtKy1;
+        private V6Controls.NumberMonth txtKy1;
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
-        private V6Controls.V6NumberTextBox txtKy2;
+        private V6Controls.NumberMonth txtKy2;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private V6Controls.V6DateTimePicker ngay2;
         private V6Controls.V6DateTimePicker ngay1;

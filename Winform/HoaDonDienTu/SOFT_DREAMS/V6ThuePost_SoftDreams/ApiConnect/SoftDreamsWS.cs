@@ -425,7 +425,8 @@ namespace V6ThuePostSoftDreamsApi
         }
 
         /// <summary>
-        /// Tải hoá đơn định dạng PDF
+        /// Tải hoá đơn định dạng PDF. 
+        /// <para>option: 0 thể hiện, 1 chuyển đổi, 2 chuyển đổi lưu trữ.</para>
         /// </summary>
         /// <param name="ikey"></param>
         /// <param name="option">0 - Bản pdf thông thường; 1 - Bản pdf chuyển đổi chứng minh nguồn gốc; 2 – Bản pdf chuyển đổi lưu trữ</param>

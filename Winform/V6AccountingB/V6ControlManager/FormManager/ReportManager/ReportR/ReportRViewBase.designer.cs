@@ -295,7 +295,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 293);
+            this.dataGridView1.Size = new System.Drawing.Size(662, 312);
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.FilterChange += new System.Action(this.dataGridView1_FilterChange);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -528,7 +528,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridViewSummary1.DataGridView = this.dataGridView1;
-            this.gridViewSummary1.Location = new System.Drawing.Point(307, 379);
+            this.gridViewSummary1.Location = new System.Drawing.Point(307, 398);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
             this.gridViewSummary1.SumCondition = null;

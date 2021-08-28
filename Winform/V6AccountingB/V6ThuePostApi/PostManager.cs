@@ -58,6 +58,7 @@ namespace V6ThuePostManager
         static DataTable ad_table;
         static DataTable am_table;
         private static string Fkey_hd_tt = null;
+        private static string ngay_ct_viettel = null;
         /// <summary>
         /// Bảng dữ liệu xuất Excel
         /// </summary>
@@ -329,7 +330,7 @@ namespace V6ThuePostManager
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
-                        result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, paras.Mode == "2" ? 2 : paras.Mode == "1" ? 1 : 0, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, paras.Mode == "1" ? 0 : paras.Mode == "2" ? 1 : 2, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         if (paras.Result.V6ReturnValues.RESULT_MESSAGE != null && paras.Result.V6ReturnValues.RESULT_MESSAGE.Contains("Có lỗi xả ra: {\"Status\":4,\"Message\":\"Ikey không được bỏ trống\"}"))
                         {
                             result = null;
@@ -447,19 +448,21 @@ namespace V6ThuePostManager
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
-                        result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, paras.Mode == "2" ? 2 : paras.Mode == "1" ? 1 : 0, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, paras.Mode == "1" ? 0 : paras.Mode == "2" ? 1 : 2, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     case "6":
                         ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _link_Publish_vnpt_thaison, _username, _password, _SERIAL_CERT);
-                        result = thaiSonWS.GetInvoicePdf(paras.V6PartnerID, paras.Mode == "0" ? 0 : 1, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        result = thaiSonWS.GetInvoicePdf(paras.V6PartnerID, paras.Mode == "1" ? 0 : 1, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     case "7":
                         MONET_WS monetWS = new MONET_WS(_baseUrl, _username, _password, _codetax);
-                        result = monetWS.DownloadInvoicePDF(paras.V6PartnerID, paras.Pattern, V6Setting.V6SoftLocalAppData_Directory);
+                        if (paras.Mode == "1") result = monetWS.DownloadInvoicePDF(paras.V6PartnerID, paras.Pattern, V6Setting.V6SoftLocalAppData_Directory);
+                        else result = monetWS.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     case "8":
                         MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
-                        result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        if (paras.Mode == "1") result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        else result = mInvoiceWs.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
@@ -2532,6 +2535,7 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Viettel(paras);
                     result = viettel_ws.POST_REPLACE(_createInvoiceUrl, jsonBody);
+                    paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
                 else if (paras.Mode.StartsWith("M"))
                 {
@@ -2573,6 +2577,7 @@ namespace V6ThuePostManager
                         string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
                         result = viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
                     }
+                    paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
                 else if (paras.Mode.StartsWith("S"))
                 {
@@ -2683,7 +2688,7 @@ namespace V6ThuePostManager
                     if (_version == "V45I")
                     {
                         // V45 yyyyMMddHHmmss nhưng khi lên V45I đã thay đổi.
-                        strIssueDate = V6JsonConverter.ObjectToJson((DateTime)GetValue(row0, item), "VIETTEL");
+                        strIssueDate = V6JsonConverter.ObjectToJson((DateTime)GetValue(row0, item), _datetype);
                     }
                     string additionalReferenceDesc = paras.AM_data["STT_REC"].ToString();
                     paras.InvoiceNo = paras.AM_data["SO_SERI"].ToString().Trim() + paras.AM_data["SO_CT"].ToString().Trim();
@@ -2716,6 +2721,7 @@ namespace V6ThuePostManager
                     if (string.IsNullOrEmpty(_SERIAL_CERT))
                     {
                         jsonBody = ReadData_Viettel(paras);
+
                         if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
                         {
                             result = viettel_V2WS.POST_DRAFT(jsonBody, out paras.Result.V6ReturnValues);
@@ -2746,6 +2752,8 @@ namespace V6ThuePostManager
                         viettel_V2WS.SearchInvoiceByTransactionUuid(_codetax, paras.Fkey_hd, out paras.Result.V6ReturnValues);
                         paras.Result.V6ReturnValues.ID = oldTransactionID;
                     }
+
+                    paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
                 else if (paras.Mode.StartsWith("S"))
                 {
@@ -2777,6 +2785,7 @@ namespace V6ThuePostManager
                     jsonBody = ReadData_Viettel(paras);
                     //File.Create(flagFileName1).Close();
                     result = viettel_V2WS.POST_EDIT(jsonBody, out paras.Result.V6ReturnValues);
+                    paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
 
                 //Phân tích result ra câu thông báo.
@@ -2925,6 +2934,8 @@ namespace V6ThuePostManager
                         paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
                         result = paras.Result.V6ReturnValues.RESULT_STRING;
                     }
+
+                    paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
                 else if (paras.Mode.StartsWith("S"))
                 {
@@ -2962,6 +2973,7 @@ namespace V6ThuePostManager
                     // Phân tích Result tại đây.
                     paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
                     result = paras.Result.V6ReturnValues.RESULT_STRING;
+                    paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
 
                 //Phân tích result
@@ -3025,6 +3037,7 @@ namespace V6ThuePostManager
             string result = "";
             try
             {
+                if (string.IsNullOrEmpty(_datetype)) _datetype = "VIETTEL";
                 DataRow row0 = am_table.Rows[0];
                 var postObject = new PostObjectViettel();
 
@@ -3033,6 +3046,18 @@ namespace V6ThuePostManager
                 {
                     postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
                 }
+
+                // Giữ lại giá trị ngày ct viettel invoiceIssuedDate
+                if (_datetype == "VIETTELNOW")
+                {
+                    var sv_date_10 = V6BusinessHelper.GetServerDateTime().AddMinutes(-10);
+                    sv_date_10 = sv_date_10.AddSeconds(-sv_date_10.Second);
+                    sv_date_10 = sv_date_10.AddMilliseconds(-sv_date_10.Millisecond);
+                    postObject.generalInvoiceInfo["invoiceIssuedDate"] = sv_date_10;
+                }
+                
+                ngay_ct_viettel = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], _datetype);
+                
 
                 if (paras.Mode == "E_T1")
                 {
@@ -3168,7 +3193,6 @@ namespace V6ThuePostManager
                     }
                 }
 
-                if (string.IsNullOrEmpty(_datetype)) _datetype = "VIETTEL";
                 result = postObject.ToJson(_datetype);
             }
             catch (Exception ex)
@@ -3227,8 +3251,18 @@ namespace V6ThuePostManager
                 if (paras.Mode == "1") // Mode Thể hiện
                     return viettel_V2WS.DownloadInvoicePDF(_codetax, paras.InvoiceNo, paras.Pattern, paras.Fkey_hd,
                         V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
-                string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
-                string strIssueDate_Viettel = V6JsonConverter.ObjectToJson(paras.InvoiceDate, "VIETTEL");
+                //string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
+                //string strIssueDate_Viettel = V6JsonConverter.ObjectToJson(paras.InvoiceDate, _datetype);
+                string strIssueDate_Viettel = "";
+                if (!paras.Partner_infor_dic.ContainsKey("NGAY_CT") || string.IsNullOrEmpty(paras.Partner_infor_dic["NGAY_CT"]))
+                {
+                    throw new Exception(V6Text.CheckData + "\nPART_INFOR[\"NGAY_CT\"]");
+                }
+                else
+                {
+                    strIssueDate_Viettel = paras.Partner_infor_dic["NGAY_CT"];
+                }
+
                 return viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.InvoiceNo, strIssueDate_Viettel,
                     V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
             }

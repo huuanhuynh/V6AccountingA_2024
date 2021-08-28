@@ -209,12 +209,11 @@ namespace V6ThuePostMonetApi
         /// Download bản chuyển đổi.
         /// </summary>
         /// <param name="codeTax"></param>
-        /// <param name="methodlink">InvoiceAPI/InvoiceWS/createExchangeInvoiceFile</param>
         /// <param name="invoiceNo">Số hóa đơn hệ thống trả về.</param>
         /// <param name="strIssueDate"></param>
         /// <param name="savefolder"></param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDFexchange(string codeTax, string methodlink, string invoiceNo, string strIssueDate, string savefolder)
+        public string DownloadInvoicePDFexchange(string codeTax, string invoiceNo, string strIssueDate, string savefolder)
         {
             //GetFileRequestE objGetFile = new GetFileRequestE()
             //{
@@ -227,8 +226,8 @@ namespace V6ThuePostMonetApi
                 string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}", codeTax, invoiceNo,
                     strIssueDate, _username);
             //string q = objGetFile.ToJson();
-            
-            string result = GET(methodlink + parameters);
+
+            string result = GET("InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
 
             PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
             string fileName = objFile.fileName;

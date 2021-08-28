@@ -36,6 +36,10 @@ namespace V6ThuePost.ResponseObjects
         /// </summary>
         public string SECRET_CODE;
         /// <summary>
+        /// Ngày chứng từ VIETTEL.
+        /// </summary>
+        public string NGAY_CT_VIETTEL;
+        /// <summary>
         /// Đường dẫn của file download được.
         /// </summary>
         public string PATH;

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label3 = new System.Windows.Forms.Label();
-            this.txtLoaiBaoCao = new V6Controls.V6ColorTextBox();
+            this.txtLoaiBaoCao = new V6Controls.V6NumberTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
@@ -64,7 +64,7 @@
             this.Txtnh_kh3 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtma_ct = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
-            this.txtChiTietTheo = new V6Controls.V6ColorTextBox();
+            this.txtChiTietTheo = new V6Controls.V6NumberTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.chkGiamTru = new V6Controls.V6CheckBox();
@@ -94,7 +94,7 @@
             this.txtLoaiBaoCao.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoaiBaoCao.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtLoaiBaoCao.LeaveColor = System.Drawing.Color.White;
-            this.txtLoaiBaoCao.LimitCharacters = "12345678";
+            this.txtLoaiBaoCao.LimitCharacters = "1;2;3;4;5;6;7;8";
             this.txtLoaiBaoCao.Location = new System.Drawing.Point(100, 51);
             this.txtLoaiBaoCao.MaxLength = 1;
             this.txtLoaiBaoCao.Name = "txtLoaiBaoCao";
@@ -582,7 +582,7 @@
             this.txtChiTietTheo.HoverColor = System.Drawing.Color.Yellow;
             this.txtChiTietTheo.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtChiTietTheo.LeaveColor = System.Drawing.Color.White;
-            this.txtChiTietTheo.LimitCharacters = "12345678";
+            this.txtChiTietTheo.LimitCharacters = "1;2;3;4;5;6;7;8";
             this.txtChiTietTheo.Location = new System.Drawing.Point(232, 51);
             this.txtChiTietTheo.MaxLength = 1;
             this.txtChiTietTheo.Name = "txtChiTietTheo";
@@ -668,8 +668,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private V6Controls.V6ColorTextBox txtLoaiBaoCao;
-        private V6Controls.V6ColorTextBox txtChiTietTheo;
+        private V6Controls.V6NumberTextBox txtLoaiBaoCao;
+        private V6Controls.V6NumberTextBox txtChiTietTheo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private V6Controls.V6CheckBox chkGiamTru;

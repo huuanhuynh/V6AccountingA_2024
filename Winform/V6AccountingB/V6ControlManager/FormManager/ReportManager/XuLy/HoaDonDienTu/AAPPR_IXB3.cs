@@ -351,8 +351,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"];
                 if (shift_is_down)
                 {
-                    if (mode == "0") mode = "1";
-                    else if (mode == "1") mode = "0";
+                    mode = mode == "1" ? "2" : "1";
                 }
                 //Download selected einvoice
                 //, error = "", sohoadon = "", id = "";

@@ -78,7 +78,7 @@ namespace V6ThuePostViettelV2Api
         /// 
         /// </summary>
         /// <param name="jsonBody"></param>
-        /// <param name="invalidate">Mặc định false.</param>
+        /// <param name="invalidate">(Cờ đổi hàm) Mặc định false.</param>
         /// <param name="v6Return"></param>
         /// <returns></returns>
         public string POST_CREATE_INVOICE(string jsonBody, bool invalidate, out V6Return v6Return)
@@ -749,8 +749,8 @@ namespace V6ThuePostViettelV2Api
             string fileName = responseObject.fileName;
             if (string.IsNullOrEmpty(fileName) || responseObject.fileToBytes == null)
             {
-                v6Return.RESULT_ERROR_MESSAGE = "Download no file!";
-                throw new Exception("Download no file!");
+                v6Return.RESULT_ERROR_MESSAGE = "Download no file! " + responseObject.message;
+                throw new Exception("Download no file!" + responseObject.message);
             }
             else
             {

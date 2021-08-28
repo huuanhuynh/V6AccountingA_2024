@@ -217,7 +217,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
                     };
                 }
             }
-            else if (tag_string.Contains(";numberdg;"))
+            else if (tag_string.Contains(";numberdg;") || tag_string.Contains(";numbergia;"))
             {
                 var viewControl = c.Parent.FindControl(c.Name + "_view", true);
                 if (viewControl != null)

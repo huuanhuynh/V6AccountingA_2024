@@ -95,7 +95,7 @@
             this.txtLoaiBaoCao.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoaiBaoCao.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtLoaiBaoCao.LeaveColor = System.Drawing.Color.White;
-            this.txtLoaiBaoCao.LimitCharacters = "12345678";
+            this.txtLoaiBaoCao.LimitCharacters = "1;2;3;4;5;6;7;8";
             this.txtLoaiBaoCao.Location = new System.Drawing.Point(84, 61);
             this.txtLoaiBaoCao.MaxLength = 1;
             this.txtLoaiBaoCao.Name = "txtLoaiBaoCao";
@@ -572,7 +572,7 @@
             this.txtChiTietTheo.HoverColor = System.Drawing.Color.Yellow;
             this.txtChiTietTheo.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtChiTietTheo.LeaveColor = System.Drawing.Color.White;
-            this.txtChiTietTheo.LimitCharacters = "12345678";
+            this.txtChiTietTheo.LimitCharacters = "1;2;3;4;5;6;7;8";
             this.txtChiTietTheo.Location = new System.Drawing.Point(202, 61);
             this.txtChiTietTheo.MaxLength = 1;
             this.txtChiTietTheo.Name = "txtChiTietTheo";

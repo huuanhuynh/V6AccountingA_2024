@@ -379,6 +379,7 @@ namespace V6ThuePostThaiSonApi
 
         /// <summary>
         /// Tải hoá đơn định dạng PDF
+        /// <para>option: 0 thể hiện, 1 chuyển đổi</para>
         /// </summary>
         /// <param name="maEinvoice"></param>
         /// <param name="option">0 - Bản thể hiện; 1 - Bản pdf chuyển đổi</param>

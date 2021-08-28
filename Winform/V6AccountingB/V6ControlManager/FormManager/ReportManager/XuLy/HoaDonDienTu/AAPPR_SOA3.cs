@@ -155,6 +155,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
                             DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
                             string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                            string pi = row.Cells["Part_infos"].Value.ToString().Trim();
 
                             var pmparams1 = new PostManagerParams
                             {
@@ -163,6 +164,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 InvoiceNo = invoiceNo,
                                 InvoiceDate = ngay_ct,
                                 Fkey_hd = fkey_hd,
+                                Partner_infos = pi,
                                 Pattern = pattern,
                                 Serial = serial,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
@@ -408,8 +410,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"];
                 if (shift_is_down)
                 {
-                    if (mode == "0") mode = "1";
-                    else if (mode == "1") mode = "0";
+                    mode = mode == "1" ? "2" : "1";
                 }
                 //Download selected einvoice
                 //, error = "", sohoadon = "", id = "";
@@ -432,7 +433,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
                 DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
-                
+                string pi = row.Cells["Part_infos"].Value.ToString().Trim();
+
                 var pmparams = new PostManagerParams
                 {
                     AM_data = row.ToDataDictionary(),
@@ -443,6 +445,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     V6PartnerID = v6_partner_id,
                     Pattern = pattern,
                     Fkey_hd = fkey_hd,
+                    Partner_infos = pi,
                     Mode = mode,
                 };
                 string error;

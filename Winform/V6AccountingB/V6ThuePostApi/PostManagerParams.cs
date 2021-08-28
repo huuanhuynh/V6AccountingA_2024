@@ -17,10 +17,11 @@ namespace V6ThuePostManager
         /// </summary>
         public DataSet DataSet { get; set; }
         /// <summary>
-        /// <para>Khi download pdf viettel 1: thể hiện, mặc định(2): Chuyển đổi</para>
-        /// <para>Vnpt M: mới, S: sửa, X: xóa-cancel</para>
+        /// <para>Khi download pdf 1: thể hiện, 2: Chuyển đổi</para>
+        /// <para>Khi upload Vnpt M: mới, S: sửa, X: xóa-cancel</para>
         /// </summary>
         public string Mode { get; set; }
+
         /// <summary>
         /// 1:Viettel 2:Vnpt 3:Bkav 4:Vnpt_token 5:SoftDreams 6:ThaiSon 7:Monet 8:Minvoice 9...
         /// </summary>
@@ -36,6 +37,15 @@ namespace V6ThuePostManager
         /// Fkey từ V6, // Cần thiết cho Hủy VNPT, BKAV,
         /// </summary>
         public string Fkey_hd { get; set; }
+        public string Partner_infos { get; set; }
+
+        public Dictionary<string, string> Partner_infor_dic
+        {
+            get
+            {
+                return ObjectAndString.StringToStringDictionary(Partner_infos);
+            }
+        }
         /// <summary>
         /// <para>Key hóa đơn cũ dùng cho thay thế.</para>
         /// <para>1_Viettel:AA/17E0003470</para>
@@ -93,6 +103,7 @@ namespace V6ThuePostManager
     /// </summary>
     public class PM_Result
     {
+        // CÁC FIELD KEY.
         private const string EXCEPTION_MESSAGE = "EXCEPTION_MESSAGE";
         private const string RESULT_ERROR = "RESULT_ERROR";
         private const string RESULT_MESSAGE = "RESULT_MESSAGE";
@@ -101,6 +112,7 @@ namespace V6ThuePostManager
         private const string SO_HD = "SO_HD";
         private const string ID = "ID";
         private const string SECRET_CODE = "SECRET_CODE";
+        private const string NGAY_CT = "NGAY_CT";
         public string ResultString
         {
             get
@@ -188,6 +200,7 @@ namespace V6ThuePostManager
                 V6ReturnValues.SO_HD = value;
             }
         }
+
         /// <summary>
         /// ID trả về của webservice.
         /// </summary>
@@ -202,6 +215,10 @@ namespace V6ThuePostManager
                 return null;
             }
         }
+
+        /// <summary>
+        /// Mã bí mật trả về của webservice.
+        /// </summary>
         public string SecrectCode
         {
             get
@@ -210,10 +227,21 @@ namespace V6ThuePostManager
                 {
                     return V6ReturnValues.SECRET_CODE;
                 }
-                //else if (ResultDictionary != null && ResultDictionary.ContainsKey("MTC"))
-                //{
-                //    return V6ReturnValues["MCT"].ToString();
-                //}
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// invoiceIssuedDate
+        /// </summary>
+        public string NgayCT_VIETTEL
+        {
+            get
+            {
+                if (V6ReturnValues != null)
+                {
+                    return V6ReturnValues.NGAY_CT_VIETTEL;
+                }
                 return null;
             }
         }
@@ -229,7 +257,8 @@ namespace V6ThuePostManager
                 if (!string.IsNullOrEmpty(InvoiceNo))   result += string.Format(";{0}:{1}", SO_HD, InvoiceNo);
                 if (!string.IsNullOrEmpty(ID))          result += string.Format(";{0}:{1}", ID, Id);
                 if (!string.IsNullOrEmpty(SecrectCode)) result += string.Format(";{0}:{1}", SECRET_CODE, SecrectCode);
-
+                if (!string.IsNullOrEmpty(NgayCT_VIETTEL)) result += string.Format(";{0}:{1}", NGAY_CT, NgayCT_VIETTEL);
+                
                 if (result != null && result.Length > 1) result = result.Substring(1);
                 return result;
             }

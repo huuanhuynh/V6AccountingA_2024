@@ -277,8 +277,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
-            if (MauInSelectedRow == null) return;
-            _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
+            if (_albcConfig.NoInfo) return;
+            _extraInfor = _albcConfig.EXTRA_INFOR;
         }
 
         #endregion EXTRA_INFOR
@@ -707,7 +707,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     dataGridView1.Font = new Font(dataGridView1.Font.FontFamily, V6Options.M_R_FONTSIZE);
                 }
-
+                dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
@@ -997,7 +997,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
             }
 
-            var rptExtraParametersD = FilterControl.GetRptParametersD(Extra_para, LAN);
+            var rptExtraParametersD = FilterControl.GetRptParametersD(_albcConfig.EXTRA_PARA, LAN);
             if (rptExtraParametersD != null)
             {
                 ReportDocumentParameters.AddRange(rptExtraParametersD, true);
@@ -1438,6 +1438,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     config_string = EXTRA_INFOR["FOOTER"];
                     lblSummary.Visible = true;
+                    dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 }
                 else
                 {
@@ -1489,15 +1490,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 this.WriteExLog(GetType() + ".ViewFooter", ex);
             }
         }
-        
+
+        private int SummaryHeight
+        {
+            get
+            {
+                int summaryHeight = 0;
+                if (gridViewSummary1.Visible) summaryHeight += gridViewSummary1.Height;
+                if (lblSummary.Visible) summaryHeight += lblSummary.Height;
+                return summaryHeight+5;
+            }
+        }
+
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (documentViewer1.Visible)
             {
-                //Phóng lớn dataGridView
+                // Phóng lớn dataGridView
                 dataGridView1.BringToFront();
                 gridViewSummary1.BringToFront();
-                dataGridView1.Height = Height - grbDieuKienLoc.Top - 25 - 25 - gridViewTopFilter1.Height; // 25 cho gviewSummary, 25 cho lblSummary
+                dataGridView1.Height = Height - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 dataGridView1.Width = Width - 5;
                 dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Left;
@@ -1508,11 +1520,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 lblSummary.Top = dataGridView1.Bottom + 26;
                 documentViewer1.Visible = false;
             }
-            else
+            else // Thu nhỏ dataGridView
             {
                 dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Right + 5;
-                dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - 25 - 25 - gridViewTopFilter1.Height;
+                dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 dataGridView1.Width = documentViewer1.Width;
                 dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 
@@ -1535,7 +1547,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             else
             {
                 documentViewer1.Left = grbDieuKienLoc.Right + 5;
-                documentViewer1.Top = dataGridView1.Bottom + 25 + 25;
+                documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
                 documentViewer1.Height = Height - documentViewer1.Top - 10;
                 documentViewer1.Width = dataGridView1.Width;
             }

@@ -70,8 +70,8 @@
             this.chkGiamTru = new V6Controls.V6CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtChiTietTheo = new V6Controls.V6ColorTextBox();
-            this.txtLoaiBaoCao = new V6Controls.V6ColorTextBox();
+            this.txtChiTietTheo = new V6Controls.V6NumberTextBox();
+            this.txtLoaiBaoCao = new V6Controls.V6NumberTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -655,7 +655,7 @@
             this.txtLoaiBaoCao.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoaiBaoCao.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtLoaiBaoCao.LeaveColor = System.Drawing.Color.White;
-            this.txtLoaiBaoCao.LimitCharacters = "12345678";
+            this.txtLoaiBaoCao.LimitCharacters = "1;2;3;4;5;6;7;8";
             this.txtLoaiBaoCao.Location = new System.Drawing.Point(100, 70);
             this.txtLoaiBaoCao.MaxLength = 1;
             this.txtLoaiBaoCao.Name = "txtLoaiBaoCao";
@@ -756,8 +756,8 @@
         private V6Controls.V6CheckBox chkGiamTru;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private V6Controls.V6ColorTextBox txtChiTietTheo;
-        private V6Controls.V6ColorTextBox txtLoaiBaoCao;
+        private V6Controls.V6NumberTextBox txtChiTietTheo;
+        private V6Controls.V6NumberTextBox txtLoaiBaoCao;
         private V6ReportControls.FilterLineVvarTextBox TXTMA_BPHT;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
