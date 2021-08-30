@@ -127,7 +127,8 @@ namespace V6ControlManager.FormManager.MenuManager
                                     AldmConfig aldmConfig = ConfigManager.GetAldmConfig(TABLE_NAME);
                                     
                                     var where = "";
-                                    if (TABLE_NAME == "ALKC")
+                                    if (TABLE_NAME == "ALKC" ||
+                                    ("," + V6Options.GetValueNull("M_TABLEDM_YEAR") + ",").Contains("," + TABLE_NAME + ","))
                                     {
                                         var filterForm = new YearFilterForm(TABLE_NAME);
                                         if (filterForm.ShowDialog(owner) == DialogResult.OK)
@@ -201,7 +202,8 @@ namespace V6ControlManager.FormManager.MenuManager
                                 if (TABLE_NAME_SD == "ABSPYTCP" || TABLE_NAME_SD == "ABSPDD" ||
                                     TABLE_NAME_SD == "ACOSXLT_ABSPDD" || TABLE_NAME_SD == "ACOSXLT_ABSPYTCP" ||
                                     TABLE_NAME_SD == "ACOSXLSX_ABSPDD" || TABLE_NAME_SD == "ACOSXLSX_ABSPYTCP" ||
-                                    TABLE_NAME_SD == "ABHHVT" || TABLE_NAME_SD == "ABNGHI")
+                                    TABLE_NAME_SD == "ABHHVT" || TABLE_NAME_SD == "ABNGHI" ||
+                                    ("," + V6Options.GetValueNull("M_TABLESD_YEARMONTH") + ",").Contains(","+TABLE_NAME_SD+","))
                                 {
                                     var filterForm = new YearMonthFilterForm(TABLE_NAME_SD);
                                     if (filterForm.ShowDialog(owner) == DialogResult.OK)

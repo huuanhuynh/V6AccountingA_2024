@@ -21,6 +21,7 @@ namespace V6Controls
     public partial class V6VvarTextBoxForm : V6Form
     {
         public V6lookupConfig _config;
+        public AldmConfig _aldmConfig;
         
         //public string VVar;
         //V6VvarTextBoxFormDAO _standDao;
@@ -47,6 +48,7 @@ namespace V6Controls
             LookupMode lookupMode = LookupMode.Single, bool filterStart = false)
         {            
             _config = lookupInfo;
+            _aldmConfig = ConfigManager.GetAldmConfig(_config.vMa_file);
             InitStrFilter = initStrFilter;
             _senderTextBox = sender;
             _lookupMode = lookupMode;
@@ -729,7 +731,13 @@ namespace V6Controls
                     if (_config.vMa_file.ToUpper() == "ALTK" || _config.vMa_file.ToUpper() == "ALTK0")
                         return true;
 
-                    if (V6Login.UserRight.AllowView("", _config.vMa_file.ToUpper() + "6"))
+                    string checkKey = _config.vMa_file;
+                    if (_aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("MA_DM0"))
+                    {
+                        checkKey = _aldmConfig.EXTRA_INFOR["MA_DM0"].ToUpper();
+                    }
+
+                    if (V6Login.UserRight.AllowView("", checkKey + "6"))
                     {
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
@@ -761,10 +769,16 @@ namespace V6Controls
                         return false;
                     }
 
-                    if (_config.vMa_file.ToUpper() == "ALTK" || _config.vMa_file.ToUpper() == "ALTK0")
+                    if (_config.vMa_file.ToUpper() == "ALTK" || _config.vMa_file.ToUpper() == "ALTK0") 
                         return true;
 
-                    if (V6Login.UserRight.AllowEdit("", _config.vMa_file.ToUpper() + "6"))
+                    string checkKey = _config.vMa_file;
+                    if (_aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("MA_DM0"))
+                    {
+                        checkKey = _aldmConfig.EXTRA_INFOR["MA_DM0"].ToUpper();
+                    }
+
+                    if (V6Login.UserRight.AllowEdit("", checkKey + "6"))
                     {
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
@@ -799,7 +813,13 @@ namespace V6Controls
                     if (_config.vMa_file.ToUpper() == "ALTK" || _config.vMa_file.ToUpper() == "ALTK0")
                         return true;
 
-                    if (V6Login.UserRight.AllowAdd("", _config.vMa_file.ToUpper() + "6"))
+                    string checkKey = _config.vMa_file;
+                    if (_aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("MA_DM0"))
+                    {
+                        checkKey = _aldmConfig.EXTRA_INFOR["MA_DM0"].ToUpper();
+                    }
+
+                    if (V6Login.UserRight.AllowAdd("", checkKey + "6"))
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;

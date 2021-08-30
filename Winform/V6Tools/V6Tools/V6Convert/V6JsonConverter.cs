@@ -98,10 +98,12 @@ namespace V6Tools.V6Convert
                 }
                 else if (dateTimeFormat.ToUpper() == "VIETTELNOW")
                 {
-                    var newvalue = date - new DateTime(1970, 1, 1, 7, 00, 0);
-                    //newvalue = newvalue.Add(new TimeSpan(date.Hour, date.Minute, 0));
-                    newvalue = newvalue.Add(new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0));
-                    result = "" + (long)newvalue.TotalMilliseconds;
+                    result = "" + (long)(date - new DateTime(1970, 1, 1, 7, 00, 0)).TotalMilliseconds;
+
+                    //var newvalue = date - new DateTime(1970, 1, 1, 7, 00, 0);
+                    ////newvalue = newvalue.Add(new TimeSpan(date.Hour, date.Minute, 0));
+                    //newvalue = newvalue.Add(new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0));
+                    //result = "" + (long)newvalue.TotalMilliseconds;
                 }
                 else if (dateTimeFormat.ToUpper() == "VIETTEL1")
                 {

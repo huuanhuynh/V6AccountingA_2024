@@ -790,7 +790,7 @@ namespace V6Tools.V6Convert
         }
         
         /// <summary>
-        /// Phân tích chuỗi thành từ điển kiểu Hate:Ghét;Love:Yêu
+        /// Phân tích chuỗi thành từ điển không null kiểu Hate:Ghét;Love:Yêu
         /// </summary>
         /// <param name="tag">Chuỗi cần phần tích</param>
         /// <param name="group_char">Ký tự ngăn cách các cặp từ.</param>

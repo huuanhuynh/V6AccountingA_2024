@@ -252,7 +252,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 if (V6BusinessHelper.IsExistDatabaseTable(txtTable_name.Text))
                 {
-                    DataTable data1 = V6BusinessHelper.Select(txtTable_name.Text, "top 1 *", "1=0").Data;
+                    DataTable data1 = null;
+                    if (txtTable_View.Text.Trim() != "") data1 = V6BusinessHelper.Select(txtTable_View.Text, "*", "1=0").Data;
+                    else data1 = V6BusinessHelper.Select(txtTable_name.Text, "*", "1=0").Data;
                     return V6ControlFormHelper.GetSourceFieldsInfo(data1);
                 }
                 else

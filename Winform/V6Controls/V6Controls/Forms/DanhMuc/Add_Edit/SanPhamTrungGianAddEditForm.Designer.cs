@@ -521,7 +521,7 @@
             this.label105.Name = "label105";
             this.label105.Size = new System.Drawing.Size(316, 17);
             this.label105.TabIndex = 6;
-            this.label105.Text = "1 - Theo dõi tồn kho , 0 - Không theo dỗi tồn kho\r\n";
+            this.label105.Text = "1 - Theo dõi tồn kho , 0 - Không theo dõi tồn kho\r\n";
             // 
             // chkStatus
             // 
@@ -1457,7 +1457,7 @@
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(186, 17);
             this.label70.TabIndex = 22;
-            this.label70.Text = "1- Có , 0 - Không theo dỗi lô";
+            this.label70.Text = "1- Có , 0 - Không theo dõi lô";
             // 
             // v6NumberTextBox5
             // 
@@ -1636,7 +1636,7 @@
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(98, 17);
             this.label64.TabIndex = 35;
-            this.label64.Text = "Theo dỗi Date";
+            this.label64.Text = "theo dõi Date";
             // 
             // label63
             // 
@@ -1646,7 +1646,7 @@
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(94, 17);
             this.label63.TabIndex = 32;
-            this.label63.Text = "Theo dỗi vị trí";
+            this.label63.Text = "theo dõi vị trí";
             // 
             // label62
             // 
@@ -1656,7 +1656,7 @@
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(116, 17);
             this.label62.TabIndex = 29;
-            this.label62.Text = "Theo dỗi kiểm kê";
+            this.label62.Text = "theo dõi kiểm kê";
             // 
             // label61
             // 

@@ -23,6 +23,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             AldmConfig aldm_config = ConfigManager.GetAldmConfig(ma_dm);
             string formCode = aldm_config.FormCode;
             if (formCode != null) formCode = formCode.ToUpper();
+            if (aldm_config.HaveInfo && aldm_config.EXTRA_INFOR.ContainsKey("MA_DM0"))
+            {
+                ma_dm = aldm_config.EXTRA_INFOR["MA_DM0"];
+                //aldm_config = Config
+            }
 
             AddEditControlVirtual FormControl = null;
             //if (V6Check_Rights())

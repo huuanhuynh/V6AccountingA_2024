@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                _albcConfig = ConfigManager.GetAlbcConfig(_Ma_File, MAU, LAN, ReportFile);
+                _albcConfig = ConfigManager.GetAlbcConfig(MAU, LAN, _Ma_File, ReportFile);
                 if (_albcConfig.NoInfo) return;
                 if (_albcConfig.MMETHOD.Trim() == "") return;
                 
@@ -1496,9 +1496,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             get
             {
                 int summaryHeight = 0;
-                if (gridViewSummary1.Visible) summaryHeight += gridViewSummary1.Height;
-                if (lblSummary.Visible) summaryHeight += lblSummary.Height;
-                return summaryHeight+5;
+                if (gridViewSummary1.Visible) summaryHeight += gridViewSummary1.Height + 5;
+                if (lblSummary.Visible) summaryHeight += lblSummary.Height + 5;
+                return summaryHeight;
             }
         }
 

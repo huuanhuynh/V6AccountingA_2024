@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -59,6 +60,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
 
                     list_proc = FilterControl.ObjectDictionary["LIST_PROC"] as List<string>;
+                    list_loai_bc = FilterControl.ObjectDictionary["LIST_LOAI_BC"] as List<string>;
                     list_vitri = FilterControl.ObjectDictionary["LIST_VITRI"] as List<string>;
                     Load_Data = true;
                     var tLoadData = new Thread(TinhGiaAll);
@@ -78,7 +80,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
-                FilterControl.Call1(c_index);
+                FilterControl.Call1(c_index + ";" + c_ma_bpht);
                 //FilterControl.Call2(c_message);
                 ii = 0;
                 try
@@ -120,7 +122,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;
 
-                FilterControl.Call1(c_index);
+                FilterControl.Call1(c_index + ";" + c_ma_bpht);
                 //FilterControl.Call2(c_message);
 
                 if (c_index == list_proc.Count - 2 && FilterControl.Check1 && _editting6 && _editting60)
@@ -162,12 +164,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private List<string> list_proc, list_vitri;
+        private List<string> list_proc, list_loai_bc, list_vitri;
         private int c_index;
+        private string c_ma_bpht;
         private AldmConfig _aldmConfig6 = null;
         private bool _editting6 = false;
         private bool _editting60 = false;
-        string c_proc = "", c_vitri = "";
+        string c_proc = "", c_loai_bc = "", c_vitri = "";
         public void TinhGiaAll()
         {
             try
@@ -176,16 +179,74 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _executesuccess = false;
 
                 // Chay nhieu proc 1-5
-                for (int i = 0; i < list_proc.Count-2; i++)
-                {
-                    c_index = i;
-                    c_proc = list_proc[i];
-                    c_vitri = list_vitri[i];
 
-                    Call_TinhGia_ALL(c_vitri);
-                    V6BusinessHelper.ExecuteProcedureNoneQuery(c_proc, _pList.ToArray());
+                // Code trước đó
+                //for (int i = 0; i < list_proc.Count-2; i++)
+                //{
+                //    c_index = i;
+                //    c_proc = list_proc[i];
+                //    c_loai_bc = list_loai_bc[i];
+                //    c_vitri = list_vitri[i];
+                //    Call_TinhGia_ALL(c_vitri);
+                //    V6BusinessHelper.ExecuteProcedureNoneQuery(c_proc, _pList.ToArray());
+                //}
+
+
+                string[] MA_BPHT_array =
+                    ObjectAndString.SplitString(FilterControl.ObjectDictionary["MA_BPHT"].ToString());
+                if (MA_BPHT_array.Length == 0) MA_BPHT_array = new[] {""}; // tạo phần tử giả nếu không có phân tử nào.
+
+                for (int i0 = 0; i0 < MA_BPHT_array.Length; i0++)
+                {
+                    c_ma_bpht = MA_BPHT_array[i0];
+
+                    for (int i = 0; i < list_proc.Count - 2; i++)
+                    {
+                        c_index = i;
+                        c_proc = list_proc[i];
+                        c_loai_bc = list_loai_bc[i];
+                        c_vitri = list_vitri[i];
+
+                        if (c_loai_bc.ToUpper() == "N")
+                        {
+                            Call_TinhGia_ALL(c_vitri);
+                            // Clone plist với các MA_BP_HT được tách ra
+                            var new_plist = new List<SqlParameter>();
+                            foreach (SqlParameter param in _pList)
+                            {
+                                if (param.ParameterName.ToLower() == "@ma_bpht")
+                                {
+                                    new_plist.Add(new SqlParameter("@Ma_bpht", c_ma_bpht));
+                                }
+                                else
+                                {
+                                    new_plist.Add(param);
+                                }
+                            }
+                            V6BusinessHelper.ExecuteProcedureNoneQuery(c_proc, new_plist.ToArray());
+                        }
+                        else if (i0 == 0)
+                        {
+                            Call_TinhGia_ALL(c_vitri);
+                            // Clone plist với các MA_BP_HT được tách ra
+                            var new_plist = new List<SqlParameter>();
+                            foreach (SqlParameter param in _pList)
+                            {
+                                if (param.ParameterName.ToLower() == "@ma_bpht")
+                                {
+                                    new_plist.Add(new SqlParameter("@Ma_bpht", c_ma_bpht));
+                                }
+                                else
+                                {
+                                    new_plist.Add(param);
+                                }
+                            }
+                            V6BusinessHelper.ExecuteProcedureNoneQuery(c_proc, new_plist.ToArray());
+                        }
+                    }
                 }
 
+                c_ma_bpht = "";
                 // PROC 6
                 c_proc = list_proc[list_proc.Count - 2];
                 c_vitri = list_vitri[list_proc.Count - 2];

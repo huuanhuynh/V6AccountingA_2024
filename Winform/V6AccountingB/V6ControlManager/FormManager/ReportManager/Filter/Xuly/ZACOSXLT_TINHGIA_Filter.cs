@@ -82,6 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             String2 = "";
             String3 = "";
             List<string> list_proc = new List<string>();
+            List<string> list_loai_bc = new List<string>();
             List<string> list_vitri = new List<string>();
             foreach (object item in listBox1.Items)
             {
@@ -90,6 +91,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 {
                     String2 += "~" + cRow["Proc"].ToString().Trim();
                     list_proc.Add(cRow["Proc"].ToString().Trim());
+                    list_loai_bc.Add(cRow["LOAI_BC"].ToString().Trim());
                     list_vitri.Add(cRow["Vitri"].ToString().Trim());
                     String3 += "~" + cRow["Vitri"].ToString().Trim();
                 }
@@ -97,7 +99,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             if (String2.Length > 0) String2 = String2.Substring(1);
             if (String3.Length > 0) String3 = String3.Substring(1);
             ObjectDictionary["LIST_PROC"] = list_proc;
+            ObjectDictionary["LIST_LOAI_BC"] = list_loai_bc;
             ObjectDictionary["LIST_VITRI"] = list_vitri;
+            ObjectDictionary["MA_BPHT"] = lineMaBpHt.StringValue;
 
         }
 
@@ -115,11 +119,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
 
-        public override void Call1(object s = null)
+        private string ma_bpht_view = "";
+        public override void Call1(object s = null) // s = "index;ma_bpht
         {
             try
             {
-                var index = ObjectAndString.ObjectToInt(s);
+                var ss = ObjectAndString.SplitString(s.ToString());
+                var index = ObjectAndString.ObjectToInt(ss[0]);
+                if (ss.Length > 1) ma_bpht_view = ss[1];
+                else ma_bpht_view = "";
                 if (listBox1.Items.Count > index && listBox1.SelectedIndex != index)
                 {
                     listBox1.SelectedIndex = index;
@@ -140,7 +148,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (selectedObject != null)
                 {
                     string mota = selectedObject["MO_TA"].ToString().Trim();
-                    lblMota.Text = string.Format("{0} \n{1}", listBox1.SelectedIndex + 1, mota);
+                    string loai_bc = selectedObject["LOAI_BC"].ToString().Trim().ToUpper();
+                    string ma_bpht = loai_bc == "N" ? (" - " + ma_bpht_view) : "";
+                    lblMota.Text = string.Format("{0} \n{1}{2}", listBox1.SelectedIndex + 1, mota, ma_bpht);
                 }
             }
             catch (Exception ex)

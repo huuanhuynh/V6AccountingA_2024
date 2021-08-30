@@ -702,7 +702,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label105.Name = "label105";
             this.label105.Size = new System.Drawing.Size(316, 17);
             this.label105.TabIndex = 52;
-            this.label105.Text = "1 - Theo dõi tồn kho , 0 - Không theo dỗi tồn kho\r\n";
+            this.label105.Text = "1 - Theo dõi tồn kho , 0 - Không theo dõi tồn kho\r\n";
             // 
             // v6ColorTextBox6
             // 
@@ -1989,7 +1989,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(186, 17);
             this.label70.TabIndex = 53;
-            this.label70.Text = "1- Có , 0 - Không theo dỗi lô";
+            this.label70.Text = "1- Có , 0 - Không theo dõi lô";
             // 
             // v6NumberTextBox5
             // 
