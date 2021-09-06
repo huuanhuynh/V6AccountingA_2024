@@ -499,6 +499,25 @@ namespace V6Controls.Controls
                     if (_MA_DM == "V_ALTS")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
+                        int count = V6BusinessHelper.SelectCount(CONFIG_TABLE_NAME, keys, "UID");
+                        if (count != 1)
+                        {
+                            if (_aldmConfig.HaveInfo)
+                            {
+                                SqlParameter[] plist =
+                                {
+                                    new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
+                                    new SqlParameter("@Fields", _aldmConfig.KEY),
+                                    new SqlParameter("@uid", row.Cells["UID"].Value.ToString()),
+                                    new SqlParameter("@mode", "X"),
+                                    new SqlParameter("@User_id", V6Login.UserId),
+                                };
+                                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_FIX_CONFLICT_AL_ALL", plist);
+                                ReLoad();
+                            }
+                            throw new Exception("Trùng khóa! Đã tự động sửa lỗi.\n Vui lòng thực hiện lại!\nDATA_COUNT = " + count);
+                        }
+
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>
                         {
                             {"MA_GIAM_TS", ""}, {"NGAY_GIAM", null}, {"LY_DO_GIAM", ""}, {"SO_CT", ""}

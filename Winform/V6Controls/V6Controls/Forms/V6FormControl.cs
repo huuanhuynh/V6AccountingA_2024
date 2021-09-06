@@ -27,15 +27,17 @@ namespace V6Controls.Forms
         /// Waiting image index.
         /// </summary>
         protected int ii = 0;
+
         /// <summary>
         /// ID quản lý chứng từ đang xử lý.
         /// </summary>
-        public string _sttRec { get; set; }
+        public string _sttRec = null;
+        public string _status2text = null;
         protected bool _escape = false;
         /// <summary>
         /// Thông báo hoặc hiển thị trạng thái đang chạy.
         /// </summary>
-        protected string _message = "";
+        public string _message = "";
         public bool _executing, _executesuccess;
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace V6Controls.Forms
         protected bool _ready;
         public string ItemID { get { return m_itemId; } }
         protected string m_itemId = null;
-        protected string _message = "";
+        public string _message = "";
         public bool _dataloading, _dataloaded;
         public string _sttRec { get; set; }
         /// <summary>

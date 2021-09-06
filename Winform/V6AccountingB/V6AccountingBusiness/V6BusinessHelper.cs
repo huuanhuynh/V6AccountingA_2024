@@ -1446,10 +1446,19 @@ namespace V6AccountingBusiness
             return SqlConnect.Select2_TH(tableName, fields, @where, groupby, @orderby, pList);
         }
 
-        public static int SelectCount(string tableName, string field = "*",
-            string where = "", params SqlParameter[] pList)
+        public static int SelectCount(string tableName, IDictionary<string, object> keys, string field = "*")
         {
-            var whereClause = String.IsNullOrEmpty(@where) ? "" : "where " + @where;
+            var structTable = GetTableStruct(tableName);
+            var where = SqlGenerator.GenWhere(structTable, keys);
+            var whereClause = String.IsNullOrEmpty(where) ? "" : "where " + where;
+            var sql = "Select Count("+field+") as Count from ["+structTable.TableName+"] " + whereClause;
+            var count = ObjectAndString.ObjectToInt(SqlConnect.ExecuteScalar(CommandType.Text, sql));
+            return count;
+        }
+        
+        public static int SelectCount(string tableName, string field = "*", string where = "", params SqlParameter[] pList)
+        {
+            var whereClause = String.IsNullOrEmpty(where) ? "" : "where " + where;
             var sql = "Select Count("+field+") as Count from ["+tableName+"] " + whereClause;
             var count = ObjectAndString.ObjectToInt(SqlConnect.ExecuteScalar(CommandType.Text, sql, pList));
             return count;

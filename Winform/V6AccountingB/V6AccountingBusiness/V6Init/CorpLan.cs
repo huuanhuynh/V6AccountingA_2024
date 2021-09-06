@@ -43,6 +43,39 @@ namespace V6Init
             }
             return ID;
         }
+
+        /// <summary>
+        /// Lấy text ngôn ngữ theo ID, không có trả về null.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string GetTextNull(string id)
+        {
+            var ID = id.ToUpper();
+            if (dataDictionary.ContainsKey(ID))
+            {
+                return dataDictionary[ID];
+            }
+            else
+            {
+                DataTable t = SqlConnect.Select(tableName, " distinct ID," + V6Setting.Language,
+                    "ID=@p", "", V6Setting.Language, new SqlParameter("@p", id)).Data;
+                var d = t.Rows.Cast<DataRow>().ToDictionary(
+                    row =>
+                        row[0].ToString().Trim().ToUpper(),
+                    row =>
+                        row[1].ToString().Trim().Length > 0
+                            ? row[1].ToString().Trim()
+                            : row[0].ToString().Trim());
+
+                dataDictionary.AddRange(d);
+                if (dataDictionary.ContainsKey(ID))
+                {
+                    return dataDictionary[ID];
+                }
+            }
+            return null;
+        }
         
         public static string GetDefaultText(string id)
         {

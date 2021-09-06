@@ -411,14 +411,19 @@ namespace V6Controls.Forms
         {
             StatusTextViewControl.Text = (text + "     " + StatusTextViewControl.Text).Left(100 + StatusTextViewControl.Width/10);
         }
+
         /// <summary>
         /// Gán status text phía dưới bên phải
         /// </summary>
-        /// <param name="text"></param>
-        public static void SetStatusText2(string text)
+        /// <param name="text">Dòng chữ hiển thị để giải thích.</param>
+        /// <param name="id">Khóa Corplan</param>
+        public static void SetStatusText2(string text, string id = null)
         {
             if (StatusTextViewControl2 != null)
+            {
                 StatusTextViewControl2.Text = text ?? "";
+                StatusTextViewControl2.AccessibleName = id;
+            }
         }
         #endregion
 

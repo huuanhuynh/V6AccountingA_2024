@@ -120,11 +120,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         private int num;
+        public bool AutoID = true;
+
+        public void LockID(bool is_lock)
+        {
+            txtID.ReadOnlyTag(is_lock);
+        }
+
         private void FixID()
         {
             try
             {
                 if (!IsReady) return;
+                if (!AutoID) return;
                 if (_MA_DM != "CORPLAN") return;
 
                 var CType = txtCtype.Text.Trim();

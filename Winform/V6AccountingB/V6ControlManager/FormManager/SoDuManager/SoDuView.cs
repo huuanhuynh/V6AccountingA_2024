@@ -141,6 +141,17 @@ namespace V6ControlManager.FormManager.SoDuManager
                         SelectResult.SortField = _v6LookupConfig.vOrder;
                 }
                 _hideColumnDic = _categories.GetHideColumns(_MA_DM);
+                if (_aldmConfig != null && _aldmConfig.HaveInfo)
+                {
+                    if (_aldmConfig.EXTRA_INFOR.ContainsKey("PAGESIZE"))
+                    {
+                        string ps = _aldmConfig.EXTRA_INFOR["PAGESIZE"];
+                        if (comboBox1.Items.Contains(ps))
+                        {
+                            comboBox1.SelectedItem = ps;
+                        }
+                    }
+                }
 
                 All_Objects["thisForm"] = this;
                 CreateFormProgram();
@@ -474,6 +485,11 @@ namespace V6ControlManager.FormManager.SoDuManager
                 if (dataGridView1.Columns.Contains("UID"))
                 {
                     var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
+                    int count = V6BusinessHelper.SelectCount(DELETE_TABLE, keys, "UID");
+                    if (count != 1)
+                    {
+                        throw new Exception("DATA_COUNT = " + count);
+                    }
 
                     if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " ", V6Text.DeleteConfirm)
                         == DialogResult.Yes)
@@ -1178,13 +1194,14 @@ namespace V6ControlManager.FormManager.SoDuManager
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(LOAD_TABLE);
                 if (_aldmConfig.HaveInfo && structTable.Count == 0) structTable = V6BusinessHelper.GetTableStruct(_aldmConfig.TABLE_NAME);
-                
-                if (!_v6LookupConfig.HaveInfo)
+
+                if (_aldmConfig.IS_ALDM ? (!_aldmConfig.HaveInfo) : (!_v6LookupConfig.HaveInfo))
                 {
                     this.ShowWarningMessage(V6Text.NoDefine, 500);
                     return;
                 }
-                string[] fields = _v6LookupConfig.GetDefaultLookupFields;
+                string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) : _v6LookupConfig.GetDefaultLookupFields;
+
                 _filterForm = new SoDuFilterForm(structTable, fields);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;

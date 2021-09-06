@@ -785,6 +785,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     _keys["ID"] = DataOld["ID"];
                 }
+
+                int count = V6BusinessHelper.SelectCount(CONFIG_TABLE_NAME, _keys, "UID");
+                if (count != 1)
+                {
+                    if (_aldmConfig.HaveInfo)
+                    {
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
+                            new SqlParameter("@Fields", _aldmConfig.KEY),
+                            new SqlParameter("@uid", Mode == V6Mode.Edit ? DataOld["UID"].ToString() : ""),
+                            new SqlParameter("@mode", Mode == V6Mode.Add ? "M" : "S"),
+                            new SqlParameter("@User_id", V6Login.UserId),
+                        };
+                        V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_FIX_CONFLICT_AL_ALL", plist);
+                    }
+                    // TỰ ĐÓNG FORM VÀ RELOAD Ở DANHMUCVIEW.
+                    throw new Exception("Trùng khóa! Đã tự động sửa lỗi.\n Vui lòng thực hiện lại!\nDATA_COUNT = " + count);
+                }
                 Dictionary<string, object> updateData = new Dictionary<string, object>(DataDic);
                 if (_aldmConfig != null && _aldmConfig.HaveInfo)
                 {

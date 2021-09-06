@@ -116,6 +116,7 @@ namespace V6AccountingB
             this.lblStatus2.Size = new System.Drawing.Size(318, 17);
             this.lblStatus2.Text = ".";
             this.lblStatus2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblStatus2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lblStatus2_MouseUp);
             // 
             // panelMenu
             // 

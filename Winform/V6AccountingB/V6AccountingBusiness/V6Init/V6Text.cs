@@ -361,7 +361,7 @@ namespace V6Init
         public static string CheckDeclare { get { return V6Setting.Language == "V" ? "Kiểm tra khai báo hệ thống quản lý !" : "Check system information again !"; } }
         public static string ConnectionOk { get { return V6Setting.Language == "V" ? "Kết nối tốt." : "Connection good."; } }
         public static string DataLoading { get { return V6Setting.Language == "V" ? "Đang tải dữ liệu." : "Data loading."; } }
-        public static string DeleteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa?" : "Are you sure to delete?"; } }
+        public static string DeleteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa không?" : "Are you sure want to delete?"; } }
         public static string DeleteRowConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa dòng đang chọn?" : "Are you sure to delete selected row?"; } }
         public static string DeleteDenied { get { return V6Setting.Language == "V" ? "Không được xóa." : "Delete Denied."; } }
         

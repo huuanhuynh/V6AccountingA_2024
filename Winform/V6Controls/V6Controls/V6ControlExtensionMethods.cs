@@ -701,6 +701,12 @@ namespace V6Controls
             return V6ControlFormHelper.ShowErrorMessage(message, caption, owner, showTime);
         }
 
+        public static DialogResult ShowErrorException(this IWin32Window owner, Exception ex)
+        {
+            string address = owner.GetType() + "." + ex.TargetSite;
+            return V6ControlFormHelper.ShowErrorException(address, ex, null, owner, 0);
+        }
+
         /// <summary>
         /// Hiển thị lỗi dạng address: ex.Message
         /// Và ghi log dạng chi tiết hơn.
