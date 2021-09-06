@@ -1457,7 +1457,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         public override void SetStatus2Text()
         {
-            FilterControl.SetStatus2Text();
+            FilterControl.SetStatus2Text(_reportProcedure);
         }
 
         private void ReportRViewBase_VisibleChanged(object sender, EventArgs e)

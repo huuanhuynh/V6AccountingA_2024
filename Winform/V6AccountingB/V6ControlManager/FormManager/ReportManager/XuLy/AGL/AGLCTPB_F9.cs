@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
@@ -10,26 +12,27 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class AGLCTPB_F9 : V6FormControl
+    public partial class AGLCTPB_F9 : V6Form
     {
         #region Biến toàn cục
 
-        protected DataRow _am;
-        protected string _sttreclist, _text, _reportProcedure;
-        protected int _year;
+        public DataRow _am;
+        public List<string> _sttreclist;
+        public string _text, _reportProcedure;
+        public int _year;
 
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         public delegate void HandleF4Success();
 
-        public event HandleF4Success UpdateSuccessEvent;
+        //public event HandleF4Success UpdateSuccessEvent;
 
-        protected DataSet _ds;
-        protected DataTable _tbl, _tbl2;
+        public DataSet _ds;
+        public DataTable _tbl, _tbl2;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
         /// </summary>
-        protected List<SqlParameter> _pList;
+        public List<SqlParameter> _pList;
 
         public bool ViewDetail { get; set; }
         
@@ -45,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AGLCTPB_F9(string sttreclist, int year, string reportProcedure)
+        public AGLCTPB_F9(List<string> sttreclist, int year, string reportProcedure)
         {
             _sttreclist = sttreclist;
             _year = year;
@@ -90,7 +93,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (V6Login.MadvcsCount <= 1){
                     txtMaDvcs.Enabled = false;
                 }
-
             }
             catch (Exception ex)
             {
@@ -107,34 +109,72 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                SqlParameter[] plist =
-                {
-                    new SqlParameter("@Type", "RATE"),
-                    new SqlParameter("@Year", txtNam.Value),
-                    new SqlParameter("@Period1", txtKy1.Value),
-                    new SqlParameter("@Period2", txtKy2.Value),
-                    new SqlParameter("@Stt_recs", _sttreclist),
-                    new SqlParameter("@User_id", V6Login.UserId),
-                    new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue),
-                    new SqlParameter("@ngay1", ngay1.Value.Date),
-                    new SqlParameter("@ngay2", ngay2.Value.Date),
-
-                };
-
-                V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, plist);
-                OnUpdateSuccessEvent();
-                Dispose();
-                V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
+                CheckForIllegalCrossThreadCalls = false;
+                _executing = true;
+                _executesuccess = false;
+                                
+                var tLoadData = new Thread(Execute);
+                tLoadData.Start();
+                timerViewReport.Start();
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".Update error:\n" + ex.Message);
             }
         }
-        
+
+        private void Execute()
+        {
+            try
+            {
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)txtKy2.Value, (int)txtNam.Value);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
+
+                string paramss = "";
+
+                foreach (string stt_rec in _sttreclist)
+                {
+                    paramss += "," + stt_rec;
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@Type", "RATE"),
+                        new SqlParameter("@Year", (int)txtNam.Value),
+                        new SqlParameter("@Period1", (int)txtKy1.Value),
+                        new SqlParameter("@Period2", (int)txtKy2.Value),
+                        new SqlParameter("@Stt_recs", stt_rec),
+                        new SqlParameter("@User_id", V6Login.UserId),
+                        new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue),
+                        new SqlParameter("@ngay1", ngay1.Value.Date),
+                        new SqlParameter("@ngay2", ngay2.Value.Date),
+                    };
+                    V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, plist);
+                }
+
+                if (paramss.Length > 0)
+                {
+                    V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                        string.Format("reportProcedure:{0} {1}", _reportProcedure, paramss.Substring(1)));
+                }
+
+                _executesuccess = true;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadData", ex);
+                _message = "Load data error: " + ex.Message;
+                _executesuccess = false;
+            }
+
+            _executing = false;
+        }
+
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            Dispose();
+            DialogResult = DialogResult.Cancel;
         }
         
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -152,11 +192,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected int _oldIndex = -1;
 
-        protected virtual void OnUpdateSuccessEvent()
-        {
-            var handler = UpdateSuccessEvent;
-            if (handler != null) handler();
-        }
+        //protected virtual void OnUpdateSuccessEvent()
+        //{
+        //    var handler = UpdateSuccessEvent;
+        //    if (handler != null) handler();
+        //}
 
         private void txtKy1_V6LostFocus(object sender)
         {
@@ -203,6 +243,32 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".txtKy2_V6LostFocus", ex);
+            }
+        }
+
+        public bool _executing, _executesuccess;
+        private void timerViewReport_Tick(object sender, EventArgs e)
+        {
+            if (_executing)
+            {
+                btnNhan.Image = waitingImages.Images[ii++];
+                if (ii >= waitingImages.Images.Count) ii = 0;
+            }
+            else
+            {
+                if (_executesuccess)
+                {
+                    timerViewReport.Stop();
+                    btnNhan.Image = btnNhanImage;
+                    ii = 0;
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    timerViewReport.Stop();
+                    btnNhan.Image = btnNhanImage;
+                    DialogResult = DialogResult.Abort;
+                }
             }
         }
     }

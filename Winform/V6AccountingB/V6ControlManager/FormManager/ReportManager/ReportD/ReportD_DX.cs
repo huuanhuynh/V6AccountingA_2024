@@ -1712,7 +1712,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         public override void SetStatus2Text()
         {
-            FilterControl.SetStatus2Text();
+            FilterControl.SetStatus2Text(_reportProcedure);
         }
 
         private void ReportD_DX_VisibleChanged(object sender, EventArgs e)

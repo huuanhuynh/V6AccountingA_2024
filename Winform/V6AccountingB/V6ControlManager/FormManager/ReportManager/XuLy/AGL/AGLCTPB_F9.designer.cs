@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.v6Label1 = new V6Controls.V6Label();
@@ -39,6 +40,7 @@
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.ngay2 = new V6Controls.V6DateTimePicker();
             this.ngay1 = new V6Controls.V6DateTimePicker();
+            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnHuy
@@ -49,10 +51,10 @@
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(94, 197);
+            this.btnHuy.Location = new System.Drawing.Point(97, 149);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 5;
+            this.btnHuy.TabIndex = 10;
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHuy.UseVisualStyleBackColor = true;
@@ -65,10 +67,10 @@
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(6, 197);
+            this.btnNhan.Location = new System.Drawing.Point(6, 149);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 4;
+            this.btnNhan.TabIndex = 9;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
@@ -81,7 +83,7 @@
             this.v6Label1.Location = new System.Drawing.Point(6, 10);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(29, 13);
-            this.v6Label1.TabIndex = 8;
+            this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Năm";
             // 
             // txtNam
@@ -101,7 +103,7 @@
             this.txtNam.Name = "txtNam";
             this.txtNam.ReadOnly = true;
             this.txtNam.Size = new System.Drawing.Size(109, 20);
-            this.txtNam.TabIndex = 0;
+            this.txtNam.TabIndex = 1;
             this.txtNam.TabStop = false;
             this.txtNam.Text = "0";
             this.txtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -126,7 +128,7 @@
             this.txtKy1.MaxNumLength = 2;
             this.txtKy1.Name = "txtKy1";
             this.txtKy1.Size = new System.Drawing.Size(109, 20);
-            this.txtKy1.TabIndex = 1;
+            this.txtKy1.TabIndex = 3;
             this.txtKy1.Text = "0";
             this.txtKy1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKy1.Value = new decimal(new int[] {
@@ -143,7 +145,7 @@
             this.v6Label2.Location = new System.Drawing.Point(6, 40);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(50, 13);
-            this.v6Label2.TabIndex = 11;
+            this.v6Label2.TabIndex = 2;
             this.v6Label2.Text = "Từ tháng";
             // 
             // v6Label3
@@ -153,7 +155,7 @@
             this.v6Label3.Location = new System.Drawing.Point(6, 67);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(57, 13);
-            this.v6Label3.TabIndex = 13;
+            this.v6Label3.TabIndex = 5;
             this.v6Label3.Text = "Đến tháng";
             // 
             // txtKy2
@@ -171,7 +173,7 @@
             this.txtKy2.MaxNumLength = 2;
             this.txtKy2.Name = "txtKy2";
             this.txtKy2.Size = new System.Drawing.Size(109, 20);
-            this.txtKy2.TabIndex = 2;
+            this.txtKy2.TabIndex = 6;
             this.txtKy2.Text = "0";
             this.txtKy2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKy2.Value = new decimal(new int[] {
@@ -190,7 +192,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 96);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 8;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // ngay2
@@ -205,7 +207,7 @@
             this.ngay2.Location = new System.Drawing.Point(292, 65);
             this.ngay2.Name = "ngay2";
             this.ngay2.Size = new System.Drawing.Size(96, 20);
-            this.ngay2.TabIndex = 15;
+            this.ngay2.TabIndex = 7;
             this.ngay2.TabStop = false;
             // 
             // ngay1
@@ -220,13 +222,18 @@
             this.ngay1.Location = new System.Drawing.Point(292, 38);
             this.ngay1.Name = "ngay1";
             this.ngay1.Size = new System.Drawing.Size(96, 20);
-            this.ngay1.TabIndex = 14;
+            this.ngay1.TabIndex = 4;
             this.ngay1.TabStop = false;
+            // 
+            // timerViewReport
+            // 
+            this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
             // 
             // AGLCTPB_F9
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(543, 201);
             this.Controls.Add(this.ngay2);
             this.Controls.Add(this.ngay1);
             this.Controls.Add(this.txtMaDvcs);
@@ -239,7 +246,6 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Name = "AGLCTPB_F9";
-            this.Size = new System.Drawing.Size(559, 240);
             this.Load += new System.EventHandler(this.Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -259,9 +265,7 @@
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private V6Controls.V6DateTimePicker ngay2;
         private V6Controls.V6DateTimePicker ngay1;
-
-
-
+        protected System.Windows.Forms.Timer timerViewReport;
 
     }
 }

@@ -4350,12 +4350,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             }
             try
             {
+                var svDate = V6BusinessHelper.GetServerDateTime();
                 _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                 data["STT_REC0"] = _sttRec0;
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Date;
+                // Add
+                {
+                    var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                    var date = svDate.Date;
+                    data["TIME04"] = time;
+                    data["DATE04"] = date;
+                    data["USER_ID04"] = V6Login.UserId;
+                    data["TIME24"] = time;
+                    data["DATE24"] = date;
+                    data["USER_ID24"] = V6Login.UserId;
+                }
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -4417,9 +4429,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
                 if (cIndex >= 0 && cIndex < AD.Rows.Count)
                 {
+                    var svDate = V6BusinessHelper.GetServerDateTime();
                     //Thêm thông tin...
                     data["MA_CT"] = Invoice.Mact;
                     data["NGAY_CT"] = dateNgayCT.Date;
+                    // Edit
+                    {
+                        var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                        var date = svDate.Date;
+                        data["TIME24"] = time;
+                        data["DATE24"] = date;
+                        data["USER_ID24"] = V6Login.UserId;
+                    }
+
                     //Kiem tra du lieu truoc khi them sua
                     var error = "";
                     if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;

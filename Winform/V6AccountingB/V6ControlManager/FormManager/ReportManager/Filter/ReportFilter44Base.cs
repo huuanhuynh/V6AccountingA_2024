@@ -107,15 +107,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
         private string _status2Text = "";
-        public override void SetStatus2Text()
+        public override void SetStatus2Text(string reportProcedure)
         {
+            string id = "ST2" + reportProcedure;
             if (string.IsNullOrEmpty(_status2Text))
             {
-                base.SetStatus2Text();
+                if (string.IsNullOrEmpty(_status2Text)) _status2Text = CorpLan.GetTextNull(id);
+                if (string.IsNullOrEmpty(_status2Text)) base.SetStatus2Text(reportProcedure);
+                else V6ControlFormHelper.SetStatusText2(_status2Text, id);
             }
             else
             {
-                V6ControlFormHelper.SetStatusText2(_status2Text);
+                V6ControlFormHelper.SetStatusText2(_status2Text, id);
             }
         }
 

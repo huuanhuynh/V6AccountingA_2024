@@ -3727,12 +3727,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
             try
             {
+                var svDate = V6BusinessHelper.GetServerDateTime();
                 _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                 data["STT_REC0"] = _sttRec0;
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Date;
+                // Add
+                {
+                    var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                    var date = svDate.Date;
+                    data["TIME04"] = time;
+                    data["DATE04"] = date;
+                    data["USER_ID04"] = V6Login.UserId;
+                    data["TIME24"] = time;
+                    data["DATE24"] = date;
+                    data["USER_ID24"] = V6Login.UserId;
+                }
 
                 if (data.ContainsKey("GIA_NT01")) data["GIA_NT1"] = data["GIA_NT01"];
                 if (data.ContainsKey("GIA01")) data["GIA1"] = data["GIA01"];
@@ -3793,9 +3805,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
+                        var svDate = V6BusinessHelper.GetServerDateTime();
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Date;
+                        // Edit
+                        {
+                            var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                            var date = svDate.Date;
+                            data["TIME24"] = time;
+                            data["DATE24"] = date;
+                            data["USER_ID24"] = V6Login.UserId;
+                        }
 
                         if (data.ContainsKey("GIA_NT01")) data["GIA_NT1"] = data["GIA_NT01"];
                         if (data.ContainsKey("GIA01")) data["GIA1"] = data["GIA01"];

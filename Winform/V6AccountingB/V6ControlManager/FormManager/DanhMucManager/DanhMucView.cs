@@ -987,6 +987,24 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         if (dataGridView1.Columns.Contains("UID"))
                         {
                             var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
+                            int count = V6BusinessHelper.SelectCount(CONFIG_TABLE_NAME, keys, "UID");
+                            if (count != 1)
+                            {
+                                if (_aldmConfig.HaveInfo)
+                                {
+                                    SqlParameter[] plist =
+                                    {
+                                        new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
+                                        new SqlParameter("@Fields", _aldmConfig.KEY),
+                                        new SqlParameter("@uid", row.Cells["UID"].Value.ToString()),
+                                        new SqlParameter("@mode", "X"),
+                                        new SqlParameter("@User_id", V6Login.UserId),
+                                    };
+                                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_FIX_CONFLICT_AL_ALL", plist);
+                                    ReLoad();
+                                }
+                                throw new Exception("Trùng khóa! Đã tự động sửa lỗi.\n Vui lòng thực hiện lại!\nDATA_COUNT = " + count);
+                            }
 
                             if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value_show, V6Text.DeleteConfirm)
                                 == DialogResult.Yes)
@@ -1846,8 +1864,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     return;
                 }
                 next1:
-                string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
-                     ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6LookupConfig.vFields : _v6LookupConfig.eFields);
+                string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) : _v6LookupConfig.GetDefaultLookupFields;
+
                 if (fields.Length == 0 && _MA_DM == "CORPLAN")
                 {
                     // Hỗ trợ cho CorpLan

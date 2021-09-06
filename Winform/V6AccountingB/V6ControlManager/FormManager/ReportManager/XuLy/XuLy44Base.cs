@@ -1421,7 +1421,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            if(FilterControl != null) FilterControl.SetStatus2Text();
+            if (FilterControl != null) FilterControl.SetStatus2Text(_reportProcedure);
         }
 
         private void XuLy44Base_VisibleChanged(object sender, EventArgs e)

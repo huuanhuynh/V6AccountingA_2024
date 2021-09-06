@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using V6Controls.Forms;
 using V6Init;
 using V6Tools;
 
@@ -54,6 +55,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtSoCtXuat_HienThoi.Text = newvalue;
         }
 
+        public override void SetStatus2Text(string reportProcedure)
+        {
+            string id = "ST2" + reportProcedure;
+            string text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                base.SetStatus2Text(reportProcedure);
+            }
+            else
+            {
+                V6ControlFormHelper.SetStatusText2(text, id);
+            }
+        }
+
         //public override string Kieu_post
         //{
         //    get
@@ -74,8 +89,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@ma_ct", TxtMa_ct.Text.Trim()));
             var and = radAnd.Checked;
             
-            var cKey = "";
-            
+            string cKey;
 
             var key0 = GetFilterStringByFields(new List<string>()
             {

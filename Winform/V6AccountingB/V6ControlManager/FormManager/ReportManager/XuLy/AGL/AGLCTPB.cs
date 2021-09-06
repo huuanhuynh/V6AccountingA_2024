@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
@@ -18,12 +19,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public AGLCTPB(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
-            
+            MyInit();
+        }
+
+        private void MyInit()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(_status2text))
+                {
+                    _status2text = "F4: Tạo phân bổ tự động, F8: Xóa phân bổ tự động, F9: Tính-> Cập nhật hệ số phân bổ";
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
         }
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Tạo phân bổ tự động, F8: Xóa phân bổ tự động, F9: Tính-> Cập nhật hệ số phân bổ");
+            V6ControlFormHelper.SetStatusText2(_status2text, "ST2" + _reportProcedure);
         }
 
         protected override void MakeReport2()
@@ -60,65 +76,47 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var currentRow = dataGridView1.CurrentRow;
                         if (dataGridView1.Columns.Contains("NAM") && dataGridView1.Columns.Contains("STT"))
                         {
-                            var selectedStt = currentRow.Cells
-                                ["STT"].Value;
-                            int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells
-                                ["NAM"].Value);
+                            //var selectedStt = currentRow.Cells["STT"].Value;
+                            int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells["NAM"].Value);
 
-                            var _stt_recs = "";
+                            List<string> _stt_recs = new List<string>();
 
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
                                 if (row.IsSelect())
                                 {
                                     var rowdata = row.ToDataDictionary();
-                                    _stt_recs += string.Format(",{0}", rowdata["STT_REC"].ToString().Trim());
+                                    _stt_recs.Add(rowdata["STT_REC"].ToString().Trim());
                                 }
                             }
 
-                            if (_stt_recs.Length > 0)
+                            if (_stt_recs.Count > 0)
                             {
-                                _stt_recs = _stt_recs.Substring(1);
-                                //_stt_recs = "'" + _stt_recs + "'";
+                                var ketchuyenForm = new AGLCTPB_F9(_stt_recs, selectedNam, _reportProcedure);
+                                ketchuyenForm.Text = "Tính hệ số phân bổ tự động";
+                                if (ketchuyenForm.ShowDialog() == DialogResult.OK)
+                                {
+                                    ShowMainMessage(V6Text.Finish);
+                                    btnNhan.PerformClick();
+                                }
+                                else if (ketchuyenForm.DialogResult == DialogResult.Abort)
+                                {
+                                    ShowMainMessage(V6Text.UnFinished + ketchuyenForm._message);
+                                }
+
+                                SetStatus2Text();
                             }
-
-
-                            var fText = "Tính hệ số phân bổ tự động ";
-                            var f = new V6Form
+                            else
                             {
-                                Text = fText,
-                                AutoSize = true,
-                                FormBorderStyle = FormBorderStyle.FixedSingle
-                            };
-
-                            var ketchuyenForm = new AGLCTPB_F9(_stt_recs, selectedNam, _reportProcedure);
-
-
-                            f.Controls.Add(ketchuyenForm);
-                            ketchuyenForm.UpdateSuccessEvent += delegate
-                            {
-                                btnNhan.PerformClick();
-                            };
-
-                            ketchuyenForm.Disposed += delegate
-                            {
-                                f.Dispose();
-                            };
-
-                            f.ShowDialog(this);
-                            SetStatus2Text();
+                                ShowMainMessage(V6Text.NoSelection);
+                            }
                         }
-
                     }
-
-
                 }
                 else
                 {
                     this.ShowWarningMessage("Không được phép xử lý!");
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -198,10 +196,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var currentRow = dataGridView1.CurrentRow;
                     if (dataGridView1.Columns.Contains("NAM") && dataGridView1.Columns.Contains("STT"))
                     {
-                        var selectedStt = currentRow.Cells
-                            ["STT"].Value;
-                        int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells
-                            ["NAM"].Value);
+                        //var selectedStt = currentRow.Cells["STT"].Value;
+                        int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells["NAM"].Value);
 
                         var _stt_recs = "";
 
@@ -237,7 +233,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     if (row.IsSelect())
                                     {
                                         row.UnSelect();
-
                                     }
                                 }
                             };
@@ -251,15 +246,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             f.ShowDialog(this);
                             SetStatus2Text();
                         }
-
                     }
-
                 }
                 else
                 {
                     this.ShowWarningMessage("Không được phép xử lý!");
                 }
-
             }
 
             catch (Exception ex)
@@ -279,70 +271,63 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var currentRow = dataGridView1.CurrentRow;
                         if (dataGridView1.Columns.Contains("NAM") && dataGridView1.Columns.Contains("STT"))
                         {
-                            var selectedStt = currentRow.Cells
-                                ["STT"].Value;
-                            int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells
-                                ["NAM"].Value);
+                            //var selectedStt = currentRow.Cells["STT"].Value;
+                            int selectedNam = ObjectAndString.ObjectToInt(currentRow.Cells["NAM"].Value);
 
-                            var _stt_recs = "";
+                            List<string> _stt_recs = new List<string>();
 
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
                                 if (row.IsSelect())
                                 {
                                     var rowdata = row.ToDataDictionary();
-                                    _stt_recs += string.Format(",{0}", rowdata["STT_REC"].ToString().Trim());
-
+                                    //_stt_recs += string.Format(",{0}", rowdata["STT_REC"].ToString().Trim());
+                                    _stt_recs.Add(rowdata["STT_REC"].ToString().Trim());
                                 }
                             }
 
-                            if (_stt_recs.Length > 0)
+                            if (_stt_recs.Count > 0)
                             {
-                                _stt_recs = _stt_recs.Substring(1);
+                                //_stt_recs = _stt_recs.Substring(1);
                                 //_stt_recs = "'" + _stt_recs + "'";
 
-                                var fText = "Phân bổ tự động ";
-                                var f = new V6Form
-                                {
-                                    Text = fText,
-                                    AutoSize = true,
-                                    FormBorderStyle = FormBorderStyle.FixedSingle
-                                };
-
+                                
                                 var ketchuyenForm = new AGLCTPB_F4(_stt_recs, selectedNam, _reportProcedure);
-
-
-                                ketchuyenForm.UpdateSuccessEvent += delegate
+                                ketchuyenForm.Text = "Phân bổ tự động";
+                                if (ketchuyenForm.ShowDialog() == DialogResult.OK)
                                 {
-                                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                                    {
-                                        if (row.IsSelect())
-                                        {
-                                            row.UnSelect();
-
-                                        }
-                                    }
-                                };
-
-                                f.Controls.Add(ketchuyenForm);
-                                ketchuyenForm.Disposed += delegate
+                                    ShowMainMessage(V6Text.Finish);
+                                    btnNhan.PerformClick();
+                                    // Code trước đây:
+                                    //ketchuyenForm.UpdateSuccessEvent += delegate
+                                    //{
+                                    //    foreach (DataGridViewRow row in dataGridView1.Rows)
+                                    //    {
+                                    //        if (row.IsSelect())
+                                    //        {
+                                    //            row.UnSelect();
+                                    //        }
+                                    //    }
+                                    //};
+                                }
+                                else if (ketchuyenForm.DialogResult == DialogResult.Abort)
                                 {
-                                    f.Dispose();
-                                };
+                                    ShowMainMessage(V6Text.UnFinished + ketchuyenForm._message);
+                                }
 
-                                f.ShowDialog(this);
                                 SetStatus2Text();
                             }
-
+                            else
+                            {
+                                ShowMainMessage(V6Text.NoSelection);
+                            }
                         }
                     }
-
                 }
                 else
                 {
                     this.ShowWarningMessage("Không được phép xử lý!");
                 }
-
             }
 
             catch (Exception ex)

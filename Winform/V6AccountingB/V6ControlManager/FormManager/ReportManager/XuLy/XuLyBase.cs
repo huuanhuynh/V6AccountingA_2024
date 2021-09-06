@@ -388,12 +388,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             ViewDetail = viewDetail;
             
             InitializeComponent();
-            MyInit();
+            MyInitBase();
         }
 
-        protected void MyInit()
+        protected void MyInitBase()
         {
             Text = _reportCaption;
+            _status2text = CorpLan.GetTextNull("ST2" + _reportProcedure);
             All_Objects["thisForm"] = this;
             CreateFormProgram();
             AddFilterControl(_program);
@@ -1236,7 +1237,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            if(FilterControl != null) FilterControl.SetStatus2Text();
+            if (FilterControl != null) FilterControl.SetStatus2Text(_reportProcedure);
         }
 
         private void XuLyBase_VisibleChanged(object sender, EventArgs e)

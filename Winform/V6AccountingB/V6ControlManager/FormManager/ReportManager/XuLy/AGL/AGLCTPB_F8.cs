@@ -110,17 +110,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     this.ShowWarningMessage(V6Text.CheckLock);
                     return;
                 }
-                //@Type AS VARCHAR(8),
-                //@Year AS INT,
-                //@Period1 AS INT = 0,
-                //@Period2 AS INT = 0,
-                //@Stt_recs VARCHAR(MAX) = '', 
-                //@User_id INT = 1, 
-                //@Ma_dvcs VARCHAR(50) = ''
 
-                if (this.ShowConfirmMessage("Có chắc chắn xóa không ?") == DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
                 {
-
                     SqlParameter[] plist =
                     {
                         new SqlParameter("@Type", "DEL"),

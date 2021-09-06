@@ -1505,22 +1505,27 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6ControlFormHelper.SetSomeDataDictionary(this, data);
         }
 
-        public virtual void SetStatus2Text()
+        public virtual void SetStatus2Text(string reportProcedure)
         {
-            var text = "";
+            string id = "ST2" + reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                if (F3) text += "F3-Sửa chứng từ";
+                if (F5)
+                {
+                    if (F3) text += "; ";
+                    text += "F5-Xem chi tiết";
+                }
 
-            if (F3) text += "F3-Sửa chứng từ";
-            if (F5)
-            {
-                if (F3) text += "; ";
-                text += "F5-Xem chi tiết";
+                if (F7)
+                {
+                    if (F3 | F5) text += "; ";
+                    text += "F7-Xem biểu đồ.";
+                }
             }
-            if (F7)
-            {
-                if (F3|F5) text += "; ";
-                text += "F7-Xem biểu đồ.";
-            }
-            V6ControlFormHelper.SetStatusText2(text);
+
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         /// <summary>

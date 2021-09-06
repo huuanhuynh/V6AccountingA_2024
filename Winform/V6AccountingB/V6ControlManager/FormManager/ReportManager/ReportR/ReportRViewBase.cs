@@ -1734,7 +1734,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         public override void SetStatus2Text()
         {
-            FilterControl.SetStatus2Text();
+            FilterControl.SetStatus2Text(_reportProcedure);
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)

@@ -1014,14 +1014,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (_gv3EditingRow != null)
                 {
                     var cIndex = _gv3EditingRow.Index;
-
-
                     if (cIndex >= 0 && cIndex < AD3.Rows.Count)
                     {
+                        var svDate = V6BusinessHelper.GetServerDateTime();
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Date;
-
+                        // Edit
+                        {
+                            var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                            var date = svDate.Date;
+                            data["TIME24"] = time;
+                            data["DATE24"] = date;
+                            data["USER_ID24"] = V6Login.UserId;
+                        }
 
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
@@ -1073,12 +1079,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             try
             {
+                var svDate = V6BusinessHelper.GetServerDateTime();
                 _sttRec03 = V6BusinessHelper.GetNewSttRec0(AD3);
                 data["STT_REC0"] = _sttRec03;
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Date;
+                // Add
+                {
+                    var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                    var date = svDate.Date;
+                    data["TIME04"] = time;
+                    data["DATE04"] = date;
+                    data["USER_ID04"] = V6Login.UserId;
+                    data["TIME24"] = time;
+                    data["DATE24"] = date;
+                    data["USER_ID24"] = V6Login.UserId;
+                }
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -4073,13 +4091,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             try
             {
-                //var dic = V6ControlFormHelper.GetFormDataDictionary(phieuThuDetail1);
+                var svDate = V6BusinessHelper.GetServerDateTime();
                 _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                 data.Add("STT_REC0", _sttRec0);
-
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Date;
+                // Add
+                {
+                    var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                    var date = svDate.Date;
+                    data["TIME04"] = time;
+                    data["DATE04"] = date;
+                    data["USER_ID04"] = V6Login.UserId;
+                    data["TIME24"] = time;
+                    data["DATE24"] = date;
+                    data["USER_ID24"] = V6Login.UserId;
+                }
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -4163,9 +4191,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 if (cIndex >= 0 && cIndex < AD.Rows.Count)
                 {
+                    var svDate = V6BusinessHelper.GetServerDateTime();
                     //Thêm thông tin...
                     data["MA_CT"] = Invoice.Mact;
                     data["NGAY_CT"] = dateNgayCT.Date;
+                    // Edit
+                    {
+                        var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                        var date = svDate.Date;
+                        data["TIME24"] = time;
+                        data["DATE24"] = date;
+                        data["USER_ID24"] = V6Login.UserId;
+                    }
 
                     //Kiem tra du lieu truoc khi them sua
                     var error = "";
@@ -5471,13 +5508,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             try
             {
+                var svDate = V6BusinessHelper.GetServerDateTime();
                 _sttRec02 = V6BusinessHelper.GetNewSttRec0(AD2);
                 data.Add("STT_REC0", _sttRec02);
-
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Date;
+                // Add
+                {
+                    var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                    var date = svDate.Date;
+                    data["TIME04"] = time;
+                    data["DATE04"] = date;
+                    data["USER_ID04"] = V6Login.UserId;
+                    data["TIME24"] = time;
+                    data["DATE24"] = date;
+                    data["USER_ID24"] = V6Login.UserId;
+                }
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -5537,14 +5585,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (_gv2EditingRow != null)
                 {
                     var cIndex2 = _gv2EditingRow.Index;
-
-
                     if (cIndex2 >= 0 && cIndex2 < AD2.Rows.Count)
                     {
+                        var svDate = V6BusinessHelper.GetServerDateTime();
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Date;
-
+                        // Edit
+                        {
+                            var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+                            var date = svDate.Date;
+                            data["TIME24"] = time;
+                            data["DATE24"] = date;
+                            data["USER_ID24"] = V6Login.UserId;
+                        }
 
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
