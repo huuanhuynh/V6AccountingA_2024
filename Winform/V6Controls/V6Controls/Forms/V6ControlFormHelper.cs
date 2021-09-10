@@ -4429,7 +4429,7 @@ namespace V6Controls.Forms
             ExportExcelTemplate_owner = owner;
             //ExportExcelTemplate_data = data.Copy();
             ExportExcelTemplate_data = CookingDataForExcel(data);
-            ExportExcelTemplate_tbl2 = tbl2.Copy();
+            if (tbl2 == null) ExportExcelTemplate_tbl2 = new DataTable(); else ExportExcelTemplate_tbl2 = tbl2.Copy();
             ExportExcelTemplate_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplate_MAU = MAU;
             ExportExcelTemplate_LAN = LAN;
@@ -5316,7 +5316,7 @@ namespace V6Controls.Forms
             if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             //ExportExcelTemplateHTKK_owner = owner;
             ExportExcelTemplateHTKK_data = data.Copy();
-            ExportExcelTemplateHTKK_tbl2 = tbl2.Copy();
+            if (tbl2 == null) ExportExcelTemplateHTKK_tbl2 = new DataTable(); else ExportExcelTemplateHTKK_tbl2 = tbl2.Copy();
             ExportExcelTemplateHTKK_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplateHTKK_MAU = MAU;
             ExportExcelTemplateHTKK_LAN = LAN;
@@ -5589,7 +5589,7 @@ namespace V6Controls.Forms
         {
             if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             ExportExcelTemplateONLINE_data = CookingDataForExcel(data);
-            ExportExcelTemplateONLINE_tbl2 = tbl2.Copy();
+            if (tbl2 == null) ExportExcelTemplateONLINE_tbl2 = new DataTable(); else ExportExcelTemplateONLINE_tbl2 = tbl2.Copy();
             ExportExcelTemplateONLINE_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplateONLINE_MAU = MAU;
             ExportExcelTemplateONLINE_LAN = LAN;

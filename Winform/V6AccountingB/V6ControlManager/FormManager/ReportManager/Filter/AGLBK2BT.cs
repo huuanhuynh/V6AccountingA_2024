@@ -105,11 +105,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
-            if (TxtTk.Text.Trim() == "")
+            if (txtTK.Text.Trim() == "")
             {
                 throw new Exception(V6Text.Text("CHUACHONTK"));
             }
-            result.Add(new SqlParameter("@Tk", TxtTk.Text.Trim()));
+            result.Add(new SqlParameter("@Tk", txtTK.Text.Trim()));
             result.Add(new SqlParameter("@noco", TxtGroupby.Text.Trim()));
             result.Add(new SqlParameter("@M_LAN", V6Setting.Language.Trim()));
             var parent = this.Parent.Parent.Parent;

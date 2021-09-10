@@ -774,7 +774,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 var cellPS_NO = row.Cells["PS_NO"];
                 var cellPS_CO_NT = row.Cells["PS_CO_NT"];
                 var cellPS_CO = row.Cells["PS_CO"];
-                
+
+                UpdateDateTime4(row);
                 ShowMainMessage("cell_end_edit: " + FIELD);
 
                 switch (FIELD)
@@ -823,7 +824,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 var col = dataGridView1.Columns[e.ColumnIndex];
                 FIELD = col.DataPropertyName.ToUpper();
 
-                ShowMainMessage("cell_end_edit: " + FIELD);
+                ShowMainMessage("cell_begin_edit: " + FIELD);
 
                 switch (FIELD)
                 {
@@ -2242,10 +2243,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 ResetAMADbyConfig(Invoice);
-                foreach (DataRow dataRow in AD.Rows)
-                {
-                    dataRow["STT_REC"] = _sttRec;
-                }
+                ResetAllADDefaultValue();
                 InvokeFormEventFixCopyData();
             }
             catch (Exception ex)

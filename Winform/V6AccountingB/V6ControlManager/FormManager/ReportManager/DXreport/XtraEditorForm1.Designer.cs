@@ -315,7 +315,7 @@
             this.msiFile.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.commandBarItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.commandBarItem2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiOpenFile),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, false, this.bbiOpenFile, false),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiSaveFile, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.commandBarItem3),
             new DevExpress.XtraBars.LinkPersistInfo(this.commandBarItem7),
@@ -350,7 +350,6 @@
             this.bbiOpenFile.Enabled = false;
             this.bbiOpenFile.Hint = "Open a report";
             this.bbiOpenFile.Id = 35;
-            this.bbiOpenFile.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O));
             this.bbiOpenFile.Name = "bbiOpenFile";
             // 
             // bbiSaveFile

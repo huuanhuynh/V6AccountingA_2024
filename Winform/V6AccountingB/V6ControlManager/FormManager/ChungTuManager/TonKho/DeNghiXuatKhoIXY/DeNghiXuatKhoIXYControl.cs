@@ -2401,6 +2401,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 if (HE_SO1M == 0) HE_SO1M = 1;
                 //decimal HE_SO = HE_SO1T / HE_SO1M;
 
+                UpdateDateTime4(row);
                 ShowMainMessage("cell_end_edit: " + FIELD);
 
                 switch (FIELD)
@@ -2485,7 +2486,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 var col = dataGridView1.Columns[e.ColumnIndex];
                 FIELD = col.DataPropertyName.ToUpper();
 
-                ShowMainMessage("cell_end_edit: " + FIELD);
+                ShowMainMessage("cell_begin_edit: " + FIELD);
 
                 switch (FIELD)
                 {

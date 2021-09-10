@@ -12,7 +12,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
            
             F3 = false;
             F5 = true;
-            TxtTk.Text = "11";
+            txtTK.Text = "11";
 
             dateNgay_ct.SetValue(V6Setting.M_ngay_ct1);
 
@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 new SqlParameter("@Ngay", dateNgay_ct.YYYYMMDD),
                 new SqlParameter("@Ma_dvcs",ma_dvcs),
-                new SqlParameter("@Tk", TxtTk.Text.Trim() + "%")
+                new SqlParameter("@Tk", txtTK.Text.Trim() + "%")
             };
             
             return result;

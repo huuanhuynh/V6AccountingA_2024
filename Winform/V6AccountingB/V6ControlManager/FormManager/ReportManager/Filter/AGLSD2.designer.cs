@@ -35,7 +35,7 @@
             this.dateNgay_ct = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.v6Label9 = new V6Controls.V6Label();
-            this.TxtTk = new V6Controls.V6VvarTextBox();
+            this.txtTK = new V6Controls.V6VvarTextBox();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -126,20 +126,20 @@
             this.v6Label9.TabIndex = 17;
             this.v6Label9.Text = "Tài khoản";
             // 
-            // TxtTk
+            // txtTK
             // 
-            this.TxtTk.AccessibleName = "TK";
-            this.TxtTk.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtTk.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtTk.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtTk.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtTk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtTk.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtTk.LeaveColor = System.Drawing.Color.White;
-            this.TxtTk.Location = new System.Drawing.Point(100, 54);
-            this.TxtTk.Name = "TxtTk";
-            this.TxtTk.Size = new System.Drawing.Size(100, 20);
-            this.TxtTk.TabIndex = 16;
+            this.txtTK.AccessibleName = "TK";
+            this.txtTK.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTK.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTK.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTK.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTK.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTK.LeaveColor = System.Drawing.Color.White;
+            this.txtTK.Location = new System.Drawing.Point(100, 54);
+            this.txtTK.Name = "txtTK";
+            this.txtTK.Size = new System.Drawing.Size(100, 20);
+            this.txtTK.TabIndex = 16;
+            this.txtTK.VVar = "TK";
             // 
             // dateNgay_ct1
             // 
@@ -159,7 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.v6Label9);
-            this.Controls.Add(this.TxtTk);
+            this.Controls.Add(this.txtTK);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateNgay_ct);
             this.Controls.Add(this.groupBox1);
@@ -180,7 +180,7 @@
         private V6Controls.V6DateTimePicker dateNgay_ct;
         private System.Windows.Forms.Label label1;
         private V6Controls.V6Label v6Label9;
-        private V6Controls.V6VvarTextBox TxtTk;
+        private V6Controls.V6VvarTextBox txtTK;
         private V6Controls.V6DateTimePicker dateNgay_ct1;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
     }

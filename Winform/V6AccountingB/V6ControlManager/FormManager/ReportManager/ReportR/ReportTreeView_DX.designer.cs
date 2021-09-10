@@ -42,8 +42,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewDataMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToWordMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportEXCELXtraMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportEXCELDataMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToHTMLMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.cboMauIn = new V6Controls.V6ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -76,12 +82,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaMau = new V6Controls.Controls.V6FormButton();
             this.lblSummary = new System.Windows.Forms.Label();
             this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
-            this.exportEXCELXtraMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportEXCELDataMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToHTMLMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToWordMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
             this.panel0.SuspendLayout();
@@ -165,6 +165,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToPdfMenu.Text = "Export to PDF";
             this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfMenu_Click);
             // 
+            // exportToWordMenu
+            // 
+            this.exportToWordMenu.Name = "exportToWordMenu";
+            this.exportToWordMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportToWordMenu.Text = "Export to Word";
+            this.exportToWordMenu.Click += new System.EventHandler(this.exportToWordMenu_Click);
+            // 
             // viewInvoiceInfoMenu
             // 
             this.viewInvoiceInfoMenu.AccessibleDescription = "INVOICEM00048";
@@ -180,6 +187,43 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewListInfoMenu.Size = new System.Drawing.Size(210, 22);
             this.viewListInfoMenu.Text = "Xem thông tin danh mục";
             this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
+            // 
+            // exportEXCELXtraMenu
+            // 
+            this.exportEXCELXtraMenu.Name = "exportEXCELXtraMenu";
+            this.exportEXCELXtraMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportEXCELXtraMenu.Text = "Export EXCEL (Xtra)";
+            this.exportEXCELXtraMenu.Click += new System.EventHandler(this.exportEXCELXtraMenu_Click);
+            // 
+            // exportEXCELDataMenu
+            // 
+            this.exportEXCELDataMenu.Name = "exportEXCELDataMenu";
+            this.exportEXCELDataMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportEXCELDataMenu.Text = "Export EXCEL (Data)";
+            this.exportEXCELDataMenu.Click += new System.EventHandler(this.exportEXCELDataMenu_Click);
+            // 
+            // exportToHTMLMenu
+            // 
+            this.exportToHTMLMenu.Name = "exportToHTMLMenu";
+            this.exportToHTMLMenu.Size = new System.Drawing.Size(210, 22);
+            this.exportToHTMLMenu.Text = "Export to HTML";
+            this.exportToHTMLMenu.Click += new System.EventHandler(this.exportReportToHtmlMenu_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.AccessibleDescription = "INVOICEM00048";
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem1.Text = "Xem thông tin chứng từ";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.AccessibleDescription = "INVOICEM00049";
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem2.Text = "Xem thông tin danh mục";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // timerViewReport
             // 
@@ -548,7 +592,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // btnSuaMau
             // 
             this.btnSuaMau.AccessibleDescription = ".";
-            this.btnSuaMau.Enabled = false;
             this.btnSuaMau.Image = global::V6ControlManager.Properties.Resources.Edit24;
             this.btnSuaMau.Location = new System.Drawing.Point(426, 33);
             this.btnSuaMau.Name = "btnSuaMau";
@@ -583,50 +626,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.documentViewer1.Status = "V6SOFT";
             this.documentViewer1.TabIndex = 16;
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
-            // 
-            // exportEXCELXtraMenu
-            // 
-            this.exportEXCELXtraMenu.Name = "exportEXCELXtraMenu";
-            this.exportEXCELXtraMenu.Size = new System.Drawing.Size(210, 22);
-            this.exportEXCELXtraMenu.Text = "Export EXCEL (Xtra)";
-            this.exportEXCELXtraMenu.Click += new System.EventHandler(this.exportEXCELXtraMenu_Click);
-            // 
-            // exportEXCELDataMenu
-            // 
-            this.exportEXCELDataMenu.Name = "exportEXCELDataMenu";
-            this.exportEXCELDataMenu.Size = new System.Drawing.Size(210, 22);
-            this.exportEXCELDataMenu.Text = "Export EXCEL (Data)";
-            this.exportEXCELDataMenu.Click += new System.EventHandler(this.exportEXCELDataMenu_Click);
-            // 
-            // exportToHTMLMenu
-            // 
-            this.exportToHTMLMenu.Name = "exportToHTMLMenu";
-            this.exportToHTMLMenu.Size = new System.Drawing.Size(210, 22);
-            this.exportToHTMLMenu.Text = "Export to HTML";
-            this.exportToHTMLMenu.Click += new System.EventHandler(this.exportReportToHtmlMenu_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.AccessibleDescription = "INVOICEM00048";
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
-            this.toolStripMenuItem1.Text = "Xem thông tin chứng từ";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.AccessibleDescription = "INVOICEM00049";
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 22);
-            this.toolStripMenuItem2.Text = "Xem thông tin danh mục";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.viewListInfoMenu_Click);
-            // 
-            // exportToWordMenu
-            // 
-            this.exportToWordMenu.Name = "exportToWordMenu";
-            this.exportToWordMenu.Size = new System.Drawing.Size(210, 22);
-            this.exportToWordMenu.Text = "Export to Word";
-            this.exportToWordMenu.Click += new System.EventHandler(this.exportToWordMenu_Click);
             // 
             // ReportTreeView_DX
             // 

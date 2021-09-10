@@ -5501,6 +5501,44 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// Gán lại các giá trị mới như stt_rec, date04...
+        /// </summary>
+        public void ResetAllADDefaultValue()
+        {
+            var svDate = V6BusinessHelper.GetServerDateTime();
+            var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+            var date = svDate.Date;
+            foreach (DataTable table in new[] { AD, AD2, AD3 })
+            {
+                if (table == null) continue;
+                foreach (DataRow dataRow in table.Rows)
+                {
+                    dataRow["STT_REC"] = _sttRec;
+                    if (AD.Columns.Contains("STT_RECDH")) dataRow["STT_RECDH"] = DBNull.Value;
+                    if (AD.Columns.Contains("STT_REC0DH")) dataRow["STT_REC0DH"] = DBNull.Value;
+                    if (AD.Columns.Contains("TIME04")) dataRow["TIME04"] = time;
+                    if (AD.Columns.Contains("DATE04")) dataRow["DATE04"] = date;
+                    if (AD.Columns.Contains("USER_ID04")) dataRow["USER_ID04"] = V6Login.UserId;
+                    if (AD.Columns.Contains("TIME24")) dataRow["TIME24"] = time;
+                    if (AD.Columns.Contains("DATE24")) dataRow["DATE24"] = date;
+                    if (AD.Columns.Contains("USER_ID24")) dataRow["USER_ID24"] = V6Login.UserId;
+                }
+            }
+        }
+
+        public void UpdateDateTime4(DataGridViewRow row)
+        {
+            var gridview = row.DataGridView;
+            var svDate = V6BusinessHelper.GetServerDateTime();
+            var time = ObjectAndString.ObjectToString(svDate, "HH:mm:ss");
+            var date = svDate.Date;
+
+            if (gridview.Columns.Contains("TIME24")) row.Cells["TIME24"].Value = time;
+            if (gridview.Columns.Contains("DATE24")) row.Cells["DATE24"].Value = date;
+            if (gridview.Columns.Contains("USER_ID24")) row.Cells["USER_ID24"].Value = V6Login.UserId;
+        }
+
         public void ViewLblKieuPost(Label lblKieuPostColor, V6ColorComboBox cboKieuPost, bool view)
         {
             try

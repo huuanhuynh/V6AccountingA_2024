@@ -5258,10 +5258,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 ResetAMADbyConfig(Invoice);
-                foreach (DataRow dataRow in AD.Rows)
-                {
-                    dataRow["STT_REC"] = _sttRec;
-                }
+                ResetAllADDefaultValue();
                 InvokeFormEventFixCopyData();
             }
             catch (Exception ex)

@@ -1774,6 +1774,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 if (HE_SO1M == 0) HE_SO1M = 1;
                 //decimal HE_SO = HE_SO1T / HE_SO1M;
 
+                UpdateDateTime4(grow);
                 //ShowMainMessage("cell_end_edit: " + FIELD);
                 All_Objects["grow"] = grow;
                 All_Objects["col"] = col;
@@ -2104,7 +2105,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 //if (HE_SO1M == 0) HE_SO1M = 1;
                 //decimal HE_SO = HE_SO1T / HE_SO1M;
 
-                //ShowMainMessage("cell_end_edit: " + FIELD);
+                //ShowMainMessage("cell_changed: " + FIELD);
 
                 switch (FIELD)
                 {
@@ -2227,7 +2228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 //if (HE_SO1M == 0) HE_SO1M = 1;
                 //decimal HE_SO = HE_SO1T / HE_SO1M;
 
-                //ShowMainMessage("cell_end_edit: " + FIELD);
+                //ShowMainMessage("cell_leave: " + FIELD);
 
                 switch (FIELD)
                 {
@@ -4108,10 +4109,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 ResetAMADbyConfig(Invoice);
-                foreach (DataRow dataRow in AD.Rows)
-                {
-                    dataRow["STT_REC"] = _sttRec;
-                }
+                ResetAllADDefaultValue();
                 InvokeFormEventFixCopyData();
             }
             catch (Exception ex)

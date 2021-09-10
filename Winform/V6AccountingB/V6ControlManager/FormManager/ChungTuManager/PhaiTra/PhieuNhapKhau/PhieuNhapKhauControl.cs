@@ -2686,6 +2686,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (HE_SO1M == 0) HE_SO1M = 1;
                 //decimal HE_SO = HE_SO1T / HE_SO1M;
 
+                UpdateDateTime4(row);
                 ShowMainMessage("cell_end_edit: " + FIELD);
 
                 switch (FIELD)
@@ -5444,10 +5445,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 ResetAMADbyConfig(Invoice);
-                foreach (DataRow dataRow in AD.Rows)
-                {
-                    dataRow["STT_REC"] = _sttRec;
-                }
+                ResetAllADDefaultValue();
                 InvokeFormEventFixCopyData();
             }
             catch (Exception ex)

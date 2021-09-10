@@ -54,6 +54,7 @@
             this.Txtnh_vt1 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt2 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox1 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineMaKhoN = new V6ReportControls.FilterLineVvarTextBox();
             this.lineMakho = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
@@ -77,7 +78,6 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.btnSetting = new System.Windows.Forms.Button();
             this.btnLoc = new System.Windows.Forms.Button();
-            this.lineMaKhoN = new V6ReportControls.FilterLineVvarTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -239,7 +239,6 @@
             // txtma_lo
             // 
             this.txtma_lo.AccessibleDescription = "FILTERL00159";
-            this.txtma_lo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtma_lo.Caption = "Mã lô";
             this.txtma_lo.FieldName = "MA_LO";
             this.txtma_lo.Location = new System.Drawing.Point(3, 105);
@@ -251,7 +250,6 @@
             // Txtnh_vt6
             // 
             this.Txtnh_vt6.AccessibleDescription = "FILTERL00036";
-            this.Txtnh_vt6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt6.Caption = "Nhóm vật tư 6";
             this.Txtnh_vt6.FieldName = "NH_VT6";
             this.Txtnh_vt6.Location = new System.Drawing.Point(3, 281);
@@ -263,7 +261,6 @@
             // Txtnh_vt4
             // 
             this.Txtnh_vt4.AccessibleDescription = "FILTERL00034";
-            this.Txtnh_vt4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt4.Caption = "Nhóm vật tư 4";
             this.Txtnh_vt4.FieldName = "NH_VT4";
             this.Txtnh_vt4.Location = new System.Drawing.Point(3, 237);
@@ -275,7 +272,6 @@
             // Txtnh_vt5
             // 
             this.Txtnh_vt5.AccessibleDescription = "FILTERL00035";
-            this.Txtnh_vt5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt5.Caption = "Nhóm vật tư 5";
             this.Txtnh_vt5.FieldName = "NH_VT5";
             this.Txtnh_vt5.Location = new System.Drawing.Point(3, 259);
@@ -287,7 +283,6 @@
             // Txtnh_vt3
             // 
             this.Txtnh_vt3.AccessibleDescription = "FILTERL00033";
-            this.Txtnh_vt3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt3.Caption = "Nhóm vật tư 3";
             this.Txtnh_vt3.FieldName = "NH_VT3";
             this.Txtnh_vt3.Location = new System.Drawing.Point(3, 215);
@@ -299,7 +294,6 @@
             // Txtnh_vt1
             // 
             this.Txtnh_vt1.AccessibleDescription = "FILTERL00031";
-            this.Txtnh_vt1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt1.Caption = "Nhóm vật tư 1";
             this.Txtnh_vt1.FieldName = "NH_VT1";
             this.Txtnh_vt1.Location = new System.Drawing.Point(3, 171);
@@ -311,7 +305,6 @@
             // Txtnh_vt2
             // 
             this.Txtnh_vt2.AccessibleDescription = "FILTERL00032";
-            this.Txtnh_vt2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt2.Caption = "Nhóm vật tư 2";
             this.Txtnh_vt2.FieldName = "NH_VT2";
             this.Txtnh_vt2.Location = new System.Drawing.Point(3, 193);
@@ -323,7 +316,6 @@
             // filterLineVvarTextBox1
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00160";
-            this.filterLineVvarTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox1.Caption = "Mã vị trí";
             this.filterLineVvarTextBox1.FieldName = "MA_VITRI";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(3, 149);
@@ -332,10 +324,20 @@
             this.filterLineVvarTextBox1.TabIndex = 7;
             this.filterLineVvarTextBox1.Vvar = "MA_VITRI";
             // 
+            // lineMaKhoN
+            // 
+            this.lineMaKhoN.AccessibleDescription = "FILTERL00279";
+            this.lineMaKhoN.Caption = "Mã kho nhập";
+            this.lineMaKhoN.FieldName = "MA_KHON";
+            this.lineMaKhoN.Location = new System.Drawing.Point(3, 61);
+            this.lineMaKhoN.Name = "lineMaKhoN";
+            this.lineMaKhoN.Size = new System.Drawing.Size(268, 22);
+            this.lineMaKhoN.TabIndex = 3;
+            this.lineMaKhoN.Vvar = "MA_KHO";
+            // 
             // lineMakho
             // 
             this.lineMakho.AccessibleDescription = "FILTERL00006";
-            this.lineMakho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMakho.Caption = "Mã kho";
             this.lineMakho.FieldName = "MA_KHO";
             this.lineMakho.Location = new System.Drawing.Point(3, 39);
@@ -372,7 +374,6 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
-            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(3, 83);
@@ -384,7 +385,6 @@
             // TxtMa_vt
             // 
             this.TxtMa_vt.AccessibleDescription = "FILTERL00020";
-            this.TxtMa_vt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.TxtMa_vt.Caption = "Mã vật tư";
             this.TxtMa_vt.FieldName = "MA_VT";
             this.TxtMa_vt.Location = new System.Drawing.Point(3, 127);
@@ -616,18 +616,6 @@
             this.btnLoc.UseVisualStyleBackColor = true;
             this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
             // 
-            // lineMaKhoN
-            // 
-            this.lineMaKhoN.AccessibleDescription = "FILTERL00279";
-            this.lineMaKhoN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.lineMaKhoN.Caption = "Mã kho nhập";
-            this.lineMaKhoN.FieldName = "MA_KHON";
-            this.lineMaKhoN.Location = new System.Drawing.Point(3, 61);
-            this.lineMaKhoN.Name = "lineMaKhoN";
-            this.lineMaKhoN.Size = new System.Drawing.Size(268, 22);
-            this.lineMaKhoN.TabIndex = 3;
-            this.lineMaKhoN.Vvar = "MA_KHO";
-            // 
             // ChonVitriXuatForm
             // 
             this.AccessibleDescription = "XULYL00201";
@@ -665,34 +653,6 @@
             this.Name = "ChonVitriXuatForm";
             this.Text = "ChonVitriXuatForm";
             this.Load += new System.EventHandler(this.ChonVitriXuatForm_Load);
-            this.Controls.SetChildIndex(this.v6Label2, 0);
-            this.Controls.SetChildIndex(this.v6Label1, 0);
-            
-            this.Controls.SetChildIndex(this.btnLoc, 0);
-            this.Controls.SetChildIndex(this.btnSetting, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
-            this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.dateNgay_ct2, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.TxtVttonkho, 0);
-            this.Controls.SetChildIndex(this.txtKieuIn, 0);
-            this.Controls.SetChildIndex(this.v6Label9, 0);
-            this.Controls.SetChildIndex(this.v6Label3, 0);
-            this.Controls.SetChildIndex(this.chkTonHSD, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.chkSoluong, 0);
-            this.Controls.SetChildIndex(this.gridViewSummary1, 0);
-            this.Controls.SetChildIndex(this.gridViewSummary2, 0);
-            this.Controls.SetChildIndex(this.dataGridView2, 0);
-            this.Controls.SetChildIndex(this.btnAddSelect, 0);
-            this.Controls.SetChildIndex(this.btnMove2Up, 0);
-            this.Controls.SetChildIndex(this.btnAddAll, 0);
-            this.Controls.SetChildIndex(this.btnMove2Down, 0);
-            this.Controls.SetChildIndex(this.btnRemoveSelect, 0);
-            this.Controls.SetChildIndex(this.btnRemoveAll, 0);
-            this.Controls.SetChildIndex(this.lbldsdc, 0);
-            this.Controls.SetChildIndex(this.chkChonTrung, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
