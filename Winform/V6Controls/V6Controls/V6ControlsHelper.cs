@@ -488,6 +488,13 @@ namespace V6Controls
             }
         }
 
+        public static void ShowV6Tooltip(Control control, string text)
+        {
+            if (FlyLabel_Form == null) return;
+            FlyLabel_Form.TargetControl = control;
+            FlyLabel_Form.Message = text;
+        }
+
         /// <summary>
         /// 'a' #date# num
         /// </summary>

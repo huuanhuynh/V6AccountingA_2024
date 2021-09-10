@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
 using DevExpress.XtraReports.Parameters;
 using DevExpress.XtraReports.UI;
 using V6AccountingBusiness;
@@ -22,7 +21,6 @@ using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
-using V6RptEditor;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -44,6 +42,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private DataTable MauInData;
         private DataView MauInView;
+        public AlbcConfig _albcConfig;
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -73,15 +72,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys.Add("MA_BC", _program);
-                var AlreportData = V6BusinessHelper.Select(V6TableName.Alreport, keys, "*").Data;
-                if (AlreportData.Rows.Count == 0) return;
+                _albcConfig = ConfigManager.GetAlbcConfig(MAU, LAN, _Ma_File, ReportFile);
+                if (_albcConfig.NoInfo) return;
+                if (_albcConfig.MMETHOD.Trim() == "") return;
 
-                var dataRow = AlreportData.Rows[0];
-                var xml = dataRow["MMETHOD"].ToString().Trim();
-                if (xml == "") return;
-                var ds = ObjectAndString.XmlStringToDataSet(xml);
+                var ds = ObjectAndString.XmlStringToDataSet(_albcConfig.MMETHOD);
                 if (ds.Tables.Count <= 0) return;
 
                 var data = ds.Tables[0];
@@ -1463,6 +1458,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 x.PrintingSystem.ShowMarginsWarning = false;
                 x.DataSource = _ds;
                 SetAllReportParams(x);
+                documentViewer1.Zoom = DXreportManager.GetExtraReportZoom(documentViewer1, x, _albcConfig.EXTRA_INFOR_PRINTVCZOOM);
                 documentViewer1.DocumentSource = x;
                 x.CreateDocument();
                 documentViewer1.Zoom = 1f;
@@ -1794,6 +1790,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
 
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary()); 
             GetSumCondition();
 
             txtReportTitle.Text = ReportTitle;
@@ -1818,6 +1815,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }
@@ -2224,6 +2222,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void dataGridView1_FilterChange()
         {
             V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+        }
+
+        private void documentViewer1_ZoomChanged(object sender, EventArgs e)
+        {
+            V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
     }
 }

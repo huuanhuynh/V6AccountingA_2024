@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraPrinting;
+using DevExpress.XtraPrinting.Preview;
 using DevExpress.XtraReports.Parameters;
 using V6Controls;
 using V6Controls.Forms;
@@ -583,6 +584,44 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             }
             //return false;
             ExportRepxToPdf_running = false;
+        }
+
+        /// <summary>
+        /// Số nhỏ hơn 1: PageWidth, 2: AllPage. 50 trở lên là %.
+        /// </summary>
+        /// <param name="docView">Control hiển thị repx.</param>
+        /// <param name="repx">Đối tượng report.</param>
+        /// <param name="zoom">percent or 1: PageWidth, 2: AllPage.</param>
+        /// <returns></returns>
+        public static float GetExtraReportZoom(DocumentViewer docView, XtraReport repx, int zoom)
+        {
+            float result = 1;
+            if (zoom == 1)
+            {
+                if (repx != null)
+                {
+                    float w = (float) docView.Size.Width / repx.PageSize.Width;
+                    result = w;
+                }
+            }
+            else if (zoom == 2)
+            {
+                if (repx != null)
+                {
+                    float h = (float)docView.Size.Height / repx.PageSize.Height;
+                    float w = (float)docView.Size.Width / repx.PageSize.Width;
+                    result = h < w ? h : w;
+                }
+            }
+            else if (zoom < 50)
+            {
+                result = 1;
+            }
+            else
+            {
+                result = (float)zoom / 100;
+            }
+            return result;
         }
     }
 }

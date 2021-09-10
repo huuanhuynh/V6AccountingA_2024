@@ -40,6 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private DataTable MauInData;
         private DataView MauInView;
+        public AlbcConfig _albcConfig;
         private DataSet _ds;
         private DataTable _tbl, _tbl2;
 
@@ -90,8 +91,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 }
             }
         }
-
-        public AlbcConfig _albcConfig;
 
         public DataRow MauInSelectedRow
         {
@@ -315,6 +314,12 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 }
 
                 var fields_vvar_filter = V6Lookup.GetValueByTableName(_tableName, "vLfScatter");
+                _albcConfig = ConfigManager.GetAlbcConfig(MAU, LAN, _Ma_File, ReportFile);
+                //if (_albcConfig.NoInfo) return;
+                //if (_albcConfig.MMETHOD.Trim() == "") return;
+                //DataSet ds = new DataSet();
+                //ds.ReadXml(new StringReader(_albcConfig.MMETHOD)); 
+
                 MadeControls(_tableName, fields_vvar_filter);
                 CheckRightReport();
                 if (V6Options.M_R_FONTSIZE > 8)
@@ -1105,6 +1110,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 x.PrintingSystem.ShowMarginsWarning = false;
                 x.DataSource = _ds;
                 SetAllReportParams(x);
+                documentViewer1.Zoom = DXreportManager.GetExtraReportZoom(documentViewer1, x, _albcConfig.EXTRA_INFOR_PRINTVCZOOM);
                 documentViewer1.DocumentSource = x;
                 x.CreateDocument();
                 documentViewer1.Zoom = 1f;
@@ -1225,6 +1231,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }
@@ -1429,6 +1436,11 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 documentViewer1.Height = documentViewer1.Bottom - dataGridView1.Bottom - 5;
                 documentViewer1.Top = dataGridView1.Bottom + 5;
             }
+        }
+
+        private void documentViewer1_ZoomChanged(object sender, EventArgs e)
+        {
+            V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
         
     }

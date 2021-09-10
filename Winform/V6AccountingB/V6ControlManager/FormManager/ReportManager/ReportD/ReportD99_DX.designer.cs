@@ -716,6 +716,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.documentViewer1.RequestDocumentCreation = false;
             this.documentViewer1.Size = new System.Drawing.Size(662, 224);
             this.documentViewer1.TabIndex = 40;
+            this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
             // ReportD99_DX

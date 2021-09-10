@@ -9,7 +9,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Windows.Forms;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraPrinting.Native;
@@ -27,7 +26,6 @@ using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6ReportControls;
-using V6RptEditor;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -1916,7 +1914,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 this.ShowErrorMessage(GetType() + ".PrintGrid\n" + ex.Message, "InChungTuDX");
             }
         }
-        
+
 
         void ViewReport()
         {
@@ -1995,9 +1993,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                 SetAllReportParams(repx1, repx2, repx3, repx4);
                 SetCrossLineAll(repx1, repx2, repx3, repx4);
+                
+                if (EXTRA_INFOR.ContainsKey("RPTHIDE"))
+                {
+                    var names = ObjectAndString.SplitString(EXTRA_INFOR["RPTHIDE"]);
+                    RPTHIDE(repx1, names);
+                    RPTHIDE(repx2, names);
+                    RPTHIDE(repx3, names);
+                    RPTHIDE(repx4, names);
+                }
 
+                documentViewer1.Zoom = DXreportManager.GetExtraReportZoom(documentViewer1, repx1, Invoice.ExtraInfo_PrintVCzoom);
                 documentViewer1.DocumentSource = repx1;
-				documentViewer1.Zoom = Invoice.ExtraInfo_PrintVCzoom_DX;
+                
                 _repx10 = repx1;
                 _repx10.CreateDocument();
                 if (_soLienIn >= 2 && repx2 != null)
@@ -2044,9 +2052,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 
                 SetAllReportParams(repx1, repx2, repx3, repx4);
                 SetCrossLineAll(repx1, repx2, repx3, repx4);
-
+                if (EXTRA_INFOR.ContainsKey("RPTHIDE"))
+                {
+                    var names = ObjectAndString.SplitString(EXTRA_INFOR["RPTHIDE"]);
+                    RPTHIDE(repx1, names);
+                    RPTHIDE(repx2, names);
+                    RPTHIDE(repx3, names);
+                    RPTHIDE(repx4, names);
+                }
+                documentViewer1.Zoom = DXreportManager.GetExtraReportZoom(documentViewer1, repx1, Invoice.ExtraInfo_PrintVCzoom);
                 documentViewer1.DocumentSource = repx1;
-                documentViewer1.Zoom = Invoice.ExtraInfo_PrintVCzoom_DX;
+                
                 if (_repx10 != null) _repx10.Dispose();
                 _repx10 = repx1;
                 repx1.CreateDocument();
@@ -2059,42 +2075,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             //btnIn.Focus();
         }
 
-        private void RPTHIDE(ReportDocument rpDoc, IList<string> names)
+        private void RPTHIDE(XtraReport rpDoc, IList<string> names)
         {
             try
             {
                 if (rpDoc == null) return;
-                var all_objects = new SortedDictionary<string, ReportObject>();
-                foreach (ReportObject o in rpDoc.ReportDefinition.ReportObjects)
+                if (names == null) return;
+
+                var all_objects = new SortedDictionary<string, XRControl>();
+                foreach (Band band in rpDoc.Bands)
                 {
-                    all_objects[o.Name.ToUpper()] = o;
-                }
-                
+                    foreach (SubBand subBand in band.SubBands)
+                    {
+                        foreach (var control in subBand.Controls)
+                        {
+                            all_objects[(control as XRControl).Name] = control as XRControl;
+                        }
+                    }
+
+                    foreach (var control in band.Controls)
+                    {
+                        all_objects[(control as XRControl).Name] = control as XRControl;
+                    }
+                }  
+
                 foreach (string name in names)
                 {
                     string NAME = name.ToUpper();
                     if (all_objects.ContainsKey(NAME))
                     {
-                        all_objects[NAME].ObjectFormat.EnableSuppress = true;
-                    }
-                }
-
-                // SUBREPORT
-                for (int i = 0; i < rpDoc.Subreports.Count; i++)
-                {
-                    var all_objects_sub = new SortedDictionary<string, ReportObject>();
-                    foreach (ReportObject o in rpDoc.Subreports[i].ReportDefinition.ReportObjects)
-                    {
-                        all_objects_sub[o.Name.ToUpper()] = o;
-                    }
-                
-                    foreach (string name in names)
-                    {
-                        string NAME = name.ToUpper();
-                        if (all_objects_sub.ContainsKey(NAME))
-                        {
-                            all_objects_sub[NAME].ObjectFormat.EnableSuppress = true;
-                        }
+                        all_objects[NAME].Visible = false;
                     }
                 }
             }
@@ -3093,6 +3103,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 this.WriteExLog(GetType() + "", ex);
             }
+        }
+
+        private void documentViewer1_ZoomChanged(object sender, EventArgs e)
+        {
+            V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
     }
 

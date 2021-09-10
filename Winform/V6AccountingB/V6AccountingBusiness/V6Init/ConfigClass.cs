@@ -90,6 +90,7 @@ namespace V6Init
         public AlbcConfig(IDictionary<string, object> data)
             : base(data)
         {
+            GetExtraInfor();
         }
 
         public AlbcConfig()
@@ -204,6 +205,20 @@ namespace V6Init
                     GetExtraInfor();
                 }
                 return _extraInfor;
+            }
+        }
+        /// <summary>
+        /// Zoom mặc định cho crystalreport khi in chứng từ. Nếu chưa cấu hình thì mặc định là 100.             
+        /// <para>Crystal: 1 PageWidth, 2 AllPage, >=50 is %</para>
+        /// <para>Xtra: 1 = PageWidth, 2 AllPage, >=50 is this %</para>
+        /// </summary>
+        public int EXTRA_INFOR_PRINTVCZOOM
+        {
+            get
+            {
+                int result = 100;
+                if (EXTRA_INFOR.ContainsKey("PRINTVCZOOM")) result = ObjectAndString.ObjectToInt(EXTRA_INFOR["PRINTVCZOOM"]);
+                return result;
             }
         }
         public int FROZENV { get { return GetInt("FROZENV"); } }

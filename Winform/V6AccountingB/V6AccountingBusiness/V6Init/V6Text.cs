@@ -442,6 +442,7 @@ namespace V6Init
         public static string Warning { get { return V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!"; } }
         public static string Wrong { get { return V6Setting.Language == "V" ? "Nhập thông tin chưa đúng!" : "Wrong information!"; } }
         public static string WrongData { get { return Text("WRONGDATA"); } }
+        public static string Zoom { get { return V6Setting.Language == "V" ? "Phóng" : "Zoom"; } }
         public static string ZoomIn { get { return V6Setting.Language == "V" ? "Phóng" : "ZoomIn"; } }
         public static string ZoomOut { get { return V6Setting.Language == "V" ? "Thu" : "ZoomOut"; } }
 

@@ -664,6 +664,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.documentViewer1.RequestDocumentCreation = false;
             this.documentViewer1.Size = new System.Drawing.Size(662, 224);
             this.documentViewer1.TabIndex = 20;
+            this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
             // ReportRWWView2_DX

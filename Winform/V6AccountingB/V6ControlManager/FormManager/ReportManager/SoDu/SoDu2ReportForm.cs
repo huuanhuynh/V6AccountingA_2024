@@ -1330,6 +1330,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }

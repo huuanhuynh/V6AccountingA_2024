@@ -631,6 +631,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.documentViewer1.Size = new System.Drawing.Size(662, 224);
             this.documentViewer1.Status = "V6SOFT";
             this.documentViewer1.TabIndex = 19;
+            this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
             // ReportR_DX

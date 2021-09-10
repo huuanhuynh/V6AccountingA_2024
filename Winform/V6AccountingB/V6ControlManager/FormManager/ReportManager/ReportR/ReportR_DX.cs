@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -1391,9 +1392,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 x.PrintingSystem.ShowMarginsWarning = false;
                 x.DataSource = _ds;
                 SetAllReportParams(x);
+                documentViewer1.Zoom = DXreportManager.GetExtraReportZoom(documentViewer1, x, _albcConfig.EXTRA_INFOR_PRINTVCZOOM);
                 documentViewer1.DocumentSource = x;
                 x.CreateDocument();
-                documentViewer1.Zoom = 1f;
                 _repx0 = x;
             }
             catch (Exception ex)
@@ -1800,7 +1801,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
-                    _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }
@@ -2217,6 +2218,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void dataGridView1_FilterChange()
         {
             V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+        }
+
+        private void documentViewer1_ZoomChanged(object sender, EventArgs e)
+        {
+            V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
         
     }

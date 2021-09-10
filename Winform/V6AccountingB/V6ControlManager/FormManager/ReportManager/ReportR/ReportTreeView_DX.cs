@@ -30,25 +30,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
     public partial class ReportTreeView_DX : V6FormControl
     {
         #region Biến toàn cục
-        private XtraReport _repx0;
+        public XtraReport _repx0;
 
-        private string _reportProcedure;
-        private string _program, _Ma_File, _reportTitle, _reportTitle2;
-        private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
+        public string _reportProcedure;
+        public string _program, _Ma_File, _reportTitle, _reportTitle2;
+        public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
         /// Advance filter get albc, nhận từ filter cha để lọc.
         /// </summary>
         public string Advance = "";
 
-        private DataTable MauInData;
-        private DataView MauInView;
+        public DataTable MauInData;
+        public DataView MauInView;
+        public AlbcConfig _albcConfig;
 
         /// <summary>
         /// Danh sách event_method của Form_program.
         /// </summary>
-        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        private Type Form_program;
-        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        public Type Form_program;
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         private object InvokeFormEvent(string eventName)
         {
@@ -1377,6 +1378,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 x.PrintingSystem.ShowMarginsWarning = false;
                 x.DataSource = _ds;
                 SetAllReportParams(x);
+                documentViewer1.Zoom = DXreportManager.GetExtraReportZoom(documentViewer1, x, _albcConfig.EXTRA_INFOR_PRINTVCZOOM);
                 documentViewer1.DocumentSource = x;
                 x.CreateDocument();
                 documentViewer1.Zoom = 1f;
@@ -1740,6 +1742,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
+            if (MauInSelectedRow == null) return;
+
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
+            //getsum
 
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
@@ -1763,6 +1769,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }
@@ -2116,6 +2123,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
+        }
+
+        private void documentViewer1_ZoomChanged(object sender, EventArgs e)
+        {
+            V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
     }
 }

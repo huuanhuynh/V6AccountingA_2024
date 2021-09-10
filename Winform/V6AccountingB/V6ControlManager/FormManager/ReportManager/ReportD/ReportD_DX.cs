@@ -48,6 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private DataTable MauInData;
         private DataView MauInView;
+        public AlbcConfig _albcConfig;
         private DataSet _ds, _new_ds;
         private DataTable _tbl1, _tbl2, _tblv;
         private DataTable[] _tbls;
@@ -85,14 +86,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
-                var AlbcData = V6BusinessHelper.Select(V6TableName.Alreport, AlbcKeys, "*").Data;
-                if (AlbcData.Rows.Count == 0) return;
+                _albcConfig = ConfigManager.GetAlbcConfig(MAU, LAN, _Ma_File, ReportFile);
+                if (_albcConfig.NoInfo) return;
+                if (_albcConfig.MMETHOD.Trim() == "") return;
 
-                var dataRow = AlbcData.Rows[0];
-                var xml = dataRow["MMETHOD"].ToString().Trim();
-                if (xml == "") return;
                 DataSet ds = new DataSet();
-                ds.ReadXml(new StringReader(xml));
+                ds.ReadXml(new StringReader(_albcConfig.MMETHOD)); 
                 if (ds.Tables.Count <= 0) return;
 
                 var data = ds.Tables[0];
@@ -1374,6 +1373,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 _new_ds.Tables.Add(_tbl2.Copy());
                 x.DataSource = _new_ds;
                 SetAllReportParams(x);
+                documentViewer1.Zoom = DXreportManager.GetExtraReportZoom(documentViewer1, x, _albcConfig.EXTRA_INFOR_PRINTVCZOOM);
                 documentViewer1.DocumentSource = x;
                 x.CreateDocument();
                 documentViewer1.Zoom = 1f;
@@ -1869,6 +1869,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
 
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary()); 
             GetSumCondition();
 
             txtReportTitle.Text = ReportTitle;
@@ -1893,6 +1894,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }
@@ -2297,6 +2299,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+        }
+
+        private void documentViewer1_ZoomChanged(object sender, EventArgs e)
+        {
+            V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
     }
 }

@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
 using DevExpress.XtraReports.Parameters;
 using DevExpress.XtraReports.UI;
 using V6AccountingBusiness;
@@ -22,7 +21,6 @@ using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
-using V6RptEditor;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -45,6 +43,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private DataTable MauInData;
         private DataView MauInView;
+        public AlbcConfig _albcConfig;
         private DataSet _ds;
         private DataTable _tbl1, _tbl2, _tbl3;
         private DataView _tbl2View;
@@ -82,16 +81,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys.Add("MA_BC", _program);
-                var AlreportData = V6BusinessHelper.Select(V6TableName.Alreport, keys, "*").Data;
-                if (AlreportData.Rows.Count == 0) return;
+                _albcConfig = ConfigManager.GetAlbcConfig(MAU, LAN, _Ma_File, ReportFile);
+                if (_albcConfig.NoInfo) return;
+                if (_albcConfig.MMETHOD.Trim() == "") return;
 
-                var dataRow = AlreportData.Rows[0];
-                var xml = dataRow["MMETHOD"].ToString().Trim();
-                if (xml == "") return;
                 DataSet ds = new DataSet();
-                ds.ReadXml(new StringReader(xml));
+                ds.ReadXml(new StringReader(_albcConfig.MMETHOD));
                 if (ds.Tables.Count <= 0) return;
 
                 var data = ds.Tables[0];
@@ -233,8 +228,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
-            if (MauInSelectedRow == null) return;
-            _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
+            if (_albcConfig.NoInfo) return;
+            _extraInfor = _albcConfig.EXTRA_INFOR;
         }
 
         #endregion EXTRA_INFOR
@@ -709,14 +704,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                gridViewSummary1.NoSumColumns = Report_GRDT_V1;
-                if (MauInSelectedRow != null)
+                gridViewSummary1.NoSumColumns = _albcConfig.GRDT_V1;
+                if (_albcConfig.HaveInfo)
                 {
                     gridViewSummary1.SumCondition = new Condition()
                     {
-                        FIELD = MauInSelectedRow["FIELD_S"].ToString().Trim(),
-                        OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
-                        VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
+                        FIELD = _albcConfig.FIELD_S,
+                        OPER = _albcConfig.OPER_S,
+                        VALUE = _albcConfig.VALUE_S
                     };
                     if (!string.IsNullOrEmpty(gridViewSummary1.SumConditionString)) toolTipV6FormControl.SetToolTip(gridViewSummary1, gridViewSummary1.SumConditionString);
                 }
@@ -851,6 +846,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (FilterControl.RptExtraParameters != null)
             {
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
+            }
+            var rptExtraParametersD = FilterControl.GetRptParametersD(_albcConfig.EXTRA_PARA, LAN);
+            if (rptExtraParametersD != null)
+            {
+                ReportDocumentParameters.AddRange(rptExtraParametersD, true);
             }
 
             string errors = "";
@@ -1078,9 +1078,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1,
                     V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
                 if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
-                if (MauInSelectedRow != null)
+                if (_albcConfig.HaveInfo)
                 {
-                    int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
+                    int frozen = ObjectAndString.ObjectToInt(_albcConfig.FROZENV);
                     dataGridView1.SetFrozen(frozen);
                 }
             }
@@ -1237,6 +1237,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 x.PrintingSystem.ShowMarginsWarning = false;
                 x.DataSource = _ds;
                 SetAllReportParams(x);
+                documentViewer1.Zoom = DXreportManager.GetExtraReportZoom(documentViewer1, x, _albcConfig.EXTRA_INFOR_PRINTVCZOOM);
                 documentViewer1.DocumentSource = x;
                 x.CreateDocument();
                 documentViewer1.Zoom = 1f;
@@ -1873,6 +1874,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void dataGridView1_FilterChange()
         {
             V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+        }
+
+        private void documentViewer1_ZoomChanged(object sender, EventArgs e)
+        {
+            V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
 
     }
