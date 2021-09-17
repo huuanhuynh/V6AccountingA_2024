@@ -916,6 +916,7 @@
             // btnValidChars
             // 
             this.btnValidChars.Image = ((System.Drawing.Image)(resources.GetObject("btnValidChars.Image")));
+            this.btnValidChars.KeyWordList = null;
             this.btnValidChars.Location = new System.Drawing.Point(763, 173);
             this.btnValidChars.Name = "btnValidChars";
             this.btnValidChars.ReferenceControl = this.txtValidChars;
@@ -946,6 +947,7 @@
             // dicEditButton1
             // 
             this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.KeyWordList = null;
             this.dicEditButton1.Location = new System.Drawing.Point(763, 148);
             this.dicEditButton1.Name = "dicEditButton1";
             this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
@@ -1966,7 +1968,7 @@
             this.TXTMA_DM.LeaveColor = System.Drawing.Color.White;
             this.TXTMA_DM.Location = new System.Drawing.Point(119, 17);
             this.TXTMA_DM.Name = "TXTMA_DM";
-            this.TXTMA_DM.Size = new System.Drawing.Size(150, 23);
+            this.TXTMA_DM.Size = new System.Drawing.Size(215, 23);
             this.TXTMA_DM.TabIndex = 1;
             // 
             // txtTable_name
@@ -1984,7 +1986,7 @@
             this.txtTable_name.Location = new System.Drawing.Point(119, 69);
             this.txtTable_name.Margin = new System.Windows.Forms.Padding(4);
             this.txtTable_name.Name = "txtTable_name";
-            this.txtTable_name.Size = new System.Drawing.Size(150, 23);
+            this.txtTable_name.Size = new System.Drawing.Size(215, 23);
             this.txtTable_name.TabIndex = 5;
             // 
             // TXTTEN_DM
@@ -2050,10 +2052,10 @@
             this.TxtForder.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtForder.HoverColor = System.Drawing.Color.Yellow;
             this.TxtForder.LeaveColor = System.Drawing.Color.White;
-            this.TxtForder.Location = new System.Drawing.Point(389, 18);
+            this.TxtForder.Location = new System.Drawing.Point(477, 18);
             this.TxtForder.MaxLength = 2;
             this.TxtForder.Name = "TxtForder";
-            this.TxtForder.Size = new System.Drawing.Size(126, 22);
+            this.TxtForder.Size = new System.Drawing.Size(38, 22);
             this.TxtForder.TabIndex = 7;
             this.TxtForder.Text = "0";
             this.TxtForder.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -2067,7 +2069,7 @@
             // 
             this.label6.AccessibleDescription = "ADDEDITL00449";
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(283, 21);
+            this.label6.Location = new System.Drawing.Point(349, 21);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 17);

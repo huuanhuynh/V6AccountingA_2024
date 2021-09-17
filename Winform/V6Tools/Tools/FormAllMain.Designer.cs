@@ -121,11 +121,11 @@
             // 
             // btnFilterTextFiles
             // 
-            this.btnFilterTextFiles.Location = new System.Drawing.Point(12, 186);
+            this.btnFilterTextFiles.Location = new System.Drawing.Point(468, 41);
             this.btnFilterTextFiles.Name = "btnFilterTextFiles";
-            this.btnFilterTextFiles.Size = new System.Drawing.Size(121, 23);
+            this.btnFilterTextFiles.Size = new System.Drawing.Size(206, 23);
             this.btnFilterTextFiles.TabIndex = 0;
-            this.btnFilterTextFiles.Text = "Lọc file theo nội dung";
+            this.btnFilterTextFiles.Text = "Lọc file theo nội dung + REPX V=>E";
             this.btnFilterTextFiles.UseVisualStyleBackColor = true;
             this.btnFilterTextFiles.Click += new System.EventHandler(this.btnFilterTextFiles_Click);
             // 

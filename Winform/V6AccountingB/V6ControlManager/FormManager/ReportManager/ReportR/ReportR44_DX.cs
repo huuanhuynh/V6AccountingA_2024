@@ -1426,8 +1426,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
-                //dataGridView2.DataSource = null;
-                //FilterDetail();
 
                 FormatGridView();
                 gridViewTopFilter1.MadeFilterItems();
@@ -2079,11 +2077,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void panel1_Leave(object sender, EventArgs e)
         {
-            //if (FilterControl.CancelFocusBtnNhan)
-            //{
-            //    FilterControl.CancelFocusBtnNhan = false;
-            //    return;
-            //}
             //btnNhan.Focus();
         }
 

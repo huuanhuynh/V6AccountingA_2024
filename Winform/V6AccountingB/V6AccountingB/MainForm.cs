@@ -434,6 +434,10 @@ namespace V6AccountingB
                     V6ControlFormHelper.ShowMainMenu();
                     _control_m = true;
                 }
+                else if (keyData == (Keys.Control | Keys.Alt | Keys.C))
+                {
+                    caculator_Click(caculator, new EventArgs());
+                }
                 else// if ((keyData & Keys.Control) != 0 || (keyData & Keys.Alt) != 0)
                 {
                     if (currentControl != null && currentControl is Menu2Control)
@@ -705,18 +709,26 @@ namespace V6AccountingB
         {
             try
             {
-                if (cal == null || cal.IsDisposed)
+                bool shift = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (shift)
                 {
-                    cal = new CalculatorForm();
-                }
-
-                if (cal.Visible)
-                {
-                    cal.Hide();
+                    new ExpressionsCalculatorForm().Show(this);
                 }
                 else
                 {
-                    cal.Show(this);
+                    if (cal == null || cal.IsDisposed)
+                    {
+                        cal = new CalculatorForm();
+                    }
+
+                    if (cal.Visible)
+                    {
+                        cal.Hide();
+                    }
+                    else
+                    {
+                        cal.Show(this);
+                    }
                 }
             }
             catch (Exception ex)
@@ -724,7 +736,7 @@ namespace V6AccountingB
                 this.ShowErrorMessage(GetType() + ".ShowCalculator:" + ex.Message, ex.Source);
             }
         }
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void caculator_Click(object sender, EventArgs e)
         {
             ShowCalculator();
         }

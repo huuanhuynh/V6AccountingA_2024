@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using System.Windows.Forms;
+using V6Controls.Controls;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.Editor
 {
@@ -14,12 +16,16 @@ namespace V6Controls.Forms.Editor
         }
 
         private DataTable _dataSource;
+        private DicEditButton _button;
 
-        public DicEditForm(IDictionary<string, string> sourceDic)
+        public DicEditForm(IDictionary<string, string> sourceDic, DicEditButton button)
         {
             InitializeComponent();
             CreateDataSource();
             AddList(sourceDic);
+            _button = button;
+            cboKeyWord.Items.Clear();
+            if (button.KeyWordList != null) cboKeyWord.Items.AddRange(button.KeyWordList);
             Ready();
         }
 
@@ -64,8 +70,23 @@ namespace V6Controls.Forms.Editor
             try
             {
                 var newRow = _dataSource.NewRow();
-                newRow["Name"] = txtNewKey.Text != "" ? txtNewKey.Text : "Name";
-                newRow["Value"] = "Value";
+                string newKey = "NAME";
+                string value = "Value";
+                if (txtNewKey.Text != "")
+                {
+                    if (txtNewKey.Text.Contains(_button.Separator_Value))
+                    {
+                        int i = txtNewKey.Text.IndexOf(_button.Separator_Value, StringComparison.Ordinal);
+                        newKey = txtNewKey.Text.Substring(0, i);
+                        value = txtNewKey.Text.Substring(i+1);
+                    }
+                    else
+                    {
+                        newKey = txtNewKey.Text;
+                    }
+                }
+                newRow["Name"] = newKey;
+                newRow["Value"] = value;
                 _dataSource.Rows.Add(newRow);
             }
             catch (Exception ex)
@@ -121,6 +142,7 @@ namespace V6Controls.Forms.Editor
             //if (_txtFormats != null) _txtFormats.Text = GetFormatsString();
             //if (_txtTextV != null) _txtTextV.Text = GetCaptionsStringV();
             //if (_txtTextE != null) _txtTextE.Text = GetCaptionsStringE();
+            txtValue_Leave(txtValue, e);
             this.DialogResult = DialogResult.OK;
         }
 
@@ -232,6 +254,16 @@ namespace V6Controls.Forms.Editor
         private void btnXoa_Click(object sender, EventArgs e)
         {
             Xoa();
+        }
+
+        private void cboKeyWord_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var text = cboKeyWord.SelectedItem.ToString();
+            if (!string.IsNullOrEmpty(text))
+            {
+                txtNewKey.Text = text;
+                btnThem.PerformClick();
+            }
         }
     }
 

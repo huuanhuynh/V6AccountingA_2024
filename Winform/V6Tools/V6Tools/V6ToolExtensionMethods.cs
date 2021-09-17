@@ -32,7 +32,7 @@ namespace V6Tools
         }
 
         /// <summary>
-        /// Cắt chuỗi lấy phần bên trái.
+        /// Cắt chuỗi lấy phần bên trái. Nếu không đủ trả về đúng chuỗi đó.
         /// </summary>
         /// <param name="str">Chuỗi nguồn</param>
         /// <param name="length">Độ dài cần lấy</param>
@@ -42,7 +42,17 @@ namespace V6Tools
             return length >= str.Length ? str : str.Substring(0, length);
         }
         /// <summary>
-        /// Cắt chuỗi lấy phần bên phải
+        /// Lấy phần chuỗi ở giữa. Nếu không có trả về rỗng.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string Mid(this string str, int start, int length)
+        {
+            return length + start >= str.Length ? str.Substring(start) : str.Substring(start, length);
+        }
+        /// <summary>
+        /// Cắt chuỗi lấy phần bên phải. Nếu không đủ trả về đúng chuỗi đó.
         /// </summary>
         /// <param name="str">Chuỗi nguồn</param>
         /// <param name="length">Độ dài cần lấy</param>

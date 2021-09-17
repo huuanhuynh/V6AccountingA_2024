@@ -57,7 +57,7 @@ namespace V6AccountingB
             this.stickNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picLOGO = new System.Windows.Forms.PictureBox();
             this.lblDVCS = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.caculator = new System.Windows.Forms.PictureBox();
             this.lblHotLine = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblComment = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@ namespace V6AccountingB
             this.panelLogin.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.caculator)).BeginInit();
             this.panelMenuShow.SuspendLayout();
             this.panelView.SuspendLayout();
             this.SuspendLayout();
@@ -442,7 +442,7 @@ namespace V6AccountingB
             this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
             this.panelLogin.Controls.Add(this.picLOGO);
             this.panelLogin.Controls.Add(this.lblDVCS);
-            this.panelLogin.Controls.Add(this.pictureBox1);
+            this.panelLogin.Controls.Add(this.caculator);
             this.panelLogin.Controls.Add(this.lblHotLine);
             this.panelLogin.Controls.Add(this.btnExit);
             this.panelLogin.Controls.Add(this.lblComment);
@@ -499,16 +499,17 @@ namespace V6AccountingB
             this.lblDVCS.Text = "DVCS";
             this.lblDVCS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDVCS_MouseClick);
             // 
-            // pictureBox1
+            // caculator
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Image = global::V6AccountingB.Properties.Resources.Calculator;
-            this.pictureBox1.Location = new System.Drawing.Point(101, 149);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.caculator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.caculator.Image = global::V6AccountingB.Properties.Resources.Calculator;
+            this.caculator.Location = new System.Drawing.Point(101, 149);
+            this.caculator.Name = "caculator";
+            this.caculator.Size = new System.Drawing.Size(32, 32);
+            this.caculator.TabIndex = 14;
+            this.caculator.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.caculator, "Máy tính đơn giản, Shift+Click để tính biểu thức.");
+            this.caculator.Click += new System.EventHandler(this.caculator_Click);
             // 
             // lblHotLine
             // 
@@ -717,7 +718,7 @@ namespace V6AccountingB
             this.panelLogin.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.caculator)).EndInit();
             this.panelMenuShow.ResumeLayout(false);
             this.panelView.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -748,7 +749,7 @@ namespace V6AccountingB
         private System.Windows.Forms.Label lblCompanyName;
         private System.Windows.Forms.Label lblHotLine;
         private QuickMenu quickMenu1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox caculator;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem changeDVCSToolStripMenuItem;
         private System.Windows.Forms.Label lblDVCS;

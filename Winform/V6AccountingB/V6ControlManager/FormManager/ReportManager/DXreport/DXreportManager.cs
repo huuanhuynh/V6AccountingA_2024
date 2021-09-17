@@ -100,6 +100,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
 
 
             string[] param_font = V6Options.GetValue("M_RFONTNAME").Split(';');
+            
             string font_name = param_font[0];	
             float font_size =	repx.Font.Size;
             FontStyle font_style = repx.Font.Style;
@@ -129,7 +130,92 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
                 SetFontR(x, m_rfontname, m_rtfont, m_rsfont);
             }
 
+            ApplyOption_M_COLOR_UPPER_RP(repx);
+
             return repx;
+        }
+
+        private static void ApplyOption_M_COLOR_UPPER_RP(XtraReport repx)
+        {
+            // Option tô nền XÁM cho tiêu đề và in HOA.
+            string M_COLOR_UPPER_RP = V6Options.GetValueNull("M_COLOR_UPPER_RP"); // 11
+            string color_header = M_COLOR_UPPER_RP.Left(1);
+            string upper_header = M_COLOR_UPPER_RP.Mid(1,1);
+            foreach (Band band in repx.Bands)
+            {
+                if (string.IsNullOrEmpty(M_COLOR_UPPER_RP)) break;
+
+                if (band.Name.ToUpper().Contains("PAGEHEADER"))
+                {
+                    ApplyBand_COLOR_UPPER(band, color_header, upper_header);
+
+                    foreach (SubBand band1 in band.SubBands)
+                    {
+                        ApplyBand_COLOR_UPPER(band1, color_header, upper_header);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gán màu nền và IN HOA cho tất cả XRControl nếu tùy chọn = "1".
+        /// </summary>
+        /// <param name="band"></param>
+        /// <param name="color_header">1: tô nền màu xám, 0: trong suốt, khác: như thiết kế.</param>
+        /// <param name="upper_header"></param>
+        private static void ApplyBand_COLOR_UPPER(Band band, string color_header, string upper_header)
+        {
+            if (band.IsTag("noset")) return;
+
+            if (color_header == "1")
+            {
+                Color b_color = Color.FromArgb(225, 225, 225);
+                foreach (XRControl control in band.Controls)
+                {
+                    if (control.IsTag("noset")) continue;
+                    control.BackColor = b_color;
+                }
+            }
+            else if (color_header == "0")
+            {
+                Color b_color = Color.Transparent;
+                foreach (XRControl control in band.Controls)
+                {
+                    if (control.IsTag("noset")) continue;
+                    control.BackColor = b_color;
+                }
+            }
+            else
+            {
+                // do nothing.
+            }
+
+            if (upper_header == "1")
+            {
+                foreach (XRControl control in band.Controls)
+                {
+                    if (control.IsTag("noset")) continue;
+                    
+                    control.BeforePrint += (sender, e) =>
+                    {
+                        XRControl x = sender as XRControl;
+                        if (x != null) x.Text = x.Text.ToUpper();
+                    };
+                }
+            }
+        }
+
+
+        private static bool IsTag(this XRControl control, string tag)
+        {
+            var tagString = string.Format(";{0};", control.Tag ?? "").ToLower();
+            var isTag = tagString.Contains(";" + tag.ToLower() + ";");
+            return isTag;
+        }
+
+        private static bool NoTag(this XRControl control, string tag)
+        {
+            return !control.IsTag(tag);
         }
 
         private static void SetFontR(XRControl c, Font m_rfontname, Font m_rtfont, Font m_rsfont)

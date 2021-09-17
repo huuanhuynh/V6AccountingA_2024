@@ -46,11 +46,14 @@
             this.txtName = new V6Controls.V6ColorTextBox();
             this.btnXoa = new System.Windows.Forms.Button();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
+            this.cboKeyWord = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNewKey
             // 
+            this.txtNewKey.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNewKey.BackColor = System.Drawing.SystemColors.Window;
             this.txtNewKey.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNewKey.EnterColor = System.Drawing.Color.PaleGreen;
@@ -70,6 +73,7 @@
             // 
             // btnTimTiep
             // 
+            this.btnTimTiep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimTiep.Location = new System.Drawing.Point(176, 10);
             this.btnTimTiep.Name = "btnTimTiep";
             this.btnTimTiep.Size = new System.Drawing.Size(75, 23);
@@ -80,6 +84,7 @@
             // 
             // btnTimTatCa
             // 
+            this.btnTimTatCa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimTatCa.Location = new System.Drawing.Point(257, 10);
             this.btnTimTatCa.Name = "btnTimTatCa";
             this.btnTimTatCa.Size = new System.Drawing.Size(75, 23);
@@ -160,12 +165,13 @@
             this.txtValue.Multiline = true;
             this.txtValue.Name = "txtValue";
             this.txtValue.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtValue.Size = new System.Drawing.Size(453, 384);
+            this.txtValue.Size = new System.Drawing.Size(483, 384);
             this.txtValue.TabIndex = 9;
             this.txtValue.Leave += new System.EventHandler(this.txtValue_Leave);
             // 
             // btnThem
             // 
+            this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThem.Location = new System.Drawing.Point(338, 10);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
@@ -176,6 +182,8 @@
             // 
             // txtName
             // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.BackColor = System.Drawing.SystemColors.Window;
             this.txtName.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtName.EnterColor = System.Drawing.Color.PaleGreen;
@@ -186,12 +194,13 @@
             this.txtName.LeaveColor = System.Drawing.Color.White;
             this.txtName.Location = new System.Drawing.Point(298, 38);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(453, 29);
+            this.txtName.Size = new System.Drawing.Size(483, 29);
             this.txtName.TabIndex = 8;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // btnXoa
             // 
+            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoa.Location = new System.Drawing.Point(419, 10);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
@@ -226,15 +235,47 @@
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Size = new System.Drawing.Size(236, 412);
+            this.dataGridView1.Size = new System.Drawing.Size(236, 420);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // cboKeyWord
+            // 
+            this.cboKeyWord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboKeyWord.DropDownHeight = 200;
+            this.cboKeyWord.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboKeyWord.DropDownWidth = 400;
+            this.cboKeyWord.FormattingEnabled = true;
+            this.cboKeyWord.IntegralHeight = false;
+            this.cboKeyWord.Items.AddRange(new object[] {
+            "Button",
+            "TextBox",
+            "RichTextBox",
+            "LookupTextBox",
+            "V6LookupProc",
+            "VvarTextBox",
+            "CheckBox",
+            "DateTime",
+            "DateTimeFull",
+            "DateTimeColor",
+            "MauBC",
+            "MAUALL",
+            "DSNS",
+            "FileButton",
+            "NumberMonth",
+            "NumberYear"});
+            this.cboKeyWord.Location = new System.Drawing.Point(500, 10);
+            this.cboKeyWord.Name = "cboKeyWord";
+            this.cboKeyWord.Size = new System.Drawing.Size(251, 21);
+            this.cboKeyWord.TabIndex = 12;
+            this.cboKeyWord.SelectedIndexChanged += new System.EventHandler(this.cboKeyWord_SelectedIndexChanged);
             // 
             // DicEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 518);
+            this.Controls.Add(this.cboKeyWord);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.btnMove2Down);
@@ -249,7 +290,6 @@
             this.Controls.Add(this.txtNewKey);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DicEditForm";
             this.ShowInTaskbar = false;
@@ -280,5 +320,6 @@
         private V6ColorTextBox txtName;
         private System.Windows.Forms.Button btnXoa;
         private V6ColorDataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cboKeyWord;
     }
 }

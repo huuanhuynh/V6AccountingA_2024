@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFilterTextFiles));
-            this.btnSaveFile = new System.Windows.Forms.Button();
+            this.btnFilter = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtFolder = new System.Windows.Forms.TextBox();
             this.txt11 = new System.Windows.Forms.TextBox();
@@ -52,6 +52,8 @@
             this.chkx213 = new System.Windows.Forms.CheckBox();
             this.chkSubFolder = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnReplace = new System.Windows.Forms.Button();
+            this.btnRepxVtoE_All = new System.Windows.Forms.Button();
             this.lblFilePath = new System.Windows.Forms.Label();
             this.richFoundInfos = new System.Windows.Forms.RichTextBox();
             this.txtAContains = new System.Windows.Forms.TextBox();
@@ -70,17 +72,22 @@
             this.txtBNoContains2 = new System.Windows.Forms.TextBox();
             this.txtANoContains3 = new System.Windows.Forms.TextBox();
             this.txtBNoContains3 = new System.Windows.Forms.TextBox();
+            this.txtReplace = new System.Windows.Forms.TextBox();
+            this.txtReplaceBy = new System.Windows.Forms.TextBox();
+            this.lbl100Percent = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnRepxVtoE_1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnSaveFile
+            // btnFilter
             // 
-            this.btnSaveFile.Location = new System.Drawing.Point(216, 197);
-            this.btnSaveFile.Name = "btnSaveFile";
-            this.btnSaveFile.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveFile.TabIndex = 15;
-            this.btnSaveFile.Text = "Lọc";
-            this.btnSaveFile.UseVisualStyleBackColor = true;
-            this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
+            this.btnFilter.Location = new System.Drawing.Point(216, 197);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(75, 23);
+            this.btnFilter.TabIndex = 15;
+            this.btnFilter.Text = "Lọc";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // label8
             // 
@@ -156,7 +163,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 30);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(195, 680);
+            this.listBox1.Size = new System.Drawing.Size(195, 615);
             this.listBox1.TabIndex = 5;
             // 
             // txt12
@@ -302,6 +309,29 @@
             this.chkSubFolder.TabIndex = 14;
             this.chkSubFolder.Text = "sub folder";
             this.chkSubFolder.UseVisualStyleBackColor = true;
+            // 
+            // btnReplace
+            // 
+            this.btnReplace.Location = new System.Drawing.Point(774, 201);
+            this.btnReplace.Name = "btnReplace";
+            this.btnReplace.Size = new System.Drawing.Size(75, 23);
+            this.btnReplace.TabIndex = 18;
+            this.btnReplace.Text = "Thay thế";
+            this.toolTip1.SetToolTip(this.btnReplace, "Thay thế  các file đã lọc.");
+            this.btnReplace.UseVisualStyleBackColor = true;
+            this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
+            // 
+            // btnRepxVtoE_All
+            // 
+            this.btnRepxVtoE_All.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRepxVtoE_All.Location = new System.Drawing.Point(12, 691);
+            this.btnRepxVtoE_All.Name = "btnRepxVtoE_All";
+            this.btnRepxVtoE_All.Size = new System.Drawing.Size(195, 23);
+            this.btnRepxVtoE_All.TabIndex = 21;
+            this.btnRepxVtoE_All.Text = "REPX V -> E (All)";
+            this.toolTip1.SetToolTip(this.btnRepxVtoE_All, "Thay thế  các file đã lọc.");
+            this.btnRepxVtoE_All.UseVisualStyleBackColor = true;
+            this.btnRepxVtoE_All.Click += new System.EventHandler(this.btnRepxVtoE_All_Click);
             // 
             // lblFilePath
             // 
@@ -485,11 +515,62 @@
             this.txtBNoContains3.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
             this.txtBNoContains3.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
+            // txtReplace
+            // 
+            this.txtReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReplace.Location = new System.Drawing.Point(449, 203);
+            this.txtReplace.Name = "txtReplace";
+            this.txtReplace.Size = new System.Drawing.Size(324, 20);
+            this.txtReplace.TabIndex = 19;
+            // 
+            // txtReplaceBy
+            // 
+            this.txtReplaceBy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReplaceBy.Location = new System.Drawing.Point(850, 203);
+            this.txtReplaceBy.Name = "txtReplaceBy";
+            this.txtReplaceBy.Size = new System.Drawing.Size(324, 20);
+            this.txtReplaceBy.TabIndex = 20;
+            // 
+            // lbl100Percent
+            // 
+            this.lbl100Percent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl100Percent.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl100Percent.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lbl100Percent.Location = new System.Drawing.Point(12, 646);
+            this.lbl100Percent.Name = "lbl100Percent";
+            this.lbl100Percent.Size = new System.Drawing.Size(195, 13);
+            this.lbl100Percent.TabIndex = 22;
+            this.lbl100Percent.Text = "100%";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // btnRepxVtoE_1
+            // 
+            this.btnRepxVtoE_1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRepxVtoE_1.Location = new System.Drawing.Point(12, 662);
+            this.btnRepxVtoE_1.Name = "btnRepxVtoE_1";
+            this.btnRepxVtoE_1.Size = new System.Drawing.Size(195, 23);
+            this.btnRepxVtoE_1.TabIndex = 21;
+            this.btnRepxVtoE_1.Text = "REPX V -> E (1)";
+            this.btnRepxVtoE_1.UseVisualStyleBackColor = true;
+            this.btnRepxVtoE_1.Click += new System.EventHandler(this.btnRepxVtoE_1_Click);
+            // 
             // FormFilterTextFiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1377, 717);
+            this.Controls.Add(this.lbl100Percent);
+            this.Controls.Add(this.btnRepxVtoE_1);
+            this.Controls.Add(this.btnRepxVtoE_All);
+            this.Controls.Add(this.txtReplaceBy);
+            this.Controls.Add(this.txtReplace);
+            this.Controls.Add(this.btnReplace);
             this.Controls.Add(this.chkx213);
             this.Controls.Add(this.chkx212);
             this.Controls.Add(this.chkx211);
@@ -508,7 +589,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFolder);
-            this.Controls.Add(this.btnSaveFile);
+            this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.txt03);
             this.Controls.Add(this.txt13);
             this.Controls.Add(this.txtBContains3);
@@ -542,7 +623,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnSaveFile;
+        private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtFolder;
         private System.Windows.Forms.TextBox txt11;
@@ -582,5 +663,12 @@
         private System.Windows.Forms.TextBox txtBNoContains2;
         private System.Windows.Forms.TextBox txtANoContains3;
         private System.Windows.Forms.TextBox txtBNoContains3;
+        private System.Windows.Forms.Button btnReplace;
+        private System.Windows.Forms.TextBox txtReplace;
+        private System.Windows.Forms.TextBox txtReplaceBy;
+        private System.Windows.Forms.Button btnRepxVtoE_All;
+        private System.Windows.Forms.Label lbl100Percent;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnRepxVtoE_1;
     }
 }

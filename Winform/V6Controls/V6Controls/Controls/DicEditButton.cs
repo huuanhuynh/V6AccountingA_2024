@@ -16,6 +16,11 @@ namespace V6Controls.Controls
             InitializeComponent();
         }
 
+        [Browsable(true)]
+        [Category("V6")]
+        [Description("Các gợi ý về giá trị có thể thêm vào. Ví dụ: PRINTVCZOOM:1")]
+        public string[] KeyWordList { get; set; }
+
         /// <summary>
         /// Gán Control cần bám theo.
         /// </summary>
@@ -58,7 +63,7 @@ namespace V6Controls.Controls
         
         [Category("V6")]
         [DefaultValue(":")]
-        [Description("Ký tự phân cách các phần tử.")]
+        [Description("Ký tự phân cách giữa từ KHÓA và Giá_trị.")]
         public string Separator_Value
         {
             get { return _valueSeparator; }
@@ -153,7 +158,7 @@ namespace V6Controls.Controls
             try
             {
                 var source = ObjectAndString.StringToStringDictionary(ReferenceControl.Text, Separator_Item[0], Separator_Value[0]);
-                DicEditForm form = new DicEditForm(source);
+                DicEditForm form = new DicEditForm(source, this);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     ReferenceControl.Text = form.GetString(Separator_Item, Separator_Value);
@@ -165,6 +170,6 @@ namespace V6Controls.Controls
             }
         }
 
-
+        
     }
 }

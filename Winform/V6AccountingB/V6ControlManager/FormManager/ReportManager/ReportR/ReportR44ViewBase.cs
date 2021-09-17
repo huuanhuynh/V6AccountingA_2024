@@ -882,9 +882,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     btnThemMauBC.Enabled = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".SetFormReportFilter", ex, ProductName);
             }
         }
 
@@ -897,9 +897,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 string title = row["title"].ToString();
                 txtReportTitle.Text = title;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".GetFormReportTitle", ex, ProductName);
             }
         }
 
@@ -939,7 +939,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".ReportError", ex);
             }
         }
        
@@ -958,7 +958,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowWarningMessage("GenerateProcedureParameters: " + ex.Message);
+                this.ShowErrorException("GenerateProcedureParameters", ex);
                 return false;
             }
         }
@@ -1226,11 +1226,20 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 btnNhan.Image = btnNhanImage;
                 ii = 0;
 
-                FilterControl.LoadDataFinish(_ds);
-                All_Objects["_ds"] = _ds;
-                InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
-                ViewFooter();
-                ShowReport();
+                try
+                {
+                    FilterControl.LoadDataFinish(_ds);
+                    All_Objects["_ds"] = _ds;
+                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
+                    ViewFooter();
+                    ShowReport();
+                }
+                catch (Exception ex)
+                {
+                    timerViewReport.Stop();
+                    _executesuccess = false;
+                    this.ShowErrorException(GetType() + ".TimerView: ", ex);
+                }
             }
             else if (_executing)
             {
@@ -1686,7 +1695,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyXemChiTiet " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyXemChiTiet ", ex);
             }
         }
 
@@ -1700,7 +1709,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyVeDoThiF7: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyVeDoThiF7: ", ex);
             }
             SetStatus2Text();
         }
@@ -1738,7 +1747,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (e.KeyData == Keys.F5 && FilterControl.F5)
             {
-                if(dataGridView1.Focused) XuLyXemChiTietF5();
+                if (dataGridView1.Focused) XuLyXemChiTietF5();
             }
         }
 
@@ -1819,7 +1828,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
+                this.ShowErrorException(GetType() + ".btnSuaTTMauBC_Click: ", ex);
             }
             SetStatus2Text();
         }
@@ -1882,7 +1891,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ThemMauBC_Click: " + ex.Message);
+                this.ShowErrorException(GetType() + ".ThemMauBC_Click: ", ex);
             }
             SetStatus2Text();
         }
@@ -1900,10 +1909,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
+                this.ShowErrorException(GetType() + ".SuaMau_Click: ", ex);
             }
         }
-        
+
         private void btnSuaLine_Click(object sender, EventArgs e)
         {
             if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK)
@@ -1985,7 +1994,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ExportFail\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".ExportFail", ex);
             }
         }
 
@@ -2044,7 +2053,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                     catch (Exception ex)
                     {
-                        this.ShowErrorMessage(GetType() + ".ExportFail: " + ex.Message);
+                        this.ShowErrorException(GetType() + ".ExportFail: ", ex);
                         return;
                     }
                     this.ShowInfoMessage(V6Text.ExportFinish);
@@ -2052,7 +2061,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Error!\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".Error!", ex);
             }
         }
 

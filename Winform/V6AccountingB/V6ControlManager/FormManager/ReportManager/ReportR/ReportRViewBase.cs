@@ -287,6 +287,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
         }
 
+        /// <summary>
+        /// Zoom mặc định cho crystalreport khi in chứng từ.
+        /// <para>Crystal: 1 PageWidth, 2 AllPage, >=50 is %</para>
+        /// <para>Xtra: 1 = PageWidth, 2 AllPage, >=50 is this %</para>
+        /// </summary>
+        public int ExtraInfo_PrintVCzoom
+        {
+            get
+            {
+                int result = 100;
+                if (EXTRA_INFOR.ContainsKey("PRINTVCZOOM")) result = ObjectAndString.ObjectToInt(EXTRA_INFOR["PRINTVCZOOM"]);
+                return result;
+            }
+        }
+
         #endregion EXTRA_INFOR
 
         private string Extra_para
@@ -1420,7 +1435,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 crystalReportViewer1.ReportSource = rpDoc;
                 _rpDoc0 = rpDoc;
                 //crystalReportViewer1.Show();
-                crystalReportViewer1.Zoom(1);
+                crystalReportViewer1.Zoom(ExtraInfo_PrintVCzoom);
             }
             catch (Exception ex)
             {
@@ -2169,6 +2184,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
 
         }
-
+        
     }
 }

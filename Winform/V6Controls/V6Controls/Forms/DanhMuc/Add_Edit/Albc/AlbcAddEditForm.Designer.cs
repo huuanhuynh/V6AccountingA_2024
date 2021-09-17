@@ -1076,6 +1076,7 @@
             // dicEditButton2
             // 
             this.dicEditButton2.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton2.Image")));
+            this.dicEditButton2.KeyWordList = null;
             this.dicEditButton2.Location = new System.Drawing.Point(716, 290);
             this.dicEditButton2.Name = "dicEditButton2";
             this.dicEditButton2.ReferenceControl = this.v6ColorTextBox16;
@@ -1128,6 +1129,11 @@
             // dicEditButton1
             // 
             this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.KeyWordList = new string[] {
+        "ENTER2TAB:1",
+        "FOOTER:[rten_dau_ky]:DAU_KY:N2,[rten_cuoi_ky]:CUOI_KY:N2",
+        "EXPORT:Cấu hình tên xuất file.Value: NAME_Date(Column:Format)_abc",
+        "PRINTVCZOOM:1(width) or 2(all_page) or 100(%)"};
             this.dicEditButton1.Location = new System.Drawing.Point(719, 348);
             this.dicEditButton1.Name = "dicEditButton1";
             this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
