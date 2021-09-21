@@ -209,16 +209,18 @@ namespace Tools
         private string error = "";
         private string append_text = "";
 
-        private void RepxVtoE()
+        private void Repx_VtoE()
         {
             try
             {
+                parameterMappings = parameterMappings_V_to_E;
+                replaces = replaces_V_to_E;
                 foreach (object item in listBox1.Items)
                 {
                     var myFileInfo = item as MyFileInfo;
                     if (myFileInfo != null)
                     {
-                        RepxVtoE(myFileInfo);
+                        Repx_ParameterMapping_and_Replace(myFileInfo);
                         count++;
                         append_text += "\nHoàn thành " + count + ": " + myFileInfo.FullPath;
                     }
@@ -233,7 +235,32 @@ namespace Tools
             running = false;
         }
 
-        private void RepxVtoE(MyFileInfo myFileInfo)
+        private void Repx_FormatFix()
+        {
+            try
+            {
+                replaces = replaces_FormatFix;
+                foreach (object item in listBox1.Items)
+                {
+                    var myFileInfo = item as MyFileInfo;
+                    if (myFileInfo != null)
+                    {
+                        Repx_ParameterMapping_and_Replace(myFileInfo);
+                        count++;
+                        append_text += "\nHoàn thành " + count + ": " + myFileInfo.FullPath;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog(GetType() + ".Filter", ex, "");
+                MessageBox.Show(ex.Message);
+            }
+
+            running = false;
+        }
+
+        private void Repx_ParameterMapping_and_Replace(MyFileInfo myFileInfo)
         {
             try
             {
@@ -333,7 +360,10 @@ namespace Tools
             return item;
         }
 
-        private string[][] parameterMappings =
+        private string[][] parameterMappings = { };
+        private string[][] replaces = { };
+
+        private string[][] parameterMappings_V_to_E =
         {
             // COMPANY INFOR
             new[] {"DataTable2.M_TEN_TCTY", "M_TEN_TCTY2"},
@@ -361,14 +391,12 @@ namespace Tools
             new[] {"M_TEN_GD", "M_TEN_GD2"},
 
         };
-    
 
         /// <summary>
         /// Dữ liệu thay thế Repx V to E.
         /// </summary>
-        string[][] replaces =
+        string[][] replaces_V_to_E =
         {
-            //new[] {"Name=\"TopMargin\" HeightF=\"32\"", "Name=\"TopMargin\" HeightF=\"20\""},
             
             new[] {"Expression=\"'Tài khoản: ' + Trim([tk]) + ' - ' + [RTen_tk]\"", "Expression=\"'Account: ' + Trim([tk]) + ' - ' + [RTen_tk2]\""},
             new[] {"Expression=\"'Tài khoản: ' + Trim([RTK]) + ' - ' + [RTen_tk]\"", "Expression=\"'Account: ' + Trim([RTK]) + ' - ' + [RTen_tk2]\""},
@@ -451,6 +479,7 @@ namespace Tools
             // ============= REPORT FOOTER ==================
 
             new[] {"Format=\"Trang {0}/{1}\" TextAlignment", "Format=\"Page {0}/{1}\" TextAlignment"},
+            new[] {"Format=\"Trang {0}/{1}\" TextAlignment", "Format=\"Page {0}/{1}\" TextAlignment"},
 
 
             
@@ -475,6 +504,14 @@ namespace Tools
             new[] {"Text=\"- Ngày mở sổ: \"", "Text=\"- Opening date of book: \""},
             new[] {"Text=\"- Ngày mở sổ: \"", "Text=\"(Signature, full name)\""},
             
+        };
+
+        private string[][] replaces_FormatFix =
+        {
+            new[] {"ControlType=\"TopMarginBand\" Name=\"TopMargin\" HeightF=\"28\"", "ControlType=\"TopMarginBand\" Name=\"TopMargin\" HeightF=\"20\""},
+            new[] {"ControlType=\"TopMarginBand\" Name=\"TopMargin\" HeightF=\"32\"", "ControlType=\"TopMarginBand\" Name=\"TopMargin\" HeightF=\"20\""},
+            new[] {"ControlType=\"BottomMarginBand\" Name=\"BottomMargin\" HeightF=\"17\"", "ControlType=\"BottomMarginBand\" Name=\"BottomMargin\" HeightF=\"10\""},
+            new[] {"ControlType=\"BottomMarginBand\" Name=\"BottomMargin\" HeightF=\"27\"", "ControlType=\"BottomMarginBand\" Name=\"BottomMargin\" HeightF=\"10\""},
         };
 
         private bool Check(MyFileInfo myFileInfo)
@@ -680,13 +717,13 @@ namespace Tools
             {
                 richView.Clear();
                 richView.AppendText("\n ===== PARAMETERS MAPPING =====");
-                foreach (string[] replace in parameterMappings)
+                foreach (string[] replace in parameterMappings_V_to_E)
                 {
                     richView.AppendText(replace[0].PadRight(padLength < replace[0].Length ? 0 : padLength - replace[0].Length) + " => " + replace[1]);
                     richView.AppendText("\n");
                 }
                 richView.AppendText("\n ===== REPLACES MAPPING =====");
-                foreach (string[] replace in replaces)
+                foreach (string[] replace in replaces_V_to_E)
                 {
                     richView.AppendText(replace[0].PadRight(padLength < replace[0].Length ? 0 : padLength - replace[0].Length) + " => " + replace[1]);
                     richView.AppendText("\n");
@@ -697,7 +734,7 @@ namespace Tools
                 var myFileInfo = listBox1.SelectedItem as MyFileInfo;
                 if (myFileInfo != null)
                 {
-                    RepxVtoE(myFileInfo);
+                    Repx_ParameterMapping_and_Replace(myFileInfo);
                     count++;
                     richView.AppendText("\nHoàn thành " + count + ": " + myFileInfo.FullPath);
                 }
@@ -716,13 +753,13 @@ namespace Tools
             {
                 richView.Clear();
                 richView.AppendText("\n ===== PARAMETERS MAPPING =====");
-                foreach (string[] replace in parameterMappings)
+                foreach (string[] replace in parameterMappings_V_to_E)
                 {
                     richView.AppendText(replace[0].PadRight(padLength < replace[0].Length ? 0 : padLength - replace[0].Length) + " => " + replace[1]);
                     richView.AppendText("\n");
                 }
                 richView.AppendText("\n ===== REPLACES MAPPING =====");
-                foreach (string[] replace in replaces)
+                foreach (string[] replace in replaces_V_to_E)
                 {
                     richView.AppendText(replace[0].PadRight(padLength < replace[0].Length ? 0 : padLength - replace[0].Length) + " => " + replace[1]);
                     richView.AppendText("\n");
@@ -733,7 +770,35 @@ namespace Tools
                 running = true;
                 count = 0;
                 error = "";
-                Thread thread = new Thread(RepxVtoE);
+                Thread thread = new Thread(Repx_VtoE);
+                thread.IsBackground = true;
+                thread.Start();
+                timer1.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRepxFormatFix_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                richView.Clear();
+                richView.AppendText("\n ===== REPLACES MAPPING =====");
+                foreach (string[] replace in replaces_FormatFix)
+                {
+                    richView.AppendText(replace[0].PadRight(padLength < replace[0].Length ? 0 : padLength - replace[0].Length) + " => " + replace[1]);
+                    richView.AppendText("\n");
+                }
+                richView.SelectionStart = richView.TextLength;
+                richView.ScrollToCaret();
+
+                running = true;
+                count = 0;
+                error = "";
+                Thread thread = new Thread(Repx_FormatFix);
                 thread.IsBackground = true;
                 thread.Start();
                 timer1.Start();

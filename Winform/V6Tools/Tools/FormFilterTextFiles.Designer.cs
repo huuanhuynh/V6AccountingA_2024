@@ -77,6 +77,7 @@
             this.lbl100Percent = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnRepxVtoE_1 = new System.Windows.Forms.Button();
+            this.btnRepxFormatFix = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFilter
@@ -250,7 +251,7 @@
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(216, 226);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(195, 472);
+            this.listBox2.Size = new System.Drawing.Size(195, 420);
             this.listBox2.TabIndex = 16;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
@@ -560,6 +561,17 @@
             this.btnRepxVtoE_1.UseVisualStyleBackColor = true;
             this.btnRepxVtoE_1.Click += new System.EventHandler(this.btnRepxVtoE_1_Click);
             // 
+            // btnRepxFormatFix
+            // 
+            this.btnRepxFormatFix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRepxFormatFix.Location = new System.Drawing.Point(216, 662);
+            this.btnRepxFormatFix.Name = "btnRepxFormatFix";
+            this.btnRepxFormatFix.Size = new System.Drawing.Size(195, 23);
+            this.btnRepxFormatFix.TabIndex = 21;
+            this.btnRepxFormatFix.Text = "REPX FORMAT FIX";
+            this.btnRepxFormatFix.UseVisualStyleBackColor = true;
+            this.btnRepxFormatFix.Click += new System.EventHandler(this.btnRepxFormatFix_Click);
+            // 
             // FormFilterTextFiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,6 +579,7 @@
             this.ClientSize = new System.Drawing.Size(1377, 717);
             this.Controls.Add(this.lbl100Percent);
             this.Controls.Add(this.btnRepxVtoE_1);
+            this.Controls.Add(this.btnRepxFormatFix);
             this.Controls.Add(this.btnRepxVtoE_All);
             this.Controls.Add(this.txtReplaceBy);
             this.Controls.Add(this.txtReplace);
@@ -670,5 +683,6 @@
         private System.Windows.Forms.Label lbl100Percent;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnRepxVtoE_1;
+        private System.Windows.Forms.Button btnRepxFormatFix;
     }
 }
