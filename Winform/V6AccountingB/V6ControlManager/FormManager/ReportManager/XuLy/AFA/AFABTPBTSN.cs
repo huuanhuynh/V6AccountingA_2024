@@ -58,19 +58,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     if (V6Login.UserRight.AllowView("", "BS02"))
                     {
-                        var view = new ReportRViewBase(m_itemId, _program + "_F7", _program, _reportFile,
-                            "BÚT TOÁN KHẤU HAO TSCĐ", "FA DEPRECEATION REPORT", "", "", "");
-                        view.Dock = DockStyle.Fill;
-                        //view.FilterControl.InitFilters = oldKeys;
-                        view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                        bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                        if (MenuButton.UseXtraReport != shift_is_down)
+                        {
+                            var view = new ReportR_DX(m_itemId, _program + "_F7", _program, _reportFile,
+                                "BÚT TOÁN KHẤU HAO TSCĐ", "FA DEPRECEATION REPORT", "", "", "");
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                            view.AutoClickNhan = true;
+                            view.ShowToForm(this, _reportCaption, true);
+                        }
+                        else
+                        {
+                            var view = new ReportRViewBase(m_itemId, _program + "_F7", _program, _reportFile,
+                                "BÚT TOÁN KHẤU HAO TSCĐ", "FA DEPRECEATION REPORT", "", "", "");
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                            view.AutoClickNhan = true;
+                            view.ShowToForm(this, _reportCaption, true);
+                        }
 
-                        var f = new V6Form();
-                        f.WindowState = FormWindowState.Maximized;
-                        f.Controls.Add(view);
-                        view.btnNhan_Click(null, null);
-                        f.ShowDialog(this);
                         SetStatus2Text();
-
                     }
                     else
                     {

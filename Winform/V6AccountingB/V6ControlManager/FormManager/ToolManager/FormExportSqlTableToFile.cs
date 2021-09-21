@@ -309,7 +309,7 @@ namespace V6ControlManager.FormManager.ToolManager
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.F5)
+            if (e.KeyCode == Keys.F5)
             {
                 RunSql(richTextBox1.Text);
             }

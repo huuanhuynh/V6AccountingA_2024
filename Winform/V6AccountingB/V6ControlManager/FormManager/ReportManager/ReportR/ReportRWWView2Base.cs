@@ -1438,7 +1438,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.F5 && FilterControl.F5)
+            if (e.KeyCode == Keys.F5 && FilterControl.F5)
             {
                 if (dataGridView1.Focused) XuLyXemChiTietF5();
             }

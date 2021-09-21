@@ -734,6 +734,8 @@ namespace Tools
                 var myFileInfo = listBox1.SelectedItem as MyFileInfo;
                 if (myFileInfo != null)
                 {
+                    parameterMappings = parameterMappings_V_to_E;
+                    replaces = replaces_V_to_E;
                     Repx_ParameterMapping_and_Replace(myFileInfo);
                     count++;
                     richView.AppendText("\nHoàn thành " + count + ": " + myFileInfo.FullPath);

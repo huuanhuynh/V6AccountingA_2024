@@ -368,22 +368,35 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyXemChiTietF5()
         {
-            //base.XuLyXemChiTietF5();
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             var oldKeys = FilterControl.GetFilterParameters();
-            var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFile + "F5", _reportCaption, _reportCaption2, "", "", "")
+            if (MenuButton.UseXtraReport != shift_is_down)
             {
-                CodeForm = CodeForm
-            };
-            view.CodeForm = CodeForm;
-            view.Dock = DockStyle.Fill;
-            view.FilterControl.InitFilters = oldKeys;
-            view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
-            view.btnNhan_Click(null, null);
-            view.ShowToForm(this, _reportCaption, true);
-            //var f = new V6Form();
-            //f.WindowState = FormWindowState.Maximized;
-            //f.Controls.Add(view);
-            //f.ShowDialog(this);
+                var view = new ReportR_DX(m_itemId, _program + "F5", _program + "F5", _reportFile + "F5", _reportCaption, _reportCaption2, "", "", "")
+                {
+                    CodeForm = CodeForm
+                };
+                view.CodeForm = CodeForm;
+                view.Dock = DockStyle.Fill;
+                view.FilterControl.InitFilters = oldKeys;
+                view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                view.btnNhan_Click(null, null);
+                view.ShowToForm(this, _reportCaption, true);
+            }
+            else
+            {
+                var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFile + "F5", _reportCaption, _reportCaption2, "", "", "")
+                {
+                    CodeForm = CodeForm
+                };
+                view.CodeForm = CodeForm;
+                view.Dock = DockStyle.Fill;
+                view.FilterControl.InitFilters = oldKeys;
+                view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                view.btnNhan_Click(null, null);
+                view.ShowToForm(this, _reportCaption, true);
+            }
+
             SetStatus2Text();
         }
     }

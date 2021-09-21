@@ -120,14 +120,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     ShowMainMessage(V6Text.Text("MAXULYNULL"));
                     return;
                 }
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                var oldKeys = FilterControl.GetFilterParameters();
+                if (MenuButton.UseXtraReport != shift_is_down)
+                {
+                    var c = new ReportR44_DX(ItemID, _program + "F7", _program + "F7",
+                        _reportFile, _reportCaption, _reportCaption2, _reportFileF5, _reportTitleF5, _reportTitle2F5);
+                    IDictionary<string, object> filterData = new SortedDictionary<string, object>();
+                    filterData["MA_XULY"] = _ma_xuly;
+                    c.FilterControl.SetData(filterData);
+                    c.AutoClickNhan = true;
+                    c.ShowToForm(this, _reportCaption, true, true);
+                }
+                else
+                {
+                    var c = new ReportR44ViewBase(ItemID, _program + "F7", _program + "F7",
+                        _reportFile, _reportCaption, _reportCaption2, _reportFileF5, _reportTitleF5, _reportTitle2F5);
+                    IDictionary<string, object> filterData = new SortedDictionary<string, object>();
+                    filterData["MA_XULY"] = _ma_xuly;
+                    c.FilterControl.SetData(filterData);
+                    c.AutoClickNhan = true;
+                    c.ShowToForm(this, _reportCaption, true, true);
+                }
+                
 
-                var c = new ReportR44ViewBase(ItemID, _program + "F7", _program + "F7",
-                    _reportFile, _reportCaption, _reportCaption2, _reportFileF5, _reportTitleF5, _reportTitle2F5);
-                IDictionary<string, object> filterData = new SortedDictionary<string, object>();
-                filterData["MA_XULY"] = _ma_xuly;
-                c.FilterControl.SetData(filterData);
-                c.AutoClickNhan = true;
-                c.ShowToForm(this, _reportCaption, true, true);
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

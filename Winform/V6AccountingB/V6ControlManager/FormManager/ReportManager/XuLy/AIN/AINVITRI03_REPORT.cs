@@ -426,10 +426,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                var f = new ReportRViewBase(m_itemId, _program + "BF7", _program + "BF7", _reportFile + "BF7", "caption", "2", "", "", "");
-                f.FilterControl.SetData(plistData);
-                f.btnNhan_Click(null, null);
-                f.ShowToForm(this, GetType() + "_F7");
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (MenuButton.UseXtraReport != shift_is_down)
+                {
+                    var view = new ReportR_DX(m_itemId, _program + "BF7", _program + "BF7", _reportFile + "BF7", "caption", "2", "", "", "");
+                    view.FilterControl.SetData(plistData);
+                    view.AutoClickNhan = true;
+                    view.ShowToForm(this, GetType() + "_F7");
+                }
+                else
+                {
+                    var view = new ReportRViewBase(m_itemId, _program + "BF7", _program + "BF7", _reportFile + "BF7", "caption", "2", "", "", "");
+                    view.FilterControl.SetData(plistData);
+                    view.AutoClickNhan = true;
+                    view.ShowToForm(this, GetType() + "_F7");
+                }
+
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

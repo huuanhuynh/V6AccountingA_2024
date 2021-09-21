@@ -363,18 +363,38 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var repTitle = "LIST";
                 var repTitle2 = "LIST";
 
-                var c = new ReportRViewBase(_MA_DM, program, proc, repFile, repTitle, repTitle2, "", "", "");
-                LockSomeControls(c);
-                List<SqlParameter> plist = new List<SqlParameter>();
-                plist.Add(new SqlParameter("@MA_DM", _MA_DM));
-                plist.Add(new SqlParameter("@Fields", config.KEY));
-                plist.Add(new SqlParameter("@Values", values));
-                plist.Add(new SqlParameter("@uid", uid));
-                plist.Add(new SqlParameter("@user_id", V6Login.UserId));
-                c.FilterControl.InitFilters = plist;
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (MenuButton.UseXtraReport != shift_is_down)
+                {
+                    var c = new ReportR_DX(_MA_DM, program, proc, repFile, repTitle, repTitle2, "", "", "");
+                    LockSomeControls(c);
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@MA_DM", _MA_DM));
+                    plist.Add(new SqlParameter("@Fields", config.KEY));
+                    plist.Add(new SqlParameter("@Values", values));
+                    plist.Add(new SqlParameter("@uid", uid));
+                    plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                    c.FilterControl.InitFilters = plist;
+                    c.AutoClickNhan = true;
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
+                else
+                {
+                    var c = new ReportRViewBase(_MA_DM, program, proc, repFile, repTitle, repTitle2, "", "", "");
+                    LockSomeControls(c);
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@MA_DM", _MA_DM));
+                    plist.Add(new SqlParameter("@Fields", config.KEY));
+                    plist.Add(new SqlParameter("@Values", values));
+                    plist.Add(new SqlParameter("@uid", uid));
+                    plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                    c.FilterControl.InitFilters = plist;
+                    c.AutoClickNhan = true;
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
+                
 
-                c.AutoClickNhan = true;
-                c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

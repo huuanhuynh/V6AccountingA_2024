@@ -34,22 +34,33 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyXemChiTietF5()
         {
-            var oldKeys = FilterControl.GetFilterParameters();
-
             var _reportFileF5 = "AGLGSSO4TF5";
             var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
             var _reportTitle2F5 = "Account detail";
-
-            //var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFile, _reportCaption, _reportCaption2, false);
-            var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
-                        _reportTitleF5, _reportTitle2F5, "", "", "");
-
-            view.CodeForm = CodeForm;
-            view.Dock = DockStyle.Fill;
-            view.FilterControl.InitFilters = oldKeys;
-            view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
-            view.btnNhan_Click(null, null);
-            view.ShowToForm(this, _reportCaption, true);
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            var oldKeys = FilterControl.GetFilterParameters();
+            if (MenuButton.UseXtraReport != shift_is_down)
+            {
+                var view = new ReportR_DX(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
+                    _reportTitleF5, _reportTitle2F5, "", "", "");
+                view.CodeForm = CodeForm;
+                view.Dock = DockStyle.Fill;
+                view.FilterControl.InitFilters = oldKeys;
+                view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                view.AutoClickNhan = true;
+                view.ShowToForm(this, _reportCaption, true);
+            }
+            else
+            {
+                var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
+                    _reportTitleF5, _reportTitle2F5, "", "", "");
+                view.CodeForm = CodeForm;
+                view.Dock = DockStyle.Fill;
+                view.FilterControl.InitFilters = oldKeys;
+                view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                view.AutoClickNhan = true;
+                view.ShowToForm(this, _reportCaption, true);
+            }
 
             SetStatus2Text();
         }

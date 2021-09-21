@@ -470,6 +470,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Error = "";
         private string f9ErrorAll = "";
         protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
+        private bool shift_is_down;
         protected override void XuLyF9()
         {
             try
@@ -478,12 +479,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 tF9.Interval = 500;
                 tF9.Tick += tF9_Tick;
                 CheckForIllegalCrossThreadCalls = false;
+                shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 remove_list_g = new List<DataGridViewRow>();
                 F9Thread();
-                //Thread t = new Thread(F9Thread);
-                //t.SetApartmentState(ApartmentState.STA);
-                //t.IsBackground = true;
-                //t.Start();
                 tF9.Start();
             }
             catch (Exception ex)
@@ -516,53 +514,82 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 catch (Exception ex)
                 {
-
                     f9Error += ex.Message;
                     f9ErrorAll += ex.Message;
                 }
-
             }
 
             if (ma_vt.Length > 0) ma_vt = ma_vt.Substring(1);
             if (ma_lo.Length > 0) ma_lo = ma_lo.Substring(1);
             
-            var oldKeys = FilterControl.GetFilterParameters();
             var reportFileF9 = _reportFile + "F9";
             var reportTitleF9 =  _program;
             var reportTitle2F9 = _program;
 
-            var view = new ReportRViewBase(m_itemId, _program + "F9", _program + "F9", reportFileF9,
-                reportTitleF9, reportTitle2F9, "", "", "");
-            
-            view.CodeForm = CodeForm;
-            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-            data.Add("MA_VT", ma_vt);
-            data.Add("MA_LO", ma_lo);
-            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
-            view.CodeForm = CodeForm;
-            view.Advance = FilterControl.Advance;
-            view.FilterControl.String1 = FilterControl.String1;
-            view.FilterControl.String2 = FilterControl.String2;
-
-            view.Dock = DockStyle.Fill;
-            view.FilterControl.InitFilters = oldKeys;
-
-            view.PrintSuccess += delegate
+            var oldKeys = FilterControl.GetFilterParameters();
+            if (MenuButton.UseXtraReport != shift_is_down)
             {
-                try
+                var view = new ReportR_DX(m_itemId, _program + "F9", _program + "F9", reportFileF9,
+                    reportTitleF9, reportTitle2F9, "", "", "");
+                view.CodeForm = CodeForm;
+                SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                data.Add("MA_VT", ma_vt);
+                data.Add("MA_LO", ma_lo);
+                V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                view.CodeForm = CodeForm;
+                view.Advance = FilterControl.Advance;
+                view.FilterControl.String1 = FilterControl.String1;
+                view.FilterControl.String2 = FilterControl.String2;
+                view.Dock = DockStyle.Fill;
+                view.FilterControl.InitFilters = oldKeys;
+                view.PrintSuccess += delegate
                 {
-                    V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
-                }
-                catch (Exception ex)
+                    try
+                    {
+                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowMainMessage("UPDATEF9 Error: " + ex.Message);
+                    }
+                    view.Dispose();
+                };
+                view.AutoClickNhan = true;
+                view.ShowToForm(this, reportTitleF9, true);
+            }
+            else
+            {
+                var view = new ReportRViewBase(m_itemId, _program + "F9", _program + "F9", reportFileF9,
+                    reportTitleF9, reportTitle2F9, "", "", "");
+                view.CodeForm = CodeForm;
+                SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                data.Add("MA_VT", ma_vt);
+                data.Add("MA_LO", ma_lo);
+                V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                view.CodeForm = CodeForm;
+                view.Advance = FilterControl.Advance;
+                view.FilterControl.String1 = FilterControl.String1;
+                view.FilterControl.String2 = FilterControl.String2;
+                view.Dock = DockStyle.Fill;
+                view.FilterControl.InitFilters = oldKeys;
+                view.PrintSuccess += delegate
                 {
-                    ShowMainMessage("UPDATEF9 Error: " + ex.Message);
-                }
-                view.Dispose();
-            };
-
-            view.AutoClickNhan = true;
-
-            view.ShowToForm(this, reportTitleF9, true);
+                    try
+                    {
+                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowMainMessage("UPDATEF9 Error: " + ex.Message);
+                    }
+                    view.Dispose();
+                };
+                view.AutoClickNhan = true;
+                view.ShowToForm(this, reportTitleF9, true);
+            }
+            
+            
+            
             SetStatus2Text();
 
             f9Running = false;

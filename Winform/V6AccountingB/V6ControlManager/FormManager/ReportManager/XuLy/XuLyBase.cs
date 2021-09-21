@@ -1030,7 +1030,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (e.KeyData == Keys.F5 && FilterControl.F5)
+                if (e.KeyCode == Keys.F5 && FilterControl.F5)
                 {
                     if (dataGridView1.Focused) XuLyXemChiTietF5();
                 }

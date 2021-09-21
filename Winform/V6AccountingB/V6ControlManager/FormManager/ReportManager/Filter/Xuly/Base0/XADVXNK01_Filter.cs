@@ -780,7 +780,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
         string delete_info = "";
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Delete || e.KeyData == Keys.F8)
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.F8)
             {
                 if (!V6Login.UserRight.AllowDelete(ItemID, _base0._reportFile + "6"))
                 {
@@ -812,7 +812,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
                     }
                 }
             }
-            else if (e.KeyData == Keys.F4 && USE_F4)
+            else if (e.KeyCode == Keys.F4 && USE_F4)
             {
                 if (ALLOW_ADD)
                 {
