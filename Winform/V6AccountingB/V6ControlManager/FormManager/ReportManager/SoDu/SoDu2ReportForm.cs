@@ -90,7 +90,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             }
         }
 
-        public AlbcConfig _albcConfig;
+        public AlbcConfig _albcConfig = new AlbcConfig();
 
         public DataRow MauInSelectedRow
         {
@@ -468,7 +468,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
-
+                _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
                 //GetSumCondition();
             }
             else

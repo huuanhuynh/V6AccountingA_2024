@@ -89,7 +89,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             }
         }
 
-        public AlbcConfig _albcConfig;
+        public AlbcConfig _albcConfig = new AlbcConfig();
 
         public DataRow MauInSelectedRow
         {
@@ -443,6 +443,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
+                _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             }
             else
             {
@@ -1205,6 +1206,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }

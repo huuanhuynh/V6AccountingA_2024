@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private DataTable MauInData;
         private DataView MauInView;
-        public AlbcConfig _albcConfig;
+        public AlbcConfig _albcConfig = new AlbcConfig();
         private DataSet _ds;
         private DataTable _tbl, _tbl2;
 
@@ -472,6 +472,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
+                _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             }
             else
             {

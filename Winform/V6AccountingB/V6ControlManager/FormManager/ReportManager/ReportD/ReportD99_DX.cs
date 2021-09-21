@@ -43,7 +43,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private DataTable MauInData;
         private DataView MauInView;
-        public AlbcConfig _albcConfig;
+        public AlbcConfig _albcConfig = new AlbcConfig();
+        public AlreportConfig _alreportConfig;
         private DataSet _ds, _new_ds;
         private DataTable _tbl1, _tbl2, _tblv;
         private DataTable[] _tbls;
@@ -81,15 +82,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
-                _albcConfig = ConfigManager.GetAlbcConfig(MAU, LAN, _Ma_File, ReportFile);
-                if (_albcConfig.NoInfo) return;
-                if (_albcConfig.MMETHOD.Trim() == "") return;
-                DataSet ds = new DataSet();
-                ds.ReadXml(new StringReader(_albcConfig.MMETHOD)); 
+                _alreportConfig = ConfigManager.GetAlreportConfig(_program);
+                if (_alreportConfig.NoInfo) return;
+                if (_alreportConfig.MMETHOD.Trim() == "") return;
+
+                var ds = ObjectAndString.XmlStringToDataSet(_alreportConfig.MMETHOD);
                 if (ds.Tables.Count <= 0) return;
-
                 var data = ds.Tables[0];
-
                 string using_text = "";
                 string method_text = "";
                 foreach (DataRow event_row in data.Rows)
@@ -771,6 +770,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
+                _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             }
             else
             {

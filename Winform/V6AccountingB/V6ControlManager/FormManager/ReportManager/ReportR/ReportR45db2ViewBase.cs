@@ -27,24 +27,25 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
     public partial class ReportR45db2ViewBase : V6FormControl
     {
         #region Biến toàn cục
-        private string _reportProcedure;
-        //private string _program, _reportFile, _reportTitle, _reportTitle2;
-        private string _program, _Ma_File, _reportTitle, _reportTitle2;
-        private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
+        public string _reportProcedure;
+        //public string _program, _reportFile, _reportTitle, _reportTitle2;
+        public string _program, _Ma_File, _reportTitle, _reportTitle2;
+        public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
         /// Advance filter get albc
         /// </summary>
         public string Advance = "";
 
-        private DataTable MauInData;
-        private DataView MauInView;
+        public DataTable MauInData;
+        public DataView MauInView;
+        public AlbcConfig _albcConfig = new AlbcConfig();
 
         /// <summary>
         /// Danh sách event_method của Form_program.
         /// </summary>
-        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>(); 
-        private Type Form_program;
-        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>(); 
+        public Type Form_program;
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         private object InvokeFormEvent(string eventName)
         {
@@ -845,6 +846,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
+                _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             }
             else
             {
@@ -1701,6 +1703,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
 
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             GetSumCondition();
 
             txtReportTitle.Text = ReportTitle;
@@ -1725,6 +1728,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }

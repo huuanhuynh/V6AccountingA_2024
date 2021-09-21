@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         public DataTable MauInData;
         public DataView MauInView;
-        public AlbcConfig _albcConfig;
+        public AlbcConfig _albcConfig = new AlbcConfig();
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -849,7 +849,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
-
+                _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
                 //GetSumCondition();
             }
             else

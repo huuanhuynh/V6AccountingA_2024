@@ -36,7 +36,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
         private DataTable MauInData;
-        public AlbcConfig _albcConfig;
+        public AlbcConfig _albcConfig = new AlbcConfig();
 
         /// <summary>
         /// Danh sách event_method của Form_program.

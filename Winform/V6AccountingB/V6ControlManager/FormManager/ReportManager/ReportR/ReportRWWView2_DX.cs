@@ -43,7 +43,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private DataTable MauInData;
         private DataView MauInView;
-        public AlbcConfig _albcConfig;
+        public AlbcConfig _albcConfig = new AlbcConfig();
+        public AlreportConfig _alreportConfig;
         private DataSet _ds;
         private DataTable _tbl1, _tbl2, _tbl3;
         private DataView _tbl2View;
@@ -81,16 +82,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                _albcConfig = ConfigManager.GetAlbcConfig(MAU, LAN, _Ma_File, ReportFile);
-                if (_albcConfig.NoInfo) return;
-                if (_albcConfig.MMETHOD.Trim() == "") return;
+                _alreportConfig = ConfigManager.GetAlreportConfig(_program);
+                if (_alreportConfig.NoInfo) return;
+                if (_alreportConfig.MMETHOD.Trim() == "") return;
 
-                DataSet ds = new DataSet();
-                ds.ReadXml(new StringReader(_albcConfig.MMETHOD));
+                var ds = ObjectAndString.XmlStringToDataSet(_alreportConfig.MMETHOD);
                 if (ds.Tables.Count <= 0) return;
-
                 var data = ds.Tables[0];
-
                 string using_text = "";
                 string method_text = "";
                 foreach (DataRow event_row in data.Rows)
@@ -735,6 +733,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
+                _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             }
             else
             {
@@ -1496,6 +1495,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
 
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             GetSumCondition();
 
             txtReportTitle.Text = ReportTitle;
@@ -1521,6 +1521,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }

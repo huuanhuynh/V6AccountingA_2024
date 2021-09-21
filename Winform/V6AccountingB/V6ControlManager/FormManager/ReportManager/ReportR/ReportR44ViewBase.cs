@@ -41,6 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private DataTable MauInData;
         private DataView MauInView;
+        public AlbcConfig _albcConfig = new AlbcConfig();
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -852,6 +853,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
+                _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             }
             else
             {
@@ -1799,6 +1801,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (!IsReady) return;
             if (_radioRunning || _updateDataRow) return;
 
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             GetSumCondition();
 
             txtReportTitle.Text = ReportTitle;
@@ -1823,6 +1826,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //cap nhap thong tin
                     var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
                     _updateDataRow = false;
                 }
             }
