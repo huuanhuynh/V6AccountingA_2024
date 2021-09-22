@@ -122,10 +122,12 @@ namespace V6ControlManager.FormManager
                 if (tabControl1 != null)
                 {
                     TabPage advanceTabPage = new TabPage("Advance");
+                    advanceTabPage.Name = "tabAdvance";
                     advanceTabPage.BackColor = Color.FromArgb(246, 243, 226);
                     tabControl1.TabPages.Add(advanceTabPage);
                     panel1 = new Panel();
                     panel1.Name = "PanelAdvance";
+                    panel1.Width = advanceTabPage.Width - 5;
                     panel1.Dock = DockStyle.Fill;
                     advanceTabPage.Controls.Add(panel1);
                 }
@@ -559,20 +561,22 @@ namespace V6ControlManager.FormManager
                     } //end if DMETHOD
 
                     //Add brother
-                    int left = input.Right + 30;
+                    int left = input.Right + 10;
                     if (input is V6VvarTextBox && !string.IsNullOrEmpty(defineInfo.BField))
                     {
                         var tT = (V6VvarTextBox)input;
                         tT.BrotherFields = defineInfo.BField;
                         tT.BrotherFields2 = defineInfo.BField2;
+                        //tT.UseChangeTextOnSetFormData = true;
                         if (!string.IsNullOrEmpty(defineInfo.ShowName)) tT.ShowName = defineInfo.ShowName == "1";
                         var txtB = new V6LabelTextBox();
                         txtB.Name = "txt" + defineInfo.BField;
                         txtB.AccessibleName = defineInfo.BField;
                         txtB.Top = top;
                         txtB.Left = left;
-                        //txtB.Width = 300;
-                        txtB.AutoSize = true;
+                        //txtB.Width = panel1.Width - txtB.Left - 10;
+                        txtB.Width = 400;
+                        //txtB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
                         txtB.ReadOnly = true;
                         txtB.TabStop = false;
 
@@ -589,7 +593,8 @@ namespace V6ControlManager.FormManager
                         txtB.AccessibleName = defineInfo.BField;
                         txtB.Top = top;
                         txtB.Left = left;
-                        txtB.Width = panel1.Width - txtB.Left - 10;
+                        //txtB.Width = panel1.Width - txtB.Left - 10;
+                        txtB.Width = 400;
                         txtB.ReadOnly = true;
                         txtB.TabStop = false;
 

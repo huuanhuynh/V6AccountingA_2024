@@ -167,8 +167,49 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 DoBeforeView();
             }
+            CheckVvarTextBox();
             _ready0 = true;
             InvokeFormEvent(FormDynamicEvent.INIT2);
+        }
+
+        /// <summary>
+        /// Chạy ExistRowInTable cho các V6VvarTextBox.
+        /// </summary>
+        private void CheckVvarTextBox()
+        {
+            try
+            {
+                if (this is SoDuAddEditControlDynamicForm) return;
+                foreach (Control control0 in this.Controls)
+                {
+                    if (control0 is V6TabControl)
+                    {
+                        V6TabControl v6TabControl1 = control0 as V6TabControl;
+                        foreach (TabPage tabPage in v6TabControl1.TabPages)
+                        {
+                            if (tabPage.Text == "Advance")
+                            {
+                                Panel panel1 = tabPage.Controls[0] as Panel;
+                                if (panel1 == null) return;
+                                foreach (Control control in panel1.Controls)
+                                {
+                                    var vT = control as V6VvarTextBox;
+                                    if (vT != null && !string.IsNullOrEmpty(vT.VVar))
+                                    {
+                                        vT.ExistRowInTable();
+                                    }
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckVvarTextBox", ex);
+            }
         }
 
         /// <summary>

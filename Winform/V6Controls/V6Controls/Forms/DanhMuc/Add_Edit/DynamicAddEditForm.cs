@@ -1339,6 +1339,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (errors.Length > 0) throw new Exception(errors);
         }
 
+        /// <summary>
+        /// Chạy ExistRowInTable cho các V6VvarTextBox.
+        /// </summary>
         private void CheckVvarTextBox()
         {
             try

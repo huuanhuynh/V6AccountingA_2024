@@ -7982,6 +7982,7 @@ namespace V6Controls.Forms
                 if (tabControl1 != null)
                 {
                     TabPage advanceTabPage = new TabPage("Advance");
+                    advanceTabPage.Name = "tabAdvance";
                     advanceTabPage.BackColor = Color.FromArgb(246, 243, 226);
                     tabControl1.TabPages.Add(advanceTabPage);
                     panel1 = new Panel();
@@ -8432,8 +8433,7 @@ namespace V6Controls.Forms
                         txtB.AccessibleName = defineInfo.BField;
                         txtB.Top = top;
                         txtB.Left = left;
-                        //txtB.Width = 300;
-                        txtB.AutoSize = true;
+                        txtB.Width = panel1.Width - txtB.Left - 10;
                         txtB.ReadOnly = true;
                         txtB.TabStop = false;
 

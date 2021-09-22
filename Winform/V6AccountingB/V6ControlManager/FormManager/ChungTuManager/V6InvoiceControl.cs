@@ -104,6 +104,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="sttRec"></param>
         public virtual void OnInvoiceChanged(string sttRec)
         {
+            CheckVvarTextBox();
+
             var handler = InvoiceChanged;
             if (handler != null) handler(sttRec);
         }
@@ -2857,6 +2859,40 @@ namespace V6ControlManager.FormManager.ChungTuManager
             V6ControlsHelper.DisableLookup = false;
             SetBaseInitFilterAll();
             LoadLanguage() ;
+        }
+
+        /// <summary>
+        /// Chạy ExistRowInTable cho các V6VvarTextBox trong tabAdvance.
+        /// </summary>
+        public void CheckVvarTextBox()
+        {
+            try
+            {
+                var v6TabControl1 = this.GetControlByName("tabControl1") as TabControl;
+                if (v6TabControl1 != null)
+                {
+                    foreach (TabPage tabPage in v6TabControl1.TabPages)
+                    {
+                        if (tabPage.Text == "Advance")
+                        {
+                            Panel panel1 = tabPage.Controls[0] as Panel;
+                            if (panel1 == null) return;
+                            foreach (Control control in panel1.Controls)
+                            {
+                                var vT = control as V6VvarTextBox;
+                                if (vT != null && !string.IsNullOrEmpty(vT.VVar))
+                                {
+                                    vT.ExistRowInTable();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckVvarTextBox", ex);
+            }
         }
 
         public bool ValidateNgayCt(string maCt, DateTimePicker dateNgayCT)
