@@ -59,7 +59,7 @@
             this.date2.Name = "date2";
             this.date2.Size = new System.Drawing.Size(109, 20);
             this.date2.StringValue = "__/__/____";
-            this.date2.TabIndex = 3;
+            this.date2.TabIndex = 4;
             this.date2.Text = "__/__/____";
             // 
             // date1
@@ -89,7 +89,7 @@
             this.label2.Location = new System.Drawing.Point(5, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 3;
             this.label2.Text = "Đến ngày";
             // 
             // label1
@@ -115,7 +115,7 @@
             this.groupBox1.Location = new System.Drawing.Point(2, 60);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(282, 467);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
             // 
@@ -160,7 +160,7 @@
             this.dateSelectButton2.Name = "dateSelectButton2";
             this.dateSelectButton2.ReferenceControl = this.date2;
             this.dateSelectButton2.Size = new System.Drawing.Size(21, 21);
-            this.dateSelectButton2.TabIndex = 7;
+            this.dateSelectButton2.TabIndex = 5;
             // 
             // dateSelectButton1
             // 
@@ -169,7 +169,7 @@
             this.dateSelectButton1.Name = "dateSelectButton1";
             this.dateSelectButton1.ReferenceControl = this.date1;
             this.dateSelectButton1.Size = new System.Drawing.Size(21, 21);
-            this.dateSelectButton1.TabIndex = 6;
+            this.dateSelectButton1.TabIndex = 2;
             // 
             // FilterDanhMuc
             // 

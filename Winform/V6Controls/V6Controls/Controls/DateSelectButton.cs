@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using V6Controls.Forms;
-using V6Controls.Forms.Editor;
-using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Controls
@@ -44,32 +42,6 @@ namespace V6Controls.Controls
             var handler = RefControlChanged;
             if (handler != null) handler(this, EventArgs.Empty);
         }
-
-        [Category("V6")]
-        [DefaultValue(";")]
-        [Description("Ký tự phân cách các phần tử.")]
-        public string Separator_Item
-        {
-            get { return _itemSeparator;}
-            set
-            {
-                if (value.Length == 1) _itemSeparator = value;
-            }
-        }
-        private string _itemSeparator = ";";
-        
-        [Category("V6")]
-        [DefaultValue(":")]
-        [Description("Ký tự phân cách các phần tử.")]
-        public string Separator_Value
-        {
-            get { return _valueSeparator; }
-            set
-            {
-                if (value.Length == 1) _valueSeparator = value;
-            }
-        }
-        private string _valueSeparator = ":";
 
         /// <summary>
         /// Kết nối với một Control

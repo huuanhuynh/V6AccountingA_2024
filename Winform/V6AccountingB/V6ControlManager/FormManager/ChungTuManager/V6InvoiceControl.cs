@@ -6430,6 +6430,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 chon_accept_flag_add = shift;
 
                 ReportR45db2SelectorForm r45Selector = new ReportR45db2SelectorForm(_invoice, program);
+                r45Selector.Text += " " + program + " DB2";
                 if (r45Selector.ShowDialog(this) == DialogResult.OK)
                 {
                     ChonEventArgs chonE = new ChonEventArgs();

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.listBoxTablesName = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
@@ -48,6 +48,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.txtBy = new System.Windows.Forms.TextBox();
             this.chkUID = new System.Windows.Forms.CheckBox();
+            this.btnGenInsertSQL = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbExport.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -60,7 +61,7 @@
             this.listBoxTablesName.FormattingEnabled = true;
             this.listBoxTablesName.Location = new System.Drawing.Point(9, 22);
             this.listBoxTablesName.Name = "listBoxTablesName";
-            this.listBoxTablesName.Size = new System.Drawing.Size(160, 511);
+            this.listBoxTablesName.Size = new System.Drawing.Size(160, 628);
             this.listBoxTablesName.TabIndex = 1;
             this.listBoxTablesName.SelectedIndexChanged += new System.EventHandler(this.listBoxTablesName_SelectedIndexChanged);
             // 
@@ -78,32 +79,32 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Control_A = true;
             this.dataGridView1.Control_E = true;
             this.dataGridView1.Control_S = true;
-            this.dataGridView1.Location = new System.Drawing.Point(175, 135);
+            this.dataGridView1.Location = new System.Drawing.Point(175, 156);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(597, 398);
+            this.dataGridView1.Size = new System.Drawing.Size(821, 496);
             this.dataGridView1.Space_Bar = true;
             this.dataGridView1.TabIndex = 9;
             // 
@@ -188,7 +189,7 @@
             this.groupBox1.Controls.Add(this.richTextBox1);
             this.groupBox1.Location = new System.Drawing.Point(392, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(380, 123);
+            this.groupBox1.Size = new System.Drawing.Size(604, 123);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SQL";
@@ -198,7 +199,7 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(3, 16);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(374, 104);
+            this.richTextBox1.Size = new System.Drawing.Size(598, 104);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
@@ -254,16 +255,28 @@
             this.chkUID.Text = "UID";
             this.chkUID.UseVisualStyleBackColor = true;
             // 
+            // btnGenInsertSQL
+            // 
+            this.btnGenInsertSQL.Location = new System.Drawing.Point(175, 127);
+            this.btnGenInsertSQL.Name = "btnGenInsertSQL";
+            this.btnGenInsertSQL.Size = new System.Drawing.Size(101, 23);
+            this.btnGenInsertSQL.TabIndex = 6;
+            this.btnGenInsertSQL.Text = "GenInsertSQL";
+            this.toolTipV6FormControl.SetToolTip(this.btnGenInsertSQL, "Tạo câu insert từ các dòng đang chọn.");
+            this.btnGenInsertSQL.UseVisualStyleBackColor = true;
+            this.btnGenInsertSQL.Click += new System.EventHandler(this.btnGenInsertSQL_Click);
+            // 
             // FormExportSqlTableToFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 542);
+            this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtBy);
             this.Controls.Add(this.chkUID);
             this.Controls.Add(this.grbExport);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnGenInsertSQL);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnImportXml);
             this.Controls.Add(this.btnRowsToXml);
@@ -272,17 +285,6 @@
             this.Name = "FormExportSqlTableToFile";
             this.Text = "ToolExportSqlToFile";
             this.Load += new System.EventHandler(this.ToolExportSqlToExcel_Load);
-            this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.listBoxTablesName, 0);
-            this.Controls.SetChildIndex(this.btnRowsToXml, 0);
-            this.Controls.SetChildIndex(this.btnImportXml, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
-            this.Controls.SetChildIndex(this.grbExport, 0);
-            this.Controls.SetChildIndex(this.chkUID, 0);
-            this.Controls.SetChildIndex(this.txtBy, 0);
-            this.Controls.SetChildIndex(this.groupBox1, 0);
-            
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbExport.ResumeLayout(false);
             this.grbExport.PerformLayout();
@@ -311,5 +313,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtBy;
         private System.Windows.Forms.CheckBox chkUID;
+        private System.Windows.Forms.Button btnGenInsertSQL;
     }
 }

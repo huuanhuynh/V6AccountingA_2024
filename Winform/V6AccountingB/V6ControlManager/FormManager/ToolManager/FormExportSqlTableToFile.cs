@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6SqlConnect;
 using V6Tools;
 
@@ -326,6 +327,30 @@ namespace V6ControlManager.FormManager.ToolManager
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".RunSql", ex);
+            }
+        }
+
+        private void btnGenInsertSQL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var structTable = V6BusinessHelper.GetTableStruct(listBoxTablesName.SelectedItem.ToString());
+                richTextBox1.Clear();
+                var datas = dataGridView1.GetSelectedData();
+                foreach (IDictionary<string, object> data in datas)
+                {
+                    richTextBox1.AppendText("\nGO\n");
+                    var insert1 = SqlGenerator.GenInsertSql(V6Login.UserId, structTable.TableName, structTable, data);
+                    richTextBox1.AppendText(insert1.Replace("\n", ""));
+                }
+
+                richTextBox1.SelectionStart = richTextBox1.TextLength;
+                richTextBox1.ScrollToCaret();
+            }
+            catch (Exception ex)
+            {
+
+                this.ShowErrorException(GetType() + ".btnGenInsertSQL_Click", ex);
             }
         }
     }

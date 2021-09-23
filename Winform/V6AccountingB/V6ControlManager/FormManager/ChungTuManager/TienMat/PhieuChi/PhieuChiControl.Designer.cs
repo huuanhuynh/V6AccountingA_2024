@@ -110,6 +110,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.txtTongThueNt = new V6Controls.NumberTienNt();
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.btnChucNang2 = new V6Controls.Controls.DropDownButton();
+            this.menuChucNang2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xuLyKhac1Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyKhac2Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonHDMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chkAutoNext = new V6Controls.V6CheckBox();
             this.txtSoct_tt = new V6Controls.V6VvarTextBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
@@ -203,11 +208,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.menuChucNang2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.xuLyKhac1Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.xuLyKhac2Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonHDMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnChucNang2 = new V6Controls.Controls.DropDownButton();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -220,13 +220,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.panelVND.SuspendLayout();
             this.panelNT.SuspendLayout();
             this.group4.SuspendLayout();
+            this.menuChucNang2.SuspendLayout();
             this.menuChucNang.SuspendLayout();
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
             this.menuBtnTim.SuspendLayout();
-            this.menuChucNang2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1419,6 +1419,52 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group4.Size = new System.Drawing.Size(457, 117);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // btnChucNang2
+            // 
+            this.btnChucNang2.AccessibleDescription = "ASOCTSOAB00033";
+            this.btnChucNang2.Location = new System.Drawing.Point(186, 55);
+            this.btnChucNang2.Menu = this.menuChucNang2;
+            this.btnChucNang2.Name = "btnChucNang2";
+            this.btnChucNang2.Size = new System.Drawing.Size(90, 29);
+            this.btnChucNang2.TabIndex = 53;
+            this.btnChucNang2.Tag = "cancel";
+            this.btnChucNang2.Text = "Chức năng 2";
+            this.btnChucNang2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChucNang2.UseVisualStyleBackColor = true;
+            // 
+            // menuChucNang2
+            // 
+            this.menuChucNang2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xuLyKhac1Menu,
+            this.xuLyKhac2Menu,
+            this.chonHDMenu});
+            this.menuChucNang2.Name = "menuChucNang";
+            this.menuChucNang2.Size = new System.Drawing.Size(138, 70);
+            // 
+            // xuLyKhac1Menu
+            // 
+            this.xuLyKhac1Menu.AccessibleDescription = "ACACTCA1M00001";
+            this.xuLyKhac1Menu.Name = "xuLyKhac1Menu";
+            this.xuLyKhac1Menu.Size = new System.Drawing.Size(137, 22);
+            this.xuLyKhac1Menu.Text = "Xử lý khác 1";
+            this.xuLyKhac1Menu.Click += new System.EventHandler(this.xuLyKhac1Menu_Click);
+            // 
+            // xuLyKhac2Menu
+            // 
+            this.xuLyKhac2Menu.AccessibleDescription = "ACACTCA1M00002";
+            this.xuLyKhac2Menu.Name = "xuLyKhac2Menu";
+            this.xuLyKhac2Menu.Size = new System.Drawing.Size(137, 22);
+            this.xuLyKhac2Menu.Text = "Xử lý khác 2";
+            this.xuLyKhac2Menu.Click += new System.EventHandler(this.xuLyKhac2Menu_Click);
+            // 
+            // chonHDMenu
+            // 
+            this.chonHDMenu.AccessibleDescription = "ACACTCA1M00003";
+            this.chonHDMenu.Name = "chonHDMenu";
+            this.chonHDMenu.Size = new System.Drawing.Size(137, 22);
+            this.chonHDMenu.Text = "Chọn HĐ";
+            this.chonHDMenu.Click += new System.EventHandler(this.btnChonHD_Click);
             // 
             // chkAutoNext
             // 
@@ -2652,52 +2698,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.lblNameT.TabIndex = 22;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // menuChucNang2
-            // 
-            this.menuChucNang2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xuLyKhac1Menu,
-            this.xuLyKhac2Menu,
-            this.chonHDMenu});
-            this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(138, 70);
-            // 
-            // xuLyKhac1Menu
-            // 
-            this.xuLyKhac1Menu.AccessibleDescription = "ACACTCA1M00001";
-            this.xuLyKhac1Menu.Name = "xuLyKhac1Menu";
-            this.xuLyKhac1Menu.Size = new System.Drawing.Size(137, 22);
-            this.xuLyKhac1Menu.Text = "Xử lý khác 1";
-            this.xuLyKhac1Menu.Click += new System.EventHandler(this.xuLyKhac1Menu_Click);
-            // 
-            // xuLyKhac2Menu
-            // 
-            this.xuLyKhac2Menu.AccessibleDescription = "ACACTCA1M00002";
-            this.xuLyKhac2Menu.Name = "xuLyKhac2Menu";
-            this.xuLyKhac2Menu.Size = new System.Drawing.Size(137, 22);
-            this.xuLyKhac2Menu.Text = "Xử lý khác 2";
-            this.xuLyKhac2Menu.Click += new System.EventHandler(this.xuLyKhac2Menu_Click);
-            // 
-            // chonHDMenu
-            // 
-            this.chonHDMenu.AccessibleDescription = "ACACTCA1M00003";
-            this.chonHDMenu.Name = "chonHDMenu";
-            this.chonHDMenu.Size = new System.Drawing.Size(137, 22);
-            this.chonHDMenu.Text = "Chọn HĐ";
-            this.chonHDMenu.Click += new System.EventHandler(this.btnChonHD_Click);
-            // 
-            // btnChucNang2
-            // 
-            this.btnChucNang2.AccessibleDescription = "ASOCTSOAB00033";
-            this.btnChucNang2.Location = new System.Drawing.Point(186, 58);
-            this.btnChucNang2.Menu = this.menuChucNang2;
-            this.btnChucNang2.Name = "btnChucNang2";
-            this.btnChucNang2.Size = new System.Drawing.Size(90, 23);
-            this.btnChucNang2.TabIndex = 53;
-            this.btnChucNang2.Tag = "cancel";
-            this.btnChucNang2.Text = "Chức năng 2";
-            this.btnChucNang2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChucNang2.UseVisualStyleBackColor = true;
-            // 
             // PhieuChiControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2748,6 +2748,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.panelNT.PerformLayout();
             this.group4.ResumeLayout(false);
             this.group4.PerformLayout();
+            this.menuChucNang2.ResumeLayout(false);
             this.menuChucNang.ResumeLayout(false);
             this.group3.ResumeLayout(false);
             this.group3.PerformLayout();
@@ -2757,7 +2758,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group1.PerformLayout();
             this.menuBtnIn.ResumeLayout(false);
             this.menuBtnTim.ResumeLayout(false);
-            this.menuChucNang2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

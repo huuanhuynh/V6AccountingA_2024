@@ -120,9 +120,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-            //@cTable VARCHAR(40),
-            //@cOrder VARCHAR(40),
-            //@cKey VARCHAR(8000)
+            if (date1.Value == null)
+            {
+                date1.Focus();
+                date1.Alert();
+                throw new Exception(V6Text.NoInput + " " + label1.Text);
+            }
+            if (date2.Value == null)
+            {
+                date2.Focus();
+                date2.Alert();
+                throw new Exception(V6Text.NoInput + " " + label2.Text);
+            }
 
             var result = new List<SqlParameter>();
             //V6Setting.M_ngay_ct1 = date1.Value;
