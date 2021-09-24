@@ -12,12 +12,13 @@ using V6Tools.V6Convert;
 namespace V6Controls.Controls
 {
     /// <summary>
-    /// Plugin control that can view sum of number value columns on a datagridview
+    /// Đối tượng đi theo DataGridView để lọc dữ liệu hiển thị trên đó.
     /// </summary>
     public partial class GridViewTopFilter : UserControl
     {
+        public int ColumnLimit = 20;
         /// <summary>
-        /// Gán DataGridView cần xem tổng cộng.
+        /// DataGridView tham chiếu.
         /// </summary>
         [Description("Chọn một DataGridView trên form.")]
         [TypeConverter(typeof(AConverter))]
@@ -43,13 +44,7 @@ namespace V6Controls.Controls
         }
         protected bool _auto = true;
         
-        //Pen pBoder;
         Brush bBackGround;
-        //Brush bTextColor;
-        //Font gFont;
-        //Font textFont;
-        //StringFormat stringFormat;
-
         public event EventHandler DataGridViewChanged;
         protected virtual void OnDataGridViewChanged(DataGridView dgv)
         {
@@ -58,6 +53,10 @@ namespace V6Controls.Controls
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Tự động di chuyển theo DataGridView.
+        /// </summary>
+        /// <param name="dgv"></param>
         private void FixThisSizeLocation(DataGridView dgv)
         {
             if (Parent != dgv.Parent)
@@ -65,7 +64,6 @@ namespace V6Controls.Controls
             Left = dgv.Left;
             Top = dgv.Top - Height;
             Width = dgv.Width;
-            //DrawTempView();
         }
 
         private void ConnectGridView(DataGridView dgv)
@@ -84,13 +82,8 @@ namespace V6Controls.Controls
                     dgv6.RowSelectChanged += dgv_SelectionChanged_row;
                 }
                 dgv.DataBindingComplete += dgv_DataBindingComplete;
-                //dgv.DataSourceChanged += dgv_DataSourceChanged;
-                
                 dgv.SizeChanged += dgv_SizeChanged;
-                //dgv.columnheaderw
                 dgv.LocationChanged += dgv_LocationChanged;
-                //DrawSummary();
-                
             }
         }
 
@@ -159,22 +152,41 @@ namespace V6Controls.Controls
         {
             try
             {
-                if (!_created)
+                _created = true;
+                if (_dgv.Font.Size > 10)
                 {
-                    _created = true;
-                    if (_dgv.Font.Size > 10)
+                    Height = (int) (Height + _dgv.Font.Size - 8);
+                    FixThisSizeLocation(_dgv);
+                }
+
+                foreach (DataGridViewColumn column in _dgv.Columns)
+                {
+                    if (column.Visible)
                     {
-                        Height = (int) (Height + _dgv.Font.Size - 8);
-                        FixThisSizeLocation(_dgv);
+                        AddFilterItem((DataGridViewTextBoxColumn) column);
                     }
-                    foreach (DataGridViewColumn column in _dgv.Columns)
+                    else
                     {
-                        if (column.Visible)
-                        {
-                            AddFilterItem((DataGridViewTextBoxColumn)column);
-                        }
+                        HideFilterItem((DataGridViewTextBoxColumn) column);
                     }
-                    if (!_auto) RelocationAll();
+                }
+
+                if (!_auto) RelocationAll();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex, Name);
+            }
+        }
+
+        private void HideFilterItem(DataGridViewTextBoxColumn column)
+        {
+            try
+            {
+                string FIELD = column.DataPropertyName.ToUpper();
+                if (_filterItems.ContainsKey(FIELD))
+                {
+                    _filterItems[FIELD].Visible = true;
                 }
             }
             catch (Exception ex)
@@ -183,11 +195,22 @@ namespace V6Controls.Controls
             }
         }
 
+
         private void AddFilterItem(DataGridViewColumn column)
         {
             try
             {
                 string FIELD = column.DataPropertyName.ToUpper();
+                if (_filterItems.ContainsKey(FIELD))
+                {
+                    _filterItems[FIELD].Visible = true;
+                    return;
+                }
+
+                if (_filterItems.Count >= ColumnLimit)
+                {
+                    return;
+                }
 
                 if (ObjectAndString.IsDateTimeType(column.ValueType))
                 {

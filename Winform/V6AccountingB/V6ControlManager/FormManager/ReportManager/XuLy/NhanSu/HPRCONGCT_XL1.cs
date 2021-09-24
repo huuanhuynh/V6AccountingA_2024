@@ -447,7 +447,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(string.Format("{0}, F9-{1}. F5-{2}. F3-{3}", V6Text.Text("SBSelect"), V6Text.Text("ALLNVCELL"), V6Text.Text("BoSung"), V6Text.Text("Lich")));
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = string.Format("{0}, F9-{1}. F5-{2}. F3-{3}", V6Text.Text("SBSelect"), V6Text.Text("ALLNVCELL"), V6Text.Text("BoSung"), V6Text.Text("Lich"));
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         protected override void MakeReport2()

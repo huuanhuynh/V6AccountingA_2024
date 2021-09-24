@@ -504,7 +504,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (Visible)
             {
-                //SetStatus2Text();
+                
             }
         }
         

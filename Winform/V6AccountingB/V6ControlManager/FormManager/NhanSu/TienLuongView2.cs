@@ -615,9 +615,15 @@ namespace V6ControlManager.FormManager.NhanSu
         
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese
+            string id = "ST2" + TABLE_NAME;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = V6Setting.IsVietnamese
                 ? "F3-Sửa, F4-Thêm, F5-Tìm, F6-Đổi mã, F8-Xóa"
-                : "F3-Edit, F4-New, F5-Search, F6-Change Code, F8-Delete");
+                : "F3-Edit, F4-New, F5-Search, F6-Change Code, F8-Delete";
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
         
         private void DoFillter()

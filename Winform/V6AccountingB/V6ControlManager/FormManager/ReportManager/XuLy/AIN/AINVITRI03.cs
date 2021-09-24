@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using V6ControlManager.FormManager.KhoHangManager;
 using V6Controls.Forms;
+using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
@@ -36,7 +37,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(".");
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = ".";
+            }
+
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         protected override void Nhan()

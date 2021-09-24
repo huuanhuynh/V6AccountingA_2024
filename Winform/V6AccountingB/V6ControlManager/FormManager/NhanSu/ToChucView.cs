@@ -939,7 +939,13 @@ namespace V6ControlManager.FormManager.NhanSu
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(status2text);
+            string id = "ST2" + TABLE_NAME;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = status2text;
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
         
         private void btnFull_Click(object sender, EventArgs e)

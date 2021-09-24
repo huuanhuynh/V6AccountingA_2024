@@ -27,7 +27,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(string.Format("F4: {0}, F9: {1}, F10: {2}, F8: {3}, F7: {4}.", V6Text.Text("BoSungThongTin"), V6Text.Text("XULYCT"), V6Text.Text("XULYBOSUNG"), V6Text.Text("HUYXULY"), V6Text.Text("Print")));
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = string.Format("F4: {0}, F9: {1}, F10: {2}, F8: {3}, F7: {4}.", V6Text.Text("BoSungThongTin"), V6Text.Text("XULYCT"), V6Text.Text("XULYBOSUNG"), V6Text.Text("HUYXULY"), V6Text.Text("Print"));
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         protected override void MakeReport2()

@@ -2357,7 +2357,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Text.Text("PRINT" + Invoice.Mact));
+            string id = "ST2PRINT" + Invoice.Mact;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = V6Text.Text("PRINT" + Invoice.Mact);
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
         
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)

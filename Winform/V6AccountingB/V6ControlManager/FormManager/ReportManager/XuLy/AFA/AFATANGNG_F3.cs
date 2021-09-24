@@ -83,7 +83,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
-            //SetStatus2Text();
+            
         }
         
         public void btnNhan_Click(object sender, EventArgs e)

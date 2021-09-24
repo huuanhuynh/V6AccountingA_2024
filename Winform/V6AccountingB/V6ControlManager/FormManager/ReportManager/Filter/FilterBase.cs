@@ -237,6 +237,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
+        /// <summary>
+        /// Add thêm FilterLine từ ALREPORT1(@ma_bc=program)
+        /// </summary>
+        /// <param name="program"></param>
+        /// <param name="all_Objects"></param>
+        /// <param name="toolTip"></param>
         public void MadeFilterControls(string program, Dictionary<string, object> all_Objects, ToolTip toolTip)
         {
             Type Event_program = null;

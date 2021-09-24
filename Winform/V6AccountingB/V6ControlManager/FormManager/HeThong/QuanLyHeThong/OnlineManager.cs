@@ -80,7 +80,14 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Online manager: DoubleClick cột Allow để thay đổi.");
+            string id = "ST2OnlineManager";
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "Online manager: DoubleClick cột Allow để thay đổi.";
+            }
+
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         private void v6FormButton2_Click(object sender, EventArgs e)

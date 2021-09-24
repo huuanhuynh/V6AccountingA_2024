@@ -208,7 +208,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(string.Format("F9 {0}.", V6Text.Text("Accept")));
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = string.Format("F9 {0}.", V6Text.Text("Accept"));
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
         
         protected override void Nhan()

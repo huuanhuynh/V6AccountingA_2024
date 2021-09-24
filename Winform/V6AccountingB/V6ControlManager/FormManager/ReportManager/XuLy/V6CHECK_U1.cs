@@ -46,7 +46,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Kiểm tra số liệu. F3 sửa");
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "Kiểm tra số liệu. F3 sửa.";
+            }
+
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         private void LoadCombobox()

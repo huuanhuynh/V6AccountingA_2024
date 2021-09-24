@@ -2136,14 +2136,26 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void gView4_MouseHover(object sender, EventArgs e)
         {
-            V6ControlFormHelper.SetStatusText(V6Text.Text("F8DELETEAROW"));
-            V6ControlFormHelper.SetStatusText2(V6Text.Text("F8DELETEAROW"));
+            string id = "ST2F8DELETEAROW";
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = V6Text.Text("F8DELETEAROW");
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
+            V6ControlFormHelper.SetStatusText(text);
         }
 
         private void gView5_MouseHover(object sender, EventArgs e)
         {
-            V6ControlFormHelper.SetStatusText(V6Text.Text("F8DELETEAROW"));
-            V6ControlFormHelper.SetStatusText2(V6Text.Text("F8DELETEAROW"));
+            string id = "ST2F8DELETEAROW";
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = V6Text.Text("F8DELETEAROW");
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
+            V6ControlFormHelper.SetStatusText(text);
         }
 
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)

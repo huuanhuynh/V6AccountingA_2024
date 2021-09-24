@@ -1967,7 +1967,13 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(status2text);
+            string id = "ST2" + _MA_DM;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = status2text;
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
         
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)

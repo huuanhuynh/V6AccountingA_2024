@@ -46,7 +46,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F2 xem, F3 sửa, F4 thêm, F8 xóa.");
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "F2 xem, F3 sửa, F4 thêm, F8 xóa.";
+            }
+
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         

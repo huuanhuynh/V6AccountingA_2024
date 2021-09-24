@@ -114,7 +114,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
         private void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3-Sửa, F4-Thêm");
+            string id = "ST2" + "STICK_NOTE_F5";
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "F3-Sửa, F4-Thêm.";
+            }
+
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         protected int _oldIndex = -1;

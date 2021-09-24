@@ -21,7 +21,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Tạo bút toán kết chuyển,F8: Xóa bút toán kết chuyển");
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "F4: Tạo bút toán kết chuyển,F8: Xóa bút toán kết chuyển.";
+            }
+
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         protected override void MakeReport2()

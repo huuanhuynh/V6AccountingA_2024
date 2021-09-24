@@ -57,7 +57,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ? "F3: Sửa, F5: Xem, F9: Xử lý chứng từ, F8: Hủy xử lý." : "F3: Edit, F5: View, F9: Processing, F8: Cancel processing.");
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = V6Setting.IsVietnamese ? "F3: Sửa, F5: Xem, F9: Xử lý chứng từ, F8: Hủy xử lý." : "F3: Edit, F5: View, F9: Processing, F8: Cancel processing.";
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         protected override void MakeReport2()

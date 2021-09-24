@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 
 namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
 {
@@ -34,7 +35,13 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Từ điển ngôn ngữ.");
+            string id = "ST2CorplanContainer";
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "Từ điển ngôn ngữ.";
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         private bool loadTab2, loadTab3;

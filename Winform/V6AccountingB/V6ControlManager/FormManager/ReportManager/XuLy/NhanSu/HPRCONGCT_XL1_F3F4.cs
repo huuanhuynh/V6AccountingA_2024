@@ -195,7 +195,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         
         private void Form_Load(object sender, EventArgs e)
         {
-            //SetStatus2Text();
+            
         }
 
         

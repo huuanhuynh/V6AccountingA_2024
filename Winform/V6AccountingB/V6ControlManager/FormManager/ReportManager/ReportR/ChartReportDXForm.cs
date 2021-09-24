@@ -279,7 +279,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     SetAllReportParams(x);
                     XtraEditorForm1 form1 = new XtraEditorForm1(x, repxFile);
                     form1.Show(this);
-                    //SetStatus2Text();
+                    
                 }
             }
             catch (Exception ex)

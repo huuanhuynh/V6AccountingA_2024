@@ -22,6 +22,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             dataGridView1.Control_S = true;
             PostManager.ResetWS();
+            InitializeComponent();
         }
 
         private void AAPPR_EINVOICE1_Load(object sender, EventArgs e)
@@ -31,7 +32,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(string.Format("F6: {0}, F9: {1}", V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT")));
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = string.Format("F6: {0}, F9: {1}", V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT"));
+            }
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         protected override void MakeReport2()

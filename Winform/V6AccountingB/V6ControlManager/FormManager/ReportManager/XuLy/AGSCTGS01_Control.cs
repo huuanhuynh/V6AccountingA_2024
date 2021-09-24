@@ -25,7 +25,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected string _tableName = "ARctgs01";
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3: Sửa, F4:Thêm, F8: Xóa.");
+            string id = "ST2" + _reportProcedure;
+            var text = CorpLan.GetTextNull(id);
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "F3: Sửa, F4:Thêm, F8: Xóa.";
+            }
+
+            V6ControlFormHelper.SetStatusText2(text, id);
         }
 
         protected override void MakeReport2()

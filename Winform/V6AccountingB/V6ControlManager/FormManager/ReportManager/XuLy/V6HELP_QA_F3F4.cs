@@ -171,7 +171,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
-            //SetStatus2Text();
+            
         }
 
         
