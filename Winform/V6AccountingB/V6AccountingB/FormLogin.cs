@@ -48,7 +48,7 @@ namespace V6AccountingB
             cboDatabase.ValueMember = DatabaseConfig.ConfigDataValueMember;
             cboDatabase.SelectedIndex = DatabaseConfig.GetConfigDataRunIndex();
 
-            CheckCrystalReportInstaled();
+            CheckCrystalInstaledAndOthers();
         }
 
         protected override void LoadLanguage()
@@ -109,13 +109,17 @@ namespace V6AccountingB
         private string lblStatusSuccess = "______________________________________________";
         private string lblStatusSuccessIP = "________________________________";
         private string lblStatusFail = "___________ / _";
-        private void CheckCrystalReportInstaled()
+        private void CheckCrystalInstaledAndOthers()
         {
             try
             {
                 if (Directory.Exists(@"C:\Windows\assembly\GAC_MSIL\CrystalDecisions.CrystalReports.Engine"))
                 {
-                    ;
+                    if (!File.Exists(Path.Combine(Application.StartupPath, "V6AccountingB.exe.config")))
+                    {
+                        lblStatusSuccess = "Connection OK! Lost V6AccountingB.exe.config";
+                        lblStatusFail = "Connection Fail! Lost V6AccountingB.exe.config";
+                    }
                 }
                 else
                 {

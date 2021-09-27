@@ -1076,7 +1076,17 @@
             // dicEditButton2
             // 
             this.dicEditButton2.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton2.Image")));
-            this.dicEditButton2.KeyWordList = null;
+            this.dicEditButton2.KeyWordList = new string[] {
+        "Name:M_TEN_CTY;NOTEMPTY:1;Ptype:FILTER_BROTHER;Field:MA_DVCS;Fname:TEN_DVCS",
+        "Name:MA_KHO;NOTEMPTY:0;Ptype:FILTER;Field:MA_KHO",
+        "Name:R_MA_DVCS;Ptype:FILTER;Field:MA_DVCS",
+        "Name:R_TEN_DVCS;Ptype:FILTER_BROTHER;Field:MA_DVCS;Fname:TEN_DVCS",
+        "Name:SOTIENVIETBANGCHU_TIENBAN;Ptype:TABLE2;Field:T_TT",
+        "Name:SOTIENVIETBANGCHUE_TIENBANNT;Ptype:TABLE2;Field:NO_CK",
+        "Name:SOTIENVIETBANGCHUV_TIENBANNT;Ptype:TABLE2;Field:T_TT",
+        "Name:SOTIENVIETBANGCHUV_TIENBAN;Ptype:TABLE2;Field:T_TT",
+        "Name:SOTIENVIETBANGCHUE_TIENBANNT;Ptype:TABLE2;Field:T_TT",
+        "Name:SOTIENVIETBANGCHUE_TIENBAN;Ptype:TABLE2;Field:T_TT"};
             this.dicEditButton2.Location = new System.Drawing.Point(716, 290);
             this.dicEditButton2.Name = "dicEditButton2";
             this.dicEditButton2.ReferenceControl = this.v6ColorTextBox16;

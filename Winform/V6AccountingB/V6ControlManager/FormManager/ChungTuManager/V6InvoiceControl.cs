@@ -6239,7 +6239,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             //return;
             if (Mode != V6Mode.Edit) return;                                    // Chỉ chạy mode Edit.
             if (!V6Options.SaveEditLogInvoice || !_invoice.WRITE_LOG) return;   // Cho phép lưu log trong setting.
-
+            if (controlList1 == null) return;
             try
             {
                 if (oldData == null) // add

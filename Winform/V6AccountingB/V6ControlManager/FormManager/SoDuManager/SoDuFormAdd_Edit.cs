@@ -30,18 +30,30 @@ namespace V6ControlManager.FormManager.SoDuManager
             IDictionary<string, object> data = null)
         {
             InitializeComponent();
-            //_tableName = tableName;
-            _MA_DM = ma_dm.ToUpper();
-            FormControl = SoDuManager.GetAddEditControl(_MA_DM);
-            
-            FormControl.InitValues(_MA_DM, mode, keys, data);
-            
-            panel1.Controls.Add(FormControl);
+            try
+            {
+                //_tableName = tableName;
+                _MA_DM = ma_dm.ToUpper();
+                FormControl = SoDuManager.GetAddEditControl(_MA_DM);
+                FormControl.InitValues(_MA_DM, mode, keys, data);
+                panel1.Controls.Add(FormControl);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ctor", ex);
+            }
         }
         
         private void FormAdd_Edit_Load(object sender, EventArgs e)
         {
-            Text = FormControl.Mode + " - " + FormControl.TitleLang;
+            try
+            {
+                Text = FormControl.Mode + " - " + FormControl.TitleLang;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "_Load", ex);
+            }
         }
 
         private void btnNhan_Click(object sender, EventArgs e)

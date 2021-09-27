@@ -938,6 +938,9 @@
             // dicEditButton1
             // 
             this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.KeyWordList = new string[] {
+        "AM:Field1,Field2",
+        "AD:Field1,Field2"};
             this.dicEditButton1.Location = new System.Drawing.Point(713, 234);
             this.dicEditButton1.Name = "dicEditButton1";
             this.dicEditButton1.ReferenceControl = this.txtResetCopy;
@@ -1342,6 +1345,12 @@
             // dicEditExtraInfo
             // 
             this.dicEditExtraInfo.Image = ((System.Drawing.Image)(resources.GetObject("dicEditExtraInfo.Image")));
+            this.dicEditExtraInfo.KeyWordList = new string[] {
+        "AD2AM:ADfield:Amfield,Adfield2:Amfield2",
+        "CDHMAP:field:??,field2:??",
+        "ENTER2TAB:1",
+        "PRINTNT:1",
+        "PRINTVCZOOM:1(width) or 2(all_page) or 100(%)"};
             this.dicEditExtraInfo.Location = new System.Drawing.Point(713, 209);
             this.dicEditExtraInfo.Name = "dicEditExtraInfo";
             this.dicEditExtraInfo.ReferenceControl = this.txtExtraInfo;

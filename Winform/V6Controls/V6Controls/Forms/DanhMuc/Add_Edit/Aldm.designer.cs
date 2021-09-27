@@ -916,7 +916,8 @@
             // btnValidChars
             // 
             this.btnValidChars.Image = ((System.Drawing.Image)(resources.GetObject("btnValidChars.Image")));
-            this.btnValidChars.KeyWordList = null;
+            this.btnValidChars.KeyWordList = new string[] {
+        "MA_VV:QWERTYUIOPASDFGHJKLZXCVBNM0123456789._-"};
             this.btnValidChars.Location = new System.Drawing.Point(763, 173);
             this.btnValidChars.Name = "btnValidChars";
             this.btnValidChars.ReferenceControl = this.txtValidChars;
@@ -933,6 +934,7 @@
             this.txtValidChars.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtValidChars.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtValidChars.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtValidChars.GrayText = "MA_VV:ABCVV12345";
             this.txtValidChars.HoverColor = System.Drawing.Color.Yellow;
             this.txtValidChars.LeaveColor = System.Drawing.Color.White;
             this.txtValidChars.Location = new System.Drawing.Point(171, 173);
@@ -942,12 +944,21 @@
             this.txtValidChars.Size = new System.Drawing.Size(592, 23);
             this.txtValidChars.TabIndex = 15;
             this.txtValidChars.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.txtValidChars, "Kiểm tra ký tự hợp lệ khi nhập liệu.");
             this.txtValidChars.Visible = false;
             // 
             // dicEditButton1
             // 
             this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
-            this.dicEditButton1.KeyWordList = null;
+            this.dicEditButton1.KeyWordList = new string[] {
+        "F368_PASS:111 Trong danh mục, cho phép hoặc khóa các phím F3 F6 F8",
+        "F4_RELOAD:Field1,Field2 Các trường khóa để tải lại dữ liệu danh mục sau khi thêm " +
+            "xong với dữ liệu khóa là dữ liệu",
+        "GRD_ALLOW:111 Add,Edit,Delete (Add và Edit thường cùng nhau).",
+        "OFF_TOPFILTER:1",
+        "NOUPDATE:FIELD1,FIELD2",
+        "XTRAREPORT:1",
+        "PAGESIZE:20"};
             this.dicEditButton1.Location = new System.Drawing.Point(763, 148);
             this.dicEditButton1.Name = "dicEditButton1";
             this.dicEditButton1.ReferenceControl = this.txtExtraInfo;

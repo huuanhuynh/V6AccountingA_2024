@@ -946,6 +946,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// <param name="newData">Dữ liệu mới. null nếu xóa.</param>
         protected void UpdateDetailChangeLog(string stt_rec0, IDictionary<int, Control> controlList1, IDictionary<string, object> oldData, IDictionary<string, object> newData)
         {
+            if (controlList1 == null) return;
+
             if (oldData == null) // add
             {
                 SortedDictionary<string, object> newData1 = new SortedDictionary<string, object>();

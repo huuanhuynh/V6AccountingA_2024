@@ -376,7 +376,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 
                 if (error == "")
                 {
-                    UpdateDetailChangeLog(_sttRec0, dynamicControlList2, null, data);
+                    UpdateDetailChangeLog(_sttRec0, dynamicControlList1, null, data);
                     //Tạo dòng dữ liệu mới.
                     var newRow = AD.NewRow();
                     foreach (DataColumn column in AD.Columns)
@@ -437,7 +437,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             //Sửa dòng dữ liệu.
                             var currentRow = AD.Rows[cIndex];
                             var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
-                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList2, currentRow.ToDataDictionary(), data);
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList1, currentRow.ToDataDictionary(), data);
                             foreach (DataColumn column in AD.Columns)
                             {
                                 var key = column.ColumnName.ToUpper();
@@ -491,7 +491,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         {
                             var delete_data = currentRow.ToDataDictionary();
                             var c_sttRec0 = currentRow["STT_REC0"].ToString().Trim();
-                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList2, delete_data, null);
+                            UpdateDetailChangeLog(c_sttRec0, dynamicControlList1, delete_data, null);
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
