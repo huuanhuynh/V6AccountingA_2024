@@ -222,7 +222,7 @@ namespace V6Controls.Forms.Editor
                         label1.Visible = false;
                         textBox1.Visible = false;
                         checkBox1.Visible = false;
-                        button1.Visible = false;
+                        btnSave.Visible = false;
 
                         listView1.Items.Clear();
                         SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>();
@@ -251,13 +251,13 @@ namespace V6Controls.Forms.Editor
                 label1.Visible = true;
                 textBox1.Visible = true;
                 checkBox1.Visible = true;
-                button1.Visible = true;
+                btnSave.Visible = true;
                 //Thay đổi nội dung text bằng tiếng Anh
                 if (V6Setting.Language != "V")
                 {
                     Text = "Change text";
                     label1.Text = "Text";
-                    button1.Text = "Ok";
+                    btnSave.Text = "Ok";
 
                     columnHeader1.Text = "Name";
                     columnHeader2.Text = "Value";
@@ -288,7 +288,7 @@ namespace V6Controls.Forms.Editor
                 {
                     listView1.Items.Add(new ListViewItem(new[] { "Error", "No CorpLan info." }));
 
-                    Control parent = V6ControlFormHelper.FindParent<V6Control>(_control) ?? (Control)V6ControlFormHelper.FindParent<V6Form>(_control);
+                    Control parent = V6ControlFormHelper.FindParent<V6Control>(_control) ?? V6ControlFormHelper.FindParent<V6Form>(_control);
                     this.WriteToLog((parent == null ? "" : parent.GetType() + ".") + _control.Name,
                         "No CorpLan info: " + _control.AccessibleDescription);
                 }
@@ -352,7 +352,7 @@ namespace V6Controls.Forms.Editor
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             Accept();
         }
@@ -375,6 +375,22 @@ namespace V6Controls.Forms.Editor
         private void btnXuatXml_Click(object sender, EventArgs e)
         {
             SaveMainControlDataXml();
+        }
+
+        private void btnDefaultData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var parent = V6ControlFormHelper.FindParent<V6FormControl>(_control) as V6FormControl;
+                if (parent != null)
+                {
+                    parent.ShowAlinitAddEdit(_control);
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + ".btnDefaultData_Click", ex);
+            }
         }
     }
 }

@@ -136,7 +136,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             try
             {
                 //Load AD
-                string sttRec = DataOld == null ? "" : DataOld["STT_REC"].ToString();
+                string sttRec = DataOld != null && DataOld.ContainsKey("STT_REC") ? DataOld["STT_REC"].ToString() : "";
                 string sql = "SELECT a.*,b.comment as comment FROM " + _table2Name +
                              " as a left join v6user b on a.user_name=b.user_name  Where stt_rec = @rec";
                 SqlParameter[] plist = {new SqlParameter("@rec", sttRec)};

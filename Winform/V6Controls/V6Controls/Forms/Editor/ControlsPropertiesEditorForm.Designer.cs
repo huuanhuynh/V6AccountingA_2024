@@ -33,12 +33,12 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnUp = new System.Windows.Forms.Button();
@@ -46,6 +46,7 @@
             this.btnXuatXml = new System.Windows.Forms.Button();
             this.lblControlType = new System.Windows.Forms.Label();
             this.lblControlName = new System.Windows.Forms.Label();
+            this.btnDefaultData = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,13 +98,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.listView1);
             this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(567, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(344, 503);
+            this.panel1.Size = new System.Drawing.Size(344, 468);
             this.panel1.TabIndex = 7;
+            this.panel1.TabStop = false;
+            this.panel1.Text = "Nội dung hiển thị (theo ngôn ngữ)";
             // 
             // listView1
             // 
@@ -114,9 +117,9 @@
             this.columnHeader1,
             this.columnHeader2});
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(10, 42);
+            this.listView1.Location = new System.Drawing.Point(10, 52);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(324, 458);
+            this.listView1.Size = new System.Drawing.Size(324, 413);
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -136,31 +139,32 @@
             this.checkBox1.AccessibleDescription = ".";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(231, 18);
+            this.checkBox1.Location = new System.Drawing.Point(231, 28);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(33, 17);
             this.checkBox1.TabIndex = 7;
             this.checkBox1.Text = "V";
+            this.toolTipV6FormControl.SetToolTip(this.checkBox1, "Áp dụng thay đổi ngay cả ngôn ngữ Tiếng Việt");
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.Visible = false;
             // 
-            // button1
+            // btnSave
             // 
-            this.button1.AccessibleDescription = ".";
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(273, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(49, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "&Nhận";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSave.AccessibleDescription = ".";
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(273, 24);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(61, 23);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "&Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(64, 16);
+            this.textBox1.Location = new System.Drawing.Point(64, 26);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(161, 20);
             this.textBox1.TabIndex = 6;
@@ -169,7 +173,7 @@
             // 
             this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 19);
+            this.label1.Location = new System.Drawing.Point(16, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 5;
@@ -186,6 +190,7 @@
             this.btnUp.TabIndex = 10;
             this.btnUp.Text = "Up";
             this.btnUp.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolTipV6FormControl.SetToolTip(this.btnUp, "Hiển thị đối tượng cha (control.Parent).");
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
@@ -196,7 +201,7 @@
             this.btnNhapXml.Name = "btnNhapXml";
             this.btnNhapXml.Size = new System.Drawing.Size(84, 29);
             this.btnNhapXml.TabIndex = 12;
-            this.btnNhapXml.Text = "&Nhập xml";
+            this.btnNhapXml.Text = "&Nhập xml data";
             this.btnNhapXml.UseVisualStyleBackColor = true;
             this.btnNhapXml.Click += new System.EventHandler(this.btnNhapXml_Click);
             // 
@@ -207,7 +212,7 @@
             this.btnXuatXml.Name = "btnXuatXml";
             this.btnXuatXml.Size = new System.Drawing.Size(84, 29);
             this.btnXuatXml.TabIndex = 11;
-            this.btnXuatXml.Text = "&Xuất xml";
+            this.btnXuatXml.Text = "&Xuất xml data";
             this.btnXuatXml.UseVisualStyleBackColor = true;
             this.btnXuatXml.Click += new System.EventHandler(this.btnXuatXml_Click);
             // 
@@ -231,6 +236,18 @@
             this.lblControlName.TabIndex = 14;
             this.lblControlName.Text = "ControlName";
             // 
+            // btnDefaultData
+            // 
+            this.btnDefaultData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDefaultData.Location = new System.Drawing.Point(567, 517);
+            this.btnDefaultData.Name = "btnDefaultData";
+            this.btnDefaultData.Size = new System.Drawing.Size(128, 29);
+            this.btnDefaultData.TabIndex = 11;
+            this.btnDefaultData.Text = "Giá trị dữ liệu mặc định";
+            this.toolTipV6FormControl.SetToolTip(this.btnDefaultData, "Sửa hoặc thêm giá trị mặc định (hoặc tag) cho đối tượng.");
+            this.btnDefaultData.UseVisualStyleBackColor = true;
+            this.btnDefaultData.Click += new System.EventHandler(this.btnDefaultData_Click);
+            // 
             // ControlsPropertiesEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +256,7 @@
             this.Controls.Add(this.lblControlName);
             this.Controls.Add(this.lblControlType);
             this.Controls.Add(this.btnNhapXml);
+            this.Controls.Add(this.btnDefaultData);
             this.Controls.Add(this.btnXuatXml);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.panel1);
@@ -256,12 +274,12 @@
 
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox panel1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ImageList imageList1;
@@ -270,5 +288,6 @@
         private System.Windows.Forms.Button btnXuatXml;
         private System.Windows.Forms.Label lblControlType;
         private System.Windows.Forms.Label lblControlName;
+        private System.Windows.Forms.Button btnDefaultData;
     }
 }

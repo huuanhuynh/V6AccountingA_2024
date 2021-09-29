@@ -731,5 +731,12 @@ namespace V6Controls.Forms
             return false;
         }
 
+        public virtual void ShowAlinitAddEdit(Control control)
+        {
+            string message = "" + GetType();
+            message += V6Login.SelectedLanguage == "V" ? " chưa có khai báo hàm " : " Not Implemented Method ";
+            message += "ShowAlinitAddEdit(control)";
+            throw new NotImplementedException(message);
+        }
     }
 }

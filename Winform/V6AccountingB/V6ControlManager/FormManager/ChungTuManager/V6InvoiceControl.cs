@@ -15,6 +15,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.ReportR;
+using V6ControlManager.FormManager.SoDuManager;
 using V6Controls;
 using V6Controls.Controls;
 using V6Controls.Controls.GridView;
@@ -6459,6 +6460,53 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public virtual void chonExcel_AcceptData(List<IDictionary<string, object>> getSelectedData, ChonEventArgs chonE)
         {
             throw new NotImplementedException();
+        }
+
+
+        public override void ShowAlinitAddEdit(Control control)
+        {
+            V6Mode v6mode = V6Mode.Add;
+            IDictionary<string, object> keys0 = new Dictionary<string, object>();
+            IDictionary<string, object> keys = null;
+            
+            keys0["LOAI"] = 1;
+            keys0["MA_CT_ME"] = _invoice.Mact;
+            keys0["NHOM"] = "00";
+            keys0["NAMETAG"] = control.Name.ToUpper();
+            if(!string.IsNullOrEmpty(control.AccessibleName)) keys0["NAMEVAL"] = control.AccessibleName.ToUpper();
+            // Lấy dữ liệu mặc định của Form parent.
+            var defaultData = V6BusinessHelper.GetDefaultValueData(1, _invoice.Mact, "", ItemID, "nhom='00'");
+            DataRow dataRow = null;
+            foreach (DataRow row in defaultData.Rows)
+            {
+                if (row["NAMETAG"].ToString().Trim().ToUpper() == control.Name.ToUpper())
+                {
+                    dataRow = row;
+                    break;
+                }
+
+                if (!string.IsNullOrEmpty(control.AccessibleName) && row["NAMEVAL"].ToString().Trim().ToUpper() == control.AccessibleName.ToUpper())
+                {
+                    dataRow = row;
+                    break;
+                }
+            }
+            
+            if (dataRow != null) // nếu tồn tại dữ liệu.
+            {
+                v6mode = V6Mode.Edit;
+                keys = new Dictionary<string, object>();
+                keys["UID"] = dataRow["UID"];
+                SoDuFormAddEdit form = new SoDuFormAddEdit("ALINIT", v6mode, keys);
+                form.ShowDialog(this);
+            }
+            else
+            {
+                v6mode = V6Mode.Add;
+                keys0["KIEU"] = "0";
+                SoDuFormAddEdit form = new SoDuFormAddEdit("ALINIT", v6mode, null, keys0);
+                form.ShowDialog(this);
+            }
         }
     }
 }

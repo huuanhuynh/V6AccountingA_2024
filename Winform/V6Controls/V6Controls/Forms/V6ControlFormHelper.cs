@@ -8717,5 +8717,26 @@ namespace V6Controls.Forms
                 owner.WriteExLog(owner.GetType() + ".CreateFormProgram", ex);
             }
         }
-    }
+
+        public static MethodInfo FindMethodOverrides(V6FormControl control, string methodName)
+        {
+            //Assembly asm = Assembly.LoadFrom(asmPath);
+            Type asmType = control.GetType();
+            //Console.WriteLine("---[" + asmType.FullName + "]---");
+            // get the methods that match this type
+            MethodInfo[] methods = asmType.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic |
+                                                      BindingFlags.Public | BindingFlags.Static |
+                                                      BindingFlags.DeclaredOnly);
+            foreach (MethodInfo method in methods)
+            {
+                if (string.Compare(method.Name, methodName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    return method;
+                }
+            }
+
+            return null;
+        }
+
+    }// end class
 }

@@ -275,7 +275,7 @@ namespace V6Init
         {
             string result = "";
 
-            switch (tableName.ToUpper().Trim())
+            switch (("" + tableName).ToUpper().Trim())
             {
                 case "V6OPTION":
                     result = "Attribute=1";
