@@ -16,7 +16,7 @@ namespace V6Controls.Forms
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("");
+            V6ControlFormHelper.SetStatusText2("", "ST2" + ItemID);
         }
     }
 }

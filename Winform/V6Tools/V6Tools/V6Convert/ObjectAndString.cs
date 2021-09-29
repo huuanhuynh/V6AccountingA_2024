@@ -665,6 +665,32 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
+        /// Tách chuỗi làm 2 phần. Ký tự tách nếu còn dư sẽ được giữ lại trong chuỗi thứ 2.
+        /// </summary>
+        /// <param name="s">Chuỗi cần tách.</param>
+        /// <param name="splitChar">Ký tự tách, ví dụ dấu hai chấm :</param>
+        /// <returns>Mảng 2 phần tử</returns>
+        public static string[] Split2(string s, char splitChar)
+        {
+            string[] result = new string[] {null, null};
+            if (s != null)
+            {
+                int index = s.IndexOf(splitChar);
+                if (index > 0)
+                {
+                    result[0] = s.Substring(0, index);
+                    result[1] = s.Substring(index + 1);
+                }
+                else
+                {
+                    result[0] = s;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Tách chuỗi thành mảng bằng ; hoặc ,
         /// </summary>
         /// <param name="s">Chuỗi cần tách</param>

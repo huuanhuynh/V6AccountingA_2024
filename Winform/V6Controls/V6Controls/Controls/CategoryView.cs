@@ -1366,7 +1366,7 @@ namespace V6Controls.Controls
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(status2text);
+            V6ControlFormHelper.SetStatusText2(status2text, "ST2" + CONFIG_TABLE_NAME);
         }
         
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)

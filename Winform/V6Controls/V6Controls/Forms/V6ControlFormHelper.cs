@@ -417,7 +417,7 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="text">Dòng chữ hiển thị để giải thích.</param>
         /// <param name="id">Khóa Corplan</param>
-        public static void SetStatusText2(string text, string id = null)
+        public static void SetStatusText2(string text, string id)
         {
             if (StatusTextViewControl2 != null)
             {

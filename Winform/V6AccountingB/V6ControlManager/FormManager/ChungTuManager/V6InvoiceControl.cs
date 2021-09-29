@@ -5472,68 +5472,74 @@ namespace V6ControlManager.FormManager.ChungTuManager
             var sss = ObjectAndString.SplitString(m_ma_hd);
             foreach (string s in sss)
             {
-                var ss = s.Split(':');
+                var ss = ObjectAndString.Split2(s, ':');
                 if (ss.Length > 1)
                 {
-                    var fields = ObjectAndString.SplitString(ss[1]);
+                    var fields_values = ObjectAndString.SplitString(ss[1]);
                     if (ss[0].ToUpper() == "AM")
                     {
-                        foreach (string field in fields)
+                        foreach (string field_value in fields_values)
                         {
-                            string FIELD = field.Trim().ToUpper();
+                            var f_v = ObjectAndString.Split2(field_value, ':');
+                            string FIELD = f_v[0].Trim().ToUpper();
+                            string configValue = f_v[1];
+
                             if (invoice.AMStruct.ContainsKey(FIELD))
                             {
                                 Control c = GetControlByAccessibleName(FIELD);
-                                if (c != null) V6ControlFormHelper.SetControlValue(c, null);
+                                if (c != null) V6ControlFormHelper.SetControlValue(c, configValue);
                             }
                         }
                     }
                     else if (ss[0].ToUpper() == "AD")
                     {
-                        foreach (string field in fields)
+                        foreach (string field_value in fields_values)
                         {
-                            string FIELD = field.Trim().ToUpper();
+                            var f_v = ObjectAndString.Split2(field_value, ':');
+                            string FIELD = f_v[0].Trim().ToUpper();
+                            string configValue = f_v[1];
 
                             if (invoice.ADStruct.ContainsKey(FIELD) && AD.Columns.Contains(FIELD))
                             {
-                                object resetValue;
+                                object resetValue = configValue;
                                 V6ColumnStruct struct0 = invoice.ADStruct[FIELD];
-                                if (struct0.AllowNull)
-                                {
-                                    resetValue = DBNull.Value;
-                                }
-                                else
+                                if (!struct0.AllowNull)
                                 {
                                     switch (struct0.sql_data_type_string)
                                     {
                                         case "date":
                                         case "smalldatetime":
                                         case "datetime":
-                                            resetValue = V6Setting.M_SV_DATE;
+                                            resetValue = ObjectAndString.ObjectToDate(configValue);
+                                            if (resetValue == null) resetValue = V6Setting.M_SV_DATE;
                                             break;
                                         case "bit":
-                                            resetValue = false;
+                                            resetValue = ObjectAndString.ObjectToBool(configValue);
                                             break;
                                         case "bigint":
-                                        case "numeric":
+                                            resetValue = ObjectAndString.ObjectToInt64(configValue);
+                                            break;
                                         case "smallint":
-                                        case "decimal":
-                                        case "smallmoney":
                                         case "int":
                                         case "tinyint":
+                                            resetValue = ObjectAndString.ObjectToInt(configValue);
+                                            break;
+                                        case "numeric":
+                                        case "decimal":
+                                        case "smallmoney":
                                         case "money":
-                                            resetValue = 0;
+                                            resetValue = ObjectAndString.ObjectToDecimal(configValue);
                                             break;
 
                                         default:
-                                            resetValue = "";
+                                            resetValue = configValue;
                                             break;
                                     }
                                 }
 
                                 foreach (DataRow dataRow in AD.Rows)
                                 {
-                                    dataRow[field] = resetValue;
+                                    dataRow[field_value] = resetValue;
                                 }
                             }
 

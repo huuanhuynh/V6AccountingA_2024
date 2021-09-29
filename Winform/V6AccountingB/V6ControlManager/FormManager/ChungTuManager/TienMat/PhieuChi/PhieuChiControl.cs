@@ -2349,10 +2349,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private void KhoaThongTinKH()
         {
             txtMaKh.Enabled = false;
-            txtDiaChi.Enabled = false;
+            //txtDiaChi.Enabled = false;
             txtMaKh.Text = "";
             txtTenKh.Text = "";
-            txtDiaChi.Text = "";
+            //txtDiaChi.Text = "";
             txtMaSoThue.Text = "";
         }
 

@@ -2011,10 +2011,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void KhoaThongTinKH()
         {
             txtMaKh.Enabled = false;
-            txtDiaChi.Enabled = false;
+            //txtDiaChi.Enabled = false;
             txtMaKh.Text = "";
             txtTenKh.Text = "";
-            txtDiaChi.Text = "";
+            //txtDiaChi.Text = "";
             txtMaSoThue.Text = "";
         }
 
