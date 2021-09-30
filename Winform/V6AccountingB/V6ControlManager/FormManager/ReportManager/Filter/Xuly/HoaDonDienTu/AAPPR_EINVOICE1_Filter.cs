@@ -19,6 +19,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
             F3 = true;
             F6 = true;
+            F7 = true;
             F9 = true;
             F10 = true;
             

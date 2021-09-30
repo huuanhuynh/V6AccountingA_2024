@@ -9,6 +9,7 @@ using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 using V6ThuePostManager;
 using V6Tools;
 using Timer = System.Windows.Forms.Timer;
@@ -296,6 +297,90 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".XuLyF6", ex);
+            }
+        }
+
+        protected override void XuLyF7()
+        {
+            try
+            {
+                if (Event_Methods.ContainsKey("F7"))
+                {
+                    InvokeFormEvent(FormDynamicEvent.F7);
+                }
+                else
+                {
+                    DataGridViewRow row = dataGridView1.CurrentRow;
+                    if (row == null)
+                    {
+                        ShowMainMessage(V6Text.NoData);
+                        return;
+                    }
+
+                    string stt_rec = row.Cells["STT_REC"].Value.ToString();
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                        new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                        new SqlParameter("@HoaDonMau","0"),
+                        new SqlParameter("@isInvoice","1"),
+                        new SqlParameter("@ReportFile",""),
+                        new SqlParameter("@MA_TD1", FilterControl.String1),
+                        new SqlParameter("@UserID", V6Login.UserId)
+                    };
+
+                    DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
+                    string fkey_hd = row.Cells["FKEY_HD"].Value.ToString();
+
+                    var paras = new PostManagerParams
+                    {
+                        DataSet = ds,
+                        Mode = "",
+                        Branch = FilterControl.String1,
+                        Fkey_hd = fkey_hd,
+                    };
+                    string error;
+                    string so_hd0 = PostManager.PowerDownloadInfo(paras, out error);
+                    string so_hd1 = "";
+                    //"XL/20E0000323"
+                    switch (paras.Branch)
+                    {
+                        case "1":
+                            if (so_hd0 != null && so_hd0.Length > 6) so_hd1 = so_hd0.Substring(6);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    string title = V6Text.Text("CAPNHAP_SOHD");
+                    if (title == "CAPNHAP_SOHD") title = "Cập nhập lại số hóa đơn";
+                    string so_hd2 = V6ControlFormHelper.GetInputString(this, title, so_hd1);
+                    if (string.IsNullOrEmpty(so_hd2))
+                    {
+                        return;
+                    }
+
+                    string proc = "AAPPR_EINVOICE1_UPDATE_SO_CT";
+                    ComboBox cboSendType = this.GetControlByName("cboSendType") as ComboBox;
+                    SqlParameter[] pList =
+                    {
+                        new SqlParameter("@stt_REC", stt_rec),
+                        new SqlParameter("@ma_CT", row.Cells["MA_CT"].Value.ToString()),
+                        new SqlParameter("@ma_td1", cboSendType.SelectedIndex+1),
+
+                        new SqlParameter("@set_so_ct", so_hd2),
+                        new SqlParameter("@user_id", V6Login.UserId),
+                    };
+                    V6BusinessHelper.ExecuteProcedureNoneQuery(proc, pList);
+                    dataGridView1.SaveSelectedCellLocation();
+                    btnNhan.PerformClick();
+                    dataGridView1.LoadSelectedCellLocation();
+                    V6Message.Show("OK :" + proc + so_hd2, 300, this); // Chay procedure
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF7", ex);
             }
         }
 

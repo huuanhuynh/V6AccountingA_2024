@@ -44,7 +44,7 @@
             this.label1.Location = new System.Drawing.Point(107, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 1;
             this.label1.Text = "Nhập";
             // 
             // txtInput
@@ -52,13 +52,13 @@
             this.txtInput.Location = new System.Drawing.Point(199, 23);
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(147, 20);
-            this.txtInput.TabIndex = 1;
+            this.txtInput.TabIndex = 0;
             this.txtInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // buttonCANCEL
             // 
             this.buttonCANCEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCANCEL.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.buttonCANCEL.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCANCEL.Location = new System.Drawing.Point(268, 64);
             this.buttonCANCEL.Name = "buttonCANCEL";
             this.buttonCANCEL.Size = new System.Drawing.Size(75, 23);
@@ -106,11 +106,6 @@
             this.MinimizeBox = false;
             this.Name = "StringInput";
             this.Text = "StringInput";
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.txtInput, 0);
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
-            this.Controls.SetChildIndex(this.buttonOK, 0);
-            this.Controls.SetChildIndex(this.buttonCANCEL, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

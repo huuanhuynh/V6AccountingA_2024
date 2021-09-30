@@ -1126,7 +1126,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected virtual void XuLyF6()
         {
-            throw new NotImplementedException();
+            InvokeFormEvent(FormDynamicEvent.F6);
         }
 
         protected virtual void XuLyF7()
@@ -1136,17 +1136,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected virtual void XuLyF8()
         {
-            throw new NotImplementedException();
+            InvokeFormEvent(FormDynamicEvent.F8);
         }
 
         protected virtual void XuLyF9()
         {
-            throw new NotImplementedException();
+            InvokeFormEvent(FormDynamicEvent.F9);
         }
 
         protected virtual void XuLyF10()
         {
-            throw new NotImplementedException();
+            InvokeFormEvent(FormDynamicEvent.F10);
         }
 
         protected virtual void XuLyCtrA()

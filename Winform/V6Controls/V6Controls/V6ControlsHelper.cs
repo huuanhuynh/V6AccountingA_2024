@@ -146,6 +146,7 @@ namespace V6Controls
                     + "using V6ControlManager.FormManager.ReportManager.XuLy;"
                     + "using V6Tools;"
                     + "using V6Tools.V6Convert;"
+                    + "using V6ThuePostManager;"
                     ;
                 using_text = using_text0 + using_text;
 
@@ -178,6 +179,7 @@ namespace V6Controls
                 parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Controls.dll");
                 parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6AccountingBusiness.dll");
                 parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6ControlManager.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6ThuePostManager.dll");
 
 
                 // True - memory generation, false - external file generation

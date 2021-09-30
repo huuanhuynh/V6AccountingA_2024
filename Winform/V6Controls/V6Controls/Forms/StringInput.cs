@@ -10,7 +10,19 @@ namespace V6Controls.Forms
             InitializeComponent();
             txtInput.Focus();
         }
+        
+        public StringInput(string title, string value0)
+        {
+            InitializeComponent();
+            Text = title;
+            txtInput.Text = value0;
+            txtInput.SelectionStart = txtInput.TextLength;
+            txtInput.Focus();
+        }
 
+        /// <summary>
+        /// Chuỗi đã nhập vào.
+        /// </summary>
         public string InputString { get { return txtInput.Text; } }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

@@ -479,6 +479,77 @@ namespace V6ThuePostManager
             error = paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE;
             return result;
         }
+        
+        /// <summary>
+        /// Tải thông tin hóa đơn, trả về số hóa đơn.
+        /// <para>Viettel V45 V45I cần paras.Fkey_hd</para>
+        /// </summary>
+        /// <param name="paras"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        
+        public static string PowerDownloadInfo(PostManagerParams paras, out string error)
+        {
+            string result = null;
+            error = null;
+            paras.Result = new PM_Result();
+            try
+            {
+                _map_table = paras.DataSet.Tables[0];
+                //ad_table = pmparams.DataSet.Tables[1];
+                //am_table = pmparams.DataSet.Tables[2];
+                //DataRow row0 = am_table.Rows[0];
+                //ad2_table = pmparams.DataSet.Tables[3];
+
+                ReadConfigInfo(_map_table);
+
+                switch (paras.Branch)
+                {
+                    case "1":
+                        result = ViettelDownloadInvoiceInfo(paras);
+                        break;
+                    case "2": case "4":
+                        int option = ObjectAndString.ObjectToInt(paras.Mode);
+                        VnptWS vnptWS = new VnptWS(_baseUrl, _account, _accountpassword, _username, _password);
+                        result = vnptWS.DownloadInvPDFFkey(paras.Fkey_hd, option,V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        break;
+                    case "3":
+                        BkavWS bkav_ws = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
+                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory);
+                        break;
+                    case "5":
+                        SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
+                        result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, paras.Mode == "1" ? 0 : paras.Mode == "2" ? 1 : 2, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        break;
+                    case "6":
+                        ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _link_Publish_vnpt_thaison, _username, _password, _SERIAL_CERT);
+                        result = thaiSonWS.GetInvoicePdf(paras.V6PartnerID, paras.Mode == "1" ? 0 : 1, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        break;
+                    case "7":
+                        MONET_WS monetWS = new MONET_WS(_baseUrl, _username, _password, _codetax);
+                        if (paras.Mode == "1") result = monetWS.DownloadInvoicePDF(paras.V6PartnerID, paras.Pattern, V6Setting.V6SoftLocalAppData_Directory);
+                        else result = monetWS.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
+                        break;
+                    case "8":
+                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
+                        if (paras.Mode == "1") result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        else result = mInvoiceWs.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
+                        break;
+                    default:
+                        paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                paras.Result.ResultErrorMessage = ex.Message;
+                error = ex.Message;
+                V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
+            }
+
+            error = paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE;
+            return result;
+        }
 
         #region ==== BKAV ====
 
@@ -3265,6 +3336,69 @@ namespace V6ThuePostManager
 
                 return viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.InvoiceNo, strIssueDate_Viettel,
                     V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+            }
+            else
+            {
+                ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
+
+                if (paras.Mode == "1") // Mode Thể hiện
+                    return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern,
+                        V6Setting.V6SoftLocalAppData_Directory); // !!! Cần update cho giống V2
+                string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
+                return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, paras.InvoiceNo, strIssueDate,
+                    V6Setting.V6SoftLocalAppData_Directory);  // !!! Cần update cho giống V2
+            }
+        }
+        
+        /// <summary>
+        /// Lấy thông tin, trả về số hóa đơn.
+        /// <para>V45 V45I cần paras.Fkey_hd</para>
+        /// </summary>
+        /// <param name="paras"></param>
+        /// <returns></returns>
+        public static string ViettelDownloadInvoiceInfo(PostManagerParams paras)
+        {
+            if (_version == "V2")
+            {
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        WorkingDirectory = "ViettelV2",
+                        FileName = "ViettelV2\\V6ThuePostViettelV2.exe",
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true
+                    }
+                };
+
+                string soseri_soct = paras.Serial + paras.InvoiceNo;//"XL/20E0000019"
+                string templateCode = paras.Pattern; // "01GTKT0/001" 
+                string uid = paras.Fkey_hd;//"bf0a819a-dd5f-4446-8850-bc81263beb04"
+                
+                if (paras.Mode == "1") // Thể hiện V6ThuePostViettelV2.exe P "V6ThuePost.xml" "XL/20E0000019" "01GTKT0/001" "bf0a819a-dd5f-4446-8850-bc81263beb04"
+                {
+                    process.StartInfo.Arguments = string.Format("P_JSON V6ThuePost.xml \"{0}\" \"{1}\" \"{2}\"", soseri_soct, templateCode, uid);
+                }
+                else // V6ThuePostViettelV2.exe P2 "V6ThuePost.xml" "XL/20E0000019" "template" "uid"
+                {
+                    process.StartInfo.Arguments = string.Format("P2_JSON V6ThuePost.xml \"{0}\" \"{1}\" \"{2}\"", soseri_soct, templateCode, uid);
+                }
+
+                process.Start();
+                string process_result = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+                // Phân tích Result tại đây.
+                paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
+                return paras.Result.V6ReturnValues.PATH;
+                return process_result;
+            }
+            else if (_version == "V45" || _version == "V45I")
+            {
+                if (viettel_V2WS == null) viettel_V2WS = new ViettelV2WS(_baseUrl, _username, _password, _codetax);
+                
+                viettel_V2WS.SearchInvoiceByTransactionUuid(_codetax, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                return paras.Result.V6ReturnValues.SO_HD;
             }
             else
             {

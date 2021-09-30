@@ -7085,6 +7085,17 @@ namespace V6Controls.Forms
             return "";
         }
 
+        public static string GetInputString(IWin32Window owner, string title, string value0)
+        {
+            if (V6Setting.NotLoggedIn) return null;
+            StringInput form = new StringInput(title, value0);
+            if (form.ShowDialog(owner) == DialogResult.OK)
+            {
+                return form.InputString;
+            }
+            return null;
+        }
+
         private static SaveFileDialog saveFileDialog = new SaveFileDialog()
         {
             Filter = "All file|*.*",
