@@ -6,7 +6,6 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
-using V6Controls.Controls.RicherTextBox;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -1458,52 +1457,50 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             return "";
         }
 
-        //public override void ShowAlinitAddEdit(Control control)
-        //{
-        //    V6Mode v6mode = V6Mode.Add;
-        //    IDictionary<string, object> keys0 = new Dictionary<string, object>();
-        //    IDictionary<string, object> keys = null;
+        public override void ShowAlinitAddEdit(Control control)
+        {
+            V6Mode v6mode = V6Mode.Add;
+            IDictionary<string, object> keys0 = new Dictionary<string, object>();
+            IDictionary<string, object> keys = null;
 
-        //    keys0["LOAI"] = 1;
-        //    //keys0["MA_CT_ME"] = _invoice.Mact;
-        //    keys0["MA_DM"] = _MA_DM;
-        //    keys0["NHOM"] = "00";
-        //    keys0["NAMETAG"] = control.Name.ToUpper();
-        //    if (!string.IsNullOrEmpty(control.AccessibleName)) keys0["NAMEVAL"] = control.AccessibleName.ToUpper();
-        //    // Lấy dữ liệu mặc định của Form parent. (2, "", _MA_DM, m_itemId)
-        //    var defaultData = V6BusinessHelper.GetDefaultValueData(2, "", _MA_DM, ItemID, "");
-        //    DataRow dataRow = null;
-        //    foreach (DataRow row in defaultData.Rows)
-        //    {
-        //        if (row["NAMETAG"].ToString().Trim().ToUpper() == control.Name.ToUpper())
-        //        {
-        //            dataRow = row;
-        //            break;
-        //        }
+            keys0["LOAI"] = 2;
+            //keys0["MA_CT_ME"] = _invoice.Mact;
+            keys0["MA_DM"] = _MA_DM;
+            keys0["NHOM"] = "00";
+            keys0["NAMETAG"] = control.Name.ToUpper();
+            if (!string.IsNullOrEmpty(control.AccessibleName)) keys0["NAMEVAL"] = control.AccessibleName.ToUpper();
+            // Lấy dữ liệu mặc định của Form parent.
+            var defaultData = V6BusinessHelper.GetDefaultValueData(2, "", _MA_DM, ItemID, "");
+            DataRow dataRow = null;
+            foreach (DataRow row in defaultData.Rows)
+            {
+                if (row["NAMETAG"].ToString().Trim().ToUpper() == control.Name.ToUpper())
+                {
+                    dataRow = row;
+                    break;
+                }
 
-        //        if (!string.IsNullOrEmpty(control.AccessibleName) && row["NAMEVAL"].ToString().Trim().ToUpper() == control.AccessibleName.ToUpper())
-        //        {
-        //            dataRow = row;
-        //            break;
-        //        }
-        //    }
+                if (!string.IsNullOrEmpty(control.AccessibleName) && row["NAMEVAL"].ToString().Trim().ToUpper() == control.AccessibleName.ToUpper())
+                {
+                    dataRow = row;
+                    break;
+                }
+            }
 
-        //    if (dataRow != null) // nếu tồn tại dữ liệu.
-        //    {
-        //        v6mode = V6Mode.Edit;
-        //        keys = new Dictionary<string, object>();
-        //        keys["UID"] = dataRow["UID"];
-        //        DanhMucFormAddEdit form = new SoDuFormAddEdit("ALINIT", v6mode, keys);
-        //        form.ShowDialog(this);
-        //    }
-        //    else
-        //    {
-        //        v6mode = V6Mode.Add;
-        //        keys0["KIEU"] = "0";
-        //        SoDuFormAddEdit form = new SoDuFormAddEdit("ALINIT", v6mode, null, keys0);
-        //        form.ShowDialog(this);
-        //    }
-        //}
+            if (dataRow != null) // nếu tồn tại dữ liệu.
+            {
+                v6mode = V6Mode.Edit;
+                keys = new Dictionary<string, object>();
+                keys["UID"] = dataRow["UID"];
+            }
+            else
+            {
+                v6mode = V6Mode.Add;
+                keys0["KIEU"] = "0";
+            }
+
+            V6ControlFormHelper.CallShowAlinitAddEdit(v6mode, keys, keys0);
+        }
 
     }
 }

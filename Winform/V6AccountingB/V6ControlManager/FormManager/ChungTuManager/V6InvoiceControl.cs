@@ -6491,22 +6491,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     break;
                 }
             }
-            
+
             if (dataRow != null) // nếu tồn tại dữ liệu.
             {
                 v6mode = V6Mode.Edit;
                 keys = new Dictionary<string, object>();
                 keys["UID"] = dataRow["UID"];
-                SoDuFormAddEdit form = new SoDuFormAddEdit("ALINIT", v6mode, keys);
-                form.ShowDialog(this);
             }
             else
             {
                 v6mode = V6Mode.Add;
                 keys0["KIEU"] = "0";
-                SoDuFormAddEdit form = new SoDuFormAddEdit("ALINIT", v6mode, null, keys0);
-                form.ShowDialog(this);
             }
+            V6ControlFormHelper.CallShowAlinitAddEdit(v6mode, keys, keys0);
         }
     }
 }

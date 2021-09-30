@@ -8738,5 +8738,12 @@ namespace V6Controls.Forms
             return null;
         }
 
+        public delegate void ShowAlinitHandle(V6Mode v6mode, IDictionary<string, object> keys, IDictionary<string, object> data);
+
+        public static event ShowAlinitHandle ShowAlinitAddEdit;
+        public static void CallShowAlinitAddEdit(V6Mode v6mode, IDictionary<string, object> keys, IDictionary<string, object> data)
+        {
+            if (ShowAlinitAddEdit != null) ShowAlinitAddEdit(v6mode, keys, data);
+        }
     }// end class
 }

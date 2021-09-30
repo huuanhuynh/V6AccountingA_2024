@@ -1837,6 +1837,15 @@ namespace V6AccountingBusiness
             colorv = result["COLORV"].ToString().Trim();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loai">1ct 2danhmuc 4report</param>
+        /// <param name="ma_ct">MA_CT (Trong invoice, MA_DM rỗng, advance nhom='00').</param>
+        /// <param name="ma_dm">MA_DM, MA_FILE (MA_CT rỗng, advance rỗng).</param>
+        /// <param name="itemId"></param>
+        /// <param name="advance"></param>
+        /// <returns></returns>
         public static DataTable GetDefaultValueData(int loai, string ma_ct, string ma_dm, string itemId, string advance)
         {
             SqlParameter[] plist =

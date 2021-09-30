@@ -1882,5 +1882,50 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
 
+        public override void ShowAlinitAddEdit(Control control)
+        {
+            V6Mode v6mode = V6Mode.Add;
+            IDictionary<string, object> keys0 = new Dictionary<string, object>();
+            IDictionary<string, object> keys = null;
+
+            keys0["LOAI"] = 4;
+            //keys0["MA_CT_ME"] = _invoice.Mact;
+            keys0["MA_DM"] = _Ma_File;
+            keys0["NHOM"] = "00";
+            keys0["NAMETAG"] = control.Name.ToUpper();
+            if (!string.IsNullOrEmpty(control.AccessibleName)) keys0["NAMEVAL"] = control.AccessibleName.ToUpper();
+            // Lấy dữ liệu mặc định của Form parent.
+            var defaultData = V6BusinessHelper.GetDefaultValueData(4, "", _Ma_File, m_itemId, "");
+            DataRow dataRow = null;
+            foreach (DataRow row in defaultData.Rows)
+            {
+                if (row["NAMETAG"].ToString().Trim().ToUpper() == control.Name.ToUpper())
+                {
+                    dataRow = row;
+                    break;
+                }
+
+                if (!string.IsNullOrEmpty(control.AccessibleName) && row["NAMEVAL"].ToString().Trim().ToUpper() == control.AccessibleName.ToUpper())
+                {
+                    dataRow = row;
+                    break;
+                }
+            }
+
+            if (dataRow != null) // nếu tồn tại dữ liệu.
+            {
+                v6mode = V6Mode.Edit;
+                keys = new Dictionary<string, object>();
+                keys["UID"] = dataRow["UID"];
+            }
+            else
+            {
+                v6mode = V6Mode.Add;
+                keys0["KIEU"] = "0";
+            }
+
+            V6ControlFormHelper.CallShowAlinitAddEdit(v6mode, keys, keys0);
+        }
+
     }
 }

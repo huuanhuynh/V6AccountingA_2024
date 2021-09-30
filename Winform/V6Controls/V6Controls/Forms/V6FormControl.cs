@@ -322,12 +322,13 @@ namespace V6Controls.Forms
             
         }
 
+        
         /// <summary>
         /// Gán dữ liệu mặc định lên form.
         /// </summary>
         /// <param name="loai">1ct 2danhmuc 4report</param>
-        /// <param name="mact"></param>
-        /// <param name="madm"></param>
+        /// <param name="mact">MA_CT (Trong invoice, MA_DM rỗng, advance nhom='00').</param>
+        /// <param name="madm">MA_DM, MA_FILE (MA_CT rỗng, advance rỗng).</param>
         /// <param name="itemId"></param>
         /// <param name="adv"></param>
         protected void LoadDefaultData(int loai, string mact, string madm, string itemId, string adv = "")

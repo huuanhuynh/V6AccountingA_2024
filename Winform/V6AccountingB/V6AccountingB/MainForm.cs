@@ -16,6 +16,7 @@ using V6ControlManager.FormManager.ReportManager;
 using V6ControlManager.FormManager.ReportManager.DXreport;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6ControlManager.FormManager.ReportManager.XuLy.NhanSu;
+using V6ControlManager.FormManager.SoDuManager;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
@@ -172,6 +173,8 @@ namespace V6AccountingB
 
                 //Load quick menu
                 quickMenu1.LoadMenuData();
+                // Implement sự kiện ShowAlinitAddEdit.
+                V6ControlFormHelper.ShowAlinitAddEdit += V6ControlFormHelper_ShowAlinitAddEdit;
                 
             }
             catch (Exception ex)
@@ -180,6 +183,19 @@ namespace V6AccountingB
                 Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".LoadMenuThread " + ex.Message, Application.ProductName);
             }
             _complete = 100;
+        }
+
+        void V6ControlFormHelper_ShowAlinitAddEdit(V6Mode v6mode, IDictionary<string, object> keys, IDictionary<string, object> data)
+        {
+            try
+            {
+                SoDuFormAddEdit form = new SoDuFormAddEdit("ALINIT", v6mode, keys, data);
+                form.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("MainForm.ShowAlinitAddEdit", ex);
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
