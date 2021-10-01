@@ -830,27 +830,55 @@ namespace V6ControlManager.FormManager.MenuManager
                             break;
                             #endregion soduview2
                         case "T": //bao cao TreeView
-                            var programT = codeform.Substring(1);
-                            if (V6Login.UserRight.AllowRun(item_id, codeform))
+                            if (codeform.StartsWith("T44"))
                             {
-                                if (string.IsNullOrEmpty(pro_old))
+                                var programT = codeform.Substring(3);
+                                if (V6Login.UserRight.AllowRun(item_id, codeform))
                                 {
-                                    if (mButton.UseXtraReport != shift_is_down)
-                                        c = new ReportTreeView_DX(item_id, programT, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    if (string.IsNullOrEmpty(pro_old))
+                                    {
+                                        if (mButton.UseXtraReport != shift_is_down)
+                                            c = new ReportTreeView44_DX(item_id, programT, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                        else
+                                            c = new ReportTreeView44(item_id, programT, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    }
                                     else
-                                        c = new ReportTreeViewBase(item_id, programT, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    {
+                                        if (mButton.UseXtraReport != shift_is_down)
+                                            c = new ReportTreeView44_DX(item_id, pro_old, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                        else
+                                            c = new ReportTreeView44(item_id, pro_old, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    }
                                 }
                                 else
                                 {
-                                    if (mButton.UseXtraReport != shift_is_down)
-                                        c = new ReportTreeView_DX(item_id, pro_old, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
-                                    else
-                                        c = new ReportTreeViewBase(item_id, pro_old, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    c = new V6UserControlNoRight("Key:" + item_id + "; Codeform:" + codeform);
                                 }
                             }
                             else
                             {
-                                c = new V6UserControlNoRight("Key:" + item_id + "; Codeform:" + codeform);
+                                var programT = codeform.Substring(1);
+                                if (V6Login.UserRight.AllowRun(item_id, codeform))
+                                {
+                                    if (string.IsNullOrEmpty(pro_old))
+                                    {
+                                        if (mButton.UseXtraReport != shift_is_down)
+                                            c = new ReportTreeView_DX(item_id, programT, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                        else
+                                            c = new ReportTreeViewBase(item_id, programT, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    }
+                                    else
+                                    {
+                                        if (mButton.UseXtraReport != shift_is_down)
+                                            c = new ReportTreeView_DX(item_id, pro_old, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                        else
+                                            c = new ReportTreeViewBase(item_id, pro_old, programT, repFile, repTitle, repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    }
+                                }
+                                else
+                                {
+                                    c = new V6UserControlNoRight("Key:" + item_id + "; Codeform:" + codeform);
+                                }
                             }
                             break;
 

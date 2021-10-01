@@ -4897,6 +4897,18 @@
     <Compile Include="FormManager\ReportManager\ReportR\ReportR44ViewBase.designer.cs">
       <DependentUpon>ReportR44ViewBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportTreeView44_DX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportTreeView44_DX.designer.cs">
+      <DependentUpon>ReportTreeView44_DX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportTreeView44.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportTreeView44.designer.cs">
+      <DependentUpon>ReportTreeView44.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportTreeView_DX.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -8671,6 +8683,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR44ViewBase.resx">
       <DependentUpon>ReportR44ViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportTreeView44_DX.resx">
+      <DependentUpon>ReportTreeView44_DX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportTreeView44.resx">
+      <DependentUpon>ReportTreeView44.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportTreeView_DX.resx">

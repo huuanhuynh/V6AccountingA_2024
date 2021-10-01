@@ -1937,7 +1937,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
+                this.ShowErrorMessage(GetType() + ".btnSuaLine_Click: " + ex.Message);
             }
         }
 

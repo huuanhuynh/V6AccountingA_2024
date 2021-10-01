@@ -2168,7 +2168,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
+                this.ShowErrorMessage(GetType() + ".btnSuaLine_Click: " + ex.Message);
             }
         }
 

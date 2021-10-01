@@ -1370,6 +1370,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return result;
         }
 
+        /// <summary>
+        /// Thêm parameter động cho các Filter cứng.
+        /// </summary>
+        /// <returns></returns>
         public virtual List<SqlParameter> GetFilterParametersNew()
         {
             var listAll = GetFilterParameters();
