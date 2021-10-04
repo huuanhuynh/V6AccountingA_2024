@@ -296,20 +296,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
 
         #endregion EXTRA_INFOR
-
-        private string Extra_para
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["Extra_para"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-
+        
         public string ReportFile
         {
             get
@@ -322,43 +309,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 return result;
             }
         }
-        private string ReportCaption
-        {
-            get
-            {
-                var result = _reportTitle;
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["Caption"].ToString().Trim();
-                }
-                return result;
-            }
-        }
         
-        private string ReportCaption2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["Caption2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string ReportTitle
-        {
-            get
-            {
-                var result = V6Setting.IsVietnamese ? _reportTitle : _reportTitle2;
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["Title"].ToString().Trim();
-                }
-                return result;
-            }
-        }
+        
+        
 
         public string RPT_DIR
         {
@@ -551,139 +504,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private string Report_GRDSV1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDS_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDSV2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDS_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDFV1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDF_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDFV2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDF_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDHV_V1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDHV_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDHE_V1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDHE_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDHV_V2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDHV_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDHE_V2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDHE_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDT_V1
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDT_V1"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-        private string Report_GRDT_V2
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["GRDT_V2"].ToString().Trim();
-                }
-                return result;
-            }
-        }
-
-        private string ReloadData
-        {
-            get
-            {
-                var result = "";
-                if (MauInSelectedRow != null)
-                {
-                    result = MauInSelectedRow["Reload_data"].ToString().Trim();
-                }
-                return result;
-            }
-        }
         #endregion 
         
         public ReportTreeView44(string itemId, string program, string reportProcedure,
@@ -815,8 +635,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         case '7': DefaultMenuItem = exportToPdfMenu; break;
                         //case '8': DefaultMenuItem = viewInvoiceInfoMenu; break;
                     }
-                
-                txtReportTitle.Text = ReportTitle;
+
+                txtReportTitle.Text = _albcConfig.TITLE;
 
                 InvokeFormEvent(FormDynamicEvent.INIT2);
                 Ready();
@@ -938,7 +758,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 string FilterControl_String1 = _pList[0].Value.ToString();
                 string FilterControl_String2 = _pList[1].Value.ToString();
                 FilterControl_Call1(imageList1, FilterControl_String1);
-                treeListViewAuto1.SetGroupAndNameFieldList(
+                treeListViewAuto1.SetGroupAndNameFieldList_ResetView(
                     FilterControl_String1.Split(','),
                     FilterControl_String2.Split(','));
             }
@@ -948,6 +768,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        /// <summary>
+        /// Update Image list.
+        /// </summary>
+        /// <param name="image_list"></param>
+        /// <param name="groupFields"></param>
         private void FilterControl_Call1(ImageList image_list, string groupFields)
         {
             var lever_count = ObjectAndString.SplitString(groupFields).Length;
@@ -1061,7 +886,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
             }
 
-            var rptExtraParametersD = FilterControl.GetRptParametersD(Extra_para, LAN);
+            var rptExtraParametersD = FilterControl.GetRptParametersD(_albcConfig.EXTRA_PARA, LAN);
             if (rptExtraParametersD != null)
             {
                 ReportDocumentParameters.AddRange(rptExtraParametersD, true);
@@ -1240,40 +1065,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void FormatGridView()
-        {
-            //Header
-            //var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
-
-            //var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
-            //for (int i = 0; i < dataGridView1.ColumnCount; i++)
-            //{
-            //    if (fieldDic.ContainsKey(dataGridView1.Columns[i].DataPropertyName.ToUpper()))
-            //    {
-            //        dataGridView1.Columns[i].HeaderText =
-            //            fieldDic[dataGridView1.Columns[i].DataPropertyName.ToUpper()];
-            //    }
-            //}
-            ////Format
-            //var f = dataGridView1.Columns["so_luong"];
-            //if (f != null)
-            //{
-            //    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
-            //}
-            //f = dataGridView1.Columns["TIEN2"];
-            //if (f != null)
-            //{
-            //    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIEN");
-            //}
-            //f = dataGridView1.Columns["GIA2"];
-            //if (f != null)
-            //{
-            //    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
-            //}
-
-            //if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
-        }
-
         #endregion ==== LoadData MakeReport ====
         
 
@@ -1314,7 +1105,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             else
             {
-                if (ReloadData == "1")
+                if (_albcConfig.RELOAD_DATA == "1")
                     MakeReport2();
                 else
                     ViewReport();
@@ -1337,10 +1128,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     SetFormReportFilter();
                     if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
                     {
-                        txtReportTitle.Text = ReportTitle;
+                        txtReportTitle.Text = _albcConfig.TITLE;
                     }
 
-                    if (ReloadData == "1")
+                    if (_albcConfig.RELOAD_DATA == "1")
                         MakeReport2();
                     else
                         ViewReport();
@@ -1366,31 +1157,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 treeListViewAuto1.SetGroupAndNameFieldList(
                     FilterControl_String1.Split(','),
                     FilterControl_String2.Split(','));
-
-                treeListViewAuto1.SetData(_tbl3, Report_GRDSV1,
-                    V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1, Report_GRDFV1);
+                treeListViewAuto1.SetData(_tbl3, _albcConfig.GRDS_V1, _albcConfig.GRDH_LANG_V1, _albcConfig.GRDF_V1);
                 //treeListViewAuto1.ExpandAll();
-
                 //treeListViewAuto1.ViewName = true;
                 FilterControl_Call1(imageList1, FilterControl_String1);
-                
 
-                //VPA_GetFormatGridView]@Codeform VARCHAR(50),@Type VARCHAR(20)
-                string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-                object VALUEV;
-                V6BusinessHelper.GetFormatGridView(CodeForm.Substring(1), "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
-                //Color.MediumAquamarine
-                //V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
-                FormatGridView();
-                //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
                 ViewReport();
                 if (AutoPrint)
                 {
                     Print(PrinterName, _rpDoc0);
                     Dispose();
                 }
-                //gridViewSummary1.NoSumColumns = Report_GRDT_V1;
-
                 treeListViewAuto1.Focus();
             }
             catch (Exception ex)
@@ -1787,8 +1564,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (_radioRunning || _updateDataRow) return;
 
             _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
-            txtReportTitle.Text = ReportTitle;
-            if (ReloadData == "1")
+            txtReportTitle.Text = _albcConfig.TITLE;
+            if (_albcConfig.RELOAD_DATA == "1")
                 MakeReport2();
             else
                 ViewReport();
@@ -1926,7 +1703,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private string GetExportFileName()
         {
-            string result = ChuyenMaTiengViet.ToUnSign(ReportTitle);
+            string result = ChuyenMaTiengViet.ToUnSign(_albcConfig.TITLE);
             if (EXTRA_INFOR.ContainsKey("EXPORT")) result = EXTRA_INFOR["EXPORT"];
             // Value
             if (_tbl2 != null && _tbl2.Rows.Count > 0)
@@ -1994,8 +1771,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                string excelColumns = Report_GRDSV1;
-                string excelHeaders = V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1;
+                string excelColumns = _albcConfig.GRDS_V1;
+                string excelHeaders = _albcConfig.GRDH_LANG_V1;
                 if (string.IsNullOrEmpty(excelColumns) || string.IsNullOrEmpty(excelHeaders))
                 {
                     exportToExcelMenu_Click(sender, e);
@@ -2008,7 +1785,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //    data = ((DataView)dataGridView1.DataSource).ToTable();
                     //}
                     V6ControlFormHelper.ExportExcelTemplateD(this, data, _tbl2, "V", ReportDocumentParameters,
-                        MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
+                        MAU, LAN, ReportFile, ExcelTemplateFileView, _albcConfig.TITLE, excelColumns, excelHeaders);
                 }
             }
             catch (Exception ex)

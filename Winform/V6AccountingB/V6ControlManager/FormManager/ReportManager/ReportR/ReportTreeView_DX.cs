@@ -136,7 +136,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 AddFilterControl(_program);
 				SetStatus2Text();
                 FilterControl.Call1(imageList1);
-                treeListViewAuto1.SetGroupAndNameFieldList(
+                treeListViewAuto1.SetGroupAndNameFieldList_ResetView(
                     FilterControl.String1.Split(','),
                     FilterControl.String2.Split(','));
 
@@ -944,7 +944,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 FilterControl.Call1(imageList1);
-                treeListViewAuto1.SetGroupAndNameFieldList(
+                treeListViewAuto1.SetGroupAndNameFieldList_ResetView(
                     FilterControl.String1.Split(','),
                     FilterControl.String2.Split(','));
                 

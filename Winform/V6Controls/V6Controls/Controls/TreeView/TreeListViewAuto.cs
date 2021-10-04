@@ -81,9 +81,21 @@ namespace V6Controls.Controls.TreeView
         private bool _autoGenColumns = true;
 
         /// <summary>
-        /// Set GroupList and NameList fields
+        /// Chỉ cập nhập Group field list để đó. Khi nào SetData sẽ hiển thị theo Group mới.
         /// </summary>
+        /// <param name="groupFieldList"></param>
+        /// <param name="groupNameFieldList"></param>
+        /// <param name="?"></param>
         public void SetGroupAndNameFieldList(string[] groupFieldList, string[] groupNameFieldList)
+        {
+            _groupFieldList = groupFieldList;
+            _groupNameFieldList = groupNameFieldList;
+        }
+
+        /// <summary>
+        /// Set GroupList and NameList fields. Nên sử dụng khi thay đổi cấp hiển thị mà không đổi data.
+        /// </summary>
+        public void SetGroupAndNameFieldList_ResetView(string[] groupFieldList, string[] groupNameFieldList)
         {
             _groupFieldList = groupFieldList;
             _groupNameFieldList = groupNameFieldList;
@@ -267,23 +279,38 @@ namespace V6Controls.Controls.TreeView
                     }
                     else
                     {
-                        if(_viewNames.Length<_viewColumns.Length) throw new Exception("Thiếu tiêu đề cột");
+                        if(_viewNames.Length < _viewColumns.Length) throw new Exception("Thiếu tiêu đề cột");
 
                         for (int i = 0; i < _viewColumns.Length; i++)
                         {
-                            var column = _data.Columns[_viewColumns[i]];
-                            if (column == null) continue;
-
-                            var columnNAME = column.ColumnName;
-                            var columnTEXT = _viewNames[i];
-                            var columnWIDTH = _viewWidths.Length > i ? _viewWidths[i] : 100;
-
-                            var isNumber = ObjectAndString.IsNumberType(column.DataType);
-                            //if (IsInGroup(columnNAME.ToUpper())) continue;
-                            if (!Columns.ContainsKey(column.ColumnName))
+                            if (i == 0)
                             {
-                                Columns.Add(columnNAME, columnTEXT, columnWIDTH,
-                                    isNumber ? HorizontalAlignment.Right : HorizontalAlignment.Left, -1);
+                                var columnNAME = "V6ID";
+                                var columnTEXT = _viewNames[i];
+                                var columnWIDTH = _viewWidths.Length > i ? _viewWidths[i] : 250;
+                                
+                                if (Columns.ContainsKey(columnNAME))
+                                {
+                                    Columns[columnNAME].Text = columnTEXT;
+                                    Columns[columnNAME].Width = columnWIDTH;
+                                }
+                            }
+                            else
+                            {
+                                var column = _data.Columns[_viewColumns[i]];
+                                if (column == null) continue;
+
+                                var columnNAME = column.ColumnName;
+                                var columnTEXT = _viewNames[i];
+                                var columnWIDTH = _viewWidths.Length > i ? _viewWidths[i] : 100;
+
+                                var isNumber = ObjectAndString.IsNumberType(column.DataType);
+                                //if (IsInGroup(columnNAME.ToUpper())) continue;
+                                if (!Columns.ContainsKey(column.ColumnName))
+                                {
+                                    Columns.Add(columnNAME, columnTEXT, columnWIDTH,
+                                        isNumber ? HorizontalAlignment.Right : HorizontalAlignment.Left, -1);
+                                }
                             }
                         }
                     }
@@ -553,42 +580,6 @@ namespace V6Controls.Controls.TreeView
             {
                 DataViewerForm dataViewer = new DataViewerForm(_data);
                 dataViewer.ShowDialog(this);
-                return;
-                var data = _data.Copy();
-
-                {
-                    var f = new V6Form
-                    {
-                        WindowState = FormWindowState.Normal,
-                        MaximizeBox = true,
-                        MinimizeBox = false,
-                        ShowInTaskbar = false,
-                        //FormBorderStyle = FormBorderStyle.None
-                        Text = Name,
-                        Size = new Size(800, 600)
-                    };
-
-                    var clip = f.CreateGraphics().VisibleClipBounds;
-                    //child.Location = new Point(0, 0);
-                    //child.Dock = DockStyle.Fill;
-                    DataGridView newGridView = new DataGridView
-                    {
-                        AllowUserToAddRows = false,
-                        AllowUserToDeleteRows = false,
-                        Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right,
-                        ReadOnly = true,
-                        Size = new Size((int)clip.Width, (int)(clip.Height - 25))
-                    };
-
-                    f.Controls.Add(newGridView);
-                    newGridView.DataSource = data;
-
-                    GridViewSummary gSum = new GridViewSummary();
-                    gSum.DataGridView = newGridView;
-
-                    f.ShowDialog(this);
-                    gSum.Refresh();
-                }
             }
             catch (Exception ex)
             {
