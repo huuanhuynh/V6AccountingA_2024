@@ -121,6 +121,7 @@ namespace V6ReportControls
                 if (_dateTimePick != null) return _dateTimePick.AccessibleName;
                 if (_dateTimeColor != null) return _dateTimeColor.AccessibleName;
                 if (_checkBox != null) return _checkBox.AccessibleName;
+                if (_button != null) return _button.AccessibleName;
                 return null;
             }
             set
@@ -133,6 +134,7 @@ namespace V6ReportControls
                 if (_dateTimePick != null) _dateTimePick.AccessibleName = value;
                 if (_dateTimeColor != null) _dateTimeColor.AccessibleName = value;
                 if (_checkBox != null) _checkBox.AccessibleName = value;
+                if (_button != null) _button.AccessibleName = value;
             }
         }
 
@@ -148,6 +150,7 @@ namespace V6ReportControls
                 if (_dateTimePick != null) return _dateTimePick;
                 if (_dateTimeColor != null) return _dateTimeColor;
                 if (_checkBox != null) return _checkBox;
+                if (_button != null) return _button;
                 return null;
             }
         }
@@ -164,6 +167,7 @@ namespace V6ReportControls
                 if (_dateTimePick != null) return _dateTimePick.Date;
                 if (_dateTimeColor != null) return _dateTimeColor.Value;
                 if (_checkBox != null) return _checkBox.Checked;
+                if (_button != null) return _button.Text;
                 return null;
             }
         }
@@ -180,6 +184,7 @@ namespace V6ReportControls
                 if (_dateTimePick != null) return _dateTimePick.YYYYMMDD;
                 if (_dateTimeColor != null) return ObjectAndString.ObjectToString(_dateTimeColor.Value, "yyyyMMdd");
                 if (_checkBox != null) return _checkBox.Checked?"1":"0";
+                if (_button != null) return _button.Text;
                 return null;
             }
         }
@@ -199,6 +204,7 @@ namespace V6ReportControls
                 if (_dateTimePick != null) return _dateTimePick;
                 if (_dateTimeColor != null) return _dateTimeColor;
                 if (_checkBox != null) return _checkBox;
+                if (_button != null) return _button;
                 return null;
             }
         }
@@ -672,6 +678,10 @@ namespace V6ReportControls
             else if (_checkBox != null)
             {
                 _checkBox.Checked = ObjectAndString.ObjectToBool(value);
+            }
+            else if (_button != null)
+            {
+                _button.Text = value.ToString();
             }
         }
 
