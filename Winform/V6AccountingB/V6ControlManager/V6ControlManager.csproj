@@ -2435,6 +2435,12 @@
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2_Filter.Designer.cs">
       <DependentUpon>V6IMDATA2_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOB_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOB_Filter.Designer.cs">
+      <DependentUpon>XLSSOB_Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5281,6 +5287,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOB_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7440,6 +7449,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\V6IMDATA2_Filter.resx">
       <DependentUpon>V6IMDATA2_Filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOB_Filter.resx">
+      <DependentUpon>XLSSOB_Filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.resx">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -8922,6 +8934,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2_Control.resx">
       <DependentUpon>V6IMDATA2_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOB_Control.resx">
+      <DependentUpon>XLSSOB_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH_Control.resx">
       <DependentUpon>XLSSOH_Control.cs</DependentUpon>

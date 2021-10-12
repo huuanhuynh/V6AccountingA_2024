@@ -178,6 +178,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string ma_ct = SelectedRow["MA_CT"].ToString().Trim();
                 string itemid = SelectedRow["mo_ta"].ToString().Trim();
                 DataRow menuRow = V6Menu.GetRow(itemid);
+                if (menuRow == null)
+                {
+                    this.ShowWarningMessage(V6Text.NoDefine + " " + itemid);
+                    return;
+                }
                 string item_id = menuRow["itemid"].ToString().Trim();
                 string program = menuRow["program"].ToString().Trim();
                 string reportCaption = menuRow["title"].ToString().Trim();
@@ -204,8 +209,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     XuLyBase c = null;
                     switch (ma_ct)
                     {
+                        case "AP1":
+                            c = new XLSAP1_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
+                        case "AR1":
+                            c = new XLSAR1_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
+                        case "GL1":
+                            c = new XLSGL1_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
                         case "POA":
                             c = new XLSPOA_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
+                        case "POB":
+                            c = new XLSPOB_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
                         case "IND":
                             c = new XLSIND_Control(item_id, program, program, program, reportCaption, reportCaption2);
@@ -216,6 +233,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         case "SOA":
                             c = new XLSSOA_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
+                        case "SOB":
+                            c = new XLSSOB_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
+                        case "SOH":
+                            c = new XLSSOH_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
                         case "TA1":
                             c = new XLSTA1_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
@@ -223,8 +246,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             c = new XLSCA1_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
                         //default:
-                            //c = MenuManager.MenuManager.GenControl()
-                            //break;
+                        //    c = new XuLyBase(item_id);
+                        //    break;
                     }
 
                     if (c != null)

@@ -1038,6 +1038,9 @@ namespace V6SqlConnect
                             case "no":
                             case "cancel":
                                 return "0";
+                            default:
+                                objValue = ObjectAndString.StringToDecimal("" + objValue);
+                                break;
                         }
                     }
                     break;

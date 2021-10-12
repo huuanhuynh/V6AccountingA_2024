@@ -391,6 +391,7 @@ namespace V6Tools.V6Convert
                 string BIEU_THUC = bieu_thuc.Trim().ToUpper();
                 if (DATA != null && DATA.ContainsKey(BIEU_THUC))
                 {
+                    if (DATA[BIEU_THUC] == DBNull.Value || DATA[BIEU_THUC] == null) return 0m;
                     if (ObjectAndString.IsNumberType(DATA[BIEU_THUC].GetType()))
                     {
                         return ObjectAndString.ObjectToDecimal(DATA[BIEU_THUC]);
