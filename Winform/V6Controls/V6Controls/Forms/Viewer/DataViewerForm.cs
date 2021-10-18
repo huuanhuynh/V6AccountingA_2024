@@ -17,10 +17,44 @@ namespace V6Controls.Forms.Viewer
         private DataSet _dataset = null;
         private DataTable _tbl = null;
         private int _current_index = 0;
+        public object CurrentCellValue { get { return dataGridView1.CurrentCell == null ? null : dataGridView1.CurrentCell.Value; } }
         public IDictionary<string, object> CurrentRowData = null;
         public List<IDictionary<string, object>> SelectedDataList = null;
+        /// <summary>
+        /// Trường dữ liệu để lấy SelectedValue sau khi nhận.
+        /// </summary>
+        public string ValueField = null;
+        /// <summary>
+        /// Giá trị chọn theo SelectField sau khi nhận.
+        /// </summary>
+        public object SelectedValue = null;
 
-        public DataViewerForm(object dataObject, bool showSum = true)
+        public DataViewerForm(object dataObject)
+        {
+            InitializeComponent();
+            //if (!showSum)
+            //{
+            //    dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
+            //    gridViewSummary1.Visible = false;
+            //}
+            _data_object = dataObject;
+            MyInit();
+        }
+
+        public DataViewerForm(object dataObject, string valueField, bool showSum)
+        {
+            InitializeComponent();
+            if (!showSum)
+            {
+                dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
+                gridViewSummary1.Visible = false;
+            }
+            _data_object = dataObject;
+            ValueField = valueField.Trim().ToUpper();
+            MyInit();
+        }
+
+        public DataViewerForm(object dataObject, bool showSum)
         {
             InitializeComponent();
             if (!showSum)
@@ -153,6 +187,7 @@ namespace V6Controls.Forms.Viewer
             {
                 CurrentRowData = dataGridView1.CurrentRow != null ? dataGridView1.CurrentRow.ToDataDictionary() : null;
                 SelectedDataList = dataGridView1.GetSelectedData();
+                SelectedValue = CurrentRowData != null && CurrentRowData.ContainsKey(ValueField) ? CurrentRowData[ValueField] : null;
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
