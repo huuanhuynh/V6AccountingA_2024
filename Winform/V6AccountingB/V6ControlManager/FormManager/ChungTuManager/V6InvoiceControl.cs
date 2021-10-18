@@ -5564,14 +5564,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 foreach (DataRow dataRow in table.Rows)
                 {
                     dataRow["STT_REC"] = _sttRec;
-                    if (AD.Columns.Contains("STT_RECDH")) dataRow["STT_RECDH"] = DBNull.Value;
-                    if (AD.Columns.Contains("STT_REC0DH")) dataRow["STT_REC0DH"] = DBNull.Value;
-                    if (AD.Columns.Contains("TIME04")) dataRow["TIME04"] = time;
-                    if (AD.Columns.Contains("DATE04")) dataRow["DATE04"] = date;
-                    if (AD.Columns.Contains("USER_ID04")) dataRow["USER_ID04"] = V6Login.UserId;
-                    if (AD.Columns.Contains("TIME24")) dataRow["TIME24"] = time;
-                    if (AD.Columns.Contains("DATE24")) dataRow["DATE24"] = date;
-                    if (AD.Columns.Contains("USER_ID24")) dataRow["USER_ID24"] = V6Login.UserId;
+                    if (table.Columns.Contains("STT_RECDH")) dataRow["STT_RECDH"] = DBNull.Value;
+                    if (table.Columns.Contains("STT_REC0DH")) dataRow["STT_REC0DH"] = DBNull.Value;
+                    if (table.Columns.Contains("TIME04")) dataRow["TIME04"] = time;
+                    if (table.Columns.Contains("DATE04")) dataRow["DATE04"] = date;
+                    if (table.Columns.Contains("USER_ID04")) dataRow["USER_ID04"] = V6Login.UserId;
+                    if (table.Columns.Contains("TIME24")) dataRow["TIME24"] = time;
+                    if (table.Columns.Contains("DATE24")) dataRow["DATE24"] = date;
+                    if (table.Columns.Contains("USER_ID24")) dataRow["USER_ID24"] = V6Login.UserId;
                 }
             }
         }
