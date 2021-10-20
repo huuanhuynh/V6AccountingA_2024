@@ -5569,5 +5569,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             InvokeFormEvent(FormDynamicEvent.XULYKHAC2);
         }
+
     }
 }

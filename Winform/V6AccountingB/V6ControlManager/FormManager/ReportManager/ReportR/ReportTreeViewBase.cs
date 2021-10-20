@@ -289,6 +289,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
         }
 
+        /// <summary>
+        /// MauIn (Albc) EXTRA_INFOR NOPRINTER
+        /// </summary>
+        private bool NOPRINTER
+        {
+            get
+            {
+                if (EXTRA_INFOR.ContainsKey("NOPRINTER")) return ObjectAndString.ObjectToBool(EXTRA_INFOR["NOPRINTER"]);
+                return false;
+            }
+        }
         #endregion EXTRA_INFOR
 
         private string Extra_para
@@ -1203,8 +1214,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 try
                 {
-                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc);
-                    V6ControlFormHelper.PrintRptToPrinter(rpDoc, printerName, _printCopy, 0, 0);
+                    V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, V6ControlFormHelper.PrinterSettings, rpDoc);
+                    V6ControlFormHelper.PrintRptToPrinter(NOPRINTER, rpDoc, printerName, _printCopy, 0, 0);
                     CallPrintSuccessEvent();
                 }
                 catch (Exception ex)

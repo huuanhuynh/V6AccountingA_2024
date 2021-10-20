@@ -23,7 +23,7 @@ namespace V6Controls.Forms
         public bool IsReady { get { return _ready0; } }
         protected bool _ready0;
         public string ItemID { get { return m_itemId; } }
-        protected string m_itemId = null;
+        public string m_itemId = null;
         public V6Control()
         {
             InitializeComponent();

@@ -486,8 +486,7 @@ namespace V6ThuePostManager
         /// </summary>
         /// <param name="paras"></param>
         /// <param name="error"></param>
-        /// <returns></returns>
-        
+        /// <returns></returns>        
         public static string PowerDownloadInfo(PostManagerParams paras, out string error)
         {
             string result = null;

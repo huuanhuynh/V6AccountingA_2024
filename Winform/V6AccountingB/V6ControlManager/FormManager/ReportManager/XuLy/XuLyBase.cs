@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             get
             {
-                if (_mauInData ==  null) throw new Exception("MauInData null.");
+                //if (_mauInData == null) ShowMainMessage("MauInData null.");
                 return _mauInData;
             }
         }
@@ -391,7 +391,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             MyInitBase();
         }
 
-        protected void MyInitBase()
+        public void MyInitBase()
         {
             Text = _reportCaption;
             _status2text = CorpLan.GetTextNull("ST2" + _reportProcedure);
@@ -1010,10 +1010,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (beforeF9 != null && !(bool)beforeF9)
                 {
                     _message = V6Text.CheckInfor;
-                    SetStatusText(_message);
-                    return true;
+                    SetStatusText(_message);                    
                 }
-                XuLyF9();
+                else
+                {
+                    XuLyF9();
+                }                
             }
             else if ((keyData & Keys.F10) == Keys.F10 && FilterControl.F10)
             {
@@ -1023,6 +1025,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 return base.DoHotKey0(keyData);
             }
+            SetStatus2Text();
             return true;
         }
         

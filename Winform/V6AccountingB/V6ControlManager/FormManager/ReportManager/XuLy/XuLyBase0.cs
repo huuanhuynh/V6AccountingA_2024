@@ -459,6 +459,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 return base.DoHotKey0(keyData);
             }
+            SetStatus2Text();
             return true;
         }
         

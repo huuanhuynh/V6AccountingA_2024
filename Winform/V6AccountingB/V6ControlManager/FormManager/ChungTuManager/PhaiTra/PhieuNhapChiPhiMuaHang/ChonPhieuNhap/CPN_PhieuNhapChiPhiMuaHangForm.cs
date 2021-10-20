@@ -202,6 +202,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                             tableData.AddRow(item, true);
                         }
                         DataSelectorForm dataSelector = new DataSelectorForm(tableData, null);
+                        dataSelector.AddAllRows();
                         var config_ct = ConfigManager.GetAldmConfig(_locKetQua._aldmConfig.MA_DM + "CT");
                         if (config_ct.HaveInfo)
                         {

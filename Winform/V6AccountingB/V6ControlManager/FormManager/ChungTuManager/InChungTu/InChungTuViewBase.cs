@@ -246,6 +246,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
         }
 
+        /// <summary>
+        /// MauIn (Albc) EXTRA_INFOR NOPRINTER
+        /// </summary>
+        private bool NOPRINTER
+        {
+            get
+            {
+                if (EXTRA_INFOR.ContainsKey("NOPRINTER")) return ObjectAndString.ObjectToBool(EXTRA_INFOR["NOPRINTER"]);
+                return false;
+            }
+        }
+
         #endregion EXTRA_INFOR
 
         private int SelectedSoLien
@@ -2156,9 +2168,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             if (V6ControlFormHelper.PrinterSettings != null)
                             {
-                                V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc);
+                                V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, V6ControlFormHelper.PrinterSettings, rpDoc);
                             }
-                            if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+
+                            if (NOPRINTER)
+                            {
+                                if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                            }
+                            else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(printerName);
                             rpDoc.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                             intDaGuiDenMayIn++;
                         }
@@ -2172,9 +2189,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             {
                                 if (V6ControlFormHelper.PrinterSettings != null)
                                 {
-                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc2);
+                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, V6ControlFormHelper.PrinterSettings, rpDoc2);
                                 }
-                                if (rpDoc2.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+
+                                if (NOPRINTER)
+                                {
+                                    if (rpDoc2.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                                }
+                                else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(printerName);
                                 rpDoc2.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                                 intDaGuiDenMayIn++;
                             }
@@ -2188,9 +2210,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             {
                                 if (V6ControlFormHelper.PrinterSettings != null)
                                 {
-                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc3);
+                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, V6ControlFormHelper.PrinterSettings, rpDoc3);
                                 }
-                                if (rpDoc3.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                                if (NOPRINTER)
+                                {
+                                    if (rpDoc3.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                                }
+                                else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(printerName);
                                 rpDoc3.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                                 intDaGuiDenMayIn++;
                             }
@@ -2205,9 +2231,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             {
                                 if (V6ControlFormHelper.PrinterSettings != null)
                                 {
-                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc4);
+                                    V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, V6ControlFormHelper.PrinterSettings, rpDoc4);
                                 }
-                                if (rpDoc4.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                                if (NOPRINTER)
+                                {
+                                    if (rpDoc4.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                                }
+                                else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(printerName);
                                 rpDoc4.PrintToPrinter(1, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                                 intDaGuiDenMayIn++;
                             }
@@ -2223,9 +2253,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             if (V6ControlFormHelper.PrinterSettings != null)
                             {
-                                V6ControlFormHelper.SetCrystalReportPrinterOptions(V6ControlFormHelper.PrinterSettings, rpDoc);
+                                V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, V6ControlFormHelper.PrinterSettings, rpDoc);
                             }
-                            if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+
+                            if (NOPRINTER)
+                            {
+                                if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                            }
+                            else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(printerName);
                             rpDoc.PrintToPrinter(_soLienIn*_printCopy, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
                             intDaGuiDenMayIn = _soLienIn;
                         }
@@ -2437,7 +2472,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         var selectedPrinter = printerst.PrinterName;
                         _printCopy = printerst.Copies;
-                        V6ControlFormHelper.SetCrystalReportPrinterOptions(printerst, _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40);
+                        V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, printerst, _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40);
                         V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
                         //printting = true;
                         Print(selectedPrinter, _rpDoc10, _rpDoc20, _rpDoc30, _rpDoc40);
@@ -2503,12 +2538,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     if (sender == inLien2Menu) rpDoc = _rpDoc20;
                     if (sender == inLien3Menu) rpDoc = _rpDoc30;
                     if (sender == inLien4Menu) rpDoc = _rpDoc40;
-                    
-                    V6ControlFormHelper.SetCrystalReportPrinterOptions(printerst, rpDoc);
-                    if (_rpDoc10.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(selectedPrinter);
+
+                    V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, printerst, rpDoc);
+                    if (NOPRINTER)
+                    {
+                        if (_rpDoc10.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(selectedPrinter);
+                    }
+                    else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(selectedPrinter);
                     V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
                     rpDoc.PrintToPrinter(_printCopy, false, IsInvoice ? 1 : 0, IsInvoice ? 1 : 0);
-                    if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    if (NOPRINTER)
+                    {
+                        if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    }
+                    else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
 
                     if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != DefaultPrinter)
                     {
@@ -2519,7 +2562,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             catch (Exception ex)
             {
-                if (_rpDoc10.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                if (NOPRINTER)
+                {
+                    if (_rpDoc10.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                }
+                else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 
                 this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name + ((ToolStripMenuItem)sender).Name, ex);
             }

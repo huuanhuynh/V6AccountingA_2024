@@ -376,7 +376,20 @@ namespace V6ThuePost
                         {
                             metadata["numberValue"] = GetValue(row0, metaItem.Value);
                         }
-                        else // if (metaItem.Value.DataType.ToLower() == "date")
+                        else if (metaItem.Value.DataType.ToUpper() == "N2C0VNDE")
+                        {
+                            string ma_nt = row0["MA_NT"].ToString().Trim().ToUpper();
+                            if (ma_nt != "VND")
+                            {
+                                metadata["stringValue"] = ObjectAndString.ObjectToString(GetValue(row0, metaItem.Value));
+                                metadata["valueType"] = "text";
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                        else
                         {
                             metaItem.Value.DataType = "text";
                             metadata["stringValue"] = GetValue(row0, metaItem.Value);
@@ -563,8 +576,24 @@ namespace V6ThuePost
                         break;
                     case "N2C":
                         return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND");
+                    case "N2CE":
+                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", "VND");
                     case "N2CMANT":
                         return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", row["MA_NT"].ToString().Trim());
+                    case "N2CMANTE":
+                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim());
+                    case "N2C0VNDE":
+                        {
+                            string ma_nt = row["MA_NT"].ToString().Trim().ToUpper();
+                            if (ma_nt != "VND")
+                            {
+                                return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim());
+                            }
+                            else
+                            {
+                                return "";
+                            }
+                        }
                     case "DECIMAL":
                     case "MONEY":
                         return ObjectAndString.ObjectToDecimal(fieldValue);

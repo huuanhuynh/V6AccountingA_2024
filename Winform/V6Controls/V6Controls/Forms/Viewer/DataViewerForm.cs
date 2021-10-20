@@ -41,6 +41,29 @@ namespace V6Controls.Forms.Viewer
             MyInit();
         }
 
+        /// <summary>
+        /// Khởi tạo DataViewForm.
+        /// </summary>
+        /// <param name="dataObject">Dữ liệu hiển thị lên gridview.</param>
+        /// <param name="showSum">Hiện dòng tổng.</param>
+        public DataViewerForm(object dataObject, bool showSum)
+        {
+            InitializeComponent();
+            if (!showSum)
+            {
+                dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
+                gridViewSummary1.Visible = false;
+            }
+            _data_object = dataObject;
+            MyInit();
+        }
+
+        /// <summary>
+        /// Khởi tạo DataViewForm.
+        /// </summary>
+        /// <param name="dataObject">Dữ liệu hiển thị lên gridview.</param>
+        /// <param name="valueField">Trường xác dịnh dữ liệu SelectedValue sau khi nhận.</param>
+        /// <param name="showSum">Hiện dòng tổng.</param>
         public DataViewerForm(object dataObject, string valueField, bool showSum)
         {
             InitializeComponent();
@@ -51,18 +74,6 @@ namespace V6Controls.Forms.Viewer
             }
             _data_object = dataObject;
             ValueField = valueField.Trim().ToUpper();
-            MyInit();
-        }
-
-        public DataViewerForm(object dataObject, bool showSum)
-        {
-            InitializeComponent();
-            if (!showSum)
-            {
-                dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
-                gridViewSummary1.Visible = false;
-            }
-            _data_object = dataObject;
             MyInit();
         }
 
@@ -84,6 +95,29 @@ namespace V6Controls.Forms.Viewer
             _data_object = dataObject;
             MyInit();
         }
+
+        /// <summary>
+        /// Khởi tạo DataViewForm.
+        /// </summary>
+        /// <param name="dataObject">Dữ liệu hiển thị lên gridview.</param>
+        /// <param name="valueField">Trường xác dịnh dữ liệu SelectedValue sau khi nhận.</param>
+        /// <param name="showSum">Hiện dòng tổng.</param>
+        /// <param name="ctrl_s">Bật chức năng lọc dữ liệu</param>
+        public DataViewerForm(object dataObject, string valueField, bool showSum, bool ctrl_s)
+        {
+            InitializeComponent();
+            if (!showSum)
+            {
+                dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
+                gridViewSummary1.Visible = false;
+            }
+            dataGridView1.Control_S = ctrl_s;
+            _data_object = dataObject;
+            ValueField = valueField.Trim().ToUpper();
+            MyInit();
+        }
+
+        
 
         public sealed override string Text
         {

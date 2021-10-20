@@ -3849,18 +3849,21 @@ namespace V6Controls.Forms
         /// <summary>
         /// Lấy thông số in cho CrystalReport.
         /// </summary>
+        /// <param name="NOPRINTER">EXTRAINFOR.NOPRINTER</param>
         /// <param name="printer">PrinterSettings</param>
         /// <param name="rpts">Các CrystalReport object.</param>
-        public static void SetCrystalReportPrinterOptions(PrinterSettings printer, params ReportDocument[] rpts)
+        public static void SetCrystalReportPrinterOptions(bool NOPRINTER, PrinterSettings printer, params ReportDocument[] rpts)
         {
             if (printer == null) return;
             foreach (ReportDocument rpt in rpts)
             {
                 if (rpt == null) continue;
-                rpt.PrintOptions.NoPrinter = false;
+                if (NOPRINTER) rpt.PrintOptions.NoPrinter = false;
                 //rp.PrintOptions.CopyFrom(printer, printer.DefaultPageSettings); // Không được dùng. Gây sai (ví dụ in ngang/dọc)
                 rpt.PrintOptions.PrinterName = printer.IsDefaultPrinter ? string.Empty : printer.PrinterName;
-                
+
+                if (!NOPRINTER) return;
+
                 if (printer.Duplex == Duplex.Default) rpt.PrintOptions.PrinterDuplex = PrinterDuplex.Default;
                 else if (printer.Duplex == Duplex.Horizontal) rpt.PrintOptions.PrinterDuplex = PrinterDuplex.Horizontal;
                 else if (printer.Duplex == Duplex.Simplex) rpt.PrintOptions.PrinterDuplex = PrinterDuplex.Simplex;
@@ -3888,13 +3891,13 @@ namespace V6Controls.Forms
         /// <param name="rpDoc">Đổi tượng rpt cần in.</param>
         /// <param name="printerName">Máy in chọn sẵn.</param>
         /// <returns>Tên máy in đã chọn in.</returns>
-        public static string PrintRpt(IWin32Window owner, ReportDocument rpDoc, string printerName)
+        public static string PrintRpt(IWin32Window owner, ReportDocument rpDoc, string printerName, bool NOPRINTER)
         {
             if (ChoosePrinter(owner, printerName) != null)
             {
-                SetCrystalReportPrinterOptions(PrinterSettings, rpDoc);
+                SetCrystalReportPrinterOptions(NOPRINTER, PrinterSettings, rpDoc);
 
-                bool is_printed = PrintRptToPrinter(rpDoc,
+                bool is_printed = PrintRptToPrinter(NOPRINTER, rpDoc,
                     PrinterSettings.PrinterName,
                     PrinterSettings.Copies,
                     PrinterSettings.FromPage,
@@ -3913,27 +3916,39 @@ namespace V6Controls.Forms
         /// <param name="startPage">Trang bắt đầu (trang đầu là 1, dùng 0 nếu in tất cả trang).</param>
         /// <param name="endPage">Trang kết thúc, dùng 0 nếu in tất cả trang.</param>
         /// <returns></returns>
-        public static bool PrintRptToPrinter(ReportDocument rpDoc, string printerName, int copies, int startPage, int endPage)
+        public static bool PrintRptToPrinter(bool NOPRINTER, ReportDocument rpDoc, string printerName, int copies, int startPage, int endPage)
         {
             //rpDoc.PrintOptions.PrinterName = printerName; Câu này không có tác dụng.
             var _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
             try
             {
                 bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
-                if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                if (NOPRINTER)
+                {
+                    if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
+                }
+                else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(printerName);
                 var printerError = string.Compare("Error", PrinterStatus.getDefaultPrinterProperties("Status"), StringComparison.OrdinalIgnoreCase) == 0;
 
                 if (printerOnline && !printerError)
                 {
                     rpDoc.PrintToPrinter(copies, false, startPage, endPage);
                     ShowMainMessage("Đã gửi in.");
-                    if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    if (NOPRINTER)
+                    {
+                        if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                    }
+                    else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                     return true;
                 }
             }
             catch (Exception)
             {
-                if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                if (NOPRINTER)
+                {
+                    if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                }
+                else if (!NOPRINTER) PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 throw;
             }
             return false;

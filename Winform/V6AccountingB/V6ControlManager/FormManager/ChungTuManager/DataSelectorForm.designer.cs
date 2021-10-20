@@ -264,19 +264,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.Text = "Chọn";
             this.Load += new System.EventHandler(this.SelectMultiIDForm_Load);
             this.SizeChanged += new System.EventHandler(this.DataSelectorForm_SizeChanged);
-            this.Controls.SetChildIndex(this.dataGridView2, 0);
-            this.Controls.SetChildIndex(this.dataGridView1, 0);
-            this.Controls.SetChildIndex(this.lbldsdc, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.btnAddSelect, 0);
-            this.Controls.SetChildIndex(this.btnMove2Up, 0);
-            this.Controls.SetChildIndex(this.btnAddAll, 0);
-            this.Controls.SetChildIndex(this.btnMove2Down, 0);
-            this.Controls.SetChildIndex(this.btnRemoveSelect, 0);
-            this.Controls.SetChildIndex(this.btnRemoveAll, 0);
-            
-            this.Controls.SetChildIndex(this.chkChonTrung, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -287,18 +274,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
         #endregion
 
         //private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnAddSelect;
-        private System.Windows.Forms.Button btnAddAll;
-        private System.Windows.Forms.Button btnRemoveSelect;
-        private System.Windows.Forms.Button btnRemoveAll;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lbldsdc;
-        protected System.Windows.Forms.Button btnHuy;
-        protected System.Windows.Forms.Button btnNhan;
         public V6ColorDataGridView dataGridView2;
         private System.Windows.Forms.Button btnMove2Up;
         private System.Windows.Forms.Button btnMove2Down;
         private V6CheckBox chkChonTrung;
         public V6ColorDataGridView dataGridView1;
+        public System.Windows.Forms.Button btnAddSelect;
+        public System.Windows.Forms.Button btnAddAll;
+        public System.Windows.Forms.Button btnRemoveSelect;
+        public System.Windows.Forms.Button btnRemoveAll;
+        public System.Windows.Forms.Button btnHuy;
+        public System.Windows.Forms.Button btnNhan;
     }
 }

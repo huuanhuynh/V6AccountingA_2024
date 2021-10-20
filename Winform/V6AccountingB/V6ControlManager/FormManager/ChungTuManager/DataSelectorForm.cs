@@ -122,7 +122,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        private void AddAllRows()
+        public void AddAllRows()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -238,22 +238,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private void btnMove2Up_Click(object sender, EventArgs e)
         {
             var currentRow = dataGridView2.CurrentRow;
+            var currentCellIndex = dataGridView2.CurrentCell.ColumnIndex;
             if (currentRow != null && currentRow.Index > 0)
             {
                 var changeRow = dataGridView2.Rows[currentRow.Index - 1];
                 ChangeRowData(((DataRowView)currentRow.DataBoundItem).Row, ((DataRowView)changeRow.DataBoundItem).Row);
-                dataGridView2.CurrentCell = changeRow.Cells[0];
+                dataGridView2.CurrentCell = changeRow.Cells[currentCellIndex];
             }
         }
 
         private void btnMove2Down_Click(object sender, EventArgs e)
         {
             var currentRow = dataGridView2.CurrentRow;
+            var currentCellIndex = dataGridView2.CurrentCell.ColumnIndex;
             if (currentRow != null && currentRow.Index < dataGridView2.RowCount - 1)
             {
                 var changeRow = dataGridView2.Rows[currentRow.Index + 1];
                 ChangeRowData(((DataRowView)currentRow.DataBoundItem).Row, ((DataRowView)changeRow.DataBoundItem).Row);
-                dataGridView2.CurrentCell = changeRow.Cells[0];
+                dataGridView2.CurrentCell = changeRow.Cells[currentCellIndex];
             }
         }
 

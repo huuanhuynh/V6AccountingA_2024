@@ -2,6 +2,10 @@
 <Root>
 	<TuKhoa TenTuKhoa='AddEditControlVirtual' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ComboBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  
+  <TuKhoa TenTuKhoa='DataViewerForm' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='DataViewerForm form = new DataViewerForm(dataObject, valueField, showSum, ctrl_s);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  
 	<TuKhoa TenTuKhoa='DateTimePicker' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='EventArgs' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='KeyEventArgs' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

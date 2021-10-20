@@ -25,8 +25,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                xuLyBase1.m_itemId = ItemID;
+                xuLyBase1._program = "AAPPR_EINVOICE1";
                 xuLyBase1._reportProcedure = "AAPPR_EINVOICE1F6";
-                xuLyBase1.AddFilterControl("AAPPR_EINVOICE1");
+                xuLyBase1._reportFile = "AAPPR_EINVOICE1F6";
+                xuLyBase1._reportCaption = "AAPPR_EINVOICE1F6";
+                xuLyBase1._reportCaption2 = "AAPPR_EINVOICE1F6";
+
+                xuLyBase1._reportFileF5 = "";
+                xuLyBase1._reportTitleF5 = "";
+                xuLyBase1._reportTitle2F5 = "";
+                xuLyBase1.ViewDetail = false;
+
+                xuLyBase1.MyInitBase();
             }
             catch (Exception ex)
             {
