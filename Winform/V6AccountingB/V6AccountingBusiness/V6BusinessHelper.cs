@@ -1080,7 +1080,7 @@ namespace V6AccountingBusiness
             return result > 0;
         }
 
-        public static int Update(V6TableName tableName, SortedDictionary<string, object> dataDictionary,
+        public static int Update(V6TableName tableName, IDictionary<string, object> dataDictionary,
             SortedDictionary<string, object> keys)
         {
             return Update(tableName.ToString(), dataDictionary, keys);
@@ -1089,21 +1089,21 @@ namespace V6AccountingBusiness
             IDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, dataDictionary, keys, tableStruct);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, tableStruct, dataDictionary, keys);
             var result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
             return result;
         }
 
-        public static int Update(SqlTransaction tran, string tableName, SortedDictionary<string, object> dataDictionary,
+        public static int Update(SqlTransaction tran, string tableName, IDictionary<string, object> dataDictionary,
             SortedDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, dataDictionary, keys, tableStruct);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, tableStruct, dataDictionary, keys);
             var result = SqlConnect.ExecuteNonQuery(tran, CommandType.Text, sql);
             return result;
         }
 
-        public static int UpdateSimple(V6TableName tableName, SortedDictionary<string, object> dataDictionary,
+        public static int UpdateSimple(V6TableName tableName, IDictionary<string, object> dataDictionary,
             SortedDictionary<string, object> keys)
         {
             return UpdateSimple(tableName.ToString(), dataDictionary, keys);
@@ -1141,7 +1141,7 @@ namespace V6AccountingBusiness
         /// <param name="dataDictionary"></param>
         /// <param name="keys"></param>
         /// <returns></returns>
-        public static int UpdateTable(string tableName, SortedDictionary<string, object> dataDictionary, SortedDictionary<string, object> keys)
+        public static int UpdateTable(string tableName, IDictionary<string, object> dataDictionary, IDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
             SqlParameter[] plist2;

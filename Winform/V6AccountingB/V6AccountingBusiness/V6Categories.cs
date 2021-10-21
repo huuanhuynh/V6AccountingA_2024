@@ -171,7 +171,7 @@ namespace V6AccountingBusiness
         public int Update(string tableName, IDictionary<string, object> data, IDictionary<string, object> keys, SqlTransaction transaction = null)
         {
             var tableStruct = V6SqlconnectHelper.GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, data, keys, tableStruct);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, tableStruct, data, keys);
             var result = transaction == null
                 ? SqlConnect.ExecuteNonQuery(CommandType.Text, sql)
                 : SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);
@@ -190,7 +190,7 @@ namespace V6AccountingBusiness
                     changes[item.Key] = item.Value;
                 }
             }
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, changes, keys, tableStruct);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, tableStruct, changes, keys);
             var result = transaction == null
                 ? SqlConnect.ExecuteNonQuery(CommandType.Text, sql)
                 : SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);

@@ -385,7 +385,8 @@ namespace V6SqlConnect
         /// <param name="dataDictionary"></param>
         /// <param name="keys"></param>
         /// <returns></returns>
-        public static string GenUpdateSql(int UserId, string tableName, IDictionary<string, object> dataDictionary, IDictionary<string, object> keys, V6TableStruct structTable)
+        public static string GenUpdateSql(int UserId, string tableName, V6TableStruct structTable,
+            IDictionary<string, object> dataDictionary, IDictionary<string, object> keys)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
             var dateString = serverDateTime.ToString("yyyyMMdd").Replace(" ", "");
@@ -439,7 +440,7 @@ namespace V6SqlConnect
         
         
         public static string GenUpdateSqlParameter(int UserId, string tableName, V6TableStruct structTable,
-            SortedDictionary<string, object> dataDictionary, SortedDictionary<string, object> keys,
+            IDictionary<string, object> dataDictionary, IDictionary<string, object> keys,
             out SqlParameter[] plist)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
@@ -506,8 +507,8 @@ namespace V6SqlConnect
         /// <param name="dataDictionary"></param>
         /// <param name="keys"></param>
         /// <returns></returns>
-        public static string GenUpdateSqlSimple(int UserId, string tableName, V6TableStruct structTable, IDictionary<string, object> dataDictionary,
-            IDictionary<string, object> keys)
+        public static string GenUpdateSqlSimple(int UserId, string tableName, V6TableStruct structTable,
+            IDictionary<string, object> dataDictionary, IDictionary<string, object> keys)
         {
             var sql = "Update [" + tableName + "] Set"; // field = value[, field2 = value2[...]]
             string where;
