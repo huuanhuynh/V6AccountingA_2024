@@ -357,10 +357,11 @@ namespace V6Tools
         public static List<T> ToListModel<T>(this DataTable data) where T : new()
         {
             List<T> result = new List<T>();
+            var p_array = typeof(T).GetProperties();
             foreach (DataRow row in data.Rows)
             {
                 var t = new T();
-                foreach (PropertyInfo propertyInfo in t.GetType().GetProperties())
+                foreach (PropertyInfo propertyInfo in p_array)
                 {
                     string field = propertyInfo.Name;
                     if (propertyInfo.CanWrite)
@@ -376,7 +377,7 @@ namespace V6Tools
             }
             return result;
         }
-
+        
         /// <summary>
         /// Chuyển DataTable về ListDic
         /// </summary>

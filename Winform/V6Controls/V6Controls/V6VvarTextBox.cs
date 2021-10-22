@@ -288,6 +288,7 @@ namespace V6Controls
             get
             {
                 if (Text != string.Empty) return false;
+                if (LookupInfo.NoInfo) return true; // nodata
                 var data = V6BusinessHelper.Select(LookupInfo.vMa_file, "Count("+LookupInfo.vValue+")", InitFilter).Data;
                 if (data != null && data.Rows.Count > 0 && (int)data.Rows[0][0] > 0) return false;
                 return true;

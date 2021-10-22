@@ -192,16 +192,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 f9Error = "";
                 f9MessageAll = "";
-                if (dataGridView1.CurrentRow == null) return;
+                if (dataGridView1.CurrentRow == null)
+                {
+                    this.ShowWarningMessage(V6Text.NoData);
+                    return;
+                }
+                
 
                 var form = new AAPPR_EINVOICE1_F6();
                 if (form.ShowDialog(this) != DialogResult.OK || form.SelectedGridViewRow == null)
                 {
+                    if (form.SelectedGridViewRow == null) this.ShowWarningMessage(V6Text.NoData);
                     return;
                 }
 
                 DataGridViewRow row = dataGridView1.CurrentRow;
-                var am_E1 = row.ToDataDictionary();
+                var am_OLD = row.ToDataDictionary();
 
                 try
                 {
@@ -210,7 +216,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     IDictionary<string, object> am_F6 = form.SelectedGridViewRow.ToDataDictionary();
                     string soct = am_F6["SO_CT"].ToString().Trim();
                     string fkey_hd = am_F6["FKEY_HD"].ToString().Trim();
-                    string fkey_hd_tt = am_E1["FKEY_HD"].ToString().Trim();
+                    string fkey_hd_tt = am_OLD["FKEY_HD"].ToString().Trim();
                     if (string.IsNullOrEmpty(fkey_hd_tt))
                     {
                         f9MessageAll = "Không có mã FKEY_HD_TT.";
@@ -218,7 +224,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
 
                     string info = string.Format("Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
-                        am_E1["SO_CT"], am_E1["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
+                        am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
                     this.ShowMainMessage(info);
 
                     SqlParameter[] plist =
@@ -237,7 +243,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var paras = new PostManagerParams
                     {
                         DataSet = ds,
-                        AM_old = am_E1,
+                        AM_old = am_OLD,
                         AM_data = am_F6,
                         Mode = "E_T1",
                         Branch = FilterControl.String1,

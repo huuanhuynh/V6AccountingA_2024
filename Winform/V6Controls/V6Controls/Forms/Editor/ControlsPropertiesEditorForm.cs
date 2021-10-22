@@ -213,7 +213,7 @@ namespace V6Controls.Forms.Editor
                 _control = control_;
                 lblControlType.Text = "" + _control.GetType();
                 lblControlName.Text = _control.Name;
-                // Thông tin ngông ngữ.
+                // Thông tin ngôn ngữ.
                 if (string.IsNullOrEmpty(_control.AccessibleDescription))
                 {
                     if (control_ is V6Control || control_ is V6Form)
@@ -225,14 +225,45 @@ namespace V6Controls.Forms.Editor
                         btnSave.Visible = false;
 
                         listView1.Items.Clear();
+                        // Property
                         SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>();
-                        //foreach (PropertyInfo propertyInfo in label.GetType().GetProperties())
-                        //{
-                        //    sortedDictionary["(" + propertyInfo.Name + ")"] = "" + propertyInfo.GetValue(label, null);
-                        //}
+                        foreach (PropertyInfo propertyInfo in control_.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance))
+                        {
+                            sortedDictionary["private(" + propertyInfo.Name + ")"] = "" + propertyInfo.GetValue(control_, null);
+                        }
+                        foreach (PropertyInfo propertyInfo in control_.GetType().GetProperties())
+                        {
+                            sortedDictionary["public(" + propertyInfo.Name + ")"] = "" + propertyInfo.GetValue(control_, null);
+                        }
+                        foreach (KeyValuePair<string, string> item in sortedDictionary)
+                        {
+                            listView1.Items.Add(new ListViewItem(new[] { item.Key, item.Value }));
+                        }
+                        
+                        // Field
+                        sortedDictionary.Clear();
+                        foreach (FieldInfo fieldInfo in control_.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance))
+                        {
+                            sortedDictionary["private[" + fieldInfo.Name + "]"] = "" + fieldInfo.GetValue(control_);
+                        }
                         foreach (FieldInfo fieldInfo in control_.GetType().GetFields())
                         {
-                            sortedDictionary["[" + fieldInfo.Name + "]"] = "" + fieldInfo.GetValue(control_);
+                            sortedDictionary["public[" + fieldInfo.Name + "]"] = "" + fieldInfo.GetValue(control_);
+                        }
+                        foreach (KeyValuePair<string, string> item in sortedDictionary)
+                        {
+                            listView1.Items.Add(new ListViewItem(new[] { item.Key, item.Value }));
+                        }
+
+                        // Method
+                        sortedDictionary.Clear();
+                        foreach (MethodInfo info in control_.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance))
+                        {
+                            sortedDictionary[string.Format("private {0} {1}", info.ReturnType.Name, info.Name)] = "" + info;
+                        }
+                        foreach (MethodInfo info in control_.GetType().GetMethods())
+                        {
+                            sortedDictionary[string.Format("public {0} {1}", info.ReturnType, info.Name)] = "" + info;
                         }
                         foreach (KeyValuePair<string, string> item in sortedDictionary)
                         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using V6Init;
 using V6Tools.V6Convert;
@@ -46,7 +47,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
-                    txtval.Text = f.Font.Name + ";" + f.Font.Size + ";" + (int)f.Font.Style;
+                    txtval.Text = f.Font.Name + ";" + f.Font.Size.ToString(CultureInfo.InvariantCulture) + ";" + (int)f.Font.Style;
                 }
             }
         }

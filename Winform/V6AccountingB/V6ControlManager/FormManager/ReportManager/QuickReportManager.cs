@@ -69,31 +69,25 @@ namespace V6ControlManager.FormManager.ReportManager
                 int i = 0, lineTop = 35;
                 foreach (DataRow row in dataALREPORT1.Rows)
                 {
-                    var ten = row["ten"].ToString();
+                    Alreport1Config crow = new Alreport1Config(row.ToDataDictionary());
+                    
                     try
                     {
-                        string define = row["filter"].ToString().Trim();
-                        string define_M = row["filter_M"].ToString().Trim();
-                        var defineInfo = new DefineInfo(define);
-                        var defineInfo_M = new DefineInfo(define_M);
+                        var defineInfo = new DefineInfo(crow.filter);
+                        var defineInfo_M = new DefineInfo(crow.filter_m);
 
-                        var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define, toolTip);
+                        var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(crow.filter, toolTip);
                         all_Objects[lineControl0.Name] = lineControl0;
 
                         
                         if (lineControl0 is FilterLineDynamic)
                         {
                             FilterLineDynamic lineControl = lineControl0 as FilterLineDynamic;
-                            var key1 = row["key1"].ToString().Trim();
-                            var key2 = row["key2"].ToString().Trim();
-                            var key3 = row["key3"].ToString().Trim();
-                            var key4 = row["key4"].ToString().Trim();
-                            var loai_key = row["loai_key"].ToString().Trim();
-                            lineControl.DefineInfo.Key1 = key1;
-                            lineControl.DefineInfo.Key2 = key2;
-                            lineControl.DefineInfo.Key3 = key3;
-                            lineControl.DefineInfo.Key4 = key4;
-                            lineControl.DefineInfo.Loai_key = loai_key;
+                            lineControl.DefineInfo.Key1 = crow.key1;
+                            lineControl.DefineInfo.Key2 = crow.key2;
+                            lineControl.DefineInfo.Key3 = crow.key3;
+                            lineControl.DefineInfo.Key4 = crow.key4;
+                            lineControl.DefineInfo.Loai_key = crow.loai_key;
 
 
                             //Vị trí
@@ -163,11 +157,10 @@ namespace V6ControlManager.FormManager.ReportManager
                                 lineControl.SetValue(V6Login.UserId);
                             }
 
-                            string xml = row["DMETHOD"].ToString().Trim();
-                            if (!string.IsNullOrEmpty(xml))
+                            if (!string.IsNullOrEmpty(crow.DMETHOD))
                             {
                                 DataSet ds = new DataSet();
-                                ds.ReadXml(new StringReader(xml));
+                                ds.ReadXml(new StringReader(crow.DMETHOD));
                                 if (ds.Tables.Count <= 0) break;
 
                                 var data = ds.Tables[0];
@@ -290,16 +283,11 @@ namespace V6ControlManager.FormManager.ReportManager
                         {
                             //Copy code
                             FilterGroup lineControl = lineControl0 as FilterGroup;
-                            var key1 = row["key1"].ToString().Trim();
-                            var key2 = row["key2"].ToString().Trim();
-                            var key3 = row["key3"].ToString().Trim();
-                            var key4 = row["key4"].ToString().Trim();
-                            var loai_key = row["loai_key"].ToString().Trim();
-                            lineControl.DefineInfo.Key1 = key1;
-                            lineControl.DefineInfo.Key2 = key2;
-                            lineControl.DefineInfo.Key3 = key3;
-                            lineControl.DefineInfo.Key4 = key4;
-                            lineControl.DefineInfo.Loai_key = loai_key;
+                            lineControl.DefineInfo.Key1 = crow.key1;
+                            lineControl.DefineInfo.Key2 = crow.key2;
+                            lineControl.DefineInfo.Key3 = crow.key3;
+                            lineControl.DefineInfo.Key4 = crow.key4;
+                            lineControl.DefineInfo.Loai_key = crow.loai_key;
 
 
                             //Vị trí
@@ -311,7 +299,7 @@ namespace V6ControlManager.FormManager.ReportManager
                     }
                     catch (Exception e1)
                     {
-                        err += "\n" + i + " " + ten + ": " + e1.Message;
+                        err += "\n" + i + " " + crow.ten + ": " + e1.Message;
                     }
                 }
                 Event_program = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + program, all_using_text, all_method_text);
@@ -325,8 +313,6 @@ namespace V6ControlManager.FormManager.ReportManager
             {
                 filterControl.ShowErrorMessage("MadeFilterControls error: " + err);
             }
-
-            all_Objects = all_Objects;
         }
 
         public static void ShowQuickReport(Control owner, string itemId)

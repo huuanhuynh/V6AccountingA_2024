@@ -663,6 +663,33 @@ namespace V6Init
 
     }
 
+    public class Alreport1Config : Config
+    {
+        public Alreport1Config(IDictionary<string, object> data)
+            : base(data)
+        {
+        }
+
+        public string ma_bc { get { return GetString("MA_BC"); } }
+        public string stt_filter { get { return GetString("STT_FILTER"); } }
+        public string stt_key { get { return GetString("STT_KEY"); } }
+        public string ten { get { return GetString("TEN"); } }
+        public string filter { get { return GetString("FILTER"); } }
+        public string loai_key { get { return GetString("LOAI_KEY"); } }
+        public string key1 { get { return GetString("KEY1"); } }
+        public string key2 { get { return GetString("KEY2"); } }
+        public string key3 { get { return GetString("KEY3"); } }
+        public string key4 { get { return GetString("KEY4"); } }
+        public string UID { get { return GetString("UID"); } }
+        public string user_id2 { get { return GetString("USER_ID2"); } }
+        public string ten2 { get { return GetString("TEN2"); } }
+        public string uid_ct { get { return GetString("UID_CT"); } }
+        public string DMETHOD { get { return GetString("DMETHOD"); } }
+        public string filter_m { get { return GetString("FILTER_M"); } }
+        public string DMETHOD_M { get { return GetString("DMETHOD_M"); } }
+    }
+
+
     public class V6lookupConfig : Config
     {
         public V6lookupConfig(IDictionary<string, object> data)
