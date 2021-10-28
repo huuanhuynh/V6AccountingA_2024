@@ -6918,7 +6918,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                         else
                         {
-                            lodate_data = V6BusinessHelper.GetLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+                            lodate_data = V6BusinessHelper.GetLoDatePriority_KHO(ma_vt, ma_kho, _sttRec, dateNgayCT.Date);
                             FixAlLoDateTon_Chon(lodate_data);
                         }
 

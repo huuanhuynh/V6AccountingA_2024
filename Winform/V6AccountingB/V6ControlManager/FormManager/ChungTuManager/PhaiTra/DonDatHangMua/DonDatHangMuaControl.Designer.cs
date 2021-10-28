@@ -2535,7 +2535,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.btnChucNang.Size = new System.Drawing.Size(90, 23);
             this.btnChucNang.TabIndex = 37;
             this.btnChucNang.TabStop = false;
-            this.btnChucNang.Tag = "cancel";
+            this.btnChucNang.Tag = "cancelall";
             this.btnChucNang.Text = "Chức năng";
             this.btnChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChucNang.UseVisualStyleBackColor = true;
@@ -3705,7 +3705,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.btnChucNang2.Name = "btnChucNang2";
             this.btnChucNang2.Size = new System.Drawing.Size(90, 23);
             this.btnChucNang2.TabIndex = 53;
-            this.btnChucNang2.Tag = "cancel";
+            this.btnChucNang2.Tag = "cancelall";
             this.btnChucNang2.Text = "Chức năng 2";
             this.btnChucNang2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChucNang2.UseVisualStyleBackColor = true;

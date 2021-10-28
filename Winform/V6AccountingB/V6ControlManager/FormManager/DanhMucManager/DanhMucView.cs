@@ -667,6 +667,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.ShowErrorException(GetType() + ".DoAddCopy " + _MA_DM, ex);
             }
+            SetStatus2Text();
         }
 
         private void DoEdit()
@@ -801,6 +802,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
+            SetStatus2Text();
         }
 
         private void f_DoChangeCodeFinish(IDictionary<string, object> data)
@@ -1252,6 +1254,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
+            SetStatus2Text();
         }
 
         private void DoPrint()
@@ -1349,6 +1352,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
+            SetStatus2Text();
         }
 
         #endregion do method
@@ -1891,6 +1895,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.ShowErrorException(GetType() + ".Find_Click", ex);
             }
+            SetStatus2Text();
         }
 
         /// <summary>

@@ -104,15 +104,15 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             string font_name = param_font[0];	
             float font_size =	repx.Font.Size;
             FontStyle font_style = repx.Font.Style;
-            if (param_font.Length > 1) font_size = Single.Parse(param_font[1]);
-            if (param_font.Length > 2) font_style = (FontStyle)Int32.Parse(param_font[2]);
+            if (param_font.Length > 1) font_size = ObjectAndString.StringToFloat(param_font[1]);
+            if (param_font.Length > 2) font_style = (FontStyle)ObjectAndString.ObjectToInt(param_font[2]);
             Font m_rfontname = new Font(font_name, font_size, font_style);
 
             param_font = V6Options.GetValue("M_RTFONT").Split(';');
             font_name = param_font[0];
             font_size = repx.Font.Size;
             font_style = repx.Font.Style;
-            if (param_font.Length > 1) font_size = Single.Parse(param_font[1]);
+            if (param_font.Length > 1) font_size = ObjectAndString.StringToFloat(param_font[1]);
             if (param_font.Length > 2) font_style = (FontStyle)Int32.Parse(param_font[2]);
             Font m_rtfont = new Font(font_name, font_size, font_style);
 
@@ -121,7 +121,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             font_size = repx.Font.Size;
             font_style = repx.Font.Style;
             if (param_font.Length > 1) font_size = Single.Parse(param_font[1]);
-            if (param_font.Length > 2) font_style = (FontStyle)Int32.Parse(param_font[2]);
+            if (param_font.Length > 2) font_style = (FontStyle)ObjectAndString.ObjectToInt(param_font[2]);
             Font m_rsfont = new Font(font_name, font_size, font_style);
 
 

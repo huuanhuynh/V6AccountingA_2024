@@ -1994,6 +1994,91 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
+        private void FixAlVitriTon_Chon(DataTable alVitriTon)
+        {
+            try
+            {
+
+
+                //if (maVt == "" || maKhoI == "" || maLo == "") return;
+
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                List<DataRow> empty_rows = new List<DataRow>();
+                SortedDictionary<string, V6VvarTextBox> vt = new SortedDictionary<string, V6VvarTextBox>();
+                SortedDictionary<string, V6VvarTextBox> kho = new SortedDictionary<string, V6VvarTextBox>();
+
+                for (int i = alVitriTon.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = alVitriTon.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt, maKhoI, maLo, maViTri
+                    //- so luong
+                    decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                    decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
+                    decimal new_soLuong = data_soLuong;
+                    decimal new_soLuong_qd = data_soLuong_qd;
+
+                    foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                    {
+                        string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                        string c_khoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                        string c_viTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                        if (!vt.ContainsKey(c_maVt))
+                        {
+                            vt[c_maVt] = new V6VvarTextBox() { VVar = "MA_VT", Text = c_maVt };
+                        }
+
+                        if (!kho.ContainsKey(c_khoI))
+                        {
+                            kho[c_khoI] = new V6VvarTextBox() { VVar = "MA_KHO", Text = c_khoI };
+                        }
+                        // Theo doi lo moi check
+                        if (!vt[c_maVt].LO_YN || !vt[c_maVt].DATE_YN || !vt[c_maVt].VITRI_YN || !kho[c_khoI].LO_YN || !kho[c_khoI].DATE_YN)
+                            continue;
+
+                        decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                        decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]); //???
+
+                        if (data_maVt == c_maVt && data_maKhoI == c_khoI && data_maLo == c_maLo &&
+                            data_maViTri == c_viTri)
+                        {
+                            new_soLuong -= c_soLuong;
+                            new_soLuong_qd -= c_soLuong_qd;
+                        }
+                    }
+
+                    if (new_soLuong > 0)
+                    {
+                        data_row["Ton_dau"] = new_soLuong;
+                        data_row["Ton_dau_qd"] = new_soLuong_qd;
+                    }
+                    else
+                    {
+                        empty_rows.Add(data_row);
+                    }
+                }
+
+                //remove all empty_rows
+                foreach (DataRow row in empty_rows)
+                {
+                    alVitriTon.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         private void XuLyKhiNhanMaLo(IDictionary<string, object> row, bool isChanged)
         {
             try
@@ -3951,6 +4036,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 var readOnly = Mode != V6Mode.Edit && Mode != V6Mode.Add;
                 V6ControlFormHelper.SetFormControlsReadOnly(this, readOnly);
                 foreach (ToolStripMenuItem item in menuChucNang.Items)
+                {
+                    V6ControlFormHelper.SetFormMenuItemReadOnly(item, readOnly);
+                }
+                foreach (ToolStripMenuItem item in menuChucNang2.Items)
                 {
                     V6ControlFormHelper.SetFormMenuItemReadOnly(item, readOnly);
                 }
@@ -7930,6 +8019,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             //chon_accept_flag_add = shift;
             ChucNang_ChonDonHangBan(true);
         }
+
+        private void chonDonHangBanTheoKhoMenu_Click(object sender, EventArgs e)
+        {
+            if (NotAddEdit) return;
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonDonHangBanTheoKho(shift);
+        }
         
         private void chonBaoGiaMenu_Click(object sender, EventArgs e)
         {
@@ -7967,6 +8063,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".ChucNang_ChonDonHangBan " + _sttRec, ex);
+            }
+        }
+
+        private void ChucNang_ChonDonHangBanTheoKho(bool shift)
+        {
+            try
+            {
+                if (NotAddEdit) return;                
+                chon_accept_flag_add = shift;
+                //var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
+                var message = "";
+                if (ma_dvcs != "")
+                {
+                    CDH_SOH_HoaDonForm chon = new CDH_SOH_HoaDonForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chonTheoKho_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    //if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -8165,6 +8289,237 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             newData["SO_LUONG1"] = insert/heso;
                             var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
                             
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                            {
+                                newData["SL_QD"] = insert_qd;
+                            }
+                            else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                            {
+                                newData["SL_QD"] = insert / HS_QD1;
+                            }
+                        }
+                        if (XuLyThemDetail(newData))
+                        {
+                            addCount++;
+                            All_Objects["data"] = newData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                        }
+                        else failCount++;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(ma_kh_soh))
+                {
+                    // Hóa đơn hơi khác khi luôn gọi lostfocus dù không gán giá trị khác.
+                    All_Objects["txtMaKh.CallDoV6LostFocus"] = 1;
+                    if (txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(ma_kh_soh);
+                    }
+                    txtMaKh.CallDoV6LostFocus();
+                }
+
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
+
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
+                //if (addCount > 0)
+                //{
+                //    co_chon_don_hang = true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        void chonTheoKho_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
+        {
+            try
+            {
+                txtLoaiCt.Text = e.Loai_ct;
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
+                if (!flag_add)
+                {
+                    AD.Rows.Clear();
+                }
+                int addCount = 0, failCount = 0; _message = "";
+
+                string ma_kh_soh = null;
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
+
+                foreach (IDictionary<string, object> data in selectedDataList)
+                {
+                    // Lấy ma_kh_soh đầu tiên.
+                    if (ma_kh_soh == null && data.ContainsKey("MA_KH_SOH"))
+                    {
+                        ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
+                    }
+
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
+                    string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
+                    if (c_makh != "" && txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(c_makh);
+                    }
+
+                    if (c_makh != "" && c_makh != txtMaKh.Text.ToUpper())
+                    {
+                        failCount++;
+                        _message += ". " + failCount + ":" + c_makh;
+                        continue;
+                    }
+
+                    var newData = new SortedDictionary<string, object>(data);
+                    if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")
+                    {
+                        newData["MA_TD_I"] = Txtma_td_ph.Text;
+                    }
+                    string ma_vt = newData["MA_VT"].ToString().Trim();
+                    string ma_kho = newData["MA_KHO_I"].ToString().Trim();
+                    V6VvarTextBox temp_vt = new V6VvarTextBox()
+                    {
+                        VVar = "MA_VT",
+                    };
+                    temp_vt.Text = ma_vt;
+                    if (temp_vt.LO_YN && temp_vt.DATE_YN)
+                    {
+                        // Tách dòng nhiều lô cộng dồn cho đủ số lượng.
+                        decimal total = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                        decimal total_qd = ObjectAndString.ObjectToDecimal(newData["SL_QD"]);
+                        decimal heso = 1;
+                        string dvt1 = newData["DVT1"].ToString().Trim();
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@p1", ma_vt),
+                            new SqlParameter("@p2", dvt1),
+                        };
+                        var dataHeso = V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                        if (dataHeso.Rows.Count > 0)
+                        {
+                            heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                        }
+                        if (heso == 0) heso = 1;
+                        decimal sum = 0, sum_qd = 0;
+
+                        DataTable lodate_data;
+                        if (temp_vt.VITRI_YN)
+                        {
+                            lodate_data = V6BusinessHelper.GetVitriLoDatePriority_PXK(ma_vt, ma_kho, _sttRec, dateNgayCT.Date);
+                            FixAlVitriTon_Chon(lodate_data);
+                        }
+                        else
+                        {
+                            lodate_data = V6BusinessHelper.GetLoDatePriority_KHO(ma_vt, ma_kho, _sttRec, dateNgayCT.Date);
+                            FixAlLoDateTon_Chon(lodate_data);
+                        }
+                        
+                        
+                        // Get Data
+                        for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
+                        {
+                            DataRow data_row = lodate_data.Rows[i];
+                            decimal row_ton_dau = ObjectAndString.ObjectToDecimal(data_row["TON_DAU"]);
+                            decimal row_ton_dau_qd = ObjectAndString.ObjectToDecimal(data_row["TON_DAU_QD"]);
+                            decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau;
+                            decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
+                            newData["MA_KHO_I"] = data_row["MA_KHO"];
+                            newData["MA_LO"] = data_row["MA_LO"];
+                            newData["HSD"] = data_row["HSD"];
+                            newData["DVT"] = data_row["DVT"];
+                            newData["DVT1"] = dvt1;
+                            newData["HE_SO"] = heso;
+                            newData["SO_LUONG"] = insert;
+                            newData["SO_LUONG1"] = insert / heso;
+                            decimal gia2 = ObjectAndString.ObjectToDecimal(data["GIA2"]);
+                            decimal tien_nt2 = V6BusinessHelper.Vround(insert * gia2, M_ROUND_NT);
+                            newData["TIEN_NT2"] = tien_nt2;
+                            newData["TIEN2"] = V6BusinessHelper.Vround(tien_nt2 * txtTyGia.Value, M_ROUND);
+                            if (_maNt == _mMaNt0)
+                            {
+                                newData["TIEN2"] = tien_nt2;
+                            }
+                            if (M_SOA_MULTI_VAT == "1")
+                            {
+                                decimal thue_suat = ObjectAndString.ObjectToDecimal(data["THUE_SUAT_I"]);
+                                decimal thue_nt = V6BusinessHelper.Vround(thue_suat * tien_nt2, M_ROUND_NT);
+                                newData["THUE_NT"] = thue_nt;
+                                newData["THUE"] = V6BusinessHelper.Vround(thue_nt * txtTyGia.Value, M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    newData["THUE"] = thue_nt;
+                                }
+                            }
+                            var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                            {
+                                newData["SL_QD"] = insert_qd;
+                            }
+                            else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                            {
+                                newData["SL_QD"] = insert / HS_QD1;
+                            }
+
+                            if (XuLyThemDetail(newData))
+                            {
+                                addCount++;
+                                All_Objects["data"] = newData;
+                                InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                            }
+                            else failCount++;
+
+                            sum += insert;
+                            sum_qd += insert_qd;
+                            if (sum == total)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (newData.ContainsKey("SO_LUONG"))
+                        {
+                            decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                            decimal insert_qd = ObjectAndString.ObjectToDecimal(newData["SL_QD"]);
+                            decimal heso = 1;
+                            string dvt1 = newData["DVT1"].ToString().Trim();
+                            SqlParameter[] plist =
+                            {
+                                new SqlParameter("@p1", ma_vt),
+                                new SqlParameter("@p2", dvt1),
+                            };
+                            var dataHeso =
+                                V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                            if (dataHeso.Rows.Count > 0)
+                            {
+                                heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                            }
+                            if (heso == 0) heso = 1;
+                            newData["SO_LUONG1"] = insert / heso;
+                            var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
                             if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
                             {
                                 newData["SL_QD"] = insert_qd;
@@ -8558,6 +8913,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (NotAddEdit) return;
                 chon_accept_flag_add = add;
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
@@ -9970,6 +10326,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             InvokeFormEvent(FormDynamicEvent.XULYKHAC2);
         }
+
+        
 
         
     }

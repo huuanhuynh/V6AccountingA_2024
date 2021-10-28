@@ -348,6 +348,89 @@ namespace V6Tools
         }
 
         /// <summary>
+        /// <para>Chuyển một dòng thành một Model(Class) với các trường tương ứng.</para>
+        /// <para>(Các trường không khớp sẽ bị bỏ qua).</para>
+        /// </summary>
+        /// <typeparam name="T">Kiểu Model</typeparam>
+        /// <param name="row">Dòng dữ liệu</param>
+        /// <returns>Model (T)</returns>
+        public static T ToModel<T>(this DataRow row) where T : new()
+        {
+            var p_array = typeof(T).GetProperties();
+                        
+            var t = new T();
+            foreach (PropertyInfo propertyInfo in p_array)
+            {
+                string field = propertyInfo.Name;
+                if (propertyInfo.CanWrite)
+                {
+                    object o = "";
+                    if (row.Table.Columns.Contains(field)) o = row[field];
+
+                    var value = ObjectAndString.ObjectTo(propertyInfo.PropertyType, o);
+                    propertyInfo.SetValue(t, value, null);
+                }
+            }            
+            
+            return t;
+        }
+
+        /// <summary>
+        /// Như ToModel.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dic"></param>
+        /// <returns></returns>
+        public static T ToClass<T>(this IDictionary<string, object> dic) where T : new()
+        {
+            return dic.ToModel<T>();
+        }
+
+        /// <summary>
+        /// Như ToModel.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dic"></param>
+        /// <returns></returns>
+        public static T ToClass<T>(this IDictionary<string, string> dic) where T : new()
+        {
+            Dictionary<string, object> d = new Dictionary<string, object>();
+            foreach (KeyValuePair<string, string> item in dic)
+            {
+                d[item.Key] = item.Value;
+            }
+            return d.ToModel<T>();
+        }
+
+        /// <summary>
+        /// <para>Chuyển một dòng thành một Model(Class) với các trường tương ứng.</para>
+        /// <para>(Các trường không khớp sẽ bị bỏ qua).</para>
+        /// </summary>
+        /// <typeparam name="T">Kiểu Model</typeparam>
+        /// <param name="dic">Dòng dữ liệu</param>
+        /// <returns>Model (T)</returns>
+        public static T ToModel<T>(this IDictionary<string, object> dic) where T : new()
+        {
+            var p_array = typeof(T).GetProperties();
+
+            var t = new T();
+            foreach (PropertyInfo propertyInfo in p_array)
+            {
+                string FIELD = propertyInfo.Name.ToUpper();
+                if (propertyInfo.CanWrite)
+                {
+                    object o = "";
+                    if (dic.ContainsKey(FIELD)) o = dic[FIELD];
+
+                    var value = ObjectAndString.ObjectTo(propertyInfo.PropertyType, o);
+                    propertyInfo.SetValue(t, value, null);
+                }
+            }
+
+            return t;
+        }
+
+        /// <summary>
         /// <para>Chuyển một bảng nhiều dòng thành danh sách các Model với các trường tương ứng.</para>
         /// <para>(Các trường không khớp sẽ bị bỏ qua).</para>
         /// </summary>

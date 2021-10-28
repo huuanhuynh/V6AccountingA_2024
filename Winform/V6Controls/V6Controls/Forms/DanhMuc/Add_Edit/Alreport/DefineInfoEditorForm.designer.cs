@@ -79,6 +79,7 @@
             this.txtAccessibleName2 = new V6Controls.V6VvarTextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.txtUseLimitChars0 = new V6Controls.V6ColorTextBox();
+            this.lblNFD = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.txtNField = new V6Controls.V6ColorTextBox();
@@ -168,7 +169,6 @@
             this.label77 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label73 = new System.Windows.Forms.Label();
-            this.lblNFD = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinThem.SuspendLayout();
@@ -821,7 +821,8 @@
             "DSNS",
             "FileButton",
             "NumberMonth",
-            "NumberYear"});
+            "NumberYear",
+            "FILTERGROUP"});
             this.cboControlType.Location = new System.Drawing.Point(287, 8);
             this.cboControlType.Name = "cboControlType";
             this.cboControlType.Size = new System.Drawing.Size(121, 24);
@@ -927,6 +928,17 @@
             this.txtUseLimitChars0.Name = "txtUseLimitChars0";
             this.txtUseLimitChars0.Size = new System.Drawing.Size(34, 23);
             this.txtUseLimitChars0.TabIndex = 43;
+            // 
+            // lblNFD
+            // 
+            this.lblNFD.AccessibleDescription = ".";
+            this.lblNFD.AutoSize = true;
+            this.lblNFD.Location = new System.Drawing.Point(284, 135);
+            this.lblNFD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNFD.Name = "lblNFD";
+            this.lblNFD.Size = new System.Drawing.Size(211, 17);
+            this.lblNFD.TabIndex = 25;
+            this.lblNFD.Text = "Các trường ánh xạ BrotherFields";
             // 
             // label29
             // 
@@ -2167,17 +2179,6 @@
             this.label73.Size = new System.Drawing.Size(88, 17);
             this.label73.TabIndex = 0;
             this.label73.Text = "R_DataType";
-            // 
-            // lblNFD
-            // 
-            this.lblNFD.AccessibleDescription = ".";
-            this.lblNFD.AutoSize = true;
-            this.lblNFD.Location = new System.Drawing.Point(284, 135);
-            this.lblNFD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNFD.Name = "lblNFD";
-            this.lblNFD.Size = new System.Drawing.Size(211, 17);
-            this.lblNFD.TabIndex = 25;
-            this.lblNFD.Text = "Các trường ánh xạ BrotherFields";
             // 
             // DefineInfoEditorForm
             // 

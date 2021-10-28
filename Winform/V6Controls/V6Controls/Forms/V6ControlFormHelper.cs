@@ -2080,6 +2080,8 @@ namespace V6Controls.Forms
             var tagString = string.Format(";{0};", control.Tag ?? "");
 
             var cancelall = tagString.Contains(";cancelall;");
+            if (cancelall) goto CANCELALL;
+            var cancelchill = tagString.Contains(";cancelchill;");
             var cancelset = tagString != "" && tagString.Contains(";cancelset;");
             
             var readonl2 = tagString.Contains(";readonly;");
@@ -2139,7 +2141,7 @@ namespace V6Controls.Forms
             //    else control.Enabled = true;
             //}
             
-            if(cancelall || cancelset) goto CANCELALL;
+            if(cancelchill || cancelset) goto CANCELALL;
             if (control.Controls.Count > 0)
             {
                 foreach (Control c in control.Controls)
@@ -2153,7 +2155,7 @@ namespace V6Controls.Forms
         public static void SetFormMenuItemReadOnly(ToolStripMenuItem menuItem, bool readOnly)
         {
             var tagString = string.Format(";{0};", menuItem.Tag ?? "");
-            var cancelall = tagString.Contains(";cancelall;");
+            var cancelall = tagString.Contains(";cancelall;") || tagString.Contains(";cancel;");
             var cancelset = tagString != "" && tagString.Contains(";cancelset;");
             if (cancelall || cancelset) goto CANCEL;
             var readonl2 = tagString.Contains(";readonly;");
