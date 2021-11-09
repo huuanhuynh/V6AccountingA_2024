@@ -139,8 +139,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PostObjects\V6ThuePostObjects.csproj">
-      <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
+    <ProjectReference Include="..\..\PostObjects35\V6ThuePostObjects.csproj">
+      <Project>{14a2c520-1939-4b6a-b584-ee5797f26701}</Project>
       <Name>V6ThuePostObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\ApiConnect\V6ThuePostXmlApi.csproj">

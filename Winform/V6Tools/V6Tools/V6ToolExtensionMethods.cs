@@ -537,6 +537,17 @@ namespace V6Tools
             return DataDic;
         }
 
+        public static IDictionary<string, object> DataRowToDataDictionaryLower(DataRow row)
+        {
+            var DataDic = new SortedDictionary<string, object>();
+            if (row == null) return DataDic;
+            for (int i = 0; i < row.Table.Columns.Count; i++)
+            {
+                DataDic.Add(row.Table.Columns[i].ColumnName.ToLower(), row[i]);
+            }
+            return DataDic;
+        }
+
         public static IDictionary<string, object> DataGridViewRowToDataDictionary(DataGridViewRow row)
         {
             if (row == null) return null;
@@ -551,6 +562,11 @@ namespace V6Tools
         {
             return DataRowToDataDictionary(row);
         }
+        public static IDictionary<string, object> ToDataDictionaryLower(this DataRow row)
+        {
+            return DataRowToDataDictionaryLower(row);
+        }
+
         public static IDictionary<string, object> ToDataDictionary(this DataGridViewRow row)
         {
             return DataGridViewRowToDataDictionary(row);

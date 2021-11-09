@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{14A2C520-1939-4B6A-B584-EE5797F26701}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6ThuePost</RootNamespace>
+    <AssemblyName>V6ThuePostObjects</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Framework35\Lib\Winform\35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="V6Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\V6Tools\V6Tools\bin\Release\V6Tools.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigLine.cs" />
+    <Compile Include="ViettelV2Objects\buyerInfo.cs" />
+    <Compile Include="ViettelV2Objects\Response\CancelResponse.cs" />
+    <Compile Include="ViettelV2Objects\SearchInvoiceResponseV2.cs" />
+    <Compile Include="ViettelV2Objects\CreateInvoiceResponseV2.cs" />
+    <Compile Include="ViettelV2Objects\CreateInvoiceResponse_Result.cs" />
+    <Compile Include="ViettelV2Objects\GeneralInvoiceInfo.cs" />
+    <Compile Include="ViettelV2Objects\GetInvoice\GetInvoiceInput.cs" />
+    <Compile Include="ViettelV2Objects\GetInvoice\GetInvoiceRepresentationFileParameters.cs" />
+    <Compile Include="ViettelV2Objects\GetInvoice\GetInvoiceResponse.cs" />
+    <Compile Include="ViettelV2Objects\GetInvoice\GetListInvoiceDataControlParams.cs" />
+    <Compile Include="ViettelV2Objects\InvoiceInfo.cs" />
+    <Compile Include="ViettelV2Objects\ItemInfo.cs" />
+    <Compile Include="ViettelV2Objects\PostObjectViettelV2.cs" />
+    <Compile Include="ViettelV2Objects\Response\LoginResponse.cs" />
+    <Compile Include="ViettelV2Objects\Response\UpdatePaymentResponse.cs" />
+    <Compile Include="ViettelV2Objects\SellerInfo.cs" />
+    <Compile Include="ViettelV2Objects\SummarizeInfo.cs" />
+    <Compile Include="ViettelV2Objects\TaxBreakdown.cs" />
+    <Compile Include="MInvoiceObject\Request\InvoiceData.cs" />
+    <Compile Include="MInvoiceObject\Request\MInvoicePostObject.cs" />
+    <Compile Include="MInvoiceObject\Response\LoginResponse.cs" />
+    <Compile Include="MInvoiceObject\Response\MInvoiceResponse.cs" />
+    <Compile Include="MONET_Objects\Request\MONET_CHECK_SIGNED_Request.cs" />
+    <Compile Include="MONET_Objects\Request\MONET_EDIT_Request.cs" />
+    <Compile Include="MONET_Objects\Request\MONET_DELETE_Request.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_API_Response.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_CHECK_SIGNED_Response.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_DELETE_Response.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_DOWNLOAD_Response.cs" />
+    <Compile Include="ResponseObjects\V6Return.cs" />
+    <Compile Include="MONET_Objects\buyerInfo.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_ADD_Response.cs" />
+    <Compile Include="MONET_Objects\GetInvoice\GetInvoiceInput.cs" />
+    <Compile Include="MONET_Objects\GetInvoice\GetInvoiceRepresentationFileParameters.cs" />
+    <Compile Include="MONET_Objects\GetInvoice\GetInvoiceResponse.cs" />
+    <Compile Include="MONET_Objects\GetInvoice\GetListInvoiceDataControlParams.cs" />
+    <Compile Include="ViettelObjects\BuyerInfo.cs" />
+    <Compile Include="ViettelObjects\CreateInvoiceResponse.cs" />
+    <Compile Include="ViettelObjects\CreateInvoiceResponse_Result.cs" />
+    <Compile Include="ViettelObjects\GeneralInvoiceInfo.cs" />
+    <Compile Include="ViettelObjects\GetInvoice\GetListInvoiceDataControlParams.cs" />
+    <Compile Include="ViettelObjects\GetInvoice\GetInvoiceRepresentationFileParameters.cs" />
+    <Compile Include="ViettelObjects\GetInvoice\GetInvoiceInput.cs" />
+    <Compile Include="ViettelObjects\GetInvoice\GetInvoiceResponse.cs" />
+    <Compile Include="ViettelObjects\InvoiceInfo.cs" />
+    <Compile Include="ViettelObjects\ItemInfo.cs" />
+    <Compile Include="ViettelObjects\PostObjectViettel.cs" />
+    <Compile Include="ViettelObjects\SellerInfo.cs" />
+    <Compile Include="ViettelObjects\SummarizeInfo.cs" />
+    <Compile Include="ViettelObjects\TaxBreakdown.cs" />
+    <Compile Include="VnptObjects\Customers.cs" />
+    <Compile Include="VnptObjects\Customer.cs" />
+    <Compile Include="VnptObjects\ReplaceInv.cs" />
+    <Compile Include="VnptObjects\AdjustInv.cs" />
+    <Compile Include="VnptObjects\Product.cs" />
+    <Compile Include="VnptObjects\Products.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="VnptObjects\Invoices.cs" />
+    <Compile Include="VnptObjects\Inv.cs" />
+    <Compile Include="VnptObjects\CreateInvoiceResponse_Result.cs" />
+    <Compile Include="VnptObjects\CreateInvoiceResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViettelObjects\Request\" />
+    <Folder Include="ViettelObjects\Response\" />
+    <Folder Include="ViettelV2Objects\Request\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostVNPT_HCM", "V6Thu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostXmlApi", "ApiConnect\V6ThuePostXmlApi.csproj", "{ABC35001-3755-4AFF-88D6-B48598BBC651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostObjects", "..\..\PostObjects\V6ThuePostObjects.csproj", "{14A2C520-1939-4B6A-B584-EE5797F26701}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostObjects", "..\PostObjects35\V6ThuePostObjects.csproj", "{14A2C520-1939-4B6A-B584-EE5797F26701}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

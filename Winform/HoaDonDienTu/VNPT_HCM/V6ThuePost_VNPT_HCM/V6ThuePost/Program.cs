@@ -1390,6 +1390,24 @@ namespace V6ThuePost
                         }
                     case "N2C":
                         return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND");
+                    case "N2CE":
+                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", "VND");
+                    case "N2CMANT":
+                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", row["MA_NT"].ToString().Trim());
+                    case "N2CMANTE":
+                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim());
+                    case "N2C0VNDE":
+                        {
+                            string ma_nt = row["MA_NT"].ToString().Trim().ToUpper();
+                            if (ma_nt != "VND")
+                            {
+                                return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim());
+                            }
+                            else
+                            {
+                                return "";
+                            }
+                        }
                     case "DECIMAL":
                     case "MONEY":
                         return ObjectAndString.ObjectToDecimal(fieldValue);
