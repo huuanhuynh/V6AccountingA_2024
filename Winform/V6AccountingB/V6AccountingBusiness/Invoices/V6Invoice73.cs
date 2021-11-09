@@ -606,16 +606,16 @@ namespace V6AccountingBusiness.Invoices
         {
             if (where1AM.Length > 0 && where0Ngay.Length>0) where1AM = "And " + where1AM;
 
-            var sql = string.Format("Select stt_rec,ma_ct,ngay_ct,ngay_lct,so_ct,"
-                        +"so_seri0,so_ct0,ngay_ct0,ma_kh,ong_ba,"
-                        + "dia_chi,dien_giai,ma_nt,ma_nx,t_tien_nt0,ty_gia,"
-                        +"t_tien0,ma_sonb,ma_bp,ma_nvien, ABC_CODE"
-                        +" from AM71 Where {0} {1}"
-                + "Union Select stt_rec,ma_ct,ngay_ct,ngay_lct,so_ct,"
-                        + "so_seri0,so_ct0,ngay_ct0,ma_kh,ong_ba,"
-                        + "dia_chi,dien_giai,ma_nt,ma_nx,t_tien_nt0,ty_gia,"
-                        + "t_tien0,ma_sonb,ma_bp,ma_nvien, ABC_CODE"
-                        + " from AM72 Where {0} {1}"
+            var sql = string.Format("Select a.stt_rec,a.ma_ct,a.ngay_ct,a.ngay_lct,a.so_ct,"
+                        + "a.so_seri0,a.so_ct0,a.ngay_ct0,a.ma_kh,b.ten_kh,a.ong_ba,"
+                        + "a.dia_chi,a.dien_giai,a.ma_nt,a.ma_nx,a.t_tien_nt0,a.ty_gia,"
+                        + "a.t_tien0,a.ma_sonb,a.ma_bp,a.ma_nvien, a.ABC_CODE"
+                        + " from AM71 a Left join ALKH b on a.ma_kh=b.ma_kh Where {0} {1}"
+                + "Union Select a.stt_rec,a.ma_ct,a.ngay_ct,a.ngay_lct,a.so_ct,"
+                        + "a.so_seri0,a.so_ct0,a.ngay_ct0,a.ma_kh,b.ten_kh,a.ong_ba,"
+                        + "a.dia_chi,a.dien_giai,a.ma_nt,a.ma_nx,a.t_tien_nt0,a.ty_gia,"
+                        + "a.t_tien0,a.ma_sonb,a.ma_bp,a.ma_nvien, a.ABC_CODE"
+                        + " from AM72 a Left join ALKH b on a.ma_kh=b.ma_kh Where {0} {1}"
                 , where0Ngay, where1AM
                 );
 

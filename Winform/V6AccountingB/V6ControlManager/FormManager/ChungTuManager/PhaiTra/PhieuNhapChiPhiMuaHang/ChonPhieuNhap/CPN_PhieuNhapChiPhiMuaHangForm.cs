@@ -302,8 +302,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private void PrepareThread()
         {
             var stru = _hoaDonForm.Invoice.AMStruct;
-            _where0Time = locThoiGian1GetFilterSql(stru, "", chkThoiGianStart.Checked ? "start" : "like");
-            _where1AM = locThongTin1GetFilterSql(stru, "", chkTTstart.Checked ? "start" : "like");
+            _where0Time = locThoiGian1GetFilterSql(stru, "a", chkThoiGianStart.Checked ? "start" : "like");
+            _where1AM = locThongTin1GetFilterSql(stru, "a", chkTTstart.Checked ? "start" : "like");
         }
 
         private void DoSearch()
