@@ -678,6 +678,10 @@ namespace V6Controls.Forms.Viewer
                     HaveChange = true;
                     toolStripStatusLabel1.Text = string.Format("{0} {1} {2}", _tableName, V6Text.EditSuccess, update_info);
                 }
+                else
+                {
+                    toolStripStatusLabel1.Text = string.Format("{0} {1} {2}", _tableName, V6Text.EditFail, result);
+                }
             }
             catch (Exception ex)
             {

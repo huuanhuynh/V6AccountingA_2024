@@ -116,7 +116,14 @@ namespace V6ControlManager.FormManager.MenuManager
                                 }
                                 else
                                 {
-                                    check = CheckPassword(owner);
+                                    if (V6Login.IsAdmin)
+                                    {
+                                        check = CheckPassword(owner);
+                                    }
+                                    else
+                                    {
+                                        check = false;
+                                    }
                                 }
                             }
 
@@ -150,13 +157,18 @@ namespace V6ControlManager.FormManager.MenuManager
                                     {
                                         if (aldmConfig.IS_ALDM)
                                         {
-                                            if (aldmConfig.CHECK_ADMIN && V6Login.IsAdmin)
+                                            if (aldmConfig.CHECK_ADMIN)
                                             {
-                                                check = CheckPassword(owner);
+                                                if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                                else check = false;
                                             }
                                             else if (aldmConfig.CHECK_V6)
                                             {
                                                 check = CheckPasswordV6(owner);
+                                            }
+                                            else
+                                            {
+                                                check = false;
                                             }
                                         }
 
@@ -446,13 +458,18 @@ namespace V6ControlManager.FormManager.MenuManager
                                     
                                     if (aldmConfig.IS_ALDM)
                                     {
-                                        if (aldmConfig.CHECK_ADMIN && V6Login.IsAdmin)
+                                        if (aldmConfig.CHECK_ADMIN)
                                         {
-                                            check = CheckPassword(owner);
+                                            if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                            else check = false;
                                         }
                                         else if (aldmConfig.CHECK_V6)
                                         {
                                             check = CheckPasswordV6(owner);
+                                        }
+                                        else
+                                        {
+                                            check = false;
                                         }
                                     }
 
@@ -574,9 +591,10 @@ namespace V6ControlManager.FormManager.MenuManager
                                 var programX = codeform.Substring(1);
                                 AldmConfig config = ConfigManager.GetAldmConfig(programX);
 
-                                if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                if (config.HaveInfo && config.CHECK_ADMIN)
                                 {
-                                    check = CheckPassword(owner);
+                                    if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                    else check = false;
                                 }
                                 else if (config.HaveInfo && config.CHECK_V6)
                                 {
@@ -593,9 +611,10 @@ namespace V6ControlManager.FormManager.MenuManager
                                 {
                                     var programZ = codeform.Substring(3);
                                     AldmConfig config = ConfigManager.GetAldmConfig(programZ);
-                                    if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                    if (config.HaveInfo && config.CHECK_ADMIN)
                                     {
-                                        check = CheckPassword(owner);
+                                        if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                        else check = false;
                                     }
                                     else if (config.HaveInfo && config.CHECK_V6)
                                     {
@@ -618,9 +637,10 @@ namespace V6ControlManager.FormManager.MenuManager
                                 {
                                     var programZ = codeform.Substring(3);
                                     AldmConfig config = ConfigManager.GetAldmConfig(programZ);
-                                    if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                    if (config.HaveInfo && config.CHECK_ADMIN)
                                     {
-                                        check = CheckPassword(owner);
+                                        if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                        else check = false;
                                     }
                                     else if (config.HaveInfo && config.CHECK_V6)
                                     {
@@ -641,9 +661,10 @@ namespace V6ControlManager.FormManager.MenuManager
                                 {
                                     var programZ = codeform.Substring(3);
                                     AldmConfig config = ConfigManager.GetAldmConfig(programZ);
-                                    if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                    if (config.HaveInfo && config.CHECK_ADMIN)
                                     {
-                                        check = CheckPassword(owner);
+                                        if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                        else check = false;
                                     }
                                     else if (config.HaveInfo && config.CHECK_V6)
                                     {
@@ -664,9 +685,10 @@ namespace V6ControlManager.FormManager.MenuManager
                                 {
                                     var programZ = codeform.Substring(1);
                                     AldmConfig config = ConfigManager.GetAldmConfig(programZ);
-                                    if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                    if (config.HaveInfo && config.CHECK_ADMIN)
                                     {
-                                        check = CheckPassword(owner);
+                                        if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                        else check = false;
                                     }
                                     else if (config.HaveInfo && config.CHECK_V6)
                                     {
@@ -701,9 +723,10 @@ namespace V6ControlManager.FormManager.MenuManager
                             else
                             {
                                 AldmConfig configB = ConfigManager.GetAldmConfig(maCt);
-                                if (configB.HaveInfo && configB.CHECK_ADMIN && V6Login.IsAdmin)
+                                if (configB.HaveInfo && configB.CHECK_ADMIN)
                                 {
-                                    check = CheckPassword(owner);
+                                    if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                    else check = false;
                                 }
                                 else if (configB.HaveInfo && configB.CHECK_V6)
                                 {
@@ -952,9 +975,10 @@ namespace V6ControlManager.FormManager.MenuManager
                                     
                                     if (aldmConfig.IS_ALDM)
                                     {
-                                        if (aldmConfig.CHECK_ADMIN && V6Login.IsAdmin)
+                                        if (aldmConfig.CHECK_ADMIN)
                                         {
-                                            check = CheckPassword(owner);
+                                            if (V6Login.IsAdmin) check = CheckPassword(owner);
+                                            else check = false;
                                         }
                                         else if (aldmConfig.CHECK_V6)
                                         {
