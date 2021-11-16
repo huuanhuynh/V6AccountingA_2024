@@ -22,7 +22,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         private readonly V6Categories _categories = new V6Categories();
         private const string ID_FIELD = "SO_CT", NAME_FIELD = "NGAY_CT";
-        private DataTable _tbl;
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
