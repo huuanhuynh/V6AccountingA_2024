@@ -1325,8 +1325,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {"DecimalsDGNT", V6Options.M_IP_R_GIANT},
                 {"DecimalsTT", V6Options.M_IP_R_TIEN},
                 {"DecimalsTTNT", V6Options.M_IP_R_TIENNT},
-                {"Mau?", 0},
-                {"BanSao?", false},
+                {"IsTemplate", 0},
+                {"IsCopy", false},
                 {"ViewInfo", MauTuIn == 1},
                 {
                     "Info",
@@ -3117,7 +3117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void documentViewer1_ZoomChanged(object sender, EventArgs e)
         {
-            V6ControlsHelper.ShowV6Tooltip(documentViewer1, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
+            V6ControlsHelper.ShowV6Tooltip(panelCRview, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
         }
     }
 
