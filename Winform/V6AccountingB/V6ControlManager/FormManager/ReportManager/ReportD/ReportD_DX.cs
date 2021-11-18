@@ -1535,9 +1535,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             get
             {
                 int summaryHeight = 0;
-                if (gridViewSummary1.Visible) summaryHeight += gridViewSummary1.Height;
-                if (lblSummary.Visible) summaryHeight += lblSummary.Height;
-                return summaryHeight + 10;
+                if (gridViewSummary1.Visible) summaryHeight += gridViewSummary1.Height + 5;
+                if (lblSummary.Visible) summaryHeight += lblSummary.Height + 5;
+                if (summaryHeight == 0) summaryHeight = 5;
+                return summaryHeight;
             }
         }
 

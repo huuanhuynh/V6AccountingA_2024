@@ -166,10 +166,6 @@ namespace V6ControlManager.FormManager.MenuManager
                                             {
                                                 check = CheckPasswordV6(owner);
                                             }
-                                            else
-                                            {
-                                                check = false;
-                                            }
                                         }
 
                                         if (!check) return null;
@@ -434,7 +430,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
                             var tableNameEdit = codeform.Substring(1);
                             string getInitFilter = null;
-                            bool check1 = true;
+                            bool check1 = false;
 
                             if (tableNameEdit.ToUpper() == "ALSTT" || tableNameEdit.ToUpper() == "V6OPTION")
                             {
@@ -452,10 +448,24 @@ namespace V6ControlManager.FormManager.MenuManager
 
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
+                                AldmConfig aldmConfig = ConfigManager.GetAldmConfig(TABLE_NAME);
                                 if (check1)
                                 {
-                                    AldmConfig aldmConfig = ConfigManager.GetAldmConfig(TABLE_NAME);
-                                    
+                                    c = new DanhMucView(item_id, mButton.Text, tableNameEdit, getInitFilter, "", aldmConfig)
+                                    {
+                                        Name = item_id,
+                                        ReportFile = repFile,
+                                        ReportTitle = repTitle,
+                                        ReportTitle2 = repTitle2,
+
+                                        EnableAdd = false,
+                                        EnableEdit = true,
+                                        EnableDelete = false,
+                                        EnableCopy = false,
+                                    };
+                                }
+                                else
+                                {   
                                     if (aldmConfig.IS_ALDM)
                                     {
                                         if (aldmConfig.CHECK_ADMIN)
@@ -487,11 +497,6 @@ namespace V6ControlManager.FormManager.MenuManager
                                         EnableDelete = false,
                                         EnableCopy = false,
                                     };
-
-                                }
-                                else
-                                {
-                                    c = null;
                                 }
                             }
                             else
