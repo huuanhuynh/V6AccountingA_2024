@@ -41,14 +41,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyXemChiTietF5()
         {
-            var _reportFileF5 = "AGLSO1TF5";
+            //var _reportFileF5 = "AGLSO1TF5";
             var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
             var _reportTitle2F5 = "Account detail";
             bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             var oldKeys = FilterControl.GetFilterParameters();
             if (MenuButton.UseXtraReport != shift_is_down)
             {
-                var view = new ReportR_DX(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
+                var view = new ReportR_DX(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
                     _reportTitleF5, _reportTitle2F5, "", "", "");
                 view.CodeForm = CodeForm;
                 view.Dock = DockStyle.Fill;
@@ -59,7 +59,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else
             {
-                var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
+                var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
                     _reportTitleF5, _reportTitle2F5, "", "", "");
                 view.CodeForm = CodeForm;
                 view.Dock = DockStyle.Fill;
@@ -77,7 +77,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-
+                shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if (this.ShowConfirmMessage(V6Text.Text("ASKEXPORTEXCELTUNGTRANG1")) != DialogResult.Yes)
                 {
                     return;
@@ -144,40 +144,64 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
                         var _reportTitle2F5 = "Account detail";
 
-                        var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
-                            _reportTitleF5, _reportTitle2F5, "", "", "");
+                        if (MenuButton.UseXtraReport != shift_is_down)
+                        {
+                            var view = new ReportR_DX(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
 
-                        view.CodeForm = CodeForm;
-                        //view.FilterControl.Call1(ma_kh);
-                        SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                        data.Add("TK", tk);
-                        V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
-                        view.CodeForm = CodeForm;
-                        view.Advance = FilterControl.Advance;
-                        view.FilterControl.String1 = FilterControl.String1;
-                        view.FilterControl.String2 = FilterControl.String2;
+                            view.CodeForm = CodeForm;
+                            //view.FilterControl.Call1(ma_kh);
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add("TK", tk);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
 
-                        view.Dock = DockStyle.Fill;
-                        view.FilterControl.InitFilters = oldKeys;
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
 
-                        view.FilterControl.SetParentRow(row.ToDataDictionary());
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
 
-                        //view.AutoPrint = FilterControl.Check1;
-                        view.AutoExportExcel = All_Objects["savefile"] + "_" + tk + ".xls";
+                            //view.AutoPrint = FilterControl.Check1;
+                            view.AutoExportExcel = All_Objects["savefile"] + "_" + tk + ".xls";
 
-                        view.PrinterName = _PrinterName;
-                        view.PrintCopies = _PrintCopies;
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
 
-                        view.btnNhan_Click(null, null);
-                        view.ShowToForm(this, "", true);
-                        //var f  = new V6Form();
-                        //f.WindowState = FormWindowState.Maximized;
-                        //f.Controls.Add(view);
-                        //view.Disposed += delegate
-                        //{
-                        //    f.Close();
-                        //};
-                        //f.ShowDialog(this);
+                            view.AutoClickNhan = true;
+                            view.ShowToForm(this, "", true);
+                        }
+                        else
+                        {
+                            var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
+
+                            view.CodeForm = CodeForm;
+                            //view.FilterControl.Call1(ma_kh);
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add("TK", tk);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
+
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
+
+                            //view.AutoPrint = FilterControl.Check1;
+                            view.AutoExportExcel = All_Objects["savefile"] + "_" + tk + ".xls";
+
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
+
+                            view.AutoClickNhan = true;
+                            view.ShowToForm(this, "", true);
+                        }
 
                         SetStatus2Text();
                         remove_list_g.Add(row);
@@ -236,17 +260,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string _oldDefaultPrinter, _PrinterName;
         private int _PrintCopies;
         private bool printting;
+        private bool shift_is_down = false;
         protected override void XuLyF9()
         {
             try
             {
-
+                shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if (this.ShowConfirmMessage(V6Text.Text("ASKINTUNGTRANG1")) != DialogResult.Yes)
                 {
                     return;
                 }
                 InLienTuc = true;
-
 
                 _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
 
@@ -303,44 +327,68 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var tk = (row.Cells["TK"].Value ?? "").ToString().Trim();
 
                         var oldKeys = FilterControl.GetFilterParameters();
-                        var _reportFileF5 = "AGLSO1TF5";
+                        //var _reportFileF5 = "AGLSO1TF5";
                         var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
                         var _reportTitle2F5 = "Account detail";
 
-                        var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
-                            _reportTitleF5, _reportTitle2F5, "", "", "");
+                        if (MenuButton.UseXtraReport != shift_is_down)
+                        {
+                            var view = new ReportR_DX(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
 
-                        view.CodeForm = CodeForm;
-                        //view.FilterControl.Call1(ma_kh);
-                        SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                        data.Add("TK", tk);
-                        V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
-                        view.CodeForm = CodeForm;
-                        view.Advance = FilterControl.Advance;
-                        view.FilterControl.String1 = FilterControl.String1;
-                        view.FilterControl.String2 = FilterControl.String2;
+                            view.CodeForm = CodeForm;
+                            //view.FilterControl.Call1(ma_kh);
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add("TK", tk);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
 
-                        view.Dock = DockStyle.Fill;
-                        view.FilterControl.InitFilters = oldKeys;
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
 
-                        view.FilterControl.SetParentRow(row.ToDataDictionary());
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
 
-                        //view.AutoPrint = FilterControl.Check1;
-                        view.AutoPrint = InLienTuc;
+                            //view.AutoPrint = FilterControl.Check1;
+                            view.AutoPrint = InLienTuc;
 
-                        view.PrinterName = _PrinterName;
-                        view.PrintCopies = _PrintCopies;
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
 
-                        view.btnNhan_Click(null, null);
-                        view.ShowToForm(this, "", true);
-                        //var f  = new V6Form();
-                        //f.WindowState = FormWindowState.Maximized;
-                        //f.Controls.Add(view);
-                        //view.Disposed += delegate
-                        //{
-                        //    f.Close();
-                        //};
-                        //f.ShowDialog(this);
+                            view.AutoClickNhan = true;
+                            view.ShowToForm(this, "", true);
+                        }
+                        else
+                        {
+                            var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
+
+                            view.CodeForm = CodeForm;
+                            //view.FilterControl.Call1(ma_kh);
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add("TK", tk);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
+
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
+
+                            //view.AutoPrint = FilterControl.Check1;
+                            view.AutoPrint = InLienTuc;
+
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
+
+                            view.btnNhan_Click(null, null);
+                            view.ShowToForm(this, "", true);
+                        }
 
                         SetStatus2Text();
                         remove_list_g.Add(row);
@@ -399,12 +447,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-
+                shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if (this.ShowConfirmMessage(V6Text.Text("ASKINLIENTUC")) != DialogResult.Yes)
                 {
                     return;
                 }
-
 
                 InLienTuc = false;
 
@@ -459,43 +506,52 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
                 var oldKeys = FilterControl.GetFilterParameters();
-                var _reportFileF5 = "AGLSO1TF10";
+                //var _reportFileF5 = "AGLSO1TF10";
                 var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
                 var _reportTitle2F5 = "Account detail";
 
+                if (MenuButton.UseXtraReport != shift_is_down)
+                {
+                    var view = new ReportRView2_DX(m_itemId, _program + "F10", _reportProcedure + "F10", _reportFile + "F10",
+                        _reportTitleF5, _reportTitle2F5, "", "", "");
 
-                //var view = new ReportRViewBase(m_itemId, _program + "F10", _program + "F10", _reportFileF5,
-                //    _reportTitleF5, _reportTitle2F5, "", "", "");
-                var view = new ReportRView2Base(m_itemId, _program + "F10", _program + "F10", _reportFileF5,
-                    _reportTitleF5, _reportTitle2F5, "", "", "");
+                    view.CodeForm = CodeForm;
+                    view.Advance = FilterControl.Advance;
+                    view.FilterControl.String1 = FilterControl.String1;
+                    view.FilterControl.String2 = FilterControl.String2;
 
+                    view.Dock = DockStyle.Fill;
+                    view.FilterControl.InitFilters = oldKeys;
 
+                    view.FilterControl.SetParentAllRow(dataGridView1);
 
-                view.CodeForm = CodeForm;
-                view.Advance = FilterControl.Advance;
-                view.FilterControl.String1 = FilterControl.String1;
-                view.FilterControl.String2 = FilterControl.String2;
+                    //view.AutoPrint = InLienTuc;
+                    //view.PrinterName = _PrinterName;
+                    //view.PrintCopies = _PrintCopies;
+                    view.AutoClickNhan = true;
+                    view.ShowToForm(this, _reportTitleF5, true);
+                }
+                else
+                {
+                    var view = new ReportRView2Base(m_itemId, _program + "F10", _reportProcedure + "F10", _reportFile + "F10",
+                        _reportTitleF5, _reportTitle2F5, "", "", "");
 
-                view.Dock = DockStyle.Fill;
-                view.FilterControl.InitFilters = oldKeys;
+                    view.CodeForm = CodeForm;
+                    view.Advance = FilterControl.Advance;
+                    view.FilterControl.String1 = FilterControl.String1;
+                    view.FilterControl.String2 = FilterControl.String2;
 
-                view.FilterControl.SetParentAllRow(dataGridView1);
+                    view.Dock = DockStyle.Fill;
+                    view.FilterControl.InitFilters = oldKeys;
 
-                //view.AutoPrint = InLienTuc;
-                //view.PrinterName = _PrinterName;
-                //view.PrintCopies = _PrintCopies;
-                view.btnNhan_Click(null, null);
-                view.ShowToForm(this, _reportTitleF5, true);
+                    view.FilterControl.SetParentAllRow(dataGridView1);
 
-                //var f  = new V6Form();
-                //f.WindowState = FormWindowState.Maximized;
-                //f.Controls.Add(view);
-                //view.Disposed += delegate
-                //{
-                //    f.Close();
-                //};
-                //view.btnNhan_Click(null, null);
-                //f.ShowDialog(this);
+                    //view.AutoPrint = InLienTuc;
+                    //view.PrinterName = _PrinterName;
+                    //view.PrintCopies = _PrintCopies;
+                    view.AutoClickNhan = true;
+                    view.ShowToForm(this, _reportTitleF5, true);
+                }
                 SetStatus2Text();
             }
             catch (Exception ex)

@@ -835,7 +835,7 @@ namespace V6Tools.V6Export
         /// <param name="endColumn"></param>
         private static RangeStyle InsertRange(WorkBook workBook, int startRow, int startCol, int endRow, int endColumn)
         {
-            workBook.insertRange(startRow, startRow, endRow, endColumn, WorkBook.ShiftRows);
+            workBook.insertRange(startRow, startCol, endRow, endColumn, WorkBook.ShiftRows);
             RangeStyle rangeStyle = workBook.getRangeStyle(startRow, startCol, endRow, endColumn);
             ResetRangeStyleFormat(rangeStyle);
             workBook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endColumn);
