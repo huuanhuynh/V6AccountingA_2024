@@ -159,7 +159,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// Dùng cho procedure chính (program?)
         /// </summary>
         private List<SqlParameter> _pList;
-
+        public bool AutoPrint = false;
+        public bool AutoClickNhan = false;
         /// <summary>
         /// MA_FILE, MAU, LAN, REPORT
         /// </summary>
@@ -817,6 +818,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void Form_Load(object sender, EventArgs e)
         {
             MyInit2();
+            //if (_ds != null && _ds.Tables.Count > 0)
+            //{
+            //    SetTBLdata();
+            //    ShowReport();
+            //}
+            //else 
+            if (AutoClickNhan)
+            {
+                btnNhan.PerformClick();
+            }
         }
 
         
@@ -1034,6 +1045,43 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 timerViewReport.Start();
             }
         }
+
+        //private void SetTBLdata()
+        //{
+        //    if (_ds.Tables.Count > 0)
+        //    {
+        //        _tbl1 = _ds.Tables[0];
+        //        _tbl1.TableName = "DataTable1";
+        //        _view1 = new DataView(_tbl1);
+        //    }
+        //    if (_ds.Tables.Count > 1)
+        //    {
+        //        _tbl2 = _ds.Tables[1];
+        //        _tbl2.TableName = "DataTable2";
+        //        _view2 = new DataView(_tbl2);
+        //        _ds.Relations.Add(new DataRelation("REF_DETAILS", _tbl1.Columns["REF_KEY"], _tbl2.Columns["REF_KEY"]));
+        //    }
+        //    else
+        //    {
+        //        _tbl2 = null;
+        //    }
+
+        //    if (_ds.Tables.Count > 2)
+        //    {
+        //        _tbl3 = _ds.Tables[2];
+        //        _tbl3.TableName = "DataTable3";
+        //        _view3 = new DataView(_tbl3);
+        //        exportToExcelGroupMenu.Visible = true;
+        //        DefaultMenuItem = exportToExcelGroupMenu;
+        //        exportToExcelTemplateMenu.Visible = false;
+        //    }
+        //    else
+        //    {
+        //        _tbl3 = null;
+        //        DefaultMenuItem = exportToExcelTemplateMenu;
+        //    }
+        //}
+
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
             if (_executesuccess)
