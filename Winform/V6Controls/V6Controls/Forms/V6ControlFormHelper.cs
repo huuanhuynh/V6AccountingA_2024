@@ -4334,7 +4334,7 @@ namespace V6Controls.Forms
                 if (methodInfo.DeclaringType != null)
                 {
                     var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    ShowErrorException(address, ex);
+                    ShowErrorException(address, ex, owner);
                 }
             }
 
@@ -4392,7 +4392,7 @@ namespace V6Controls.Forms
                 if (methodInfo.DeclaringType != null)
                 {
                     var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    ShowErrorException(address, ex);
+                    ShowErrorException(address, ex, owner);
                 }
             }
             return null;
@@ -4671,14 +4671,14 @@ namespace V6Controls.Forms
                 {
                     var methodInfo = MethodBase.GetCurrentMethod();
                     var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    ShowErrorException(address, ex);
+                    ShowErrorException(address, ex, ExportExcelTemplate_owner);
                 }
             }
             catch (Exception ex)
             {
                 var methodInfo = MethodBase.GetCurrentMethod();
                 var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                ShowErrorException(address, ex);
+                ShowErrorException(address, ex, ExportExcelTemplate_owner);
             }
             ExportExcelTemplate_running = false;
         }
@@ -4950,7 +4950,7 @@ namespace V6Controls.Forms
                     {
                         var methodInfo = MethodBase.GetCurrentMethod();
                         var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                        ShowErrorException(address, ex);
+                        ShowErrorException(address, ex, ExportExcelTemplateD_owner);
                     }
 
                 }
@@ -4959,7 +4959,7 @@ namespace V6Controls.Forms
             {
                 var methodInfo = MethodBase.GetCurrentMethod();
                 var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                ShowErrorException(address, ex);
+                ShowErrorException(address, ex, ExportExcelTemplateD_owner);
             }
             ExportExcelTemplateD_running = false;
         }
@@ -5014,7 +5014,7 @@ namespace V6Controls.Forms
                 if (methodInfo.DeclaringType != null)
                 {
                     var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    ShowErrorException(address, ex);
+                    ShowErrorException(address, ex, owner);
                 }
             }
         }
@@ -5309,14 +5309,14 @@ namespace V6Controls.Forms
                 {
                     var methodInfo = MethodBase.GetCurrentMethod();
                     var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    ShowErrorException(address, ex);
+                    ShowErrorException(address, ex, ExportExcelGroup_owner);
                 }
             }
             catch (Exception ex)
             {
                 var methodInfo = MethodBase.GetCurrentMethod();
                 var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                ShowErrorException(address, ex);
+                ShowErrorException(address, ex, ExportExcelGroup_owner);
             }
             ExportExcelGroup_running = false;
         }
@@ -5948,7 +5948,7 @@ namespace V6Controls.Forms
                 if (methodInfo.DeclaringType != null)
                 {
                     var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    ShowErrorException(address, ex);
+                    ShowErrorException(address, ex, owner);
                 }
             }
         }
@@ -6017,7 +6017,7 @@ namespace V6Controls.Forms
                 if (methodInfo.DeclaringType != null)
                 {
                     var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                    ShowErrorException(address, ex);
+                    ShowErrorException(address, ex, ExportRptToPdf_owner);
                 }
             }
             //return false;
