@@ -4592,28 +4592,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         }
 
         
-        public override void ShowParentMessage(string message)
-        {
-            try
-            {
-                var parent = Parent.Parent;
-                for (int i = 0; i < 5; i++)
-                {
-                    if (parent is ChungTuChungContainer)
-                    {
-                        ((ChungTuChungContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
-                    
-                    parent = parent.Parent;
-                }
-            }
-            catch
-            {
-                // ignored
-            }
-        }
         
         public void ViewInvoice(int index)
         {

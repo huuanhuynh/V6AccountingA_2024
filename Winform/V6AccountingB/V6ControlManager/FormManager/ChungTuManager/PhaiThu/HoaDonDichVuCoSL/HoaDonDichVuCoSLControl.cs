@@ -4330,30 +4330,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        public override void ShowParentMessage(string message)
-        {
-            try
-            {
-                var parent = Parent.Parent;
-                for (int i = 0; i < 5; i++)
-                {
-                    if (parent is ChungTuChungContainer)
-                    {
-                        ((ChungTuChungContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
-                    else
-                    {
-                        parent = parent.Parent;
-                    }
-                }
-            }
-            catch
-            {
-                // ignored
-            }
-        }
+        
 
         #region ==== View invoice ====
 

@@ -27,6 +27,8 @@ using V6Structs;
 using V6ThuePostManager;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia;
 
 namespace V6ControlManager.FormManager.ChungTuManager
 {
@@ -2162,7 +2164,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
-        /// Hàm cần override để thay đổi container, Hiển thị thông báo phía trên của form chứng từ.
+        /// Hiển thị thông báo trên Container của form chứng từ.
         /// </summary>
         /// <param name="message"></param>
         public virtual void ShowParentMessage(string message)
@@ -2175,6 +2177,21 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (parent is ChungTuChungContainer)
                     {
                         ((ChungTuChungContainer)parent).ShowMessage(message);
+                        return;
+                    }
+                    else if (parent is HoaDonCafeContainer)
+                    {
+                        ((HoaDonCafeContainer)parent).ShowMessage(message);
+                        return;
+                    }
+                    else if (parent is BaoGiaContainer)
+                    {
+                        ((BaoGiaContainer)parent).ShowMessage(message);
+                        return;
+                    }
+                    else if (parent is V6Form)
+                    {
+                        if (!string.IsNullOrEmpty(message)) ((V6Form)parent).ShowMessage(message);
                         return;
                     }
                     else

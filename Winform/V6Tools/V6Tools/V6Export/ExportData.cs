@@ -390,7 +390,7 @@ namespace V6Tools.V6Export
             public int MergeTo;
             public bool IsMerge { get { return MergeTo > MergeFrom; } }
             public int ExcelColumnIndex { get { return MergeFrom; } private set { MergeFrom = value; } }
-            public string ColumnName { get { return _dataColumn.ColumnName; } }
+            public string ColumnName { get { return _dataColumn == null ? null : _dataColumn.ColumnName; } }
             public string ColumnNameText { get; set; }
 
             public bool ColumnNameIsText
@@ -401,7 +401,7 @@ namespace V6Tools.V6Export
                 }
             }
 
-            public Type DataType { get { return _dataColumn.DataType; } }
+            public Type DataType { get { return _dataColumn == null ? typeof(string) : _dataColumn.DataType; } }
 
             /// <summary>
             /// Chỉ định cột Excel.
@@ -513,7 +513,7 @@ namespace V6Tools.V6Export
         }
 
         /// <summary>
-        /// Xuất dữ liệu ra excel có nhóm từ 2 bảng 1 nhiều.
+        /// Xuất dữ liệu ra excel có nhóm từ 2 bảng (1 - nhiều).
         /// </summary>
         /// <param name="workBook"></param>
         /// <param name="data">Bảng 1</param>
@@ -639,15 +639,13 @@ namespace V6Tools.V6Export
             if (isFieldNameShown)
             {
                 //Nếu hiện tên cột thì chèn thêm một dòng
-                workBook.insertRange(firstRow, firstColumn, firstRow, firstColumn + numOfColumns1 - 1,
-                    WorkBook.ShiftRows);
-                //if (use_arr_cols)
+                workBook.insertRange(firstRow, firstColumn, firstRow, firstColumn + numOfColumns1 - 1, WorkBook.ShiftRows);
+                
+                for (int i = 0; i < numOfColumns1; i++)
                 {
-                    for (int i = 0; i < numOfColumns1; i++)
-                    {
-                        workBook.setText(firstRow, i + firstColumn, listColumnDic1["COLUMNS11"][i].ColumnName);
-                    }
+                    workBook.setText(firstRow, i + firstColumn, listColumnDic1["COLUMNS11"][i].ColumnName);
                 }
+                
                 firstRow++;
             }
             Cancel_Columns_Text:
@@ -658,48 +656,26 @@ namespace V6Tools.V6Export
             DataView data2view = new DataView(data2);
             // Số lượng dòng đã import.
             int importRowCount = 0;
+            int importRowCurrentIndex = firstRow;
             int row1Index = 0;
             // Duyệt qua từng dòng
             foreach (DataRow row1 in data.Rows)
             {
-                int importRowCurrentIndex = firstRow + importRowCount;
+                importRowCurrentIndex = firstRow + importRowCount;
 
                 #region ==== Điền dòng chính (nếu có) ====================================================================================================
 
                 foreach (var item in listColumnDic1)
                 {
                     var columnDic1 = item.Value;
-                    //if (columnDic1.Count > 0)
-                    {
-                        RangeStyle rs = isShiftRows
-                            ? InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                                lastColumnIndex)
-                            : workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                                lastColumnIndex);
-                        SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                            lastColumnIndex);
-                        ImportDataRow(workBook, row1, importRowCurrentIndex, columnDic1);
-                        importRowCount++;
-                        importRowCurrentIndex++;
-                    }
+                    RangeStyle rs = isShiftRows
+                        ? InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex)
+                        : workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    //SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    ImportDataRow_Group(workBook, row1, importRowCurrentIndex, columnDic1);
+                    importRowCount++;
+                    importRowCurrentIndex++;
                 }
-                //if (listColumnDic.ContainsKey("COLUMNS1"))
-                //{
-                //    var columnDic1 = listColumnDic["COLUMNS1"];
-                //    if (columnDic1.Count > 0)
-                //    {
-                //        RangeStyle rs = isShiftRows
-                //            ? InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                //                lastColumnIndex)
-                //            : workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                //                lastColumnIndex);
-                //        SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                //            lastColumnIndex);
-                //        ImportDataRow(workBook, row1, importRowCurrentIndex, columnDic1);
-                //        importRowCount++;
-                //        importRowCurrentIndex++;
-                //    }
-                //}
 
                 #endregion //Điền xong 1 dòng chính
 
@@ -720,43 +696,15 @@ namespace V6Tools.V6Export
                     foreach (DataRow row2 in data2filter.Rows)
                     {
                         RangeStyle rs = isShiftRows
-                            ? InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                                lastColumnIndex)
-                            : workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                                lastColumnIndex);
-                        SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                            lastColumnIndex);
-                        ImportDataRow(workBook, row2, importRowCurrentIndex, columnDic2);
+                            ? InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex)
+                            : workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+
+                        //SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                        ImportDataRow_Group(workBook, row2, importRowCurrentIndex, columnDic2);
                         importRowCount++;
                         importRowCurrentIndex++;
                     }
                 }
-                //if (listColumnDic.ContainsKey("COLUMNS2"))
-                //{
-                //    var columnDic2 = listColumnDic["COLUMNS2"];
-                //    string filter = "";
-                //    foreach (string field in keys)
-                //    {
-                //        filter += string.Format("and [{0}] = {1}", field, GenFilterValue(row1[field], false));
-                //    }
-                //    filter = filter.Substring(4);
-                //    data2view.RowFilter = filter;
-                //    DataTable data2filter = data2view.ToTable();
-                //    // ==== Duyệt qua từng dòng chi tiết ====
-                //    foreach (DataRow row2 in data2filter.Rows)
-                //    {
-                //        RangeStyle rs = isShiftRows
-                //            ? InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                //                lastColumnIndex)
-                //            : workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                //                lastColumnIndex);
-                //        SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
-                //            lastColumnIndex);
-                //        ImportDataRow(workBook, row2, importRowCurrentIndex, columnDic2);
-                //        importRowCount++;
-                //        importRowCurrentIndex++;
-                //    }
-                //}
 
                 #endregion// Điền xong các dòng chi tiết
 
@@ -765,41 +713,24 @@ namespace V6Tools.V6Export
                 foreach (var item in listColumnDic3)
                 {
                     var columnDic3 = item.Value;
-                    //if (columnDic3.Count > 0)
-                    {
-                        RangeStyle rs = isShiftRows ?
-                            InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex) :
-                            workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                        SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                        ImportDataRow(workBook, row1, importRowCurrentIndex, columnDic3);
-                        importRowCount++;
-                        importRowCurrentIndex++;
-                    }
+                    RangeStyle rs = isShiftRows ?
+                        InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex) :
+                        workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    //SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    ImportDataRow_Group(workBook, row1, importRowCurrentIndex, columnDic3);
+                    importRowCount++;
+                    importRowCurrentIndex++;
                 }
-                //for (int i = 3; i < 10; i++)
-                //{
-                //    string temp_name = "COLUMNS" + i;
-                //    if (listColumnDic.ContainsKey(temp_name))
-                //    {
-                //        var columnDic3 = listColumnDic[temp_name];
-                //        if (columnDic3.Count > 0)
-                //        {
-                //            RangeStyle rs = isShiftRows ?
-                //                InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex) :
-                //                workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                //            SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                //            ImportDataRow(workBook, row1, importRowCurrentIndex, columnDic3);
-                //            importRowCount++;
-                //            importRowCurrentIndex++;
-                //        }
-                //    }
-                //}
                 
                 #endregion// Kết thúc dòng tổng.
 
                 
                 row1Index++;
             } //end for row1
+
+            var rs1 = workBook.getRangeStyle(firstRow, firstColumn, importRowCurrentIndex - 1, lastColumnIndex);
+            SetBorderRange(workBook, rs1, firstRow, firstColumn, importRowCurrentIndex - 1, lastColumnIndex);
+            
             //if (autoColWidth) workBook.setColWidthAutoSize(columnIndex, true);
         }
 
@@ -808,11 +739,6 @@ namespace V6Tools.V6Export
             bool top = true, bool bottom = true, bool left = true, bool right = true,
             bool horizontal = true, bool vertical = true)
         {
-            //var startRow = firstRow - (isFieldNameShown ? 1 : 0);
-            //var startCol = firstColumn;
-            //var endRow = startRow + numOfRows - (isFieldNameShown ? 0 : 1);
-            //var endCol = startCol + numOfColumns1 - 1;
-            
             //RangeStyle rangeStyle = workBook.getRangeStyle(startRow, startCol, endRow, endCol);
             range.LeftBorder = left ? RangeStyle.BorderThin : RangeStyle.BorderNone;
             range.RightBorder = right ? RangeStyle.BorderThin : RangeStyle.BorderNone;
@@ -820,7 +746,7 @@ namespace V6Tools.V6Export
             range.BottomBorder = bottom ? RangeStyle.BorderThin : RangeStyle.BorderNone;
             range.HorizontalInsideBorder = horizontal ? RangeStyle.BorderThin : RangeStyle.BorderNone;
             range.VerticalInsideBorder = vertical ? RangeStyle.BorderThin : RangeStyle.BorderNone;
-
+            
             workBook.setRangeStyle(range, startRow, startCol, endRow, endColumn);
             return range;
         }
@@ -849,7 +775,7 @@ namespace V6Tools.V6Export
         /// <param name="row1"></param>
         /// <param name="importRowIndex"></param>
         /// <param name="columnDic"></param>
-        private static void ImportDataRow(WorkBook workBook, DataRow row1, int importRowIndex, SortedDictionary<int, ColumnInfo> columnDic)
+        private static void ImportDataRow_Group(WorkBook workBook, DataRow row1, int importRowIndex, SortedDictionary<int, ColumnInfo> columnDic)
         {
             try
             {
@@ -875,7 +801,8 @@ namespace V6Tools.V6Export
 
                     if (column.ColumnNameIsText)
                     {
-                        workBook.setText(importRowIndex, column.ExcelColumnIndex, column.ColumnNameText.Trim('"'));
+                        string text = column.ColumnNameText.Trim('"');
+                        if (text != "") workBook.setText(importRowIndex, column.ExcelColumnIndex, text);
                     }
                     else if (column.DataType == typeof(DateTime))
                     {
@@ -910,13 +837,14 @@ namespace V6Tools.V6Export
                     }
                     else
                     {
-                        workBook.setText(importRowIndex, column.ExcelColumnIndex, ObjectAndString.ObjectToString(row1[column.ColumnName]));
+                        string text = ObjectAndString.ObjectToString(row1[column.ColumnName]);
+                        if (text != "") workBook.setText(importRowIndex, column.ExcelColumnIndex, text);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.WriteExLog("Data_Table.ImportDataRow", ex, "");
+                Logger.WriteExLog("Data_Table.ImportDataRow_Group", ex, "");
             }
         }
 
