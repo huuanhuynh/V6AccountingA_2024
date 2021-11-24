@@ -553,6 +553,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         {
                             _ckNt.V6LostFocus += delegate
                             {
+                                // Tuanmh 22.11.2021 fix
+                                TinhChietKhauChiTiet(true, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
+
                                 Tinh_thue_ct();
                             };
                         }
@@ -692,6 +695,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
                                     //CheckSoLuong1();
+                                    CheckSoLuong1(_sl_qd);
                                     chkT_THUE_NT.Checked = false;
                                     Tinh_thue_ct();
                                 }
@@ -1366,6 +1370,42 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
+        /// <summary>
+        /// Check so luong roi tinh tien Nt2
+        /// </summary>
+        public void CheckSoLuong1(Control actionControl = null)
+        {
+            try
+            {
+                if (!(IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                      && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))) return;
+                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
+                        
+                if (M_CAL_SL_QD_ALL == "1" && actionControl != _sl_qd)
+                {
+                    if (M_TYPE_SL_QD_ALL == "1E")
+                    {
+                        _sl_qd.Value = _ton13Qd.Value < 0 ? 0 : _ton13Qd.Value;
+                    }
+                    else if (_hs_qd1.Value != 0)
+                    {
+                        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                    }
+                }
+
+                TinhTienNt2(actionControl);
+                TinhTienVon();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         public void XuLyLayThongTinKhiChonMaVt()
         {
             try
@@ -4820,8 +4860,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
             if (chkLoaiChietKhau.Checked)
             {
-                _pt_cki.Enabled = false;
-                _pt_cki.Tag = "disable";
+                _pt_cki.DisableTag();
+                _ckNt.DisableTag();
             }
             else
             {
@@ -4830,8 +4870,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 chkT_CK_NT.Checked = false;
                 txtTongCkNt.ReadOnly = true;
 
-                _pt_cki.Enabled = true;
-                _pt_cki.Tag = null;
+                _pt_cki.EnableTag();
+                _ckNt.EnableTag();
             }
             
             TinhTongThanhToan("LoaiChietKhau_Change");
@@ -4975,19 +5015,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 _tienNt2.Enabled = chkSuaTien.Checked;
                 _tien_nt.Enabled = chkSuaTien.Checked && _xuat_dd.Text != "";
-                _ckNt.Enabled = chkSuaTien.Checked;
+                //_ckNt.Enabled = chkSuaTien.Checked;
             }
             if (chkSuaTien.Checked)
             {
                 _tienNt2.Tag = null;
                 _tien_nt.Tag = null;
-                _ckNt.Tag = null;
+                //_ckNt.Tag = null;
             }
             else
             {
                 _tienNt2.Tag = "disable";
                 _tien_nt.Tag = "disable";
-                _ckNt.Tag = "disable";
+                //_ckNt.Tag = "disable";
             }
         }
 

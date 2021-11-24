@@ -308,15 +308,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (FilterControl.Check2)
                 {
                     //Delete excel data dateMin dateMax
-                    SqlParameter[] plist =
+                    for (DateTime d = dateMin.Value.Date; d <= dateMax.Value; d = d.AddDays(1))
                     {
-                        new SqlParameter("@Ngay_ct1", dateMin.Value.ToString("yyyyMMdd")),
-                        new SqlParameter("@Ngay_ct2", dateMax.Value.ToString("yyyyMMdd")),
-                        new SqlParameter("@Ma_ct", Invoice.Mact),
-                        new SqlParameter("@UserID", V6Login.UserId),
-                        new SqlParameter("@KeyAM", "IMTYPE='X'")
-                    };
-                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOH_DELETE_ALL", plist);
+                        string d_string = ObjectAndString.ObjectToString(d, "yyyyMMdd");
+                        SqlParameter[] plist =
+                        {   
+                            new SqlParameter("@Ngay_ct1", d_string),
+                            new SqlParameter("@Ngay_ct2", d_string),
+                            new SqlParameter("@Ma_ct", Invoice.Mact),
+                            new SqlParameter("@UserID", V6Login.UserId),
+                            new SqlParameter("@KeyAM", "IMTYPE='X'")
+                        };
+                        V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOH_DELETE_ALL", plist);
+                    }
                 }
 
                 //Xử lý từng nhóm dữ liệu

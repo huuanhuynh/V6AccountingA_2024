@@ -380,6 +380,7 @@ namespace V6AccountingBusiness.Invoices
             return false;
         }
 
+        public bool new_flag = false;
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2)
         {
             string template =
@@ -392,6 +393,11 @@ namespace V6AccountingBusiness.Invoices
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"
                 + "\n ORDER BY a.ngay_ct, a.so_ct, a.stt_rec";
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (new_flag)
+            {
+                if (where1AM.Length > 0) where1AM += " and ";
+                where1AM += "kieu_post in (select kieu_post from alpost where ma_ct='SOH' and ma_td1='1')";
+            }
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
             var p2Template =
                 "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
@@ -439,11 +445,17 @@ namespace V6AccountingBusiness.Invoices
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"
                 + "\n ORDER BY a.ngay_ct DESC, a.so_ct, a.stt_rec";
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (new_flag)
+            {
+                if (where1AM.Length > 0) where1AM += " and ";
+                where1AM += "kieu_post in (select kieu_post from alpost where ma_ct='SOH' and ma_td1='1')";
+            }
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
             var p2Template =
                 "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";//" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 {4})"
+
             if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;

@@ -2171,8 +2171,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             if (IsInvoice)// In 1 trang
                             {
                                 //rpDoc.PrintToPrinter(1, false, 1, 1);
-                                var printTool = new ReportPrintTool(rpDoc); // In 1 trang ?????
+                                var printTool = new ReportPrintTool(rpDoc); // In 1 trang ??
                                 printTool.PrintingSystem.ShowMarginsWarning = false;
+                                printTool.PrinterSettings.Copies = 1;
+                                printTool.PrinterSettings.FromPage = 1;
+                                printTool.PrinterSettings.ToPage = 1;
                                 printTool.Print(printerName);
                             }
                             else
@@ -2180,6 +2183,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                 //rpDoc.PrintToPrinter(1, false, 0, 0);
                                 var printTool = new ReportPrintTool(rpDoc);
                                 printTool.PrintingSystem.ShowMarginsWarning = false;
+                                printTool.PrinterSettings.Copies = 1;
                                 printTool.Print(printerName);
                             }
                             intDaGuiDenMayIn++;
@@ -2197,6 +2201,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                     //rpDoc2.PrintToPrinter(1, false, 1, 1);
                                     var printTool = new ReportPrintTool(rpDoc2);
                                     printTool.PrintingSystem.ShowMarginsWarning = false;
+                                    printTool.PrinterSettings.Copies = 1;
+                                    printTool.PrinterSettings.FromPage = 1;
+                                    printTool.PrinterSettings.ToPage = 1;
                                     printTool.Print(printerName);
                                 }
                                 else
@@ -2204,6 +2211,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                     //rpDoc2.PrintToPrinter(1, false, 0, 0);
                                     var printTool = new ReportPrintTool(rpDoc2);
                                     printTool.PrintingSystem.ShowMarginsWarning = false;
+                                    printTool.PrinterSettings.Copies = 1;
                                     printTool.Print(printerName);
                                 }
                                 intDaGuiDenMayIn++;
@@ -2221,6 +2229,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                     //rpDoc3.PrintToPrinter(1, false, 1, 1);
                                     var printTool = new ReportPrintTool(rpDoc3);
                                     printTool.PrintingSystem.ShowMarginsWarning = false;
+                                    printTool.PrinterSettings.Copies = 1;
+                                    printTool.PrinterSettings.FromPage = 1;
+                                    printTool.PrinterSettings.ToPage = 1;
                                     printTool.Print(printerName);
                                 }
                                 else
@@ -2228,6 +2239,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                     //rpDoc3.PrintToPrinter(1, false, 0, 0);
                                     var printTool = new ReportPrintTool(rpDoc3);
                                     printTool.PrintingSystem.ShowMarginsWarning = false;
+                                    printTool.PrinterSettings.Copies = 1;
                                     printTool.Print(printerName);
                                 }
                                 intDaGuiDenMayIn++;
@@ -2246,6 +2258,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                     //rpDoc4.PrintToPrinter(1, false, 1, 1);
                                     var printTool = new ReportPrintTool(rpDoc4);
                                     printTool.PrintingSystem.ShowMarginsWarning = false;
+                                    printTool.PrinterSettings.Copies = 1;
+                                    printTool.PrinterSettings.FromPage = 1;
+                                    printTool.PrinterSettings.ToPage = 1;
                                     printTool.Print(printerName);
                                 }
                                 else
@@ -2253,6 +2268,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                     //rpDoc4.PrintToPrinter(1, false, 0, 0);
                                     var printTool = new ReportPrintTool(rpDoc4);
                                     printTool.PrintingSystem.ShowMarginsWarning = false;
+                                    printTool.PrinterSettings.Copies = 1;
                                     printTool.Print(printerName);
                                 }
                                 //if (rpDoc4.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
@@ -2269,11 +2285,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         try
                         {
-                            if (IsInvoice)
+                            if (IsInvoice) // Print page 1 only.
                             {
                                 //rpDoc.PrintToPrinter(_soLienIn, false, 1, 1);
                                 var printTool = new ReportPrintTool(rpDoc);
                                 printTool.PrintingSystem.ShowMarginsWarning = false;
+                                printTool.PrinterSettings.Copies = (short)_soLienIn;
+                                printTool.PrinterSettings.FromPage = 1;
+                                printTool.PrinterSettings.ToPage = 1;
                                 printTool.Print(printerName);
                             }
                             else
@@ -2281,6 +2300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                 //rpDoc.PrintToPrinter(_soLienIn*_printCopy, false, 0, 0);
                                 var printTool = new ReportPrintTool(rpDoc);
                                 printTool.PrintingSystem.ShowMarginsWarning = false;
+                                printTool.PrinterSettings.Copies = (short)_soLienIn;
                                 printTool.Print(printerName);
                             }
                             //if (rpDoc.PrintOptions.NoPrinter) PrinterStatus.SetDefaultPrinter(printerName);
@@ -2958,6 +2978,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 documentViewer3.Visible = false;
                 documentViewer4.Visible = false;
             }
+
+            var dv = documentViewer1.Visible ? documentViewer1 :
+                documentViewer2.Visible ? documentViewer2 :
+                documentViewer3.Visible ? documentViewer3 :
+                documentViewer4;
+            documentViewer1_ZoomChanged(dv, null);
         }
 
         private void panel1_Leave(object sender, EventArgs e)
@@ -3117,7 +3143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void documentViewer1_ZoomChanged(object sender, EventArgs e)
         {
-            V6ControlsHelper.ShowV6Tooltip(panelCRview, string.Format("{0} {1}%", V6Text.Zoom, documentViewer1.Zoom * 100));
+            V6ControlsHelper.ShowV6Tooltip(panelCRview, string.Format("{0} {1}%", V6Text.Zoom, ((DocumentViewer)sender).Zoom * 100));
         }
     }
 

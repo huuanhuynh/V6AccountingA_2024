@@ -7438,10 +7438,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
             if (chkLoaiChietKhau.Checked)
             {
-                _pt_cki.Enabled = false;
-                _pt_cki.Tag = "disable";
-                _ckNt.Enabled = false;
-                _ckNt.Tag = "disable";
+                _pt_cki.DisableTag();
+                _ckNt.DisableTag();
             }
             else
             {
@@ -7450,13 +7448,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 chkT_CK_NT.Checked = false;
                 txtTongCkNt.ReadOnly = true;
 
-                _pt_cki.Enabled = true;
-                _pt_cki.Tag = null;
-                if (chkSuaTien.Checked)
-                {
-                   _ckNt.Enabled = true; //Bỏ rào để sử dụng nhập tiền ck
-                   _ckNt.Tag = null;
-                }
+                _pt_cki.EnableTag();
+                _ckNt.EnableTag();
             }
             
             TinhTongThanhToan("LoaiChietKhau_Change");
@@ -7607,7 +7600,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
                 _tienNt2.Enabled = chkSuaTien.Checked;
-                _ckNt.Enabled = chkSuaTien.Checked;
+                //_ckNt.Enabled = chkSuaTien.Checked;
                 _tien_nt.Enabled = chkSuaTien.Checked && _xuat_dd.Text != "";
 
                 txtTongThue.ReadOnly = !(chkT_THUE_NT.Checked && chkSuaTien.Checked);
@@ -7616,13 +7609,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 _tienNt2.Tag = null;
                 _tien_nt.Tag = null;
-                _ckNt.Tag = null;
+                //_ckNt.Tag = null;
             }
             else
             {
                 _tienNt2.Tag = "disable";
                 _tien_nt.Tag = "disable";
-                _ckNt.Tag = "disable";
+                //_ckNt.Tag = "disable";
             }
         }
 
@@ -10262,6 +10255,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     FormManagerHelper.HideMainMenu();
                     TimDonDatHangBanForm chonForm = new TimDonDatHangBanForm(new V6Invoice91(), V6Mode.Select);
                     chonForm.ViewMode = false;
+                    chonForm.new_flag = true;
                     
                     if (chonForm.ShowDialog(this) == DialogResult.OK)
                     {

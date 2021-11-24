@@ -28,6 +28,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
         public LocKetQuaDonDatHangBan _locKetQua;
         //private bool __ready = false;
         private bool _viewMode;
+        public bool new_flag = false;
 
         public bool ViewMode
         {
@@ -341,6 +342,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
         {
             try
             {
+                _invoice.new_flag = new_flag;
                 if (flag_search_topcuoiky == "1")
                 {
                     tempAM = _invoice.SearchAM_TopCuoiKy(_where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _w4Dvcs_2);
