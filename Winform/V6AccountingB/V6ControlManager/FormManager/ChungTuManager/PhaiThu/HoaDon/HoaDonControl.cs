@@ -10268,6 +10268,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         Mode = V6Mode.Add;
                         GetSttRec(Invoice.Mact);
                         SetData(CHON1AM);
+                        AD.Rows.Clear();
+                        AD3.Rows.Clear();
+                        
                         foreach (DataRow row in chonForm._formChungTu_AD.Rows)
                         {
                             var newData = row.ToDataDictionary();
@@ -10275,6 +10278,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             newData["STT_REC0DH"] = newData["STT_REC0"];
                             XuLyThemDetail(newData);
                         }
+
+                        detail1.MODE = V6Mode.View;
                     }
                     btnSua.Focus();
                 }

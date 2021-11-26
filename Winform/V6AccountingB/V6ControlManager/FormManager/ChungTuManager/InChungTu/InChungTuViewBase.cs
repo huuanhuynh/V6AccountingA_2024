@@ -113,6 +113,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
+                txtM_TEN_NLB.Text = V6Options.GetValueNull("M_TEN_NLB");
+                txtM_TEN_NLB2.Text = V6Options.GetValueNull("M_TEN_NLB2");
+
                 var M_COMPANY_BY_MA_DVCS = V6Options.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.GetValue("M_COMPANY_BY_MA_DVCS").Trim() : "";
                 if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
                 {

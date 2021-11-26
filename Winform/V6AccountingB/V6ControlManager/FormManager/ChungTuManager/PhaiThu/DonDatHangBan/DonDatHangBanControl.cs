@@ -2620,7 +2620,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             //gán lại ck_nt
                             if (AD.Columns.Contains("CK_NT")) AD.Rows[i]["CK_NT"] = ck_nt;
                             if (AD.Columns.Contains("CK")) AD.Rows[i]["CK"] = ck;
-                            
+                            if (AD.Columns.Contains("PT_CKI")) AD.Rows[i]["PT_CKI"] = txtPtCk.Value;
                         }
                         else
                         {
@@ -2633,6 +2633,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             //gán lại ck_nt
                             if (AD.Columns.Contains("CK_NT")) AD.Rows[i]["CK_NT"] = ck_nt;
                             if (AD.Columns.Contains("CK")) AD.Rows[i]["CK"] = ck;
+                            if (AD.Columns.Contains("PT_CKI")) AD.Rows[i]["PT_CKI"] = txtPtCk.Value;
                         }
                     }
                 }

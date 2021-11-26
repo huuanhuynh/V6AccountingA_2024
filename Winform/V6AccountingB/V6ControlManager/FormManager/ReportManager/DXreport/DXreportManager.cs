@@ -120,7 +120,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             font_name = param_font[0];
             font_size = repx.Font.Size;
             font_style = repx.Font.Style;
-            if (param_font.Length > 1) font_size = Single.Parse(param_font[1]);
+            if (param_font.Length > 1) font_size = ObjectAndString.StringToFloat(param_font[1]);
             if (param_font.Length > 2) font_style = (FontStyle)ObjectAndString.ObjectToInt(param_font[2]);
             Font m_rsfont = new Font(font_name, font_size, font_style);
 

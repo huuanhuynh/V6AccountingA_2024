@@ -3033,8 +3033,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        
-        
+
         public void ViewInvoice(int index)
         {
             if (AM != null && AM.Rows.Count > 0)

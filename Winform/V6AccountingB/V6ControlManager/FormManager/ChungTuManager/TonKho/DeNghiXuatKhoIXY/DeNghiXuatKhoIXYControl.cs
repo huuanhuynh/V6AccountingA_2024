@@ -3448,8 +3448,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             }
         }
 
-        
-        
+
         #region ==== View invoice ====
 
         /// <summary>
