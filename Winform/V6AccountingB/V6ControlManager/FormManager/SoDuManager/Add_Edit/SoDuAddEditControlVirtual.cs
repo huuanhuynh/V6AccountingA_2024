@@ -463,7 +463,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        protected virtual void SetDefaultDetail() { }
+        protected virtual void SetDefaultDetail()
+        {
+            //SetDefaultDataHDDetail(Invoice, detail1);
+        }
 
         public virtual void LoadStruct()
         {

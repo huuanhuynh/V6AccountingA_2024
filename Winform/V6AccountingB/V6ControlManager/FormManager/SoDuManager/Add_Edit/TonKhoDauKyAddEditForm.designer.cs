@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtTon00qd = new V6Controls.NumberTienNt();
+            this.txtTon00qd = new V6Controls.NumberSoluong();
             this.lblTon00qd = new System.Windows.Forms.Label();
             this.v6LabelTextBox1 = new V6Controls.V6LabelTextBox();
             this.txtten_vt = new V6Controls.V6LabelTextBox();
@@ -1265,7 +1265,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.Label label5;
         private V6LabelTextBox txtten_vt;
         private V6LabelTextBox v6LabelTextBox1;
-        private NumberTienNt txtTon00qd;
+        private NumberSoluong txtTon00qd;
         private System.Windows.Forms.Label lblTon00qd;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabThongTinChinh;

@@ -4681,6 +4681,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             {
                 if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
             }
+            SetDefaultDataHDDetail(Invoice, detail1);
         }
 
         public override bool XuLyThemDetail(IDictionary<string, object> data)

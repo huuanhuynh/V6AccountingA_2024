@@ -1998,12 +1998,29 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        public void SetDefaultDataHDDetail(V6InvoiceBase invoice, HD_Detail detailControl)
+        {
+            try
+            {
+                var data = invoice.LoadDefaultData(V6Setting.Language, m_itemId);
+                var data0 = new SortedDictionary<string, object>();
+                data0.AddRange(data);
+                V6ControlFormHelper.SetFormDataDictionary(detailControl.panel0, new SortedDictionary<string, object>(data0), false);
+                V6ControlFormHelper.SetFormDataDictionary(detailControl.panelControls, new SortedDictionary<string, object>(data0), false);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SetDefaultDataDetail " + _sttRec, ex);
+            }
+        }
+
         /// <summary>
         /// Gán dữ liệu mặc định khi bấm mới chi tiết. Cần override
         /// </summary>
         public virtual void SetDefaultDetail()
         {
-            
+            var detail1 = this.GetControlByName("detail1") as HD_Detail;
+            SetDefaultDataHDDetail(_invoice, detail1);
         }
 
         /// <summary>

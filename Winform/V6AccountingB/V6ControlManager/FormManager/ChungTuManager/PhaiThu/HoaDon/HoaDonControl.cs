@@ -7003,6 +7003,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 SetDefaultDetail();
+                
                 var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
                 if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
                 {
@@ -7029,6 +7030,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
             }
+            SetDefaultDataHDDetail(Invoice, detail1);
         }
         
         public override bool XuLyThemDetail(IDictionary<string, object> data)

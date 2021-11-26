@@ -3478,6 +3478,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
             }
+            SetDefaultDataHDDetail(Invoice, detail1);
         }
 
         private void XuLyDetail2ClickAdd(object sender)

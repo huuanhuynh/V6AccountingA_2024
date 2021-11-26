@@ -310,6 +310,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                         _dien_giaii.GotFocus += _dien_giaii_GotFocus;
 
                         break;
+                    case "MA_KH_I":
+                        _ma_kh_i = control as V6ColorTextBox;
+                        if (_ma_kh_i != null)
+                        {
+                            _ma_kh_i.TextChanged += _ma_kh_i_TextChanged;
+                        }
+                        break;
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
@@ -323,6 +330,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             detail1.MODE = detail1.MODE;
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0);
         }
+
+        void _ma_kh_i_TextChanged(object sender, EventArgs e)
+        {
+            DoNothing();
+        }
+
+        private V6ColorTextBox _ma_kh_i;
 
         private V6ColorTextBox _operTT_33, _nh_dk_33;
         private V6VvarTextBox _tk_i_33, _ma_kh_i_33;

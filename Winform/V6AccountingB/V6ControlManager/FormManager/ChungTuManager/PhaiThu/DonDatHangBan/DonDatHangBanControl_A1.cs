@@ -4412,6 +4412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     SetCellValue(grow.Cells[ma_lnx_i_column.Name], txtLoaiNX_PH.Text);
                 }
             }
+            //SetDefaultDataHDDetail(Invoice, detail1);
         }
 
         public void SetCarry(DataGridViewRow grow)
