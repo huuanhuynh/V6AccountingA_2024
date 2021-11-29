@@ -92,7 +92,7 @@ namespace V6SqlConnect
         }
         private static int _selectedIndex;
 
-        private static void GetConfigValues(int index)
+        public static void GetConfigValues(int index)
         {
             try
             {
@@ -112,9 +112,9 @@ namespace V6SqlConnect
                 Api2 = selectedRow["Api2"].ToString().Trim();
                 if (ConnectionConfigData.Columns.Contains("Key2")) Key2 = selectedRow["Key2"].ToString().Trim();
 
+                var ip_constring = "";
                 if (ConnectionConfigData.Columns.Contains("IPServer"))
                 {
-                    
                     // Kiểm tra IPServer (nơi trungg gian ghi nhận lưu trữ IP cho các máy chủ khác nhau) có kết nối thì đổi Server.
                     string IPName = selectedRow["IPName"].ToString().Trim();
                     string IPServer = selectedRow["IPServer"].ToString().Trim(); // Đây là server (V6) cố định lưu trữ ip máy chủ data.
@@ -122,16 +122,18 @@ namespace V6SqlConnect
                     string IPDatabase = selectedRow["IPDatabase"].ToString().Trim();
                     string IPUserId = selectedRow["IPUserId"].ToString().Trim();
                     string IPEPassword = selectedRow["IPEPassword"].ToString().Trim();
-                    var ip_constring = "Server=" + IPServer + ";Database=" + IPDatabase + ";User Id=" + IPUserId
+                    ip_constring = "Server=" + IPServer + ";Database=" + IPDatabase + ";User Id=" + IPUserId
                                        + ";Password=" + V6SqlconnectHelper.DeCrypt(IPEPassword + check_key) + ";";
                     if (CheckConnectionString(ip_constring))
                     {
+                        V6Tools.Logger.WriteToLog("IPServer: CheckConnect OK.");
                         string _key;
                         string server = GetServerFromIPServer(ip_constring, IPName, out Server_IP, out _key);
                         if (!string.IsNullOrEmpty(server))
                         {
                             Server = server;
                             IsIPServer = true;
+                            V6Tools.Logger.WriteToLog("IPServer: IsIPServer = true. " + Server);
                             var _setting = new H.Setting(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Setting.ini"));
                             if (_setting.GetSetting("DynamicIP") != _key)
                             {
@@ -143,10 +145,12 @@ namespace V6SqlConnect
                         else
                         {
                             IsIPServer = false;
+                            V6Tools.Logger.WriteToLog("IPServer: IsIPServer = true. " + Server);
                         }
                     }
                     else
                     {
+                        V6Tools.Logger.WriteToLog("IPServer: CheckConnect Fail.");
                         var _setting = new H.Setting(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Setting.ini"));
 
                         string _key = _setting.GetSetting("DynamicIP"); // Giá trị Server đã lưu lại trước đó.
@@ -161,9 +165,13 @@ namespace V6SqlConnect
                             IsIPServer = false;
                         }                        
                     }
-                    
-                    
                 }
+                //else if (ip_constring != "")
+                //{
+                    
+                //}
+
+
                 Next1:
 
                 if (ConnectionConfigData.Columns.Contains("Server2_TH"))
@@ -205,9 +213,9 @@ namespace V6SqlConnect
                 CheckServer = serverConfigRow["CheckServer"].ToString().Trim();
                 PasswordV6 = serverConfigRow["PasswordV6"].ToString().Trim();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                V6Tools.Logger.WriteToLog("GetConfigValues error: " + ex.Message);
             }
         }
 
@@ -216,6 +224,7 @@ namespace V6SqlConnect
             string server = "";
             ip_name = "";
             key = "";
+            string log = "GetServerFromIPServer: ";
             try
             {
                 SqlParameter[] param =
@@ -226,18 +235,20 @@ namespace V6SqlConnect
                 var data = SqlHelper.ExecuteDataset(ipConstring, CommandType.Text,
                     "Select [IP_NAME], [KEY] from V6IP_CUSTS"
                     + " Where [name]=@name", param).Tables[0];
+                log += data.Rows.Count + "row(s)";
                 if (data.Rows.Count == 1)
                 {
                     key = data.Rows[0]["KEY"].ToString().Trim();
                     server = V6Tools.UtilityHelper.DeCrypt(key);
                     ip_name = data.Rows[0]["IP_NAME"].ToString().Trim();
+                    log += string.Format("\r\n key_to_server({0}) ip_name({1})", key, ip_name);
                 }
             }
             catch (Exception ex)
             {
-
+                V6Tools.Logger.WriteExLog("GetServerFromIPServer", ex);
             }
-
+            V6Tools.Logger.WriteToLog(log);
             return server;
         }
 

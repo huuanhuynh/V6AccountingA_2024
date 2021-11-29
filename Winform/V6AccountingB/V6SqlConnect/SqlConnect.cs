@@ -60,7 +60,10 @@ namespace V6SqlConnect
                 {
                     var t = GetServerDateTime();
                     if (t.Year > 1900)
+                    {
+                        V6Tools.Logger.WriteToLog("Check Connection OK.");
                         return true;
+                    }
                     
                     return false;
                 }

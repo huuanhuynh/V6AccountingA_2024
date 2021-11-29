@@ -633,6 +633,7 @@ namespace V6Init
         {
             if (GetDataMode == GetDataMode.Local)
             {
+                DatabaseConfig.GetConfigValues(DatabaseConfig.SelectedIndex);
                 var b = V6BusinessHelper.StartSqlConnect(key, iniLocation);
                 if (b)
                 {
