@@ -2085,7 +2085,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.xuLyKhac2Menu,
             this.chonDonHangBanTheoKhoMenu});
             this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(239, 136);
+            this.menuChucNang2.Size = new System.Drawing.Size(239, 114);
             // 
             // chonPhieuXuatMenu
             // 

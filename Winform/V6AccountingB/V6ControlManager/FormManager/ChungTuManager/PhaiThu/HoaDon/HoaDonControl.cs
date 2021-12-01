@@ -2556,9 +2556,59 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #endregion detail form
 
         #region ==== Override Methods ====
+
         
         public override bool DoHotKey0(Keys keyData)
         {
+            if (_ctrl_T)
+            {
+                _ctrl_T = false;
+                TabPage select_tab = null;
+                int index = -1;
+                if (keyData == Keys.D1)
+                {
+                    index = 0;
+                }
+                else if (keyData == Keys.D2)
+                {
+                    index = 1;
+                }
+                else if (keyData == Keys.D3)
+                {
+                    index = 2;
+                }
+                else if (keyData == Keys.D4)
+                {
+                    index = 3;
+                }
+                else if (keyData == Keys.D5)
+                {
+                    index = 4;
+                }
+                else if (keyData == Keys.D6)
+                {
+                    index = 5;
+                }
+                else if (keyData == Keys.D7)
+                {
+                    index = 6;
+                }
+                else if (keyData == Keys.D8)
+                {
+                    index = 7;
+                }
+                else if (keyData == Keys.D9)
+                {
+                    index = 8;
+                }
+
+                if (index >= 0 && tabControl1.TabPages.Count > index)
+                {
+                    tabControl1.SelectedTab = tabControl1.TabPages[index];
+                }
+                return true;
+            }
+
             if (keyData == (Keys.LButton | Keys.Space))//pageUp
             {
                 if (btnPrevious.Enabled) btnPrevious.PerformClick();
@@ -2582,6 +2632,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     btnLuu.PerformClick();
                 }
+            }
+            else if (keyData == (Keys.Control | Keys.T))
+            {
+                _ctrl_T = true;
             }
             else if (keyData == Keys.Escape)
             {

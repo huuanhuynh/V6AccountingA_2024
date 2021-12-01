@@ -25,7 +25,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         /// <param name="count"></param>
         /// <returns></returns>
         public bool IsValidOperandCount(int count) {
-            return count >=1 && count <= 4;
+            return count >=1 && count <= 5;
         }
         public bool IsValidOperandType(int operandIndex, int operandCount, Type type) {
             return true;
@@ -47,9 +47,10 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
         /// <returns></returns>
         public object Evaluate(params object[] operands) {
             decimal number = ObjectAndString.ObjectToDecimal(operands[0]);
+            bool show0 = false;
             if (number == 0)
             {
-                bool show0 = false; if (operands.Length > 4) show0 = ObjectAndString.ObjectToBool(operands[4]);
+                if (operands.Length > 4) show0 = ObjectAndString.ObjectToBool(operands[4]);
                 if (!show0)
                 {
                     return "";
@@ -59,8 +60,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             string decimalSeparator = V6Options.M_NUM_POINT; if (operands.Length > 2) decimalSeparator = operands[2].ToString();
             string thousandSeparator = V6Options.M_NUM_SEPARATOR; if (operands.Length > 3) thousandSeparator = operands[3].ToString();
             
-
-            string res = ObjectAndString.NumberToString(number, decimals, decimalSeparator, thousandSeparator);
+            string res = ObjectAndString.NumberToString(number, decimals, decimalSeparator, thousandSeparator, show0);
             return res;
         }
         public string Name {

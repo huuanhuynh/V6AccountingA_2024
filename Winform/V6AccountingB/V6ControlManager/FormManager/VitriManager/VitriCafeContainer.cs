@@ -225,7 +225,7 @@ namespace V6ControlManager.FormManager.VitriManager
                     tsFull.PerformClick();
                     return true;
                 }
-                else if (keyData == (Keys.Control | Keys.T))
+                else if (keyData == (Keys.Control | Keys.N))
                 {
                     tsNew.PerformClick();
                     return true;

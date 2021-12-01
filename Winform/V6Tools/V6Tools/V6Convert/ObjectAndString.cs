@@ -372,7 +372,7 @@ namespace V6Tools.V6Convert
         /// chuyển một object thành chuỗi hiển thị. formatString mặc định là dd/MM/yyyy
         /// </summary>
         /// <param name="o"></param>
-        /// <param name="formatString">vd dd/MM/yyyy  (hoặc cho kiểu số N2)</param>
+        /// <param name="formatString">vd dd/MM/yyyy hoặc cho kiểu số #_0,00 (hoặc 0,00 hoặc 0 - dấu , có thể là . 00 có thể nhiều hoặc ít số 0)</param>
         /// <returns></returns>
         public static string ObjectToString(object o, string formatString = null)
         {
@@ -386,9 +386,26 @@ namespace V6Tools.V6Convert
                 {
                     result = value.ToString(CultureInfo.InvariantCulture);
                 }
-                else
+                else // formatString = # 0,00 or # 0.00 or 0,00 or 0 or ...
                 {
-                    result = value.ToString(formatString, CultureInfo.InvariantCulture);
+                    int decimals = 0;
+                    string decimal_ = SystemDecimalSymbol; string thousand_ = "";
+                    if(formatString.StartsWith("#"))
+                    {
+                        thousand_ = formatString[1].ToString();
+                        if (formatString.Length > 4)
+                        {
+                            decimal_ = formatString[3].ToString();
+                            decimals = formatString.Substring(4).Length;
+                        }
+                    }
+                    else if (formatString.Length > 2) // 0.00
+                    {
+                        decimal_ = formatString[1].ToString();
+                        decimals = formatString.Substring(2).Length;
+                    }
+                    
+                    result = NumberToString(value, decimals, decimal_, thousand_, true);
                 }
                 return result;
                 //if (t == typeof(decimal) || t == typeof(double) || t == typeof(float))

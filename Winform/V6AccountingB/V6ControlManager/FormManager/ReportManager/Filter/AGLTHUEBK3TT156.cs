@@ -164,17 +164,38 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 return;
             }
 
-            var reportRviewBase = (ReportRViewBase) this.Parent.Parent.Parent;
-            if (reportRviewBase._executing)
+            if (this.Parent.Parent.Parent is ReportRViewBase)
             {
-                this.ShowMessage(V6Text.DataLoading);
-            }
+                var reportRviewBase = (ReportRViewBase)this.Parent.Parent.Parent;
+                if (reportRviewBase._executing)
+                {
+                    this.ShowMessage(V6Text.DataLoading);
+                }
 
-            V6ControlFormHelper.ExportExcelTemplateHTKK(_ds.Tables[0], _ds.Tables[1],
-                reportRviewBase.ReportDocumentParameters,
-                reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
-                reportRviewBase.ExcelTemplateFileFullHTKK, txtFileName.Text
-                );
+                V6ControlFormHelper.ExportExcelTemplateHTKK(_ds.Tables[0], _ds.Tables[1],
+                    reportRviewBase.ReportDocumentParameters,
+                    reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
+                    reportRviewBase.ExcelTemplateFileFullHTKK, txtFileName.Text
+                    );
+            }
+            else if (this.Parent.Parent.Parent is ReportR_DX)
+            {
+                var reportRviewBase = (ReportR_DX)this.Parent.Parent.Parent;
+                if (reportRviewBase._executing)
+                {
+                    this.ShowMessage(V6Text.DataLoading);
+                }
+
+                V6ControlFormHelper.ExportExcelTemplateHTKK(_ds.Tables[0], _ds.Tables[1],
+                    reportRviewBase.ReportDocumentParameters,
+                    reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
+                    reportRviewBase.ExcelTemplateFileFullHTKK, txtFileName.Text
+                    );
+            }
+            else // Lỗi lập trình, cần sửa code.
+            {
+                this.ShowErrorMessage("Parent is not ReportRViewBase or ReportR_DX");
+            }
         }
         
         private void XuatExcelTaxOnline()

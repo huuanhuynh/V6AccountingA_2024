@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             }
         }
         public bool IsValidOperandCount(int count) {
-            return count == 1;
+            return count == 1 || count == 2;
         }
         public bool IsValidOperandType(int operandIndex, int operandCount, Type type) {
             return true;
