@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -158,8 +160,35 @@ namespace V6AccountingB
             checkConnect.Start();
         }
 
+        Thread checkUpdateThread = null;
+        private void CheckUpdateThread()
+        {
+            Timer checkUpdateTimer = new Timer();
+            checkUpdateTimer.Interval = 500;
+            checkUpdateTimer.Tick += checkUpdate_Tick;
+            flagCheckUpdateFinish = false;
+            flagCheckUpdateSuccess = false;
+
+            lastCheckConnectStatus = lblStatus.Text;
+            lblStatus.Text = "Check update... Check update...";
+
+            checkUpdateThread = new Thread(DoCheckUpdate)
+            {
+                IsBackground = true
+            };
+            checkUpdateThread.Start();
+
+            checkUpdateTimer.Start();
+        }
+
         private bool flagCheckConnectFinish;
+        private bool flagCheckUpdateFinish;
         private bool flagCheckConnectSuccess;
+        private bool flagCheckUpdateSuccess;
+        private bool flagUpdateAvailable;
+        private bool auto_update;
+        private string lastCheckConnectStatus = "";
+        private string ftp_folder = "";
         private string exMessage = "";
 
         void checkConnect_Tick(object sender, EventArgs e)
@@ -208,6 +237,8 @@ namespace V6AccountingB
                     V6Message.Show("Kiểm tra lại kết nối và cấu hình!\n" + exMessage, 0, this);
                 }
 
+                if (!V6Login.IsNetwork) CheckUpdateThread();
+
                 ((Timer)sender).Dispose();
             }
             else
@@ -215,6 +246,41 @@ namespace V6AccountingB
                 lblStatus.Text = lblStatus.Text.Right(1) + lblStatus.Text.Left(lblStatus.Text.Length - 1);
             }            
         }
+
+        void checkUpdate_Tick(object sender, EventArgs e)
+        {
+            //((Timer)sender).Stop();
+            //return;
+
+            if (flagCheckUpdateFinish)
+            {
+                ((Timer)sender).Stop();
+                if (flagCheckUpdateSuccess && flagUpdateAvailable)
+                {
+                    if (auto_update)
+                    {
+                        btnUpdate_Click(null, null);
+                    }
+                    else
+                    {
+                        btnUpdate.Visible = true;
+                        lblStatus.Text = "Update available! ________________";
+                        lblStatus.ForeColor = Color.Green;
+                    }
+                }
+                else
+                {
+                    lblStatus.Text = lastCheckConnectStatus;
+                }
+
+                ((Timer)sender).Dispose();
+            }
+            else
+            {
+                lblStatus.Text = lblStatus.Text.Right(1) + lblStatus.Text.Left(lblStatus.Text.Length - 1);
+            }
+        }
+
 
         private void DoCheckConect()
         {
@@ -246,6 +312,99 @@ namespace V6AccountingB
                 flagCheckConnectSuccess = false;
             }
             flagCheckConnectFinish = true;
+        }
+
+        private void DoCheckUpdate()
+        {
+            try
+            {
+                flagCheckUpdateSuccess = false;
+
+                // Để tránh check update quá nhiều. Đọc thông tin file updated.txt. Nếu mới update gần đây thì bỏ qua (vd 5 ngày).
+
+                ftp_folder = V6Options.GetValueNull("M_DIR_FTPV6_UPDATE");
+                if (string.IsNullOrEmpty(ftp_folder)) goto End;
+
+                // Tải update.txt
+                var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+                V6IOInfo info = new V6IOInfo()
+                {
+                    FileName = "update.txt",
+                    FTP_IP = _setting.GetSetting("FTP_IP"),
+                    FTP_USER = _setting.GetSetting("FTP_USER"),
+                    FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
+                    FTP_SUBFOLDER = ftp_folder,
+                    LOCAL_FOLDER = V6Setting.V6SoftLocalAppData_Directory,
+                };
+                bool copy = V6FileIO.CopyFromVPN(info);
+                if (copy)
+                {
+                    string update_txt_filename = Path.Combine(info.LOCAL_FOLDER, info.FileName);
+                    // Đọc thông tin file tải.
+                    string[] update_lines = File.ReadAllLines(update_txt_filename);
+                    // So sánh với file updated.txt tại local (so sánh xem file nào khác nhau thì cần update, nếu chưa có file updated.txt thì tất cả file đều cần update).
+                    string updated_txt_filename = Path.Combine(V6Login.StartupPath, "updated.txt");
+                    string[] updated_lines = { };
+                    if (File.Exists(updated_txt_filename)) updated_lines = File.ReadAllLines(updated_txt_filename);
+                    var updated_dic = new SortedDictionary<string, string>();
+                    foreach (string line in updated_lines)
+                    {
+                        if (line.StartsWith(";") || line.Trim() == "") continue;
+                        var ss = line.Split(':');
+                        if (ss.Length == 2)
+                        {
+                            updated_dic[ss[0]] = ss[1];
+                        }
+                    }
+
+                    var update_available_lines = new List<string>();
+                    int update_available_count = 0;
+                    foreach (string line in update_lines)
+                    {
+                        if (line.StartsWith(";") || line.Trim() == "") continue;
+                        var ss = line.Split(':');
+                        if (ss.Length == 2 && (!updated_dic.ContainsKey(ss[0]) || updated_dic[ss[0]] != ss[1]))
+                        {
+                            update_available_lines.Add(line);
+                            update_available_count++;
+                        }
+                        else if (ss.Length == 1)
+                        {
+                            var ss2 = line.Split(';');
+                            if (ss2.Length > 1) auto_update = "1" == ss2[1];
+                            //sub_folder = line;
+                            update_available_lines.Add(ss[0]);
+                        }
+                    }
+
+                    if (update_available_count > 0)
+                    {
+                        // write update_available.txt
+                        File.WriteAllLines("update_available.txt", update_available_lines);
+                        flagUpdateAvailable = true;
+                        goto End;
+                        
+                    }
+                    else
+                    {
+                        goto End;
+                    }
+                    
+                }
+                else
+                {
+                    goto End;
+                }
+
+                End:
+                flagCheckUpdateSuccess = true;
+                End_not_success: ;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog("DoCheckUpdate", ex);
+            }
+            flagCheckUpdateFinish = true;
         }
 
         private void txtUserName_Leave(object sender, EventArgs e)
@@ -529,6 +688,34 @@ namespace V6AccountingB
                 this.WriteExLog(GetType() + ".rbtLanguage_CheckedChanged", ex);
             }
             _radioRunning = false;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                // Call updater
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        WorkingDirectory = "",
+                        FileName = "V6AccountingB_Update.exe",
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true
+                    }
+                };
+
+                process.StartInfo.Arguments ="\"" + ftp_folder + "\" \"update_available.txt\"";
+                process.Start();
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("Update_Click", ex);
+            }
         }
         
     }    

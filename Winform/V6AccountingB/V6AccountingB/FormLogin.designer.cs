@@ -58,6 +58,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cboDatabase = new V6Controls.V6ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -389,6 +390,20 @@
             this.label8.TabIndex = 13;
             this.label8.Text = "HOTLINE: 0936 976 976";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Image = global::V6AccountingB.Properties.Resources.Update32;
+            this.btnUpdate.Location = new System.Drawing.Point(61, 219);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(120, 40);
+            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,6 +412,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(619, 295);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label0);
             this.Controls.Add(this.panel1);
@@ -412,14 +428,6 @@
             this.Name = "FormLogin";
             this.Text = "LOGIN";
             this.Load += new System.EventHandler(this.FormLogin_Load);
-            this.Controls.SetChildIndex(this.label7, 0);
-            this.Controls.SetChildIndex(this.lblStatus, 0);
-            this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.label6, 0);
-            this.Controls.SetChildIndex(this.cboDatabase, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.label0, 0);
-            this.Controls.SetChildIndex(this.label8, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -462,5 +470,6 @@
         private System.Windows.Forms.RadioButton rEnglish;
         private System.Windows.Forms.RadioButton rTiengViet;
         private System.Windows.Forms.RadioButton rCurrent;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

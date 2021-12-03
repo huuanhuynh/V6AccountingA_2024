@@ -153,6 +153,16 @@ namespace V6AccountingB.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Update32 {
+            get {
+                object obj = ResourceManager.GetObject("Update32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap V6_nen_trang {
             get {
                 object obj = ResourceManager.GetObject("V6_nen_trang", resourceCulture);
