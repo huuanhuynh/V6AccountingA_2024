@@ -168,9 +168,12 @@ namespace V6AccountingB
             checkUpdateTimer.Tick += checkUpdate_Tick;
             flagCheckUpdateFinish = false;
             flagCheckUpdateSuccess = false;
+            auto_update = false;
 
             lastCheckConnectStatus = lblStatus.Text;
             lblStatus.Text = "Check update... Check update...";
+
+            if (checkUpdateThread != null && checkUpdateThread.IsAlive) checkUpdateThread.Abort();
 
             checkUpdateThread = new Thread(DoCheckUpdate)
             {
@@ -373,17 +376,16 @@ namespace V6AccountingB
                             var ss2 = line.Split(';');
                             if (ss2.Length > 1) auto_update = "1" == ss2[1];
                             //sub_folder = line;
-                            update_available_lines.Add(ss[0]);
+                            update_available_lines.Add(ss2[0]);
                         }
                     }
 
                     if (update_available_count > 0)
                     {
                         // write update_available.txt
-                        File.WriteAllLines("update_available.txt", update_available_lines);
+                        File.WriteAllLines("update_available.txt", update_available_lines.ToArray());
                         flagUpdateAvailable = true;
                         goto End;
-                        
                     }
                     else
                     {
@@ -561,6 +563,7 @@ namespace V6AccountingB
                             }
                         }
 
+                        if (checkUpdateThread != null && checkUpdateThread.IsAlive) checkUpdateThread.Abort();
                         DialogResult = DialogResult.OK;
                     }
                     else
@@ -694,7 +697,11 @@ namespace V6AccountingB
         {
             try
             {
-                
+                if (!File.Exists("V6AccountingB_Update.exe"))
+                {
+                    lblStatus.Text = "Check V6AccountingB_Update.exe " + lastCheckConnectStatus;
+                    return;
+                }
                 // Call updater
                 var process = new Process
                 {

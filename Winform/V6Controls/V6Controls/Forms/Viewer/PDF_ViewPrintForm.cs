@@ -24,10 +24,10 @@ namespace V6Controls.Forms.Viewer
         
         private void Form_Load(object sender, EventArgs e)
         {
-            LoadInvoiceViettel();
+            LoadPDFFile();
         }
 
-        private void LoadInvoiceViettel()
+        private void LoadPDFFile()
         {
             try
             {
@@ -37,7 +37,16 @@ namespace V6Controls.Forms.Viewer
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(this.GetType() + ".LoadInvoice", ex);
+                if (File.Exists(_fileName))
+                {
+                    var text1000 = File.ReadAllText(_fileName);
+                    if (text1000.Length > 1000) text1000 = text1000.Substring(0, 1000);
+                    this.ShowErrorException(this.GetType() + ".LoadPDFFile\r\nContent:\r\n" + text1000 + "\r\nError: ", ex);
+                }
+                else
+                {
+                    this.ShowErrorException(this.GetType() + ".LoadPDFFile", ex);
+                }
             }
         }
 

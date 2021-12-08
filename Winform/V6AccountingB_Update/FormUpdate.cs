@@ -144,6 +144,7 @@ namespace V6AccountingB_Update
             flagDoUpdateFinish = true;
         }
 
+        int finish_count = 0;
         void timer_Tick(object sender, EventArgs e)
         {
             if (true)
@@ -151,27 +152,45 @@ namespace V6AccountingB_Update
                 progressBar1.Value = _percent;
                 string newText = status_text;
                 status_text = status_text.Substring(newText.Length);
-                richTextBox1.AppendText(newText);
+                AppendText(newText);
                 this.Text = "V6AccountingB_Update " + _percent + "%";
             }
             if (flagDoUpdateFinish)
             {
-                ((System.Windows.Forms.Timer)sender).Stop();
-                if (flagDoUpdateSuccess)
+                finish_count++;
+                
+                if (finish_count == 1)
                 {
-                    richTextBox1.AppendText("\r\nUpdate finish.");
+                    this.TopMost = true;
+
+                    if (flagDoUpdateSuccess)
+                    {
+                        AppendText("\r\nUpdate finish.");
+                    }
+                    else
+                    {
+                        AppendText("\r\nUpdate end fail.");
+                    }
                 }
-                else
+                else if (finish_count < 18)
                 {
-                    richTextBox1.AppendText("\r\nUpdate end fail.");
+                    this.Opacity = (18f - finish_count) / 18;
                 }
-
-
-
-                ((System.Windows.Forms.Timer)sender).Dispose();
+                else if (finish_count >= 18)
+                {
+                    ((System.Windows.Forms.Timer)sender).Stop();
+                    ((System.Windows.Forms.Timer)sender).Dispose();
+                    Application.Exit();
+                }                
             }
         }
 
+        void AppendText(string text)
+        {
+            richTextBox1.AppendText(text);
+            richTextBox1.SelectionStart = richTextBox1.TextLength;
+            richTextBox1.ScrollToCaret();
+        }
 
     }
 }
