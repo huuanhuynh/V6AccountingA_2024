@@ -338,6 +338,11 @@ namespace V6Controls.Forms
         {
             V6ControlFormHelper.SetStatusText(message);
         }
+
+        public virtual void SetStatusText(ToolStripMenuItem item)
+        {
+            V6ControlFormHelper.SetStatusText(item);
+        }
         
         private bool _viewFormVarPass = false;
         public string ViewFormVar()

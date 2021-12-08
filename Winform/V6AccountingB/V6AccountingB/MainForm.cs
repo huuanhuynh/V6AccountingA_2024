@@ -818,7 +818,7 @@ namespace V6AccountingB
                     right_count++;
                     if (right_count == 3)
                     {
-                        DoEditCorplan();
+                        DoEditCorplan(lblStatus2);
                     }
                 }
                 else
@@ -834,15 +834,15 @@ namespace V6AccountingB
             }
         }
 
-        private void DoEditCorplan()
+        private void DoEditCorplan(ToolStripStatusLabel statusLabel)
         {
             try
             {
-                if (string.IsNullOrEmpty(lblStatus2.AccessibleName)) return;
+                if (string.IsNullOrEmpty(statusLabel.AccessibleName)) return;
                 if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
 
                 IDictionary<string, object> key = new Dictionary<string, object>();
-                key["ID"] = lblStatus2.AccessibleName;
+                key["ID"] = statusLabel.AccessibleName;
                 
                 FormAddEdit form;
                 if (V6BusinessHelper.CheckDataExist("CorpLan", key))
@@ -853,9 +853,9 @@ namespace V6AccountingB
                 {
                     IDictionary<string, object> data = new Dictionary<string, object>();
                     data.AddRange(key);
-                    data["D"] = lblStatus2.Text;
-                    data["V"] = lblStatus2.Text;
-                    data["E"] = lblStatus2.Text;
+                    data["D"] = statusLabel.Text;
+                    data["V"] = statusLabel.Text;
+                    data["E"] = statusLabel.Text;
                     form = new FormAddEdit("CorpLan", V6Mode.Add, null, data);
                 }
 
@@ -865,12 +865,37 @@ namespace V6AccountingB
                 form.ShowDialog(this);
                 if (form.UpdateSuccess)
                 {
-                    lblStatus2.Text = form.Data[V6Login.SelectedLanguage].ToString();
+                    statusLabel.Text = form.Data[V6Login.SelectedLanguage].ToString();
                 }
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(ex);
+            }
+        }
+
+        private void lblStatus_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.Location == old_right_mouseup_location)
+                {
+                    right_count++;
+                    if (right_count == 3)
+                    {
+                        DoEditCorplan(lblStatus);
+                    }
+                }
+                else
+                {
+                    old_right_mouseup_location = e.Location;
+                    right_count = 1;
+                }
+            }
+            else
+            {
+                old_right_mouseup_location = new Point();
+                right_count = 0;
             }
         }
     }

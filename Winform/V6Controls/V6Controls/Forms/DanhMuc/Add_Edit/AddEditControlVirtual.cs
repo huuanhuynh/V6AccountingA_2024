@@ -215,7 +215,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             
             All_Objects["thisForm"] = this;
             CreateFormProgram();
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Event_program, All_Objects);
             InvokeFormEvent(FormDynamicEvent.INIT);
             
             LoadAll();

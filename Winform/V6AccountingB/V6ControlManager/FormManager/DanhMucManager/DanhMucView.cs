@@ -342,7 +342,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                 All_Objects["thisForm"] = this;
                 CreateFormProgram();
-                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, _MA_DM, Event_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
                 Ready();
             }

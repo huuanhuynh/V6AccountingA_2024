@@ -123,7 +123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Invoice.Mact, Event_program, All_Objects);
         }
         
         #endregion contructor
@@ -254,6 +254,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+
+                if (control is V6ColorTextBox && item.Value.IsCarry)
+                {
+                    detail2.CarryFields.Add(NAME);
+                }
                 // Gán tag hide và readonly theo GRD_xxxx
                 if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
                 {

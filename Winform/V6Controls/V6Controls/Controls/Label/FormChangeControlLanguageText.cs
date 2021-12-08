@@ -8,7 +8,7 @@ using V6Tools.V6Convert;
 
 namespace V6Controls.Controls.Label
 {
-    internal partial class FormChangeControlLanguageText : Form
+    internal partial class FormChangeControlLanguageText : V6Form
     {
         public FormChangeControlLanguageText()
         {
@@ -91,7 +91,7 @@ namespace V6Controls.Controls.Label
 
                     if (V6Setting.IsVietnamese && !checkBox1.Checked)
                     {
-                        _label.Text = row["V"].ToString();
+                        _label.Text = row["D"].ToString();
                     }
                     else
                     {
@@ -104,7 +104,22 @@ namespace V6Controls.Controls.Label
                 }
                 else
                 {
-                    
+                    change_v = checkBox1.Checked ? "1" : "0";
+                    updateText = NewText;
+                    updateId = _label.AccessibleDescription;
+
+                    if (V6Setting.IsVietnamese && !checkBox1.Checked)
+                    {
+                        _label.Text = row["V"].ToString();
+                    }
+                    else
+                    {
+                        _label.Text = updateText;
+                    }
+
+                    var T = new Thread(InsertDatabase);
+                    T.IsBackground = true;
+                    T.Start();
                 }
             }
             catch (Exception ex)
@@ -129,6 +144,21 @@ namespace V6Controls.Controls.Label
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".UpdateDatabase", ex);
+            }
+        }
+
+        private void InsertDatabase()
+        {
+            try
+            {
+                if (CorpLan.Insert(updateId, V6Setting.Language, updateText, change_v))
+                {
+                    V6ControlFormHelper.SetStatusText(V6Text.InsertSuccess);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InsertDatabase", ex);
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using V6AccountingBusiness;
 using V6SqlConnect;
 using V6Tools;
 
@@ -173,6 +174,44 @@ namespace V6Init
             {
                 //Cập nhập từ điển đã tải
                 dataDictionary[updateId.ToUpper()] = updateText;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Thêm dữ liệu vào bảng ngôn ngữ.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="language_field">Trường update, V,E,F,C...</param>
+        /// <param name="text"></param>
+        /// <param name="change_v">Có dịch tiếng Việt, chỉ có tác dụng khi đang sử dụng tiếng Việt.</param>
+        public static bool Insert(string ID, string language_field, string text, string change_v = null)
+        {
+            if (string.IsNullOrEmpty(ID)) throw new ArgumentException("ID");
+            //var is_Vietnamese = language_field == "V";
+            
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["ID"] = ID;
+            data[language_field] = text;
+            if (language_field == "V")
+            {
+                data["CHANGE_V"] = change_v;
+                data["E"] = text;
+                data["D"] = text;
+            }
+            else
+            {
+                data["CHANGE_V"] = "0";
+                data["V"] = text;
+                data["D"] = text;
+            }
+
+            var result = V6BusinessHelper.Insert(tableName, data);
+            if (result)
+            {
+                //Cập nhập từ điển đã tải
+                dataDictionary[ID.ToUpper()] = text;
                 return true;
             }
             return false;

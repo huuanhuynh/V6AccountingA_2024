@@ -410,6 +410,17 @@ namespace V6Controls.Forms
         public static void SetStatusText(string text)
         {
             StatusTextViewControl.Text = (text + "     " + StatusTextViewControl.Text).Left(100 + StatusTextViewControl.Width/10);
+            StatusTextViewControl.AccessibleName = null;
+        }
+
+        /// <summary>
+        /// Gán status text phía dưới bên trái
+        /// </summary>
+        /// <param name="item"></param>
+        public static void SetStatusText(ToolStripMenuItem item)
+        {
+            StatusTextViewControl.Text = item.Text;
+            StatusTextViewControl.AccessibleName = item.AccessibleDescription;
         }
 
         /// <summary>
@@ -3038,7 +3049,7 @@ namespace V6Controls.Forms
 
         private static void SetFormTextRecursive(Control control, SortedDictionary<string, string> textDic)
         {
-            if (textDic == null || textDic.Count == 0) return;
+            //if (textDic == null || textDic.Count == 0) return;
             if (!string.IsNullOrEmpty(control.AccessibleDescription))
             {
                 var KEY = (control.AccessibleDescription??"").ToUpper();
@@ -3073,6 +3084,7 @@ namespace V6Controls.Forms
                     {
                         menu_item.Text = textDic[KEY];
                     }
+                    menu_item.Click += menu_item_Click;
                 }
             }
             if (control is DropDownButton)
@@ -3085,8 +3097,9 @@ namespace V6Controls.Forms
                         var KEY = (menu_item.AccessibleDescription ?? "").ToUpper();
                         if (textDic.ContainsKey(KEY) && !string.IsNullOrEmpty(textDic[KEY]))
                         {
-                            menu_item.Text = textDic[KEY];
+                            menu_item.Text = textDic[KEY];                            
                         }
+                        menu_item.Click += menu_item_Click;
                     }
                 }
             }
@@ -3109,6 +3122,11 @@ namespace V6Controls.Forms
                     }
                 }
             }
+        }
+
+        static void menu_item_Click(object sender, EventArgs e)
+        {
+            SetStatusText((ToolStripMenuItem)sender);
         }
 
 
@@ -7916,9 +7934,10 @@ namespace V6Controls.Forms
         /// Gán code động sự kiện cho các control trên form theo Aname.
         /// </summary>
         /// <param name="thisForm"></param>
+        /// <param name="ma_ct">Mã cộng vào AccessibleDescription để làm mã ngôn ngữ.</param>
         /// <param name="eventProgram"></param>
         /// <param name="allObjects"></param>
-        public static void ApplyDynamicFormControlEvents(Control thisForm, Type eventProgram, Dictionary<string, object> allObjects)
+        public static void ApplyDynamicFormControlEvents(Control thisForm, string ma_ct, Type eventProgram, Dictionary<string, object> allObjects)
         {
             if (eventProgram == null) return;
 
@@ -7928,6 +7947,46 @@ namespace V6Controls.Forms
                 string error = "";
                 foreach (Control control in all_control)
                 {
+                    if (ma_ct != null)
+                    try // Modify AccessibleDescription with ma_ct.
+                    {
+                        if (control.ContextMenuStrip != null)
+                        {
+                            foreach (ToolStripMenuItem menu_item in control.ContextMenuStrip.Items)
+                            {
+                                if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                                {
+                                    menu_item.AccessibleDescription += ma_ct;
+                                }
+                            }
+                        }
+
+                        if (control is DropDownButton)
+                        {
+                            var button = control as DropDownButton;
+                            if (button.Menu != null)
+                            {
+                                foreach (ToolStripMenuItem menu_item in button.Menu.Items)
+                                {
+                                    if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                                    {
+                                        menu_item.AccessibleDescription += ma_ct;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(control.AccessibleDescription))
+                        {
+                            control.AccessibleDescription += ma_ct;
+                        }
+
+                    }
+                    catch(Exception ex)
+                    {
+
+                    }
+
                     try
                     {
                         ApplyControlEventByAccessibleName(control, eventProgram, allObjects);

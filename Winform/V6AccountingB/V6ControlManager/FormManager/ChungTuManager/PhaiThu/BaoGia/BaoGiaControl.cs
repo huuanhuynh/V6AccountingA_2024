@@ -127,7 +127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Invoice.Mact, Event_program, All_Objects);
         }
         
         #endregion contructor

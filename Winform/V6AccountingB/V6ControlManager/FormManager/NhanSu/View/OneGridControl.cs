@@ -68,7 +68,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
                 All_Objects["thisForm"] = this;
                 CreateFormProgram();
-                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, null, Event_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)

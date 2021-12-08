@@ -712,7 +712,7 @@ namespace V6Init
             {
                 string lang = V6Setting.Language;
                 string result = GetString(lang + "Fields");
-                return result.Split(';');
+                return ObjectAndString.SplitString(result);
             }
         }
         public string DOI_MA { get { return GetString("DOI_MA"); } }

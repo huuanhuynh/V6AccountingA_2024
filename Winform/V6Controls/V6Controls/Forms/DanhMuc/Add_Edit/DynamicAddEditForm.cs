@@ -702,7 +702,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             DataOld = data;
             if (Mode == V6Mode.View) V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Event_program, All_Objects);
             InvokeFormEvent(FormDynamicEvent.INIT);
             LoadAll();
             //virtual

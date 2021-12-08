@@ -433,6 +433,7 @@ namespace V6Init
         public static string Toolong { get { return V6Setting.Language == "V" ? "Quá dài !" : "Too long! "; } }
         public static string UnFinished { get { return V6Setting.IsVietnamese ? "Chưa hoàn tất!" : "UnFinished!"; } }
         public static string Unsupported { get { return V6Setting.Language == "V" ? "Chưa hỗ trợ!" : "Unsupported!"; } }
+        public static string InsertSuccess { get { return V6Setting.Language == "V" ? "Thêm thành công." : "Insert success."; } }
         public static string Updated { get { return V6Setting.Language == "V" ? "Đã cập nhập." : "Updated."; } }
         public static string UpdateSuccess { get { return V6Setting.Language == "V" ? "Cập nhập thành công." : "Update success."; } }
         public static string UpdateFail { get { return V6Setting.Language == "V" ? "Cập nhập lỗi." : "UpdateFail."; } }
