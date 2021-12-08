@@ -60,7 +60,7 @@ namespace V6ThuePost
             btnTest.Enabled = true;
             btnSend.Enabled = true;
 
-            Program._WS = new MInvoiceWS(txtURL.Text, txtUsername.Text, txtPassword.Text, txtMaDVCS.Text, Program._codetax);
+            Program._WS = new MInvoiceWS(txtURL.Text, txtUsername.Text, txtPassword.Text, txtMaDVCS.Text, Program._codetax, Program._version);
         }
 
         private void btnTest_Click(object sender, EventArgs e)

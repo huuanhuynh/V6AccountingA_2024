@@ -24,4 +24,22 @@ namespace V6ThuePost.MInvoiceObject.Request
         /// </summary>
         public List<InvoiceData> data;
     }
+
+    //public class MInvoicePostObject78 : V6JsonObject
+    //{
+    //    public MInvoicePostObject()
+    //    {
+    //        DateTimeFormat = "yyyy-MM-dd";
+    //    }
+
+    //    /// <summary>
+    //    /// 1 : Mới, 2 : Sửa.
+    //    /// </summary>
+    //    public string editmode;
+
+    //    /// <summary>
+    //    /// &lt;Inv>...&lt;/Inv>[...]
+    //    /// </summary>
+    //    public List<InvoiceData> data;
+    //}
 }

@@ -379,7 +379,7 @@ namespace V6ThuePostManager
                         result = monetWS.CheckConnection(_createInvoiceUrl);
                         break;
                     case "8":
-                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
+                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax, _version);
                         result = mInvoiceWs.CheckConnection(out paras.Result.V6ReturnValues);
                         break;
                     default:
@@ -460,7 +460,7 @@ namespace V6ThuePostManager
                         else result = monetWS.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     case "8":
-                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
+                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax, _version);
                         if (paras.Mode == "1") result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         else result = mInvoiceWs.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
                         break;
@@ -530,7 +530,7 @@ namespace V6ThuePostManager
                         else result = monetWS.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     case "8":
-                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
+                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax, _version);
                         if (paras.Mode == "1") result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         else result = mInvoiceWs.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
                         break;
@@ -4163,7 +4163,7 @@ namespace V6ThuePostManager
 
             try
             {
-                MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
+                MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax, _version);
                 MInvoicePostObject jsonBodyObject = null;
                 var row0 = am_table.Rows[0];
 
@@ -4283,14 +4283,6 @@ namespace V6ThuePostManager
                     }
                 }
 
-                if (ObjectAndString.ObjectToBool(response.ok))
-                {
-
-                }
-                else
-                {
-                    paras.Result.ResultErrorMessage = "ERR" + paras.Result.ResultErrorMessage;
-                }
             }
             catch (Exception ex)
             {

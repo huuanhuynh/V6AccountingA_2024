@@ -58,6 +58,7 @@ namespace V6ThuePost
         /// Mã số thuế.
         /// </summary>
         public static string _codetax = "";
+        public static string _version = "";
         /// <summary>
         /// Seri usb token.
         /// </summary>
@@ -142,7 +143,7 @@ namespace V6ThuePost
                     ReadXmlInfo(arg1_xmlFile);
                     string dbfFile = arg2;
 
-                    _WS = new MInvoiceWS(baseUrl, username, password, _ma_dvcs, _codetax);
+                    _WS = new MInvoiceWS(baseUrl, username, password, _ma_dvcs, _codetax, _version);
 
                     if (mode.ToUpper() == "MTEST")
                     {
@@ -767,6 +768,9 @@ namespace V6ThuePost
                                         break;
                                     case "codetax":
                                         _codetax = UtilityHelper.DeCrypt(line.Value);
+                                        break;
+                                    case "version":
+                                        _version = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "serialcert":
                                     case "certificateserial":

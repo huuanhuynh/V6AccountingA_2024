@@ -12,6 +12,9 @@ namespace V6ThuePostMInvoiceApi
 {
     public class MInvoiceWS
     {
+        /// <summary>
+        /// https://hoadon.minvoice.com.vn/ (http://demohoadon.minvoice.com.vn/)
+        /// </summary>
         private readonly string _baseurl;
         /// <summary>
         /// Tên đăng nhập hệ thống.
@@ -25,16 +28,30 @@ namespace V6ThuePostMInvoiceApi
         /// Mã số thuế của doanh nghiệp.
         /// </summary>
         private string _codetax;
+        /// <summary>
+        /// rỗng hoặc 78.
+        /// </summary>
+        private string _version = "";
 
         private readonly RequestManager requestManager = new RequestManager();
         private string _cancel_link = "/api/Invoice/xoaboHD";
         private const string _createInvoiceUrl = "/api/InvoiceAPI/Save";
+        private const string _createInvoiceUrl78 = "/api/InvoiceApi78/Save";
         private const string _editLink = "/api/InvoiceAPI/Save";
         private const string _modifylinkT = "/api/InvoiceAPI/DcTang";
         private const string _modifylinkG = "/api/InvoiceAPI/DcGiam";
         private const string _replaceInvoiceUrl = "/api/InvoiceAPI/Save";
 
-        public MInvoiceWS(string baseurl, string username, string password, string ma_dvcs, string codetax)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="baseurl"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="ma_dvcs"></param>
+        /// <param name="codetax"></param>
+        /// <param name="version">rỗng hoặc 78</param>
+        public MInvoiceWS(string baseurl, string username, string password, string ma_dvcs, string codetax, string version)
         {
             _baseurl = baseurl;
             if (_baseurl.EndsWith("/")) _baseurl = _baseurl.Substring(0, _baseurl.Length-1);
@@ -42,13 +59,23 @@ namespace V6ThuePostMInvoiceApi
             _password = password;
             _ma_dvcs = ma_dvcs;
             _codetax = codetax;
+            _version = version;
             _logintoken = Login(_username, _password, ma_dvcs);
         }
 
         private string Login(string username, string password, string ma_dvcs)
         {
             string request = "{\"username\" : \"" + username + "\",\"password\" : \"" + password + "\",\"ma_dvcs\" : \"" + ma_dvcs + "\"}";
-            string result = POST0("api/Account/Login", request);
+            string result = null;
+            if (_version == "78")
+            {
+                result = POST0("api/Account/Login", request);
+            }
+            else
+            {
+                result = POST0("api/Account/Login", request);
+            }
+            
             LoginResponse objFile = JsonConvert.DeserializeObject<LoginResponse>(result);
             if (string.IsNullOrEmpty(objFile.error) && !string.IsNullOrEmpty(objFile.token))
             {
@@ -60,6 +87,22 @@ namespace V6ThuePostMInvoiceApi
             }
             return null;
         }
+
+        //private string Login78(string username, string password, string ma_dvcs)
+        //{
+        //    string request = "{\"username\" : \"" + username + "\",\"password\" : \"" + password + "\",\"ma_dvcs\" : \"" + ma_dvcs + "\"}";
+        //    string result = POST0("Account/Login", request);
+        //    LoginResponse objFile = JsonConvert.DeserializeObject<LoginResponse>(result);
+        //    if (string.IsNullOrEmpty(objFile.error) && !string.IsNullOrEmpty(objFile.token))
+        //    {
+        //        return objFile.token;
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //    return null;
+        //}
 
         /// <summary>
         /// POST login
@@ -255,7 +298,9 @@ namespace V6ThuePostMInvoiceApi
         public string CheckConnection(out V6Return v6Return)
         {
             var responseObject = POST_NEW(new MInvoicePostObject(), out v6Return);
-            if (v6Return.RESULT_STRING.Contains("windowid\":null")) return null;
+            if (v6Return.RESULT_STRING.Contains("windowid\":null")
+                || v6Return.RESULT_STRING == "{\"Message\":\"An error has occurred.\"}"
+                || v6Return.RESULT_STRING.StartsWith("{\"code\":\"")) return null;
             return v6Return.RESULT_STRING;
         }
         
@@ -273,29 +318,69 @@ namespace V6ThuePostMInvoiceApi
             try
             {
                 jsonBody.editmode = "1";
-                result = POST_Bearer(_createInvoiceUrl, jsonBody.ToJson());
+                if (_version == "78") result = POST_Bearer(_createInvoiceUrl78, jsonBody.ToJson());
+                else result = POST_Bearer(_createInvoiceUrl, jsonBody.ToJson());
                 v6return.RESULT_STRING = result;
 
                 try
                 {
-                    responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
-
-                    v6return.RESULT_OBJECT = responseObject;
-                    v6return.RESULT_MESSAGE = "" + responseObject.Message;
-                    v6return.RESULT_ERROR_MESSAGE = "" + responseObject.error + responseObject.Message;
-
-                    if (responseObject.ok == "true" && responseObject.data != null &&
-                        responseObject.data.ContainsKey("inv_invoiceNumber")
-                        && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
+                    if (_version == "78")
                     {
-                        v6return.SO_HD = "" + responseObject.data["inv_invoiceNumber"];
-                        v6return.ID = "" + responseObject.data["inv_InvoiceAuth_id"];
-                        if (responseObject.data.ContainsKey("sobaomat")) v6return.SECRET_CODE = "" + responseObject.data["sobaomat"];
+                        var responseObject78 = JsonConvert.DeserializeObject<MInvoiceResponse78>(result);
+                        responseObject = new MInvoiceResponse();
+
+                        v6return.RESULT_OBJECT = responseObject78;
+                        v6return.RESULT_MESSAGE = "" + responseObject78.message;
+                        if(responseObject78.code != "00")
+                        {
+                            v6return.RESULT_ERROR_MESSAGE = "" + responseObject78.code + responseObject78.message;
+                        }
+                        else if (responseObject78.data != null && responseObject78.data.ContainsKey("shdon"))
+                        {
+                            v6return.SO_HD = "" + responseObject78.data["shdon"]; // 38
+                            if (v6return.SO_HD.Trim() != "")
+                            {
+                                responseObject.data["inv_invoiceNumber"] = responseObject78.data["shdon"];
+                                v6return.ID = "" + responseObject78.data["hoadon68_id"];    // "hoadon68_id": "e5ebef5f-7b59-47e4-b0d1-baa9f4186d64",
+                                responseObject.data["inv_InvoiceAuth_id"] = responseObject78.data["hoadon68_id"];
+                                if (responseObject78.data.ContainsKey("sbmat"))
+                                {
+                                    v6return.SECRET_CODE = "" + responseObject78.data["sbmat"]; // "sbmat": "E5EBEF5FAA9F4186",
+                                    responseObject.data["sobaomat"] = responseObject78.data["sbmat"];
+                                }
+                            }
+                            else
+                            {
+                                v6return.RESULT_ERROR_MESSAGE = "shdon trả về rỗng.";
+                            }
+                        }
+                        else
+                        {
+                            v6return.RESULT_ERROR_MESSAGE = "no data[shdon]";
+                        }
                     }
                     else
                     {
-                        
+                        responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
+
+                        v6return.RESULT_OBJECT = responseObject;
+                        v6return.RESULT_MESSAGE = "" + responseObject.Message;
+                        v6return.RESULT_ERROR_MESSAGE = "" + responseObject.error + responseObject.Message;
+
+                        if (responseObject.ok == "true" && responseObject.data != null &&
+                            responseObject.data.ContainsKey("inv_invoiceNumber")
+                            && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
+                        {
+                            v6return.SO_HD = "" + responseObject.data["inv_invoiceNumber"];
+                            v6return.ID = "" + responseObject.data["inv_InvoiceAuth_id"];
+                            if (responseObject.data.ContainsKey("sobaomat")) v6return.SECRET_CODE = "" + responseObject.data["sobaomat"];
+                        }
+                        else
+                        {
+
+                        }
                     }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -312,6 +397,7 @@ namespace V6ThuePostMInvoiceApi
             return responseObject;
         }
 
+
         public MInvoiceResponse POST_NEW(string jsonBody, out V6Return v6return)
         {
             string result;
@@ -321,7 +407,8 @@ namespace V6ThuePostMInvoiceApi
             {
                 MInvoicePostObject jsonBodyObject = JsonConvert.DeserializeObject<MInvoicePostObject>(jsonBody);
                 if(jsonBodyObject.editmode != "1") throw new Exception("editmode != \"1\"");
-                result = POST_Bearer(_createInvoiceUrl, jsonBody);
+                if (_version == "78") result = POST_Bearer(_createInvoiceUrl78, jsonBody);
+                else result = POST_Bearer(_createInvoiceUrl, jsonBody);
                 v6return.RESULT_STRING = result;
 
                 try
@@ -400,8 +487,8 @@ namespace V6ThuePostMInvoiceApi
             try
             {
                 jsonBody.editmode = "2";
-                //jsonBody.data[0]["inv_invoiceNumber"] = invoiceNumber;
-                result = POST_Bearer(_createInvoiceUrl, jsonBody.ToJson());
+                if (_version == "78") result = POST_Bearer(_createInvoiceUrl78, jsonBody.ToJson());
+                else result = POST_Bearer(_createInvoiceUrl, jsonBody.ToJson());
                 v6return.RESULT_STRING = result;
 
                 try
