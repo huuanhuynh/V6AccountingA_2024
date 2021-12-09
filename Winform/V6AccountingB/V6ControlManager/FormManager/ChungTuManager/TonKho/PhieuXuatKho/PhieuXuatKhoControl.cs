@@ -1410,13 +1410,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
             else if (keyData == (Keys.Control | Keys.Enter))
             {
-                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                if (tabControl1.SelectedTab == tabChiTiet && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
                 {
                     detail1.btnNhan.Focus();
                     detail1.btnNhan.PerformClick();
                 }
-                //else if (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
+                //else if (tabControl1.SelectedTab == tabThue && (detail2.MODE == V6Mode.Add || detail2.MODE == V6Mode.Edit))
                 //{
+                //    detail2.btnNhan.Focus();
+                //    detail2.btnNhan.PerformClick();
+                //}
+                //else if (tabControl1.SelectedTab == tabChiTietBoSung && (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit))
+                //{
+                //    detail3.btnNhan.Focus();
                 //    detail3.btnNhan.PerformClick();
                 //}
                 else

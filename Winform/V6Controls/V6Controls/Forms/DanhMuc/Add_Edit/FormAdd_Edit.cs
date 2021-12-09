@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using V6Init;
 using V6Structs;
+using V6Tools;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -44,7 +45,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             _MA_DM = tableName.ToString();
             _mode = mode;
-            _keys = keys;
+            _keys = new Dictionary<string, object>();
+            _keys.AddRange(keys);
             _data = data;
             
             InitializeComponent();
@@ -63,7 +65,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             _MA_DM = ma_dm;
             _mode = mode;
-            _keys = keys;
+            _keys = new Dictionary<string, object>();
+            _keys.AddRange(keys);
             _data = data;
 
             InitializeComponent();

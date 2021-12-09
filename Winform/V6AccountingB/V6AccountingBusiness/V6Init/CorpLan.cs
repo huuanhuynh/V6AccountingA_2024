@@ -44,6 +44,16 @@ namespace V6Init
             }
             return ID;
         }
+        public static void SetText(string id, string text)
+        {
+            dataDictionary[id.ToUpper()] = text;
+        }
+
+        public static void RemoveText(string id)
+        {
+            string ID = id.ToUpper();
+            if (dataDictionary.ContainsKey(ID)) dataDictionary.Remove(ID);
+        }
 
         /// <summary>
         /// Lấy text ngôn ngữ theo ID, không có trả về null.

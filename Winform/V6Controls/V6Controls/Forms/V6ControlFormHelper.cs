@@ -3097,7 +3097,7 @@ namespace V6Controls.Forms
                         var KEY = (menu_item.AccessibleDescription ?? "").ToUpper();
                         if (textDic.ContainsKey(KEY) && !string.IsNullOrEmpty(textDic[KEY]))
                         {
-                            menu_item.Text = textDic[KEY];                            
+                            menu_item.Text = textDic[KEY];
                         }
                         menu_item.Click += menu_item_Click;
                     }

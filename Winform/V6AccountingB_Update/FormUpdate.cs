@@ -112,6 +112,11 @@ namespace V6AccountingB_Update
                             {
                                 File.Delete(to_file);
                             }
+                            string to_folder = Path.GetDirectoryName(to_file);
+                            if (!Directory.Exists(to_folder))
+                            {
+                                Directory.CreateDirectory(to_folder);
+                            }
                             File.Copy(from_file, to_file);
                             //updated_files.Add(line);
                             updated_dic[ss[0]] = ss[1];

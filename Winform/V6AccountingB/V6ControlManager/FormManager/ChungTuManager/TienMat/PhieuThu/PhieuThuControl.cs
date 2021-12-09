@@ -1075,13 +1075,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
             else if (keyData == (Keys.Control | Keys.Enter))
             {
-                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                if (tabControl1.SelectedTab == tabChiTiet && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
                 {
                     detail1.btnNhan.Focus();
                     detail1.btnNhan.PerformClick();
                 }
-                else if (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
+                //else if (tabControl1.SelectedTab == tabThue && (detail2.MODE == V6Mode.Add || detail2.MODE == V6Mode.Edit))
+                //{
+                //    detail2.btnNhan.Focus();
+                //    detail2.btnNhan.PerformClick();
+                //}
+                else if (tabControl1.SelectedTab == tabChiTietBoSung && (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit))
                 {
+                    detail3.btnNhan.Focus();
                     detail3.btnNhan.PerformClick();
                 }
                 else
@@ -1982,7 +1988,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     //Enable 
                     _tkI.Enabled = true;
-                    KhoaThongTinKH();
+                    KhoaThongTinKH(_MA_GD);
                 }
                 else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
@@ -1993,7 +1999,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 else if (_MA_GD == "3")
                 {
                     _tkI.Enabled = true;
-                    KhoaThongTinKH();
+                    KhoaThongTinKH(_MA_GD);
                 }
             }
             catch (Exception ex)
@@ -2004,7 +2010,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void MoKhoaThongTinKH()
         {
-            txtMaKh.Enabled = true;
+            txtMaKh.EnableTag();
             txtDiaChi.Enabled = true;
             
             txtDiaChi.ReadOnlyTag(false);
@@ -2013,14 +2019,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             txtTenKh.TabStop = true;
         }
 
-        private void KhoaThongTinKH()
+        private void KhoaThongTinKH(string MA_GD)
         {
-            txtMaKh.Enabled = false;
-            //txtDiaChi.Enabled = false;
+            txtMaKh.DisableTag();
             txtMaKh.Text = "";
             txtTenKh.Text = "";
-            //txtDiaChi.Text = "";
             txtMaSoThue.Text = "";
+            
+            // vài trường hợp mở lại.
+            if (MA_GD == "A" || MA_GD == "3")
+            {
+                txtDiaChi.ReadOnlyTag(false);
+                txtTenKh.ReadOnlyTag(false);
+            }
         }
 
         private void XuLyThayDoiMaNt()
@@ -3163,6 +3174,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                                 detail1.MODE = V6Mode.View;
                                 detail3.MODE = V6Mode.View;
                                 GoToFirstFocus(txtMa_sonb);
+                                XuLyKhoaThongTinTheoMaGD();
                             }
                         }
                         else

@@ -66,7 +66,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CP_NT = new V6Controls.Controls.GridView.V6NumberDataGridViewColumn();
             this.CP = new V6Controls.Controls.GridView.V6NumberDataGridViewColumn();
-            this.tabVAT = new System.Windows.Forms.TabPage();
+            this.tabThue = new System.Windows.Forms.TabPage();
             this.gridViewSummary2 = new V6Controls.Controls.GridViewSummary();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.detail2 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -244,7 +244,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             this.tabControl1.SuspendLayout();
             this.tabChiPhi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3ChiPhi)).BeginInit();
-            this.tabVAT.SuspendLayout();
+            this.tabThue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -268,7 +268,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabChiPhi);
-            this.tabControl1.Controls.Add(this.tabVAT);
+            this.tabControl1.Controls.Add(this.tabThue);
             this.tabControl1.Controls.Add(this.tabChiTiet);
             this.tabControl1.Controls.Add(this.tabKhac);
             this.tabControl1.Location = new System.Drawing.Point(9, 181);
@@ -582,18 +582,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             // 
             // tabVAT
             // 
-            this.tabVAT.AccessibleDescription = "APOCTPOCH00050";
-            this.tabVAT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabVAT.Controls.Add(this.gridViewSummary2);
-            this.tabVAT.Controls.Add(this.detail2);
-            this.tabVAT.Controls.Add(this.dataGridView2);
-            this.tabVAT.Location = new System.Drawing.Point(4, 22);
-            this.tabVAT.Name = "tabVAT";
-            this.tabVAT.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVAT.Size = new System.Drawing.Size(879, 192);
-            this.tabVAT.TabIndex = 1;
-            this.tabVAT.Tag = "cancelall";
-            this.tabVAT.Text = "Thuế GTGT";
+            this.tabThue.AccessibleDescription = "APOCTPOCH00050";
+            this.tabThue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThue.Controls.Add(this.gridViewSummary2);
+            this.tabThue.Controls.Add(this.detail2);
+            this.tabThue.Controls.Add(this.dataGridView2);
+            this.tabThue.Location = new System.Drawing.Point(4, 22);
+            this.tabThue.Name = "tabThue";
+            this.tabThue.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThue.Size = new System.Drawing.Size(879, 192);
+            this.tabThue.TabIndex = 1;
+            this.tabThue.Tag = "cancelall";
+            this.tabThue.Text = "Thuế GTGT";
             // 
             // gridViewSummary2
             // 
@@ -3295,7 +3295,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             this.tabChiPhi.ResumeLayout(false);
             this.tabChiPhi.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3ChiPhi)).EndInit();
-            this.tabVAT.ResumeLayout(false);
+            this.tabThue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -3335,7 +3335,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private System.Windows.Forms.GroupBox group5;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabChiTiet;
-        private System.Windows.Forms.TabPage tabVAT;
+        private System.Windows.Forms.TabPage tabThue;
         private V6DateTimePicker dateNgayCT;
         private V6Controls.V6ColorDataGridView dataGridView1;
         private wyDay.Controls.SplitButton btnTim;

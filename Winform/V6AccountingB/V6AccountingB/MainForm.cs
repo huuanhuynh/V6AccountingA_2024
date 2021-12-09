@@ -818,7 +818,7 @@ namespace V6AccountingB
                     right_count++;
                     if (right_count == 3)
                     {
-                        DoEditCorplan(lblStatus2);
+                        DoAddEditCorplan(lblStatus2);
                     }
                 }
                 else
@@ -834,7 +834,7 @@ namespace V6AccountingB
             }
         }
 
-        private void DoEditCorplan(ToolStripStatusLabel statusLabel)
+        private void DoAddEditCorplan(ToolStripStatusLabel statusLabel)
         {
             try
             {
@@ -842,7 +842,8 @@ namespace V6AccountingB
                 if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
 
                 IDictionary<string, object> key = new Dictionary<string, object>();
-                key["ID"] = statusLabel.AccessibleName;
+                string ID = statusLabel.AccessibleName;
+                key["ID"] = ID;
                 
                 FormAddEdit form;
                 if (V6BusinessHelper.CheckDataExist("CorpLan", key))
@@ -863,9 +864,17 @@ namespace V6AccountingB
                 (form.FormControl as CorpLanAddEditForm).AutoID = false;
                 (form.FormControl as CorpLanAddEditForm).LockID(true);
                 form.ShowDialog(this);
-                if (form.UpdateSuccess)
+                if (form.UpdateSuccess || form.InsertSuccess)
                 {
                     statusLabel.Text = form.Data[V6Login.SelectedLanguage].ToString();
+                    if (V6Setting.IsVietnamese && !ObjectAndString.ObjectToBool(form.Data["CHANGE_V"]))
+                    {
+                        CorpLan.RemoveText(ID);
+                    }
+                    else
+                    {
+                        CorpLan.SetText(ID, statusLabel.Text);
+                    }
                 }
             }
             catch (Exception ex)
@@ -883,7 +892,7 @@ namespace V6AccountingB
                     right_count++;
                     if (right_count == 3)
                     {
-                        DoEditCorplan(lblStatus);
+                        DoAddEditCorplan(lblStatus);
                     }
                 }
                 else
