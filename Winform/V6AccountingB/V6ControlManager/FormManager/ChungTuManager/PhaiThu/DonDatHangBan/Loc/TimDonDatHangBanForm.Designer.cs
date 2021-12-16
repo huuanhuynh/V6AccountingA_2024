@@ -1733,9 +1733,9 @@
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6Label v6Label9;
-        private V6Controls.V6DateTimePicker dateNgayCt2;
+        public V6Controls.V6DateTimePicker dateNgayCt2;
         private V6Controls.V6Label v6Label10;
-        private V6Controls.V6DateTimePicker dateNgayCt1;
+        public V6Controls.V6DateTimePicker dateNgayCt1;
         private System.Windows.Forms.GroupBox grbThongTin;
         private V6Controls.V6VvarTextBox txtNhomKH9;
         private V6Controls.V6VvarTextBox txtNhomKH8;

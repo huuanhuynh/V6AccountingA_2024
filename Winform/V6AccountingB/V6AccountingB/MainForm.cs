@@ -860,7 +860,7 @@ namespace V6AccountingB
                     if (ID.Length > 9)
                     {
                         data["SFILE"] = ID.Substring(0, ID.Length - 9);
-                        data["CTYPE"] = ID.Substring(ID.Length - 8, 1);
+                        data["CTYPE"] = ID.Substring(data["SFILE"].ToString().Length, 1);
                     }
                     form = new FormAddEdit("CorpLan", V6Mode.Add, null, data);
                 }

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Globalization;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
@@ -288,6 +289,11 @@ namespace V6AccountingB
         [STAThread]
         private static void Main()
         {
+            //Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

@@ -10331,6 +10331,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         All_Objects["CHON1AM"] = CHON1AM;
                         All_Objects["CHON1AD"] = chonForm._formChungTu_AD;
                         InvokeFormEvent("CHON1" + chonForm._invoice.Mact + Invoice.Mact);
+                        int addCount = 0, failCount = 0; _message = "";
                         
                         // Tạo mới chứng từ
                         Mode = V6Mode.Add;
@@ -10344,9 +10345,112 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             var newData = row.ToDataDictionary();
                             newData["STT_RECDH"] = newData["STT_REC"];
                             newData["STT_REC0DH"] = newData["STT_REC0"];
-                            XuLyThemDetail(newData);
+
+                            string ma_vt = newData["MA_VT"].ToString().Trim();
+                            V6VvarTextBox temp_vt = new V6VvarTextBox()
+                            {
+                                VVar = "MA_VT",
+                            };
+                            temp_vt.Text = ma_vt;
+                            if (temp_vt.LO_YN && temp_vt.DATE_YN)
+                            {
+                                // Tách dòng nhiều lô cộng dồn cho đủ số lượng.
+                                decimal total = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                                decimal total_qd = ObjectAndString.ObjectToDecimal(newData["SL_QD"]);
+                                decimal heso = 1;
+                                string dvt1 = newData["DVT1"].ToString().Trim();
+                                SqlParameter[] plist =
+                                {
+                                    new SqlParameter("@p1", ma_vt),
+                                    new SqlParameter("@p2", dvt1),
+                                };
+                                var dataHeso = V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                                if (dataHeso.Rows.Count > 0)
+                                {
+                                    heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                                }
+                                if (heso == 0) heso = 1;
+                                decimal sum = 0, sum_qd = 0;
+                                var lodate_data = V6BusinessHelper.GetLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+                                FixAlLoDateTon_Chon(lodate_data);
+                                // Get Data
+
+                                for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
+                                {
+                                    DataRow data_row = lodate_data.Rows[i];
+                                    decimal row_ton_dau = ObjectAndString.ObjectToDecimal(data_row["TON_DAU"]);
+                                    decimal row_ton_dau_qd = ObjectAndString.ObjectToDecimal(data_row["TON_DAU_QD"]);
+                                    decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau;
+                                    decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
+                                    newData["MA_KHO_I"] = data_row["MA_KHO"];
+                                    newData["MA_LO"] = data_row["MA_LO"];
+                                    newData["HSD"] = data_row["HSD"];
+                                    newData["DVT"] = data_row["DVT"];
+                                    newData["DVT1"] = dvt1;
+                                    newData["HE_SO"] = heso;
+                                    newData["SO_LUONG"] = insert;
+                                    newData["SO_LUONG1"] = insert / heso;
+                                    decimal gia2 = ObjectAndString.ObjectToDecimal(row["GIA2"]);
+                                    decimal tien_nt2 = V6BusinessHelper.Vround(insert * gia2, M_ROUND_NT);
+                                    newData["TIEN_NT2"] = tien_nt2;
+                                    newData["TIEN2"] = V6BusinessHelper.Vround(tien_nt2 * txtTyGia.Value, M_ROUND);
+                                    if (_maNt == _mMaNt0)
+                                    {
+                                        newData["TIEN2"] = tien_nt2;
+                                    }
+                                    if (M_SOA_MULTI_VAT == "1")
+                                    {
+                                        decimal thue_suat = ObjectAndString.ObjectToDecimal(row["THUE_SUAT_I"]);
+                                        decimal thue_nt = V6BusinessHelper.Vround(thue_suat * tien_nt2, M_ROUND_NT);
+                                        newData["THUE_NT"] = thue_nt;
+                                        newData["THUE"] = V6BusinessHelper.Vround(thue_nt * txtTyGia.Value, M_ROUND);
+                                        if (_maNt == _mMaNt0)
+                                        {
+                                            newData["THUE"] = thue_nt;
+                                        }
+                                    }
+                                    var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
+                                    if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                                    {
+                                        newData["SL_QD"] = insert_qd;
+                                    }
+                                    else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                                    {
+                                        newData["SL_QD"] = insert / HS_QD1;
+                                    }
+
+                                    if (XuLyThemDetail(newData))
+                                    {
+                                        addCount++;
+                                        All_Objects["data"] = newData;
+                                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                                    }
+                                    else failCount++;
+
+                                    sum += insert;
+                                    sum_qd += insert_qd;
+                                    if (sum == total)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (XuLyThemDetail(newData))
+                                {
+                                    addCount++;
+                                    All_Objects["data"] = newData;
+                                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                                }
+                                else failCount++;
+
+                            }
+                            
                         }
 
+                        V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                         detail1.MODE = V6Mode.View;
                     }
                     btnSua.Focus();
