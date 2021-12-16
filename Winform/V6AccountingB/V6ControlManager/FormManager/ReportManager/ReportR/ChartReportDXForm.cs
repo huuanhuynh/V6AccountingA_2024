@@ -3,6 +3,7 @@ using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Windows.Forms;
 using V6ControlManager.FormManager.ReportManager.DXreport;
 using V6ControlManager.FormManager.ReportManager.Filter;
@@ -21,19 +22,20 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
 
         private FilterBase _filter;
-        private string _rptFile;
+        private string _reportFileF7;
         private XtraReport _repx;
+        private string _loadedFile = null;
         private DataSet _ds;
         private DataTable _tbl, _tbl2;
         private IDictionary<string, object> _rptParameters;
-        public ChartReportDXForm(FilterBase filter, string rptFile, DataTable tbl, DataTable tbl2,
+        public ChartReportDXForm(FilterBase filter, string reportFileF7, DataTable tbl, DataTable tbl2,
             IDictionary<string, object> reportDocumentParameters)
         {
-            V6ControlFormHelper.AddLastAction(GetType() + " " + rptFile);
+            V6ControlFormHelper.AddLastAction(GetType() + " " + reportFileF7);
             InitializeComponent();
 
             _filter = filter;
-            _rptFile = rptFile;
+            _reportFileF7 = reportFileF7.ToUpper();
             _tbl = tbl;
             _tbl2 = tbl2;
             _rptParameters = reportDocumentParameters;
@@ -61,22 +63,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 tbl.Columns.Add("Value", typeof(string));
                 var newRow = tbl.NewRow();
                 newRow["Name"] = "Biểu đồ cột";
-                newRow["Value"] = _rptFile;
+                newRow["Value"] = _reportFileF7;
                 tbl.Rows.Add(newRow);
                 
                 newRow = tbl.NewRow();
                 newRow["Name"] = "Biểu đồ cột 3D";
-                newRow["Value"] = _rptFile.Left(_rptFile.Length - 4) + "1.rpt";
+                newRow["Value"] = _reportFileF7.Left(_reportFileF7.Length - 5) + "1.repx";
                 tbl.Rows.Add(newRow);
 
                 newRow = tbl.NewRow();
                 newRow["Name"] = "Biểu đồ tròn";
-                newRow["Value"] = _rptFile.Left(_rptFile.Length - 4) + "2.rpt";
+                newRow["Value"] = _reportFileF7.Left(_reportFileF7.Length - 5) + "2.repx";
                 tbl.Rows.Add(newRow);
 
                 newRow = tbl.NewRow();
                 newRow["Name"] = "Biểu đồ tròn 3D";
-                newRow["Value"] = _rptFile.Left(_rptFile.Length - 4) + "3.rpt";
+                newRow["Value"] = _reportFileF7.Left(_reportFileF7.Length - 5) + "3.repx";
                 tbl.Rows.Add(newRow);
 
                 AddChartTypeList(tbl);
@@ -141,37 +143,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     string[] fields = cboLoaiReport.SelectedValue.ToString().Trim().Split(',');
                     var tbl = GetChartData(_tbl, fields);
                     var tbl2 = _tbl2.Copy();
+                    if (!File.Exists(repxFile) && _loadedFile != null && File.Exists(_loadedFile))
+                    {
+                        File.Copy(_loadedFile, repxFile);
+                    }
                     _repx = DXreportManager.LoadV6XtraReportFromFile(repxFile);
+                    _loadedFile = repxFile;
                     _repx.PrintingSystem.ShowMarginsWarning = false;
                     DataSet ds = new DataSet();
                     ds.Tables.Add(tbl);
                     ds.Tables.Add(tbl2);
                     _ds = ds;
                     _repx.DataSource = ds;
-
-                    //parameters
-                    //if (_rptParameters != null)
-                    //{
-                    //    string errors = "";
-                    //    foreach (KeyValuePair<string, object> item in _rptParameters)
-                    //    {
-                    //        try
-                    //        {
-                    //            _repx.SetParameterValue(item.Key, item.Value);
-                    //        }
-                    //        catch (Exception ex)
-                    //        {
-                    //            errors += item.Key + " " + ex.Message + "\n";
-                    //        }
-                    //    }
-
-                    //    if (errors.Length > 0)
-                    //    {
-                    //        this.WriteToLog(GetType() + ".LoadReport Set_rptParameters", errors);
-                    //        this.ShowWarningMessage("Lỗi tham số:\n" + errors);
-                    //    }
-                    //}
-
+                    
                     SetAllReportParams(_repx);
 
                     documentViewer1.DocumentSource = _repx;
