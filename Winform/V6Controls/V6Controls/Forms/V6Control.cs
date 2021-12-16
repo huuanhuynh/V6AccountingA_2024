@@ -213,17 +213,17 @@ namespace V6Controls.Forms
         }
 
 
-        private bool ApplyControlTripleClick;
+        public bool AppliedControlTripleClick;
 
         public void LoadLanguage()
         {
             if (V6Setting.NotLoggedIn) return;
             
             V6ControlFormHelper.SetFormText(this);
-            if (!ApplyControlTripleClick)
-            {
-                ApplyControlTripleClick = true;
+            if (!AppliedControlTripleClick)
+            {   
                 V6ControlFormHelper.ApplyControlTripleClick(this);
+                AppliedControlTripleClick = true;
             }
         }
         

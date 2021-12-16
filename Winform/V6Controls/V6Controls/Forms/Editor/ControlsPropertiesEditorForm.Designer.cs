@@ -47,6 +47,7 @@
             this.lblControlType = new System.Windows.Forms.Label();
             this.lblControlName = new System.Windows.Forms.Label();
             this.btnDefaultData = new System.Windows.Forms.Button();
+            this.btnEditCorplan = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -248,6 +249,17 @@
             this.btnDefaultData.UseVisualStyleBackColor = true;
             this.btnDefaultData.Click += new System.EventHandler(this.btnDefaultData_Click);
             // 
+            // btnEditCorplan
+            // 
+            this.btnEditCorplan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditCorplan.Location = new System.Drawing.Point(647, 5);
+            this.btnEditCorplan.Name = "btnEditCorplan";
+            this.btnEditCorplan.Size = new System.Drawing.Size(84, 29);
+            this.btnEditCorplan.TabIndex = 11;
+            this.btnEditCorplan.Text = "Sửa &ngôn ngữ";
+            this.btnEditCorplan.UseVisualStyleBackColor = true;
+            this.btnEditCorplan.Click += new System.EventHandler(this.btnEditCorplan_Click);
+            // 
             // ControlsPropertiesEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,6 +269,7 @@
             this.Controls.Add(this.lblControlType);
             this.Controls.Add(this.btnNhapXml);
             this.Controls.Add(this.btnDefaultData);
+            this.Controls.Add(this.btnEditCorplan);
             this.Controls.Add(this.btnXuatXml);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.panel1);
@@ -289,5 +302,6 @@
         private System.Windows.Forms.Label lblControlType;
         private System.Windows.Forms.Label lblControlName;
         private System.Windows.Forms.Button btnDefaultData;
+        private System.Windows.Forms.Button btnEditCorplan;
     }
 }

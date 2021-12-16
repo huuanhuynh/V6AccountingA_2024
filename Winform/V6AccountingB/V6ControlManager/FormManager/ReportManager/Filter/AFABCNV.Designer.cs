@@ -231,7 +231,7 @@
             this.txtdau_cuoi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtdau_cuoi.HoverColor = System.Drawing.Color.Yellow;
             this.txtdau_cuoi.LeaveColor = System.Drawing.Color.White;
-            this.txtdau_cuoi.LimitCharacters = "1,2";
+            this.txtdau_cuoi.LimitCharacters = "1;2";
             this.txtdau_cuoi.Location = new System.Drawing.Point(117, 60);
             this.txtdau_cuoi.MaxLength = 1;
             this.txtdau_cuoi.MaxNumLength = 1;

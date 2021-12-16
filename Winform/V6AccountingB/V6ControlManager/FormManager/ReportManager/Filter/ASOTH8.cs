@@ -171,8 +171,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var loai0 = ObjectAndString.ObjectToInt(txtLoaiBaoCao.Text);
             var loai1 = ObjectAndString.ObjectToInt(txtChiTietTheo.Text);
 
-            var list1 = "1,2,3,4,5";
-            var list2 = "MA_VT,MA_KH,MA_VV,MA_NX,MA_BP".Split(',');
+            var list1 = "1,2,3,4,5,6,7,8";
+            var list2 = "MA_VT,MA_KH,MA_VV,MA_NX,MA_BP,MA_NVIEN,MA_BPHT,MA_DVCS".Split(',');
             if (loai0 > 0 && loai0 <= list2.Length) Group = list2[loai0 - 1];
 
             result.Add(new SqlParameter("@Group", Group));

@@ -5,7 +5,10 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using V6AccountingBusiness;
+using V6Controls.Controls;
 using V6Init;
+using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 
@@ -191,6 +194,47 @@ namespace V6Controls.Forms.Editor
                     _ds.WriteXml(fs);
                     fs.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + ".SaveMainControlDataXml", ex);
+            }
+        }
+
+        private void ShowEditCorplan()
+        {
+            try
+            {
+                string Corplan = V6TableName.CorpLan.ToString();
+                string initFilter = "";
+                var idList = V6ControlFormHelper.GetForm_Descriptions_Text(_mainControl);
+                foreach (KeyValuePair<string, string> item in idList)
+                {
+                    if (string.IsNullOrEmpty(item.Key) || item.Key.Length < 8) continue;
+
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    data["ID"] = item.Key;
+                    bool check = V6BusinessHelper.CheckDataExist(Corplan, data);
+                    if (!check)
+                    {
+                        data["SNAME"] = ChuyenMaTiengViet.ToUnSign(ObjectAndString.TrimSpecial(item.Value, " ").ToUpper());
+                        data["D"] = item.Value;
+                        data["V"] = item.Value;
+                        data["E"] = item.Value;
+                        if (item.Key.Length > 9)
+                        {
+                            data["SFILE"] = item.Key.Substring(0, item.Key.Length - 9);
+                            data["CTYPE"] = item.Key.Substring(item.Key.Length - 8, 1);
+                        }
+
+                        V6BusinessHelper.Insert(Corplan, data);
+                    }
+                    initFilter += string.Format(" or ID='{0}'", item.Key);
+                }
+                if (initFilter.Length > 3) initFilter = initFilter.Substring(3);
+
+                var view = new CategoryView("itemid", "title", "CorpLan", initFilter, "ID", null);
+                view.ShowToForm(this, "Language");
             }
             catch (Exception ex)
             {
@@ -406,6 +450,11 @@ namespace V6Controls.Forms.Editor
         private void btnXuatXml_Click(object sender, EventArgs e)
         {
             SaveMainControlDataXml();
+        }
+
+        private void btnEditCorplan_Click(object sender, EventArgs e)
+        {
+            ShowEditCorplan();
         }
 
         private void btnDefaultData_Click(object sender, EventArgs e)

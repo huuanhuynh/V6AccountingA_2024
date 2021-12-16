@@ -857,6 +857,11 @@ namespace V6AccountingB
                     data["D"] = statusLabel.Text;
                     data["V"] = statusLabel.Text;
                     data["E"] = statusLabel.Text;
+                    if (ID.Length > 9)
+                    {
+                        data["SFILE"] = ID.Substring(0, ID.Length - 9);
+                        data["CTYPE"] = ID.Substring(ID.Length - 8, 1);
+                    }
                     form = new FormAddEdit("CorpLan", V6Mode.Add, null, data);
                 }
 

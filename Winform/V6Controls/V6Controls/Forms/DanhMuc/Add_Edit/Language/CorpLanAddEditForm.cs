@@ -69,6 +69,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 num = ObjectAndString.ObjectToInt(txtID.Text.Right(5));
+                AutoID = false;
+                LockID(true);
             }
             catch (Exception ex)
             {

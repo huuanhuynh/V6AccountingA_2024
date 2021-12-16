@@ -2954,7 +2954,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             V6ControlsHelper.DisableLookup = false;
             SetBaseInitFilterAll();
             //Gán ngôn ngữ, Sửa AccessibleName trên Form
-            LoadLanguage() ;
+            //LoadLanguage() ;
         }
 
         /// <summary>

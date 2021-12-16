@@ -1295,6 +1295,19 @@ namespace V6Controls.Controls
                 }
                 string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
                     ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6LookupConfig.vFields : _v6LookupConfig.eFields);
+                if (fields.Length == 0 && _MA_DM == "CORPLAN")
+                {
+                    // Hỗ trợ cho CorpLan
+                    fields = new[] { "Sfile", "ID", "Ctype", "D", "V", "E" };
+                }
+                else if (fields.Length == 0 && _MA_DM == "CORPLAN1")
+                {
+                    fields = new[] { "ID", "Ctype", "D", "V", "E" };
+                }
+                else if (fields.Length == 0 && _MA_DM == "CORPLAN2")
+                {
+                    fields = new[] { "ID", "Ctype", "D", "V", "E" };
+                }
                 _filterForm = new FilterForm(structTable, fields);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;
