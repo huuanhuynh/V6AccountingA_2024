@@ -3520,6 +3520,76 @@ namespace V6Controls.Forms
             return result;
         }
 
+        /// <summary>
+        /// Phục vụ cho ngôn ngữ. Không lấy các input.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetForm_Descriptions_Text(Control control)
+        {
+            var result = new Dictionary<string, string>();
+            if (!string.IsNullOrEmpty(control.AccessibleDescription)
+               && !control.AccessibleDescription.Contains(".")
+               && !control.AccessibleDescription.Contains(",")
+               && string.IsNullOrEmpty(control.AccessibleName))
+                result[control.AccessibleDescription] = control.Text;
+            var menuControl = control as MenuControl;
+            if (menuControl != null)
+            {
+                foreach (MenuButton b in menuControl.Buttons)
+                {
+                    if (!string.IsNullOrEmpty(b.AccessibleDescription))
+                    {
+                        result[b.AccessibleDescription] = b.Text;
+                    }
+                }
+            }
+
+            if (control.ContextMenuStrip != null)
+            {
+                foreach (ToolStripMenuItem menu_item in control.ContextMenuStrip.Items)
+                {
+                    if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                    {
+                        result[menu_item.AccessibleDescription] = menu_item.Text;
+                    }
+                }
+            }
+            if (control is DropDownButton)
+            {
+                var button = control as DropDownButton;
+                if (button.Menu != null)
+                {
+                    foreach (ToolStripMenuItem menu_item in button.Menu.Items)
+                    {
+                        if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                        {
+                            result[menu_item.AccessibleDescription] = menu_item.Text;
+                        }
+                    }
+                }
+            }
+            if (control.Controls.Count > 0)
+            {
+                foreach (Control c in control.Controls)
+                {
+                    result.AddRange(GetForm_Descriptions_Text(c));
+                }
+            }
+            else if (control is StatusStrip)
+            {
+                var sts = (StatusStrip)control;
+                foreach (ToolStripItem item in sts.Items)
+                {
+                    if (!string.IsNullOrEmpty(item.AccessibleDescription))
+                    {
+                        result[item.AccessibleDescription] = item.Text;
+                    }
+                }
+            }
+            return result;
+        }
+
         #endregion
 
         
@@ -6818,6 +6888,7 @@ namespace V6Controls.Forms
 
         private static void ApplyControlTripleClickRecusive(Control control)
         {
+            if (control is V6Control && ((V6Control)control).AppliedControlTripleClick) return;
             foreach (Control c in control.Controls)
             {
                 c.MouseUp += c_MouseDClick;
@@ -6827,6 +6898,7 @@ namespace V6Controls.Forms
                     ApplyControlTripleClickRecusive(c);
                 }
             }
+            if (control is V6Control) ((V6Control)control).AppliedControlTripleClick = true;
         }
 
         /// <summary>
@@ -6839,29 +6911,88 @@ namespace V6Controls.Forms
         {
             var control = sender as Control;
             if (control == null) return;
+            string ID = control.AccessibleDescription;
             if (e.Button == MouseButtons.Middle)
             {
                 var message = string.Format("{0}({1}), Aname({2}), Adescription({3}).",
-                    control.GetType(), control.Name, control.AccessibleName, control.AccessibleDescription);
+                    control.GetType(), control.Name, control.AccessibleName, ID);
                 
                 SetStatusText(message);
                 Clipboard.SetText(message);
             }
-            else if (e.Button == MouseButtons.Right && !string.IsNullOrEmpty(control.AccessibleDescription)
-                && !control.AccessibleDescription.Contains(',') && !control.AccessibleDescription.Contains(';'))
+            else if (e.Button == MouseButtons.Right && !string.IsNullOrEmpty(ID) && !ID.Contains(',') && !ID.Contains(';'))
             {
-                if (string.IsNullOrEmpty(control.AccessibleDescription))
+                if (control is DropDownButton)
                 {
-                    var vf = (V6FormControl) FindParent<V6FormControl>(control);
-                    if (vf != null) vf.ShowMainMessage("No AccessibleDescription.");
+                    var dButton = control as DropDownButton;
+                    string Corplan = "CORPLAN";
+                    string initFilter = "";
+                    //if (!string.IsNullOrEmpty(ID))
+                    {
+                        Dictionary<string, object> data = new Dictionary<string, object>();
+                        data["ID"] = ID;
+                        bool check = V6BusinessHelper.CheckDataExist(Corplan, data);
+                        if (!check)
+                        {
+                            data["SNAME"] = ChuyenMaTiengViet.ToUnSign(ObjectAndString.TrimSpecial(control.Text, " ").ToUpper());
+                            data["D"] = control.Text;
+                            data["V"] = control.Text;
+                            data["E"] = control.Text;
+                            if (ID.Length > 9)
+                            {
+                                data["SFILE"] = ID.Substring(0, ID.Length - 9);
+                                data["CTYPE"] = ID.Substring(data["SFILE"].ToString().Length, 1);
+                            }
+
+                            V6BusinessHelper.Insert(Corplan, data);
+                        }
+                        initFilter += string.Format(" or ID='{0}'", ID);
+                    }
+
+                    foreach(ToolStripMenuItem item in dButton.Menu.Items){
+                        string item_ID = item.AccessibleDescription;
+                        if (string.IsNullOrEmpty(item_ID)) continue;
+                        
+                        Dictionary<string, object> data = new Dictionary<string, object>();
+                        data["ID"] = item_ID;
+                        bool check = V6BusinessHelper.CheckDataExist(Corplan, data);
+                        if (!check)
+                        {
+                            data["SNAME"] = ChuyenMaTiengViet.ToUnSign(ObjectAndString.TrimSpecial(item.Text, " ").ToUpper());
+                            data["D"] = item.Text;
+                            data["V"] = item.Text;
+                            data["E"] = item.Text;
+                            if (item_ID.Length > 9)
+                            {
+                                data["SFILE"] = item_ID.Substring(0, item_ID.Length - 9);
+                                data["CTYPE"] = item_ID.Substring(data["SFILE"].ToString().Length, 1);
+                            }
+
+                            V6BusinessHelper.Insert(Corplan, data);
+                        }
+                        initFilter += string.Format(" or ID='{0}'", item_ID);
+                    }
+                    if (initFilter.Length > 3) initFilter = initFilter.Substring(3);
+
+                    var view = new CategoryView("itemid", "title", "CorpLan", initFilter, "ID", null);
+                    view.ShowToForm(control.FindForm(), "Language");
                 }
                 else
                 {
-                    if (sender is V6Label) return;
-                    new FormChangeControlLanguageText(control).ShowDialog(control);
+                    if (string.IsNullOrEmpty(control.AccessibleDescription))
+                    {
+                        var vf = (V6FormControl)FindParent<V6FormControl>(control);
+                        if (vf != null) vf.ShowMainMessage("No AccessibleDescription.");
+                    }
+                    else
+                    {
+                        if (sender is V6Label) return;
+                        new FormChangeControlLanguageText(control).ShowDialog(control);
+                    }
                 }
             }
         }
+
 
         /// <summary>
         /// Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo

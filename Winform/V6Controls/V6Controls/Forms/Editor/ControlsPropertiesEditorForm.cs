@@ -224,7 +224,7 @@ namespace V6Controls.Forms.Editor
                         if (item.Key.Length > 9)
                         {
                             data["SFILE"] = item.Key.Substring(0, item.Key.Length - 9);
-                            data["CTYPE"] = item.Key.Substring(item.Key.Length - 8, 1);
+                            data["CTYPE"] = item.Key.Substring(data["SFILE"].ToString().Length, 1);
                         }
 
                         V6BusinessHelper.Insert(Corplan, data);
