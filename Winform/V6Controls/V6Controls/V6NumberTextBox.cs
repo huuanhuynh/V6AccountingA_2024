@@ -18,10 +18,10 @@ namespace V6Controls
         //public string LimitCharacters { get; private set; }
         //public override string Text { get; private set; }
 
-        protected int _decimals = 3;
+        protected int _decimals = 0;
 
         [Description("Số chữ số phần lẽ (phần thập phân)")]
-        [DefaultValue(3)]
+        [DefaultValue(0)]
         [Category("V6")]
         public int DecimalPlaces
         {
