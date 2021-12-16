@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using V6Tools.V6Objects;
 
 namespace V6ThuePost.MInvoiceObject.Request
@@ -42,4 +44,40 @@ namespace V6ThuePost.MInvoiceObject.Request
     //    /// </summary>
     //    public List<InvoiceData> data;
     //}
+
+    public class MInvoicePostObject_View
+    {
+        private MInvoicePostObject _obj;
+        public MInvoicePostObject_View(MInvoicePostObject obj)
+        {
+            _obj = obj;
+        }
+
+        [Description("Ngày chứng từ.")]
+        [Category("GeneralInvoiceInfo")]
+        public DateTime inv_invoiceIssuedDate {
+            get
+            {
+                return (DateTime)_obj.data[0]["inv_invoiceIssuedDate"];
+            }
+            set
+            {
+                _obj.data[0]["inv_invoiceIssuedDate"] = value;
+            }
+        }
+
+        [Description("Số sê-ri.")]
+        [Category("GeneralInvoiceInfo")]
+        public string inv_invoiceSeries
+        {
+            get
+            {
+                return (string)_obj.data[0]["inv_invoiceSeries"];
+            }
+            set
+            {
+                _obj.data[0]["inv_invoiceSeries"] = value;
+            }
+        }
+    }
 }

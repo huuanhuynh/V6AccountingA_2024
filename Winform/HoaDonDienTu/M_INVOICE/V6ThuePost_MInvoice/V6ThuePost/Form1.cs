@@ -27,14 +27,18 @@ namespace V6ThuePost
         }
 
         private MInvoicePostObject _jsonBodyObject = null;
+        private MInvoicePostObject_View _jsonBodyObject_View = null;
         private void btnRead_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
-            Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+            if (string.IsNullOrEmpty(Program._version))
             {
-                Field = "adjustmentType",
-                Value = "1",
-            };
+                Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                {
+                    Field = "adjustmentType",
+                    Value = "1",
+                };
+            }            
 
             if (!string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
@@ -52,6 +56,8 @@ namespace V6ThuePost
             //};
 
             _jsonBodyObject = Program.ReadData_Minvoice(txtDbfFile.Text, "M");
+            _jsonBodyObject_View = new MInvoicePostObject_View(_jsonBodyObject);
+            propertyGrid1.SelectedObject = _jsonBodyObject_View;
             txtUsername.Text = Program.username;
             txtPassword.Text = Program.password;
             txtMaDVCS.Text = Program._ma_dvcs;
@@ -125,20 +131,21 @@ namespace V6ThuePost
             try
             {
                 //responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(v6Return.RESULT_STRING);
-                if (!string.IsNullOrEmpty(responseObject.Message))
+                if (!string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
                 {
-                    message += " " + responseObject.Message;
+                    message += " " + v6Return.RESULT_ERROR_MESSAGE;
                 }
-                if (!string.IsNullOrEmpty(responseObject.error))
+                else if (Program._version == "78")
                 {
-                    message += " " + responseObject.error;
+                    message += "Số HD:" + v6Return.SO_HD + ", ID:" + v6Return.ID + ", SECRET_CODE:" + v6Return.SECRET_CODE;
+                    Program.WriteFlag(Program.flagFileName4, "" + v6Return.SO_HD + ":" + v6Return.ID + ":" + v6Return.SECRET_CODE);
+                    File.Create(Program.flagFileName2).Close();
                 }
-
-                if (responseObject.ok == "true" && responseObject.data != null && responseObject.data.ContainsKey("inv_invoiceNumber")
+                else if (responseObject.ok == "true" && responseObject.data != null && responseObject.data.ContainsKey("inv_invoiceNumber")
                             && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
                 {
                     message += " " + responseObject.data["inv_invoiceNumber"];
-                    Program.WriteFlag(Program.flagFileName4, "" + responseObject.data["inv_invoiceNumber"]);
+                    Program.WriteFlag(Program.flagFileName4, "" + v6Return.SO_HD + ":" + v6Return.ID + ":" + v6Return.SECRET_CODE);
                     File.Create(Program.flagFileName2).Close();
                 }
             }
@@ -163,6 +170,11 @@ namespace V6ThuePost
             {
                 BaseMessage.Show(ex.Message, this);
             }
+        }
+
+        private void propertyGrid1_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            richTextBox1.Text = _jsonBodyObject.ToJson();
         }
     }//End class
 }//End namespace

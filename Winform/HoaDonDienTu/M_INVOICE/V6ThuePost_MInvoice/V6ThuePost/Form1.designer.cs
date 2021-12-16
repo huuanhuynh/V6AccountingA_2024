@@ -51,13 +51,14 @@
             this.txtMaDVCS = new System.Windows.Forms.TextBox();
             this.btnPDF = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSend.Enabled = false;
-            this.btnSend.Location = new System.Drawing.Point(534, 644);
+            this.btnSend.Location = new System.Drawing.Point(882, 644);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 10;
@@ -72,7 +73,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(12, 95);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(592, 457);
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(597, 457);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
             // 
@@ -82,7 +84,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Location = new System.Drawing.Point(9, 555);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(595, 60);
+            this.lblResult.Size = new System.Drawing.Size(943, 60);
             this.lblResult.TabIndex = 8;
             this.lblResult.Text = "content";
             // 
@@ -92,7 +94,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Location = new System.Drawing.Point(9, 615);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(519, 29);
+            this.label2.Size = new System.Drawing.Size(867, 29);
             this.label2.TabIndex = 9;
             this.label2.Text = "errorMessage";
             // 
@@ -213,7 +215,7 @@
             // 
             this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTest.Enabled = false;
-            this.btnTest.Location = new System.Drawing.Point(534, 621);
+            this.btnTest.Location = new System.Drawing.Point(882, 621);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
             this.btnTest.TabIndex = 10;
@@ -245,7 +247,7 @@
             // 
             this.btnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPDF.Enabled = false;
-            this.btnPDF.Location = new System.Drawing.Point(441, 644);
+            this.btnPDF.Location = new System.Drawing.Point(789, 644);
             this.btnPDF.Name = "btnPDF";
             this.btnPDF.Size = new System.Drawing.Size(75, 23);
             this.btnPDF.TabIndex = 11;
@@ -253,11 +255,22 @@
             this.btnPDF.UseVisualStyleBackColor = true;
             this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
             // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.propertyGrid1.Location = new System.Drawing.Point(615, 26);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(342, 526);
+            this.propertyGrid1.TabIndex = 12;
+            this.propertyGrid1.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.propertyGrid1_PropertyValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 679);
+            this.ClientSize = new System.Drawing.Size(964, 679);
+            this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.btnPDF);
             this.Controls.Add(this.txtMaDVCS);
             this.Controls.Add(this.txtPassword);
@@ -309,6 +322,7 @@
         private System.Windows.Forms.TextBox txtMaDVCS;
         private System.Windows.Forms.Button btnPDF;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.PropertyGrid propertyGrid1;
     }
 }
 

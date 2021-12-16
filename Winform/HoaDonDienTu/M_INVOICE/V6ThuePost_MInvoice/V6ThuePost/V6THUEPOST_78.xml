@@ -1,0 +1,88 @@
+﻿<?xml version="1.0"?>
+<Root>
+  <V6Info Field='username' 	Value='cua0R899Cz0='/>
+  <V6Info Field='password' 	Value='S8lLLN4wnT8='/>
+  <V6Info Field='ma_dvcs' 	Value='V6SOFT'  Type='ENCRYPT'/>
+  <V6Info Field='codetax' 	Value='V6SOFT'/>
+  
+	<V6Info Field='partten' 	Value='MA_MAUHD' Type=''/>
+	<V6Info Field='seri' 	Value='SO_SERI'/>
+  
+	<V6Info Field='certificateSerial' 	Value='V6SOFT'/>
+  <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
+  <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
+  
+	<V6Info Field='baselink' 	Value='TLa5HcR9C6QSgcEK6oDnU52nCyG19cGUdtptWLlTyzI0A4nRnbiYqg==' Type=''/>
+  <V6Info Field='site' 	Value='http://demohoadon.minvoice.com.vn/#!/login' Type=''/>
+  <V6Info Field='version' 	Value='fOda0JJ/h/k=' Type=''/>
+	
+	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+	<!--Các thông tin đơn vị được in trên hóa đơn-->
+  <GeneralInvoiceInfo Field='tdlap' 	Value='07/07/2018' FieldV6='ngay_ct' Type='Field'	DataType='Date'/>
+  <GeneralInvoiceInfo Field='khieu'	Value='1C21TSB' 	FieldV6='SO_SERI' 	Type=''/>
+  <GeneralInvoiceInfo Field='sdhang' 	Value=''   FieldV6=''  Type='Field'/>
+  <GeneralInvoiceInfo Field='dvtte' 	Value='VND'/>
+  <GeneralInvoiceInfo Field='tgia' 	Value='1'   FieldV6='TY_GIA'  Type='Field'/>
+  <GeneralInvoiceInfo Field='htttoan' 	Value='Tiền mặt/Chuyển khoản'	Type='Field'	FieldV6='TEN_HTTT'/>
+
+  <BuyerInfo Field='mnmua' 			FieldV6='MA_KH' 			Type='Field'  DataType='UPPER'/>
+  <BuyerInfo Field='tnmua' 	FieldV6='ONG_BA'			Type='Field'/>
+  <BuyerInfo Field='ten' 			FieldV6='TEN_KH' 			Type='Field'  DataType='UPPER'/>
+  <BuyerInfo Field='mst' 			FieldV6='MA_SO_THUE'		Type='Field'/>
+  <BuyerInfo Field='dchi' 			FieldV6='dia_chi'			Type='Field'/>
+  <BuyerInfo Field='email' 			FieldV6='E_MAIL'			Type='Field'/>
+  <BuyerInfo Field='stknmua' 			FieldV6=''			Type='Field'/>
+  <BuyerInfo Field='nganhang_ngmua' 			FieldV6=''			Type='Field'/>
+  
+	<SellerInfo Field='stknban' 	Value=''/>
+	<SellerInfo Field='nganhang_ngban' 	Value=''/>
+	
+  <!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
+	<ItemInfo	Field='stt'		FieldV6='stt'	Type='Field'/>
+	<ItemInfo	Field='ma'	FieldV6='ma_vt'		Type='Field'/>
+	<ItemInfo	Field='ten'	FieldV6='ma_vt+"->"+ten_vt'	Type='Field'/>
+	<ItemInfo	Field='tchat' Value='1'		FieldV6=''	Type='Field'  DataType='int'  Note='1hhdv_2km_3cktm_4ghichu'/>
+	<ItemInfo	Field='mdvtinh'		FieldV6='dvt'	Type='Field'/>
+	<ItemInfo	Field='sluong'	FieldV6='so_luong'	Type='Field'/>
+	<ItemInfo	Field='dgia'	FieldV6='gia2'	Type='Field'/>
+	<ItemInfo	Field='thtien'	FieldV6='tien2'	Type='Field'/>
+	
+  <ItemInfo	Field='tsuat'	FieldV6='THUE_SUAT'	Type='Field'/>
+  <ItemInfo	Field='tthue'	FieldV6='thue'	Type='Field'/>
+  <ItemInfo	Field='ptthue'	FieldV6='THUE_SUAT'	Type='Field'/>
+	<ItemInfo	Field='tlckhau'	FieldV6='PT_CKI'	Type='Field'/>
+	<ItemInfo	Field='stckhau'	FieldV6='CK'	Type='Field'/>
+  <ItemInfo	Field='tgtien'	FieldV6='TIEN2'	Type='Field'/>
+  
+
+  <SummarizeInfo	Field='tgtcthue'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtcthue10'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtcthue5'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtcthue0'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtcthuekct'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtcthuekkk'		FieldV6='T_TIEN2'	Type='Field'/>
+  
+  <SummarizeInfo	Field='ttcktmai'		FieldV6='T_CK'	Type='Field'/>
+  <SummarizeInfo0	Field='ttcktmai10'		FieldV6='T_CK'	Type='Field'/>
+  <SummarizeInfo0	Field='ttcktmai5'		FieldV6='T_CK'	Type='Field'/>
+  <SummarizeInfo0	Field='ttcktmai0'		FieldV6='T_CK'	Type='Field'/>
+  <SummarizeInfo0	Field='ttcktmaikct'		FieldV6='T_CK'	Type='Field'/>
+  <SummarizeInfo0	Field='ttcktmaikkk'		FieldV6='T_CK'	Type='Field'/>
+  
+  <SummarizeInfo	Field='tgtthue'		FieldV6='T_THUE'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtthue10'		FieldV6='T_THUE'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtthue5'		FieldV6='T_THUE'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtthue0'		FieldV6='T_THUE'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtthuekct'		FieldV6='T_THUE'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtthuekkk'		FieldV6='T_THUE'	Type='Field'/>
+  
+  <SummarizeInfo	Field='tgtttbso'		FieldV6='T_TT'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtttbso10'		FieldV6='T_TT'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtttbso5'		FieldV6='T_TT'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtttbso0'		FieldV6='T_TT'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtttbsokct'		FieldV6='T_TT'	Type='Field'/>
+  <SummarizeInfo0	Field='tgtttbsokkk'		FieldV6='T_TT'	Type='Field'/>
+  
+  <SummarizeInfo	Field='tgtttbchu'		FieldV6='T_TT'	Type='Field:N2C'/>
+  
+</Root>	

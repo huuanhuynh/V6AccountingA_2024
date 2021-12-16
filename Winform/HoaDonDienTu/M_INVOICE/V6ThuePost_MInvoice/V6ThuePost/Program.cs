@@ -14,6 +14,7 @@ using V6ThuePost.MInvoiceObject.Request;
 using V6ThuePost.MInvoiceObject.Response;
 using V6ThuePost.ResponseObjects;
 using V6ThuePostMInvoiceApi;
+using System.Globalization;
 
 namespace V6ThuePost
 {
@@ -106,6 +107,11 @@ namespace V6ThuePost
         [STAThread]
         static void Main(string[] args)
         {
+            //Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+
             var startupPath = Application.StartupPath;
             var dir = new DirectoryInfo(startupPath);
             var dir_name = dir.Name.ToLower();

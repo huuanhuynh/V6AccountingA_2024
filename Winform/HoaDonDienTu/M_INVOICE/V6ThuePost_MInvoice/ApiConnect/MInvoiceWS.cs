@@ -333,7 +333,7 @@ namespace V6ThuePostMInvoiceApi
                         v6return.RESULT_MESSAGE = "" + responseObject78.message;
                         if(responseObject78.code != "00")
                         {
-                            v6return.RESULT_ERROR_MESSAGE = "" + responseObject78.code + responseObject78.message;
+                            v6return.RESULT_ERROR_MESSAGE = "Code:" + responseObject78.code + " message:" + responseObject78.message;
                         }
                         else if (responseObject78.data != null && responseObject78.data.ContainsKey("shdon"))
                         {

@@ -56,7 +56,7 @@
   <ItemInfo	Field='inv_vatAmount'	FieldV6='thue'	Type='Field'/>
   <ItemInfo	Field='inv_TotalAmount'	FieldV6='TIEN2'	Type='Field'/>
   <ItemInfo	Field='inv_promotion'	FieldV6='0'	Type='Field'/>
-  <ItemInfo	Field='inv_discountPercentage'	FieldV6='PT_CKI'	Type='Field'/>
+  <ItemInfo	Field='inv_discountPercentage'	FieldV6='PT_CK'	Type='Field'/>
   <ItemInfo	Field='inv_discountAmount'	FieldV6='ck'	Type='Field'/>
   <ItemInfo	Field='ma_thue'   Value='0'	FieldV6='ma_thue'	Type='Field'/>
 
