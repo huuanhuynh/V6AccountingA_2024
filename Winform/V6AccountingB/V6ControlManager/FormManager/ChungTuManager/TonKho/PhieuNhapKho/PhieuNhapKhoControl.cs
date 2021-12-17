@@ -3905,11 +3905,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
-            btnMoi.Focus();
+
             if (ClickSuaOnLoad)
             {
                 ClickSuaOnLoad = false;
                 btnSua.PerformClick();
+            }
+            else if (Invoice.ExtraInfo_AutoLoadTop)
+            {
+                AutoLoadTop(timTopCuoiKyMenu);
+            }
+            else
+            {
+                btnMoi.Focus();
             }
         }
 

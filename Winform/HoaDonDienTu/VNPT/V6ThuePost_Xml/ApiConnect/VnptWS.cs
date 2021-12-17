@@ -819,7 +819,7 @@ namespace V6ThuePostXmlApi
                 }
                 else
                 {
-                    return "Fail: " + result;
+                    return "Fail: " + v6return.RESULT_ERROR_MESSAGE;
                 }
             }
             catch (Exception ex)

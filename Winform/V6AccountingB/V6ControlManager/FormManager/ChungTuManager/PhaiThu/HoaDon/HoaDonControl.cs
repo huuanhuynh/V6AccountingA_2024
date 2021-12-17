@@ -7335,19 +7335,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #region ==== AM Events ====
         private void Form_Load(object sender, EventArgs e)
         {
-            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartFormLoad");
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
-            btnMoi.Focus();
+            
             if (ClickSuaOnLoad)
             {
                 ClickSuaOnLoad = false;
                 btnSua.PerformClick();
             }
-            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tEndFormLoad");
-            //this.WriteToLog("Test Load Time", V6ControlFormHelper.LastActionListString, "TestLoadTime" + stw.ElapsedTicks);
+            else if (Invoice.ExtraInfo_AutoLoadTop)
+            {
+                AutoLoadTop(timTopCuoiKyMenu);
+            }
+            else
+            {
+                btnMoi.Focus();
+            }
         }
 
+        
         #region ==== Command Buttons ====
         private void btnLuu_Click(object sender, EventArgs e)
         {

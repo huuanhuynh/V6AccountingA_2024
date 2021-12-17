@@ -2948,6 +2948,29 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         #endregion Tính toán trong chi tiết ====================================================
 
+        protected void AutoLoadTop(ToolStripMenuItem timTopCuoiKyMenu)
+        {
+            try
+            {
+                int timer_count = 0;
+                Timer timer = new Timer();
+                timer.Interval = 1000;
+                timer.Tick += delegate
+                {
+                    if (++timer_count == 3)
+                    {
+                        timTopCuoiKyMenu.PerformClick();
+                        timer.Stop();
+                        timer.Dispose();
+                    }
+                };
+                timer.Start();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
 
         private void V6InvoiceControl_Load(object sender, EventArgs e)
         {

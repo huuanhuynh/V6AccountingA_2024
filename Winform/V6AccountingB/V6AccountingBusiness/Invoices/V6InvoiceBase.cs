@@ -730,6 +730,16 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
+        public bool ExtraInfo_AutoLoadTop
+        {
+            get
+            {
+                bool result = false;
+                if (EXTRA_INFOR.ContainsKey("AUTOLOADTOP")) result = ObjectAndString.ObjectToBool(EXTRA_INFOR["AUTOLOADTOP"]);
+                return result;
+            }
+        }
+
         /// <summary>
         /// Tự thay đổi mẫu ngoại tệ.
         /// </summary>
