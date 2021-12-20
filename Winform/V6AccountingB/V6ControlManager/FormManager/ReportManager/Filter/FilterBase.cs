@@ -1554,135 +1554,91 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 {
                     if (string.IsNullOrEmpty(ExtraParameterInfo)) return null;
                     var sss = ExtraParameterInfo.Split('~');
-
+                    string for_ex3_message = "";
+                    int index = 0;
                     foreach (string ss in sss)
                     {
-                        DefineInfo di = new DefineInfo(ss);
-                        if (string.IsNullOrEmpty(di.Name)) continue;
-                        
-                        if (di.Ptype.ToUpper() == "TABLE2")
+                        index++;
+                        DefineInfo di = null;
+                        try
                         {
-                            var dataTable2 = _ds.Tables[1];
-                            var _tbl2Row = dataTable2.Rows[0];
-                            if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBANNT")
-                            {
-                                var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);// "T_TIEN_NT2_IN"]);
-                                var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
-                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
-                            }
-                            else if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBAN")
-                            {
-                                var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);//"T_TIEN2_IN"]);
-                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
-                                    V6Options.M_MA_NT0);
-                            }
-                            // Đọc tiền bằng chữ V
-                            else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUV_TIENBANNT")
-                            {
-                                var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
-                                var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
-                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, "V", ma_nt);
-                            }
-                            else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUV_TIENBAN")
-                            {
-                                var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
-                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, "V",
-                                    V6Options.M_MA_NT0);
-                            }
-                            // Đọc tiền bằng chữ E
-                            else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUE_TIENBANNT")
-                            {
-                                var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
-                                var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
-                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, "E", ma_nt);
-                            }
-                            else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUE_TIENBAN")
-                            {
-                                var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
-                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, "E",
-                                    V6Options.M_MA_NT0);
-                            }
-                            else
-                            {
-                                //Bỏ qua giá trị rỗng.
-                                if (di.NotEmpty && string.IsNullOrEmpty("" + _tbl2Row[di.Field])) continue;
-                                result[di.Name.ToUpper()] = _tbl2Row[di.Field];
-                            }
-                        }
-                        else if (di.Ptype.ToUpper() == "PARENT")
-                        {
+                            di = new DefineInfo(ss);
+                            if (string.IsNullOrEmpty(di.Name)) continue;
 
-                        }
-                            // Tuanmh 23/08/2017
-                        else if (di.Ptype.ToUpper() == "ONEVALUE")
-                        {
-                            result[di.Name.ToUpper()] = di.Fname;
-                        }
-                        else if (di.Ptype.ToUpper() == "FILTER")
-                        {
-                            var lineKey = "line" + di.Field.ToUpper();
-                            if (lineList.ContainsKey(lineKey))
+                            if (di.Ptype.ToUpper() == "TABLE2")
                             {
-                                var line = lineList[lineKey];
-                                if (line.IsSelected)
+                                var dataTable2 = _ds.Tables[1];
+                                var _tbl2Row = dataTable2.Rows[0];
+                                if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBANNT")
                                 {
-                                    //Bỏ qua giá trị rỗng.
-                                    if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
-                                    result[di.Name] = line.ObjectValue;
+                                    var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);// "T_TIEN_NT2_IN"]);
+                                    var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                                    result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
+                                }
+                                else if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBAN")
+                                {
+                                    var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);//"T_TIEN2_IN"]);
+                                    result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
+                                        V6Options.M_MA_NT0);
+                                }
+                                // Đọc tiền bằng chữ V
+                                else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUV_TIENBANNT")
+                                {
+                                    var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
+                                    var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                                    result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, "V", ma_nt);
+                                }
+                                else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUV_TIENBAN")
+                                {
+                                    var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
+                                    result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, "V",
+                                        V6Options.M_MA_NT0);
+                                }
+                                // Đọc tiền bằng chữ E
+                                else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUE_TIENBANNT")
+                                {
+                                    var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
+                                    var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                                    result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, "E", ma_nt);
+                                }
+                                else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUE_TIENBAN")
+                                {
+                                    var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
+                                    result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, "E",
+                                        V6Options.M_MA_NT0);
                                 }
                                 else
                                 {
-                                    if (di.NotEmpty) continue;
-
-                                    if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
-                                        result[di.Name] = 0;
-                                    else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
-                                        result[di.Name] = new DateTime(1900, 1, 1);
-                                    else
-                                        result[di.Name] = "";
+                                    //Bỏ qua giá trị rỗng.
+                                    if (di.NotEmpty && string.IsNullOrEmpty("" + _tbl2Row[di.Field])) continue;
+                                    result[di.Name.ToUpper()] = _tbl2Row[di.Field];
                                 }
                             }
-                        }
-                        else if (di.Ptype.ToUpper() == "FILTER_BROTHER")
-                        {
-                            var lineKey = "line" + di.Field.ToUpper();
-                            if (lineList.ContainsKey(lineKey))
+                            else if (di.Ptype.ToUpper() == "PARENT")
                             {
-                                var line = lineList[lineKey];
-                                if (line is FilterLineVvarTextBox)
+
+                            }
+                            // Tuanmh 23/08/2017
+                            else if (di.Ptype.ToUpper() == "ONEVALUE")
+                            {
+                                result[di.Name.ToUpper()] = di.Fname;
+                            }
+                            else if (di.Ptype.ToUpper() == "FILTER")
+                            {
+                                var lineKey = "line" + di.Field.ToUpper();
+                                if (lineList.ContainsKey(lineKey))
                                 {
-                                    var lineV = line as FilterLineVvarTextBox;
-
-                                    var vvar_data = lineV.VvarTextBox.Data;
-                                    if (line.IsSelected == false)
+                                    var line = lineList[lineKey];
+                                    if (line.IsSelected)
                                     {
-                                        vvar_data = null;
-                                    }
-
-                                    if (vvar_data != null && vvar_data.Table.Columns.Contains(di.Fname))
-                                    {
-                                        if (line.IsSelected)
-                                        {
-                                            //Bỏ qua giá trị rỗng.
-                                            if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
-                                            result[di.Name] = vvar_data[di.Fname];
-                                        }
-                                        else
-                                        {
-                                            if (di.NotEmpty) continue;
-
-                                            if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
-                                                result[di.Name] = 0;
-                                            else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
-                                                result[di.Name] = new DateTime(1900, 1, 1);
-                                            else
-                                                result[di.Name] = "";
-                                        }
+                                        //Bỏ qua giá trị rỗng.
+                                        if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
+                                        result[di.Name] = line.ObjectValue;
                                     }
                                     else
                                     {
                                         if (di.NotEmpty) continue;
-                                        // Tuanmh Null loi
+
                                         if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
                                             result[di.Name] = 0;
                                         else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
@@ -1692,11 +1648,71 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                     }
                                 }
                             }
+                            else if (di.Ptype.ToUpper() == "FILTER_BROTHER")
+                            {
+                                var lineKey = "line" + di.Field.ToUpper();
+                                if (lineList.ContainsKey(lineKey))
+                                {
+                                    var line = lineList[lineKey];
+                                    if (line is FilterLineVvarTextBox)
+                                    {
+                                        var lineV = line as FilterLineVvarTextBox;
+
+                                        var vvar_data = lineV.VvarTextBox.Data;
+                                        if (line.IsSelected == false)
+                                        {
+                                            vvar_data = null;
+                                        }
+
+                                        if (vvar_data != null && vvar_data.Table.Columns.Contains(di.Fname))
+                                        {
+                                            if (line.IsSelected)
+                                            {
+                                                //Bỏ qua giá trị rỗng.
+                                                if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
+                                                result[di.Name] = vvar_data[di.Fname];
+                                            }
+                                            else
+                                            {
+                                                if (di.NotEmpty) continue;
+
+                                                if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                                    result[di.Name] = 0;
+                                                else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                                    result[di.Name] = new DateTime(1900, 1, 1);
+                                                else
+                                                    result[di.Name] = "";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (di.NotEmpty) continue;
+                                            // Tuanmh Null loi
+                                            if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                                result[di.Name] = 0;
+                                            else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                                result[di.Name] = new DateTime(1900, 1, 1);
+                                            else
+                                                result[di.Name] = "";
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                this.WriteToLog(GetType() + ".GetRprParametersD else", "di.Ptype?");
+                            }
                         }
-                        else
+                        catch (Exception ex3)
                         {
-                            this.WriteToLog(GetType() + ".GetRprParametersD else", "di.Ptype?");
+                            string di_Field = di == null ? "Index " + index : di.Field;
+                            for_ex3_message += "\n" + di_Field + ": " + ex3.Message;
                         }
+                    }
+
+                    if (for_ex3_message.Length > 0)
+                    {
+                        this.ShowMainMessage("GetRptParametersD for error:" + for_ex3_message);
                     }
                 }
                 catch (Exception ex)

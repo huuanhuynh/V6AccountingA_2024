@@ -4677,10 +4677,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
 
-            if (ClickSuaOnLoad)
+            if (IsViewingAnInvoice)
             {
-                ClickSuaOnLoad = false;
-                btnSua.PerformClick();
+                if (ClickSuaOnLoad)
+                {
+                    ClickSuaOnLoad = false;
+                    btnSua.PerformClick();
+                }
             }
             else if (Invoice.ExtraInfo_AutoLoadTop)
             {

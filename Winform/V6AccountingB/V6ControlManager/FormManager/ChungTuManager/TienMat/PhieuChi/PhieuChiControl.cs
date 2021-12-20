@@ -2355,7 +2355,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             txtMaKh.EnableTag();
             txtDiaChi.Enabled = true;
-
             txtDiaChi.ReadOnlyTag(false);
             txtDiaChi.TabStop = true;
             txtTenKh.ReadOnlyTag(false);
@@ -4310,10 +4309,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
 
-            if (ClickSuaOnLoad)
+            if (IsViewingAnInvoice)
             {
-                ClickSuaOnLoad = false;
-                btnSua.PerformClick();
+                if (ClickSuaOnLoad)
+                {
+                    ClickSuaOnLoad = false;
+                    btnSua.PerformClick();
+                }
             }
             else if (Invoice.ExtraInfo_AutoLoadTop)
             {
@@ -5182,11 +5184,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     if (mst != "")
                     {
                         txtTenKh.Enabled = false;
-                        txtDiaChi.Enabled = false;
+                        txtDiaChi.Enabled = true;
                         txtMaSoThue.Enabled = false;
 
-                        txtDiaChi.ReadOnlyTag();
-                        txtDiaChi.TabStop = false;
+                        txtDiaChi.ReadOnlyTag(false);
                         txtTenKh.ReadOnlyTag();
                         txtTenKh.TabStop = false;
                     }
