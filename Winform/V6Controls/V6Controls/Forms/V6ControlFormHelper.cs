@@ -1881,10 +1881,10 @@ namespace V6Controls.Forms
                             if (row == null || !row.Table.Columns.Contains(baseFIELD))
                             {
                                 //Gán rỗng hoặc mặc định
-                                SetControlValue(c, null);
+                                SetControlValue(c, null, false);
                                 continue;
                             }
-                            SetControlValue(c, row[baseFIELD]);
+                            SetControlValue(c, row[baseFIELD], false);
                         }
                     }
                 }
@@ -1901,11 +1901,11 @@ namespace V6Controls.Forms
                         {
                             if (row == null || !row.Table.Columns.Contains(f2))
                             {
-                                SetControlValue(c2, null);
+                                SetControlValue(c2, null, false);
                             }
                             else
                             {
-                                SetControlValue(c2, row[f2]);
+                                SetControlValue(c2, row[f2], false);
                             }
                         }
                         else
@@ -1916,11 +1916,11 @@ namespace V6Controls.Forms
                                 c1.AccessibleName = f2; // Đảo AccessibleName cho ngôn ngữ khác V
                                 if (row == null || !row.Table.Columns.Contains(f2))
                                 {
-                                    SetControlValue(c1, null);
+                                    SetControlValue(c1, null, false);
                                 }
                                 else
                                 {
-                                    SetControlValue(c1, row[f2]);
+                                    SetControlValue(c1, row[f2], false);
                                 }
                             }
                         }
@@ -7361,20 +7361,25 @@ namespace V6Controls.Forms
             return columns.All(column => dataTable.Columns.Contains(column));
         }
 
+        public static void SetControlValue(Control control, object value, DefineInfo config)
+        {
+            SetControlValue(control, value, config, true);
+        }
+
         /// <summary>
         /// Gán giá trị control theo config 
         /// </summary>
         /// <param name="control">Đối tượng được gán dữ liệu.</param>
         /// <param name="value">Giá trị để gán.</param>
         /// <param name="config">Status(Có sử dụng?):1;Override:1;NotEmpty(Phải có giá trị truyền vào):0;NoOverride(Chỉ gán nến control rỗng):0</param>
-        public static void SetControlValue(Control control, object value, DefineInfo config)
+        public static void SetControlValue(Control control, object value, DefineInfo config, bool brother)
         {
             try
             {
                 if (!config.Status) return;
                 if (config.Override)
                 {
-                    SetControlValue(control, value);
+                    SetControlValue(control, value, brother);
                 }
                 
                 if (config.NotEmpty)
@@ -7385,7 +7390,7 @@ namespace V6Controls.Forms
                         if (ObjectAndString.ObjectToDecimal(value) == 0) return;
                     }
                     if (value.ToString().Trim() == "") return;
-                    SetControlValue(control, value);
+                    SetControlValue(control, value, brother);
                 }
                 
                 if (config.NoOverride)
@@ -7393,11 +7398,11 @@ namespace V6Controls.Forms
                     if (control is V6NumberTextBox)
                     {
                         var numTb = control as V6NumberTextBox;
-                        if (numTb.Value == 0) SetControlValue(numTb, value);
+                        if (numTb.Value == 0) SetControlValue(numTb, value, brother);
                     }
                     else
                     {
-                        if (string.IsNullOrEmpty(control.Text)) SetControlValue(control, value);
+                        if (string.IsNullOrEmpty(control.Text)) SetControlValue(control, value, brother);
                     }
                 }
             }
@@ -7535,12 +7540,18 @@ namespace V6Controls.Forms
             }
         }
 
+        public static void SetControlValue(Control control, object value)
+        {
+            SetControlValue(control, value, true);
+        }
+
         /// <summary>
         /// Gán dữ liệu vào control các loại. Control null sẽ bỏ qua. Value null sẽ gán rỗng hoặc mặc định.
         /// </summary>
         /// <param name="control"></param>
         /// <param name="value"></param>
-        public static void SetControlValue(Control control, object value)
+        /// <param name="brother">ảnh hưởng brother.</param>
+        public static void SetControlValue(Control control, object value, bool brother)
         {
             try
             {
@@ -7634,7 +7645,7 @@ namespace V6Controls.Forms
                     vvarTextBox.SetDataRow(null);
 
                     var text = ObjectAndString.ObjectToString(value).TrimEnd();
-                    if (vvarTextBox.UseChangeTextOnSetFormData)
+                    if (vvarTextBox.UseChangeTextOnSetFormData && brother)
                         vvarTextBox.ChangeText(text);
                     else vvarTextBox.Text = text;
                 }
@@ -7642,7 +7653,7 @@ namespace V6Controls.Forms
                 {
                     var text_box = control as V6NumberTextBox;
                     var value1 = ObjectAndString.ObjectToDecimal(value);
-                    if (text_box.UseChangeTextOnSetFormData)
+                    if (text_box.UseChangeTextOnSetFormData && brother)
                         text_box.ChangeValue(value1);
                     else text_box.Value = value1;
                 }
@@ -7654,7 +7665,7 @@ namespace V6Controls.Forms
                 {
                     var text_box = control as V6ColorTextBox;
                     var text = ObjectAndString.ObjectToString(value).TrimEnd();
-                    if (text_box.UseChangeTextOnSetFormData)
+                    if (text_box.UseChangeTextOnSetFormData && brother)
                         text_box.ChangeText(text);
                     else text_box.Text = text;
                 }
@@ -7662,7 +7673,7 @@ namespace V6Controls.Forms
                 {
                     var text_box = control as V6ColorMaskedTextBox;
                     var text = ObjectAndString.ObjectToString(value).TrimEnd();
-                    if (text_box.UseChangeTextOnSetFormData)
+                    if (text_box.UseChangeTextOnSetFormData && brother)
                         text_box.ChangeText(text);
                     else text_box.Text = text;
                 }

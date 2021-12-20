@@ -386,11 +386,12 @@ namespace V6Tools.V6Convert
                 {
                     result = value.ToString(CultureInfo.InvariantCulture);
                 }
-                else // formatString = # 0,00 or # 0.00 or 0,00 or 0 or ...
+                else
                 {
+                    // V6 formatString = # 0,00 or # 0.00 or 0,00 or 0 or ...
                     int decimals = 0;
                     string decimal_ = SystemDecimalSymbol; string thousand_ = "";
-                    if(formatString.StartsWith("#"))
+                    if(formatString.StartsWith("#") && !formatString.StartsWith("##"))
                     {
                         thousand_ = formatString[1].ToString();
                         if (formatString.Length > 4)
@@ -399,10 +400,14 @@ namespace V6Tools.V6Convert
                             decimals = formatString.Substring(4).Length;
                         }
                     }
-                    else if (formatString.Length > 2) // 0.00
+                    else if (formatString.Length == 3 && (formatString[1] == '.' || formatString[1] == ',')) // 0.00
                     {
                         decimal_ = formatString[1].ToString();
                         decimals = formatString.Substring(2).Length;
+                    }
+                    else // C# format
+                    {
+                        return value.ToString(formatString);
                     }
                     
                     result = NumberToString(value, decimals, decimal_, thousand_, true);
@@ -817,16 +822,22 @@ namespace V6Tools.V6Convert
         {
             Dictionary<string,object> result = new Dictionary<string, object>();
             string[] sss = string.IsNullOrEmpty(tag) ? new string[]{} : tag.Split(new []{group_char}, StringSplitOptions.RemoveEmptyEntries);
+            string LAST_KEY = null;
             foreach (string s in sss)
             {
                 string[] ss = s.Split(new[] { element_char }, StringSplitOptions.RemoveEmptyEntries);
+                
                 if (ss.Length == 1)
                 {
-                    result.Add("VALUE", ss[0]);
+                    if (LAST_KEY != null)
+                    {
+                        result[LAST_KEY] += ";" + s;
+                    }
                 }
                 else if (ss.Length > 1)
                 {
-                    result.Add(ss[0].Trim().ToUpper(), ss[1]);
+                    LAST_KEY = ss[0].Trim().ToUpper();
+                    result.Add(LAST_KEY, s.Substring(LAST_KEY.Length + 1));
                 }
             }
             return result;

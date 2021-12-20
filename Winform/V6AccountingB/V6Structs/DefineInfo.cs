@@ -21,17 +21,36 @@ namespace V6Structs
         {
             try
             {
+                // define = key:value;key:2value2;key3:va;lue;key4:value4
+                
                 var sss = define.Split(';');
-                foreach (string ss in sss)
+                string LAST_KEY = null;
+                string lastValue = null;
+                foreach (string s in sss)
                 {
-                    if (ss.Contains(":"))
+                    var ss = s.Split(':');
+                    if (ss.Length > 1)
                     {
-                        //var split = ss.Split(':');
-                        int index = ss.IndexOf(':');
-                        var key = ss.Substring(0, index);// split[0];
-                        var value = ss.Substring(index + 1);// split[1];
-                        SetDefine(key, value);
+                        LAST_KEY = ss[0].Trim().ToUpper();
+                        lastValue = s.Substring(LAST_KEY.Length + 1);
+                        SetDefine(LAST_KEY, lastValue);
                     }
+                    else
+                    {
+                        if (LAST_KEY != null)
+                        {
+                            lastValue += ";" + s;
+                            SetDefine(LAST_KEY, lastValue);
+                        }
+                    }
+                    //if (s_item.Contains(":"))
+                    //{
+                    //    //var split = ss.Split(':');
+                    //    int index = s_item.IndexOf(':');
+                    //    var key = s_item.Substring(0, index);// split[0];
+                    //    var value = s_item.Substring(index + 1);// split[1];
+                    //    SetDefine(key, value);
+                    //}
                 }
             }
             catch (Exception ex)
