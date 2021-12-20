@@ -331,7 +331,7 @@ namespace V6ThuePostManager
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
                         result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, paras.Mode == "1" ? 0 : paras.Mode == "2" ? 1 : 2, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
-                        if (paras.Result.V6ReturnValues.RESULT_MESSAGE != null && paras.Result.V6ReturnValues.RESULT_MESSAGE.Contains("Có lỗi xả ra: {\"Status\":4,\"Message\":\"Ikey không được bỏ trống\"}"))
+                        if (paras.Result.V6ReturnValues.RESULT_MESSAGE != null && paras.Result.V6ReturnValues.RESULT_MESSAGE.Contains("Có lỗi xả ra: {\"Status\":4,\"Message\":\"Ikey không được bỏ trống\""))
                         {
                             result = null;
                         }

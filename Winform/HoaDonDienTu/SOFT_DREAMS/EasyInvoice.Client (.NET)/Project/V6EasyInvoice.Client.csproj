@@ -48,7 +48,7 @@
     <Compile Include="V6EasyInvoice.Client\InvoiceInfo.cs" />
     <Compile Include="V6EasyInvoice.Client\Method.cs" />
     <Compile Include="V6EasyInvoice.Client\Request.cs" />
-    <Compile Include="V6EasyInvoice.Client\Resource.cs" />
+    <Compile Include="V6EasyInvoice.Client\ApiEnum.cs" />
     <Compile Include="V6EasyInvoice.Client\Response.cs" />
     <Compile Include="V6EasyInvoice.Client\ResponseData.cs" />
     <Compile Include="V6EasyInvoice.Client\Utils.cs" />

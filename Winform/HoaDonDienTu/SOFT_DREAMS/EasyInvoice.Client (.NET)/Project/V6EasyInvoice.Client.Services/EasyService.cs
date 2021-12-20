@@ -22,70 +22,70 @@ namespace V6EasyInvoice.Client.Services
     public class EasyService
     {
         private string _configDownloadDirectory = "./EasyInvoice Download";
-        private static readonly Dictionary<Resource, string> Resources;
+        private static readonly Dictionary<ApiEnum, string> API_LINK_DIC;
         private EasyClient _easyClient;
 
         static EasyService()
         {
-            Dictionary<Resource, string> dictionary = new Dictionary<Resource, string>();
+            Dictionary<ApiEnum, string> dictionary = new Dictionary<ApiEnum, string>();
             int num1 = 15;
             string str1 = "api/publish/externalGetDigestForReplacement";
-            dictionary[(Resource)num1] = str1;
+            dictionary[(ApiEnum)num1] = str1;
             int num2 = 17;
             string str2 = "api/publish/externalWrapAndLaunchReplacement";
-            dictionary[(Resource)num2] = str2;
+            dictionary[(ApiEnum)num2] = str2;
             int num3 = 18;
             string str3 = "api/publish/externalGetDigestForImportation";
-            dictionary[(Resource)num3] = str3;
+            dictionary[(ApiEnum)num3] = str3;
             int num4 = 19;
             string str4 = "api/publish/externalWrapAndLaunchImportation";
-            dictionary[(Resource)num4] = str4;
+            dictionary[(ApiEnum)num4] = str4;
             int num5 = 20;
             string str5 = "api/publish/externalGetDigestForAdjustment";
-            dictionary[(Resource)num5] = str5;
+            dictionary[(ApiEnum)num5] = str5;
             int num6 = 22;
             string str6 = "api/publish/externalWrapAndLaunchAdjustment";
-            dictionary[(Resource)num6] = str6;
+            dictionary[(ApiEnum)num6] = str6;
             int num7 = 23;
             string str7 = "api/publish/issueInvoices";
-            dictionary[(Resource)num7] = str7;
+            dictionary[(ApiEnum)num7] = str7;
             int num8 = 24;
             string str8 = "api/publish/externalWrapAndLaunchForIssuance";
-            dictionary[(Resource)num8] = str8;
+            dictionary[(ApiEnum)num8] = str8;
             int num9 = 4;
             string str9 = "api/publish/importInvoice";
-            dictionary[(Resource)num9] = str9;
+            dictionary[(ApiEnum)num9] = str9;
             int num10 = 6;
-            string str10 = "api/publish/importAndIssueInvoice";
-            dictionary[(Resource)num10] = str10;
+            string str_importAndIssueInvoice = "api/publish/importAndIssueInvoice";
+            dictionary[(ApiEnum)num10] = str_importAndIssueInvoice;
             int num11 = 0;
             string str11 = "api/business/adjustInvoice";
-            dictionary[(Resource)num11] = str11;
+            dictionary[(ApiEnum)num11] = str11;
             int num12 = 2;
             string str12 = "api/business/replaceInvoice";
-            dictionary[(Resource)num12] = str12;
+            dictionary[(ApiEnum)num12] = str12;
             int num13 = 9;
             string str13 = "api/publish/issueInvoices";
-            dictionary[(Resource)num13] = str13;
+            dictionary[(ApiEnum)num13] = str13;
             int num14 = 1;
             string str14 = "api/business/cancelInvoice";
-            dictionary[(Resource)num14] = str14;
+            dictionary[(ApiEnum)num14] = str14;
             int num15 = 8;
             string str15 = "api/publish/getInvoicesByIkeys";
-            dictionary[(Resource)num15] = str15;
+            dictionary[(ApiEnum)num15] = str15;
             int num16 = 16;
             string str16 = "api/business/importUnsignedReplacement";
-            dictionary[(Resource)num16] = str16;
+            dictionary[(ApiEnum)num16] = str16;
             int num17 = 21;
             string str17 = "api/business/importUnsignedAdjustment";
-            dictionary[(Resource)num17] = str17;
+            dictionary[(ApiEnum)num17] = str17;
             int num18 = 27;
             string str18 = "api/publish/getInvoicePdf";
-            dictionary[(Resource)num18] = str18;
+            dictionary[(ApiEnum)num18] = str18;
             int num19 = 13;
             string str19 = "api/business/createInvoiceStrip";
-            dictionary[(Resource)num19] = str19;
-            EasyService.Resources = dictionary;
+            dictionary[(ApiEnum)num19] = str19;
+            EasyService.API_LINK_DIC = dictionary;
         }
 
         public EasyService()
@@ -105,8 +105,8 @@ namespace V6EasyInvoice.Client.Services
             try
             {
                 request.XmlData = EasyService.HandleExtraTags(request.XmlData);
-                Resource index = issue ? Resource.ImportAndIssue : Resource.Import;
-                return this._easyClient.PostJsonObject<Response>(EasyService.Resources[index], (object)request);
+                ApiEnum index = issue ? ApiEnum.ImportAndIssue : ApiEnum.Import;
+                return this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[index], (object)request);
             }
             catch (Exception ex)
             {
@@ -130,8 +130,8 @@ namespace V6EasyInvoice.Client.Services
             try
             {
                 request.XmlData = EasyService.HandleExtraTags(request.XmlData);
-                Resource index = issue ? Resource.Adjust : Resource.ClientAdjustTemp;
-                return this._easyClient.PostJsonObject<Response>(EasyService.Resources[index], (object)request);
+                ApiEnum index = issue ? ApiEnum.Adjust : ApiEnum.ClientAdjustTemp;
+                return this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[index], (object)request);
             }
             catch (Exception ex)
             {
@@ -155,8 +155,8 @@ namespace V6EasyInvoice.Client.Services
             try
             {
                 request.XmlData = EasyService.HandleExtraTags(request.XmlData);
-                Resource index = issue ? Resource.Replace : Resource.ClientReplaceTemp;
-                return this._easyClient.PostJsonObject<Response>(EasyService.Resources[index], (object)request);
+                ApiEnum index = issue ? ApiEnum.Replace : ApiEnum.ClientReplaceTemp;
+                return this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[index], (object)request);
             }
             catch (Exception ex)
             {
@@ -179,7 +179,7 @@ namespace V6EasyInvoice.Client.Services
                 };
             try
             {
-                return this._easyClient.PostJsonObject<Response>(EasyService.Resources[Resource.Issue], (object)request);
+                return this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[ApiEnum.Issue], (object)request);
             }
             catch (Exception ex)
             {
@@ -207,10 +207,10 @@ namespace V6EasyInvoice.Client.Services
                 X509Certificate2 signCert = (X509Certificate2)null;
                 if (issue)
                     request.CertString = EasyService.GetCertString(token_serial, out signCert);
-                Resource index = issue ? Resource.ClientImport : Resource.Import;
-                response = this._easyClient.PostJsonObject<Response>(EasyService.Resources[index], (object)request);
+                ApiEnum index = issue ? ApiEnum.ClientImport : ApiEnum.Import;
+                response = this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[index], (object)request);
                 if (issue)
-                    response = this.ClientSignHash(signCert, response, Resource.ClientLaunchImportation, request);
+                    response = this.ClientSignHash(signCert, response, ApiEnum.ClientLaunchImportation, request);
             }
             catch (Exception ex)
             {
@@ -239,10 +239,10 @@ namespace V6EasyInvoice.Client.Services
                 X509Certificate2 signCert = (X509Certificate2)null;
                 if (issue)
                     request.CertString = EasyService.GetCertString(token_serial, out signCert);
-                Resource index = issue ? Resource.ClientAdjust : Resource.ClientAdjustTemp;
-                response = this._easyClient.PostJsonObject<Response>(EasyService.Resources[index], (object)request);
+                ApiEnum index = issue ? ApiEnum.ClientAdjust : ApiEnum.ClientAdjustTemp;
+                response = this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[index], (object)request);
                 if (issue)
-                    response = this.ClientSignHash(signCert, response, Resource.ClientLaunchAdjustment, request);
+                    response = this.ClientSignHash(signCert, response, ApiEnum.ClientLaunchAdjustment, request);
             }
             catch (Exception ex)
             {
@@ -271,10 +271,10 @@ namespace V6EasyInvoice.Client.Services
                 X509Certificate2 signCert = (X509Certificate2)null;
                 if (issue)
                     request.CertString = EasyService.GetCertString(token_serial, out signCert);
-                Resource index = issue ? Resource.ClientReplace : Resource.ClientReplaceTemp;
-                response = this._easyClient.PostJsonObject<Response>(EasyService.Resources[index], (object)request);
+                ApiEnum index = issue ? ApiEnum.ClientReplace : ApiEnum.ClientReplaceTemp;
+                response = this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[index], (object)request);
                 if (issue)
-                    response = this.ClientSignHash(signCert, response, Resource.ClientLaunchReplacement, request);
+                    response = this.ClientSignHash(signCert, response, ApiEnum.ClientLaunchReplacement, request);
             }
             catch (Exception ex)
             {
@@ -311,8 +311,8 @@ namespace V6EasyInvoice.Client.Services
                 }
                 else
                 {
-                    Response response2 = this._easyClient.PostJsonObject<Response>(EasyService.Resources[Resource.ClientIssue], (object)request);
-                    response1 = this.ClientSignHash(signCert, response2, Resource.ClientLaunchIssuance, request);
+                    Response response2 = this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[ApiEnum.ClientIssue], (object)request);
+                    response1 = this.ClientSignHash(signCert, response2, ApiEnum.ClientLaunchIssuance, request);
                 }
             }
             catch (Exception ex)
@@ -337,7 +337,7 @@ namespace V6EasyInvoice.Client.Services
                 };
             try
             {
-                return this._easyClient.PostJsonObject<Response>(EasyService.Resources[Resource.GetByIkeys], (object)request);
+                return this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[ApiEnum.GetByIkeys], (object)request);
             }
             catch (Exception ex)
             {
@@ -382,7 +382,7 @@ namespace V6EasyInvoice.Client.Services
             }
             try
             {
-                EasyResponse easyResponse = this._easyClient.PostJsonObject(EasyService.Resources[Resource.GetPdf], (object)request);
+                EasyResponse easyResponse = this._easyClient.PostJsonObject(EasyService.API_LINK_DIC[ApiEnum.GetPdf], (object)request);
                 if (easyResponse.HttpStatusCode == HttpStatusCode.OK)
                 {
                     ContentDisposition contentDisposition = new ContentDisposition(easyResponse.Headers["Content-Disposition"]);
@@ -422,7 +422,7 @@ namespace V6EasyInvoice.Client.Services
                 };
             try
             {
-                return this._easyClient.PostJsonObject<Response>(EasyService.Resources[Resource.Cancel], (object)request);
+                return this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[ApiEnum.Cancel], (object)request);
             }
             catch (Exception ex)
             {
@@ -445,7 +445,7 @@ namespace V6EasyInvoice.Client.Services
                 };
             try
             {
-                return this._easyClient.PostJsonObject<Response>(EasyService.Resources[Resource.CreateInvoiceStrip], (object)request);
+                return this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[ApiEnum.CreateInvoiceStrip], (object)request);
             }
             catch (Exception ex)
             {
@@ -502,7 +502,7 @@ namespace V6EasyInvoice.Client.Services
             return easyResponse3;
         }
 
-        private Response ClientSignHash(X509Certificate2 cert, Response response, Resource resource, Request request)
+        private Response ClientSignHash(X509Certificate2 cert, Response response, ApiEnum resource, Request request)
         {
             if (response != null)
             {
@@ -518,7 +518,7 @@ namespace V6EasyInvoice.Client.Services
                         string str = EasyService.SignHash(cert, hash);
                         request.Signature.Add(keyValuePair.Key, str);
                     }
-                    response = this._easyClient.PostJsonObject<Response>(EasyService.Resources[resource], (object)request);
+                    response = this._easyClient.PostJsonObject<Response>(EasyService.API_LINK_DIC[resource], (object)request);
                 }
             }
             return response;

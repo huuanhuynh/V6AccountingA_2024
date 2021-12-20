@@ -164,11 +164,27 @@ namespace V6EasyInvoice.Client
 
         private static string GenerateToken(string username, string password, string httpMethod)
         {
-            string str1 = Convert.ToUInt64((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds).ToString();
-            string str2 = Guid.NewGuid().ToString("N").ToLower();
-            string s = string.Format("{0}{1}{2}", (object)httpMethod.ToUpper(), (object)str1, (object)str2);
+            string timestamp = Convert.ToUInt64((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds).ToString();
+            string nonce = Guid.NewGuid().ToString("N").ToLower();
+            string signatureRawData = string.Format("{0}{1}{2}", (object)httpMethod.ToUpper(), (object)timestamp, (object)nonce);
             using (MD5 md5 = MD5.Create())
-                return string.Format("{0}:{1}:{2}:{3}:{4}", (object)Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(s))), (object)str2, (object)str1, (object)username, (object)password);
+                return string.Format("{0}:{1}:{2}:{3}:{4}", (object)Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(signatureRawData))), (object)nonce, (object)timestamp, (object)username, (object)password);
         }
+
+        //private static string GenerateToken78(string httpMethod, string username, string password)
+        //{
+        //    DateTime epochStart = new DateTime(1970, 01, 01, 0, 0, 0, 0, DateTimeKind.Utc);
+        //    TimeSpan timeSpan = DateTime.UtcNow - epochStart;
+        //    string timestamp = Convert.ToUInt64(timeSpan.TotalSeconds).ToString();
+        //    string nonce = Guid.NewGuid().ToString("N").ToLower();
+        //    string signatureRawData = $"{httpMethod.ToUpper()}{timestamp}{nonce}";
+        //    using (MD5 md5 = MD5.Create())
+        //    {
+        //        var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(signatureRawData));
+        //        var signature = Convert.ToBase64String(hash);
+        //        return $"{signature}:{nonce}:{timestamp}:{username}:{password}";
+        //    }
+        //}
+
     }
 }

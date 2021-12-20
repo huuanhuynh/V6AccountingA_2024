@@ -1,6 +1,6 @@
 namespace V6EasyInvoice.Client
 {
-	public enum Resource
+	public enum ApiEnum
 	{
 		Adjust,
 		Cancel,
