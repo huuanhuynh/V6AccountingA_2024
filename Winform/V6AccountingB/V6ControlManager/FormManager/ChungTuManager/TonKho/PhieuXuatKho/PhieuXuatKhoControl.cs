@@ -4320,8 +4320,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
-        private void Moi()
+        public void Moi()
         {
+            _acted = true;
             try
             {
                 if (V6Login.UserRight.AllowAdd("", Invoice.CodeMact))
@@ -4569,6 +4570,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         /// <param name="flag"></param>
         public void Tim(string flag)
         {
+            _acted = true;
             try
             {
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))

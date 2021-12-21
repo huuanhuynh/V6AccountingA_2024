@@ -3984,9 +3984,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
-        private void Moi()
+
+        public void Moi()
         {
+            _acted = true;
             try
             {
                 if (V6Login.UserRight.AllowAdd("", Invoice.CodeMact))
@@ -4238,6 +4239,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         /// <param name="flag"></param>
         public void Tim(string flag)
         {
+            _acted = true;
             try
             {
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))

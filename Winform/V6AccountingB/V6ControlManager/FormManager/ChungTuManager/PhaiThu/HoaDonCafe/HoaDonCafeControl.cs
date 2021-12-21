@@ -5164,8 +5164,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         }
 
 
-        private void Moi()
+        public void Moi()
         {
+            _acted = true;
             try
             {
                 Status = "1";
@@ -5446,6 +5447,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         /// <param name="flag"></param>
         public void Tim(string flag)
         {
+            _acted = true;
             try
             {
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
