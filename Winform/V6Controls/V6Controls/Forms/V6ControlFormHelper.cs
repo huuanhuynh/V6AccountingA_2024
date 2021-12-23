@@ -2313,7 +2313,9 @@ namespace V6Controls.Forms
             {
                 _errors = "";
                 if (!set_default && (data == null || data.Count == 0)) return result;
-                result = SetFormDataDicRecursive(control, data, set_default);
+                Dictionary<string, object> dataClone = null;
+                if (data != null) dataClone = new Dictionary<string,object>(data);
+                result = SetFormDataDicRecursive(control, dataClone, set_default);
             }
             catch (Exception ex)
             {
@@ -2336,10 +2338,12 @@ namespace V6Controls.Forms
         public static SortedDictionary<string, Control> SetSomeDataDictionary(Control control, IDictionary<string, object> data)
         {
             SortedDictionary<string, Control> result = new SortedDictionary<string, Control>();
+            Dictionary<string, object> dataClone = null;
+            if (data != null) dataClone = new Dictionary<string,object>(data);
             try
             {
                 _errors = "";
-                result = SetFormDataDicRecursive(control, data, false);
+                result = SetFormDataDicRecursive(control, dataClone, false);
             }
             catch (Exception ex)
             {
@@ -2383,6 +2387,7 @@ namespace V6Controls.Forms
                     result[NAME] = control;
                     
                     SetControlValue(control, data[NAME]);
+                    data.Remove(NAME);
                 }
                 else if (set_default && !string.IsNullOrEmpty(NAME))
                 {
@@ -2394,6 +2399,8 @@ namespace V6Controls.Forms
                     }
                     SetControlValue(control, null);
                 }
+
+                if (!set_default && (data == null || data.Count == 0)) return result;
 
                 if (control.Controls.Count > 0)
                 {
@@ -7965,6 +7972,8 @@ namespace V6Controls.Forms
         /// <param name="before">Phần cộng thêm cho tên hàm Event ví dụ NAME_V6LOSTFOCUS2 </param>
         public static void ApplyControlEventByAccessibleName(Control control, Type eventProgram, Dictionary<string, object> All_Objects, string before = "")
         {
+            if (eventProgram == null) return;
+
             string NAME = control.AccessibleName;
             if (string.IsNullOrEmpty(NAME)) return;
             NAME = NAME.ToUpper();
@@ -8081,8 +8090,6 @@ namespace V6Controls.Forms
         /// <param name="allObjects"></param>
         public static void ApplyDynamicFormControlEvents(Control thisForm, string ma_ct, Type eventProgram, Dictionary<string, object> allObjects)
         {
-            if (eventProgram == null) return;
-
             try
             {
                 var all_control = GetAllControls(thisForm);

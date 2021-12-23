@@ -19,7 +19,8 @@ namespace V6Controls.Forms.Editor
         /// <summary>
         /// Form chứa.
         /// </summary>
-        private readonly Control _mainControl;
+        private readonly Control _mainV6Form;
+        private readonly V6FormControl _mainFormControl;
         /// <summary>
         /// Đối tượng dưới con tro chuột.
         /// </summary>
@@ -31,8 +32,9 @@ namespace V6Controls.Forms.Editor
 
         public ControlsPropertiesEditorForm(Control mainControl, Control mouseControl)
         {
-            _mainControl = mainControl;
+            _mainV6Form = mainControl;
             _mouseControl = mouseControl;
+            _mainFormControl = V6ControlFormHelper.FindParent<V6FormControl>(mouseControl) as V6FormControl;
             InitializeComponent();
             MyInit();
         }
@@ -41,7 +43,7 @@ namespace V6Controls.Forms.Editor
         {
             try
             {
-                AddTreeNode(_mainControl);
+                AddTreeNode(_mainV6Form);
                 SetSelectedTreeNode(_mouseControl);
             }
             catch (Exception ex)
@@ -158,7 +160,7 @@ namespace V6Controls.Forms.Editor
                 fs.Close();
                 if (_ds.Tables.Count > 0 && _ds.Tables[0].Rows.Count > 0)
                 {
-                    V6ControlFormHelper.SetFormDataRow(_mainControl, _ds.Tables[0].Rows[0]);
+                    V6ControlFormHelper.SetFormDataRow(_mainV6Form, _ds.Tables[0].Rows[0]);
                 }
             }
             catch (Exception ex)
@@ -175,7 +177,7 @@ namespace V6Controls.Forms.Editor
             try
             {
                 var _ds = new DataSet("FormData");
-                var formData = V6ControlFormHelper.GetFormDataDictionary(_mainControl);
+                var formData = V6ControlFormHelper.GetFormDataDictionary(_mainV6Form);
                 DataTable data = new DataTable("Data");
                 data.AddRow(formData, true);
                 _ds.Tables.Add(data);
@@ -184,7 +186,7 @@ namespace V6Controls.Forms.Editor
                 {
                     Filter = "XML files (*.Xml)|*.xml",
                     Title = "Xuất XML.",
-                    FileName = _mainControl.Name + "_FORM_DATA"
+                    FileName = _mainV6Form.Name + "_FORM_DATA"
                 };
                 
                 if (saveFile.ShowDialog(this) == DialogResult.OK)
@@ -205,9 +207,14 @@ namespace V6Controls.Forms.Editor
         {
             try
             {
+                if (_mainFormControl == null)
+                {
+                    this.ShowMessage("_mainFormControl == null");
+                    return;
+                }
                 string Corplan = V6TableName.CorpLan.ToString();
                 string initFilter = "";
-                var idList = V6ControlFormHelper.GetForm_Descriptions_Text(_mainControl);
+                var idList = V6ControlFormHelper.GetForm_Descriptions_Text(_mainFormControl);
                 foreach (KeyValuePair<string, string> item in idList)
                 {
                     if (string.IsNullOrEmpty(item.Key) || item.Key.Length < 8) continue;
