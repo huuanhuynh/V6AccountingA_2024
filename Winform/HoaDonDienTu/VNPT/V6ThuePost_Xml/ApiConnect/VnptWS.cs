@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using SignTokenCore;
 using V6ThuePost.ResponseObjects;
+using V6Tools;
 
 namespace V6ThuePostXmlApi
 {
@@ -12,6 +13,8 @@ namespace V6ThuePostXmlApi
         private string _publishLink = "/PublishService.asmx";
         private string _businessLink = "/BusinessService.asmx";
         private string _portalLink = "/PortalService.asmx";
+
+        private string _attachmentLink = "/AttachmentService.asmx";
 
         public string PublishLink
         {
@@ -669,7 +672,7 @@ namespace V6ThuePostXmlApi
                     {
                         if (!File.Exists(path)) File.WriteAllBytes(path, Convert.FromBase64String(result));
                     }
-                    
+
                     v6Return.PATH = path;
                     return path;
                 }
@@ -731,7 +734,7 @@ namespace V6ThuePostXmlApi
                     {
                         if (!File.Exists(path)) File.WriteAllBytes(path, Convert.FromBase64String(result));
                     }
-                    
+
                     v6Return.PATH = path;
                     return path;
                 }
@@ -813,7 +816,7 @@ namespace V6ThuePostXmlApi
             {
                 V6Return v6return;
                 string result = ImportAndPublishInv("<V6test>Test</V6test>", "", "", out v6return);
-                if (result != null &&(result.StartsWith("ERR:3") || result.StartsWith("ERR:20")))
+                if (result != null && (result.StartsWith("ERR:3") || result.StartsWith("ERR:20")))
                 {
                     return null;
                 }
@@ -827,6 +830,111 @@ namespace V6ThuePostXmlApi
                 return ex.Message;
             }
         }
-        
+
+        /// <summary>
+        /// Tải lên bảng kê.
+        /// </summary>
+        /// <param name="fkey"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public string UploadInvAttachmentFkey(string fkey, string file)
+        {
+            string result = null;
+            try
+            {
+                string attachment64 = FileToBase64(file);
+                string ext = Path.GetExtension(file);
+                if (ext.Length > 0) ext = ext.Substring(1);
+                string attachmentName = Path.GetFileNameWithoutExtension(file);
+                result = new AttachmentService.AttachmentService(_baseLink +  _attachmentLink).uploadInvAttachmentFkey(fkey, _username, _password, attachment64, ext, attachmentName);
+
+                if (result.StartsWith("ERR:11"))
+                {
+                    result += "\r\nDung lượng file vượt quá mức cho phép.";
+                }
+                else if (result.StartsWith("ERR:10"))
+                {
+                    result += "\r\nChuỗi Base64 cùa file không hợp lệ.";
+                }
+                else if (result.StartsWith("ERR:9"))
+                {
+                    result += "\r\nĐịnh dạng file không hợp lệ.";
+                }
+                else if (result.StartsWith("ERR:8"))
+                {
+                    result += "\r\nTên file không hợp lệ hoặc quá dài.";
+                }
+                else if (result.StartsWith("ERR:7"))
+                {
+                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
+                }
+                else if (result.StartsWith("ERR:6"))
+                {
+                    result += "\r\nKhông tìm thấy hóa đơn.";
+                }
+                else if (result.StartsWith("ERR:4"))
+                {
+                    result += "\r\nCompany chưa có mẫu hóa đơn nào.";
+                }
+                else if (result.StartsWith("ERR:1"))
+                {
+                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                }
+                else if (result.StartsWith("ERR"))
+                {
+                    result += "\r\nLỗi.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+
+            Logger.WriteToLog("Program.UploadInvAttachmentFkey " + result);
+            return result;
+        }
+
+        public string FileToBase64(string filePath)
+        {
+            byte[] fileBytes = File.ReadAllBytes(filePath);
+            string fileBase64 = Convert.ToBase64String(fileBytes);
+            return fileBase64;
+        }
+
+        public string cancelInv_VNPT_TOKEN(string fkey_old, string xml, string __pattern)
+        {
+            string result = null;
+            try
+            {
+                //string xml = ReadData_Vnpt();
+                result = VNPTEInvoiceSignToken.CancelInvoiceWithToken(_account, _accountpassword, xml, _username,
+                    _password, __pattern,  _baseLink + _businessLink);
+                //result = new BusinessService(_link_Business_vnpt).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
+
+                if (result.StartsWith("ERR:9"))
+                {
+                    result += "\r\nTrạng thái hóa đơn không được thay thế.";
+                }
+                else if (result.StartsWith("ERR:8"))
+                {
+                    result += "\r\nHóa đơn đã được thay thế rồi, hủy rồi.";
+                }
+                else if (result.StartsWith("ERR:2"))
+                {
+                    result += "\r\nKhông tồn tại hóa đơn cần hủy.";
+                }
+                else if (result.StartsWith("ERR:1"))
+                {
+                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+
+            Logger.WriteToLog("Program.cancelInv " + result);
+            return result;
+        }
     }
 }

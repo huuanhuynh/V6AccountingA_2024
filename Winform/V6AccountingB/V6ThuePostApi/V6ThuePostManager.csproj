@@ -115,6 +115,10 @@
       <Project>{ABC35001-3755-4AFF-88D6-B48598BBC651}</Project>
       <Name>V6ThuePostXmlApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\HoaDonDienTu\VNPT_78\V6ThuePost_VNPT_78\ApiConnect\V6ThuePostVNPT_78Api.csproj">
+      <Project>{244A7652-312B-4334-96E3-D2C7D78F62FD}</Project>
+      <Name>V6ThuePostVNPT_78Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\V6Controls\V6Controls\V6Controls.csproj">
       <Project>{311b600d-e1ae-4172-9cc6-1a24dbcd67c2}</Project>
       <Name>V6Controls</Name>

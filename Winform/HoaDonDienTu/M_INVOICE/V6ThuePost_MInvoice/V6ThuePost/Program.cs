@@ -127,7 +127,7 @@ namespace V6ThuePost
 
             if (args != null && args.Length > 0)
             {
-                string result = "";
+                string result_message = "";
                 V6Return v6Return = null;
                 string mode = "";
                 string arg1_xmlFile = "";
@@ -159,15 +159,13 @@ namespace V6ThuePost
                         responseObject = _WS.POST_NEW(new MInvoicePostObject(), out v6Return);
                         if (v6Return.RESULT_STRING.Contains("\"errorCode\":\"TEMPLATE_NOT_FOUND\""))
                         {
-                            result = "Kết nối ổn. " + result;
+                            result_message = "Kết nối ổn. " + result_message;
                             File.Create(flagFileName2).Close();
                             goto End;
                         }
                     }
                     else if (mode.StartsWith("M"))
                     {
-                        StartAutoInputTokenPassword();
-                        
                         if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
                             jsonBodyObject = ReadData_Minvoice(dbfFile, "M");
@@ -176,15 +174,39 @@ namespace V6ThuePost
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
+                            StartAutoInputTokenPassword();
                             generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
                             {
                                 Field = "certificateSerial",
                                 Value = _SERIAL_CERT,
                             };
                             jsonBodyObject = ReadData_Minvoice(dbfFile, "M");
-                            //string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                            responseObject = _WS.POST_NEW_TOKEN(jsonBodyObject, out v6Return);
+                            responseObject = _WS.POST_NEW_TOKEN(jsonBodyObject, out v6Return);                            
                         }
+
+                        if (string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
+                        {
+                            result_message = "Số HD:" + v6Return.SO_HD + "  ID:" + v6Return.ID + "  CODE:" +
+                                             v6Return.SECRET_CODE + "\n" + v6Return.RESULT_STRING;
+                            if (!string.IsNullOrEmpty(v6Return.SO_HD))
+                            {
+                                string flag4_content = v6Return.SO_HD + ":" + v6Return.ID;
+                                if (!string.IsNullOrEmpty(v6Return.SECRET_CODE))
+                                    flag4_content += ":" + v6Return.SECRET_CODE;
+                                WriteFlag(flagFileName4, flag4_content);
+                                //File.Create(flagFileName2).Close(); // Ghi phía dưới, phần phân tích result
+                            }
+                            else
+                            {
+                                WriteFlag(flagFileName3, "SO_HD_EMPTY");
+                            }
+                        }
+                        else
+                        {
+                            
+                            //WriteFlag(flagFileName3, v6Return.RESULT_ERROR_MESSAGE); // Ghi phía dưới, phần phân tích result
+                        }
+
                     }
                     else if (mode.StartsWith("S"))
                     {
@@ -196,7 +218,7 @@ namespace V6ThuePost
                     {
                         jsonBodyObject = ReadData_Minvoice(dbfFile, "T");
                         File.Create(flagFileName1).Close();
-                        result = _WS.POST_REPLACE(jsonBodyObject);
+                        result_message = _WS.POST_REPLACE(jsonBodyObject);
                     }
                     else if (mode == "H")
                     {
@@ -206,51 +228,35 @@ namespace V6ThuePost
                         MakeFlagNames(id);
                         File.Create(flagFileName1).Close();
                         responseObject = _WS.POST_CANCEL(id, sovb, ngay_ct, "ghi_chu", out v6Return);
-                        result = v6Return.RESULT_STRING;
+                        result_message = v6Return.RESULT_STRING;
                     }
 
                     //Phân tích result
-                    string message = "";
-                    if (v6Return != null)
+                    if (v6Return != null && string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
+                    {   
+                        File.Create(flagFileName2).Close();
+                    }
+                    else if (v6Return == null)
                     {
-                        if (!string.IsNullOrEmpty(v6Return.RESULT_MESSAGE))
-                        {
-                            message += " " + v6Return.RESULT_MESSAGE;
-                        }
-                        if (!string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
-                        {
-                            message += " " + v6Return.RESULT_ERROR_MESSAGE;
-                        }
-
-                        //MInvoiceResponse responseObject = (MInvoiceResponse) v6Return.RESULT_OBJECT;
-                        if (responseObject.ok == "true" && responseObject.data != null && responseObject.data.ContainsKey("inv_invoiceNumber")
-                            && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
-                        {
-                            message += " " + responseObject.data["inv_invoiceNumber"];
-                            string flag4_content = responseObject.data["inv_invoiceNumber"] + ":" + v6Return.ID;
-                            if(!string.IsNullOrEmpty(v6Return.SECRET_CODE)) flag4_content += ":" + v6Return.SECRET_CODE;
-                            WriteFlag(flagFileName4, flag4_content);
-                            File.Create(flagFileName2).Close();
-                        }
+                        result_message = "v6Return null";
+                        WriteFlag(flagFileName3, "v6Return null");
                     }
                     else
                     {
-                        Logger.WriteToLog("Program.Main v6Return null.");
-                        message = "Kết quả:";
+                        result_message = v6Return.RESULT_ERROR_MESSAGE;
+                        WriteFlag(flagFileName3, v6Return.RESULT_ERROR_MESSAGE);
                     }
-                    result = message + "\n" + result;
 
                 }
                 catch (Exception ex)
                 {
                     StopAutoInputTokenPassword();
                     File.Create(flagFileName3).Close();
-                    //MessageBox.Show(ex.Message);
                     BaseMessage.Show(ex.Message, 500);
                 }
             End:
                 File.Create(flagFileName9).Close();
-                BaseMessage.Show(result, 500);
+                BaseMessage.Show(result_message, 500);                
             }
             else
             {
@@ -258,6 +264,9 @@ namespace V6ThuePost
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
             }
+
+            StopAutoInputTokenPassword();
+            Application.Exit();
         }
 
         internal static void WriteFlag(string fileName, string content)

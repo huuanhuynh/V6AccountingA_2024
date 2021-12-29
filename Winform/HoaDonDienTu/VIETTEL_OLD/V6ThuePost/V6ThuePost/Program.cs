@@ -278,9 +278,7 @@ namespace V6ThuePost
                 }
                 catch (Exception ex)
                 {
-                    StopAutoInputTokenPassword();
                     File.Create(flagFileName3).Close();
-                    //MessageBox.Show(ex.Message);
                     BaseMessage.Show(ex.Message, 500);
                 }
             End:
@@ -293,6 +291,8 @@ namespace V6ThuePost
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
             }
+
+            StopAutoInputTokenPassword();
             Application.Exit();
         }
 

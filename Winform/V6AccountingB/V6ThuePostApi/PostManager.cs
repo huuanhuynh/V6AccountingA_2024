@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -9,7 +8,6 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using BSECUS;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using Newtonsoft.Json;
@@ -38,10 +36,7 @@ using V6ThuePostThaiSonApi.EinvoiceService;
 using V6ThuePostViettelApi;
 using V6ThuePostViettelV2Api;
 using V6ThuePostXmlApi;
-using V6ThuePostXmlApi.AttachmentService;
-using V6ThuePostXmlApi.BusinessService;
-using V6ThuePostXmlApi.PortalService;
-using V6ThuePostXmlApi.PublishService;
+
 using V6Tools;
 using V6Tools.V6Convert;
 using V6Tools.V6Reader;
@@ -312,8 +307,17 @@ namespace V6ThuePostManager
                         break;
                     case "2":
                     case "4":
-                        VnptWS vnptWS = CreateVnptWS();
-                        result = vnptWS.CheckConnection();
+                        if (_version == "78")
+                        {
+                            Vnpt78WS vnpt78WS = new Vnpt78WS(_baseUrl, _account, _accountpassword, _username, _password);
+                            result = vnpt78WS.CheckConnection();
+                        }
+                        else
+                        {
+                            VnptWS vnptWS = CreateVnptWS();
+                            result = vnptWS.CheckConnection();
+                        }
+                        
                         break;
                     case "3":
                         BkavWS bkavWS = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
@@ -862,7 +866,7 @@ namespace V6ThuePostManager
                         {
                             if (File.Exists(filePath))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, filePath);
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, filePath);
                             }
                             else
                             {
@@ -876,7 +880,7 @@ namespace V6ThuePostManager
 
                             if (export_ok && File.Exists(export_file))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                             }
                         }
                         else if (paras.Mode.EndsWith("3")) // Tự xuất pdf rồi gửi
@@ -928,7 +932,7 @@ namespace V6ThuePostManager
 
                             if (export_ok && File.Exists(export_file))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                             }
                         }
                     }
@@ -960,7 +964,7 @@ namespace V6ThuePostManager
                     {
                         if (File.Exists(filePath))
                         {
-                            result += UploadInvAttachmentFkey(fkeyA, filePath);
+                            result += vnptWS.UploadInvAttachmentFkey(fkeyA, filePath);
                         }
                         else
                         {
@@ -1007,13 +1011,13 @@ namespace V6ThuePostManager
                     {
                         string fkey = paras.Fkey_hd;
                         string file = Path.Combine(paras.Dir, paras.FileName);
-                        UploadInvAttachmentFkey(fkey, file);
+                        vnptWS.UploadInvAttachmentFkey(fkey, file);
                     }
                     else if (paras.Mode == "U1") // upload file có sẵn, fkey tự đọc từ data
                     {
                         //ReadDataXml(arg2);
                         string fkey = paras.Fkey_hd;
-                        UploadInvAttachmentFkey(fkey, fkey + ".xls");
+                        vnptWS.UploadInvAttachmentFkey(fkey, fkey + ".xls");
                     }
                     else if (paras.Mode == "U2") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel rồi upload.
                     {
@@ -1023,7 +1027,7 @@ namespace V6ThuePostManager
 
                         if (export_ok && File.Exists(export_file))
                         {
-                            result += UploadInvAttachmentFkey(fkeyA, export_file);
+                            result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                         }
                     }
                     else if (paras.Mode == "U3") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel để đó xem.
@@ -1100,7 +1104,7 @@ namespace V6ThuePostManager
                 if (result.StartsWith("ERR"))
                 {
                     //error += result;
-                    paras.Result.ResultErrorMessage = result;
+                    //paras.Result.ResultErrorMessage = result;
                 }
                 else
                 {
@@ -1651,68 +1655,6 @@ namespace V6ThuePostManager
         }
 
 
-        /// <summary>
-        /// Tải lên bảng kê.
-        /// </summary>
-        /// <param name="fkey"></param>
-        /// <param name="file"></param>
-        /// <returns></returns>
-        public static string UploadInvAttachmentFkey(string fkey, string file)
-        {
-            string result = null;
-            try
-            {
-                string attachment64 = FileToBase64(file);
-                string ext = Path.GetExtension(file);
-                if (ext.Length > 0) ext = ext.Substring(1);
-                string attachmentName = Path.GetFileNameWithoutExtension(file);
-                result = new AttachmentService(_link_Attachment_vnpt).uploadInvAttachmentFkey(fkey, _username, _password, attachment64, ext, attachmentName);
-
-                if (result.StartsWith("ERR:11"))
-                {
-                    result += "\r\nDung lượng file vượt quá mức cho phép.";
-                }
-                else if (result.StartsWith("ERR:10"))
-                {
-                    result += "\r\nChuỗi Base64 cùa file không hợp lệ.";
-                }
-                else if (result.StartsWith("ERR:9"))
-                {
-                    result += "\r\nĐịnh dạng file không hợp lệ.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    result += "\r\nTên file không hợp lệ hoặc quá dài.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:4"))
-                {
-                    result += "\r\nCompany chưa có mẫu hóa đơn nào.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    result += "\r\nLỗi.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.UploadInvAttachmentFkey " + result);
-            return result;
-        }
 
         public static string FileToBase64(string filePath)
         {
@@ -1721,119 +1663,10 @@ namespace V6ThuePostManager
             return fileBase64;
         }
         
-        /// <summary>
-        /// Hủy hóa đơn.
-        /// </summary>
-        /// <param name="fkey_old"></param>
-        /// <returns></returns>
-        public static string cancelInv(string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                result = new BusinessService(_link_Business_vnpt).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
 
-                if (result.StartsWith("ERR:9"))
-                {
-                    result += "\r\nTrạng thái hóa đơn không được thay thế.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    result += "\r\nHóa đơn đã được thay thế rồi, hủy rồi.";
-                }
-                else if (result.StartsWith("ERR:2"))
-                {
-                    result += "\r\nKhông tồn tại hóa đơn cần hủy.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
+        
 
-            Logger.WriteToLog("Program.cancelInv " + result);
-            return result;
-        }
-
-        public static string cancelInv_VNPT_TOKEN(string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                string xml = ReadData_Vnpt();
-                result = VNPTEInvoiceSignToken.CancelInvoiceWithToken(_account, _accountpassword, xml, _username,
-                    _password, __pattern, _link_Business_vnpt);
-                //result = new BusinessService(_link_Business_vnpt).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
-
-                if (result.StartsWith("ERR:9"))
-                {
-                    result += "\r\nTrạng thái hóa đơn không được thay thế.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    result += "\r\nHóa đơn đã được thay thế rồi, hủy rồi.";
-                }
-                else if (result.StartsWith("ERR:2"))
-                {
-                    result += "\r\nKhông tồn tại hóa đơn cần hủy.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.cancelInv " + result);
-            return result;
-        }
-
-        /// <summary>
-        /// Download invoice VNPT
-        /// </summary>
-        /// <param name="fkey"></param>
-        /// <param name="v6Return"></param>
-        /// <returns></returns>
-        public static string DownloadInvFkeyNoPay(string fkey, out V6Return v6Return)
-        {
-            string result = null;
-            v6Return = new V6Return();
-            try
-            {
-                result = new PortalService(_link_Portal_vnpt).downloadInvFkeyNoPay(fkey, _username, _password);
-                v6Return.RESULT_STRING = result;
-                if (result.StartsWith("ERR:7"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi.";
-                }
-                else
-                {
-                    v6Return.SO_HD = GetSoHoaDon_VNPT(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-                v6Return.RESULT_ERROR_MESSAGE = result;
-            }
-
-            return result;
-        }
+        
 
         private static string GetSoHoaDon_VNPT(string invXml)
         {
@@ -2134,7 +1967,7 @@ namespace V6ThuePostManager
                     if (resultM.StartsWith("ERR:0"))       // Hoặc đã có trên hệ thống HDDT ERR:0
                     {
                         V6Return v6return;
-                        string invXml = DownloadInvFkeyNoPay(fkeyA, out v6return);
+                        string invXml = vnptWS.DownloadInvFkeyNoPay(fkeyA, out v6return);
                         paras.Result.InvoiceNo = v6return.SO_HD;
                         if (!string.IsNullOrEmpty(paras.Result.InvoiceNo))
                         {
@@ -2157,7 +1990,7 @@ namespace V6ThuePostManager
                         {
                             if (File.Exists(filePath))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, filePath);
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, filePath);
                             }
                             else
                             {
@@ -2171,7 +2004,7 @@ namespace V6ThuePostManager
 
                             if (export_ok && File.Exists(export_file))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                             }
                         }
                         else if (paras.Mode.EndsWith("3")) // Tự xuất pdf rồi gửi
@@ -2224,7 +2057,7 @@ namespace V6ThuePostManager
 
                             if (export_ok && File.Exists(export_file))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                             }
                         }
                     }
@@ -2232,7 +2065,7 @@ namespace V6ThuePostManager
                 else if (String.Equals(paras.Mode, "DownloadInvFkeyNoPay", StringComparison.CurrentCultureIgnoreCase))
                 {
                     fkeyA = paras.Fkey_hd;
-                    string invXml = DownloadInvFkeyNoPay(fkeyA, out paras.Result.V6ReturnValues);
+                    string invXml = vnptWS.DownloadInvFkeyNoPay(fkeyA, out paras.Result.V6ReturnValues);
                     result += paras.Result.InvoiceNo;
                 }
                 else if (paras.Mode == "S")
@@ -2245,7 +2078,7 @@ namespace V6ThuePostManager
                     {
                         if (File.Exists(filePath))
                         {
-                            result += UploadInvAttachmentFkey(fkeyA, filePath);
+                            result += vnptWS.UploadInvAttachmentFkey(fkeyA, filePath);
                         }
                         else
                         {
@@ -2277,7 +2110,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "H")
                 {
                     //File.Create(flagFileName1).Close();
-                    result = cancelInv_VNPT_TOKEN(fkey_old: paras.Fkey_hd);
+                    result = vnptWS.cancelInv_VNPT_TOKEN(paras.Fkey_hd, ReadData_Vnpt(), __pattern);
                 }
                 else if (paras.Mode == "D")
                 {
@@ -2289,13 +2122,13 @@ namespace V6ThuePostManager
                     {
                         string fkey = paras.Fkey_hd;
                         string file = Path.Combine(paras.Dir, paras.FileName);
-                        UploadInvAttachmentFkey(fkey, file);
+                        vnptWS.UploadInvAttachmentFkey(fkey, file);
                     }
                     else if (paras.Mode == "U1") // upload file có sẵn, fkey tự đọc từ data
                     {
                         //ReadDataXml(arg2);
                         string fkey = paras.Fkey_hd;
-                        UploadInvAttachmentFkey(fkey, fkey + ".xls");
+                        vnptWS.UploadInvAttachmentFkey(fkey, fkey + ".xls");
                     }
                     else if (paras.Mode == "U2") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel rồi upload.
                     {
@@ -2305,7 +2138,7 @@ namespace V6ThuePostManager
 
                         if (export_ok && File.Exists(export_file))
                         {
-                            result += UploadInvAttachmentFkey(fkeyA, export_file);
+                            result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                         }
                     }
                     else if (paras.Mode == "U3") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel để đó xem.
@@ -3517,7 +3350,7 @@ namespace V6ThuePostManager
                     //{
                     //    if (File.Exists(filePath))
                     //    {
-                    //        result += UploadInvAttachmentFkey(fkeyA, filePath);
+                    //        result += vnptWS.UploadInvAttachmentFkey(fkeyA, filePath);
                     //    }
                     //    else
                     //    {
@@ -3556,13 +3389,13 @@ namespace V6ThuePostManager
                     {
                         string fkey = paras.Fkey_hd;
                         string file = Path.Combine(paras.Dir, paras.FileName);
-                        UploadInvAttachmentFkey(fkey, file);
+                        //vnptWS.UploadInvAttachmentFkey(fkey, file);
                     }
                     else if (paras.Mode == "U1") // upload file có sẵn, fkey tự đọc từ data
                     {
                         //ReadDataXml(arg2);
                         string fkey = paras.Fkey_hd;
-                        UploadInvAttachmentFkey(fkey, fkey + ".xls");
+                        //vnptWS.UploadInvAttachmentFkey(fkey, fkey + ".xls");
                     }
                     else if (paras.Mode == "U2") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel rồi upload.
                     {
@@ -3572,7 +3405,8 @@ namespace V6ThuePostManager
 
                         if (export_ok && File.Exists(export_file))
                         {
-                            result += UploadInvAttachmentFkey(fkeyA, export_file);
+                            result += "Không có chức năng.";
+                            //result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                         }
                     }
                     else if (paras.Mode == "U3") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel để đó xem.
@@ -3750,7 +3584,8 @@ namespace V6ThuePostManager
                         {
                             if (File.Exists(filePath))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, filePath);
+                                result += "Không có chức năng.";
+                                //result += vnptWS.UploadInvAttachmentFkey(fkeyA, filePath);
                             }
                             else
                             {
@@ -3764,7 +3599,8 @@ namespace V6ThuePostManager
 
                             if (export_ok && File.Exists(export_file))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                result += "Không có chức năng.";
+                                //result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                             }
                         }
                     }
@@ -3817,13 +3653,15 @@ namespace V6ThuePostManager
                     {
                         string fkey = paras.Fkey_hd;
                         string file = Path.Combine(paras.Dir, paras.FileName);
-                        UploadInvAttachmentFkey(fkey, file);
+                        // không có chức năng
+                        //vnptWS.UploadInvAttachmentFkey(fkey, file);
                     }
                     else if (paras.Mode == "U1") // upload file có sẵn, fkey tự đọc từ data
                     {
                         //ReadDataXml(arg2);
                         string fkey = paras.Fkey_hd;
-                        UploadInvAttachmentFkey(fkey, fkey + ".xls");
+                        // không có chức năng.
+                        //vnptWS.UploadInvAttachmentFkey(fkey, fkey + ".xls");
                     }
                     else if (paras.Mode == "U2") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel rồi upload.
                     {
@@ -3833,7 +3671,8 @@ namespace V6ThuePostManager
 
                         if (export_ok && File.Exists(export_file))
                         {
-                            result += UploadInvAttachmentFkey(fkeyA, export_file);
+                            result += "Không có chức năng.";
+                            //result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                         }
                     }
                     else if (paras.Mode == "U3") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel để đó xem.
@@ -4557,6 +4396,7 @@ namespace V6ThuePostManager
             customerInfoConfig = new Dictionary<string, ConfigLine>();
 
             parameters_config = new List<ConfigLine>();
+            _SERIAL_CERT = "";
 
             try
             {
