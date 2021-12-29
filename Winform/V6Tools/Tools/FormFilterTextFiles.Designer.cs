@@ -72,7 +72,7 @@
             this.txtBNoContains2 = new System.Windows.Forms.TextBox();
             this.txtANoContains3 = new System.Windows.Forms.TextBox();
             this.txtBNoContains3 = new System.Windows.Forms.TextBox();
-            this.txtReplace = new System.Windows.Forms.TextBox();
+            this.txtReplaceText = new System.Windows.Forms.TextBox();
             this.txtReplaceBy = new System.Windows.Forms.TextBox();
             this.lbl100Percent = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -516,14 +516,14 @@
             this.txtBNoContains3.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
             this.txtBNoContains3.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
-            // txtReplace
+            // txtReplaceText
             // 
-            this.txtReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtReplaceText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReplace.Location = new System.Drawing.Point(449, 203);
-            this.txtReplace.Name = "txtReplace";
-            this.txtReplace.Size = new System.Drawing.Size(324, 20);
-            this.txtReplace.TabIndex = 19;
+            this.txtReplaceText.Location = new System.Drawing.Point(449, 203);
+            this.txtReplaceText.Name = "txtReplaceText";
+            this.txtReplaceText.Size = new System.Drawing.Size(324, 20);
+            this.txtReplaceText.TabIndex = 19;
             // 
             // txtReplaceBy
             // 
@@ -582,7 +582,7 @@
             this.Controls.Add(this.btnRepxFormatFix);
             this.Controls.Add(this.btnRepxVtoE_All);
             this.Controls.Add(this.txtReplaceBy);
-            this.Controls.Add(this.txtReplace);
+            this.Controls.Add(this.txtReplaceText);
             this.Controls.Add(this.btnReplace);
             this.Controls.Add(this.chkx213);
             this.Controls.Add(this.chkx212);
@@ -677,7 +677,7 @@
         private System.Windows.Forms.TextBox txtANoContains3;
         private System.Windows.Forms.TextBox txtBNoContains3;
         private System.Windows.Forms.Button btnReplace;
-        private System.Windows.Forms.TextBox txtReplace;
+        private System.Windows.Forms.TextBox txtReplaceText;
         private System.Windows.Forms.TextBox txtReplaceBy;
         private System.Windows.Forms.Button btnRepxVtoE_All;
         private System.Windows.Forms.Label lbl100Percent;

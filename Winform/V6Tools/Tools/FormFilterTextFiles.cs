@@ -205,6 +205,7 @@ namespace Tools
         }
 
         private int count;
+        private int percent;
         private bool running;
         private string error = "";
         private string append_text = "";
@@ -222,6 +223,7 @@ namespace Tools
                     {
                         Repx_ParameterMapping_and_Replace(myFileInfo);
                         count++;
+                        percent = count * 100 / listBox1.Items.Count;
                         append_text += "\nHoàn thành " + count + ": " + myFileInfo.FullPath;
                     }
                 }
@@ -247,6 +249,7 @@ namespace Tools
                     {
                         Repx_ParameterMapping_and_Replace(myFileInfo);
                         count++;
+                        percent = count * 100 / listBox1.Items.Count;
                         append_text += "\nHoàn thành " + count + ": " + myFileInfo.FullPath;
                     }
                 }
@@ -702,12 +705,75 @@ namespace Tools
         private void btnFilter_Click(object sender, EventArgs e)
         {
             Filter();
-            txtReplace.Text = txt11.Text;
+            txtReplaceText.Text = txt11.Text;
         }
 
         private void btnReplace_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("no code");
+            try
+            {
+                richView.Clear();
+                richView.AppendText("\n ===== REPLACE Text =====");
+                richView.SelectionStart = richView.TextLength;
+                richView.ScrollToCaret();
+
+                running = true;
+                count = 0;
+                error = "";
+                append_text = "";
+                running = true;
+                Thread thread = new Thread(DoReplace_Thread);
+                thread.IsBackground = true;
+                thread.Start();
+                timer1.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DoReplace_Thread()
+        {
+            try
+            {
+                replaces = replaces_FormatFix;
+                foreach (object item in listBox2.Items)
+                {
+                    var myFileInfo = item as MyFileInfo;
+                    if (myFileInfo != null)
+                    {
+                        DoReplace1(myFileInfo);
+                        count++;
+                        int percent = count * 100 / listBox2.Items.Count;
+                        append_text += "\nĐã thay thế " + count + ": " + myFileInfo.FullPath;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog(GetType() + ".Filter", ex, "");
+                MessageBox.Show(ex.Message);
+            }
+
+            running = false;
+        }
+
+        private void DoReplace1(MyFileInfo myFileInfo)
+        {
+            try
+            {
+                myFileInfo.Text = File.ReadAllText(myFileInfo.FullPath);
+                
+                // Thay thế text.
+                myFileInfo.Text = myFileInfo.Text.Replace(txtReplaceText.Text, txtReplaceBy.Text);
+
+                File.WriteAllText(myFileInfo.FullPath, myFileInfo.Text);
+            }
+            catch (Exception ex)
+            {
+                error += "\n" + myFileInfo.FullPath + "\n" + ex.Message;
+            }
         }
 
         private int padLength = 80;
@@ -738,6 +804,7 @@ namespace Tools
                     replaces = replaces_V_to_E;
                     Repx_ParameterMapping_and_Replace(myFileInfo);
                     count++;
+                    percent = count * 100 / listBox1.Items.Count;
                     richView.AppendText("\nHoàn thành " + count + ": " + myFileInfo.FullPath);
                 }
             }
@@ -815,7 +882,11 @@ namespace Tools
         {
             if (running)
             {
-                int percent = count * 100 / listBox1.Items.Count;
+                string s = append_text;
+                richView.AppendText(s);
+                append_text = append_text.Substring(s.Length);
+
+                
                 if (percent == 0 && count > 0) percent = 1;
                 lbl100Percent.Text = percent + "%";
                 lbl100Percent.Width = btnRepxVtoE_All.Width * percent / 100;
