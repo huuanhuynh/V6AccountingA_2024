@@ -50,11 +50,14 @@
             this.lichViewControl1.RowData = null;
             this.lichViewControl1.SatudayColor = System.Drawing.Color.Blue;
             this.lichViewControl1.ShowNextPrevious = true;
-            this.lichViewControl1.Size = new System.Drawing.Size(550, 261);
+            this.lichViewControl1.ShowNextPreviousYear = true;
+            this.lichViewControl1.Size = new System.Drawing.Size(549, 261);
             this.lichViewControl1.SundayColor = System.Drawing.Color.Red;
             this.lichViewControl1.TabIndex = 5;
             this.lichViewControl1.ClickNextEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichViewControl1_ClickNextEvent);
             this.lichViewControl1.ClickPreviousEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichViewControl1_ClickPreviousEvent);
+            this.lichViewControl1.ClickNextYearEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichViewControl1_ClickNextYearEvent);
+            this.lichViewControl1.ClickPreviousYearEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichViewControl1_ClickPreviousYearEvent);
             this.lichViewControl1.DoubleClick += new System.EventHandler(this.lichViewControl1_DoubleClick);
             // 
             // btnThoat
@@ -123,10 +126,6 @@
             this.ShowInTaskbar = false;
             this.Text = "AmLich";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Controls.SetChildIndex(this.lichViewControl1, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnThoat, 0);
-            this.Controls.SetChildIndex(this.btnToday, 0);
             this.ResumeLayout(false);
 
         }

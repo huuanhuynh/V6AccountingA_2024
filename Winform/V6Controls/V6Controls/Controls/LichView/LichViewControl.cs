@@ -91,7 +91,7 @@ namespace V6Controls.Controls.LichView
                     if (DataSource != null)
                     if (DataSource.ContainsKey(FocusDate.Day))
                     {
-                        DrawToDay(g, DataSource[FocusDate.Day]);
+                        DrawToDayBorder(g, DataSource[FocusDate.Day]);
                     }
                 }
             }
@@ -174,6 +174,14 @@ namespace V6Controls.Controls.LichView
             {
                 OnClickPreviousEvent(new LichViewEventArgs());
             }
+            else if (ShowNextPreviousYear && NextYearRectangle.Contains(MouseLocation))
+            {
+                OnClickNextYearEvent(new LichViewEventArgs());
+            }
+            else if (ShowNextPreviousYear && PreviousYearRectangle.Contains(MouseLocation))
+            {
+                OnClickPreviousYearEvent(new LichViewEventArgs());
+            }
             else// if (mouse_on_a_cell)
             {
                 bool mouse_on_a_cell = false;
@@ -216,7 +224,7 @@ namespace V6Controls.Controls.LichView
 
         #region ==== Properties ====
         /// <summary>
-        /// Ngày hiện tại, có kẻ khung viền.
+        /// Ngày đang chọn, có kẻ khung viền.
         /// </summary>
         public DateTime FocusDate;
         
@@ -272,14 +280,36 @@ namespace V6Controls.Controls.LichView
         public int FooterHeight { get; set; }
         public string FooterText { get; set; }
 
+        /// <summary>
+        /// Khung nút tháng trước.
+        /// </summary>
         protected Rectangle PreviousButtonRectangle
         {
             get { return new Rectangle(BorderWidth+2, BorderWidth+2, col_width - 4, HeaderHeight/2); }
         }
 
+        /// <summary>
+        /// Khung nút tháng tiếp theo.
+        /// </summary>
         protected Rectangle NextButtonRectangle
         {
             get { return new Rectangle(6*col_width + 3, BorderWidth+2, col_width - 4, HeaderHeight/2); }
+        }
+
+        /// <summary>
+        /// Khung nút năm trước.
+        /// </summary>
+        protected Rectangle PreviousYearRectangle
+        {
+            get { return new Rectangle(BorderWidth + 1 + col_width, BorderWidth + 2, col_width / 2, HeaderHeight / 2); }
+        }
+
+        /// <summary>
+        /// Khung nút năm tiếp theo.
+        /// </summary>
+        protected Rectangle NextYearRectangle
+        {
+            get { return new Rectangle(5 * col_width + col_width/2, BorderWidth + 2, col_width / 2, HeaderHeight / 2); }
         }
 
         protected Rectangle HeaderTitleRectangle
@@ -312,8 +342,13 @@ namespace V6Controls.Controls.LichView
         }
         protected bool _showAL = true;
 
+        /// <summary>
+        /// Cờ hiển thị nút chuyển tháng.
+        /// </summary>
         [DefaultValue(false)]
         public bool ShowNextPrevious { get; set; }
+        [DefaultValue(false)]
+        public bool ShowNextPreviousYear { get; set; }
         
 
         #endregion properties
@@ -322,6 +357,15 @@ namespace V6Controls.Controls.LichView
         public event Action<LichViewEventArgs> ClickNextEvent;
         protected virtual void OnClickNextEvent(LichViewEventArgs eventArgs)
         {
+            try
+            {
+                var nextMonth = FocusDate.AddMonths(1);
+                SetData(nextMonth.Year, nextMonth.Month, nextMonth, null, null, FooterText);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Next", ex);
+            }
             var handler = ClickNextEvent;
             if (handler != null) handler(eventArgs);
         }
@@ -329,7 +373,48 @@ namespace V6Controls.Controls.LichView
         public event Action<LichViewEventArgs> ClickPreviousEvent;
         protected virtual void OnClickPreviousEvent(LichViewEventArgs eventArgs)
         {
+            try
+            {
+                var nextMonth = FocusDate.AddMonths(-1);
+                SetData(nextMonth.Year, nextMonth.Month, nextMonth, null, null, FooterText);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Previous", ex);
+            }
             var handler = ClickPreviousEvent;
+            if (handler != null) handler(eventArgs);
+        }
+
+        public event Action<LichViewEventArgs> ClickNextYearEvent;
+        protected virtual void OnClickNextYearEvent(LichViewEventArgs eventArgs)
+        {
+            try
+            {
+                var nextYear = FocusDate.AddYears(1);
+                SetData(nextYear.Year, nextYear.Month, nextYear, null, null, FooterText);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".NextYear", ex);
+            }
+            var handler = ClickNextYearEvent;
+            if (handler != null) handler(eventArgs);
+        }
+
+        public event Action<LichViewEventArgs> ClickPreviousYearEvent;
+        protected virtual void OnClickPreviousYearEvent(LichViewEventArgs eventArgs)
+        {
+            try
+            {
+                var nextYearDate = FocusDate.AddYears(-1);
+                SetData(nextYearDate.Year, nextYearDate.Month, nextYearDate, null, null, FooterText);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".PreviousYear", ex);
+            }
+            var handler = ClickPreviousYearEvent;
             if (handler != null) handler(eventArgs);
         }
 
@@ -445,12 +530,24 @@ namespace V6Controls.Controls.LichView
             //Buttons
             if (ShowNextPrevious)
             {
+                brush = new SolidBrush(Color.Blue);
                 e.Graphics.FillRectangle(brush, PreviousButtonRectangle);
                 e.Graphics.FillRectangle(brush, NextButtonRectangle);
 
                 brush = new SolidBrush(Color.White);
                 e.Graphics.DrawString("<", Font, brush, PreviousButtonRectangle, format);
                 e.Graphics.DrawString(">", Font, brush, NextButtonRectangle, format);
+            }
+
+            if (ShowNextPreviousYear)
+            {
+                brush = new SolidBrush(Color.Blue);
+                e.Graphics.FillRectangle(brush, PreviousYearRectangle);
+                e.Graphics.FillRectangle(brush, NextYearRectangle);
+
+                brush = new SolidBrush(Color.White);
+                e.Graphics.DrawString("<<<<", Font, brush, PreviousYearRectangle, format);
+                e.Graphics.DrawString(">>>>", Font, brush, NextYearRectangle, format);
             }
         }
 
@@ -529,7 +626,7 @@ namespace V6Controls.Controls.LichView
                         row++;
                     }
                 }
-                DrawToDay(e.Graphics, todayCellData);
+                DrawToDayBorder(e.Graphics, todayCellData);
 
             }
             catch (Exception ex)
@@ -538,7 +635,7 @@ namespace V6Controls.Controls.LichView
             }
         }
 
-        private void DrawToDay(Graphics g, LichViewCellData todayCellData)
+        private void DrawToDayBorder(Graphics g, LichViewCellData todayCellData)
         {
             if (todayCellData != null)
             {
@@ -613,8 +710,8 @@ namespace V6Controls.Controls.LichView
                 Rectangle lunarRec = new Rectangle(cellData.Rectangle.X,
                     (int) (cellData.Rectangle.Y + Math.Ceiling(size.Height)),
                     Width, (int) (Height - size.Height));
-                emSize = (float) col_width/15;
-                if (emSize < 4.5) emSize = 4.5f;
+                emSize = (float) col_width/12;
+                if (emSize < 5.5) emSize = 5.5f;
                 Font lunarFont = new Font(Font.FontFamily, emSize);
                 var lunarDay = "" + lunarDate.LunarDay;
                 if (cellData.Date.Day == 1 || lunarDate.LunarDay == 1)
@@ -671,6 +768,7 @@ namespace V6Controls.Controls.LichView
 
     public class LichViewEventArgs : EventArgs
     {
+        public DateTime NewFocusDate { get; set; }
         /// <summary>
         /// Dữ liệu của ô được click
         /// </summary>

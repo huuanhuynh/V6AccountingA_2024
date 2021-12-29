@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using V6Init;
 using V6Tools.V6Convert;
@@ -113,7 +114,6 @@ namespace V6Controls.Controls
                 dgv.SizeChanged += dgv_SizeChanged;
                 dgv.LocationChanged += dgv_LocationChanged;
                 //DrawSummary();
-                
             }
         }
 
@@ -136,7 +136,6 @@ namespace V6Controls.Controls
         {
             if (_dgv != null)
             {
-                MyInit();
                 //FixThisSizeLocation(dgv);
                 _dgv.Paint -= dgv_Paint;
                 _dgv.DataSourceChanged -= dgv_DataSourceChanged;
@@ -161,11 +160,13 @@ namespace V6Controls.Controls
             DrawSummary();
         }
 
+        Dictionary<string, Rectangle> REC_DIC = new Dictionary<string, Rectangle>();
+        Graphics g;
         private void DrawSummary()
         {
             try
             {
-                Graphics g = CreateGraphics();
+                g = CreateGraphics();
                 g.FillRectangle(bBackGround, g.VisibleClipBounds);
                 if (SumCondition != null && string.IsNullOrEmpty(SumCondition.OPER)) SumCondition.OPER = "=";
                 //CaculateSumValues();
@@ -190,6 +191,7 @@ namespace V6Controls.Controls
                     if (rec.Right > 0)
                     {
                         g.DrawRectangle(pBoder, newRec);
+                        REC_DIC[col.DataPropertyName.ToUpper()] = newRec;
                         g.DrawString(text, textFont, bTextColor, newRec, stringFormat);
                     }
                 }
@@ -224,6 +226,8 @@ namespace V6Controls.Controls
         public GridViewSummary()
         {
             InitializeComponent();
+            this.MouseClick += GridViewSummary_MouseClick;
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
         }
 
         private void MyInit()
@@ -241,7 +245,39 @@ namespace V6Controls.Controls
             };
         }
 
-        private SortedDictionary<string, decimal> _sumValues; 
+        Point _point;
+        void GridViewSummary_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                _point = e.Location;
+                contextMenuStrip1.Show(this, _point);
+            }            
+        }
+
+        void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {                
+                foreach (KeyValuePair<string, Rectangle> ITEM in REC_DIC)
+                {
+                    if (ITEM.Value.Contains(_point))
+                    {
+                        var col = this._dgv.Columns[ITEM.Key];
+                        Clipboard.SetText(_SUM_VALUES[ITEM.Key].ToString(CultureInfo.InvariantCulture));
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Clipboard.SetText("ERR:" + ex.Message);
+                return;
+            }
+            Clipboard.SetText("");
+        }
+
+        private SortedDictionary<string, decimal> _SUM_VALUES; 
         private void CaculateSumValues()
         {
             try
@@ -250,12 +286,12 @@ namespace V6Controls.Controls
                 gFont = _dgv.Font;
                 textFont = new Font(gFont.FontFamily, gFont.Size, FontStyle.Bold);
                 // Khởi tạo danh sách kết quả
-                _sumValues = new SortedDictionary<string, decimal>();
+                _SUM_VALUES = new SortedDictionary<string, decimal>();
                 foreach (DataGridViewColumn column in _dgv.Columns)
                 {
                     if (ObjectAndString.IsNumberType(column.ValueType))
                     {
-                        _sumValues[column.DataPropertyName] = 0;
+                        _SUM_VALUES[column.DataPropertyName.ToUpper()] = 0;
                     }
                 }
 
@@ -287,7 +323,7 @@ namespace V6Controls.Controls
                                 {
                                     if (ObjectAndString.IsNumberType(cell.ValueType))
                                     {
-                                        _sumValues[cell.OwningColumn.DataPropertyName] += ObjectAndString.ObjectToDecimal(cell.Value);
+                                        _SUM_VALUES[cell.OwningColumn.DataPropertyName.ToUpper()] += ObjectAndString.ObjectToDecimal(cell.Value);
                                     }
                                 }
                         }
@@ -302,7 +338,7 @@ namespace V6Controls.Controls
                         {
                             if (ObjectAndString.IsNumberType(cell.ValueType))
                             {
-                                _sumValues[cell.OwningColumn.DataPropertyName] += ObjectAndString.ObjectToDecimal(cell.Value);
+                                _SUM_VALUES[cell.OwningColumn.DataPropertyName.ToUpper()] += ObjectAndString.ObjectToDecimal(cell.Value);
                             }
                         }
                 }
@@ -323,9 +359,9 @@ namespace V6Controls.Controls
         private decimal SumOfSelectedRowsByColumn(DataGridView dgv, DataGridViewColumn col)
         {
             var sum = 0m;
-            if (_sumValues != null && _sumValues.ContainsKey(col.DataPropertyName))
+            if (_SUM_VALUES != null && _SUM_VALUES.ContainsKey(col.DataPropertyName))
             {
-                return _sumValues[col.DataPropertyName];
+                return _SUM_VALUES[col.DataPropertyName.ToUpper()];
             }
 
             if (dgv.SelectionMode == DataGridViewSelectionMode.FullRowSelect && dgv.SelectedRows.Count > 1)

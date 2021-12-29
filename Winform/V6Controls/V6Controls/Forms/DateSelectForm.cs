@@ -47,8 +47,7 @@ namespace V6Controls.Forms
         {
             try
             {
-                var nextMonthDate = lichViewControl1.FocusDate.AddMonths(1);
-                lichViewControl1.SetData(nextMonthDate.Year, nextMonthDate.Month, nextMonthDate, null, null, "Lịch âm");
+                
             }
             catch (Exception ex)
             {
@@ -60,12 +59,35 @@ namespace V6Controls.Forms
         {
             try
             {
-                var nextMonthDate = lichViewControl1.FocusDate.AddMonths(-1);
-                lichViewControl1.SetData(nextMonthDate.Year, nextMonthDate.Month, nextMonthDate, null, null, "Lịch âm");
+                
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Previous", ex);
+            }
+        }
+
+        private void lichViewControl1_ClickNextYearEvent(Controls.LichView.LichViewEventArgs obj)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".NextYear", ex);
+            }
+        }
+
+        private void lichViewControl1_ClickPreviousYearEvent(Controls.LichView.LichViewEventArgs obj)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".PreviousYear", ex);
             }
         }
 
@@ -104,5 +126,7 @@ namespace V6Controls.Forms
                 this.WriteExLog(GetType() + ".lichViewControl1_DoubleClick", ex);
             }
         }
+
+        
     }
 }
