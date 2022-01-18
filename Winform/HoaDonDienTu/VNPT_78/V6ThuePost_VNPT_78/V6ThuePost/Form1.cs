@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using V6ThuePost.ResponseObjects;
+using V6ThuePostXmlApi;
 
 namespace V6ThuePost
 {
@@ -13,16 +15,20 @@ namespace V6ThuePost
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (Program._TEST_) richTextBox1.ReadOnly = false;
+            if (Program._TEST_)
+            {
+                richTextBox1.ReadOnly = false;
+                richTextBox1.BackColor = Color.White;
+            }
         }
 
         private void btnRead_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
             string xmlData = Program.ReadDataXml(txtDbfFile.Text);
-            txtUsername.Text = Program.username;
-            txtPassword.Text = Program.password;
-            txtURL.Text = Program.link_Publish;
+            txtUsername.Text = Program._username;
+            txtPassword.Text = Program._password;
+            //txtURL.Text = Program.link_Publish;
             richTextBox1.Text = xmlData;
 
             btnImportCertWithToken.Enabled = true;
@@ -36,15 +42,16 @@ namespace V6ThuePost
             txtPattern.Text = Program.pattern;
             txtSeri.Text = Program.seri;
             btnUpdatePatternSeri.Enabled = true;
+            Program._vnptWS = new Vnpt78WS(Program._baseUrl, Program._account, Program._accountpassword, Program._username, Program._password);
         }
         
         private void btnReadS_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
             string xmlData = Program.ReadDataXmlS(txtDbfFile.Text);
-            txtUsername.Text = Program.username;
-            txtPassword.Text = Program.password;
-            txtURL.Text = Program.link_Publish;
+            txtUsername.Text = Program._username;
+            txtPassword.Text = Program._password;
+            //txtURL.Text = Program.link_Publish;
             richTextBox1.Text = xmlData;
 
             txtPattern.Text = Program.pattern;
@@ -53,19 +60,21 @@ namespace V6ThuePost
             btnSend.Enabled = false;
             btnSendS.Enabled = true;
             btnUpdatePatternSeri.Enabled = true;
+            Program._vnptWS = new Vnpt78WS(Program._baseUrl, Program._account, Program._accountpassword, Program._username, Program._password);
         }
         
         private void btnReadT_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
             string xmlData = Program.ReadDataXmlT(txtDbfFile.Text);
-            txtUsername.Text = Program.username;
-            txtPassword.Text = Program.password;
-            txtURL.Text = Program.link_Publish;
+            txtUsername.Text = Program._username;
+            txtPassword.Text = Program._password;
+            //txtURL.Text = Program.link_Publish;
             richTextBox1.Text = xmlData;
 
             btnSend.Enabled = false;
             btnSendS.Enabled = true;
+            Program._vnptWS = new Vnpt78WS(Program._baseUrl, Program._account, Program._accountpassword, Program._username, Program._password);
         }
 
         private void btnSend0_Click(object sender, EventArgs e)
@@ -73,7 +82,8 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = Program.ImportInv(richTextBox1.Text);
+                V6Return v6Return;
+                result = Program._vnptWS.ImportAndPublishInv(richTextBox1.Text, Program.pattern, Program.seri, out v6Return);
                 
                 lblResult.Text = result;
                 if (result != null)
@@ -96,42 +106,46 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                //result = Program.ImportAndPublishInv(richTextBox1.Text);
-                //result = Program.PhatHanhHoaDon_Token4buoc(richTextBox1.Text);
-
+                BaseMessage.Show("CERT:" + Program.SERIAL_CERT, 0, this);
+                V6Return v6Return;
                 if (string.IsNullOrEmpty(Program.SERIAL_CERT))
                 {
-                    result = Program.ImportAndPublishInv(richTextBox1.Text);
-                    //result = Program.ImportInv(richTextBox1.Text);
+                    //result = Program.ImportAndPublishInv(richTextBox1.Text);
+                    result = Program._vnptWS.ImportAndPublishInv(richTextBox1.Text, Program.pattern, Program.seri, out v6Return);
                 }
                 else
                 {
                     Program.StartAutoInputTokenPassword();
-                    result = Program.PublishInvWithToken_Dll(richTextBox1.Text);
+                    result = Program._vnptWS.PublishInvWithToken_Dll(richTextBox1.Text, Program.pattern, Program.seri, Program.SERIAL_CERT, out v6Return);
                 }
-                
 
                 lblResult.Text = result;
                 if (result != null)
                 {
-                    BaseMessage.Show(result, 500, this);
+                    if (string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
+                    {
+                        BaseMessage.Show(v6Return.RESULT_STRING, 500, this);
+                    }
+                    else
+                    {
+                        BaseMessage.Show(v6Return.RESULT_ERROR_MESSAGE, 500, this);
+                    }
                 }
                 else
                 {
-                    BaseMessage.Show("Response is null!", 0, this);
+                    BaseMessage.Show("Response is null!", 500, this);
                 }
             }
             catch (Exception ex)
             {
-                Program.StopAutoInputTokenPassword();
-                BaseMessage.Show(ex.Message, 0, this);
+                BaseMessage.Show("Error: " + ex.Message + "\n" + result, 0, this);
             }
         }
         
         private void btnSendNoSign_Click(object sender, EventArgs e)
         {
             string result = null;
-            
+
             result = Program.getHashInvWithToken(richTextBox1.Text);
             
             lblResult.Text = result;
@@ -161,7 +175,7 @@ namespace V6ThuePost
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            string result = Program.UploadInvAttachmentFkey(Program.fkeyA, Program.exportName + ".xls");
+            string result = Program._vnptWS.UploadInvAttachmentFkey(Program.fkeyA, Program.exportName + ".xls");
             BaseMessage.Show(result, 0, this);
         }
 
@@ -175,7 +189,7 @@ namespace V6ThuePost
 
         private void btnImportCertWithToken_Click(object sender, EventArgs e)
         {
-            string result = Program.ImportCertWithToken_Dll();
+            string result = Program._vnptWS.ImportCertWithToken_Dll(Program.SERIAL_CERT);
             lblResult.Text = result;
             BaseMessage.Show(result, 0, this);
         }
@@ -192,15 +206,16 @@ namespace V6ThuePost
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            string result = Program.ImportAndPublishInv("<V6test>Test</V6test>");
+            V6Return v6Return;
+            string result = Program._vnptWS.ImportAndPublishInv("<V6test>Test</V6test>", Program.pattern, Program.seri, out v6Return);
             lblResult.Text = result;
-            if (result != null && result.Contains("Dữ liệu xml đầu vào không đúng quy định"))
+            if (v6Return.RESULT_ERROR_MESSAGE != null && v6Return.RESULT_ERROR_MESSAGE.Contains("Dữ liệu xml đầu vào không đúng quy định"))
             {
                 BaseMessage.Show("Kết nối ổn!", 500, this);
             }
             else
             {
-                BaseMessage.Show(result, 0, this);
+                BaseMessage.Show(v6Return.RESULT_ERROR_MESSAGE, 0, this);
             }
         }
 

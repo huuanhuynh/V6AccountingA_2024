@@ -137,7 +137,7 @@ namespace V6ThuePostXmlApi
             v6Return = new V6Return();
             try
             {
-                result = VNPTEInvoiceSignToken.PublishInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, SERIAL_CERT, pattern, serial, PublishLink);
+                result = VNPTEInvoiceSignToken.PublishInvWithToken32(_account, _accountpassword, xmlInvData, _username, _password, SERIAL_CERT, pattern, serial, PublishLink);
                 v6Return.RESULT_STRING = result;
                 if (result.StartsWith("OK"))
                 {
@@ -707,9 +707,11 @@ namespace V6ThuePostXmlApi
         }
 
         /// <summary>
-        /// Tải về file PDF dạng base64
+        /// Tải về file PDF dạng base64, trả về tên file nếu không có lỗi.
         /// </summary>
         /// <param name="fkey"></param>
+        /// <param name="saveFolder"></param>
+        /// <param name="v6Return"></param>
         /// <returns></returns>
         public string DownloadInvPDFFkeyNoPay(string fkey, string saveFolder, out V6Return v6Return)
         {
@@ -900,6 +902,281 @@ namespace V6ThuePostXmlApi
             string fileBase64 = Convert.ToBase64String(fileBytes);
             return fileBase64;
         }
-        
+
+
+        /// <summary>
+        /// Thay thế điều chỉnh (Token).
+        /// </summary>
+        /// <param name="xmlInvData"></param>
+        /// <param name="serialCert"></param>
+        /// <param name="type">thay thế = 1, điều chỉnh tăng = 2, điều chỉnh giảm = 3, điều chỉnh thông tin = 4</param>
+        /// <param name="invToken">patternt;serial;sốhóađơn 01GTKT2/001;AA/13E;10</param>
+        /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “;” + Fkey + “_” + Số hóa đơn + ”,”</returns>
+        public string AdjustReplaceInvWithToken68_Dll(string xmlInvData, string serialCert, int type, string invToken, string pattern, string seri)
+        {
+            string result = null;
+            try
+            {
+                result = VNPTEInvoiceSignToken.AdjustReplaceInvWithToken68(_account, _accountpassword, xmlInvData, _username, _password,
+                    serialCert, type, invToken, pattern, seri, PublishLink);
+                result += GetResultDescription_Dll(result);
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            Logger.WriteToLog("Program.AdjustReplaceInvWithToken " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Hủy hóa đơn (Token).
+        /// </summary>
+        /// <param name="xmlData"></param>
+        /// <returns>Thành công: trả về "OK"</returns>
+        public string CancelInvoiceWithToken_Dll(string xmlData, string pattern)
+        {
+            string result = null;
+            try
+            {
+                result = VNPTEInvoiceSignToken.CancelInvoiceWithToken(_account, _accountpassword, xmlData, _username, _password, pattern, linkWS: PublishLink);
+                result += GetResultDescription_Dll(result);
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            Logger.WriteToLog("Program.CancelInvoiceWithToken " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Lấy lại hash (Token)
+        /// </summary>
+        /// <param name="xmlFkeyInv"></param>
+        /// <returns></returns>
+        public string GetHashInv_Dll(string xmlFkeyInv, string SERIAL_CERT, string pattern)
+        {
+            string result = null;
+            try
+            {
+                result = VNPTEInvoiceSignToken.getHashInv(_account, _accountpassword, _username, _password, SERIAL_CERT, xmlFkeyInv, pattern, PublishLink);
+                result += GetResultDescription_Dll(result);
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            Logger.WriteToLog("Program.getHashInv " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Lấy trạng thái hóa đơn (Token).
+        /// </summary>
+        /// <param name="xmlFkeyInv"><para></para></param>
+        /// <para> (cấu trúc: <Invoices><Inv><key>123</key></Inv><Inv><key>456</key></Inv><Inv><key>789</key></Inv></Invoices> ) (123, 456, 789 là Fkey)</para>
+        /// <returns>
+        /// <para>Trả về: xml string Cấu trúc: Invoices Inv key123 key Status 0 Status Inv ... Inv...</para>
+        /// <para>0: hóa đơn mới tạo, chưa phát hành (những hóa đơn cần lấy lại hash)</para>
+        /// <para>1: hóa đơn đã phát hành</para>
+        /// <para>2: hóa đơn đã được kê khai thuế cũng như đưa vào các phần mêm kế toán</para>
+        /// <para>3: hóa đơn bị thay thế</para>
+        /// <para>4: hóa đơn bị điều chỉnh</para>
+        /// <para>5: hóa đơn hủy</para>
+        /// </returns>
+        public string GetStatusInv_Dll(string xmlFkeyInv, string pattern)
+        {
+            string result = null;
+            try
+            {
+                result = VNPTEInvoiceSignToken.getStatusInv(_account, _accountpassword, _username, _password, xmlFkeyInv, pattern, PublishLink);
+                result += GetResultDescription_Dll(result);
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            Logger.WriteToLog("Program.GetStatusInv " + result);
+            return result;
+        }
+
+
+
+        /// <summary>
+        /// Insert thông tin chứng thư vào hệ thống.
+        /// </summary>
+        /// <returns>Thành công: trả về "OK"</returns>
+        public string ImportCertWithToken_Dll(string SERIAL_CERT)
+        {
+            string result = null;
+            try
+            {
+                result = VNPTEInvoiceSignToken.ImportCertWithToken(_account, _accountpassword, _username, _password, SERIAL_CERT, PublishLink);
+                result += GetResultDescription_Dll(result);
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            Logger.WriteToLog("Program.ImportCertWithToken " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Phát hành khi đã lấy lại hash (Token).
+        /// </summary>
+        /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “-” + Fkey + “_” + Số hóa đơn + ”,”</returns>
+        public string PublishInv_Dll(string xmlHash, string SERIAL_CERT, string pattern, string seri)
+        {
+            string result = null;
+            try
+            {
+                result = VNPTEInvoiceSignToken.PublishInv(_account, _accountpassword, xmlHash, _username, _password, SERIAL_CERT, pattern, seri, PublishLink);
+                result += GetResultDescription_Dll(result);
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            Logger.WriteToLog("Program.PublishInv " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Đẩy lên và phát hành hóa đơn có ký chữ ký số (Token).
+        /// </summary>
+        /// <param name="xmlInvData">chuỗi xml hóa đơn.</param>
+        /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “-” + Fkey + “_” + Số hóa đơn + “,”</returns>
+        public string PublishInvWithToken_Dll(string xmlInvData, string SERIAL_CERT, string pattern, string seri)
+        {
+            string result = null;
+            try
+            {
+                result = VNPTEInvoiceSignToken.PublishInvWithToken68(_account, _accountpassword, xmlInvData, _username, _password, SERIAL_CERT, pattern, seri, PublishLink);
+                result += GetResultDescription_Dll(result);
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            Logger.WriteToLog("Program.PublishInvWithToken " + result);
+            return result;
+        }
+
+
+
+
+
+        private string GetResultDescription_Dll(string result)
+        {
+            string description = null;
+            if (result.StartsWith("OK"))
+            {
+
+            }
+            else if (result.StartsWith("ERR:-3"))
+            {
+                description = "\r\nCó lỗi trong quá trình lấy chứng thư.";
+            }
+            else if (result.StartsWith("ERR:-2"))
+            {
+                description = "\r\nChứng thư không có privatekey.";
+            }
+            else if (result.StartsWith("ERR:-1"))
+            {
+                description = "\r\nẤn nút hủy khi nhập mã pin của chứng thư.";
+            }
+            else if (result.StartsWith("ERR:30"))
+            {
+                description = "\r\nTạo mới lô hóa đơn lỗi (fkey trùng,…).";
+            }
+            else if (result.StartsWith("ERR:28"))
+            {
+                description = "\r\nThông tin chứng thư chưa có trong hệ thống.";
+            }
+            else if (result.StartsWith("ERR:27"))
+            {
+                description = "\r\nChứng thư chưa đến thời điểm sử dụng.";
+            }
+            else if (result.StartsWith("ERR:26"))
+            {
+                description = "\r\nChứng thư đã hết hạn.";
+            }
+            else if (result.StartsWith("ERR:24"))
+            {
+                description = "\r\nChứng thư truyền lên không đúng với chứng thư công ty đăng ký trên hệ thống";
+            }
+            else if (result.StartsWith("ERR:23"))
+            {
+                description = "\r\nChứng thư truyền lên không đúng định dạng.";
+            }
+            else if (result.StartsWith("ERR:22"))
+            {
+                description = "\r\nCông ty chưa đăng ký thông tin keystore.";
+            }
+            else if (result.StartsWith("ERR:21"))
+            {
+                description = "\r\nKhông tìm thấy công ty trên hệ thống.";
+            }
+            else if (result.StartsWith("ERR:20"))
+            {
+                description = "\r\nTham số mẫu số và ký hiệu truyền vào không hợp lệ.";
+            }
+            else if (result.StartsWith("ERR:19"))
+            {
+                description = "\r\npattern truyền vào không giống với pattern của hoá đơn cần điều chỉnh/thay thế.";
+            }
+            else if (result.StartsWith("ERR:10"))
+            {
+                description = "\r\nSố lượng hóa đơn truyền vào lớn hơn maxBlockInv.";
+            }
+            else if (result.StartsWith("ERR:9"))
+            {
+                description = "\r\n???.";
+            }
+            else if (result.StartsWith("ERR:8"))
+            {
+                description = "\r\nHoá đơn đã được điều chỉnh, thay thế.";
+            }
+            else if (result.StartsWith("ERR:7"))
+            {
+                description = "\r\nKhông tìm thấy chứng thư trong máy. Hãy cắm token.";
+            }
+            else if (result.StartsWith("ERR:6"))
+            {
+                description = "\r\nKhông còn đủ số hóa đơn cho lô phát hành.";
+            }
+            else if (result.StartsWith("ERR:5"))
+            {
+                description = "\r\nCó lỗi xảy ra.";
+            }
+            else if (result.StartsWith("ERR:4"))
+            {
+                description = "\r\ntoken hóa đơn sai định dạng.";
+            }
+            else if (result.StartsWith("ERR:3"))
+            {
+                description = "\r\nĐịnh dạng file xml hóa đơn không đúng.";
+            }
+            else if (result.StartsWith("ERR:2"))
+            {
+                description = "\r\nKhông tồn tại hoá đơn cần thay thế/điều chỉnh.";
+            }
+            else if (result.StartsWith("ERR:1"))
+            {
+                description = "\r\nKhông có quyền truy cập webservice.";
+            }
+            else if (result.StartsWith("ERR:0"))
+            {
+                description = "\r\nLỗi Fkey đã tồn tại.";
+            }
+            else
+            {
+                description = "???";
+            }
+
+            return description;
+        }
     }
 }

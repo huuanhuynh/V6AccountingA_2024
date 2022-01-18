@@ -34,8 +34,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SignTokenCore">
-      <HintPath>..\..\..\VNPT_HCM\TOKEN\SignTokenCore.dll</HintPath>
+    <Reference Include="SignTokenCorev5">
+      <HintPath>..\V6ThuePost\bin\Release\SignTokenCorev5.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -99,6 +99,7 @@ namespace V6ThuePost
         /// key trong data
         /// </summary>
         public static string fkeyA;
+        public static string _seri_test = "";
         #endregion var
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace V6ThuePost
             if (dir_name == "debug")
             {
                 _TEST_ = true;
-                MessageBox.Show("Test");
+                MessageBox.Show("Test. Ngày tự động. Seri lấy ở xml seri_test.");
             }
             else
             {
@@ -370,6 +371,12 @@ namespace V6ThuePost
             //catch (Exception ex)
             {
                 //
+            }
+
+            if (_TEST_)
+            {
+                postObject.data[0]["inv_invoiceIssuedDate"] = _TEST_DATE_.Date;
+                postObject.data[0]["inv_invoiceSeries"] = _seri_test;
             }
             
             return postObject;
@@ -783,6 +790,9 @@ namespace V6ThuePost
                                         break;
                                     case "codetax":
                                         _codetax = UtilityHelper.DeCrypt(line.Value);
+                                        break;
+                                    case "seri_test":
+                                        _seri_test = line.Value;
                                         break;
                                     case "version":
                                         _version = UtilityHelper.DeCrypt(line.Value);

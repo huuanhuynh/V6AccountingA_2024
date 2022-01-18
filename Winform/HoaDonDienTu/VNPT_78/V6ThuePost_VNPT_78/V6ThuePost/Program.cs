@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Xml;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
-using SignTokenCore;
 using Spy;
 using Spy.SpyObjects;
 using V6ThuePost.ResponseObjects;
@@ -30,9 +29,8 @@ namespace V6ThuePost
     {
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
-        #region ===== VAR =====
-
         public static Vnpt78WS _vnptWS = null;
+        #region ===== VAR =====
         /// <summary>
         /// Cờ bắt đầu.
         /// </summary>
@@ -67,13 +65,14 @@ namespace V6ThuePost
         /// services
         /// <para>Được gán khi đọc info</para>
         /// </summary>
-        public static string username { get; set; }
-        public static string password;
+        public static string _username { get; set; }
+        public static string _password;
         /// <summary>
         /// admin
         /// </summary>
-        private static string account;
-        private static string accountpassword;
+        public static string _account;
+
+        public static string _accountpassword;
         /// <summary>
         /// serial của chứng thư công ty đã đăng ký trong hệ thống.
         /// </summary>
@@ -81,8 +80,10 @@ namespace V6ThuePost
 
         public static string pattern;
         private static string pattern_field;
+        private static string pattern_test;
         public static string seri;
         private static string seri_field;
+        private static string seri_test;
 
         private static string convert = "0";
         //Auto input setting
@@ -132,13 +133,14 @@ namespace V6ThuePost
             if (dir_name == "debug")
             {
                 _TEST_ = true;
-                MessageBox.Show("Test");
+                MessageBox.Show("Test: Tham số key được tạo tự động, pattern được lấy từ xml pattern_test, seri_test.");
             }
             else
             {
                 _TEST_ = false;
             }
 
+            V6Return v6return = null;
 
             //MessageBox.Show("Debug!");
             if (args != null && args.Length > 0)
@@ -159,12 +161,12 @@ namespace V6ThuePost
                     
                     ReadXmlInfo(arg1_xmlFile);
 
-                    _vnptWS = new Vnpt78WS(_baseUrl, account, accountpassword, username, password);
-                    V6Return v6return = null;
+                    _vnptWS = new Vnpt78WS(_baseUrl, _account, _accountpassword, _username, _password);
+                    
 
                     if (String.Equals(mode, "ImportCert", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        result = ImportCertWithToken_Dll();
+                        result = _vnptWS.ImportCertWithToken_Dll(SERIAL_CERT);
                     }
                     else if (String.Equals(mode, "DownloadInvPDFFkey", StringComparison.CurrentCultureIgnoreCase))
                     {
@@ -178,9 +180,7 @@ namespace V6ThuePost
                         MessageBox.Show("Test DownloadInvPDFFkeyNoPay");
                         fkeyA = arg2;
                         MakeFlagNames(fkeyA);
-                        string invXml = DownloadInvPDFFkeyNoPay(fkeyA);
-                        string fileName = fkeyA + ".pdf";
-                        MakeFile(invXml, fileName);
+                        string fileName = _vnptWS.DownloadInvPDFFkeyNoPay(fkeyA, Application.StartupPath, out v6return);
                         PdfiumViewerForm pdfView = new PdfiumViewerForm(fileName, "PDF");
                         pdfView.ShowDialog();
                         //WriteFlag(flagFileName4, so_hoa_don);
@@ -191,7 +191,7 @@ namespace V6ThuePost
                         fkeyA = arg2;
                         MakeFlagNames(fkeyA);
 
-                        string invXml = DownloadInvFkeyNoPay(fkeyA);
+                        string invXml = _vnptWS.DownloadInvFkeyNoPay(fkeyA, out v6return);
                         string so_hoa_don = GetSoHoaDon(invXml);
                         WriteFlag(flagFileName4, so_hoa_don);
                         result += so_hoa_don;
@@ -199,7 +199,7 @@ namespace V6ThuePost
                     }
                     else if (mode.StartsWith("DOWNLOAD"))
                     {
-                        var xml = DownloadInvPDFFkey(fkeyA);
+                        var xml = _vnptWS.DownloadInvPDFFkey(fkeyA, 0, startupPath, out v6return);
                     }
                     else if (mode == "MI")
                     {
@@ -216,7 +216,7 @@ namespace V6ThuePost
                         if (!string.IsNullOrEmpty(SERIAL_CERT))
                         {
                             Program.StartAutoInputTokenPassword();
-                            string resultM = PublishInvWithToken_Dll(xml);
+                            string resultM = _vnptWS.PublishInvWithToken_Dll(xml, SERIAL_CERT, pattern, seri);
                             result = resultM;
                             //"OK:mẫu số;ký hiệu-Fkey_Số hóa đơn,"
                             //"OK:01GTKT0/001;VT/19E-A0283806HDA_XXX"
@@ -228,7 +228,7 @@ namespace V6ThuePost
                             else // chạy lần 2
                             {
                                 Program.StartAutoInputTokenPassword();
-                                resultM = PublishInvWithToken_Dll(xml);
+                                resultM = _vnptWS.PublishInvWithToken_Dll(xml, SERIAL_CERT, pattern, seri);
                                 result = resultM;
                                 if (resultM.StartsWith("OK"))
                                 {
@@ -248,7 +248,7 @@ namespace V6ThuePost
                                 {
                                     if (File.Exists(arg3))
                                     {
-                                        result += UploadInvAttachmentFkey(fkeyA, arg3);
+                                        result += _vnptWS.UploadInvAttachmentFkey(fkeyA, arg3);
                                     }
                                     else
                                     {
@@ -262,7 +262,7 @@ namespace V6ThuePost
 
                                     if (export_ok && File.Exists(export_file))
                                     {
-                                        result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                        result += _vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                                     }
                                 }
                                 else if (mode.EndsWith("3")) // Tự xuất pdf rồi gửi
@@ -318,7 +318,7 @@ namespace V6ThuePost
 
                                     if (export_ok && File.Exists(export_file))
                                     {
-                                        result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                        result += _vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                                     }
                                 }
                             }
@@ -327,11 +327,19 @@ namespace V6ThuePost
                         {
                             #region ==== mode M M1:tạo mới gửi excel có sẵn  M2:tạo mới+xuất excel rồi gửi.
 
-                            result = ImportAndPublishInv(xml);
+                            result = _vnptWS.ImportAndPublishInv(xml, pattern, seri, out v6return);
                             //"OK:01GTKT0/001;VT/19E-V6XNCT_05A0283806HDA"
-                            string invXml = DownloadInvFkeyNoPay(fkeyA);
-                            string so_hoa_don = GetSoHoaDon(invXml);
-                            WriteFlag(flagFileName4, so_hoa_don);
+                            if (v6return.SO_HD != null && v6return.SO_HD.Length > 0)
+                            {
+                                WriteFlag(flagFileName4, v6return.SO_HD);
+                            }
+                            else
+                            {
+                                string invXml = _vnptWS.DownloadInvFkeyNoPay(fkeyA, out v6return);
+                                string so_hoa_don = GetSoHoaDon(invXml);
+                                WriteFlag(flagFileName4, so_hoa_don);
+                            }
+                            
 
                             if (arg3.Length > 0 && result.StartsWith("OK"))
                             {
@@ -339,7 +347,7 @@ namespace V6ThuePost
                                 {
                                     if (File.Exists(arg3))
                                     {
-                                        result += UploadInvAttachmentFkey(fkeyA, arg3);
+                                        result += _vnptWS.UploadInvAttachmentFkey(fkeyA, arg3);
                                     }
                                     else
                                     {
@@ -353,7 +361,7 @@ namespace V6ThuePost
 
                                     if (export_ok && File.Exists(export_file))
                                     {
-                                        result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                        result += _vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                                     }
                                 }
                                 else if (mode.EndsWith("3")) // Tự xuất pdf rồi gửi
@@ -409,7 +417,7 @@ namespace V6ThuePost
 
                                     if (export_ok && File.Exists(export_file))
                                     {
-                                        result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                        result += _vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                                     }
                                 }
                             }
@@ -428,7 +436,7 @@ namespace V6ThuePost
                             {
                                 if (File.Exists(arg4))
                                 {
-                                    result += UploadInvAttachmentFkey(fkeyA, arg4);
+                                    result += _vnptWS.UploadInvAttachmentFkey(fkeyA, arg4);
                                 }
                                 else
                                 {
@@ -444,7 +452,7 @@ namespace V6ThuePost
                             string so_hoa_don = arg3;
                             int type = ObjectAndString.ObjectToInt(arg4);
                             var invToken = string.Format("{0};{1};{2}", pattern, seri, so_hoa_don);
-                            result = AdjustReplaceInvWithToken_Dll(xml, SERIAL_CERT, type, invToken);
+                            result = _vnptWS.AdjustReplaceInvWithToken68_Dll(xml, SERIAL_CERT, type, invToken, pattern, seri);
                             //type: thay thế = 1, điều chỉnh tăng = 2, điều chỉnh giảm = 3, điều chỉnh thông tin = 4
                         }
                     }
@@ -487,14 +495,14 @@ namespace V6ThuePost
                             string fkey = arg2;
                             string file = arg3;
                             MakeFlagNames(fkey);
-                            result = UploadInvAttachmentFkey(fkey, file);
+                            result = _vnptWS.UploadInvAttachmentFkey(fkey, file);
                         }
                         else if (mode == "U1") // upload file có sẵn, fkey tự đọc từ data
                         {
                             ReadDataXml(arg2);
                             string fkey = fkeyA;
                             MakeFlagNames(fkey);
-                            result = UploadInvAttachmentFkey(fkey, fkey + ".xls");
+                            result = _vnptWS.UploadInvAttachmentFkey(fkey, fkey + ".xls");
                         }
                         else if (mode == "U2") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel rồi upload.
                         {
@@ -504,7 +512,7 @@ namespace V6ThuePost
 
                             if (export_ok && File.Exists(export_file))
                             {
-                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                                result += _vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
                             }
                         }
                         else if (mode == "U3") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel để đó xem.
@@ -612,13 +620,10 @@ namespace V6ThuePost
                         MessageBox.Show("Test mode:" + mode);
                         fkeyA = arg2;
                         MakeFlagNames(fkeyA);
-                        string invXml = DownloadInvPDFFkeyNoPay(fkeyA);
-                        string fileName = null;
+                        string fileName = _vnptWS.DownloadInvPDFFkeyNoPay(fkeyA, startupPath, out v6return);
+                        
 
-                        if (invXml.StartsWith("ERR")) goto EndP;
-
-                        fileName = fkeyA + "_IN.pdf";
-                        MakeFile(invXml, fileName);
+                        if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE)) goto EndP;
                         PdfiumViewerForm pdfView = new PdfiumViewerForm(fileName, "PDF");
 
                         if (mode.EndsWith("0")) // P...0 // In luôn ra máy in mặc định.
@@ -648,11 +653,11 @@ namespace V6ThuePost
                         }
 
                     EndP:
-                        result += fileName ?? invXml;
+                        result += fileName ?? v6return.RESULT_STRING;
                     }
 
 
-                    if (result.Contains("Hóa đơn đã được gạch nợ."))
+                    if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("Hóa đơn đã được gạch nợ."))
                     {
                         WriteFlag(flagFileName2, "GACH_NO");
                     }
@@ -672,7 +677,14 @@ namespace V6ThuePost
                     result += "ERR:EX\r\n" + ex.Message;
                 }
                 File.Create(flagFileName9).Close();
-                BaseMessage.Show(result, 500);
+                if (result.StartsWith("ERR") && v6return != null && !string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
+                {
+                    BaseMessage.Show(v6return.RESULT_ERROR_MESSAGE, 500);
+                }
+                else
+                {
+                    BaseMessage.Show(result, 500);
+                }                
             }
             else
             {
@@ -1022,8 +1034,17 @@ namespace V6ThuePost
                 //}
 
                 inv.key = fkeyA;
-                pattern = row0[pattern_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                
+                if (_TEST_)
+                {
+                    pattern = pattern_test;
+                    seri = seri_test;
+                }
+                else
+                {
+                    pattern = row0[pattern_field].ToString().Trim();
+                    seri = row0[seri_field].ToString().Trim();
+                }
                 //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
                 
@@ -1151,8 +1172,16 @@ namespace V6ThuePost
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
                 inv.key = fkeyA;
-                pattern = row0[pattern_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                if (_TEST_)
+                {
+                    pattern = pattern_test;
+                    seri = seri_test;
+                }
+                else
+                {
+                    pattern = row0[pattern_field].ToString().Trim();
+                    seri = row0[seri_field].ToString().Trim();
+                }
                 MakeFlagNames(fkeyA);
 
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
@@ -1242,8 +1271,16 @@ namespace V6ThuePost
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
                 inv.key = fkeyA;
-                pattern = row0[pattern_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                if (_TEST_)
+                {
+                    pattern = pattern_test;
+                    seri = seri_test;
+                }
+                else
+                {
+                    pattern = row0[pattern_field].ToString().Trim();
+                    seri = row0[seri_field].ToString().Trim();
+                }
                 MakeFlagNames(fkeyA);
 
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
@@ -1617,246 +1654,181 @@ namespace V6ThuePost
         }
         #endregion ==== ALNT ====
 
-        /// <summary>
-        /// Phát hành hóa đơn.
-        /// </summary>
-        /// <param name="xml">Dữ liệu các hóa đơn.</param>
-        /// <returns>Thông báo phát hành hd.</returns>
-        public static string ImportInv(string xml)
-        {
-            string result = null;
-            try
-            {
-                var publishService = new PublishService(link_Publish);
-                // Gửi chưa phát hành
-                result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
-                //
-                //publishService.ImportAndPublishInvAsync(account, accountpassword, xml, username, password, pattern, seri, 0, null);
-                //result = publishService.ImportAndPublishInvSignService(account, accountpassword, xml, username, password, 0, "invToken", pattern, seri, 0);
-                //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
-                //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
-                //"OK:01GTKT0/001;VT/19E-V6XNCT_05A0283806HDA"      "OK:01GTKT0/001;VT/19E-A0283806HDA" "OK:01GTKT0/001;VT/19E-A0283807HDA"
-                if (result.StartsWith("OK"))
-                {
-                    //seri = "LX/20E";
-                    string publishByFkey = publishService.PublishInvFkey(account, accountpassword, fkeyA, username, password, pattern, seri);
-                }
-                else if (result.StartsWith("ERR:20"))
-                {
-                    result += "\r\nPattern và serial không phù hợp, hoặc không tồn tại hóa đơn đã đăng kí có sử dụng Pattern và serial truyền vào.";
-                }
-                else if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:10"))
-                {
-                    result += "\r\nLô có số hóa đơn vượt quá max cho phép.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông đủ số hóa đơn cho lô phát hành.";
-                }
-                else if (result.StartsWith("ERR:5"))
-                {
-                    result += "\r\nKhông phát hành được hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:3"))
-                {
-                    result += "\r\nDữ liệu xml đầu vào không đúng quy định.\nKhông có hóa đơn nào được phát hành.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
 
-            Logger.WriteToLog("Program.ImportAndPublishInv " + result);
-            return result;
-        }
+        ///// <summary>
+        ///// Phát hành hóa đơn.
+        ///// </summary>
+        ///// <param name="xml">Dữ liệu các hóa đơn.</param>
+        ///// <returns>Thông báo phát hành hd.</returns>
+        //public static string ImportAndPublishInv(string xml)
+        //{
+        //    string result = null;
+        //    try
+        //    {
+        //        var publishService = new PublishService(link_Publish);
+        //        //seri = "LX/20E";
+        //        result = publishService.ImportAndPublishInv(account, accountpassword, xml, username, password, pattern, seri, convert == "1" ? 1 : 0);
+        //        //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
+        //        if (result.StartsWith("OK"))
+        //        {
 
-        /// <summary>
-        /// Phát hành hóa đơn.
-        /// </summary>
-        /// <param name="xml">Dữ liệu các hóa đơn.</param>
-        /// <returns>Thông báo phát hành hd.</returns>
-        public static string ImportAndPublishInv(string xml)
-        {
-            string result = null;
-            try
-            {
-                var publishService = new PublishService(link_Publish);
-                //seri = "LX/20E";
-                result = publishService.ImportAndPublishInv(account, accountpassword, xml, username, password, pattern, seri, convert == "1" ? 1 : 0);
-                //result = publishService.ImportInv(xml, username, password, convert == "1" ? 1 : 0);
-                if (result.StartsWith("OK"))
-                {
+        //        }
+        //        else if (result.StartsWith("ERR:20"))
+        //        {
+        //            result += "\r\nPattern và serial không phù hợp, hoặc không tồn tại hóa đơn đã đăng kí có sử dụng Pattern và serial truyền vào.";
+        //        }
+        //        else if (result.StartsWith("ERR:13"))
+        //        {
+        //            result += "\r\nHóa đơn đã được gạch nợ.";
+        //        }
+        //        else if (result.StartsWith("ERR:10"))
+        //        {
+        //            result += "\r\nLô có số hóa đơn vượt quá max cho phép.";
+        //        }
+        //        else if (result.StartsWith("ERR:7"))
+        //        {
+        //            result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
+        //        }
+        //        else if (result.StartsWith("ERR:6"))
+        //        {
+        //            result += "\r\nKhông đủ số hóa đơn cho lô phát hành.";
+        //        }
+        //        else if (result.StartsWith("ERR:5"))
+        //        {
+        //            result += "\r\nKhông phát hành được hóa đơn.";
+        //        }
+        //        else if (result.StartsWith("ERR:3"))
+        //        {
+        //            result += "\r\nDữ liệu xml đầu vào không đúng quy định.\nKhông có hóa đơn nào được phát hành.";
+        //        }
+        //        else if (result.StartsWith("ERR:1"))
+        //        {
+        //            result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = "ERR:EX\r\n" + ex.Message;
+        //    }
 
-                }
-                else if (result.StartsWith("ERR:20"))
-                {
-                    result += "\r\nPattern và serial không phù hợp, hoặc không tồn tại hóa đơn đã đăng kí có sử dụng Pattern và serial truyền vào.";
-                }
-                else if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:10"))
-                {
-                    result += "\r\nLô có số hóa đơn vượt quá max cho phép.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông đủ số hóa đơn cho lô phát hành.";
-                }
-                else if (result.StartsWith("ERR:5"))
-                {
-                    result += "\r\nKhông phát hành được hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:3"))
-                {
-                    result += "\r\nDữ liệu xml đầu vào không đúng quy định.\nKhông có hóa đơn nào được phát hành.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
+        //    Logger.WriteToLog("Program.ImportAndPublishInv " + result);
+        //    return result;
+        //}
 
-            Logger.WriteToLog("Program.ImportAndPublishInv " + result);
-            return result;
-        }
+        //public static string DownloadInvPDFFkey(string fkey)
+        //{
+        //    string result = null;
+        //    try
+        //    {
+        //        result = new PortalService(link_Portal).downloadInvPDFFkey(fkey, username, password);
 
-        public static string DownloadInvPDFFkey(string fkey)
-        {
-            string result = null;
-            try
-            {
-                result = new PortalService(link_Portal).downloadInvPDFFkey(fkey, username, password);
+        //        if (result.StartsWith("OK"))
+        //        {
 
-                if (result.StartsWith("OK"))
-                {
+        //        }
+        //        else if (result.StartsWith("ERR:11"))
+        //        {
+        //            result += "\r\nHóa đơn chưa thanh toán nên không xem được.";
+        //        }
+        //        else if (result.StartsWith("ERR:7"))
+        //        {
+        //            result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
+        //        }
+        //        else if (result.StartsWith("ERR:6"))
+        //        {
+        //            result += "\r\nKhông tìm thấy hóa đơn.";
+        //        }
+        //        else if (result.StartsWith("ERR:1"))
+        //        {
+        //            result += "\r\nTài khoản đăng nhập sai.";
+        //        }
+        //        else if (result.StartsWith("ERR"))
+        //        {
+        //            result += "\r\nCó lỗi.";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = "ERR:EX\r\n" + ex.Message;
+        //    }
 
-                }
-                else if (result.StartsWith("ERR:11"))
-                {
-                    result += "\r\nHóa đơn chưa thanh toán nên không xem được.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    result += "\r\nCó lỗi.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.DownloadInvFkeyNoPay " + result);
-            return result;
-        }
+        //    Logger.WriteToLog("Program.DownloadInvFkeyNoPay " + result);
+        //    return result;
+        //}
         
-        public static string DownloadInvPDFFkeyNoPay(string fkey)
-        {
-            string result = null;
-            try
-            {
-                result = new PortalService(link_Portal).downloadInvPDFFkeyNoPay(fkey, username, password);
+        //public static string DownloadInvPDFFkeyNoPay(string fkey)
+        //{
+        //    string result = null;
+        //    try
+        //    {
+        //        result = new PortalService(link_Portal).downloadInvPDFFkeyNoPay(fkey, username, password);
 
-                if (result.StartsWith("OK"))
-                {
+        //        if (result.StartsWith("OK"))
+        //        {
 
-                }
-                else if (result.StartsWith("ERR:11"))
-                {
-                    result += "\r\nHóa đơn chưa thanh toán nên không xem được.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    result += "\r\nCó lỗi.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
+        //        }
+        //        else if (result.StartsWith("ERR:11"))
+        //        {
+        //            result += "\r\nHóa đơn chưa thanh toán nên không xem được.";
+        //        }
+        //        else if (result.StartsWith("ERR:7"))
+        //        {
+        //            result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
+        //        }
+        //        else if (result.StartsWith("ERR:6"))
+        //        {
+        //            result += "\r\nKhông tìm thấy hóa đơn.";
+        //        }
+        //        else if (result.StartsWith("ERR:1"))
+        //        {
+        //            result += "\r\nTài khoản đăng nhập sai.";
+        //        }
+        //        else if (result.StartsWith("ERR"))
+        //        {
+        //            result += "\r\nCó lỗi.";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = "ERR:EX\r\n" + ex.Message;
+        //    }
 
-            Logger.WriteToLog("Program.DownloadInvFkeyNoPay " + result);
-            return result;
-        }
+        //    Logger.WriteToLog("Program.DownloadInvFkeyNoPay " + result);
+        //    return result;
+        //}
 
-        public static string DownloadInvFkeyNoPay(string fkey)
-        {
-            string result = null;
-            try
-            {
-                result = new PortalService(link_Portal).downloadInvFkeyNoPay(fkey, username, password);
+        //public static string DownloadInvFkeyNoPay(string fkey)
+        //{
+        //    string result = null;
+        //    try
+        //    {
+        //        result = new PortalService(link_Portal).downloadInvFkeyNoPay(fkey, username, password);
 
-                if (result.StartsWith("OK"))
-                {
+        //        if (result.StartsWith("OK"))
+        //        {
 
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    result += "\r\nCó lỗi.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
+        //        }
+        //        else if (result.StartsWith("ERR:7"))
+        //        {
+        //            result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
+        //        }
+        //        else if (result.StartsWith("ERR:1"))
+        //        {
+        //            result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+        //        }
+        //        else if (result.StartsWith("ERR"))
+        //        {
+        //            result += "\r\nCó lỗi.";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = "ERR:EX\r\n" + ex.Message;
+        //    }
 
-            Logger.WriteToLog("Program.DownloadInvFkeyNoPay " + result);
-            return result;
-        }
+        //    Logger.WriteToLog("Program.DownloadInvFkeyNoPay " + result);
+        //    return result;
+        //}
 
         #region ========= TOKEN ==============
 
@@ -1898,7 +1870,7 @@ namespace V6ThuePost
                     //chỉ cần khi điều chỉnh, thay thế, phát hành thì = “”
                 invToken = "";
                 string getHashXml = null;
-                getHashXml = publishService.getHashInvWithToken(account, accountpassword, xmlInvData, username, password,
+                getHashXml = publishService.getHashInvWithToken(_account, _accountpassword, xmlInvData, _username, _password,
                     SERIAL_CERT, 0, invToken, pattern, seri, 0);
 
                 //<Invoices><Inv><key>A0283806HDA</key><idInv>646972</idInv><hashValue>Xvnk+BZ7PH2j0tgdQ9uOZFVrnus=</hashValue><pattern>01GTKT0/001</pattern><serial>VT/19E</serial></Inv></Invoices>
@@ -1934,7 +1906,7 @@ namespace V6ThuePost
                 string getHashXml = null;
                 try
                 {
-                    getHashXml = publishService.getHashInvWithToken(account, accountpassword, xmlInvData, username, password, SERIAL_CERT, 0, invToken, pattern, seri, 0);// GetHashInv()
+                    getHashXml = publishService.getHashInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, SERIAL_CERT, 0, invToken, pattern, seri, 0);// GetHashInv()
                 }
                 catch (Exception ex)
                 {
@@ -1962,11 +1934,11 @@ namespace V6ThuePost
                                           + "<Inv>"
                                           + "<key>"+getFkey+"</key>"                            // fkey
                                           + "<idInv>"+getIdInv+"</idInv>"                         // id hóa đơn trên hệ thống vnpt
-                                          + "<signValue>" + XmlConverter.FixXmlValueChar(digitalSign) + "</signValue>"
+                                          + "<signValue>" + V6XmlConverter.FixXmlValueChar(digitalSign) + "</signValue>"
                                           + "</Inv>"
                                           + "</Invoices>";
                 
-                var result4 = publishService.publishInvWithToken(account, accountpassword, xmlInvDataSigned, username, password, pattern, seri);
+                var result4 = publishService.publishInvWithToken(_account, _accountpassword, xmlInvDataSigned, _username, _password, pattern, seri);
                 //<Invoices><SerialCert>‎5404FFFEB7033FB316D672201B7A2249</SerialCert><Inv><key>A0283806HDA</key><idInv>647292</idInv><signValue>WseKwNHQZy2DgssoeWPGpmu9v5hUonZyPGAHbWbiB63JZuYTETXGdbkT5oTHSlM6jtx8EhqfdU+qHuvTEsG9MRBvkmUcbwSHhk+1enWsUNGLhf5x+C2B2ePBobX46QuP7ddy//qYdfKT/e1glIrxeqeSZ8HWjJiaCXErACsafxs=</signValue></Inv></Invoices>
                 //"ERR:24" chứng thư truyền lên không đúng với chứng thư công ty đăng ký trên hệ thống
                 result += result4;
@@ -1979,362 +1951,17 @@ namespace V6ThuePost
             return result;
         }
 
-        /// <summary>
-        /// Thay thế điều chỉnh (Token).
-        /// </summary>
-        /// <param name="xmlInvData"></param>
-        /// <param name="serialCert"></param>
-        /// <param name="type">thay thế = 1, điều chỉnh tăng = 2, điều chỉnh giảm = 3, điều chỉnh thông tin = 4</param>
-        /// <param name="invToken">patternt;serial;sốhóađơn 01GTKT2/001;AA/13E;10</param>
-        /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “;” + Fkey + “_” + Số hóa đơn + ”,”</returns>
-        public static string AdjustReplaceInvWithToken_Dll(string xmlInvData, string serialCert, int type, string invToken)
-        {
-            string result = null;
-            try
-            {
-                result = VNPTEInvoiceSignToken.AdjustReplaceInvWithToken68(account, accountpassword, xmlInvData, username, password,
-                    serialCert, type, invToken, pattern, seri, link_Publish);
-                result += GetResultDescription_Dll(result);
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-            Logger.WriteToLog("Program.AdjustReplaceInvWithToken " + result);
-            return result;
-        }
+        
 
-        /// <summary>
-        /// Hủy hóa đơn (Token).
-        /// </summary>
-        /// <param name="xmlData"></param>
-        /// <returns>Thành công: trả về "OK"</returns>
-        public static string CancelInvoiceWithToken_Dll(string xmlData)
-        {
-            string result = null;
-            try
-            {
-                result = VNPTEInvoiceSignToken.CancelInvoiceWithToken(account, accountpassword, xmlData, username, password, pattern, linkWS: link_Publish);
-                result += GetResultDescription_Dll(result);
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-            Logger.WriteToLog("Program.CancelInvoiceWithToken " + result);
-            return result;
-        }
+        
 
-        /// <summary>
-        /// Lấy lại hash (Token)
-        /// </summary>
-        /// <param name="xmlFkeyInv"></param>
-        /// <returns></returns>
-        public static string GetHashInv_Dll(string xmlFkeyInv)
-        {
-            string result = null;
-            try
-            {
-                result = VNPTEInvoiceSignToken.getHashInv(account, accountpassword, username, password, SERIAL_CERT, xmlFkeyInv, pattern, link_Publish);
-                result += GetResultDescription_Dll(result);
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-            Logger.WriteToLog("Program.getHashInv " + result);
-            return result;
-        }
+        
 
-        /// <summary>
-        /// Lấy trạng thái hóa đơn (Token).
-        /// </summary>
-        /// <param name="xmlFkeyInv"><para>chuỗi xml Fkey hóa đơn cần lấy trạng thái.</para></param>
-        //// <para> (cấu trúc: <Invoices><Inv><key>123</key></Inv><Inv><key>456</key></Inv><Inv><key>789</key></Inv></Invoices> ) (123, 456, 789 là Fkey)</para>
-        /// <returns>
-        /// <para>Trả về: xml string Cấu trúc: Invoices Inv key123 key Status 0 Status Inv ... Inv...</para>
-        /// <para>0: hóa đơn mới tạo, chưa phát hành (những hóa đơn cần lấy lại hash)</para>
-        /// <para>1: hóa đơn đã phát hành</para>
-        /// <para>2: hóa đơn đã được kê khai thuế cũng như đưa vào các phần mêm kế toán</para>
-        /// <para>3: hóa đơn bị thay thế</para>
-        /// <para>4: hóa đơn bị điều chỉnh</para>
-        /// <para>5: hóa đơn hủy</para>
-        /// </returns>
-        public static string GetStatusInv_Dll(string xmlFkeyInv)
-        {
-            string result = null;
-            try
-            {
-                result = VNPTEInvoiceSignToken.getStatusInv(account, accountpassword, username, password, xmlFkeyInv, pattern, link_Publish);
-                result += GetResultDescription_Dll(result);
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-            Logger.WriteToLog("Program.GetStatusInv " + result);
-            return result;
-        }
+        
 
-        /// <summary>
-        /// Insert thông tin chứng thư vào hệ thống.
-        /// </summary>
-        /// <returns>Thành công: trả về "OK"</returns>
-        public static string ImportCertWithToken_Dll()//, string linkWS)
-        {
-            string result = null;
-            try
-            {
-                result = VNPTEInvoiceSignToken.ImportCertWithToken(account, accountpassword, username, password, SERIAL_CERT, link_Publish);
-                result += GetResultDescription_Dll(result);
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-            Logger.WriteToLog("Program.ImportCertWithToken " + result);
-            return result;
-        }
-
-        /// <summary>
-        /// Phát hành khi đã lấy lại hash (Token).
-        /// </summary>
-        /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “-” + Fkey + “_” + Số hóa đơn + ”,”</returns>
-        public static string PublishInv_Dll(string xmlHash)
-        {
-            string result = null;
-            try
-            {
-                result = VNPTEInvoiceSignToken.PublishInv(account, accountpassword, xmlHash, username, password, SERIAL_CERT, pattern, seri, link_Publish);
-                result += GetResultDescription_Dll(result);
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-            Logger.WriteToLog("Program.PublishInv " + result);
-            return result;
-        }
-
-        /// <summary>
-        /// Đẩy lên và phát hành hóa đơn có ký chữ ký số (Token).
-        /// </summary>
-        /// <param name="xmlInvData">chuỗi xml hóa đơn.</param>
-        /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “-” + Fkey + “_” + Số hóa đơn + “,”</returns>
-        public static string PublishInvWithToken_Dll(string xmlInvData)//, string pattern, string serial)//, string linkWS0)
-        {
-            string result = null;
-            try
-            {
-                result = VNPTEInvoiceSignToken.PublishInvWithToken68(account, accountpassword, xmlInvData, username, password, SERIAL_CERT, pattern, seri, link_Publish);
-                result += GetResultDescription_Dll(result);
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-            Logger.WriteToLog("Program.PublishInvWithToken " + result);
-            return result;
-        }
-
-        private static string GetResultDescription_Dll(string result)
-        {
-            string description = null;
-            if (result.StartsWith("OK"))
-            {
-
-            }
-            else if (result.StartsWith("ERR:-3"))
-            {
-                description = "\r\nCó lỗi trong quá trình lấy chứng thư.";
-            }
-            else if (result.StartsWith("ERR:-2"))
-            {
-                description = "\r\nChứng thư không có privatekey.";
-            }
-            else if (result.StartsWith("ERR:-1"))
-            {
-                description = "\r\nẤn nút hủy khi nhập mã pin của chứng thư.";
-            }
-            else if (result.StartsWith("ERR:30"))
-            {
-                description = "\r\nTạo mới lô hóa đơn lỗi (fkey trùng,…).";
-            }
-            else if (result.StartsWith("ERR:28"))
-            {
-                description = "\r\nThông tin chứng thư chưa có trong hệ thống.";
-            }
-            else if (result.StartsWith("ERR:27"))
-            {
-                description = "\r\nChứng thư chưa đến thời điểm sử dụng.";
-            }
-            else if (result.StartsWith("ERR:26"))
-            {
-                description = "\r\nChứng thư đã hết hạn.";
-            }
-            else if (result.StartsWith("ERR:24"))
-            {
-                description = "\r\nChứng thư truyền lên không đúng với chứng thư công ty đăng ký trên hệ thống";
-            }
-            else if (result.StartsWith("ERR:23"))
-            {
-                description = "\r\nChứng thư truyền lên không đúng định dạng.";
-            }
-            else if (result.StartsWith("ERR:22"))
-            {
-                description = "\r\nCông ty chưa đăng ký thông tin keystore.";
-            }
-            else if (result.StartsWith("ERR:21"))
-            {
-                description = "\r\nKhông tìm thấy công ty trên hệ thống.";
-            }
-            else if (result.StartsWith("ERR:20"))
-            {
-                description = "\r\nTham số mẫu số và ký hiệu truyền vào không hợp lệ.";
-            }
-            else if (result.StartsWith("ERR:19"))
-            {
-                description = "\r\npattern truyền vào không giống với pattern của hoá đơn cần điều chỉnh/thay thế.";
-            }
-            else if (result.StartsWith("ERR:10"))
-            {
-                description = "\r\nSố lượng hóa đơn truyền vào lớn hơn maxBlockInv.";
-            }
-            else if (result.StartsWith("ERR:9"))
-            {
-                description = "\r\n???.";
-            }
-            else if (result.StartsWith("ERR:8"))
-            {
-                description = "\r\nHoá đơn đã được điều chỉnh, thay thế.";
-            }
-            else if (result.StartsWith("ERR:7"))
-            {
-                description = "\r\nKhông tìm thấy chứng thư trong máy. Hãy cắm token.";
-            }
-            else if (result.StartsWith("ERR:6"))
-            {
-                description = "\r\nKhông còn đủ số hóa đơn cho lô phát hành.";
-            }
-            else if (result.StartsWith("ERR:5"))
-            {
-                description = "\r\nCó lỗi xảy ra.";
-            }
-            else if (result.StartsWith("ERR:4"))
-            {
-                description = "\r\ntoken hóa đơn sai định dạng.";
-            }
-            else if (result.StartsWith("ERR:3"))
-            {
-                description = "\r\nĐịnh dạng file xml hóa đơn không đúng.";
-            }
-            else if (result.StartsWith("ERR:2"))
-            {
-                description = "\r\nKhông tồn tại hoá đơn cần thay thế/điều chỉnh.";
-            }
-            else if (result.StartsWith("ERR:1"))
-            {
-                description = "\r\nKhông có quyền truy cập webservice.";
-            }
-            else if (result.StartsWith("ERR:0"))
-            {
-                description = "\r\nLỗi Fkey đã tồn tại.";
-            }
-            else
-            {
-                description = "???";
-            }
-
-            return description;
-        }
 
         #endregion ========= TOKEN ==============
-
-        /// <summary>
-        /// Tải lên bảng kê.
-        /// </summary>
-        /// <param name="fkey"></param>
-        /// <param name="file"></param>
-        /// <returns></returns>
-        public static string UploadInvAttachmentFkey(string fkey, string file)
-        {
-            string result = null;
-            try
-            {
-                string attachment64 = FileToBase64(file);
-                string ext = Path.GetExtension(file);
-                if (ext.Length > 0) ext = ext.Substring(1);
-                string attachmentName = Path.GetFileNameWithoutExtension(file);
-                result = new AttachmentService(link_Attachment).uploadInvAttachmentFkey(fkey, username, password, attachment64, ext, attachmentName);
-
-                if (result.StartsWith("OK"))
-                {
-
-                }
-                else if (result.StartsWith("ERR:11"))
-                {
-                    result += "\r\nDung lượng file vượt quá mức cho phép.";
-                }
-                else if (result.StartsWith("ERR:10"))
-                {
-                    result += "\r\nChuỗi Base64 cùa file không hợp lệ.";
-                }
-                else if (result.StartsWith("ERR:9"))
-                {
-                    result += "\r\nĐịnh dạng file không hợp lệ.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    result += "\r\nTên file không hợp lệ hoặc quá dài.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:4"))
-                {
-                    result += "\r\nCompany chưa có mẫu hóa đơn nào.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-                else if (result.StartsWith("ERR"))
-                {
-                    result += "\r\nLỗi.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.UploadInvAttachmentFkey " + result);
-            return result;
-        }
-
-        public static string FileToBase64(string filePath)
-        {
-            byte[] fileBytes = File.ReadAllBytes(filePath);
-            string fileBase64 = Convert.ToBase64String(fileBytes);
-            return fileBase64;
-        }
-
-        /// <summary>
-        /// Tạo file từ chuỗi base64.
-        /// </summary>
-        /// <param name="base64string"></param>
-        /// <param name="fileName"></param>
-        public static void MakeFile(string base64string, string fileName)
-        {
-            File.WriteAllBytes(fileName, Convert.FromBase64String(base64string));
-        }
-
-
+        
         /// <summary>
         /// Đọc tên máy in từ file oldPrinter
         /// </summary>
@@ -2418,7 +2045,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = new BusinessService(link_Business).adjustInv(account, accountpassword, xml, username, password, fkey_old, 0);
+                result = new BusinessService(link_Business).adjustInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
 
                 if (result.StartsWith("OK"))
                 {
@@ -2471,7 +2098,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = new BusinessService(link_Business).replaceInv(account, accountpassword, xml, username, password, fkey_old, 0);
+                result = new BusinessService(link_Business).replaceInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
 
                 if (result.StartsWith("OK"))
                 {
@@ -2529,7 +2156,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = new BusinessService(link_Business).confirmPaymentFkey(fkey_old, username, password);
+                result = new BusinessService(link_Business).confirmPaymentFkey(fkey_old, _username, _password);
 
                 if (result.StartsWith("OK"))
                 {
@@ -2571,7 +2198,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = new BusinessService(link_Business).confirmPayment(fkey_old, username, password);
+                result = new BusinessService(link_Business).confirmPayment(fkey_old, _username, _password);
 
                 if (result.StartsWith("OK"))
                 {
@@ -2608,7 +2235,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = new BusinessService(link_Business).UnConfirmPaymentFkey(fkey_old, username, password);
+                result = new BusinessService(link_Business).UnConfirmPaymentFkey(fkey_old, _username, _password);
 
                 if (result.StartsWith("OK"))
                 {
@@ -2650,7 +2277,7 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                result = new BusinessService(link_Business).cancelInv(account, accountpassword, fkey_old, username, password);
+                result = new BusinessService(link_Business).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
 
                 if (result.StartsWith("OK"))
                 {
@@ -2715,7 +2342,7 @@ namespace V6ThuePost
                             cus = ReadCusDataXml(row);
                             ma_kh = row["MA_KH"].ToString().Trim();
                             cuss.Customer_List.Add(cus);
-                            string xml = XmlConverter.ClassToXml(cuss);
+                            string xml = V6XmlConverter.ClassToXml(cuss);
 
                             Logger.WriteToLog(string.Format("Preparing UpdateCus {0} {1}\r\n{2}", count, ma_kh, xml));
                             var num = UpdateCus(xml);
@@ -2753,7 +2380,7 @@ namespace V6ThuePost
                             Customer cus = ReadCusDataXml(row);
                             cuss.Customer_List.Add(cus);
                         }
-                        string xml = XmlConverter.ClassToXml(cuss);
+                        string xml = V6XmlConverter.ClassToXml(cuss);
 
                         Logger.WriteToLog("Preparing UpdateCus:\r\n" + xml);
                         var num = UpdateCus(xml);
@@ -2785,7 +2412,7 @@ namespace V6ThuePost
             string message = "";
             try
             {
-                result = new PublishService(link_Publish).UpdateCus(xml, username, password, 0);
+                result = new PublishService(link_Publish).UpdateCus(xml, _username, _password, 0);
                 message += result;
 
                 if (result == -5)
@@ -2853,16 +2480,16 @@ namespace V6ThuePost
                             switch (line.Field.ToLower())
                             {
                                 case "username":
-                                    username = UtilityHelper.DeCrypt(line.Value);
+                                    _username = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "password":
-                                    password = UtilityHelper.DeCrypt(line.Value);
+                                    _password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "account":
-                                    account = UtilityHelper.DeCrypt(line.Value);
+                                    _account = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "accountpassword":
-                                    accountpassword = UtilityHelper.DeCrypt(line.Value);
+                                    _accountpassword = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "serialcert":
                                     SERIAL_CERT = UtilityHelper.DeCrypt(line.Value).ToUpper();
@@ -2878,6 +2505,16 @@ namespace V6ThuePost
                                     break;
                                 case "seri":
                                     seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "pattern_test":
+                                    pattern_test = line.Value;
+                                    break;
+                                case "seri_test":
+                                    seri_test = line.Value;
+                                    break;
+                                case "baselink":
+                                case "baseurl":
+                                    _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "link_publish":
                                     link_Publish = UtilityHelper.DeCrypt(line.Value);

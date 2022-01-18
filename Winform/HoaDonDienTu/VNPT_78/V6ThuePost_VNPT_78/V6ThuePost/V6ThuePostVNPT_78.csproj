@@ -46,9 +46,6 @@
     <Reference Include="PdfiumViewer">
       <HintPath>..\..\..\..\..\..\Git\MicrosoftSource\Framework35\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
     </Reference>
-    <Reference Include="SignTokenCorev5">
-      <HintPath>..\..\TOKEN\SignTokenCorev5.dll</HintPath>
-    </Reference>
     <Reference Include="Spy001, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\V6AccountingB\V6AccountingB\bin\Debug\Spy001.dll</HintPath>
@@ -152,6 +149,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="V6THUEPOST - Copy.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="V6THUEPOST_S.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

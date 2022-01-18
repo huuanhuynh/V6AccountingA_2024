@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0"?>
 <Root>
-	<V6Info Field='BkavPartnerGUID' 	Value='C0lnuR2zxo+VxcfjEYp6FUep+/CBDmu19fyCpuY3JAxddM+HIkqaNQ=='/>
-	<V6Info Field='BkavPartnerToken' 	Value='S7E75uuQXj//rSgk71Iw8EYRCmhIS+7RDy2hXK6zDhqR/X8cEX3txl1skdjN2oYfZPSh7RKFAAopNVRp5lX+o+5kLp8ZvWD/'/>
+  <V6Info Field='BkavPartnerGUID' 	Value='JSXQrN9HVUSFEa0XGePQUaG/uc0NyCIJhdEQtTQvvdwd/iJKAGDGBQ=='/>
+  <V6Info Field='BkavPartnerToken' 	Value='nOrv5dQ3X3w2qL95PtcgGeA95sJjkukflX7mws4J9Z5guDWR2skr7Eb2+MiUE0b1zyrrKH6tenXVtAvwF8/xVjwCJpuLG8j/'/>
   <V6Info Field='BkavCommandTypeNew' 	Value='Ers0JMABBas='/>
-	<V6Info Field='baselink' 	Value='https://wsdemo.ehoadon.vn/WSPublicEHoaDon.asmx' Type=''/>
-	<V6Info Field='BkavSign' 	Value='1' Type=''/>
+  <V6Info Field='baselink' 	Value='UQL2EugVpi1H8viXdwW/RIoo2OErrJQhQVFPYODzJ9xRg2U6oc76H6FNVO3j9ShL' Type='ENCRYPT'/>
+  <V6Info Field='BkavSign' 	Value='1' Type=''/>
+  <V6Info Field='seri_test' 	Value='AA/22E' Type=''/>
+  <V6Info Field='pattern_test' 	Value='01GTKT0/001' Type=''/>
 	
 	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
 	<!--Các thông tin đơn vị được in trên hóa đơn-->			
@@ -46,7 +48,7 @@
 	<ItemInfo	Field='Amount'	FieldV6='tien2'	Type='Field'/>
 	<ItemInfo	Field='TaxRateID'	Value='1'	DataType='Int'	FieldV6='TaxRateID'	Type='Field'	Note='1	0%, 2	5%, 3	10%, 4	Không chịu thuế, 5	Không kê khai thuế, 6 Khác'/>
 	<ItemInfo	Field='TaxAmount'	FieldV6='thue'	Type='Field'/>
-	<ItemInfo	Field='IsDiscount'	FieldV6='ISDISCOUNT'	Type='Field'	DataType='Bool'/>
+	<ItemInfo	Field='IsDiscount'	FieldV6='ISDISCOUNT'	Type='Field'	DataType='Bool'   Note='Nếu true đây là dòng ck chung, Nếu false là ck riêng thì dùng DiscountRate DiscountAmount'/>
 	<ItemInfo	Field='UserDefineDetails'	Value='string đối tượng dạng json hoặc xml'	FieldV6='GC_TD1'	Type='Field'/>
 	<ItemInfo	Field='IsIncrease'	FieldV6='GC_TD1'	Note='Dùng mã lệnh 121: Điều chỉnh thì Báo tăng là True, Báo giảm là False'	DataType='Bool'	Type='Field'/>
 	

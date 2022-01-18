@@ -19,6 +19,8 @@ namespace V6ThuePost
     {
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
+        public static string pattern_test = "";
+        public static string seri_test = "";
         #region ==== VAR ====
         /// <summary>
         /// key đầu ngữ
@@ -81,20 +83,21 @@ namespace V6ThuePost
         [STAThread]
         static void Main(string[] args)
         {
-            if (args != null && args.Length > 0)
+            var startupPath = Application.StartupPath;
+            var dir = new DirectoryInfo(startupPath);
+            var dir_name = dir.Name.ToLower();
+            if (dir_name == "debug")
             {
-                var startupPath = Application.StartupPath;
-                var dir = new DirectoryInfo(startupPath);
-                var dir_name = dir.Name.ToLower();
-                if (dir_name == "debug")
-                {
-                    _TEST_ = true;
-                    MessageBox.Show("Test");
-                }
-                else
-                {
-                    _TEST_ = false;
-                }
+                _TEST_ = true;
+                MessageBox.Show("Test: Tham số date được tạo tự động, pattern được lấy từ xml V6Info pattern_test, seri_test.");
+            }
+            else
+            {
+                _TEST_ = false;
+            }
+
+            if (args != null && args.Length > 0)
+            {   
 
                 string result = "";
                 string mode = "";
@@ -309,11 +312,18 @@ namespace V6ThuePost
                         }
                     }
                     else
-                    {
+                    {   
                         postObject.Invoice[item.Key] = GetValue(row0, item.Value);
                     }
                 }
-                
+
+                if (_TEST_)
+                {
+                    postObject.Invoice["InvoiceForm"] = pattern_test;
+                    postObject.Invoice["InvoiceSerial"] = seri_test;
+                    postObject.Invoice["InvoiceDate"] = _TEST_DATE_.Date;
+                }
+
                 //foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
                 //{
                 //    postObject.buyerInfo[item.Key] = GetValue(row0, item.Value);
@@ -865,6 +875,13 @@ namespace V6ThuePost
                                     break;
                                 case "v6fkey":
                                     fkey0 = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+
+                                case "pattern_test":
+                                    pattern_test = line.Value;
+                                    break;
+                                case "seri_test":
+                                    seri_test = line.Value;
                                     break;
                             }
                             break;

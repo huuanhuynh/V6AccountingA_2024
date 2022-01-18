@@ -7,18 +7,19 @@
 
   <V6Info Field='partten' 	Value='MA_MAUHD' Type=''/>
   <V6Info Field='seri' 	Value='SO_SERI'/>
+  <V6Info Field='seri_test' 	Value='1C22TSB'/>
 
   <V6Info Field='certificateSerial' 	Value='V6SOFT'/>
   <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
   <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
 
-  <V6Info Field='baselink' 	Value='TLa5HcR9C6QSgcEK6oDnU52nCyG19cGUdtptWLlTyzI0A4nRnbiYqg==' Type=''/>
-  <V6Info Field='site' 	Value='http://demohoadon.minvoice.com.vn/#!/login' Type=''/>
+  <V6Info Field='baselink' 	Value='UQL2EugVpi0VvnZck5rUh7pCI99AczkWCGzX6Jrz3xqAFB73N3XxaQ==' Type=''/>
+  <V6Info Field='site' 	Value='https://demohoadon.minvoice.com.vn/#!/login' Type=''/>
   <V6Info Field='version' 	Value='fOda0JJ/h/k=' Type=''/>
 
   <!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
   <!--Các thông tin đơn vị được in trên hóa đơn-->
-  <GeneralInvoiceInfo Field='inv_invoiceSeries'	Value='1C21TSB' 	FieldV6='SO_SERI' 	Type=''/>
+  <GeneralInvoiceInfo Field='inv_invoiceSeries'	Value='1C22TSB' 	FieldV6='SO_SERI' 	Type='Field'/>
   <GeneralInvoiceInfo Field='inv_invoiceIssuedDate' 	Value='07/07/2018' FieldV6='ngay_ct' Type='Field'	DataType='Date'/>
   <GeneralInvoiceInfo Field='inv_currencyCode' 	Value='VND'/>
   <GeneralInvoiceInfo Field='inv_exchangeRate' 	Value='1'   FieldV6='TY_GIA'  Type='Field'/>
