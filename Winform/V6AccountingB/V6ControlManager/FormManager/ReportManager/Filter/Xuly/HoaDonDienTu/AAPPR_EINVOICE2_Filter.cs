@@ -156,17 +156,35 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 return;
             }
 
-            var reportRviewBase = (ReportRViewBase) this.Parent.Parent.Parent;
-            if (reportRviewBase._executing)
+            var reportRviewBase0 = this.Parent.Parent.Parent;
+            if (reportRviewBase0 is ReportRViewBase)
             {
-                this.ShowMessage(V6Text.DataLoading);
-            }
+                var reportRviewBase = (ReportRViewBase)reportRviewBase0;
+                if (reportRviewBase._executing)
+                {
+                    this.ShowMessage(V6Text.DataLoading);
+                }
 
-            V6ControlFormHelper.ExportExcelTemplateHTKK(_ds.Tables[0], _ds.Tables[1],
-                reportRviewBase.ReportDocumentParameters,
-                reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
-                reportRviewBase.ExcelTemplateFileFullHTKK, txtFileName.Text
-                );
+                V6ControlFormHelper.ExportExcelTemplateHTKK(_ds.Tables[0], _ds.Tables[1],
+                    reportRviewBase.ReportDocumentParameters,
+                    reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
+                    reportRviewBase.ExcelTemplateFileFullHTKK, txtFileName.Text
+                    );
+            }
+            else if (reportRviewBase0 is ReportR_DX)
+            {
+                var reportRviewBase = (ReportR_DX)reportRviewBase0;
+                if (reportRviewBase._executing)
+                {
+                    this.ShowMessage(V6Text.DataLoading);
+                }
+
+                V6ControlFormHelper.ExportExcelTemplateHTKK(_ds.Tables[0], _ds.Tables[1],
+                    reportRviewBase.ReportDocumentParameters,
+                    reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
+                    reportRviewBase.ExcelTemplateFileFullHTKK, txtFileName.Text
+                    );
+            }
         }
         
         private void XuatExcelTaxOnline()
@@ -182,17 +200,35 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 return;
             }
 
-            var reportRviewBase = (ReportRViewBase) this.Parent.Parent.Parent;
-            if (reportRviewBase._executing)
+            var reportRviewBase0 = this.Parent.Parent.Parent;
+            if (reportRviewBase0 is ReportRViewBase)
             {
-                this.ShowMessage(V6Text.DataLoading);
-            }
+                var reportRviewBase = (ReportRViewBase)reportRviewBase0;
+                if (reportRviewBase._executing)
+                {
+                    this.ShowMessage(V6Text.DataLoading);
+                }
 
-            V6ControlFormHelper.ExportExcelTemplateONLINE(_ds.Tables[0], _ds.Tables[1],
-                reportRviewBase.ReportDocumentParameters,
-                reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
-                reportRviewBase.ExcelTemplateFileFullONLINE, txtFileName.Text
-                );
+                V6ControlFormHelper.ExportExcelTemplateONLINE(_ds.Tables[0], _ds.Tables[1],
+                    reportRviewBase.ReportDocumentParameters,
+                    reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
+                    reportRviewBase.ExcelTemplateFileFullONLINE, txtFileName.Text
+                    );
+            }
+            else if (reportRviewBase0 is ReportR_DX)
+            {
+                var reportRviewBase = (ReportR_DX)reportRviewBase0;
+                if (reportRviewBase._executing)
+                {
+                    this.ShowMessage(V6Text.DataLoading);
+                }
+
+                V6ControlFormHelper.ExportExcelTemplateONLINE(_ds.Tables[0], _ds.Tables[1],
+                    reportRviewBase.ReportDocumentParameters,
+                    reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
+                    reportRviewBase.ExcelTemplateFileFullONLINE, txtFileName.Text
+                    );
+            }
         }
 
         private void btnChuyenExcelHTKK_Click(object sender, EventArgs e)

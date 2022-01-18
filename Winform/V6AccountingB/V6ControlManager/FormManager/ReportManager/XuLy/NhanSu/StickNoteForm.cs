@@ -98,6 +98,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             }
         }
 
+        /// <summary>
+        /// Tải dữ liệu đến ngày.
+        /// </summary>
+        /// <param name="loadDate">Đang dùng ngày cuối tháng.</param>
         private void LoadData(DateTime loadDate)
         {
 
@@ -252,18 +256,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
         private void lichView1_ClickNextEvent(LichViewEventArgs obj)
         {
-            //ShowMainMessage("Bạn đã bấm nút Next.");
-            var nextMonthDate = lichView1.ViewDate1.AddMonths(1);
-            var nextMonthDate31 = new DateTime(nextMonthDate.Year, nextMonthDate.Month, DateTime.DaysInMonth(nextMonthDate.Year, nextMonthDate.Month));
-            LoadData(nextMonthDate31);
+            //var nextMonthDate = lichView1.ViewDate1.AddMonths(1);
+            //var nextMonthDate31 = new DateTime(nextMonthDate.Year, nextMonthDate.Month, DateTime.DaysInMonth(nextMonthDate.Year, nextMonthDate.Month));
+            //LoadData(nextMonthDate31);
+            LoadData(lichView1.ViewDate31);
         }
 
         private void lichView1_ClickPreviousEvent(LichViewEventArgs obj)
         {
-            //ShowMainMessage("Bạn đã bấm nút Previous.");
-            var nextMonthDate = lichView1.ViewDate1.AddMonths(-1);
-            var nextMonthDate31 = new DateTime(nextMonthDate.Year, nextMonthDate.Month, DateTime.DaysInMonth(nextMonthDate.Year, nextMonthDate.Month));
-            LoadData(nextMonthDate31);
+            //var nextMonthDate = lichView1.ViewDate1.AddMonths(-1);
+            //var nextMonthDate31 = new DateTime(nextMonthDate.Year, nextMonthDate.Month, DateTime.DaysInMonth(nextMonthDate.Year, nextMonthDate.Month));
+            //LoadData(nextMonthDate31);
+            LoadData(lichView1.ViewDate31);
         }
 
         void lichView1_ClickCellEvent(LichViewControl sender, LichViewEventArgs obj)

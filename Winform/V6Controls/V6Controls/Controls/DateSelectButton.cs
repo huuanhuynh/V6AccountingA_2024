@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using V6Controls.Forms;
+using V6Init;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Controls
@@ -134,7 +135,7 @@ namespace V6Controls.Controls
             }
             try
             {
-                DateSelectForm form = new DateSelectForm();
+                DateSelectForm form = new DateSelectForm(V6Setting.IsVietnamese ? "Chọn ngày" : "Date select");
                 form.SelectedDate =
                     ObjectAndString.ObjectToFullDateTime(V6ControlFormHelper.GetControlValue(_refControl)).Date;
                 
