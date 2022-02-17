@@ -225,7 +225,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             _program = program;
             _reportProcedure = reportProcedure;
-            //return;//Chưa hoàn thành
+            //return;//Chưa xong
             try
             {
                 //Add filterLine dynamic.

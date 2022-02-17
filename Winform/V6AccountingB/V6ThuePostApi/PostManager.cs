@@ -448,7 +448,7 @@ namespace V6ThuePostManager
                         break;
                     case "3":
                         BkavWS bkav_ws = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
-                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory);
+                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
@@ -518,7 +518,7 @@ namespace V6ThuePostManager
                         break;
                     case "3":
                         BkavWS bkav_ws = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
-                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory);
+                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
@@ -594,11 +594,20 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav("S");
                     result = bkavWS.POST(jsonBody, BkavConst._121_CreateAdjust, out paras.Result.V6ReturnValues);
+                    //if (!result.StartsWith("ERR") && V6Infos.ContainsKey("BKAVSIGN") && V6Infos["BKAVSIGN"] == "1")
+                    //{
+                    //    result = result + "\r\n" + bkavWS.SignInvoice(paras.V6PartnerID, out paras.Result.V6ReturnValues);
+                    //}
                 }
                 else if (paras.Mode == "E_T1")
                 {
                     jsonBody = ReadData_Bkav("T");
                     result = bkavWS.POST(jsonBody, BkavConst._123_CreateReplace, out paras.Result.V6ReturnValues);
+                    if (string.IsNullOrEmpty(paras.Key_Down) && V6Infos.ContainsKey("BKAVSIGN") && V6Infos["BKAVSIGN"] == "1")
+                    {
+                        V6Return v6return2;
+                        result = result + "\r\n" + bkavWS.SignInvoice(paras.Result.V6ReturnValues.ID, out v6return2);
+                    }
                 }
                 else if (paras.Mode == "M")
                 {

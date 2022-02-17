@@ -216,7 +216,7 @@ namespace V6ThuePost
                         if (!string.IsNullOrEmpty(SERIAL_CERT))
                         {
                             Program.StartAutoInputTokenPassword();
-                            string resultM = _vnptWS.PublishInvWithToken_Dll(xml, SERIAL_CERT, pattern, seri);
+                            string resultM = _vnptWS.PublishInvWithToken32_Dll(xml, pattern, seri, SERIAL_CERT, out v6return);
                             result = resultM;
                             //"OK:mẫu số;ký hiệu-Fkey_Số hóa đơn,"
                             //"OK:01GTKT0/001;VT/19E-A0283806HDA_XXX"
@@ -228,7 +228,7 @@ namespace V6ThuePost
                             else // chạy lần 2
                             {
                                 Program.StartAutoInputTokenPassword();
-                                resultM = _vnptWS.PublishInvWithToken_Dll(xml, SERIAL_CERT, pattern, seri);
+                                resultM = _vnptWS.PublishInvWithToken32_Dll(xml, pattern, seri, SERIAL_CERT, out v6return);
                                 result = resultM;
                                 if (resultM.StartsWith("OK"))
                                 {
@@ -2670,6 +2670,10 @@ namespace V6ThuePost
             config.DataType = reader.GetAttribute("DataType");
             return config;
         }
+
+        //private static void AutoInputTokenPassword()
+        //{
+        //}
 
         private static void AutoInputTokenPassword()
         {

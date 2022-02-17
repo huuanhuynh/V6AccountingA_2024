@@ -145,7 +145,7 @@ namespace V6Tools.V6Convert
         /// </summary>
         /// <param name="xmlValue"></param>
         /// <returns></returns>
-        private static string FixXmlValueChar(string xmlValue)
+        public static string FixXmlValueChar(string xmlValue)
         {
             foreach (KeyValuePair<string, string> i in XmlChars)
             {

@@ -80,9 +80,12 @@ namespace V6ThuePost
         //private static string account;
         //private static string accountpassword;
         public static string pattern, pattern_field;
+        private static string pattern_test;
 
         public static string seri;
         private static string seri_field;
+        private static string seri_test;
+
         private static string convert = "0";
         /// <summary>
         /// Kiểu ký: 1 Client, mặc định Server.
@@ -145,7 +148,7 @@ namespace V6ThuePost
             if (dir_name == "debug")
             {
                 _TEST_ = true;
-                MessageBox.Show("Test");
+                MessageBox.Show("Test: Tham số key được tạo tự động, pattern được lấy từ xml pattern_test, seri_test.");
             }
             else
             {
@@ -895,8 +898,18 @@ namespace V6ThuePost
                 //}
 
                 inv.Invoice["Ikey"] = fkeyA;
-                pattern = row0[pattern_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+
+                if (_TEST_)
+                {
+                    pattern = pattern_test;
+                    seri = seri_test;
+                }
+                else
+                {
+                    pattern = row0[pattern_field].ToString().Trim();
+                    seri = row0[seri_field].ToString().Trim();
+                }
+
                 //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
                 
@@ -1020,8 +1033,16 @@ namespace V6ThuePost
                 }
                                 
                 inv.Invoice["Ikey"] = fkeyA;
-                pattern = row0[pattern_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                if (_TEST_)
+                {
+                    pattern = pattern_test;
+                    seri = seri_test;
+                }
+                else
+                {
+                    pattern = row0[pattern_field].ToString().Trim();
+                    seri = row0[seri_field].ToString().Trim();
+                }
                 MakeFlagNames(fkeyA);
 
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
@@ -1109,8 +1130,16 @@ namespace V6ThuePost
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
                 inv.Invoice["Ikey"] = fkeyA;
-                pattern = row0[pattern_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                if (_TEST_)
+                {
+                    pattern = pattern_test;
+                    seri = seri_test;
+                }
+                else
+                {
+                    pattern = row0[pattern_field].ToString().Trim();
+                    seri = row0[seri_field].ToString().Trim();
+                }
 
                 MakeFlagNames(fkeyA);
 
@@ -1775,14 +1804,21 @@ namespace V6ThuePost
                                 case "token_password":
                                     token_password = UtilityHelper.DeCrypt(line.Value);
                                     break;
-                                case "baselink":
-                                    _baseUrl = UtilityHelper.DeCrypt(line.Value);
-                                    break;
                                 case "pattern":
                                     pattern_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "seri":
                                     seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "pattern_test":
+                                    pattern_test = line.Value;
+                                    break;
+                                case "seri_test":
+                                    seri_test = line.Value;
+                                    break;
+                                case "baselink":
+                                case "baseurl":
+                                    _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "link_publish":
                                     link_Publish = UtilityHelper.DeCrypt(line.Value);

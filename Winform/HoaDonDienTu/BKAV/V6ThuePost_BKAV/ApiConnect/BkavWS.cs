@@ -153,13 +153,14 @@ namespace V6ThuePostBkavApi
             Result result = null;
 
             msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._121_CreateAdjust, listInvoice_json, out result);
-            v6return.RESULT_OBJECT = result.Object;
-            v6return.RESULT_STRING = result.Object.ToString();
+            
             if (msg.Length > 0)
             {
                 v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
+            v6return.RESULT_OBJECT = result.Object;
+            v6return.RESULT_STRING = result.Object.ToString();
 
             List<InvoiceResult> listInvoiceResult = null;
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
@@ -197,13 +198,13 @@ namespace V6ThuePostBkavApi
             Result result = null;
 
             msg = remoteCommand.TransferCommandAndProcessResult(commandType, listInvoice_json, out result);
-            v6return.RESULT_OBJECT = result.Object;
-            v6return.RESULT_STRING = result.Object.ToString();
             if (msg.Length > 0)
             {
                 v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
+            v6return.RESULT_OBJECT = result.Object;
+            v6return.RESULT_STRING = result.Object.ToString();
 
             List<InvoiceResult> listInvoiceResult = null;
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
@@ -264,13 +265,14 @@ namespace V6ThuePostBkavApi
 
             Result result = null;
             msg = remoteCommand.TransferCommandAndProcessResult(CmdType, list, out result);
-            v6return.RESULT_OBJECT = result.Object;
-            v6return.RESULT_STRING = result.Object.ToString();
+            
             if (msg.Length > 0)
             {
                 v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
+            v6return.RESULT_OBJECT = result.Object;
+            v6return.RESULT_STRING = result.Object.ToString();
 
             // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
             List<InvoiceResult> listInvoiceResult = null;
@@ -315,13 +317,14 @@ namespace V6ThuePostBkavApi
             
             Result result = null;
             msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._205_SignGUID, uid, out result);
-            v6return.RESULT_OBJECT = result.Object;
-            v6return.RESULT_STRING = result.Object.ToString();
+            
             if (msg.Length > 0)
             {
                 v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
+            v6return.RESULT_OBJECT = result.Object;
+            v6return.RESULT_STRING = result.Object.ToString();
 
             return msg;
             // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
@@ -362,10 +365,10 @@ namespace V6ThuePostBkavApi
         /// <param name="stringID"></param>
         /// <param name="savefolder"></param>
         /// <returns></returns>
-        public string DownloadInvoicePDF(string stringID, string savefolder)
+        public string DownloadInvoicePDF(string stringID, string savefolder, out V6Return v6Return)
         {
             string msg = null;
-
+            v6Return = new V6Return();
             var postObject = new PostObjectBkav();
             //List<InvoiceDataWS> listInvoiceDataWS = new List<InvoiceDataWS>();
             
@@ -380,13 +383,25 @@ namespace V6ThuePostBkavApi
             Result result = null;
             //msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._804_GetInvoiceLink, list, out result);
             msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._808_GetInvoicePDF64, stringID, out result);
-            if (msg.Length > 0) throw new Exception(msg);
+            if (msg.Length > 0)
+            {
+                // throw new Exception(msg);
+                v6Return.RESULT_ERROR_MESSAGE = msg;
+                return null;
+            }
 
+            v6Return.RESULT_STRING = result.ToString();
+            
             // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
             //List<InvoiceResult> listInvoiceResult = null;
             PdfResult pdfResult = null;
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out pdfResult);
-            if (msg.Length > 0) throw new Exception(msg);
+            if (msg.Length > 0)
+            {
+                // throw new Exception(msg);
+                v6Return.RESULT_ERROR_MESSAGE = msg;
+                return null;
+            }
 
             if (pdfResult != null && pdfResult.PDF != null)
             {
@@ -403,7 +418,12 @@ namespace V6ThuePostBkavApi
                     if(!File.Exists(path)) File.WriteAllBytes(path, pdfResult.PDF);
                 }
 
+                v6Return.PATH = path;
                 return path;
+            }
+            else
+            {
+                v6Return.RESULT_ERROR_MESSAGE = "pdfResult = null";
             }
             
             return null;

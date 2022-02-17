@@ -463,7 +463,7 @@ namespace V6Tools.V6Export
             {
                 if (File.Exists(xlsTemplateFile))
                     workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
-
+                
                 //select sheet
                 int sheetIndex = 0;
                 workbook.Sheet = sheetIndex;
@@ -499,7 +499,9 @@ namespace V6Tools.V6Export
                     SetHeaders(workbook, headers, startRow, startCol, drawLine);
                 }
 
-                var a = workbook.write(saveFile);
+                string save_ext = Path.GetExtension(saveFile).ToLower();
+                if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
+                else workbook.write(saveFile);
                 workbook.Dispose();
                 return true;//a false nhưng vẫn lưu file thành công???
 
@@ -1176,7 +1178,7 @@ namespace V6Tools.V6Export
             {
                 throw new ExportException("File lưu trùng file mẫu!");
             }
-            string ext = Path.GetExtension(xlsTemplateFile).ToLower();
+            string read_ext = Path.GetExtension(xlsTemplateFile).ToLower();
             if (File.Exists(xlsTemplateFile))
             {
                 #region ==== Copy file ====
@@ -1192,11 +1194,11 @@ namespace V6Tools.V6Export
                         try
                         {
 
-                            if (ext == ".xls")
+                            if (read_ext == ".xls")
                                 workbook.read(saveFile);
-                            else if (ext == ".xlsx")
+                            else if (read_ext == ".xlsx")
                                 workbook.readXLSX(saveFile);
-                            else if (ext == ".xml")
+                            else if (read_ext == ".xml")
                                 workbook.readXML(saveFile);
                             else
                                 workbook.read(saveFile);
@@ -1281,7 +1283,9 @@ namespace V6Tools.V6Export
 
                 ImportDataTable(workbook, data, columns, rowInsert, false, drawLine, startRow, startCol, -1, -1);
                 
-                var a = workbook.write(saveFile);
+                string save_ext = Path.GetExtension(saveFile).ToLower();
+                if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
+                else workbook.write(saveFile);
                 workbook.Dispose();
                 return true;//a false nhưng vẫn lưu file thành công???
 
@@ -1322,7 +1326,7 @@ namespace V6Tools.V6Export
             {
                 if (File.Exists(xlsTemplateFile))
                     workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
-
+                
                 //select sheet
                 int sheetIndex = 0;
                 workbook.Sheet = sheetIndex;
@@ -1358,7 +1362,9 @@ namespace V6Tools.V6Export
                     SetHeaders(workbook, headers, startRow, startCol, drawLine);
                 }
 
-                var a = workbook.write(saveFile);
+                string save_ext = Path.GetExtension(saveFile).ToLower();
+                if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
+                else workbook.write(saveFile);
                 workbook.Dispose();
                 return true;//a false nhưng vẫn lưu file thành công???
 
@@ -1380,19 +1386,19 @@ namespace V6Tools.V6Export
         {
             Message = "";
             //if(!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
-            var workBook = new WorkBook();
-            workBook.PrintGridLines = false;
-            workBook.setDefaultFont("Arial", 10 * 20, 1);
+            var workbook = new WorkBook();
+            workbook.PrintGridLines = false;
+            workbook.setDefaultFont("Arial", 10 * 20, 1);
             try
             {
                 if(File.Exists(xlsTemplateFile))
-                    workBook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
-
-                SetParametersAddressFormat(workBook, parameters);
+                    workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
+                
+                SetParametersAddressFormat(workbook, parameters);
 
                 //select sheet
                 int sheetIndex = 0;
-                workBook.Sheet = sheetIndex;
+                workbook.Sheet = sheetIndex;
 
                 int startRow = 1, startCol = 0;
 
@@ -1414,11 +1420,13 @@ namespace V6Tools.V6Export
                     startCol = GetExcelColumn(firstCell);
 
                     //Sua lap
-                    ImportDataTable(workBook, data, columns, rowInsert, false, drawLine, startRow, startCol, -1, -1);
+                    ImportDataTable(workbook, data, columns, rowInsert, false, drawLine, startRow, startCol, -1, -1);
                 }
 
-                var a = workBook.write(saveFile);
-                workBook.Dispose();
+                string save_ext = Path.GetExtension(xlsTemplateFile).ToLower();
+                if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
+                else workbook.write(saveFile);
+                workbook.Dispose();
 
                 return true; //a false nhưng vẫn lưu file thành công???
 
@@ -1426,7 +1434,7 @@ namespace V6Tools.V6Export
             catch (Exception ex)
             {
                 Message = "Data_Table ToExcelTemplate " + ex.Message;
-                workBook.Dispose();
+                workbook.Dispose();
                 return false;
             }
         }
@@ -1599,11 +1607,11 @@ namespace V6Tools.V6Export
         /// Ghi dữ liệu vào Excel và lưu thành file mới.
         /// </summary>
         /// <param name="xlsTemplateFile">File Excel mẫu.</param>
-        /// <param name="saveAsFile">File Excel sẽ lưu mới.</param>
+        /// <param name="saveFile">File Excel sẽ lưu mới.</param>
         /// <param name="mappingData">Dữ liệu theo tên.</param>
         /// <param name="addressData">Dữ liệu theo địa chỉ. (Mới chỉ áp dụng Sheet 0)</param>
         /// <returns></returns>
-        public static bool MappingDataToExcelFile(string xlsTemplateFile, string saveAsFile,
+        public static bool MappingDataToExcelFile(string xlsTemplateFile, string saveFile,
             IDictionary<string, object> mappingData, IDictionary<string, object> addressData)
         {
             var workbook = new WorkBook();
@@ -1612,8 +1620,8 @@ namespace V6Tools.V6Export
             try
             {
                 if (File.Exists(xlsTemplateFile))
-                    workbook = ReadWorkBookCopy(xlsTemplateFile, saveAsFile);
-
+                    workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
+                
                 if (mappingData != null)
                 {
                     for (int i = 0; i < workbook.NumSheets; i++)
@@ -1628,8 +1636,10 @@ namespace V6Tools.V6Export
                     workbook.Sheet = 0;
                     SetParametersSheetAddress(workbook, addressData);
                 }
-                
-                workbook.write(saveAsFile);
+
+                string save_ext = Path.GetExtension(saveFile).ToLower();
+                if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
+                else workbook.write(saveFile);
             }
             catch (Exception ex)
             {

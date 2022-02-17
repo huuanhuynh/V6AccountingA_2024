@@ -299,8 +299,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             {
                 DX = "DX";
             }
-            var EXCEL_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + ".xls";
-            V6ControlFormHelper.RunProcess(EXCEL_FILE);
+            var XLS_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + ".xls";
+            var XLSX_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + ".xlsx";
+            if (File.Exists(XLSX_FILE)) V6ControlFormHelper.RunProcess(XLSX_FILE);
+            else if (File.Exists(XLS_FILE)) V6ControlFormHelper.RunProcess(XLS_FILE);
+            else ShowMainMessage(V6Text.NotFound + "\n" + XLSX_FILE);
         }
 
         private void chkPrinterYn_CheckedChanged(object sender, EventArgs e)

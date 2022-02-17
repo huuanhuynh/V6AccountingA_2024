@@ -13,6 +13,13 @@ namespace V6Controls.Forms
             MyInit();
         }
 
+        public DateSelectForm(string subTitle)
+        {
+            SubTitle = subTitle;
+            InitializeComponent();
+            MyInit();
+        }
+
         private void MyInit()
         {
             if (!V6Setting.IsVietnamese) btnToday.Text = "Today";
@@ -30,11 +37,16 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Tiêu đề.
+        /// </summary>
+        public string SubTitle { get; set; }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
-                Text = V6Setting.IsVietnamese ? "Âm lịch Việt Nam" : "Vietnam lunar calendar";
+                Text = (V6Setting.IsVietnamese ? "Âm lịch Việt Nam" : "Vietnam lunar calendar") + (string.IsNullOrEmpty(SubTitle) ? "" : " - " + SubTitle);
                 lichViewControl1.SetData(SelectedDate.Year, SelectedDate.Month, SelectedDate, null, null, V6Setting.IsVietnamese ? "Lịch âm" : "Lunar calenda");
             }
             catch (Exception ex)

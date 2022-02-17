@@ -116,7 +116,7 @@ namespace V6ThuePost
                 else
                 {
                     Program.StartAutoInputTokenPassword();
-                    result = Program._vnptWS.PublishInvWithToken_Dll(richTextBox1.Text, Program.pattern, Program.seri, Program.SERIAL_CERT, out v6Return);
+                    result = Program._vnptWS.PublishInvWithToken32_Dll(richTextBox1.Text, Program.pattern, Program.seri, Program.SERIAL_CERT, out v6Return);
                 }
 
                 lblResult.Text = result;

@@ -206,12 +206,14 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + ".xls";
+                if (File.Exists(result + "x")) result += "x";
                 if (!File.Exists(result))
                 {
                     result = @"Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + ".xls";
+                    if (File.Exists(result + "x")) result += "x";
                 }
                 return result;
             }

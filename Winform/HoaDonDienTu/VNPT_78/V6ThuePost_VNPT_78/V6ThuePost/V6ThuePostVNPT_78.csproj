@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePost</RootNamespace>
     <AssemblyName>V6ThuePostVNPT_78</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -46,9 +46,8 @@
     <Reference Include="PdfiumViewer">
       <HintPath>..\..\..\..\..\..\Git\MicrosoftSource\Framework35\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
     </Reference>
-    <Reference Include="Spy001, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\V6AccountingB\V6AccountingB\bin\Debug\Spy001.dll</HintPath>
+    <Reference Include="Spy001">
+      <HintPath>bin\Release\Spy001.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -95,6 +95,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vnpt_78", "Vnpt_78", "{444E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostVNPT_78Api", "..\HoaDonDienTu\VNPT_78\V6ThuePost_VNPT_78\ApiConnect\V6ThuePostVNPT_78Api.csproj", "{244A7652-312B-4334-96E3-D2C7D78F62FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignTokenCorev5", "..\HoaDonDienTu\VNPT_78\V6ThuePost_VNPT_78\SignTokenCoreV5_V6\SignTokenCorev5.csproj", "{7F135776-9E12-4B56-8488-D13A2502C411}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -407,6 +409,16 @@ Global
 		{244A7652-312B-4334-96E3-D2C7D78F62FD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{244A7652-312B-4334-96E3-D2C7D78F62FD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{244A7652-312B-4334-96E3-D2C7D78F62FD}.Release|x86.ActiveCfg = Release|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7F135776-9E12-4B56-8488-D13A2502C411}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -456,5 +468,6 @@ Global
 		{6D66BEAA-5350-4E97-B9E4-EA0EA1F15485} = {5CF87D5A-EB01-4ACA-86D5-E28ED4A4AC72}
 		{A65BAF8E-B364-4384-B798-E2E2E0D67F8D} = {32C317A3-CE90-4676-867D-BA289F7713A5}
 		{244A7652-312B-4334-96E3-D2C7D78F62FD} = {444E0B72-3044-4FCE-9E6D-DBE459DE365A}
+		{7F135776-9E12-4B56-8488-D13A2502C411} = {444E0B72-3044-4FCE-9E6D-DBE459DE365A}
 	EndGlobalSection
 EndGlobal

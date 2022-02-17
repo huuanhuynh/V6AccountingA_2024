@@ -333,6 +333,17 @@ namespace V6ThuePost
                     postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
                 }
 
+                // Giữ lại giá trị ngày ct viettel invoiceIssuedDate
+                if (_datetype == "VIETTELNOW")
+                {
+                    var sv_date_10 = DateTime.Now.AddMinutes(-10);
+                    sv_date_10 = sv_date_10.AddSeconds(-sv_date_10.Second);
+                    sv_date_10 = sv_date_10.AddMilliseconds(-sv_date_10.Millisecond);
+                    postObject.generalInvoiceInfo["invoiceIssuedDate"] = sv_date_10;
+                }
+
+                //ngay_ct_viettel = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], _dateType);
+
                 if (mode == "T")
                 {
                     //Lập hóa đơn thay thế:
@@ -350,6 +361,8 @@ namespace V6ThuePost
                     //additionalReferenceDesc
                     postObject.generalInvoiceInfo["additionalReferenceDesc"] = row0["GHI_CHU03"];
                 }
+
+                //_uid = "" + postObject.generalInvoiceInfo["transactionUuid"];
 
                 //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)

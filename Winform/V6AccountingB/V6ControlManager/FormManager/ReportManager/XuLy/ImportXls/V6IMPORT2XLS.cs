@@ -886,7 +886,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9Message.Length > 0 ? "Error: " : "")
                     + f9Message);
 
-                ShowMainMessage("F9 " + V6Text.Finish + " " + f9MessageAll);
+                ShowMainMessage(f9MessageAll);
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -1124,7 +1124,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (F10Error.Length > 0 ? "Error: " : "")
                     + F10Error);
 
-                SetStatusText("F10 " + V6Text.Finish);
+                SetStatusText("F10 end.");
 
                 //V6ControlFormHelper.ShowInfoMessage("F10 finish "
                 //    + (F10ErrorAll.Length > 0 ? "Error: " : "")

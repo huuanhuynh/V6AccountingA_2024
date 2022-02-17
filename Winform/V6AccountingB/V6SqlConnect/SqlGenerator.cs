@@ -12,7 +12,7 @@ namespace V6SqlConnect
 {
     public static class SqlGenerator
     {
-        static readonly string _system_decimal_symbol = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+        static readonly string _comma_decimal_symbol = ",";// CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         private static readonly string clientName = Dns.GetHostName().ToUpper();
 
         public static string GenInsertSql(int UserId, string tableName, V6TableStruct structTable, DataRow row)
@@ -1281,7 +1281,7 @@ namespace V6SqlConnect
                             }
 
                             decimal tryp;
-                            if (decimal.TryParse(value, out tryp)) s = value.Replace(_system_decimal_symbol, ".");
+                            if (decimal.TryParse(value, out tryp)) s = value.Replace(_comma_decimal_symbol, ".");
                             else s = "0";
                         }
                         catch
@@ -1474,7 +1474,7 @@ namespace V6SqlConnect
                             }
 
                             decimal tryp;
-                            if (decimal.TryParse(value, out tryp)) s = value.Replace(_system_decimal_symbol, ".");
+                            if (decimal.TryParse(value, out tryp)) s = value.Replace(_comma_decimal_symbol, ".");
                             else s = "0";
                         }
                         catch
@@ -1595,7 +1595,7 @@ namespace V6SqlConnect
                     case "System.Double":
                         try
                         {
-                            s = value.ToString().Replace(_system_decimal_symbol, ".");
+                            s = value.ToString().Replace(_comma_decimal_symbol, ".");
                         }
                         catch
                         {

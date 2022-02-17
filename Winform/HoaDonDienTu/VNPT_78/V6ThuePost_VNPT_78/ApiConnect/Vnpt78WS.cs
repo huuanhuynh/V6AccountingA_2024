@@ -131,7 +131,7 @@ namespace V6ThuePostXmlApi
         /// <param name="SERIAL_CERT">Serial của chứng thư công ty đã đăng ký trong hệ thống.</param>
         /// <param name="v6Return">Kết quả</param>
         /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “-” + Fkey + “_” + Số hóa đơn + “,”</returns>
-        public string PublishInvWithToken_Dll(string xmlInvData, string pattern, string serial, string SERIAL_CERT, out V6Return v6Return)
+        public string PublishInvWithToken32_Dll(string xmlInvData, string pattern, string serial, string SERIAL_CERT, out V6Return v6Return)
         {
             string result = null;
             v6Return = new V6Return();
@@ -1048,7 +1048,7 @@ namespace V6ThuePostXmlApi
         /// </summary>
         /// <param name="xmlInvData">chuỗi xml hóa đơn.</param>
         /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “-” + Fkey + “_” + Số hóa đơn + “,”</returns>
-        public string PublishInvWithToken_Dll(string xmlInvData, string SERIAL_CERT, string pattern, string seri)
+        public string PublishInvWithToken68_Dll(string xmlInvData, string SERIAL_CERT, string pattern, string seri)
         {
             string result = null;
             try

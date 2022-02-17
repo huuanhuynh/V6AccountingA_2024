@@ -160,8 +160,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var paras = new PostManagerParams
                         {
                             DataSet = ds,
-                            //Mode = mode,
-                            Mode = "M", // tạo mới
+                            Mode = mode,
+                            //Mode = "M", // tạo mới test luôn M
                             Branch = FilterControl.String1,
                             Dir = dir,
                             FileName = file,

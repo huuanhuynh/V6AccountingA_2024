@@ -101,7 +101,7 @@ namespace V6ThuePost
             if (dir_name == "debug")
             {
                 _TEST_ = true;
-                MessageBox.Show("Test");
+                MessageBox.Show("Test! UID được tạo mới tự động mỗi lần Read.");
             }
             else
             {
@@ -554,13 +554,25 @@ namespace V6ThuePost
                 row0 = data.Rows[0];
 
                 fkeyA = fkey0 + row0["STT_REC"];
-                _uid = "" + row0["UID"];
+                
                 MakeFlagNames(fkeyA);
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
                     postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
                 }
+
+                // Giữ lại giá trị ngày ct viettel invoiceIssuedDate
+                if (_dateType == "VIETTELNOW")
+                {
+                    var sv_date_10 = DateTime.Now.AddMinutes(-10);
+                    sv_date_10 = sv_date_10.AddSeconds(-sv_date_10.Second);
+                    sv_date_10 = sv_date_10.AddMilliseconds(-sv_date_10.Millisecond);
+                    postObject.generalInvoiceInfo["invoiceIssuedDate"] = sv_date_10;
+                }
+
+                //ngay_ct_viettel = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], _dateType);
+
 
                 if (mode == "S")
                 {
@@ -584,6 +596,14 @@ namespace V6ThuePost
                     //additionalReferenceDesc
                     postObject.generalInvoiceInfo["additionalReferenceDesc"] = row0["GHI_CHU03"];
                 }
+
+                if (_TEST_)
+                {
+                    Guid new_uid = Guid.NewGuid();
+                    postObject.generalInvoiceInfo["transactionUuid"] = "" + new_uid;
+                }
+
+                _uid = "" + postObject.generalInvoiceInfo["transactionUuid"];
 
                 //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)

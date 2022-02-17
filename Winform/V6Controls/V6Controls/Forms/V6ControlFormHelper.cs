@@ -4467,9 +4467,10 @@ namespace V6Controls.Forms
             }
             try
             {
+                string ext = Path.GetExtension(defaultSaveName).ToLower();
                 var save = new SaveFileDialog
                 {
-                    Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
+                    Filter = "File "+ext+"|"+ext+"|Excel files|*.xls;*.xlsx",
                     Title = "Xuất excel.",
                     FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
                 };
@@ -4862,9 +4863,10 @@ namespace V6Controls.Forms
             }
             try
             {
+                string ext = Path.GetExtension(ExportExcelTemplateD_defaultSaveName).ToLower();
                 var save = new SaveFileDialog
                 {
-                    Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
+                    Filter = "File " + ext + "|" + ext + "|Excel files|*.xls;*.xlsx",
                     Title = "Xuất excel.",
                     FileName = ChuyenMaTiengViet.ToUnSign(ExportExcelTemplateD_defaultSaveName)
                 };
@@ -5089,9 +5091,10 @@ namespace V6Controls.Forms
             }
             try
             {
+                string ext = Path.GetExtension(defaultSaveName).ToLower();
                 var save = new SaveFileDialog
                 {
-                    Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
+                    Filter = "File " + ext + "|" + ext + "|Excel files|*.xls;*.xlsx",
                     Title = "Xuất excel.",
                     FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
                 };

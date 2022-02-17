@@ -1232,7 +1232,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9ErrorAll = "";
             InvokeFormEvent(FormDynamicEvent.F9);
             f9Running = false;
-            SetStatusText("F9 " + V6Text.Finish);
+            SetStatusText("F9 end.");
         }
 
         void tF9_Tick(object sender, EventArgs e)
@@ -1273,7 +1273,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9ErrorAll.Length > 0 ? "Error: " : "")
                     + f9ErrorAll);
 
-                SetStatusText("F9 " + V6Text.Finish);
+                SetStatusText("F9 end.");
             }
         }
         #endregion xulyF9

@@ -297,7 +297,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     f9MessageAll += ex.Message;
                 }
 
-                // Thông báo hoàn thành:
+                // Thông báo kết thúc:
                 this.ShowMessage(f9MessageAll, 300);
             }
             catch (Exception ex)

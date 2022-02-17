@@ -616,7 +616,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9ErrorAll.Length > 0 ? "Error: " : "")
                     + f9ErrorAll);
 
-                SetStatusText("F9 " + V6Text.Finish);
+                SetStatusText("F9 end.");
             }
         }
 

@@ -191,10 +191,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 RemoveGridViewRow();
 
                 btnNhan.PerformClick();
-                string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
+                string message = (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
                 V6ControlFormHelper.SetStatusText(message);
                 V6ControlFormHelper.ShowMainMessage(message);
-                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll, 300);
+                this.ShowMessage(f9MessageAll, 300);
             }
         }
         #endregion xulyF9
@@ -306,7 +306,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     f9ErrorAll += ex.Message;
                 }
 
-                // Thông báo hoàn thành:
+                // Thông báo kết thúc:
                 this.ShowMessage(f9MessageAll, 300);
             }
             catch (Exception ex)
