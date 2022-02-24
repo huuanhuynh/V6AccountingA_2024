@@ -113,6 +113,14 @@ namespace V6Tools.V6Convert
                 {
                     result = "" + (long) (date - new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds;
                 }
+                else if (dateTimeFormat.ToUpper() == "BKAV")
+                {
+                    //DateTime date = (DateTime)value;
+                    //DateTime now = DateTime.Now;
+                    //DateTime date_time = new DateTime(date.Year, date.Month, date.Day, now.Hour, now.Minute, now.Second);
+                    //result = "" + (long)(date - new DateTime(1970, 1, 1)).TotalMilliseconds;
+                    result = "\"" + date.ToString("yyyy-MM-ddTHH:mm:ss") + "\"";
+                }
                 else
                 {
                     result = "\"" + date.ToString(dateTimeFormat) + "\"";

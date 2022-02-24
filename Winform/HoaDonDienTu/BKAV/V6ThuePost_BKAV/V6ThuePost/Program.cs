@@ -70,6 +70,7 @@ namespace V6ThuePost
         private static PostObjectBkav postObject;
 
         private static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
+        private static Dictionary<string, ConfigLine> uiDefine = null;
         private static Dictionary<string, ConfigLine> buyerInfoConfig = null;
         private static Dictionary<string, ConfigLine> sellerInfoConfig = null;
         private static Dictionary<string, ConfigLine> paymentsConfig = null;
@@ -315,6 +316,17 @@ namespace V6ThuePost
                     {   
                         postObject.Invoice[item.Key] = GetValue(row0, item.Value);
                     }
+                }
+
+                if (uiDefine != null && uiDefine.Count > 0)
+                {
+                    Dictionary<string, object> uidefineDic = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, ConfigLine> item in uiDefine)
+                    {
+                        uidefineDic[item.Key] = GetValue(row0, item.Value);
+                    }
+
+                    postObject.Invoice["UIDefine"] = V6Tools.V6Convert.V6JsonConverter.ObjectToJson(uidefineDic, "BKAV");
                 }
 
                 if (_TEST_)
@@ -844,6 +856,7 @@ namespace V6ThuePost
             //postObject = new PostObject();
             
             generalInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
+            uiDefine = new Dictionary<string, ConfigLine>();
             buyerInfoConfig = new Dictionary<string, ConfigLine>();
             sellerInfoConfig = new Dictionary<string, ConfigLine>();
             paymentsConfig = new Dictionary<string, ConfigLine>();
@@ -887,6 +900,15 @@ namespace V6ThuePost
                             break;
                         }
                         case "GeneralInvoiceInfo":
+                        {
+                            string key = reader.GetAttribute("Field");
+                            if (!string.IsNullOrEmpty(key))
+                            {
+                                generalInvoiceInfoConfig.Add(key, ReadXmlLine(reader));
+                            }
+                            break;
+                        }
+                        case "UIDefine":
                         {
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))

@@ -127,6 +127,10 @@ namespace V6ThuePostManager
 
 
         private static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
+        /// <summary>
+        /// Bkav PXK&VCNB.
+        /// </summary>
+        private static Dictionary<string, ConfigLine> uiDefine = null;
         private static Dictionary<string, ConfigLine> buyerInfoConfig = null;
         private static Dictionary<string, ConfigLine> sellerInfoConfig = null;
         private static Dictionary<string, ConfigLine> metadataConfig = null;
@@ -189,7 +193,14 @@ namespace V6ThuePostManager
                         result0 = EXECUTE_VIETTEL_V2CALL(paras);
                         break;
                     case "2":
-                        result0 = EXECUTE_VNPT(paras);
+                        if (_version == "78")
+                        {
+                            result0 = EXECUTE_VNPT_78(paras);
+                        }
+                        else
+                        {
+                            result0 = EXECUTE_VNPT(paras);
+                        }
                         break;
                     case "3":
                         result0 = EXECUTE_BKAV(paras);
@@ -309,7 +320,7 @@ namespace V6ThuePostManager
                     case "4":
                         if (_version == "78")
                         {
-                            Vnpt78WS vnpt78WS = new Vnpt78WS(_baseUrl, _account, _accountpassword, _username, _password);
+                            Vnpt78WS vnpt78WS = CreateVnpt78WS();
                             result = vnpt78WS.CheckConnection();
                         }
                         else
@@ -317,18 +328,18 @@ namespace V6ThuePostManager
                             VnptWS vnptWS = CreateVnptWS();
                             result = vnptWS.CheckConnection();
                         }
-                        
                         break;
                     case "3":
                         BkavWS bkavWS = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
-                        result = bkavWS.POST("{}", BkavCommandTypeNew, out paras.Result.V6ReturnValues);
-                        if (result.Contains("ERR:Có lỗi xảy ra."))
+                        string testjson = "[{\"Invoice\":{\"InvoiceTypeID\":1,\"InvoiceDate\":\"2022-02-11T00:00:00\",\"BuyerName\":\"Người mua hàng XM7- mẫu 7 -USD\",\"BuyerTaxCode\":\"\",\"BuyerUnitName\":\"Mai Hữu Tuân\",\"BuyerAddress\":\"Lê Văn Huân\",\"BuyerBankAccount\":\"0132654979664111-nh tmcp vn\",\"PayMethodID\":2,\"ReceiveTypeID\":1,\"ReceiverEmail\":\"tuanmh@gmail.com\",\"ReceiverMobile\":\"\",\"ReceiverAddress\":\"Lê Văn Huân\",\"ReceiverName\":\"Mai Hữu Tuân\",\"Note\":\"\",\"UserDefine\":\"{\\\"DonViBanHang\\\":\\\"CÔNG TY CỔ PHẦN XÂY LẮP AN GIANG\\\",\\\"MaSoThue\\\":\\\"1600220016\\\",\\\"DiaChi\\\":\\\"Số 316/1A Trần Hưng Đạo, Phường Mỹ Long, Thành phố Long Xuyên , An Giang\\\",\\\"SoDienThoai\\\":\\\"02963841100\\\",\\\"Fax\\\":\\\"\\\",\\\"SoTaiKhoan\\\":\\\"\\\"}\",\"BillCode\":\"0000004\",\"CurrencyID\":\"USD\",\"ExchangeRate\":23000.00,\"InvoiceGUID\":\"615d1f41-dc8a-ec11-8109-6c2b59a11324\",\"InvoiceStatusID\":1,\"InvoiceForm\":\"0\",\"InvoiceSerial\":\"V6V6V6\",\"InvoiceNo\":4,\"InvoiceCode\":\"\",\"SignedDate\":\"2022-02-11T00:00:00\",\"TypeCreateInvoice\":0},\"ListInvoiceDetailsWS\":[{\"TaxRate\":10,\"ItemName\":\"Kệ pulmoll 1 2 3 4 5 6 7 8 9 0 1 2 3 4\",\"UnitName\":\"Cái\",\"Qty\":98.000,\"Price\":22.7273,\"Amount\":2227.28,\"TaxRateID\":3,\"TaxAmount\":222.73,\"IsDiscount\":false,\"IsIncrease\":false,\"DiscountRate\":0.0000,\"DiscountAmount\":0.00}],\"ListInvoiceAttachFileWS\":[],\"PartnerInvoiceID\":\"0\",\"PartnerInvoiceStringID\":\"N001624951SOA\"}]";
+                        result = bkavWS.POST(testjson, BkavCommandTypeNew, out paras.Result.V6ReturnValues);
+                        if (result == "ERR:Tài khoản chưa phát hành mẫu Hóa đơn hoặc dải số hoặc dải số đã hết")
                         {
                             result = null;
                         }
                         else
                         {
-                            result = "Kết nối lỗi.";
+                            //result = "Kết nối lỗi.";
                         }
 
                         break;
@@ -443,12 +454,20 @@ namespace V6ThuePostManager
                         break;
                     case "2": case "4":
                         int option = ObjectAndString.ObjectToInt(paras.Mode);
-                        VnptWS vnptWS = new VnptWS(_baseUrl, _account, _accountpassword, _username, _password);
-                        result = vnptWS.DownloadInvPDFFkey(paras.Fkey_hd, option,V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        if (_version == "78")
+                        {
+                            Vnpt78WS vnpt78WS = CreateVnpt78WS();
+                            result = vnpt78WS.DownloadInvPDFFkey(paras.Fkey_hd, option, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        }
+                        else
+                        {
+                            VnptWS vnptWS = CreateVnptWS();
+                            result = vnptWS.DownloadInvPDFFkey(paras.Fkey_hd, option, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        }
                         break;
                     case "3":
                         BkavWS bkav_ws = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
-                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, paras.Mode, out paras.Result.V6ReturnValues);
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
@@ -518,7 +537,7 @@ namespace V6ThuePostManager
                         break;
                     case "3":
                         BkavWS bkav_ws = new BkavWS(_baseUrl, BkavPartnerGUID, BkavPartnerToken);
-                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        result = bkav_ws.DownloadInvoicePDF(paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, paras.Mode, out paras.Result.V6ReturnValues);
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
@@ -702,6 +721,18 @@ namespace V6ThuePostManager
                     }
                 }
 
+                if(uiDefine != null && uiDefine.Count > 0)
+                {
+                    Dictionary<string, object> uidefineDic = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, ConfigLine> item in uiDefine)
+                    {
+                        uidefineDic[item.Key] = GetValue(row0, item.Value);
+                    }
+
+                    postObject.Invoice["UIDefine"] = V6Tools.V6Convert.V6JsonConverter.ObjectToJson(uidefineDic, "BKAV");
+                }              
+
+
                 
 
                 //foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
@@ -785,6 +816,16 @@ namespace V6ThuePostManager
                 throw new Exception(V6Text.NoDefine);
             }
             VnptWS vnptWS = new VnptWS(_baseUrl, _account, _accountpassword, _username, _password);
+            return vnptWS;
+        }
+
+        private static Vnpt78WS CreateVnpt78WS()
+        {
+            if (V6Infos == null || V6Infos.Count == 0)
+            {
+                throw new Exception(V6Text.NoDefine);
+            }
+            Vnpt78WS vnptWS = new Vnpt78WS(_baseUrl, _account, _accountpassword, _username, _password);
             return vnptWS;
         }
 
@@ -1130,16 +1171,478 @@ namespace V6ThuePostManager
             return result;
         }
 
+        private static string EXECUTE_VNPT_78(PostManagerParams paras)
+        {
+            string result = "";
+            paras.Result = new PM_Result();
+
+            try
+            {
+                var row0 = am_table.Rows[0];
+                Vnpt78WS vnptWS = new Vnpt78WS(_baseUrl, _account, _accountpassword, _username, _password);
+                if (paras.Mode == "TestView")
+                {
+                    var xml = ReadData_Vnpt();
+                    result = xml;
+                    paras.Result.ResultString = xml;
+                }
+                else if (paras.Mode.StartsWith("E_"))
+                {
+                    if (paras.Mode == "E_G1") // Gạch nợ theo fkey
+                    {
+                        if (string.IsNullOrEmpty(paras.Fkey_hd))
+                        {
+                            paras.Result.ResultErrorMessage = "Không có Fkey_hd truyền vào.";
+                        }
+                        else
+                        {
+                            result = vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                        }
+                    }
+                    else if (paras.Mode == "E_G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
+                    {
+                        result = vnptWS.ConfirmPayment(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "E_G3") // Hủy gạch nợ theo fkey
+                    {
+                        result = vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "E_H1")
+                    {
+                        result = vnptWS.cancelInv(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "E_S1")
+                    {
+                        var xml = ReadDataS_Vnpt();
+                        result = vnptWS.adjustInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "E_T1")
+                    {
+                        var xml = ReadDataXmlT();
+                        result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                }
+                else if (paras.Mode.StartsWith("M") || paras.Mode == "") // MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
+                {
+                    try // Update danh mục khách hàng.
+                    {
+                        if (customerInfoConfig != null && customerInfoConfig.Count > 0)
+                        {
+                            DoUpdateCus78(vnptWS, am_table);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // Bỏ qua lỗi.
+                    }
+                    var xml = ReadData_Vnpt(paras.Key_Down);
+
+                    if (string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        if (paras.Key_Down == "F4") // gửi nháp
+                        {
+                            result = vnptWS.ImportInvByPattern(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                            if (result.StartsWith("ERR:13")) // nếu đã tồn tại. thì xóa nháp + gửi lại.
+                            {
+                                result = vnptWS.DeleteInvoiceByFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                                if (result.StartsWith("OK:"))
+                                {
+                                    result = vnptWS.ImportInvByPattern(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                                }
+                            }
+                        }
+                        else if (paras.Key_Down == "F6") // sửa hóa đơn nháp = xóa nháp + gửi lại.
+                        {
+                            result = vnptWS.DeleteInvoiceByFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                            if (result.StartsWith("OK:"))
+                            {
+                                result = vnptWS.ImportInvByPattern(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                            }
+                        }
+                        //else if (paras.Key_Down == "F8") // xóa nháp
+                        //{
+                        //    result = vnptWS.DeleteInvoiceByFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                        //}
+                        else // F9 phát hành
+                        {
+                            result = vnptWS.ImportAndPublishInv(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                            if (result.StartsWith("ERR:13")) // nếu đã tồn tại, phát hành theo fkey.
+                            {
+                                result = vnptWS.PublishInvFkey(paras.Fkey_hd, __pattern, __serial, out paras.Result.V6ReturnValues);
+                            }
+                        }                        
+                    }
+                    else
+                    {
+                        StartAutoInputTokenPassword();
+                        result = vnptWS.PublishInvWithToken32_Dll(xml, __pattern, __serial, _SERIAL_CERT, out paras.Result.V6ReturnValues);
+                    }
+
+
+                    //string invXml = DownloadInvFkeyNoPay(fkeyA);
+                    //paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
+
+                    string filePath = Path.Combine(paras.Dir, paras.FileName);
+                    if (filePath.Length > 0 && result.StartsWith("OK"))
+                    {
+                        if (paras.Mode.EndsWith("1"))//Gửi file excel có sẵn
+                        {
+                            if (File.Exists(filePath))
+                            {
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, filePath);
+                            }
+                            else
+                            {
+                                result += "Không tồn tại " + filePath;
+                            }
+                        }
+                        else if (paras.Mode.EndsWith("2")) // Tự xuất excel rồi gửi.
+                        {
+                            string export_file;
+                            bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                            if (export_ok && File.Exists(export_file))
+                            {
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
+                            }
+                        }
+                        else if (paras.Mode.EndsWith("3")) // Tự xuất pdf rồi gửi
+                        {
+                            string export_file;
+                            if (string.IsNullOrEmpty(exportName))
+                            {
+                                var save = new SaveFileDialog
+                                {
+                                    Filter = "Pdf files (*.pdf)|*.pdf",
+                                    Title = "Xuất pdf để gửi đi.",
+                                };
+                                if (save.ShowDialog() == DialogResult.OK)
+                                {
+                                    export_file = save.FileName;
+                                }
+                                else
+                                {
+                                    goto End;
+                                }
+                            }
+                            else
+                            {
+                                export_file = exportName + ".pdf";
+                            }
+
+                            string rptFile = Path.Combine(paras.Dir, paras.RptFileFull);
+                            ReportDocument rpt = new ReportDocument();
+                            rpt.Load(rptFile);
+                            DataSet ds = new DataSet();
+                            DataTable data1 = ad_table.Copy();
+                            data1.TableName = "DataTable1";
+                            DataTable data2 = am_table.Copy();
+                            data2.TableName = "DataTable2";
+                            ds.Tables.Add(data1);
+                            ds.Tables.Add(data2);
+                            string tien_bang_chu = MoneyToWords(ObjectAndString.ObjectToDecimal(row0["T_TT"]), "V", "VND");
+                            rpt.SetDataSource(ds);
+                            rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
+                            bool export_ok = ExportRptToPdf(null, rpt, export_file);
+                            if (export_ok)
+                            {
+                                result += "\r\nExport ok.";
+                            }
+                            else
+                            {
+                                result += "\r\nExport fail.";
+                            }
+
+                            if (export_ok && File.Exists(export_file))
+                            {
+                                result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
+                            }
+                        }
+                    }
+                    else if (!string.IsNullOrEmpty(paras.Result.ResultErrorMessage))       // Hoặc đã có trên hệ thống HDDT ERR:0
+                    {
+                        V6Return v6return;
+                        vnptWS.DownloadInvFkeyNoPay(fkeyA, out v6return);
+                        paras.Result.InvoiceNo = v6return.SO_HD;
+                        if (!string.IsNullOrEmpty(paras.Result.InvoiceNo))
+                        {
+                            result = "OK-Đã tồn tại fkey.";
+                            paras.Result.ResultString = result;
+                        }
+                    }
+                }
+                else if (paras.Mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
+                {
+                    fkeyA = paras.Fkey_hd;
+
+                    string invXml = vnptWS.DownloadInvFkeyNoPay(fkeyA, out paras.Result.V6ReturnValues);
+                    result += paras.Result.InvoiceNo;
+                }
+                else if (paras.Mode == "S")
+                {
+                    var xml = ReadDataS_Vnpt();
+                    result = vnptWS.adjustInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    string filePath = Path.Combine(paras.Dir, paras.FileName);
+                    if (filePath.Length > 0 && result.StartsWith("OK"))
+                    {
+                        if (File.Exists(filePath))
+                        {
+                            result += vnptWS.UploadInvAttachmentFkey(fkeyA, filePath);
+                        }
+                        else
+                        {
+                            result += "Không tồn tại " + filePath;
+                        }
+                    }
+                }
+                else if (paras.Mode == "T")
+                {
+                    var xml = ReadDataXmlT();
+                    result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode.StartsWith("G"))
+                {
+                    if (paras.Mode == "G1") // Gạch nợ theo fkey
+                    {
+                        result = vnptWS.ConfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
+                    {
+                        result = vnptWS.ConfirmPayment(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
+                    {
+                        result = vnptWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                }
+                else if (paras.Mode == "H")
+                {
+                    result = vnptWS.cancelInv(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode == "D")
+                {
+                    // Danh muc??
+                    string type = "1";
+                    if (paras.Mode.Length > 1) type = paras.Mode[1].ToString();
+                    result = DoUpdateCus78(vnptWS, am_table, type);
+                    //DataTable data = V6BusinessHelper.Select("ALKH", "*", "ISNULL([E_MAIL],'') <> ''").Data;
+                    //result = DoUpdateCus(data, type);
+                }
+                else if (paras.Mode.StartsWith("U"))//U1,U2
+                {
+                    if (paras.Mode == "U")        // upload file có sẵn, fkey truyền vào
+                    {
+                        string fkey = paras.Fkey_hd;
+                        string file = Path.Combine(paras.Dir, paras.FileName);
+                        vnptWS.UploadInvAttachmentFkey(fkey, file);
+                    }
+                    else if (paras.Mode == "U1") // upload file có sẵn, fkey tự đọc từ data
+                    {
+                        //ReadDataXml(arg2);
+                        string fkey = paras.Fkey_hd;
+                        vnptWS.UploadInvAttachmentFkey(fkey, fkey + ".xls");
+                    }
+                    else if (paras.Mode == "U2") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel rồi upload.
+                    {
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += vnptWS.UploadInvAttachmentFkey(fkeyA, export_file);
+                        }
+                    }
+                    else if (paras.Mode == "U3") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel để đó xem.
+                    {
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                    }
+                }
+                else if (paras.Mode.StartsWith("E"))
+                {
+                    if (paras.Mode == "E")
+                    {
+
+                    }
+                    else if (paras.Mode == "E1")
+                    {
+                        string export_file;
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                    }
+                    else if (paras.Mode == "E2")  // Xuất PDF bằng RPT
+                    {
+                        string rptFile = paras.RptFileFull;
+                        string saveFile = Path.Combine(paras.Dir, paras.FileName);// arg4;
+
+                        ReportDocument rpt = new ReportDocument();
+                        rpt.Load(rptFile);
+                        DataSet ds = new DataSet();
+                        DataTable data1 = ad_table.Copy();
+                        data1.TableName = "DataTable1";
+                        DataTable data2 = am_table.Copy();
+                        data2.TableName = "DataTable2";
+                        ds.Tables.Add(data1);
+                        ds.Tables.Add(data2);
+                        string tien_bang_chu = MoneyToWords(ObjectAndString.ObjectToDecimal(row0["T_TT"]), "V", "VND");
+                        rpt.SetDataSource(ds);
+                        rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
+
+                        bool export_ok = false;
+                        if (string.IsNullOrEmpty(saveFile))
+                        {
+                            export_ok = ExportRptToPdf_As(null, rpt, saveFile);
+                        }
+                        else
+                        {
+                            export_ok = ExportRptToPdf(null, rpt, saveFile);
+                        }
+
+                        if (export_ok)
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                        else
+                        {
+                            result += "\r\nExport fail.";
+                        }
+                    }
+                }
+                else
+                {
+                    result = "ERR: Mode " + paras.Mode + " " + V6Text.NotSupported;
+                    if (paras.Result.V6ReturnValues == null) paras.Result.V6ReturnValues = new V6Return();
+                    paras.Result.V6ReturnValues.RESULT_STRING = result;
+                    paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                result += "ERR:EX\r\n" + ex.Message;
+                paras.Result.ResultErrorMessage = ex.Message;
+            }
+            StopAutoInputTokenPassword();
+        End:
+            return result;
+        }
+
         public static string DoUpdateCus(DataTable data, string type = "1")
         {
             return DoUpdateCus(CreateVnptWS(), data, type);
         }
+
+        public static string DoUpdateCus78(DataTable data, string type = "1")
+        {
+            return DoUpdateCus78(CreateVnpt78WS(), data, type);
+        }
+
         public static string DoUpdateCus(VnptWS vnptWS, DataTable data, string type = "1")
         {
             string update_cus_result = "";
             string error = "";
             int error_count = 0, success_count = 0;
             
+            try
+            {
+                //var data = ReadDbf(dbf);
+                if (type == "1") // 1 times 1 cus
+                {
+                    Customer cus = null;
+                    string ma_kh = null;
+                    int count = 0;
+                    foreach (DataRow row in data.Rows)
+                    {
+                        count++;
+                        try
+                        {
+                            cus = null;
+                            ma_kh = null;
+                            Customers cuss = new Customers();
+                            cus = ReadCusDataXml(row);
+                            ma_kh = row["MA_KH"].ToString().Trim();
+                            cuss.Customer_List.Add(cus);
+                            string xml = V6XmlConverter.ClassToXml(cuss);
+
+                            Logger.WriteToLog(string.Format("Preparing UpdateCus {0} {1}\r\n{2}", count, ma_kh, xml));
+                            V6Return v6return;
+                            var num = vnptWS.UpdateCus(xml, out v6return);
+                            if (num == "1")
+                            {
+                                success_count++;
+                                Logger.WriteToLog(string.Format("UpdateCus {0} {1} Success.", count, ma_kh));
+                            }
+                            else error_count++;
+
+                            update_cus_result += string.Format("\r\n Update {0} status: {1}", ma_kh, num);
+                        }
+                        catch (Exception ex)
+                        {
+                            error_count++;
+                            if (!string.IsNullOrEmpty(ma_kh) && cus != null)
+                            {
+                                error += "\nCustomer " + count + " " + ma_kh;
+                            }
+                            else
+                            {
+                                error += "\nCustomer " + count + " null OR no code.";
+                            }
+                            error += "\n" + ex.Message;
+                        }
+                    }
+                }
+                else // 1 times all cus
+                {
+                    try
+                    {
+                        Customers cuss = new Customers();
+                        foreach (DataRow row in data.Rows)
+                        {
+                            Customer cus = ReadCusDataXml(row);
+                            cuss.Customer_List.Add(cus);
+                        }
+                        string xml = V6XmlConverter.ClassToXml(cuss);
+
+                        Logger.WriteToLog("Preparing UpdateCus:\r\n" + xml);
+                        V6Return v6return;
+                        var num = vnptWS.UpdateCus(xml, out v6return);
+                        success_count = Convert.ToInt32(num);
+                        update_cus_result += "Success " + num + "/" + data.Rows.Count;
+                    }
+                    catch (Exception ex)
+                    {
+                        error += ex.Message;
+                        error_count = 1;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                error += "\n" + ex.Message;
+            }
+
+            if (error.Length > 0) update_cus_result += "ERR: " + error;
+            Logger.WriteToLog("Program.DoUpdateCus " + update_cus_result);
+            //return result;
+            return string.Format("Success {0}   Error {1}\n{2}", success_count, error_count, update_cus_result);
+        }
+
+        public static string DoUpdateCus78(Vnpt78WS vnptWS, DataTable data, string type = "1")
+        {
+            string update_cus_result = "";
+            string error = "";
+            int error_count = 0, success_count = 0;
+
             try
             {
                 //var data = ReadDbf(dbf);
@@ -1235,7 +1738,7 @@ namespace V6ThuePostManager
             return cus;
         }
 
-        public static string ReadData_Vnpt()
+        public static string ReadData_Vnpt(string mode = null)
         {
             string result = "";
             //column_config = new SortedDictionary<string, string>();
@@ -1314,6 +1817,11 @@ namespace V6ThuePostManager
                 {
                     inv.Invoice[item.Key] = GetValue(row0, item.Value);
                 }
+
+                //if (mode == "F4") // tạo hóa đơn nháp, chuyển trạng thái gạch nợ = 0
+                //{
+                //    inv.Invoice["PaymentStatus"] = "0";
+                //}
 
                 foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
                 {
@@ -4395,6 +4903,7 @@ namespace V6ThuePostManager
         {
             V6Infos = new Dictionary<string, string>();
             generalInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
+            uiDefine = new Dictionary<string, ConfigLine>();
             buyerInfoConfig = new Dictionary<string, ConfigLine>();
             sellerInfoConfig = new Dictionary<string, ConfigLine>();
             metadataConfig = new Dictionary<string, ConfigLine>();
@@ -4523,6 +5032,14 @@ namespace V6ThuePostManager
                                 if (!string.IsNullOrEmpty(line.Field))
                                 {
                                     generalInvoiceInfoConfig.Add(line.Field, line);
+                                }
+                                break;
+                            }
+                        case "UIDEFINE":
+                            {
+                                if (!string.IsNullOrEmpty(line.Field))
+                                {
+                                    uiDefine.Add(line.Field, line);
                                 }
                                 break;
                             }

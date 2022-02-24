@@ -177,7 +177,7 @@ namespace V6ThuePostManager
         //public IDictionary<string,object> ResultDictionary0 = null;
         /// <summary>
         /// Chứa tất cả các giá trị đơn có được do hàm trả về (được phân tích và lưu lại).
-        /// <para>Trong đó có 2 biến cơ bản [RESULT_STRING] và [RESULT_OBJECT].</para>
+        /// <para>Kiểm tra lỗi trong biến RESULT_ERROR_MESSAGE trước. Kiểm tra thành công tùy trường hợp.</para>
         /// </summary>
         public V6Return V6ReturnValues = null;
 

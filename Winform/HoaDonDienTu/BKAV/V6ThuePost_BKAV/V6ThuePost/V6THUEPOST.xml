@@ -39,6 +39,16 @@
 	<GeneralInvoiceInfo Field='TypeCreateInvoice' 	Value='0'	FieldV6=''	Type='Field'	Note='default 0: Tạo Hoá đơn, 1: Tạo Hoá đơn thay thế, 2: Tạo Hoá đơn điều chỉnh thông tin, 3: Tạo Hoá đơn điều chỉnh tăng, 4: Tạo Hoá đơn điều chỉnh giảm'/>
 	<GeneralInvoiceInfo Field='OriginalInvoiceIdentify' 	Value=''	FieldV6='FKEY_HD'	Type='Field'	Note='Thông tin Hoá đơn gốc dùng trong trường hợp thay thế, điều chỉnh. Định dạng như sau: [Mẫu Số]_[Ký hiệu]_[Số Hoá đơn], ví dụ: [01GTKT0/001]_[AA/17E]_[0000001]'/>	
 	
+  <UIDefine Field='ShiftCommandNo' 	Value=''	FieldV6='GC_UD1'	Type='Field'/>
+  <UIDefine Field='ShiftCommandDate' 	Value=''	FieldV6='TT_NDD'	Type='Field'/>
+  <UIDefine Field='ShiftUnitName' 	Value=''	FieldV6='TT_LDDC'	Type='Field'/>
+  <UIDefine Field='ShiftReason' 	Value=''	FieldV6='TT_VV'	Type='Field'/>
+  <UIDefine Field='ReferenceNote' 	Value=''	FieldV6=''	Type='Field'/>
+  <UIDefine Field='TransporterName' 	Value=''	FieldV6='TT_NVC'	Type='Field'/>
+  <UIDefine Field='ContractNo' 	Value=''	FieldV6='TT_SHD'	Type='Field'/>
+  <UIDefine Field='OutWareHouse' 	Value=''	FieldV6='TEN_KHO'	Type='Field'/>
+  <UIDefine Field='InWareHouse' 	Value=''	FieldV6='TEN_KHON'	Type='Field'/>
+  <UIDefine Field='Transportation' 	Value=''	FieldV6='TT_PTVC'	Type='Field'/>
 
 <!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
 	<ItemInfo	Field='ItemName'	FieldV6='ten_vt'	Type='Field'/>

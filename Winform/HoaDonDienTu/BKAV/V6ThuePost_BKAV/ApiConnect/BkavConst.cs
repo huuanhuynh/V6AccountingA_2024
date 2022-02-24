@@ -90,7 +90,7 @@ namespace V6ThuePostBkavApi
         /// <summary>
         /// Lấy link để tải file hóa đơn in chuyển đổi
         /// </summary>
-        public const int _804_GetInvoiceLink = 804;
+        public const int _804_GetInvoiceLink_ChuyenDoi = 804;
 
         public const int _808_GetInvoicePDF64 = 808;
 

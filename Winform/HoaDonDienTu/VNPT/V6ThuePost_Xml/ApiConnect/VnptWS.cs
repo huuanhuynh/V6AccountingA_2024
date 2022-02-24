@@ -616,9 +616,9 @@ namespace V6ThuePostXmlApi
         }
 
         /// <summary>
-        /// Tải về file PDF hóa đơn. Trả về đường dẫn file.
+        /// Tải về file hóa đơn PDF (hoặc html-chuyển đổi). Trả về đường dẫn file.
         /// </summary>
-        /// <param name="option">0 - Bản pdf thông thường; 1 - Bản pdf chuyển đổi.</param>
+        /// <param name="option">1 - Bản pdf thông thường; 2 - Bản pdf chuyển đổi.</param>
         /// <param name="fkey"></param>
         /// <param name="saveFolder"></param>
         /// <param name="v6Return"></param>
@@ -629,7 +629,7 @@ namespace V6ThuePostXmlApi
             v6Return = new V6Return();
             try
             {
-                if (option == 1)
+                if (option == 2)
                 {
                     result = new PortalService.PortalService(_baseLink + _portalLink).convertForStoreFkey(fkey, _username, _password);
                     v6Return.RESULT_STRING = result;

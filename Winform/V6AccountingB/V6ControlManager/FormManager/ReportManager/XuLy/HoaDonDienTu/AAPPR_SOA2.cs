@@ -82,7 +82,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string Key_Down = "";
         protected override void XuLyBoSungThongTinChungTuF4()
         {
-            if (FilterControl.String1 == "1" || FilterControl.String1 == "3" || FilterControl.String1 == "5")
+            string s1 = FilterControl.String1;
+            if (s1 == "1" || s1 == "2" || s1 == "3" || s1 == "5")
             {
                 Key_Down = "F4";
                 XuLyF9();
@@ -91,12 +92,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyF6()
         {
-            if (FilterControl.String1 == "1" || FilterControl.String1 == "3" || FilterControl.String1 == "5")
+            string s1 = FilterControl.String1;
+            if (s1 == "1" || s1 == "2" || s1 == "3" || s1 == "5")
             {
                 Key_Down = "F6";
                 XuLyF9();
             }
         }
+
+        //protected override void XuLyF8()
+        //{
+        //    string s1 = FilterControl.String1;
+        //    if (s1 == "1" || s1 == "2" || s1 == "3" || s1 == "5")
+        //    {
+        //        Key_Down = "F8";
+        //        XuLyF9();
+        //    }
+        //}
 
         private bool f9Running;
         private string f9Error = "";
@@ -176,7 +188,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         if (paras.Result.IsSuccess(paras.Mode))
                         {
-                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, paras.Result.InvoiceNo, paras.Result.Id, result, V6Text.Text("ThanhCong"));
+                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}",
+                                soct, paras.Result.InvoiceNo, paras.Result.Id, result, Key_Down + " " + V6Text.Text("ThanhCong"));
                             //[AAPPR_SOA2_UPDATE]
                             SqlParameter[] plist2 =
                             {

@@ -22,17 +22,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     /// </summary>
     public class AAPPR_IXB2 : XuLyBase
     {
+		V6Invoice85 invoice = new V6Invoice85();
+		
         public AAPPR_IXB2(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
-            dataGridView1.Control_S = true;
+            MyInit2();
             PostManager.ResetWS();
         }
 
         private void AAPPR_IXB2_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void MyInit2()
+        {
+            try
+            {
+                dataGridView1.Control_S = true;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".MyInit2", ex);
+            }
         }
 
         public override void SetStatus2Text()
@@ -78,7 +92,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private bool f9Running;
         private string f9Error = "";
-        private string f9ErrorAll = "";
         private string f9MessageAll = "";
         protected override void XuLyF9()
         {
@@ -103,7 +116,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void F9Thread()
         {
             f9Running = true;
-            f9ErrorAll = "";
             f9MessageAll = "";
 
             int i = 0;
@@ -141,6 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             DataSet = ds,
                             Mode = mode,
+                            //Mode = "M", // tạo mới test luôn M
                             Branch = FilterControl.String1,
                             Dir = dir,
                             FileName = file,
@@ -149,8 +162,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             Fkey_hd = fkey_hd,
                             Pattern = pattern,
                             Serial = serial,
+                            Form = this,
                         };
-                        result = PostManager.PowerPost(paras);//, out sohoadon, out id, out error);
+                        result = PostManager.PowerPost(paras);
 
                         if (paras.Result.IsSuccess(paras.Mode))
                         {
@@ -181,7 +195,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 catch (Exception ex)
                 {
                     f9Error += ex.Message;
-                    f9ErrorAll += ex.Message;
                     f9MessageAll += ex.Message;
                 }
             }
@@ -205,10 +218,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 Key_Down = "";
                 RemoveGridViewRow();
                 btnNhan.PerformClick();
-                string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
-                V6ControlFormHelper.SetStatusText(message);
-                V6ControlFormHelper.ShowMainMessage(message);
-                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll, 300);
+                V6ControlFormHelper.SetStatusText(f9MessageAll);
+                V6ControlFormHelper.ShowMainMessage(f9MessageAll);
+                this.ShowMessage(f9MessageAll, 300);
             }
         }
         #endregion xulyF9
@@ -303,6 +315,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     Key_Down = "TestView",
                     RptFileFull = ReportFileFull,
                     Fkey_hd = fkey_hd,
+                    Form = this,
                 };
                 result = PostManager.PowerPost(paras);
                 Clipboard.SetText(result);
@@ -316,7 +329,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        V6Invoice85 invoice = new V6Invoice85();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try

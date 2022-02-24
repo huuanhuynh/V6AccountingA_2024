@@ -364,8 +364,9 @@ namespace V6ThuePostBkavApi
         /// </summary>
         /// <param name="stringID"></param>
         /// <param name="savefolder"></param>
+        /// <param name="mode">1 (hoặc khác 2) thể hiện 2 chuyển đổi</param>
         /// <returns></returns>
-        public string DownloadInvoicePDF(string stringID, string savefolder, out V6Return v6Return)
+        public string DownloadInvoicePDF(string stringID, string savefolder, string mode, out V6Return v6Return)
         {
             string msg = null;
             v6Return = new V6Return();
@@ -381,50 +382,110 @@ namespace V6ThuePostBkavApi
             //list = "[" + list + "]";
             
             Result result = null;
-            //msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._804_GetInvoiceLink, list, out result);
-            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._808_GetInvoicePDF64, stringID, out result);
-            if (msg.Length > 0)
+            if (mode == "2")
             {
-                // throw new Exception(msg);
-                v6Return.RESULT_ERROR_MESSAGE = msg;
-                return null;
-            }
-
-            v6Return.RESULT_STRING = result.ToString();
-            
-            // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
-            //List<InvoiceResult> listInvoiceResult = null;
-            PdfResult pdfResult = null;
-            msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out pdfResult);
-            if (msg.Length > 0)
-            {
-                // throw new Exception(msg);
-                v6Return.RESULT_ERROR_MESSAGE = msg;
-                return null;
-            }
-
-            if (pdfResult != null && pdfResult.PDF != null)
-            {
-                string path = Path.Combine(savefolder, stringID + ".pdf");
-                try
+                Dictionary<string, object> commandObject = new Dictionary<string, object>();
+                commandObject["PartnerInvoiceID"] = 0;
+                commandObject["PartnerInvoiceStringID"] = stringID;
+                msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._804_GetInvoiceLink_ChuyenDoi, new[]{commandObject}, out result);
+                //string j = V6Tools.V6Convert.V6JsonConverter.ObjectToJson(commandObject, null);
+                if (msg.Length > 0)
                 {
-                    if (File.Exists(path)) File.Delete(path);
-                }
-                catch
-                {
-                }
-                finally
-                {
-                    if(!File.Exists(path)) File.WriteAllBytes(path, pdfResult.PDF);
+                    // throw new Exception(msg);
+                    v6Return.RESULT_ERROR_MESSAGE = msg;
+                    return null;
                 }
 
-                v6Return.PATH = path;
-                return path;
+                v6Return.RESULT_STRING = result.Object.ToString();
+
+                // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
+                //List<InvoiceResult> listInvoiceResult = null;
+                InvoiceResult[] getlinkE_Result = null;
+                msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out getlinkE_Result);
+                if (msg.Length > 0)
+                {
+                    // throw new Exception(msg);
+                    v6Return.RESULT_ERROR_MESSAGE = msg;
+                    return null;
+                }
+                InvoiceResult linkpdfResult = getlinkE_Result[0];
+                if (linkpdfResult != null && linkpdfResult.MessLog != null)
+                {
+                    string path = Path.Combine(savefolder, stringID + "_E.pdf");
+                    string download_link = _baseUrl.Substring(0, _baseUrl.LastIndexOf('/') + 1) + linkpdfResult.MessLog; 
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile(download_link, path);
+                    }
+
+                    v6Return.RESULT_OBJECT = download_link;
+                    v6Return.RESULT_STRING = download_link;
+                    v6Return.RESULT_MESSAGE = path;
+                    v6Return.PATH = path;
+                    if (File.Exists(path))
+                    {
+                        return path;
+                    }
+                    else
+                    {
+                        v6Return.RESULT_ERROR_MESSAGE = "ERR:" + download_link;
+                        return null;
+                    }
+                }
+                else
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "downloadResult = null";
+                }
             }
             else
             {
-                v6Return.RESULT_ERROR_MESSAGE = "pdfResult = null";
+                msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._808_GetInvoicePDF64, stringID, out result);
+
+                if (msg.Length > 0)
+                {
+                    // throw new Exception(msg);
+                    v6Return.RESULT_ERROR_MESSAGE = msg;
+                    return null;
+                }
+
+                v6Return.RESULT_STRING = result.Object.ToString();
+
+                // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
+                //List<InvoiceResult> listInvoiceResult = null;
+                PdfResult pdfResult = null;
+                msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out pdfResult);
+                if (msg.Length > 0)
+                {
+                    // throw new Exception(msg);
+                    v6Return.RESULT_ERROR_MESSAGE = msg;
+                    return null;
+                }
+
+                if (pdfResult != null && pdfResult.PDF != null)
+                {
+                    string path = Path.Combine(savefolder, stringID + ".pdf");
+                    try
+                    {
+                        if (File.Exists(path)) File.Delete(path);
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        if (!File.Exists(path)) File.WriteAllBytes(path, pdfResult.PDF);
+                    }
+
+                    v6Return.PATH = path;
+                    return path;
+                }
+                else
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "pdfResult = null";
+                }
             }
+            
+            
             
             return null;
         }
