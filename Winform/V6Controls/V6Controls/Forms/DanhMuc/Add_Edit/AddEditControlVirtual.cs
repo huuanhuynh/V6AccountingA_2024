@@ -44,6 +44,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public Control _grandFatherControl;
         public IDictionary<string, object> _parentData;
         public AldmConfig _aldmConfig;
+        /// <summary>
+        /// Cờ thể hiện người dùng bấm nút copy hay nút add.
+        /// </summary>
+        public bool IS_COPY;
         public string TitleLang
         {
             get
@@ -249,27 +253,60 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode==V6Mode.Edit)
             {
-                if(DataOld!=null) SetData(DataOld); else LoadData();
+                if (DataOld == null) DataOld = LoadData();
+                SetData(DataOld);
             }
             else if(Mode == V6Mode.Add)
             {
+                if (DataOld == null && _keys != null)
+                {
+                    DataOld = LoadData();
+                }
+
                 var dataOld2 = new SortedDictionary<string, object>();
-                if (DataOld != null) dataOld2.AddRange(DataOld);
-                dataOld2["STATUS"] = "1";
-                if (DataOld != null)
+                if (DataOld == null) goto default0;
+
+                if (!IS_COPY && _aldmConfig != null && _aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("NEWMODE"))
                 {
-                    SetSomeData(dataOld2);
+                    // NEWMODE EXTRAINFO
+                    // mặc định NEWMODE:0;notfield1;notfield2... (lất tất loại trừ...)
+                    // NEWMODE:1;field1;field2... (some field)
+                    var NEWMODE = _aldmConfig.EXTRA_INFOR["NEWMODE"];
+                    var fields = ObjectAndString.SplitString(NEWMODE);
+                    if (fields.Length > 0)
+                    {
+                        string mode = fields[0];
+                        if (mode == "0")
+                        {
+                            dataOld2.AddRange(DataOld);
+                            for (int i = 1; i < fields.Length; i++)
+                            {
+                                string FIELD = fields[i].Trim().ToUpper();
+                                if (DataOld.ContainsKey(FIELD)) dataOld2.Remove(FIELD);
+                            }
+                        }
+                        else if (mode == "1")
+                        {
+                            for (int i = 1; i < fields.Length; i++)
+                            {
+                                string FIELD = fields[i].Trim().ToUpper();
+                                if (DataOld.ContainsKey(FIELD)) dataOld2[FIELD] = DataOld[FIELD];
+                            }
+                        }
+                        else // chưa định nghĩa, chạy như mặc định.
+                        {
+                            dataOld2.AddRange(DataOld);
+                        }
+                    }
                 }
-                else if (_keys != null)
+                else // mặc định copy all.
                 {
-                    LoadData();
+                    dataOld2.AddRange(DataOld);
                 }
-                else
-                {
-                    LoadDefaultData(2, "", _MA_DM, m_itemId);
-                    SetSomeData(dataOld2);
-                }
-                
+
+                default0:
+                dataOld2["STATUS"] = "1"; // khi tạo mới luôn đặt STATUS = 1
+                SetSomeData(dataOld2);
                 LoadDefaultData(2, "", _MA_DM, m_itemId);
             }
             else if (Mode == V6Mode.View)
@@ -310,7 +347,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         }
 
-        public virtual void LoadData()
+        public virtual IDictionary<string, object> LoadData()
         {
             try
             {
@@ -320,7 +357,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (selectResult.Data.Rows.Count == 1)
                     {
                         DataOld = selectResult.Data.Rows[0].ToDataDictionary();
-                        SetData(DataOld);
+                        return DataOld;
                     }
                     else if (selectResult.Data.Rows.Count > 1)
                     {
@@ -336,6 +373,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 this.ShowErrorException(GetType() + ".LoadData", ex);
             }
+
+            return null;
         }
         
         private void UpdateBackTk()
@@ -1173,6 +1212,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         protected bool update_stt13;
+        
         protected virtual void AddStt13()
         {
             try

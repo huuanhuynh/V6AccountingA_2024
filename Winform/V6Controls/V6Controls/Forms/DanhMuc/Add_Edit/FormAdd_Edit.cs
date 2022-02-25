@@ -11,10 +11,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         public Control _fatherControl;
         public AddEditControlVirtual FormControl;
-        private readonly V6Mode _mode;
-        private readonly IDictionary<string, object> _keys;
-        private readonly IDictionary<string, object> _data;
-        private readonly string _MA_DM;
+        public readonly V6Mode _mode;
+        public readonly IDictionary<string, object> _keys;
+        public readonly IDictionary<string, object> _data;
+        public readonly string _MA_DM;
+        /// <summary>
+        /// Cờ thể hiện người dùng bấm nút copy hay nút add.
+        /// </summary>
+        public bool IS_COPY;
         
         public event HandleResultData InsertSuccessEvent;
         public event HandleResultData UpdateSuccessEvent;
@@ -135,6 +139,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 //LoadAldmConfig();
 
                 FormControl = AddEditManager.Init_Control(_MA_DM);
+                FormControl.IS_COPY = IS_COPY;
                 FormControl.SetGrandFather(grandFather);
                 _aldmConfig = FormControl._aldmConfig;
                 Text = _mode + " - " + FormControl.TitleLang;

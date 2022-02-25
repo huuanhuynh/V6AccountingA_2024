@@ -653,6 +653,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                     _data = row.ToDataDictionary();
                     var f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
+                    f.IS_COPY = true;
                     f.AfterInitControl += f_AfterInitControl;
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.InitFormControl(this);
