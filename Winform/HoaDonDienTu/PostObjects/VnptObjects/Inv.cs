@@ -31,8 +31,9 @@ namespace V6ThuePost.VnptObjects
         public ReplaceInv ToReplaceInv()
         {
             ReplaceInv result = new ReplaceInv();
-            result.key = key;
+            //result.key = key;
             result.Invoice = new Dictionary<string, object>(Invoice);
+            result.Invoice["key"] = key;
             return result;
         }
     }

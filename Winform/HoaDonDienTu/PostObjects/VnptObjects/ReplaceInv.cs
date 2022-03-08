@@ -11,10 +11,10 @@ namespace V6ThuePost.VnptObjects
         public ReplaceInv()
         {
             Invoice = new Dictionary<string, object>();
-            //Invoice["Ikey"] = "";
+            Invoice["key"] = "";
         }
 
-        public string key;
+        //public string key;
 
         /// <summary>
         /// &lt;key>value&lt;/key>[key2...]

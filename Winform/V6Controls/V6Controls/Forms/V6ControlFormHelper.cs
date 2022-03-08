@@ -4468,9 +4468,10 @@ namespace V6Controls.Forms
             try
             {
                 string ext = Path.GetExtension(defaultSaveName).ToLower();
+                if (string.IsNullOrEmpty(ext) || ext == ".") ext = ".xlsx";
                 var save = new SaveFileDialog
                 {
-                    Filter = "File "+ext+"|"+ext+"|Excel files|*.xls;*.xlsx",
+                    Filter = "File "+ext+"|*"+ext+"|Excel files|*.xls;*.xlsx",
                     Title = "Xuất excel.",
                     FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
                 };

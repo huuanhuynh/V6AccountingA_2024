@@ -77,6 +77,10 @@ namespace V6ThuePostManager
         /// Mặc định rỗng. Viettel V2(V2 call EXE) V45(V2 ref)
         /// </summary>
         public static string _version = "";
+        /// <summary>
+        /// Kiểu data gủi lên.
+        /// </summary>
+        public static string _datamode = "";
         public static string _ma_dvcs = "";
         public static string _baseUrl = "", _site = "", _datetype = "", _createInvoiceUrl = "", _modifylink = "";
         /// <summary>
@@ -877,7 +881,7 @@ namespace V6ThuePostManager
                     else if (paras.Mode == "E_T1")
                     {
                         var xml = ReadDataXmlT();
-                        result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                        result = vnptWS.replaceInv(xml, paras.Fkey_hd_tt, out paras.Result.V6ReturnValues);
                     }
                 }
                 else  if (paras.Mode.StartsWith("M") || paras.Mode == "") // MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
@@ -1025,7 +1029,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "T")
                 {
                     var xml = ReadDataXmlT();
-                    result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    result = vnptWS.replaceInv(xml, paras.Fkey_hd_tt, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("G"))
                 {
@@ -1219,7 +1223,7 @@ namespace V6ThuePostManager
                     else if (paras.Mode == "E_T1")
                     {
                         var xml = ReadDataXmlT();
-                        result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                        result = vnptWS.replaceInv(xml, paras.Fkey_hd_tt, out paras.Result.V6ReturnValues);
                     }
                 }
                 else if (paras.Mode.StartsWith("M") || paras.Mode == "") // MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
@@ -1398,7 +1402,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "T")
                 {
                     var xml = ReadDataXmlT();
-                    result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    result = vnptWS.replaceInv(xml, paras.Fkey_hd_tt, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("G"))
                 {
@@ -1741,8 +1745,7 @@ namespace V6ThuePostManager
         public static string ReadData_Vnpt(string mode = null)
         {
             string result = "";
-            //column_config = new SortedDictionary<string, string>();
-            //parameters_config = new List<ConfigLine>();
+            
             try
             {
                 DataRow row0 = am_table.Rows[0];
@@ -1908,6 +1911,7 @@ namespace V6ThuePostManager
             }
             return result;
         }
+
         public static string ReadDataXmlT()
         {
             string result = "";
@@ -1920,7 +1924,8 @@ namespace V6ThuePostManager
                 DataRow row0 = am_table.Rows[0];
                 fkeyA = row0["fkey_hd"].ToString().Trim();
                 
-                inv.key = fkeyA;
+                //inv.key = fkeyA;
+                inv.Invoice["key"] = fkeyA;
                 //pattern = row0[pattern_field].ToString().Trim();
                 //seri = row0[seri_field].ToString().Trim();
                 //MakeFlagNames(fkeyA);
@@ -2606,7 +2611,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "T")
                 {
                     var xml = ReadDataXmlT();
-                    result = vnptWS.replaceInv(xml, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    result = vnptWS.replaceInv(xml, paras.Fkey_hd_tt, out paras.Result.V6ReturnValues);
                     paras.Result.ResultString = result;
                 }
                 else if (paras.Mode.StartsWith("G"))
@@ -4941,6 +4946,9 @@ namespace V6ThuePostManager
                                     break;
                                 case "version":
                                     _version = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "datamode":
+                                    _datamode = line.Value;
                                     break;
                                 case "ma_dvcs":
                                     _ma_dvcs = UtilityHelper.DeCrypt(line.Value);

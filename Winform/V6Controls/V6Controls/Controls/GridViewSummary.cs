@@ -139,7 +139,7 @@ namespace V6Controls.Controls
                 //FixThisSizeLocation(dgv);
                 _dgv.Paint -= dgv_Paint;
                 _dgv.DataSourceChanged -= dgv_DataSourceChanged;
-                _dgv.Paint -= dgv_SelectionChanged;
+                _dgv.Paint -= dgv_Paint;// dgv_SelectionChanged;
                 _dgv.SizeChanged -= dgv_SizeChanged;
                 _dgv.LocationChanged -= dgv_LocationChanged;
             }
@@ -359,7 +359,7 @@ namespace V6Controls.Controls
         private decimal SumOfSelectedRowsByColumn(DataGridView dgv, DataGridViewColumn col)
         {
             var sum = 0m;
-            if (_SUM_VALUES != null && _SUM_VALUES.ContainsKey(col.DataPropertyName))
+            if (_SUM_VALUES != null && _SUM_VALUES.ContainsKey(col.DataPropertyName.ToUpper()))
             {
                 return _SUM_VALUES[col.DataPropertyName.ToUpper()];
             }

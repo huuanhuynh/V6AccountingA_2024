@@ -3,6 +3,9 @@ using V6Tools.V6Convert;
 
 namespace V6Tools.V6Objects
 {
+    /// <summary>
+    /// Khi chuyển to xml, nếu là property sẽ có tag name bao bọc, còn field thì không.
+    /// </summary>
     public class V6JsonObject
     {
         protected string DateTimeFormat = null;
@@ -26,6 +29,10 @@ namespace V6Tools.V6Objects
             return V6JsonConverter.ClassToJson(this, dateTimeFormat);
         }
         
+        /// <summary>
+        /// Khi chuyển to xml, nếu là property sẽ có tag name bao bọc, còn field thì không.
+        /// </summary>
+        /// <returns></returns>
         public string ToXml()
         {
             return V6XmlConverter.ClassToXml(this);
