@@ -31,8 +31,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private ReportDocument _rpDoc0;
 
         private string _reportProcedure;
+        /// <summary>
+        /// reportFile
+        /// </summary>
+        public string _Ma_File;
         //private string _program, _reportFile, _reportTitle, _reportTitle2;
-        private string _program, _Ma_File, _reportTitle, _reportTitle2;
+        private string _program, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
         /// Advance filter get albc, nhận từ filter cha để lọc.
@@ -134,7 +138,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 //}
 
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, _Ma_File, panel1, toolTipV6FormControl);
                 All_Objects["thisForm"] = this;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 //QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);
@@ -748,7 +752,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         
         private void AddFilterControl(string program)
         {
-            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, toolTipV6FormControl);
+            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, _Ma_File, toolTipV6FormControl);
             panel1.Controls.Add(FilterControl);
             FilterControl.String1ValueChanged += FilterControl_String1ValueChanged;
             FilterControl.Check1ValueChanged += FilterControl_Check1ValueChanged;

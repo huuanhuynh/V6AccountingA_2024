@@ -33,7 +33,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private ReportDocument _rpDoc0;
 
         private string _reportProcedure;
-        private string _program, _Ma_File, _reportTitle, _reportTitle2;
+        /// <summary>
+        /// reportFile
+        /// </summary>
+        public string _Ma_File;
+        private string _program, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
         /// Advance filter get albc
@@ -145,7 +149,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 }
                 //}
 
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, _Ma_File, panel1, toolTipV6FormControl);
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 //QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);
                 FilterControl.MadeFilterControls(_program, All_Objects, toolTipV6FormControl);

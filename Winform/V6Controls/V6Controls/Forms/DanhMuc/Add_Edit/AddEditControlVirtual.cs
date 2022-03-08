@@ -356,8 +356,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     var selectResult = Categories.Select(CONFIG_TABLE_NAME, _keys);
                     if (selectResult.Data.Rows.Count == 1)
                     {
-                        DataOld = selectResult.Data.Rows[0].ToDataDictionary();
-                        return DataOld;
+                        var data = selectResult.Data.Rows[0].ToDataDictionary();
+                        return data;
                     }
                     else if (selectResult.Data.Rows.Count > 1)
                     {

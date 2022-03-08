@@ -61,7 +61,7 @@
 	<ItemInfo	Field='IsDiscount'	FieldV6='ISDISCOUNT'	Type='Field'	DataType='Bool'   Note='Nếu true đây là dòng ck chung, Nếu false là ck riêng thì dùng DiscountRate DiscountAmount'/>
 	<ItemInfo	Field='UserDefineDetails'	Value='string đối tượng dạng json hoặc xml'	FieldV6='GC_TD1'	Type='Field'/>
 	<ItemInfo	Field='IsIncrease'	FieldV6='GC_TD1'	Note='Dùng mã lệnh 121: Điều chỉnh thì Báo tăng là True, Báo giảm là False'	DataType='Bool'	Type='Field'/>
-	
+  <ItemInfo	Field='ItemTypeID'	Value='0'	DataType='Int'	FieldV6='TaxRateID'	Type='Field'	Note='0 Hàng hóa hoặc dịch vụ (mặc định), 1 thuế khác, 2 phí khác, 3 phí dv, 4	Ghi chú, 5 phụ thu, 6 phí hoàn, 7 lệ phí, 8 phí an ninh, 9 số tiền bằng chữ, 10 Tiền đất giảm trừ khi tính thuế, 11 Điều chỉnh Hoá đơn ngoài hệ thống, 12 Diễn giải Hàng hóa đi kèm có đánh STT, 13 Diễn giải Hàng hóa đi kèm không đánh STT, 14 Phí dịch vụ cho hóa đơn hoàn vé.'/>
 	<!--
 	// Định danh duy nhất cho hóa đơn ở hệ thống của Partner (Phía Client).
     // Chỉ dùng 1 trong 2 trường PartnerInvoiceID, PartnerInvoiceStringID theo 1 trong 2 cách sau:

@@ -28,8 +28,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
     {
         #region Biến toàn cục
         public string _reportProcedure;
+        /// <summary>
+        /// reportFile
+        /// </summary>
+        public string _Ma_File;
         //public string _program, _reportFile, _reportTitle, _reportTitle2;
-        public string _program, _Ma_File, _reportTitle, _reportTitle2;
+        public string _program, _reportTitle, _reportTitle2;
         public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         public string _vitri;
         /// <summary>
@@ -1962,7 +1966,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 LoadComboboxSource();
 
                 //Đổi filter mỗi lần chọn lại báo cáo.
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, _Ma_File, panel1, toolTipV6FormControl);
                 All_Objects["thisForm"] = this;
                 All_Objects["FilterControl"] = FilterControl;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);

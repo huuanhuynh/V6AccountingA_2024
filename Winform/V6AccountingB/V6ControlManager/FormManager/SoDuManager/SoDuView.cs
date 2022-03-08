@@ -389,6 +389,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
                     _data = row.ToDataDictionary();
                     var f = new SoDuFormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
+                    f.IS_COPY = true;
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
                 }

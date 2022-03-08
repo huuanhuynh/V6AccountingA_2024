@@ -219,7 +219,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 RemoveGridViewRow();
                 btnNhan.PerformClick();
                 V6ControlFormHelper.SetStatusText(f9MessageAll);
-                V6ControlFormHelper.ShowMainMessage(f9MessageAll);
+                V6ControlFormHelper.ShowMainMessage( f9MessageAll);
                 this.ShowMessage(f9MessageAll, 300);
             }
         }

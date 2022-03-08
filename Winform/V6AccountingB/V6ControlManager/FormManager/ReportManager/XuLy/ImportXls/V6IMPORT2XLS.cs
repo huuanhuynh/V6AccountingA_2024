@@ -886,7 +886,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9Message.Length > 0 ? "Error: " : "")
                     + f9Message);
 
-                ShowMainMessage(f9MessageAll);
+                ShowMainMessage(V6Text.Finish + f9MessageAll);
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {

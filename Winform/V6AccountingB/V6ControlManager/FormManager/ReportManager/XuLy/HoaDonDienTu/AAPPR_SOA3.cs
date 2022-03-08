@@ -123,7 +123,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             string tableName = "V6MAPINFO";
             
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-            //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
+            //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = '_reportFile' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
 
             int i = 0;
             while(i<dataGridView1.Rows.Count)
@@ -143,7 +143,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //VPA_GET_V6MAPINFO @Loai   @Ma_td1 @Ma_ct  @Stt_rec    @Ma_dvcs    @User_id    @Advance
                         SqlParameter[] plist0 =
                         {
-                            new SqlParameter("@Loai", "AAPPR_SOA2"),
+                            new SqlParameter("@Loai", _reportFile),
                             new SqlParameter("@MA_TD1", FilterControl.String1),
                             new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
                             new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
@@ -422,10 +422,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Download selected einvoice
                 //, error = "", sohoadon = "", id = "";
                 string return_file_name = "";
-                //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
+                //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = '_reportFile' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
                 SqlParameter[] plist0 =
                 {
-                    new SqlParameter("@Loai", "AAPPR_SOA2"),
+                    new SqlParameter("@Loai", _reportFile),
                     new SqlParameter("@MA_TD1", FilterControl.String1),
                     new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
                     new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),

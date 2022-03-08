@@ -103,8 +103,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             try
             {
                 LoadConfig();
-                FilterControl = AddFilterControl44Base("ADVXNK01." + _base0._reportFile, _base0._reportProcedure, panel1, ToolTipControl);
-                FilterControl2 = AddFilterControl44Base2("ADVXNK01." + _base0._reportFile + "_ADD", _base0._reportProcedure, panel2, ToolTipControl);
+                FilterControl = AddFilterControl44Base("ADVXNK01." + _base0._reportFile, _base0._reportProcedure, _base0._reportFile, panel1, ToolTipControl);
+                FilterControl2 = AddFilterControl44Base2("ADVXNK01." + _base0._reportFile + "_ADD", _base0._reportProcedure, _base0._reportFile, panel2, ToolTipControl);
                 CreateFormProgram();
 
                 FilterControl2.groupBox1.Text = "";
@@ -156,22 +156,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Base0
             }
         }
 
-        public static ReportFilter44Base AddFilterControl44Base(string program, string reportProcedure, Panel panel1, ToolTip toolTip)
+        public static ReportFilter44Base AddFilterControl44Base(string program, string reportProcedure, string reportFile, Panel panel1, ToolTip toolTip)
         {
             panel1.Controls.Clear();
 
-            var FilterControl = Filter.GetFilterControl44(program, reportProcedure, toolTip);
+            var FilterControl = Filter.GetFilterControl44(program, reportProcedure, reportFile, toolTip);
             panel1.Controls.Add(FilterControl);
             FilterControl.LoadLanguage();
             FilterControl.Focus();
             return FilterControl;
         }
 
-        public static ReportFilter44Base AddFilterControl44Base2(string program, string reportProcedure, Panel panel2, ToolTip toolTip)
+        public static ReportFilter44Base AddFilterControl44Base2(string program, string reportProcedure, string reportFile, Panel panel2, ToolTip toolTip)
         {
             panel2.Controls.Clear();
 
-            var FilterControl2 = Filter.GetFilterControl44(program, reportProcedure, toolTip);
+            var FilterControl2 = Filter.GetFilterControl44(program, reportProcedure, reportFile, toolTip);
             panel2.Controls.Add(FilterControl2);
             FilterControl2.LoadLanguage();
             FilterControl2.Focus();

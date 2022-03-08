@@ -968,7 +968,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         
         private void AddFilterControl(string program)
         {
-            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, toolTipV6FormControl);
+            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, _Ma_File, toolTipV6FormControl);
             panel1.Controls.Add(FilterControl);
             FilterControl.Focus();
         }

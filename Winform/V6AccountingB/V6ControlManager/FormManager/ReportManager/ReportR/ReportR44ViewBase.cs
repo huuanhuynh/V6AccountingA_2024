@@ -31,8 +31,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         #region Biến toàn cục
         private ReportDocument _rpDoc0;
         private string _reportProcedure;
+        /// <summary>
+        /// reportFile
+        /// </summary>
+        public string _Ma_File;
         //private string _program, _reportFile, _reportTitle, _reportTitle2;
-        private string _program, _Ma_File, _reportTitle, _reportTitle2;
+        private string _program, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
         /// Advance filter get albc
@@ -134,7 +138,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     txtM_TEN_NLB2.Text = TEN_NLB_LOGIN2;
                 }
                 //}
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, _Ma_File, panel1, toolTipV6FormControl);
                 All_Objects["thisForm"] = this;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 //QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);

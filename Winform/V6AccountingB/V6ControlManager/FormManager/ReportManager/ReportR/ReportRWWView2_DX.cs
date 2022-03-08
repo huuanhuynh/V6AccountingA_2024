@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 //}
 
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, _Ma_File, panel1, toolTipV6FormControl);
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 //QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);
                 FilterControl.MadeFilterControls(_program, All_Objects, toolTipV6FormControl);

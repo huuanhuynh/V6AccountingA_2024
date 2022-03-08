@@ -14,6 +14,8 @@ namespace V6ControlManager.FormManager.SoDuManager
         public SoDuAddEditControlVirtual FormControl;
         //private V6TableName _tableName;
         private string _MA_DM;
+        public bool IS_COPY;
+
         public delegate void SoDuSuccessHandleData(SoDuAddEditControlVirtual sender, IDictionary<string, object> datadic);
 
         public event SoDuSuccessHandleData InsertSuccessEvent;
@@ -35,6 +37,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 //_tableName = tableName;
                 _MA_DM = ma_dm.ToUpper();
                 FormControl = SoDuManager.GetAddEditControl(_MA_DM);
+                FormControl.IS_COPY = IS_COPY;
                 FormControl.InitValues(_MA_DM, mode, keys, data);
                 panel1.Controls.Add(FormControl);
             }

@@ -9,7 +9,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 {
     public static class Filter
     {
-        public static FilterBase GetFilterControl(string program, string reportProcedure, ToolTip toolTip)
+        public static FilterBase GetFilterControl(string program, string reportProcedure, string reportFile, ToolTip toolTip)
         {
             program = program.Trim().ToUpper();
             V6ControlFormHelper.AddLastAction("GetFilterControl " + program);
@@ -1633,17 +1633,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (result == null) result = new FilterBase() { Visible = false };
 
-            result.MyInitDynamic(program, reportProcedure, toolTip);
+            result.MyInitDynamic(program, reportProcedure, reportFile, toolTip);
 
             return result;
         }
 
-        public static ReportFilter44Base GetFilterControl44(string program, string reportProcedure, ToolTip toolTip)
+        public static ReportFilter44Base GetFilterControl44(string program, string reportProcedure, string reportFile, ToolTip toolTip)
         {
             if (program.StartsWith("ADVXNK01."))
             {
                 var result = new ReportFilter44Base(program.Substring("ADVXNK01.".Length), reportProcedure);
-                result.MyInitDynamic(program.Substring("ADVXNK01.".Length), reportProcedure, toolTip);
+                result.MyInitDynamic(program.Substring("ADVXNK01.".Length), reportProcedure, reportFile, toolTip);
                 return result;
             }
             return new ReportFilter44Base(program, reportProcedure);

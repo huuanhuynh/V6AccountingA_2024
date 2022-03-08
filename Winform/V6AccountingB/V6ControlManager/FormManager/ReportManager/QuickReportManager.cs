@@ -25,11 +25,11 @@ namespace V6ControlManager.FormManager.ReportManager
 {
     public static class QuickReportManager
     {
-        public static ReportFilter44Base AddFilterControl44Base(string program, string reportProcedure, Panel panel1, ToolTip toolTip)
+        public static ReportFilter44Base AddFilterControl44Base(string program, string reportProcedure, string reportFile, Panel panel1, ToolTip toolTip)
         {
             panel1.Controls.Clear();
 
-            var FilterControl = Filter.Filter.GetFilterControl44(program, reportProcedure, toolTip);
+            var FilterControl = Filter.Filter.GetFilterControl44(program, reportProcedure, reportFile, toolTip);
             panel1.Controls.Add(FilterControl);
             FilterControl.LoadLanguage();
             FilterControl.Focus();

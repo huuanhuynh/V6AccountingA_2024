@@ -214,7 +214,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 string tableName = "V6MAPINFO";
                 if (shift_is_down) tableName = "V6MAPINFO1";
                 string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-                var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
+                var data = V6BusinessHelper.Select(tableName, "*", "LOAI = '" + _reportFile + "' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
                 if (ctrl_is_down) // Xuất Excel
                 {
                     if (data.Columns.Contains("UID")) data.Columns.Remove("UID");
@@ -232,7 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 else
                 {
                     IDictionary<string, object> defaultData = new Dictionary<string, object>();
-                    defaultData.Add("LOAI", "AAPPR_SOA2");
+                    defaultData.Add("LOAI", _reportFile);
                     V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true,
                         defaultData);
                 }
@@ -256,7 +256,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 AAPPR_SOA2 parentForm = FindParent<AAPPR_SOA2>() as AAPPR_SOA2;
                 if (parentForm == null)
                 {
-                    this.ShowWarningMessage(V6Text.NotFound + " AAPPR_SOA2.");
+                    this.ShowWarningMessage(V6Text.NotFound + " AAPPR_SOA2 form.");
                     return;
                 }
                 DataGridView dataGridView = parentForm.dataGridView1;
@@ -298,7 +298,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 //SqlParameter[] plist0 =
                 //{
-                //    new SqlParameter("@Loai", "AAPPR_SOA2"),
+                //    new SqlParameter("@Loai", _reportFile),
                 //    new SqlParameter("@MA_TD1", String1),
                 //    new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
                 //    new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),

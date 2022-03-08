@@ -33,7 +33,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public XtraReport _repx0;
 
         public string _reportProcedure;
-        public string _program, _Ma_File, _reportTitle, _reportTitle2;
+        /// <summary>
+        /// reportFile
+        /// </summary>
+        public string _Ma_File;
+        public string _program, _reportTitle, _reportTitle2;
         public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
         /// Advance filter get albc, nhận từ filter cha để lọc.
@@ -135,7 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 //}
 
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, panel1, toolTipV6FormControl);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, _reportProcedure, _Ma_File, panel1, toolTipV6FormControl);
                 All_Objects["thisForm"] = this;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 //QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects, toolTipV6FormControl);

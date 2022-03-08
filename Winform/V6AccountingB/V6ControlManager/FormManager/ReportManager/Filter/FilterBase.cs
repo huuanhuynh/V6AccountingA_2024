@@ -27,6 +27,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public DataSet _ds = null;
         public string _program;
         public string _reportProcedure;
+        public string _reportFile;
         public string MAU = "", LAN = V6Login.SelectedLanguage;
         /// <summary>
         /// Tắt MadeFilterControls
@@ -209,11 +210,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             InitializeComponent();
         }
 
-        public FilterBase(string program, string reportProcedure)
+        public FilterBase(string program, string reportProcedure, string reportFile)
         {
             InitializeComponent();
             _program = program;
             _reportProcedure = reportProcedure;
+            _reportFile = reportFile;
         }
 
         private void FilterBase_Load(object sender, EventArgs e)
@@ -221,10 +223,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             FixFilterLineSize();
         }
 
-        public void MyInitDynamic(string program, string reportProcedure, ToolTip toolTip)
+        public void MyInitDynamic(string program, string reportProcedure, string reportFile, ToolTip toolTip)
         {
             _program = program;
             _reportProcedure = reportProcedure;
+            _reportFile = reportFile;
             //return;//Chưa xong
             try
             {
