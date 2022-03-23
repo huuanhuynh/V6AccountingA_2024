@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AARKHFilterDanhMuc));
             this.date2 = new V6Controls.V6DateTimeColor();
             this.date1 = new V6Controls.V6DateTimeColor();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDate2 = new System.Windows.Forms.Label();
+            this.lblDate1 = new System.Windows.Forms.Label();
             this.groupBoxNhom = new System.Windows.Forms.GroupBox();
             this.chkHienMa = new System.Windows.Forms.CheckBox();
             this.nhom1 = new V6Controls.V6ColorTextBox();
@@ -71,6 +71,7 @@
             this.date2.StringValue = "__/__/____";
             this.date2.TabIndex = 4;
             this.date2.Text = "__/__/____";
+            this.date2.TextChanged += new System.EventHandler(this.date_TextChanged);
             // 
             // date1
             // 
@@ -91,26 +92,27 @@
             this.date1.StringValue = "__/__/____";
             this.date1.TabIndex = 1;
             this.date1.Text = "__/__/____";
+            this.date1.TextChanged += new System.EventHandler(this.date_TextChanged);
             // 
-            // label2
+            // lblDate2
             // 
-            this.label2.AccessibleDescription = "FILTERL00003";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Đến ngày";
+            this.lblDate2.AccessibleDescription = "FILTERL00003";
+            this.lblDate2.AutoSize = true;
+            this.lblDate2.Location = new System.Drawing.Point(11, 35);
+            this.lblDate2.Name = "lblDate2";
+            this.lblDate2.Size = new System.Drawing.Size(53, 13);
+            this.lblDate2.TabIndex = 3;
+            this.lblDate2.Text = "Đến ngày";
             // 
-            // label1
+            // lblDate1
             // 
-            this.label1.AccessibleDescription = "FILTERL00002";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Từ ngày";
+            this.lblDate1.AccessibleDescription = "FILTERL00002";
+            this.lblDate1.AutoSize = true;
+            this.lblDate1.Location = new System.Drawing.Point(11, 9);
+            this.lblDate1.Name = "lblDate1";
+            this.lblDate1.Size = new System.Drawing.Size(46, 13);
+            this.lblDate1.TabIndex = 0;
+            this.lblDate1.Text = "Từ ngày";
             // 
             // groupBoxNhom
             // 
@@ -353,8 +355,8 @@
             this.Controls.Add(this.groupBoxNhom);
             this.Controls.Add(this.date2);
             this.Controls.Add(this.date1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblDate2);
+            this.Controls.Add(this.lblDate1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AARKHFilterDanhMuc";
             this.Size = new System.Drawing.Size(307, 513);
@@ -369,8 +371,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDate1;
+        private System.Windows.Forms.Label lblDate2;
         private V6Controls.V6DateTimeColor date1;
         private V6Controls.V6DateTimeColor date2;
         private System.Windows.Forms.GroupBox groupBoxNhom;

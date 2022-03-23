@@ -3696,11 +3696,11 @@ namespace V6ThuePostManager
                 ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
 
                 if (paras.Mode == "1") // Mode Thể hiện
-                    return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern,
-                        V6Setting.V6SoftLocalAppData_Directory); // !!! Cần update cho giống V2
+                    return viettel_ws.DownloadInvoicePDF(_codetax, paras.InvoiceNo, paras.Pattern,
+                        V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues); // !!! Cần update cho giống V2
                 string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
-                return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, paras.InvoiceNo, strIssueDate,
-                    V6Setting.V6SoftLocalAppData_Directory);  // !!! Cần update cho giống V2
+                return viettel_ws.DownloadInvoicePDFexchange(_codetax, paras.InvoiceNo, strIssueDate,
+                    V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);  // !!! Cần update cho giống V2
             }
         }
         
@@ -3759,11 +3759,11 @@ namespace V6ThuePostManager
                 ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
 
                 if (paras.Mode == "1") // Mode Thể hiện
-                    return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern,
-                        V6Setting.V6SoftLocalAppData_Directory); // !!! Cần update cho giống V2
+                    return viettel_ws.DownloadInvoicePDF(_codetax, paras.InvoiceNo, paras.Pattern,
+                        V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues); // !!! Cần update cho giống V2
                 string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
-                return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, paras.InvoiceNo, strIssueDate,
-                    V6Setting.V6SoftLocalAppData_Directory);  // !!! Cần update cho giống V2
+                return viettel_ws.DownloadInvoicePDFexchange(_codetax, paras.InvoiceNo, strIssueDate,
+                    V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);  // !!! Cần update cho giống V2
             }
         }
         

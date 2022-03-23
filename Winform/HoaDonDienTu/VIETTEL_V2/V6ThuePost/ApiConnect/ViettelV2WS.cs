@@ -754,7 +754,7 @@ namespace V6ThuePostViettelV2Api
             }
             else
             {
-                v6Return.PATH = Path.Combine(savefolder, fileName + ".pdf");
+                v6Return.PATH = Path.Combine(savefolder, fileName + "_E.pdf");
             }
 
             if (File.Exists(v6Return.PATH))

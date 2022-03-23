@@ -37,10 +37,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void FilterDanhMuc_Load(object sender, EventArgs e)
         {
-            if (Controls.Count == 5)
+            try
             {
-                groupBox1.Top = date2.Bottom + 5;
-                //groupBox1.Height = Height = groupBox1.Top - 5;
+                if (Controls.Count == 5)
+                {
+                    groupBox1.Top = date2.Bottom + 5;
+                    //groupBox1.Height = Height = groupBox1.Top - 5;
+                }
+
+                _date1text = lblDate1.Text;
+                _date2text = lblDate2.Text;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
             }
         }
 
@@ -114,6 +124,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
+        public override void UpdateValues()
+        {
+            Date1 = date1.Value ?? new DateTime(1900, 1, 1);
+            Date2 = date2.Value ?? new DateTime(1900, 1, 1);
+        }
+
         public override List<SqlParameter> GetFilterParameters()
         {
             var result = GetFilterParameters0();
@@ -127,18 +143,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public List<SqlParameter> GetFilterParameters0()
         {
-            if (date1.Value == null)
-            {
-                date1.Focus();
-                date1.Alert();
-                throw new Exception(V6Text.NoInput + " " + label1.Text);
-            }
-            if (date2.Value == null)
-            {
-                date2.Focus();
-                date2.Alert();
-                throw new Exception(V6Text.NoInput + " " + label2.Text);
-            }
+           //if (date2.Value == null)
+            //{
+            //    date2.Focus();
+            //    date2.Alert();
+            //    throw new Exception(V6Text.NoInput + " " + label2.Text);
+            //}
 
             var result = new List<SqlParameter>();
             //V6Setting.M_ngay_ct1 = date1.Value;
@@ -151,12 +161,27 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             string keyDate = "";
             if (date1.Value != null)
             {
-                keyDate += string.Format(" And date0 >= '{0}'", ((DateTime)date1.Value).ToString("yyyyMMdd"));
+                if (date2.Value == null)
+                {
+                    keyDate += string.Format(" And date0 <= '{0}'", ((DateTime)date1.Value).ToString("yyyyMMdd"));
+                }
+                else
+                {
+                    keyDate += string.Format(" And date0 >= '{0}'", ((DateTime)date1.Value).ToString("yyyyMMdd"));
+                }
             }
+
             if (date2.Value != null)
             {
+                if (date1.Value == null)
+                {
+                    date1.Focus();
+                    date1.Alert();
+                    throw new Exception(V6Text.NoInput + " " + _date1text);
+                }
                 keyDate += string.Format(" And date0 <= '{0}'", ((DateTime)date2.Value).ToString("yyyyMMdd"));
             }
+
             if (keyDate.Length > 4)
             {
                 keyDate = keyDate.Substring(4);
@@ -248,5 +273,28 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             Check1 = chkHienMa.Checked;
         }
+
+        private string _date1text, _date2text;
+        private void date_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (date2.Value == null)
+                {
+                    lblDate1.Text = _date2text;
+                    lblDate2.Text = "";
+                }
+                else
+                {
+                    lblDate1.Text = _date1text;
+                    lblDate2.Text = _date2text;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
     }
 }

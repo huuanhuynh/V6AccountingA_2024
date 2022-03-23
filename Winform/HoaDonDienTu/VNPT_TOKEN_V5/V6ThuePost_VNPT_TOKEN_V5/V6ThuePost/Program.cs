@@ -1241,7 +1241,8 @@ namespace V6ThuePost
                 {
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
-                inv.key = fkeyA;
+                //inv.key = fkeyA;
+                inv.Invoice["key"] = fkeyA;
                 pattern = row0[pattern_field].ToString().Trim();
                 seri = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);

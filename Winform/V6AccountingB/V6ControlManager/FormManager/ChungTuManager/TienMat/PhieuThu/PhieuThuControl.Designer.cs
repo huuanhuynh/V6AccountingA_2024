@@ -1228,7 +1228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.chonHDMenu.AccessibleDescription = "ACACTTA1M00003";
             this.chonHDMenu.Name = "chonHDMenu";
             this.chonHDMenu.Size = new System.Drawing.Size(140, 22);
-            this.chonHDMenu.Text = "Chọn PP HĐ";
+            this.chonHDMenu.Text = "Chọn PB HĐ";
             this.chonHDMenu.Click += new System.EventHandler(this.btnChonHD_Click);
             // 
             // chkAutoNext
