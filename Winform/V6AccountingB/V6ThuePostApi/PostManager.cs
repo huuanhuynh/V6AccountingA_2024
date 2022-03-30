@@ -759,10 +759,21 @@ namespace V6ThuePostManager
                 foreach (DataRow row in ad_table.Rows)
                 {
                     if (row["STT"].ToString() == "0") continue;
+
+                    string NOGEN_F = "";
+                    if (row.Table.Columns.Contains("NOGEN_F")) NOGEN_F = ";" + row["NOGEN_F"].ToString().Trim().ToUpper() + ";";
                     Dictionary<string, object> rowData = new Dictionary<string, object>();
                     foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
                     {
-                        rowData[item.Key] = GetValue(row, item.Value);
+                        var cell = GetValue(row, item.Value);
+                        if (item.Value.NoGen && NOGEN_F.Contains(";" + item.Value.FieldV6.ToUpper() + ";"))
+                        {
+                            // NOGEN
+                        }
+                        else
+                        {
+                            rowData[item.Key] = cell;
+                        }
                     }
                     postObject.ListInvoiceDetailsWS.Add(rowData);
                 }
@@ -3577,12 +3588,12 @@ namespace V6ThuePostManager
                 {
                     if (row["STT"].ToString() == "0") continue;
                     string NOGEN_F = "";
-                    if (row.Table.Columns.Contains("NOGEN_F")) NOGEN_F = ";" + row["NOGEN_F"].ToString().Trim() + ";";
+                    if (row.Table.Columns.Contains("NOGEN_F")) NOGEN_F = ";" + row["NOGEN_F"].ToString().Trim().ToUpper() + ";";
                     Dictionary<string, object> rowData = new Dictionary<string, object>();
                     foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
                     {
                         var cell = GetValue(row, item.Value);
-                        if (item.Value.NoGen && NOGEN_F.Contains(";" + item.Value.FieldV6 + ";"))
+                        if (item.Value.NoGen && NOGEN_F.Contains(";" + item.Value.FieldV6.ToUpper() + ";"))
                         {
                             // NOGEN
                         }

@@ -519,6 +519,11 @@ namespace V6Tools
             return (from DataRow row in data.Rows select row.ToDataDictionary(sttRec)).ToList();
         }
 
+        public static List<IDictionary<string, object>> ToListDataDictionaryLower(this DataTable data)
+        {
+            return (from DataRow row in data.Rows select row.ToDataDictionary()).ToList();
+        }
+
         /// <summary>
         /// Chuyển DataTable thành danh sách Dic
         /// </summary>
@@ -528,6 +533,11 @@ namespace V6Tools
         public static List<IDictionary<string, object>> ToListDataDictionary(this List<DataRow> data, string sttRec)
         {
             return (from DataRow row in data select row.ToDataDictionary(sttRec)).ToList();
+        }
+
+        public static List<IDictionary<string, object>> ToListDataDictionaryLower(this List<DataRow> data)
+        {
+            return (from DataRow row in data select row.ToDataDictionaryLower()).ToList();
         }
 
         public static IDictionary<string, object> DataRowToDataDictionary(DataRow row)

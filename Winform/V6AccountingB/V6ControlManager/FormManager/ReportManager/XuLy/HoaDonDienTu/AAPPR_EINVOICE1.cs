@@ -216,7 +216,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     IDictionary<string, object> am_F6 = form.SelectedGridViewRow.ToDataDictionary();
                     string soct = am_F6["SO_CT"].ToString().Trim();
                     string fkey_hd = am_F6["FKEY_HD"].ToString().Trim();
-                    string fkey_hd_tt = am_OLD["FKEY_HD"].ToString().Trim();
+                    string fkey_hd_tt = am_OLD["FKEY_HD_TT"].ToString().Trim();
+                    string STT_REC_OLD = am_OLD["STT_REC"].ToString().Trim();
                     if (string.IsNullOrEmpty(fkey_hd_tt))
                     {
                         f9MessageAll = "Không có mã FKEY_HD_TT.";
@@ -267,6 +268,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 paras.Result.InvoiceNo, paras.Result.Id, result,
                                 V6Text.Text("ThanhCong"));
                         }
+
+                        paras.Result.STT_REC_TT = STT_REC_OLD;
 
                         SqlParameter[] plist2 =
                         {

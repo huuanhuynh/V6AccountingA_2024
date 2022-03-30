@@ -8129,7 +8129,7 @@ namespace V6Controls.Forms
                             }
                         }
 
-                        if (!string.IsNullOrEmpty(control.AccessibleDescription))
+                        if (!string.IsNullOrEmpty(control.AccessibleDescription) && !control.AccessibleDescription.Contains(",") && !control.AccessibleDescription.Contains("."))
                         {
                             control.AccessibleDescription += ma_ct;
                         }

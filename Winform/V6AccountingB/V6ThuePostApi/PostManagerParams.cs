@@ -246,6 +246,8 @@ namespace V6ThuePostManager
             }
         }
 
+        public string STT_REC_TT { get; set; }
+
         /// <summary>
         /// SO_HD:Value;ID:value2;SECRET_CODE:SecrectCode
         /// </summary>
@@ -258,6 +260,7 @@ namespace V6ThuePostManager
                 if (!string.IsNullOrEmpty(ID))          result += string.Format(";{0}:{1}", ID, Id);
                 if (!string.IsNullOrEmpty(SecrectCode)) result += string.Format(";{0}:{1}", SECRET_CODE, SecrectCode);
                 if (!string.IsNullOrEmpty(NgayCT_VIETTEL)) result += string.Format(";{0}:{1}", NGAY_CT, NgayCT_VIETTEL);
+                if (!string.IsNullOrEmpty(STT_REC_TT)) result += string.Format(";{0}:{1}", "STT_REC_TT", STT_REC_TT);
                 
                 if (result != null && result.Length > 1) result = result.Substring(1);
                 return result;

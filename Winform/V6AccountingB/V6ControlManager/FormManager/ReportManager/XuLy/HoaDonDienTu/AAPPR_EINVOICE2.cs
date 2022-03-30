@@ -225,6 +225,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     string soct = row.Cells["So_ct"].Value.ToString().Trim();
                     string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
                     string fkey_hd_tt = am_old["FKEY_HD_TT"].ToString().Trim();
+                    string STT_REC_OLD = am_old["STT_REC"].ToString().Trim();
                     if (string.IsNullOrEmpty(fkey_hd_tt))
                     {
                         f9ErrorAll = "Không có mã FKEY_HD_TT.";
@@ -276,6 +277,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString,
                                 V6Text.Text("ThanhCong"));
                         }
+
+                        paras.Result.STT_REC_TT = STT_REC_OLD;
 
                         SqlParameter[] plist2 =
                         {
