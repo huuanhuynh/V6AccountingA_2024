@@ -119,8 +119,8 @@ namespace V6AccountingB
                 {
                     if (!File.Exists(Path.Combine(Application.StartupPath, "V6AccountingB.exe.config")))
                     {
-                        lblStatusSuccess = "Connection OK! Lost V6AccountingB.exe.config";
-                        lblStatusFail = "Connection Fail! Lost V6AccountingB.exe.config";
+                        lblStatusSuccess = "Connection OK! Lost exe.config";
+                        lblStatusFail = "Connection Fail! Lost exe.config";
                     }
                 }
                 else

@@ -749,6 +749,32 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return _sttRec;
         }
 
+        public void ResetSttRec0(int stt_rec0_length = 5)
+        {
+            SetStatusText("ResetSttRec0");
+            int i = 0;
+            if (AD != null)
+                foreach (DataRow row in AD.Rows)
+                {
+                    i++;
+                    row["STT_REC0"] = ("000000000" + i).Right(stt_rec0_length);
+                }
+            i = 0;
+            if (AD2 != null)
+                foreach (DataRow row in AD2.Rows)
+                {
+                    i++;
+                    row["STT_REC0"] = ("000000000" + i).Right(stt_rec0_length);
+                }
+            i = 0;
+            if (AD3 != null)
+                foreach (DataRow row in AD3.Rows)
+                {
+                    i++;
+                    row["STT_REC0"] = ("000000000" + i).Right(stt_rec0_length);
+                }
+        }
+
         public TabPage GetParentTabPage()
         {
             try

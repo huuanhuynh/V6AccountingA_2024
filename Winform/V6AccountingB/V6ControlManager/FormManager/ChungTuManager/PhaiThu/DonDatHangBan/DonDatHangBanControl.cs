@@ -4147,6 +4147,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         {
                             AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
                             GetSttRec(Invoice.Mact);
+                            ResetSttRec0();
                             SetNewValues();
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                             Mode = V6Mode.Add;

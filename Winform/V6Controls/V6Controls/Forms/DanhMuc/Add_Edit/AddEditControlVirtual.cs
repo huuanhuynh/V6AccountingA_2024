@@ -1392,6 +1392,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 foreach (KeyValuePair<string, string> item in check_items)
                 {
                     string FIELD = item.Key.Trim().ToUpper();
+                    string CHARS = item.Value;
                     if (!_TableStruct.ContainsKey(FIELD)) continue;
                     if (!data.ContainsKey(FIELD)) continue;
                     if (!(data[FIELD] is string)) continue;
@@ -1402,7 +1403,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     string error1 = "";
                     foreach (char c in value)
                     {
-                        if (_aldmConfig.VALID_CHARS.IndexOf(c) < 0)
+                        if (CHARS.IndexOf(c) < 0) // nếu ký tự nhập không có trong cấu hình.
                         {
                             error1 += " [" + c + "]";
                         }

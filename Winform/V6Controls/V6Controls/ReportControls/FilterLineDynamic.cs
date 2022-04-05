@@ -241,7 +241,7 @@ namespace V6ReportControls
         #endregion events
 
         /// <summary>
-        /// Tự kiểm tra check để lấy. Phần này luôn trả về chuỗi dù có check hay không.
+        /// Tự kiểm tra check để lấy. Phần này luôn trả về chuỗi dù có check hay không. Field = value and Field = value2.
         /// </summary>
         public override string Query
         {
