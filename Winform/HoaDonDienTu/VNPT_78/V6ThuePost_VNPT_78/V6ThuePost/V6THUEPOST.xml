@@ -13,13 +13,13 @@
 	<V6Info Field='seri' 		Value='SO_SERI' Type=''/>
   <V6Info Field='pattern_test' 	Value='1/001' Type=''/>
   <V6Info Field='seri_test' 		Value='C22TPT' Type=''/>
-	<V6Info Field='v6fkey' 		Value='' Type=''/>
-	<V6Info Field='v6fkeyexcel' 		Value='' Type=''/>
+	<V6Info Field='v6fkey' 		Value='V6CNCNTDM' Type=''/>
+	<V6Info Field='v6fkeyexcel' 		Value='V6CNCNTDM' Type=''/>
 	<V6Info Field='baselink' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xqAFB73N3XxaQ==' Type=''/>
 	<V6Info Field='link_Publish' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xpKZ4dj8vu2vl08G2aI0c3ottrkq5+1sZ8=' Type=''/>
-	<V6Info Field='link_Portal' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xpKZ4dj8vu2vl08G2aI0c3ottrkq5+1sZ8=' Type=''/>
-	<V6Info Field='link_Business' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xp35N1GzzhwanEUJjk85Izh52G9fhYBJWs=' Type=''/>
-	<V6Info Field='link_Attachment' 	Value='UQL2EugVpi1EYqJfn5n3nszlEPKzs7WCEj7JcDPoWBmt3MVhwJd7knbabVi5U8sy1FLoOsuVgES4yoMiAd/ZUBXcMBjULdUO6dgnReN4POY=' Type=''/>
+	<V6Info0 Field='link_Portal' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xpKZ4dj8vu2vl08G2aI0c3ottrkq5+1sZ8=' Type=''/>
+	<V6Info0 Field='link_Business' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xp35N1GzzhwanEUJjk85Izh52G9fhYBJWs=' Type=''/>
+	<V6Info0 Field='link_Attachment' 	Value='UQL2EugVpi1EYqJfn5n3nszlEPKzs7WCEj7JcDPoWBmt3MVhwJd7knbabVi5U8sy1FLoOsuVgES4yoMiAd/ZUBXcMBjULdUO6dgnReN4POY=' Type=''/>
 	
 	<ExcelConfig Type='0' Field='TEMPLATE' 	Value='V6_EXCEL.XLS'/>
 	<ExcelConfig Type='0' Field='FIRSTCELL' 	Value='B18'/>

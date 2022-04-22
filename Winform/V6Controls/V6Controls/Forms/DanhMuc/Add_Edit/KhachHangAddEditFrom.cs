@@ -168,10 +168,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 data.Add("MA_KH", newID);
 
                 // Tuanmh 25/05/2017 loi Null
-                if (_keys != null)
+                if (_keys != null && _keys.ContainsKey("UID"))
                 {
-                    Categories.Update("ALKHCT", data, _keys);
-                 
+                    var keyct = new Dictionary<string, object>();
+                    keyct["UID_KH"] = _keys["UID"];
+                    Categories.Update("ALKHCT", data, keyct);                 
                 }
 
                 // 19/03/2016 ADD ALKHCT1

@@ -51,6 +51,7 @@
             this.txtDbfExcel = new System.Windows.Forms.TextBox();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnSend0 = new System.Windows.Forms.Button();
+            this.btnIssue0 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSend
@@ -208,7 +209,7 @@
             // 
             this.btnSendS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSendS.Enabled = false;
-            this.btnSendS.Location = new System.Drawing.Point(453, 623);
+            this.btnSendS.Location = new System.Drawing.Point(376, 623);
             this.btnSendS.Name = "btnSendS";
             this.btnSendS.Size = new System.Drawing.Size(75, 23);
             this.btnSendS.TabIndex = 20;
@@ -231,7 +232,7 @@
             // 
             this.btnUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUpload.Enabled = false;
-            this.btnUpload.Location = new System.Drawing.Point(453, 645);
+            this.btnUpload.Location = new System.Drawing.Point(376, 645);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 23);
             this.btnUpload.TabIndex = 21;
@@ -275,7 +276,7 @@
             // 
             this.btnSend0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSend0.Enabled = false;
-            this.btnSend0.Location = new System.Drawing.Point(372, 594);
+            this.btnSend0.Location = new System.Drawing.Point(534, 594);
             this.btnSend0.Name = "btnSend0";
             this.btnSend0.Size = new System.Drawing.Size(75, 23);
             this.btnSend0.TabIndex = 18;
@@ -283,11 +284,24 @@
             this.btnSend0.UseVisualStyleBackColor = true;
             this.btnSend0.Click += new System.EventHandler(this.btnSend0_Click);
             // 
+            // btnIssue0
+            // 
+            this.btnIssue0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnIssue0.Enabled = false;
+            this.btnIssue0.Location = new System.Drawing.Point(534, 620);
+            this.btnIssue0.Name = "btnIssue0";
+            this.btnIssue0.Size = new System.Drawing.Size(75, 23);
+            this.btnIssue0.TabIndex = 18;
+            this.btnIssue0.Text = "Issue 0";
+            this.btnIssue0.UseVisualStyleBackColor = true;
+            this.btnIssue0.Click += new System.EventHandler(this.btnIssue0_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 679);
+            this.Controls.Add(this.btnIssue0);
             this.Controls.Add(this.btnSend0);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txtPassword);
@@ -344,6 +358,7 @@
         private System.Windows.Forms.TextBox txtDbfExcel;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnSend0;
+        private System.Windows.Forms.Button btnIssue0;
     }
 }
 

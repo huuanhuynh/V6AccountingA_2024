@@ -828,6 +828,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
             if (lineLAN != null)
                 lineLAN.SetValue(LAN);
+            if (lineUserID != null)
+                lineUserID.SetValue(V6Login.UserId);
 
             RadioButton radAnd = GetControlByName("radAnd") as RadioButton;
             var and = true;

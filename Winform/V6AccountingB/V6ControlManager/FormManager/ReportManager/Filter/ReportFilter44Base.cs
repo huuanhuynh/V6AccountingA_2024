@@ -158,33 +158,76 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6Setting.M_ngay_ct2 = ObjectAndString.ObjectToFullDateTime(lineNgay_ct2.ObjectValue);
 
             var parent00 = Parent.Parent.Parent;
-            if (parent00 is ReportD99ViewBase)
+            if (parent00 is ReportDViewBase)
             {
-                var parent99 = (ReportD99ViewBase) parent00;
-                MAU = parent99.MAU;
-                LAN = parent99.LAN;
+                var parent44 = (ReportDViewBase)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
             }
-            if (parent00 is ReportR44ViewBase)
+            else if (parent00 is ReportD99ViewBase)
+            {
+                var parent44 = (ReportD99ViewBase)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportRViewBase)
+            {
+                var parent44 = (ReportRViewBase)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportR44ViewBase)
             {
                 var parent44 = (ReportR44ViewBase)parent00;
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }
-            if (parent00 is ReportR45ViewBase)
+            else if (parent00 is ReportRView2Base)
             {
-                var parent44 = (ReportR45ViewBase)parent00;
+                var parent44 = (ReportRView2Base)parent00;
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }
-            if (parent00 is ReportR47ViewBase)
+            else if (parent00 is ReportTreeViewBase)
             {
-                var parent44 = (ReportR47ViewBase)parent00;
+                var parent44 = (ReportTreeViewBase)parent00;
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }
-            if (parent00 is ReportRWWView2Base)
+
+            else if (parent00 is ReportD_DX)
             {
-                var parent44 = (ReportRWWView2Base)parent00;
+                var parent44 = (ReportD_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportD99_DX)
+            {
+                var parent44 = (ReportD99_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportR_DX)
+            {
+                var parent44 = (ReportR_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportR44_DX)
+            {
+                var parent44 = (ReportR44_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportRView2_DX)
+            {
+                var parent44 = (ReportRView2_DX)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            else if (parent00 is ReportRWWView2_DX)
+            {
+                var parent44 = (ReportRWWView2_DX)parent00;
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }

@@ -33,7 +33,8 @@ namespace V6Tools.V6Convert
                 if (property.CanRead && property.CanWrite)
                 {
                     object value = property.GetValue(o, null);
-                    result += string.Format("\n<{0}>{1}</{0}>", property.Name, ObjectToXml(value, 1));
+                    bool isCData = property.Name != "Fkey" && property.Name != "Ikey";
+                    result += string.Format("\n<{0}>{1}</{0}>", property.Name, ObjectToXml(value, 1, isCData));
                 }
             }
 
@@ -43,7 +44,7 @@ namespace V6Tools.V6Convert
             {
                 object value = null;
                 if (!(o is DBNull)) value = field.GetValue(o);
-                result += "\n" + ObjectToXml(value);
+                result += "\n" + ObjectToXml(value, 0, false);
             }
 
             return objectName == "" ? result : string.Format("<{0}>\n{1}\n\n</{0}>\n", objectName, result);
@@ -55,7 +56,7 @@ namespace V6Tools.V6Convert
         /// <param name="value"></param>
         /// <param name="tab">Format thụt đầu dòng, mỗi tab = \t</param>
         /// <returns></returns>
-        public static string ObjectToXml(object value, int tab = 0)
+        public static string ObjectToXml(object value, int tab, bool CData)
         {
             string result = "";
 
@@ -65,7 +66,7 @@ namespace V6Tools.V6Convert
             }
             else if (value is string || value is DBNull || value == null)
             {
-                if (value is DBNull || value == null)
+                if (value is DBNull || value == null || !CData)
                     result = "" + value;
                 else
                     result = FixXmlCDataValue("" + value);
@@ -163,7 +164,7 @@ namespace V6Tools.V6Convert
             {
                 string objectName = o.GetType().Name;
                 result += string.Format("\n<!-- {0}_{1} -->", objectName , i++);
-                result += string.Format("\n{0}", ObjectToXml(o));
+                result += string.Format("\n{0}", ObjectToXml(o, 0, false));
             }
             //if (result.Length > 1) result = result.Substring(1);// bỏ \n
 
@@ -187,7 +188,8 @@ namespace V6Tools.V6Convert
 
             foreach (KeyValuePair<string, object> item in value)
             {
-                result += string.Format("\n{2}<{0}>{1}</{0}>", item.Key, ObjectToXml(item.Value), tabString);
+                bool isCData = item.Key != "Fkey" && item.Key != "Ikey";
+                result += string.Format("\n{2}<{0}>{1}</{0}>", item.Key, ObjectToXml(item.Value, 0, isCData), tabString);
             }
             if (result.Length > 0) result = result.Substring(1);
             

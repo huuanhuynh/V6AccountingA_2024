@@ -3863,11 +3863,9 @@ namespace V6ThuePostManager
                 {
                     fkeyA = paras.Fkey_hd;
 
-                    string invXml = softDreamsWS.DownloadInvFkeyNoPay(fkeyA);
-                    paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
-                    //WriteFlag(flagFileName4, so_hoa_don);
+                    string invXml = softDreamsWS.DownloadInvFkeyNoPay(fkeyA, __pattern, __serial, out paras.Result.V6ReturnValues);
+                    paras.Result.InvoiceNo = paras.Result.InvoiceNo;
                     result += paras.Result.InvoiceNo;
-                    //result += invXml;
                 }
                 else if (paras.Mode == "S")
                 {

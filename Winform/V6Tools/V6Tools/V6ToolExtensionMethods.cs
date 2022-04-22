@@ -543,7 +543,7 @@ namespace V6Tools
 
         public static List<IDictionary<string, object>> ToListDataDictionaryLower(this DataTable data)
         {
-            return (from DataRow row in data.Rows select row.ToDataDictionary()).ToList();
+            return (from DataRow row in data.Rows select row.ToDataDictionaryLower()).ToList();
         }
 
         /// <summary>

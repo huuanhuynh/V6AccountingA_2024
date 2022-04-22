@@ -155,7 +155,7 @@ namespace V6Tools.V6Convert
         public static DateTime? ObjectToDate(object o, string dateFormat = "dd/MM/yyyy")
         {
             DateTime? result = null;
-            if (o == null) return null;
+            if (o == null || o.Equals(0M)) return null;
             if (o == DBNull.Value) return null;
             if (o.ToString().Trim() == string.Empty) return null;
             
@@ -163,6 +163,7 @@ namespace V6Tools.V6Convert
             {
                 case "System.DateTime":
                     result = (DateTime)o;
+                    if (result.Value.Year <= 1900) result = null;
                     break;
                 default:
                     try

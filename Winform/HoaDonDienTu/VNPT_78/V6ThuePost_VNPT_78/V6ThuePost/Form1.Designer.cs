@@ -57,6 +57,7 @@
             this.txtPattern = new System.Windows.Forms.TextBox();
             this.txtSeri = new System.Windows.Forms.TextBox();
             this.btnUpdatePatternSeri = new System.Windows.Forms.Button();
+            this.btnPublish0 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSend
@@ -79,7 +80,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(12, 64);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(592, 435);
+            this.richTextBox1.Size = new System.Drawing.Size(613, 435);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
             // 
@@ -195,7 +196,7 @@
             this.lblResult.Location = new System.Drawing.Point(12, 505);
             this.lblResult.Name = "lblResult";
             this.lblResult.ReadOnly = true;
-            this.lblResult.Size = new System.Drawing.Size(592, 54);
+            this.lblResult.Size = new System.Drawing.Size(613, 54);
             this.lblResult.TabIndex = 7;
             this.lblResult.Text = "";
             // 
@@ -215,7 +216,7 @@
             // 
             this.btnSendS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSendS.Enabled = false;
-            this.btnSendS.Location = new System.Drawing.Point(529, 594);
+            this.btnSendS.Location = new System.Drawing.Point(257, 618);
             this.btnSendS.Name = "btnSendS";
             this.btnSendS.Size = new System.Drawing.Size(75, 23);
             this.btnSendS.TabIndex = 10;
@@ -310,7 +311,7 @@
             // 
             this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnTest.Enabled = false;
-            this.btnTest.Location = new System.Drawing.Point(529, 567);
+            this.btnTest.Location = new System.Drawing.Point(534, 565);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
             this.btnTest.TabIndex = 12;
@@ -322,7 +323,7 @@
             // 
             this.btnSend0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSend0.Enabled = false;
-            this.btnSend0.Location = new System.Drawing.Point(431, 568);
+            this.btnSend0.Location = new System.Drawing.Point(534, 592);
             this.btnSend0.Name = "btnSend0";
             this.btnSend0.Size = new System.Drawing.Size(97, 23);
             this.btnSend0.TabIndex = 13;
@@ -360,14 +361,26 @@
             this.btnUpdatePatternSeri.UseVisualStyleBackColor = true;
             this.btnUpdatePatternSeri.Click += new System.EventHandler(this.btnUpdatePatternSeri_Click);
             // 
+            // btnPublish0
+            // 
+            this.btnPublish0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPublish0.Location = new System.Drawing.Point(534, 617);
+            this.btnPublish0.Name = "btnPublish0";
+            this.btnPublish0.Size = new System.Drawing.Size(97, 23);
+            this.btnPublish0.TabIndex = 13;
+            this.btnPublish0.Text = "Publish 0";
+            this.btnPublish0.UseVisualStyleBackColor = true;
+            this.btnPublish0.Click += new System.EventHandler(this.btnPublish0_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 679);
+            this.ClientSize = new System.Drawing.Size(637, 679);
             this.Controls.Add(this.txtSeri);
             this.Controls.Add(this.txtPattern);
             this.Controls.Add(this.btnUpdatePatternSeri);
+            this.Controls.Add(this.btnPublish0);
             this.Controls.Add(this.btnSend0);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txtPassword);
@@ -433,6 +446,7 @@
         private System.Windows.Forms.TextBox txtPattern;
         private System.Windows.Forms.TextBox txtSeri;
         private System.Windows.Forms.Button btnUpdatePatternSeri;
+        private System.Windows.Forms.Button btnPublish0;
     }
 }
 

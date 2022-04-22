@@ -105,6 +105,22 @@ namespace V6ThuePost
             if (result != null)
             {
                 BaseMessage.Show(result, 500, this);
+                btnIssue0.Enabled = true;
+            }
+            else
+            {
+                BaseMessage.Show("Response is null!", 500, this);
+            }
+        }
+
+        private void btnIssue0_Click(object sender, EventArgs e)
+        {
+            V6Return v6return;
+            string result = Program._softDreams_ws.IssueInvoices(Program.fkeyA, Program.pattern, Program.seri, Program._signmode, out v6return);
+            lblResult.Text = result;
+            if (result != null)
+            {
+                BaseMessage.Show(result, 500, this);
             }
             else
             {

@@ -14,6 +14,7 @@ namespace V6ThuePostSoftDreamsApi
 {
     public class SoftDreamsWS
     {
+        const string IkeyField = "Ikey";
         private EasyService _easyService = new EasyService();
         private string _host = "", _id = "", _pass = "", _token_serial;
         public SoftDreamsWS(string host, string id, string pass, string token_serial)
@@ -70,7 +71,7 @@ namespace V6ThuePostSoftDreamsApi
                 {
                     foreach (Inv inv in invoices.Inv)
                     {
-                        var ikey = inv.Invoice["Ikey"].ToString().Trim();
+                        var ikey = inv.Invoice[IkeyField].ToString().Trim();
 
                         if (response.Data.KeyInvoiceNo != null)
                         {
@@ -96,7 +97,7 @@ namespace V6ThuePostSoftDreamsApi
                     if (response.Data != null)
                     foreach (Inv inv in invoices.Inv)
                     {
-                        var ikey = inv.Invoice["Ikey"].ToString().Trim();
+                        var ikey = inv.Invoice[IkeyField].ToString().Trim();
                         result += ikey + " " + response.Data.KeyInvoiceMsg[ikey];
                     }
                 }
@@ -143,7 +144,7 @@ namespace V6ThuePostSoftDreamsApi
 
                 if (response.Status == 2)
                 {
-                    var ikey = response.Data.Ikeys[0]; // inv.Invoice["Ikey"].ToString().Trim();
+                    var ikey = response.Data.Ikeys[0]; // inv.Invoice[IkeyField].ToString().Trim();
 
                     if (response.Data.Invoices != null)
                     {
@@ -167,7 +168,7 @@ namespace V6ThuePostSoftDreamsApi
                     if (response.Data != null)
                     foreach (Inv inv in invoices.Inv)
                     {
-                        var ikey = inv.Invoice["Ikey"].ToString().Trim();
+                        var ikey = inv.Invoice[IkeyField].ToString().Trim();
                         result += ikey + " " + response.Data.KeyInvoiceMsg[ikey];
                     }
                 }
@@ -185,7 +186,7 @@ namespace V6ThuePostSoftDreamsApi
         /// <para>Tạo dải hoá đơn trống (ImportInvoices?). Không có ikey => V6 không thể áp dụng.</para>
         /// <para>Trả về số hóa đơn.</para>
         /// </summary>
-        /// <param name="ikey">ikey chơi chơi.</param>
+        /// <param name="ikey">ikey.</param>
         /// <param name="pattern"></param>
         /// <param name="serial"></param>
         /// <param name="soluong">V6 đang ghi đè là 1.</param>
@@ -258,7 +259,7 @@ namespace V6ThuePostSoftDreamsApi
             try
             {
                 var xml = V6XmlConverter.ClassToXml(inv);
-                //var ikey = inv.Invoice["Ikey"].ToString().Trim();
+                //var ikey = inv.Invoice[IkeyField].ToString().Trim();
                 var request = new Request()
                 {
                     XmlData = xml,
@@ -312,7 +313,7 @@ namespace V6ThuePostSoftDreamsApi
             try
             {
                 var xml = V6XmlConverter.ClassToXml(inv);
-                //var ikey = inv.Invoice["Ikey"].ToString().Trim();
+                //var ikey = inv.Invoice[IkeyField].ToString().Trim();
                 var request = new Request()
                 {
                     XmlData = xml,
@@ -390,14 +391,15 @@ namespace V6ThuePostSoftDreamsApi
         /// <param name="serial"></param>
         /// <param name="signmode">Kiểu ký 1 client, mặc định server.</param>
         /// <returns></returns>
-        public string IssueInvoices(string ikey, string pattern, string serial, string signmode)
+        public string IssueInvoices(string ikey, string pattern, string serial, string signmode, out V6Return v6return)
         {
             string result = null;
+            v6return = new V6Return();
             try
             {
                 var request = new Request()
                 {
-                    Ikey = "[\"" + ikey + "\"]",    // List Ikey nhưng chỉ dùng 1
+                    Ikeys = new[] { ikey },
                     Pattern = pattern,
                     Serial = serial,
                     CertString = null,
@@ -405,14 +407,30 @@ namespace V6ThuePostSoftDreamsApi
                 var response = signmode == "1"
                     ? _easyService.ClientIssueInvoices(request, _host, _id, _pass)
                     : _easyService.ServerIssueInvoices(request, _host, _id, _pass);
+                v6return.RESULT_OBJECT = response;
+                v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+                v6return.RESULT_MESSAGE = response.Message;
+                //v6return.RESULT_ERROR_CODE = response.Status.ToString();
                 if (response.Status == 2)
                 {
-                    result += "OK:" + response.Data.KeyInvoiceNo[ikey];
+                    //result += "OK:" + response.Data.KeyInvoiceNo[ikey];
+                    string sohd = response.Data.KeyInvoiceNo[ikey];
+                    v6return.SO_HD = sohd;
+                    try
+                    {
+                        v6return.SECRET_CODE = response.Data.Invoices[0].LookupCode;
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    result += "OK:" + string.Format("Ikey:{0}, InvoiceNo:{1}", ikey, sohd);
                 }
                 else
                 {
                     if (response.Data != null)
-                    result += string.Format("ERR:{0} {1} {2}", response.Status, response.Message, response.Data.KeyInvoiceMsg[ikey]);
+                        result += string.Format("ERR:{0} {1}\n {2}", response.Status, response.Message, response.Data.KeyInvoiceMsg[ikey]);
+                    else result += string.Format("ERR:{0} {1}\n {2}", response.Status, response.Message, "data null");
                 }
             }
             catch (Exception ex)
@@ -592,10 +610,44 @@ namespace V6ThuePostSoftDreamsApi
             throw new NotImplementedException();
         }
 
-        public string DownloadInvFkeyNoPay(string fkeyA)
+        public string DownloadInvFkeyNoPay(string ikey, string pattern, string serial, out V6Return v6return)
         {
-            var response = _easyService.GetInvoicesByIkeys(null);
-            return response.Message;
+            string result = "";
+            v6return = new V6Return();
+            var request = new Request()
+            {
+                Ikeys = new[] { ikey },
+                Pattern = pattern,
+                Serial = serial,
+                CertString = null,
+            };
+            var response = _easyService.GetInvoicesByIkeys(request, _host, _id, _pass);
+            v6return.RESULT_OBJECT = response;
+            v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+            v6return.RESULT_MESSAGE = response.Message;
+            //v6return.RESULT_ERROR_CODE = response.Status.ToString();
+            if (response.Status == 2)
+            {
+                //result += "OK:" + response.Data.KeyInvoiceNo[ikey];
+                string sohd = response.Data.KeyInvoiceNo[ikey];
+                v6return.SO_HD = sohd;
+                try
+                {
+                    v6return.SECRET_CODE = response.Data.Invoices[0].LookupCode;
+                }
+                catch (Exception)
+                {
+
+                }
+                result += "OK:" + string.Format("Ikey:{0}, InvoiceNo:{1}", ikey, sohd);
+            }
+            else
+            {
+                if (response.Data != null)
+                    result += string.Format("ERR:{0} {1}\n {2}", response.Status, response.Message, response.Data.KeyInvoiceMsg[ikey]);
+                else result += string.Format("ERR:{0} {1}\n {2}", response.Status, response.Message, "data null");
+            }
+            return v6return.RESULT_STRING;
         }
 
         public string UploadInvAttachmentFkey(string fkeyA, string arg3)

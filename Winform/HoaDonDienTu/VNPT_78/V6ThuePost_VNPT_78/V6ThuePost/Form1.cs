@@ -83,9 +83,9 @@ namespace V6ThuePost
             try
             {
                 V6Return v6Return;
-                result = Program._vnptWS.ImportAndPublishInv(richTextBox1.Text, Program.pattern, Program.seri, out v6Return);
-                
-                lblResult.Text = result;
+                result = Program._vnptWS.ImportInvByPattern(richTextBox1.Text, Program.pattern, Program.seri, out v6Return);
+
+                lblResult.Text = v6Return.RESULT_MESSAGE + "\n" + result + "\n" + v6Return.RESULT_ERROR_MESSAGE;
                 if (result != null)
                 {
                     BaseMessage.Show(result, 500, this);
@@ -93,6 +93,30 @@ namespace V6ThuePost
                 else
                 {
                     BaseMessage.Show("Response is null!", 0, this);
+                }
+            }
+            catch (Exception ex)
+            {
+                BaseMessage.Show(ex.Message, 0, this);
+            }
+        }
+
+        private void btnPublish0_Click(object sender, EventArgs e)
+        {
+            string result = null;
+            try
+            {
+                V6Return v6Return;
+                result = Program._vnptWS.PublishInvFkey(Program.fkeyA, Program.pattern, Program.seri, out v6Return);
+
+                lblResult.Text = v6Return.RESULT_MESSAGE + "\n" + result + "\n" + v6Return.RESULT_ERROR_MESSAGE;
+                if (result != null)
+                {
+                    BaseMessage.Show(lblResult.Text, 500, this);
+                }
+                else
+                {
+                    BaseMessage.Show("Response is null!" + v6Return.RESULT_ERROR_MESSAGE, 0, this);
                 }
             }
             catch (Exception ex)
@@ -119,7 +143,7 @@ namespace V6ThuePost
                     result = Program._vnptWS.PublishInvWithToken32_Dll(richTextBox1.Text, Program.pattern, Program.seri, Program.SERIAL_CERT, out v6Return);
                 }
 
-                lblResult.Text = result;
+                lblResult.Text = v6Return.RESULT_MESSAGE + "\n" + result + "\n" + v6Return.RESULT_ERROR_MESSAGE;
                 if (result != null)
                 {
                     if (string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
@@ -147,7 +171,7 @@ namespace V6ThuePost
             string result = null;
 
             result = Program.getHashInvWithToken(richTextBox1.Text);
-            
+
             lblResult.Text = result;
             if (result != null)
             {
@@ -208,7 +232,7 @@ namespace V6ThuePost
         {
             V6Return v6Return;
             string result = Program._vnptWS.ImportAndPublishInv("<V6test>Test</V6test>", Program.pattern, Program.seri, out v6Return);
-            lblResult.Text = result;
+            lblResult.Text = v6Return.RESULT_MESSAGE + "\n" + result + "\n" + v6Return.RESULT_ERROR_MESSAGE;
             if (v6Return.RESULT_ERROR_MESSAGE != null && v6Return.RESULT_ERROR_MESSAGE.Contains("Dữ liệu xml đầu vào không đúng quy định"))
             {
                 BaseMessage.Show("Kết nối ổn!", 500, this);

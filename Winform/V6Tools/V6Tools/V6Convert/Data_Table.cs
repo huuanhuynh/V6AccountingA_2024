@@ -122,6 +122,11 @@ namespace V6Tools.V6Convert
             ExportData.ToExcel(data, fileName, "");
         }
 
+        public static Stream ToExcelStream(DataTable data, string fileName)
+        {
+            return ExportData.ToExcelStream(data, fileName, "", true);
+        }
+
         public static string ToXml(DataTable data)
         {
             if (data.DataSet != null) return DataSetToXml(data.DataSet);

@@ -289,11 +289,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if(FormControl.ReloadFlag) DoReload();
                 Close();
             }
-            else
-            {
-                DoReload();
-                Close();
-            }
+            //else
+            //{
+            //    DoReload();
+            //    Close();
+            //}
         }
 
         private void DoInsertOrUpdateSuccess(SortedDictionary<string, object> dataDic)

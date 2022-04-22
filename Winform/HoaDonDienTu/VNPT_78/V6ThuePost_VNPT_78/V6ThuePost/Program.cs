@@ -183,7 +183,6 @@ namespace V6ThuePost
                         string fileName = _vnptWS.DownloadInvPDFFkeyNoPay(fkeyA, Application.StartupPath, out v6return);
                         PdfiumViewerForm pdfView = new PdfiumViewerForm(fileName, "PDF");
                         pdfView.ShowDialog();
-                        //WriteFlag(flagFileName4, so_hoa_don);
                         result += fileName;
                     }
                     else if (mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
@@ -195,7 +194,6 @@ namespace V6ThuePost
                         string so_hoa_don = GetSoHoaDon(invXml);
                         WriteFlag(flagFileName4, so_hoa_don);
                         result += so_hoa_don;
-                        //result += invXml;
                     }
                     else if (mode.StartsWith("DOWNLOAD"))
                     {
@@ -213,8 +211,27 @@ namespace V6ThuePost
                         var xml = ReadDataXml(arg2);
                         File.Create(flagFileName1).Close();
 
-                        if (!string.IsNullOrEmpty(SERIAL_CERT))
+                        if (mode == "M0")
                         {
+                            string resultM = _vnptWS.ImportInvByPattern(xml, pattern, seri, out v6return);
+                            result = resultM;
+                            if (result.StartsWith("ERR:13")) // nếu đã tồn tại. thì xóa nháp + gửi lại.
+                            {
+                                resultM = _vnptWS.DeleteInvoiceByFkey(fkeyA, out v6return);
+                                if (resultM.StartsWith("OK:"))
+                                {
+                                    resultM = _vnptWS.ImportInvByPattern(xml, pattern, seri, out v6return);
+                                    result = resultM;
+                                }
+                            }
+                            if (resultM.StartsWith("OK"))
+                            {                             
+                                WriteFlag(flagFileName4, "");
+                            }
+                        }
+                        else if (!string.IsNullOrEmpty(SERIAL_CERT))
+                        {
+                            #region =================  KÝ SỐ =================
                             Program.StartAutoInputTokenPassword();
                             string resultM = _vnptWS.PublishInvWithToken32_Dll(xml, pattern, seri, SERIAL_CERT, out v6return);
                             result = resultM;
@@ -237,7 +254,7 @@ namespace V6ThuePost
                                 }
                                 else // Đã chạy 2 lần vẫn không được.
                                 {
-                                    //WriteFlag(flagFileName3, resultM);
+                                    
                                 }
                             }
 
@@ -322,22 +339,33 @@ namespace V6ThuePost
                                     }
                                 }
                             }
+                            #endregion end ký số
                         }
                         else if (string.IsNullOrEmpty(SERIAL_CERT))
                         {
                             #region ==== mode M M1:tạo mới gửi excel có sẵn  M2:tạo mới+xuất excel rồi gửi.
 
-                            result = _vnptWS.ImportAndPublishInv(xml, pattern, seri, out v6return);
+                            if (mode == "M9") // phát hành hóa đơn nháp
+                            {
+                                result = _vnptWS.PublishInvFkey(fkeyA, pattern, seri, out v6return);
+                            }
+                            else
+                            {
+                                result = _vnptWS.ImportAndPublishInv(xml, pattern, seri, out v6return);
+                                if (result.StartsWith("ERR:13")) // nếu đã tồn tại, xóa phát hành lại
+                                {
+                                    var resultM = _vnptWS.DeleteInvoiceByFkey(fkeyA, out v6return);
+                                    if (resultM.StartsWith("OK:"))
+                                    {
+                                        result = _vnptWS.ImportAndPublishInv(xml, pattern, seri, out v6return);
+                                    }
+                                }
+                            }                            
+                            
                             //"OK:01GTKT0/001;VT/19E-V6XNCT_05A0283806HDA"
                             if (v6return.SO_HD != null && v6return.SO_HD.Length > 0)
                             {
                                 WriteFlag(flagFileName4, v6return.SO_HD);
-                            }
-                            else
-                            {
-                                string invXml = _vnptWS.DownloadInvFkeyNoPay(fkeyA, out v6return);
-                                string so_hoa_don = GetSoHoaDon(invXml);
-                                WriteFlag(flagFileName4, so_hoa_don);
                             }
                             
 
@@ -629,13 +657,11 @@ namespace V6ThuePost
                         if (mode.EndsWith("0")) // P...0 // In luôn ra máy in mặc định.
                         {
                             pdfView.PrintToDefaultPrinter();
-                            //WriteFlag(flagFileName4, so_hoa_don);
                         }
                         else if (mode.EndsWith("1"))
                         {
                             pdfView.AutoClickPrint = true;
                             pdfView.ShowDialog();
-                            //WriteFlag(flagFileName4, so_hoa_don);
                         }
                         else if (mode.EndsWith("2")) // saved printer name
                         {
@@ -657,18 +683,6 @@ namespace V6ThuePost
                     }
 
 
-                    if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("Hóa đơn đã được gạch nợ."))
-                    {
-                        WriteFlag(flagFileName2, "GACH_NO");
-                    }
-                    else if (result.StartsWith("ERR"))
-                    {
-                        File.Create(flagFileName3).Close();
-                    }
-                    else
-                    {
-                        WriteFlag(flagFileName2, "OK");
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -676,10 +690,20 @@ namespace V6ThuePost
                     File.Create(flagFileName3).Close();
                     result += "ERR:EX\r\n" + ex.Message;
                 }
-                File.Create(flagFileName9).Close();
-                if (result.StartsWith("ERR") && v6return != null && !string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
+
+                if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                 {
-                    BaseMessage.Show(v6return.RESULT_ERROR_MESSAGE, 500);
+                    WriteFlag(flagFileName2, "OK:" + v6return.RESULT_MESSAGE);
+                }
+                else
+                {
+                    WriteFlag(flagFileName3, v6return.RESULT_ERROR_MESSAGE);
+                }
+
+                File.Create(flagFileName9).Close(); // kết thúc
+                if (result.StartsWith("ERR") && v6return != null)
+                {
+                    BaseMessage.Show(v6return.RESULT_MESSAGE + "\n" + result + "\n" + v6return.RESULT_ERROR_MESSAGE, 500);
                 }
                 else
                 {
@@ -1023,6 +1047,7 @@ namespace V6ThuePost
                 if (_TEST_)
                 {
                     fkeyA = fkey0 + _TEST_DATE_.ToString("yyMMddHHmmss");
+                    Logger.WriteToLog("TestFkey " + _TEST_DATE_ + ":" + fkeyA);
                 }
                 else
                 {
@@ -1122,7 +1147,7 @@ namespace V6ThuePost
                 //
             }
 
-            string fileName = Path.Combine(Application.StartupPath, "Data.xml");
+            string fileName = Path.Combine(Application.StartupPath, "LastReadData.xml");
             WriteFlag(fileName, result);
             
             return result;
@@ -1270,7 +1295,8 @@ namespace V6ThuePost
                 {
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
-                inv.key = fkeyA;
+                //inv.key = fkeyA;
+                inv.Invoice["key"] = fkeyA;
                 if (_TEST_)
                 {
                     pattern = pattern_test;

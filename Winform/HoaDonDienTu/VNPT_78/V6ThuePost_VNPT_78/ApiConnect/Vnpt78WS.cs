@@ -69,9 +69,10 @@ namespace V6ThuePostXmlApi
                 var publishService = new PublishService.PublishService(_baseLink + _publishLink);
                 result = publishService.ImportInvByPattern(_account,_accountpassword, xml, _username, _password, pattern, serial, 0);
                 v6Return.RESULT_STRING = result;
-
+                v6Return.RESULT_MESSAGE = "Có lỗi:";
                 if (result.StartsWith("OK"))
                 {
+                    v6Return.RESULT_MESSAGE = "Thành công:";
                     //OK:01GTKT3/001;AA/12E;key_0000002
                     //int index = result.IndexOf('_');
                     //string so_hd = "0";
@@ -357,16 +358,26 @@ namespace V6ThuePostXmlApi
                 result = publishService.PublishInvFkey(_account, _accountpassword, fkey, _username, _password, pattern, serial);
                 v6Return.RESULT_STRING = result;
 
-                // result = "ERR:6#||ERR:15#||OK:#N001625010SOA_2"
+                // result = "ERR:6#danh sách fkey không tồn tại||ERR:15#ds fkey đã phát hành||OK:#N001625010SOA_2" fkey_sốHD
                 var dic = ObjectAndString.StringToStringDictionary(result, '|', '#');
+                v6Return.RESULT_MESSAGE = "Có lỗi:"; // sẽ ghi đè nếu thành công.
 
-                if (dic.ContainsKey("OK:"))
+                if (dic.ContainsKey("OK:") && dic["OK:"].Trim().Length > 0)
                 {
                     //OK:01GTKT3/001;AA/12E;key_0000002
                     string resultOK = dic["OK:"];
                     int index = resultOK.IndexOf('_');
                     string so_hd = resultOK.Substring(index + 1);
                     v6Return.SO_HD = so_hd;
+                    v6Return.RESULT_MESSAGE = "Thành công số HD:" + so_hd;
+                }
+                else if (dic.ContainsKey("ERR:6") && dic["ERR:6"].Length > 0)
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "Fkey không tồn tại: " + dic["ERR:6"];
+                }
+                else if (dic.ContainsKey("ERR:15") && dic["ERR:15"].Length > 0)
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "Fkey đã phát hành: " + dic["ERR:15"];
                 }
                 else
                 {
@@ -462,7 +473,7 @@ namespace V6ThuePostXmlApi
                 }
                 else if (result.StartsWith("ERR"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi.";
+                    ReadErrorCode(result, v6Return);
                 }
                 else
                 {
@@ -783,7 +794,7 @@ namespace V6ThuePostXmlApi
                 }
                 else if (result.StartsWith("ERR"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi xảy ra.";
+                    ReadErrorCode(result, v6Return);
                 }
             }
             catch (Exception ex)
@@ -829,6 +840,10 @@ namespace V6ThuePostXmlApi
                     v6Return.PATH = path;
                     return path;
                 }
+                else if (result.StartsWith("ERR:13"))
+                {
+                    v6Return.RESULT_MESSAGE = "Hóa đơn đã được gạch nợ.";
+                }
                 else if (result.StartsWith("ERR:11"))
                 {
                     v6Return.RESULT_ERROR_MESSAGE = result + "\r\nHóa đơn chưa thanh toán nên không xem được.";
@@ -847,7 +862,7 @@ namespace V6ThuePostXmlApi
                 }
                 else if (result.StartsWith("ERR"))
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = result + "\r\nCó lỗi.";
+                    ReadErrorCode(result, v6Return);
                 }
             }
             catch (Exception ex)

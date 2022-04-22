@@ -23,6 +23,8 @@ namespace V6ThuePost
 {
     static class Program
     {
+        const string IkeyField = "Ikey";
+        const string FkeyField = "Fkey";
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
         #region ===== VAR =====
@@ -204,11 +206,10 @@ namespace V6ThuePost
                     {
                         fkeyA = arg2;
                         MakeFlagNames(fkeyA);
-
-                        string invXml = _softDreams_ws.DownloadInvFkeyNoPay(fkeyA);
-                        string so_hoa_don = GetSoHoaDon_xml(invXml);
-                        WriteFlag(flagFileName4, so_hoa_don);
-                        result += so_hoa_don;
+                        V6Return v6return;
+                        string invXml = _softDreams_ws.DownloadInvFkeyNoPay(fkeyA, pattern, seri, out v6return);
+                        WriteFlag(flagFileName4, v6return.SO_HD);
+                        result += v6return.SO_HD;
                         //result += invXml;
                     }
                     //else if (mode.ToUpper() == "MTEST")
@@ -236,14 +237,22 @@ namespace V6ThuePost
                         File.Create(flagFileName1).Close();
                         V6Return v6return;
                         StartAutoInputTokenPassword();
-                        result = _softDreams_ws.ImportInvoices(invoices, pattern, seri, true, _signmode, out v6return);
+                        if (mode == "M9")
+                        {
+                            result = _softDreams_ws.IssueInvoices(fkeyA, pattern, seri, _signmode, out v6return);
+                        }
+                        else
+                        {
+                            result = _softDreams_ws.ImportInvoices(invoices, pattern, seri, mode == "M0" ? false : true, _signmode, out v6return);
+                        }
+                        if (mode == "M" && result.StartsWith("ERR13"))
+                        {
+
+                        }
                         //Trả về OK:pattern;serial1-fkey_soHD
                         //"OK:01GTKT0/001;PT/19E-V6A0002218HDA_4"
 
-
-                        string invXml = _softDreams_ws.DownloadInvFkeyNoPay(fkeyA);
-                        string so_hoa_don = GetSoHoaDon_xml(invXml);
-                        WriteFlag(flagFileName4, so_hoa_don);
+                        WriteFlag(flagFileName4, v6return.SO_HD);
 
                         if (arg3.Length > 0 && result.StartsWith("OK"))
                         {
@@ -327,11 +336,11 @@ namespace V6ThuePost
                         }
                         else if(!result.StartsWith("OK")) // chạy lại cho trường hợp đã tồn tại fkey
                         {
-                            invXml = _softDreams_ws.DownloadInvFkeyNoPay(fkeyA);
-                            so_hoa_don = GetSoHoaDon_xml(invXml);
-                            if (!string.IsNullOrEmpty(so_hoa_don))
+                            string resultD = _softDreams_ws.DownloadInvFkeyNoPay(fkeyA, pattern, seri, out v6return);
+                            
+                            if (!string.IsNullOrEmpty(v6return.SO_HD))
                             {
-                                WriteFlag(flagFileName4, so_hoa_don);
+                                WriteFlag(flagFileName4, v6return.SO_HD);
                                 result = "OK-Đã tồn tại fkey.";
                             }
                         }
@@ -589,6 +598,7 @@ namespace V6ThuePost
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
             }
+            Process.GetCurrentProcess().Kill();
         }
 
         private static void WriteFlag(string fileName, string content)
@@ -887,6 +897,7 @@ namespace V6ThuePost
                 if (_TEST_)
                 {
                     fkeyA = fkey0 + _TEST_DATE_.ToString("yyMMddHHmmss");
+                    Logger.WriteToLog("TestFkey "+_TEST_DATE_+":" + fkeyA);
                 }
                 else
                 {
@@ -897,7 +908,7 @@ namespace V6ThuePost
                 exportName = string.Format("{0}_{1}_{2}_{3}", fkeyexcel0, row0["MA_KH"].ToString().Trim(), row0["SO_CT"].ToString().Trim(), row0["STT_REC"]);
                 //}
 
-                inv.Invoice["Ikey"] = fkeyA;
+                inv.Invoice[IkeyField] = fkeyA;
 
                 if (_TEST_)
                 {
@@ -910,14 +921,28 @@ namespace V6ThuePost
                     seri = row0[seri_field].ToString().Trim();
                 }
 
-                //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
                 
-
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
+                    if (_TEST_ && item.Key == "ArisingDate")
+                    {
+                        inv.Invoice[item.Key] = _TEST_DATE_;
+                    }
+                    else if (_TEST_ && item.Key == IkeyField)
+                    {
+                        inv.Invoice[item.Key] = fkeyA;
+                    }
+                    else if (_TEST_ && item.Key == FkeyField)
+                    {
+                        inv.Invoice[item.Key] = fkeyA;
+                    }
+                    else
+                    {
+                        inv.Invoice[item.Key] = GetValue(row0, item.Value);
+                    }
+                    
                     //postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
                 }
                 //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
@@ -934,7 +959,7 @@ namespace V6ThuePost
                     else if (_TEST_ && item.Key == "SMSDeliver")
                     {
                         inv.Invoice[item.Key] = "0354867043";
-                    }
+                    }   
                     else
                     {
                         inv.Invoice[item.Key] = GetValue(row0, item.Value);
@@ -1032,7 +1057,7 @@ namespace V6ThuePost
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
                                 
-                inv.Invoice["Ikey"] = fkeyA;
+                inv.Invoice[IkeyField] = fkeyA;
                 if (_TEST_)
                 {
                     pattern = pattern_test;
@@ -1129,7 +1154,7 @@ namespace V6ThuePost
                 {
                     fkeyA = fkey0 + row0["STT_REC"];
                 }
-                inv.Invoice["Ikey"] = fkeyA;
+                inv.Invoice[IkeyField] = fkeyA;
                 if (_TEST_)
                 {
                     pattern = pattern_test;

@@ -266,7 +266,13 @@ namespace V6ThuePostBkavApi
             Result result = null;
             msg = remoteCommand.TransferCommandAndProcessResult(CmdType, list, out result);
             
-            if (msg.Length > 0)
+            if (msg != null && msg.StartsWith("Hóa đơn này đã được Hủy."))
+            {
+                v6return.RESULT_OBJECT = result.Object;
+                v6return.RESULT_STRING = result.Object.ToString();
+                return "";
+            }
+            else if (msg.Length > 0)
             {
                 v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
@@ -289,7 +295,7 @@ namespace V6ThuePostBkavApi
             foreach (InvoiceResult invoiceResult in listInvoiceResult)
             {
                 v6return.RESULT_OBJECT = invoiceResult;
-                if (invoiceResult.Status == 0 || invoiceResult.MessLog.StartsWith("Đã tồn tại Hóa đơn")) // Không có lỗi hoặc tồn tại.
+                if (invoiceResult.Status == 0)
                 {
                     v6return.SO_HD = invoiceResult.InvoiceNo.ToString();
                     v6return.ID = invoiceResult.InvoiceGUID.ToString();
@@ -317,8 +323,14 @@ namespace V6ThuePostBkavApi
             
             Result result = null;
             msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._205_SignGUID, uid, out result);
-            
-            if (msg.Length > 0)
+
+            if (msg != null && msg.StartsWith("Hóa đơn đang được ký phát hành."))
+            {
+                v6return.RESULT_OBJECT = result.Object;
+                v6return.RESULT_STRING = result.Object.ToString();
+                return "";
+            }
+            else if (msg.Length > 0)
             {
                 v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
@@ -342,8 +354,7 @@ namespace V6ThuePostBkavApi
             foreach (InvoiceResult invoiceResult in listInvoiceResult)
             {
                 v6return.RESULT_OBJECT = invoiceResult;
-                if (invoiceResult.Status == 0 || invoiceResult.MessLog.StartsWith("Đã tồn tại Hóa đơn"))
-                    // Không có lỗi hoặc tồn tại.
+                if (invoiceResult.Status == 0)
                 {
                     v6return.SO_HD = invoiceResult.InvoiceNo.ToString();
                     v6return.ID = invoiceResult.InvoiceGUID.ToString();

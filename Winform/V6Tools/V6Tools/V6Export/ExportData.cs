@@ -1533,6 +1533,82 @@ namespace V6Tools.V6Export
             return true;
         }
 
+        public static Stream ToExcelStream(DataTable data, string saveAs, string title, bool line, string fontName = "")
+        {
+            SmartXLS.WorkBook workBook = new SmartXLS.WorkBook();
+            workBook.PrintGridLines = false;
+            if (fontName == "" || !IsFontInstalled(fontName)) fontName = "Times New Roman";
+            workBook.setDefaultFont(fontName, 12 * 20, 1);
+            int startRow = 0, startCol = 0, endRow = 0, endCol = data.Columns.Count - 1;
+
+            //merge/unmerge range of cells
+
+            //range contain merged area can not be merged
+            //SmartXLS.RangeStyle rangeStyle = workBook.getRangeStyle(1, 1, 2, 2);//get format from range B2:C3
+            SmartXLS.RangeStyle rangeStyle = workBook.getRangeStyle(startRow, startCol, endRow, endCol);
+            rangeStyle.MergeCells = true;//merge range
+            //rangeStyle.MergeCells = false;//unmerge range
+            rangeStyle.LeftBorder = SmartXLS.RangeStyle.BorderThin;
+            rangeStyle.RightBorder = SmartXLS.RangeStyle.BorderThin;
+            rangeStyle.TopBorder = SmartXLS.RangeStyle.BorderThin;
+            rangeStyle.BottomBorder = SmartXLS.RangeStyle.BorderThin;
+
+            rangeStyle.HorizontalAlignment = SmartXLS.RangeStyle.HorizontalAlignmentCenter;
+            rangeStyle.VerticalAlignment = SmartXLS.RangeStyle.VerticalAlignmentCenter;
+            rangeStyle.FontBold = true;
+
+            rangeStyle.FontColor = 0x0000FF;
+            rangeStyle.FontSize = 12 * 20;
+
+            // Set title
+            workBook.Sheet = 0;
+            if (!string.IsNullOrEmpty(title))
+            {
+                workBook.setText(startRow, startCol, title);
+                if (line)
+                    workBook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endCol);
+                startRow++;
+            }
+
+            endRow = startRow + data.Rows.Count;
+
+            //if (line)
+            //{
+            //    rangeStyle = workBook.getRangeStyle(startRow, startCol, endRow, endCol);
+            //    rangeStyle.LeftBorder = SmartXLS.RangeStyle.BorderThin;
+            //    rangeStyle.RightBorder = SmartXLS.RangeStyle.BorderThin;
+            //    rangeStyle.TopBorder = SmartXLS.RangeStyle.BorderThin;
+            //    rangeStyle.BottomBorder = SmartXLS.RangeStyle.BorderThin;
+            //    rangeStyle.HorizontalInsideBorder = SmartXLS.RangeStyle.BorderThin;
+            //    rangeStyle.VerticalInsideBorder = SmartXLS.RangeStyle.BorderThin;
+
+            //    workBook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endCol);
+            //}
+
+            ImportDataTable(workBook, data, null, false, true, line, startRow, startCol, -1, -1);
+
+            var ext = Path.GetExtension(saveAs);
+            Stream st = new MemoryStream();
+            if (ext != null)
+            {
+                ext = ext.ToLower();
+                switch (ext)
+                {
+                    case ".xlsx":
+                        workBook.writeXLSX(st);
+                        break;
+                    case ".csv":
+                        workBook.writeCSV(st);
+                        break;
+                    default:
+                        workBook.write(st);
+                        break;
+                }
+            }
+            workBook.Dispose();
+            return st;
+        }
+
         /// <summary>
         /// Bỏ qua không dùng nữa. luôn return true!
         /// </summary>
