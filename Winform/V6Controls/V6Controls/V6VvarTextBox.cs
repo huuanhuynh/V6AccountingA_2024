@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Data;
+using System.Linq;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
@@ -325,6 +326,56 @@ namespace V6Controls
         }
 
         #region ==== Event ====
+        protected override void WndProc(ref System.Windows.Forms.Message m)
+        {
+            switch (m.Msg)
+            {
+                case Win32.WM_ENABLE:
+                    // Prevent the message from reaching the control,
+                    // so the colors don't get changed by the default procedure.
+                    return; // <-- suppress WM_ENABLE message
+
+            }
+            // Trap WM_PASTE:
+            // Xử lý dữ liệu clipboard trước khi dán
+            if (m.Msg == Win32.WM_PASTE)
+            {
+                if (Clipboard.ContainsText())
+                {
+                    var clipboard = Clipboard.GetText();
+                    try
+                    {
+                        clipboard = V6Tools.V6Convert.ObjectAndString.TrimSpecial(clipboard);
+                        if (!string.IsNullOrEmpty(LimitCharacters0))
+                        {
+                            foreach (char c in _lmChars0)
+                            {
+                                clipboard = clipboard.Replace("" + c, "");
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(LimitCharacters))
+                        {
+                            for (int i = clipboard.Length - 1; i >= 0; i--)
+                            {
+                                char c = clipboard[i];
+                                if (!_lmChars.Contains(c))
+                                {
+                                    clipboard = clipboard.Remove(i, 1);
+                                }
+                            }
+                        }
+                        Paste(clipboard);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.WriteExLog(GetType() + ".WndProc WM_PASTE", ex);
+                    }
+                }
+                return;
+            }
+            base.WndProc(ref m);
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Enter)

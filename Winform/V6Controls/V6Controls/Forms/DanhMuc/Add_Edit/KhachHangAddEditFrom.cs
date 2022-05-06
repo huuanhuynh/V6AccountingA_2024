@@ -70,6 +70,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        public override void FixFormData()
+        {
+            txtMaKH.Text = ObjectAndString.TrimSpecial(txtMaKH.Text);
+        }
+
         private void LoadImageData()
         {
             SortedDictionary<string, object> keys = new SortedDictionary<string, object>();

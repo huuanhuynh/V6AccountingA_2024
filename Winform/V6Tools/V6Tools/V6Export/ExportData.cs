@@ -1298,6 +1298,111 @@ namespace V6Tools.V6Export
             }
         }
 
+        /// <summary>
+        /// Xuất một bảng dữ liệu ra file excel với mẫu có sẵn
+        /// </summary>
+        /// <param name="xlsTemplateFile">File Excel mẫu</param>
+        /// <param name="data">Dữ liệu vào</param>
+        /// <param name="firstCell">Vị trí ô bắt đầu điền dữ liệu vd: A2.</param>
+        /// <param name="columns">Danh sách cột dữ liệu sẽ lấy, null nếu lấy hết. Có thể là một công thức FieldA+FieldB</param>
+        /// <param name="saveFile">Tên tập tin sẽ lưu, chỉ dùng lấy phần mở rộng .xlsx</param>
+        /// <param name="parameters">Giá trị theo vị trí trong excel. Với key là vị trí vd: A1</param>
+        /// <param name="nfi">Thông tin định dạng kiểu số</param>
+        /// <param name="drawLine">Vẽ đường kẻ lên dữ liệu</param>
+        /// <param name="rowInsert">Chèn dữ liệu vào vị trí chèn, đẩy dòng xuống.</param>
+        /// <returns></returns>
+        public static Stream ToExcelTemplateStream(string xlsTemplateFile, DataTable data, string saveFile,
+            string firstCell, string[] columns, SortedDictionary<string, object> parameters,
+            NumberFormatInfo nfi, bool rowInsert = false, bool drawLine = false)
+        {
+            Stream stream = new MemoryStream();
+            Message = "";
+            //if (!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
+            var workbook = new WorkBook();
+            workbook.PrintGridLines = false;
+            workbook.setDefaultFont("Arial", 10 * 20, 1);
+            
+            string read_ext = Path.GetExtension(xlsTemplateFile).ToLower();
+            if (File.Exists(xlsTemplateFile))
+            {
+                #region ==== workbook try to read file ====
+
+                try
+                {
+                    try
+                    {
+                        try
+                        {
+
+                            if (read_ext == ".xls")
+                                workbook.read(xlsTemplateFile);
+                            else if (read_ext == ".xlsx")
+                                workbook.readXLSX(xlsTemplateFile);
+                            else if (read_ext == ".xml")
+                                workbook.readXML(xlsTemplateFile);
+                            else
+                                workbook.read(xlsTemplateFile);
+                        }
+                        catch
+                        {
+                            workbook.readXLSX(xlsTemplateFile);
+                        }
+                    }
+                    catch
+                    {
+                        workbook.readXML(xlsTemplateFile);
+                    }
+                }
+                catch
+                {
+                    workbook.read(xlsTemplateFile);
+                }
+
+                #endregion
+            }
+            else
+            {
+                throw new Exception("Không có file mẫu.");
+            }
+
+            //select sheet
+            int sheetIndex = 0;
+            workbook.Sheet = sheetIndex;
+            int sheetCount = workbook.NumSheets;
+            string sheetName = workbook.getSheetName(sheetIndex);
+            string t;
+
+            int startRow = 1, startCol = 0;
+            int lastRow = workbook.LastRow;//Dòng cuối cùng có dữ liệu của sheet
+            int lastCol = workbook.LastCol;
+            if (string.IsNullOrEmpty(firstCell))
+            {
+                startRow = lastRow + 1;
+                startCol = 0;
+            }
+            else
+            {
+                startRow = GetExcelRow(firstCell);
+                startCol = GetExcelColumn(firstCell);
+            }
+
+            SetParametersAddressFormat(workbook, parameters);
+
+            //var endRow = startRow + data.Rows.Count - (data.Rows.Count > 0 ? 1 : 0);
+            //int endCol;// startCol + data.Columns.Count - 1;
+
+            ImportDataTable(workbook, data, columns, rowInsert, false, drawLine, startRow, startCol, -1, -1);
+                
+            string save_ext = Path.GetExtension(saveFile).ToLower();
+            if (save_ext == ".xlsx") workbook.writeXLSX(stream);
+            else workbook.write(stream);
+            workbook.Dispose();
+                
+
+            
+            return stream;
+        }
+
 
         /// <summary>
         /// Xuất một bảng dữ liệu ra file excel với mẫu có sẵn, thêm tiêu đề gửi vào

@@ -230,7 +230,7 @@ namespace V6Controls
             get { return _lmChars; }
             set { _lmChars = value; }
         }
-        private string _lmChars;
+        protected string _lmChars;
 
         [Category("V6")]
         [DefaultValue(null)]
@@ -244,7 +244,7 @@ namespace V6Controls
             }
             set { _lmChars0 = value; }
         }
-        private string _lmChars0;
+        protected string _lmChars0;
         /// <summary>
         /// Bật tính năng sử dụng LimitCharacters0 lưu trong V6Options.
         /// </summary>
