@@ -123,22 +123,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
 
             // TxtTk.Text="111,112"
-            if (TxtTk_no.Text != "")
+            if (TxtTk_Co.Text != "")
             {
-                var ss = TxtTk_no.Text.Split(',');
+                var ss = TxtTk_Co.Text.Split(',');
                 var orString = "";
                 foreach (string s in ss)
                 {
                     orString += string.Format(" OR TK Like '{0}%'", s.Trim());
                 }
                 orString = orString.Substring(4);
-                cKey = cKey + " AND (ISNULL(PS_NO,0)<>0) ";
+                cKey = cKey + " AND (ISNULL(PS_CO,0)<>0) ";
                 cKey = cKey + string.Format(" AND ({0})", orString);
 
 
-                if (TxtTk_Co.Text != "")
+                if (TxtTk_no.Text != "")
                 {
-                    var ss2 = TxtTk_Co.Text.Split(',');
+                    var ss2 = TxtTk_no.Text.Split(',');
                     var orString2 = "";
                     foreach (string s in ss2)
                     {
@@ -152,16 +152,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             else
             {
-                if (TxtTk_Co.Text != "")
+                if (TxtTk_no.Text != "")
                 {
-                    var ss = TxtTk_Co.Text.Split(',');
+                    var ss = TxtTk_no.Text.Split(',');
                     var orString = "";
                     foreach (string s in ss)
                     {
                         orString += string.Format(" OR TK Like '{0}%'", s.Trim());
                     }
                     orString = orString.Substring(4);
-                    cKey = cKey + " AND (ISNULL(PS_CO,0)<>0) ";
+                    cKey = cKey + " AND (ISNULL(PS_NO,0)<>0) ";
                     cKey = cKey + string.Format(" AND ({0})", orString);
                 }
             }

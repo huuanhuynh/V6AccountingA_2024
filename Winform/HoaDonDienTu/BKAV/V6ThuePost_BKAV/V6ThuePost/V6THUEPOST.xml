@@ -7,6 +7,7 @@
   <V6Info Field='BkavSign' 	Value='1' Type=''/>
   <V6Info Field='seri_test' 	Value='AA/22E' Type=''/>
   <V6Info Field='pattern_test' 	Value='01GTKT0/001' Type=''/>
+  <V6Info Field='reason' 	Value='reason_field' Type=''  Note='trường lấy dữ liệu lý do hủy'/>
 	
 	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
 	<!--Các thông tin đơn vị được in trên hóa đơn-->			

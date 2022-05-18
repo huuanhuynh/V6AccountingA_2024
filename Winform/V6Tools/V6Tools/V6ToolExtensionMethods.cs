@@ -479,7 +479,14 @@ namespace V6Tools
                         if (data.Columns.Contains(field)) o = row[field];
 
                         var value = ObjectAndString.ObjectTo(propertyInfo.PropertyType, o);
-                        propertyInfo.SetValue(t, value, null);
+                        if (value != DBNull.Value || propertyInfo.PropertyType != typeof(DateTime))
+                        {
+                            propertyInfo.SetValue(t, value, null);
+                        }
+                        else
+                        {
+
+                        }
                     }
                 }
                 result.Add(t);

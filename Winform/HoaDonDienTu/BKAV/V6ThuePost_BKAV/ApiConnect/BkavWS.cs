@@ -58,7 +58,8 @@ namespace V6ThuePostBkavApi
                         break;
                     case BkavConst._201_CancelInvoiceByInvoiceGUID:
                     case BkavConst._202_CancelInvoiceByPartnerInvoiceID:
-                        msg = CancelInvoice(commandType, jsonBody, out v6return);
+                        throw new Exception("Gọi hàm BkavWS.CancelInvoice");
+                        //msg = CancelInvoice(commandType, jsonBody, , out v6return);
                         break;
                     case BkavConst._205_SignGUID:
                         msg = SignInvoice(jsonBody, out v6return);
@@ -234,11 +235,21 @@ namespace V6ThuePostBkavApi
             return msg;
         }
 
-        public string CancelInvoice(int CmdType, string id, out V6Return v6return)
+        /// <summary>
+        /// Gửi lệnh Hủy hóa đơn
+        /// </summary>
+        /// <param name="CmdType">202 id=PartnerInvoiceStringID hoặc 201 id=InvoiceGUID</param>
+        /// <param name="id">PartnerInvoiceStringID hoặc InvoiceGUID tùy theo CmdType</param>
+        /// <param name="reason">Lý do hủy hóa đơn.</param>
+        /// <param name="v6return"></param>
+        /// <returns></returns>
+        public string CancelInvoice(int CmdType, string id, string reason, out V6Return v6return)
         {
             string msg = "";
             v6return = new V6Return();
             var postObject = new PostObjectBkav();
+
+            postObject.Invoice["Reason"] = reason;
 
             //List<InvoiceDataWS> listInvoiceDataWS = new List<InvoiceDataWS>();
             //InvoiceDataWS invoiceDataWS = new InvoiceDataWS();

@@ -176,6 +176,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         _tk_i.SetInitFilter("Loai_tk = 1");
                         _tk_i.BrotherFields = "ten_tk,ten_tk2";
                         _tk_i.V6LostFocus += Tki_V6LostFocus;
+                        _tk_i.V6LostFocusNoChange += delegate
+                        {
+                            if (detail1.IsAddOrEdit && _tk_i.Data != null)
+                            {
+                                var data = _tk_i.Data;
+                                var tk_cn = ObjectAndString.ObjectToInt(data["tk_cn"]);
+                                if (tk_cn == 1)
+                                {
+                                    _ma_kh_i.CheckNotEmpty = true;
+                                }
+                                else
+                                {
+                                    _ma_kh_i.CheckNotEmpty = false;
+                                }
+                            }
+                        };
                         break;
                     case "MA_KH_I":
                         _ma_kh_i = control as V6VvarTextBox;
@@ -649,6 +665,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
      
         private void Tki_V6LostFocus(object sender)
         {
+            if (!detail1.IsAddOrEdit) return;
+
             if (_tk_i.Data != null)
             {
                 var data = _tk_i.Data;

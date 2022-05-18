@@ -125,7 +125,7 @@ namespace V6ThuePostManager
         /// </summary>
         private static string __pattern;
         private static string pattern_field;
-        private static string __serial, seri_field;
+        private static string __serial, seri_field, _reason_field;
         private static string convert = "0";
         private static string _signmode = "0";
 
@@ -601,13 +601,13 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_H1")
                 {
-                    jsonBody = paras.Fkey_hd;
-                    result = bkavWS.POST(jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.V6ReturnValues);
+                    string reason = "" + paras.AM_data[_reason_field];
+                    result = bkavWS.CancelInvoice(BkavConst._202_CancelInvoiceByPartnerInvoiceID, paras.Fkey_hd, reason, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "E_H2") // Hủy và ký hủy
                 {
-                    jsonBody = paras.Fkey_hd;
-                    result = bkavWS.POST(jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.V6ReturnValues);
+                    string reason = "" + paras.AM_data[_reason_field];
+                    result = bkavWS.CancelInvoice(BkavConst._202_CancelInvoiceByPartnerInvoiceID, paras.Fkey_hd, reason, out paras.Result.V6ReturnValues);
                     if (!result.StartsWith("ERR") && V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
                     {
                         result = result + "\r\n" + bkavWS.SignInvoice(paras.V6PartnerID, out paras.Result.V6ReturnValues);
@@ -5038,6 +5038,10 @@ namespace V6ThuePostManager
                                     break;
                                 case "signmode":
                                     _signmode = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+
+                                case "reason":
+                                    _reason_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
 
                                     

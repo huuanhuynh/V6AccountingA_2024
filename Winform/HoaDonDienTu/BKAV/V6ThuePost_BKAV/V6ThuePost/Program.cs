@@ -21,11 +21,16 @@ namespace V6ThuePost
         private static DateTime _TEST_DATE_ = DateTime.Now;
         public static string pattern_test = "";
         public static string seri_test = "";
+        private static string _reason_field = "";
         #region ==== VAR ====
         /// <summary>
         /// key đầu ngữ
         /// </summary>
         private static string fkey0 = "V6";
+        /// <summary>
+        /// Dữ liệu 1 dòng đầu sau khi đọc data.
+        /// </summary>
+        private static DataRow row0;
         /// <summary>
         /// key thêm
         /// </summary>
@@ -216,9 +221,10 @@ namespace V6ThuePost
                     {
                         ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        jsonBody = fkeyA;// paras.Fkey_hd;
-                        //MessageBox.Show("Test jsonBody " + jsonBody);
-                        result = bkavWS.POST(jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out v6return);
+                        //jsonBody = fkeyA;// paras.Fkey_hd;
+                        string reason = null;
+                        if (row0.Table.Columns.Contains(_reason_field)) reason = "" + row0[_reason_field];
+                        result = bkavWS.CancelInvoice(BkavConst._202_CancelInvoiceByPartnerInvoiceID, fkeyA, reason, out v6return);
                     }
                     else if (mode == "E_T1")
                     {
@@ -281,7 +287,7 @@ namespace V6ThuePost
                 DataTable dataDbf = ParseDBF.ReadDBF(dbfFile);
                 DataTable data = V6Tools.V6Convert.Data_Table.FromTCVNtoUnicode(dataDbf);
                 //Fill data to postObject
-                DataRow row0 = data.Rows[0];
+                row0 = data.Rows[0];
                 fkeyA = fkey0 + row0["STT_REC"];
                 flagName = fkeyA;
                 flagFileName1 = flagName + ".flag1";
@@ -896,6 +902,10 @@ namespace V6ThuePost
                                 case "seri_test":
                                     seri_test = line.Value;
                                     break;
+                                case "reason":
+                                    _reason_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                    
                             }
                             break;
                         }
