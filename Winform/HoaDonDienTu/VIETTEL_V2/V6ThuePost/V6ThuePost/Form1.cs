@@ -125,5 +125,20 @@ namespace V6ThuePost
 
             MessageBox.Show(message + "\n" + result);
         }
+
+        private void btnGetMeta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var v = new V6Return();
+                string templateCode = Program.row0["MA_MAUHD"].ToString();
+                var result = Program._viettelV2_ws.GetMetaDataDefine(templateCode, out v);
+                lblResult.Text = result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }//End class
 }//End namespace

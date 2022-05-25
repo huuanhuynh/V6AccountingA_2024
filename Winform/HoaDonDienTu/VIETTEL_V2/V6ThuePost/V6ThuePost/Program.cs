@@ -1111,7 +1111,7 @@ namespace V6ThuePost
 
         //private static Dictionary<string, string> sellerInfo;
         private static PostObjectViettelV2 postObject;
-        private static DataRow row0;
+        public static DataRow row0;
 
         internal static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         internal static Dictionary<string, ConfigLine> buyerInfoConfig = null;

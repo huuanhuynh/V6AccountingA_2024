@@ -240,16 +240,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     remove_list_d.RemoveAt(0);
                 }
 
-                var cError = newMyThread._Message;
-                if (cError.Length > 0)
-                {
-                    V6ControlFormHelper.SetStatusText(cError);
-                    
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Red;
-                    }
-                }
+                //var cError = newMyThread._Message;
+                //if (cError.Length > 0)
+                //{
+                //    V6ControlFormHelper.SetStatusText(cError);
+                //    foreach (DataGridViewRow row in dataGridView1.Rows)
+                //    {
+                //        row.DefaultCellStyle.BackColor = Color.Red;
+                //    }
+                //}
             }
             else
             {
@@ -271,7 +270,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 else if (newMyThread._Status == Status.Finish)
                 {
-                    this.ShowMessage(V6Text.Finish + " " + newMyThread._Message);
+                    this.ShowMessage(V6Text.Finish + " " + newMyThread._Message, 500);
                 }
                 //V6ControlFormHelper.ShowInfoMessage("F9 finish: " + f9MessageAll, 500, this);
                 if (f9MessageAll.Length > 0)

@@ -312,6 +312,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
 
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                //if (shift_is_down)
+                //{
+                //    string result1 = PostManager.PowerPost(paras);
+                //    Clipboard.SetText(result1);
+                //    //this.ShowMessage(result);
+                //    AAPPR_SOA2_ViewXml viewer = new AAPPR_SOA2_ViewXml(result1);
+                //    viewer.ShowDialog(this);
+                //}
+
                 var row = dataGridView1.CurrentRow;
 
                 //string mode = row.Cells["Kieu_in"].Value.ToString();
@@ -336,12 +346,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string result = "";//, error = "", sohoadon = "", id = "";
                 var paras = new PostManagerParams
                 {
+                    AM_data = row.ToDataDictionary(),
                     DataSet = ds,
-                    Mode = "TestView",
+                    Mode = "TestView" + (shift_is_down ? "_Shift" : ""),
                     Branch = FilterControl.String1,
                     Dir = dir,
                     FileName = file,
-                    Key_Down = "TestView",
+                    Key_Down = "TestView" + (shift_is_down ? "_Shift" : ""),
                     RptFileFull = ReportFileFull,
                     Fkey_hd = fkey_hd,
                     Form = this,

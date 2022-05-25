@@ -1201,6 +1201,10 @@ namespace V6ThuePostManager
                     result = xml;
                     paras.Result.ResultString = xml;
                 }
+                else if (paras.Mode == "TestView_Shift")
+                {
+
+                }
                 else if (paras.Mode.StartsWith("E_"))
                 {
                     if (paras.Mode == "E_G1") // Gạch nợ theo fkey
@@ -3111,6 +3115,13 @@ namespace V6ThuePostManager
                     var xml = ReadData_Viettel(paras);
                     result = xml;
                     paras.Result.ResultString = xml;
+                }
+                else if (paras.Mode == "TestView_Shift")
+                {
+
+                    var xml = ReadData_Viettel(paras);
+                    result = viettel_V2WS.GetMetaDataDefine(__pattern, out paras.Result.V6ReturnValues);
+
                 }
                 else if (paras.Mode == "E_G1") // Gạch nợ
                 {

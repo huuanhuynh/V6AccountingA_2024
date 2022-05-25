@@ -979,5 +979,29 @@ namespace V6ThuePostViettelV2Api
 
             return result;
         }
+
+        /// <summary>
+        /// Lấy thông tin metadata
+        /// </summary>
+        /// <param name="templateCode">01GTKT0/001</param>
+        /// <returns></returns>
+        public string GetMetaDataDefine(string templateCode, out V6Return v6Return)
+        {
+            v6Return = new V6Return();
+            string result = "";
+            try
+            {
+                string apiLink = "/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/getCustomFields?taxCode=" + _codetax + "&templateCode=" + templateCode;
+                result = GET_VIETTEL_TOKEN(apiLink);
+                v6Return.RESULT_STRING = result;
+                v6Return.RESULT_OBJECT = result;
+            }
+            catch (Exception ex)
+            {
+                v6Return.RESULT_ERROR_MESSAGE = ex.Message;
+            }
+            return result;
+        }
+
     }
 }

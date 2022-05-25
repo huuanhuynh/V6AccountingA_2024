@@ -26,6 +26,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = true;
             F4 = true;
             F6 = true;
+            F7 = true;
             F9 = true;
             
             dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);

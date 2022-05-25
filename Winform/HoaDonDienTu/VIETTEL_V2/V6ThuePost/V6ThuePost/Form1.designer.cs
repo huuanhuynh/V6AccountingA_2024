@@ -46,6 +46,7 @@
             this.txtXmlFile = new System.Windows.Forms.TextBox();
             this.txtDbfFile = new System.Windows.Forms.TextBox();
             this.btnTest = new System.Windows.Forms.Button();
+            this.btnGetMeta = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSend
@@ -216,6 +217,17 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
+            // btnGetMeta
+            // 
+            this.btnGetMeta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetMeta.Location = new System.Drawing.Point(453, 621);
+            this.btnGetMeta.Name = "btnGetMeta";
+            this.btnGetMeta.Size = new System.Drawing.Size(75, 23);
+            this.btnGetMeta.TabIndex = 10;
+            this.btnGetMeta.Text = "Get Meta";
+            this.btnGetMeta.UseVisualStyleBackColor = true;
+            this.btnGetMeta.Click += new System.EventHandler(this.btnGetMeta_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,6 +247,7 @@
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnRead);
+            this.Controls.Add(this.btnGetMeta);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.label2);
@@ -265,6 +278,7 @@
         private System.Windows.Forms.TextBox txtXmlFile;
         private System.Windows.Forms.TextBox txtDbfFile;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnGetMeta;
     }
 }
 

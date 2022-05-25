@@ -25,7 +25,7 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 {
-    public partial class InChungTuViewBase : V6FormControl
+    public partial class InChungTuViewBase_Many : V6FormControl
     {
         #region Biến toàn cục
 
@@ -776,7 +776,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
         #endregion 
 
-        public delegate void PrintSuccessDelegate(InChungTuViewBase sender, string stt_rec, AlbcConfig albcConfig);
+        public delegate void PrintSuccessDelegate(InChungTuViewBase_Many sender, string stt_rec, AlbcConfig albcConfig);
         public event PrintSuccessDelegate PrintSuccess;
         protected virtual void CallPrintSuccessEvent()
         {
@@ -789,10 +789,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
         
-        public InChungTuViewBase(V6InvoiceBase invoice,
+        public InChungTuViewBase_Many(V6InvoiceBase invoice,
             string program, string reportProcedure,
             string reportFile, string reportTitle, string reportTitle2,
-            string reportFileF5, string reportTitleF5, string reportTitle2F5, string report_stt_rec)
+            string reportFileF5, string reportTitleF5, string reportTitle2F5, DataTable report_data, string current_report_stt_rec)
         {
             Invoice = invoice;
             _program = program;
@@ -805,11 +805,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             _reportTitleF5 = reportTitleF5;
             _reportTitle2F5 = reportTitle2F5;
 
-            Report_Stt_rec = report_stt_rec;
-
             V6ControlFormHelper.AddLastAction(GetType() + " " + invoice.Mact + " " + program);
             
             InitializeComponent();
+            dataGridView_Many.DataSource = report_data.Copy();
+            Report_Stt_rec = current_report_stt_rec;
             MyInit();
         }
 
@@ -824,7 +824,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 CreateFormControls();
                 CheckRightReport();
                 InvokeFormEvent(FormDynamicEvent.INIT);
-                Disposed += InChungTuViewBase_Disposed;
+                Disposed += InChungTuViewBase_Many_Disposed;
             }
             catch (Exception ex)
             {
@@ -999,10 +999,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
-        private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             MyInit2();
-            MakeReport(PrintMode, PrinterName, (int)numSoLien.Value, _printCopy);
+            MakeReport(Report_Stt_rec);
+            //MakeReport(PrintMode, PrinterName, (int)numSoLien.Value, _printCopy);
         }
 
         private void SetFormReportFilter()
@@ -1533,7 +1534,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".LoadData Error\n" + ex.Message, "InChungTuViewBase");
+                this.ShowErrorMessage(GetType() + ".LoadData Error\n" + ex.Message, "InChungTuViewBase_Many");
                 _tbl_AD = null;
                 _tbl2_AM = null;
                 _ds = null;
@@ -1556,7 +1557,54 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         /// 0 DoNoThing 1 AutoPrint 2 AutoClickPrint 3 AutoClickExport
         /// </summary>
         public V6PrintMode PrintMode { get; set; }
-        
+
+        public void MakeReport(string stt_rec)
+        {
+            try
+            {
+                // gán 1 số thông số trước khi MakeReport
+                Report_Stt_rec = stt_rec;
+                // set current row cho gridview_many
+                foreach (DataGridViewRow row in dataGridView_Many.Rows)
+                {
+                    if (row.Cells["STT_REC"].Value.ToString() == Report_Stt_rec)
+                    {
+                        dataGridView_Many.CurrentCell = row.Cells["SO_CT"];
+                        break;
+                    }
+                }
+                // set filter value
+                FilterControl.SetFieldValue(Report_Stt_rec);
+                // do make report
+                MakeReport(PrintMode, PrinterName, (int)numSoLien.Value, _printCopy);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Make report bằng current row.
+        /// </summary>
+        public void MakeReport()
+        {
+            try
+            {
+                DataGridViewRow row = dataGridView_Many.CurrentRow;
+                // gán 1 số thông số trước khi MakeReport
+                Report_Stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
+                // set filter value
+                FilterControl.SetFieldValue(Report_Stt_rec);
+                // do make report
+                MakeReport(PrintMode, PrinterName, (int)numSoLien.Value, _printCopy);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -1617,7 +1665,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message, "InChungTuViewBase");
+                this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message, "InChungTuViewBase_Many");
             }
         }
 
@@ -1747,7 +1795,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             Dispose();
         }
 
-        void InChungTuViewBase_Disposed(object sender, EventArgs e)
+        void InChungTuViewBase_Many_Disposed(object sender, EventArgs e)
         {
             try
             {
@@ -1791,7 +1839,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     }
                     catch (Exception ex)
                     {
-                        this.ShowErrorMessage(GetType() + ".ExportFail: " + ex.Message, "InChungTuViewBase");
+                        this.ShowErrorMessage(GetType() + ".ExportFail: " + ex.Message, "InChungTuViewBase_Many");
                         return;
                     }
                     if (V6Options.AutoOpenExcel)
@@ -1810,7 +1858,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ExportFail\n" + ex.Message, "InChungTuViewBase");
+                this.ShowErrorMessage(GetType() + ".ExportFail\n" + ex.Message, "InChungTuViewBase_Many");
             }
         }
 
@@ -1886,7 +1934,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".PrintGrid\n" + ex.Message, "InChungTuViewBase");
+                this.ShowErrorMessage(GetType() + ".PrintGrid\n" + ex.Message, "InChungTuViewBase_Many");
             }
         }
         
@@ -2673,7 +2721,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message, "InChungTuViewBase");
+                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message, "InChungTuViewBase_Many");
             }
         }
 
@@ -2961,7 +3009,73 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
         }
 
+        bool flag_next_pre;
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                flag_next_pre = true;
+                if (dataGridView_Many.CurrentRow.Index < dataGridView_Many.RowCount - 1)
+                {
+                    dataGridView_Many.CurrentCell = dataGridView_Many.Rows[dataGridView_Many.CurrentRow.Index + 1].Cells["SO_CT"];
+                    MakeReport();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+            flag_next_pre = false;
+        }
+
+        private void btnPre_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                flag_next_pre = true;
+                if (dataGridView_Many.CurrentRow.Index > 0)
+                {
+                    dataGridView_Many.CurrentCell = dataGridView_Many.Rows[dataGridView_Many.CurrentRow.Index - 1].Cells["SO_CT"];
+                    MakeReport();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+            flag_next_pre = false;
+        }
+
+        private int old_index = -1;
+        private void dataGridView_Many_CurrentCellChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!IsReady) return;
+                if (dataGridView_Many.CurrentRow.Index != old_index)
+                {
+                    old_index = dataGridView_Many.CurrentRow.Index;
+                    if (!flag_next_pre)
+                    {
+                        MakeReport();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
         
     }
 
+    public enum V6PrintMode
+    {
+        None = -1,
+        DoNoThing = 0,
+        AutoPrint = 1,
+        AutoClickPrint = 2,
+        AutoExportT = 3,
+    }
 }
