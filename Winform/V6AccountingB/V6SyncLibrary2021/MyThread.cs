@@ -376,7 +376,8 @@ namespace V6SyncLibrary2021
                                     rowc["FILE_SQLF"].ToString(), rowc["FILE_SQLFC"].ToString(),
                                     rowc["FILE_ARA00"].ToString(), rowc["FILE_ARI70"].ToString(),
                                     rowc["FILE_ARS20"].ToString(), rowc["FILE_ARS30"].ToString(),
-                                    rowc["FILE_ARV20"].ToString(), rowc["FILE_ARV30"].ToString());
+                                    rowc["FILE_ARV20"].ToString(), rowc["FILE_ARV30"].ToString(),
+                                    rowc["SCRIPT_SQL"].ToString());
                                 break;
                             default:
                                 break;
@@ -1985,7 +1986,8 @@ namespace V6SyncLibrary2021
             string pfield_key, string plistws_id, string pcopy_all, string pkey_SQLF, string pkey_SQL,
             string pFile_type,
             string pUnits, string pWs, string pAm, string pAd, string pAra00, string pAri70, string pArs20,
-            string pArs30, string pArv20, string pArv30)
+            string pArs30, string pArv20, string pArv30,
+            string script_sql)
         {
 
             string _pfield_key, _plistws_id, _pcopy_all, _pkey_SQLF, _pkey_SQL, _pFile_type, _pUnits, _pWs, _pAm, _pAd, _pAra00, _pAri70, _pArs20, _pArs30, _pArv20, _pArv30;
@@ -2141,6 +2143,19 @@ namespace V6SyncLibrary2021
             //tb3
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
             tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+
+            if (!string.IsNullOrEmpty(script_sql) && Sync2ThConfig.GetString("DELE_YN") == "1")
+            {
+                var plist = new[]
+                {
+                    new SqlParameter("@ngay_ct1", _Ngay_ct1),
+                    new SqlParameter("@ngay_ct2", _Ngay_ct2),
+                    new SqlParameter("@ma_dvcs", Sync2ThConfig.GetString("MA_DVCS")),
+                };
+                strsql = "Delete " + pAm + " Where " + script_sql;
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist);
+            }            
+
             var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
             
             foreach (DataRow rowc in tb2.Rows)
