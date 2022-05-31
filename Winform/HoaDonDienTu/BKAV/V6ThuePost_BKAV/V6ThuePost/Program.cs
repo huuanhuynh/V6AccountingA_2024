@@ -22,6 +22,7 @@ namespace V6ThuePost
         public static string pattern_test = "";
         public static string seri_test = "";
         private static string _reason_field = "";
+        public static bool _write_log = false;
         #region ==== VAR ====
         /// <summary>
         /// key đầu ngữ
@@ -403,13 +404,19 @@ namespace V6ThuePost
                 //}
                 //postObject.taxBreakdowns.Add(taxBreakdown);//One only!
 
-                result = postObject.ToJson();
+                result = "[" + postObject.ToJson() + "]";
+                if (_write_log)
+                {
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             //catch (Exception ex)
             {
                 //
             }
-            return "[" + result + "]";
+            return result;
         }
 
         private static object GetValue(DataRow row, ConfigLine config)
@@ -904,6 +911,9 @@ namespace V6ThuePost
                                     break;
                                 case "reason":
                                     _reason_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "writelog":
+                                    _write_log = ObjectAndString.ObjectToBool(line.Value);
                                     break;
                                     
                             }

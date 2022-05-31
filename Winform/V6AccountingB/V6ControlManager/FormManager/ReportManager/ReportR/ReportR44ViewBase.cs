@@ -23,6 +23,7 @@ using V6RptEditor;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using System.Globalization;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
@@ -705,12 +706,65 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, V6Options.M_R_FONTSIZE);
                 }
                 dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
+
+                menuCopy.Click += menuCopy_Click;
+                menuCopyValue.Click += menuCopy_Click;
+                menuCopyAll.Click += menuCopy_Click;
+
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".Init", ex);
             }
+        }
+
+        Point _point;
+        void LabelSummary_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                _point = e.Location;
+                copyMenuStrip1.Show(this, new Point(lblSummary.Left + _point.X, lblSummary.Top + _point.Y));
+            }
+        }
+
+        void menuCopy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string textPart = "";
+                // tính toán vị trí.
+                if (_copyValues.Count == 0)
+                {
+                    Clipboard.SetText("");
+                    return;
+                }
+                int onePartW = lblSummary.Width / _copyValues.Count;
+                int index = _point.X / onePartW;
+                var item = _copyValues[index];
+
+                if (sender == menuCopy)
+                {
+                    Clipboard.SetText(item.stringValue);
+                }
+                else if (sender == menuCopyValue)
+                {
+                    string text = item.decimalValue.ToString(CultureInfo.InstalledUICulture);
+                    Clipboard.SetText(text);
+                }
+                else if (sender == menuCopyAll)
+                {
+                    Clipboard.SetText(lblSummary.Text);
+                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                Clipboard.SetText("ERR:" + ex.Message);
+                return;
+            }
+            Clipboard.SetText("");
         }
 
         private void CheckRightReport()
@@ -1520,6 +1574,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 var configs = ObjectAndString.SplitString(config_string);
                 string viewText = "";
+                _copyValues = new List<CopyValueItem>();
                 foreach (string config in configs)
                 {
                     var sss = config.Split(':');
@@ -1552,8 +1607,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         i = i1;
                     }
 
-                    viewText += string.Format("   {0} {1}", field_header_template, ObjectAndString.NumberToString
-                        (tbl2_row[sss[1]], decimal_place, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR));
+                    decimal value = ObjectAndString.ObjectToDecimal(tbl2_row[value_field]);
+                    string stringValue = ObjectAndString.NumberToString(value, decimal_place, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
+                    var item = new CopyValueItem
+                    {
+                        decimalValue = value,
+                        stringValue = stringValue
+                    };
+                    _copyValues.Add(item);
+                    viewText += string.Format("   {0} {1}", field_header_template, stringValue);
                 }
 
                 if (viewText.Length > 3) viewText = viewText.Substring(3);
@@ -1563,6 +1625,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.WriteExLog(GetType() + ".ViewFooter", ex);
             }
+        }
+
+        List<CopyValueItem> _copyValues = new List<CopyValueItem>();
+        private class CopyValueItem
+        {
+            public decimal decimalValue { get; set; }
+            public string stringValue { get; set; }
         }
 
         private int SummaryHeight

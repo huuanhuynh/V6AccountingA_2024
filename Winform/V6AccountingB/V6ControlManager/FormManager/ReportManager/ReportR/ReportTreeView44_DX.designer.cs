@@ -82,11 +82,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaMau = new V6Controls.Controls.V6FormButton();
             this.lblSummary = new System.Windows.Forms.Label();
             this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
+            this.copyMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuCopyValue = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCopyAll = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
             this.panel0.SuspendLayout();
             this.grbNgonNgu.SuspendLayout();
             this.grbTienTe.SuspendLayout();
+            this.copyMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -629,6 +634,33 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
+            // copyMenuStrip1
+            // 
+            this.copyMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuCopyValue,
+            this.menuCopy,
+            this.menuCopyAll});
+            this.copyMenuStrip1.Name = "contextMenuStrip1";
+            this.copyMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            // 
+            // menuCopyValue
+            // 
+            this.menuCopyValue.Name = "menuCopyValue";
+            this.menuCopyValue.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyValue.Text = "Copy value";
+            // 
+            // menuCopy
+            // 
+            this.menuCopy.Name = "menuCopy";
+            this.menuCopy.Size = new System.Drawing.Size(152, 22);
+            this.menuCopy.Text = "Copy text";
+            // 
+            // menuCopyAll
+            // 
+            this.menuCopyAll.Name = "menuCopyAll";
+            this.menuCopyAll.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyAll.Text = "Copy all";
+            // 
             // ReportTreeView44_DX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -662,6 +694,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.grbNgonNgu.PerformLayout();
             this.grbTienTe.ResumeLayout(false);
             this.grbTienTe.PerformLayout();
+            this.copyMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -717,6 +750,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem exportToWordMenu;
+        private ContextMenuStrip copyMenuStrip1;
+        private ToolStripMenuItem menuCopyValue;
+        private ToolStripMenuItem menuCopy;
+        private ToolStripMenuItem menuCopyAll;
 
 
 

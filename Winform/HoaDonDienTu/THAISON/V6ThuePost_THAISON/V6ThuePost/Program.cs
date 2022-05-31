@@ -25,6 +25,7 @@ namespace V6ThuePost
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
         public static ThaiSonWS _ThaiSon_ws = null;
+        public static bool _write_log = false;
         #region ===== VAR =====
         /// <summary>
         /// Link host
@@ -730,6 +731,13 @@ namespace V6ThuePost
                 hoa_don_entity.HangHoas = list_hanghoa.ToArray();
                 //hoa_don_entity.dataExtension = list_extension.ToArray();
                 //hoa_don_entity.emptysField = emptysField.ToArray();
+                if (_write_log)
+                {
+                    string result = V6JsonConverter.ClassToJson(hoa_don_entity, "dd/MM/yyyy");
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             //catch (Exception ex)
             {
@@ -1326,6 +1334,9 @@ namespace V6ThuePost
                                     break;
                                 case "v6fkeyexcel":
                                     fkeyexcel0 = line.Value;
+                                    break;
+                                case "writelog":
+                                    _write_log = ObjectAndString.ObjectToBool(line.Value);
                                     break;
                             }
                             break;

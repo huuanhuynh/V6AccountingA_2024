@@ -31,9 +31,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcelViewMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,12 +81,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
             this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
+            this.copyMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuCopyValue = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCopyAll = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
             this.panel0.SuspendLayout();
             this.grbNgonNgu.SuspendLayout();
             this.grbTienTe.SuspendLayout();
+            this.copyMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -287,27 +292,27 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Control_S = true;
             this.dataGridView1.Location = new System.Drawing.Point(307, 86);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(662, 312);
             this.dataGridView1.TabIndex = 13;
@@ -571,6 +576,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.lblSummary.TabIndex = 19;
             this.lblSummary.Text = "Summary FOOTER";
             this.lblSummary.Visible = false;
+            this.lblSummary.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSummary_MouseClick);
             // 
             // btnSuaTTMauBC
             // 
@@ -635,6 +641,33 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
+            // copyMenuStrip1
+            // 
+            this.copyMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuCopyValue,
+            this.menuCopy,
+            this.menuCopyAll});
+            this.copyMenuStrip1.Name = "contextMenuStrip1";
+            this.copyMenuStrip1.Size = new System.Drawing.Size(134, 70);
+            // 
+            // menuCopyValue
+            // 
+            this.menuCopyValue.Name = "menuCopyValue";
+            this.menuCopyValue.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyValue.Text = "Copy value";
+            // 
+            // menuCopy
+            // 
+            this.menuCopy.Name = "menuCopy";
+            this.menuCopy.Size = new System.Drawing.Size(152, 22);
+            this.menuCopy.Text = "Copy text";
+            // 
+            // menuCopyAll
+            // 
+            this.menuCopyAll.Name = "menuCopyAll";
+            this.menuCopyAll.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyAll.Text = "Copy all";
+            // 
             // ReportR44_DX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,6 +704,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.grbNgonNgu.PerformLayout();
             this.grbTienTe.ResumeLayout(false);
             this.grbTienTe.PerformLayout();
+            this.copyMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -725,6 +759,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem exportEXCELXtraMenu;
         private System.Windows.Forms.ToolStripMenuItem exportEXCELDataMenu;
         private System.Windows.Forms.ToolStripMenuItem exportToHTMLMenu;
+        private System.Windows.Forms.ContextMenuStrip copyMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuCopyValue;
+        private System.Windows.Forms.ToolStripMenuItem menuCopy;
+        private System.Windows.Forms.ToolStripMenuItem menuCopyAll;
 
 
 

@@ -20,6 +20,7 @@ namespace V6ThuePost
     {
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
+        public static bool _write_log = false;
         #region ===== VAR =====
         public static ViettelWS _viettel_ws = null;
         /// <summary>
@@ -468,6 +469,13 @@ namespace V6ThuePost
                 //}
                 if (string.IsNullOrEmpty(_datetype)) _datetype = "VIETTEL";
                 result = postObject.ToJson(_datetype);
+
+                if (_write_log)
+                {
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             //catch (Exception ex)
             {
@@ -919,6 +927,9 @@ namespace V6ThuePost
                                     //    break;
                                     case "datetype":
                                         _datetype = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                        break;
+                                    case "writelog":
+                                        _write_log = ObjectAndString.ObjectToBool(line.Value);
                                         break;
                                 }
                                 break;

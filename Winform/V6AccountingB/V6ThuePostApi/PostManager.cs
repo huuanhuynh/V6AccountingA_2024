@@ -128,7 +128,7 @@ namespace V6ThuePostManager
         private static string __serial, seri_field, _reason_field;
         private static string convert = "0";
         private static string _signmode = "0";
-
+        private static bool _write_log = false;
 
         private static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         /// <summary>
@@ -804,13 +804,20 @@ namespace V6ThuePostManager
                         GetValue(row0, summarizeInfoConfig["PartnerInvoiceStringID"]).ToString();
                 }
 
-                result = postObject.ToJson();
+                result = "[" + postObject.ToJson() + "]";
+                
+                if (_write_log)
+                {
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return "[" + result + "]";
+            return result;
         }
 
         
@@ -1847,6 +1854,12 @@ namespace V6ThuePostManager
                 }
 
                 result = postObject.ToXml();
+                if (_write_log)
+                {
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             catch (Exception ex)
             {
@@ -2086,8 +2099,14 @@ namespace V6ThuePostManager
                 {
                     inv.Invoice[item.Key] = GetValue(row0, item.Value);
                 }
-
-                //result = XmlConverter.ClassToXml(postObject);
+                
+                if (_write_log)
+                {
+                    string result = postObject.ToXml();
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             //catch (Exception ex)
             {
@@ -2182,7 +2201,13 @@ namespace V6ThuePostManager
                     result_entity = hoa_don_entity;
                 }
 
-                
+                if (_write_log)
+                {
+                    string result = V6JsonConverter.ClassToJson(result_entity, "dd/MM/yyyy");
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             //catch (Exception ex)
             {
@@ -3641,6 +3666,12 @@ namespace V6ThuePostManager
                 }
 
                 result = postObject.ToJson(_datetype);
+                if (_write_log)
+                {
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             catch (Exception ex)
             {
@@ -4529,7 +4560,12 @@ namespace V6ThuePostManager
             }
 
             result = V6JsonConverter.ObjectToJson(postObject, "yyyy-MM-dd");
-            
+            if (_write_log)
+            {
+                string stt_rec = row0["STT_REC"].ToString();
+                string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                File.WriteAllText(file, result);
+            }
             return result;
         }
 
@@ -4752,9 +4788,15 @@ namespace V6ThuePostManager
                 foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
                 {
                     invoiceData[item.Key] = GetValue(row0, item.Value);
-                }
+                }                
 
-                result = postObject.ToJson();
+                if (_write_log)
+                {
+                    result = postObject.ToJson();
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             //catch (Exception ex)
             {
@@ -5053,6 +5095,9 @@ namespace V6ThuePostManager
 
                                 case "reason":
                                     _reason_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "writelog":
+                                    _write_log = ObjectAndString.ObjectToBool(line.Value);
                                     break;
 
                                     

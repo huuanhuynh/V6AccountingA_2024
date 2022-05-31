@@ -77,12 +77,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
+            this.copyMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuCopyValue = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCopyAll = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
             this.panel0.SuspendLayout();
             this.grbNgonNgu.SuspendLayout();
             this.grbTienTe.SuspendLayout();
+            this.copyMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -558,6 +563,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.lblSummary.TabIndex = 19;
             this.lblSummary.Text = "Summary FOOTER";
             this.lblSummary.Visible = false;
+            this.lblSummary.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSummary_MouseClick);
             // 
             // btnSuaTTMauBC
             // 
@@ -607,6 +613,33 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 22);
             this.gridViewTopFilter1.TabIndex = 1;
             // 
+            // copyMenuStrip1
+            // 
+            this.copyMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuCopyValue,
+            this.menuCopy,
+            this.menuCopyAll});
+            this.copyMenuStrip1.Name = "contextMenuStrip1";
+            this.copyMenuStrip1.Size = new System.Drawing.Size(134, 70);
+            // 
+            // menuCopyValue
+            // 
+            this.menuCopyValue.Name = "menuCopyValue";
+            this.menuCopyValue.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyValue.Text = "Copy value";
+            // 
+            // menuCopy
+            // 
+            this.menuCopy.Name = "menuCopy";
+            this.menuCopy.Size = new System.Drawing.Size(152, 22);
+            this.menuCopy.Text = "Copy text";
+            // 
+            // menuCopyAll
+            // 
+            this.menuCopyAll.Name = "menuCopyAll";
+            this.menuCopyAll.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyAll.Text = "Copy all";
+            // 
             // ReportR44ViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -643,6 +676,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.grbNgonNgu.PerformLayout();
             this.grbTienTe.ResumeLayout(false);
             this.grbTienTe.PerformLayout();
+            this.copyMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,6 +727,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private GridViewTopFilter gridViewTopFilter1;
         private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
         private System.Windows.Forms.ToolStripMenuItem viewListInfoMenu;
+        private System.Windows.Forms.ContextMenuStrip copyMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuCopyValue;
+        private System.Windows.Forms.ToolStripMenuItem menuCopy;
+        private System.Windows.Forms.ToolStripMenuItem menuCopyAll;
 
 
 

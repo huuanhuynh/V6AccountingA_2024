@@ -27,6 +27,7 @@ namespace V6ThuePost
         const string FkeyField = "Fkey";
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
+        public static bool _write_log = false;
         #region ===== VAR =====
         public static SoftDreamsWS _softDreams_ws = null;
         /// <summary>
@@ -1005,7 +1006,13 @@ namespace V6ThuePost
                     inv.Invoice[item.Key] = GetValue(row0, item.Value);
                 }
 
-                //result = XmlConverter.ClassToXml(postObject);
+                if (_write_log)
+                {
+                    string result = postObject.ToXml();
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
             }
             //catch (Exception ex)
             {
@@ -1866,7 +1873,9 @@ namespace V6ThuePost
                                 case "signmode":
                                     _signmode = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
-                                    
+                                case "writelog":
+                                    _write_log = ObjectAndString.ObjectToBool(line.Value);
+                                    break;
                             }
                             break;
                         }

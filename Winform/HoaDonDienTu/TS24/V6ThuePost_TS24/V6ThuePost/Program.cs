@@ -19,6 +19,7 @@ namespace V6ThuePost
 {
     static class Program
     {
+        public static bool _write_log = false;
         #region ===== VAR =====
         /// <summary>
         /// Tên cờ V6STT_REC
@@ -736,6 +737,13 @@ namespace V6ThuePost
                 result += "\r\n\r\n";
                 result += XmlConverter.ObjectToXml(_adList);
 
+                if (_write_log)
+                {
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
+
             }
             catch (Exception ex)
             {
@@ -1354,6 +1362,9 @@ namespace V6ThuePost
                                     break;
                                 case "v6fkeyexcel":
                                     fkeyexcel0 = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "writelog":
+                                    _write_log = ObjectAndString.ObjectToBool(line.Value);
                                     break;
                             }
                             break;

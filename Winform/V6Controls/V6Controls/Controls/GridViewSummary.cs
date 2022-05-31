@@ -181,11 +181,7 @@ namespace V6Controls.Controls
                     var dataType = col.ValueType;
                     if (ObjectAndString.IsNumberType(dataType) && !_NO_SUM_COLUMNS_FOR_CHECK.Contains(";" + col.DataPropertyName.ToUpper() + ";"))
                     {
-                        text = SumOfSelectedRowsByColumn(_dgv, col).ToString(col.DefaultCellStyle.Format);
-                        text = text.Replace(V6Setting.SystemDecimalSeparator, "#");
-                        text = text.Replace(",", ".");
-                        text = text.Replace(" ", ".");
-                        text = text.Replace("#", V6Options.M_NUM_POINT);
+                        text = SumOfSelectedRowsByColumn_DrawString(_dgv, col);
                     }
 
                     if (rec.Right > 0)
@@ -227,7 +223,8 @@ namespace V6Controls.Controls
         {
             InitializeComponent();
             this.MouseClick += GridViewSummary_MouseClick;
-            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            menuCopy.Click += menuCopy_Click;
+            menuCopyValue.Click += menuCopy_Click;
         }
 
         private void MyInit()
@@ -251,11 +248,11 @@ namespace V6Controls.Controls
             if (e.Button == MouseButtons.Right)
             {
                 _point = e.Location;
-                contextMenuStrip1.Show(this, _point);
+                copyMenuStrip1.Show(this, _point);
             }            
         }
 
-        void toolStripMenuItem1_Click(object sender, EventArgs e)
+        void menuCopy_Click(object sender, EventArgs e)
         {
             try
             {                
@@ -264,7 +261,16 @@ namespace V6Controls.Controls
                     if (ITEM.Value.Contains(_point))
                     {
                         var col = this._dgv.Columns[ITEM.Key];
-                        Clipboard.SetText(_SUM_VALUES[ITEM.Key].ToString(CultureInfo.InvariantCulture));
+                        if (sender == menuCopy)
+                        {
+                            string text = SumOfSelectedRowsByColumn_DrawString(_dgv, col);
+                            Clipboard.SetText(text);
+                        }
+                        else if (sender == menuCopyValue)
+                        {
+                            string text = SumOfSelectedRowsByColumn(_dgv, col).ToString(CultureInfo.InstalledUICulture);
+                            Clipboard.SetText(text);
+                        }
                         return;
                     }
                 }
@@ -400,6 +406,16 @@ namespace V6Controls.Controls
                 if (CheckSumCondition(row)) sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
             }
             return sum;
+        }
+
+        private string SumOfSelectedRowsByColumn_DrawString(DataGridView dgv, DataGridViewColumn col)
+        {
+            string text = SumOfSelectedRowsByColumn(_dgv, col).ToString(col.DefaultCellStyle.Format);
+            text = text.Replace(V6Setting.SystemDecimalSeparator, "#");
+            text = text.Replace(",", ".");
+            text = text.Replace(" ", ".");
+            text = text.Replace("#", V6Options.M_NUM_POINT);
+            return text;
         }
 
         private bool CheckSumCondition(DataGridViewRow row)
