@@ -133,6 +133,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(662, 94);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.Visible = false;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
@@ -638,9 +639,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.panelCRview.Controls.Add(this.documentViewer2);
             this.panelCRview.Controls.Add(this.documentViewer4);
             this.panelCRview.Controls.Add(this.documentViewer3);
-            this.panelCRview.Location = new System.Drawing.Point(307, 189);
+            this.panelCRview.Location = new System.Drawing.Point(307, 68);
             this.panelCRview.Name = "panelCRview";
-            this.panelCRview.Size = new System.Drawing.Size(667, 460);
+            this.panelCRview.Size = new System.Drawing.Size(667, 581);
             this.panelCRview.TabIndex = 1;
             // 
             // documentViewer1
@@ -649,13 +650,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.documentViewer1.IsMetric = false;
-            this.documentViewer1.Location = new System.Drawing.Point(0, 3);
+            this.documentViewer1.Location = new System.Drawing.Point(0, -4);
             this.documentViewer1.LookAndFeel.SkinName = "Seven Classic";
             this.documentViewer1.Name = "documentViewer1";
             this.documentViewer1.RequestDocumentCreation = false;
-            this.documentViewer1.Size = new System.Drawing.Size(664, 456);
+            this.documentViewer1.Size = new System.Drawing.Size(664, 584);
             this.documentViewer1.TabIndex = 40;
             this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
+            this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
             // documentViewer2
             // 
@@ -667,7 +669,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.documentViewer2.LookAndFeel.SkinName = "Seven Classic";
             this.documentViewer2.Name = "documentViewer2";
             this.documentViewer2.RequestDocumentCreation = false;
-            this.documentViewer2.Size = new System.Drawing.Size(667, 457);
+            this.documentViewer2.Size = new System.Drawing.Size(667, 578);
             this.documentViewer2.TabIndex = 41;
             // 
             // documentViewer4
@@ -680,7 +682,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.documentViewer4.LookAndFeel.SkinName = "Seven Classic";
             this.documentViewer4.Name = "documentViewer4";
             this.documentViewer4.RequestDocumentCreation = false;
-            this.documentViewer4.Size = new System.Drawing.Size(667, 457);
+            this.documentViewer4.Size = new System.Drawing.Size(667, 578);
             this.documentViewer4.TabIndex = 43;
             // 
             // documentViewer3
@@ -693,7 +695,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.documentViewer3.LookAndFeel.SkinName = "Seven Classic";
             this.documentViewer3.Name = "documentViewer3";
             this.documentViewer3.RequestDocumentCreation = false;
-            this.documentViewer3.Size = new System.Drawing.Size(667, 457);
+            this.documentViewer3.Size = new System.Drawing.Size(667, 578);
             this.documentViewer3.TabIndex = 42;
             // 
             // btnSuaMau

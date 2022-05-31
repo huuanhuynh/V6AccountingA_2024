@@ -592,6 +592,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.documentViewer1.Size = new System.Drawing.Size(664, 456);
             this.documentViewer1.TabIndex = 40;
             this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
+            this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
             // documentViewer2
             // 

@@ -2430,6 +2430,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
             else
             {
+                dataGridView1.Visible = true;
                 panelCRview.Left = grbDieuKienLoc.Right + 5;
                 panelCRview.Top = dataGridView1.Bottom + 5;
                 panelCRview.Height = Height - panelCRview.Top - 10;// panelCRview.Bottom - dataGridView1.Bottom - 5;

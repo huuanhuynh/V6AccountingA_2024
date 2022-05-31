@@ -86,7 +86,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                var albcConfig_program = ConfigManager.GetAlbcConfigByMA_FILE(_program); // ma_file = program.
+                var albcConfig_program = ConfigManager.GetAlbcConfigByMA_FILE(_reportFile);
                 if (albcConfig_program.NoInfo) return;
                 var xml = albcConfig_program.MMETHOD;
                 if (xml == "") return;
