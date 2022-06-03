@@ -74,6 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Error = "";
         private string f9ErrorAll = "";
         private Button btnTestViewPdf;
+        private Button btnPrintF7;
         private string f9MessageAll = "";
         protected override void XuLyF9()
         {
@@ -421,7 +422,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorException(GetType() + ".btnTestViewPdf_Click", ex);
             }
         }
-
+        
         private void btnTestViewXml_Click(object sender, EventArgs e)
         {
             try
@@ -476,6 +477,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private void btnPrintF7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XuLyF7();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnTestViewXml_Click", ex);
+            }
+        }
+
         V6Invoice85 invoice = new V6Invoice85();
         protected override void ViewDetails(DataGridViewRow row)
         {
@@ -495,21 +508,33 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void InitializeComponent()
         {
             this.btnTestViewPdf = new System.Windows.Forms.Button();
+            this.btnPrintF7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTestViewPdf
             // 
             this.btnTestViewPdf.Location = new System.Drawing.Point(190, 30);
             this.btnTestViewPdf.Name = "btnTestViewPdf";
-            this.btnTestViewPdf.Size = new System.Drawing.Size(111, 23);
+            this.btnTestViewPdf.Size = new System.Drawing.Size(55, 23);
             this.btnTestViewPdf.TabIndex = 22;
             this.btnTestViewPdf.Text = "Xem Einvoice";
             this.btnTestViewPdf.UseVisualStyleBackColor = true;
             this.btnTestViewPdf.Click += new System.EventHandler(this.btnTestViewPdf_Click);
             // 
+            // btnPrintF7
+            // 
+            this.btnPrintF7.Location = new System.Drawing.Point(250, 30);
+            this.btnPrintF7.Name = "btnPrintF7";
+            this.btnPrintF7.Size = new System.Drawing.Size(55, 23);
+            this.btnPrintF7.TabIndex = 25;
+            this.btnPrintF7.Text = "Print";
+            this.btnPrintF7.UseVisualStyleBackColor = true;
+            this.btnPrintF7.Click += new System.EventHandler(this.btnPrintF7_Click);
+            // 
             // AAPPR_IXB3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.btnPrintF7);
             this.Controls.Add(this.btnTestViewPdf);
             this.Name = "AAPPR_IXB3";
             this.Load += new System.EventHandler(this.AAPPR_IXB3_Load);
@@ -518,6 +543,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnTestViewPdf, 0);
+            this.Controls.SetChildIndex(this.btnPrintF7, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

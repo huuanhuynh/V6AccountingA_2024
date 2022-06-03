@@ -9,6 +9,7 @@ using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 using V6ThuePostManager;
 using V6Tools;
 using Timer = System.Windows.Forms.Timer;
@@ -41,6 +42,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 dataGridView1.Control_S = true;
+                InvokeFormEvent(FormDynamicEvent.INIT2);
             }
             catch (Exception ex)
             {
@@ -74,6 +76,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorException(GetType() + ".MakeReport2", ex);
             }
         }
+
+        private Button btnPrintF7;
 
         
         
@@ -369,6 +373,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private void btnPrintF7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XuLyF7();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnTestViewXml_Click", ex);
+            }
+        }
+
         protected override void ViewDetails(DataGridViewRow row)
         {
             try
@@ -387,21 +403,33 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void InitializeComponent()
         {
             this.btnTestViewXml = new System.Windows.Forms.Button();
+            this.btnPrintF7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTestViewXml
             // 
             this.btnTestViewXml.Location = new System.Drawing.Point(190, 30);
             this.btnTestViewXml.Name = "btnTestViewXml";
-            this.btnTestViewXml.Size = new System.Drawing.Size(111, 23);
+            this.btnTestViewXml.Size = new System.Drawing.Size(55, 23);
             this.btnTestViewXml.TabIndex = 23;
-            this.btnTestViewXml.Text = "Xem XML";
+            this.btnTestViewXml.Text = "XML";
             this.btnTestViewXml.UseVisualStyleBackColor = true;
             this.btnTestViewXml.Click += new System.EventHandler(this.btnTestViewXml_Click);
+            // 
+            // btnPrintF7
+            // 
+            this.btnPrintF7.Location = new System.Drawing.Point(250, 30);
+            this.btnPrintF7.Name = "btnPrintF7";
+            this.btnPrintF7.Size = new System.Drawing.Size(55, 23);
+            this.btnPrintF7.TabIndex = 24;
+            this.btnPrintF7.Text = "Print";
+            this.btnPrintF7.UseVisualStyleBackColor = true;
+            this.btnPrintF7.Click += new System.EventHandler(this.btnPrintF7_Click);
             // 
             // AAPPR_SOA2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.btnPrintF7);
             this.Controls.Add(this.btnTestViewXml);
             this.Name = "AAPPR_SOA2";
             this.Load += new System.EventHandler(this.AAPPR_SOA2_Load);
@@ -410,6 +438,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnTestViewXml, 0);
+            this.Controls.SetChildIndex(this.btnPrintF7, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

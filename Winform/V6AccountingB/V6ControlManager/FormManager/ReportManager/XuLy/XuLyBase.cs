@@ -66,6 +66,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (Event_Methods.ContainsKey(eventName))
                 {
+                    All_Objects["thisForm"] = this;
                     V6ControlFormHelper.SetStatusText("InvokeFormEvent:" + eventName);
                     var method_name = Event_Methods[eventName];
                     return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);

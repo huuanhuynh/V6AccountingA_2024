@@ -312,6 +312,7 @@ namespace V6Controls.Forms
         /// <param name="message"></param>
         public static void ShowMainMessage(string message)
         {
+            if (string.IsNullOrEmpty(message)) return;
             ShowTopMessage(message, null);
         }
 

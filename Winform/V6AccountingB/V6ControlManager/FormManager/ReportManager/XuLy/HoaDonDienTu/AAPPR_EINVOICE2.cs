@@ -46,13 +46,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             Load_Data = true;//Thay đổi cờ.
             base.MakeReport2();
         }
-        
+
+
+        private void btnPrintF7_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
         #region ==== Xử lý F9 ====
         
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
+        private Button btnPrintF7;
         private string f9MessageAll = "";
         
         protected override void XuLyF9()
@@ -342,13 +349,30 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void InitializeComponent()
         {
+            this.btnPrintF7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnPrintF7
+            // 
+            this.btnPrintF7.Location = new System.Drawing.Point(250, 30);
+            this.btnPrintF7.Name = "btnPrintF7";
+            this.btnPrintF7.Size = new System.Drawing.Size(55, 23);
+            this.btnPrintF7.TabIndex = 26;
+            this.btnPrintF7.Text = "Print";
+            this.btnPrintF7.UseVisualStyleBackColor = true;
+            this.btnPrintF7.Click += new System.EventHandler(this.btnPrintF7_Click);
             // 
             // AAPPR_EINVOICE2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.btnPrintF7);
             this.Name = "AAPPR_EINVOICE2";
             this.Load += new System.EventHandler(this.AAPPR_EINVOICE2_Load);
+            this.Controls.SetChildIndex(this.btnNhan, 0);
+            this.Controls.SetChildIndex(this.btnHuy, 0);
+            this.Controls.SetChildIndex(this.btnSuaTTMauBC, 0);
+            this.Controls.SetChildIndex(this.btnThemMauBC, 0);
+            this.Controls.SetChildIndex(this.btnPrintF7, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
