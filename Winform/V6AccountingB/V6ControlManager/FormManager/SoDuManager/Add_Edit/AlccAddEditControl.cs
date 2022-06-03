@@ -775,20 +775,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 else
                 {
                     //Load AD
-                    string sttRec = "";
+                    //string sttRec = "";
                     {
-                        string sql = "SELECT * FROM " + _table2Name + "  Where stt_rec = @rec and CC0=1";
-                        SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
-                        AD = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
+                        string sql = "SELECT * FROM " + _table2Name + "  Where 1=0";
+                        //SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
+                        AD = SqlConnect.ExecuteDataset(CommandType.Text, sql)
                             .Tables[0];
                         SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
                     }
 
                     //Data3
                     {
-                        string sql = "SELECT * FROM " + _table3Name + "  Where stt_rec = @rec";
-                        SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
-                        data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
+                        string sql = "SELECT * FROM " + _table3Name + "  Where 1=0";
+                        //SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
+                        data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql)
                             .Tables[0];
                         gView3.DataSource = data3;
                         gView3.FormatGridViewAldm(_table3Name);
@@ -800,9 +800,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                     //Data4
                     {
-                        string sql = "SELECT * FROM " + _table4Name + "  Where stt_rec = @rec and CC0=1";
-                        SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
-                        data4 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist).Tables[0];
+                        string sql = "SELECT * FROM " + _table4Name + "  Where 1=0";
+                        //SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
+                        data4 = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
                         
                         gView4.DataSource = data4;
                         gView4.FormatGridViewAldm(_table4Name);
