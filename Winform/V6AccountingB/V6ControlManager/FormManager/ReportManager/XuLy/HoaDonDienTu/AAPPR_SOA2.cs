@@ -241,7 +241,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 btnNhan.PerformClick();
                 V6ControlFormHelper.SetStatusText(f9MessageAll);
                 V6ControlFormHelper.ShowMainMessage(f9MessageAll);
-                this.ShowMessage(f9MessageAll, 300);
+                this.ShowMessage(V6Text.End + f9MessageAll, 300);
             }
         }
         #endregion xulyF9

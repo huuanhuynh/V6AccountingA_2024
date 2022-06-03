@@ -115,8 +115,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             //Select printer.
             var printerst = V6ControlFormHelper.ChoosePrinter(this, "", false);
-            if (printerst == null)// printDialog.ShowDialog((IWin32Window)this.FindForm()) != DialogResult.OK)
+            if (printerst == null)
+            {
+                f9Running = false;
                 return;
+            }
             //WebBrowser webBrowser1 = null;
 
             string return_file_name = "";

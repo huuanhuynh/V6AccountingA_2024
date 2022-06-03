@@ -96,6 +96,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var form = new AAPPR_EINVOICE1_F9(); // Xài chung.
             if (form.ShowDialog(this) != DialogResult.OK || form.SelectedMode == "E_T1") // thay thế dùng F6
             {
+                f9Running = false;
                 return;
             }
 
@@ -194,7 +195,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string message = (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
                 V6ControlFormHelper.SetStatusText(message);
                 V6ControlFormHelper.ShowMainMessage(message);
-                this.ShowMessage(f9MessageAll, 300);
+                this.ShowMessage(V6Text.End + f9MessageAll, 300);
             }
         }
         #endregion xulyF9
@@ -310,7 +311,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 // Thông báo kết thúc:
-                this.ShowMessage(f9MessageAll, 300);
+                this.ShowMessage(V6Text.End + f9MessageAll, 300);
             }
             catch (Exception ex)
             {

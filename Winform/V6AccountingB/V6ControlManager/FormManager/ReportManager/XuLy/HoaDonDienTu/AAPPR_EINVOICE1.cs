@@ -82,6 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var form = new AAPPR_EINVOICE1_F9();
             if (form.ShowDialog(this) != DialogResult.OK || form.SelectedMode == "E_T1") // thay thế dùng F6
             {
+                f9Running = false;
                 return;
             }
 
@@ -301,7 +302,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 // Thông báo kết thúc:
-                this.ShowMessage(f9MessageAll, 300);
+                this.ShowMessage(V6Text.End + f9MessageAll, 300);
             }
             catch (Exception ex)
             {

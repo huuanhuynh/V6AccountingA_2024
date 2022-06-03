@@ -108,7 +108,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //if (printDialog.ShowDialog((IWin32Window)this.FindForm()) != DialogResult.OK)
             //    return;
             var printerst = V6ControlFormHelper.ChoosePrinter(this, null);
-            if (printerst == null) return;
+            if (printerst == null) { f9Running = false; return; }
 
             string pdf_file = "";
             string tableName = "V6MAPINFO";

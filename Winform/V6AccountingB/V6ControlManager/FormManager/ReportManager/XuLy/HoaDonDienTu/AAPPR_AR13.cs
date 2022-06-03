@@ -109,7 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //    return;
 
             var printerst = V6ControlFormHelper.ChoosePrinter(this, null);
-            if (printerst == null) return;
+            if (printerst == null) { f9Running = false; return; }
 
             string pdf_file = "";
             string tableName = "V6MAPINFO";
