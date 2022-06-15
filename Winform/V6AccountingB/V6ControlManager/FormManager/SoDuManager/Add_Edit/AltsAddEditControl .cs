@@ -820,8 +820,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     //Data3
                     {
                         string sql = "SELECT * FROM " + _table3Name + "  Where 1=0";
-                        SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
-                        data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
+                        //SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
+                        data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql)
                             .Tables[0];
                         gView3.DataSource = data3;
                         gView3.FormatGridViewAldm(_table3Name);
