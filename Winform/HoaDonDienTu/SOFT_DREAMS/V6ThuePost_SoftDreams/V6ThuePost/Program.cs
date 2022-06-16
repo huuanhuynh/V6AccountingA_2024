@@ -13,6 +13,7 @@ using CrystalDecisions.Shared;
 using Spy;
 using Spy.SpyObjects;
 using V6ThuePost.ResponseObjects;
+using V6ThuePost.SoftDreamObjects;
 using V6ThuePost.VnptObjects;
 using V6ThuePostSoftDreamsApi;
 using V6Tools;
@@ -94,6 +95,8 @@ namespace V6ThuePost
         /// Kiểu ký: 1 Client, mặc định Server.
         /// </summary>
         public static string _signmode = "0";
+
+        public static string _noCdata = null;
 
         //Excel config
         private static string template_xls = "template.xls";
@@ -238,6 +241,10 @@ namespace V6ThuePost
                         File.Create(flagFileName1).Close();
                         V6Return v6return;
                         StartAutoInputTokenPassword();
+                        
+                        var no_cdata_fields = ObjectAndString.SplitString(_noCdata);
+                        V6XmlConverter.SetConfigNotCdataField(no_cdata_fields);
+                        
                         if (mode == "M9")
                         {
                             result = _softDreams_ws.IssueInvoices(fkeyA, pattern, seri, _signmode, out v6return);
@@ -985,15 +992,45 @@ namespace V6ThuePost
                 {
                     //if (row["STT"].ToString() == "0") continue;
 
+                    string NOGEN_F = "";
+                    if (row.Table.Columns.Contains("NOGEN_F")) NOGEN_F = ";" + row["NOGEN_F"].ToString().Trim().ToUpper() + ";";
                     Product product = new Product();
+
                     foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
                     {
                         product.Details[item.Key] = GetValue(row, item.Value);
+
+                        var cell = GetValue(row, item.Value);
+                        if (item.Value.NoGen && NOGEN_F.Contains(";" + item.Value.FieldV6.ToUpper() + ";"))
+                        {
+                            // NOGEN
+                        }
+                        else
+                        {
+                            product.Details[item.Key] = cell;
+                        }
                     }
 
                     products.Add(product);
                 }
                 inv.Invoice["Products"] = products;
+
+                
+                //if (taxBreakdownsConfig != null && ad3_table != null && ad3_table.Rows.Count > 0) // tạm bỏ để lấy 1 dòng row0
+                {
+                    var taxBreakdowns = new InvoiceFees();
+                    //foreach (DataRow ad3_row in ad3_table.Rows)               // tạm bỏ để lấy 1 dòng row0
+                    {
+                        var fee = new InvoiceFee();
+                        foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                        {
+                            fee.Details[item.Key] = GetValue(row0, item.Value);
+                        }
+                        taxBreakdowns.Add(fee);
+                    }
+
+                    inv.Invoice["InvoiceFees"] = taxBreakdowns;
+                }
                 
                 
                 foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
@@ -1001,10 +1038,10 @@ namespace V6ThuePost
                     inv.Invoice[item.Key] = GetValue(row0, item.Value);
                 }
                 
-                foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                }
+                //foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                //{
+                //    inv.Invoice[item.Key] = GetValue(row0, item.Value);
+                //}
 
                 if (_write_log)
                 {
@@ -1293,10 +1330,10 @@ namespace V6ThuePost
                             }
                             else
                             {
-                                if (field.StartsWith("\"") && field.EndsWith("\""))
-                                {
-                                    field = field.Substring(1, field.Length - 2);
-                                }
+                                //if (field.StartsWith("\"") && field.EndsWith("\""))
+                                //{
+                                //    field = field.Substring(1, field.Length - 2);
+                                //}
                                 fieldValueString += field;
                             }
                         }
@@ -1876,6 +1913,10 @@ namespace V6ThuePost
                                 case "writelog":
                                     _write_log = ObjectAndString.ObjectToBool(line.Value);
                                     break;
+                                case "nocdata":
+                                    _noCdata = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+
                             }
                             break;
                         }
@@ -2009,6 +2050,10 @@ namespace V6ThuePost
             config.FieldV6 = reader.GetAttribute("FieldV6");
             config.Type = reader.GetAttribute("Type");
             config.DataType = reader.GetAttribute("DataType");
+
+            config.NoGen = reader.GetAttribute("NoGen") == "1";
+            //config.NoGenCondition = reader.GetAttribute("NoGenCondition");
+
             return config;
         }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 
 namespace V6Tools.V6Convert
@@ -9,6 +10,37 @@ namespace V6Tools.V6Convert
     public static class V6XmlConverter
     {
         #region ===== GENERATE XML =====
+
+        private static List<string> NotCdataFieldsConfig { get; set; }
+
+        /// <summary>
+        /// Cấu hình chỉ định các trường không gen CDATA. (không phân biệt hoa thường)
+        /// </summary>
+        /// <param name="fields"></param>
+        public static void SetConfigNotCdataField(params string[] fields)
+        {
+            if (fields == null)
+            {
+                NotCdataFieldsConfig = null;
+                return;
+            }
+
+            List<string> list = new List<string>();
+            foreach (string field in fields)
+            {
+                string FIELD = field.ToUpper();
+                list.Add(FIELD);
+            }
+
+            NotCdataFieldsConfig = list;
+        }
+
+        public static bool CheckIsNotCdataConfigField(string field)
+        {
+            if (NotCdataFieldsConfig == null) return false;
+            return NotCdataFieldsConfig.Contains(field.ToUpper());
+        }
+
 
         /// <summary>
         /// Biến JsonObject (kiểu object trong project này) thành chuỗi xml.
@@ -33,8 +65,12 @@ namespace V6Tools.V6Convert
                 if (property.CanRead && property.CanWrite)
                 {
                     object value = property.GetValue(o, null);
-                    bool isCData = property.Name != "Fkey" && property.Name != "Ikey";
-                    result += string.Format("\n<{0}>{1}</{0}>", property.Name, ObjectToXml(value, 1, isCData));
+                    bool notCdata = property.Name == "Fkey" || property.Name == "Ikey";
+                    if (!notCdata && NotCdataFieldsConfig != null)
+                    {
+                        notCdata = CheckIsNotCdataConfigField(property.Name);
+                    }
+                    result += string.Format("\n<{0}>{1}</{0}>", property.Name, ObjectToXml(value, 1, notCdata));
                 }
             }
 
@@ -44,7 +80,7 @@ namespace V6Tools.V6Convert
             {
                 object value = null;
                 if (!(o is DBNull)) value = field.GetValue(o);
-                result += "\n" + ObjectToXml(value, 0, false);
+                result += "\n" + ObjectToXml(value, 0, true);
             }
 
             return objectName == "" ? result : string.Format("<{0}>\n{1}\n\n</{0}>\n", objectName, result);
@@ -55,8 +91,9 @@ namespace V6Tools.V6Convert
         /// </summary>
         /// <param name="value"></param>
         /// <param name="tab">Format thụt đầu dòng, mỗi tab = \t</param>
+        /// <param name="notCdata">Không gen CDATA.></param>
         /// <returns></returns>
-        public static string ObjectToXml(object value, int tab, bool CData)
+        public static string ObjectToXml(object value, int tab, bool notCdata)
         {
             string result = "";
 
@@ -66,7 +103,7 @@ namespace V6Tools.V6Convert
             }
             else if (value is string || value is DBNull || value == null)
             {
-                if (value is DBNull || value == null || !CData)
+                if (value is DBNull || value == null || notCdata)
                     result = "" + value;
                 else
                     result = FixXmlCDataValue("" + value);
@@ -164,7 +201,7 @@ namespace V6Tools.V6Convert
             {
                 string objectName = o.GetType().Name;
                 result += string.Format("\n<!-- {0}_{1} -->", objectName , i++);
-                result += string.Format("\n{0}", ObjectToXml(o, 0, false));
+                result += string.Format("\n{0}", ObjectToXml(o, 0, true));
             }
             //if (result.Length > 1) result = result.Substring(1);// bỏ \n
 
@@ -188,8 +225,12 @@ namespace V6Tools.V6Convert
 
             foreach (KeyValuePair<string, object> item in value)
             {
-                bool isCData = item.Key != "Fkey" && item.Key != "Ikey";
-                result += string.Format("\n{2}<{0}>{1}</{0}>", item.Key, ObjectToXml(item.Value, 0, isCData), tabString);
+                bool notCdata = item.Key == "Fkey" && item.Key == "Ikey";
+                if (!notCdata && NotCdataFieldsConfig != null)
+                {
+                    notCdata = CheckIsNotCdataConfigField(item.Key);
+                }
+                result += string.Format("\n{2}<{0}>{1}</{0}>", item.Key, ObjectToXml(item.Value, 0, notCdata), tabString);
             }
             if (result.Length > 0) result = result.Substring(1);
             

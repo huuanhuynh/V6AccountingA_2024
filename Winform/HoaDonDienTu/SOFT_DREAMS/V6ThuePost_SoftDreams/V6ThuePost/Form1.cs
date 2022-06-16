@@ -20,7 +20,7 @@ namespace V6ThuePost
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (Program._TEST_) richTextBox1.ReadOnly = false;
+            //if (Program._TEST_) richTextBox1.ReadOnly = false; // sửa ko có tác dụng, vì gửi luôn object tự gen.
         }
 
         private void btnRead_Click(object sender, EventArgs e)
@@ -28,6 +28,10 @@ namespace V6ThuePost
             Program.ReadXmlInfo(txtXmlFile.Text);
             Program._softDreams_ws = new SoftDreamsWS(Program._baseUrl, Program._username, Program._password, Program._token_serial);
             invoices = Program.ReadDataXml(txtDbfFile.Text);
+            
+            var no_cdata_fields = ObjectAndString.SplitString(Program._noCdata);
+            V6XmlConverter.SetConfigNotCdataField(no_cdata_fields);
+
             string xmlData = V6XmlConverter.ClassToXml(invoices);
             txtUsername.Text = Program._username;
             txtPassword.Text = Program._password;
@@ -134,6 +138,9 @@ namespace V6ThuePost
             {
                 V6Return v6return;
                 Program.StartAutoInputTokenPassword();
+                //BaseMessage.Show(Program._noCdata);
+                var no_cdata_fields = ObjectAndString.SplitString(Program._noCdata);
+                V6XmlConverter.SetConfigNotCdataField(no_cdata_fields);
                 string result = Program._softDreams_ws.ImportInvoices(invoices, Program.pattern, Program.seri, true, Program._signmode, out v6return);
                 lblResult.Text = result;
                 if (result != null)

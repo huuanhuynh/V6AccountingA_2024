@@ -148,6 +148,7 @@
   <ItemGroup>
     <Content Include="V6THUEPOST.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="x86\pdfium.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

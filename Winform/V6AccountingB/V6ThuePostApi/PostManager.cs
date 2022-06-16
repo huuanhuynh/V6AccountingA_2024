@@ -23,6 +23,7 @@ using V6ThuePost.MInvoiceObject.Request;
 using V6ThuePost.MInvoiceObject.Response;
 using V6ThuePost.MONET_Objects.Response;
 using V6ThuePost.ResponseObjects;
+using V6ThuePost.SoftDreamObjects;
 using V6ThuePost.ViettelObjects;
 using V6ThuePost.ViettelV2Objects;
 using V6ThuePost.VnptObjects;
@@ -129,6 +130,7 @@ namespace V6ThuePostManager
         private static string convert = "0";
         private static string _signmode = "0";
         private static bool _write_log = false;
+        private static string _noCdata = null;
 
         private static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         /// <summary>
@@ -2089,16 +2091,27 @@ namespace V6ThuePostManager
                 }
                 inv.Invoice["Products"] = products;
 
+                if (taxBreakdownsConfig != null && ad3_table != null && ad3_table.Rows.Count > 0)
+                {
+                    var taxBreakdowns = new InvoiceFees();
+                    foreach (DataRow ad3_row in ad3_table.Rows)
+                    {
+                        var fee = new InvoiceFee();
+                        foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                        {
+                            fee.Details[item.Key] = GetValue(ad3_row, item.Value);
+                        }
+                        taxBreakdowns.Add(fee);
+                    }
+
+                    inv.Invoice["InvoiceFees"] = taxBreakdowns;
+                }
 
                 foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
                 {
                     inv.Invoice[item.Key] = GetValue(row0, item.Value);
                 }
 
-                foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                }
                 
                 if (_write_log)
                 {
@@ -3893,6 +3906,8 @@ namespace V6ThuePostManager
                     if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
                     {
                         issue = false;
+                        var no_cdata_fields = ObjectAndString.SplitString(_noCdata);
+                        V6XmlConverter.SetConfigNotCdataField(no_cdata_fields);
                         result = softDreamsWS.ImportInvoicesNoIssue(invoices, __pattern, __serial, _signmode, out paras.Result.V6ReturnValues);
                     }
                     else
@@ -5099,7 +5114,9 @@ namespace V6ThuePostManager
                                 case "writelog":
                                     _write_log = ObjectAndString.ObjectToBool(line.Value);
                                     break;
-
+                                case "nocdata":
+                                    _noCdata = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
                                     
                             }
                             break;

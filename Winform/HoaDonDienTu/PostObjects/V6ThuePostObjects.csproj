@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigLine.cs" />
+    <Compile Include="SoftDreamObjects\InvoiceFee.cs" />
+    <Compile Include="SoftDreamObjects\InvoiceFees.cs" />
     <Compile Include="ViettelV2Objects\buyerInfo.cs" />
     <Compile Include="ViettelV2Objects\Response\CancelResponse.cs" />
     <Compile Include="ViettelV2Objects\SearchInvoiceResponseV2.cs" />
