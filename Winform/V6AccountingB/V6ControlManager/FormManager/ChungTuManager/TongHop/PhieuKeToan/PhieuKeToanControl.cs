@@ -2651,6 +2651,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             {
                 if (AD2 == null || AD2.Rows.Count == 0)
                 {
+                    detail2.CarryData = null;
+
                     
                     _mau_bc22.Value = 1;
 

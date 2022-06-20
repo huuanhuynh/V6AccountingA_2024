@@ -3284,6 +3284,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             {
                 if (AD2 == null || AD2.Rows.Count == 0)
                 {
+                    detail2.CarryData = null;
+
                     _so_ct022.Text = txtSoCt0.Text;
                     _ngay_ct022.Value = txtNgayCt0.Value;
                     _so_seri022.Text = txtSoSeri0.Text;
