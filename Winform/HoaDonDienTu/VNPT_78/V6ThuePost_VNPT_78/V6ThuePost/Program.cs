@@ -642,7 +642,14 @@ namespace V6ThuePost
                     {
                         string type = "1";
                         if (mode.Length > 1) type = mode[1].ToString();
-                        result = DoUpdateCus(arg2, type);
+                        result = DoUpdateCus(arg2, type, out v6return);
+
+                        //v6return = new V6Return();
+                        //v6return.RESULT_STRING = result;
+                        //if (result.StartsWith("ERR:"))
+                        //{
+                        //    v6return.RESULT_ERROR_MESSAGE = result;
+                        //}
                     }
                     else if (mode.StartsWith("P")) // P0 xml fkey
                     {
@@ -2351,11 +2358,12 @@ namespace V6ThuePost
         /// <para>2: gửi 1 lần tất cả customers.</para>
         /// </param>
         /// <returns></returns>
-        public static string DoUpdateCus(string dbf, string type = "1")
+        public static string DoUpdateCus(string dbf, string type, out V6Return v6return)
         {
             string result = "";
             string error = "";
             int error_count = 0, success_count = 0;
+            v6return = null;
             //MessageBox.Show("Test Debug");
             try
             {
@@ -2379,7 +2387,7 @@ namespace V6ThuePost
                             string xml = V6XmlConverter.ClassToXml(cuss);
 
                             Logger.WriteToLog(string.Format("Preparing UpdateCus {0} {1}\r\n{2}", count, ma_kh, xml));
-                            var num = UpdateCus(xml);
+                            var num = UpdateCus(xml, out v6return);
                             if (num == "1")
                             {
                                 success_count++;
@@ -2417,7 +2425,7 @@ namespace V6ThuePost
                         string xml = V6XmlConverter.ClassToXml(cuss);
 
                         Logger.WriteToLog("Preparing UpdateCus:\r\n" + xml);
-                        var num = UpdateCus(xml);
+                        var num = UpdateCus(xml, out v6return);
                         success_count = Convert.ToInt32(num);
                         result += "Success " + num + "/" + data.Rows.Count;
                     }
@@ -2437,33 +2445,52 @@ namespace V6ThuePost
             if (error.Length > 0) result += "ERR: " + error;
             Logger.WriteToLog("Program.DoUpdateCus " + result);
             //return result;
+            if (v6return == null)
+            {
+                v6return = new V6Return();
+                v6return.RESULT_OBJECT = error;
+                v6return.RESULT_STRING = error;
+                v6return.RESULT_ERROR_MESSAGE = error;
+            }
             return string.Format("Success {0}   Error {1}\n{2}", success_count, error_count, result);
         }
 
-        public static string UpdateCus(string xml)
+        public static string UpdateCus(string xml, out V6Return v6return)
         {
             int result = 0;
             string message = "";
+            v6return = new V6Return();
             try
             {
                 result = new PublishService(link_Publish).UpdateCus(xml, _username, _password, 0);
+                v6return.RESULT_OBJECT = result;
+                v6return.RESULT_STRING = "" + result;
                 message += result;
 
                 if (result == -5)
                 {
                     message = "ERR:" + message + "\r\nCó khách hàng đã tồn tại.";
+                    v6return.RESULT_ERROR_MESSAGE = message;
                 }
                 else if (result == -3)
                 {
                     message = "ERR:" + message + "\r\nDữ liệu xml đầu vào không đúng quy định.";
+                    v6return.RESULT_ERROR_MESSAGE = message;
                 }
                 else if (result == -2)
                 {
                     message = "ERR:" + message + "\r\nKhông import được khách hàng vào database.";
+                    v6return.RESULT_ERROR_MESSAGE = message;
                 }
                 else if (result == -1)
                 {
                     message = "ERR:" + message + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                    v6return.RESULT_ERROR_MESSAGE = message;
+                }
+                else if (result < 0)
+                {
+                    message = "ERR:" + message + "\r\nLỗi chưa xác định.";
+                    v6return.RESULT_ERROR_MESSAGE = message;
                 }
             }
             catch (Exception ex)
