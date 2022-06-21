@@ -3197,7 +3197,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             try
             {
                 if (!IsViewingAnInvoice) return;
-                if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact))
+                if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact)
+                    && V6Login.UserRight.AllowEditDeleteMact(Invoice.Mact, _sttRec, "X"))
                 {
                     var row = AM.Rows[CurrentIndex];
                     // Tuanmh 16/02/2016 Check level

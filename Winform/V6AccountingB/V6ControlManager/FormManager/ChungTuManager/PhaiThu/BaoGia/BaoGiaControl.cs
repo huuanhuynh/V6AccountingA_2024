@@ -4304,7 +4304,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     this.ShowWarningMessage(V6Text.EditDenied);
                     return;
                 }
-                if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact))
+                if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact)
+                    && V6Login.UserRight.AllowEditDeleteMact(Invoice.Mact, _sttRec, "X"))
                 {
                     // Tuanmh 16/02/2016 Check level
                     if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
