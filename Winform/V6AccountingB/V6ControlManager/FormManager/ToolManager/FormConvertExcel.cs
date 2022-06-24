@@ -31,7 +31,9 @@ namespace V6ControlManager.FormManager.ToolManager
         {
 
         }
+
         DataSet ds1, ds2;
+        
         private string openFile = "";
         private void LoadExcel()
         {

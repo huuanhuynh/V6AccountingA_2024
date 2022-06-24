@@ -48,6 +48,7 @@
             this.chkTinhGiaDC.Name = "chkTinhGiaDC";
             this.chkTinhGiaDC.Size = new System.Drawing.Size(119, 17);
             this.chkTinhGiaDC.TabIndex = 4;
+            this.chkTinhGiaDC.TabStop = false;
             this.chkTinhGiaDC.Text = "Tính giá điều chỉnh";
             this.chkTinhGiaDC.UseVisualStyleBackColor = true;
             this.chkTinhGiaDC.CheckedChanged += new System.EventHandler(this.chkTinhGiaDC_CheckedChanged);
