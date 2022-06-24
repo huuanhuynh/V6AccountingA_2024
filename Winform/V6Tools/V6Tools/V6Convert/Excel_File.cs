@@ -291,6 +291,7 @@ namespace V6Tools.V6Convert
             try
             {
                 string ext = Path.GetExtension(fileName).ToLower();
+                string saveext = Path.GetExtension(saveFile).ToLower();
                 SmartXLS.WorkBook workbook = new SmartXLS.WorkBook();
                 #region ==== workbook try to read file ====
 
@@ -349,8 +350,8 @@ namespace V6Tools.V6Convert
                             cellText = workbook.getText(rowIndex, colIndex);
                             if (!string.IsNullOrEmpty(cellText) && NaN(cellText))
                             {
-                                cellText = ChuyenMaTiengViet.VIETNAM_CONVERT(cellText, from, to);
-                                workbook.setText(rowIndex, colIndex, cellText);
+                                var cellText2 = ChuyenMaTiengViet.VIETNAM_CONVERT(cellText, from, to);
+                                if (cellText2 != cellText) workbook.setText(rowIndex, colIndex, cellText2);
                             }
                         }
                     } // finish sheet
@@ -360,8 +361,11 @@ namespace V6Tools.V6Convert
 
                 }// finish all sheets
 
-                workbook.writeXLSX(saveFile);
-
+                if (saveext == ".xls")
+                    workbook.write(saveFile);
+                else if (saveext == ".xlsx")
+                    workbook.writeXLSX(saveFile);
+                else workbook.writeXLSX(saveFile + ".xlsx");
             }
             catch (Exception ex)
             {

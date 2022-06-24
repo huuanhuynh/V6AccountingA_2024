@@ -2204,5 +2204,10 @@ Tiles of Fate                   32k PRG / 32k CHR       H       AVE (79)
         {
             new V6DatabaseConfogTestForm().Show();
         }
+
+        private void btnConvertExcel_Click(object sender, EventArgs e)
+        {
+            new V6Tools.V6Convert.FormConvertExcel().Show(this);
+        }
     }
 }

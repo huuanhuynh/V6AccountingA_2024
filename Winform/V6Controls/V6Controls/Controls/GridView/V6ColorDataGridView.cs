@@ -1614,7 +1614,16 @@ namespace V6Controls
                 else if (CurrentCell != null && e.KeyData == (Keys.Control | Keys.C))
                 {
                     e.Handled = true;
-                    string text = ObjectAndString.ObjectToString(CurrentCell.Value).TrimEnd();
+                    string text = "";
+                    if (ObjectAndString.IsNumberType(CurrentCell.OwningColumn.ValueType))
+                    {
+                        text = ObjectAndString.ObjectToDecimal(CurrentCell.Value).ToString(CultureInfo.InstalledUICulture);
+                    }
+                    else
+                    {
+                        text = ObjectAndString.ObjectToString(CurrentCell.Value).TrimEnd();
+                    }
+                    
                     if (string.IsNullOrEmpty(text))
                     {
                         Clipboard.Clear();

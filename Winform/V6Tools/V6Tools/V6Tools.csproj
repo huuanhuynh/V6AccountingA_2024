@@ -94,6 +94,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChuyenMaTiengViet.cs" />
+    <Compile Include="V6Convert\FormConvertExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="V6Convert\FormConvertExcel.designer.cs">
+      <DependentUpon>FormConvertExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="V6Convert\V6JsonConverter.cs" />
     <Compile Include="V6Convert\V6XmlConverter.cs" />
     <Compile Include="V6DllLoader.cs" />
@@ -147,6 +153,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="V6Convert\FormConvertExcel.resx">
+      <DependentUpon>FormConvertExcel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
