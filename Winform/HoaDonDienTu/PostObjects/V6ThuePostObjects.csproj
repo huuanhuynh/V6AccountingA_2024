@@ -54,6 +54,24 @@
     <Compile Include="ConfigLine.cs" />
     <Compile Include="SoftDreamObjects\InvoiceFee.cs" />
     <Compile Include="SoftDreamObjects\InvoiceFees.cs" />
+    <Compile Include="VIN_Objects\buyerInfo.cs" />
+    <Compile Include="VIN_Objects\VIN_CreateInvoiceResponse.cs" />
+    <Compile Include="VIN_Objects\VIN_CreateInvoiceResponse_Result.cs" />
+    <Compile Include="VIN_Objects\GeneralInvoiceInfo.cs" />
+    <Compile Include="VIN_Objects\GetInvoice\GetInvoiceInput.cs" />
+    <Compile Include="VIN_Objects\GetInvoice\GetInvoiceRepresentationFileParameters.cs" />
+    <Compile Include="VIN_Objects\GetInvoice\GetInvoiceResponse.cs" />
+    <Compile Include="VIN_Objects\GetInvoice\GetListInvoiceDataControlParams.cs" />
+    <Compile Include="VIN_Objects\InvoiceInfo.cs" />
+    <Compile Include="VIN_Objects\ItemInfo.cs" />
+    <Compile Include="VIN_Objects\VIN_PostObject.cs" />
+    <Compile Include="VIN_Objects\Response\CancelResponse.cs" />
+    <Compile Include="VIN_Objects\Response\VIN_LoginResponse.cs" />
+    <Compile Include="VIN_Objects\Response\UpdatePaymentResponse.cs" />
+    <Compile Include="VIN_Objects\VIN_SearchInvoiceResponse.cs" />
+    <Compile Include="VIN_Objects\SellerInfo.cs" />
+    <Compile Include="VIN_Objects\SummarizeInfo.cs" />
+    <Compile Include="VIN_Objects\TaxBreakdown.cs" />
     <Compile Include="ViettelV2Objects\buyerInfo.cs" />
     <Compile Include="ViettelV2Objects\Response\CancelResponse.cs" />
     <Compile Include="ViettelV2Objects\SearchInvoiceResponseV2.cs" />
@@ -141,6 +159,7 @@
     <Folder Include="ViettelObjects\Request\" />
     <Folder Include="ViettelObjects\Response\" />
     <Folder Include="ViettelV2Objects\Request\" />
+    <Folder Include="VIN_Objects\Request\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
