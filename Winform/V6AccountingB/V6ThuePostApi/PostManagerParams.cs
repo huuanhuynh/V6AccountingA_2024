@@ -217,7 +217,7 @@ namespace V6ThuePostManager
         }
 
         /// <summary>
-        /// Mã bí mật trả về của webservice.
+        /// Mã bí mật trả về của webservice. Ma giao dich VIN
         /// </summary>
         public string SecrectCode
         {

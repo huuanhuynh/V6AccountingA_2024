@@ -81,7 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (!V6Login.UserRight.AllowEdit("", ""))
+                    if (!V6Login.UserRight.AllowEdit("", "00AR0"))
                     {
                         V6ControlFormHelper.NoRightWarning();
                         return;

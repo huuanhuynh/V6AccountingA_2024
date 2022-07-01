@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("V6ThuePostApi")]
+[assembly: AssemblyTitle("V6ThuePost_VIN_Api")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("V6ThuePostApi")]
+[assembly: AssemblyProduct("V6ThuePost_VIN_Api")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b46d2a27-146b-4738-9cf2-db95c67d74fa")]
+[assembly: Guid("10e89f67-6752-4bbd-b8a9-7a39cddc17f4")]
 
 // Version information for an assembly consists of the following four values:
 //

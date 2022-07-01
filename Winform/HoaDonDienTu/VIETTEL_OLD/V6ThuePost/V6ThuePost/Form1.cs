@@ -63,7 +63,7 @@ namespace V6ThuePost
                 string message = "";
                 try
                 {
-                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);
                     if (!string.IsNullOrEmpty(responseObject.description))
                     {
                         message += "Kết nối ổn. " + responseObject.description;
@@ -109,7 +109,7 @@ namespace V6ThuePost
             string message = "";
             try
             {
-                CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);
                 if (!string.IsNullOrEmpty(responseObject.description))
                 {
                     message += " " + responseObject.description;

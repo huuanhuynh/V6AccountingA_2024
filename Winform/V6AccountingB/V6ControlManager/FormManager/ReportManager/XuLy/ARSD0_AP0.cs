@@ -53,7 +53,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 if (dataGridView1.CurrentRow == null) return;
-                if (!V6Login.UserRight.AllowDelete("", "AP0"))
+                if (!V6Login.UserRight.AllowDelete("", "00AP0"))
                 {
                     V6ControlFormHelper.NoRightWarning();
                     return;
@@ -118,7 +118,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (!V6Login.UserRight.AllowEdit("", "AP0"))
+                    if (!V6Login.UserRight.AllowEdit("", "00AP0"))
                     {
                         V6ControlFormHelper.NoRightWarning();
                         return;

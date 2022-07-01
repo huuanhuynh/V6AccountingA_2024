@@ -75,7 +75,7 @@
     <Compile Include="ViettelV2Objects\buyerInfo.cs" />
     <Compile Include="ViettelV2Objects\Response\CancelResponse.cs" />
     <Compile Include="ViettelV2Objects\SearchInvoiceResponseV2.cs" />
-    <Compile Include="ViettelV2Objects\CreateInvoiceResponseV2.cs" />
+    <Compile Include="ViettelV2Objects\VIETTEL_CreateInvoiceResponseV2.cs" />
     <Compile Include="ViettelV2Objects\CreateInvoiceResponse_Result.cs" />
     <Compile Include="ViettelV2Objects\GeneralInvoiceInfo.cs" />
     <Compile Include="ViettelV2Objects\GetInvoice\GetInvoiceInput.cs" />
@@ -109,7 +109,7 @@
     <Compile Include="MONET_Objects\GetInvoice\GetInvoiceResponse.cs" />
     <Compile Include="MONET_Objects\GetInvoice\GetListInvoiceDataControlParams.cs" />
     <Compile Include="ViettelObjects\BuyerInfo.cs" />
-    <Compile Include="ViettelObjects\CreateInvoiceResponse.cs" />
+    <Compile Include="ViettelObjects\VIETTEL_CreateInvoiceResponse.cs" />
     <Compile Include="ViettelObjects\CreateInvoiceResponse_Result.cs" />
     <Compile Include="ViettelObjects\GeneralInvoiceInfo.cs" />
     <Compile Include="ViettelObjects\GetInvoice\GetListInvoiceDataControlParams.cs" />

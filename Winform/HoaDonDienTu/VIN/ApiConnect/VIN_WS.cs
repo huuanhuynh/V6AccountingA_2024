@@ -11,6 +11,8 @@ using V6ThuePost.VIN_Objects.Response;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.VIN_Objects;
 using V6SignToken;
+using System.Collections.Generic;
+using V6Tools.V6Convert;
 
 namespace V6ThuePost_VIN_Api
 {
@@ -32,9 +34,12 @@ namespace V6ThuePost_VIN_Api
         /// </summary>
         private string _codetax;
 
-        private const string login_link = "/api/services/hddtws/Authentication/GetToken";
-        private const string create_link = @"/api/services/hddtws/QuanLyHoaDon/LapHoaDonGoc";
-        private const string create_link_invalidate = @"/api/services/hddtws/QuanLyHoaDon/LapHoaDonGoc";
+        private const string login_uri = "/api/services/hddtws/Authentication/GetToken";
+        private const string create_uri = @"/api/services/hddtws/QuanLyHoaDon/LapHoaDonGoc";
+        private const string create_guivakyhoadonhsm_uri = @"/api/services/hddtws/QuanLyHoaDon/GuiVaKyHoadonGocHSM";
+        private const string sign_hsm_uri = @"/api/services/hddtws/XuLyHoaDon/KyHoaDonHSM";
+        private const string taipdf_uri = "/api/services/hddtws/TraCuuHoaDon/TaiHoaDonPdf"; // cách gọi riêng ở chương trình này: uri là đường dẫn hàm ko bao gồm baseurl.
+        
         //private const string cancel_link = @"/InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
         private const string cancel_link = @"/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
 
@@ -70,7 +75,7 @@ namespace V6ThuePost_VIN_Api
 //- expire_in_seconds: Thời hạn sử dụng của token, ms
 //- token_type: bear
 //}
-            string result = SendRequest(_baseurl + login_link, body, "POST", "", "", "", true);
+            string result = SendRequest(_baseurl + login_uri, body, "POST", "", "", "", true);
             VIN_LoginResponse loginResponse = JsonConvert.DeserializeObject<VIN_LoginResponse>(result);
             string token = loginResponse.result.access_token;
             __token = token;
@@ -80,24 +85,24 @@ namespace V6ThuePost_VIN_Api
         /// 
         /// </summary>
         /// <param name="jsonBody"></param>
-        /// <param name="invalidate">(Cờ đổi hàm) Mặc định false.</param>
+        /// <param name="gui_va_ky">(Cờ đổi hàm) Mặc định false.</param>
         /// <param name="v6Return"></param>
         /// <returns></returns>
-        public string POST_CREATE_INVOICE(string jsonBody, bool invalidate, out V6Return v6Return)
+        public string POST_CREATE_INVOICE(string jsonBody, bool gui_va_ky, out V6Return v6Return)
         {
             string result = "";
             v6Return = new V6Return();
 
-            string link = invalidate ? create_link_invalidate : create_link;
+            string link = gui_va_ky ? create_guivakyhoadonhsm_uri : create_uri;
             
             try
             {
                 result = POST_BEARERTOKEN(link, jsonBody);
                 v6Return.RESULT_STRING = result;
-                //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
+                
                 VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
                 v6Return.RESULT_OBJECT = responseObject;
-                if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+                if (responseObject.unAuthorizedRequest)// == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
                 {
                     // Nếu hết phiên đăng nhập thì đăng nhập lại.
                     Login();
@@ -110,13 +115,13 @@ namespace V6ThuePost_VIN_Api
 
                 if (responseObject.result == null)
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                    v6Return.RESULT_ERROR_MESSAGE = "result:null,error:" + responseObject.error;
                 }
                 else
                 {
-                    v6Return.SO_HD = responseObject.result.invoiceNo;
-                    v6Return.ID = responseObject.result.transactionID;
-                    v6Return.SECRET_CODE = responseObject.result.reservationCode;
+                    v6Return.SO_HD = responseObject.result.sohoadon;
+                    if (responseObject.result.datahd.ContainsKey("guid")) v6Return.ID = responseObject.result.datahd["guid"].ToString();
+                    v6Return.SECRET_CODE = responseObject.result.magiaodich;
                 }
             }
             catch (Exception ex1)
@@ -126,6 +131,47 @@ namespace V6ThuePost_VIN_Api
             return result;
         }
 
+
+        public string SIGN_HSM(string mst, string magiaodich, string ma_hoadon, out V6Return v6Return)
+        {
+            string result = "";
+            v6Return = new V6Return();
+
+            try
+            {
+                var request = "{\"doanhnghiep_mst\": \""+mst+"\",\"magiaodich\": \""+magiaodich+"\", \"ma_hoadon\": \""+ma_hoadon+"\"}";
+                result = POST_BEARERTOKEN(sign_hsm_uri, request);
+
+                VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
+                v6Return.RESULT_OBJECT = responseObject;
+                if (responseObject.unAuthorizedRequest)// == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+                {
+                    // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                    Login();
+                    // sau đó gửi lại.
+                    result = POST_BEARERTOKEN(sign_hsm_uri, request);
+                    v6Return.RESULT_STRING = result;
+                    responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
+                    v6Return.RESULT_OBJECT = responseObject;
+                }
+
+                if (responseObject.result == null)
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "result:null,error:" + responseObject.error;
+                }
+                else
+                {
+                    v6Return.SO_HD = responseObject.result.sohoadon;
+                    if (responseObject.result.datahd.ContainsKey("guid")) v6Return.ID = responseObject.result.datahd["guid"].ToString();
+                    v6Return.SECRET_CODE = responseObject.result.magiaodich;
+                }
+            }
+            catch (Exception ex)
+            {
+                v6Return.RESULT_ERROR_MESSAGE = ex.Message;
+            }
+            return result;
+        }
 
         /// <summary>
         /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
@@ -157,7 +203,7 @@ namespace V6ThuePost_VIN_Api
             v6Return = new V6Return();
             try
             {
-                result = POST_BEARERTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+                result = POST_BEARERTOKEN(create_uri, jsonBody);
                 v6Return.RESULT_STRING = result;
                 try
                 {
@@ -165,7 +211,7 @@ namespace V6ThuePost_VIN_Api
                     // {"code":400,"message":"TRANSACTION_UUID_INVALID","data":"Transaction Uuid đã được lập hóa đơn"}
                     VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
                     v6Return.RESULT_OBJECT = responseObject;
-                    if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+                    if (responseObject.unAuthorizedRequest)// == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
                     {
                         // Nếu hết phiên đăng nhập thì đăng nhập lại.
                         Login();
@@ -176,15 +222,15 @@ namespace V6ThuePost_VIN_Api
                         v6Return.RESULT_OBJECT = responseObject;
                     }
 
-                    if (string.IsNullOrEmpty(responseObject.message))
+                    if (responseObject.success)
                     {
-                        v6Return.SO_HD = responseObject.result.invoiceNo;
-                        v6Return.ID = responseObject.result.transactionID;
-                        v6Return.SECRET_CODE = responseObject.result.reservationCode;
+                        v6Return.SO_HD = responseObject.result.sohoadon;
+                        if (responseObject.result.datahd.ContainsKey("guid")) v6Return.ID = responseObject.result.datahd["guid"].ToString();
+                        v6Return.SECRET_CODE = responseObject.result.magiaodich;
                     }
                     else
                     {
-                        v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                        v6Return.RESULT_ERROR_MESSAGE = "error:" + responseObject.error;
                     }
                 }
                 catch (Exception ex1)
@@ -405,6 +451,7 @@ namespace V6ThuePost_VIN_Api
                 {
                     StreamReader reader = new StreamReader(respStream);
                     string text = reader.ReadToEnd();
+                    if (string.IsNullOrEmpty(text)) text = webex.Message;
                     return text;
                 }
             }
@@ -631,52 +678,49 @@ namespace V6ThuePost_VIN_Api
         /// Download bản thể hiện.
         /// </summary>
         /// <param name="codeTax"></param>
-        /// <param name="invoiceNo">Số hóa đơn hệ thống Viettel trả về AA/17E0000166.</param>
+        /// <param name="magiaodich">Số hóa đơn hệ thống Viettel trả về AA/17E0000166.</param>
         /// <param name="templateCode">01GTKT0/151</param>
         /// <param name="uid">uid từ khi lập hóa đơn.</param>
         /// <param name="savefolder"></param>
         /// <param name="v6Return"></param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDF(string codeTax, string invoiceNo, string templateCode, string uid,
-            string savefolder, out V6Return v6Return)
+        public string DownloadInvoicePDF(string codeTax, string magiaodich, string uid, string savefolder, out V6Return v6Return)
         {
             v6Return = new V6Return();
-            GetPDFFileRequest objGetFile = new GetPDFFileRequest();
-            objGetFile.supplierTaxCode = codeTax;
-            objGetFile.invoiceNo = invoiceNo;
-            objGetFile.templateCode = templateCode;
-            objGetFile.transactionUuid = uid;
-            objGetFile.fileType = "pdf";
-            //string request = objGetFile.ToJson("VIETTEL");
+            
+            var requestO = new Dictionary<string, object>();
+            requestO["doanhnghiep_mst"] = codeTax;
+            requestO["magiaodich"] = magiaodich;
+            requestO["ma_hoadon"] = uid;
+            string request = V6JsonConverter.ObjectToJson(requestO, null);
+//{
+//"doanhnghiep_mst": "string",
+//"magiaodich": "string",
+//"ma_hoadon": "string"
+//}
 
-            string request = @"{
-                            ""supplierTaxCode"":""" + codeTax + @""",
-                            ""invoiceNo"":""" + objGetFile.invoiceNo + @""",
-                            ""templateCode"":""" + objGetFile.templateCode + @""",
-                            ""transactionUuid"":""" + objGetFile.transactionUuid + @""",
-                            ""fileType"":""" + objGetFile.fileType + @"""
-                            }";
+            string result = POST_BEARERTOKEN(taipdf_uri, request);
 
-            string result = POST_BEARERTOKEN("/api/services/hddtws/QuanLyHoaDon/TaiHoaDonPDF", request);
             v6Return.RESULT_STRING = result;
-            PDFFileResponse responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+            VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
 
-            if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+            if (responseObject.unAuthorizedRequest)
             {
                 // Nếu hết phiên đăng nhập thì đăng nhập lại.
                 Login();
                 // sau đó gửi lại.
-                result = POST_BEARERTOKEN("/api/services/hddtws/QuanLyHoaDon/TaiHoaDonPDF", request);
+                result = POST_BEARERTOKEN(taipdf_uri, request);
                 v6Return.RESULT_STRING = result;
-                responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+                responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
                 v6Return.RESULT_OBJECT = responseObject;
             }
 
-            string fileName = responseObject.fileName;
-            if (string.IsNullOrEmpty(fileName) || responseObject.fileToBytes == null)
+            string fileName = uid;
+            if (responseObject.result.base64pdf == null)
             {
-                v6Return.RESULT_ERROR_MESSAGE = "Download no file!";
-                throw new Exception("Download no file!");
+                v6Return.RESULT_ERROR_MESSAGE = "Download no file! " + responseObject.result.motaketqua;
+                //throw new Exception("Download no file! " + responseObject.result.motaketqua);
+                return null;
             }
             else
             {
@@ -696,7 +740,7 @@ namespace V6ThuePost_VIN_Api
             }
             if (!File.Exists(v6Return.PATH))
             {
-                File.WriteAllBytes(v6Return.PATH, responseObject.fileToBytes);
+                File.WriteAllBytes(v6Return.PATH, Convert.FromBase64String(responseObject.result.base64pdf));
             }
 
             return v6Return.PATH;
@@ -790,33 +834,33 @@ namespace V6ThuePost_VIN_Api
             string parameters =
                 string.Format("?supplierTaxCode={0}&transactionUuid={1}", codeTax, uid);
 
-            string result = POST_BEARERTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/searchInvoiceByTransactionUuid", parameters.Substring(1));
+            string result = POST_BEARERTOKEN("/api/services/hddtws/TraCuuHoaDon/TraThongTinHoaDon", parameters.Substring(1));
             //string result = POST_VIETTEL_COOKIESTOKEN("/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
             v6Return.RESULT_STRING = result;
             try
             {
-                SearchInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<SearchInvoiceResponseV2>(result);
+                VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
                 v6Return.RESULT_OBJECT = responseObject;
-                if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+                if (responseObject.unAuthorizedRequest)// == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
                 {
                     // Nếu hết phiên đăng nhập thì đăng nhập lại.
                     Login();
                     // sau đó gửi lại.
                     result = POST_BEARERTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/searchInvoiceByTransactionUuid", parameters.Substring(1));
                     v6Return.RESULT_STRING = result;
-                    responseObject = JsonConvert.DeserializeObject<SearchInvoiceResponseV2>(result);
+                    responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
                     v6Return.RESULT_OBJECT = responseObject;
                 }
 
-                if (responseObject.result == null)
+                if (responseObject.result == null || !responseObject.success)
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                    v6Return.RESULT_ERROR_MESSAGE = "error:" + responseObject.error;
                 }
                 else
                 {
-                    v6Return.SO_HD = responseObject.result[0].invoiceNo;
-                    v6Return.ID = responseObject.result[0].transactionID;
-                    v6Return.SECRET_CODE = responseObject.result[0].reservationCode;
+                    v6Return.SO_HD = responseObject.result.sohoadon;
+                    v6Return.ID = responseObject.result.magiaodich;
+                    v6Return.SECRET_CODE = responseObject.result.magiaodich;
                 }
             }
             catch (Exception ex)
@@ -835,14 +879,14 @@ namespace V6ThuePost_VIN_Api
         public string CheckConnection()
         {
             V6Return v6Return;
-            string result = POST_CREATE_INVOICE("", false, out v6Return);
-            if (v6Return.RESULT_ERROR_MESSAGE != null && v6Return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
+            string result = DownloadInvoicePDF(_codetax, "V6SOFT", "V6SOFT", "", out v6Return);
+            if (v6Return.RESULT_ERROR_MESSAGE != null && v6Return.RESULT_ERROR_MESSAGE.Contains("Lỗi phát sinh"))
             {
                 return null;
             }
             else
             {
-                return v6Return.RESULT_ERROR_MESSAGE;
+                return v6Return.RESULT_STRING;
             }
         }
 
@@ -855,8 +899,8 @@ namespace V6ThuePost_VIN_Api
             if (responseObject.result != null)
             {
                 V6Sign v6sign = new V6Sign();
-                string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
-                string result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
+                string sign = v6sign.Sign(responseObject.result.base64xml, token_serial);
+                string result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.base64xml, sign);//hashString=>base64xml
                 responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result2);
                 return responseObject;
             }
@@ -877,7 +921,7 @@ namespace V6ThuePost_VIN_Api
             v6Return.RESULT_STRING = hash_result;
             VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(hash_result);
             v6Return.RESULT_OBJECT = responseObject;
-            if (responseObject.message == "GENERAL" && hash_result.Contains("\"error\":\"Internal Server Error\""))
+            if (responseObject.unAuthorizedRequest)// == "GENERAL" && hash_result.Contains("\"error\":\"Internal Server Error\""))
             {
                 // Nếu hết phiên đăng nhập thì đăng nhập lại.
                 Login();
@@ -892,20 +936,20 @@ namespace V6ThuePost_VIN_Api
             if (responseObject.result != null)
             {
                 V6Sign v6sign = new V6Sign();
-                string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
-                sign_result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
+                string sign = v6sign.Sign(responseObject.result.base64xml, token_serial);
+                sign_result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.base64xml, sign);
                 v6Return.RESULT_STRING = sign_result2;
                 responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(sign_result2);
                 v6Return.RESULT_OBJECT = responseObject;
-                if (responseObject.result == null)
+                if (responseObject.error != null)
                 {
-                    v6Return.RESULT_ERROR_MESSAGE = responseObject.message + " " + responseObject.data;
+                    v6Return.RESULT_ERROR_MESSAGE = "error:" + responseObject.error;
                 }
                 else
                 {
-                    v6Return.SO_HD = responseObject.result.invoiceNo;
-                    v6Return.ID = responseObject.result.transactionID;
-                    v6Return.SECRET_CODE = responseObject.result.reservationCode;
+                    v6Return.SO_HD = responseObject.result.sohoadon;
+                    v6Return.ID = responseObject.result.magiaodich;
+                    v6Return.SECRET_CODE = responseObject.result.magiaodich;
                 }
             }
             else

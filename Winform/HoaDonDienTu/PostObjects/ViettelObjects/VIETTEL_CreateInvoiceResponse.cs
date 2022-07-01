@@ -1,6 +1,6 @@
 ﻿namespace V6ThuePost.ViettelObjects
 {
-    public class CreateInvoiceResponse
+    public class VIETTEL_CreateInvoiceResponse
     {
         public string errorCode { get; set; }
         public string description { get; set; }

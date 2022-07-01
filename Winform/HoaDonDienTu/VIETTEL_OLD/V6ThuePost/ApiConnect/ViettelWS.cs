@@ -318,7 +318,7 @@ namespace V6ThuePostViettelApi
             {
                 return "REQUEST FAILED.";
             }
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+            VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);
             if (!string.IsNullOrEmpty(responseObject.description) && responseObject.description.Contains("Phải chọn loại template hóa đơn"))
             {
                 return null;
@@ -442,17 +442,17 @@ namespace V6ThuePostViettelApi
             return result;
         }
 
-        public CreateInvoiceResponse POST_NEW_TOKEN(string json, string templateCode, string token_serial)
+        public VIETTEL_CreateInvoiceResponse POST_NEW_TOKEN(string json, string templateCode, string token_serial)
         {
             string result = null;
-            CreateInvoiceResponse responseObject = CreateInvoiceUsbTokenGetHash(json, out result);
+            VIETTEL_CreateInvoiceResponse responseObject = CreateInvoiceUsbTokenGetHash(json, out result);
 
             if (responseObject.result != null)
             {
                 V6Sign v6sign = new V6Sign();
                 string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
                 string result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
-                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result2);
+                responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result2);
                 return responseObject;
             }
             else
@@ -468,7 +468,7 @@ namespace V6ThuePostViettelApi
             string result = null;
             string result2 = null;
             result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+            VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);
 
             if (responseObject.result != null)
             {
@@ -486,10 +486,10 @@ namespace V6ThuePostViettelApi
         }
 
 
-        public CreateInvoiceResponse CreateInvoiceUsbTokenGetHash(string json, out string result)
+        public VIETTEL_CreateInvoiceResponse CreateInvoiceUsbTokenGetHash(string json, out string result)
         {
             result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+            VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);
             return responseObject;
         }
 

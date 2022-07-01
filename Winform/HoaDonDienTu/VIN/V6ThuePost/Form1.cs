@@ -45,7 +45,7 @@ namespace V6ThuePost
                 //    Value = "" + new_uid,
                 //};
 
-                string jsonBody = Program.ReadData(txtDbfFile.Text, "M");
+                string jsonBody = Program.ReadData_VIN(txtDbfFile.Text, "M");
                 txtUsername.Text = Program.username;
                 txtPassword.Text = Program.password;
                 txtURL.Text = Program.baseUrl;
@@ -53,7 +53,7 @@ namespace V6ThuePost
                 btnTest.Enabled = true;
                 btnSend.Enabled = true;
 
-                Program._viettelV2_ws = new VIN_WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
+                Program._VIN_WS = new VIN_WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
             }
             catch (Exception ex)
             {
@@ -63,16 +63,21 @@ namespace V6ThuePost
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            if (Program._viettelV2_ws != null)
+            if (Program._VIN_WS != null)
             {
                 V6Return v6return = null;
-                string result = Program._viettelV2_ws.POST_CREATE_INVOICE("", Program._version == "V45I", out v6return);
+                string result = Program._VIN_WS.CheckConnection();
                 
+
                 string message = "";
-                if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
+                if (string.IsNullOrEmpty(result))
                 {
-                    message += "Kết nối ổn. " + v6return.RESULT_ERROR_MESSAGE;
+                    message += "Kết nối ổn.";
                     BaseMessage.Show(message, 0, this);
+                }
+                else
+                {
+                    BaseMessage.Show(result, 0, this);
                 }
             
                 result = message + "\n" + result;
@@ -91,13 +96,13 @@ namespace V6ThuePost
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
 
-                result = Program._viettelV2_ws.POST_CREATE_INVOICE(richTextBox1.Text, Program._version == "V45I", out v6Return);
+                result = Program._VIN_WS.POST_CREATE_INVOICE(richTextBox1.Text, Program._SIGN_HSM == "1", out v6Return);
                 lblResult.Text = result;
             }
             else
             {
                 string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
-                result = Program._viettelV2_ws.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT, out v6Return);
+                result = Program._VIN_WS.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT, out v6Return);
                 lblResult.Text = result;
             }
             
@@ -105,15 +110,54 @@ namespace V6ThuePost
             try
             {
                 VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
+                _magiaodich = responseObject.result.magiaodich;
+                _so_hoadon = responseObject.result.sohoadon;
+                btnSignHSM.Enabled = true;
+                btnDownloadPDF.Enabled = true;
+
+                if (!responseObject.success)
+                {
+                    message += "Không thành công: " + responseObject.result.motaketqua;
+                }
+                else if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.sohoadon))
+                {
+                    message += "Thành công. Số hóa đơn: " + responseObject.result.sohoadon;
+                    Program.WriteFlag(Program.flagFileName4, responseObject.result.sohoadon);
+                    File.Create(Program.flagFileName2).Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("Result:" + result);
+                message = "Execption:" + ex.Message;
+            }
+
+            MessageBox.Show(message);
+        }
+
+
+        private string _magiaodich, _ma_hoadon, _so_hoadon;
+
+        private void btnSignHSM_Click(object sender, EventArgs e)
+        {
+            string result = null;
+            V6Return v6Return;
+            string message = "";
+
+            try
+            {
+                Program._VIN_WS.SIGN_HSM(Program._codetax, _magiaodich, Program._ma_hoadon_or_fkey, out v6Return);
+
+                VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
                 if (!string.IsNullOrEmpty(responseObject.result.motaketqua))
                 {
                     message += " " + responseObject.result.motaketqua;
                 }
-                
-                if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
+
+                if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.sohoadon))
                 {
-                    message += " " + responseObject.result.invoiceNo;
-                    Program.WriteFlag(Program.flagFileName4, responseObject.result.invoiceNo);
+                    message += " " + responseObject.result.sohoadon;
+                    Program.WriteFlag(Program.flagFileName4, responseObject.result.sohoadon);
                     File.Create(Program.flagFileName2).Close();
                 }
             }
@@ -126,13 +170,34 @@ namespace V6ThuePost
             MessageBox.Show(message + "\n" + result);
         }
 
+        private void btnDownloadPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                V6Return v6Return;
+                Program._VIN_WS.DownloadInvoicePDF(Program._codetax, _magiaodich, Program._ma_hoadon_or_fkey, Path.GetDirectoryName(Application.StartupPath), out v6Return);
+                if (!string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
+                {
+                    BaseMessage.Show(v6Return.RESULT_ERROR_MESSAGE, 0, this);
+                }
+                else
+                {
+                    BaseMessage.Show(v6Return.PATH, 0, this);
+                }
+            }
+            catch (Exception ex)
+            {
+                BaseMessage.Show(ex.Message, 0, this);
+            }
+        }
+
         private void btnGetMeta_Click(object sender, EventArgs e)
         {
             try
             {
                 var v = new V6Return();
                 string templateCode = Program.row0["MA_MAUHD"].ToString();
-                var result = Program._viettelV2_ws.GetMetaDataDefine(templateCode, out v);
+                var result = Program._VIN_WS.GetMetaDataDefine(templateCode, out v);
                 lblResult.Text = result;
             }
             catch (Exception ex)
@@ -140,5 +205,9 @@ namespace V6ThuePost
                 MessageBox.Show(ex.Message);
             }
         }
+
+        
+
+        
     }//End class
 }//End namespace

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}</ProjectGuid>
+    <ProjectGuid>{B76F1253-A371-4590-9193-D27CB0C31E35}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePost_VIN_Api</RootNamespace>
-    <AssemblyName>V6ThuePostViettelV2Api</AssemblyName>
+    <AssemblyName>V6ThuePost_VIN_Api</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="V6Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\V6Tools\V6Tools\bin\Release\V6Tools.dll</HintPath>
+      <HintPath>..\..\..\V6Tools\V6Tools\bin\Release\V6Tools.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

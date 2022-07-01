@@ -93,7 +93,7 @@ namespace V6ThuePostViettelV2Api
                 result = POST_VIETTEL_COOKIESTOKEN(link + _codetax, jsonBody);
                 v6Return.RESULT_STRING = result;
                 //{"errorCode":null,"description":null,"result":{"supplierTaxCode":"0100109106-715","invoiceNo":"XL/20E0000006","transactionID":"160145663940682045","reservationCode":"PU3ZQOPMTC9VM4L"}}
-                CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                VIETTEL_CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
                 v6Return.RESULT_OBJECT = responseObject;
                 if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
                 {
@@ -102,7 +102,7 @@ namespace V6ThuePostViettelV2Api
                     // sau đó gửi lại.
                     result = POST_VIETTEL_COOKIESTOKEN(link + _codetax, jsonBody);
                     v6Return.RESULT_STRING = result;
-                    responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                    responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
                     v6Return.RESULT_OBJECT = responseObject;
                 }
 
@@ -161,7 +161,7 @@ namespace V6ThuePostViettelV2Api
                 {
                     // {"errorCode":"","description":"","result":{}}
                     // {"code":400,"message":"TRANSACTION_UUID_INVALID","data":"Transaction Uuid đã được lập hóa đơn"}
-                    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                    VIETTEL_CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
                     v6Return.RESULT_OBJECT = responseObject;
                     if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
                     {
@@ -170,7 +170,7 @@ namespace V6ThuePostViettelV2Api
                         // sau đó gửi lại.
                         result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
                         v6Return.RESULT_STRING = result;
-                        responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                        responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
                         v6Return.RESULT_OBJECT = responseObject;
                     }
 
@@ -877,17 +877,17 @@ namespace V6ThuePostViettelV2Api
             return result;
         }
 
-        public CreateInvoiceResponseV2 POST_NEW_USBTOKEN(string json, string templateCode, string token_serial)
+        public VIETTEL_CreateInvoiceResponseV2 POST_NEW_USBTOKEN(string json, string templateCode, string token_serial)
         {
             string result = null;
-            CreateInvoiceResponseV2 responseObject = CreateInvoiceUsbTokenGetHash(json, out result);
+            VIETTEL_CreateInvoiceResponseV2 responseObject = CreateInvoiceUsbTokenGetHash(json, out result);
 
             if (responseObject.result != null)
             {
                 V6Sign v6sign = new V6Sign();
                 string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
                 string result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
-                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result2);
+                responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result2);
                 return responseObject;
             }
             else
@@ -905,7 +905,7 @@ namespace V6ThuePostViettelV2Api
             v6Return = new V6Return();
             hash_result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
             v6Return.RESULT_STRING = hash_result;
-            CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(hash_result);
+            VIETTEL_CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(hash_result);
             v6Return.RESULT_OBJECT = responseObject;
             if (responseObject.message == "GENERAL" && hash_result.Contains("\"error\":\"Internal Server Error\""))
             {
@@ -914,7 +914,7 @@ namespace V6ThuePostViettelV2Api
                 // sau đó gửi lại.
                 hash_result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
                 v6Return.RESULT_STRING = hash_result;
-                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(hash_result);
+                responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(hash_result);
                 v6Return.RESULT_OBJECT = responseObject;
             }
 
@@ -925,7 +925,7 @@ namespace V6ThuePostViettelV2Api
                 string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
                 sign_result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
                 v6Return.RESULT_STRING = sign_result2;
-                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(sign_result2);
+                responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(sign_result2);
                 v6Return.RESULT_OBJECT = responseObject;
                 if (responseObject.result == null)
                 {
@@ -949,10 +949,10 @@ namespace V6ThuePostViettelV2Api
         }
 
 
-        public CreateInvoiceResponseV2 CreateInvoiceUsbTokenGetHash(string json, out string result)
+        public VIETTEL_CreateInvoiceResponseV2 CreateInvoiceUsbTokenGetHash(string json, out string result)
         {
             result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+            VIETTEL_CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
             return responseObject;
         }
 

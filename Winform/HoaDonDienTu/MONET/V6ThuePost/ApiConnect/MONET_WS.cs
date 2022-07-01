@@ -556,11 +556,11 @@ namespace V6ThuePostMonetApi
             //    //return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
             //}
         }
-        
-        public CreateInvoiceResponse CreateInvoiceUsbTokenGetHash(string json, out string result)
+
+        public VIETTEL_CreateInvoiceResponse CreateInvoiceUsbTokenGetHash(string json, out string result)
         {
             result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+            VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);
             return responseObject;
         }
 

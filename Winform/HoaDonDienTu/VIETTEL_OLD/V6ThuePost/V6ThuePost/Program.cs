@@ -247,7 +247,7 @@ namespace V6ThuePost
                     string message = "";
                     try
                     {
-                        CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);// MyJson.ConvertJson<CreateInvoiceResponse>(result);
+                        VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);// MyJson.ConvertJson<CreateInvoiceResponse>(result);
                         if (!string.IsNullOrEmpty(responseObject.description))
                         {
                             message += " " + responseObject.description;

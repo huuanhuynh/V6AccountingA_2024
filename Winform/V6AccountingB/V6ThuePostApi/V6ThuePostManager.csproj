@@ -111,6 +111,10 @@
       <Project>{a65baf8e-b364-4384-b798-e2e2e0d67f8d}</Project>
       <Name>V6ThuePostViettelV2Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\HoaDonDienTu\VIN\ApiConnect\V6ThuePost_VIN_Api.csproj">
+      <Project>{b76f1253-a371-4590-9193-d27cb0c31e35}</Project>
+      <Name>V6ThuePost_VIN_Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HoaDonDienTu\VNPT\V6ThuePost_Xml\ApiConnect\V6ThuePostXmlApi.csproj">
       <Project>{ABC35001-3755-4AFF-88D6-B48598BBC651}</Project>
       <Name>V6ThuePostXmlApi</Name>

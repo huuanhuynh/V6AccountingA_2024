@@ -27,7 +27,7 @@ namespace V6ThuePost
         private static DateTime _TEST_DATE_ = DateTime.Now;
         public static bool _write_log = false;
         #region ===== VAR =====
-        public static VIN_WS _viettelV2_ws = null;
+        public static VIN_WS _VIN_WS = null;
         /// <summary>
         /// Link host
         /// </summary>
@@ -82,12 +82,10 @@ namespace V6ThuePost
         /// key đầu ngữ
         /// </summary>
         private static string fkey0 = "";
-        private static string _uid = "";
-        private static string _debug = "";
-        /// <summary>
-        /// key trong data
-        /// </summary>
-        public static string fkeyA;
+        public static string _ma_hoadon_or_fkey = "";
+        public static string _SIGN_HSM = "";
+        
+        
         #endregion var
 
         /// <summary>
@@ -109,6 +107,8 @@ namespace V6ThuePost
                 _TEST_ = false;
             }
 
+            string message = "";
+
             if (args != null && args.Length > 0)
             {
                 string result = "";
@@ -126,23 +126,24 @@ namespace V6ThuePost
 
                 try
                 {
+                    
                     string jsonBody = "";
                     V6Return v6return = new V6Return();
                     ReadXmlInfo(arg1_xmlFile);
-                    if (_debug == "1")
+                    if (_SIGN_HSM == "1")
                     {
                         MessageBox.Show("debug=1");
                     }
                     string dbfFile = arg2;
 
-                    _viettelV2_ws = new VIN_WS(baseUrl, username, password, _codetax);
+                    _VIN_WS = new VIN_WS(baseUrl, username, password, _codetax);
 
                     if (mode.ToUpper() == "MTEST")
                     {
-                        ReadData(arg2, "M"); // đọc để lấy tên flag.
+                        ReadData_VIN(arg2, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
-                        result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
+                        result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, _SIGN_HSM == "1", out v6return);
                         if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
                         {
                             result = "Kết nối ổn. " + result;
@@ -160,7 +161,7 @@ namespace V6ThuePost
                     {
                         //ReadData(arg2, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
-                        result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
+                        result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
                         EncodeV6Return(v6return);
                         Console.Write(v6return.ToJson());
                         goto End;
@@ -171,11 +172,11 @@ namespace V6ThuePost
                         
                         if (mode.StartsWith("M_F4_"))
                         {
-                            result = _viettelV2_ws.POST_DRAFT(jsonBody, out v6return);
+                            result = _VIN_WS.POST_DRAFT(jsonBody, out v6return);
                         }
                         else
                         {
-                            result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
+                            result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
                         }
 
                         // Nếu error null mà ko có so_hd thì chạy hàm lấy thông tin.
@@ -184,41 +185,41 @@ namespace V6ThuePost
                         {
                             Thread.Sleep(10000); // Chờ 10 giây.
                             string oldTransactionID = v6return.ID;
-                            _uid = SearchUID(jsonBody);
-                            _viettelV2_ws.SearchInvoiceByTransactionUuid(_codetax, _uid, out v6return);
+                            _ma_hoadon_or_fkey = SearchUID(jsonBody);
+                            _VIN_WS.SearchInvoiceByTransactionUuid(_codetax, _ma_hoadon_or_fkey, out v6return);
                             v6return.ID = oldTransactionID;
                         }
                     }
                     else if (mode.StartsWith("M"))
                     {
                         StartAutoInputTokenPassword();
-                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                        {
-                            Field = "adjustmentType",
-                            Value = "1",
-                        };
-                        Guid new_uid = Guid.NewGuid();
-                        if (mode == "MG")
-                        {
-                            generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
-                            {
-                                Field = "transactionUuid",
-                                Value = "" + new_uid,
-                            };
-                        }
+                        //generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        //{
+                        //    Field = "adjustmentType",
+                        //    Value = "1",
+                        //};
+                        //Guid new_uid = Guid.NewGuid();
+                        //if (mode == "MG")
+                        //{
+                        //    generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
+                        //    {
+                        //        Field = "transactionUuid",
+                        //        Value = "" + new_uid,
+                        //    };
+                        //}
 
                         if (mode == "M0") // DRAF
                         {
-                            jsonBody = ReadData(dbfFile, "M");
+                            jsonBody = ReadData_VIN(dbfFile, "M");
                             File.Create(flagFileName1).Close();
-                            result = _viettelV2_ws.POST_DRAFT(jsonBody, out v6return);
+                            result = _VIN_WS.POST_DRAFT(jsonBody, out v6return);
                         }
                         else if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
-                            jsonBody = ReadData(dbfFile, "M");
-                            if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
+                            jsonBody = ReadData_VIN(dbfFile, "M");
+                            if(mode == "MG") WriteFlag(flagFileName5, "" + _ma_hoadon_or_fkey);
                             File.Create(flagFileName1).Close();
-                            result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
+                            result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, _SIGN_HSM == "1", out v6return);
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
@@ -227,20 +228,19 @@ namespace V6ThuePost
                                 Field = "certificateSerial",
                                 Value = _SERIAL_CERT,
                             };
-                            jsonBody = ReadData(dbfFile, "M");
-                            if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
+                            jsonBody = ReadData_VIN(dbfFile, "M");
+                            if(mode == "MG") WriteFlag(flagFileName5, "" + _ma_hoadon_or_fkey);
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                            result = _viettelV2_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out v6return);
+                            result = _VIN_WS.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out v6return);
                         }
 
-                        // Nếu error null mà ko có so_hd thì chạy hàm lấy thông tin.
-                        if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE)
-                            && string.IsNullOrEmpty(v6return.SO_HD))
+                        if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                         {
-                            Thread.Sleep(10000); // Chờ 10 giây.
-                            string oldTransactionID = v6return.ID;
-                            _viettelV2_ws.SearchInvoiceByTransactionUuid(_codetax, _uid, out v6return);
-                            v6return.ID = oldTransactionID;
+                            message = "Thành công. Số hóa đơn: " + v6return.SO_HD;
+                        }
+                        else
+                        {
+                            message = v6return.RESULT_ERROR_MESSAGE;
                         }
                     }
                     else if (mode.StartsWith("S"))
@@ -270,21 +270,21 @@ namespace V6ThuePost
                             };
                         }
 
-                        jsonBody = ReadData(dbfFile, "S");
+                        jsonBody = ReadData_VIN(dbfFile, "S");
                         File.Create(flagFileName1).Close();
-                        result = _viettelV2_ws.POST_EDIT(jsonBody, out v6return);
+                        result = _VIN_WS.POST_EDIT(jsonBody, out v6return);
                     }
                     else if (mode.StartsWith("T") && mode.EndsWith("_JSON"))
                     {
                         // Lưu ý dữ liệu mode Replace. (T)
                         jsonBody = ReadText(arg2);
-                        result = _viettelV2_ws.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
+                        result = _VIN_WS.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
                     }
                     else if (mode == "T")
                     {
-                        jsonBody = ReadData(dbfFile, "T");
+                        jsonBody = ReadData_VIN(dbfFile, "T");
                         File.Create(flagFileName1).Close();
-                        result = _viettelV2_ws.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
+                        result = _VIN_WS.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
                     }
                     else if (mode == "GET_INVOICE" || mode == "GET_INVOICE_JSON")
                     {
@@ -292,7 +292,7 @@ namespace V6ThuePost
                         string uid = arg2;
                         MakeFlagNames(uid);
                         File.Create(flagFileName1).Close();
-                        result = _viettelV2_ws.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
+                        result = _VIN_WS.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
 
 
                     }
@@ -340,7 +340,7 @@ namespace V6ThuePost
                         string stt_rec = arg4;
                         MakeFlagNames(stt_rec);
                         File.Create(flagFileName1).Close();
-                        result = _viettelV2_ws.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate, out v6return);
+                        result = _VIN_WS.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate, out v6return);
                     }
                     else if (mode.StartsWith("P"))
                     {
@@ -356,14 +356,14 @@ namespace V6ThuePost
                         {
                             MakeFlagNames(uid);
                             //string strIssueDate = V6JsonConverter.ObjectToJson(ngay_ct, "VIETTEL");
-                            string info = _viettelV2_ws.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
+                            string info = _VIN_WS.SearchInvoiceByTransactionUuid(_codetax, uid, out v6return);
                             SearchInvoiceResponseV2 infoObj =  v6return.RESULT_OBJECT as SearchInvoiceResponseV2;
                             if (infoObj != null)
                             {
-                                string strIssueDate = infoObj.result[0].issueDate;
+                                string strIssueDate = "infoObj.result[0].issueDate";
                                 try
                                 {
-                                    result = _viettelV2_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
+                                    result = _VIN_WS.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
                                 }
                                 catch (Exception download_ex)
                                 {
@@ -380,7 +380,7 @@ namespace V6ThuePost
                         {
                             try
                             {
-                                result = _viettelV2_ws.DownloadInvoicePDF(_codetax, soseri_soct, templateCode, uid, V6SoftLocalAppData_Directory, out v6return);
+                                result = _VIN_WS.DownloadInvoicePDF(_codetax, soseri_soct, uid, V6SoftLocalAppData_Directory, out v6return);
                             }
                             catch (Exception download_ex)
                             {
@@ -453,7 +453,7 @@ namespace V6ThuePost
                     }
                     else
                     {
-                        string message = "";
+                        message = "";
                         if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                         {
                             message = "OK.";
@@ -483,7 +483,7 @@ namespace V6ThuePost
                 else
                 {
                     File.Create(flagFileName9).Close();
-                    BaseMessage.Show(result, 500);
+                    BaseMessage.Show(message, 500);
                 }
             }
             else
@@ -541,7 +541,7 @@ namespace V6ThuePost
         /// <param name="dbfFile"></param>
         /// <param name="mode">M mới hoặc T thay thế</param>
         /// <returns></returns>
-        public static string ReadData(string dbfFile, string mode)
+        public static string ReadData_VIN(string dbfFile, string mode)
         {
             string result = "";
             //try
@@ -556,9 +556,9 @@ namespace V6ThuePost
                 //Fill data to postObject
                 row0 = data.Rows[0];
 
-                fkeyA = fkey0 + row0["STT_REC"];
+                //fkeyA = fkey0 + row0["STT_REC"];
                 
-                MakeFlagNames(fkeyA);
+                
                 
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
@@ -570,13 +570,13 @@ namespace V6ThuePost
                 if (mode == "S")
                 {
                     //Lập hóa đơn điều chỉnh: trong chi tiết và dsthuesuat có thêm trường dieuchinh_tanggiam
-                    hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();  // [AA/17E0003470]
+                    hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
                 }
 
                 if (mode == "T")
                 {
                     //Lập hóa đơn thay thế:
-                    hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();  // [AA/17E0003470]
+                    hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
                 }
 
                 if (_TEST_)
@@ -585,7 +585,8 @@ namespace V6ThuePost
                     hoadon["ma_hoadon"] = "" + new_uid;
                 }
 
-                _uid = "" + hoadon["ma_hoadon"];
+                _ma_hoadon_or_fkey = "" + hoadon["ma_hoadon"];
+                MakeFlagNames(_ma_hoadon_or_fkey);
 
                 //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
@@ -1173,8 +1174,8 @@ namespace V6ThuePost
                                     //case "version":
                                     //    _version = UtilityHelper.DeCrypt(line.Value);
                                     //    break;
-                                    case "debug":
-                                        _debug = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    case "signmode":
+                                        _SIGN_HSM = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "datetype":
                                         _dateType = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

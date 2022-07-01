@@ -35,13 +35,15 @@ using V6ThuePostSoftDreamsApi;
 using V6ThuePostThaiSonApi;
 using V6ThuePostThaiSonApi.EinvoiceService;
 using V6ThuePostViettelApi;
-using V6ThuePostViettelV2Api;
+
 using V6ThuePostXmlApi;
 
 using V6Tools;
 using V6Tools.V6Convert;
 using V6Tools.V6Reader;
-using CreateInvoiceResponse = V6ThuePost.ViettelObjects.CreateInvoiceResponse;
+
+using V6ThuePostViettelV2Api;
+using V6ThuePost_VIN_Api;
 
 namespace V6ThuePostManager
 {
@@ -161,10 +163,12 @@ namespace V6ThuePostManager
         public static int BkavCommandTypeNew = 112;
 
         public static ViettelV2WS viettel_V2WS = null;
+        public static VIN_WS vin_WS = null;
 
         public static void ResetWS()
         {
             viettel_V2WS = null;
+            vin_WS = null;
         }
 
         /// <summary>
@@ -225,6 +229,10 @@ namespace V6ThuePostManager
                         break;
                     case "8":
                         result0 = EXECUTE_MINVOICE(paras);
+                        break;
+                    case "9":
+                        if (vin_WS == null) vin_WS = new VIN_WS(_baseUrl, _username, _password, _codetax);
+                        result0 = EXECUTE_VIN(paras);
                         break;
                     default:
                         paras.Result = new PM_Result();
@@ -403,6 +411,10 @@ namespace V6ThuePostManager
                         MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax, _version);
                         result = mInvoiceWs.CheckConnection(out paras.Result.V6ReturnValues);
                         break;
+                    case "9":
+                        if (vin_WS == null) vin_WS = new VIN_WS(_baseUrl, _username, _password, _codetax);
+                        result = vin_WS.CheckConnection();
+                        break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
                         break;
@@ -492,6 +504,11 @@ namespace V6ThuePostManager
                         MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax, _version);
                         if (paras.Mode == "1") result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         else result = mInvoiceWs.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
+                        break;
+                    case "9":
+                        VIN_WS vinWS = new VIN_WS(_baseUrl, _username, _password, _codetax);
+                        if (paras.Mode == "2") result = vinWS.DownloadInvoicePDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        else result = vinWS.DownloadInvoicePDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
@@ -3094,7 +3111,7 @@ namespace V6ThuePostManager
                 string message = "";
                 try
                 {
-                    CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                    VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);
                     paras.Result.V6ReturnValues.RESULT_OBJECT = responseObject;
                     if (!string.IsNullOrEmpty(responseObject.description))
                     {
@@ -3357,7 +3374,7 @@ namespace V6ThuePostManager
                     // Phân tích Result tại đây.
                     paras.Result.V6ReturnValues = GetV6ReturnFromCallExe(process_result);
                     result = paras.Result.V6ReturnValues.RESULT_STRING;
-                    CreateInvoiceResponseV2 resultObject = JsonConvert.DeserializeObject<V6ThuePost.ViettelV2Objects.CreateInvoiceResponseV2>(result);
+                    VIETTEL_CreateInvoiceResponseV2 resultObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
                     paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = resultObject.errorCode + resultObject.message;
                 }
                 else if (paras.Mode == "E_T1")
@@ -3466,7 +3483,7 @@ namespace V6ThuePostManager
                 string message = "";
                 try
                 {
-                    CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponseV2>(result);
+                    VIETTEL_CreateInvoiceResponseV2 responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
                     paras.Result.V6ReturnValues.RESULT_OBJECT = responseObject;
                     if (!string.IsNullOrEmpty(responseObject.description))
                     {
@@ -4822,6 +4839,225 @@ namespace V6ThuePostManager
         }
 
         #endregion MINVOICE
+
+        #region ===== VIN =====
+
+
+        private static string EXECUTE_VIN(PostManagerParams paras)
+        {
+            
+            paras.Result = new PM_Result();
+
+            try
+            {
+                if (vin_WS == null) vin_WS = new VIN_WS(_baseUrl, _username, _password, _codetax);
+                
+                var row0 = am_table.Rows[0];
+
+                if (paras.Mode == "TestView")
+                {
+                    paras.Result.ResultString = ReadData_VIN(paras.Mode);
+                }
+                else if (paras.Mode.StartsWith("M"))
+                {
+                    StartAutoInputTokenPassword();
+
+                    if (string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        var jsonBodyObject = ReadData_VIN("M");
+                        //File.Create(flagFileName1).Close();
+                        var response = vin_WS.POST_CREATE_INVOICE(jsonBodyObject, true, out paras.Result.V6ReturnValues);
+                    }
+                    else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                        var jsonBodyObject = ReadData_VIN("M");
+                        //string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                        var response = vin_WS.POST_CREATE_INVOICE(jsonBodyObject, true, out paras.Result.V6ReturnValues);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                paras.Result.ResultErrorMessage = ex.Message;
+            }
+            StopAutoInputTokenPassword();
+        End:
+            return paras.Result.V6ReturnValues.RESULT_STRING;
+        }
+
+
+        /// <summary>
+        /// Cần đọc xml trước!
+        /// </summary>
+        /// <param name="dbfFile"></param>
+        /// <param name="mode">M mới hoặc T thay thế</param>
+        /// <returns></returns>
+        public static string ReadData_VIN(string mode)
+        {
+            string result = "";
+            //try
+            {   
+                var hoadon = new Dictionary<string, object>();
+                
+                //Fill data to postObject
+                DataRow row0 = am_table.Rows[0];
+
+                foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
+                {
+                    hoadon[item.Key] = GetValue(row0, item.Value);
+                }
+
+
+
+                if (mode == "S")
+                {
+                    //Lập hóa đơn điều chỉnh: trong chi tiết và dsthuesuat có thêm trường dieuchinh_tanggiam
+                    hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
+                }
+
+                if (mode == "T")
+                {
+                    //Lập hóa đơn thay thế:
+                    hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
+                }
+
+                //if (_TEST_)
+                //{
+                //    Guid new_uid = Guid.NewGuid();
+                //    hoadon["ma_hoadon"] = "" + new_uid;
+                //}
+
+                fkeyA = "" + hoadon["ma_hoadon"];
+                //MakeFlagNames(_ma_hoadon_or_fkey);
+
+                //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
+                foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
+                {
+                    hoadon[item.Key] = GetValue(row0, item.Value);
+                }
+                foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
+                {
+                    hoadon[item.Key] = GetValue(row0, item.Value);
+                }
+
+                foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
+                {
+                    hoadon[item.Key] = GetValue(row0, item.Value);
+                }
+
+                if (metadataConfig != null)
+                {
+                    foreach (KeyValuePair<string, ConfigLine> metaItem in metadataConfig)
+                    {
+                        Dictionary<string, object> metadata = new Dictionary<string, object>();
+                        metadata["invoiceCustomFieldId"] = ObjectAndString.ObjectToInt(metaItem.Value.SL_TD1);
+                        metadata["keyTag"] = metaItem.Key;
+                        metadata["valueType"] = metaItem.Value.DataType; // text, number, date
+                        if (metaItem.Value.DataType.ToLower() == "date")
+                        {
+                            metadata["dateValue"] = GetValue(row0, metaItem.Value);
+                        }
+                        else if (metaItem.Value.DataType.ToLower() == "number")
+                        {
+                            metadata["numberValue"] = GetValue(row0, metaItem.Value);
+                        }
+                        else if (metaItem.Value.DataType.ToUpper() == "N2C0VNDE")
+                        {
+                            // N2C0VNDE thêm đọc số tiền nếu ma_nt != VND
+                            string ma_nt = row0["MA_NT"].ToString().Trim().ToUpper();
+                            if (ma_nt != "VND")
+                            {
+                                metadata["stringValue"] = ObjectAndString.ObjectToString(GetValue(row0, metaItem.Value));
+                                metadata["valueType"] = "text";
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+
+                            metadata["stringValue"] = ObjectAndString.ObjectToString(GetValue(row0, metaItem.Value));
+                        }
+                        metadata["keyLabel"] = ObjectAndString.ObjectToString(metaItem.Value.MA_TD2);
+                        metadata["isRequired"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD2);
+                        metadata["isSeller"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD3);
+
+                        //{
+                        //   "invoiceCustomFieldId": 1135,
+                        //   "keyTag": "dueDate",
+                        //   "valueType": "date",
+                        //   "dateValue": 1544115600000,
+                        //   "keyLabel": "Hạn thanh toán",
+                        //   "isRequired": false,
+                        //   "isSeller": false
+                        // },
+                        hoadon["metadata"] = metadata;
+                    }
+                }
+
+
+                var dschitiet = new List<Dictionary<string, object>>();
+                foreach (DataRow row in ad_table.Rows)
+                {
+                    if (row["STT"].ToString() == "0") continue;
+                    Dictionary<string, object> rowData = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
+                    {
+                        rowData[item.Key] = GetValue(row, item.Value);
+                    }
+                    dschitiet.Add(rowData);
+                }
+                hoadon["dschitiet"] = dschitiet;
+
+
+
+
+                var dsthuesuat = new List<Dictionary<string, object>>();
+                Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
+                foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                {
+                    taxBreakdown[item.Key] = GetValue(row0, item.Value);
+                }
+                dsthuesuat.Add(taxBreakdown);
+                hoadon["dsthuesuat"] = dsthuesuat; // Chỉ có 1 dòng.
+
+                //if (taxBreakdownsConfig != null && ad3_table != null && ad3_table.Rows.Count > 0)
+                //{
+                //    foreach (DataRow ad3_row in ad3_table.Rows)
+                //    {
+                //        Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
+                //        foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                //        {
+                //            taxBreakdown[item.Key] = GetValue(ad3_row, item.Value);
+                //        }
+                //        postObject.taxBreakdowns.Add(taxBreakdown);
+                //    }
+                //}
+
+                //result = postObject.ToJson(_dateType);
+                result = V6JsonConverter.ObjectToJson(hoadon, _datetype);
+                if (_write_log)
+                {
+                    string stt_rec = row0["STT_REC"].ToString();
+                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                    File.WriteAllText(file, result);
+                }
+            }
+            //catch (Exception ex)
+            {
+                //
+            }
+            return result;
+        }
+
+        #endregion
 
 
         private static object GetValue(DataRow row, ConfigLine config)
