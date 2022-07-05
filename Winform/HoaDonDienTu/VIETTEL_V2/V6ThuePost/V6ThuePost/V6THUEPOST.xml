@@ -10,6 +10,7 @@
   <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
   <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
   <V6Info Field='datetype' 	Value='VIETTELNOW'/>
+  <V6Info Field='useTaxBreakdowns' 	Value='1' Note='Chỉ cần bật ở đây = 1, tên file tự lấy sẽ là tprint.dbf => tprint3.dbf'/>
   
 	<V6Info Field='baselink' 	Value='UQL2EugVpi0d4zvlWyCcnoUZfWxlzgKoVK4+lPA9wd4=' Type=''/>
 	

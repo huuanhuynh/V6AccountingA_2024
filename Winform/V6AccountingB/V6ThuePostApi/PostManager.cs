@@ -507,8 +507,8 @@ namespace V6ThuePostManager
                         break;
                     case "9":
                         VIN_WS vinWS = new VIN_WS(_baseUrl, _username, _password, _codetax);
-                        if (paras.Mode == "2") result = vinWS.DownloadInvoicePDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
-                        else result = vinWS.DownloadInvoicePDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        if (paras.Mode == "2") result = vinWS.CHUYEN_DOI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        else result = vinWS.TAI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
@@ -4880,6 +4880,23 @@ namespace V6ThuePostManager
                         var response = vin_WS.POST_CREATE_INVOICE(jsonBodyObject, true, out paras.Result.V6ReturnValues);
                     }
                 }
+                else if (paras.Mode == "E_H1")
+                {
+                    var hoadon = ReadData_VIN_Object("H");
+                    var item = generalInvoiceInfoConfig["ngaylap"];
+
+                    string so_bien_ban = paras.AM_data["STT_REC"].ToString();
+                    string ngay_bien_ban = ObjectAndString.ObjectToString((DateTime)GetValue(row0, item), "yyyy-mm-dd hh:MM:ss");
+                    hoadon["hopdong_so"] = so_bien_ban;
+                    hoadon["hopdong_ngayky"] = ngay_bien_ban;
+                    hoadon["file_hopdong"] = "NOFILE";
+                    hoadon["nguoilap"] = ngay_bien_ban;     // Tên tài khoản người lập hd
+                    
+                    paras.InvoiceNo = paras.AM_data["SO_SERI"].ToString().Trim() + paras.AM_data["SO_CT"].ToString().Trim();
+
+                    string json = ReadData_VIN_ObjectToJson(hoadon);
+                    string result = vin_WS.HUY_HOA_DON(json, out paras.Result.V6ReturnValues);
+                }
             }
             catch (Exception ex)
             {
@@ -4891,19 +4908,38 @@ namespace V6ThuePostManager
         }
 
 
+        public static string ReadData_VIN(string mode)
+        {
+            var hoadon = ReadData_VIN_Object(mode);
+            string result = ReadData_VIN_ObjectToJson(hoadon);
+            return result;
+        }
+
+        private static string ReadData_VIN_ObjectToJson(Dictionary<string, object> hoadon)
+        {
+            string result = V6JsonConverter.ObjectToJson(hoadon, _datetype);
+            if (_write_log)
+            {
+                DataRow row0 = am_table.Rows[0];
+                string stt_rec = row0["STT_REC"].ToString();
+                string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                File.WriteAllText(file, result);
+            }
+            return result;
+        }
+
         /// <summary>
         /// Cần đọc xml trước!
         /// </summary>
         /// <param name="dbfFile"></param>
         /// <param name="mode">M mới hoặc T thay thế</param>
         /// <returns></returns>
-        public static string ReadData_VIN(string mode)
+        public static Dictionary<string, object> ReadData_VIN_Object(string mode)
         {
-            string result = "";
+            //string result = "";
+            var hoadon = new Dictionary<string, object>();
             //try
             {   
-                var hoadon = new Dictionary<string, object>();
-                
                 //Fill data to postObject
                 DataRow row0 = am_table.Rows[0];
 
@@ -4912,7 +4948,13 @@ namespace V6ThuePostManager
                     hoadon[item.Key] = GetValue(row0, item.Value);
                 }
 
+                
 
+                if (mode == "H")
+                {
+                    //Lập hóa đơn HỦY: 
+                    hoadon["hoadon_loai"] = 7;
+                }
 
                 if (mode == "S")
                 {
@@ -5042,19 +5084,14 @@ namespace V6ThuePostManager
                 //}
 
                 //result = postObject.ToJson(_dateType);
-                result = V6JsonConverter.ObjectToJson(hoadon, _datetype);
-                if (_write_log)
-                {
-                    string stt_rec = row0["STT_REC"].ToString();
-                    string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
-                    File.WriteAllText(file, result);
-                }
+                
             }
             //catch (Exception ex)
             {
                 //
             }
-            return result;
+            
+            return hoadon;
         }
 
         #endregion

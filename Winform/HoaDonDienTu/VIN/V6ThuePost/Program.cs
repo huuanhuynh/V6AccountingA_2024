@@ -172,7 +172,7 @@ namespace V6ThuePost
                         
                         if (mode.StartsWith("M_F4_"))
                         {
-                            result = _VIN_WS.POST_DRAFT(jsonBody, out v6return);
+                            result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, false, out v6return);
                         }
                         else
                         {
@@ -212,7 +212,7 @@ namespace V6ThuePost
                         {
                             jsonBody = ReadData_VIN(dbfFile, "M");
                             File.Create(flagFileName1).Close();
-                            result = _VIN_WS.POST_DRAFT(jsonBody, out v6return);
+                            result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, false, out v6return);
                         }
                         else if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
@@ -340,7 +340,7 @@ namespace V6ThuePost
                         string stt_rec = arg4;
                         MakeFlagNames(stt_rec);
                         File.Create(flagFileName1).Close();
-                        result = _VIN_WS.CancelTransactionInvoice(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate, out v6return);
+                        result = _VIN_WS.HUY_HOA_DON(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate, out v6return);
                     }
                     else if (mode.StartsWith("P"))
                     {
@@ -380,7 +380,7 @@ namespace V6ThuePost
                         {
                             try
                             {
-                                result = _VIN_WS.DownloadInvoicePDF(_codetax, soseri_soct, uid, V6SoftLocalAppData_Directory, out v6return);
+                                result = _VIN_WS.TAI_HOA_DON_PDF(_codetax, soseri_soct, uid, V6SoftLocalAppData_Directory, out v6return);
                             }
                             catch (Exception download_ex)
                             {

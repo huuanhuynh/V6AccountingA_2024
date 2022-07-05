@@ -45,7 +45,14 @@ namespace V6ThuePost
                 //    Value = "" + new_uid,
                 //};
 
-                string jsonBody = Program.ReadData(txtDbfFile.Text, "M");
+                string dbfFile = txtDbfFile.Text;
+                string dbfFile3 = "";
+                if (Program._useTaxBreakdowns)
+                {
+                    dbfFile3 = dbfFile.ToLower().Replace(".dbf", "3.dbf");
+                }
+
+                string jsonBody = Program.ReadData(dbfFile, dbfFile3, "M");
                 txtUsername.Text = Program.username;
                 txtPassword.Text = Program.password;
                 txtURL.Text = Program.baseUrl;
@@ -104,7 +111,7 @@ namespace V6ThuePost
             string message = "";
             try
             {
-                CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+                VIETTEL_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponse>(result);
                 if (!string.IsNullOrEmpty(responseObject.description))
                 {
                     message += " " + responseObject.description;

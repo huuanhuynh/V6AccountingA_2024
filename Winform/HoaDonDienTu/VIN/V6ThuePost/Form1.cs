@@ -175,7 +175,7 @@ namespace V6ThuePost
             try
             {
                 V6Return v6Return;
-                Program._VIN_WS.DownloadInvoicePDF(Program._codetax, _magiaodich, Program._ma_hoadon_or_fkey, Path.GetDirectoryName(Application.StartupPath), out v6Return);
+                Program._VIN_WS.TAI_HOA_DON_PDF(Program._codetax, _magiaodich, Program._ma_hoadon_or_fkey, Path.GetDirectoryName(Application.StartupPath), out v6Return);
                 if (!string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
                 {
                     BaseMessage.Show(v6Return.RESULT_ERROR_MESSAGE, 0, this);

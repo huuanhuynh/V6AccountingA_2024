@@ -84,6 +84,7 @@ namespace V6ThuePost
         private static string fkey0 = "";
         private static string _uid = "";
         private static string _debug = "";
+        public static bool _useTaxBreakdowns = false;
         /// <summary>
         /// key trong data
         /// </summary>
@@ -134,12 +135,17 @@ namespace V6ThuePost
                         MessageBox.Show("debug=1");
                     }
                     string dbfFile = arg2;
+                    string dbfFile3 = "";
+                    if (_useTaxBreakdowns)
+                    {
+                        dbfFile3 = dbfFile.ToLower().Replace(".dbf", "3.dbf");
+                    }
 
                     _viettelV2_ws = new ViettelV2WS(baseUrl, username, password, _codetax);
 
                     if (mode.ToUpper() == "MTEST")
                     {
-                        ReadData(arg2, "M"); // đọc để lấy tên flag.
+                        ReadData(dbfFile, dbfFile3, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
                         result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
@@ -209,13 +215,13 @@ namespace V6ThuePost
 
                         if (mode == "M0") // DRAF
                         {
-                            jsonBody = ReadData(dbfFile, "M");
+                            jsonBody = ReadData(dbfFile, dbfFile3, "M");
                             File.Create(flagFileName1).Close();
                             result = _viettelV2_ws.POST_DRAFT(jsonBody, out v6return);
                         }
                         else if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
-                            jsonBody = ReadData(dbfFile, "M");
+                            jsonBody = ReadData(dbfFile, dbfFile3, "M");
                             if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
                             File.Create(flagFileName1).Close();
                             result = _viettelV2_ws.POST_CREATE_INVOICE(jsonBody, _version == "V45I", out v6return);
@@ -227,7 +233,7 @@ namespace V6ThuePost
                                 Field = "certificateSerial",
                                 Value = _SERIAL_CERT,
                             };
-                            jsonBody = ReadData(dbfFile, "M");
+                            jsonBody = ReadData(dbfFile, dbfFile3, "M");
                             if(mode == "MG") WriteFlag(flagFileName5, "" + new_uid);
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
                             result = _viettelV2_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out v6return);
@@ -270,7 +276,7 @@ namespace V6ThuePost
                             };
                         }
 
-                        jsonBody = ReadData(dbfFile, "S");
+                        jsonBody = ReadData(dbfFile, dbfFile3, "S");
                         File.Create(flagFileName1).Close();
                         result = _viettelV2_ws.POST_EDIT(jsonBody, out v6return);
                     }
@@ -282,7 +288,7 @@ namespace V6ThuePost
                     }
                     else if (mode == "T")
                     {
-                        jsonBody = ReadData(dbfFile, "T");
+                        jsonBody = ReadData(dbfFile, dbfFile3, "T");
                         File.Create(flagFileName1).Close();
                         result = _viettelV2_ws.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
                     }
@@ -299,7 +305,7 @@ namespace V6ThuePost
                     else if (mode.StartsWith("G")) // call exe như mode M
                     {
                         //MakeFlagNames(arg2);
-                        jsonBody = ReadData(dbfFile, "M");
+                        jsonBody = ReadData(dbfFile, dbfFile3, "M");
                         if (mode == "G1" || mode == "G") // Gạch nợ theo fkey
                         {
                             File.Create(flagFileName1).Close();
@@ -541,7 +547,7 @@ namespace V6ThuePost
         /// <param name="dbfFile"></param>
         /// <param name="mode">M mới hoặc T thay thế</param>
         /// <returns></returns>
-        public static string ReadData(string dbfFile, string mode)
+        public static string ReadData(string dbfFile, string dbfFile3, string mode)
         {
             string result = "";
             //try
@@ -551,6 +557,13 @@ namespace V6ThuePost
                 //ReadXmlInfo(xmlFile);
                 DataTable dataDbf =  ParseDBF.ReadDBF(dbfFile);
                 DataTable data = Data_Table.FromTCVNtoUnicode(dataDbf);
+                DataTable table3 = null;
+                if (_useTaxBreakdowns && !string.IsNullOrEmpty(dbfFile3))
+                {
+                    DataTable dataDbf3 = ParseDBF.ReadDBF(dbfFile3);
+                    table3 = Data_Table.FromTCVNtoUnicode(dataDbf3);
+                }
+                
                 //Fill data to postObject
                 row0 = data.Rows[0];
 
@@ -685,18 +698,38 @@ namespace V6ThuePost
                     }
                     postObject.itemInfo.Add(rowData);
                 }
+                
                 //private static Dictionary<string, XmlLine> summarizeInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
                 {
                     postObject.summarizeInfo[item.Key] = GetValue(row0, item.Value);
                 }
-                //private static Dictionary<string, XmlLine> taxBreakdownsConfig = null; 
-                Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
-                foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+
+                postObject.taxBreakdowns = new List<Dictionary<string, object>>();
+
+                if (_useTaxBreakdowns && table3 != null)
                 {
-                    taxBreakdown[item.Key] = GetValue(row0, item.Value);
+                    foreach (DataRow row3 in table3.Rows)
+                    {
+                        Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
+                        foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                        {
+                            taxBreakdown[item.Key] = GetValue(row3, item.Value);
+                        }
+                        postObject.taxBreakdowns.Add(taxBreakdown);//Many rows
+                    }
                 }
-                postObject.taxBreakdowns.Add(taxBreakdown);//One only!
+                else
+                {
+                    Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                    {
+                        taxBreakdown[item.Key] = GetValue(row0, item.Value);
+                    }
+                    postObject.taxBreakdowns.Add(taxBreakdown);//One only!
+                }
+                
+                
 
                 //if (taxBreakdownsConfig != null && ad3_table != null && ad3_table.Rows.Count > 0)
                 //{
@@ -1184,8 +1217,8 @@ namespace V6ThuePost
                                     //case "version":
                                     //    _version = UtilityHelper.DeCrypt(line.Value);
                                     //    break;
-                                    case "debug":
-                                        _debug = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    case "useTaxBreakdowns":
+                                        _useTaxBreakdowns = line.Value == "1";
                                         break;
                                     case "datetype":
                                         _dateType = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
