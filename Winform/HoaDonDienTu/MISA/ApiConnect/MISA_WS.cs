@@ -13,6 +13,8 @@ using V6ThuePost.MISA_Objects;
 using V6SignToken;
 using System.Collections.Generic;
 using V6Tools.V6Convert;
+using System.Xml;
+using V6ThuePost_MISA_Api.Objects;
 
 namespace V6ThuePost_MISA_Api
 {
@@ -46,6 +48,9 @@ namespace V6ThuePost_MISA_Api
 
         private bool _co_ma = true;
         private const string login_uri = "/api/v3/auth/token";
+        /// <summary>
+        /// Hàm gửi và lấy về xml chưa ký?
+        /// </summary>
         private const string create_uri = "/api/v3/itg/invoicepublishing/createinvoice";//"itg/invoicepublishing", "createinvoice"
         private const string PUBLISH_uri = "/api/v3/itg/invoicepublishing";
         private const string create_guivakyhoadonhsm_uri = "/api/v3/itg/invoicepublishing/publishhsm";
@@ -127,6 +132,7 @@ namespace V6ThuePost_MISA_Api
             {
                 result = POST_BEARERTOKEN(link, jsonBody);
                 v6Return.RESULT_STRING = result;
+                //{"Success":true,"ErrorCode":null,"Errors":[],"Data":"[{\"RefID\":\"695c0725-4052-40fa-ad6e-c0ffe296c8b4\",\"TransactionID\":null,\"InvNo\":null,\"InvDate\":\"0001-01-01T00:00:00+07:06\",\"InvoiceData\":null,\"ErrorCode\":\"InvalidDeclaration\",\"ErrorData\":\"\",\"TokenCallback\":null,\"CallbackUrl\":null}]","CustomData":null}
 
                 MISA_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<MISA_CreateInvoiceResponse>(result);
                 v6Return.RESULT_OBJECT = responseObject;
@@ -183,7 +189,139 @@ namespace V6ThuePost_MISA_Api
             }
             return result;
         }
-        
+
+        public string POST_PUBLISH_INVOICE(string jsonBody, out V6Return v6Return)
+        {
+            string result = "";
+            v6Return = new V6Return();
+
+            string link = create_uri;
+            if (_co_ma) link = link.Replace("/v3/", "/v3/code/");
+
+            try
+            {
+                result = POST_BEARERTOKEN(link, jsonBody);
+                v6Return.RESULT_STRING = result;
+                //{"Success":true,"ErrorCode":null,"Errors":[],"Data":"[{\"RefID\":\"695c0725-4052-40fa-ad6e-c0ffe296c8b4\",\"TransactionID\":null,\"InvNo\":null,\"InvDate\":\"0001-01-01T00:00:00+07:06\",\"InvoiceData\":null,\"ErrorCode\":\"InvalidDeclaration\",\"ErrorData\":\"\",\"TokenCallback\":null,\"CallbackUrl\":null}]","CustomData":null}
+
+                MISA_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<MISA_CreateInvoiceResponse>(result);
+                v6Return.RESULT_OBJECT = responseObject;
+                if (responseObject.ErrorCode == "UnAuthorize")
+                {
+                    // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                    Login();
+                    // sau đó gửi lại.
+                    result = POST_BEARERTOKEN(link, jsonBody);
+                    v6Return.RESULT_STRING = result;
+                    responseObject = JsonConvert.DeserializeObject<MISA_CreateInvoiceResponse>(result);
+                    v6Return.RESULT_OBJECT = responseObject;
+                }
+
+                if (responseObject.Success == false)
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "ErrorCode:" + responseObject.ErrorCode;
+                    if (responseObject.Errors.Count > 0) v6Return.RESULT_ERROR_MESSAGE += ",Error0:" + responseObject.Errors[0];
+                }
+                else
+                {
+                    if (responseObject.Data != null)
+                    {
+                        List<MISA_CreateInvoiceResponseData> responseData = JsonConvert.DeserializeObject<List<MISA_CreateInvoiceResponseData>>(responseObject.Data.ToString());
+                        if (responseData.Count == 0)
+                        {
+                            v6Return.RESULT_ERROR_MESSAGE = "Không có dữ liệu";
+                        }
+                        else if (!string.IsNullOrEmpty(responseData[0].ErrorCode)) // vẫn có lỗi
+                        {
+                            v6Return.RESULT_ERROR_MESSAGE = responseData[0].ErrorCode;
+                        }
+                        else if (string.IsNullOrEmpty(responseData[0].InvNo)) // lỗi gì đó?
+                        {
+                            v6Return.RESULT_ERROR_MESSAGE = responseObject.Data.ToString();
+                        }
+                        else // có số hóa đơn InvNo
+                        {
+                            v6Return.SO_HD = responseData[0].InvNo;
+                            v6Return.ID = responseData[0].RefID;
+                            v6Return.SECRET_CODE = responseData[0].TransactionID;
+                        }
+                    }
+                    else // không có Data trả về?
+                    {
+                        v6Return.RESULT_ERROR_MESSAGE = result;
+                    }
+
+                }
+            }
+            catch (Exception ex1)
+            {
+                v6Return.RESULT_ERROR_MESSAGE = ex1.Message;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Thực hiện luôn các bước gửi data, lấy xml, ký, gửi xml đã ký...
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="templateCode"></param>
+        /// <param name="token_serial"></param>
+        /// <param name="v6Return"></param>
+        /// <returns></returns>
+        public string CreateInvoice_GetXml_Sign(string json, string token_serial, out V6Return v6Return)
+        {
+            v6Return = new V6Return();
+            POST_CREATE_INVOICE(json, out v6Return);
+            // nếu thành công
+            if (string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
+            {
+                // thực hiện ký.
+                //V6Sign sign = new V6Sign();
+                //sign.Sign("xml", token_serial);
+
+                MISA_CreateInvoiceResponse response1 = (MISA_CreateInvoiceResponse)v6Return.RESULT_OBJECT;
+                XmlDocument XmlData = new XmlDocument();
+                // gán xml dạng string được trả về khi tạo xml thô
+                List<MISA_CreateInvoiceResponseData> list0 = JsonConvert.DeserializeObject<List<MISA_CreateInvoiceResponseData>>(response1.Data.ToString());
+                XmlData.LoadXml(list0[0].InvoiceData);
+                X509Certificate2 cert = SignXmlUtil.GetCertificateFromStore();
+                // truyền các giá trị vào hàm ký số để ký
+                SignXmlUtil.SignXml(XmlData, cert, list0[0].TransactionID);
+
+                //Gửi phát hành.
+                // Gán giá trị cho đối tượng gọi đi phát hành
+                PublishInvoiceData PublishInvoiceData = new PublishInvoiceData();
+                List<PublishInvoiceData> lstPublishInvoiceData = new List<PublishInvoiceData>();
+                PublishInvoiceData.InvoiceData = XmlData.InnerXml;
+                PublishInvoiceData.RefID = list0[0].RefID;
+                PublishInvoiceData.TransactionID = list0[0].TransactionID;
+                // Kiểm tra có tùy chọn gửi mail kèm phát hành hay không
+                //if (chkSendEmail.Checked)
+                {
+                    // biến đánh dấu gửi mail kèm phát hành
+                    //PublishInvoiceData.IsSendEmail = true;
+                    // các email được gửi email tới
+                    //PublishInvoiceData.ReceiverEmail = txtReceiverEmail.Text;
+                    // tên người nhận email
+                    //PublishInvoiceData.ReceiverName = txtReceiverName.Text;
+                }
+                lstPublishInvoiceData.Add(PublishInvoiceData);
+                // Phát hành hóa đơn lên hệ thống MISA
+                //PublishInvoiceResult = InvoicePublishingObject.PublishInvoice(lstPublishInvoiceData, Session.IsInvoiceCode);
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                var publish_json = JsonConvert.SerializeObject(lstPublishInvoiceData, settings);
+                
+                POST_PUBLISH_INVOICE(publish_json, out v6Return);
+
+            }
+            else
+            {
+                v6Return.RESULT_ERROR_MESSAGE = "Lỗi bước 1. " + v6Return.RESULT_ERROR_MESSAGE;
+            }
+            return "Chưa hỗ trợ";
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -991,12 +1129,7 @@ namespace V6ThuePost_MISA_Api
         }
 
 
-        public string CreateInvoice_GetXml_Sign(string json, string templateCode, string token_serial, out V6Return v6Return)
-        {
-            v6Return = new V6Return();
-            v6Return.RESULT_ERROR_MESSAGE = "Chưa hỗ trợ.";
-            return "Chưa hỗ trợ";
-        }
+        
 
 
 

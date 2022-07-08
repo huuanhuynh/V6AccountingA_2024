@@ -46,18 +46,18 @@ namespace V6ThuePost
                 //};
                 string dbfFile = txtDbfFile.Text;
                 string dbfFile3 = "";
-                if (Program._useTaxBreakdowns)
+                if (Program.USETAXBREAKDOWNS)
                 {
                     dbfFile3 = dbfFile.ToLower().Replace(".dbf", "3.dbf");
                 }
                 string jsonBody = "";
                 if (string.IsNullOrEmpty(Program._SERIAL_CERT))
                 {
-                    jsonBody = Program.ReadData_MISA(dbfFile, dbfFile3, "M", "HSM");
+                    jsonBody = Program.ReadData_MISA(dbfFile, dbfFile3, "M", Program.SIGNMODE);
                 }
                 else
                 {
-                    jsonBody = Program.ReadData_MISA(dbfFile, dbfFile3, "M", "");
+                    jsonBody = Program.ReadData_MISA(dbfFile, dbfFile3, "M", Program.SIGNMODE);
                 }
                 txtUsername.Text = Program.username;
                 txtPassword.Text = Program.password;
@@ -106,15 +106,19 @@ namespace V6ThuePost
         {
             string result = null;
             V6Return v6Return;
-            if (string.IsNullOrEmpty(Program._SERIAL_CERT))
+            if (Program.SIGNMODE == "HSM")
             {
                 result = Program._MISA_WS.POST_CREATE_INVOICE_HSM(richTextBox1.Text, out v6Return);
                 lblResult.Text = result;
             }
+            else if(Program.SIGNMODE == "TOKEN")
+            {
+                result = Program._MISA_WS.CreateInvoice_GetXml_Sign(richTextBox1.Text, Program._SERIAL_CERT, out v6Return);
+                lblResult.Text = result;
+            }
             else
             {
-                string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
-                result = Program._MISA_WS.CreateInvoice_GetXml_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT, out v6Return);
+                result = Program._MISA_WS.POST_CREATE_INVOICE(richTextBox1.Text, out v6Return);
                 lblResult.Text = result;
             }
             

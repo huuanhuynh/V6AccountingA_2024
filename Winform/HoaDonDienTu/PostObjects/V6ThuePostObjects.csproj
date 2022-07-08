@@ -80,6 +80,7 @@
     <Compile Include="MISA_Objects\MISA_CreateInvoiceResponse_Result.cs" />
     <Compile Include="MISA_Objects\MISA_PostObject.cs" />
     <Compile Include="MISA_Objects\MISA_SearchInvoiceResponse.cs" />
+    <Compile Include="V6ThuePostUtility.cs" />
     <Compile Include="VIN_Objects\buyerInfo.cs" />
     <Compile Include="VIN_Objects\VIN_CreateInvoiceResponse.cs" />
     <Compile Include="VIN_Objects\VIN_CreateInvoiceResponse_Result.cs" />

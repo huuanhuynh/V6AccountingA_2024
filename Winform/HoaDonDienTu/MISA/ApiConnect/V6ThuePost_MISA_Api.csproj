@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -54,9 +55,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>App.settings</DependentUpon>
     </Compile>
+    <Compile Include="MisaSignedXml.cs" />
     <Compile Include="Objects\OriginalInvoiceData.cs" />
+    <Compile Include="Objects\PublishInvoiceData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MISA_WS.cs" />
+    <Compile Include="SignXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.settings">

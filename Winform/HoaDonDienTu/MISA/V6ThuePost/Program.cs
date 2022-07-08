@@ -28,7 +28,19 @@ namespace V6ThuePost
         private static DateTime _TEST_DATE_ = DateTime.Now;
         public static bool _write_log = false;
         public static string _appID = null;
-        public static bool _useTaxBreakdowns = false;
+
+        #region ==== SETTING ====
+        public static Dictionary<string,string> _setting = new Dictionary<string,string>();
+        public static string SETTING(string KEY)
+        {
+            if (_setting.ContainsKey(KEY)) return _setting[KEY];
+            return null;
+        }
+        public static bool USETAXBREAKDOWNS{ get{ return SETTING("USETAXBREAKDOWNS") == "1";}}
+        public static bool USEMISAOBJECT { get { return SETTING("USEMISAOBJECT") == "1"; } }
+        public static string SIGNMODE { get { return SETTING("SIGNMODE"); } }
+        #endregion ==== SETTING ====
+
         #region ===== VAR =====
         public static MISA_WS _MISA_WS = null;
         /// <summary>
@@ -86,7 +98,7 @@ namespace V6ThuePost
         /// </summary>
         private static string fkey0 = "";
         public static string _RefID_or_fkey = "";
-        public static string _SIGN_HSM = "";
+        
         
         
         #endregion var
@@ -133,15 +145,12 @@ namespace V6ThuePost
                     string jsonBody = "";
                     V6Return v6return = new V6Return();
                     ReadXmlInfo(arg1_xmlFile);
-                    if (_SIGN_HSM == "1")
-                    {
-                        MessageBox.Show("debug=1");
-                    }
+                    
 
                     string dbfFile = arg2;
 
                     string dbfFile3 = "";
-                    if (_useTaxBreakdowns)
+                    if (USETAXBREAKDOWNS)
                     {
                         dbfFile3 = dbfFile.ToLower().Replace(".dbf", "3.dbf");
                     }
@@ -208,7 +217,7 @@ namespace V6ThuePost
                             jsonBody = ReadData_MISA(dbfFile, dbfFile3, "M");
                             if(mode == "MG") WriteFlag(flagFileName5, "" + _RefID_or_fkey);
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                            result = _MISA_WS.CreateInvoice_GetXml_Sign(jsonBody, templateCode, _SERIAL_CERT, out v6return);
+                            result = _MISA_WS.CreateInvoice_GetXml_Sign(jsonBody, _SERIAL_CERT, out v6return);
                         }
 
                         if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
@@ -524,19 +533,23 @@ namespace V6ThuePost
         public static string ReadData_MISA(string dbfFile, string dbfFile3, string mode, string mode2 = "HSM")
         {
             string result = "";
-            //try
+            try
             {
-                //PostObject obj = new PostObject();
-                //postObject = new VIN_PostObject();
-                var hoadon = new OriginalInvoiceData();
-                List<OriginalInvoiceData> list_hoadon = new List<OriginalInvoiceData>();
+                var list_hoadon = new MISA_PostObject();
+                var hoadon = new Dictionary<string, object>();
                 list_hoadon.Add(hoadon);
+
+                var hoadonMISA = new OriginalInvoiceData();
+                var list_hoadonMISA = new List<OriginalInvoiceData>();
+
+
+                list_hoadonMISA.Add(hoadonMISA);
                 //postObject.hoadon = hoadon;
                 //ReadXmlInfo(xmlFile);
                 DataTable dataDbf =  ParseDBF.ReadDBF(dbfFile);
                 DataTable data = Data_Table.FromTCVNtoUnicode(dataDbf);
                 DataTable table3 = null;
-                if (_useTaxBreakdowns && !string.IsNullOrEmpty(dbfFile3))
+                if (USETAXBREAKDOWNS && !string.IsNullOrEmpty(dbfFile3))
                 {
                     DataTable dataDbf3 = ParseDBF.ReadDBF(dbfFile3);
                     table3 = Data_Table.FromTCVNtoUnicode(dataDbf3);
@@ -550,8 +563,8 @@ namespace V6ThuePost
                 
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
-                    //hoadon[item.Key] = item.Value.GetValue(row0);
-                    ObjectAndString.SetObjectPropertyValue(hoadon, item.Key, item.Value.GetValue(row0));
+                    hoadon[item.Key] = item.Value.GetValue(row0);
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, item.Key, item.Value.GetValue(row0));
                 }
 
 
@@ -559,15 +572,15 @@ namespace V6ThuePost
                 if (mode == "S")
                 {
                     //Lập hóa đơn điều chỉnh: trong chi tiết và dsthuesuat có thêm trường dieuchinh_tanggiam
-                    //hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
-                    ObjectAndString.SetObjectPropertyValue(hoadon, "OrgInvNo", row0["SO_CT_OLD"].ToString().Trim());
+                    hoadon["OrgInvNo"] = row0["SO_CT_OLD"].ToString().Trim();
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, "OrgInvNo", row0["SO_CT_OLD"].ToString().Trim());
                 }
 
                 if (mode == "T")
                 {
                     //Lập hóa đơn thay thế:
-                    //hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
-                    ObjectAndString.SetObjectPropertyValue(hoadon, "OrgInvNo", row0["SO_CT_OLD"].ToString().Trim());
+                    hoadon["OrgInvNo"] = row0["SO_CT_OLD"].ToString().Trim();
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, "OrgInvNo", row0["SO_CT_OLD"].ToString().Trim());
                     ////thông tin hóa đơn thay thế hoặc điều chỉnh 
                     //if (rbAdjust.Checked)
                     //{
@@ -592,30 +605,30 @@ namespace V6ThuePost
                 if (_TEST_)
                 {
                     Guid new_uid = Guid.NewGuid();
-                    //hoadon["RefID"] = "" + new_uid;
-                    ObjectAndString.SetObjectPropertyValue(hoadon, "RefID", "" + new_uid);
+                    hoadon["RefID"] = "" + new_uid;
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, "RefID", "" + new_uid);
                 }
 
-                _RefID_or_fkey = "" + hoadon.RefID;
+                _RefID_or_fkey = "" + hoadonMISA.RefID;
                 MakeFlagNames(_RefID_or_fkey);
 
                 //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
                 {
-                    //hoadon[item.Key] = item.Value.GetValue(row0);
-                    ObjectAndString.SetObjectPropertyValue(hoadon, item.Key, item.Value.GetValue(row0));
+                    hoadon[item.Key] = item.Value.GetValue(row0);
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, item.Key, item.Value.GetValue(row0));
                     
                 }
                 foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
                 {
-                    //hoadon[item.Key] = item.Value.GetValue(row0);
-                    ObjectAndString.SetObjectPropertyValue(hoadon, item.Key, item.Value.GetValue(row0));
+                    hoadon[item.Key] = item.Value.GetValue(row0);
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, item.Key, item.Value.GetValue(row0));
                 }
                 
                 foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
                 {
-                    //hoadon[item.Key] = item.Value.GetValue(row0);
-                    ObjectAndString.SetObjectPropertyValue(hoadon, item.Key, item.Value.GetValue(row0));
+                    hoadon[item.Key] = item.Value.GetValue(row0);
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, item.Key, item.Value.GetValue(row0));
                 }
 
                 if (metadataConfig != null)
@@ -674,7 +687,7 @@ namespace V6ThuePost
 
 
 
-                if (_useTaxBreakdowns && table3 != null)
+                if (USETAXBREAKDOWNS && table3 != null)
                 {
                     var dsthuesuat = new List<TaxRateInfo>();
                     foreach (DataRow row3 in table3.Rows)
@@ -686,8 +699,8 @@ namespace V6ThuePost
                         }
                         dsthuesuat.Add(taxBreakdown.ToModel<TaxRateInfo>());
                     }
-                    //hoadon["TaxRateInfo"] = dsthuesuat; // nhiều dòng tùy vào table3
-                    hoadon.TaxRateInfo = dsthuesuat;
+                    hoadon["TaxRateInfo"] = dsthuesuat; // nhiều dòng tùy vào table3
+                    hoadonMISA.TaxRateInfo = dsthuesuat;
                 }
                 else
                 {
@@ -698,7 +711,8 @@ namespace V6ThuePost
                         taxBreakdown[item.Key] = item.Value.GetValue(row0);
                     }
                     dsthuesuat.Add(taxBreakdown.ToModel<TaxRateInfo>());
-                    hoadon.TaxRateInfo = dsthuesuat; // Chỉ có 1 dòng.
+                    hoadon["TaxRateInfo"] = dsthuesuat;
+                    hoadonMISA.TaxRateInfo = dsthuesuat; // Chỉ có 1 dòng.
                 }
 
                 if (optionUserDefinedConfig != null)
@@ -709,10 +723,12 @@ namespace V6ThuePost
                     {
                         options[item.Key] = item.Value.GetValue(row0);
                     }
-                    hoadon.OptionUserDefined = options.ToModel<OptionUserDefined>();
+                    hoadon["OptionUserDefined"] = options;
+                    hoadonMISA.OptionUserDefined = options.ToModel<OptionUserDefined>();
                 }
 
-                var dschitiet = new List<OriginalInvoiceDetail>();
+                var dschitiet = new List<Dictionary<string,object>>();
+                var dschitietMISA = new List<OriginalInvoiceDetail>();
                 foreach (DataRow row in data.Rows)
                 {
                     if (row["STT"].ToString() == "0") continue;
@@ -721,9 +737,11 @@ namespace V6ThuePost
                     {
                         rowData[item.Key] = item.Value.GetValue(row);
                     }
-                    dschitiet.Add(rowData.ToModel <OriginalInvoiceDetail>());
+                    dschitiet.Add(rowData);
+                    dschitietMISA.Add(rowData.ToModel <OriginalInvoiceDetail>());
                 }
-                hoadon.OriginalInvoiceDetail = dschitiet;
+                hoadon["OriginalInvoiceDetail"] = dschitiet;
+                hoadonMISA.OriginalInvoiceDetail = dschitietMISA;
 
 
                 //result = postObject.ToJson(_dateType);
@@ -731,8 +749,16 @@ namespace V6ThuePost
                 {
                     var hsm_send_data = new List<Dictionary<string, object>>();
                     var one = new Dictionary<string, object>();
-                    one["RefID"] = hoadon.RefID;
-                    one["OriginalInvoiceData"] = hoadon;
+                    one["RefID"] = hoadonMISA.RefID;
+                    if (USEMISAOBJECT)
+                    {
+                        one["OriginalInvoiceData"] = hoadonMISA;
+                    }
+                    else
+                    {
+                        one["OriginalInvoiceData"] = hoadon;
+                    }
+                    
                     hsm_send_data.Add(one);
 
                     //result = V6JsonConverter.ObjectToJson(hsm_send_data, _dateType);
@@ -746,8 +772,20 @@ namespace V6ThuePost
                 }
                 else
                 {
-                    result = V6JsonConverter.ObjectToJson(list_hoadon, _dateType);
+                    if (USEMISAOBJECT)
+                    {
+                        //result = V6JsonConverter.ObjectToJson(list_hoadonMISA, _dateType);
+                        JsonSerializerSettings settings = new JsonSerializerSettings();
+                        settings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                        result = JsonConvert.SerializeObject(list_hoadonMISA, settings);
+                    }
+                    else
+                    {
+                        result = V6JsonConverter.ObjectToJson(list_hoadon, _dateType);
+                    }
+                    
                 }
+
                 if (_write_log)
                 {
                     string stt_rec = row0["STT_REC"].ToString();
@@ -755,9 +793,9 @@ namespace V6ThuePost
                     File.WriteAllText(file, result);
                 }
             }
-            //catch (Exception ex)
+            catch (Exception ex)
             {
-                //
+                BaseMessage.Show(ex.Message, 0);
             }
             return result;
         }
@@ -819,6 +857,7 @@ namespace V6ThuePost
             XmlTextReader reader = new XmlTextReader(xmlFile.ToLower());
             try
             {
+                string error = "";
                 while (reader.Read())
                 {
                     switch (reader.Name)
@@ -860,8 +899,7 @@ namespace V6ThuePost
                                     //case "version":
                                     //    _version = UtilityHelper.DeCrypt(line.Value);
                                     //    break;
-                                    case "signmode":
-                                        _SIGN_HSM = UtilityHelper.DeCrypt(line.Value);
+                                    
                                         break;
                                     case "datetype":
                                         _dateType = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
@@ -869,8 +907,8 @@ namespace V6ThuePost
                                     case "writelog":
                                         _write_log = ObjectAndString.ObjectToBool(line.Value);
                                         break;
-                                    case "usetaxbreakdowns":
-                                        _useTaxBreakdowns = line.Value == "1";
+                                    case "setting":
+                                        _setting = ObjectAndString.StringToStringDictionary(line.Value);
                                         break;
                                     case "appid":
                                         _appID = UtilityHelper.DeCrypt(line.Value);
@@ -885,7 +923,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    generalInvoiceInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
+                                    if (generalInvoiceInfoConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else generalInvoiceInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -894,7 +933,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    buyerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
+                                    if (buyerInfoConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else buyerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -903,7 +943,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    sellerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
+                                    if (sellerInfoConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else sellerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -913,7 +954,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    metadataConfig[key] = V6ThuePostUtility.ReadXmlLine(reader);
+                                    if (metadataConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else metadataConfig[key] = V6ThuePostUtility.ReadXmlLine(reader);
                                 }
                                 break;
                             }
@@ -922,7 +964,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    paymentsConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
+                                    if (paymentsConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else paymentsConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -931,7 +974,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    itemInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
+                                    if (itemInfoConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else itemInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -940,7 +984,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    summarizeInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
+                                    if (summarizeInfoConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else summarizeInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -949,7 +994,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    taxBreakdownsConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
+                                    if (taxBreakdownsConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else taxBreakdownsConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -959,7 +1005,8 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    optionUserDefinedConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
+                                    if (optionUserDefinedConfig.ContainsKey(key)) error += "\nTrùng key:" + key;
+                                    else optionUserDefinedConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                             }
                             break;
@@ -971,6 +1018,10 @@ namespace V6ThuePost
                 }
                 reader.Close();
 
+                if (error.Length > 0)
+                {
+                    BaseMessage.Show(error);
+                }
             }
             catch (Exception)
             {
