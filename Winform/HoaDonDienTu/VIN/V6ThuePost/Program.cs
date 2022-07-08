@@ -340,7 +340,7 @@ namespace V6ThuePost
                         string stt_rec = arg4;
                         MakeFlagNames(stt_rec);
                         File.Create(flagFileName1).Close();
-                        result = _VIN_WS.HUY_HOA_DON(_codetax, soseri_soct, strIssueDate, stt_rec, strIssueDate, out v6return);
+                        result = _VIN_WS.HUY_HOA_DON(stt_rec, out v6return);
                     }
                     else if (mode.StartsWith("P"))
                     {

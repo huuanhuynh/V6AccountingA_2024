@@ -20,7 +20,7 @@
 	<GeneralInvoiceInfo Field='sophieu' 	Value='00001'	Type='Field'	FieldV6=''/>
   <GeneralInvoiceInfo Field='ma_hoadon' 	Value='Key'	Type='Field'	FieldV6='UID'/>
 
-  <GeneralInvoiceInfo Field='ngaylap' 	Value='30/06/2022' FieldV6='' Type='Field'	DataType='date:yyyy-MM-dd HH:mm:ss'/>
+  <GeneralInvoiceInfo Field='ngaylap' 	Value='07/07/2022' FieldV6='' Type='Field'	DataType='date:yyyy-MM-dd HH:mm:ss'/>
 	
 	<GeneralInvoiceInfo Field='thanhtoan_phuongthuc' 	Value='3'	FieldV6='' Type='Field' DataType='int'   Note='1 tiền mặt, 2 chuyển khoản, 3 tiền mặt/chuyển khoản, 4 thẻ tín dụng, 5 - đối trừ công nợ,
 Đối với hóa đơn trên 20 triệu yêu 

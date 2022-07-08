@@ -1489,5 +1489,37 @@ namespace V6Tools.V6Convert
                 return result;
             }
         }
+
+        /// <summary>
+        /// Gán Property hoặc Field value.
+        /// </summary>
+        /// <param name="o">đối tượng cần gán pvalue.</param>
+        /// <param name="pname">tên property hoặc field.</param>
+        /// <param name="value">giá trị gán vào.</param>
+        public static void SetObjectPropertyValue(object o, string pname, object value)
+        {
+            try 
+	        {
+                var info = o.GetType().GetProperty(pname);
+                if (info != null)
+                {
+                    value = ObjectAndString.ObjectTo(info.PropertyType, value);
+                    info.SetValue(o, value, null);
+                    return;
+                }
+
+                var infof = o.GetType().GetField(pname);
+                if (infof != null)
+                {
+                    value = ObjectAndString.ObjectTo(infof.FieldType, value);
+                    infof.SetValue(o, value);
+                }
+	        }
+	        catch (Exception ex)
+	        {
+		
+	        }
+        }
+
     }
 }

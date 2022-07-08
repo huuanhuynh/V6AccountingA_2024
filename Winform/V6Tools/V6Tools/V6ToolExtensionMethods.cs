@@ -361,6 +361,7 @@ namespace V6Tools
         public static T ToModel<T>(this DataRow row) where T : new()
         {
             var p_array = typeof(T).GetProperties();
+            var a_array = typeof(T).GetFields();
                         
             var t = new T();
             foreach (PropertyInfo propertyInfo in p_array)
@@ -374,8 +375,28 @@ namespace V6Tools
                     var value = ObjectAndString.ObjectTo(propertyInfo.PropertyType, o);
                     propertyInfo.SetValue(t, value, null);
                 }
-            }            
-            
+            }
+
+            foreach (FieldInfo fieldInfo in a_array)
+            {
+                try
+                {
+                    string FIELD = fieldInfo.Name.ToUpper();
+                    if (fieldInfo.IsPublic)
+                    {
+                        object o = "";
+                        if (row.Table.Columns.Contains(FIELD)) o = row[FIELD];
+
+                        var value = ObjectAndString.ObjectTo(fieldInfo.FieldType, o);
+                        fieldInfo.SetValue(t, value);
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+
             return t;
         }
 

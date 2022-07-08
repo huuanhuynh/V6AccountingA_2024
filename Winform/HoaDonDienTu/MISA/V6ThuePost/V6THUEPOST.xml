@@ -1,0 +1,161 @@
+﻿<?xml version="1.0"?>
+<Root>
+  <V6Info Field='username' 	Value='00FLZppT40ZqxjAXJahsS1zWau8RzS3f' Type=''/>
+  <V6Info Field='password' 	Value='UpTGn8DMjnzp2CdF43g85g=='/>
+  <V6Info Field='codetax' 	Value='/671v+8Gswgm5ylmowBoKw=='/>
+  <V6Info Field='v6fkey' 		Value='V6' Type=''/>
+	<V6Info Field='certificateSerial' 	Value='V6SOFT'/>
+  <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
+  <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
+  <V6Info Field='datetype' 	Value='yyyy-MM-ddTHH:mm:sszzz'/>
+  <V6Info Field='SIGNMODE' 	Value='bHyNgIHonRs=' Value0='V6SOFT'/>
+  <V6Info Field='useTaxBreakdowns' 	Value='0' Note='Chỉ cần bật ở đây = 1, tên file tự lấy sẽ là tprint.dbf => tprint3.dbf'/>
+  <V6Info Field='AppID' 	Value='dUNuCpl9i6jCEfjz7WtifxTW9aj2KdqNVNkW+fxs12GT1gLIUi72ag==' Value0='4D983E42-74C0-43B3-801C-DD1088EA8BFD'/>
+
+  <V6Info Field='baselink' 	Value='UQL2EugVpi0DkXoVBJ3wOOqL7WxjvSQ+j6AKNHeS4kI=' Type=''/>
+	
+	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+	
+  <GeneralInvoiceInfo Field='RefID' 	Value='Key'	Type='Field'	FieldV6='UID'/>
+  <GeneralInvoiceInfo Field='InvoiceName' 	Value='HÓA ĐƠN GIÁ TRỊ GIA TĂNG'  Value2='' Value3=''/>
+  <GeneralInvoiceInfo Field='InvSeries'	Value='1C22TCT' 	FieldV6='' 	Type='Field'  Note='KyHieuHoaDon'/>
+  <GeneralInvoiceInfo Field='InvDate' 	Value='30/06/2022' FieldV6='NGAY_CT' Type='Field' DataType='Date'	DataType0='date:yyyy-MM-ddTHH:mm:sszzz'/>
+	<GeneralInvoiceInfo Field='IsInvoiceSummary' 	Value='0'	Type=''	DataType='bool'   Note='thông tin đánh dấu có phải hóa đơn nạp qua cơ quan thuế bằng bảng tổng hợp hay không'/>
+
+  <GeneralInvoiceInfo Field='CurrencyCode' 	Value='VND'	Type='Field'	FieldV6='MA_NT'/>
+  <GeneralInvoiceInfo Field='ExchangeRate' 	Value='1'	Type='Field'	FieldV6='TY_GIA'/>
+  <GeneralInvoiceInfo Field='PaymentMethodName' 	Value='TM/CK'	Type='Field'	FieldV6=''/>
+
+  <!--GeneralInvoiceInfo Field='ReferenceType' Type='Field'	FieldV6=''/>
+  <GeneralInvoiceInfo Field='OrgInvoiceType' Type='Field'	FieldV6=''/>
+  <GeneralInvoiceInfo Field='OrgInvTemplateNo' Type='Field'	FieldV6=''/>
+  <GeneralInvoiceInfo Field='OrgInvSeries' Type='Field'	FieldV6=''/>
+  <GeneralInvoiceInfo Field='OrgInvNo' Type='Field'	FieldV6=''/>
+  <GeneralInvoiceInfo Field='OrgInvDate' Type='Field'	FieldV6=''/-->
+
+  
+  <SellerInfo Field='SellerPhoneNumber' 		Value='01012431504'/>
+  <SellerInfo Field='SellerEmail' 		Value='huuan_huynh@yahoo.com'/>
+  <SellerInfo Field='SellerTaxCode' 		Value='0101243150-034'/>
+  <SellerInfo Field='SellerLegalName' 		Value='SellerLegalName'/>
+  <SellerInfo Field='SellerAddress' 		Value='SellerAddress'/>
+  <SellerInfo Field='SellerBankAccount' 		Value='SellerAddress'/>
+  <SellerInfo Field='SellerBankName' 		Value='SellerAddress'/>
+  <SellerInfo Field='SellerFax' 		Value='SellerAddress'/>
+  <SellerInfo Field='SellerWebsite' 		/>
+
+  <SellerInfo Field='StockOutLegalName' 		/>
+  <SellerInfo Field='StockOutTaxCode' 		/>
+  <SellerInfo Field='InternalCommand' 		/>
+  <SellerInfo Field='StockOutAddress' 		/>
+  <SellerInfo Field='StockOutFullName' 		/>
+  <SellerInfo Field='TransporterName' 		/>
+  <SellerInfo Field='TransportContractCode' 		/>
+  <SellerInfo Field='Transport' 		/>
+  <SellerInfo Field='StockInLegalName' 		/>
+  <SellerInfo Field='StockInTaxCode' 		/>
+  <SellerInfo Field='StockInFullName' 		/>
+  <SellerInfo Field='StockInAddress' 		/>
+  <SellerInfo Field='ContractCode' 		/>
+  <SellerInfo Field='ContractDate' 		/>
+
+  <SellerInfo Field='FeeInfo' 		/>
+  <SellerInfo Field='InvoiceTemplateID' 		/>
+
+  
+
+
+  <!--a____________Tên parameter trong report_____________Tên trường dữ liệu tương ứng_____________-->
+  <BuyerInfo Field='BuyerTaxCode' 			FieldV6='ma_so_thue'		Type='Field'/>
+  <BuyerInfo Field='BuyerLegalName' 			FieldV6='ten_kh' 			Type='Field'  DataType='UPPER'/>
+  <BuyerInfo Field='BuyerAddress' 			FieldV6='dia_chi'			Type='Field'/>
+  <BuyerInfo Field='BuyerEmail' 			FieldV6='E_MAIL'			Type='Field'/>
+  <BuyerInfo Field='ContactName' 	FieldV6='ong_ba'			Type='Field'/>
+
+  <!-- invoiceCustomFieldId=SL_TD1  /  keyTag=Field / valueType=DataType(text, number, date) / keyLabel=MA_TD2 / isRequired=SL_TD2 / isSeller=SL_TD3 >
+  
+  <MetaData0 Field='economicContractNo'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='100'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='commandDate'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='DATE' MA_TD2='Ngày lệnh'  SL_TD1='101'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='commandOf'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='102'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='commandDes'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='103'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='invoiceNote'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='104'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='contractNo'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='105'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='vehicle'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Phương tiện VC'  SL_TD1='106'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='exportAt'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='107'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='importAt'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='108'  SL_TD2='1' SL_TD3='1'/>
+  
+  <MetaData0 Field='invoiceNote'  Value='Test' 			FieldV6='GHI_CHU'			Type='Field'  DataType='text' MA_TD2='Ghi chú'  SL_TD1='108'  SL_TD2='0' SL_TD3='0'/>
+  <MetaData0 Field='totalAmountWithTaxInWordsEng'  Value='Test' 	FieldV6='T_TT_NT'	Type='Field'  DataType='N2CMANT' MA_TD2='DocSoTienEng'  SL_TD1='109'  SL_TD2='1' SL_TD3='1'/-->
+
+  <!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
+
+  <ItemInfo	Field='LineNumber'		FieldV6='stt'	Type='Field'/>
+  <ItemInfo	Field='SortOrder'		FieldV6='stt'	Type='Field'/>
+  <ItemInfo	Field='ItemType'  Value='1'	FieldV6=''	Type=''  DataType='int' Note='1: HHDV; 2: khuyến mại; 3: chiết khẩu; 4: ghi chú/diễn giải'/>
+  
+  <ItemInfo	Field='ItemCode'	FieldV6='ma_vt'		Type='Field'/>
+	<ItemInfo	Field='ItemName'	FieldV6='ma_vt+"->"+ten_vt'	Type='Field'/>
+	<ItemInfo	Field='UnitName'		FieldV6='dvt'	Type='Field'/>
+	<ItemInfo	Field='Quantity'	FieldV6='so_luong'	Type='Field'/>
+	<ItemInfo	Field='UnitPrice'	FieldV6='gia2'	Type='Field'/>
+  
+  <ItemInfo	Field='DiscountRate'	FieldV6='pt_cki'	Type='Field'/>
+  <ItemInfo	Field='DiscountAmountOC'	FieldV6='ck'	Type='Field'/>
+  <ItemInfo	Field='DiscountAmount'	FieldV6='ck'	Type='Field'/>
+
+  <ItemInfo	Field='AmountWithoutVATOC'	FieldV6='tien2'	Type='Field'/>
+  <ItemInfo	Field='AmountOC'	FieldV6='tien2'	Type='Field'/>
+  <ItemInfo	Field='Amount'	FieldV6='tien2'	Type='Field'/>
+  
+  <ItemInfo	Field='VATRateName' Value='10%'	FieldV6=''	Type='Field' DataType='int' Note='tên thuế suất (10%,5%,0%,KCT,KKKNT,KHAC:X.XX% (X: số tự nhiên ví dụ : KHAC:7.00%)'/>
+  <ItemInfo	Field='VATAmountOC'	FieldV6='thue'	Type='Field'/>
+  <ItemInfo	Field='VATAmount'	FieldV6='thue'	Type='Field'/>
+  
+  
+	
+  
+  
+
+  <SummarizeInfo	Field='TotalSaleAmountOC'		FieldV6='T_TIEN2'	Type='Field'  Note='tiền bán hàng quy đổi'/>
+  <SummarizeInfo	Field='TotalDiscountAmountOC'		FieldV6='T_CK'	Type='Field'/>
+  <SummarizeInfo	Field='TotalAmountWithoutVATOC'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo	Field='TotalVATAmountOC'		FieldV6='T_THUE'	Type='Field' />
+  <SummarizeInfo	Field='TotalAmountOC'		FieldV6='T_TT'	Type='Field'/>
+
+  <SummarizeInfo	Field='TotalSaleAmount'		FieldV6='T_TIEN2'	Type='Field'  Note='tiền bán hàng quy đổi'/>
+  <SummarizeInfo	Field='TotalDiscountAmount'		FieldV6='T_CK'	Type='Field'/>
+  <SummarizeInfo	Field='TotalAmountWithoutVAT'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo	Field='TotalVATAmount'		FieldV6='T_THUE'	Type='Field' />
+  <SummarizeInfo	Field='TotalAmount'		FieldV6='T_TT'	Type='Field'/>
+  <SummarizeInfo	Field='TotalAmountInWords'		FieldV6='T_TT'	Type='Field'  DataType='N2C'/>
+  
+  <SummarizeInfo Field='CustomField1' 	Value='1' FieldV6=''  Type='Field' Note='CustomField1-10'/>
+  <SummarizeInfo Field='CustomField2' 	Value='2'/>
+  <SummarizeInfo Field='CustomField3' 	Value='3'/>
+  <SummarizeInfo Field='CustomField4' 	Value='4'/>
+  <SummarizeInfo Field='CustomField5' 	Value='5'/>
+  <SummarizeInfo Field='CustomField6' 	Value='6'/>
+  <SummarizeInfo Field='CustomField7' 	Value='7'/>
+  <SummarizeInfo Field='CustomField8' 	Value='8'/>
+  <SummarizeInfo Field='CustomField9' 	Value='9'/>
+  <SummarizeInfo Field='CustomField10' 	Value='10'/>
+
+
+  
+  <TaxBreakdowns	Field='VATRateName'   Value='10%'		FieldV6=''	Type='Field' DataType=''   Note='____________________________________________'/>
+  
+	<TaxBreakdowns	Field='AmountWithoutVATOC'		FieldV6='T_TIEN2'	Type='Field'/>
+	<TaxBreakdowns	Field='VATAmountOC'		FieldV6='T_THUE'	Type='Field' />
+
+  <OptionUserDefined	Field='MainCurrency'		Value='VND'	Type='' />
+  <OptionUserDefined	Field='AmountDecimalDigits'		Value='2'	Type='' />
+  <OptionUserDefined	Field='AmountOCDecimalDigits'		Value='2'	Type='' />
+  <OptionUserDefined	Field='CoefficientDecimalDigits'		Value='2'	Type='' />
+  <OptionUserDefined	Field='ExchangRateDecimalDigits'		Value='2'	Type='' />
+  <OptionUserDefined	Field='QuantityDecimalDigits'		Value='3'	Type='' />
+  <OptionUserDefined	Field='UnitPriceDecimalDigits'		Value='2'	Type='' />
+  <OptionUserDefined	Field='UnitPriceOCDecimalDigits'		Value='2'	Type='' />
+  <OptionUserDefined	Field='ClockDecimalDigits'		Value='4'	Type='' />
+
+
+</Root>	

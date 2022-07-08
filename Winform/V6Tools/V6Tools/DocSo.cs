@@ -5,6 +5,191 @@ namespace V6Tools
 {
     public class DocSo
     {
+        public static string MoneyToWords(decimal money, string lang, string ma_nt)
+        {
+            if (lang == "V")
+            {
+                return DocSo.DOI_SO_CHU_NEW(money, V6Alnt_begin1(ma_nt), V6Alnt_end1(ma_nt), V6Alnt_only1(ma_nt), V6Alnt_point1(ma_nt),
+                    V6Alnt_endpoint1(ma_nt));
+            }
+            else
+            {
+                return DocSo.NumWordsWrapper(money, V6Alnt_begin2(ma_nt), V6Alnt_end2(ma_nt), V6Alnt_only2(ma_nt), V6Alnt_point2(ma_nt),
+                    V6Alnt_endpoint2(ma_nt));
+            }
+        }
+        #region ==== ALNT ====
+        private static string V6Alnt_endpoint1(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "xu";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "cent";
+                case "VND":
+                    return "";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_point1(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "phẩy";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "phẩy";
+                case "VND":
+                    return "phẩy";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_only1(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "";
+                case "VND":
+                    return "chẵn";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_end1(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "đô la Úc";
+                case "EUR":
+                    return "Euro";
+                case "USD":
+                    return "đô la Mỹ";
+                case "VND":
+                    return "đồng";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_begin1(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "";
+                case "VND":
+                    return "";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_endpoint2(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "Cent(s)";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "Cent(s)";
+                case "VND":
+                    return "";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_point2(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "and";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "and";
+                case "VND":
+                    return "point";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_only2(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "only";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "only";
+                case "VND":
+                    return "";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_end2(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "AUD Dollars";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "Dollars";
+                case "VND":
+                    return "VND";
+                default:
+                    return "";
+            }
+        }
+
+        private static string V6Alnt_begin2(string maNt)
+        {
+            switch (maNt)
+            {
+                case "AUD":
+                    return "";
+                case "EUR":
+                    return "";
+                case "USD":
+                    return "";
+                case "VND":
+                    return "";
+                default:
+                    return "";
+            }
+        }
+        #endregion ==== ALNT ====
+
         //========================== Đọc số V6 - Tuanmh ========================
         //============================= Encode - Huuan =========================
         //

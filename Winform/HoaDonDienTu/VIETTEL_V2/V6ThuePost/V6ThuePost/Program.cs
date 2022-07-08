@@ -1217,7 +1217,7 @@ namespace V6ThuePost
                                     //case "version":
                                     //    _version = UtilityHelper.DeCrypt(line.Value);
                                     //    break;
-                                    case "useTaxBreakdowns":
+                                    case "usetaxbreakdowns":
                                         _useTaxBreakdowns = line.Value == "1";
                                         break;
                                     case "datetype":

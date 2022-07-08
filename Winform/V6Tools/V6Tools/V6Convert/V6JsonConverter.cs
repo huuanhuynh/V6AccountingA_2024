@@ -41,7 +41,7 @@ namespace V6Tools.V6Convert
 
             if (result.Length > 0) result = result.Substring(1);
             DateTimeFormat = of;
-            return "{" + result + "\n}";
+            return "{\n" + result + "\n}";
         }
 
 
@@ -190,7 +190,7 @@ namespace V6Tools.V6Convert
                 result += "," + ValueToJson(item.Key, item.Value);
             }
             if (result.Length > 0) result = result.Substring(1);
-            return "{\n" + result + "\n}";
+            return "\n{\n" + result + "\n}\n";
         }
     }
 }
