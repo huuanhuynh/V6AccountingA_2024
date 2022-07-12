@@ -32,5 +32,23 @@ namespace V6ControlManager.FormManager.ToolManager
             else
                 e.Effect = DragDropEffects.None;
         }
+
+        private void openFoxProMenu_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog o = new OpenFileDialog();
+                o.Filter = "DatabaseFoxPro|*.dbf";
+                if (o.ShowDialog() == DialogResult.OK)
+                {
+                    OpenDBF(o.FileName);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                
+                throw;
+            }
+        }
     }
 }

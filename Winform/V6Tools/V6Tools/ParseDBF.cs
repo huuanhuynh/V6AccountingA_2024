@@ -283,9 +283,14 @@ namespace V6Tools
                             #endregion end Number
 
                             #region ==== String ====
+                            default:
                             case 'C': // String
-                                //row[fieldIndex] = Encoding.ASCII.GetString(recReader.ReadBytes(field.fieldLen));
-                                row[fieldIndex] = Encoding.Default.GetString(recReader.ReadBytes(field.fieldLen));//Yes
+                                //row[fieldIndex] = Encoding.ASCII.GetString(recReader.ReadBytes(field.fieldLen)); // Lỗi char vượt ASCII
+                                //byte[] readbytes = recReader.ReadBytes(field.fieldLen);
+                                //string b_string = BytesToString(readbytes);
+                                row[fieldIndex] = BytesToString(recReader.ReadBytes(field.fieldLen));
+
+                                //string getstring = Encoding.Default.GetString(readbytes);//Yes // Error windows tiếng Việt
                                 //row[fieldIndex] = Encoding.Unicode.GetString(recReader.ReadBytes(field.fieldLen));
                                 //row[fieldIndex] = Encoding.UTF32.GetString(recReader.ReadBytes(field.fieldLen));
                                 //row[fieldIndex] = Encoding.UTF7.GetString(recReader.ReadBytes(field.fieldLen));//Yes Windows tiếng Việt
@@ -371,9 +376,10 @@ namespace V6Tools
                             //else
                             //    row[fieldIndex] = number;
                             //break;
-                            default:
-                                row[fieldIndex] = Encoding.Default.GetString(recReader.ReadBytes(field.fieldLen));//Yes
-                                break;
+
+                            //default: // => String
+                                //row[fieldIndex] = Encoding.Default.GetString(recReader.ReadBytes(field.fieldLen));//Yes
+                                //break;
                             #endregion ====  ====
                         }
                         fieldIndex++;
@@ -731,6 +737,16 @@ namespace V6Tools
         #endregion
 
         #region ==== Extra Methods ====
+        private static string BytesToString(byte[] bytes)
+        {
+            string result = "";
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                byte bi = bytes[i];
+                result += (char)bi;
+            }
+            return result;
+        }
         private static byte[] GetBytes8(string str)
         {
             byte[] bytes = new byte[str.Length * 1];
@@ -779,7 +795,7 @@ namespace V6Tools
                     handle.Free();
 
                     int bytesToRead = memHeader.fieldLength - memHeader.startPosition;
-                    String value = Encoding.ASCII.GetString(br.ReadBytes(bytesToRead));
+                    string value = BytesToString(br.ReadBytes(bytesToRead));// Encoding.ASCII.GetString(br.ReadBytes(bytesToRead)); // ASCII VietNamese char => ?
                     result.Add(currentBlock, value);
 
                     // Find next block

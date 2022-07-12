@@ -1532,6 +1532,22 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
+        private void gView3_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (detail3.IsViewOrLock)
+            {
+                detail3.SetData(gView3.CurrentRow.ToDataDictionary());
+            }
+        }
+
+        private void gView4_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (detail4.IsViewOrLock)
+            {
+                detail4.SetData(gView4.CurrentRow.ToDataDictionary());
+            }
+        }
+
         private void detail3_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail3(data))

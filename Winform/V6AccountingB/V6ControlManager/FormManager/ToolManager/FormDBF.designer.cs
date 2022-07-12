@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.menuExport = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openFoxProMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.menuExport.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -40,6 +44,22 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(580, 503);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormDBF_DragDrop);
+            this.dataGridView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormDBF_DragEnter);
+            // 
+            // menuExport
+            // 
+            this.menuExport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFoxProMenu});
+            this.menuExport.Name = "menuExport";
+            this.menuExport.Size = new System.Drawing.Size(178, 48);
+            // 
+            // openFoxProMenu
+            // 
+            this.openFoxProMenu.Name = "openFoxProMenu";
+            this.openFoxProMenu.Size = new System.Drawing.Size(177, 22);
+            this.openFoxProMenu.Text = "OPEN DBF (FoxPro)";
+            this.openFoxProMenu.Click += new System.EventHandler(this.openFoxProMenu_Click);
             // 
             // FormDBF
             // 
@@ -52,6 +72,7 @@
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormDBF_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormDBF_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.menuExport.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -59,5 +80,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ContextMenuStrip menuExport;
+        private System.Windows.Forms.ToolStripMenuItem openFoxProMenu;
     }
 }

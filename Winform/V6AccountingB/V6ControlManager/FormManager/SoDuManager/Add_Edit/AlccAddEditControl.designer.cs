@@ -312,7 +312,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTien_cl.BackColor = System.Drawing.Color.White;
             this.txtTien_cl.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTien_cl.DecimalPlaces = 0;
             this.txtTien_cl.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTien_cl.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTien_cl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -876,7 +875,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtNam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNam.BackColor = System.Drawing.Color.White;
             this.txtNam.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNam.DecimalPlaces = 0;
             this.txtNam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -902,7 +900,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtKy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtKy.BackColor = System.Drawing.Color.White;
             this.txtKy.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtKy.DecimalPlaces = 0;
             this.txtKy.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtKy.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtKy.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -928,7 +925,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLoaiPb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLoaiPb.BackColor = System.Drawing.Color.White;
             this.txtLoaiPb.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtLoaiPb.DecimalPlaces = 0;
             this.txtLoaiPb.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtLoaiPb.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtLoaiPb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -953,7 +949,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTinh_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTinh_pb.BackColor = System.Drawing.Color.White;
             this.txtTinh_pb.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTinh_pb.DecimalPlaces = 0;
             this.txtTinh_pb.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTinh_pb.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTinh_pb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -978,7 +973,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTang_giam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTang_giam.BackColor = System.Drawing.Color.White;
             this.txtTang_giam.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTang_giam.DecimalPlaces = 0;
             this.txtTang_giam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTang_giam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTang_giam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1004,7 +998,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtKieu_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtKieu_pb.BackColor = System.Drawing.Color.White;
             this.txtKieu_pb.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtKieu_pb.DecimalPlaces = 0;
             this.txtKieu_pb.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtKieu_pb.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtKieu_pb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1029,7 +1022,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtCC0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCC0.BackColor = System.Drawing.Color.White;
             this.txtCC0.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtCC0.DecimalPlaces = 0;
             this.txtCC0.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtCC0.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtCC0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1056,7 +1048,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSoKyPhanBo.BackColor = System.Drawing.Color.White;
             this.txtSoKyPhanBo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSoKyPhanBo.DecimalPlaces = 0;
             this.txtSoKyPhanBo.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtSoKyPhanBo.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtSoKyPhanBo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1371,7 +1362,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS6.Name = "txtSLS6";
             this.txtSLS6.Size = new System.Drawing.Size(200, 23);
             this.txtSLS6.TabIndex = 119;
-            this.txtSLS6.Text = "0,000";
+            this.txtSLS6.Text = "0";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS6.Value = new decimal(new int[] {
             0,
@@ -1396,7 +1387,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS5.Name = "txtSLS5";
             this.txtSLS5.Size = new System.Drawing.Size(200, 23);
             this.txtSLS5.TabIndex = 117;
-            this.txtSLS5.Text = "0,000";
+            this.txtSLS5.Text = "0";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS5.Value = new decimal(new int[] {
             0,
@@ -1421,7 +1412,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS4.Name = "txtSLS4";
             this.txtSLS4.Size = new System.Drawing.Size(200, 23);
             this.txtSLS4.TabIndex = 115;
-            this.txtSLS4.Text = "0,000";
+            this.txtSLS4.Text = "0";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS4.Value = new decimal(new int[] {
             0,
@@ -1692,7 +1683,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN3.Name = "txtSLDN3";
             this.txtSLDN3.Size = new System.Drawing.Size(200, 23);
             this.txtSLDN3.TabIndex = 101;
-            this.txtSLDN3.Text = "0,000";
+            this.txtSLDN3.Text = "0";
             this.txtSLDN3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLDN3.Value = new decimal(new int[] {
             0,
@@ -1717,7 +1708,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN2.Name = "txtSLDN2";
             this.txtSLDN2.Size = new System.Drawing.Size(200, 23);
             this.txtSLDN2.TabIndex = 99;
-            this.txtSLDN2.Text = "0,000";
+            this.txtSLDN2.Text = "0";
             this.txtSLDN2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLDN2.Value = new decimal(new int[] {
             0,
@@ -1742,7 +1733,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN1.Name = "txtSLDN1";
             this.txtSLDN1.Size = new System.Drawing.Size(200, 23);
             this.txtSLDN1.TabIndex = 97;
-            this.txtSLDN1.Text = "0,000";
+            this.txtSLDN1.Text = "0";
             this.txtSLDN1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLDN1.Value = new decimal(new int[] {
             0,
@@ -2053,7 +2044,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6NumberTextBox1.BackColor = System.Drawing.Color.White;
             this.v6NumberTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox1.DecimalPlaces = 0;
             this.v6NumberTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -2305,7 +2295,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTong_pb_ky.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTong_pb_ky.BackColor = System.Drawing.Color.White;
             this.txtTong_pb_ky.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTong_pb_ky.DecimalPlaces = 0;
             this.txtTong_pb_ky.Enabled = false;
             this.txtTong_pb_ky.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTong_pb_ky.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2332,7 +2321,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTong_cl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTong_cl.BackColor = System.Drawing.Color.White;
             this.txtTong_cl.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTong_cl.DecimalPlaces = 0;
             this.txtTong_cl.Enabled = false;
             this.txtTong_cl.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTong_cl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2358,7 +2346,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txttong_da_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txttong_da_pb.BackColor = System.Drawing.Color.White;
             this.txttong_da_pb.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txttong_da_pb.DecimalPlaces = 0;
             this.txttong_da_pb.Enabled = false;
             this.txttong_da_pb.EnterColor = System.Drawing.Color.PaleGreen;
             this.txttong_da_pb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2384,7 +2371,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txttong_ng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txttong_ng.BackColor = System.Drawing.Color.White;
             this.txttong_ng.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txttong_ng.DecimalPlaces = 0;
             this.txttong_ng.Enabled = false;
             this.txttong_ng.EnterColor = System.Drawing.Color.PaleGreen;
             this.txttong_ng.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2421,6 +2407,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail1.CarryData = null;
+            this.detail1.FixControl = 3;
             this.detail1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detail1.Location = new System.Drawing.Point(2, 2);
             this.detail1.MODE = V6Structs.V6Mode.Init;
@@ -2553,7 +2541,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gView3.Size = new System.Drawing.Size(873, 157);
             this.gView3.TabIndex = 3;
+            this.gView3.DataSourceChanged += new System.EventHandler(this.gView3_CurrentCellChanged);
             this.gView3.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView3_ColumnAdded);
+            this.gView3.CurrentCellChanged += new System.EventHandler(this.gView3_CurrentCellChanged);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -2593,6 +2583,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail3.CarryData = null;
+            this.detail3.FixControl = 3;
             this.detail3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detail3.Location = new System.Drawing.Point(3, 2);
             this.detail3.MODE = V6Structs.V6Mode.Init;
@@ -2628,6 +2620,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail4.CarryData = null;
+            this.detail4.FixControl = 3;
             this.detail4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detail4.Location = new System.Drawing.Point(3, 2);
             this.detail4.MODE = V6Structs.V6Mode.Init;
@@ -2679,7 +2673,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gView4.Size = new System.Drawing.Size(874, 156);
             this.gView4.TabIndex = 3;
+            this.gView4.DataSourceChanged += new System.EventHandler(this.gView4_CurrentCellChanged);
             this.gView4.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView4_ColumnAdded);
+            this.gView4.CurrentCellChanged += new System.EventHandler(this.gView4_CurrentCellChanged);
             // 
             // dataGridViewTextBoxColumn6
             // 

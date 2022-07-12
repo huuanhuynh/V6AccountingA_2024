@@ -98,7 +98,7 @@ namespace V6ControlManager.FormManager.ToolManager
                     {
                         string ext = Path.GetExtension(o.FileName).ToLower();
                         bool no = false;
-                        if (ext.StartsWith(".xls"))
+                        if (ext.StartsWith(".xls")) // xls và xlsx
                         {
                             V6Tools.V6Export.ExportData.ToExcel(exportData, o.FileName, "");
                         }
@@ -351,6 +351,65 @@ namespace V6ControlManager.FormManager.ToolManager
             {
 
                 this.ShowErrorException(GetType() + ".btnGenInsertSQL_Click", ex);
+            }
+        }
+
+        private void exportFoxProMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (data != null)
+                {
+                    DataTable exportData;
+                    if (chkConvert.Checked)
+                    {
+                        string from = txtFrom.Text.Trim(), to = txtTo.Text.Trim();
+                        exportData = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                    }
+                    else
+                    {
+                        exportData = data.Copy();
+                    }
+                    SaveFileDialog o = new SaveFileDialog();
+                    o.Filter = "DatabaseFoxPro|*.dbf";
+
+                    if (o.ShowDialog(this) == DialogResult.OK && o.FileName != null)
+                    {
+                        string ext = Path.GetExtension(o.FileName).ToLower();
+                        bool no = false;
+                        if (ext.StartsWith(".xls")) // xls và xlsx
+                        {
+                            V6Tools.V6Export.ExportData.ToExcel(exportData, o.FileName, "");
+                        }
+                        else if (ext == ".dbf")
+                        {
+                            V6Tools.V6Export.ExportData.ToDbfFile(exportData, o.FileName);
+                        }
+                        else if (ext == ".txt")
+                        {
+                            V6Tools.V6Export.ExportData.ToTextFile(exportData, o.FileName);
+                        }
+                        else if (ext == ".xml")
+                        {
+                            V6Tools.V6Export.ExportData.ToXmlFile(exportData, o.FileName);
+                        }
+                        else
+                        {
+                            no = true;
+                            V6Message.Show("Chưa hỗ trợ " + ext);
+                            V6Tools.V6Export.ExportData.ToTextFile(exportData, o.FileName);
+                        }
+                        if (!no) V6Message.Show("Xong.", 500, this);
+                    }
+                }
+                else
+                {
+                    V6Message.Show("Không có dữ liệu kết quả.");
+                }
+            }
+            catch (Exception ex)
+            {
+                V6Message.ShowErrorMessage(ex.Message, this);
             }
         }
     }
