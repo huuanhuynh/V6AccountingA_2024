@@ -124,11 +124,12 @@ namespace V6ThuePost
                 if (args.Length > 2) arg2 = args[2];
                 if (args.Length > 3) arg3 = args[3];
                 if (args.Length > 4) arg4 = args[4];
+                V6Return v6return = new V6Return();
 
                 try
                 {
                     string jsonBody = "";
-                    V6Return v6return = new V6Return();
+                    
                     ReadXmlInfo(arg1_xmlFile);
                     if (_debug == "1")
                     {
@@ -489,7 +490,7 @@ namespace V6ThuePost
                 else
                 {
                     File.Create(flagFileName9).Close();
-                    BaseMessage.Show(result, 500);
+                    BaseMessage.Show(v6return.RESULT_ERROR_MESSAGE + " " + result, 500);
                 }
             }
             else

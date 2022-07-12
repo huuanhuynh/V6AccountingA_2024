@@ -66,7 +66,7 @@ namespace V6ThuePost
                 btnTest.Enabled = true;
                 btnSend.Enabled = true;
 
-                Program._MISA_WS = new MISA_WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax, Program._appID);
+                Program._MISA_WS = new MISA_WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax, Program._appID, Program.COMACQT);
             }
             catch (Exception ex)
             {

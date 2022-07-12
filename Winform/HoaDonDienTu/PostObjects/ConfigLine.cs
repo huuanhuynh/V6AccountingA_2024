@@ -236,6 +236,10 @@ namespace V6ThuePost
                             string date_format = configDATATYPE.Substring(5);
                             fieldValue = ObjectAndString.ObjectToString(ObjectAndString.ObjectToDate(fieldValue), date_format);
                         }
+                        else if (!string.IsNullOrEmpty(Format))
+                        {
+                            fieldValue = ObjectAndString.ObjectToString(fieldValue, Format);
+                        }
                         return fieldValue;
                 }
             }

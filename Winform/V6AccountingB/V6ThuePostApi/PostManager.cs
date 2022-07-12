@@ -3621,7 +3621,7 @@ namespace V6ThuePostManager
                         }
                         else
                         {
-                            metadata["stringValue"] = ObjectAndString.ObjectToString(GetValue(row0, metaItem.Value));
+                            metadata["stringValue"] = ObjectAndString.ObjectToString(metaItem.Value.GetValue(row0)); // cách GetValue mới.
                             //metaItem.Value.DataType = "text";
                             metadata["valueType"] = "text";
                         }

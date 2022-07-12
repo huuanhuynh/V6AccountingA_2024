@@ -129,7 +129,7 @@
       <Name>V6ThuePostObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\ApiConnect\V6ThuePostViettelV2Api.csproj">
-      <Project>{938cf42a-d1a7-46d4-866c-1222495a1c4c}</Project>
+      <Project>{a65baf8e-b364-4384-b798-e2e2e0d67f8d}</Project>
       <Name>V6ThuePostViettelV2Api</Name>
     </ProjectReference>
   </ItemGroup>

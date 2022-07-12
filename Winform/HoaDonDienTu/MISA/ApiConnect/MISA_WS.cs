@@ -71,7 +71,7 @@ namespace V6ThuePost_MISA_Api
         /// <param name="codetax">mst</param>
         /// <param name="appID">4D983E42-74C0-43B3-801C-DD1088EA8BFD</param>
         /// <param name="co_ma">Hóa đơn có mã của cơ quan thuế</param>
-        public MISA_WS(string baseurl, string username, string password, string codetax, string appID, bool co_ma = true)
+        public MISA_WS(string baseurl, string username, string password, string codetax, string appID, bool co_ma)
         {
             _baseurl = baseurl;
             if (_baseurl.EndsWith("/")) _baseurl = _baseurl.Substring(0, _baseurl.Length-1);

@@ -39,6 +39,7 @@ namespace V6ThuePost
         public static bool USETAXBREAKDOWNS{ get{ return SETTING("USETAXBREAKDOWNS") == "1";}}
         public static bool USEMISAOBJECT { get { return SETTING("USEMISAOBJECT") == "1"; } }
         public static string SIGNMODE { get { return SETTING("SIGNMODE"); } }
+        public static bool COMACQT { get { return SETTING("COMACQT") == "1"; } }
         #endregion ==== SETTING ====
 
         #region ===== VAR =====
@@ -155,7 +156,7 @@ namespace V6ThuePost
                         dbfFile3 = dbfFile.ToLower().Replace(".dbf", "3.dbf");
                     }
 
-                    _MISA_WS = new MISA_WS(baseUrl, username, password, _codetax, _appID);
+                    _MISA_WS = new MISA_WS(baseUrl, username, password, _codetax, _appID, COMACQT);
 
                     if (mode.ToUpper() == "MTEST")
                     {
