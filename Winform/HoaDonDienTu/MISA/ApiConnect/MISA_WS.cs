@@ -108,8 +108,17 @@ namespace V6ThuePost_MISA_Api
 
             string result = SendRequest(_baseurl + login_uri, body, "POST", "", "", "", true);
             Login_ServiceResult loginResponse = JsonConvert.DeserializeObject<Login_ServiceResult>(result);
-            string token = loginResponse.Data.ToString();
-            __token = token;
+            //{"Success":false,"ErrorCode":"Exception","Errors":["Procedure or function 'UpdateMisaIDForUserWhenLogin_V2' cannot be found in database 'meinvoice_v2_management_test'."],"Data":null,"CustomData":null}
+            if (loginResponse.Success && loginResponse.Data != null)
+            {
+                string token = loginResponse.Data.ToString();
+                __token = token;
+            }
+            else
+            {
+                throw new Exception(result);
+            }
+            
             string test = "test";
         }
 
@@ -1118,7 +1127,8 @@ namespace V6ThuePost_MISA_Api
         public string CheckConnection(out V6Return v6Return)
         {
             string result = POST_CREATE_INVOICE("[{}]", out v6Return);
-            if (v6Return.RESULT_ERROR_MESSAGE != null && v6Return.RESULT_ERROR_MESSAGE.Contains("success:false,error0:Object reference not set to an instance of an object."))
+            // cần cập nhập hàm kiểm tra này
+            if (v6Return.RESULT_ERROR_MESSAGE != null && v6Return.RESULT_ERROR_MESSAGE.Contains("ErrorCode:Exception,Error0:Object reference not set to an instance of an object."))
             {
                 return null;
             }

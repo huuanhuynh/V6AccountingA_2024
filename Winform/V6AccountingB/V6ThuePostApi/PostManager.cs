@@ -44,6 +44,9 @@ using V6Tools.V6Reader;
 
 using V6ThuePostViettelV2Api;
 using V6ThuePost_VIN_Api;
+using V6ThuePost_MISA_Api;
+using V6ThuePost_MISA_Api.Objects;
+using V6ThuePost.MISA_Objects;
 
 namespace V6ThuePostManager
 {
@@ -86,16 +89,24 @@ namespace V6ThuePostManager
         public static string _datamode = "";
         public static string _ma_dvcs = "";
         public static string _baseUrl = "", _site = "", _datetype = "", _createInvoiceUrl = "", _modifylink = "";
-        /// <summary>
-        /// InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)
-        /// </summary>
-        private static string _downloadlinkpdf = "";
-        private static string _downloadlinkpdfe = "";
-
         public static string _link_Publish_vnpt_thaison = "";
-        public static string _link_Portal_vnpt = "";
-        public static string _link_Business_vnpt = "";
-        public static string _link_Attachment_vnpt = "";
+        public static string _appID = "";
+
+        #region ==== SETTING ====
+        public static Dictionary<string, string> _setting = new Dictionary<string, string>();
+        public static string SETTING(string KEY)
+        {
+            if (_setting.ContainsKey(KEY)) return _setting[KEY];
+            return null;
+        }
+        public static bool USETAXBREAKDOWNS { get { return SETTING("USETAXBREAKDOWNS") == "1"; } }
+        public static bool USEMISAOBJECT { get { return SETTING("USEMISAOBJECT") == "1"; } }
+        public static string SIGNMODE { get { return SETTING("SIGNMODE"); } }
+        public static bool COMACQT { get { return SETTING("COMACQT") == "1"; } }
+        #endregion ==== SETTING ====
+
+
+        
 
         /// <summary>
         /// key trong data
@@ -147,6 +158,7 @@ namespace V6ThuePostManager
         private static Dictionary<string, ConfigLine> summarizeInfoConfig = null;
         private static Dictionary<string, ConfigLine> taxBreakdownsConfig = null;
         private static Dictionary<string, ConfigLine> customerInfoConfig = null;
+        private static Dictionary<string, ConfigLine> optionUserDefinedConfig = null;
 
         //Excel config
         private static string template_xls = "template.xls";
@@ -164,11 +176,13 @@ namespace V6ThuePostManager
 
         public static ViettelV2WS viettel_V2WS = null;
         public static VIN_WS vin_WS = null;
+        public static MISA_WS misa_WS = null;
 
         public static void ResetWS()
         {
             viettel_V2WS = null;
             vin_WS = null;
+            misa_WS = null;
         }
 
         /// <summary>
@@ -233,6 +247,10 @@ namespace V6ThuePostManager
                     case "9":
                         if (vin_WS == null) vin_WS = new VIN_WS(_baseUrl, _username, _password, _codetax);
                         result0 = EXECUTE_VIN(paras);
+                        break;
+                    case "10":
+                        if (misa_WS == null) misa_WS = new MISA_WS(_baseUrl, _username, _password, _codetax, _appID, COMACQT);
+                        result0 = EXECUTE_MISA(paras);
                         break;
                     default:
                         paras.Result = new PM_Result();
@@ -415,6 +433,11 @@ namespace V6ThuePostManager
                         if (vin_WS == null) vin_WS = new VIN_WS(_baseUrl, _username, _password, _codetax);
                         result = vin_WS.CheckConnection();
                         break;
+                    case "10":
+                        if (misa_WS == null) misa_WS = new MISA_WS(_baseUrl, _username, _password, _codetax, _appID, COMACQT);
+                        V6Return v6Return = null;
+                        result = misa_WS.CheckConnection(out v6Return);
+                        break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
                         break;
@@ -506,9 +529,9 @@ namespace V6ThuePostManager
                         else result = mInvoiceWs.DownloadInvoicePDFexchange(paras.V6PartnerID, paras.Pattern, "", V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     case "9":
-                        VIN_WS vinWS = new VIN_WS(_baseUrl, _username, _password, _codetax);
-                        if (paras.Mode == "2") result = vinWS.CHUYEN_DOI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
-                        else result = vinWS.TAI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        if (vin_WS == null) vin_WS = new VIN_WS(_baseUrl, _username, _password, _codetax);
+                        if (paras.Mode == "2") result = vin_WS.CHUYEN_DOI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        else result = vin_WS.TAI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
@@ -740,7 +763,7 @@ namespace V6ThuePostManager
                     }
                     else
                     {
-                        postObject.Invoice[item.Key] = GetValue(row0, item.Value);
+                        postObject.Invoice[item.Key] = item.Value.GetValue(row0);
                     }
                 }
 
@@ -4865,8 +4888,45 @@ namespace V6ThuePostManager
                     if (string.IsNullOrEmpty(_SERIAL_CERT))
                     {
                         var jsonBodyObject = ReadData_VIN("M");
-                        //File.Create(flagFileName1).Close();
-                        var response = vin_WS.POST_CREATE_INVOICE(jsonBodyObject, true, out paras.Result.V6ReturnValues);
+                        if (paras.Key_Down == "F4") // gửi nháp
+                        {
+                            var response = vin_WS.POST_CREATE_INVOICE(jsonBodyObject, false, out paras.Result.V6ReturnValues);
+                            //if (result.StartsWith("ERR:13")) // nếu đã tồn tại. thì xóa nháp + gửi lại.
+                            //{
+                            //    result = vnptWS.DeleteInvoiceByFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                            //    if (result.StartsWith("OK:"))
+                            //    {
+                            //        result = vnptWS.ImportInvByPattern(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                            //    }
+                            //}
+                        }
+                        else if (paras.Key_Down == "F6") // sửa hóa đơn nháp = xóa nháp + gửi lại.
+                        {
+                            var response = vin_WS.POST_CREATE_INVOICE(jsonBodyObject, false, out paras.Result.V6ReturnValues);
+                            
+                            //if (result.StartsWith("OK:"))
+                            //{
+                            //    result = vnptWS.ImportInvByPattern(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
+                            //}
+                        }
+                        else
+                        {
+                            var response = vin_WS.POST_CREATE_INVOICE(jsonBodyObject, _signmode == "HSM" || SIGNMODE == "HSM", out paras.Result.V6ReturnValues);
+                            if (paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE == null && paras.Result.V6ReturnValues.SO_HD == null && paras.Result.V6ReturnValues.RESULT_MESSAGE.Contains("Trùng hồ sơ"))
+                            {
+                                // trùng hồ sơ, tải lại thông tin.
+                                //response = vin_WS.SIGN_HSM(paras.Result.V6ReturnValues.SECRET_CODE, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                                paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = paras.Result.V6ReturnValues.RESULT_MESSAGE;
+                            }
+                            else if (paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE == null && paras.Result.V6ReturnValues.SO_HD == null && (_signmode == "HSM" || SIGNMODE == "HSM"))
+                            {
+                                response = vin_WS.SIGN_HSM(paras.Result.V6ReturnValues.SECRET_CODE, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                            }
+                            else
+                            {
+
+                            }
+                        }
                     }
                     else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                     {
@@ -5094,8 +5154,444 @@ namespace V6ThuePostManager
             return hoadon;
         }
 
-        #endregion
+        #endregion vin
 
+
+        #region ===== MISA =====
+
+
+        private static string EXECUTE_MISA(PostManagerParams paras)
+        {
+
+            paras.Result = new PM_Result();
+            string jsonBody = null;
+            string result = null;
+
+            try
+            {
+                if (misa_WS == null) misa_WS = new MISA_WS(_baseUrl, _username, _password, _codetax, _appID, COMACQT);
+
+                var row0 = am_table.Rows[0];
+
+                if (paras.Mode == "TestView")
+                {
+                    paras.Result.ResultString = ReadData_MISA(paras.Mode);
+                }
+                else if (paras.Mode.StartsWith("M"))
+                {
+                    StartAutoInputTokenPassword();
+                    //generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                    //{
+                    //    Field = "adjustmentType",
+                    //    Value = "1",
+                    //};
+                    //Guid new_uid = Guid.NewGuid();
+                    //if (mode == "MG")
+                    //{
+                    //    generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
+                    //    {
+                    //        Field = "transactionUuid",
+                    //        Value = "" + new_uid,
+                    //    };
+                    //}
+
+                    if (paras.Mode == "M0") // DRAF
+                    {
+                        jsonBody = ReadData_MISA("M");
+                        result = misa_WS.POST_CREATE_INVOICE(jsonBody, out paras.Result.V6ReturnValues);
+                    }
+                    else if (string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        jsonBody = ReadData_MISA("M");
+                        result = misa_WS.POST_CREATE_INVOICE_HSM(jsonBody, out paras.Result.V6ReturnValues);
+                    }
+                    else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                        jsonBody = ReadData_MISA("M");
+                        string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                        result = misa_WS.CreateInvoice_GetXml_Sign(jsonBody, _SERIAL_CERT, out paras.Result.V6ReturnValues);
+                    }
+
+                    //if (string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE))
+                    //{
+                    //    message = "Thành công. Số hóa đơn: " + paras.Result.V6ReturnValues.SO_HD;
+                    //}
+                    //else
+                    //{
+                    //    message = paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE;
+                    //}
+                }
+                else if (paras.Mode.StartsWith("S"))
+                {
+                    if (paras.Mode.EndsWith("3"))
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "3",
+                        };
+                    }
+                    else if (paras.Mode.EndsWith("5"))
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "5",
+                        };
+                    }
+                    else
+                    {
+                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                        {
+                            Field = "adjustmentType",
+                            Value = "3",
+                        };
+                    }
+
+                    jsonBody = ReadData_MISA("S");
+                    result = misa_WS.POST_EDIT(jsonBody, out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode == "T")
+                {
+                    jsonBody = ReadData_MISA("T");
+                    result = misa_WS.POST_REPLACE(jsonBody, _version == "V45I", out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode.StartsWith("G")) // call exe như mode M
+                {
+                    V6Message.Show("Chưa hỗ trợ G!");
+                    //jsonBody = ReadData(dbfFile, "M");
+                    //if (mode == "G1" || mode == "G") // Gạch nợ theo fkey
+                    //{
+                    //    File.Create(flagFileName1).Close();
+                    //    string invoiceNo = ""  + postObject.generalInvoiceInfo["invoiceSeries"] +  row0["SO_CT"].ToString().Trim();
+                    //    string strIssueDate = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], null);
+                    //    string templateCode = postObject.generalInvoiceInfo["templateCode"].ToString();
+                    //    string buyerEmailAddress = postObject.buyerInfo["buyerEmail"].ToString();
+                    //    string paymentType = postObject.generalInvoiceInfo["paymentType"].ToString();
+                    //    string paymentTypeName = postObject.generalInvoiceInfo["paymentTypeName"].ToString();
+                    //    result = _viettelV2_ws.UpdatePaymentStatus(_codetax, invoiceNo, strIssueDate, templateCode,
+                    //        buyerEmailAddress, paymentType, paymentTypeName, "true", out paras.Result.V6ReturnValues);
+                    //}
+                    ////else if (mode == "G2") // Gạch nợ hóa đơn theo lstInvToken(01GTKT2/001;AA/13E;10)
+                    ////{
+                    ////    File.Create(flagFileName1).Close();
+                    ////    result = confirmPayment(arg2);
+                    ////}
+                    //else if (mode == "G3") // Hủy gạch nợ theo fkey
+                    //{
+                    //    File.Create(flagFileName1).Close();
+                    //    string invoiceNo = ""  + postObject.generalInvoiceInfo["invoiceSeries"] +  row0["SO_CT"].ToString().Trim();
+                    //    string strIssueDate = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], null);
+                    //    string templateCode = postObject.generalInvoiceInfo["templateCode"].ToString();
+                    //    string buyerEmailAddress = postObject.buyerInfo["buyerEmail"].ToString();
+                    //    string paymentType = postObject.generalInvoiceInfo["paymentType"].ToString();
+                    //    string paymentTypeName = postObject.generalInvoiceInfo["paymentTypeName"].ToString();
+                    //    result = _viettelV2_ws.UpdatePaymentStatus(_codetax, invoiceNo, strIssueDate, templateCode,
+                    //        buyerEmailAddress, paymentType, paymentTypeName, "false", out paras.Result.V6ReturnValues);
+                    //}
+
+                }
+                else if (paras.Mode == "H")
+                {
+                    V6Message.Show("Chưa hỗ trợ H!");
+                    result = misa_WS.HUY_HOA_DON("transactionID", "invNo", "2022-01-01", "số liệu sai", out paras.Result.V6ReturnValues);
+                }
+                //else if (paras.Mode.StartsWith("P"))
+                
+
+                    
+            }
+            catch (Exception ex)
+            {
+                paras.Result.ResultErrorMessage = ex.Message;
+            }
+            StopAutoInputTokenPassword();
+        End:
+            return paras.Result.V6ReturnValues.RESULT_STRING;
+        }
+
+
+        public static string ReadData_MISA(string mode)
+        {
+            var hoadon = ReadData_MISA_Object(mode);
+            string result = ReadData_MISA_ObjectToJson(hoadon);
+            return result;
+        }
+
+        private static string ReadData_MISA_ObjectToJson(OriginalInvoiceData hoadonMISA) //object hoadon = List<OriginalInvoiceData> or var hsm_send_data = new List<Dictionary<string, object>>();
+        {
+            string result = "";
+
+            if (SIGNMODE == "HSM")
+            {
+                var hsm_send_data = new List<Dictionary<string, object>>();
+                var one = new Dictionary<string, object>();
+                one["RefID"] = hoadonMISA.RefID;
+                one["OriginalInvoiceData"] = hoadonMISA;
+                hsm_send_data.Add(one);
+
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                result = JsonConvert.SerializeObject(hsm_send_data, settings);
+            }
+            else
+            {
+                var list_hoadonMISA = new List<OriginalInvoiceData>();
+                list_hoadonMISA.Add(hoadonMISA);
+
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                result = JsonConvert.SerializeObject(list_hoadonMISA, settings);
+            }
+
+
+            if (_write_log)
+            {
+                DataRow row0 = am_table.Rows[0];
+                string stt_rec = row0["STT_REC"].ToString();
+                string file = Path.Combine(Application.StartupPath, stt_rec + ".json");
+                File.WriteAllText(file, result);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Cần đọc xml trước!
+        /// </summary>
+        /// <param name="dbfFile"></param>
+        /// <param name="mode">M mới hoặc T thay thế</param>
+        /// <returns></returns>
+        public static OriginalInvoiceData ReadData_MISA_Object(string mode) // List<OriginalInvoiceData>
+        {
+            var hoadonMISA = new OriginalInvoiceData();
+            try
+            {
+                //var list_hoadon = new MISA_PostObject();
+                //var hoadon = new Dictionary<string, object>();
+                //list_hoadon.Add(hoadon);
+
+                
+                //var list_hoadonMISA = new List<OriginalInvoiceData>();
+
+
+                //list_hoadonMISA.Add(hoadonMISA);
+                //postObject.hoadon = hoadon;
+                //ReadXmlInfo(xmlFile);
+                //DataTable dataDbf = ParseDBF.ReadDBF(dbfFile);
+                //DataTable data = Data_Table.FromTCVNtoUnicode(dataDbf);
+                //DataTable table3 = null;
+                //if (USETAXBREAKDOWNS && !string.IsNullOrEmpty(dbfFile3))
+                //{
+                //    DataTable dataDbf3 = ParseDBF.ReadDBF(dbfFile3);
+                //    table3 = Data_Table.FromTCVNtoUnicode(dataDbf3);
+                //}
+                //Fill data to postObject
+                DataRow row0 = am_table.Rows[0];
+
+                //fkeyA = fkey0 + row0["STT_REC"];
+
+
+
+                foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
+                {
+                    //hoadon[item.Key] = item.Value.GetValue(row0);
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, item.Key, item.Value.GetValue(row0));
+                }
+
+
+
+                if (mode == "S")
+                {
+                    //Lập hóa đơn điều chỉnh: trong chi tiết và dsthuesuat có thêm trường dieuchinh_tanggiam
+                    //hoadon["OrgInvNo"] = row0["SO_CT_OLD"].ToString().Trim();
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, "OrgInvNo", row0["SO_CT_OLD"].ToString().Trim());
+                }
+
+                if (mode == "T")
+                {
+                    //Lập hóa đơn thay thế:
+                    //hoadon["OrgInvNo"] = row0["SO_CT_OLD"].ToString().Trim();
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, "OrgInvNo", row0["SO_CT_OLD"].ToString().Trim());
+                    ////thông tin hóa đơn thay thế hoặc điều chỉnh 
+                    //if (rbAdjust.Checked)
+                    //{
+                    //    invoiceData.ReferenceType = 2;
+                    //    invoiceData.OrgInvoiceType = 1;
+                    //    invoiceData.OrgInvNo = txtNumberOrg.Text;
+                    //    invoiceData.OrgInvTemplateNo = cboKyHieu.Text.Substring(0, 1);
+                    //    invoiceData.OrgInvSeries = cboKyHieu.Text;
+                    //    invoiceData.OrgInvDate = dteOrgDate.Value.Date;
+                    //}
+                    //else if (rbReplace.Checked)
+                    //{
+                    //    invoiceData.ReferenceType = 1;
+                    //    invoiceData.OrgInvoiceType = 1;
+                    //    invoiceData.OrgInvNo = txtNumberOrg.Text;
+                    //    invoiceData.OrgInvTemplateNo = cboKyHieu.Text.Substring(0, 1);
+                    //    invoiceData.OrgInvSeries = cboKyHieu.Text;
+                    //    invoiceData.OrgInvDate = dteOrgDate.Value.Date;
+                    //}
+                }
+
+                //if (_TEST_)
+                //{
+                //    Guid new_uid = Guid.NewGuid();
+                //    hoadon["RefID"] = "" + new_uid;
+                //    ObjectAndString.SetObjectPropertyValue(hoadonMISA, "RefID", "" + new_uid);
+                //}
+
+                fkeyA = "" + hoadonMISA.RefID;
+                //MakeFlagNames(_RefID_or_fkey);
+
+                //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
+                foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
+                {
+                    //hoadon[item.Key] = item.Value.GetValue(row0);
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, item.Key, item.Value.GetValue(row0));
+
+                }
+                foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
+                {
+                    //hoadon[item.Key] = item.Value.GetValue(row0);
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, item.Key, item.Value.GetValue(row0));
+                }
+
+                foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
+                {
+                    //hoadon[item.Key] = item.Value.GetValue(row0);
+                    ObjectAndString.SetObjectPropertyValue(hoadonMISA, item.Key, item.Value.GetValue(row0));
+                }
+
+                if (metadataConfig != null)
+                {
+                    foreach (KeyValuePair<string, ConfigLine> metaItem in metadataConfig)
+                    {
+                        Dictionary<string, object> metadata = new Dictionary<string, object>();
+                        metadata["invoiceCustomFieldId"] = ObjectAndString.ObjectToInt(metaItem.Value.SL_TD1);
+                        metadata["keyTag"] = metaItem.Key;
+                        metadata["valueType"] = metaItem.Value.DataType; // text, number, date
+                        if (metaItem.Value.DataType.ToLower() == "date")
+                        {
+                            metadata["dateValue"] = metaItem.Value.GetValue(row0);
+                        }
+                        else if (metaItem.Value.DataType.ToLower() == "number")
+                        {
+                            metadata["numberValue"] = metaItem.Value.GetValue(row0);
+                        }
+                        else if (metaItem.Value.DataType.ToUpper() == "N2C0VNDE")
+                        {
+                            // N2C0VNDE thêm đọc số tiền nếu ma_nt != VND
+                            string ma_nt = row0["MA_NT"].ToString().Trim().ToUpper();
+                            if (ma_nt != "VND")
+                            {
+                                metadata["stringValue"] = ObjectAndString.ObjectToString(metaItem.Value.GetValue(row0));
+                                metadata["valueType"] = "text";
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+
+                            metadata["stringValue"] = ObjectAndString.ObjectToString(metaItem.Value.GetValue(row0));
+                        }
+                        metadata["keyLabel"] = ObjectAndString.ObjectToString(metaItem.Value.MA_TD2);
+                        metadata["isRequired"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD2);
+                        metadata["isSeller"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD3);
+
+                        //{
+                        //   "invoiceCustomFieldId": 1135,
+                        //   "keyTag": "dueDate",
+                        //   "valueType": "date",
+                        //   "dateValue": 1544115600000,
+                        //   "keyLabel": "Hạn thanh toán",
+                        //   "isRequired": false,
+                        //   "isSeller": false
+                        // },
+                        //hoadon["metadata"] = metadata; // bị bỏ qua, code thừa.
+
+                    }
+                }
+
+
+
+
+                if (USETAXBREAKDOWNS && ad3_table != null)
+                {
+                    var dsthuesuat = new List<TaxRateInfo>();
+                    foreach (DataRow row3 in ad3_table.Rows)
+                    {
+                        Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
+                        foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                        {
+                            taxBreakdown[item.Key] = item.Value.GetValue(row3);
+                        }
+                        dsthuesuat.Add(taxBreakdown.ToModel<TaxRateInfo>());
+                    }
+                    //hoadon["TaxRateInfo"] = dsthuesuat; // nhiều dòng tùy vào table3
+                    hoadonMISA.TaxRateInfo = dsthuesuat;
+                }
+                else
+                {
+                    var dsthuesuat = new List<TaxRateInfo>();
+                    Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                    {
+                        taxBreakdown[item.Key] = item.Value.GetValue(row0);
+                    }
+                    dsthuesuat.Add(taxBreakdown.ToModel<TaxRateInfo>());
+                    //hoadon["TaxRateInfo"] = dsthuesuat;
+                    hoadonMISA.TaxRateInfo = dsthuesuat; // Chỉ có 1 dòng.
+                }
+
+                if (optionUserDefinedConfig != null)
+                {
+                    var options = new Dictionary<string, object>();
+
+                    foreach (KeyValuePair<string, ConfigLine> item in optionUserDefinedConfig)
+                    {
+                        options[item.Key] = item.Value.GetValue(row0);
+                    }
+                    //hoadon["OptionUserDefined"] = options;
+                    hoadonMISA.OptionUserDefined = options.ToModel<OptionUserDefined>();
+                }
+
+                var dschitiet = new List<Dictionary<string, object>>();
+                var dschitietMISA = new List<OriginalInvoiceDetail>();
+                foreach (DataRow row in ad_table.Rows)
+                {
+                    if (row["STT"].ToString() == "0") continue;
+                    Dictionary<string, object> rowData = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
+                    {
+                        rowData[item.Key] = item.Value.GetValue(row);
+                    }
+                    dschitiet.Add(rowData);
+                    dschitietMISA.Add(rowData.ToModel<OriginalInvoiceDetail>());
+                }
+                //hoadon["OriginalInvoiceDetail"] = dschitiet;
+                hoadonMISA.OriginalInvoiceDetail = dschitietMISA;
+
+                
+
+                
+            }
+            catch (Exception ex)
+            {
+                V6Message.Show(ex.Message, 0);
+            }
+            //return result;
+            return hoadonMISA;
+        }
+
+        #endregion misa
 
         private static object GetValue(DataRow row, ConfigLine config)
         {
@@ -5267,6 +5763,7 @@ namespace V6ThuePostManager
             summarizeInfoConfig = new Dictionary<string, ConfigLine>();
             taxBreakdownsConfig = new Dictionary<string, ConfigLine>();
             customerInfoConfig = new Dictionary<string, ConfigLine>();
+            optionUserDefinedConfig = new Dictionary<string, ConfigLine>();
 
             parameters_config = new List<ConfigLine>();
             _SERIAL_CERT = "";
@@ -5307,6 +5804,9 @@ namespace V6ThuePostManager
                                 case "baseurl":
                                     _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                     break;
+                                case "appid":
+                                    _appID = UtilityHelper.DeCrypt(line.Value);
+                                    break;
                                 case "site":
                                 case "login":
                                 case "sitelogin":
@@ -5317,31 +5817,10 @@ namespace V6ThuePostManager
                                 case "datetype":
                                     _datetype = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
-                                case "createlink":
-                                    _createInvoiceUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
-                                    break;
-                                case "modifylink":
-                                    _modifylink = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
-                                    break;
-                                case "downloadlinkpdf":
-                                    _downloadlinkpdf = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
-                                    break;
-                                case "downloadlinkpdfe":
-                                    _downloadlinkpdfe = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
-                                    break;
                                     //Vnpt, có dùng cả username, password
                                 case "link_publish":
                                         _link_Publish_vnpt_thaison = UtilityHelper.DeCrypt(line.Value);
                                         _baseUrl = _link_Publish_vnpt_thaison.Substring(0, _link_Publish_vnpt_thaison.LastIndexOf('/'));
-                                    break;
-                                case "link_business":
-                                    _link_Business_vnpt = UtilityHelper.DeCrypt(line.Value);
-                                    break;
-                                case "link_portal":
-                                    _link_Portal_vnpt = UtilityHelper.DeCrypt(line.Value);
-                                    break;
-                                case "link_attachment":
-                                    _link_Attachment_vnpt = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "account":
                                     _account = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
@@ -5463,6 +5942,14 @@ namespace V6ThuePostManager
                                 if (!string.IsNullOrEmpty(line.Field))
                                 {
                                     taxBreakdownsConfig.Add(line.Field, line);
+                                }
+                                break;
+                            }
+                        case "OPTIONUSERDEFINED":
+                            {
+                                if (!string.IsNullOrEmpty(line.Field))
+                                {
+                                    optionUserDefinedConfig.Add(line.Field, line);
                                 }
                                 break;
                             }

@@ -833,6 +833,8 @@ namespace V6ThuePost
         private static MISA_PostObject postObject;
         public static DataRow row0;
 
+        internal static Dictionary<string, ConfigLine> v6infoInvoiceInfoConfig = null;
+
         internal static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         internal static Dictionary<string, ConfigLine> buyerInfoConfig = null;
         internal static Dictionary<string, ConfigLine> sellerInfoConfig = null;
@@ -846,15 +848,17 @@ namespace V6ThuePost
         public static void ReadXmlInfo(string xmlFile)
         {
             //postObject = new PostObject();
-
+            v6infoInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
             generalInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
             buyerInfoConfig = new Dictionary<string, ConfigLine>();
             sellerInfoConfig = new Dictionary<string, ConfigLine>();
             //metadataConfig = new Dictionary<string, ConfigLine>();
+            metadataConfig = null;
             paymentsConfig = new Dictionary<string, ConfigLine>();
             itemInfoConfig = new Dictionary<string, ConfigLine>();
             summarizeInfoConfig = new Dictionary<string, ConfigLine>();
             taxBreakdownsConfig = new Dictionary<string, ConfigLine>();
+            optionUserDefinedConfig = new Dictionary<string, ConfigLine>();
             XmlTextReader reader = new XmlTextReader(xmlFile.ToLower());
             try
             {
@@ -867,6 +871,7 @@ namespace V6ThuePost
                             {
                                 ConfigLine line = V6ThuePostUtility.ReadXmlLine(reader);
                                 string line_field = line.Field.ToLower();
+                                v6infoInvoiceInfoConfig.Add(line_field, line);
                                 switch (line_field)
                                 {
                                     case "username":

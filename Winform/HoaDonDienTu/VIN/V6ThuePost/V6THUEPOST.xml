@@ -8,7 +8,7 @@
   <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
   <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
   <V6Info Field='datetype' 	Value='yyyy-MM-dd HH-mm-ss'/>
-  <V6Info Field='SIGNMODE' 	Value='bHyNgIHonRs=' Value0='V6SOFT'/>
+  <V6Info Field='SIGNMODE' 	Value='5s8Gml7oU48=' Value0='V6SOFT'/>
 
   <V6Info Field='baselink' 	Value='UQL2EugVpi2lnPqCXWK/FRDpnY7oLfDyJHaRRfkNatk=' Type=''/>
 	
@@ -34,10 +34,10 @@ thanh toán là tiền mặt'/>
   <GeneralInvoiceInfo Field='tygiangoaite'		Value='1'	FieldV6=''	Type='Field'  DataType='int'  Note=''/>
   <GeneralInvoiceInfo Field='thanhtoan_thoihan'		Value=''	FieldV6=''	Type='Field'  DataType='Date:yyyy-MM-dd'/>
   
-	<GeneralInvoiceInfo Field='cusGetInvoiceRight' 	Value='1'	FieldV6=''	Type='Field' DataType='Bool'/>
-	<GeneralInvoiceInfo Field='buyerIdNo' 	Value=''/>
-	<GeneralInvoiceInfo Field='buyerIdType' 	Value=''/>
-	<GeneralInvoiceInfo Field='userName' 	Value=''/>
+	<GeneralInvoiceInfo_0 Field='cusGetInvoiceRight' 	Value='1'	FieldV6=''	Type='Field' DataType='Bool'/>
+	<GeneralInvoiceInfo_0 Field='buyerIdNo' 	Value=''/>
+	<GeneralInvoiceInfo_0 Field='buyerIdType' 	Value=''/>
+	<GeneralInvoiceInfo_0 Field='userName' 	Value=''/>
   
 	
 	<SellerInfo Field='doanhnghiep_mst' 		Value='0106323762'/>
@@ -76,18 +76,16 @@ thanh toán là tiền mặt'/>
 	<ItemInfo	Field='donvitinh'		FieldV6='dvt'	Type='Field'/>
 	<ItemInfo	Field='soluong'	FieldV6='so_luong'	Type='Field'/>
 	<ItemInfo	Field='dongia'	FieldV6='gia2'	Type='Field'/>
+  
   <ItemInfo	Field='phantram_chietkhau'	FieldV6='pt_cki'	Type='Field'/>
   <ItemInfo	Field='tongtien_chietkhau'	FieldV6='ck'	Type='Field'/>
-  phikhac_tyle
-  phikhac_sotien
+  
+  <ItemInfo	Field='phikhac_tyle'	FieldV6='ck'	Type='Field'/>
+  <ItemInfo	Field='phikhac_sotien'	FieldV6='ck'	Type='Field'/>
   
   <ItemInfo	Field='tongtien_chuathue'	FieldV6='tien2'	Type='Field'/>
   
-  <ItemInfo	Field='mathue'	FieldV6='MA_THUE_I'	Type='Field' DataType='int' Note='-2: Không kê khai,
-+ -1: Không thuế,
-+ 0: Thuế 0%,
-+ 5: Thuế 5%,
-+ 10: Thuế 10%'/>
+  <ItemInfo	Field='mathue'	FieldV6='MA_THUE_I'	Type='Field' DataType='int' Note='-2: Không kê khai,+ -1: Không thuế,+ 0: Thuế 0%,+ 5: Thuế 5%,+ 10: Thuế 10%'/>
   <ItemInfo	Field='tongtien_cothue'	FieldV6='tien2'	Type='Field'/>
 	
 	<ItemInfo	Field='dulieudacthu01'  Value=''	FieldV6=''	Type='Field' />

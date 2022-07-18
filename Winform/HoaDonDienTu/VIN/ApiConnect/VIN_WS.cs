@@ -86,7 +86,7 @@ namespace V6ThuePost_VIN_Api
         /// 
         /// </summary>
         /// <param name="jsonBody"></param>
-        /// <param name="gui_va_ky">(Cờ đổi hàm) Mặc định false.</param>
+        /// <param name="gui_va_ky">ký hsm</param>
         /// <param name="v6Return"></param>
         /// <returns></returns>
         public string POST_CREATE_INVOICE(string jsonBody, bool gui_va_ky, out V6Return v6Return)
@@ -121,8 +121,10 @@ namespace V6ThuePost_VIN_Api
                 else
                 {
                     v6Return.SO_HD = responseObject.result.sohoadon;
-                    if (responseObject.result.datahd.ContainsKey("guid")) v6Return.ID = responseObject.result.datahd["guid"].ToString();
+                    if (responseObject.result.datahd != null && responseObject.result.datahd.ContainsKey("guid"))
+                        v6Return.ID = responseObject.result.datahd["guid"].ToString();
                     v6Return.SECRET_CODE = responseObject.result.magiaodich;
+                    v6Return.RESULT_MESSAGE = responseObject.result.motaketqua;
                 }
             }
             catch (Exception ex1)
@@ -133,16 +135,16 @@ namespace V6ThuePost_VIN_Api
         }
 
 
-        public string SIGN_HSM(string mst, string magiaodich, string ma_hoadon, out V6Return v6Return)
+        public string SIGN_HSM(string magiaodich, string ma_hoadon, out V6Return v6Return)
         {
             string result = "";
             v6Return = new V6Return();
 
             try
             {
-                var request = "{\"doanhnghiep_mst\": \""+mst+"\",\"magiaodich\": \""+magiaodich+"\", \"ma_hoadon\": \""+ma_hoadon+"\"}";
+                var request = "{\"doanhnghiep_mst\": \""+_codetax+"\",\"magiaodich\": \""+magiaodich+"\", \"ma_hoadon\": \""+ma_hoadon+"\"}";
                 result = POST_BEARERTOKEN(sign_hsm_uri, request);
-
+                v6Return.RESULT_STRING = result;
                 VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
                 v6Return.RESULT_OBJECT = responseObject;
                 if (responseObject.unAuthorizedRequest)// == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))

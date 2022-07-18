@@ -28,7 +28,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public string _program;
         public string _reportProcedure;
         public string _reportFile;
-        public string MAU = "", LAN = V6Login.SelectedLanguage;
+        public virtual string MAU {get;set;}
+        public string LAN = V6Login.SelectedLanguage;
         /// <summary>
         /// Tắt MadeFilterControls
         /// </summary>

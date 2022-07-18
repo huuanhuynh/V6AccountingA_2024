@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B76F1253-A371-4590-9193-D27CB0C31E35}</ProjectGuid>
+    <ProjectGuid>{B54C8A63-85AE-4FBB-926B-6F2085554A82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePost_MISA_Api</RootNamespace>

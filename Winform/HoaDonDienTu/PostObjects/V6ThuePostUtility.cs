@@ -25,6 +25,8 @@ namespace V6ThuePost
             config.SL_TD1 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD1"));
             config.SL_TD2 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD2"));
             config.SL_TD3 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD3"));
+
+            config.Note = reader.GetAttribute("Note");
             return config;
         }
     }

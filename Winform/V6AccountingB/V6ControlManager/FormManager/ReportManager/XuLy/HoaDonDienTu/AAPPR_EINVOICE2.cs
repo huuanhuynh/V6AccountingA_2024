@@ -149,7 +149,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         if (paras.Result.IsSuccess(mode))
                         {
-                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString, V6Text.Text("ThanhCong"));
+                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}",
+                                soct, paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString.Left(100), V6Text.Text("ThanhCong"));
                             
                             SqlParameter[] plist2 =
                             {
@@ -276,8 +277,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (paras.Result.ResultMessage != null && paras.Result.ResultMessage.Contains("Đã tồn tại Hóa đơn"))
                         {
                             f9MessageAll += string.Format("{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct,
-                             paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString,
-                             V6Text.Exist);
+                             paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString.Left(100), V6Text.Exist);
                         }
                         else
                         {

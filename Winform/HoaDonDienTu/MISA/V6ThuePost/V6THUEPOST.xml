@@ -8,11 +8,10 @@
   <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
   <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
   <V6Info Field='datetype' 	Value='yyyy-MM-ddTHH:mm:sszzz'/>
-  <V6Info Field='SIGNMODE' 	Value='bHyNgIHonRs=' Value0='V6SOFT'/>
   <V6Info Field='AppID' 	Value='dUNuCpl9i6jCEfjz7WtifxTW9aj2KdqNVNkW+fxs12GT1gLIUi72ag==' Value0='4D983E42-74C0-43B3-801C-DD1088EA8BFD'/>
   <V6Info Field='baselink' 	Value='UQL2EugVpi0DkXoVBJ3wOOqL7WxjvSQ+j6AKNHeS4kI=' Type=''/>
 
-  <V6Info Field='setting' 	Value='USETAXBREAKDOWNS:0;USEMISAOBJECT:1;SIGNMODE:HSM;COMACQT:1;SIGNMODE_0:TOKEN' Note='USETAXBREAKDOWNS:đọc file tprint3.dbf để lấy dữ liệu tax.'/>
+  <V6Info Field='setting' 	Value='USETAXBREAKDOWNS:0;USEMISAOBJECT:1;SIGNMODE:HSM;COMACQT:1;SIGNMODE_0:TOKEN' Note='USETAXBREAKDOWNS:đọc file tprint3.dbf để lấy dữ liệu tax. SIGNMODE:HSM,TOKEN'/>
 	
 	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
 	

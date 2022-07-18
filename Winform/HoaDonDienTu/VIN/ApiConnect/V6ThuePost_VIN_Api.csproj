@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B76F1253-A371-4590-9193-D27CB0C31E35}</ProjectGuid>
+    <ProjectGuid>{A65BAF8E-B364-4384-B798-E2E2E0D67F8D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePost_VIN_Api</RootNamespace>

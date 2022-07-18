@@ -6,6 +6,9 @@ using V6ThuePost_MISA_Api;
 using V6Tools;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.MISA_Objects;
+using System.Data;
+using System.Collections.Generic;
+using V6Tools.V6Convert;
 
 namespace V6ThuePost
 {
@@ -24,6 +27,7 @@ namespace V6ThuePost
             try
             {
                 Program.ReadXmlInfo(txtXmlFile.Text);
+                btnExportInfo.Enabled = true;
                 //Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
                 //{
                 //    Field = "adjustmentType",
@@ -222,6 +226,194 @@ namespace V6ThuePost
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnExportInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog o = new SaveFileDialog();
+                o.Filter = "Excel|*.xls;*.xlsx";
+                if (o.ShowDialog() == DialogResult.OK)
+                {
+                    var data = new DataTable();
+                    data.Columns.Add("GROUPNAME", typeof(string));
+                    data.Columns.Add("FIELD", typeof(string));
+                    data.Columns.Add("VALUE", typeof(string));
+                    data.Columns.Add("FIELDV6", typeof(string));
+                    data.Columns.Add("TYPE", typeof(string));
+                    data.Columns.Add("DATATYPE", typeof(string));
+                    data.Columns.Add("Format", typeof(string));
+                    data.Columns.Add("LOAI", typeof(string));
+                    data.Columns.Add("STT_LOAI", typeof(int));  //=0
+                    data.Columns.Add("STT", typeof(int));  //=0
+                    data.Columns.Add("TEN", typeof(string));
+                    data.Columns.Add("TEN2", typeof(string));
+                    data.Columns.Add("ADV_AL1", typeof(string));
+                    data.Columns.Add("ADV_AL2", typeof(string));
+                    //data.Columns.Add("DATATYPE", typeof(string));
+                    data.Columns.Add("DMETHOD", typeof(string));
+                    data.Columns.Add("date0", typeof(string));
+                    data.Columns.Add("time0", typeof(string));
+                    data.Columns.Add("user_id0", typeof(string));
+                    data.Columns.Add("DATE2", typeof(string));
+                    data.Columns.Add("TIME2", typeof(string));
+                    data.Columns.Add("user_id2", typeof(string));
+
+                    data.Columns.Add("status", typeof(string));
+
+                    data.Columns.Add("MA_TD1", typeof(string));
+                    data.Columns.Add("MA_TD2", typeof(string));
+                    data.Columns.Add("MA_TD3", typeof(string));
+
+                    data.Columns.Add("ngay_td1", typeof(string));
+                    data.Columns.Add("ngay_td2", typeof(string));
+                    data.Columns.Add("ngay_td3", typeof(string));
+
+                    data.Columns.Add("sl_td1", typeof(string));
+                    data.Columns.Add("sl_td2", typeof(string));
+                    data.Columns.Add("sl_td3", typeof(string));
+
+                    data.Columns.Add("gc_td1", typeof(string));
+                    data.Columns.Add("gc_td2", typeof(string));
+                    data.Columns.Add("gc_td3", typeof(string));
+
+                    data.Columns.Add("NOGEN", typeof(string));
+
+                    int count = 0;
+                    DateTime now = DateTime.Now;
+                    string today_dd_MM_yyyy = ObjectAndString.ObjectToString(now, "dd/MM/yyyy");
+
+                    foreach (KeyValuePair<string, ConfigLine> item in Program.v6infoInvoiceInfoConfig)
+                    {
+                        count++;
+                        var newrow = data.NewRow();
+                        newrow["GROUPNAME"] = "V6Info";
+                        AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                        data.Rows.Add(newrow);
+                    }
+
+                    foreach (KeyValuePair<string, ConfigLine> item in Program.generalInvoiceInfoConfig)
+                    {
+                        count++;
+                        var newrow = data.NewRow();
+                        newrow["GROUPNAME"] = "GeneralInvoiceInfo";
+                        AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                        data.Rows.Add(newrow);
+                    }
+
+                    if (Program.buyerInfoConfig != null)
+                        foreach (KeyValuePair<string, ConfigLine> item in Program.buyerInfoConfig)
+                        {
+                            count++;
+                            var newrow = data.NewRow();
+                            newrow["GROUPNAME"] = "BuyerInfo";
+                            AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                            data.Rows.Add(newrow);
+                        }
+
+                    if (Program.sellerInfoConfig != null)
+                        foreach (KeyValuePair<string, ConfigLine> item in Program.sellerInfoConfig)
+                        {
+                            count++;
+                            var newrow = data.NewRow();
+                            newrow["GROUPNAME"] = "SellerInfo";
+                            AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                            data.Rows.Add(newrow);
+                        }
+                    if (Program.metadataConfig != null)
+                        foreach (KeyValuePair<string, ConfigLine> item in Program.metadataConfig)
+                        {
+                            count++;
+                            var newrow = data.NewRow();
+                            newrow["GROUPNAME"] = "Metadata";
+                            AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                            data.Rows.Add(newrow);
+                        }
+                    if (Program.paymentsConfig != null)
+                        foreach (KeyValuePair<string, ConfigLine> item in Program.paymentsConfig)
+                        {
+                            count++;
+                            var newrow = data.NewRow();
+                            newrow["GROUPNAME"] = "Payments";
+                            AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                            data.Rows.Add(newrow);
+                        }
+                    if (Program.optionUserDefinedConfig != null)
+                        foreach (KeyValuePair<string, ConfigLine> item in Program.optionUserDefinedConfig)
+                        {
+                            count++;
+                            var newrow = data.NewRow();
+                            newrow["GROUPNAME"] = "OptionUserDefined";
+                            AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                            data.Rows.Add(newrow);
+                        }
+                    if (Program.taxBreakdownsConfig != null)
+                        foreach (KeyValuePair<string, ConfigLine> item in Program.taxBreakdownsConfig)
+                        {
+                            count++;
+                            var newrow = data.NewRow();
+                            newrow["GROUPNAME"] = "TaxBreakdowns";
+                            AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                            data.Rows.Add(newrow);
+                        }
+                    if (Program.summarizeInfoConfig != null)
+                        foreach (KeyValuePair<string, ConfigLine> item in Program.summarizeInfoConfig)
+                        {
+                            count++;
+                            var newrow = data.NewRow();
+                            newrow["GROUPNAME"] = "SummarizeInfo";
+                            AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                            data.Rows.Add(newrow);
+                        }
+                    if (Program.itemInfoConfig != null)
+                        foreach (KeyValuePair<string, ConfigLine> item in Program.itemInfoConfig)
+                        {
+                            count++;
+                            var newrow = data.NewRow();
+                            newrow["GROUPNAME"] = "ItemInfo";
+                            AddGinfo(newrow, now, today_dd_MM_yyyy, count, item.Value);
+                            data.Rows.Add(newrow);
+                        }
+
+                    V6Tools.V6Export.ExportData.ToExcel(data, o.FileName, "");
+                }
+            }
+            catch (Exception ex)
+            {
+                BaseMessage.Show(ex.Message, 0, this);
+            }
+        }
+
+        private void AddGinfo(DataRow newrow, DateTime now, string today_dd_MM_yyyy, int count, ConfigLine line)
+        {
+
+            newrow["Field"] = line.Field;
+            newrow["Value"] = line.Value;
+            newrow["Type"] = line.Type;
+            newrow["FieldV6"] = line.FieldV6;
+            newrow["DataType"] = line.DataType;
+            newrow["Format"] = line.Format;
+            newrow["LOAI"] = "AAPPR_SOA2"; // XUẤT EXCEL TỰ SỬA.
+            newrow["TEN"] = line.Note;
+
+
+            newrow["DATE0"] = today_dd_MM_yyyy;
+            newrow["TIME0"] = ObjectAndString.ObjectToString(now.AddSeconds(count), "HH:mm:ss");
+            newrow["USER_ID0"] = 53;
+            newrow["DATE2"] = today_dd_MM_yyyy;
+            newrow["TIME2"] = newrow["TIME0"];
+            newrow["USER_ID2"] = 53;
+
+            newrow["MA_TD1"] = "10";
+            newrow["GC_TD1"] = "MISA_" + ("000" + count).Right(3);
+
+            newrow["MA_TD2"] = line.MA_TD2;
+            newrow["MA_TD3"] = line.MA_TD2;
+            newrow["SL_TD1"] = line.SL_TD1;
+            newrow["SL_TD2"] = line.SL_TD2;
+            newrow["SL_TD3"] = line.SL_TD3;
+            newrow["NOGEN"] = line.NoGen ? "1" : "";
         }
 
         

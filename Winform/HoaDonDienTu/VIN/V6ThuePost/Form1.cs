@@ -24,11 +24,11 @@ namespace V6ThuePost
             try
             {
                 Program.ReadXmlInfo(txtXmlFile.Text);
-                Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                {
-                    Field = "adjustmentType",
-                    Value = "1",
-                };
+                //Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                //{
+                //    Field = "adjustmentType",
+                //    Value = "1",
+                //};
 
                 if (!string.IsNullOrEmpty(Program._SERIAL_CERT))
                 {
@@ -96,7 +96,7 @@ namespace V6ThuePost
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
 
-                result = Program._VIN_WS.POST_CREATE_INVOICE(richTextBox1.Text, Program._SIGN_HSM == "1", out v6Return);
+                result = Program._VIN_WS.POST_CREATE_INVOICE(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
                 lblResult.Text = result;
             }
             else
@@ -146,7 +146,7 @@ namespace V6ThuePost
 
             try
             {
-                Program._VIN_WS.SIGN_HSM(Program._codetax, _magiaodich, Program._ma_hoadon_or_fkey, out v6Return);
+                Program._VIN_WS.SIGN_HSM(_magiaodich, Program._ma_hoadon_or_fkey, out v6Return);
 
                 VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
                 if (!string.IsNullOrEmpty(responseObject.result.motaketqua))

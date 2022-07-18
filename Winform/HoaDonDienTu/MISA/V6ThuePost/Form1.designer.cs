@@ -49,6 +49,7 @@
             this.btnGetMeta = new System.Windows.Forms.Button();
             this.btnSignHSM = new System.Windows.Forms.Button();
             this.btnDownloadPDF = new System.Windows.Forms.Button();
+            this.btnExportInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSend
@@ -164,7 +165,7 @@
             // btnRead
             // 
             this.btnRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRead.Location = new System.Drawing.Point(344, 644);
+            this.btnRead.Location = new System.Drawing.Point(344, 645);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(75, 23);
             this.btnRead.TabIndex = 10;
@@ -254,11 +255,24 @@
             this.btnDownloadPDF.UseVisualStyleBackColor = true;
             this.btnDownloadPDF.Click += new System.EventHandler(this.btnDownloadPDF_Click);
             // 
+            // btnExportInfo
+            // 
+            this.btnExportInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportInfo.Enabled = false;
+            this.btnExportInfo.Location = new System.Drawing.Point(369, 622);
+            this.btnExportInfo.Name = "btnExportInfo";
+            this.btnExportInfo.Size = new System.Drawing.Size(75, 23);
+            this.btnExportInfo.TabIndex = 13;
+            this.btnExportInfo.Text = "Export Info";
+            this.btnExportInfo.UseVisualStyleBackColor = true;
+            this.btnExportInfo.Click += new System.EventHandler(this.btnExportInfo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 679);
+            this.Controls.Add(this.btnExportInfo);
             this.Controls.Add(this.btnDownloadPDF);
             this.Controls.Add(this.btnSignHSM);
             this.Controls.Add(this.txtPassword);
@@ -309,6 +323,7 @@
         private System.Windows.Forms.Button btnGetMeta;
         private System.Windows.Forms.Button btnSignHSM;
         private System.Windows.Forms.Button btnDownloadPDF;
+        private System.Windows.Forms.Button btnExportInfo;
     }
 }
 

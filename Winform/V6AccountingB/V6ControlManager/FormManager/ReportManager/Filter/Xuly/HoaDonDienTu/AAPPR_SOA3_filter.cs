@@ -14,7 +14,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 {
     public partial class AAPPR_SOA3_filter : FilterBase
     {
-        public string MAU
+        public override string MAU
         {
             get { return rTienViet.Checked ? "VN" : "FC"; }
             set { rTienViet.Checked = value == "VN"; }

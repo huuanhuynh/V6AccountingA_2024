@@ -83,7 +83,7 @@ namespace V6ThuePost
         /// </summary>
         private static string fkey0 = "";
         public static string _ma_hoadon_or_fkey = "";
-        public static string _SIGN_HSM = "";
+        public static string _SIGNMODE = "";
         
         
         #endregion var
@@ -130,9 +130,9 @@ namespace V6ThuePost
                     string jsonBody = "";
                     V6Return v6return = new V6Return();
                     ReadXmlInfo(arg1_xmlFile);
-                    if (_SIGN_HSM == "1")
+                    if (_SIGNMODE == "DEBUG")
                     {
-                        MessageBox.Show("debug=1");
+                        MessageBox.Show("SIGNMODE = DEBUG");
                     }
                     string dbfFile = arg2;
 
@@ -143,7 +143,7 @@ namespace V6ThuePost
                         ReadData_VIN(arg2, "M"); // đọc để lấy tên flag.
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
-                        result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, _SIGN_HSM == "1", out v6return);
+                        result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, _SIGNMODE == "HSM", out v6return);
                         if (v6return.RESULT_ERROR_MESSAGE != null && v6return.RESULT_ERROR_MESSAGE.Contains("JSON_PARSE_ERROR"))
                         {
                             result = "Kết nối ổn. " + result;
@@ -193,20 +193,7 @@ namespace V6ThuePost
                     else if (mode.StartsWith("M"))
                     {
                         StartAutoInputTokenPassword();
-                        //generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                        //{
-                        //    Field = "adjustmentType",
-                        //    Value = "1",
-                        //};
-                        //Guid new_uid = Guid.NewGuid();
-                        //if (mode == "MG")
-                        //{
-                        //    generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
-                        //    {
-                        //        Field = "transactionUuid",
-                        //        Value = "" + new_uid,
-                        //    };
-                        //}
+                        
 
                         if (mode == "M0") // DRAF
                         {
@@ -214,12 +201,16 @@ namespace V6ThuePost
                             File.Create(flagFileName1).Close();
                             result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, false, out v6return);
                         }
+                        else if (mode == "M9")
+                        {
+                            result = _VIN_WS.SIGN_HSM("MAGIAODICH", "MAHOADON", out v6return);
+                        }
                         else if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
                             jsonBody = ReadData_VIN(dbfFile, "M");
                             if(mode == "MG") WriteFlag(flagFileName5, "" + _ma_hoadon_or_fkey);
                             File.Create(flagFileName1).Close();
-                            result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, _SIGN_HSM == "1", out v6return);
+                            result = _VIN_WS.POST_CREATE_INVOICE(jsonBody, _SIGNMODE == "HSM", out v6return);
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
@@ -245,30 +236,7 @@ namespace V6ThuePost
                     }
                     else if (mode.StartsWith("S"))
                     {
-                        if (mode.EndsWith("3"))
-                        {
-                            generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                            {
-                                Field = "adjustmentType",
-                                Value = "3",
-                            };
-                        }
-                        else if (mode.EndsWith("5"))
-                        {
-                            generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                            {
-                                Field = "adjustmentType",
-                                Value = "5",
-                            };
-                        }
-                        else
-                        {
-                            generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                            {
-                                Field = "adjustmentType",
-                                Value = "3",
-                            };
-                        }
+                        
 
                         jsonBody = ReadData_VIN(dbfFile, "S");
                         File.Create(flagFileName1).Close();
@@ -562,7 +530,7 @@ namespace V6ThuePost
                 
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
-                    hoadon[item.Key] = GetValue(row0, item.Value);
+                    hoadon[item.Key] = item.Value.GetValue(row0);
                 }
 
 
@@ -1175,7 +1143,7 @@ namespace V6ThuePost
                                     //    _version = UtilityHelper.DeCrypt(line.Value);
                                     //    break;
                                     case "signmode":
-                                        _SIGN_HSM = UtilityHelper.DeCrypt(line.Value);
+                                        _SIGNMODE = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "datetype":
                                         _dateType = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

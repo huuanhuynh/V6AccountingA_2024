@@ -2362,12 +2362,6 @@
     <Compile Include="FormManager\ReportManager\DXreport\XtraReport1.Designer.cs">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\DXreport\XtraReport2.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FormManager\ReportManager\DXreport\XtraReport2.Designer.cs">
-      <DependentUpon>XtraReport2.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_IXB_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>

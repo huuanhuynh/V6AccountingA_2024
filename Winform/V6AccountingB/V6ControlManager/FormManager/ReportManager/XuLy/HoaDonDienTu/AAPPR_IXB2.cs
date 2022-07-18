@@ -170,7 +170,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         if (paras.Result.IsSuccess(paras.Mode))
                         {
-                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, paras.Result.InvoiceNo, paras.Result.Id, result, V6Text.Text("ThanhCong"));
+                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}",
+                                soct, paras.Result.InvoiceNo, paras.Result.Id, result.Left(100), V6Text.Text("ThanhCong"));
                             //[AAPPR_IXB2_UPDATE]
                             SqlParameter[] plist2 =
                             {

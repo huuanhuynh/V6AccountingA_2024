@@ -620,7 +620,9 @@
             "SOFTDREAMS",
             "THAI_SON",
             "MONET",
-            "M_INVOICE"});
+            "M_INVOICE",
+            "VIN",
+            "MISA"});
             this.cboSendType.Location = new System.Drawing.Point(11, 140);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);
