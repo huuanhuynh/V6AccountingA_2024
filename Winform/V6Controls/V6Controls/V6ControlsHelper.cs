@@ -216,6 +216,38 @@ namespace V6Controls
             return null;
         }
 
+        public static object InvokeMethodInfo(MethodInfo method, IDictionary<string, object> All_Objects)
+        {
+            try
+            {
+                if (method == null) return null;
+                All_Objects["All_Objects"] = All_Objects;
+                var parameters = method.GetParameters();
+                var listObj = new List<object>();
+                foreach (ParameterInfo info in parameters)
+                {
+                    if (All_Objects.ContainsKey(info.Name))
+                    {
+                        listObj.Add(All_Objects[info.Name]);
+                    }
+                    else
+                    {
+                        listObj.Add(null);
+                    }
+                }
+                return method.Invoke(null, listObj.ToArray());
+                
+                return null;
+            }
+            catch (Exception ex)
+            {
+                V6Message.Show((V6Setting.IsVietnamese ? "Lỗi thực hiện hàm bổ sung " : "Error Invoke Dynamic Method ") + method.Name + "\n" + ex.Message,
+                    (All_Objects.ContainsKey("thisForm") ? All_Objects["thisForm"] : null) as Control);
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// Gọi hàm trong type
         /// </summary>

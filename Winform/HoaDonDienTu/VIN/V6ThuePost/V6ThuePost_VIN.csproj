@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{92801EE7-A5BA-430C-8434-7EE3A8A03414}</ProjectGuid>
+    <ProjectGuid>{5244DF93-95A3-4971-8CCC-8CC222393B91}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePost</RootNamespace>

@@ -5296,17 +5296,27 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return "(1=1)";
         }
 
-
+        /// <summary>
+        /// Từ đển Event=>Method
+        /// </summary>
         public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        /// <summary>
+        /// Danh sách tên_hàm:hàm trong code động.
+        /// </summary>
+        public Dictionary<string, MethodInfo> Name_Methods = new Dictionary<string, MethodInfo>();
+        /// <summary>
+        /// Chương trình build ra từ code động.
+        /// </summary>
         public Type Event_program;
+        /// <summary>
+        /// Các object dùng làm tham số trong hàm ở code động.
+        /// </summary>
         public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
         
         public void CreateFormProgram(V6InvoiceBase Invoice)
         {
             try
             {
-
-
                 //DMETHOD
                 if (!Invoice.Alct1.Columns.Contains("DMETHOD"))
                 {
@@ -5353,8 +5363,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                 }
 
-            Build:
+                Build:
                 Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + Invoice.Mact, using_text, method_text);
+                // Get Event_program infos
+                var ms = Event_program.GetMethods(BindingFlags.Public);
+                for (int i = 0; i < ms.Length; i++)
+                {
+                    var m = ms[i];
+                    Name_Methods[m.Name] = m;
+                }
+
             }
             catch (Exception ex)
             {

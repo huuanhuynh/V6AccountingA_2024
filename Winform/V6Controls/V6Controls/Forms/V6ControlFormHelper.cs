@@ -7971,6 +7971,106 @@ namespace V6Controls.Forms
             return control.Text;
         }
 
+         /// <summary>
+        /// Áp dụng code động cho event của control
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="eventProgram"></param>
+        /// <param name="All_Objects">Các đối tượng control</param>
+        /// <param name="before">Phần cộng thêm cho tên hàm Event ví dụ NAME_V6LOSTFOCUS2 </param>
+        public static void ApplyControlEventByAccessibleName(Control control, Dictionary<string, MethodInfo> methods, Dictionary<string, object> All_Objects, string before = "")
+        {
+            if (methods == null || methods.Count == 0) return;
+
+            string NAME = control.AccessibleName;
+            if (string.IsNullOrEmpty(NAME)) return;
+            NAME = NAME.ToUpper();
+            string methodName = "";
+
+            All_Objects[NAME] = control;
+
+            if (control is V6ColorTextBox)
+            {
+                var colorTB = control as V6ColorTextBox;
+                methodName = NAME + "_V6LOSTFOCUS" + before;
+                if (methods.ContainsKey(methodName))
+                {
+                    colorTB.V6LostFocus += (sender) =>
+                    {
+                        All_Objects["sender"] = sender;
+                        V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                    };
+                }
+
+                methodName = NAME + "_V6LOSTFOCUSNOCHANGE" + before;
+
+                if (methods.ContainsKey(methodName))
+                {
+                    colorTB.V6LostFocusNoChange += (sender) =>
+                    {
+                        All_Objects["sender"] = sender;
+                        V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                    };
+                }
+            }
+
+            if (control is DateTimePicker)
+            {
+                var date = control as DateTimePicker;
+                methodName = NAME + "_VALUECHANGED" + before;
+                
+                if (methods.ContainsKey(methodName))
+                    date.ValueChanged += (sender, args) =>
+                    {
+                        All_Objects["sender"] = sender;
+                        V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                    };
+            }
+
+            methodName = NAME + "_ENTER" + before;
+            if (methods.ContainsKey(methodName))
+                control.Enter += (sender, e) =>
+                {
+                    All_Objects["sender"] = sender;
+                    All_Objects["e"] = e;
+                    V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                };
+            methodName = NAME + "_GOTFOCUS" + before;
+            if (methods.ContainsKey(methodName))
+                control.Enter += (sender, e) =>
+                {
+                    All_Objects["sender"] = sender;
+                    All_Objects["e"] = e;
+                    V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                };
+
+            methodName = NAME + "_LEAVE" + before;
+            if (methods.ContainsKey(methodName))
+                control.Leave += (sender, e) =>
+                {
+                    All_Objects["sender"] = sender;
+                    All_Objects["e"] = e;
+                    V6ControlsHelper.InvokeMethodInfo(methods[methodName],All_Objects);
+                };
+            methodName = NAME + "_LOSTFOCUS" + before;
+            if (methods.ContainsKey(methodName))
+                control.Leave += (sender, e) =>
+                {
+                    All_Objects["sender"] = sender;
+                    All_Objects["e"] = e;
+                    V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                };
+
+            methodName = NAME + "_TEXTCHANGED" + before;
+            if (methods.ContainsKey(methodName))
+                control.TextChanged += (sender, e) =>
+                {
+                    All_Objects["sender"] = sender;
+                    All_Objects["e"] = e;
+                    V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                };
+        }
+
         /// <summary>
         /// Áp dụng code động cho event của control
         /// </summary>
@@ -7985,16 +8085,25 @@ namespace V6Controls.Forms
             string NAME = control.AccessibleName;
             if (string.IsNullOrEmpty(NAME)) return;
             NAME = NAME.ToUpper();
+            string methodName = ""; MethodInfo method = null;
+            var m = eventProgram.GetMethods(BindingFlags.Public);
+
             All_Objects[NAME] = control;
 
             if (control is V6ColorTextBox)
             {
                 var colorTB = control as V6ColorTextBox;
+                methodName = NAME + "_V6LOSTFOCUS" + before;
+                method = eventProgram.GetMethod(methodName);
+                if (method != null)
                 colorTB.V6LostFocus += (sender)=>
                 {
                     All_Objects["sender"] = sender;
                     V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUS" + before, All_Objects);
                 };
+                methodName = NAME + "_V6LOSTFOCUSNOCHANGE" + before;
+                method = eventProgram.GetMethod(methodName);
+                if (method != null)
                 colorTB.V6LostFocusNoChange += (sender) =>
                 {
                     All_Objects["sender"] = sender;
@@ -8006,6 +8115,9 @@ namespace V6Controls.Forms
             if (control is DateTimePicker)
             {
                 var date = control as DateTimePicker;
+                methodName = NAME + "_VALUECHANGED" + before;
+                method = eventProgram.GetMethod(methodName);
+                if (method != null)
                 date.ValueChanged += (sender, args) =>
                 {
                     All_Objects["sender"] = sender;
@@ -8013,6 +8125,7 @@ namespace V6Controls.Forms
                 };
             }
 
+            if (eventProgram.GetMethod(NAME + "_ENTER" + before) != null || eventProgram.GetMethod(NAME + "_GOTFOCUS" + before) != null)
             control.Enter += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
@@ -8020,6 +8133,9 @@ namespace V6Controls.Forms
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_ENTER" + before, All_Objects);
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_GOTFOCUS" + before, All_Objects);
             };
+
+
+            if (eventProgram.GetMethod(NAME + "_LEAVE" + before) != null || eventProgram.GetMethod(NAME + "_LOSTFOCUS" + before) != null)
             control.Leave += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
@@ -8027,6 +8143,10 @@ namespace V6Controls.Forms
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LEAVE" + before, All_Objects);
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LOSTFOCUS" + before, All_Objects);
             };
+
+            methodName = NAME + "_TEXTCHANGED" + before;
+            method = eventProgram.GetMethod(methodName);
+            if (method != null)
             control.TextChanged += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
@@ -8096,10 +8216,89 @@ namespace V6Controls.Forms
         /// <param name="ma_ct">Mã cộng vào AccessibleDescription để làm mã ngôn ngữ.</param>
         /// <param name="eventProgram"></param>
         /// <param name="allObjects"></param>
+        public static void ApplyDynamicFormControlEvents(Control thisForm, string ma_ct, Dictionary<string, MethodInfo> methods, Dictionary<string, object> allObjects)
+        {
+            try
+            {
+                //return;
+                var all_control = GetAllControls(thisForm);
+                string error = "";
+
+                foreach (Control control in all_control)
+                {
+                    if (ma_ct != null)
+                    try // Modify AccessibleDescription with ma_ct.
+                    {
+                        if (control.ContextMenuStrip != null)
+                        {
+                            foreach (ToolStripMenuItem menu_item in control.ContextMenuStrip.Items)
+                            {
+                                if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                                {
+                                    menu_item.AccessibleDescription += ma_ct;
+                                }
+                            }
+                        }
+
+                        if (control is DropDownButton)
+                        {
+                            var button = control as DropDownButton;
+                            if (button.Menu != null)
+                            {
+                                foreach (ToolStripMenuItem menu_item in button.Menu.Items)
+                                {
+                                    if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                                    {
+                                        menu_item.AccessibleDescription += ma_ct;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(control.AccessibleDescription) && !control.AccessibleDescription.Contains(",") && !control.AccessibleDescription.Contains("."))
+                        {
+                            control.AccessibleDescription += ma_ct;
+                        }
+
+                    }
+                    catch(Exception ex)
+                    {
+
+                    }
+
+                    try
+                    {
+                        ApplyControlEventByAccessibleName(control, methods, allObjects);
+                    }
+                    catch (Exception ex)
+                    {
+                        error += string.Format("{0}({1}) err: {2}", control.Name, control.AccessibleName, ex.Message);
+                    }
+                }
+
+                if (error.Length > 0)
+                {
+                    thisForm.WriteToLog(thisForm.GetType() + ".ApplyFormControlEvents", error);
+                }
+            }
+            catch (Exception ex)
+            {
+                thisForm.WriteExLog(thisForm.GetType() + ".ApplyFormControlEvents", ex);
+            }
+        }
+
+        /// <summary>
+        /// Gán code động sự kiện cho các control trên form theo Aname.
+        /// </summary>
+        /// <param name="thisForm"></param>
+        /// <param name="ma_ct">Mã cộng vào AccessibleDescription để làm mã ngôn ngữ.</param>
+        /// <param name="eventProgram"></param>
+        /// <param name="allObjects"></param>
         public static void ApplyDynamicFormControlEvents(Control thisForm, string ma_ct, Type eventProgram, Dictionary<string, object> allObjects)
         {
             try
             {
+                //return;
                 var all_control = GetAllControls(thisForm);
                 string error = "";
                 foreach (Control control in all_control)
