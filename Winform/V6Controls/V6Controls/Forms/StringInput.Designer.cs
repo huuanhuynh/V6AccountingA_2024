@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtInput = new System.Windows.Forms.TextBox();
+            this.txtInput = new V6Controls.V6VvarTextBox();
             this.buttonCANCEL = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -49,6 +49,13 @@
             // 
             // txtInput
             // 
+            this.txtInput.BackColor = System.Drawing.SystemColors.Window;
+            this.txtInput.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtInput.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtInput.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtInput.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtInput.HoverColor = System.Drawing.Color.Yellow;
+            this.txtInput.LeaveColor = System.Drawing.Color.White;
             this.txtInput.Location = new System.Drawing.Point(199, 23);
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(147, 20);
@@ -115,9 +122,9 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox txtInput;
+        public V6Controls.V6VvarTextBox txtInput;
         private System.Windows.Forms.Button buttonCANCEL;
         private System.Windows.Forms.Button buttonOK;
+        public System.Windows.Forms.Label label1;
     }
 }

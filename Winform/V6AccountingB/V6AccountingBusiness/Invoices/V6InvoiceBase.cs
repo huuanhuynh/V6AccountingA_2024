@@ -989,6 +989,43 @@ namespace V6AccountingBusiness.Invoices
                 return null;
             }
         }
+
+        public bool CheckTonMaster_YN(string status, string kieuPost, string soct, string masonb, string sttrec, string madvcs, string makh,
+             string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id)
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {     
+                    new SqlParameter("@status", status),
+                    new SqlParameter("@kieu_post", kieuPost),
+                    new SqlParameter("@So_ct", soct),
+                    new SqlParameter("@Ma_sonb", masonb), 
+                    new SqlParameter("@Ma_dvcs", madvcs), 
+                    new SqlParameter("@Ma_kh", makh), 
+                    new SqlParameter("@Ma_nx", manx), 
+                    new SqlParameter("@Ngay_ct",  ngayct.ToString("yyyyMMdd")), 
+                    new SqlParameter("@Ma_ct", mact), 
+                    new SqlParameter("@T_tt", tongthanhtoan),
+                    new SqlParameter("@Stt_rec",sttrec),
+                    new SqlParameter("@Mode",mode),
+                    new SqlParameter("@User_id",user_id)
+                };
+                V6Message = "Success";
+                var data = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CHECK_TON_MASTERYN_ALL", plist).Tables[0];
+                if (data != null && data.Rows.Count > 0)
+                {
+                    return ObjectAndString.ObjectToBool(data.Rows[0]["chk_yn"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                V6Message = ex.Message;
+                return false;
+            }
+            return false;
+        }
+
         public DataTable GetCheck_Save_All(string status, string kieuPost, string soct, string masonb, string sttrec, string madvcs, string makh,
              string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id)
         {
