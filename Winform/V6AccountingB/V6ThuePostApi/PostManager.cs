@@ -6016,10 +6016,12 @@ namespace V6ThuePostManager
             config.Value = reader["Value"].ToString().Trim();
             config.FieldV6 = reader["FieldV6"].ToString().Trim();
             config.Type = reader["Type"].ToString().Trim();
-            config.DataType = reader["DataType"].ToString().Trim();
+            string[] datatype_format = (reader["DataType"] + "").Trim().Split(':');
+            config.DataType = datatype_format[0];
+            config.Format = datatype_format.Length > 1 ? datatype_format[1] : "";
             if (reader.Table.Columns.Contains("NoGen")) config.NoGen = reader["NoGen"].ToString().Trim() == "1";
             if (reader.Table.Columns.Contains("NoGenCondition")) config.NoGenCondition = reader["NoGenCondition"].ToString().Trim();
-            //config.Format = reader["Format"].ToString().Trim();
+            
             config.MA_TD2 = ObjectAndString.ObjectToString(reader["MA_TD2"]);
             config.MA_TD3 = ObjectAndString.ObjectToString(reader["MA_TD3"]);
             config.SL_TD1 = ObjectAndString.ObjectToDecimal(reader["SL_TD1"]);

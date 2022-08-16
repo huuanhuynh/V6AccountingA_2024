@@ -870,6 +870,30 @@ namespace V6Tools.V6Convert
             return result;
         }
 
+        public static string StringDictionaryToString(IDictionary<string, string> dic)
+        {
+            string result = ""; if (dic == null) return "";
+            foreach (KeyValuePair<string, string> item in dic)
+            {
+                result += ";" + item.Key + ":" + item.Value;
+            }
+            result = result.Substring(1);
+
+            return result;
+        }
+
+        public static string DictionaryToString(IDictionary<string, object> dic)
+        {
+            string result = ""; if (dic == null) return "";
+            foreach (KeyValuePair<string, object> item in dic)
+            {
+                result += ";" + item.Key + ":" + ObjectToString(item.Value);
+            }
+            result = result.Substring(1);
+
+            return result;
+        }
+
         /// <summary>
         /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
         /// <para>Ký tự đặc biệt đang biết: \u65279 \u12288</para>

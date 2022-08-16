@@ -94,7 +94,7 @@
 	<SummarizeInfo	Field='totalAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/>
 	<SummarizeInfo	Field='totalTaxAmount'		FieldV6='T_THUE'	Type='Field' />
 	<SummarizeInfo	Field='totalAmountWithTax'		FieldV6='T_TT'	Type='Field'/>
-	<SummarizeInfo	Field='totalAmountWithTaxInWords'		FieldV6='t_tt' Type='Field' DataType='N2CMANT'/>
+	<SummarizeInfo	Field='totalAmountWithTaxInWords'		FieldV6='t_tt' Type='Field' DataType='N2CMANT'  Format='READ_FORMAT'  Note='READ_FORMAT là trường dữ liệu có nội dung => Điều chỉnh giảm {0}'/>
 	<SummarizeInfo	Field='discountAmount'		FieldV6='T_CK'	Type='Field'/>
 	<SummarizeInfo	Field='totalAmountAfterDiscount'		FieldV6='t_tt'	Type='Field'/>
 	<SummarizeInfo	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field' DataType='int'/>

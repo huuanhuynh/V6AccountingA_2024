@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
+using V6Tools.V6Convert;
 
 namespace V6SqlConnect
 {
@@ -135,10 +136,16 @@ namespace V6SqlConnect
                             IsIPServer = true;
                             V6Tools.Logger.WriteToLog("IPServer: IsIPServer = true. " + Server);
                             var _setting = new H.Setting(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Setting.ini"));
-                            if (_setting.GetSetting("DynamicIP") != _key)
+                            var DynamicIP_Dic = ObjectAndString.StringToStringDictionary(_setting.GetSetting("DynamicIP"));
+                            var DynamicIP0_Dic = ObjectAndString.StringToStringDictionary(_setting.GetSetting("DynamicIP0"));
+                            if (!DynamicIP_Dic.ContainsKey(Database) || DynamicIP_Dic[Database] != _key)// _setting.GetSetting("DynamicIP") != _key)
                             {
-                                _setting.SetSetting("DynamicIP", _key);
-                                _setting.SetSetting("DynamicIP0", Server_IP);
+                                DynamicIP_Dic[Database] = _key;
+                                DynamicIP0_Dic[Database] = Server_IP;
+
+
+                                _setting.SetSetting("DynamicIP", ObjectAndString.StringDictionaryToString(DynamicIP_Dic));
+                                _setting.SetSetting("DynamicIP0", ObjectAndString.StringDictionaryToString(DynamicIP0_Dic));
                                 _setting.SaveSetting();
                             }
                         }
@@ -152,12 +159,14 @@ namespace V6SqlConnect
                     {
                         V6Tools.Logger.WriteToLog("IPServer: CheckConnect Fail.");
                         var _setting = new H.Setting(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Setting.ini"));
+                        var DynamicIP_Dic = ObjectAndString.StringToStringDictionary(_setting.GetSetting("DynamicIP"));
+                        var DynamicIP0_Dic = ObjectAndString.StringToStringDictionary(_setting.GetSetting("DynamicIP0"));
 
-                        string _key = _setting.GetSetting("DynamicIP"); // Giá trị Server đã lưu lại trước đó.
+                        string _key = DynamicIP_Dic.ContainsKey(Database) ? DynamicIP_Dic[Database] : "";// _setting.GetSetting("DynamicIP"); // Giá trị Server đã lưu lại trước đó.
                         if (!string.IsNullOrEmpty(_key))
                         {
                             Server = V6Tools.UtilityHelper.DeCrypt(_key);
-                            Server_IP = _setting.GetSetting("DynamicIP0"); // Name Server.
+                            Server_IP = DynamicIP0_Dic.ContainsKey(Database) ? DynamicIP0_Dic[Database] : ""; // Name Server.
                             IsIPServer = true;
                         }
                         else

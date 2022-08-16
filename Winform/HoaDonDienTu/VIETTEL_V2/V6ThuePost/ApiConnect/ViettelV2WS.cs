@@ -27,7 +27,8 @@ namespace V6ThuePostViettelV2Api
         /// </summary>
         private readonly string _username;
         private readonly string _password;
-        private string _viettel_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiIwMTAwMTA5MTA2LTcxNSIsInNjb3BlIjpbIm9wZW5pZCJdLCJleHAiOjE2MDA5MTk2NTEsInR5cGUiOjEsImlhdCI6MTYwMDkxOTM1MSwiaW52b2ljZV9jbHVzdGVyIjoiY2x1c3RlcjEiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiZTI1MjE2MmYtM2ZmNC00N2MzLThlZGUtMmU1YzViOTRlNzg2IiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.A7P5VzB2Tztuz1FMLUUsHZ_Rf5dE2ut7M9VloNT5P-Yo6M9WaNtYk-7xW5arKkNUf0AQBj52pTkdq3QEbkFE5FB5SGT3-DuOzjlzCm2oGg9p0Rq5GqCDk9cKR5k472fuDoV_nCr7VWaPt5bsmGLqK9qzLeB9Y94obEe08OQQjB2sprpd2ZDzsdZFNQtB5jr343WzXReLQfh8gA7RaCJJspu932KMdoBTGhlEWC1W37g7cpgNawdmPeA60H25y9O6f0ZtY0IFhn1TYzEk8ist2Hd1F3ipK9844ZUyJdY-2SQAqtzwbw9VR8OV3lsWC9iAKr9mmT_VuSjFXgpPnxSRKw";
+        //private string _viettel_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiIwMTAwMTA5MTA2LTcxNSIsInNjb3BlIjpbIm9wZW5pZCJdLCJleHAiOjE2MDA5MTk2NTEsInR5cGUiOjEsImlhdCI6MTYwMDkxOTM1MSwiaW52b2ljZV9jbHVzdGVyIjoiY2x1c3RlcjEiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiZTI1MjE2MmYtM2ZmNC00N2MzLThlZGUtMmU1YzViOTRlNzg2IiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.A7P5VzB2Tztuz1FMLUUsHZ_Rf5dE2ut7M9VloNT5P-Yo6M9WaNtYk-7xW5arKkNUf0AQBj52pTkdq3QEbkFE5FB5SGT3-DuOzjlzCm2oGg9p0Rq5GqCDk9cKR5k472fuDoV_nCr7VWaPt5bsmGLqK9qzLeB9Y94obEe08OQQjB2sprpd2ZDzsdZFNQtB5jr343WzXReLQfh8gA7RaCJJspu932KMdoBTGhlEWC1W37g7cpgNawdmPeA60H25y9O6f0ZtY0IFhn1TYzEk8ist2Hd1F3ipK9844ZUyJdY-2SQAqtzwbw9VR8OV3lsWC9iAKr9mmT_VuSjFXgpPnxSRKw";
+        private string _viettel_token = "";
         /// <summary>
         /// Mã số thuế của doanh nghiệp.
         /// </summary>
@@ -37,6 +38,8 @@ namespace V6ThuePostViettelV2Api
             = @"/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoice/";
         private const string create_link_invalidate
             = @"/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createInvoiceInvalidateTaxamount/";
+        private const string create_link_draf
+            = @"/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/";
         //private const string cancel_link = @"/InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
         private const string cancel_link = @"/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
 
@@ -155,7 +158,7 @@ namespace V6ThuePostViettelV2Api
             v6Return = new V6Return();
             try
             {
-                result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+                result = POST_VIETTEL_COOKIESTOKEN(create_link_draf + _codetax, jsonBody);
                 v6Return.RESULT_STRING = result;
                 try
                 {
@@ -168,7 +171,7 @@ namespace V6ThuePostViettelV2Api
                         // Nếu hết phiên đăng nhập thì đăng nhập lại.
                         Login();
                         // sau đó gửi lại.
-                        result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+                        result = POST_VIETTEL_COOKIESTOKEN(create_link_draf + _codetax, jsonBody);
                         v6Return.RESULT_STRING = result;
                         responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
                         v6Return.RESULT_OBJECT = responseObject;

@@ -1470,19 +1470,19 @@ namespace V6ThuePost
                                    fieldValue.ToString().ToLower() == "yes");
                         }
                     case "N2C":
-                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND");
+                        return FixReadMoney(row, config.Format, MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND"));
                     case "N2CE":
-                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", "VND");
+                        return FixReadMoney(row, config.Format, MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", "VND"));
                     case "N2CMANT":
-                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", row["MA_NT"].ToString().Trim());
+                        return FixReadMoney(row, config.Format, MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", row["MA_NT"].ToString().Trim()));
                     case "N2CMANTE":
-                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim());
+                        return FixReadMoney(row, config.Format, MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim()));
                     case "N2C0VNDE":
                         {
                             string ma_nt = row["MA_NT"].ToString().Trim().ToUpper();
                             if (ma_nt != "VND")
                             {
-                                return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim());
+                                return FixReadMoney(row, config.Format, MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "E", row["MA_NT"].ToString().Trim()));
                             }
                             else
                             {
@@ -1507,6 +1507,15 @@ namespace V6ThuePost
             {
                 return fieldValue;
             }
+        }
+
+        private static string FixReadMoney(DataRow row, string ReadFormatField, string old_read)
+        {
+            string result = old_read;
+            string format = null;
+            if (row.Table.Columns.Contains(ReadFormatField)) format = (row[ReadFormatField] + "").Trim();
+            if (!string.IsNullOrEmpty(format) && format.Contains("{0}")) result = string.Format(format, old_read);
+            return result;
         }
 
         public static string MoneyToWords(decimal money, string lang, string ma_nt)
@@ -2537,7 +2546,7 @@ namespace V6ThuePost
                     {
                         case "V6Info":
                         {
-                            ConfigLine line = ReadXmlLine(reader);
+                            ConfigLine line = V6ThuePostUtility.ReadXmlLine(reader);
                             switch (line.Field.ToLower())
                             {
                                 case "username":
@@ -2604,7 +2613,7 @@ namespace V6ThuePost
                         }
                         case "ExcelConfig":
                         {
-                            ConfigLine line = ReadXmlLine(reader);
+                            ConfigLine line = V6ThuePostUtility.ReadXmlLine(reader);
                             if (line.Type == "2")
                             {
                                 parameters_config.Add(line);
@@ -2641,7 +2650,7 @@ namespace V6ThuePost
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))
                             {
-                                generalInvoiceInfoConfig.Add(key, ReadXmlLine(reader));
+                                generalInvoiceInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                             }
                             break;
                         }
@@ -2650,7 +2659,7 @@ namespace V6ThuePost
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))
                             {
-                                buyerInfoConfig.Add(key, ReadXmlLine(reader));
+                                buyerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                             }
                             break;
                         }
@@ -2659,7 +2668,7 @@ namespace V6ThuePost
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))
                             {
-                                sellerInfoConfig.Add(key, ReadXmlLine(reader));
+                                sellerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                             }
                             break;
                         }
@@ -2668,7 +2677,7 @@ namespace V6ThuePost
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))
                             {
-                                paymentsConfig.Add(key, ReadXmlLine(reader));
+                                paymentsConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                             }
                             break;
                         }
@@ -2677,7 +2686,7 @@ namespace V6ThuePost
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))
                             {
-                                itemInfoConfig.Add(key, ReadXmlLine(reader));
+                                itemInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                             }
                             break;
                         }
@@ -2686,7 +2695,7 @@ namespace V6ThuePost
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))
                             {
-                                summarizeInfoConfig.Add(key, ReadXmlLine(reader));
+                                summarizeInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                             }
                             break;
                         }
@@ -2695,7 +2704,7 @@ namespace V6ThuePost
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))
                             {
-                                taxBreakdownsConfig.Add(key, ReadXmlLine(reader));
+                                taxBreakdownsConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                             }
                             break;
                         }
@@ -2704,7 +2713,7 @@ namespace V6ThuePost
                             string key = reader.GetAttribute("Field");
                             if (!string.IsNullOrEmpty(key))
                             {
-                                customerInfoConfig.Add(key, ReadXmlLine(reader));
+                                customerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                             }
                             break;
                         }
@@ -2724,16 +2733,6 @@ namespace V6ThuePost
             }
         }
 
-        private static ConfigLine ReadXmlLine(XmlTextReader reader)
-        {
-            ConfigLine config = new ConfigLine();
-            config.Field = reader.GetAttribute("Field");
-            config.Value = reader.GetAttribute("Value");
-            config.FieldV6 = reader.GetAttribute("FieldV6");
-            config.Type = reader.GetAttribute("Type");
-            config.DataType = reader.GetAttribute("DataType");
-            return config;
-        }
 
         //private static void AutoInputTokenPassword()
         //{

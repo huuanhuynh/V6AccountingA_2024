@@ -79,6 +79,7 @@
         public static string TAOMALO = "TAOMALO";
         public static string VALIDATEDATA = "VALIDATEDATA";
         public static string VALIDATEDETAILDATA = "VALIDATEDETAILDATA";
+        public static string VALIDATEDETAIL2DATA = "VALIDATEDETAIL2DATA";
         public static string TAOPACKING = "TAOPACKING";
         public static string TAOGRNO = "TAOGRNO";
         public static string TAORRNO = "TAORRNO";

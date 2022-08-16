@@ -33,7 +33,7 @@ namespace V6ThuePost
         /// </summary>
         public string DataType { get; set; }
         /// <summary>
-        /// 
+        /// Format? Field_Format đọc tiền Điều chỉnh giảm {0}...
         /// </summary>
         public string Format { get; set; }
         public string Note { get; set; }

@@ -3669,17 +3669,57 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <para>Kiểm tra dữ liệu chi tiết thuế hợp lệ quy định trong V6Valid.</para>
         /// <para>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</para>
         /// </summary>
-        /// <param name="detail3"></param>
+        /// <param name="detail2"></param>
         /// <param name="Invoice"></param>
         /// <param name="DETAIL2_DATA"></param>
         /// <param name="firstField"></param>
         /// <returns></returns>
-        public string ValidateDetail2Data(HD_Detail detail3, V6InvoiceBase Invoice, IDictionary<string, object> DETAIL2_DATA, out string firstField)
+        public string ValidateDetail2Data(HD_Detail detail2, V6InvoiceBase Invoice, IDictionary<string, object> DETAIL2_DATA, out string firstField)
         {
             string error = "";
             firstField = null;
             try
             {
+                string inv = "";
+                All_Objects["detail2"] = detail2;
+                All_Objects["DETAIL2DATA"] = DETAIL2_DATA;
+                inv += InvokeFormEvent(FormDynamicEvent.VALIDATEDETAIL2DATA);
+                V6Tag invTag = new V6Tag(inv);
+                if (invTag.Cancel)
+                {
+                    firstField = invTag.Field;
+                    error += invTag.DescriptionLang(V6Setting.IsVietnamese);
+                    return error;
+                }
+
+                // Check thuế code cứng
+                IDictionary<string, object> form_data = GetData();
+                SqlParameter[] plist = {new SqlParameter("@status", Mode == V6Mode.Add ? "M" : "S"), 
+new SqlParameter("@kieu_post", form_data["KIEU_POST"]), 
+new SqlParameter("@SO_CT0", DETAIL2_DATA["SO_CT0"]),
+new SqlParameter("@SO_SERI0", DETAIL2_DATA["SO_SERI0"]),
+new SqlParameter("@MA_SO_THUE0", DETAIL2_DATA["MA_SO_THUE"]),
+new SqlParameter("@MA_KH0", DETAIL2_DATA["MA_KH"]), // KHACH_HANG_0
+new SqlParameter("@NGAY_CT0", DETAIL2_DATA["NGAY_CT0"]),
+new SqlParameter("@MA_CT", _invoice.Mact),
+new SqlParameter("@STT_REC", _sttRec),
+new SqlParameter("@MODE", detail2.MODE == V6Mode.Add ? "M" : "S"),
+new SqlParameter("@USER_ID", V6Login.UserId) };
+                DataTable data30 = V6BusinessHelper.ExecuteProcedure("VPA_CHECK_EXIST_ARV30", plist).Tables[0];
+                DataRow row30 = data30.Rows[0];
+                //chk_yn varchar(1),		mess nvarchar(max),		mess2 nvarchar(max)
+                string result = string.Format("Cancel:{0};Field:FIELD;DescriptionV:{1};DescriptionE:{2}",
+                     row30["chk_yn"], row30["mess"], row30["mess2"]);
+                //V6Message.Show(result, thisForm);
+                V6Tag invTag2 = new V6Tag(result);
+                if (invTag2.Cancel)
+                {
+                    firstField = invTag.Field;
+                    error += invTag.DescriptionLang(V6Setting.IsVietnamese);
+                    return error;
+                }
+
+
                 var config = ConfigManager.GetV6ValidConfig(Invoice.Mact, 4);
                 
                 if (config != null && config.HaveInfo)
@@ -3703,7 +3743,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             if (value == null)
                             {
-                                var lbl = detail3.GetControlByName("lbl" + FIELD);
+                                var lbl = detail2.GetControlByName("lbl" + FIELD);
                                 if (lbl != null) label = lbl.Text;
                                 error += V6Text.NoInput + " [" + label + "]\n";
                                 if (firstField == null) firstField = FIELD;
@@ -3713,7 +3753,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             if (ObjectAndString.ObjectToDecimal(value) == 0)
                             {
-                                var lbl = detail3.GetControlByName("lbl" + FIELD);
+                                var lbl = detail2.GetControlByName("lbl" + FIELD);
                                 if (lbl != null) label = lbl.Text;
                                 error += V6Text.NoInput + " [" + label + "]\n";
                                 if (firstField == null) firstField = FIELD;
@@ -3723,7 +3763,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             if (("" + value).Trim() == "")
                             {
-                                var lbl = detail3.GetControlByName("lbl" + FIELD);
+                                var lbl = detail2.GetControlByName("lbl" + FIELD);
                                 if (lbl != null) label = lbl.Text;
                                 error += V6Text.NoInput + " [" + label + "]\n";
                                 if (firstField == null) firstField = FIELD;
