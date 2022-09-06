@@ -161,7 +161,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@V6PARTNER_ID", paras.Result.Id),
                                 new SqlParameter("@FKEY_HD_TT", paras.Fkey_hd_tt),
                                 new SqlParameter("@Set_so_ct", paras.Result.InvoiceNo),
-                                new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
+                                new SqlParameter("@Partner_infors", paras.Result.Return_PartnerInfors),
                                 new SqlParameter("@MA_TD1", FilterControl.String1),
                                 new SqlParameter("@User_ID", V6Login.UserId)
                             };
@@ -297,7 +297,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@V6PARTNER_ID", paras.Result.Id),
                             new SqlParameter("@FKEY_HD_TT", paras.Fkey_hd_tt),
                             new SqlParameter("@Set_so_ct", paras.Result.InvoiceNo),
-                            new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
+                            new SqlParameter("@Partner_infors", paras.Result.Return_PartnerInfors),
                             new SqlParameter("@MA_TD1", FilterControl.String1),
                             new SqlParameter("@User_ID", V6Login.UserId)
                         };

@@ -215,7 +215,7 @@ namespace V6ThuePostViettelV2Api
             v6Return = new V6Return();
             try
             {
-                result = POST_VIETTEL_COOKIESTOKEN("editlink", jsonBody);
+                result = POST_CREATE_INVOICE(jsonBody, false, out v6Return);
             }
             catch (Exception ex)
             {
@@ -678,7 +678,7 @@ namespace V6ThuePostViettelV2Api
             string fileName = responseObject.fileName;
             if (string.IsNullOrEmpty(fileName) || responseObject.fileToBytes == null)
             {
-                v6Return.RESULT_ERROR_MESSAGE = "Download no file!";
+                v6Return.RESULT_ERROR_MESSAGE = "Download no file!" + result;
                 throw new Exception("Download no file!");
             }
             else

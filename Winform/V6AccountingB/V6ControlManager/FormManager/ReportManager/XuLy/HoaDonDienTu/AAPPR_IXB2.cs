@@ -180,7 +180,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@Set_so_ct", paras.Result.InvoiceNo),
                                 new SqlParameter("@Set_fkey_hd", paras.Result.Id),
                                 new SqlParameter("@MA_TD1", FilterControl.String1),
-                                new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
+                                new SqlParameter("@Partner_infors", paras.Result.Return_PartnerInfors),
                                 new SqlParameter("@Key_down", paras.Key_Down),
                                 new SqlParameter("@User_ID", V6Login.UserId)
                             };

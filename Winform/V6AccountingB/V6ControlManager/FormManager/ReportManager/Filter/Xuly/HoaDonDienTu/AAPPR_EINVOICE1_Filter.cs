@@ -18,6 +18,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             InitializeComponent();
             
             F3 = true;
+            F4 = true;
+            F5 = true;
             F6 = true;
             F7 = true;
             F9 = true;

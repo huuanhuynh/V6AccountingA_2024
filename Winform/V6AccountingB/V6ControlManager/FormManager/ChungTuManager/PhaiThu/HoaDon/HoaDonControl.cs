@@ -7164,7 +7164,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         {
                             var message = string.Format(V6Text.Text("MATHUEVTKHACCHON"), maThue, txtMa_thue.Text);
                             ShowParentMessage(message);
-                            this.ShowWarningMessage(message);
+                            //this.ShowWarningMessage(message);
                         }
                     }
                     

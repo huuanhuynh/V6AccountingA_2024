@@ -163,7 +163,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                             string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
-                            string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
+                            string invoiceNo = row.Cells["SO_CT"].Value.ToString().Trim();
                             DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
                             string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
                             string pi = row.Cells["Part_infos"].Value.ToString().Trim();
@@ -175,7 +175,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 InvoiceNo = invoiceNo,
                                 InvoiceDate = ngay_ct,
                                 Fkey_hd = fkey_hd,
-                                Partner_infos = pi,
+                                Saved_Partner_infos = pi,
                                 Pattern = pattern,
                                 Serial = serial,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
@@ -439,24 +439,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 };
                 var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
 
-                string invoiceNo = row.Cells["SO_SERI"].Value.ToString().Trim() + row.Cells["SO_CT"].Value.ToString().Trim();
+                string seri = row.Cells["SO_SERI"].Value.ToString().Trim();
+                string invoiceNo = row.Cells["SO_CT"].Value.ToString().Trim();
                 string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
                 string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
                 DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
-                string pi = row.Cells["Part_infos"].Value.ToString().Trim();
+                string part_infos = row.Cells["Part_infos"].Value.ToString().Trim();
 
                 var pmparams = new PostManagerParams
                 {
                     AM_data = row.ToDataDictionary(),
                     DataSet = map_table.DataSet,
                     Branch = FilterControl.String1,
+                    Serial = seri,
                     InvoiceNo = invoiceNo,
                     InvoiceDate = ngay_ct,
                     V6PartnerID = v6_partner_id,
                     Pattern = pattern,
                     Fkey_hd = fkey_hd,
-                    Partner_infos = pi,
+                    Saved_Partner_infos = part_infos,
                     Mode = mode,
                 };
                 string error;

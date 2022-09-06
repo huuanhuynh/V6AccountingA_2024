@@ -469,7 +469,7 @@ namespace V6Tools.V6Export
                 workbook.Sheet = sheetIndex;
                 int sheetCount = workbook.NumSheets;
                 string sheetName = workbook.getSheetName(sheetIndex);
-                string t;
+                //string t;
 
                 int startRow = 1, startCol = 0;
                 int lastRow = workbook.LastRow;//Dòng cuối cùng có dữ liệu của sheet
@@ -1260,7 +1260,7 @@ namespace V6Tools.V6Export
                 workbook.Sheet = sheetIndex;
                 int sheetCount = workbook.NumSheets;
                 string sheetName = workbook.getSheetName(sheetIndex);
-                string t;
+                //string t;
 
                 int startRow = 1, startCol = 0;
                 int lastRow = workbook.LastRow;//Dòng cuối cùng có dữ liệu của sheet
@@ -1370,7 +1370,7 @@ namespace V6Tools.V6Export
             workbook.Sheet = sheetIndex;
             int sheetCount = workbook.NumSheets;
             string sheetName = workbook.getSheetName(sheetIndex);
-            string t;
+            //string t;
 
             int startRow = 1, startCol = 0;
             int lastRow = workbook.LastRow;//Dòng cuối cùng có dữ liệu của sheet
@@ -1437,7 +1437,7 @@ namespace V6Tools.V6Export
                 workbook.Sheet = sheetIndex;
                 int sheetCount = workbook.NumSheets;
                 string sheetName = workbook.getSheetName(sheetIndex);
-                string t;
+                //string t;
 
                 int startRow = 1, startCol = 0;
                 int lastRow = workbook.LastRow;//Dòng cuối cùng có dữ liệu của sheet
@@ -1822,7 +1822,7 @@ namespace V6Tools.V6Export
                 if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
                 else workbook.write(saveFile);
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
@@ -1896,7 +1896,7 @@ namespace V6Tools.V6Export
                 int sheetCount = workbook.NumberOfSheets;//.NumSheets;
                 string sheetName = workbook.GetSheetName(sheetIndex);
                 ISheet sheet = workbook.GetSheet(sheetName);
-                string t;
+                //string t;
 
                 int startRow = 1, startCol = 0;
                 int lastRow = sheet.LastRowNum;//.LastRow;//Dòng cuối cùng có dữ liệu của sheet

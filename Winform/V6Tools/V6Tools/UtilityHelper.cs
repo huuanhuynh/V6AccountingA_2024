@@ -191,12 +191,9 @@ namespace V6Tools
                     byte[] arrResult = transform.TransformFinalBlock(DeCryptArr, 0, DeCryptArr.Length);
                     return Encoding.UTF8.GetString(arrResult);
                 }
-                catch (Exception e)
+                catch
                 {
                     return "";
-                    //if (strDecypt == "V6SOFT")
-                    //    return "";
-                    //throw new Exception("UtilityHelper.Decrypt : " + e.Message);
                 }
             }
             else
@@ -228,12 +225,9 @@ namespace V6Tools
                     byte[] arrResult = transform.TransformFinalBlock(DeCryptArr, 0, DeCryptArr.Length);
                     return Encoding.UTF8.GetString(arrResult);
                 }
-                catch (Exception e)
+                catch
                 {
                     return "";
-                    //if (strDecypt == "V6SOFT")
-                    //    return "";
-                    //throw new Exception("UtilityHelper.Decrypt : " + e.Message);
                 }
             }
             else

@@ -147,7 +147,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@V6PARTNER_ID", paras.Result.Id),
                                 new SqlParameter("@FKEY_HD_TT", paras.Fkey_hd_tt),
                                 new SqlParameter("@Set_so_ct", paras.Result.InvoiceNo),
-                                new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
+                                new SqlParameter("@Partner_infors", paras.Result.Return_PartnerInfors),
                                 new SqlParameter("@MA_TD1", FilterControl.String1),
                                 new SqlParameter("@User_ID", V6Login.UserId)
                             };
@@ -194,7 +194,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF9
 
+                
+
+        protected override void XuLyBoSungThongTinChungTuF4()
+        {
+            XuLy_ThayThe_DieuChinh("E_S1");
+        }
+
+        protected override void XuLyXemChiTietF5()
+        {
+            XuLy_ThayThe_DieuChinh("E_S2");
+        }
+
         protected override void XuLyF6()
+        {
+            XuLy_ThayThe_DieuChinh("E_T1");
+        }
+
+        void XuLy_ThayThe_DieuChinh(string mode)
         {
             // Lấy hóa đơn từ form F6 thay cho dòng đang đứng.
             try
@@ -209,6 +226,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
 
                 var form = new AAPPR_EINVOICE1_F6();
+                if (mode == "E_T1") form.Text += " (Thay thế)";
+                else if (mode == "E_S1") form.Text += " (Điều chỉnh tiền)";
+                else if (mode == "E_S2") form.Text += " (Điều chỉnh thông tin)";
                 if (form.ShowDialog(this) != DialogResult.OK || form.SelectedGridViewRow == null)
                 {
                     if (form.SelectedGridViewRow == null) this.ShowWarningMessage(V6Text.NoData);
@@ -227,13 +247,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     string fkey_hd = am_F6["FKEY_HD"].ToString().Trim();
                     string fkey_hd_tt = am_OLD["FKEY_HD_TT"].ToString().Trim();
                     string STT_REC_OLD = am_OLD["STT_REC"].ToString().Trim();
+                    string part_infos = am_OLD["PART_INFOS"].ToString().Trim();
                     if (string.IsNullOrEmpty(fkey_hd_tt))
                     {
                         f9MessageAll = "Không có mã FKEY_HD_TT.";
                         return;
                     }
+                    if (string.IsNullOrEmpty(part_infos))
+                    {
+                        f9MessageAll = "Không có mã part_infos.";
+                        return;
+                    }
 
-                    string info = string.Format("Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                    string info = "";
+                    if (mode == "E_T1") info = string.Format("Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                        am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
+                    else if (mode == "E_S1") info = string.Format("Điều chỉnh tiền HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                        am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
+                    else if (mode == "E_S2") info = string.Format("Điều chỉnh thông tin HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
                         am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
                     this.ShowMainMessage(info);
 
@@ -255,10 +286,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         DataSet = ds,
                         AM_old = am_OLD,
                         AM_data = am_F6,
-                        Mode = "E_T1",
+                        Mode = mode,
                         Branch = FilterControl.String1,
                         Fkey_hd = fkey_hd,
                         Fkey_hd_tt = fkey_hd_tt, // "[01GTKT0/003]_[AA/17E]_[0000105]",
+                        Saved_Partner_infos = part_infos,
                     };
 
                     string result = PostManager.PowerPost(paras);
@@ -287,7 +319,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@V6PARTNER_ID", paras.Result.Id),
                             new SqlParameter("@FKEY_HD_TT", paras.Fkey_hd_tt),
                             new SqlParameter("@Set_so_ct", paras.Result.InvoiceNo),
-                            new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
+                            new SqlParameter("@Partner_infors", paras.Result.Return_PartnerInfors),
                             new SqlParameter("@MA_TD1", FilterControl.String1),
                             new SqlParameter("@User_ID", V6Login.UserId)
                         };

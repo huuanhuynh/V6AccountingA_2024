@@ -37,13 +37,13 @@ namespace V6ThuePostManager
         /// Fkey từ V6, // Cần thiết cho Hủy VNPT, BKAV,
         /// </summary>
         public string Fkey_hd { get; set; }
-        public string Partner_infos { get; set; }
+        public string Saved_Partner_infos { get; set; }
 
         public Dictionary<string, string> Partner_infor_dic
         {
             get
             {
-                return ObjectAndString.StringToStringDictionary(Partner_infos);
+                return ObjectAndString.StringToStringDictionary(Saved_Partner_infos);
             }
         }
         /// <summary>
@@ -80,7 +80,7 @@ namespace V6ThuePostManager
         /// </summary>
         public string Pattern { get; set; }
         /// <summary>
-        /// Ký hiệu hóa đơn vd:AA/19E
+        /// Ký hiệu hóa đơn vd:AA/19E, dùng download PDF Viettel V1
         /// </summary>
         public string Serial { get; set; }
         /// <summary>
@@ -251,7 +251,7 @@ namespace V6ThuePostManager
         /// <summary>
         /// SO_HD:Value;ID:value2;SECRET_CODE:SecrectCode
         /// </summary>
-        public string PartnerInfors
+        public string Return_PartnerInfors
         {
             get
             {
@@ -285,7 +285,7 @@ namespace V6ThuePostManager
                 if (!string.IsNullOrEmpty(ResultErrorMessage)) return false;
                 return true;
             }
-            else if (mode == "E_S1")
+            else if (mode == "E_S1" || mode == "E_S2")
             {
                 if (ResultObject == null) return false;
                 if (ResultObject is InvoiceResult) // BKAV

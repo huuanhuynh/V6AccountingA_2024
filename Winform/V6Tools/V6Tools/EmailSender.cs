@@ -83,7 +83,7 @@ namespace V6Tools
                 smtp.Host = host;
                 smtp.Send(mail);
             }
-            catch (Exception ex)
+            catch
             {
                 StringBuilder sb = new StringBuilder(1024);
                 sb.Append("\nTo:" + to);
@@ -187,7 +187,7 @@ namespace V6Tools
                 //Send the email
                 SmtpServer.Send(mM);
             }//end of try block
-            catch (Exception ex)
+            catch
             {
 
                 //<pre>
@@ -229,7 +229,7 @@ namespace V6Tools
                 //Send the email
                 SmtpServer.Send(mM);
             }//end of try block
-            catch (Exception ex)
+            catch
             {
             }//end of catch
         }//end of Yahoo Email Method
@@ -269,7 +269,7 @@ namespace V6Tools
                 //Send an email
                 sC.Send(mM);
             }//end of try block
-            catch (Exception ex)
+            catch
             {
 
 

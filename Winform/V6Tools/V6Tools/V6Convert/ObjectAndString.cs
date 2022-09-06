@@ -1539,7 +1539,7 @@ namespace V6Tools.V6Convert
                     infof.SetValue(o, value);
                 }
 	        }
-	        catch (Exception ex)
+	        catch
 	        {
 		
 	        }

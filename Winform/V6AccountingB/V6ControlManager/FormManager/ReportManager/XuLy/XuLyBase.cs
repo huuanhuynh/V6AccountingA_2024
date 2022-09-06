@@ -989,8 +989,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             //else if (keyData == Keys.F5 && FilterControl.F5)
             //{
-            //    if(dataGridView1.Focused || dataGridView2.Focused) XuLyXemChiTietF5();
-            //    else return base.DoHotKey0(keyData);
+            //    XuLyXemChiTietF5();
             //}
             else if (keyData == Keys.F6 && FilterControl.F6)
             {

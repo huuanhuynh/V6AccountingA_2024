@@ -444,7 +444,7 @@ namespace V6Tools.V6Convert
         /// <returns></returns>
         public static string ToExcelColumnString(int socot)
         {
-            int a = 'Z' - 'A' + 1;// = 26// là bảng chữ cái có 26 chữ cái đó mà :D
+            //int a = 'Z' - 'A' + 1;// = 26// là bảng chữ cái có 26 chữ cái đó mà :D
             string cell2range = "";
             var last = false;
             if (socot%26 == 0) last = true;

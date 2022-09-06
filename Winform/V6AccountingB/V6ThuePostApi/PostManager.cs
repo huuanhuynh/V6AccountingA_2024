@@ -530,8 +530,8 @@ namespace V6ThuePostManager
                         break;
                     case "9":
                         if (vin_WS == null) vin_WS = new VIN_WS(_baseUrl, _username, _password, _codetax);
-                        if (paras.Mode == "2") result = vin_WS.CHUYEN_DOI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
-                        else result = vin_WS.TAI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["magiaodich"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        if (paras.Mode == "2") result = vin_WS.CHUYEN_DOI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["SECRET_CODE"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        else result = vin_WS.TAI_HOA_DON_PDF(_codetax, paras.Partner_infor_dic["SECRET_CODE"], paras.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
@@ -759,6 +759,10 @@ namespace V6ThuePostManager
                             //    postObject.Invoice["InvoiceNo"]);
 
                             //postObject.Invoice["OriginalInvoiceIdentify"] = OriginalInvoiceIdentify;
+                        }
+                        else if (mode == "S")
+                        {
+                            //?????!!!!!
                         }
                     }
                     else
@@ -3280,35 +3284,9 @@ namespace V6ThuePostManager
 
                     paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
-                else if (paras.Mode.StartsWith("S"))
+                else if (paras.Mode.StartsWith("E_S")) // S S1(tiền) S2(thông tin)
                 {
-                    if (paras.Mode.EndsWith("3"))
-                    {
-                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                        {
-                            Field = "adjustmentType",
-                            Value = "3",
-                        };
-                    }
-                    else if (paras.Mode.EndsWith("5"))
-                    {
-                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                        {
-                            Field = "adjustmentType",
-                            Value = "5",
-                        };
-                    }
-                    else
-                    {
-                        generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                        {
-                            Field = "adjustmentType",
-                            Value = "3",
-                        };
-                    }
-
                     jsonBody = ReadData_Viettel(paras);
-                    //File.Create(flagFileName1).Close();
                     result = viettel_V2WS.POST_EDIT(jsonBody, out paras.Result.V6ReturnValues);
                     paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
@@ -3601,6 +3579,18 @@ namespace V6ThuePostManager
                     //additionalReferenceDesc
                     postObject.generalInvoiceInfo["additionalReferenceDesc"] = paras.AM_data["GHI_CHU_TT"];
                 }
+                else if (paras.Mode == "E_S" || paras.Mode == "E_S1" || paras.Mode == "E_S2")
+                {
+                    // Hóa đơn điều chỉnh.
+                    postObject.generalInvoiceInfo["adjustmentType"] = "5";
+                    postObject.generalInvoiceInfo["adjustmentInvoiceType"] = paras.Mode == "S2" ? "2" : "1"; // 1 tiền, 2 thông tin
+                    postObject.generalInvoiceInfo["originalInvoiceId"] = paras.Partner_infor_dic["SO_HD"];
+                    postObject.generalInvoiceInfo["originalInvoiceIssueDate"] = paras.AM_old["NGAY_CT"];
+                    //Thời gian phát sinh văn bản thỏa thuận giữa bên mua và bên bán, bắt buộc khi lập hóa đơn thay thế, hóa đơn điều chỉnh
+                    postObject.generalInvoiceInfo["additionalReferenceDate"] = paras.AM_old["NGAY_CT"];
+                    //Thông tin tham khảo nếu có kèm theo của hóa đơn: văn bản thỏa thuận giữa bên mua và bên bán về việc thay thế, điều chỉnh hóa đơn
+                    postObject.generalInvoiceInfo["additionalReferenceDesc"] = paras.AM_data["GHI_CHU_TT"];
+                }
                 
 
                 //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
@@ -3780,7 +3770,7 @@ namespace V6ThuePostManager
                 if (viettel_V2WS == null) viettel_V2WS = new ViettelV2WS(_baseUrl, _username, _password, _codetax);
 
                 if (paras.Mode == "1") // Mode Thể hiện
-                    return viettel_V2WS.DownloadInvoicePDF(_codetax, paras.InvoiceNo, paras.Pattern, paras.Fkey_hd,
+                    return viettel_V2WS.DownloadInvoicePDF(_codetax, paras.Partner_infor_dic["SO_HD"], paras.Pattern, paras.Fkey_hd,
                         V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                 //string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
                 //string strIssueDate_Viettel = V6JsonConverter.ObjectToJson(paras.InvoiceDate, _datetype);
@@ -3794,7 +3784,7 @@ namespace V6ThuePostManager
                     strIssueDate_Viettel = paras.Partner_infor_dic["NGAY_CT"];
                 }
 
-                return viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.InvoiceNo, strIssueDate_Viettel,
+                return viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.Partner_infor_dic["SO_HD"], strIssueDate_Viettel,
                     V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
             }
             else
@@ -3802,10 +3792,10 @@ namespace V6ThuePostManager
                 ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
 
                 if (paras.Mode == "1") // Mode Thể hiện
-                    return viettel_ws.DownloadInvoicePDF(_codetax, paras.InvoiceNo, paras.Pattern,
+                    return viettel_ws.DownloadInvoicePDF(_codetax, paras.Serial + paras.InvoiceNo, paras.Pattern,
                         V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues); // !!! Cần update cho giống V2
                 string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
-                return viettel_ws.DownloadInvoicePDFexchange(_codetax, paras.InvoiceNo, strIssueDate,
+                return viettel_ws.DownloadInvoicePDFexchange(_codetax, paras.Serial + paras.InvoiceNo, strIssueDate,
                     V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);  // !!! Cần update cho giống V2
             }
         }
