@@ -479,7 +479,7 @@ namespace V6ThuePostViettelApi
             else
             {
                 Logger.WriteToLog("" + result);
-                return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
+                return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": \""+result+"\" }";
             }
 
             return result2;

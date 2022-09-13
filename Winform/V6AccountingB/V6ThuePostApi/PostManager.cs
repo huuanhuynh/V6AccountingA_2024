@@ -3096,8 +3096,16 @@ namespace V6ThuePostManager
                             Value = _SERIAL_CERT,
                         };
                         jsonBody = ReadData_Viettel(paras);
-                        string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                        result = viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
+
+                        if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
+                        {
+                            result = viettel_ws.POST_DRAFT(_codetax, jsonBody);
+                        }
+                        else
+                        {
+                            string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                            result = viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
+                        }
                     }
                     paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
@@ -3194,12 +3202,29 @@ namespace V6ThuePostManager
 
                 if (paras.Mode == "TestView")
                 {
-                    var xml = ReadData_Viettel(paras);
-                    result = xml;
-                    paras.Result.ResultString = xml;
+                    if (!string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                    }
+                    
+                    jsonBody = ReadData_Viettel(paras);
+                    result = jsonBody;
+                    paras.Result.ResultString = jsonBody;
                 }
                 else if (paras.Mode == "TestView_Shift")
                 {
+                    if (!string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                    }
 
                     var xml = ReadData_Viettel(paras);
                     result = viettel_V2WS.GetMetaDataDefine(__pattern, out paras.Result.V6ReturnValues);
@@ -3268,12 +3293,20 @@ namespace V6ThuePostManager
                             Value = _SERIAL_CERT,
                         };
                         jsonBody = ReadData_Viettel(paras);
-                        string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                        result = viettel_V2WS.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out paras.Result.V6ReturnValues);
+
+                        if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
+                        {
+                            result = viettel_V2WS.POST_DRAFT(jsonBody, out paras.Result.V6ReturnValues);
+                        }
+                        else
+                        {
+                            string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                            result = viettel_V2WS.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT, out paras.Result.V6ReturnValues);
+                        }
                     }
 
                     // Nếu error null mà ko có so_hd thì chạy hàm lấy thông tin.
-                    if (string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE)
+                    if (paras.Key_Down == "F9" && string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE)
                         && string.IsNullOrEmpty(paras.Result.V6ReturnValues.SO_HD))
                     {
                         Thread.Sleep(10000); // Chờ 10 giây.

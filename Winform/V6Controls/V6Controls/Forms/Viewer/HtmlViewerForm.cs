@@ -158,6 +158,22 @@ namespace V6Controls.Forms.Viewer
                     }
                 }
 
+                //string pageSetupKey2 = "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings";
+                //var rKey = Registry.CurrentUser.OpenSubKey(pageSetupKey2, true);
+
+                //object old_1 = rKey.GetValue("PageOrientation");
+                //object old_2 = rKey.GetValue("PaperSize");
+                //object old_3 = rKey.GetValue("PrintQuality");
+
+                // Use 1 for Portrait and 2 for Landccape 
+                //rKey.SetValue("PageOrientation", 2, RegistryValueKind.DWord);
+                // Specifies paper size. Valid settings are 1=letter, 5=Legal, 9=A4, 13=B5.Default setting is 1.
+                //rKey.SetValue("PaperSize", 9, RegistryValueKind.DWord);
+                // Specifies print quality
+                //rKey.SetValue("PrintQuality ", 1, RegistryValueKind.DWord);
+
+
+
                 //string keyName = @"Software\Microsoft\Internet Explorer\PageSetup";
                 //using (RegistryKey key = Registry.CurrentUser.OpenSubKey(keyName, true)) {
                 //    if (key != null) {
@@ -170,7 +186,13 @@ namespace V6Controls.Forms.Viewer
                 //        //key.SetValue("header", old_header);
                 //    }
                 //}
+                
                 webBrowser1.ShowPrintDialog();
+
+                // reset Internet Settings
+                //if (old_1 != null) rKey.SetValue("PageOrientation", old_1, RegistryValueKind.DWord);
+                //if (old_2 != null) rKey.SetValue("PaperSize", old_2, RegistryValueKind.DWord);
+                //if (old_3 != null) rKey.SetValue("PrintQuality", old_3, RegistryValueKind.DWord);
             }
             catch (Exception ex)
             {

@@ -59,7 +59,7 @@
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
-            this.TxtXtag = new V6Controls.V6VvarTextBox();
+            this.txtXtag = new V6Controls.V6VvarTextBox();
             this.ctDenSo = new V6Controls.V6VvarTextBox();
             this.v6Label7 = new V6Controls.V6Label();
             this.chkLike = new V6Controls.V6CheckBox();
@@ -490,22 +490,22 @@
             this.v6Label4.TabIndex = 8;
             this.v6Label4.Text = "0-Chưa duyệt, 1- Duyệt kho";
             // 
-            // TxtXtag
+            // txtXtag
             // 
-            this.TxtXtag.AccessibleName = "CHK_LOC_CT";
-            this.TxtXtag.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtXtag.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtXtag.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtXtag.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtXtag.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtXtag.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtXtag.LeaveColor = System.Drawing.Color.White;
-            this.TxtXtag.LimitCharacters = "0125";
-            this.TxtXtag.Location = new System.Drawing.Point(114, 68);
-            this.TxtXtag.MaxLength = 1;
-            this.TxtXtag.Name = "TxtXtag";
-            this.TxtXtag.Size = new System.Drawing.Size(18, 20);
-            this.TxtXtag.TabIndex = 3;
+            this.txtXtag.AccessibleName = "CHK_LOC_CT";
+            this.txtXtag.BackColor = System.Drawing.SystemColors.Window;
+            this.txtXtag.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtXtag.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtXtag.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtXtag.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtXtag.HoverColor = System.Drawing.Color.Yellow;
+            this.txtXtag.LeaveColor = System.Drawing.Color.White;
+            this.txtXtag.LimitCharacters = "01256";
+            this.txtXtag.Location = new System.Drawing.Point(114, 68);
+            this.txtXtag.MaxLength = 1;
+            this.txtXtag.Name = "txtXtag";
+            this.txtXtag.Size = new System.Drawing.Size(18, 20);
+            this.txtXtag.TabIndex = 3;
             // 
             // ctDenSo
             // 
@@ -697,7 +697,7 @@
             this.Controls.Add(this.v6Label8);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label4);
-            this.Controls.Add(this.TxtXtag);
+            this.Controls.Add(this.txtXtag);
             this.Controls.Add(this.v6Label2);
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.TxtMa_ct);
@@ -737,7 +737,7 @@
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label4;
-        private V6Controls.V6VvarTextBox TxtXtag;
+        private V6Controls.V6VvarTextBox txtXtag;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh6;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh5;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh4;

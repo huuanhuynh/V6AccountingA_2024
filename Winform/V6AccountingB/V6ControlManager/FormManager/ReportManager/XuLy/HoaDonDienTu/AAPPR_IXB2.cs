@@ -97,6 +97,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9MessageAll = "";
         protected override void XuLyF9()
         {
+            if (Key_Down == "") Key_Down = "F9";
             try
             {
                 Timer tF9 = new Timer();

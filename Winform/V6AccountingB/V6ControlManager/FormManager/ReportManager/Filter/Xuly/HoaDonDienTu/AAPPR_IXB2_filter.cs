@@ -34,7 +34,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
             dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
 
-            TxtXtag.Text = "2";
+            txtXtag.Text = "2";
             ctDenSo.Enabled = false;
             chkHoaDonDaIn.Checked = true;
             cboSendType.SelectedIndex = 0;
@@ -116,24 +116,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             if (!string.IsNullOrEmpty(key2))
             {
-                cKey = cKey + string.Format(" AND STT_REC IN (SELECT STT_REC FROM AD81 WHERE NGAY_CT between '{1}' and '{2}' and ma_kho_i in (select ma_kho from alkho where {0}))",
+                cKey = cKey + string.Format(" AND STT_REC IN (SELECT STT_REC FROM AM85 WHERE NGAY_CT between '{1}' and '{2}' and ma_kho in (select ma_kho from alkho where {0}))",
                     key2, dateNgay_ct1.YYYYMMDD, dateNgay_ct2.YYYYMMDD);
             }
-            switch (TxtXtag.Text.Trim())
+
+            switch (txtXtag.Text.Trim())
             {
                 case "0":
-                    cKey = cKey + " and ( Xtag=' ' or Xtag IS NULL )";
+                    cKey = cKey + " and (Xtag=' ' or Xtag IS NULL)";
                     break;
-                case "1":
-                    cKey = cKey + " and ( Xtag='1' OR Kieu_post='1' )";
-                    break;
-                case "2":
-                    cKey = cKey + " and ( Xtag='2'  OR Kieu_post='2')";
-                    break;
-                case "5":
-                    cKey = cKey + " and ( Xtag='5'  OR Kieu_post='5')";
+                default:
+                    cKey = cKey + string.Format(" and (Xtag='{0}' OR Kieu_post='{0}')", txtXtag.Text.Trim());
                     break;
             }
+
             if (chkHoaDonDaIn.Checked)
             {
                 cKey = cKey + " and [Sl_in] > 0";
@@ -147,7 +143,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // Tu so den so
             var tu_so = ctTuSo.Text.Trim().Replace("'", "");
             var den_so = ctDenSo.Text.Trim().Replace("'", "");
-            var invoice = new V6AccountingBusiness.Invoices.V6Invoice81();
+            var invoice = new V6AccountingBusiness.Invoices.V6Invoice85();
             var and_or = " and ";
             var tbL = "";
             //so chung tu
