@@ -50,7 +50,8 @@ namespace V6ThuePostBkavApi
                         msg = DoCreateInvoice(commandType, jsonBody, out v6return);
                         break;
                     case BkavConst._121_CreateAdjust:
-                        msg = DoAdjustInvoice(jsonBody, out v6return);
+                    case BkavConst._124_CreateAdjust:
+                        msg = DoAdjustInvoice(commandType, jsonBody, out v6return);
                         break;
                     case BkavConst._120_CreateReplace:
                     case BkavConst._123_CreateReplace:
@@ -146,14 +147,14 @@ namespace V6ThuePostBkavApi
             return msg;
         }
 
-        string DoAdjustInvoice(string listInvoice_json, out V6Return v6return)
+        string DoAdjustInvoice(int commandType, string listInvoice_json, out V6Return v6return)
         {
             string msg = null;
             v6return = new V6Return();
 
             Result result = null;
 
-            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._121_CreateAdjust, listInvoice_json, out result);
+            msg = remoteCommand.TransferCommandAndProcessResult(commandType, listInvoice_json, out result);
             
             if (msg.Length > 0)
             {

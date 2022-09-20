@@ -273,7 +273,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (!V6Login.UserRight.AllowAdd("", "S02"))
+                    if (!V6Login.UserRight.AllowAdd("", "S03"))
                     {
                         V6ControlFormHelper.NoRightWarning();
                         return;

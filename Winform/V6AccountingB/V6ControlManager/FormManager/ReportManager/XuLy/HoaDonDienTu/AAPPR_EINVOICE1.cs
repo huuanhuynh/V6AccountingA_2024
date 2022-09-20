@@ -37,7 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var text = CorpLan.GetTextNull(id);
             if (string.IsNullOrEmpty(text))
             {
-                text = string.Format("F6: {0}, F9: {1}", V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT"));
+                text = string.Format("F4: {0}, F5: {1}, F6: {2}, F9: {3}", V6Text.Text("DIEUCHINHTIEN"), V6Text.Text("DIEUCHINHTT"), V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT"));
             }
             V6ControlFormHelper.SetStatusText2(text, id);
         }
@@ -198,12 +198,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyBoSungThongTinChungTuF4()
         {
-            XuLy_ThayThe_DieuChinh("E_S1");
+            XuLy_ThayThe_DieuChinh("E_S1"); // Điều chỉnh tiền, BKAV _121_CreateAdjust
         }
 
         protected override void XuLyXemChiTietF5()
         {
-            XuLy_ThayThe_DieuChinh("E_S2");
+            XuLy_ThayThe_DieuChinh("E_S2"); // Điều chỉnh thông tin
         }
 
         protected override void XuLyF6()

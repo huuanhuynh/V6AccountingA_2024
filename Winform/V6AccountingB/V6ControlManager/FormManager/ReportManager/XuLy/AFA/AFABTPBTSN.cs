@@ -107,8 +107,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (V6Login.UserRight.AllowDelete("", "BS02")
-                        && this.ShowConfirmMessage(V6Text.Text("XBTPBKH")) == DialogResult.Yes)
+                    if (!V6Login.UserRight.AllowDelete("", "BS02"))
+                    {
+                        V6ControlFormHelper.NoRightWarning();
+                        return;
+                    }
+
+                    if (this.ShowConfirmMessage(V6Text.Text("XBTPBKH")) == DialogResult.Yes)
                     {
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 
@@ -152,10 +157,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
                         }
                     }
-                    else
-                    {
-                        V6ControlFormHelper.NoRightWarning();
-                    }
+                    
                 }
             }
             catch (Exception ex)

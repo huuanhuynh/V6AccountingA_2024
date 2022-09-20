@@ -68,7 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-                    if (V6Login.UserRight.AllowDelete("", "S02"))
+                    if (V6Login.UserRight.AllowDelete("", "S03"))
                     {
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 

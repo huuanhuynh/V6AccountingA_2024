@@ -36,7 +36,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var text = CorpLan.GetTextNull(id);
             if (string.IsNullOrEmpty(text))
             {
-                text = string.Format("F6: {0}, F9: {1}", V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT"));
+                text = string.Format("F4: {0}, F5: {1}, F6: {2}, F9: {3}", V6Text.Text("DIEUCHINHTIEN"), V6Text.Text("DIEUCHINHTT"), V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT"));
             }
             V6ControlFormHelper.SetStatusText2(text, id);
         }
@@ -208,47 +208,83 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF9
 
+
+        protected override void XuLyBoSungThongTinChungTuF4()
+        {
+            XuLy_ThayThe_DieuChinh("E_S1"); // Điều chỉnh tiền, BKAV _121_CreateAdjust
+        }
+
+        protected override void XuLyXemChiTietF5()
+        {
+            XuLy_ThayThe_DieuChinh("E_S2"); // Điều chỉnh thông tin
+        }
+
         protected override void XuLyF6()
         {
+            XuLy_ThayThe_DieuChinh("E_T1");
+        }
+
+        void XuLy_ThayThe_DieuChinh(string mode)
+        {
+            // Lấy hóa đơn từ form F6 thay cho dòng đang đứng.
             try
             {
                 f9Error = "";
-                f9ErrorAll = "";
                 f9MessageAll = "";
-                if (dataGridView1.CurrentRow == null) return;
+                if (dataGridView1.CurrentRow == null)
+                {
+                    this.ShowWarningMessage(V6Text.NoData);
+                    return;
+                }
 
-                var form = new AAPPR_EINVOICE1_F6(); // Xài chung.
+
+                var form = new AAPPR_EINVOICE1_F6();
+                if (mode == "E_T1") form.Text += " (Thay thế)";
+                else if (mode == "E_S1") form.Text += " (Điều chỉnh tiền)";
+                else if (mode == "E_S2") form.Text += " (Điều chỉnh thông tin)";
                 if (form.ShowDialog(this) != DialogResult.OK || form.SelectedGridViewRow == null)
                 {
+                    if (form.SelectedGridViewRow == null) this.ShowWarningMessage(V6Text.NoData);
                     return;
                 }
 
                 DataGridViewRow row = dataGridView1.CurrentRow;
-                var am_new = row.ToDataDictionary();
+                var am_OLD = row.ToDataDictionary();
 
                 try
                 {
                     // E_G1: gạch nợ    E_H1: hủy hóa đơn   E_S1: sửa hd    E_T1: thay thế hd
                     //string mode = form.SelectedMode;
-                    IDictionary<string, object> am_old = form.SelectedGridViewRow.ToDataDictionary();
-                    string soct = row.Cells["So_ct"].Value.ToString().Trim();
-                    string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                    string fkey_hd_tt = am_old["FKEY_HD_TT"].ToString().Trim();
-                    string STT_REC_OLD = am_old["STT_REC"].ToString().Trim();
+                    IDictionary<string, object> am_F6 = form.SelectedGridViewRow.ToDataDictionary();
+                    string soct = am_F6["SO_CT"].ToString().Trim();
+                    string fkey_hd = am_F6["FKEY_HD"].ToString().Trim();
+                    string fkey_hd_tt = am_OLD["FKEY_HD_TT"].ToString().Trim();
+                    string STT_REC_OLD = am_OLD["STT_REC"].ToString().Trim();
+                    string part_infos = am_OLD["PART_INFOS"].ToString().Trim();
                     if (string.IsNullOrEmpty(fkey_hd_tt))
                     {
-                        f9ErrorAll = "Không có mã FKEY_HD_TT.";
+                        f9MessageAll = "Không có mã FKEY_HD_TT.";
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(part_infos))
+                    {
+                        f9MessageAll = "Không có mã part_infos.";
                         return;
                     }
 
-                    string info = string.Format("Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
-                        am_old["SO_CT"], am_old["T_TIEN2"], am_new["SO_CT"], am_new["T_TIEN2"]);
+                    string info = "";
+                    if (mode == "E_T1") info = string.Format("Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                        am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
+                    else if (mode == "E_S1") info = string.Format("Điều chỉnh tiền HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                        am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
+                    else if (mode == "E_S2") info = string.Format("Điều chỉnh thông tin HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                        am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
                     this.ShowMainMessage(info);
 
                     SqlParameter[] plist =
                     {
-                        new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
-                        new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                        new SqlParameter("@Stt_rec", am_F6["STT_REC"] + ""),
+                        new SqlParameter("@Ma_ct", am_F6["MA_CT"] + ""),
                         new SqlParameter("@HoaDonMau", "0"),
                         new SqlParameter("@isInvoice", "1"),
                         new SqlParameter("@ReportFile", ""),
@@ -258,40 +294,39 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                     //DataTable data0 = ds.Tables[0];
-                    string result = ""; //, error = "", sohoadon = "", id = "";
                     var paras = new PostManagerParams
                     {
                         DataSet = ds,
-                        AM_old = am_old,
-                        AM_data = am_new,
-                        Mode = "E_T1",
+                        AM_old = am_OLD,
+                        AM_data = am_F6,
+                        Mode = mode,
                         Branch = FilterControl.String1,
                         Fkey_hd = fkey_hd,
                         Fkey_hd_tt = fkey_hd_tt, // "[01GTKT0/003]_[AA/17E]_[0000105]",
+                        Saved_Partner_infos = part_infos,
                     };
 
-                    result = PostManager.PowerPost(paras);
+                    string result = PostManager.PowerPost(paras);
 
                     if (paras.Result.IsSuccess(paras.Mode))     // Phải phân biệt 2 loại thành công.
                     {
                         if (paras.Result.ResultMessage != null && paras.Result.ResultMessage.Contains("Đã tồn tại Hóa đơn"))
                         {
                             f9MessageAll += string.Format("{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct,
-                             paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString.Left(100), V6Text.Exist);
+                             paras.Result.InvoiceNo, paras.Result.Id, result.Left(100), V6Text.Exist);
                         }
                         else
                         {
                             f9MessageAll += string.Format("{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct,
-                                paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString,
-                                V6Text.Text("ThanhCong"));
+                                paras.Result.InvoiceNo, paras.Result.Id, result.Left(100), V6Text.Text("ThanhCong"));
                         }
 
                         paras.Result.STT_REC_TT = STT_REC_OLD;
 
                         SqlParameter[] plist2 =
                         {
-                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
-                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                            new SqlParameter("@Stt_rec", am_F6["STT_REC"].ToString().Trim()),
+                            new SqlParameter("@Ma_ct", am_F6["MA_CT"].ToString().Trim()),
                             new SqlParameter("@Action", paras.Mode),
                             new SqlParameter("@fkey_hd", paras.Result.Id),
                             new SqlParameter("@V6PARTNER_ID", paras.Result.Id),
@@ -314,7 +349,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 catch (Exception ex)
                 {
                     f9Error += ex.Message;
-                    f9ErrorAll += ex.Message;
+                    f9MessageAll += ex.Message;
                 }
 
                 // Thông báo kết thúc:
@@ -326,13 +361,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        V6Invoice81 invoice = new V6Invoice81();
+
+        
+
+        V6Invoice81 invoice81 = new V6Invoice81();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try
             {
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
-                var data = invoice.LoadAD(sttRec);
+                var data = invoice81.LoadAD(sttRec);
                 dataGridView2.DataSource = data;
                 dataGridView2.AutoGenerateColumns = true;
                 _tbl2 = data;

@@ -43,6 +43,10 @@ namespace V6ThuePostBkavApi
         /// Tạo Hóa đơn điều chỉnh cho  Hoá đơn khác
         /// </summary>
         public const int _121_CreateAdjust = 121;
+        /// <summary>
+        /// Tạo hóa đơn điều chỉnh, BKAV cấp số.
+        /// </summary>
+        public const int _124_CreateAdjust = 124;
 
         /// <summary>
         /// Tạo Hóa đơn thay thế cho  Hoá đơn khác, số hd do BKAV cấp, hóa đơn chờ

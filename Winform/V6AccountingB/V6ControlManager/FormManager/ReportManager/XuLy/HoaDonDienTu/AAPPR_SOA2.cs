@@ -334,6 +334,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string dir = row.Cells["Dir_in"].Value.ToString().Trim();
                 string file = row.Cells["File_in"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                string inputPattern = "";
+                // nhập mẫu để lấy thông tin Metadata Viettel
+                StringInput inputForm = new StringInput("Nhập mẫu hóa đơn. vd 1/001", "1/001");
+                if (shift_is_down && inputForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    inputPattern = inputForm.InputString;
+                }
 
                 SqlParameter[] plist =
                         {
@@ -354,6 +361,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     AM_data = row.ToDataDictionary(),
                     DataSet = ds,
                     Mode = "TestView" + (shift_is_down ? "_Shift" : ""),
+                    Pattern = inputPattern,
                     Branch = FilterControl.String1,
                     Dir = dir,
                     FileName = file,

@@ -7998,7 +7998,8 @@ namespace V6Controls.Forms
                     colorTB.V6LostFocus += (sender) =>
                     {
                         All_Objects["sender"] = sender;
-                        V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                        string m_name = ((Control)sender).AccessibleName.ToUpper() + "_V6LOSTFOCUS" + before;
+                        V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
                     };
                 }
 
@@ -8009,7 +8010,8 @@ namespace V6Controls.Forms
                     colorTB.V6LostFocusNoChange += (sender) =>
                     {
                         All_Objects["sender"] = sender;
-                        V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                        string m_name = ((Control)sender).AccessibleName.ToUpper() + "_V6LOSTFOCUSNOCHANGE" + before;
+                        V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
                     };
                 }
             }
@@ -8020,10 +8022,12 @@ namespace V6Controls.Forms
                 methodName = NAME + "_VALUECHANGED" + before;
                 
                 if (methods.ContainsKey(methodName))
-                    date.ValueChanged += (sender, args) =>
+                    date.ValueChanged += (sender, e) =>
                     {
                         All_Objects["sender"] = sender;
-                        V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                        All_Objects["e"] = e;
+                        string m_name = ((Control)sender).AccessibleName.ToUpper() + "_VALUECHANGED" + before;
+                        V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
                     };
             }
 
@@ -8033,7 +8037,8 @@ namespace V6Controls.Forms
                 {
                     All_Objects["sender"] = sender;
                     All_Objects["e"] = e;
-                    V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                    string m_name = ((Control)sender).AccessibleName.ToUpper() + "_ENTER" + before;
+                    V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
                 };
             methodName = NAME + "_GOTFOCUS" + before;
             if (methods.ContainsKey(methodName))
@@ -8041,7 +8046,8 @@ namespace V6Controls.Forms
                 {
                     All_Objects["sender"] = sender;
                     All_Objects["e"] = e;
-                    V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                    string m_name = ((Control)sender).AccessibleName.ToUpper() + "_GOTFOCUS" + before;
+                    V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
                 };
 
             methodName = NAME + "_LEAVE" + before;
@@ -8050,7 +8056,8 @@ namespace V6Controls.Forms
                 {
                     All_Objects["sender"] = sender;
                     All_Objects["e"] = e;
-                    V6ControlsHelper.InvokeMethodInfo(methods[methodName],All_Objects);
+                    string m_name = ((Control)sender).AccessibleName.ToUpper() + "_LEAVE" + before;
+                    V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
                 };
             methodName = NAME + "_LOSTFOCUS" + before;
             if (methods.ContainsKey(methodName))
@@ -8058,7 +8065,8 @@ namespace V6Controls.Forms
                 {
                     All_Objects["sender"] = sender;
                     All_Objects["e"] = e;
-                    V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                    string m_name = ((Control)sender).AccessibleName.ToUpper() + "_LOSTFOCUS" + before;
+                    V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
                 };
 
             methodName = NAME + "_TEXTCHANGED" + before;
@@ -8067,7 +8075,8 @@ namespace V6Controls.Forms
                 {
                     All_Objects["sender"] = sender;
                     All_Objects["e"] = e;
-                    V6ControlsHelper.InvokeMethodInfo(methods[methodName], All_Objects);
+                    string m_name = ((Control)sender).AccessibleName.ToUpper() + "_TEXTCHANGED" + before;
+                    V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
                 };
         }
 

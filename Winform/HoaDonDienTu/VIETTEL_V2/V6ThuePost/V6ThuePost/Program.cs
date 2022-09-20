@@ -897,7 +897,7 @@ namespace V6ThuePost
         {
             string result = old_read;
             string format = null;
-            if (row.Table.Columns.Contains(ReadFormatField)) format = (row[ReadFormatField] + "").Trim();
+            if (!string.IsNullOrEmpty(ReadFormatField) && row.Table.Columns.Contains(ReadFormatField)) format = (row[ReadFormatField] + "").Trim();
             if (!string.IsNullOrEmpty(format) && format.Contains("{0}")) result = string.Format(format, old_read);
             return result;
         }

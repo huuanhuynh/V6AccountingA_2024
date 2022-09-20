@@ -5406,7 +5406,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 Build:
                 Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + Invoice.Mact, using_text, method_text);
                 // Get Event_program infos
-                var ms = Event_program.GetMethods(BindingFlags.Public);
+                var ms = Event_program.GetMethods();
                 for (int i = 0; i < ms.Length; i++)
                 {
                     var m = ms[i];

@@ -124,13 +124,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                
+
                 if (dataGridView1.CurrentRow != null)
                 {
                     var currentRow = dataGridView1.CurrentRow;
                     var selectedMaCt = currentRow.Cells
-                            ["Ma_ct"].Value.ToString().Trim();
+                        ["Ma_ct"].Value.ToString().Trim();
                     var selectedSttRec = currentRow.Cells
                         ["Stt_rec"].Value.ToString().Trim();
+
+                    if (!V6Login.UserRight.AllowEdit("", selectedMaCt))
+                    {
+                        V6ControlFormHelper.NoRightWarning();
+                        return;
+                    }
 
                     var formView = new V6Form
                     {

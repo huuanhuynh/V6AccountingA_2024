@@ -945,7 +945,7 @@ namespace V6ThuePostViettelV2Api
             {
                 v6Return.RESULT_ERROR_MESSAGE = hash_result;
                 Logger.WriteToLog("" + hash_result);
-                return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
+                return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": \""+hash_result+"\"}";
             }
 
             return sign_result2;

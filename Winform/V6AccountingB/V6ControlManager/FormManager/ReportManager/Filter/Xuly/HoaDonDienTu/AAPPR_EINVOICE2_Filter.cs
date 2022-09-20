@@ -16,7 +16,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public AAPPR_EINVOICE2_Filter()
         {
             InitializeComponent();
-            
+
+            F3 = true;
+            F4 = true;
+            F5 = true;
+            F6 = true;
+            F7 = true;
+            F9 = true;
+            F10 = true;
+
             F3 = true;
             F6 = true;
             F7 = true;

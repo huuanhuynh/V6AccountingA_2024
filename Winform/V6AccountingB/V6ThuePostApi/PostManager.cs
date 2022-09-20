@@ -135,11 +135,11 @@ namespace V6ThuePostManager
         private static string _token_password = null;
 
         /// <summary>
-        /// Có sau khi ReadData VNPT THAISON SOFTDREAMS
+        /// Có sau khi ReadData VNPT THAISON SOFTDREAMS VIETTEL
         /// </summary>
-        private static string __pattern;
+        private static string __pattern, __serial;
         private static string pattern_field;
-        private static string __serial, seri_field, _reason_field;
+        private static string seri_field, _reason_field;
         private static string convert = "0";
         private static string _signmode = "0";
         private static bool _write_log = false;
@@ -173,6 +173,7 @@ namespace V6ThuePostManager
         public static string BkavPartnerGUID = "";
         public static string BkavPartnerToken = "";
         public static int BkavCommandTypeNew = 112;
+        public static int BkavCommandTypeEdit = BkavConst._124_CreateAdjust;
 
         public static ViettelV2WS viettel_V2WS = null;
         public static VIN_WS vin_WS = null;
@@ -658,7 +659,9 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "E_S1")
                 {
                     jsonBody = ReadData_Bkav("S");
-                    result = bkavWS.POST(jsonBody, BkavConst._121_CreateAdjust, out paras.Result.V6ReturnValues);
+                    int commandTType = BkavCommandTypeEdit;
+                    if (commandTType != BkavConst._121_CreateAdjust && commandTType != BkavConst._124_CreateAdjust) commandTType = BkavConst._124_CreateAdjust;
+                    result = bkavWS.POST(jsonBody, commandTType, out paras.Result.V6ReturnValues);
                     //if (!result.StartsWith("ERR") && V6Infos.ContainsKey("BKAVSIGN") && V6Infos["BKAVSIGN"] == "1")
                     //{
                     //    result = result + "\r\n" + bkavWS.SignInvoice(paras.V6PartnerID, out paras.Result.V6ReturnValues);
@@ -760,9 +763,10 @@ namespace V6ThuePostManager
 
                             //postObject.Invoice["OriginalInvoiceIdentify"] = OriginalInvoiceIdentify;
                         }
-                        else if (mode == "S")
+                        else if (mode == "S" || mode == "E_S1")
                         {
                             //?????!!!!!
+                            postObject.Invoice[item.Key] = Fkey_hd_tt;// GetValue(row0, item.Value);
                         }
                     }
                     else
@@ -1256,7 +1260,7 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "TestView_Shift")
                 {
-
+                    // Download thôngg tin ?????
                 }
                 else if (paras.Mode.StartsWith("E_"))
                 {
@@ -3217,18 +3221,13 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "TestView_Shift")
                 {
-                    if (!string.IsNullOrEmpty(_SERIAL_CERT))
+                    string getPattern = paras.Pattern;
+                    if (string.IsNullOrEmpty(getPattern))
                     {
-                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
-                        {
-                            Field = "certificateSerial",
-                            Value = _SERIAL_CERT,
-                        };
+                        jsonBody = ReadData_Viettel(paras);
+                        getPattern = __pattern;
                     }
-
-                    var xml = ReadData_Viettel(paras);
-                    result = viettel_V2WS.GetMetaDataDefine(__pattern, out paras.Result.V6ReturnValues);
-
+                    result = viettel_V2WS.GetMetaDataDefine(getPattern, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "E_G1") // Gạch nợ
                 {
@@ -3593,6 +3592,10 @@ namespace V6ThuePostManager
                 }
                 
                 ngay_ct_viettel = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], _datetype);
+                if (!string.IsNullOrEmpty(pattern_field) && am_table.Columns.Contains(pattern_field))
+                    __pattern = row0[pattern_field].ToString().Trim();
+                if (!string.IsNullOrEmpty(seri_field) && am_table.Columns.Contains(seri_field))
+                    __serial = row0[seri_field].ToString().Trim();
                 
 
                 if (paras.Mode == "E_T1")
@@ -5878,6 +5881,9 @@ namespace V6ThuePostManager
                                     break;
                                 case "bkavcommandtypenew":
                                     BkavCommandTypeNew = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
+                                    break;
+                                case "bkavcommandtypeedit":
+                                    BkavCommandTypeEdit = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
                                     break;
                                 case "signmode":
                                     _signmode = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
