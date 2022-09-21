@@ -136,6 +136,12 @@
     <Compile Include="Forms\ConfirmPasswordF368.Designer.cs">
       <DependentUpon>ConfirmPasswordF368.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VuViecAddEditForm_A1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VuViecAddEditForm_A1.Designer.cs">
+      <DependentUpon>VuViecAddEditForm_A1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DateSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1699,6 +1705,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfirmPasswordF368.resx">
       <DependentUpon>ConfirmPasswordF368.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VuViecAddEditForm_A1.resx">
+      <DependentUpon>VuViecAddEditForm_A1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DateSelectForm.resx">
       <DependentUpon>DateSelectForm.cs</DependentUpon>

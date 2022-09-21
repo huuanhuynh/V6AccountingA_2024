@@ -236,7 +236,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new SanPhamTrungGianAddEditForm();
                     break;
                 case "ALVV":
-                    FormControl = new VuViecAddEditForm();
+                    if (formCode.EndsWith("_A1")) FormControl = new VuViecAddEditForm_A1();
+                    else FormControl = new VuViecAddEditForm();
                     break;
                 case "ALYTCP":
                     FormControl = new YeuToChiPhiAddEditForm();

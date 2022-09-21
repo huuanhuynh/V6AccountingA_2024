@@ -14,6 +14,7 @@ using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Init;
 using V6ThuePostManager;
+using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
@@ -364,8 +365,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Download selected einvoice
                 //, error = "", sohoadon = "", id = "";
                 string return_file_name = "";
-                string tableName = "V6MAPINFO";
-                string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
+                //string tableName = "V6MAPINFO";
+                //string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
                 //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_IXB2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
                 SqlParameter[] plist0 =
                 {
@@ -379,21 +380,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 };
                 var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
 
+                string seri = row.Cells["SO_SERI"].Value.ToString().Trim();
                 string invoiceNo = row.Cells["SO_SERI"].Value.ToString().Trim() + row.Cells["SO_CT"].Value.ToString().Trim();
                 string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
                 string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
                 DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
+                string part_infos = row.Cells["Part_infos"].Value.ToString().Trim();
                 
                 var pmparams = new PostManagerParams
                 {
+                    AM_data = row.ToDataDictionary(),
                     DataSet = map_table.DataSet,
                     Branch = FilterControl.String1,
+                    Serial = seri,
                     InvoiceNo = invoiceNo,
                     InvoiceDate = ngay_ct,
                     V6PartnerID = v6_partner_id,
                     Pattern = pattern,
                     Fkey_hd = fkey_hd,
+                    Saved_Partner_infos = part_infos,
                     Mode = mode,
                 };
                 string error;
