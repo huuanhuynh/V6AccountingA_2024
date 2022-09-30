@@ -614,6 +614,27 @@
     <Type>0</Type>
     <Key>h/jceXJFajWxQkcFAcaoL+UqelHL3Ypa2iRWi6FsiCfp2CdF43g85g==</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>32</Stt>
+    <Server>115.78.11.222,7879</Server>
+    <Server1>27.74.247.79,7879</Server1>
+    <Server2>115.78.11.222,7879</Server2>
+    <Database>V6B_VH16</Database>
+    <Database2>V6B_VH16</Database2>
+    <UserId>v6sa</UserId>
+    <UserId2>v6sa</UserId2>
+    <Epassword>j4NdO7MLXBGclP+pHOu/x9AB4n+IhHpb</Epassword>
+    <Epassword2>j4NdO7MLXBGclP+pHOu/x9AB4n+IhHpb</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>Dữ liệu VH2016 (WAN2)</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>fLf+wQVGGRpDAb9Dhl46FUp8pFQUP8rMprrLhfEqrq8=</Key>
+    <Key1>uRN0vmY0rELBL93imprZMfofZal52bkLWoz5v/5ydRk=</Key1>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

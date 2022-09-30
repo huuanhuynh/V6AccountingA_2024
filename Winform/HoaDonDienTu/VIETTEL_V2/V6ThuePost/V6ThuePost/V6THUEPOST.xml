@@ -68,6 +68,7 @@
 	<ItemInfo	Field='discount'	Value='0' FieldV6=''	Type='Field'/>
 	<ItemInfo	Field='itemDiscount'	FieldV6='ck_nt'	Type='Field'/>
 	<ItemInfo	Field='selection'	Value='' FieldV6=''	Type='Field'/>
+	<!--ItemInfo	Field='selection'	FieldV6='0'	Type='Field'  Note='null-1- Hàng Hóa 2: Ghi chú 3: Chiết khấu 4: Bảng kê 5: Phí khác.'/-->
 	
 	
 	<SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/>

@@ -715,7 +715,7 @@ namespace V6ThuePostViettelV2Api
         /// <param name="savefolder"></param>
         /// <param name="v6Return">Thông tin trả về</param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDFexchange(string codeTax, string invoiceNo, string strIssueDate, string savefolder, out V6Return v6Return)
+        public string DownloadInvoicePDFexchange(string codeTax, string invoiceNo, string uid, string strIssueDate, string savefolder, out V6Return v6Return)
         {
             v6Return = new V6Return();
             //invoiceNo = invoiceNo.Replace("/", "%2F");
@@ -748,12 +748,29 @@ namespace V6ThuePostViettelV2Api
                 responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
                 v6Return.RESULT_OBJECT = responseObject;
             }
+            
+            if (responseObject.message != null && responseObject.message.Contains("NOT_FOUND_DATA")) // Không tìm thấy (do sai ngày giờ), thực hiện lấy thông tin và tải lại.
+            {
+                string search_result = SearchInvoiceByTransactionUuid(_codetax, uid, out v6Return);
+                if (string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
+                {
+                    SearchInvoiceResponseV2 search_result_object = (SearchInvoiceResponseV2)v6Return.RESULT_OBJECT;
+                    strIssueDate = search_result_object.result[0].issueDate;                // đảo issueDate
+                    parameters = string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}",
+                        codeTax, invoiceNo, strIssueDate, _username);
+                    result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
+                    v6Return = new V6Return();
+                    v6Return.RESULT_STRING = result;
+                    responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+                    v6Return.RESULT_OBJECT = responseObject;
+                }
+            }
 
             string fileName = responseObject.fileName;
             if (string.IsNullOrEmpty(fileName) || responseObject.fileToBytes == null)
             {
                 v6Return.RESULT_ERROR_MESSAGE = "Download no file! " + responseObject.message;
-                throw new Exception("Download no file!" + responseObject.message);
+                return null;
             }
             else
             {
@@ -820,6 +837,7 @@ namespace V6ThuePostViettelV2Api
                     v6Return.SO_HD = responseObject.result[0].invoiceNo;
                     v6Return.ID = responseObject.result[0].transactionID;
                     v6Return.SECRET_CODE = responseObject.result[0].reservationCode;
+                    v6Return.NGAY_CT_VIETTEL = responseObject.result[0].issueDate;
                 }
             }
             catch (Exception ex)
