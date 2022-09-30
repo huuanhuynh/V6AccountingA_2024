@@ -3878,7 +3878,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 {
                     
                     _print_flag = false;
-                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.DoNoThing, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -4051,7 +4051,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 {
                     
                     _print_flag = false;
-                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.DoNoThing, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -4650,7 +4650,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
             else if (Mode == V6Mode.View)
             {
-                BasePrint(Invoice, _sttRec, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
+                BasePrint(Invoice, _sttRec, V6PrintMode.DoNoThing, TongThanhToan, TongThanhToanNT, true);
             }
         }
 
@@ -5256,7 +5256,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            BasePrint(Invoice, _sttRec, V6PrintMode.None, TongThanhToan, TongThanhToanNT, false);
+            BasePrint(Invoice, _sttRec, V6PrintMode.DoNoThing, TongThanhToan, TongThanhToanNT, false);
         }
         
         private void chkSuaTien_CheckedChanged(object sender, EventArgs e)

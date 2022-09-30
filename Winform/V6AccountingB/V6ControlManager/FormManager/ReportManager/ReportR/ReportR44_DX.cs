@@ -25,6 +25,7 @@ using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using System.Globalization;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
@@ -165,8 +166,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        public bool AutoPrint = false;
-        public bool AutoClickNhan = false;
+        public V6PrintMode PrintMode = V6PrintMode.DoNoThing;
+        //public bool AutoClickNhan = false;
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -786,7 +787,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
 
         /// <summary>
-        /// Được gọi trong from_load
+        /// Được gọi trong from load
         /// </summary>
         private void MyInit2()
         {
@@ -981,9 +982,18 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 SetTBLdata();
                 ShowReport();
             }
-            else if (AutoClickNhan)
+            else if (PrintMode != V6PrintMode.DoNoThing)
             {
-                btnNhan.PerformClick();
+                try
+                {
+                    btnNhanImage = btnNhan.Image;
+                    FormManagerHelper.HideMainMenu();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                }
             }
         }
 
@@ -1004,7 +1014,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 btnNhanImage = btnNhan.Image;
                 FormManagerHelper.HideMainMenu();
-                MakeReport2();
+                MakeReport2(V6PrintMode.DoNoThing, null, 1);
             }
             catch (Exception ex)
             {
@@ -1098,8 +1108,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// tLoadData.Start();
         /// timerViewReport.Start();
         /// </summary>
-        private void MakeReport2()
+        private void MakeReport2(V6PrintMode printMode, string printerName, int printCopy = 1)
         {
+            PrintMode = printMode;
+            PrinterName = printerName;
+            _printCopy = printCopy;
+
             if (GenerateProcedureParameters()) //Add các key khác
             {
                 _executesuccess = false;
@@ -1428,7 +1442,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             else
             {
                 if (ReloadData == "1")
-                    MakeReport2();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
                 else
                     ViewReport();
             }
@@ -1453,7 +1467,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
 
                     if (ReloadData == "1")
-                        MakeReport2();
+                        MakeReport2(PrintMode, PrinterName, _printCopy);
                     else
                         ViewReport();
                 }
@@ -1493,11 +1507,25 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 FormatGridView();
                 gridViewTopFilter1.MadeFilterItems();
                 ViewReport();
-                if (AutoPrint)
+                if (PrintMode == V6PrintMode.AutoPrint)
                 {
                     Print(PrinterName, _repx0);
-                    Dispose();
+                    if (!IsDisposed) Dispose();
                 }
+                else if (PrintMode == V6PrintMode.AutoClickPrint)
+                {
+                    btnIn.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoExportT)
+                {
+                    if (btnExport3.Visible && btnExport3.Enabled)
+                        btnExport3.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoLoadData)
+                {
+                    //Done;
+                }
+                
                 gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 dataGridView1.Focus();
             }
@@ -1755,7 +1783,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
 
-                view.AutoClickNhan = true;
+                view.PrintMode = V6PrintMode.AutoLoadData;
                 view.ShowToForm(this, "Chi tiết", true);
 
                 SetStatus2Text();
@@ -1872,7 +1900,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
-                MakeReport2();
+                MakeReport2(PrintMode, PrinterName, _printCopy);
             else
                 ViewReport();
         }

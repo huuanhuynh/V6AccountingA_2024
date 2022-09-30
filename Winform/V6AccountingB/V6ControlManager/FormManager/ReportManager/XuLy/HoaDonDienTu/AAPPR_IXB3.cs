@@ -154,15 +154,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
                             string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
                             DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
+                            string part_infos = row.Cells["Part_infos"].Value.ToString().Trim();
+                            string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
+                            string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
 
                             var pmparams1 = new PostManagerParams
                             {
+                                AM_data = row.ToDataDictionary(),
                                 DataSet = map_table.DataSet,
                                 Branch = FilterControl.String1,
                                 InvoiceNo = invoiceNo,
                                 InvoiceDate = ngay_ct,
+                                V6PartnerID = v6_partner_id,
                                 Pattern = pattern,
                                 Serial = serial,
+                                Fkey_hd = fkey_hd,
+                                Saved_Partner_infos = part_infos,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
                             pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);

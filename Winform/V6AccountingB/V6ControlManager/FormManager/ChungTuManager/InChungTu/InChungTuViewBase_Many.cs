@@ -3072,10 +3072,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
     public enum V6PrintMode
     {
-        None = -1,
         DoNoThing = 0,
         AutoPrint = 1,
         AutoClickPrint = 2,
         AutoExportT = 3,
+        AutoLoadData = 4,
     }
 }

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
@@ -66,10 +67,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 view.Dock = DockStyle.Fill;
                 view.FilterControl.InitFilters = oldKeys;
                 view.FilterControl.SetParentRow(row.ToDataDictionary());
-                view.AutoPrint = false;
+                view.PrintMode = V6PrintMode.DoNoThing;
                 view.PrinterName = _PrinterName;
                 view.PrintCopies = _PrintCopies;
-                view.AutoClickNhan = true;
+                view.PrintMode = V6PrintMode.AutoLoadData;
                 view.ShowToForm(this, _reportCaption, true);
             }
             else
@@ -84,10 +85,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 view.Dock = DockStyle.Fill;
                 view.FilterControl.InitFilters = oldKeys;
                 view.FilterControl.SetParentRow(row.ToDataDictionary());
-                view.AutoPrint = false;
+                view.PrintMode = V6PrintMode.DoNoThing;
                 view.PrinterName = _PrinterName;
                 view.PrintCopies = _PrintCopies;
-                view.AutoClickNhan = true;
+                view.PrintMode = V6PrintMode.AutoLoadData;
                 view.ShowToForm(this, _reportCaption, true);
             }
 
@@ -187,10 +188,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             view.Dock = DockStyle.Fill;
                             view.FilterControl.InitFilters = oldKeys;
                             view.FilterControl.SetParentRow(row.ToDataDictionary());
-                            view.AutoPrint = InLienTuc;
+                            view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
                             view.PrinterName = _PrinterName;
                             view.PrintCopies = _PrintCopies;
-                            view.AutoClickNhan = true;
+                            view.PrintMode = V6PrintMode.AutoLoadData;
                             view.ShowToForm(this, _reportCaption, true);
                         }
                         else
@@ -205,10 +206,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             view.Dock = DockStyle.Fill;
                             view.FilterControl.InitFilters = oldKeys;
                             view.FilterControl.SetParentRow(row.ToDataDictionary());
-                            view.AutoPrint = InLienTuc;
+                            view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
                             view.PrinterName = _PrinterName;
                             view.PrintCopies = _PrintCopies;
-                            view.AutoClickNhan = true;
+                            view.PrintMode = V6PrintMode.AutoLoadData;
                             view.ShowToForm(this, _reportCaption, true);
                         }
 
@@ -339,13 +340,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     view.FilterControl.SetParentAllRow(dataGridView1);
 
-                    //view.AutoPrint = FilterControl.Check1;
-                    view.AutoPrint = InLienTuc;
+                    view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
 
                     view.PrinterName = _PrinterName;
                     view.PrintCopies = _PrintCopies;
 
-                    view.AutoClickNhan = true;
+                    view.PrintMode = V6PrintMode.AutoLoadData;
                     view.ShowToForm(this, "", true);
                 }
                 else
@@ -363,13 +363,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     view.FilterControl.SetParentAllRow(dataGridView1);
 
-                    //view.AutoPrint = FilterControl.Check1;
-                    view.AutoPrint = InLienTuc;
+                    view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
 
                     view.PrinterName = _PrinterName;
                     view.PrintCopies = _PrintCopies;
 
-                    view.AutoClickNhan = true;
+                    view.PrintMode = V6PrintMode.AutoLoadData;
                     view.ShowToForm(this, "", true);
                 }
 

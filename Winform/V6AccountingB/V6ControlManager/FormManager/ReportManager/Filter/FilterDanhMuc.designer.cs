@@ -39,6 +39,7 @@
             this.panel1 = new V6ReportControls.PanelFilter();
             this.dateSelectButton2 = new V6Controls.Controls.DateSelectButton();
             this.dateSelectButton1 = new V6Controls.Controls.DateSelectButton();
+            this.chkInLienTuc = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,9 +113,9 @@
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Location = new System.Drawing.Point(2, 60);
+            this.groupBox1.Location = new System.Drawing.Point(2, 90);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 467);
+            this.groupBox1.Size = new System.Drawing.Size(282, 437);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -150,7 +151,7 @@
             this.panel1.LeftMargin = 0;
             this.panel1.Location = new System.Drawing.Point(3, 16);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(276, 448);
+            this.panel1.Size = new System.Drawing.Size(276, 418);
             this.panel1.TabIndex = 2;
             // 
             // dateSelectButton2
@@ -171,11 +172,25 @@
             this.dateSelectButton1.Size = new System.Drawing.Size(21, 21);
             this.dateSelectButton1.TabIndex = 2;
             // 
+            // chkInLienTuc
+            // 
+            this.chkInLienTuc.AccessibleDescription = "FILTERC00003";
+            this.chkInLienTuc.AccessibleName = "CHK_IN_LT";
+            this.chkInLienTuc.AutoSize = true;
+            this.chkInLienTuc.Location = new System.Drawing.Point(140, 60);
+            this.chkInLienTuc.Name = "chkInLienTuc";
+            this.chkInLienTuc.Size = new System.Drawing.Size(72, 17);
+            this.chkInLienTuc.TabIndex = 7;
+            this.chkInLienTuc.Text = "In liên tục";
+            this.chkInLienTuc.UseVisualStyleBackColor = true;
+            this.chkInLienTuc.CheckedChanged += new System.EventHandler(this.chkInLienTuc_CheckedChanged);
+            // 
             // FilterDanhMuc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.chkInLienTuc);
             this.Controls.Add(this.dateSelectButton2);
             this.Controls.Add(this.dateSelectButton1);
             this.Controls.Add(this.date2);
@@ -205,5 +220,6 @@
         private V6ReportControls.PanelFilter panel1;
         private V6Controls.Controls.DateSelectButton dateSelectButton2;
         private V6Controls.Controls.DateSelectButton dateSelectButton1;
+        private V6Controls.V6CheckBox chkInLienTuc;
     }
 }

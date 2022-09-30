@@ -45,6 +45,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             dataGridView1.Height = panel1.Height - 10;
             dataGridView1.Width = panel1.Width - dataGridView1.Left - 5;
+            if (FilterControl != null)
+            {
+                FilterControl.Width = dataGridView1.Left - 5;
+            }
         }
 
         void dataGridView1_EditingControlShowing(object sender0, DataGridViewEditingControlShowingEventArgs e0)

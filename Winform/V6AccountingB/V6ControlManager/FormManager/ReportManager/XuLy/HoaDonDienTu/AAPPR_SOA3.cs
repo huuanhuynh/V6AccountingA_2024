@@ -166,16 +166,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             string invoiceNo = row.Cells["SO_CT"].Value.ToString().Trim();
                             DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
                             string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                            string pi = row.Cells["Part_infos"].Value.ToString().Trim();
+                            string part_infos = row.Cells["Part_infos"].Value.ToString().Trim();
 
                             var pmparams1 = new PostManagerParams
                             {
+                                AM_data = row.ToDataDictionary(),
                                 DataSet = map_table.DataSet,
                                 Branch = FilterControl.String1,
                                 InvoiceNo = invoiceNo,
                                 InvoiceDate = ngay_ct,
                                 Fkey_hd = fkey_hd,
-                                Saved_Partner_infos = pi,
+                                Saved_Partner_infos = part_infos,
                                 Pattern = pattern,
                                 Serial = serial,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
@@ -514,6 +515,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string dir = row.Cells["Dir_in"].Value.ToString().Trim();
                 string file = row.Cells["File_in"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                string part_infos = row.Cells["Part_infos"].Value.ToString().Trim();
                 string inputPattern = "";
                 // nhập mẫu để lấy thông tin Metadata Viettel
                 StringInput inputForm = new StringInput("Nhập mẫu hóa đơn. vd 1/001", "1/001");
@@ -547,6 +549,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     Key_Down = "TestView" + (shift_is_down ? "_Shift" : ""),
                     RptFileFull = ReportFileFull,
                     Fkey_hd = fkey_hd,
+                    Saved_Partner_infos = part_infos,
                 };
                 result = PostManager.PowerPost(paras);
                 Clipboard.SetText(result);

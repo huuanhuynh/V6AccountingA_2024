@@ -4884,7 +4884,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 {
                     if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
                     {
-                        if (printMode == V6PrintMode.None)
+                        if (printMode == V6PrintMode.DoNoThing)
                         {
                             printMode = V6PrintMode.DoNoThing;
                             if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
@@ -4982,7 +4982,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                     parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
                     parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
                     c.FilterControl.RptExtraParameters = parameterData;
-                    c.AutoClickNhan = true;
+                    c.PrintMode = V6PrintMode.AutoLoadData;
                     c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
                 }
                 else
@@ -5006,7 +5006,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                     parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
                     parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
                     c.FilterControl.RptExtraParameters = parameterData;
-                    c.AutoClickNhan = true;
+                    c.PrintMode = V6PrintMode.AutoLoadData;
                     c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
                 }
                 SetStatus2Text();
@@ -5048,7 +5048,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                     parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
                     parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
                     c.FilterControl.RptExtraParameters = parameterData;
-                    c.AutoClickNhan = true;
+                    c.PrintMode = V6PrintMode.AutoLoadData;
                     c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
                 }
                 else
@@ -5072,7 +5072,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                     parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
                     parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
                     c.FilterControl.RptExtraParameters = parameterData;
-                    c.AutoClickNhan = true;
+                    c.PrintMode = V6PrintMode.AutoLoadData;
                     c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
                 }
                 SetStatus2Text();

@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
@@ -381,7 +382,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     plist.Add(new SqlParameter("@uid", uid));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     c.FilterControl.InitFilters = plist;
-                    c.AutoClickNhan = true;
+                    c.PrintMode = V6PrintMode.AutoLoadData;
                     c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
                 }
                 else
@@ -395,7 +396,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     plist.Add(new SqlParameter("@uid", uid));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     c.FilterControl.InitFilters = plist;
-                    c.AutoClickNhan = true;
+                    c.PrintMode = V6PrintMode.AutoLoadData;
                     c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
                 }
                 

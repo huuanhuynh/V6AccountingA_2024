@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
@@ -135,7 +136,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     IDictionary<string, object> filterData = new SortedDictionary<string, object>();
                     filterData["MA_XULY"] = _ma_xuly;
                     c.FilterControl.SetData(filterData);
-                    c.AutoClickNhan = true;
+                    c.PrintMode = V6PrintMode.AutoLoadData;
                     c.ShowToForm(this, _reportCaption, true, true);
                 }
                 else
@@ -145,7 +146,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     IDictionary<string, object> filterData = new SortedDictionary<string, object>();
                     filterData["MA_XULY"] = _ma_xuly;
                     c.FilterControl.SetData(filterData);
-                    c.AutoClickNhan = true;
+                    c.PrintMode = V6PrintMode.AutoLoadData;
                     c.ShowToForm(this, _reportCaption, true, true);
                 }
                 

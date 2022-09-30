@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
@@ -160,7 +161,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Report
                                 KhoParams.ReportFile,
                                 "reportCaption", "caption2", "", "", "");
                             c.FilterControl.SetData(plistData);
-                            c.AutoClickNhan = true;
+                            c.PrintMode = V6PrintMode.AutoLoadData;
                             c.ShowToForm(this, "Vitri");
                         }
 

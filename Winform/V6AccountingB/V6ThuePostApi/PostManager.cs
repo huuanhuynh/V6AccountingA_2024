@@ -59,6 +59,9 @@ namespace V6ThuePostManager
         static DataTable ad_table;
         static DataTable am_table;
         private static string Fkey_hd_tt = null;
+        /// <summary>
+        /// giá trị ngày được ghi nhận khi read_data_viettel, gán lại result.
+        /// </summary>
         private static string ngay_ct_viettel = null;
         /// <summary>
         /// Bảng dữ liệu xuất Excel
@@ -3143,10 +3146,12 @@ namespace V6ThuePostManager
                     jsonBody = ReadData_Viettel(paras);
                     //File.Create(flagFileName1).Close();
                     result = viettel_ws.POST_EDIT(jsonBody);
+                    paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 }
 
                 //Phân tích result
                 paras.Result.V6ReturnValues.RESULT_STRING = result;
+                paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 string message = "";
                 try
                 {
@@ -3325,6 +3330,7 @@ namespace V6ThuePostManager
 
                 //Phân tích result ra câu thông báo.
                 //paras.Result.V6ReturnValues.RESULT_STRING = result;
+                paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 string message = "";
                 try
                 {
@@ -3512,6 +3518,7 @@ namespace V6ThuePostManager
                 }
 
                 //Phân tích result
+                paras.Result.V6ReturnValues.NGAY_CT_VIETTEL = ngay_ct_viettel;
                 paras.Result.V6ReturnValues.RESULT_STRING = result;
                 string message = "";
                 try
@@ -3810,6 +3817,7 @@ namespace V6ThuePostManager
                         V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                 //string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
                 //string strIssueDate_Viettel = V6JsonConverter.ObjectToJson(paras.InvoiceDate, _datetype);
+
                 string strIssueDate_Viettel = "";
                 if (!paras.Partner_infor_dic.ContainsKey("NGAY_CT") || string.IsNullOrEmpty(paras.Partner_infor_dic["NGAY_CT"]))
                 {
@@ -3820,8 +3828,30 @@ namespace V6ThuePostManager
                     strIssueDate_Viettel = paras.Partner_infor_dic["NGAY_CT"];
                 }
 
-                return viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.Partner_infor_dic["SO_HD"], strIssueDate_Viettel,
+                // Mode = 2 ; chuyen doi
+                string downloaded_file = viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.Partner_infor_dic["SO_HD"], paras.Fkey_hd, strIssueDate_Viettel,
                     V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+
+                if (string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE))
+                {
+                    return downloaded_file;
+                }
+                else if (paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE.Contains("NOT_FOUND_DATA"))
+                {
+                    // Lay lai thong tin issiueDate, update? download again.
+                    viettel_V2WS.SearchInvoiceByTransactionUuid(_codetax, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    if (string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE))
+                    {
+                        downloaded_file = viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.Partner_infor_dic["SO_HD"], paras.Fkey_hd, paras.Result.V6ReturnValues.NGAY_CT_VIETTEL,
+                            V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                    }
+
+                    return downloaded_file; // ket qua cu.
+                }
+                else
+                {
+                    return downloaded_file; // ket qua cu.
+                }
             }
             else
             {

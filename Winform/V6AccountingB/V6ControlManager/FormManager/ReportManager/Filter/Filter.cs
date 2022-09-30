@@ -114,7 +114,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     break;
                 case "ACOVVKH2N":
                     result = new ACOVVKH2N();
-
+                    break;
                     #endregion Cập nhật số dư
 
                     #region === Báo cáo quản trị bán hàng ===
@@ -1536,6 +1536,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "AINVTBAR2F9":
                     result = new AINVTBAR2F9();
                     break;
+
+                case "ACOVVBAR2":
+                    result = new FilterDanhMuc("ALVV");
+                    break;
+                case "ACOVVBAR2F9":
+                    result = new ACOVVBAR2F9();
+                    break;
+                
+                
+
                 case "AINVTBAR3":
                     result = new AINVTBAR3();
                     break;

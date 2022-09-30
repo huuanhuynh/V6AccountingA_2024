@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Controls;
@@ -27,7 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
         public List<DataRow> remove_list_d = new List<DataRow>();
 
-        public bool AutoClickNhan = false;
+        public V6PrintMode PrintMode = V6PrintMode.AutoLoadData;// AutoClickNhan = false;
         public string _reportProcedure, _reportFile;
         public string _program, _reportCaption, _reportCaption2;
         public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
@@ -508,7 +509,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             LoadTag(4, "", _reportProcedure, m_itemId, "");
             InvokeFormEvent(FormDynamicEvent.INIT2);
             GetSumCondition();
-            if (AutoClickNhan)
+            if (PrintMode == V6PrintMode.AutoLoadData)
             {
                 btnNhan.PerformClick();
             }

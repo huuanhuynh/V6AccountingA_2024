@@ -2506,6 +2506,12 @@
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.Designer.cs">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\ACOVVBAR2F9.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\ACOVVBAR2F9.designer.cs">
+      <DependentUpon>ACOVVBAR2F9.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDEMAILALL.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5025,6 +5031,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\AIN\AINGIA_DD_LO.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\ACOVVBAR2_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\ACOVVBAR2_Control.Designer.cs">
+      <DependentUpon>ACOVVBAR2_Control.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7522,6 +7534,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.resx">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\ACOVVBAR2F9.resx">
+      <DependentUpon>ACOVVBAR2F9.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\Base0\Sms\XASENDEMAILALL.resx">
       <DependentUpon>XASENDEMAILALL.cs</DependentUpon>
     </EmbeddedResource>
@@ -8808,6 +8823,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINGIA_TBDD.resx">
       <DependentUpon>AINGIA_TBDD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\ACOVVBAR2_Control.resx">
+      <DependentUpon>ACOVVBAR2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG.resx">
       <DependentUpon>ATOGIAMNG.cs</DependentUpon>

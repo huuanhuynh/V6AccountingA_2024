@@ -196,6 +196,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return result;
         }
 
+        private void chkInLienTuc_CheckedChanged(object sender, EventArgs e)
+        {
+            Check1 = chkInLienTuc.Checked;
+        }
+
         
     }
 }

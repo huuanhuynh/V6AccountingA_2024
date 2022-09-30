@@ -290,6 +290,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.lblMa = new System.Windows.Forms.Label();
+            this.txtGhiChu = new V6Controls.V6ColorTextBox();
+            this.lblGhiChu = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTaiKhoan.SuspendLayout();
@@ -328,6 +330,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.txtGhiChu);
+            this.tabThongTinChinh.Controls.Add(this.lblGhiChu);
             this.tabThongTinChinh.Controls.Add(this.label4);
             this.tabThongTinChinh.Controls.Add(this.txtma_thue);
             this.tabThongTinChinh.Controls.Add(this.txtNhomVT8);
@@ -592,7 +596,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(150, 292);
+            this.checkBox1.Location = new System.Drawing.Point(150, 333);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(107, 21);
@@ -655,7 +659,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label15.AccessibleDescription = "ADDEDITL00022";
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 292);
+            this.label15.Location = new System.Drawing.Point(8, 333);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(73, 17);
@@ -1352,7 +1356,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox37.AccessibleName = "HAN_SD";
             this.v6NumberTextBox37.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox37.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox37.DecimalPlaces = 0;
             this.v6NumberTextBox37.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox37.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox37.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1375,7 +1378,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox36.AccessibleName = "HAN_BH";
             this.v6NumberTextBox36.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox36.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox36.DecimalPlaces = 0;
             this.v6NumberTextBox36.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox36.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox36.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1398,7 +1400,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox30.AccessibleName = "Cycle_kk";
             this.v6NumberTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox30.DecimalPlaces = 0;
             this.v6NumberTextBox30.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox30.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox30.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1421,7 +1422,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox35.AccessibleName = "DATE_YN";
             this.v6NumberTextBox35.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox35.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox35.DecimalPlaces = 0;
             this.v6NumberTextBox35.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox35.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox35.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1446,7 +1446,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox34.AccessibleName = "VITRI_YN";
             this.v6NumberTextBox34.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox34.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox34.DecimalPlaces = 0;
             this.v6NumberTextBox34.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox34.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox34.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1471,7 +1470,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox33.AccessibleName = "KK_YN";
             this.v6NumberTextBox33.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox33.DecimalPlaces = 0;
             this.v6NumberTextBox33.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox33.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox33.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1496,7 +1494,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox32.AccessibleName = "CACH_XUAT";
             this.v6NumberTextBox32.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox32.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox32.DecimalPlaces = 0;
             this.v6NumberTextBox32.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox32.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox32.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1521,7 +1518,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox31.AccessibleName = "KIEU_LO";
             this.v6NumberTextBox31.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox31.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox31.DecimalPlaces = 0;
             this.v6NumberTextBox31.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox31.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox31.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1546,7 +1542,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox22.AccessibleName = "LO_YN";
             this.v6NumberTextBox22.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox22.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox22.DecimalPlaces = 0;
             this.v6NumberTextBox22.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox22.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox22.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1640,7 +1635,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox5.Name = "v6NumberTextBox5";
             this.v6NumberTextBox5.Size = new System.Drawing.Size(210, 23);
             this.v6NumberTextBox5.TabIndex = 5;
-            this.v6NumberTextBox5.Text = "0,000";
+            this.v6NumberTextBox5.Text = "0";
             this.v6NumberTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox5.Value = new decimal(new int[] {
             0,
@@ -1662,7 +1657,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox4.Name = "v6NumberTextBox4";
             this.v6NumberTextBox4.Size = new System.Drawing.Size(210, 23);
             this.v6NumberTextBox4.TabIndex = 3;
-            this.v6NumberTextBox4.Text = "0,000";
+            this.v6NumberTextBox4.Text = "0";
             this.v6NumberTextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox4.Value = new decimal(new int[] {
             0,
@@ -1966,7 +1961,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox40.Name = "v6NumberTextBox40";
             this.v6NumberTextBox40.Size = new System.Drawing.Size(197, 23);
             this.v6NumberTextBox40.TabIndex = 13;
-            this.v6NumberTextBox40.Text = "0,000";
+            this.v6NumberTextBox40.Text = "0";
             this.v6NumberTextBox40.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox40.Value = new decimal(new int[] {
             0,
@@ -1988,7 +1983,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox39.Name = "v6NumberTextBox39";
             this.v6NumberTextBox39.Size = new System.Drawing.Size(197, 23);
             this.v6NumberTextBox39.TabIndex = 5;
-            this.v6NumberTextBox39.Text = "0,000";
+            this.v6NumberTextBox39.Text = "0";
             this.v6NumberTextBox39.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox39.Value = new decimal(new int[] {
             0,
@@ -2010,7 +2005,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox38.Name = "v6NumberTextBox38";
             this.v6NumberTextBox38.Size = new System.Drawing.Size(197, 23);
             this.v6NumberTextBox38.TabIndex = 3;
-            this.v6NumberTextBox38.Text = "0,000";
+            this.v6NumberTextBox38.Text = "0";
             this.v6NumberTextBox38.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox38.Value = new decimal(new int[] {
             0,
@@ -2057,7 +2052,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox13.Name = "v6NumberTextBox13";
             this.v6NumberTextBox13.Size = new System.Drawing.Size(197, 23);
             this.v6NumberTextBox13.TabIndex = 11;
-            this.v6NumberTextBox13.Text = "0,000";
+            this.v6NumberTextBox13.Text = "0";
             this.v6NumberTextBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox13.Value = new decimal(new int[] {
             0,
@@ -2079,7 +2074,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox12.Name = "v6NumberTextBox12";
             this.v6NumberTextBox12.Size = new System.Drawing.Size(197, 23);
             this.v6NumberTextBox12.TabIndex = 9;
-            this.v6NumberTextBox12.Text = "0,000";
+            this.v6NumberTextBox12.Text = "0";
             this.v6NumberTextBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox12.Value = new decimal(new int[] {
             0,
@@ -2101,7 +2096,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox11.Name = "v6NumberTextBox11";
             this.v6NumberTextBox11.Size = new System.Drawing.Size(197, 23);
             this.v6NumberTextBox11.TabIndex = 7;
-            this.v6NumberTextBox11.Text = "0,000";
+            this.v6NumberTextBox11.Text = "0";
             this.v6NumberTextBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox11.Value = new decimal(new int[] {
             0,
@@ -2378,7 +2373,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox10.Name = "v6NumberTextBox10";
             this.v6NumberTextBox10.Size = new System.Drawing.Size(191, 23);
             this.v6NumberTextBox10.TabIndex = 8;
-            this.v6NumberTextBox10.Text = "0,000";
+            this.v6NumberTextBox10.Text = "0";
             this.v6NumberTextBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox10.Value = new decimal(new int[] {
             0,
@@ -2400,7 +2395,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox9.Name = "v6NumberTextBox9";
             this.v6NumberTextBox9.Size = new System.Drawing.Size(191, 23);
             this.v6NumberTextBox9.TabIndex = 9;
-            this.v6NumberTextBox9.Text = "0,000";
+            this.v6NumberTextBox9.Text = "0";
             this.v6NumberTextBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox9.Value = new decimal(new int[] {
             0,
@@ -2422,7 +2417,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox8.Name = "v6NumberTextBox8";
             this.v6NumberTextBox8.Size = new System.Drawing.Size(191, 23);
             this.v6NumberTextBox8.TabIndex = 7;
-            this.v6NumberTextBox8.Text = "0,000";
+            this.v6NumberTextBox8.Text = "0";
             this.v6NumberTextBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox8.Value = new decimal(new int[] {
             0,
@@ -2444,7 +2439,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox7.Name = "v6NumberTextBox7";
             this.v6NumberTextBox7.Size = new System.Drawing.Size(191, 23);
             this.v6NumberTextBox7.TabIndex = 6;
-            this.v6NumberTextBox7.Text = "0,000";
+            this.v6NumberTextBox7.Text = "0";
             this.v6NumberTextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox7.Value = new decimal(new int[] {
             0,
@@ -2466,7 +2461,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox6.Name = "v6NumberTextBox6";
             this.v6NumberTextBox6.Size = new System.Drawing.Size(191, 23);
             this.v6NumberTextBox6.TabIndex = 5;
-            this.v6NumberTextBox6.Text = "0,000";
+            this.v6NumberTextBox6.Text = "0";
             this.v6NumberTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox6.Value = new decimal(new int[] {
             0,
@@ -2689,7 +2684,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtSLS6.Name = "txtSLS6";
             this.txtSLS6.Size = new System.Drawing.Size(200, 23);
             this.txtSLS6.TabIndex = 155;
-            this.txtSLS6.Text = "0,000";
+            this.txtSLS6.Text = "0";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS6.Value = new decimal(new int[] {
             0,
@@ -2714,7 +2709,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtSLS5.Name = "txtSLS5";
             this.txtSLS5.Size = new System.Drawing.Size(200, 23);
             this.txtSLS5.TabIndex = 153;
-            this.txtSLS5.Text = "0,000";
+            this.txtSLS5.Text = "0";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS5.Value = new decimal(new int[] {
             0,
@@ -2739,7 +2734,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtSLS4.Name = "txtSLS4";
             this.txtSLS4.Size = new System.Drawing.Size(200, 23);
             this.txtSLS4.TabIndex = 151;
-            this.txtSLS4.Text = "0,000";
+            this.txtSLS4.Text = "0";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS4.Value = new decimal(new int[] {
             0,
@@ -3278,7 +3273,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox3.TabIndex = 107;
-            this.v6NumberTextBox3.Text = "0,000";
+            this.v6NumberTextBox3.Text = "0";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
             0,
@@ -3301,7 +3296,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox2.TabIndex = 105;
-            this.v6NumberTextBox2.Text = "0,000";
+            this.v6NumberTextBox2.Text = "0";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
             0,
@@ -3324,7 +3319,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox1.TabIndex = 103;
-            this.v6NumberTextBox1.Text = "0,000";
+            this.v6NumberTextBox1.Text = "0";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,
@@ -3567,7 +3562,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txths_qd4.Name = "txths_qd4";
             this.txths_qd4.Size = new System.Drawing.Size(184, 23);
             this.txths_qd4.TabIndex = 38;
-            this.txths_qd4.Text = "0,000";
+            this.txths_qd4.Text = "0";
             this.txths_qd4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txths_qd4.Value = new decimal(new int[] {
             0,
@@ -3599,7 +3594,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txths_qd3.Name = "txths_qd3";
             this.txths_qd3.Size = new System.Drawing.Size(184, 23);
             this.txths_qd3.TabIndex = 36;
-            this.txths_qd3.Text = "0,000";
+            this.txths_qd3.Text = "0";
             this.txths_qd3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txths_qd3.Value = new decimal(new int[] {
             0,
@@ -3631,7 +3626,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txths_qd2.Name = "txths_qd2";
             this.txths_qd2.Size = new System.Drawing.Size(184, 23);
             this.txths_qd2.TabIndex = 34;
-            this.txths_qd2.Text = "0,000";
+            this.txths_qd2.Text = "0";
             this.txths_qd2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txths_qd2.Value = new decimal(new int[] {
             0,
@@ -3663,7 +3658,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txths_qd1.Name = "txths_qd1";
             this.txths_qd1.Size = new System.Drawing.Size(184, 23);
             this.txths_qd1.TabIndex = 32;
-            this.txths_qd1.Text = "0,000";
+            this.txths_qd1.Text = "0";
             this.txths_qd1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txths_qd1.Value = new decimal(new int[] {
             0,
@@ -3827,7 +3822,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox21.Name = "v6NumberTextBox21";
             this.v6NumberTextBox21.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox21.TabIndex = 28;
-            this.v6NumberTextBox21.Text = "0,000";
+            this.v6NumberTextBox21.Text = "0";
             this.v6NumberTextBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox21.Value = new decimal(new int[] {
             0,
@@ -3849,7 +3844,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox20.Name = "v6NumberTextBox20";
             this.v6NumberTextBox20.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox20.TabIndex = 25;
-            this.v6NumberTextBox20.Text = "0,000";
+            this.v6NumberTextBox20.Text = "0";
             this.v6NumberTextBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox20.Value = new decimal(new int[] {
             0,
@@ -3871,7 +3866,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox19.Name = "v6NumberTextBox19";
             this.v6NumberTextBox19.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox19.TabIndex = 22;
-            this.v6NumberTextBox19.Text = "0,000";
+            this.v6NumberTextBox19.Text = "0";
             this.v6NumberTextBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox19.Value = new decimal(new int[] {
             0,
@@ -3893,7 +3888,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox18.Name = "v6NumberTextBox18";
             this.v6NumberTextBox18.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox18.TabIndex = 19;
-            this.v6NumberTextBox18.Text = "0,000";
+            this.v6NumberTextBox18.Text = "0";
             this.v6NumberTextBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox18.Value = new decimal(new int[] {
             0,
@@ -3915,7 +3910,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox17.Name = "v6NumberTextBox17";
             this.v6NumberTextBox17.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox17.TabIndex = 16;
-            this.v6NumberTextBox17.Text = "0,000";
+            this.v6NumberTextBox17.Text = "0";
             this.v6NumberTextBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox17.Value = new decimal(new int[] {
             0,
@@ -3937,7 +3932,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox16.Name = "v6NumberTextBox16";
             this.v6NumberTextBox16.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox16.TabIndex = 13;
-            this.v6NumberTextBox16.Text = "0,000";
+            this.v6NumberTextBox16.Text = "0";
             this.v6NumberTextBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox16.Value = new decimal(new int[] {
             0,
@@ -3959,7 +3954,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox15.Name = "v6NumberTextBox15";
             this.v6NumberTextBox15.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox15.TabIndex = 10;
-            this.v6NumberTextBox15.Text = "0,000";
+            this.v6NumberTextBox15.Text = "0";
             this.v6NumberTextBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox15.Value = new decimal(new int[] {
             0,
@@ -3981,7 +3976,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox14.Name = "v6NumberTextBox14";
             this.v6NumberTextBox14.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox14.TabIndex = 7;
-            this.v6NumberTextBox14.Text = "0,000";
+            this.v6NumberTextBox14.Text = "0";
             this.v6NumberTextBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox14.Value = new decimal(new int[] {
             0,
@@ -4384,6 +4379,36 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.lblMa.TabIndex = 0;
             this.lblMa.Text = "Mã vật tư";
             // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.AccessibleName = "ghi_chu";
+            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGhiChu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGhiChu.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGhiChu.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGhiChu.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGhiChu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGhiChu.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGhiChu.LeaveColor = System.Drawing.Color.White;
+            this.txtGhiChu.Location = new System.Drawing.Point(150, 288);
+            this.txtGhiChu.Margin = new System.Windows.Forms.Padding(5);
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(554, 43);
+            this.txtGhiChu.TabIndex = 55;
+            // 
+            // lblGhiChu
+            // 
+            this.lblGhiChu.AutoSize = true;
+            this.lblGhiChu.Location = new System.Drawing.Point(8, 291);
+            this.lblGhiChu.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblGhiChu.Name = "lblGhiChu";
+            this.lblGhiChu.Size = new System.Drawing.Size(57, 17);
+            this.lblGhiChu.TabIndex = 54;
+            this.lblGhiChu.Text = "Ghi chú";
+            // 
             // VatTuAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4678,5 +4703,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private V6DateTimeColor dateNgayS8;
         private V6DateTimeColor dateNgayS7;
         private V6CheckBox chkREPL_YN;
+        private V6ColorTextBox txtGhiChu;
+        private System.Windows.Forms.Label lblGhiChu;
     }
 }

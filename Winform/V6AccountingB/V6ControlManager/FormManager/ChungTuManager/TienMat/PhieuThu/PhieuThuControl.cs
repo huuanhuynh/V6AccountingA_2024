@@ -2650,7 +2650,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     
                     _print_flag = false;
-                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.DoNoThing, TongThanhToan, TongThanhToanNT, true);
                 }
             }
         }
@@ -2799,7 +2799,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     
                     _print_flag = false;
-                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.DoNoThing, TongThanhToan, TongThanhToanNT, true);
                 }
             }
         }
@@ -3422,7 +3422,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
             else if (Mode == V6Mode.View)
             {
-                BasePrint(Invoice, _sttRec, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
+                BasePrint(Invoice, _sttRec, V6PrintMode.DoNoThing, TongThanhToan, TongThanhToanNT, true);
             }
         }
 
@@ -3891,7 +3891,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         }
         private void btnIn_Click(object sender, EventArgs e)
         {
-            BasePrint(Invoice, _sttRec, V6PrintMode.None, txtTongThanhToan.Value, txtTongThanhToanNt.Value, false);
+            BasePrint(Invoice, _sttRec, V6PrintMode.DoNoThing, txtTongThanhToan.Value, txtTongThanhToanNt.Value, false);
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -5104,7 +5104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     filter._pb_type = 1;
                 }
                 //a.btnNhan.PerformClick();
-                a.AutoClickNhan = true;
+                a.PrintMode = V6PrintMode.AutoLoadData;
                 
                 a.ShowToForm(this, CorpLan1.GetText("ARCMO_ARF9"), true, true);
                 ViewInvoice(_sttRec, Mode);

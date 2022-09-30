@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
@@ -142,7 +143,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             view.FilterControl.SetParentRow(row.ToDataDictionary());
 
                             //view.AutoPrint = FilterControl.Check1;
-                            view.AutoPrint = InLienTuc;
+                            view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
 
                             view.PrinterName = _PrinterName;
                             view.PrintCopies = _PrintCopies;
@@ -170,8 +171,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                             view.FilterControl.SetParentRow(row.ToDataDictionary());
 
-                            //view.AutoPrint = FilterControl.Check1;
-                            view.AutoPrint = InLienTuc;
+                            view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
 
                             view.PrinterName = _PrinterName;
                             view.PrintCopies = _PrintCopies;
@@ -313,7 +313,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     view.FilterControl.InitFilters = oldKeys;
 
                     view.FilterControl.SetParentAllRow(dataGridView1);
-                    view.AutoClickNhan = true;
+                    view.PrintMode = V6PrintMode.AutoLoadData;
                     view.ShowToForm(this, _reportTitleF5, true);
                 }
                 else
@@ -334,7 +334,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //view.AutoPrint = InLienTuc;
                     //view.PrinterName = _PrinterName;
                     //view.PrintCopies = _PrintCopies;
-                    view.AutoClickNhan = true;
+                    view.PrintMode = V6PrintMode.AutoLoadData;
                     view.ShowToForm(this, _reportTitleF5, true);
                 }
 

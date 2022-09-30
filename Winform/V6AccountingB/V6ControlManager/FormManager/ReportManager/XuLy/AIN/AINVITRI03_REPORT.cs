@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
@@ -438,14 +439,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     var view = new ReportR_DX(m_itemId, _program + "BF7", _program + "BF7", _reportFile + "BF7", "caption", "2", "", "", "");
                     view.FilterControl.SetData(plistData);
-                    view.AutoClickNhan = true;
+                    view.PrintMode = V6PrintMode.AutoLoadData;
                     view.ShowToForm(this, GetType() + "_F7");
                 }
                 else
                 {
                     var view = new ReportRViewBase(m_itemId, _program + "BF7", _program + "BF7", _reportFile + "BF7", "caption", "2", "", "", "");
                     view.FilterControl.SetData(plistData);
-                    view.AutoClickNhan = true;
+                    view.PrintMode = V6PrintMode.AutoLoadData;
                     view.ShowToForm(this, GetType() + "_F7");
                 }
 

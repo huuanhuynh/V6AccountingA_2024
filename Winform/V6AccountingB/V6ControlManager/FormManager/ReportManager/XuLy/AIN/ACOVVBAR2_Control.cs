@@ -21,14 +21,14 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class AINVTBAR2_Control : XuLyBase0
+    public partial class ACOVVBAR2_Control : XuLyBase0
     {
-        public AINVTBAR2_Control()
+        public ACOVVBAR2_Control()
         {
             InitializeComponent();
         }
 
-        public AINVTBAR2_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public ACOVVBAR2_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
@@ -207,7 +207,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
-        private void AINVTBAR2_Control_Load(object sender, EventArgs e)
+        private void ACOVVBAR2_Control_Load(object sender, EventArgs e)
         {
             
         }
@@ -262,7 +262,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _message = "";
                 var plist = FilterControl.GetFilterParameters();
-                _ds = V6BusinessHelper.ExecuteProcedure("AINVTBAR2", plist.ToArray());
+                _ds = V6BusinessHelper.ExecuteProcedure("ACOVVBAR2", plist.ToArray());
                 _executing = false;
                 _executesuccess = true;
             }
@@ -405,8 +405,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 int sl_in = ObjectAndString.ObjectToInt(row["SL_IN"]);
                 if (sl_in <= 0) continue;
 
-                string code = row["MA_VT"].ToString().Trim();
-                string name = row["TEN_VT"].ToString().Trim();
+                string code = row["MA_VV"].ToString().Trim();
+                string name = row["TEN_VV"].ToString().Trim();
                 decimal price = ObjectAndString.ObjectToDecimal(row["GIA_IN"]);
                 for (int i = 0; i < sl_in; i++)
                 {
@@ -480,20 +480,45 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
+        private string _oldDefaultPrinter, _PrinterName;
+        private int _PrintCopies;
+        private bool printting;
         protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
         private bool shift_is_down;
         protected override void XuLyF9()
         {
             try
             {
-                Timer tF9 = new Timer();
-                tF9.Interval = 500;
-                tF9.Tick += tF9_Tick;
-                CheckForIllegalCrossThreadCalls = false;
-                shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                remove_list_g = new List<DataGridViewRow>();
-                F9Thread();
-                tF9.Start();
+                if (FilterControl.Check1)
+                {
+                    if (this.ShowConfirmMessage(V6Text.Text("ASKINLIENTUC")) != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
+
+                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
+                var printerst = V6ControlFormHelper.ChoosePrinter(this, _oldDefaultPrinter);
+                if (printerst != null)
+                {
+                    _PrinterName = printerst.PrinterName;
+                    _PrintCopies = printerst.Copies;
+                    V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
+                    printting = true;
+
+                    Timer tF9 = new Timer();
+                    tF9.Interval = 500;
+                    tF9.Tick += tF9_Tick;
+                    CheckForIllegalCrossThreadCalls = false;
+                    shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                    remove_list_g = new List<DataGridViewRow>();
+                    F9Thread();
+                    tF9.Start();
+                }
+                else
+                {
+                    printting = false;
+                }
             }
             catch (Exception ex)
             {
@@ -505,7 +530,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             f9Running = true;
             f9ErrorAll = "";
-            string ma_vt = "", ma_lo = "";
+            string ma_vv = "";
             int i = 0;
             
             while (i < dataGridView1.Rows.Count)
@@ -517,8 +542,79 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (row.IsSelect())
                     {
                         //Add selected row.
-                        ma_vt += "," + row.Cells["MA_VT"].Value.ToString().Trim();
-                        ma_lo += "," + row.Cells["MA_LO"].Value.ToString().Trim();
+                        ma_vv = row.Cells["MA_VV"].Value.ToString().Trim();
+                        
+                        var reportFileF9 = _reportFile + "F9";
+                        var reportTitleF9 = _program;
+                        var reportTitle2F9 = _program;
+
+                        var oldKeys = FilterControl.GetFilterParameters();
+                        if (MenuButton.UseXtraReport != shift_is_down)
+                        {
+                            var view = new ReportR_DX(m_itemId, _program + "F9", _program + "F9", reportFileF9,
+                                reportTitleF9, reportTitle2F9, "", "", "");
+                            view.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
+                            view.PrinterName = _PrinterName;
+                            //view.PrintCopies = _PrintCopies;
+                            view.CodeForm = CodeForm;
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add("MA_VV", ma_vv);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
+                            view.PrintSuccess += delegate
+                            {
+                                try
+                                {
+                                    V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
+                                }
+                                catch (Exception ex)
+                                {
+                                    ShowMainMessage("UPDATEF9 Error: " + ex.Message);
+                                }
+                                view.Dispose();
+                            };
+                            view.PrintMode = V6PrintMode.AutoLoadData;
+                            view.Close_after_print = true;
+                            view.ShowToForm(this, reportTitleF9, true);
+                        }
+                        else
+                        {
+                            var view = new ReportRViewBase(m_itemId, _program + "F9", _program + "F9", reportFileF9,
+                                reportTitleF9, reportTitle2F9, "", "", "");
+                            view.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
+                            view.PrinterName = _PrinterName;
+                            view.CodeForm = CodeForm;
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add("MA_VV", ma_vv);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
+                            view.PrintSuccess += delegate
+                            {
+                                try
+                                {
+                                    V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
+                                }
+                                catch (Exception ex)
+                                {
+                                    ShowMainMessage("UPDATEF9 Error: " + ex.Message);
+                                }
+                                view.Dispose();
+                            };
+                            view.PrintMode = V6PrintMode.AutoLoadData;
+                            view.Close_after_print = true;
+                            view.ShowToForm(this, reportTitleF9, true);
+                        }
+
                         
                         remove_list_g.Add(row);
                     }
@@ -530,74 +626,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
             }
 
-            if (ma_vt.Length > 0) ma_vt = ma_vt.Substring(1);
-            if (ma_lo.Length > 0) ma_lo = ma_lo.Substring(1);
-            
-            var reportFileF9 = _reportFile + "F9";
-            var reportTitleF9 =  _program;
-            var reportTitle2F9 = _program;
-
-            var oldKeys = FilterControl.GetFilterParameters();
-            if (MenuButton.UseXtraReport != shift_is_down)
-            {
-                var view = new ReportR_DX(m_itemId, _program + "F9", _program + "F9", reportFileF9,
-                    reportTitleF9, reportTitle2F9, "", "", "");
-                view.CodeForm = CodeForm;
-                SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                data.Add("MA_VT", ma_vt);
-                data.Add("MA_LO", ma_lo);
-                V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
-                view.CodeForm = CodeForm;
-                view.Advance = FilterControl.Advance;
-                view.FilterControl.String1 = FilterControl.String1;
-                view.FilterControl.String2 = FilterControl.String2;
-                view.Dock = DockStyle.Fill;
-                view.FilterControl.InitFilters = oldKeys;
-                view.PrintSuccess += delegate
-                {
-                    try
-                    {
-                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowMainMessage("UPDATEF9 Error: " + ex.Message);
-                    }
-                    view.Dispose();
-                };
-                view.PrintMode = V6PrintMode.AutoLoadData;
-                view.ShowToForm(this, reportTitleF9, true);
-            }
-            else
-            {
-                var view = new ReportRViewBase(m_itemId, _program + "F9", _program + "F9", reportFileF9,
-                    reportTitleF9, reportTitle2F9, "", "", "");
-                view.CodeForm = CodeForm;
-                SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                data.Add("MA_VT", ma_vt);
-                data.Add("MA_LO", ma_lo);
-                V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
-                view.CodeForm = CodeForm;
-                view.Advance = FilterControl.Advance;
-                view.FilterControl.String1 = FilterControl.String1;
-                view.FilterControl.String2 = FilterControl.String2;
-                view.Dock = DockStyle.Fill;
-                view.FilterControl.InitFilters = oldKeys;
-                view.PrintSuccess += delegate
-                {
-                    try
-                    {
-                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowMainMessage("UPDATEF9 Error: " + ex.Message);
-                    }
-                    view.Dispose();
-                };
-                view.PrintMode = V6PrintMode.AutoLoadData;
-                view.ShowToForm(this, reportTitleF9, true);
-            }
             
             
             
