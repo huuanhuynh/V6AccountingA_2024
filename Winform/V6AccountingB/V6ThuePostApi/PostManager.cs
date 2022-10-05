@@ -3614,11 +3614,11 @@ namespace V6ThuePostManager
                     //originalInvoiceId
                     postObject.generalInvoiceInfo["originalInvoiceId"] = paras.AM_old["SO_SERI"].ToString().Trim() + paras.AM_old["SO_CT"].ToString().Trim();//  paras.Fkey_hd_tt;// .AM_old["FKEY_HD_TT"].ToString().Trim();  // AA/17E0003470
                     //originalInvoiceIssueDate
-                    postObject.generalInvoiceInfo["originalInvoiceIssueDate"] = paras.AM_old["NGAY_CT"];
+                    postObject.generalInvoiceInfo["originalInvoiceIssueDate"] = ObjectAndString.ObjectToInt64(paras.Partner_infor_dic["NGAY_CT"]);
 
                     //Thông tin về biên bản đính kèm hóa đơn gốc:
                     //additionalReferenceDate
-                    postObject.generalInvoiceInfo["additionalReferenceDate"] = paras.AM_old["NGAY_CT"];
+                    postObject.generalInvoiceInfo["additionalReferenceDate"] = paras.AM_data["NGAY_CT"];
                     //additionalReferenceDesc
                     postObject.generalInvoiceInfo["additionalReferenceDesc"] = paras.AM_data["GHI_CHU_TT"];
                 }
@@ -3626,11 +3626,11 @@ namespace V6ThuePostManager
                 {
                     // Hóa đơn điều chỉnh.
                     postObject.generalInvoiceInfo["adjustmentType"] = "5";
-                    postObject.generalInvoiceInfo["adjustmentInvoiceType"] = paras.Mode == "S2" ? "2" : "1"; // 1 tiền, 2 thông tin
+                    postObject.generalInvoiceInfo["adjustmentInvoiceType"] = paras.Mode.EndsWith("S2") ? "2" : "1"; // 1 tiền, 2 thông tin
                     postObject.generalInvoiceInfo["originalInvoiceId"] = paras.Partner_infor_dic["SO_HD"];
-                    postObject.generalInvoiceInfo["originalInvoiceIssueDate"] = paras.AM_old["NGAY_CT"];
+                    postObject.generalInvoiceInfo["originalInvoiceIssueDate"] = ObjectAndString.ObjectToInt64(paras.Partner_infor_dic["NGAY_CT"]);
                     //Thời gian phát sinh văn bản thỏa thuận giữa bên mua và bên bán, bắt buộc khi lập hóa đơn thay thế, hóa đơn điều chỉnh
-                    postObject.generalInvoiceInfo["additionalReferenceDate"] = paras.AM_old["NGAY_CT"];
+                    postObject.generalInvoiceInfo["additionalReferenceDate"] = paras.AM_data["NGAY_CT"];
                     //Thông tin tham khảo nếu có kèm theo của hóa đơn: văn bản thỏa thuận giữa bên mua và bên bán về việc thay thế, điều chỉnh hóa đơn
                     postObject.generalInvoiceInfo["additionalReferenceDesc"] = paras.AM_data["GHI_CHU_TT"];
                 }

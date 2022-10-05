@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
@@ -166,7 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             view.FilterControl.SetParentRow(row.ToDataDictionary());
 
                             //view.AutoPrint = FilterControl.Check1;
-                            view.AutoExportExcel = All_Objects["savefile"] + "_" + tk + ".xls";
+                            view.AutoExportExcelFileName = All_Objects["savefile"] + "_" + tk + ".xls";
 
                             view.PrinterName = _PrinterName;
                             view.PrintCopies = _PrintCopies;

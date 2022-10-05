@@ -5980,6 +5980,12 @@ namespace V6Controls.Forms
             OpenExcelTemplate(file, folder, shift_is_down);
         }
 
+        public static void OpenWordTemplate(string file, string folder)
+        {
+            bool shift_is_down = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+            OpenWordTemplate(file, folder, shift_is_down);
+        }
+
         /// <summary>
         /// Mở ra 1 bản copy (hoặc gốc shift) của file mấu.
         /// </summary>
@@ -6011,6 +6017,45 @@ namespace V6Controls.Forms
                     if (File.Exists(path2)) File.Delete(path2);
                     File.Copy(path1, path2);
                     
+                    ProcessStartInfo info1 = new ProcessStartInfo(path2);
+                    Process.Start(info1);
+                }
+                else
+                {
+                    ShowMainMessage(string.Format("{0} [{1}]", V6Text.NotExist, path1));
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorException("OpenExcelTemplate", ex);
+            }
+        }
+
+        public static void OpenWordTemplate(string file, string folder, bool shift)
+        {
+            try
+            {
+                string path1 = V6Login.StartupPath;
+                path1 = Path.Combine(path1, folder);
+                path1 = Path.Combine(path1, file);
+                if (File.Exists(path1))
+                {
+                    if (shift)
+                    {
+                        if (new ConfirmPasswordV6().ShowDialog() == DialogResult.OK)
+                        {
+                            ProcessStartInfo info0 = new ProcessStartInfo(path1);
+                            Process.Start(info0);
+                        }
+                        return;
+                    }
+
+                    // else copy to tempfolder then open copy
+                    string path2 = V6ControlsHelper.CreateV6SoftLocalAppDataDirectory();
+                    path2 = Path.Combine(path2, file);
+                    if (File.Exists(path2)) File.Delete(path2);
+                    File.Copy(path1, path2);
+
                     ProcessStartInfo info1 = new ProcessStartInfo(path2);
                     Process.Start(info1);
                 }
@@ -7283,6 +7328,12 @@ namespace V6Controls.Forms
             Title = V6Setting.IsVietnamese ? "Lưu thành..." : "Save as..."
         };
 
+        private static FolderBrowserDialog saveFolderDialog = new FolderBrowserDialog()
+        {
+            SelectedPath = V6Setting.V6SoftLocalAppData_Directory,
+            Description = V6Setting.IsVietnamese ? "Chọn thư mục." : "Choose folder."
+        };
+
         /// <summary>
         /// Chọn một file để lưu. Nếu không chọn trả về rỗng.
         /// </summary>
@@ -7304,10 +7355,6 @@ namespace V6Controls.Forms
                     saveFileDialog.InitialDirectory = folder;
                 }
                 
-                //var folder = string.IsNullOrEmpty(saveFileDialog.FileName)
-                //    ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-                //    : Path.GetFullPath(saveFileDialog.FileName);
-                //filePath = Path.Combine(folder, filePath);
 
                 saveFileDialog.FileName = Path.GetFileName(fileName);
             }
@@ -7316,6 +7363,25 @@ namespace V6Controls.Forms
             if (saveFileDialog.ShowDialog(owner) == DialogResult.OK)
             {
                 return saveFileDialog.FileName;
+            }
+            return null;
+        }
+
+        public static string ChooseSaveFolder(IWin32Window owner, string folderPath = null)
+        {
+            if (V6Setting.NotLoggedIn) return "";
+            if (!string.IsNullOrEmpty(folderPath))
+            {
+                if (Path.IsPathRooted(folderPath))
+                {
+                    folderPath = Path.GetFullPath(folderPath);
+                    saveFolderDialog.SelectedPath = folderPath;
+                }
+            }
+
+            if (saveFolderDialog.ShowDialog(owner) == DialogResult.OK)
+            {
+                return saveFolderDialog.SelectedPath;
             }
             return null;
         }

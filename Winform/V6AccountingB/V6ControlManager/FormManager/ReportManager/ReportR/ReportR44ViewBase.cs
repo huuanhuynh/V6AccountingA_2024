@@ -24,6 +24,7 @@ using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using System.Globalization;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
@@ -169,8 +170,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        public bool AutoPrint = false;
-        public bool AutoClickNhan = false;
+        public V6PrintMode PrintMode = V6PrintMode.DoNoThing;
+        
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -791,7 +792,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
 
         /// <summary>
-        /// Được gọi trong from_load
+        /// Được gọi trong from load
         /// </summary>
         private void MyInit2()
         {
@@ -988,7 +989,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 SetTBLdata();
                 ShowReport();
             }
-            else if (AutoClickNhan)
+            else if (PrintMode == V6PrintMode.AutoLoadData)
             {
                 btnNhan.PerformClick();
             }
@@ -1517,7 +1518,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 FormatGridView();
                 gridViewTopFilter1.MadeFilterItems();
                 ViewReport();
-                if (AutoPrint)
+                if (PrintMode == V6PrintMode.AutoPrint)
                 {
                     Print(PrinterName);
                     Dispose();
@@ -1780,7 +1781,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
 
-                view.AutoClickNhan = true;
+                view.PrintMode = V6PrintMode.AutoLoadData;
                 view.ShowToForm(this, "Chi tiết", true);
 
                 SetStatus2Text();

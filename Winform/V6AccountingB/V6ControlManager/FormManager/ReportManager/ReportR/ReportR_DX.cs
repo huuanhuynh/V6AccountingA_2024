@@ -187,7 +187,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// <summary>
         /// Tên file excel tự động xuất.
         /// </summary>
-        public string AutoExportExcel = null;
+        public string AutoExportExcelFileName = null;
+        public string AutoExportWordFileName = null;
         
         public delegate void PrintReportSuccessDelegate(Control sender);
         public event PrintReportSuccessDelegate PrintSuccess;
@@ -429,6 +430,28 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + ".xls";
+                    if (File.Exists(result + "x")) result += "x";
+                }
+                return result;
+            }
+        }
+
+        public string WordTemplateFileFull
+        {
+            get
+            {
+                var result = @"Reports\"
+                    + RPT_DIR
+                       + MAU + @"\"
+                       + LAN + @"\"
+                       + ReportFile + ".doc";
+                if (File.Exists(result + "x")) result += "x";
+                if (!File.Exists(result))
+                {
+                    result = @"Reports\"
+                       + MAU + @"\"
+                       + LAN + @"\"
+                       + _Ma_File + ".doc";
                     if (File.Exists(result + "x")) result += "x";
                 }
                 return result;
@@ -1032,7 +1055,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
        
-        private bool GenerateProcedureParameters()
+        public bool GenerateProcedureParameters()
         {
             try
             {
@@ -1138,7 +1161,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        void LoadData()
+        public void LoadData()
         {
             object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
 
@@ -1454,11 +1477,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //Done;
                 }
 
-                if (!string.IsNullOrEmpty(AutoExportExcel))
+                if (!string.IsNullOrEmpty(AutoExportExcelFileName))
                 {
                     V6ControlFormHelper.ExportExcelTemplate(this, _tbl1, _tbl2, ReportDocumentParameters,
-                        MAU, LAN, ReportFile, ExcelTemplateFileFull, AutoExportExcel);
-                    Dispose();
+                        MAU, LAN, ReportFile, ExcelTemplateFileFull, AutoExportExcelFileName);
+                    if (!IsDisposed) Dispose();
+                }
+                else if (!string.IsNullOrEmpty(AutoExportWordFileName))
+                {
+
                 }
                 
                 dataGridView1.Focus();

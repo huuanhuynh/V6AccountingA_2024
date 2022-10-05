@@ -294,16 +294,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private void btnExcelTemplate_Click(object sender, EventArgs e)
         {
-            string DX = "";
+            string DX = "", ext = ".xls", extx = ".xlsx";
             if (All_Objects.ContainsKey("IS_DX") && (string)All_Objects["IS_DX"] == "1")
             {
                 DX = "DX";
             }
-            var XLS_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + ".xls";
-            var XLSX_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + ".xlsx";
+
+            if (sender == wordTemplateMenu)
+            {
+                ext = ".doc"; extx = ".docx";
+            }
+                
+            var XLS_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + ext;
+            var XLSX_FILE = "Reports" + DX + @"\" + txtMAU.Text.Trim() + @"\" + txtLAN.Text.Trim() + @"\" + txtReportFileNew.Text.Trim() + extx;
             if (File.Exists(XLSX_FILE)) V6ControlFormHelper.RunProcess(XLSX_FILE);
             else if (File.Exists(XLS_FILE)) V6ControlFormHelper.RunProcess(XLS_FILE);
             else ShowMainMessage(V6Text.NotFound + "\n" + XLSX_FILE);
+            
         }
 
         private void chkPrinterYn_CheckedChanged(object sender, EventArgs e)
@@ -698,5 +705,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             ChooseNoSumColumns(txtNoSum2);
         }
+
     }
 }

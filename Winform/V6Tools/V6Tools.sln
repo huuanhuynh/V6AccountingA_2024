@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6Tools", "V6Tools\V6Tools.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{702C3620-05F7-4CB9-A964-32AE64649EDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNPOI", "TestNPOI\TestNPOI.csproj", "{4F82001A-CD3E-4692-9918-26FEE1626EDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{702C3620-05F7-4CB9-A964-32AE64649EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{702C3620-05F7-4CB9-A964-32AE64649EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{702C3620-05F7-4CB9-A964-32AE64649EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F82001A-CD3E-4692-9918-26FEE1626EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F82001A-CD3E-4692-9918-26FEE1626EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F82001A-CD3E-4692-9918-26FEE1626EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F82001A-CD3E-4692-9918-26FEE1626EDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

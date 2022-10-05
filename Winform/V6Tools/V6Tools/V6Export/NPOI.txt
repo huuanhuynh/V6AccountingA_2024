@@ -1,0 +1,195 @@
+﻿#region ==== NPOI ====
+        /// <summary>
+        /// Chưa xài được
+        /// Xuất một bảng dữ liệu ra file excel với mẫu có sẵn
+        /// </summary>
+        /// <param name="xlsTemplateFile">File Excel mẫu</param>
+        /// <param name="data">Dữ liệu vào</param>
+        /// <param name="firstCell">Vị trí ô bắt đầu điền dữ liệu vd: A2.</param>
+        /// <param name="columns">Danh sách cột dữ liệu sẽ lấy, null nếu lấy hết.</param>
+        /// <param name="saveFile">Tên tập tin sẽ lưu, không được trùng với file mẫu</param>
+        /// <param name="parameters">Giá trị theo vị trí trong excel. Với key là vị trí vd: A1</param>
+        /// <param name="drawLine">Vẽ đường kẻ lên dữ liệu</param>
+        /// <param name="rowInsert">Chèn dữ liệu vào vị trí chèn, đẩy dòng xuống.</param>
+        /// <returns></returns>
+        public static bool ToExcelTemplate_NPOI(string xlsTemplateFile, DataTable data, string saveFile,
+            string firstCell, string[] columns, SortedDictionary<string, string> parameters,
+            bool drawLine = false, bool rowInsert = false)
+        {
+            Message = "";
+
+            POIFSFileSystem fs;
+            HSSFWorkbook workbook = new HSSFWorkbook();
+
+            try
+            {
+
+
+
+
+                xlsTemplateFile = Path.GetFullPath(xlsTemplateFile);
+                saveFile = Path.GetFullPath(saveFile);
+                if (String.Equals(saveFile, xlsTemplateFile, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    throw new ExportException("File lưu trùng file mẫu!");
+                }
+                string ext = (Path.GetExtension(xlsTemplateFile) ?? "").ToLower();
+                if (File.Exists(xlsTemplateFile))
+                {
+                    #region ==== Copy file ====
+                    File.Copy(xlsTemplateFile, saveFile, true);
+                    #endregion
+
+                    fs = new POIFSFileSystem(new FileStream(xlsTemplateFile, FileMode.Open));
+                    workbook = new HSSFWorkbook(fs, false);
+
+                    //Create a entry of DocumentSummaryInformation
+                    DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
+                    dsi.Company = "V6Corp";
+                    workbook.DocumentSummaryInformation = dsi;
+
+                    //Create a entry of SummaryInformation
+                    SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
+                    si.Subject = "ExportExcel";
+                    workbook.SummaryInformation = si;
+
+                }
+                else
+                {
+                    Message = "Không có file mẫu.";
+                }
+
+                //select sheet
+                int sheetIndex = 0;
+                workbook.SetActiveSheet(sheetIndex);//.Sheet = sheetIndex;
+                int sheetCount = workbook.NumberOfSheets;//.NumSheets;
+                string sheetName = workbook.GetSheetName(sheetIndex);
+                ISheet sheet = workbook.GetSheet(sheetName);
+                //string t;
+
+                int startRow = 1, startCol = 0;
+                int lastRow = sheet.LastRowNum;//.LastRow;//Dòng cuối cùng có dữ liệu của sheet
+                //int lastCol = sheet.colum;
+                if (string.IsNullOrEmpty(firstCell))
+                {
+                    startRow = lastRow + 1;
+                    startCol = 0;
+                }
+                else
+                {
+                    startRow = GetExcelRow(firstCell);
+                    startCol = GetExcelColumn(firstCell);
+                }
+
+
+                //Write parameter with key is address
+                foreach (KeyValuePair<string, string> item in parameters)
+                {
+                    var A1 = item.Key;
+                    var row = GetExcelRow(A1);
+                    var col = GetExcelColumn(A1);
+
+                    //workbook.setText(row, col, item.Value);
+                    sheet.GetRow(row).GetCell(col).SetCellValue(item.Value);
+                }
+
+                var endRow = startRow + data.Rows.Count - (data.Rows.Count > 0 ? 1 : 0);
+                int endCol;// startCol + data.Columns.Count - 1;
+
+                List<DataColumn> Cols = new List<DataColumn>();
+                if (columns == null)
+                {
+                    endCol = startCol + data.Columns.Count - 1;
+                    //if (rowInsert)
+                    //{
+                    //    //Insert row (vùng insert thêm bằng với vùng chọn)
+                    //    workbook.insertRange(startRow, startCol, endRow, endCol,
+                    //        WorkBook.ShiftRows);
+
+                    //    RangeStyle rangeStyle = workbook.getRangeStyle(startRow, startCol, endRow, endCol);
+                    //    ResetRangeStyleFormat(rangeStyle);
+                    //    workbook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endCol);
+                    //}
+                    
+                    for (int i = startRow; i < endRow; i++)
+                    {
+                        for (int j = startCol; j < endCol; j++)
+                        {
+                            sheet.GetRow(i).GetCell(j).SetCellValue(data.Rows[i][j].ToString());
+                        }
+                    }
+                }
+                //else
+                //{
+                //    foreach (string column in columns)
+                //    {
+                //        if (data.Columns.Contains(column))
+                //            Cols.Add(data.Columns[column]);
+                //    }
+                //    var arrayCols = Cols.ToArray();
+                //    if (Cols.Count > 0)
+                //    {
+                //        endCol = startCol + arrayCols.Length - 1;
+                //        if (rowInsert)
+                //        {
+                //            //Insert row (vùng insert thêm bằng với vùng chọn)
+                //            workbook.insertRange(startRow, startCol, endRow, endCol,
+                //                WorkBook.ShiftRows);
+
+                //            RangeStyle rangeStyle = workbook.getRangeStyle(startRow, startCol, endRow, endCol);
+                //            ResetRangeStyleFormat(rangeStyle);
+                //            workbook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endCol);
+                //        }
+                //      ImportDataTable(workbook, data, false, startRow, startCol, -1, -1);
+
+                //    }
+                //    else
+                //    {
+                //        endCol = data.Columns.Count - 1;
+                //        if (rowInsert)
+                //        {
+                //            //Insert row (vùng insert thêm bằng với vùng chọn)
+                //            workbook.insertRange(startRow, startCol, endRow, endCol,
+                //                WorkBook.ShiftRows);
+
+                //            RangeStyle rangeStyle = workbook.getRangeStyle(startRow, startCol, endRow, endCol);
+                //            ResetRangeStyleFormat(rangeStyle);
+                //            workbook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endCol);
+                //        }
+                //      ImportDataTable(workbook, data, false, startRow, startCol, -1, -1);
+                //    }
+                //}
+
+
+
+                //if (drawLine)
+                //{
+                //    RangeStyle rangeStyle = workbook.getRangeStyle(startRow, startCol, endRow, endCol);
+                //    rangeStyle.LeftBorder = RangeStyle.BorderThin;
+                //    rangeStyle.RightBorder = RangeStyle.BorderThin;
+                //    rangeStyle.TopBorder = RangeStyle.BorderThin;
+                //    rangeStyle.BottomBorder = RangeStyle.BorderThin;
+                //    rangeStyle.HorizontalInsideBorder = RangeStyle.BorderThin;
+                //    rangeStyle.VerticalInsideBorder = RangeStyle.BorderThin;
+
+                //    workbook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endCol);
+                //}
+
+                //var a = workbook.w rite(saveFile);
+                //workbook.Dispose();
+
+                FileStream file = new FileStream(saveFile, FileMode.Create);
+                workbook.Write(file);
+                file.Close();
+                workbook.Close();
+                return true;//a false nhưng vẫn lưu file thành công???
+
+            }
+            catch (Exception ex)
+            {
+                Message = "Data_Table ToExcelTemplate " + ex.Message;
+                workbook.Close();
+                return false;
+            }
+        }
+        #endregion npoi

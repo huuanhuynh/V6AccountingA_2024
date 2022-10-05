@@ -60,7 +60,11 @@
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.btnXemMau = new V6Controls.Controls.V6FormButton();
             this.btnMapping = new V6Controls.Controls.V6FormButton();
+            this.grpExportType = new System.Windows.Forms.GroupBox();
+            this.radExcel = new System.Windows.Forms.RadioButton();
+            this.radWord = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            this.grpExportType.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -423,7 +427,7 @@
             // 
             this.btnExport.AccessibleDescription = "FILTERB00012";
             this.btnExport.Image = global::V6ControlManager.Properties.Resources.Export24;
-            this.btnExport.Location = new System.Drawing.Point(178, 288);
+            this.btnExport.Location = new System.Drawing.Point(116, 289);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(110, 32);
             this.btnExport.TabIndex = 30;
@@ -448,7 +452,7 @@
             // btnXemMau
             // 
             this.btnXemMau.Image = global::V6ControlManager.Properties.Resources.Excel16;
-            this.btnXemMau.Location = new System.Drawing.Point(61, 289);
+            this.btnXemMau.Location = new System.Drawing.Point(0, 289);
             this.btnXemMau.Name = "btnXemMau";
             this.btnXemMau.Size = new System.Drawing.Size(110, 32);
             this.btnXemMau.TabIndex = 30;
@@ -459,7 +463,7 @@
             // 
             // btnMapping
             // 
-            this.btnMapping.Location = new System.Drawing.Point(61, 327);
+            this.btnMapping.Location = new System.Drawing.Point(0, 327);
             this.btnMapping.Name = "btnMapping";
             this.btnMapping.Size = new System.Drawing.Size(110, 23);
             this.btnMapping.TabIndex = 28;
@@ -467,10 +471,45 @@
             this.btnMapping.UseVisualStyleBackColor = true;
             this.btnMapping.Click += new System.EventHandler(this.btnMapping_Click);
             // 
+            // grpExportType
+            // 
+            this.grpExportType.Controls.Add(this.radWord);
+            this.grpExportType.Controls.Add(this.radExcel);
+            this.grpExportType.Location = new System.Drawing.Point(116, 326);
+            this.grpExportType.Name = "grpExportType";
+            this.grpExportType.Size = new System.Drawing.Size(169, 50);
+            this.grpExportType.TabIndex = 42;
+            this.grpExportType.TabStop = false;
+            this.grpExportType.Text = "groupBox2";
+            // 
+            // radExcel
+            // 
+            this.radExcel.AutoSize = true;
+            this.radExcel.Checked = true;
+            this.radExcel.Location = new System.Drawing.Point(6, 19);
+            this.radExcel.Name = "radExcel";
+            this.radExcel.Size = new System.Drawing.Size(51, 17);
+            this.radExcel.TabIndex = 0;
+            this.radExcel.Text = "Excel";
+            this.radExcel.UseVisualStyleBackColor = true;
+            this.radExcel.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radWord
+            // 
+            this.radWord.AutoSize = true;
+            this.radWord.Location = new System.Drawing.Point(70, 19);
+            this.radWord.Name = "radWord";
+            this.radWord.Size = new System.Drawing.Size(51, 17);
+            this.radWord.TabIndex = 0;
+            this.radWord.Text = "Word";
+            this.radWord.UseVisualStyleBackColor = true;
+            this.radWord.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // AGLTMXLS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.grpExportType);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnMapping);
             this.Controls.Add(this.btnSuaCTMau);
@@ -504,6 +543,8 @@
             this.Load += new System.EventHandler(this.AGLTMXLS_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.grpExportType.ResumeLayout(false);
+            this.grpExportType.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,5 +584,8 @@
         private V6Controls.V6CheckBox chkHienTatCa;
         private V6Controls.Controls.V6FormButton btnXemMau;
         private V6Controls.Controls.V6FormButton btnMapping;
+        private System.Windows.Forms.GroupBox grpExportType;
+        private System.Windows.Forms.RadioButton radExcel;
+        private System.Windows.Forms.RadioButton radWord;
     }
 }

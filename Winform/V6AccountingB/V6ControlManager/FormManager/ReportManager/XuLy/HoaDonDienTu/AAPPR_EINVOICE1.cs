@@ -107,6 +107,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         string mode = form.SelectedMode;
                         string soct = row.Cells["So_ct"].Value.ToString().Trim();
                         string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                        string part_infos = row.Cells["PART_INFOS"].ToString().Trim();
 
                         SqlParameter[] plist =
                         {
@@ -130,6 +131,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             Fkey_hd = fkey_hd,
                             V6PartnerID = row.Cells["V6PARTNER_ID"].Value.ToString().Trim(),
                             AM_data = row_data,
+                            Saved_Partner_infos = part_infos,
                         };
                         string result = PostManager.PowerPost(paras);
 
@@ -260,11 +262,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
 
                     string info = "";
-                    if (mode == "E_T1") info = string.Format("Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                    if (mode == "E_T1") info = string.Format("Gửi Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
                         am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
-                    else if (mode == "E_S1") info = string.Format("Điều chỉnh tiền HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                    else if (mode == "E_S1") info = string.Format("Gửi Điều chỉnh tiền HDDT [{0}] = {1} bằng [{2}] = {3}",
                         am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
-                    else if (mode == "E_S2") info = string.Format("Điều chỉnh thông tin HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
+                    else if (mode == "E_S2") info = string.Format("Gửi Điều chỉnh thông tin HDDT [{0}] = {1} bằng [{2}] = {3}",
                         am_OLD["SO_CT"], am_OLD["T_TIEN2"], am_F6["SO_CT"], am_F6["T_TIEN2"]);
                     this.ShowMainMessage(info);
 

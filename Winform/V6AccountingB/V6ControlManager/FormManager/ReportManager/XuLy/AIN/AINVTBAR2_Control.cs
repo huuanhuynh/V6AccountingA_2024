@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.HeThong.V6BarcodePrint;
 using V6ControlManager.FormManager.ReportManager.ReportR;
@@ -562,10 +563,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     catch (Exception ex)
                     {
                         ShowMainMessage("UPDATEF9 Error: " + ex.Message);
-                    }
-                    view.Dispose();
+                    }                    
                 };
                 view.PrintMode = V6PrintMode.AutoLoadData;
+                view.Close_after_print = true;
                 view.ShowToForm(this, reportTitleF9, true);
             }
             else
@@ -593,9 +594,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         ShowMainMessage("UPDATEF9 Error: " + ex.Message);
                     }
-                    view.Dispose();
                 };
                 view.PrintMode = V6PrintMode.AutoLoadData;
+                view.Close_after_print = true;
                 view.ShowToForm(this, reportTitleF9, true);
             }
             

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6Controls;
 using V6Controls.Forms;

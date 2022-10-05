@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.HeThong.V6BarcodePrint;
 using V6ControlManager.FormManager.ReportManager.ReportR;
+using V6ControlManager.FileTool;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
@@ -218,7 +221,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var text = CorpLan.GetTextNull(id);
             if (string.IsNullOrEmpty(text))
             {
-                text = string.Format("F9 {0}, F10 {1}.", V6Text.Text("IN"), V6Text.Text("ExportExcel"));
+                text = string.Format("F7 Word, F9 {0}, F10 {1}.", V6Text.Text("IN"), V6Text.Text("ExportExcel"));
             }
             V6ControlFormHelper.SetStatusText2(text, id);
         }
@@ -458,16 +461,141 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(GetType() + ".DoExportExcel: " + ex.Message);
             }
         }
+
+
+        private void XuLyF7() // Xuất Word template
+        {
+            f9Error = "";
+            string ma_vv = "";
+            string select_folder = "";
+            
+            int i = 0;
+            while (i < dataGridView1.Rows.Count)
+            {
+                DataGridViewRow grow = dataGridView1.Rows[i];
+                i++;
+                try
+                {
+                    if (grow.IsSelect())
+                    {
+                        if (string.IsNullOrEmpty(select_folder))
+                        {
+                            select_folder = V6ControlFormHelper.ChooseSaveFolder(this, null);
+                        }
+                        //Add selected row.
+                        ma_vv = grow.Cells["MA_VV"].Value.ToString().Trim();
+
+                        var reportFileF7 = _reportFile + "F7";
+                        var reportTitleF7 = _program;
+                        var reportTitle2F7 = _program;
+
+                        var oldKeys = FilterControl.GetFilterParameters();
+
+
+                        var view = new ReportR_DX(m_itemId, _program + "F9", _program + "F7", reportFileF7, // Giữ _program + "F9" để dùng lại FilterControl.
+                            reportTitleF7, reportTitle2F7, "", "", "");
+                        view.PrintMode = V6PrintMode.AutoLoadData;
+                        view.CodeForm = CodeForm;
+                        SortedDictionary<string, object> filterData = new SortedDictionary<string, object>();
+                        filterData.Add("MA_VV", ma_vv);
+                        V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, filterData);
+                        view.CodeForm = CodeForm;
+                        view.Advance = FilterControl.Advance;
+                        view.FilterControl.String1 = FilterControl.String1;
+                        view.FilterControl.String2 = FilterControl.String2;
+                        view.Dock = DockStyle.Fill;
+                        view.FilterControl.InitFilters = oldKeys;
+                        
+                        //view.Close_after_print = true;
+                        //view.ShowToForm(this, reportTitleF7, true);
+                        view.GenerateProcedureParameters();
+                        view.LoadData();
+                        var data = view.DataSet.Tables[0];
+                        IDictionary<string, string> mappingData = new SortedDictionary<string, string>();
+                        foreach (DataRow row in data.Rows)
+                        {
+                            string vType = row["VTYPE"].ToString().Trim();
+                            if (string.IsNullOrEmpty(vType) || vType == "N")//Kiểu số
+                            {
+                                string NAME = row["NAME"].ToString().Trim().ToUpper();
+                                string FCOLUMN = row["FCOLUMN"].ToString().Trim().ToUpper();
+                                object value = row["Value"];
+                                object fvalue = row["fvalue"];
+                                if (mappingData.ContainsKey(NAME))
+                                {
+                                    ShowMainMessage(V6Text.DataExist + "NAME=" + NAME);
+                                }
+                                else
+                                {
+                                    mappingData.Add("{@" + NAME + "}", ObjectAndString.ObjectToString(value));
+                                }
+                            }
+                            else
+                            {
+                                string NAME = row["NAME"].ToString().Trim().ToUpper();
+                                string FCOLUMN = row["FCOLUMN"].ToString().Trim().ToUpper();
+                                object value = row[vType + "Value"];
+                                object fvalue = row[vType + "fvalue"];
+                                if (mappingData.ContainsKey(NAME))
+                                {
+                                    ShowMainMessage(V6Text.DataExist + "NAME=" + NAME);
+                                }
+                                else
+                                {
+                                    mappingData.Add("{@" + NAME + "}", ObjectAndString.ObjectToString(value));
+                                }
+                            }
+                        }
+
+                        string saveFile = "";
+                        string name = ma_vv + _program + "F7";
+                        string ext = Path.GetExtension(view.WordTemplateFileFull);
+                        if (string.IsNullOrEmpty(select_folder))
+                        {
+                            saveFile = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, name + ext);
+                        }
+                        else
+                        {
+                            saveFile = Path.Combine(select_folder, name + ext);
+                        }
+                        File.Copy(view.WordTemplateFileFull, saveFile, true);
+
+                        WordUtility wf = new WordUtility();
+                        wf.ReplaceTextInterop(saveFile, mappingData);
+                        view.Dispose();
+
+                        remove_list_g.Add(grow);
+                        grow.UnSelect();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    f9Error += ex.Message;
+                    f9ErrorAll += ex.Message;
+                }
+            }
+
+            if (f9Error.Length > 0) this.ShowErrorMessage(f9Error);
+            ShowMainMessage(V6Text.Finish);
+
+
+            SetStatus2Text();
+
+            f9Running = false;
+        }
         
         
         public override void DoHotKey(Keys keyData)
         {
-            if (keyData == Keys.F9)
+            if (keyData == Keys.F7){
+                XuLyF7();
+            }
+            else if (keyData == Keys.F9)
             {
                 XuLyF9();
                 return;
             }
-            if (keyData == Keys.F10)
+            else if (keyData == Keys.F10)
             {
                 DoExportExcel();
                 return;
@@ -480,6 +608,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
+        private V6PrintMode _PrintMode = V6PrintMode.DoNoThing;
         private string _oldDefaultPrinter, _PrinterName;
         private int _PrintCopies;
         private bool printting;
@@ -489,21 +618,44 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
+                
                 if (FilterControl.Check1)
                 {
                     if (this.ShowConfirmMessage(V6Text.Text("ASKINLIENTUC")) != DialogResult.Yes)
                     {
                         return;
                     }
-                }
 
-                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
-                var printerst = V6ControlFormHelper.ChoosePrinter(this, _oldDefaultPrinter);
-                if (printerst != null)
+                    var printerst = V6ControlFormHelper.ChoosePrinter(this, _oldDefaultPrinter);
+                    if (printerst != null)
+                    {
+                        _PrintMode = V6PrintMode.AutoPrint;
+                        _PrinterName = printerst.PrinterName;
+                        _PrintCopies = printerst.Copies;
+                        V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
+                        printting = true;
+
+
+                        Timer tF9 = new Timer();
+                        tF9.Interval = 500;
+                        tF9.Tick += tF9_Tick;
+                        CheckForIllegalCrossThreadCalls = false;
+                        shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                        remove_list_g = new List<DataGridViewRow>();
+                        F9Thread();
+                        tF9.Start();
+                    }
+                    else
+                    {
+                        ShowMainMessage("Stop");
+                    }
+                }
+                else // TỰ CLICK IN TỪNG BÁO CÁO.
                 {
-                    _PrinterName = printerst.PrinterName;
-                    _PrintCopies = printerst.Copies;
-                    V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
+                    _PrintMode = V6PrintMode.AutoLoadData;
+                    _PrinterName = null;
+                    _PrintCopies = 1;
                     printting = true;
 
                     Timer tF9 = new Timer();
@@ -515,10 +667,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     F9Thread();
                     tF9.Start();
                 }
-                else
-                {
-                    printting = false;
-                }
+
+                
             }
             catch (Exception ex)
             {
@@ -553,9 +703,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             var view = new ReportR_DX(m_itemId, _program + "F9", _program + "F9", reportFileF9,
                                 reportTitleF9, reportTitle2F9, "", "", "");
-                            view.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
+                            view.PrintMode = _PrintMode;
                             view.PrinterName = _PrinterName;
-                            //view.PrintCopies = _PrintCopies;
+                            view.PrintCopies = _PrintCopies;
                             view.CodeForm = CodeForm;
                             SortedDictionary<string, object> data = new SortedDictionary<string, object>();
                             data.Add("MA_VV", ma_vv);
@@ -576,9 +726,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 {
                                     ShowMainMessage("UPDATEF9 Error: " + ex.Message);
                                 }
-                                view.Dispose();
                             };
-                            view.PrintMode = V6PrintMode.AutoLoadData;
+                            
                             view.Close_after_print = true;
                             view.ShowToForm(this, reportTitleF9, true);
                         }
@@ -608,7 +757,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 {
                                     ShowMainMessage("UPDATEF9 Error: " + ex.Message);
                                 }
-                                view.Dispose();
                             };
                             view.PrintMode = V6PrintMode.AutoLoadData;
                             view.Close_after_print = true;
@@ -647,6 +795,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             else
             {
                 ((Timer)sender).Stop();
+                printting = false;
                 RemoveGridViewRow();
                 //  btnNhan.PerformClick();
                 try

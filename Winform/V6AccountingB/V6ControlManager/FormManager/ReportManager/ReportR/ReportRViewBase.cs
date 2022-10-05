@@ -25,6 +25,7 @@ using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using System.Globalization;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
@@ -45,6 +46,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public DataTable MauInData;
         public DataView MauInView;
         public AlbcConfig _albcConfig = new AlbcConfig();
+
+        public V6PrintMode PrintMode { get; set; }
+        public bool Close_after_print { get; set; }
+        public string PrinterName { get; set; }
+        private int _printCopy = 1;
+        public int PrintCopies
+        {
+            get { return _printCopy; }
+            set { _printCopy = value; }
+        }
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -173,21 +184,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        public bool AutoPrint = false;
+        
+        
+
         /// <summary>
         /// Tên file excel tự động xuất.
         /// </summary>
         public string AutoExportExcel = null;
-        public bool AutoClickNhan = false;
-        public string PrinterName { get; set; }
-        private int _printCopy = 1;
-
-        public int PrintCopies
-        {
-            get { return _printCopy; }
-            set { _printCopy = value; }
-        }
-
+        
         public delegate void PrintReportSuccessDelegate(Control sender);
         public event PrintReportSuccessDelegate PrintSuccess;
         protected virtual void CallPrintSuccessEvent()
@@ -1009,9 +1013,18 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 SetTBLdata();
                 ShowReport();
             }
-            else if (AutoClickNhan)
+            else if (PrintMode != V6PrintMode.DoNoThing)
             {
-                btnNhan.PerformClick();
+                try
+                {
+                    btnNhanImage = btnNhan.Image;
+                    FormManagerHelper.HideMainMenu();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                }
             }
         }
 
@@ -1039,7 +1052,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 btnNhanImage = btnNhan.Image;
                 FormManagerHelper.HideMainMenu();
-                MakeReport2();
+                
+                MakeReport2(V6PrintMode.DoNoThing, null, 1);
             }
             catch (Exception ex)
             {
@@ -1201,8 +1215,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// tLoadData.Start();
         /// timerViewReport.Start();
         /// </summary>
-        private void MakeReport2()
+        private void MakeReport2(V6PrintMode printMode, string printerName, int printCopy = 1)
         {
+            PrintMode = printMode;
+            PrinterName = printerName;
+            _printCopy = printCopy;
+
             if (GenerateProcedureParameters()) //Add các key khác
             {
                 _executesuccess = false;
@@ -1384,7 +1402,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             else
             {
                 if (ReloadData == "1")
-                    MakeReport2();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
                 else
                     ViewReport();
             }
@@ -1410,7 +1428,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
 
                     if (ReloadData == "1")
-                        MakeReport2();
+                        MakeReport2(PrintMode, PrinterName, _printCopy);
                     else
                         ViewReport();
                 }
@@ -1458,10 +1476,23 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 gridViewTopFilter1.MadeFilterItems();
 
                 ViewReport();
-                if (AutoPrint)
+                if (PrintMode == V6PrintMode.AutoPrint)
                 {
                     Print(PrinterName, _rpDoc0);
-                    Dispose();
+                    if (!IsDisposed) Dispose();
+                }
+                else if (PrintMode == V6PrintMode.AutoClickPrint)
+                {
+                    btnIn.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoExportT)
+                {
+                    if (btnExport3.Visible && btnExport3.Enabled)
+                        btnExport3.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoLoadData)
+                {
+                    //Done;
                 }
 
                 if (!string.IsNullOrEmpty(AutoExportExcel))
@@ -1770,7 +1801,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
 
-                view.AutoClickNhan = true;
+                view.PrintMode = V6PrintMode.AutoLoadData;
                 view.ShowToForm(this, "Chi tiết", true);
                 
                 SetStatus2Text();
@@ -1912,6 +1943,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
 
         private bool _updateDataRow = false;
+        
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
@@ -1922,7 +1954,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
-                MakeReport2();
+                MakeReport2(PrintMode, PrinterName, _printCopy);
             else
                 ViewReport();
         }

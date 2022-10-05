@@ -1957,18 +1957,71 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         //}
         public void TinhTienVon(Control actionControl)
         {
-            //TinhGiaNt();
-
-            _tien_nt.Value = V6BusinessHelper.Vround((_soLuong.Value * _gia_nt.Value), M_ROUND_NT);
-
-            if (_maNt == _mMaNt0)
+            try
             {
-                _tien.Value = _tien_nt.Value;
+                if (actionControl == _soKhung)
+                {
+                    TinhGia1_Theo_GiaNt();
+                }
+
+                TinhGia_Theo_GiaNt();
+
+                _tien_nt.Value = V6BusinessHelper.Vround((_soLuong.Value * _gia_nt.Value), M_ROUND_NT);
+
+                if (_maNt == _mMaNt0)
+                {
+                    _tien.Value = _tien_nt.Value;
+                }
+                else
+                {
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround((_tien_nt.Value * _sl_td1.Value), M_ROUND);
+                    else _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _tien.Value = V6BusinessHelper.Vround((_tien_nt.Value * _sl_td1.Value), M_ROUND);
-                else _tien.Value = V6BusinessHelper.Vround(_tien_nt.Value * txtTyGia.Value, M_ROUND);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void TinhGia_Theo_GiaNt()
+        {
+            try
+            {
+                if (_maNt == _mMaNt0)
+                {
+                    _gia.Value = _gia_nt.Value;
+                }
+                else
+                {
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia.Value = V6BusinessHelper.Vround(_gia_nt.Value * _sl_td1.Value, M_ROUND);
+                    else _gia.Value = V6BusinessHelper.Vround(_gia_nt.Value * txtTyGia.Value, M_ROUND_GIA);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void TinhGia1_Theo_GiaNt()
+        {
+            try
+            {
+                _gia_nt1.Value = _gia_nt.Value;
+                if (_maNt == _mMaNt0)
+                {
+                    _gia1.Value = _gia_nt1.Value;
+                }
+                else
+                {
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia1.Value = V6BusinessHelper.Vround(_gia_nt1.Value * _sl_td1.Value, M_ROUND);
+                    else _gia1.Value = V6BusinessHelper.Vround(_gia_nt1.Value * txtTyGia.Value, M_ROUND_GIA);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 

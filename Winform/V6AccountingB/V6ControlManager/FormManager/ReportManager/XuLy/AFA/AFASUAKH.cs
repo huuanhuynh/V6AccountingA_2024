@@ -159,7 +159,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     formView.Controls.Add(formF3);
                     formF3.Disposed += delegate
                     {
-                        formView.Dispose();
+                        if (!formView.IsDisposed) formView.Dispose();
                     };
 
                     formView.ShowDialog(this);

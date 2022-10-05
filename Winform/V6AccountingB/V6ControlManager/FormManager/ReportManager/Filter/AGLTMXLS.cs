@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FileTool;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
@@ -14,6 +15,7 @@ using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -375,9 +377,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
-                string name = txtMauExport.Text.Trim().ToLower();
-                if (!name.EndsWith(".xls") && !name.EndsWith(".xlsx")) name += ".xls";
-                V6ControlFormHelper.OpenExcelTemplate(name, V6Setting.V6ReportsFolder);
+                if (radExcel.Checked)
+                {
+                    string name = txtMauExport.Text.Trim().ToLower();
+                    if (!name.EndsWith(".xls") && !name.EndsWith(".xlsx")) name += ".xls";
+                    V6ControlFormHelper.OpenExcelTemplate(name, V6Setting.V6ReportsFolder);
+                }
+                else if (radWord.Checked)
+                {
+                    string name = txtMauExport.Text.Trim().ToLower();
+                    if (!name.EndsWith(".doc") && !name.EndsWith(".docx")) name += ".docx";
+                    V6ControlFormHelper.OpenWordTemplate(name, V6Setting.V6ReportsFolder);
+                }
             }
             catch (Exception ex)
             {
@@ -387,6 +398,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnExport_Click(object sender, EventArgs e)
         {
+            if (radExcel.Checked)
+            {
+                ExportExcel(sender, e);
+            }
+            else if (radWord.Checked)
+            {
+                ExportWord(sender, e);
+            }
+        }
+
+        private void ExportExcel(object sender, EventArgs e)
+        {
             try
             {
                 if (_ds == null || _ds.Tables.Count == 0)
@@ -395,7 +418,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return;
                 }
 
-                string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls", cboMaubc_X.Text);
+                string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", cboMaubc_X.Text);
                 if (string.IsNullOrEmpty(saveFile)) return;
 
                 string xlsTemplateFile = "Reports\\" + txtMauExport.Text.Trim();
@@ -486,6 +509,93 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
+        private void ExportWord(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_ds == null || _ds.Tables.Count == 0)
+                {
+                    this.ShowInfoMessage(V6Text.NoData);
+                    return;
+                }
+
+                string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.docx;*.doc", cboMaubc_X.Text);
+                if (string.IsNullOrEmpty(saveFile)) return;
+
+                string xlsTemplateFile = "Reports\\" + txtMauExport.Text.Trim();
+                if (!xlsTemplateFile.EndsWith(".doc", true, CultureInfo.InvariantCulture) || !xlsTemplateFile.EndsWith(".docx", true, CultureInfo.InvariantCulture))
+                {
+                    xlsTemplateFile += ".docx";
+                }
+                xlsTemplateFile = Path.GetFullPath(xlsTemplateFile);
+                //string ext = Path.GetExtension(xlsTemplateFile);
+                //string saveAsFile = Path.GetFileNameWithoutExtension(xlsTemplateFile) + DateTime.Now.ToString("yyyyMMddHHmmss") + ext;
+
+                IDictionary<string, string> mappingData = new SortedDictionary<string, string>();
+                //mappingData = _ds.Tables[0].ToDataSortedDictionary("NAME", "VALUE");
+                //IDictionary<string, object> addressData = new SortedDictionary<string, object>();
+                //addressData = _ds.Tables[0].ToDataSortedDictionary("FCOLUMN", "FVALUE");
+
+                DataTable data = _ds.Tables[0];
+                foreach (DataRow row in data.Rows)
+                {
+                    string vType = row["VTYPE"].ToString().Trim();
+                    if (string.IsNullOrEmpty(vType) || vType == "N")//Kiểu số
+                    {
+                        string NAME = row["NAME"].ToString().Trim().ToUpper();
+                        string FCOLUMN = row["FCOLUMN"].ToString().Trim().ToUpper();
+                        object value = row["Value"];
+                        object fvalue = row["fvalue"];
+                        if (mappingData.ContainsKey(NAME))
+                        {
+                            ShowMainMessage(V6Text.DataExist + "NAME=" + NAME);
+                        }
+                        else
+                        {
+                            mappingData.Add("{@" + NAME + "}", ObjectAndString.ObjectToString(value));
+                        }
+                    }
+                    else
+                    {
+                        string NAME = row["NAME"].ToString().Trim().ToUpper();
+                        string FCOLUMN = row["FCOLUMN"].ToString().Trim().ToUpper();
+                        object value = row[vType + "Value"];
+                        object fvalue = row[vType + "fvalue"];
+                        if (mappingData.ContainsKey(NAME))
+                        {
+                            ShowMainMessage(V6Text.DataExist + "NAME=" + NAME);
+                        }
+                        else
+                        {
+                            mappingData.Add("{@" + NAME + "}", ObjectAndString.ObjectToString(value));
+                        }
+                    }
+                }
+
+                File.Copy(xlsTemplateFile, saveFile, true);
+
+                WordUtility wf = new WordUtility();
+                //wf.ReplaceText(xlsTemplateFile, saveFile, mappingData);
+                wf.ReplaceTextInterop(saveFile, mappingData);
+
+                {
+                    if (V6Options.AutoOpenExcel)
+                    {
+                        V6ControlFormHelper.OpenFileProcess(saveFile);
+                    }
+                    else
+                    {
+                        this.ShowInfoMessage(V6Text.ExportFinish + "\n" + saveFile);
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnExport_Click", ex);
+            }
+        }
+
         private void chkHienTatCa_CheckedChanged(object sender, EventArgs e)
         {
             LoadAlmaubc();
@@ -514,6 +624,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var f = new DataEditorForm(this, data, txtMauExport.Text, null, "UID", "title",
                 true, true, false, true, defaultData);
             f.ShowDialog(this);
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         

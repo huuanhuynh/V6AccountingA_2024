@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlbcAddEditForm));
             this.txtCaption = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.chkStatus = new V6Controls.V6CheckBox();
             this.chkMauTuIn = new V6Controls.V6CheckBox();
             this.txtIsUser = new V6Controls.V6ColorTextBox();
-            this.btnExcelTemplate = new System.Windows.Forms.Button();
             this.txtPrinterDef = new V6Controls.V6ColorTextBox();
             this.chkPrinterYn = new V6Controls.V6CheckBox();
             this.btnPrinterSelect = new System.Windows.Forms.Button();
@@ -145,11 +145,16 @@
             this.chkCheckPrint = new V6Controls.V6CheckBox();
             this.txtRPT_DIR = new V6Controls.V6ColorTextBox();
             this.lblRPT_DIR = new System.Windows.Forms.Label();
+            this.menuBtnTemplate = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.excelTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.wordTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnExcelTemplate2 = new wyDay.Controls.SplitButton();
             this.v6TabControl1.SuspendLayout();
             this.tabDinhDangXemVaExcel.SuspendLayout();
             this.tabDinhDangMauVaMoRong.SuspendLayout();
             this.grbSum.SuspendLayout();
             this.grbBold.SuspendLayout();
+            this.menuBtnTemplate.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtCaption
@@ -395,7 +400,6 @@
             this.txtSTT.AccessibleName = "STT";
             this.txtSTT.BackColor = System.Drawing.Color.White;
             this.txtSTT.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSTT.DecimalPlaces = 0;
             this.txtSTT.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtSTT.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtSTT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -477,17 +481,6 @@
             this.txtIsUser.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.txtIsUser, "ISUSER");
             this.txtIsUser.Visible = false;
-            // 
-            // btnExcelTemplate
-            // 
-            this.btnExcelTemplate.AccessibleDescription = "ADDEDITB00015";
-            this.btnExcelTemplate.Location = new System.Drawing.Point(521, 31);
-            this.btnExcelTemplate.Name = "btnExcelTemplate";
-            this.btnExcelTemplate.Size = new System.Drawing.Size(114, 24);
-            this.btnExcelTemplate.TabIndex = 20;
-            this.btnExcelTemplate.Text = "Excel &template";
-            this.btnExcelTemplate.UseVisualStyleBackColor = true;
-            this.btnExcelTemplate.Click += new System.EventHandler(this.btnExcelTemplate_Click);
             // 
             // txtPrinterDef
             // 
@@ -1177,7 +1170,6 @@
             this.TxtSTT13.AccessibleName = "FROZENV";
             this.TxtSTT13.BackColor = System.Drawing.Color.White;
             this.TxtSTT13.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtSTT13.DecimalPlaces = 0;
             this.TxtSTT13.EnterColor = System.Drawing.Color.PaleGreen;
             this.TxtSTT13.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtSTT13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1409,7 +1401,6 @@
             this.txtSoLien.AccessibleName = "SO_LIEN";
             this.txtSoLien.BackColor = System.Drawing.SystemColors.Window;
             this.txtSoLien.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSoLien.DecimalPlaces = 0;
             this.txtSoLien.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtSoLien.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtSoLien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1444,7 +1435,6 @@
             this.numRowMax.AccessibleName = "ROW_MAX";
             this.numRowMax.BackColor = System.Drawing.SystemColors.Window;
             this.numRowMax.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.numRowMax.DecimalPlaces = 0;
             this.numRowMax.EnterColor = System.Drawing.Color.PaleGreen;
             this.numRowMax.ForeColor = System.Drawing.SystemColors.WindowText;
             this.numRowMax.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1478,7 +1468,6 @@
             this.numDropMax.AccessibleName = "DROP_MAX";
             this.numDropMax.BackColor = System.Drawing.SystemColors.Window;
             this.numDropMax.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.numDropMax.DecimalPlaces = 0;
             this.numDropMax.EnterColor = System.Drawing.Color.PaleGreen;
             this.numDropMax.ForeColor = System.Drawing.SystemColors.WindowText;
             this.numDropMax.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1513,7 +1502,6 @@
             this.v6NumberTextBox1.AccessibleName = "Reload_data";
             this.v6NumberTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox1.DecimalPlaces = 0;
             this.v6NumberTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1549,7 +1537,6 @@
             this.txtFfixColumn.AccessibleName = "FFIXCOLUMN";
             this.txtFfixColumn.BackColor = System.Drawing.SystemColors.Window;
             this.txtFfixColumn.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFfixColumn.DecimalPlaces = 0;
             this.txtFfixColumn.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtFfixColumn.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtFfixColumn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1572,7 +1559,6 @@
             this.txtFstart.AccessibleName = "FSTART";
             this.txtFstart.BackColor = System.Drawing.SystemColors.Window;
             this.txtFstart.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFstart.DecimalPlaces = 0;
             this.txtFstart.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtFstart.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtFstart.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1782,7 +1768,6 @@
             this.txtND51.AccessibleName = "ND51";
             this.txtND51.BackColor = System.Drawing.Color.White;
             this.txtND51.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtND51.DecimalPlaces = 0;
             this.txtND51.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtND51.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtND51.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1841,10 +1826,48 @@
             this.lblRPT_DIR.Text = "RPT_DIR";
             this.lblRPT_DIR.Visible = false;
             // 
+            // menuBtnTemplate
+            // 
+            this.menuBtnTemplate.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.excelTemplateMenu,
+            this.wordTemplateMenu});
+            this.menuBtnTemplate.Name = "menuBtnIn";
+            this.menuBtnTemplate.Size = new System.Drawing.Size(155, 48);
+            // 
+            // excelTemplateMenu
+            // 
+            this.excelTemplateMenu.Name = "excelTemplateMenu";
+            this.excelTemplateMenu.Size = new System.Drawing.Size(154, 22);
+            this.excelTemplateMenu.Text = "Excel Template";
+            this.excelTemplateMenu.Click += new System.EventHandler(this.btnExcelTemplate_Click);
+            // 
+            // wordTemplateMenu
+            // 
+            this.wordTemplateMenu.Name = "wordTemplateMenu";
+            this.wordTemplateMenu.Size = new System.Drawing.Size(154, 22);
+            this.wordTemplateMenu.Text = "Word Template";
+            this.wordTemplateMenu.Click += new System.EventHandler(this.btnExcelTemplate_Click);
+            // 
+            // btnExcelTemplate2
+            // 
+            this.btnExcelTemplate2.AccessibleDescription = "ADDEDITB00015";
+            this.btnExcelTemplate2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExcelTemplate2.AutoSize = true;
+            this.btnExcelTemplate2.ContextMenuStrip = this.menuBtnTemplate;
+            this.btnExcelTemplate2.Location = new System.Drawing.Point(521, 31);
+            this.btnExcelTemplate2.Name = "btnExcelTemplate2";
+            this.btnExcelTemplate2.Size = new System.Drawing.Size(114, 24);
+            this.btnExcelTemplate2.SplitMenuStrip = this.menuBtnTemplate;
+            this.btnExcelTemplate2.TabIndex = 19;
+            this.btnExcelTemplate2.Text = "Excel &template";
+            this.btnExcelTemplate2.UseVisualStyleBackColor = true;
+            this.btnExcelTemplate2.Click += new System.EventHandler(this.btnExcelTemplate_Click);
+            // 
             // AlbcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExcelTemplate2);
             this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.chkRight_YN);
             this.Controls.Add(this.chkInherit_ch);
@@ -1856,7 +1879,6 @@
             this.Controls.Add(this.chkCheckPrint);
             this.Controls.Add(this.chknd51);
             this.Controls.Add(this.btnPrinterSelect);
-            this.Controls.Add(this.btnExcelTemplate);
             this.Controls.Add(this.btnExcel2View);
             this.Controls.Add(this.btnExcel2);
             this.Controls.Add(this.txtIsUser);
@@ -1894,6 +1916,7 @@
             this.grbSum.PerformLayout();
             this.grbBold.ResumeLayout(false);
             this.grbBold.PerformLayout();
+            this.menuBtnTemplate.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1924,7 +1947,6 @@
         private V6Controls.V6CheckBox chkStatus;
         private V6Controls.V6CheckBox chkMauTuIn;
         private V6ColorTextBox txtIsUser;
-        private System.Windows.Forms.Button btnExcelTemplate;
         private V6ColorTextBox txtPrinterDef;
         private V6CheckBox chkPrinterYn;
         private System.Windows.Forms.Button btnPrinterSelect;
@@ -2017,5 +2039,9 @@
         protected System.Windows.Forms.Button btnNoSum1;
         private Controls.DicEditButton dicEditButton1;
         private Controls.DicEditButton dicEditButton2;
+        private System.Windows.Forms.ContextMenuStrip menuBtnTemplate;
+        private System.Windows.Forms.ToolStripMenuItem excelTemplateMenu;
+        private System.Windows.Forms.ToolStripMenuItem wordTemplateMenu;
+        private wyDay.Controls.SplitButton btnExcelTemplate2;
     }
 }

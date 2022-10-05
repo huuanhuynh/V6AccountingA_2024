@@ -23,6 +23,7 @@ using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using System.Globalization;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
@@ -174,7 +175,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        public bool AutoPrint = false;
+        public V6PrintMode PrintMode = V6PrintMode.DoNoThing;
         /// <summary>
         /// Tên file excel tự động xuất.
         /// </summary>
@@ -1422,13 +1423,25 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 FormatGridView();
                 //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
                 ViewReport();
-                if (AutoPrint)
+                if (PrintMode == V6PrintMode.AutoPrint)
                 {
                     Print(PrinterName, _rpDoc0);
-                    Dispose();
+                    if (!IsDisposed) Dispose();
                 }
-                //gridViewSummary1.NoSumColumns = Report_GRDT_V1;
-
+                else if (PrintMode == V6PrintMode.AutoClickPrint)
+                {
+                    btnIn.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoExportT)
+                {
+                    if (btnExport3.Visible && btnExport3.Enabled)
+                        btnExport3.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoLoadData)
+                {
+                    //Done;
+                }
+                
                 treeListViewAuto1.Focus();
             }
             catch (Exception ex)
@@ -1712,7 +1725,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                     view.FilterControl.SetParentRow(treeListViewAuto1.SelectedItemData);
 
-                    view.AutoClickNhan = true;
+                    view.PrintMode = V6PrintMode.AutoLoadData;
                     view.ShowToForm(this, "Chi tiết", true);
 
                     SetStatus2Text();

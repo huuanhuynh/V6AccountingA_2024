@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
@@ -166,8 +167,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        public bool AutoPrint = false;
-        public bool AutoClickNhan = false;
+        public V6PrintMode PrintMode = V6PrintMode.DoNoThing;
+        
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -969,7 +970,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 SetTBLdata();
                 ShowReport();
             }
-            else if (AutoClickNhan)
+            else if (PrintMode == V6PrintMode.AutoLoadData)
             {
                 btnNhan.PerformClick();
             }
@@ -1666,7 +1667,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
 
-                view.AutoClickNhan = true;
+                view.PrintMode = V6PrintMode.AutoLoadData;
                 view.ShowToForm(this, "Chi tiết", true);
 
                 SetStatus2Text();

@@ -51,7 +51,8 @@
 	<TuKhoa TenTuKhoa='V6Mode' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Message' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Message.Show(("Đã tồn tại. Có chắc chắn xử lý?", "Xác nhận", 0, MessageBoxButtons.YesNo, MessageBoxIcon.Question, 0, thisForm);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-	
+
+  <TuKhoa TenTuKhoa='CallDoV6LostFocus'   MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ContainsKey'   MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='CopyToVPN'   MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DataGridViewRowToDataDictionary(row)'   MauSac = 'Chocolate' 	AutoComplete = '1' />

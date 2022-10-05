@@ -491,7 +491,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 _gia_nt.V6LostFocus += delegate
                                 {
                                     TinhGia_Theo_GiaNt();
-                                    TinhTienVon();
+                                    TinhTienVon(_gia_nt);
                                 };
                                 if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                                 {
@@ -686,7 +686,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                                 {
                                                     _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data == null ? 0 : soKhung_vvar.Data["DU_DAU"]) / ton_dau;
                                                     //_gia_nt.CallDoV6LostFocus();
-                                                    TinhTienVon();
+                                                    TinhTienVon(_soKhung);
                                                 }
                                             }
                                         }
@@ -721,7 +721,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                         {
                                             _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_proc.Data == null ? 0 : soKhung_proc.Data["DU_DAU"]) / ton_dau;
                                             //_gia_nt.CallDoV6LostFocus();
-                                            TinhTienVon();
+                                            TinhTienVon(_soKhung);
                                         }
                                     }
                                 };
@@ -770,7 +770,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                                 {
                                                     _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_lookup.Data == null ? 0 : soKhung_lookup.Data["DU_DAU"]) / ton_dau;
                                                     //_gia_nt.CallDoV6LostFocus();
-                                                    TinhTienVon();
+                                                    TinhTienVon(_soKhung);
                                                 }
                                             }
                                         }
@@ -1383,7 +1383,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                         //TinhTienNt2(null);
                         TinhTienVon1(null);
-                        TinhTienVon();
+                        TinhTienVon(actionControl);
                     }
                 }
                 TinhTienVon1(actionControl);
@@ -2693,6 +2693,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
+        public void TinhGia1_Theo_GiaNt()
+        {
+            try
+            {
+                _gia_nt1.Value = _gia_nt.Value;
+                if (_maNt == _mMaNt0)
+                {
+                    _gia1.Value = _gia_nt1.Value;
+                }
+                else
+                {
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia1.Value = V6BusinessHelper.Vround(_gia_nt1.Value * _sl_td1.Value, M_ROUND);
+                    else _gia1.Value = V6BusinessHelper.Vround(_gia_nt1.Value * txtTyGia.Value, M_ROUND_GIA);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         /// <summary>
         /// Tien_nt tien
         /// </summary>
@@ -2710,10 +2731,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
-        public void TinhTienVon(Control actionControl = null)
+        public void TinhTienVon(Control actionControl)
         {
             try
             {
+                if (actionControl == _soKhung)
+                {
+                    TinhGia1_Theo_GiaNt();
+                }
+                
+                TinhGia_Theo_GiaNt();
+
                 _tien_nt.Value = V6BusinessHelper.Vround(_soLuong.Value * _gia_nt.Value, M_ROUND_NT);
                 
                 if (_maNt == _mMaNt0)

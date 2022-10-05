@@ -2983,6 +2983,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
+        public void TinhGia1_Theo_GiaNt()
+        {
+            try
+            {
+                _gia_nt1.Value = _gia_nt.Value;
+                if (_maNt == _mMaNt0)
+                {
+                    _gia1.Value = _gia_nt1.Value;
+                }
+                else
+                {
+                    if (_maVt.GIA_TON == 5 && _sl_td1.Value != 0) _gia1.Value = V6BusinessHelper.Vround(_gia_nt1.Value * _sl_td1.Value, M_ROUND);
+                    else _gia1.Value = V6BusinessHelper.Vround(_gia_nt1.Value * txtTyGia.Value, M_ROUND_GIA);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
     
         /// <summary>
         /// Tien_nt tien
@@ -3007,6 +3028,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
+                if (actionControl == _soKhung)
+                {
+                    TinhGia1_Theo_GiaNt();
+                }
+
+                TinhGia_Theo_GiaNt();
+
                 _tien_nt.Value = V6BusinessHelper.Vround(_soLuong.Value * _gia_nt.Value, M_ROUND_NT);
                 
                 if (_maNt == _mMaNt0)
