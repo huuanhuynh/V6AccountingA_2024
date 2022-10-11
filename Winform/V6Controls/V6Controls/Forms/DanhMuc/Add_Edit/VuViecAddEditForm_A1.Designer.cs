@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
+            this.txtTien_nt = new V6Controls.V6NumberTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.v6DateTimeColor6 = new V6Controls.V6DateTimeColor();
@@ -166,7 +167,7 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
-            this.txtTien_nt = new V6Controls.V6NumberTextBox();
+            this.lblTenKH = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
@@ -209,7 +210,7 @@
             this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.LimitCharacters = "MB";
+            this.v6VvarTextBox2.LimitCharacters = "MBmb";
             this.v6VvarTextBox2.Location = new System.Drawing.Point(594, 14);
             this.v6VvarTextBox2.MaxLength = 1;
             this.v6VvarTextBox2.Name = "v6VvarTextBox2";
@@ -395,6 +396,7 @@
             this.tabThongTinChinh.Controls.Add(this.label23);
             this.tabThongTinChinh.Controls.Add(this.txtOngBa);
             this.tabThongTinChinh.Controls.Add(this.label19);
+            this.tabThongTinChinh.Controls.Add(this.lblTenKH);
             this.tabThongTinChinh.Controls.Add(this.lblTenVT);
             this.tabThongTinChinh.Controls.Add(this.label36);
             this.tabThongTinChinh.Controls.Add(this.lblMaKH);
@@ -440,6 +442,29 @@
             this.tabThongTinChinh.Size = new System.Drawing.Size(744, 391);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
+            // 
+            // txtTien_nt
+            // 
+            this.txtTien_nt.AccessibleName = "TIEN_NT";
+            this.txtTien_nt.BackColor = System.Drawing.Color.White;
+            this.txtTien_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTien_nt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTien_nt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTien_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTien_nt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTien_nt.LeaveColor = System.Drawing.Color.White;
+            this.txtTien_nt.Location = new System.Drawing.Point(380, 194);
+            this.txtTien_nt.Name = "txtTien_nt";
+            this.txtTien_nt.Size = new System.Drawing.Size(50, 23);
+            this.txtTien_nt.TabIndex = 58;
+            this.txtTien_nt.Text = "0";
+            this.txtTien_nt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTien_nt.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtTien_nt.Visible = false;
             // 
             // checkBox1
             // 
@@ -631,6 +656,7 @@
             this.txtMaKH.AccessibleName = "MA_KH";
             this.txtMaKH.BackColor = System.Drawing.Color.White;
             this.txtMaKH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaKH.BrotherFields = "TEN_KH";
             this.txtMaKH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaKH.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKH.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -676,7 +702,7 @@
             this.txtChucVu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtChucVu.HoverColor = System.Drawing.Color.Yellow;
             this.txtChucVu.LeaveColor = System.Drawing.Color.White;
-            this.txtChucVu.Location = new System.Drawing.Point(496, 62);
+            this.txtChucVu.Location = new System.Drawing.Point(496, 89);
             this.txtChucVu.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtChucVu.Name = "txtChucVu";
             this.txtChucVu.Size = new System.Drawing.Size(241, 23);
@@ -685,7 +711,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(391, 65);
+            this.label20.Location = new System.Drawing.Point(391, 92);
             this.label20.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(59, 17);
@@ -765,7 +791,7 @@
             this.txtOngBa.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtOngBa.HoverColor = System.Drawing.Color.Yellow;
             this.txtOngBa.LeaveColor = System.Drawing.Color.White;
-            this.txtOngBa.Location = new System.Drawing.Point(496, 35);
+            this.txtOngBa.Location = new System.Drawing.Point(496, 62);
             this.txtOngBa.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtOngBa.Name = "txtOngBa";
             this.txtOngBa.Size = new System.Drawing.Size(241, 23);
@@ -774,7 +800,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(391, 38);
+            this.label19.Location = new System.Drawing.Point(391, 65);
             this.label19.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(99, 17);
@@ -2307,28 +2333,16 @@
             this.tabChiTiet.TabIndex = 5;
             this.tabChiTiet.Text = "Chi tiết";
             // 
-            // TxtTien_nt
+            // lblTenKH
             // 
-            this.txtTien_nt.AccessibleName = "TIEN_NT";
-            this.txtTien_nt.BackColor = System.Drawing.Color.White;
-            this.txtTien_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTien_nt.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTien_nt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTien_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTien_nt.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTien_nt.LeaveColor = System.Drawing.Color.White;
-            this.txtTien_nt.Location = new System.Drawing.Point(496, 89);
-            this.txtTien_nt.Name = "TxtTien_nt";
-            this.txtTien_nt.Size = new System.Drawing.Size(200, 23);
-            this.txtTien_nt.TabIndex = 58;
-            this.txtTien_nt.Text = "0";
-            this.txtTien_nt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTien_nt.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtTien_nt.Visible = false;
+            this.lblTenKH.AccessibleName = "TEN_KH";
+            this.lblTenKH.AutoSize = true;
+            this.lblTenKH.Location = new System.Drawing.Point(288, 38);
+            this.lblTenKH.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTenKH.Name = "lblTenKH";
+            this.lblTenKH.Size = new System.Drawing.Size(12, 17);
+            this.lblTenKH.TabIndex = 18;
+            this.lblTenKH.Text = ".";
             // 
             // VuViecAddEditForm_A1
             // 
@@ -2497,5 +2511,6 @@
         private V6VvarTextBox TxtMa_vv_me;
         private System.Windows.Forms.Label label4;
         private V6NumberTextBox txtTien_nt;
+        private System.Windows.Forms.Label lblTenKH;
     }
 }

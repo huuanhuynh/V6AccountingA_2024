@@ -82,25 +82,36 @@ namespace V6Controls.Controls
         {
             if (iControl != null)
             {
-                //MyInit();
                 FixThisSizeLocation(iControl);
                 _refControl.SizeChanged += refControl_SizeChanged;
-                iControl.LocationChanged += refControl_LocationChanged;
+                _refControl.LocationChanged += refControl_LocationChanged;
                 _refControl.VisibleChanged += _refControl_VisibleChanged;
+                _refControl.KeyDown += _refControl_KeyDown;
             }
         }
-
-        void _refControl_VisibleChanged(object sender, EventArgs e)
-        {
-            FixThisSizeLocation(_refControl);
-        }
+        
         private void DeConnectControl()
         {
             if (_refControl != null)
             {
                 _refControl.SizeChanged -= refControl_SizeChanged;
                 _refControl.LocationChanged -= refControl_LocationChanged;
+                _refControl.VisibleChanged -= _refControl_VisibleChanged;
+                _refControl.KeyDown -= _refControl_KeyDown;
             }
+        }
+
+        void _refControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                DicEditButton_Click(this, new EventArgs());
+            }
+        }
+
+        void _refControl_VisibleChanged(object sender, EventArgs e)
+        {
+            FixThisSizeLocation(_refControl);
         }
 
         void refControl_SizeChanged(object sender, EventArgs e)

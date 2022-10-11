@@ -482,5 +482,38 @@ namespace V6Tools.V6Convert
             return (int)ToDecimalV6(s);
         }
 
+        /// <summary>
+        /// Tính độ dài cung tròn
+        /// </summary>
+        /// <param name="D">Khoảng cách 2 đỉnh cung.</param>
+        /// <param name="h"></param>
+        /// <param name="R"></param>
+        /// <returns></returns>
+        public static double DoDaiCung(double D, double h, out double R)
+        {
+            double result = 0;
+            R = -1;
+            try
+            {
+                double d = D / 2;
+                double c = Math.Sqrt(Math.Pow(d, 2) + Math.Pow(h, 2));
+
+                double Arad = Math.Acos(d / c);
+
+                double A2rad = Math.PI / 2 - (Arad * 2);
+                double cosA2 = Math.Cos(A2rad);
+                R = d / cosA2;
+
+                result = (4 * Arad) * R;
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+            return -1;
+        }
+
     }
 }

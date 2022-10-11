@@ -115,20 +115,32 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                var uid_ct = DataOld["UID"].ToString();
-                var ma_ku_old = DataOld["MA_KU"].ToString().Trim();
-                var data = new Dictionary<string, object>();
-                
-                CategoryView dmView = new CategoryView(ItemID, "title", "Alkuct", "uid_ct='"+uid_ct+"'", null, DataOld);
-                if (Mode == V6Mode.View)
+                if (Mode != V6Mode.Edit)
                 {
-                    dmView.EnableAdd = false;
-                    dmView.EnableCopy = false;
-                    dmView.EnableDelete = false;
-                    dmView.EnableEdit = false;
+                    this.ShowInfoMessage("Chỉ dùng khi sửa.");
+                    return;
                 }
-                dmView.ToFullForm(btnBoSung.Text);
 
+                if (DataOld != null && DataOld.ContainsKey("UID") && DataOld.ContainsKey("MA_KU"))
+                {
+                    var uid_ct = DataOld["UID"].ToString();
+                    var ma_ku_old = DataOld["MA_KU"].ToString().Trim();
+                    var data = new Dictionary<string, object>();
+
+                    CategoryView dmView = new CategoryView(ItemID, "title", "Alkuct", "uid_ct='" + uid_ct + "'", null, DataOld);
+                    if (Mode == V6Mode.View)
+                    {
+                        dmView.EnableAdd = false;
+                        dmView.EnableCopy = false;
+                        dmView.EnableDelete = false;
+                        dmView.EnableEdit = false;
+                    }
+                    dmView.ToFullForm(btnBoSung.Text);
+                }
+                else
+                {
+                    ShowMainMessage(V6Text.NoData);
+                }
             }
             catch (Exception ex)
             {

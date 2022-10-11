@@ -38,7 +38,7 @@
             this.btnFilterTextFiles = new System.Windows.Forms.Button();
             this.btnTestHash = new System.Windows.Forms.Button();
             this.btnTestDatabaseConfig = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btnTestCungTron = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -56,8 +56,17 @@
             this.btnTestHash4 = new System.Windows.Forms.Button();
             this.btnTestHash5 = new System.Windows.Forms.Button();
             this.btnConvertExcel = new System.Windows.Forms.Button();
+            this.trackBarNgang = new System.Windows.Forms.TrackBar();
+            this.trackBarCao = new System.Windows.Forms.TrackBar();
+            this.numNgang = new System.Windows.Forms.NumericUpDown();
+            this.numCao = new System.Windows.Forms.NumericUpDown();
+            this.txtCung = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numOutLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarNgang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarCao)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNgang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCao)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -150,14 +159,14 @@
             this.btnTestDatabaseConfig.UseVisualStyleBackColor = true;
             this.btnTestDatabaseConfig.Click += new System.EventHandler(this.btnTestDatabaseConfig_Click);
             // 
-            // button10
+            // btnTestCungTron
             // 
-            this.button10.Location = new System.Drawing.Point(12, 273);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(100, 23);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "button1";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnTestCungTron.Location = new System.Drawing.Point(12, 273);
+            this.btnTestCungTron.Name = "btnTestCungTron";
+            this.btnTestCungTron.Size = new System.Drawing.Size(100, 23);
+            this.btnTestCungTron.TabIndex = 0;
+            this.btnTestCungTron.Text = "Cung tròn";
+            this.btnTestCungTron.UseVisualStyleBackColor = true;
             // 
             // button11
             // 
@@ -337,14 +346,84 @@
             this.btnConvertExcel.UseVisualStyleBackColor = true;
             this.btnConvertExcel.Click += new System.EventHandler(this.btnConvertExcel_Click);
             // 
+            // trackBarNgang
+            // 
+            this.trackBarNgang.Location = new System.Drawing.Point(160, 251);
+            this.trackBarNgang.Maximum = 5000;
+            this.trackBarNgang.Name = "trackBarNgang";
+            this.trackBarNgang.Size = new System.Drawing.Size(322, 45);
+            this.trackBarNgang.TabIndex = 4;
+            this.trackBarNgang.Scroll += new System.EventHandler(this.trackBarNgang_Scroll);
+            // 
+            // trackBarCao
+            // 
+            this.trackBarCao.Location = new System.Drawing.Point(488, 251);
+            this.trackBarCao.Maximum = 3000;
+            this.trackBarCao.Name = "trackBarCao";
+            this.trackBarCao.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarCao.Size = new System.Drawing.Size(45, 112);
+            this.trackBarCao.TabIndex = 4;
+            this.trackBarCao.Value = 3;
+            this.trackBarCao.Scroll += new System.EventHandler(this.trackBarCao_Scroll);
+            // 
+            // numNgang
+            // 
+            this.numNgang.Location = new System.Drawing.Point(180, 302);
+            this.numNgang.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.numNgang.Name = "numNgang";
+            this.numNgang.Size = new System.Drawing.Size(59, 20);
+            this.numNgang.TabIndex = 2;
+            this.numNgang.ThousandsSeparator = true;
+            this.numNgang.Value = new decimal(new int[] {
+            70,
+            0,
+            0,
+            0});
+            this.numNgang.ValueChanged += new System.EventHandler(this.numNgang_ValueChanged);
+            // 
+            // numCao
+            // 
+            this.numCao.Location = new System.Drawing.Point(539, 304);
+            this.numCao.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.numCao.Name = "numCao";
+            this.numCao.Size = new System.Drawing.Size(59, 20);
+            this.numCao.TabIndex = 2;
+            this.numCao.ThousandsSeparator = true;
+            this.numCao.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numCao.ValueChanged += new System.EventHandler(this.numCao_ValueChanged);
+            // 
+            // txtCung
+            // 
+            this.txtCung.Location = new System.Drawing.Point(604, 304);
+            this.txtCung.Name = "txtCung";
+            this.txtCung.Size = new System.Drawing.Size(100, 20);
+            this.txtCung.TabIndex = 1;
+            // 
             // FormAllMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 577);
+            this.Controls.Add(this.trackBarCao);
+            this.Controls.Add(this.trackBarNgang);
             this.Controls.Add(this.btnConvertExcel);
+            this.Controls.Add(this.numCao);
+            this.Controls.Add(this.numNgang);
             this.Controls.Add(this.numOutLength);
             this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.txtCung);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.btnModelHelp);
@@ -354,7 +433,7 @@
             this.Controls.Add(this.button11);
             this.Controls.Add(this.btnCopyToV6);
             this.Controls.Add(this.button16);
-            this.Controls.Add(this.button10);
+            this.Controls.Add(this.btnTestCungTron);
             this.Controls.Add(this.btnUploadFTP);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.btnTestDatabaseConfig);
@@ -375,6 +454,10 @@
             this.Text = "FormAllMain";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numOutLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarNgang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarCao)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNgang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCao)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,7 +474,7 @@
         private System.Windows.Forms.Button btnFilterTextFiles;
         private System.Windows.Forms.Button btnTestHash;
         private System.Windows.Forms.Button btnTestDatabaseConfig;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnTestCungTron;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
@@ -409,5 +492,10 @@
         private System.Windows.Forms.Button btnTestHash4;
         private System.Windows.Forms.Button btnTestHash5;
         private System.Windows.Forms.Button btnConvertExcel;
+        private System.Windows.Forms.TrackBar trackBarNgang;
+        private System.Windows.Forms.TrackBar trackBarCao;
+        private System.Windows.Forms.NumericUpDown numNgang;
+        private System.Windows.Forms.NumericUpDown numCao;
+        private System.Windows.Forms.TextBox txtCung;
     }
 }

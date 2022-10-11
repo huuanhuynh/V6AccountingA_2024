@@ -239,9 +239,6 @@
             // txtNgay_ku2
             // 
             this.txtNgay_ku2.AccessibleName = "ngay_ku2";
-            this.txtNgay_ku2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNgay_ku2.BackColor = System.Drawing.Color.White;
             this.txtNgay_ku2.CustomFormat = "dd/MM/yyyy";
             this.txtNgay_ku2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -252,7 +249,7 @@
             this.txtNgay_ku2.Location = new System.Drawing.Point(201, 68);
             this.txtNgay_ku2.Margin = new System.Windows.Forms.Padding(5);
             this.txtNgay_ku2.Name = "txtNgay_ku2";
-            this.txtNgay_ku2.Size = new System.Drawing.Size(59, 23);
+            this.txtNgay_ku2.Size = new System.Drawing.Size(153, 23);
             this.txtNgay_ku2.TabIndex = 2;
             // 
             // label12
@@ -269,9 +266,6 @@
             // TxtNgay_ku1
             // 
             this.TxtNgay_ku1.AccessibleName = "ngay_ku1";
-            this.TxtNgay_ku1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtNgay_ku1.BackColor = System.Drawing.Color.White;
             this.TxtNgay_ku1.CustomFormat = "dd/MM/yyyy";
             this.TxtNgay_ku1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -282,7 +276,7 @@
             this.TxtNgay_ku1.Location = new System.Drawing.Point(201, 41);
             this.TxtNgay_ku1.Margin = new System.Windows.Forms.Padding(5);
             this.TxtNgay_ku1.Name = "TxtNgay_ku1";
-            this.TxtNgay_ku1.Size = new System.Drawing.Size(59, 23);
+            this.TxtNgay_ku1.Size = new System.Drawing.Size(153, 23);
             this.TxtNgay_ku1.TabIndex = 1;
             // 
             // Txtnh_ku3
@@ -367,7 +361,7 @@
             this.v6NumberTextBox7.Name = "v6NumberTextBox7";
             this.v6NumberTextBox7.Size = new System.Drawing.Size(153, 23);
             this.v6NumberTextBox7.TabIndex = 5;
-            this.v6NumberTextBox7.Text = "0,000";
+            this.v6NumberTextBox7.Text = "0";
             this.v6NumberTextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox7.Value = new decimal(new int[] {
             0,
@@ -389,7 +383,7 @@
             this.v6NumberTextBox6.Name = "v6NumberTextBox6";
             this.v6NumberTextBox6.Size = new System.Drawing.Size(153, 23);
             this.v6NumberTextBox6.TabIndex = 8;
-            this.v6NumberTextBox6.Text = "0,000";
+            this.v6NumberTextBox6.Text = "0";
             this.v6NumberTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox6.Value = new decimal(new int[] {
             0,
@@ -411,7 +405,7 @@
             this.v6NumberTextBox5.Name = "v6NumberTextBox5";
             this.v6NumberTextBox5.Size = new System.Drawing.Size(153, 23);
             this.v6NumberTextBox5.TabIndex = 10;
-            this.v6NumberTextBox5.Text = "0,000";
+            this.v6NumberTextBox5.Text = "0";
             this.v6NumberTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox5.Value = new decimal(new int[] {
             0,
@@ -433,7 +427,7 @@
             this.v6NumberTextBox4.Name = "v6NumberTextBox4";
             this.v6NumberTextBox4.Size = new System.Drawing.Size(153, 23);
             this.v6NumberTextBox4.TabIndex = 3;
-            this.v6NumberTextBox4.Text = "0,000";
+            this.v6NumberTextBox4.Text = "0";
             this.v6NumberTextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox4.Value = new decimal(new int[] {
             0,
@@ -759,7 +753,7 @@
             this.txtSLS6.Name = "txtSLS6";
             this.txtSLS6.Size = new System.Drawing.Size(200, 23);
             this.txtSLS6.TabIndex = 179;
-            this.txtSLS6.Text = "0,000";
+            this.txtSLS6.Text = "0";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS6.Value = new decimal(new int[] {
             0,
@@ -784,7 +778,7 @@
             this.txtSLS5.Name = "txtSLS5";
             this.txtSLS5.Size = new System.Drawing.Size(200, 23);
             this.txtSLS5.TabIndex = 177;
-            this.txtSLS5.Text = "0,000";
+            this.txtSLS5.Text = "0";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS5.Value = new decimal(new int[] {
             0,
@@ -809,7 +803,7 @@
             this.txtSLS4.Name = "txtSLS4";
             this.txtSLS4.Size = new System.Drawing.Size(200, 23);
             this.txtSLS4.TabIndex = 175;
-            this.txtSLS4.Text = "0,000";
+            this.txtSLS4.Text = "0";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS4.Value = new decimal(new int[] {
             0,
@@ -1179,7 +1173,7 @@
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox3.TabIndex = 155;
-            this.v6NumberTextBox3.Text = "0,000";
+            this.v6NumberTextBox3.Text = "0";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
             0,
@@ -1204,7 +1198,7 @@
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox2.TabIndex = 153;
-            this.v6NumberTextBox2.Text = "0,000";
+            this.v6NumberTextBox2.Text = "0";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
             0,
@@ -1229,7 +1223,7 @@
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox1.TabIndex = 151;
-            this.v6NumberTextBox1.Text = "0,000";
+            this.v6NumberTextBox1.Text = "0";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,

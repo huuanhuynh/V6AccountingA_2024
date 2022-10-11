@@ -55,22 +55,40 @@ namespace V6Controls.Controls
                 //MyInit();
                 FixThisSizeLocation(iControl);
                 _refControl.SizeChanged += refControl_SizeChanged;
-                iControl.LocationChanged += refControl_LocationChanged;
+                _refControl.LocationChanged += refControl_LocationChanged;
                 _refControl.VisibleChanged += _refControl_VisibleChanged;
+                if (_refControl is V6DateTimeColor)
+                {
+                    _refControl.KeyDown += _refControl_KeyDown;
+                }
             }
         }
-
-        void _refControl_VisibleChanged(object sender, EventArgs e)
-        {
-            FixThisSizeLocation(_refControl);
-        }
+        
         private void DeConnectControl()
         {
             if (_refControl != null)
             {
                 _refControl.SizeChanged -= refControl_SizeChanged;
                 _refControl.LocationChanged -= refControl_LocationChanged;
+                _refControl.VisibleChanged -= _refControl_VisibleChanged;
+                if (_refControl is V6DateTimeColor)
+                {
+                    _refControl.KeyDown -= _refControl_KeyDown;
+                }
             }
+        }
+
+        void _refControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                DateSelectButton_Click(this, new EventArgs());
+            }
+        }
+
+        void _refControl_VisibleChanged(object sender, EventArgs e)
+        {
+            FixThisSizeLocation(_refControl);
         }
 
         void refControl_SizeChanged(object sender, EventArgs e)
@@ -122,6 +140,7 @@ namespace V6Controls.Controls
             var handler = Click0;
             if (handler != null) handler(this, EventArgs.Empty);
         }
+
         private void DateSelectButton_Click(object sender, EventArgs e)
         {
             try
@@ -133,6 +152,7 @@ namespace V6Controls.Controls
             {
                 this.ShowErrorException(GetType() + ".DateSelectButton_Click ex0", ex0);
             }
+
             try
             {
                 DateSelectForm form = new DateSelectForm(V6Setting.IsVietnamese ? "Chọn ngày" : "Date select");
