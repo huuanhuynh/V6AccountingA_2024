@@ -265,7 +265,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (ctrl_is_down) // Xuất Excel
                 {
                     if (data.Columns.Contains("UID")) data.Columns.Remove("UID");
-                    string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, data, tableName + "_" + String1 + cboSendType.Text);
+                    string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, data, null, tableName + "_" + String1 + cboSendType.Text);
 
                     if (V6Options.AutoOpenExcel)
                     {

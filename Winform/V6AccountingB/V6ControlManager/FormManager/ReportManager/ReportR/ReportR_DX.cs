@@ -29,6 +29,7 @@ using V6Tools;
 using V6Tools.V6Convert;
 using System.Globalization;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
@@ -924,12 +925,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 gridViewSummary1.NoSumColumns = _albcConfig.GRDT_V1;
                 if (_albcConfig.HaveInfo)
                 {
-                    gridViewSummary1.SumCondition = new Condition()
-                    {
-                        FIELD = _albcConfig.FIELD_S,
-                        OPER = _albcConfig.OPER_S,
-                        VALUE = _albcConfig.VALUE_S
-                    };
+                    gridViewSummary1.SumCondition = new Condition(
+                        _albcConfig.FIELD_S,
+                        _albcConfig.OPER_S,
+                        _albcConfig.VALUE_S
+                    );
                     if (!string.IsNullOrEmpty(gridViewSummary1.SumConditionString)) toolTipV6FormControl.SetToolTip(gridViewSummary1, gridViewSummary1.SumConditionString);
                 }
             }
@@ -2077,8 +2077,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             try
             {
-                //V6Tools.V6Export.ExportData.ToExcel(_tbl1, save.FileName, txtReportTitle.Text, true);
-                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, GetExportFileName(), txtReportTitle.Text);
+                var setting = new ExportExcelSetting();
+                setting.BOLD_YN = ObjectAndString.ObjectToBool(_albcConfig.BOLD_YN);
+                setting.BOLD_CONDITION = new Condition(_albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV);
+                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, setting, GetExportFileName(), txtReportTitle.Text);
 
                 if (V6Options.AutoOpenExcel)
                 {

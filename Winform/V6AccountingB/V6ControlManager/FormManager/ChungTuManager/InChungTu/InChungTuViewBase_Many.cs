@@ -22,6 +22,7 @@ using V6RptEditor;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 {
@@ -1834,8 +1835,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
-                    {   
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl_AD, save.FileName, Name, true);
+                    {
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl_AD, new ExportExcelSetting(), save.FileName, Name, true);
                     }
                     catch (Exception ex)
                     {

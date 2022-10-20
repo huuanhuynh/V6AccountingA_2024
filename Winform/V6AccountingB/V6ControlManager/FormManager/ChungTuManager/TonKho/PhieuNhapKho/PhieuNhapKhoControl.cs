@@ -4521,7 +4521,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     {
                         if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export) == DialogResult.Yes)
                         {
-                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
+                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, null, "errorData");
                         }
                     };
                     viewer.ShowDialog(chonExcel);

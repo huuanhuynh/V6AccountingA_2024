@@ -57,6 +57,10 @@ namespace Tools
             {
                 return Name;
             }
+
+            public string headText { get; set; }
+
+            public string tailText { get; set; }
         }
 
         // ======================================== END CLASS MY_FILE_INFO ==================================
@@ -517,13 +521,15 @@ namespace Tools
             new[] {"ControlType=\"BottomMarginBand\" Name=\"BottomMargin\" HeightF=\"27\"", "ControlType=\"BottomMarginBand\" Name=\"BottomMargin\" HeightF=\"10\""},
         };
 
+
+        
         private bool Check(MyFileInfo myFileInfo)
         {
             var o = chkCase.Checked ? StringComparison.Ordinal : StringComparison.InvariantCultureIgnoreCase;
             var fileText = myFileInfo.Text;
 
             bool useHead = false, useTail = false;
-            string headText = "", tailText = "";
+            
             var searchText = txt11.Text;
             if (searchText.StartsWith("[A]"))
             {
@@ -552,26 +558,26 @@ namespace Tools
                     // Lấy head
                     if (useHead)
                     {
-                        headText = "";
+                        myFileInfo.headText = "";
                         int searchTextIndexA = searchTextIndex0 - 1;
                         while (searchTextIndexA > 0 && fileText[searchTextIndexA] != '\n')
                         {
-                            headText = fileText[searchTextIndexA] + headText;
+                            myFileInfo.headText = fileText[searchTextIndexA] + myFileInfo.headText;
                             searchTextIndexA--;
                         }
-                        headText = headText.Trim();
+                        myFileInfo.headText = myFileInfo.headText.Trim();
                     }
 
                     if (useTail)
                     {
-                        tailText = "";
+                        myFileInfo.tailText = "";
                         int searchTextIndexB = searchTextIndex0 + searchText.Length;
                         while (fileText[searchTextIndexB] != '\n')
                         {
-                            tailText = tailText + fileText[searchTextIndexB];
+                            myFileInfo.tailText = myFileInfo.tailText + fileText[searchTextIndexB];
                             searchTextIndexB++;
                         }
-                        tailText = tailText.Trim();
+                        myFileInfo.tailText = myFileInfo.tailText.Trim();
                     }
 
                     //Check headText and tailText
@@ -579,28 +585,28 @@ namespace Tools
                     {
                         if (txtAContains.Text != "")
                         {
-                            if (!headText.Contains(txtAContains.Text)) continue;
+                            if (!myFileInfo.headText.Contains(txtAContains.Text)) continue;
                         }
                         if (txtAContains2.Text != "")
                         {
-                            if (!headText.Contains(txtAContains2.Text)) continue;
+                            if (!myFileInfo.headText.Contains(txtAContains2.Text)) continue;
                         }
                         if (txtAContains3.Text != "")
                         {
-                            if (!headText.Contains(txtAContains3.Text)) continue;
+                            if (!myFileInfo.headText.Contains(txtAContains3.Text)) continue;
                         }
 
                         if (txtANoContains.Text != "")
                         {
-                            if (headText.Contains(txtANoContains.Text)) continue;
+                            if (myFileInfo.headText.Contains(txtANoContains.Text)) continue;
                         }
                         if (txtANoContains2.Text != "")
                         {
-                            if (headText.Contains(txtANoContains2.Text)) continue;
+                            if (myFileInfo.headText.Contains(txtANoContains2.Text)) continue;
                         }
                         if (txtANoContains3.Text != "")
                         {
-                            if (headText.Contains(txtANoContains3.Text)) continue;
+                            if (myFileInfo.headText.Contains(txtANoContains3.Text)) continue;
                         }
                     }
 
@@ -608,28 +614,28 @@ namespace Tools
                     {
                         if (txtBContains.Text != "")
                         {
-                            if (!tailText.Contains(txtBContains.Text)) continue;
+                            if (!myFileInfo.tailText.Contains(txtBContains.Text)) continue;
                         }
                         if (txtBContains2.Text != "")
                         {
-                            if (!tailText.Contains(txtBContains2.Text)) continue;
+                            if (!myFileInfo.tailText.Contains(txtBContains2.Text)) continue;
                         }
                         if (txtBContains3.Text != "")
                         {
-                            if (!tailText.Contains(txtBContains3.Text)) continue;
+                            if (!myFileInfo.tailText.Contains(txtBContains3.Text)) continue;
                         }
 
                         if (txtBNoContains.Text != "")
                         {
-                            if (tailText.Contains(txtBNoContains.Text)) continue;
+                            if (myFileInfo.tailText.Contains(txtBNoContains.Text)) continue;
                         }
                         if (txtBNoContains2.Text != "")
                         {
-                            if (tailText.Contains(txtBNoContains2.Text)) continue;
+                            if (myFileInfo.tailText.Contains(txtBNoContains2.Text)) continue;
                         }
                         if (txtBNoContains3.Text != "")
                         {
-                            if (tailText.Contains(txtBNoContains3.Text)) continue;
+                            if (myFileInfo.tailText.Contains(txtBNoContains3.Text)) continue;
                         }
                     }
 
@@ -637,7 +643,7 @@ namespace Tools
                     {
                         // Lấy dòng
                         int endLineIndex = fileText.IndexOf("\n", searchTextIndex0, o);
-                        string line = headText +
+                        string line = myFileInfo.headText +
                                       fileText.Substring(searchTextIndex0, endLineIndex - searchTextIndex0 - 1);
                         myFileInfo.FoundLine = line;
                     }
@@ -657,8 +663,8 @@ namespace Tools
                         continue;
 
                     searchText = txt01.Text;
-                    if (useHead) searchText = searchText.Replace("[A]", headText);
-                    if (useTail) searchText = searchText.Replace("[B]", tailText);
+                    if (useHead) searchText = searchText.Replace("[A]", myFileInfo.headText);
+                    if (useTail) searchText = searchText.Replace("[B]", myFileInfo.tailText);
 
                     // Kiểm tra không chứa, nếu có chứa là sai.
                     if (txt01.Text != "" && (fileText.IndexOf(searchText, o) >= 0)) continue;
@@ -918,6 +924,9 @@ namespace Tools
                     richFoundInfos.Text = fi.FoundLine;
                     richView.Text = fi.Text;
                     lblFilePath.Text = fi.FullPath;
+
+                    toolTip1.SetToolTip(lblAChua, "A=" + fi.headText);
+                    toolTip1.SetToolTip(lblBChua, "B=" + fi.tailText);
                 }
             }
             catch (Exception ex)

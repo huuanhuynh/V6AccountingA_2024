@@ -79,7 +79,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
                 }
                 else
                 {
-                    Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
+                    Text = Text + " " + _locKetQua._aldmConfig.ma_dm + " aldm.TITLE";
                 }
                 V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);

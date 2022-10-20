@@ -129,7 +129,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            ExportData.ToExcel(currentTable2, o.FileName, "");
+                            ExportData.ToExcel(currentTable2, new ExportExcelSetting(), o.FileName, "");
 
                         }
                         else if (ext == ".dbf")

@@ -9,6 +9,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ToolManager
 {
@@ -100,7 +101,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls")) // xls và xlsx
                         {
-                            V6Tools.V6Export.ExportData.ToExcel(exportData, o.FileName, "");
+                            V6Tools.V6Export.ExportData.ToExcel(exportData, new ExportExcelSetting(), o.FileName, "");
                         }
                         else if (ext == ".dbf")
                         {
@@ -379,7 +380,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls")) // xls và xlsx
                         {
-                            V6Tools.V6Export.ExportData.ToExcel(exportData, o.FileName, "");
+                            V6Tools.V6Export.ExportData.ToExcel(exportData, new ExportExcelSetting(), o.FileName, "");
                         }
                         else if (ext == ".dbf")
                         {

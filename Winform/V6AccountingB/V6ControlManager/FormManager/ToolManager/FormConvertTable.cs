@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ToolManager
 {
@@ -120,7 +121,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            V6Tools.V6Export.ExportData.ToExcel(table2, o.FileName, "");
+                            V6Tools.V6Export.ExportData.ToExcel(table2, new ExportExcelSetting(), o.FileName, "");
                         }
                         else if (ext == ".dbf")
                         {

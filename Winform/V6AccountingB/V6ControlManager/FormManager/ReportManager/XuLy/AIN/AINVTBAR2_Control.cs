@@ -18,6 +18,7 @@ using V6Init;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -450,7 +451,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
                 if (saveDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    V6Tools.V6Export.ExportData.ToExcel(data, saveDialog.FileName, null, false);
+                    V6Tools.V6Export.ExportData.ToExcel(data, new ExportExcelSetting(), saveDialog.FileName, null, false);
                     V6ControlFormHelper.ShowMainMessage(V6Text.ExportFinish);
                 }
             }

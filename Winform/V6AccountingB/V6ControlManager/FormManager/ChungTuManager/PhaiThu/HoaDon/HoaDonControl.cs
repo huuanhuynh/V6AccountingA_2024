@@ -5175,8 +5175,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     string timeString = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     string fileNameAM = string.Format("TTTT_AM_{0}_{1}.xls", CurrentIndex, timeString);
                     string fileNameAD = string.Format("TTTT_AD_{0}.xls", timeString);
-                    V6Tools.V6Export.ExportData.ToExcel(AM, fileNameAM, "TTTT AM log");
-                    V6Tools.V6Export.ExportData.ToExcel(AD, fileNameAD, "TTTT AD log");
+                    V6Tools.V6Export.ExportData.ToExcel(AM, null, fileNameAM, "TTTT AM log");
+                    V6Tools.V6Export.ExportData.ToExcel(AD, null, fileNameAD, "TTTT AD log");
                     this.WriteToLog("TTTT txtTongThanhToanNt.Value != tTienNt2", string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec + " " + debug_flag, "TTTT(" + debug + ")"));
                     //this.ShowWarningMessage("Tổng < chi tiết!");
 
@@ -8699,7 +8699,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
                         {
-                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
+                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, null, "errorData");
                         }
                     };
                     viewer.ShowDialog(chonExcel);

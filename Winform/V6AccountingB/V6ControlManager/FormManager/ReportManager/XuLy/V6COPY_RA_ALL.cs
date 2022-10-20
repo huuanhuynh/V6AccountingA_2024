@@ -12,6 +12,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -258,7 +259,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (radExcel.Checked)
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    V6Tools.V6Export.ExportData.ToExcel(tblList, saveFile, "");
+                    V6Tools.V6Export.ExportData.ToExcel(tblList, new ExportExcelSetting(), saveFile, "");
                     files.Add(saveFile);
 
                     foreach (DataRow row in tblList.Rows)
@@ -269,7 +270,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
                         var data1 = ds.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
-                        V6Tools.V6Export.ExportData.ToExcel(data1, saveFile, "");
+                        V6Tools.V6Export.ExportData.ToExcel(data1, new ExportExcelSetting(), saveFile, "");
                         files.Add(saveFile);
                     }
                 }

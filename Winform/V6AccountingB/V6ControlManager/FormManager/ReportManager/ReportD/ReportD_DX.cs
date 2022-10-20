@@ -26,6 +26,7 @@ using V6ReportControls;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportD
 {
@@ -773,12 +774,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 if (MauInSelectedRow != null)
                 {
-                    gridViewSummary1.SumCondition = new Condition()
-                    {
-                        FIELD = MauInSelectedRow["FIELD_S"].ToString().Trim(),
-                        OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
-                        VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
-                    };
+                    gridViewSummary1.SumCondition = new Condition
+                    (
+                        MauInSelectedRow["FIELD_S"].ToString().Trim(),
+                        MauInSelectedRow["OPER_S"].ToString().Trim(),
+                        MauInSelectedRow["VALUE_S"].ToString().Trim()
+                    );
                     if (!string.IsNullOrEmpty(gridViewSummary1.SumConditionString)) toolTipV6FormControl.SetToolTip(gridViewSummary1, gridViewSummary1.SumConditionString);
                 }
             }
@@ -2057,7 +2058,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
             try
             {
-                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, GetExportFileName(), txtReportTitle.Text);
+                var setting = new ExportExcelSetting();
+                setting.BOLD_YN = ObjectAndString.ObjectToBool(_albcConfig.BOLD_YN);
+                setting.BOLD_CONDITION = new Condition(_albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV);
+                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, setting, GetExportFileName(), txtReportTitle.Text);
 
                 if (V6Options.AutoOpenExcel)
                 {

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using V6Init;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Controls
@@ -438,14 +440,5 @@ namespace V6Controls.Controls
         
     }
 
-    public class Condition
-    {
-        public string FIELD { get; set; }
-        public string OPER { get; set; }
-        public string VALUE { get; set; }
-        public override string ToString()
-        {
-            return string.Format("{0} {1} {2}", FIELD, OPER, VALUE);
-        }
-    }
+    
 }

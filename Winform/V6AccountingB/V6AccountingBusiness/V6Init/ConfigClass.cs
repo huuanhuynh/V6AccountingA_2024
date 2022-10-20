@@ -846,6 +846,42 @@ namespace V6Init
             return lstConfig;
         }
 
+        public static AlbcConfig GetAlbcConfig_reportfile(string mau, string lan, string report)
+        {
+            AlbcConfig lstConfig = null;
+            try
+            {
+                SqlParameter[] param =
+                {
+                    //new SqlParameter("@p0", ma_file),
+                    new SqlParameter("@p1", mau),
+                    new SqlParameter("@p2", lan),
+                    new SqlParameter("@p3", report),
+                };
+                var executeResult = V6BusinessHelper.Select("ALBC", "*", "mau=@p1 and lan=@p2 and report=@p3", "", "", param);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new AlbcConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig = new AlbcConfig();
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
         public static AlbcConfig GetAlbcConfigByMA_FILE(string ma_file)
         {
             AlbcConfig lstConfig = null;

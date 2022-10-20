@@ -290,7 +290,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (radExcel.Checked)
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    ExportData.ToExcel(tblList_copy, saveFile, "");
+                    ExportData.ToExcel(tblList_copy, new ExportExcelSetting(), saveFile, "");
                     files.Add(saveFile);
 
                     foreach (DataRow row in tblList.Rows)
@@ -301,7 +301,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
                         var data1 = ds.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
-                        ExportData.ToExcel(data1, saveFile, "");
+                        ExportData.ToExcel(data1, new ExportExcelSetting(), saveFile, "");
                         files.Add(saveFile);
                     }
                 }
@@ -358,7 +358,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (radExcel.Checked)
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    Data_Table.ToExcelFile(tblList_copy, saveFile);
+                    Data_Table.ToExcelFile(tblList_copy, new ExportExcelSetting(), saveFile);
                     files.Add(saveFile);
 
                     foreach (DataRow row in tblList.Rows)
@@ -371,13 +371,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
                         var data1 = ds.Tables[++data1_count];
                         saveFile = Path.Combine(tempDirCurrent, ma_file + ".xls");
-                        Data_Table.ToExcelFile(data1, saveFile);
+                        Data_Table.ToExcelFile(data1, new ExportExcelSetting(), saveFile);
                         files.Add(saveFile);
                         foreach (string file_ct in ma_file_ct_list)
                         {
                             data1 = ds.Tables[++data1_count];
                             saveFile = Path.Combine(tempDirCurrent, file_ct + ".xls");
-                            Data_Table.ToExcelFile(data1, saveFile);
+                            Data_Table.ToExcelFile(data1, new ExportExcelSetting(), saveFile);
                             files.Add(saveFile);
                         }
                     }

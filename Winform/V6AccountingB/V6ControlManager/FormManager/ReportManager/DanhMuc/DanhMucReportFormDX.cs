@@ -22,6 +22,7 @@ using V6ReportControls;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 {
@@ -954,8 +955,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
-                    {   
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, Name, true);
+                    {
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl, new ExportExcelSetting(), save.FileName, Name, true);
                     }
                     catch (Exception ex)
                     {

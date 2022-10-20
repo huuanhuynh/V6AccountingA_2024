@@ -638,7 +638,11 @@ namespace V6Tools.V6Convert
         /// <returns></returns>
         public static bool CheckCondition(object obj, string oper, object value)
         {
-            if (oper == "=") return Equals(obj, value);
+            if (oper == "=")
+            {
+                if (value is string) return obj.ToString().Trim() == value.ToString();
+                return Equals(obj, value);
+            }
             if (oper == "<>") return !Equals(obj, value);
             if (oper == ">")
             {

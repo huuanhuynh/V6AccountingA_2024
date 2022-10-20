@@ -47,6 +47,7 @@ using V6ThuePost_VIN_Api;
 using V6ThuePost_MISA_Api;
 using V6ThuePost_MISA_Api.Objects;
 using V6ThuePost.MISA_Objects;
+using V6Tools.V6Export;
 
 namespace V6ThuePostManager
 {
@@ -2409,7 +2410,7 @@ namespace V6ThuePostManager
                 }
 
 
-                bool export_ok = V6Tools.V6Export.ExportData.ToExcelTemplate(template_xls, data2, export_file,
+                bool export_ok = ExportData.ToExcelTemplate(template_xls, data2, new ExportExcelSetting(), export_file,
                     firstCell, columns, parameters, NumberFormatInfo.InvariantInfo, insertRow, drawLine);
 
                 //{Tuanmh test

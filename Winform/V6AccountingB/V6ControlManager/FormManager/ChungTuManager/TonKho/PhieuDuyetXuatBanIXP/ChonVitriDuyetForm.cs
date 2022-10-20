@@ -33,12 +33,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             chkSoluong.Checked = true;
             _aldmConfig = ConfigManager.GetAldmConfig(_madm);
             gridViewSummary1.NoSumColumns = "";
-            gridViewSummary1.SumCondition = new Condition()
-            {
-                FIELD = "LOAI",
-                OPER = "=",
-                VALUE = "9"
-            };
+            gridViewSummary1.SumCondition = new Condition("LOAI", "=", "9");
             LoadDefaultData(4, "", _madm, "", "");
         }
 

@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChuyenMaTiengViet.cs" />
+    <Compile Include="Condition.cs" />
     <Compile Include="V6Convert\FormConvertExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +100,7 @@
     <Compile Include="V6Convert\V6JsonConverter.cs" />
     <Compile Include="V6Convert\V6XmlConverter.cs" />
     <Compile Include="V6DllLoader.cs" />
+    <Compile Include="V6Export\ExportExcelSetting.cs" />
     <Compile Include="V6Objects\V6JsonObject.cs" />
     <Compile Include="V6ToolExtensionMethods.cs" />
     <Compile Include="LunarSolar.cs" />

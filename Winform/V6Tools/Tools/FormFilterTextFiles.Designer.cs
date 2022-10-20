@@ -58,8 +58,8 @@
             this.richFoundInfos = new System.Windows.Forms.RichTextBox();
             this.txtAContains = new System.Windows.Forms.TextBox();
             this.txtBContains = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblAChua = new System.Windows.Forms.Label();
+            this.lblBChua = new System.Windows.Forms.Label();
             this.txtANoContains = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtBNoContains = new System.Windows.Forms.TextBox();
@@ -120,7 +120,7 @@
             this.txt11.Name = "txt11";
             this.txt11.Size = new System.Drawing.Size(1046, 20);
             this.txt11.TabIndex = 7;
-            this.txt11.Text = "[A].Text = \"B";
+            this.txt11.Text = "[A].Text = \"[B]";
             this.toolTip1.SetToolTip(this.txt11, "[A]Contents[B]");
             this.txt11.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
             this.txt11.Leave += new System.EventHandler(this.txtFolder_Leave);
@@ -377,23 +377,23 @@
             this.txtBContains.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
             this.txtBContains.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
-            // label3
+            // lblAChua
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(213, 156);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "[A] chứa";
+            this.lblAChua.AutoSize = true;
+            this.lblAChua.Location = new System.Drawing.Point(213, 156);
+            this.lblAChua.Name = "lblAChua";
+            this.lblAChua.Size = new System.Drawing.Size(47, 13);
+            this.lblAChua.TabIndex = 6;
+            this.lblAChua.Text = "[A] chứa";
             // 
-            // label4
+            // lblBChua
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(213, 178);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "[B] chứa";
+            this.lblBChua.AutoSize = true;
+            this.lblBChua.Location = new System.Drawing.Point(213, 178);
+            this.lblBChua.Name = "lblBChua";
+            this.lblBChua.Size = new System.Drawing.Size(47, 13);
+            this.lblBChua.TabIndex = 6;
+            this.lblBChua.Text = "[B] chứa";
             // 
             // txtANoContains
             // 
@@ -595,10 +595,10 @@
             this.Controls.Add(this.richView);
             this.Controls.Add(this.lblFilePath);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblBChua);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblAChua);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFolder);
@@ -662,8 +662,8 @@
         private System.Windows.Forms.RichTextBox richFoundInfos;
         private System.Windows.Forms.TextBox txtAContains;
         private System.Windows.Forms.TextBox txtBContains;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblAChua;
+        private System.Windows.Forms.Label lblBChua;
         private System.Windows.Forms.TextBox txtANoContains;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtBNoContains;

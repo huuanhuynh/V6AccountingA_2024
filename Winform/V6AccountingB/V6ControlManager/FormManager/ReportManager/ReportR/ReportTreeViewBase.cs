@@ -24,6 +24,7 @@ using V6Tools;
 using V6Tools.V6Convert;
 using System.Globalization;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
@@ -2008,7 +2009,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             try
             {
-                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, GetExportFileName(), txtReportTitle.Text);
+                var setting = new ExportExcelSetting();
+                setting.BOLD_YN = ObjectAndString.ObjectToBool(_albcConfig.BOLD_YN);
+                setting.BOLD_CONDITION = new Condition(_albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV);
+                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, setting, GetExportFileName(), txtReportTitle.Text);
 
                 if (V6Options.AutoOpenExcel)
                 {

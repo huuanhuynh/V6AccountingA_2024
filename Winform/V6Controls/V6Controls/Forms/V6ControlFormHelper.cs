@@ -4151,7 +4151,7 @@ namespace V6Controls.Forms
                 {
                     if (ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
                     {
-                        ExportExcel_ChooseFile(viewer, errorData, "errorData");
+                        ExportExcel_ChooseFile(viewer, errorData, null, "errorData");
                     }
                 };
                 viewer.ShowDialog(dataGridView1);
@@ -4292,7 +4292,7 @@ namespace V6Controls.Forms
                 string file = form.GetType().ToString();
                 file = Path.GetFullPath(file);
                 ExportData.ToTextFile(data, file + ".txt");
-                ExportData.ToExcel(data, file + ".xls", form.Name);
+                ExportData.ToExcel(data, new ExportExcelSetting(), file + ".xls", form.Name);
                 return file;
             }
             catch (Exception ex)
@@ -4401,9 +4401,9 @@ namespace V6Controls.Forms
         /// <param name="data">Dữ liệu xuất Excel.</param>
         /// <param name="defaultSaveName">Tên file chọn sẵn.</param>
         /// <returns>Đường dẫn file lưu.</returns>
-        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName)
+        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, ExportExcelSetting setting, string defaultSaveName)
         {
-            return ExportExcel_ChooseFile(owner, data, defaultSaveName, "");
+            return ExportExcel_ChooseFile(owner, data, setting, defaultSaveName, "");
         }
 
         /// <summary>
@@ -4414,7 +4414,7 @@ namespace V6Controls.Forms
         /// <param name="defaultSaveName">Tên file chọn sẵn.</param>
         /// <param name="title">Tiêu đề trong nội dung. Bỏ qua nếu không dùng.</param>
         /// <returns>Đường dẫn file lưu.</returns>
-        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName, string title)
+        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, ExportExcelSetting setting, string defaultSaveName, string title)
         {
             string fileName = null;
             
@@ -4423,7 +4423,7 @@ namespace V6Controls.Forms
                 if (data == null) return null;
                 fileName = ChooseSaveFile(owner, "Excel files (*.xls)|*.xls|Xlsx|*.xlsx", ChuyenMaTiengViet.ToUnSign(defaultSaveName));
                 if (string.IsNullOrEmpty(fileName)) return fileName;
-                ExportData.ToExcel(CookingDataForExcel(data), fileName, title, true);
+                ExportData.ToExcel(CookingDataForExcel(data), setting, fileName, title, true);
             }
             catch (Exception ex)
             {
@@ -4597,13 +4597,17 @@ namespace V6Controls.Forms
             {
                 try
                 {
-                    var albc_row = Albc.GetRow(ExportExcelTemplate_MAU, ExportExcelTemplate_LAN, ExportExcelTemplate_ReportFile);
-                    if (albc_row != null)
+                    AlbcConfig albcConfig = ConfigManager.GetAlbcConfig_reportfile(ExportExcelTemplate_MAU, ExportExcelTemplate_LAN, ExportExcelTemplate_ReportFile);
+                    ExportExcelSetting setting = new ExportExcelSetting();
+                    //var albc_row = Albc.GetRow(ExportExcelTemplate_MAU, ExportExcelTemplate_LAN, ExportExcelTemplate_ReportFile);
+                    if (albcConfig.HaveInfo)
                     {
                         var firstCell = "A4"; //auto
                         bool drawLine = true, insertRow = true;
-                        var xlm = albc_row["EXCEL2"].ToString().Trim();
-                        var excelColumns = albc_row["EXCEL1"].ToString().Trim();
+                        var xlm = albcConfig.EXCEL2;
+                        var excelColumns = albcConfig.EXCEL1;
+                        setting.BOLD_YN = ObjectAndString.ObjectToBool(albcConfig.BOLD_YN);
+                        setting.BOLD_CONDITION = new Condition(albcConfig.FIELDV, albcConfig.OPERV, albcConfig.VALUEV);
                         DataSet ds = new DataSet();
                         StringReader sReader = new StringReader(xlm);
                         ds.ReadXml(sReader);
@@ -4742,7 +4746,7 @@ namespace V6Controls.Forms
                         }
 
                         if (ExportData.ToExcelTemplate(
-                            ExportExcelTemplate_ExcelTemplateFileFull, ExportExcelTemplate_data, ExportExcelTemplate_saveFileName, firstCell,
+                            ExportExcelTemplate_ExcelTemplateFileFull, ExportExcelTemplate_data, setting, ExportExcelTemplate_saveFileName, firstCell,
                             ObjectAndString.SplitString(excelColumns.Replace("[", "").Replace("]", "")),//.Split(excelColumns.Contains(";") ? ';' : ','),
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
@@ -4870,7 +4874,7 @@ namespace V6Controls.Forms
                 if (string.IsNullOrEmpty(ext) || ext == ".") ext = ".xlsx";
                 var save = new SaveFileDialog
                 {
-                    Filter = "File " + ext + "|" + ext + "|Excel files|*.xls;*.xlsx",
+                    Filter = "File " + ext + "|*" + ext + "|Excel files|*.xls;*.xlsx",
                     Title = "Xuất excel.",
                     FileName = ChuyenMaTiengViet.ToUnSign(ExportExcelTemplateD_defaultSaveName)
                 };
@@ -4878,16 +4882,22 @@ namespace V6Controls.Forms
                 {
                     try
                     {
-                        var albc_row = Albc.GetRow(ExportExcelTemplateD_MAU, ExportExcelTemplateD_LAN, ExportExcelTemplateD_ReportFile);
-                        if (albc_row != null)
+                        var albcConfig = ConfigManager.GetAlbcConfig_reportfile(ExportExcelTemplateD_MAU, ExportExcelTemplateD_LAN, ExportExcelTemplateD_ReportFile);
+                        var setting = new ExportExcelSetting();
+                        //var albc_row = Albc.GetRow(ExportExcelTemplateD_MAU, ExportExcelTemplateD_LAN, ExportExcelTemplateD_ReportFile);
+                        if (albcConfig.HaveInfo)
                         {
                             var firstCell = "A4"; //auto
                             bool drawLine = true, insertRow = true;
-                            var xml_field = ExportExcelTemplateD_MODE == "V" ? "EXCEL2_VIEW" : "EXCEL2";
-                            var xlm = albc_row[xml_field].ToString().Trim();
+                            string xml = albcConfig.EXCEL2;
+                            //var xml_field = ExportExcelTemplateD_MODE == "V" ? "EXCEL2_VIEW" : "EXCEL2";
+                            //var xlm = albc_row[xml_field].ToString().Trim();
+                            if (ExportExcelTemplateD_MODE == "V") xml = albcConfig.EXCEL2_VIEW;
                             //var excelColumns = albc_row["EXCEL1"].ToString().Trim();
+                            setting.BOLD_YN = ObjectAndString.ObjectToBool(albcConfig.BOLD_YN);
+                            setting.BOLD_CONDITION = new Condition(albcConfig.FIELDV, albcConfig.OPERV, albcConfig.VALUEV);
                             DataSet ds = new DataSet();
-                            StringReader sReader = new StringReader(xlm);
+                            StringReader sReader = new StringReader(xml);
                             ds.ReadXml(sReader);
 
                             var parameters = new SortedDictionary<string, object>();
@@ -5022,7 +5032,7 @@ namespace V6Controls.Forms
                             }
 
                             if (ExportData.ToExcelTemplate(
-                                ExportExcelTemplateD_ExcelTemplateFileFull, ExportExcelTemplateD_data, save.FileName, firstCell,
+                                ExportExcelTemplateD_ExcelTemplateFileFull, ExportExcelTemplateD_data, setting, save.FileName, firstCell,
                                 ObjectAndString.SplitString(ExportExcelTemplateD_excelColumns.Replace("[", "").Replace("]", "")),
                                 parameters, V6Setting.V6_number_format_info,
                                 insertRow, drawLine))
@@ -5099,7 +5109,7 @@ namespace V6Controls.Forms
                 if (string.IsNullOrEmpty(ext) || ext == ".") ext = ".xlsx";
                 var save = new SaveFileDialog
                 {
-                    Filter = "File " + ext + "|" + ext + "|Excel files|*.xls;*.xlsx",
+                    Filter = "File " + ext + "|*" + ext + "|Excel files|*.xls;*.xlsx",
                     Title = "Xuất excel.",
                     FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
                 };
@@ -5196,13 +5206,16 @@ namespace V6Controls.Forms
             {
                 try
                 {
-                    var albc_row = Albc.GetRow(ExportExcelGroup_MAU, ExportExcelGroup_LAN, ExportExcelGroup_ReportFile);
-                    if (albc_row != null)
+                    var albcConfig = ConfigManager.GetAlbcConfig_reportfile(ExportExcelGroup_MAU, ExportExcelGroup_LAN, ExportExcelGroup_ReportFile);
+                    var setting = new ExportExcelSetting();
+                    if (albcConfig.HaveInfo)
                     {
                         var firstCell = "A4"; //auto
                         bool drawLine = true, insertRow = true;
-                        var xlm = albc_row["EXCEL2"].ToString().Trim();
+                        var xlm = albcConfig.EXCEL2;
                         string excelColumns1 = "", excelColumns2 = "", excelColumns3 = "";
+                        setting.BOLD_YN = ObjectAndString.ObjectToBool(albcConfig.BOLD_YN);
+                        setting.BOLD_CONDITION = new Condition(albcConfig.FIELDV, albcConfig.OPERV, albcConfig.VALUEV);
                         string ref_key = "";
                         DataSet ds = new DataSet();
                         StringReader sReader = new StringReader(xlm);
@@ -5383,7 +5396,7 @@ namespace V6Controls.Forms
                         }
 
                         if (ExportData.ToExcelTemplateGroup(
-                            ExportExcelGroup_ExcelTemplateFileFull, ExportExcelGroup_data, ExportExcelGroup_data2, ObjectAndString.SplitString(ref_key), ExportExcelGroup_saveFileName, firstCell,
+                            ExportExcelGroup_ExcelTemplateFileFull, ExportExcelGroup_data, ExportExcelGroup_data2, setting, ObjectAndString.SplitString(ref_key), ExportExcelGroup_saveFileName, firstCell,
                             column_config,
                             null,//Headers
                             parameters, V6Setting.V6_number_format_info,
@@ -5498,15 +5511,18 @@ namespace V6Controls.Forms
                 {
                     try
                     {
-                        var albc_row = Albc.GetRow(ExportExcelTemplateHTKK_MAU, ExportExcelTemplateHTKK_LAN, ExportExcelTemplateHTKK_ReportFile);
-                        if (albc_row != null)
+                        var albcConfig = ConfigManager.GetAlbcConfig_reportfile(ExportExcelTemplateHTKK_MAU, ExportExcelTemplateHTKK_LAN, ExportExcelTemplateHTKK_ReportFile);
+                        var setting = new ExportExcelSetting();
+                        if (albcConfig.HaveInfo)
                         {
                             var firstCell = "A4";                           //auto, không dùng, đã có config riêng type 7
                             var excelColumnsHTKK = "";                      //Các cột xuất, config type 0 HTKK
                             var excelColumnsONLINE = "";                    //Các cột xuất, config type 0 ONLINE
                             bool drawLine = true, insertRow = true;         //Mặc định true, không config
-                            var xlm = albc_row["EXCEL2"].ToString().Trim();
+                            var xlm = albcConfig.EXCEL2;
                             //var excelColumns = albc_row["EXCEL1"].ToString().Trim();//Không dùng
+                            setting.BOLD_YN = ObjectAndString.ObjectToBool(albcConfig.BOLD_YN);
+                            setting.BOLD_CONDITION = new Condition(albcConfig.FIELDV, albcConfig.OPERV, albcConfig.VALUEV);
                             DataSet ds = new DataSet();
                             StringReader sReader = new StringReader(xlm);
                             ds.ReadXml(sReader);
@@ -5662,7 +5678,7 @@ namespace V6Controls.Forms
 
 
                             if (ExportData.ToExcelTemplateHTKK(
-                                ExportExcelTemplateHTKK_excelTemplateFile, parameters, datas, ObjectAndString.SplitString(excelColumnsHTKK),
+                                ExportExcelTemplateHTKK_excelTemplateFile, parameters, datas, setting, ObjectAndString.SplitString(excelColumnsHTKK),
                                 ExportExcelTemplateHTKK_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
                                 if (V6Options.AutoOpenExcel && !NoOpen)
@@ -5770,15 +5786,18 @@ namespace V6Controls.Forms
                 {
                     try
                     {
-                        var albc_row = Albc.GetRow(ExportExcelTemplateONLINE_MAU, ExportExcelTemplateONLINE_LAN, ExportExcelTemplateONLINE_ReportFile);
-                        if (albc_row != null)
+                        var albcConfig = ConfigManager.GetAlbcConfig_reportfile(ExportExcelTemplateONLINE_MAU, ExportExcelTemplateONLINE_LAN, ExportExcelTemplateONLINE_ReportFile);
+                        var setting = new ExportExcelSetting();
+                        if (albcConfig.HaveInfo)
                         {
                             var firstCell = "A4";                           //auto, không dùng, đã có config riêng type 7
                             var excelColumnsHTKK = "";                      //Các cột xuất, config type 0 HTKK
                             var excelColumnsONLINE = "";                    //Các cột xuất, config type 0 ONLINE
                             bool drawLine = true, insertRow = true;         //Mặc định true, không config
-                            var xlm = albc_row["EXCEL2"].ToString().Trim();
+                            var xlm = albcConfig.EXCEL2;
                             //var excelColumns = albc_row["EXCEL1"].ToString().Trim();//Không dùng
+                            setting.BOLD_YN = ObjectAndString.ObjectToBool(albcConfig.BOLD_YN);
+                            setting.BOLD_CONDITION = new Condition(albcConfig.FIELDV, albcConfig.OPERV, albcConfig.VALUEV);
                             DataSet ds = new DataSet();
                             StringReader sReader = new StringReader(xlm);
                             ds.ReadXml(sReader);
@@ -5932,7 +5951,7 @@ namespace V6Controls.Forms
                             }
 
                             if (ExportData.ToExcelTemplateHTKK(
-                                ExportExcelTemplateONLINE_excelTemplateFile, parameters, datas, ObjectAndString.SplitString(excelColumnsONLINE),
+                                ExportExcelTemplateONLINE_excelTemplateFile, parameters, datas, setting, ObjectAndString.SplitString(excelColumnsONLINE),
                                 ExportExcelTemplateONLINE_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
                                 if (V6Options.AutoOpenExcel && !NoOpen)

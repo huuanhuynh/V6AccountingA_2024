@@ -559,7 +559,7 @@ namespace V6ThuePost
                     }
 
 
-                    bool export_ok = V6Tools.V6Export.ExportData.ToExcelTemplate(template_xls, data2, export_file,
+                    bool export_ok = V6Tools.V6Export.ExportData.ToExcelTemplate(template_xls, data2, null, export_file,
                         firstCell, columns, parameters, NumberFormatInfo.InvariantInfo, insertRow, drawLine);
 
                     //{Tuanmh test

@@ -19,6 +19,7 @@ using V6Init;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
@@ -522,12 +523,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 if (MauInSelectedRow != null)
                 {
-                    gridViewSummary1.SumCondition = new Condition()
-                    {
-                        FIELD = MauInSelectedRow["FIELD_S"].ToString().Trim(),
-                        OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
-                        VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
-                    };
+                    gridViewSummary1.SumCondition = new Condition
+                    (
+                        MauInSelectedRow["FIELD_S"].ToString().Trim(),
+                        MauInSelectedRow["OPER_S"].ToString().Trim(),
+                        MauInSelectedRow["VALUE_S"].ToString().Trim()
+                    );
                     if (!string.IsNullOrEmpty(gridViewSummary1.SumConditionString)) toolTipV6FormControl.SetToolTip(gridViewSummary1, gridViewSummary1.SumConditionString);
                 }
             }
@@ -926,8 +927,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var exportData = data.Copy();
                     if (exportData.Columns.Contains("UID")) exportData.Columns.Remove("UID");
                     try
-                    {   
-                        V6Tools.V6Export.ExportData.ToExcel(data, save.FileName, _reportCaption, true);
+                    {
+                        V6Tools.V6Export.ExportData.ToExcel(data, new ExportExcelSetting(), save.FileName, _reportCaption, true);
                     }
                     catch (Exception ex)
                     {

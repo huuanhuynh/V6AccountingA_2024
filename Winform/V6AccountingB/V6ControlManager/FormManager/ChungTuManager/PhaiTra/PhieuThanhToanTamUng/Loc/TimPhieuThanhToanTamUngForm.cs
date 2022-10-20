@@ -78,7 +78,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 }
                 else
                 {
-                    Text = Text + " " + V6Text.NoDefine + " " + _locKetQua._aldmConfig.ma_dm;
+                    Text = Text + " " + _locKetQua._aldmConfig.ma_dm + " aldm.TITLE";
                 }
                 InvokeFormEvent(FormDynamicEvent.INIT2);
             }
