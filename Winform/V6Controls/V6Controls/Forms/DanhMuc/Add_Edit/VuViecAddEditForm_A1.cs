@@ -117,12 +117,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             Tinh_tien();
         }
 
-        private CategoryView dmView;
+        public CategoryView dmView = new CategoryView();
         private void InitCTView()
         {
             try
-            {
-                dmView = new CategoryView();
+            {   
                 if (Mode == V6Mode.Add)
                 {
                     tabChiTiet.Enabled = false;

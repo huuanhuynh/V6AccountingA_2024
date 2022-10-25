@@ -346,7 +346,6 @@
 
         #endregion
 
-        private V6Controls.V6ColorDataGridView dataGridView1;
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
@@ -364,5 +363,6 @@
         public System.Windows.Forms.Button btnAll;
         public System.Windows.Forms.Button btnXem;
         public System.Windows.Forms.Button btnBack;
+        public V6ColorDataGridView dataGridView1;
     }
 }

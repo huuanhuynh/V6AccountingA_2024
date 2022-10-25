@@ -977,6 +977,31 @@ namespace V6Controls
             }
         }
 
+        public void MadeNameLabel()
+        {
+            try
+            {
+                string namefield = V6Login.SelectedLanguage == "V" ? LookupInfo.VName : LookupInfo.VName2;
+                Control control = V6ControlFormHelper.GetControlByAccessibleName(Parent, namefield);
+                if (control == null)
+                {
+                    Label lbl = new Label();
+                    lbl.Left = Right;
+                    lbl.Top = Top;
+                    lbl.AccessibleName = namefield;
+                    Parent.Controls.Add(lbl);
+                    if (!this.BrotherFields.Contains(namefield))
+                    {
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
         /// <summary>
         /// AccessibleName like '%value%'
         /// </summary>

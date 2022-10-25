@@ -299,7 +299,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new Valcc01AddEditForm();
                     break;
                 case "CORPLAN":
+                    FormControl = new CorpLanAddEditForm();
+                    break;
                 case "CORPLAN1":
+                    FormControl = new CorpLanAddEditForm();
+                    break;
                 case "CORPLAN2":
                     FormControl = new CorpLanAddEditForm();
                     break;

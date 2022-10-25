@@ -36,20 +36,31 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void Form_Load(object sender, EventArgs e)
         {
-            if (_MA_DM != "CORPLAN")
+            try
             {
-                txtCtype.Visible = false;
-                lblCtype.Visible = false;
+                if (_MA_DM == "CORPLAN2")
+                {
+                    txtSname.AccessibleName = "SFIELD";
+                    lblSName.Text = "SFIELD";
+                }
 
-                txtTen.Visible = false;
-                txtTen2.Visible = false;
+                if (_MA_DM != "CORPLAN")
+                {
+                    txtCtype.Visible = false;
+                    lblCtype.Visible = false;
 
-                lblTen.Visible = false;
-                lblTen2.Visible = false;
+                    txtTen.Visible = false;
+                    txtTen2.Visible = false;
 
-                txtSname.Visible = false;
-                lblSName.Visible = false;
+                    lblTen.Visible = false;
+                    lblTen2.Visible = false;
+                }
             }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+            
         }
 
         public override void DoBeforeAdd()
@@ -185,6 +196,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             txtTextE.Text = ChuyenMaTiengViet.ToUnSign(txtTextE.Text);
         }
-        
+
     }
 }
