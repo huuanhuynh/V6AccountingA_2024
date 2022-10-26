@@ -342,6 +342,7 @@ namespace V6ReportControls
                     var filter = FieldValueCt + "='" + ma + "'";
 
                     var ca = new CategoryView("itemId", "title", TableNameCt, filter, FieldOrderCt, null);
+                    ca._MA_DM_P = TableName;
                     ca.ShowToForm(this, "title", true, true, false);
                 }
             }

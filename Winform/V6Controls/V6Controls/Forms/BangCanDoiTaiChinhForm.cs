@@ -19,8 +19,8 @@ namespace V6Controls.Forms
             MyInit(initFilter);
         }
 
-        private CategoryView view;
-        private IDictionary<string, object> _parentData;
+        public CategoryView view;
+        public IDictionary<string, object> _parentData;
 
         private void MyInit(string initFilter)
         {
@@ -29,6 +29,7 @@ namespace V6Controls.Forms
                 if(string.IsNullOrEmpty(initFilter))
                     throw new ArgumentNullException("initFilter");
                 view = new CategoryView("itemID", "title", "ALmaubcct", initFilter, "STT", _parentData);
+                //view._MA_DM_P = ?
                 //view.EnableFullScreen = false;
                 //view.SetParentData();
                 view.Dock = DockStyle.Fill;

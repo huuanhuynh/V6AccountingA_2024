@@ -34,7 +34,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void KhachHangFrom_Load(object sender, EventArgs e)
         {
-            InitCTView();
             txtNhomKH1.SetInitFilter("Loai_nh=1");
             txtNhomKH2.SetInitFilter("Loai_nh=2");
             txtNhomKH3.SetInitFilter("Loai_nh=3");
@@ -214,7 +213,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private CategoryView dmView;
+        public CategoryView dmView;
+        public override void LoadDetails()
+        {
+            InitCTView();
+        }
         private void InitCTView()
         {
             try
@@ -230,6 +233,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     var ma_kh_old = DataOld["MA_KH"].ToString().Trim();
                     var data = new Dictionary<string, object>();
                     dmView = new CategoryView(ItemID, "title", "Alkhct", "uid_kh='" + uid_kh + "'", null, DataOld);
+                    dmView._MA_DM_P = _MA_DM;
                     if (Mode == V6Mode.View)
                     {
                         dmView.EnableAdd = false;

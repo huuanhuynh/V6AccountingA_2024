@@ -111,6 +111,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        public CategoryView dmView;
         private void btnBoSung_Click(object sender, EventArgs e)
         {
             try
@@ -127,7 +128,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     var ma_ku_old = DataOld["MA_KU"].ToString().Trim();
                     var data = new Dictionary<string, object>();
 
-                    CategoryView dmView = new CategoryView(ItemID, "title", "Alkuct", "uid_ct='" + uid_ct + "'", null, DataOld);
+                    dmView = new CategoryView(ItemID, "title", "Alkuct", "uid_ct='" + uid_ct + "'", null, DataOld);
+                    dmView._MA_DM_P = _MA_DM;
                     if (Mode == V6Mode.View)
                     {
                         dmView.EnableAdd = false;

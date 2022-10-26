@@ -34,7 +34,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void KhachHangFrom_Load(object sender, EventArgs e)
         {
-            InitCTView();
             txtNhomKH1.SetInitFilter("Loai_nh=1");
             txtNhomKH2.SetInitFilter("Loai_nh=2");
             txtNhomKH3.SetInitFilter("Loai_nh=3");
@@ -207,6 +206,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         private CategoryView dmView;
+        public override void LoadDetails()
+        {
+            InitCTView();
+        }
         private void InitCTView()
         {
             try

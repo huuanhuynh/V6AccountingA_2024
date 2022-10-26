@@ -107,6 +107,10 @@ namespace V6Controls.Controls
         /// Tên gốc gửi vào
         /// </summary>
         private readonly string _MA_DM;
+        /// <summary>
+        /// Mã danh mục cha
+        /// </summary>
+        public string _MA_DM_P {get; set;}
         private string CONFIG_TABLE_NAME
         {
             get
@@ -619,12 +623,6 @@ namespace V6Controls.Controls
                             return;
                         }
 
-                        //var code = UtilityHelper.DeCrypt(row.Cells["CODE_USER"].Value.ToString().Trim());
-                        //if (!string.IsNullOrEmpty(code))
-                        //{
-                        //    var isAdmin = code.Right(1) == "1";
-                            
-                        //}
                         if (dataGridView1.Columns.Contains("UID"))
                         {
                             var keys = new SortedDictionary<string, object> { { "UID", row.Cells["UID"].Value } };
@@ -1115,7 +1113,7 @@ namespace V6Controls.Controls
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowAdd("", _MA_DM_P.ToUpper() + "6")))
             {
                 DoAdd();
             }
@@ -1127,7 +1125,7 @@ namespace V6Controls.Controls
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowCopy("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowCopy("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowCopy("", _MA_DM_P.ToUpper() + "6")))
             {
                 DoAddCopy();
             }
@@ -1139,7 +1137,7 @@ namespace V6Controls.Controls
 
         private void btnXem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowView("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowView("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowView("", _MA_DM_P.ToUpper() + "6")))
             {
                 DoView();
             }
@@ -1206,7 +1204,7 @@ namespace V6Controls.Controls
         private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowEdit("", _MA_DM_P.ToUpper() + "6")))
             {
                 if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
                 {
@@ -1221,7 +1219,7 @@ namespace V6Controls.Controls
         
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowDelete("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowDelete("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowDelete("", _MA_DM_P.ToUpper() + "6")))
             {
                 if (NO_CONFIG_FPASS(2) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
                 {

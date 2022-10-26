@@ -37,6 +37,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
         /// Tên gốc gửi vào
         /// </summary>
         private string _MA_DM;
+        /// <summary>
+        /// Mã danh mục cha.
+        /// </summary>
+        public string _MA_DM_P { get; set; }
         private string CONFIG_TABLE_NAME
         {
             get
@@ -1647,7 +1651,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowAdd("", _MA_DM_P.ToUpper() + "6")))
             {
                 DoAdd();
             }
@@ -1659,7 +1663,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowCopy("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowCopy("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowCopy("", _MA_DM_P.ToUpper() + "6")))
             {
                 DoAddCopy();
             }
@@ -1671,7 +1675,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnXem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowView("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowView("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowView("", _MA_DM_P.ToUpper() + "6")))
             {
                 DoView();
             }
@@ -1683,7 +1687,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowPrint("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowPrint("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowPrint("", _MA_DM_P.ToUpper() + "6")))
             {
                 DoPrint();
             }
@@ -1695,7 +1699,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         
         private void btnNhom_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowEdit("", _MA_DM_P.ToUpper() + "6")))
             {
                 DoGroup();
             }
@@ -1762,7 +1766,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowEdit("", _MA_DM_P.ToUpper() + "6")))
             {
                 if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
                 {
@@ -1777,8 +1781,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnDoiMa_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6")
-                && V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
+            if ((V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowAdd("", _MA_DM_P.ToUpper() + "6")))
+                && (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowAdd("", _MA_DM_P.ToUpper() + "6"))))
             {
                 if (NO_CONFIG_FPASS(1) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
                 {
@@ -1793,7 +1797,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowDelete("", _MA_DM.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowDelete("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowDelete("", _MA_DM_P.ToUpper() + "6")))
             {
                 if (NO_CONFIG_FPASS(2) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)
                 {

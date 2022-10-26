@@ -20,7 +20,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             TxtNh_vv1.SetInitFilter("Loai_nh=1");
             TxtNh_vv2.SetInitFilter("Loai_nh=2");
             TxtNh_vv3.SetInitFilter("Loai_nh=3");
-            InitCTView();
         }
 
         public override void DoBeforeEdit()
@@ -69,7 +68,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             Tinh_tien();
         }
 
-        private CategoryView dmView;
+        public CategoryView dmView;
+        public override void LoadDetails()
+        {
+            InitCTView();
+        }
         private void InitCTView()
         {
             try
@@ -83,6 +86,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     var uid1 = DataOld["UID"].ToString();
                     dmView = new CategoryView(ItemID, "title", "Alvvct", "uid_ct='" + uid1 + "'", null, DataOld);
+                    dmView._MA_DM_P = _MA_DM;
                     if (Mode == V6Mode.View)
                     {
                         dmView.EnableAdd = false;

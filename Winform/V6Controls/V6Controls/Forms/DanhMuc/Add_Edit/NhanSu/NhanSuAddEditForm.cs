@@ -186,6 +186,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             }
         }
 
+        public CategoryView dmView;
         private bool da_click_bo_sung;
         private void btnBoSung_Click(object sender, EventArgs e)
         {
@@ -194,7 +195,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 var stt_recNS = Mode == V6Mode.Add? txtSttRec.Text : DataOld["STT_REC"].ToString();
 
-                CategoryView dmView = new CategoryView(ItemID, "title", "HRPOSITION", "STT_REC='" + stt_recNS + "'", null, DataOld);
+                dmView = new CategoryView(ItemID, "title", "HRPOSITION", "STT_REC='" + stt_recNS + "'", null, DataOld);
+                dmView._MA_DM_P = _MA_DM;
                 if (Mode == V6Mode.View)
                 {
                     dmView.EnableAdd = false;

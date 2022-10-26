@@ -31,7 +31,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void ViTriAddEditForm_Load(object sender, EventArgs e)
         {
-            InitCTView();
+            
         }
 
         public override void DoBeforeEdit()
@@ -102,7 +102,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             v6TabControl1.SelectedTab = tabChiTiet;
         }
 
-        private CategoryView dmView;
+        public CategoryView dmView;
+        public override void LoadDetails()
+        {
+            InitCTView();
+        }
         private void InitCTView()
         {
             try
@@ -117,6 +121,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     var uid_ct = DataOld["UID"].ToString();
 
                     dmView = new CategoryView(ItemID, "title", "alvitrict", "uid_ct='" + uid_ct + "'", null, DataOld);
+                    dmView._MA_DM_P = _MA_DM;
                     if (Mode == V6Mode.View)
                     {
                         dmView.EnableAdd = false;

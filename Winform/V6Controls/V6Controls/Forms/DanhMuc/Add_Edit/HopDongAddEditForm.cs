@@ -16,7 +16,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void HopDongAddEditForm_Load(object sender, EventArgs e)
         {
-            InitCTView();
             txtNH_HD1.SetInitFilter("Loai_nh=1");
             txtNH_HD2.SetInitFilter("Loai_nh=2");
             txtNH_HD3.SetInitFilter("Loai_nh=3");
@@ -84,7 +83,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private CategoryView dmView;
+        public CategoryView dmView;
+        public override void LoadDetails()
+        {
+            InitCTView();
+        }
         private void InitCTView()
         {
             try
@@ -98,6 +101,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     var uid1 = DataOld["UID"].ToString();
                     dmView = new CategoryView(ItemID, "title", "Alhdct", "uid_ct='" + uid1 + "'", null, DataOld);
+                    dmView._MA_DM_P = _MA_DM;
                     if (Mode == V6Mode.View)
                     {
                         dmView.EnableAdd = false;
