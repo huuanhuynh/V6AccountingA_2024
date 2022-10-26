@@ -7063,6 +7063,11 @@ namespace V6Controls.Forms
                         var vf = (V6FormControl)FindParent<V6FormControl>(control);
                         if (vf != null) vf.ShowMainMessage("No AccessibleDescription.");
                     }
+                    else if (control.AccessibleDescription == ".")
+                    {
+                        var vf = (V6FormControl)FindParent<V6FormControl>(control);
+                        if (vf != null) vf.ShowMainMessage("AccessibleDescription = (.)");
+                    }
                     else
                     {
                         if (sender is V6Label) return;
@@ -8329,7 +8334,7 @@ namespace V6Controls.Forms
                             {
                                 if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
                                 {
-                                    menu_item.AccessibleDescription += ma_ct;
+                                    menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
                                 }
                             }
                         }
@@ -8343,7 +8348,7 @@ namespace V6Controls.Forms
                                 {
                                     if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
                                     {
-                                        menu_item.AccessibleDescription += ma_ct;
+                                        menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
                                     }
                                 }
                             }
@@ -8351,7 +8356,7 @@ namespace V6Controls.Forms
 
                         if (!string.IsNullOrEmpty(control.AccessibleDescription) && !control.AccessibleDescription.Contains(",") && !control.AccessibleDescription.Contains("."))
                         {
-                            control.AccessibleDescription += ma_ct;
+                            control.AccessibleDescription = ma_ct + control.AccessibleDescription;
                         }
 
                     }
@@ -8406,7 +8411,7 @@ namespace V6Controls.Forms
                             {
                                 if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
                                 {
-                                    menu_item.AccessibleDescription += ma_ct;
+                                    menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
                                 }
                             }
                         }
@@ -8420,7 +8425,7 @@ namespace V6Controls.Forms
                                 {
                                     if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
                                     {
-                                        menu_item.AccessibleDescription += ma_ct;
+                                        menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
                                     }
                                 }
                             }
@@ -8428,7 +8433,7 @@ namespace V6Controls.Forms
 
                         if (!string.IsNullOrEmpty(control.AccessibleDescription) && !control.AccessibleDescription.Contains(",") && !control.AccessibleDescription.Contains("."))
                         {
-                            control.AccessibleDescription += ma_ct;
+                            control.AccessibleDescription = ma_ct + control.AccessibleDescription;
                         }
 
                     }
