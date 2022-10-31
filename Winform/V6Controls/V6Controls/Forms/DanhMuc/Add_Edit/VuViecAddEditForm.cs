@@ -98,6 +98,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 dmView.btnBack.Enabled = false;
                 dmView.btnBack.Visible = false;
                 dmView.Dock = DockStyle.Fill;
+                tabChiTiet.Font = new System.Drawing.Font(tabChiTiet.Font.FontFamily, 8.25f);
                 tabChiTiet.Controls.Add(dmView);
             }
             catch (Exception ex)

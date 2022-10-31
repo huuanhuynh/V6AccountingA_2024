@@ -34,6 +34,8 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.lblMoreInfos = new System.Windows.Forms.Label();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // timerViewReport
@@ -101,11 +103,36 @@
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 
+            // lblMoreInfos
+            // 
+            this.lblMoreInfos.AccessibleDescription = "";
+            this.lblMoreInfos.AccessibleName = "";
+            this.lblMoreInfos.AutoSize = true;
+            this.lblMoreInfos.Location = new System.Drawing.Point(18, 64);
+            this.lblMoreInfos.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMoreInfos.Name = "lblMoreInfos";
+            this.lblMoreInfos.Size = new System.Drawing.Size(78, 13);
+            this.lblMoreInfos.TabIndex = 6;
+            this.lblMoreInfos.Text = "Thông tin thêm";
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBox2.Location = new System.Drawing.Point(6, 81);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
+            this.richTextBox2.Size = new System.Drawing.Size(182, 563);
+            this.richTextBox2.TabIndex = 7;
+            this.richTextBox2.Text = "";
+            // 
             // AAPPR_SOA2_ViewXml
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 696);
+            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.lblMoreInfos);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnPrint);
@@ -114,12 +141,8 @@
             this.Text = "Xml data";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AAPPR_SOA2_ViewXml_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnPrint, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
-            
-            this.Controls.SetChildIndex(this.richTextBox1, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -130,6 +153,8 @@
         protected System.Windows.Forms.Button btnHuy;
         protected System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label lblMoreInfos;
+        private System.Windows.Forms.RichTextBox richTextBox2;
 
 
 

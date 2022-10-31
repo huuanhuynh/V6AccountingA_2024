@@ -42,6 +42,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     txtSname.AccessibleName = "SFIELD";
                     lblSName.Text = "SFIELD";
+                    if (DataOld != null && DataOld.ContainsKey("SFIELD"))
+                    {
+                        SetControlValue(txtSname, DataOld["SFIELD"]);
+                    }
                 }
 
                 if (_MA_DM != "CORPLAN")

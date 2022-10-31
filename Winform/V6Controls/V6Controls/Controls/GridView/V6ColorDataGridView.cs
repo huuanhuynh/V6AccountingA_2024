@@ -2571,6 +2571,14 @@ namespace V6Controls
             V6ControlFormHelper.SetGridviewCurrentCellByIndex(this, _saveRowIndex, _saveCellIndex, Parent);
         }
 
+        public event HandleData DataRowUpdated;
+        public void OnDataRowUpdated(IDictionary<string, object> data)
+        {
+            if (DataRowUpdated != null)
+            {
+                DataRowUpdated(data);
+            }
+        }
     }
 
     public class SelectRowEventArgs : DataGridViewRowEventArgs

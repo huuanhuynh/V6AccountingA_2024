@@ -269,8 +269,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (!IS_COPY && _aldmConfig != null && _aldmConfig.HaveInfo && _aldmConfig.EXTRA_INFOR.ContainsKey("NEWMODE"))
                 {
                     // NEWMODE EXTRAINFO
-                    // mặc định NEWMODE:0;notfield1;notfield2... (lất tất loại trừ...)
-                    // NEWMODE:1;field1;field2... (some field)
+                    // mặc định NEWMODE:0,notfield1,notfield2... (lất tất loại trừ...)
+                    // NEWMODE:1,field1,field2... (some field)
                     var NEWMODE = _aldmConfig.EXTRA_INFOR["NEWMODE"];
                     var fields = ObjectAndString.SplitString(NEWMODE);
                     if (fields.Length > 0)
@@ -1435,13 +1435,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (config != null && config.HaveInfo)
                 {
                     var a_fields = ObjectAndString.SplitString(config.A_field);
+                    string field_0 = "";
                     foreach (string field in a_fields)
                     {
                         string FIELD = field.Trim().ToUpper();
 
                         if (data.ContainsKey(FIELD) && (data[FIELD] == null || data[FIELD].ToString().Trim() == ""))
                         {
+                            if (field_0 == "") field_0 = FIELD;
                             error += string.Format("{0} [{1}]\n", V6Text.NoInput, FIELD);
+                        }
+                    }
+
+                    if (field_0.Length > 0)
+                    {
+                        var control = GetControlByAccessibleName(field_0);
+                        if (control != null)
+                        {
+                            control.Alert();
+                            control.Focus();                            
+                        }
+                        else
+                        {
+                            error += "\n" + V6Text.NotFound + " " + field_0;
                         }
                     }
                 }

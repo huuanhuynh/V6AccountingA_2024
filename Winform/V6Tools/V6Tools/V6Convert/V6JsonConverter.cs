@@ -96,7 +96,7 @@ namespace V6Tools.V6Convert
                 {
                     result = "" + (long) (date - new DateTime(1970, 1, 1, 6, 59, 0)).TotalMilliseconds;
                 }
-                else if (dateTimeFormat.ToUpper() == "VIETTELNOW")
+                else if (dateTimeFormat.ToUpper().StartsWith("VIETTELNOW"))
                 {
                     result = "" + (long)(date - new DateTime(1970, 1, 1, 7, 00, 0)).TotalMilliseconds;
 

@@ -22,7 +22,8 @@ namespace V6Controls.Controls
         [Description("Chọn một DataGridView để hiển thị tổng cộng.")]
         [TypeConverter(typeof(AConverter))]
         [DefaultValue(null)]
-        public DataGridView DataGridView {
+        public DataGridView DataGridView
+        {
             get { return _dgv; }
             set
             {
@@ -82,7 +83,7 @@ namespace V6Controls.Controls
         public event EventHandler DataGridViewChanged;
         protected virtual void OnDataGridViewChanged(DataGridView dgv)
         {
-            ConnectGridView(dgv);
+            ConnectGridView();
             CaculateSumValues();
             var handler = DataGridViewChanged;
             if (handler != null) handler(this, EventArgs.Empty);
@@ -98,25 +99,49 @@ namespace V6Controls.Controls
             DrawTempView();
         }
 
-        private void ConnectGridView(DataGridView dgv)
+        private void ConnectGridView()
         {
-            if (dgv != null)
+            if (_dgv != null)
             {
                 MyInit();
-                FixThisSizeLocation(dgv);
+                FixThisSizeLocation(_dgv);
 
-                dgv.SelectionChanged += dgv_SelectionChanged;
-                if (dgv is V6ColorDataGridView)
+                _dgv.SelectionChanged += dgv_SelectionChanged;
+                if (_dgv is V6ColorDataGridView)
                 {
-                    var dgv6 = dgv as V6ColorDataGridView;
+                    var dgv6 = _dgv as V6ColorDataGridView;
                     dgv6.RowSelectChanged += dgv_SelectionChanged_row;
+                    dgv6.DataRowUpdated += dgv_DataRowChanged;
                 }
-                dgv.Paint += dgv_Paint;
-                dgv.DataSourceChanged += dgv_DataSourceChanged;
-                dgv.SizeChanged += dgv_SizeChanged;
-                dgv.LocationChanged += dgv_LocationChanged;
-                //DrawSummary();
+                _dgv.Paint += dgv_Paint;
+                _dgv.DataSourceChanged += dgv_DataSourceChanged;
+                _dgv.SizeChanged += dgv_SizeChanged;
+                _dgv.LocationChanged += dgv_LocationChanged;
             }
+        }
+
+        private void DeConnectGridView()
+        {
+            if (_dgv != null)
+            {
+                
+                _dgv.SelectionChanged -= dgv_SelectionChanged;
+                if (_dgv is V6ColorDataGridView)
+                {
+                    var dgv6 = _dgv as V6ColorDataGridView;
+                    dgv6.RowSelectChanged -= dgv_SelectionChanged_row;
+                    dgv6.DataRowUpdated -= dgv_DataRowChanged;
+                }
+                _dgv.Paint -= dgv_Paint;
+                _dgv.DataSourceChanged -= dgv_DataSourceChanged;
+                _dgv.SizeChanged -= dgv_SizeChanged;
+                _dgv.LocationChanged -= dgv_LocationChanged;
+            }
+        }
+
+        void dgv_DataRowChanged(IDictionary<string, object> data)
+        {
+            CaculateSumValues();
         }
 
         void dgv_DataSourceChanged(object sender, EventArgs e)
@@ -134,18 +159,7 @@ namespace V6Controls.Controls
             if (_dgv.RowCount > 1) CaculateSumValues();
         }
 
-        private void DeConnectGridView()
-        {
-            if (_dgv != null)
-            {
-                //FixThisSizeLocation(dgv);
-                _dgv.Paint -= dgv_Paint;
-                _dgv.DataSourceChanged -= dgv_DataSourceChanged;
-                _dgv.Paint -= dgv_Paint;// dgv_SelectionChanged;
-                _dgv.SizeChanged -= dgv_SizeChanged;
-                _dgv.LocationChanged -= dgv_LocationChanged;
-            }
-        }
+        
 
         void dgv_LocationChanged(object sender, EventArgs e)
         {
@@ -159,6 +173,7 @@ namespace V6Controls.Controls
 
         void dgv_Paint(object sender, PaintEventArgs paintEventArgs)
         {
+            // khi kéo qua kéo lại.
             DrawSummary();
         }
 

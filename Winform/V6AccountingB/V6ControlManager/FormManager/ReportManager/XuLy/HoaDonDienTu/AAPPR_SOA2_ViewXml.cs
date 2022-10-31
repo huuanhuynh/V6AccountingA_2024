@@ -6,12 +6,16 @@ using System.Xml.Xsl;
 using PdfiumViewer;
 using V6Controls;
 using V6Controls.Forms;
+using System.Collections;
+using System.Collections.Generic;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public partial class AAPPR_SOA2_ViewXml : V6Form
     {
         private string _xml_string = "";
+        public IDictionary<string, object> MoreInfos = null;
         public AAPPR_SOA2_ViewXml()
         {
             InitializeComponent();
@@ -26,6 +30,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void Form_Load(object sender, EventArgs e)
         {
             LoadViewContent();
+            ViewMoreInfos();
         }
 
         private void LoadViewContent()
@@ -33,6 +38,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 richTextBox1.Text = _xml_string;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(this.GetType() + ".LoadInvoice", ex);
+            }
+        }
+
+        private void ViewMoreInfos()
+        {
+            try
+            {
+                if (MoreInfos != null)
+                {
+                    foreach (var item in MoreInfos)
+                    {
+                        richTextBox2.AppendText(item.Key + ": " + item.Value + "\n");
+                    }
+                }
             }
             catch (Exception ex)
             {

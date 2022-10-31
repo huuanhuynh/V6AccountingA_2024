@@ -25,6 +25,32 @@ namespace V6Controls.Controls
     {
         private readonly bool _cancel;
 
+        /// <summary>
+        /// Chọn trường filter trên form.
+        /// </summary>
+        private string FILTER_FIELD
+        {
+            get
+            {
+                var result = _aldmConfig.IS_ALDM ? _aldmConfig.FILTER_FIELD : _v6LookupConfig.FILTER_FIELD;
+
+                if (string.IsNullOrEmpty(result) && _MA_DM == "CORPLAN")
+                {
+                    result = "SFILE";
+                }
+                else if (string.IsNullOrEmpty(result) && _MA_DM == "CORPLAN1")
+                {
+                    result = "SFILE";
+                }
+                else if (string.IsNullOrEmpty(result) && _MA_DM == "CORPLAN2")
+                {
+                    result = "SFILE";
+                }
+
+                return result;
+            }
+        }
+
         public CategoryView()
         {
             InitializeComponent();
@@ -82,6 +108,76 @@ namespace V6Controls.Controls
             }
 
             dataGridView1.DataSource = new DataTable();
+            MyInit();
+        }
+
+        private void MyInit()
+        {
+            try
+            {
+                //string filter_field = FILTER_FIELD;
+
+                //if (!string.IsNullOrEmpty(filter_field))
+                //{
+                //    var data = V6BusinessHelper.Select(LOAD_TABLE, "distinct " + filter_field, "", "", filter_field).Data;
+                //    data.Rows.Add(data.NewRow());
+                //    var view = new DataView(data);
+                //    view.Sort = filter_field;
+                //    cboFilter.DisplayMember = filter_field;
+                //    cboFilter.ValueMember = filter_field;
+                //    cboFilter.DataSource = view;
+                //    cboFilter.DisplayMember = filter_field;
+                //    cboFilter.ValueMember = filter_field;
+                //    cboFilter.Visible = true;
+                //    lblFilter.Visible = true;
+                //}
+                if (_aldmConfig != null && _aldmConfig.HaveInfo)
+                {
+                    if (_aldmConfig.EXTRA_INFOR.ContainsKey("PAGESIZE"))
+                    {
+                        string ps = _aldmConfig.EXTRA_INFOR["PAGESIZE"];
+                        if (comboBox1.Items.Contains(ps))
+                        {
+                            comboBox1.SelectedItem = ps;
+                        }
+                    }
+                    if (_aldmConfig.EXTRA_INFOR.ContainsKey("VIEWSUM"))
+                    {
+                        //VIEWSUM:1:COLUMN1,COLUMN2:COLUMN1 > 0
+                        var sss = ObjectAndString.SplitStringBy(_aldmConfig.EXTRA_INFOR["VIEWSUM"], ':');
+                        if (sss.Length > 0 && ObjectAndString.ObjectToBool(sss[0]))
+                        {
+                            GridViewSummary gsum = new GridViewSummary();
+                            Controls.Add(gsum);
+                            dataGridView1.Height -= gsum.Height;
+                            gsum.DataGridView = dataGridView1;
+                            if (sss.Length > 1)
+                            {
+                                gsum.NoSumColumns = sss[1].Replace(',', ';');
+                            }
+                            if (sss.Length > 2)
+                            {
+                                var ccc = ObjectAndString.SplitStringBy(sss[2], ' ');
+                                if (ccc.Length >= 2)
+                                {
+                                    gsum.SumCondition = new Condition(ccc[0], ccc[1], ccc.Length > 2 ? ccc[2] : "");
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                All_Objects["thisForm"] = this;
+                //CreateFormProgram();
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, _MA_DM, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
+                Ready();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
 
         private void DanhMucView_Load(object sender, EventArgs e)

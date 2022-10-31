@@ -6604,6 +6604,10 @@ namespace V6Controls.Forms
                     SetCellValue(row.Cells[FIELD], data[FIELD]);
                 }
             }
+            if (row.DataGridView is V6ColorDataGridView)
+            {
+                ((V6ColorDataGridView)row.DataGridView).OnDataRowUpdated(data);
+            }
         }
 
         public static void SetCellValue(DataGridViewCell cell, object value)

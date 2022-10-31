@@ -15,6 +15,7 @@ using V6ControlManager.FormManager.DanhMucManager.ChangeCode;
 using V6ControlManager.FormManager.ReportManager.SoDu;
 using V6ControlManager.FormManager.SoDuManager.Add_Edit;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
@@ -191,6 +192,31 @@ namespace V6ControlManager.FormManager.SoDuManager
                             comboBox1.SelectedItem = ps;
                         }
                     }
+                    if (_aldmConfig.EXTRA_INFOR.ContainsKey("VIEWSUM"))
+                    {
+                        //VIEWSUM:1:COLUMN1,COLUMN2:COLUMN1 > 0
+                        var sss = ObjectAndString.SplitStringBy(_aldmConfig.EXTRA_INFOR["VIEWSUM"], ':');
+                        if (sss.Length > 0 && ObjectAndString.ObjectToBool(sss[0]))
+                        {
+                            GridViewSummary gsum = new GridViewSummary();
+                            Controls.Add(gsum);
+                            dataGridView1.Height -= gsum.Height;
+                            gsum.DataGridView = dataGridView1;
+                            if (sss.Length > 1)
+                            {
+                                gsum.NoSumColumns = sss[1].Replace(',', ';');
+                            }
+                            if (sss.Length > 2)
+                            {
+                                var ccc = ObjectAndString.SplitStringBy(sss[2], ' ');
+                                if (ccc.Length >= 2)
+                                {
+                                    gsum.SumCondition = new Condition(ccc[0], ccc[1], ccc.Length > 2 ? ccc[2] : "");
+                                }
+                            }
+                        }
+                    }
+
                 }
 
                 All_Objects["thisForm"] = this;

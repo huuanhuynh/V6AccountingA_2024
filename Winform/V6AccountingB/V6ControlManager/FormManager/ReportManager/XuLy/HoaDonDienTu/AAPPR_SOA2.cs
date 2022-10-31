@@ -318,14 +318,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                //if (shift_is_down)
-                //{
-                //    string result1 = PostManager.PowerPost(paras);
-                //    Clipboard.SetText(result1);
-                //    //this.ShowMessage(result);
-                //    AAPPR_SOA2_ViewXml viewer = new AAPPR_SOA2_ViewXml(result1);
-                //    viewer.ShowDialog(this);
-                //}
 
                 var row = dataGridView1.CurrentRow;
 
@@ -374,6 +366,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 Clipboard.SetText(result);
                 //this.ShowMessage(result);
                 AAPPR_SOA2_ViewXml viewer = new AAPPR_SOA2_ViewXml(result);
+                viewer.MoreInfos = paras.Result.MoreInfos;
                 viewer.ShowDialog(this);
             }
             catch (Exception ex)

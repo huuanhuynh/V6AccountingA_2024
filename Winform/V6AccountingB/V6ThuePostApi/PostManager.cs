@@ -3591,15 +3591,26 @@ namespace V6ThuePostManager
                 }
 
                 // Giữ lại giá trị ngày ct viettel invoiceIssuedDate
-                if (_datetype == "VIETTELNOW")
+                if (_datetype.StartsWith("VIETTELNOW"))
                 {
-                    var sv_date_10 = V6BusinessHelper.GetServerDateTime().AddMinutes(-10);
+                    int minutes = -3;
+                    if (_datetype.Length > 10)
+                    {
+                        string s_minutes = _datetype.Substring(10);
+                        if (s_minutes.StartsWith("+")) minutes = ObjectAndString.ObjectToInt(s_minutes.Substring(1));
+                        else minutes = ObjectAndString.ObjectToInt(s_minutes);
+                    }
+                    var sv_date = V6BusinessHelper.GetServerDateTime();
+                    paras.Result.MoreInfos["SERVER_DATE"] = sv_date;
+                    var sv_date_10 = sv_date.AddMinutes(minutes);
                     sv_date_10 = sv_date_10.AddSeconds(-sv_date_10.Second);
                     sv_date_10 = sv_date_10.AddMilliseconds(-sv_date_10.Millisecond);
+                    paras.Result.MoreInfos["SEND_DATE"] = sv_date_10;
                     postObject.generalInvoiceInfo["invoiceIssuedDate"] = sv_date_10;
                 }
                 
                 ngay_ct_viettel = V6JsonConverter.ObjectToJson(postObject.generalInvoiceInfo["invoiceIssuedDate"], _datetype);
+                paras.Result.MoreInfos["NGAY_CT_VIETTEL"] = ngay_ct_viettel;
                 if (!string.IsNullOrEmpty(pattern_field) && am_table.Columns.Contains(pattern_field))
                     __pattern = row0[pattern_field].ToString().Trim();
                 if (!string.IsNullOrEmpty(seri_field) && am_table.Columns.Contains(seri_field))

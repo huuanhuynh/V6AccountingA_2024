@@ -267,6 +267,8 @@ namespace V6ThuePostManager
             }
         }
 
+        public SortedDictionary<string, object> MoreInfos = new SortedDictionary<string, object>();
+
         public bool IsSuccess(string mode)
         {
             // Trong mỗi nhánh phải có return true của riêng nó.

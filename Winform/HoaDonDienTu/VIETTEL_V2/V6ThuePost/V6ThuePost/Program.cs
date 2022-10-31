@@ -370,7 +370,7 @@ namespace V6ThuePost
                                 string strIssueDate = infoObj.result[0].issueDate;
                                 try
                                 {
-                                    result = _viettelV2_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
+                                    result = _viettelV2_ws.DownloadInvoicePDFexchange(_codetax, soseri_soct, uid, strIssueDate, V6SoftLocalAppData_Directory, out v6return);
                                 }
                                 catch (Exception download_ex)
                                 {
@@ -578,9 +578,17 @@ namespace V6ThuePost
                 }
 
                 // Giữ lại giá trị ngày ct viettel invoiceIssuedDate
-                if (_dateType == "VIETTELNOW")
+                if (_dateType.StartsWith("VIETTELNOW"))
                 {
-                    var sv_date_10 = DateTime.Now.AddMinutes(-10);
+                    int minutes = -3;
+                    if (_dateType.Length > 10)
+                    {
+                        string s_minutes = _dateType.Substring(10);
+                        if (s_minutes.StartsWith("+")) minutes = ObjectAndString.ObjectToInt(s_minutes.Substring(1));
+                        else minutes = ObjectAndString.ObjectToInt(s_minutes);
+                    }
+                    //var sv_date_10 = V6BusinessHelper.GetServerDateTime().AddMinutes(minutes);
+                    var sv_date_10 = DateTime.Now.AddMinutes(minutes);
                     sv_date_10 = sv_date_10.AddSeconds(-sv_date_10.Second);
                     sv_date_10 = sv_date_10.AddMilliseconds(-sv_date_10.Millisecond);
                     postObject.generalInvoiceInfo["invoiceIssuedDate"] = sv_date_10;

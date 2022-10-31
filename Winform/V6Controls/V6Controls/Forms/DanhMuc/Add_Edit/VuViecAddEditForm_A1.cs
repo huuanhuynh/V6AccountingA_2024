@@ -77,6 +77,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void Tinh_tien()
         {
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+            if (!IsReady) return;
+
             try
             {
                 int m_round = 0;
@@ -129,6 +132,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (Mode == V6Mode.Add)
                 {
                     tabChiTiet.Enabled = false;
+                    return;
                 }
                 if (Mode == V6Mode.Edit || Mode == V6Mode.View)
                 {
@@ -146,6 +150,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 dmView.btnBack.Enabled = false;
                 dmView.btnBack.Visible = false;
                 dmView.Dock = DockStyle.Fill;
+                tabChiTiet.Font = new System.Drawing.Font(tabChiTiet.Font.FontFamily, 8.25f);
                 tabChiTiet.Controls.Add(dmView);
             }
             catch (Exception ex)

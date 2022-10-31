@@ -635,6 +635,27 @@
     <Key>fLf+wQVGGRpDAb9Dhl46FUp8pFQUP8rMprrLhfEqrq8=</Key>
     <Key1>uRN0vmY0rELBL93imprZMfofZal52bkLWoz5v/5ydRk=</Key1>
   </DatabaseList>
+  
+  <DatabaseList>
+    <Stt>33</Stt>
+    <Server>113.176.124.202\V6,7172</Server>
+    <Server2>113.176.124.202\V6,7172</Server2>
+    <Database>VHIEP_KD22</Database>
+    <Database2>VHIEP_KD22</Database2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <Epassword>iRIEIDbCPVQkkkwA+7nOpo9fL/jYGvQV6dgnReN4POY=</Epassword>
+    <Epassword2>iRIEIDbCPVQkkkwA+7nOpo9fL/jYGvQV6dgnReN4POY=</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>Dữ liệu KD 2022 ONLINE </Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>WE09tMhXHg8gjfsHnCuxTWu27cGDyxcB15S9Oq2TjEBzdEOGpBLoGg==</Key>
+  </DatabaseList>
+  
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>
