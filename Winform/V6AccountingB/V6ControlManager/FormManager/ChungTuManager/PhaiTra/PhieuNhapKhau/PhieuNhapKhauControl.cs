@@ -194,7 +194,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private void LoadDetailControls()
         {
             //Lấy các control động
-            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, Invoice.Alct1, out _orderList, out _alct1Dic);
             
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
@@ -887,7 +887,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
             
             //Lấy các control động
-            detailControlList2 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct2, out _orderList2, out _alct2Dic);
+            detailControlList2 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, Invoice.Alct2, out _orderList2, out _alct2Dic);
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<string, AlctControls> item in detailControlList2)
             {
@@ -1162,7 +1162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
+            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, Invoice.Alct3, out _orderList3, out _alct3Dic);
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<string, AlctControls> item in detailControlList3)
             {

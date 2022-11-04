@@ -39,7 +39,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                 data = V6Login.GetV6onlineTable();
                 data.TableName = TABLE_NAME;
                 view = new DataView(data);
-                view.RowFilter = "Server_yn<>1";
+                view.RowFilter = "Server_yn<>1 or Server_yn is null";
                 dataGridView1.DataSource = view;
                 FormatDataGridView();
             }

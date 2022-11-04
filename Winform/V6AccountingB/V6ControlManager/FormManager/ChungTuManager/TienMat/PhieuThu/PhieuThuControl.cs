@@ -377,7 +377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
+            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, Invoice.Alct3, out _orderList3, out _alct3Dic);
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<string, AlctControls> item in detailControlList3)
             {
@@ -1053,7 +1053,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 throw new Exception("Chọn lại ma_gd");
             }
 
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(alct1, out _orderList, out _alct1Dic);
+            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, alct1, out _orderList, out _alct1Dic);
             if (maGd != "1")
                 _orderList.Insert(1, "TEN_TK_I");
             return dynamicControlList;

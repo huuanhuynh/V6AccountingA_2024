@@ -258,6 +258,7 @@ namespace V6Init
             data.Add("NAME", NAME);
             data.Add("SERI", seri);
             data.Add("KEY", key);
+            data.Add("SERVER_YN", 0);
             keys.AddRange(data);
             data.Add("CHECKCODE", checkCode);
             data.Add("CODE_NAME", UtilityHelper.EnCrypt(NAME + "0" + checkCode));

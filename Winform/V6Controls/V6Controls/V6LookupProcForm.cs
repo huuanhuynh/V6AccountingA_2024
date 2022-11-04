@@ -139,6 +139,8 @@ namespace V6Controls
 
                     plist.Add(new SqlParameter("@advance", where));
 
+                    plist.Add(new SqlParameter("@advance2", _sender.Advance2));
+                    plist.Add(new SqlParameter("@advance3", _sender.Advance3));
                     var tbl = V6BusinessHelper.ExecuteProcedure(LookupInfo.TABLE_NAME, plist.ToArray()).Tables[0];
                     return tbl;
                 }

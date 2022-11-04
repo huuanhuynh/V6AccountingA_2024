@@ -154,7 +154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             LoadAD("");
             SetGridViewData();
             //Lấy các control động
-            //detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            //detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, Invoice.Alct1, out _orderList, out _alct1Dic);
             ChungTu.ApplyAlct1toGridView(Invoice.Alct1, dataGridView1, out _orderList, out _carryFields, out _alct1Dic);
             
             //Thêm các control động vào danh sách

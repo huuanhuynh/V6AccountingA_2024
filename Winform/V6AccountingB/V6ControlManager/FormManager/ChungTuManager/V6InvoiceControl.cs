@@ -262,7 +262,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     && !string.IsNullOrEmpty(_sttRec) && CurrentIndex != -1);
             }
         }
-
+        public bool IsAddOrEdit { get { return Mode == V6Mode.Add || Mode == V6Mode.Edit; } }
         /// <summary>
         /// Không phải đang sửa hoặc thêm mới chứng từ.
         /// </summary>

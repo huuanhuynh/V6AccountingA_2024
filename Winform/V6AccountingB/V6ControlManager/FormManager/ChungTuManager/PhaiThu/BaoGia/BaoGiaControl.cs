@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private void LoadDetailControls()
         {
             //Lấy các control động
-            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, Invoice.Alct1, out _orderList, out _alct1Dic);
             
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<string, AlctControls> item in detailControlList1)

@@ -2293,5 +2293,10 @@ Tiles of Fate                   32k PRG / 32k CHR       H       AVE (79)
         {
             return Math.Pow(a, 2);
         }
+
+        private void btnFileFilter_Click(object sender, EventArgs e)
+        {
+            (new FileFilterForm()).ShowDialog();
+        }
     }
 }

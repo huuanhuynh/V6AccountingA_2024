@@ -728,7 +728,7 @@ namespace V6Controls.Forms
         /// <param name="orderList">Dùng để xắp xếp lại gridview_columns khi cần.</param>
         /// <param name="alct1Dic">Dùng để lấy thông tin field khi cần.</param>
         /// <returns></returns>
-        public static Dictionary<string, AlctControls> GetDynamicControlStructsAlct(DataTable alct1,
+        public static Dictionary<string, AlctControls> GetDynamicControlStructsAlct(string ma_ct, DataTable alct1,
             out List<string> orderList, out SortedDictionary<string, DataRow> alct1Dic)
         {
             //exec [VPA_GET_AUTO_COLULMN] 'SOA','','','','';//08/12/2015
@@ -824,7 +824,36 @@ namespace V6Controls.Forms
                             string text_field = ss[1];
                             string bfields = ss[2];
                             string nfields = ss[3];
-                            c = CreateLookupProcTextBox(FCOLUMN, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                            //c = CreateLookupProcTextBox(, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                            //public static V6LookupProc CreateLookupProcTextBox(string ,
+                            //    string ma_dm, string value_field, string text_field, string brother, string neighbor,
+                            //    string caption, string limits, int width, bool visible,
+                            //    bool checkOnLeave, bool checkNotEmpty, bool carry = false)
+                            //{
+                            //    return 
+                            //}
+                            c = new V6LookupProc
+                            {
+                                Name = FCOLUMN,
+                                AccessibleName = FCOLUMN,
+                                BorderStyle = BorderStyle.FixedSingle,
+                                AccessibleName2 = FCOLUMN + "2",
+                                Carry = carry,
+                                Ma_dm = ma_dm,
+                                MA_CT = ma_ct,
+                                ValueField = value_field,
+                                ShowTextField = text_field,
+                                BrotherFields = bfields,
+                                NeighborFields = nfields,
+
+                                CheckOnLeave = checkvvar,
+                                CheckNotEmpty = notempty,
+                                GrayText = fcaption,
+                                LimitCharacters = limits,
+                                Width = width,
+                                Visible = fstatus,
+                                Tag = fstatus ? null : "hide"
+                            };
                         }
                         else
                         {
@@ -3319,33 +3348,7 @@ namespace V6Controls.Forms
             };
         }
 
-        public static V6LookupProc CreateLookupProcTextBox(string accessibleName,
-            string ma_dm, string value_field, string text_field, string brother, string neighbor,
-            string caption, string limits, int width, bool visible,
-            bool checkOnLeave, bool checkNotEmpty, bool carry = false)
-        {
-            return new V6LookupProc
-            {
-                Name = accessibleName,
-                AccessibleName = accessibleName,
-                BorderStyle = BorderStyle.FixedSingle,
-                AccessibleName2 = accessibleName + "2",
-                Carry = carry,
-                Ma_dm = ma_dm,
-                ValueField = value_field,
-                ShowTextField = text_field,
-                BrotherFields = brother,
-                NeighborFields = neighbor,
-
-                CheckOnLeave = checkOnLeave,
-                CheckNotEmpty = checkNotEmpty,
-                GrayText = caption,
-                LimitCharacters = limits,
-                Width = width,
-                Visible = visible,
-                Tag = visible ? null : "hide"
-            };
-        }
+        
 
         public static V6LookupData CreateLookupDataTextBox(string accessibleName, string vvar, string caption, string limits, int width, bool visible,
             bool checkOnLeave, bool checkNotEmpty, bool carry = false)
@@ -7909,6 +7912,17 @@ namespace V6Controls.Forms
                 if (!string.IsNullOrEmpty(ltb.AccessibleName2))
                 {
                     d[ltb.AccessibleName2.ToUpper()] = ltb.Text;
+                }
+                //return ltb.Value;
+                return;
+            }
+            else if (control is V6LookupProc)
+            {
+                V6LookupProc lkp = (V6LookupProc)control;
+                d[cNAME] = lkp.Value;
+                if (!string.IsNullOrEmpty(lkp.AccessibleName2))
+                {
+                    d[lkp.AccessibleName2.ToUpper()] = lkp.Value;
                 }
                 //return ltb.Value;
                 return;

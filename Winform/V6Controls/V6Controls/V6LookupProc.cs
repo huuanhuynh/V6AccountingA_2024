@@ -269,7 +269,10 @@ namespace V6Controls
         [DefaultValue(null)]
         public string ValueField
         {
-            get { return (_valueField??"").ToUpper(); }
+            get {
+                if (LookupInfo != null) return LookupInfo.VALUE; // đảo ưu tiên ALDM.
+                return (_valueField??"").ToUpper();
+            }
             set { _valueField = value; }
         }
         private string _valueField;
@@ -319,6 +322,9 @@ namespace V6Controls
         {
             _initFilter = filter;
         }
+
+        public string Advance2 { get; set; }
+        public string Advance3 { get; set; }
 
         #region ==== Event ====
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -477,7 +483,7 @@ namespace V6Controls
         public void LoadAutoCompleteSource()
         {
             if (V6Setting.NotLoggedIn) return;
-            if (auto1 != null) return;
+            //if (auto1 != null) return;
             if (LookupInfo.NoInfo) return;
 
             try
@@ -494,6 +500,8 @@ namespace V6Controls
                         plist.Add(new SqlParameter("@ma_ct", this.MA_CT));
                         plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                         plist.Add(new SqlParameter("@advance", filter));
+                        plist.Add(new SqlParameter("@advance2", Advance2));
+                        plist.Add(new SqlParameter("@advance3", Advance3));
                         var tbl1 = V6BusinessHelper.ExecuteProcedure(LookupInfo.TABLE_NAME, plist.ToArray()).Tables[0];
 
                         for (int i = 0; i < tbl1.Rows.Count; i++)
@@ -573,10 +581,12 @@ namespace V6Controls
                     List<SqlParameter> plist = new List<SqlParameter>();
                     plist.Add(new SqlParameter("@ma_ct", this.MA_CT));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
-                    plist.Add(new SqlParameter("@advance", LookupInfo_F_NAME + "='"+text+"'" + filter));
+                    plist.Add(new SqlParameter("@advance", LookupInfo_F_NAME + "=N'"+text+"'" + filter));
+                    plist.Add(new SqlParameter("@advance2", Advance2));
+                    plist.Add(new SqlParameter("@advance3", Advance3));
                     var tbl = V6BusinessHelper.ExecuteProcedure(LookupInfo.TABLE_NAME, plist.ToArray()).Tables[0];
                     
-                    if (tbl != null && tbl.Rows.Count >= 1)
+                    if (tbl != null && tbl.Rows.Count == 1)
                     {
                         var oneRow = tbl.Rows[0];
                         _data = oneRow.ToDataDictionary();
@@ -633,6 +643,8 @@ namespace V6Controls
                     plist.Add(new SqlParameter("@ma_ct", this.MA_CT));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     plist.Add(new SqlParameter("@advance", where));
+                    plist.Add(new SqlParameter("@advance2", Advance2));
+                    plist.Add(new SqlParameter("@advance3", Advance3));
                     var tbl = V6BusinessHelper.ExecuteProcedure(LookupInfo.TABLE_NAME, plist.ToArray()).Tables[0];
                     
                     if (tbl != null && tbl.Rows.Count == 1)

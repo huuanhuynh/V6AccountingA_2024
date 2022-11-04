@@ -185,7 +185,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartLoadDetail");
             //Lấy các control động
-            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, Invoice.Alct1, out _orderList, out _alct1Dic);
             
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
@@ -1136,7 +1136,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartLoadDetail3");
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
+            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Mact, Invoice.Alct3, out _orderList3, out _alct3Dic);
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<string, AlctControls> item in detailControlList3)
             {
