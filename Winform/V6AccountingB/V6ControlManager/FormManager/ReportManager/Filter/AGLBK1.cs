@@ -4,7 +4,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AGLBK1: FilterBase
+    public partial class AGLBK1 : FilterBase
     {
         public AGLBK1()
         {
@@ -80,11 +80,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
 
             var cKey = "1=1";
-          
+
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_BPHT","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "TK", "TK_DU", "MA_SP","MA_PHI","MA_KU","MA_CT"
+                "MA_BPHT","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "TK", "TK_DU", "MA_SP","MA_PHI","MA_KU","MA_CT","MA_SONB"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {

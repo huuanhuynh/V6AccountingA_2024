@@ -5025,6 +5025,13 @@ namespace V6ThuePostManager
                     string json = ReadData_VIN_ObjectToJson(hoadon);
                     string result = vin_WS.HUY_HOA_DON(json, out paras.Result.V6ReturnValues);
                 }
+                else if (paras.Mode.StartsWith("E_S")) // S S1(tiền) S2(thông tin)
+                {
+                    var hoadon = ReadData_VIN_Object("S");
+
+                    string jsonBody = ReadData_VIN_ObjectToJson(hoadon);
+                    string result = vin_WS.POST_EDIT(jsonBody, SIGNMODE == "HSM", out paras.Result.V6ReturnValues);
+                }
             }
             catch (Exception ex)
             {

@@ -55,8 +55,8 @@ namespace V6Controls
             this.btnVSearch = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.pBar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -77,14 +77,14 @@ namespace V6Controls
             this.pBar.Controls.Add(this.btnTimKiem);
             this.pBar.Location = new System.Drawing.Point(0, 30);
             this.pBar.Name = "pBar";
-            this.pBar.Size = new System.Drawing.Size(734, 24);
+            this.pBar.Size = new System.Drawing.Size(786, 24);
             this.pBar.TabIndex = 1;
             // 
             // rbtTimKiem
             // 
             this.rbtTimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtTimKiem.AutoSize = true;
-            this.rbtTimKiem.Location = new System.Drawing.Point(656, 4);
+            this.rbtTimKiem.Location = new System.Drawing.Point(708, 4);
             this.rbtTimKiem.Name = "rbtTimKiem";
             this.rbtTimKiem.Size = new System.Drawing.Size(67, 17);
             this.rbtTimKiem.TabIndex = 7;
@@ -96,7 +96,7 @@ namespace V6Controls
             this.rbtLocTuDau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtLocTuDau.AutoSize = true;
             this.rbtLocTuDau.Checked = true;
-            this.rbtLocTuDau.Location = new System.Drawing.Point(575, 5);
+            this.rbtLocTuDau.Location = new System.Drawing.Point(627, 5);
             this.rbtLocTuDau.Name = "rbtLocTuDau";
             this.rbtLocTuDau.Size = new System.Drawing.Size(77, 17);
             this.rbtLocTuDau.TabIndex = 6;
@@ -111,7 +111,7 @@ namespace V6Controls
             this.cbbGoiY.FormattingEnabled = true;
             this.cbbGoiY.Location = new System.Drawing.Point(235, 3);
             this.cbbGoiY.Name = "cbbGoiY";
-            this.cbbGoiY.Size = new System.Drawing.Size(123, 21);
+            this.cbbGoiY.Size = new System.Drawing.Size(175, 21);
             this.cbbGoiY.TabIndex = 2;
             this.cbbGoiY.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbbGoiY_KeyUp);
             this.cbbGoiY.Leave += new System.EventHandler(this.cbbGoiY_Leave);
@@ -120,7 +120,7 @@ namespace V6Controls
             // 
             this.rbtLocTiep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtLocTiep.AutoSize = true;
-            this.rbtLocTiep.Location = new System.Drawing.Point(506, 5);
+            this.rbtLocTiep.Location = new System.Drawing.Point(558, 5);
             this.rbtLocTiep.Name = "rbtLocTiep";
             this.rbtLocTiep.Size = new System.Drawing.Size(63, 17);
             this.rbtLocTiep.TabIndex = 5;
@@ -140,7 +140,7 @@ namespace V6Controls
             // btnTatCa
             // 
             this.btnTatCa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTatCa.Location = new System.Drawing.Point(402, 2);
+            this.btnTatCa.Location = new System.Drawing.Point(454, 2);
             this.btnTatCa.Name = "btnTatCa";
             this.btnTatCa.Size = new System.Drawing.Size(98, 22);
             this.btnTatCa.TabIndex = 4;
@@ -160,7 +160,7 @@ namespace V6Controls
             // btnTimKiem
             // 
             this.btnTimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTimKiem.Location = new System.Drawing.Point(364, 2);
+            this.btnTimKiem.Location = new System.Drawing.Point(416, 2);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(34, 22);
             this.btnTimKiem.TabIndex = 3;
@@ -178,13 +178,13 @@ namespace V6Controls
             this.panel1.Controls.Add(this.btnVSearch);
             this.panel1.Location = new System.Drawing.Point(0, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(734, 24);
+            this.panel1.Size = new System.Drawing.Size(786, 24);
             this.panel1.TabIndex = 0;
             // 
             // btnTimAll
             // 
             this.btnTimAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTimAll.Location = new System.Drawing.Point(404, 0);
+            this.btnTimAll.Location = new System.Drawing.Point(456, 0);
             this.btnTimAll.Name = "btnTimAll";
             this.btnTimAll.Size = new System.Drawing.Size(96, 22);
             this.btnTimAll.TabIndex = 8;
@@ -199,16 +199,23 @@ namespace V6Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtV_Search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtV_Search.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtV_Search.BackColor = System.Drawing.SystemColors.Window;
+            this.txtV_Search.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtV_Search.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtV_Search.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtV_Search.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtV_Search.HoverColor = System.Drawing.Color.Yellow;
+            this.txtV_Search.LeaveColor = System.Drawing.Color.White;
             this.txtV_Search.Location = new System.Drawing.Point(163, 2);
             this.txtV_Search.Name = "txtV_Search";
-            this.txtV_Search.Size = new System.Drawing.Size(195, 20);
+            this.txtV_Search.Size = new System.Drawing.Size(247, 20);
             this.txtV_Search.TabIndex = 2;
             // 
             // btnESC
             // 
             this.btnESC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnESC.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnESC.Location = new System.Drawing.Point(3, 0);
+            this.btnESC.Location = new System.Drawing.Point(55, 0);
             this.btnESC.Name = "btnESC";
             this.btnESC.Size = new System.Drawing.Size(72, 22);
             this.btnESC.TabIndex = 1;
@@ -220,7 +227,7 @@ namespace V6Controls
             // btnVSearch
             // 
             this.btnVSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVSearch.Location = new System.Drawing.Point(364, 0);
+            this.btnVSearch.Location = new System.Drawing.Point(416, 0);
             this.btnVSearch.Name = "btnVSearch";
             this.btnVSearch.Size = new System.Drawing.Size(37, 22);
             this.btnVSearch.TabIndex = 1;
@@ -235,15 +242,21 @@ namespace V6Controls
             this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 504);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(732, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(319, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(318, 17);
             this.toolStripStatusLabel1.Text = "F1-Hướng dẫn, F3-Sửa, F4-Thêm, Enter-Chọn, ESC-Quay ra";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel2.Text = ".";
             // 
             // dataGridView1
             // 
@@ -254,6 +267,7 @@ namespace V6Controls
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -270,21 +284,15 @@ namespace V6Controls
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(732, 441);
+            this.dataGridView1.Size = new System.Drawing.Size(784, 441);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel2.Text = ".";
-            // 
             // V6LookupProcForm
             // 
             this.CancelButton = this.btnESC;
-            this.ClientSize = new System.Drawing.Size(732, 526);
+            this.ClientSize = new System.Drawing.Size(784, 526);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.pBar);
@@ -294,7 +302,7 @@ namespace V6Controls
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(600, 400);
+            this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "V6LookupProcForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

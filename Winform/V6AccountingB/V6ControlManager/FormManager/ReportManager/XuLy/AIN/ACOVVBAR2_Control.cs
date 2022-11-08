@@ -266,7 +266,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _message = "";
                 var plist = FilterControl.GetFilterParameters();
-                _ds = V6BusinessHelper.ExecuteProcedure("ACOVVBAR2", plist.ToArray());
+                _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, plist.ToArray()); // "ACOVVBAR2"
                 _executing = false;
                 _executesuccess = true;
             }
@@ -702,7 +702,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var oldKeys = FilterControl.GetFilterParameters();
                         if (MenuButton.UseXtraReport != shift_is_down)
                         {
-                            var view = new ReportR_DX(m_itemId, _program + "F9", _program + "F9", reportFileF9,
+                            var view = new ReportR_DX(m_itemId, _program + "F9", _reportProcedure + "F9", reportFileF9,
                                 reportTitleF9, reportTitle2F9, "", "", "");
                             view.PrintMode = _PrintMode;
                             view.PrinterName = _PrinterName;

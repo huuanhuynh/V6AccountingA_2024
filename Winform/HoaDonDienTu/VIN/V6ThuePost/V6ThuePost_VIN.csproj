@@ -129,7 +129,7 @@
       <Name>V6ThuePostObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\ApiConnect\V6ThuePost_VIN_Api.csproj">
-      <Project>{a65baf8e-b364-4384-b798-e2e2e0d67f8d}</Project>
+      <Project>{b76f1253-a371-4590-9193-d27cb0c31e35}</Project>
       <Name>V6ThuePost_VIN_Api</Name>
     </ProjectReference>
   </ItemGroup>

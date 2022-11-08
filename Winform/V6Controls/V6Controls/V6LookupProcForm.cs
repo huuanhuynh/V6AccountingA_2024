@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
@@ -60,10 +61,10 @@ namespace V6Controls
             _filterStart = filterStart;
 
             InitializeComponent();
-            Init();
+            MyInit();
         }
         
-        private void Init()
+        private void MyInit()
         {
             try
             {
@@ -95,6 +96,31 @@ namespace V6Controls
                     LookupInfo.F3 ? ", F3-Sửa" : "",
                     LookupInfo.F4 ? ", F4-Thêm" : "");
                 toolStripStatusLabel2.Text = _lookupMode==LookupMode.Multi || _lookupMode == LookupMode.Data ? ", Space-Chọn/Bỏ chọn, (Ctrl+A)-Chọn tất cả, (Ctrl+U)-Bỏ chọn tất cả" : "";
+
+                if (LookupInfo != null && LookupInfo.EXTRA_INFOR.ContainsKey("VIEWSUM"))
+                {
+                    //VIEWSUM:1:COLUMN1,COLUMN2:COLUMN1 > 0
+                    var sss = ObjectAndString.SplitStringBy(LookupInfo.EXTRA_INFOR["VIEWSUM"], ':');
+                    if (sss.Length > 0 && ObjectAndString.ObjectToBool(sss[0]))
+                    {
+                        GridViewSummary gsum = new GridViewSummary();
+                        Controls.Add(gsum);
+                        dataGridView1.Height -= gsum.Height;
+                        gsum.DataGridView = dataGridView1;
+                        if (sss.Length > 1)
+                        {
+                            gsum.NoSumColumns = sss[1].Replace(',', ';');
+                        }
+                        if (sss.Length > 2)
+                        {
+                            var ccc = ObjectAndString.SplitStringBy(sss[2], ' ');
+                            if (ccc.Length >= 2)
+                            {
+                                gsum.SumCondition = new Condition(ccc[0], ccc[1], ccc.Length > 2 ? ccc[2] : "");
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -114,6 +140,11 @@ namespace V6Controls
             {
                 List<SqlParameter> plist = new List<SqlParameter>();
                 plist.Add(new SqlParameter("@ma_ct", _sender.MA_CT));
+                plist.Add(new SqlParameter("@stt_rec", _sender.STT_REC));
+                plist.Add(new SqlParameter("@MA_KH", _sender.MA_KH));
+                plist.Add(new SqlParameter("@ngay_ct", _sender.NGAY_CT.Date));
+                plist.Add(new SqlParameter("@Kieu_post", _sender.KIEU_POST));
+                plist.Add(new SqlParameter("@MODE", _sender.MODE));
                 plist.Add(new SqlParameter("@user_id", V6Login.UserId));
 
                 if ((_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data) && vSearchFilter.Contains(","))

@@ -236,11 +236,9 @@ namespace V6ThuePost
                     }
                     else if (mode.StartsWith("S"))
                     {
-                        
-
                         jsonBody = ReadData_VIN(dbfFile, "S");
                         File.Create(flagFileName1).Close();
-                        result = _VIN_WS.POST_EDIT(jsonBody, out v6return);
+                        result = _VIN_WS.POST_EDIT(jsonBody, _SIGNMODE == "HSM", out v6return);
                     }
                     else if (mode.StartsWith("T") && mode.EndsWith("_JSON"))
                     {
@@ -538,7 +536,14 @@ namespace V6ThuePost
                 if (mode == "S")
                 {
                     //Lập hóa đơn điều chỉnh: trong chi tiết và dsthuesuat có thêm trường dieuchinh_tanggiam
-                    hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
+                    if (_TEST_)
+                    {
+                        hoadon["hoadon_goc"] = "SuaLaiDeTest";
+                    }
+                    else
+                    {
+                        hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
+                    }                    
                 }
 
                 if (mode == "T")

@@ -49,6 +49,8 @@
             this.btnGetMeta = new System.Windows.Forms.Button();
             this.btnSignHSM = new System.Windows.Forms.Button();
             this.btnDownloadPDF = new System.Windows.Forms.Button();
+            this.btnRead_S = new System.Windows.Forms.Button();
+            this.btnSend_S = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSend
@@ -222,7 +224,7 @@
             // btnGetMeta
             // 
             this.btnGetMeta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetMeta.Location = new System.Drawing.Point(450, 622);
+            this.btnGetMeta.Location = new System.Drawing.Point(612, 621);
             this.btnGetMeta.Name = "btnGetMeta";
             this.btnGetMeta.Size = new System.Drawing.Size(75, 23);
             this.btnGetMeta.TabIndex = 10;
@@ -254,6 +256,29 @@
             this.btnDownloadPDF.UseVisualStyleBackColor = true;
             this.btnDownloadPDF.Click += new System.EventHandler(this.btnDownloadPDF_Click);
             // 
+            // btnRead_S
+            // 
+            this.btnRead_S.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRead_S.Location = new System.Drawing.Point(344, 622);
+            this.btnRead_S.Name = "btnRead_S";
+            this.btnRead_S.Size = new System.Drawing.Size(75, 23);
+            this.btnRead_S.TabIndex = 10;
+            this.btnRead_S.Text = "Read S";
+            this.btnRead_S.UseVisualStyleBackColor = true;
+            this.btnRead_S.Click += new System.EventHandler(this.btnRead_S_Click);
+            // 
+            // btnSend_S
+            // 
+            this.btnSend_S.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend_S.Enabled = false;
+            this.btnSend_S.Location = new System.Drawing.Point(450, 622);
+            this.btnSend_S.Name = "btnSend_S";
+            this.btnSend_S.Size = new System.Drawing.Size(75, 23);
+            this.btnSend_S.TabIndex = 10;
+            this.btnSend_S.Text = "Send S";
+            this.btnSend_S.UseVisualStyleBackColor = true;
+            this.btnSend_S.Click += new System.EventHandler(this.btnSend_S_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,9 +299,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.btnRead_S);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnGetMeta);
             this.Controls.Add(this.btnTest);
+            this.Controls.Add(this.btnSend_S);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -309,6 +336,8 @@
         private System.Windows.Forms.Button btnGetMeta;
         private System.Windows.Forms.Button btnSignHSM;
         private System.Windows.Forms.Button btnDownloadPDF;
+        private System.Windows.Forms.Button btnRead_S;
+        private System.Windows.Forms.Button btnSend_S;
     }
 }
 

@@ -323,8 +323,13 @@ namespace V6Controls
             _initFilter = filter;
         }
 
-        public string Advance2 { get; set; }
-        public string Advance3 { get; set; }
+        public string Advance2 = "";
+        public string Advance3 = "";
+        public string STT_REC = "";
+        public DateTime NGAY_CT = DateTime.Now;
+        public string KIEU_POST = "";
+        public string MODE = "";
+        public string MA_KH = "";
 
         #region ==== Event ====
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -498,6 +503,12 @@ namespace V6Controls
                         
                         List<SqlParameter> plist = new List<SqlParameter>();
                         plist.Add(new SqlParameter("@ma_ct", this.MA_CT));
+                        plist.Add(new SqlParameter("@stt_rec", STT_REC));
+                        plist.Add(new SqlParameter("@MA_KH", MA_KH));
+                        plist.Add(new SqlParameter("@ngay_ct", NGAY_CT.Date));
+                        plist.Add(new SqlParameter("@Kieu_post", KIEU_POST));
+                        plist.Add(new SqlParameter("@MODE", MODE));
+                        
                         plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                         plist.Add(new SqlParameter("@advance", filter));
                         plist.Add(new SqlParameter("@advance2", Advance2));
@@ -580,6 +591,11 @@ namespace V6Controls
 
                     List<SqlParameter> plist = new List<SqlParameter>();
                     plist.Add(new SqlParameter("@ma_ct", this.MA_CT));
+                    plist.Add(new SqlParameter("@stt_rec", STT_REC));
+                    plist.Add(new SqlParameter("@MA_KH", MA_KH));
+                    plist.Add(new SqlParameter("@ngay_ct", NGAY_CT.Date));
+                    plist.Add(new SqlParameter("@Kieu_post", KIEU_POST));
+                    plist.Add(new SqlParameter("@MODE", MODE));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     plist.Add(new SqlParameter("@advance", LookupInfo_F_NAME + "=N'"+text+"'" + filter));
                     plist.Add(new SqlParameter("@advance2", Advance2));
@@ -641,6 +657,11 @@ namespace V6Controls
 
                     List<SqlParameter> plist = new List<SqlParameter>();
                     plist.Add(new SqlParameter("@ma_ct", this.MA_CT));
+                    plist.Add(new SqlParameter("@stt_rec", STT_REC));
+                    plist.Add(new SqlParameter("@MA_KH", MA_KH));
+                    plist.Add(new SqlParameter("@ngay_ct", NGAY_CT.Date));
+                    plist.Add(new SqlParameter("@Kieu_post", KIEU_POST));
+                    plist.Add(new SqlParameter("@MODE", MODE));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     plist.Add(new SqlParameter("@advance", where));
                     plist.Add(new SqlParameter("@advance2", Advance2));

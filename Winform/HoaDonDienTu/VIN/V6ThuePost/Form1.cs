@@ -61,6 +61,48 @@ namespace V6ThuePost
             }
         }
 
+        private void btnRead_S_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.ReadXmlInfo(txtXmlFile.Text);
+                //Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+                //{
+                //    Field = "adjustmentType",
+                //    Value = "1",
+                //};
+
+                if (!string.IsNullOrEmpty(Program._SERIAL_CERT))
+                {
+                    Program.generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                    {
+                        Field = "certificateSerial",
+                        Value = Program._SERIAL_CERT,
+                    };
+                }
+                //Guid new_uid = Guid.NewGuid();
+                //Program.generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
+                //{
+                //    Field = "transactionUuid",
+                //    Value = "" + new_uid,
+                //};
+
+                string jsonBody = Program.ReadData_VIN(txtDbfFile.Text, "S");
+                txtUsername.Text = Program.username;
+                txtPassword.Text = Program.password;
+                txtURL.Text = Program.baseUrl;
+                richTextBox1.Text = jsonBody;
+                btnTest.Enabled = true;
+                btnSend_S.Enabled = true;
+
+                Program._VIN_WS = new VIN_WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
+            }
+            catch (Exception ex)
+            {
+                BaseMessage.Show(ex.Message, 0, this);
+            }
+        }
+
         private void btnTest_Click(object sender, EventArgs e)
         {
             if (Program._VIN_WS != null)
@@ -95,7 +137,6 @@ namespace V6ThuePost
             V6Return v6Return;
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
-
                 result = Program._VIN_WS.POST_CREATE_INVOICE(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
                 lblResult.Text = result;
             }
@@ -124,6 +165,59 @@ namespace V6ThuePost
                     message += "Thành công. Số hóa đơn: " + responseObject.result.sohoadon;
                     Program.WriteFlag(Program.flagFileName4, responseObject.result.sohoadon);
                     File.Create(Program.flagFileName2).Close();
+                }
+                else
+                {
+                    message = "Result: " + v6Return.RESULT_STRING;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("Result:" + result);
+                message = "Execption:" + ex.Message;
+            }
+
+            MessageBox.Show(message);
+        }
+
+        private void btnSend_S_Click(object sender, EventArgs e)
+        {
+            string result = null;
+            V6Return v6Return;
+            if (string.IsNullOrEmpty(Program._SERIAL_CERT))
+            {
+                result = Program._VIN_WS.POST_EDIT(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
+                lblResult.Text = result;
+            }
+            else
+            {
+                string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
+                result = Program._VIN_WS.POST_EDIT(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
+                lblResult.Text = result;
+            }
+
+            string message = "";
+            try
+            {
+                VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
+                _magiaodich = responseObject.result.magiaodich;
+                _so_hoadon = responseObject.result.sohoadon;
+                btnSignHSM.Enabled = true;
+                btnDownloadPDF.Enabled = true;
+
+                if (!responseObject.success)
+                {
+                    message += "Không thành công: " + responseObject.result.motaketqua;
+                }
+                else if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.sohoadon))
+                {
+                    message += "Thành công. Số hóa đơn: " + responseObject.result.sohoadon;
+                    Program.WriteFlag(Program.flagFileName4, responseObject.result.sohoadon);
+                    File.Create(Program.flagFileName2).Close();
+                }
+                else
+                {
+                    message = "Result: " + v6Return.RESULT_STRING;
                 }
             }
             catch (Exception ex)
