@@ -52,7 +52,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
         private DataTable MauInData;
-        //private V6TableStruct _tStruct;
+        
+        public AlbcConfig _albcConfig = new AlbcConfig();
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -516,6 +517,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(_reportFile, "", "", "");
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
         }
 
         private void FixGridViewSize()
@@ -1031,14 +1033,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //Header
             if (_tbl != null)
             {
-                string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-                object VALUEV;
-                V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN,
-                    out COLOR_YN, out COLORV);
-                //Color.MediumAquamarine
-                V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
-                    ObjectAndString.StringToColor(COLORV));
-
+                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                if (_albcConfig != null && _albcConfig.HaveInfo)
+                {
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                        _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                }
                 var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
                 var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
                 for (int i = 0; i < dataGridView1.ColumnCount; i++)
@@ -2004,16 +2004,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {"LAN", row0["LAN"].ToString().Trim()},
                         {"REPORT", row0["REPORT"].ToString().Trim()}
                     };
-                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
-                f.AfterInitControl += f_AfterInitControl;
-                f.InitFormControl(this);
-                f.UpdateSuccessEvent += (data) =>
+                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
+                f2.AfterInitControl += f_AfterInitControl;
+                f2.InitFormControl(this);
+                f2.ShowDialog(this);
+                SetStatus2Text();
+                if (f2.UpdateSuccess)
                 {
                     //cap nhap thong tin
-                    LoadComboboxSource();
-                };
-                f.ShowDialog(this);
-                SetStatus2Text();
+                    var data = f2.FormControl.DataDic;
+                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
+                }
             }
             catch (Exception ex)
             {

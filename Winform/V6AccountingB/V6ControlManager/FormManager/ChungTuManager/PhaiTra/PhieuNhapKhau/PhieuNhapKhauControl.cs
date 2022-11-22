@@ -4666,6 +4666,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();
+                cboMaNt_SelectedValueChanged(cboMaNt, null);
                 XuLyThayDoiMaNt();
                 Mode = V6Mode.View;
                 //btnSua.Focus();

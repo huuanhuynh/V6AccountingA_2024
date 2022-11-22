@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-               "MA_DVCS","MA_KH","MA_CT","TK_THUE_CO","MA_THUE"
+               "MA_DVCS","MA_KH","MA_CT","TK_THUE_CO","MA_THUE","MA_SONB"
             }, and);
            if (!string.IsNullOrEmpty(key0))
             {

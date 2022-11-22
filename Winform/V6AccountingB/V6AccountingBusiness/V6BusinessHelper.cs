@@ -1825,7 +1825,7 @@ namespace V6AccountingBusiness
             //FIELDV,VALUEV,BOLD_YN,COLOR_YN,COLORV
             var result = SqlConnect.ExecuteDataset(
                 CommandType.StoredProcedure,
-                "VPA_GetFormatGridView",
+                "VPA_GetFormatGridView", // Albc
                 plist)
                 .Tables[0].Rows[0];
 

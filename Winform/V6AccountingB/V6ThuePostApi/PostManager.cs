@@ -503,7 +503,7 @@ namespace V6ThuePostManager
                         if (_version == "78")
                         {
                             Vnpt78WS vnpt78WS = CreateVnpt78WS();
-                            result = vnpt78WS.DownloadInvPDFFkey(paras.Fkey_hd, option, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                            result = vnpt78WS.DownloadInvPDFFkey(paras.Fkey_hd, option, V6Setting.V6SoftLocalAppData_Directory, V6Setting.WriteExtraLog, out paras.Result.V6ReturnValues);
                         }
                         else
                         {
@@ -3826,7 +3826,7 @@ namespace V6ThuePostManager
 
                 if (paras.Mode == "1") // Mode Thể hiện
                     return viettel_V2WS.DownloadInvoicePDF(_codetax, paras.Partner_infor_dic["SO_HD"], paras.Pattern, paras.Fkey_hd,
-                        V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        V6Setting.V6SoftLocalAppData_Directory, V6Setting.WriteExtraLog, out paras.Result.V6ReturnValues);
                 //string strIssueDate = paras.InvoiceDate.ToString("yyyyMMddHHmmss"); // V1 dùng không thống nhất ???
                 //string strIssueDate_Viettel = V6JsonConverter.ObjectToJson(paras.InvoiceDate, _datetype);
 
@@ -3842,7 +3842,7 @@ namespace V6ThuePostManager
 
                 // Mode = 2 ; chuyen doi
                 string downloaded_file = viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.Partner_infor_dic["SO_HD"], paras.Fkey_hd, strIssueDate_Viettel,
-                    V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                    V6Setting.V6SoftLocalAppData_Directory, V6Setting.WriteExtraLog, out paras.Result.V6ReturnValues);
 
                 if (string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE))
                 {
@@ -3855,7 +3855,7 @@ namespace V6ThuePostManager
                     if (string.IsNullOrEmpty(paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE))
                     {
                         downloaded_file = viettel_V2WS.DownloadInvoicePDFexchange(_codetax, paras.Partner_infor_dic["SO_HD"], paras.Fkey_hd, paras.Result.V6ReturnValues.NGAY_CT_VIETTEL,
-                            V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                            V6Setting.V6SoftLocalAppData_Directory, V6Setting.WriteExtraLog, out paras.Result.V6ReturnValues);
                     }
 
                     return downloaded_file; // ket qua cu.
@@ -5031,6 +5031,12 @@ namespace V6ThuePostManager
 
                     string jsonBody = ReadData_VIN_ObjectToJson(hoadon);
                     string result = vin_WS.POST_EDIT(jsonBody, SIGNMODE == "HSM", out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode == "E_T1")
+                {
+                    var hoadon = ReadData_VIN_Object("T");
+                    string jsonBody = ReadData_VIN_ObjectToJson(hoadon);
+                    string result = vin_WS.POST_REPLACE(jsonBody, SIGNMODE == "HSM", out paras.Result.V6ReturnValues);
                 }
             }
             catch (Exception ex)

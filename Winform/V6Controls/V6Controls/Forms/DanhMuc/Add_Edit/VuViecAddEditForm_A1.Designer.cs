@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
+            this.txtLoaiHD = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
             this.TxtMa_vv = new V6Controls.V6VvarTextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
+            this.lblLoaiHDct = new System.Windows.Forms.Label();
+            this.lblLoaiHD = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -180,11 +180,11 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.v6VvarTextBox2);
+            this.groupBox1.Controls.Add(this.txtLoaiHD);
             this.groupBox1.Controls.Add(this.v6VvarTextBox1);
             this.groupBox1.Controls.Add(this.TxtMa_vv);
-            this.groupBox1.Controls.Add(this.label40);
-            this.groupBox1.Controls.Add(this.label39);
+            this.groupBox1.Controls.Add(this.lblLoaiHDct);
+            this.groupBox1.Controls.Add(this.lblLoaiHD);
             this.groupBox1.Controls.Add(this.label38);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
             this.groupBox1.Controls.Add(this.label1);
@@ -199,24 +199,24 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // v6VvarTextBox2
+            // txtLoaiHD
             // 
-            this.v6VvarTextBox2.AccessibleName = "LOAI_HD";
-            this.v6VvarTextBox2.BackColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.v6VvarTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox2.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.LimitCharacters = "MBmb";
-            this.v6VvarTextBox2.Location = new System.Drawing.Point(594, 14);
-            this.v6VvarTextBox2.MaxLength = 1;
-            this.v6VvarTextBox2.Name = "v6VvarTextBox2";
-            this.v6VvarTextBox2.Size = new System.Drawing.Size(27, 23);
-            this.v6VvarTextBox2.TabIndex = 5;
-            this.v6VvarTextBox2.UseLimitCharacters0 = true;
+            this.txtLoaiHD.AccessibleName = "LOAI_HD";
+            this.txtLoaiHD.BackColor = System.Drawing.Color.White;
+            this.txtLoaiHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLoaiHD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtLoaiHD.CheckNotEmpty = true;
+            this.txtLoaiHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLoaiHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLoaiHD.LeaveColor = System.Drawing.Color.White;
+            this.txtLoaiHD.Location = new System.Drawing.Point(594, 14);
+            this.txtLoaiHD.Name = "txtLoaiHD";
+            this.txtLoaiHD.Size = new System.Drawing.Size(27, 23);
+            this.txtLoaiHD.TabIndex = 5;
+            this.txtLoaiHD.UseLimitCharacters0 = true;
+            this.txtLoaiHD.VVar = "LOAI_HD";
             // 
             // v6VvarTextBox1
             // 
@@ -252,25 +252,25 @@
             this.TxtMa_vv.TabIndex = 1;
             this.TxtMa_vv.UseLimitCharacters0 = true;
             // 
-            // label40
+            // lblLoaiHDct
             // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(631, 17);
-            this.label40.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(94, 17);
-            this.label40.TabIndex = 6;
-            this.label40.Text = "M-Mua B-Bán";
+            this.lblLoaiHDct.AutoSize = true;
+            this.lblLoaiHDct.Location = new System.Drawing.Point(631, 17);
+            this.lblLoaiHDct.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblLoaiHDct.Name = "lblLoaiHDct";
+            this.lblLoaiHDct.Size = new System.Drawing.Size(94, 17);
+            this.lblLoaiHDct.TabIndex = 6;
+            this.lblLoaiHDct.Text = "M-Mua B-Bán";
             // 
-            // label39
+            // lblLoaiHD
             // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(524, 17);
-            this.label39.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(59, 17);
-            this.label39.TabIndex = 4;
-            this.label39.Text = "Loại HĐ";
+            this.lblLoaiHD.AutoSize = true;
+            this.lblLoaiHD.Location = new System.Drawing.Point(524, 17);
+            this.lblLoaiHD.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblLoaiHD.Name = "lblLoaiHD";
+            this.lblLoaiHD.Size = new System.Drawing.Size(59, 17);
+            this.lblLoaiHD.TabIndex = 4;
+            this.lblLoaiHD.Text = "Loại HĐ";
             // 
             // label38
             // 
@@ -2505,10 +2505,10 @@
         private V6VvarTextBox TxtMa_nt;
         private V6NumberTextBox txtTien;
         private System.Windows.Forms.TabPage tabChiTiet;
-        private V6VvarTextBox v6VvarTextBox2;
+        private V6VvarTextBox txtLoaiHD;
         private V6VvarTextBox v6VvarTextBox1;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label lblLoaiHDct;
+        private System.Windows.Forms.Label lblLoaiHD;
         private System.Windows.Forms.Label label38;
         private V6VvarTextBox txtMaKH;
         private V6VvarTextBox txtMa_vv0;

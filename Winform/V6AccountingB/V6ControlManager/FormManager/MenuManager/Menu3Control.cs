@@ -166,6 +166,7 @@ namespace V6ControlManager.FormManager.MenuManager
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_00_POST_USERLOG", plist);
                 }
 
+                // Ẩn control không đúng với menu đang chọn.
                 foreach (var control in ControlsDictionary)
                 {
                     if (control.Key != item_id) control.Value.Visible = false;
@@ -174,6 +175,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
                 if (ControlsDictionary.ContainsKey(item_id) && !ControlsDictionary[item_id].IsDisposed)
                 {
+                    V6Control targetControl = ControlsDictionary[item_id];
                     bool check = true, mouse_left = false, ctrl_is_down = false, shift_is_down;
                     if (codeform != null)
                     {
@@ -211,12 +213,13 @@ namespace V6ControlManager.FormManager.MenuManager
 
                     if (check)
                     {
-                        if (!panelView.Contains(ControlsDictionary[item_id]))
+                        if (!panelView.Contains(targetControl))
                         {
-                            panelView.Controls.Add(ControlsDictionary[item_id]);
+                            panelView.Controls.Add(targetControl);
                         }
-                        ControlsDictionary[item_id].Visible = true;
-                        ControlsDictionary[item_id].Focus();
+                        targetControl.Visible = true;
+                        targetControl.Focus();
+                        FormManagerHelper.CurrentFormControl = targetControl;
                     }
                 }
                 else
@@ -253,6 +256,7 @@ namespace V6ControlManager.FormManager.MenuManager
                         ControlsDictionary[item_id] = c;
                         panelView.Controls.Add(c);
                         c.Focus();
+                        FormManagerHelper.CurrentFormControl = c;
                     }
                 }
             }

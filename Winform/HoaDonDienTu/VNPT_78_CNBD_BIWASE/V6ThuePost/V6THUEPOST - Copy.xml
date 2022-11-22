@@ -1,0 +1,112 @@
+﻿<?xml version="1.0"?>
+<Root>
+  <V6Info Field='account' 	Value='DwfEBro6aTjRS0hONMLlk43GsyJ4PE1A' Type='ENCRYPT'/>
+  <V6Info Field='accountpassword' 	Value='Gp4jJk+wZ1w8l/UKUoPAWQ=='/>
+	<V6Info Field='username' 	Value='DwfEBro6aTjRS0hONMLlk7KJNhJlWCyU' Type='ENCRYPT'/>
+	<V6Info Field='password' 	Value='Gp4jJk+wZ1w8l/UKUoPAWQ=='/>
+	
+	<V6Info Field='serialCert' 	Value='V6SOFT'/>
+	<V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
+	<V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
+	
+	<V6Info Field='pattern' 	Value='MA_MAUHD' Type=''/>
+	<V6Info Field='seri' 		Value='SO_SERI' Type=''/>
+	<V6Info Field='v6fkey' 		Value='' Type=''/>
+	<V6Info Field='v6fkeyexcel' 		Value='' Type=''/>
+	<V6Info Field='baselink' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xqAFB73N3XxaQ==' Type=''/>
+	<V6Info Field='link_Publish' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xpKZ4dj8vu2vl08G2aI0c3ottrkq5+1sZ8=' Type=''/>
+	<V6Info Field='link_Portal' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xpKZ4dj8vu2vl08G2aI0c3ottrkq5+1sZ8=' Type=''/>
+	<V6Info Field='link_Business' 	Value='UQL2EugVpi0PB8QGujppONFLSE40wuWTAS6xkeWqRfi5G15GL0todOQggGiM2KbkCGzX6Jrz3xp35N1GzzhwanEUJjk85Izh52G9fhYBJWs=' Type=''/>
+	<V6Info Field='link_Attachment' 	Value='UQL2EugVpi1EYqJfn5n3nszlEPKzs7WCEj7JcDPoWBmt3MVhwJd7knbabVi5U8sy1FLoOsuVgES4yoMiAd/ZUBXcMBjULdUO6dgnReN4POY=' Type=''/>
+	
+	<ExcelConfig Type='0' Field='TEMPLATE' 	Value='V6_EXCEL.XLS'/>
+	<ExcelConfig Type='0' Field='FIRSTCELL' 	Value='B18'/>
+	<ExcelConfig Type='0' Field='INSERTROW' 	Value='1'/>
+	<ExcelConfig Type='0' Field='DRAWLINE' 		Value='1'/>
+	<ExcelConfig Type='E' Field='COLUMNS' 	Value='STT,TEN_VT,DVT,SO_LUONG,GIA2,TIEN2'/>
+	<ExcelConfig Type='E' Field='COLUMNS11' 	Value=''/>
+	<ExcelConfig Type='E' Field='COLUMNS21' 	Value=''/>
+	<ExcelConfig Type='E' Field='COLUMNS31' 	Value=''/>
+
+	<ExcelConfig Type='2' Field='D9' 	Value='{SO_CT}'/>
+	<ExcelConfig Type='2' Field='D10' 	Value='NGAY_CT'/>
+	<ExcelConfig Type='2' Field='B11' 	Value='{TEN_KH}'/>
+	<ExcelConfig Type='2' Field='B12' 	Value='{DIA_CHI}'/>
+	<ExcelConfig Type='2' Field='B13' 	Value='{MA_SO_THUE}'/>
+
+	<ExcelConfig Type='2' Field='G19' 	Value='T_TIEN2'/>
+	<ExcelConfig Type='2' Field='G20' 	Value='T_THUE'/>
+	<ExcelConfig Type='2' Field='G21' 	Value='T_TT'/>
+
+  <!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+	
+	<BuyerInfo Field='CusCode' 			FieldV6='MA_KH'			Type='Field'/>
+	<BuyerInfo Field='CusName' 			FieldV6='ten_kh' 			Type='Field'  DataType='UPPER'/>
+  <BuyerInfo Field='Buyer' 			  FieldV6='ong_ba' 			Type='Field'/>
+  <BuyerInfo Field='CusAddress' 			FieldV6='dia_chi'			Type='Field'/>
+  <BuyerInfo Field='CusPhone' 			FieldV6='DIEN_THOAI'			Type='Field'/>
+  <BuyerInfo Field='CusTaxCode' 			FieldV6='ma_so_thue'		Type='Field'/>
+	<BuyerInfo Field='PaymentMethod' 		FieldV6='MA_HTTT'			Type='Field' />
+  <BuyerInfo Field='CusBankNo'    Value='TestCusBankNo' 			FieldV6=''			Type='Field'/>
+  <BuyerInfo Field='CusBankName'  Value='TestCusBankName' 			FieldV6=''			Type='Field'/>
+	<BuyerInfo Field='KindOfService' FieldNode='Tháng hóa đơn' 	Value=''/>
+	<BuyerInfo Field='EmailDeliver'   Value=''  FieldV6='email' Type='Field'  Node='Email nhận thông báo phát hành hóa đơn'/>
+	<BuyerInfo Field='SMSDeliver'   Value=''  FieldV6='dien_thoai' Type='Field'  Node='Số điện thoại nhận thông báo phát hành hóa đơn (String, max 50 ký tự, mỗi số điện thoại cách nhau bởi dấu ;'/>
+  <!--BuyerInfo Field='Type' FieldNode='Tháng hóa đơn' 	Value=''  Note='Loại hóa đơn chỉnh sửa(int-mặc  định lấy là 2) 2-Điều chỉnh  tăng,  3-Điều chỉnh giảm, 4- Hóa đơn điều chỉnh thông tin'/-->
+	
+	<!--ItemInfo	Field='lineNumber'		FieldV6='stt'	Type='Field'/-->
+  <ItemInfo	Field='Code'	FieldV6='ma_vt'		Type='Field'/>
+  <ItemInfo	Field='ProdName'	FieldV6='ten_vt'	Type='Field'/>
+  <ItemInfo	Field='ProdUnit'		FieldV6='dvt'	Type='Field'/>
+  <ItemInfo	Field='ProdQuantity'	FieldV6='so_luong'	Type='Field'	DataType='long'/>
+  <ItemInfo	Field='ProdPrice'	FieldV6='gia2'	Type='Field'	DataType='long'/>
+  <ItemInfo	Field='Total'	FieldV6='tien2'	Type='Field'  DataType='long'/>
+  <ItemInfo	Field='VATRate'	FieldV6='thue_suati'	Type='Field'	DataType='long'/>
+  <ItemInfo	Field='VATAmount'	FieldV6='thue'	Type='Field'	DataType='long'/>
+  <ItemInfo	Field='Amount'	FieldV6='tien2'	Type='Field'	DataType='long'/>
+  <ItemInfo	Field='IsSum' Value='1'	FieldV6=''	Type='Field'	DataType='int' Note='0-Hàng hóa, dv; 1-K.mại; 2-Cktm, 4 Ghi chú'/>
+
+  <!--ItemInfo	Field='Remark'	FieldV6='stt'		Type='Field'	DataType='int'/-->
+	<!--ItemInfo	Field='Code'	FieldV6='ma_vt'		Type='Field'/-->
+	<!--ItemInfo	Field='Discount'	FieldV6='pt_cki'	Type='Field'/-->
+	<!--ItemInfo	Field='DiscountAmount'	FieldV6='ck'	Type='Field'/-->
+	
+	<!--SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/-->
+	<SummarizeInfo	Field='Total'	Note='Tổng tiền trước thuế'	FieldV6='T_TIEN2'	Type='Field'/>
+	<SummarizeInfo	Field='DiscountRate' Value='0'		FieldV6=''	Type='Field'	DataType='int'/>
+	<SummarizeInfo	Field='DiscountAmount'		FieldV6='T_CK'	Type='Field'	DataType='long'/>
+	<SummarizeInfo	Field='VATRate'		FieldV6='THUE_SUAT'	Type='Field'		DataType='long'/>
+	<SummarizeInfo	Field='VATAmount'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+	<SummarizeInfo	Field='Amount'		FieldV6='T_TT'	Type='Field'	DataType='long'/>
+	<SummarizeInfo	Field='AmountInWords'		FieldV6='t_tt' Type='Field:N2C'/>	
+	<SummarizeInfo	Field='Extra'			Note='Các nội dung mở rộng'	FieldV6='GHI_CHU'	Type='Field'/>
+	<SummarizeInfo	Field='ExchangeRate'	Note=''	FieldV6='TY_GIA'	Type='Field'/>
+	<SummarizeInfo	Field='ArisingDate'		Note='Ngày phát hành hóa đơn'	FieldV6='NGAY_CT'	Type='Field'/>
+	<SummarizeInfo	Field='PaymentStatus'	Note='Trạng  thái  thanh  toán  hóa  đơn  ban  đầu(0,1 – chưa  thanh toán, đã thanh toán)' Value='0'	FieldV6='Payment_s'	Type=''/>
+	<SummarizeInfo	Field='ResourceCode'	Note='Mã vùng dữ liệu' Value='XNXLCT_05'	FieldV6=''	Type=''/>
+
+  <SummarizeInfo	Field='GrossValue'   Note='Tổng tiền không chịu thuế GTGT'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='GrossValue0'   Note='Tổng tiền chịu thuế suất 0%'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='GrossValue5'   Note='Tổng tiền chịu thuế suất 5%'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='GrossValue10'   Note='Tổng tiền chịu thuế suất 10%'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='VatAmount10'   Note='Tổng Tiền thuế GTGT thuế suất 5%'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='VATAmount'   Note='Tổng Tiền thuế GTGT thuế suất 10%'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='GrossValue_NonTax' Note='Tổng tiền không kê khai và nộp thuế'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+  
+
+  <!--CustomerInfo	Các trường thông tin khách hàng sử dụng cho hàm UpdateCus	/-->
+	<CustomerInfo	Field='Name'	Value=''	FieldV6='TEN_KH'	Type='Field'/>
+	<CustomerInfo	Field='Code'	Value=''	FieldV6='MA_KH'	Type='Field'/>
+	<CustomerInfo	Field='TaxCode'	Value=''	FieldV6='MA_SO_THUE'	Type='Field'/>
+	<CustomerInfo	Field='Address'	Value=''	FieldV6='DIA_CHI'	Type='Field'	Note='Địa chỉ thanh toán'/>
+	<CustomerInfo	Field='BankAccountName'	Value=''	FieldV6='TEN_KH'	Type='Field'/>
+	<CustomerInfo	Field='BankName'	Value=''	FieldV6='TEN_NH'	Type='Field'/>
+	<CustomerInfo	Field='BankNumber'	Value=''	FieldV6='TK_NH'	Type='Field'/>
+	<CustomerInfo	Field='Email'		Value=''	FieldV6='E_MAIL'	Type='Field'/>
+	<CustomerInfo	Field='Fax'			Value=''	FieldV6='Fax'	Type='Field'/>
+	<CustomerInfo	Field='Phone'		Value=''	FieldV6='DIEN_THOAI'	Type='Field'/>
+	<CustomerInfo	Field='ContactPerson'	Value=''	FieldV6='DOI_TAC'	Type='Field'/>
+	<CustomerInfo	Field='RepresentPerson'	Value=''	FieldV6='GC_TD1'	Type='Field'/>
+	<CustomerInfo	Field='CusType'	Value='CusTypeTestNoField'	FieldV6='SL_TD1'	Type='Field'	DataType='Int'	Note='1: Doanh nghiệp/0: Cá nhân'/>
+	
+</Root>	

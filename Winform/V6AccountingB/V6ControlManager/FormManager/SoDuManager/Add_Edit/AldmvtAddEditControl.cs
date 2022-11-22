@@ -36,6 +36,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             //TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");
             txtMaSP.SetInitFilter("loai_vt='55'");
+            txtMaSP.MadeNameLabel();
+            txtMaBpht.MadeNameLabel();
 
             _table2Struct = V6BusinessHelper.GetTableStruct(_table2Name);
 

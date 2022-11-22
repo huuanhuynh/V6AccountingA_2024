@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNPOI", "TestNPOI\TestNPOI.csproj", "{4F82001A-CD3E-4692-9918-26FEE1626EDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6_CREATE_SHORTCUT", "V6_CREATE_SHORTCUT\V6_CREATE_SHORTCUT.csproj", "{D953AA7C-A388-4A78-9319-2DC3A0E07284}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4F82001A-CD3E-4692-9918-26FEE1626EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F82001A-CD3E-4692-9918-26FEE1626EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F82001A-CD3E-4692-9918-26FEE1626EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D953AA7C-A388-4A78-9319-2DC3A0E07284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D953AA7C-A388-4A78-9319-2DC3A0E07284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D953AA7C-A388-4A78-9319-2DC3A0E07284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D953AA7C-A388-4A78-9319-2DC3A0E07284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

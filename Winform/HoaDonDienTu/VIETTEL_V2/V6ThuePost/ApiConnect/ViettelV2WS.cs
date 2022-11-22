@@ -640,10 +640,11 @@ namespace V6ThuePostViettelV2Api
         /// <param name="savefolder"></param>
         /// <param name="v6Return"></param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDF(string codeTax, string invoiceNo, string templateCode, string uid,
-            string savefolder, out V6Return v6Return)
+        public string DownloadInvoicePDF(string codeTax, string invoiceNo, string templateCode, string uid, string savefolder,
+            bool write_extralog, out V6Return v6Return)
         {
             v6Return = new V6Return();
+            string extralog = "";
             GetPDFFileRequest objGetFile = new GetPDFFileRequest();
             objGetFile.supplierTaxCode = codeTax;
             objGetFile.invoiceNo = invoiceNo;
@@ -659,8 +660,10 @@ namespace V6ThuePostViettelV2Api
                             ""transactionUuid"":""" + objGetFile.transactionUuid + @""",
                             ""fileType"":""" + objGetFile.fileType + @"""
                             }";
-
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            
             string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile", request);
+            extralog += "Response in: " + watch.ElapsedMilliseconds + "(ms). ";
             v6Return.RESULT_STRING = result;
             PDFFileResponse responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
 
@@ -699,8 +702,12 @@ namespace V6ThuePostViettelV2Api
             }
             if (!File.Exists(v6Return.PATH))
             {
+                extralog += " Start write " + v6Return.PATH + " at: " + watch.ElapsedMilliseconds + "(ms). ";
                 File.WriteAllBytes(v6Return.PATH, responseObject.fileToBytes);
+                extralog += " Write ok at: " + watch.ElapsedMilliseconds + "(ms). ";
             }
+
+            if (write_extralog) Logger.WriteToLog(extralog);
 
             return v6Return.PATH;
         }
@@ -715,9 +722,11 @@ namespace V6ThuePostViettelV2Api
         /// <param name="savefolder"></param>
         /// <param name="v6Return">Thông tin trả về</param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDFexchange(string codeTax, string invoiceNo, string uid, string strIssueDate, string savefolder, out V6Return v6Return)
+        public string DownloadInvoicePDFexchange(string codeTax, string invoiceNo, string uid, string strIssueDate, string savefolder,
+            bool write_extralog, out V6Return v6Return)
         {
             v6Return = new V6Return();
+            string extralog = "";
             //invoiceNo = invoiceNo.Replace("/", "%2F");
             GetPDFFileRequestE objGetPdfFile = new GetPDFFileRequestE()
             {
@@ -733,8 +742,10 @@ namespace V6ThuePostViettelV2Api
 
             //string result = GET_VIETTEL_TOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
             //result = GET_VIETTEL_TOKEN("/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile" + parameters);
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             string result = POST_VIETTEL_COOKIESTOKEN("/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
             //string result = POST_VIETTEL_COOKIESTOKEN("/InvoiceAPI/InvoiceWS/createExchangeInvoiceFile", parameters.Substring(1));
+            extralog += "Response in: " + watch.ElapsedMilliseconds + "(ms). ";
             v6Return.RESULT_STRING = result;
             PDFFileResponse responseObject = JsonConvert.DeserializeObject<PDFFileResponse>(result);
             v6Return.RESULT_OBJECT = responseObject;
@@ -790,8 +801,12 @@ namespace V6ThuePostViettelV2Api
             }
             if (!File.Exists(v6Return.PATH))
             {
+                extralog += " Start write " + v6Return.PATH + " at: " + watch.ElapsedMilliseconds + "(ms). ";
                 File.WriteAllBytes(v6Return.PATH, responseObject.fileToBytes);
+                extralog += " Write ok at: " + watch.ElapsedMilliseconds + "(ms). ";
             }
+
+            if (write_extralog) Logger.WriteToLog(extralog);
             
             return v6Return.PATH;
         }

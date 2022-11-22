@@ -244,13 +244,13 @@ namespace V6ThuePost
                     {
                         // Lưu ý dữ liệu mode Replace. (T)
                         jsonBody = ReadText(arg2);
-                        result = _VIN_WS.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
+                        result = _VIN_WS.POST_REPLACE(jsonBody, _SIGNMODE == "HSM", out v6return);
                     }
                     else if (mode == "T")
                     {
                         jsonBody = ReadData_VIN(dbfFile, "T");
                         File.Create(flagFileName1).Close();
-                        result = _VIN_WS.POST_REPLACE(jsonBody, _version == "V45I", out v6return);
+                        result = _VIN_WS.POST_REPLACE(jsonBody, _SIGNMODE == "HSM", out v6return);
                     }
                     else if (mode == "GET_INVOICE" || mode == "GET_INVOICE_JSON")
                     {
@@ -422,16 +422,17 @@ namespace V6ThuePost
                         message = "";
                         if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                         {
-                            message = "OK.";
+                            message = "OK. SO_HD:" + v6return.SO_HD;
                             WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
                             File.Create(flagFileName2).Close();
+                            if (_write_log) Logger.WriteToLog(v6return.RESULT_STRING);
                         }
                         else
                         {
-                            message = "ERR:";
+                            message = "ERR:" + v6return.RESULT_ERROR_MESSAGE;
                             WriteFlag(flagFileName3, v6return.RESULT_ERROR_MESSAGE);
+                            Logger.WriteToLog(v6return.RESULT_STRING);
                         }
-                        result = message + "\n" + result;
                     }
                 }
                 catch (Exception ex)
@@ -538,7 +539,7 @@ namespace V6ThuePost
                     //Lập hóa đơn điều chỉnh: trong chi tiết và dsthuesuat có thêm trường dieuchinh_tanggiam
                     if (_TEST_)
                     {
-                        hoadon["hoadon_goc"] = "SuaLaiDeTest";
+                        hoadon["hoadon_goc"] = "SSSSSSSSSS";
                     }
                     else
                     {
@@ -549,7 +550,14 @@ namespace V6ThuePost
                 if (mode == "T")
                 {
                     //Lập hóa đơn thay thế:
-                    hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
+                    if (_TEST_)
+                    {
+                        hoadon["hoadon_goc"] = "TTTTTTTTTT";
+                    }
+                    else
+                    {
+                        hoadon["hoadon_goc"] = row0["FKEY_TT_OLD"].ToString().Trim();
+                    }           
                 }
 
                 if (_TEST_)

@@ -1147,12 +1147,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
                     try
                     {
-                        string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-                        object VALUEV;
-                        V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV,
-                            out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
-                        V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1",
-                            COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
+                        //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                        if (_albcConfig != null && _albcConfig.HaveInfo)
+                        {
+                            V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                                _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                        }
                     }
                     catch
                     {

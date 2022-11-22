@@ -180,6 +180,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 Pattern = pattern,
                                 Serial = serial,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                                
                             };
                             return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))

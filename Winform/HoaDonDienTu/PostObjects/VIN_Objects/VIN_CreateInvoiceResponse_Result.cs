@@ -3,6 +3,7 @@ namespace V6ThuePost.VIN_Objects
 {
     public class VIN_CreateInvoiceResponse_Result
     {
+
         public string maketqua { get; set; }
         public string motaketqua { get; set; }
         public string magiaodich { get; set; }

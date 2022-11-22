@@ -723,18 +723,22 @@ namespace V6ThuePostXmlApi
         /// <param name="saveFolder"></param>
         /// <param name="v6Return"></param>
         /// <returns></returns>
-        public string DownloadInvPDFFkey(string fkey, int option, string saveFolder, out V6Return v6Return)
+        public string DownloadInvPDFFkey(string fkey, int option, string saveFolder, bool write_extralog, out V6Return v6Return)
         {
             string result = null;
+            string extralog = "";
             v6Return = new V6Return();
             try
             {
+                var watch = System.Diagnostics.Stopwatch.StartNew();
                 if (option == 2)
                 {
                     result = new PortalService.PortalService(_baseLink + _portalLink).convertForStoreFkey(fkey, _username, _password);
+                    extralog += "Response in: " + watch.ElapsedMilliseconds + "(ms). ";
                     v6Return.RESULT_STRING = result;
                     string fileName = fkey;
                     string path = Path.Combine(saveFolder, fileName + ".html");
+                    v6Return.PATH = path;
                     try
                     {
                         if (File.Exists(path)) File.Delete(path);
@@ -747,12 +751,13 @@ namespace V6ThuePostXmlApi
                         if (!File.Exists(path)) File.WriteAllText(path, result);
                     }
 
-                    v6Return.PATH = path;
+                    
                     return path;
                 }
                 else
                 {
                     result = new PortalService.PortalService(_baseLink + _portalLink).downloadInvPDFFkey(fkey, _username, _password);
+                    extralog += "Response in: " + watch.ElapsedMilliseconds + "(ms). ";
                     v6Return.RESULT_STRING = result;
                 }
                 v6Return.RESULT_STRING = result;
@@ -761,6 +766,7 @@ namespace V6ThuePostXmlApi
                 {
                     string fileName = fkey;
                     string path = Path.Combine(saveFolder, fileName + ".pdf");
+                    v6Return.PATH = path;
                     try
                     {
                         if (File.Exists(path)) File.Delete(path);
@@ -770,10 +776,15 @@ namespace V6ThuePostXmlApi
                     }
                     finally
                     {
-                        if (!File.Exists(path)) File.WriteAllBytes(path, Convert.FromBase64String(result));
+                        if (!File.Exists(path))
+                        {
+                            extralog += " Start write " + v6Return.PATH + " at: " + watch.ElapsedMilliseconds + "(ms). ";
+                            File.WriteAllBytes(v6Return.PATH, Convert.FromBase64String(result));
+                            extralog += " Write ok at: " + watch.ElapsedMilliseconds + "(ms). ";
+                        }
                     }
 
-                    v6Return.PATH = path;
+                    
                     return path;
                 }
                 else if (result.StartsWith("ERR:11"))
@@ -802,6 +813,8 @@ namespace V6ThuePostXmlApi
                 result = "ERR:EX\r\n" + ex.Message;
                 v6Return.RESULT_ERROR_MESSAGE = result;
             }
+
+            if (write_extralog) Logger.WriteToLog(extralog);
 
             return null;
         }

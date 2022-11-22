@@ -8770,6 +8770,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (!data.ContainsKey("HE_SO1T")) data.Add("HE_SO1T", 1);
                         if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
                         if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
+                        if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", 0m);
+                        if (!data.ContainsKey("GIA_NT1")) data.Add("GIA_NT1", 0m);
 
                         var __tien_nt2 = ObjectAndString.ToObject<decimal>(data["TIEN_NT2"]);
                         var __gia_nt21 = ObjectAndString.ObjectToDecimal(data["GIA_NT21"]);

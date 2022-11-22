@@ -185,7 +185,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 new SqlParameter("@r_add", V6Login.UserInfo["r_add"].ToString().Trim()),
                 new SqlParameter("@moduleID", V6Login.SelectedModule),
             };
-            ALIMXLS_DATA = V6BusinessHelper.Select("ALIMXLS", "*", "Rtrim(MO_TA) in (Select Itemid from V6menu Where (((1=@isAdmin or (dbo.VFA_Inlist_MEMO([Itemid], @mrights)=1 and dbo.VFA_Inlist_MEMO([Itemid], @r_add)=1))) AND hide_yn<>1 AND Module_id=@moduleID))",
+            ALIMXLS_DATA = V6BusinessHelper.Select("ALIMXLS", "*", "Rtrim(MO_TA) in (Select Itemid from V6menu Where"
+                + " (((1=@isAdmin or (dbo.VFA_Inlist_MEMO([Itemid], @mrights)=1 and dbo.VFA_Inlist_MEMO([Itemid], @r_add)=1)))"
+                + " AND IMPORT_YN='1' AND hide_yn<>1 AND Module_id=@moduleID))",
                 "", "STT", plist).Data;
 
             cboDanhMuc.ValueMember = "dbf_im";

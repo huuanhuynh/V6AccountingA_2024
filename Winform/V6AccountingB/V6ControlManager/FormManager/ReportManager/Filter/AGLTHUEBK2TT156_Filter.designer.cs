@@ -50,6 +50,7 @@
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
+            this.lineMA_SONB = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +58,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 39);
@@ -71,6 +73,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lineMA_SONB);
             this.groupBox1.Controls.Add(this.txtma_thue);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox11);
             this.groupBox1.Controls.Add(this.radOr);
@@ -80,7 +83,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(0, 189);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 170);
+            this.groupBox1.Size = new System.Drawing.Size(289, 190);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -89,6 +92,7 @@
             // 
             this.txtma_thue.AccessibleDescription = "FILTERL00143";
             this.txtma_thue.AccessibleName2 = "MA_THUE";
+            this.txtma_thue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtma_thue.Caption = "Mã thuế";
             this.txtma_thue.FieldName = "MA_THUE";
             this.txtma_thue.Location = new System.Drawing.Point(6, 131);
@@ -101,6 +105,7 @@
             // 
             this.filterLineVvarTextBox11.AccessibleDescription = "FILTERL00004";
             this.filterLineVvarTextBox11.AccessibleName2 = "MA_CT";
+            this.filterLineVvarTextBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox11.Caption = "Mã chứng từ";
             this.filterLineVvarTextBox11.FieldName = "MA_CT";
             this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 85);
@@ -124,6 +129,7 @@
             // 
             this.txtTk_thue_co.AccessibleDescription = "FILTERL00142";
             this.txtTk_thue_co.AccessibleName2 = "TK_THUE_CO";
+            this.txtTk_thue_co.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtTk_thue_co.Caption = "Tài khoản thuế";
             this.txtTk_thue_co.FieldName = "TK_THUE_CO";
             this.txtTk_thue_co.Location = new System.Drawing.Point(6, 108);
@@ -149,6 +155,7 @@
             // 
             this.Txtma_kh.AccessibleDescription = "FILTERL00007";
             this.Txtma_kh.AccessibleName2 = "MA_KH";
+            this.Txtma_kh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtma_kh.Caption = "Mã khách";
             this.Txtma_kh.FieldName = "MA_KH";
             this.Txtma_kh.Location = new System.Drawing.Point(6, 62);
@@ -244,6 +251,7 @@
             this.txtFileName.ReadOnly = true;
             this.txtFileName.Size = new System.Drawing.Size(246, 20);
             this.txtFileName.TabIndex = 5;
+            this.txtFileName.TabStop = false;
             // 
             // btnChon
             // 
@@ -325,7 +333,20 @@
             this.v6Label4.TabIndex = 12;
             this.v6Label4.Text = "2 - Tất cả";
             // 
-            // AGLTHUEBK2TT156
+            // lineMA_SONB
+            // 
+            this.lineMA_SONB.AccessibleDescription = "FILTERL00079";
+            this.lineMA_SONB.AccessibleName2 = "MA_SONB";
+            this.lineMA_SONB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.lineMA_SONB.Caption = "Mã số nội bộ";
+            this.lineMA_SONB.FieldName = "MA_SONB";
+            this.lineMA_SONB.Location = new System.Drawing.Point(6, 154);
+            this.lineMA_SONB.Name = "lineMA_SONB";
+            this.lineMA_SONB.Size = new System.Drawing.Size(282, 22);
+            this.lineMA_SONB.TabIndex = 17;
+            this.lineMA_SONB.Vvar = "MA_SONB";
+            // 
+            // AGLTHUEBK2TT156_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -345,7 +366,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLTHUEBK2TT156_Filter";
-            this.Size = new System.Drawing.Size(295, 362);
+            this.Size = new System.Drawing.Size(295, 382);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -377,5 +398,6 @@
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label4;
+        private V6ReportControls.FilterLineVvarTextBox lineMA_SONB;
     }
 }

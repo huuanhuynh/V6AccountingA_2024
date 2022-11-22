@@ -1349,15 +1349,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                //VPA_GetFormatGridView]@Codeform VARCHAR(50),@Type VARCHAR(20)
-                string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-                object VALUEV;
-                V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN,
-                    out COLOR_YN, out COLORV);
-                //Color.MediumAquamarine
-                V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
-                    ObjectAndString.StringToColor(COLORV));
-
+                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                if (_albcConfig != null && _albcConfig.HaveInfo)
+                {
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                        _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                }
                 //Header
                 var fieldList = (from DataColumn column in _tbl1.Columns select column.ColumnName).ToList();
 
@@ -2320,12 +2317,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            if (_albcConfig != null && _albcConfig.HaveInfo)
+            {
+                V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                    _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+            }
         }
 
         private void dataGridView1_FilterChange()
         {
-            V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            if (_albcConfig != null && _albcConfig.HaveInfo)
+            {
+                V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                    _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+            }
         }
 
         private void documentViewer1_ZoomChanged(object sender, EventArgs e)

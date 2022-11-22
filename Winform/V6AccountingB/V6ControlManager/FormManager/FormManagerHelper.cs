@@ -28,6 +28,7 @@ namespace V6ControlManager.FormManager
         }
 
         public static Menu3Control CurrentMenu3Control { get; set; }
+        public static V6Control CurrentFormControl { get; set; }
 
         public static void HideMainMenu()
         {

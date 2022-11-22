@@ -38,19 +38,16 @@ namespace V6ThuePost
                         Value = Program._SERIAL_CERT,
                     };
                 }
-                //Guid new_uid = Guid.NewGuid();
-                //Program.generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
-                //{
-                //    Field = "transactionUuid",
-                //    Value = "" + new_uid,
-                //};
-
-                string jsonBody = Program.ReadData_VIN(txtDbfFile.Text, "M");
+                string MODE = "M";
+                if (radS.Checked) MODE = "S"; if (radT.Checked) MODE = "T";
+                string jsonBody = Program.ReadData_VIN(txtDbfFile.Text, MODE);
+                
                 txtUsername.Text = Program.username;
                 txtPassword.Text = Program.password;
                 txtURL.Text = Program.baseUrl;
                 richTextBox1.Text = jsonBody;
                 btnTest.Enabled = true;
+                btnSend.Text = string.Format("Send({0})", MODE);
                 btnSend.Enabled = true;
 
                 Program._VIN_WS = new VIN_WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
@@ -61,46 +58,85 @@ namespace V6ThuePost
             }
         }
 
-        private void btnRead_S_Click(object sender, EventArgs e)
+        private void btnSend_Click(object sender, EventArgs e)
         {
+            string result = null;
+            V6Return v6Return = new V6Return();
+            if (btnSend.Text.EndsWith("(M)"))
+            {
+                if (string.IsNullOrEmpty(Program._SERIAL_CERT))
+                {
+                    result = Program._VIN_WS.POST_CREATE_INVOICE(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
+                    lblResult.Text = result;
+                }
+                else
+                {
+                    string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
+                    result = Program._VIN_WS.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT, out v6Return);
+                    lblResult.Text = result;
+                }
+            }
+            else if (btnSend.Text.EndsWith("(S)"))
+            {
+                if (string.IsNullOrEmpty(Program._SERIAL_CERT))
+                {
+                    result = Program._VIN_WS.POST_EDIT(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
+                    lblResult.Text = result;
+                }
+                else
+                {
+                    string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
+                    result = Program._VIN_WS.POST_EDIT(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
+                    lblResult.Text = result;
+                }
+            }
+            else if (btnSend.Text.EndsWith("(T)"))
+            {
+                if (string.IsNullOrEmpty(Program._SERIAL_CERT))
+                {
+                    result = Program._VIN_WS.POST_REPLACE(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
+                    lblResult.Text = result;
+                }
+                else
+                {
+                    string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
+                    result = Program._VIN_WS.POST_REPLACE(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
+                    lblResult.Text = result;
+                }
+            }
+            
+
+            string message = "";
             try
             {
-                Program.ReadXmlInfo(txtXmlFile.Text);
-                //Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                //{
-                //    Field = "adjustmentType",
-                //    Value = "1",
-                //};
+                VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
+                _magiaodich = responseObject.result.magiaodich;
+                _so_hoadon = responseObject.result.sohoadon;
+                btnSignHSM.Enabled = true;
+                btnDownloadPDF.Enabled = true;
 
-                if (!string.IsNullOrEmpty(Program._SERIAL_CERT))
+                if (!responseObject.success)
                 {
-                    Program.generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
-                    {
-                        Field = "certificateSerial",
-                        Value = Program._SERIAL_CERT,
-                    };
+                    message += "Không thành công: " + responseObject.result.motaketqua;
                 }
-                //Guid new_uid = Guid.NewGuid();
-                //Program.generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
-                //{
-                //    Field = "transactionUuid",
-                //    Value = "" + new_uid,
-                //};
-
-                string jsonBody = Program.ReadData_VIN(txtDbfFile.Text, "S");
-                txtUsername.Text = Program.username;
-                txtPassword.Text = Program.password;
-                txtURL.Text = Program.baseUrl;
-                richTextBox1.Text = jsonBody;
-                btnTest.Enabled = true;
-                btnSend_S.Enabled = true;
-
-                Program._VIN_WS = new VIN_WS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
+                else if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.sohoadon))
+                {
+                    message += "Thành công. Số hóa đơn: " + responseObject.result.sohoadon;
+                    Program.WriteFlag(Program.flagFileName4, responseObject.result.sohoadon);
+                    File.Create(Program.flagFileName2).Close();
+                }
+                else
+                {
+                    message = "Result: " + v6Return.RESULT_STRING;
+                }
             }
             catch (Exception ex)
             {
-                BaseMessage.Show(ex.Message, 0, this);
+                Logger.WriteToLog("Result:" + result);
+                message = "Execption:" + ex.Message;
             }
+
+            MessageBox.Show(message);
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -131,103 +167,8 @@ namespace V6ThuePost
             }
         }
 
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            string result = null;
-            V6Return v6Return;
-            if (string.IsNullOrEmpty(Program._SERIAL_CERT))
-            {
-                result = Program._VIN_WS.POST_CREATE_INVOICE(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
-                lblResult.Text = result;
-            }
-            else
-            {
-                string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
-                result = Program._VIN_WS.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT, out v6Return);
-                lblResult.Text = result;
-            }
-            
-            string message = "";
-            try
-            {
-                VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
-                _magiaodich = responseObject.result.magiaodich;
-                _so_hoadon = responseObject.result.sohoadon;
-                btnSignHSM.Enabled = true;
-                btnDownloadPDF.Enabled = true;
+        
 
-                if (!responseObject.success)
-                {
-                    message += "Không thành công: " + responseObject.result.motaketqua;
-                }
-                else if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.sohoadon))
-                {
-                    message += "Thành công. Số hóa đơn: " + responseObject.result.sohoadon;
-                    Program.WriteFlag(Program.flagFileName4, responseObject.result.sohoadon);
-                    File.Create(Program.flagFileName2).Close();
-                }
-                else
-                {
-                    message = "Result: " + v6Return.RESULT_STRING;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteToLog("Result:" + result);
-                message = "Execption:" + ex.Message;
-            }
-
-            MessageBox.Show(message);
-        }
-
-        private void btnSend_S_Click(object sender, EventArgs e)
-        {
-            string result = null;
-            V6Return v6Return;
-            if (string.IsNullOrEmpty(Program._SERIAL_CERT))
-            {
-                result = Program._VIN_WS.POST_EDIT(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
-                lblResult.Text = result;
-            }
-            else
-            {
-                string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
-                result = Program._VIN_WS.POST_EDIT(richTextBox1.Text, Program._SIGNMODE == "HSM", out v6Return);
-                lblResult.Text = result;
-            }
-
-            string message = "";
-            try
-            {
-                VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
-                _magiaodich = responseObject.result.magiaodich;
-                _so_hoadon = responseObject.result.sohoadon;
-                btnSignHSM.Enabled = true;
-                btnDownloadPDF.Enabled = true;
-
-                if (!responseObject.success)
-                {
-                    message += "Không thành công: " + responseObject.result.motaketqua;
-                }
-                else if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.sohoadon))
-                {
-                    message += "Thành công. Số hóa đơn: " + responseObject.result.sohoadon;
-                    Program.WriteFlag(Program.flagFileName4, responseObject.result.sohoadon);
-                    File.Create(Program.flagFileName2).Close();
-                }
-                else
-                {
-                    message = "Result: " + v6Return.RESULT_STRING;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteToLog("Result:" + result);
-                message = "Execption:" + ex.Message;
-            }
-
-            MessageBox.Show(message);
-        }
 
 
         private string _magiaodich, _ma_hoadon, _so_hoadon;

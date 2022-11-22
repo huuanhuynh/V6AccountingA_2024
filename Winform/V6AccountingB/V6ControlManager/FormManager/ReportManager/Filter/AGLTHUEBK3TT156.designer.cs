@@ -43,10 +43,11 @@
             this.filterLineVvarTextBox11 = new V6ReportControls.FilterLineVvarTextBox();
             this.txtTk_thue_no = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtma_kh = new V6ReportControls.FilterLineVvarTextBox();
-            this.Txtmau_bc = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineMAU_BC = new V6ReportControls.FilterLineNumberTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineMA_SONB = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,10 +195,11 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lineMA_SONB);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox11);
             this.groupBox1.Controls.Add(this.txtTk_thue_no);
             this.groupBox1.Controls.Add(this.Txtma_kh);
-            this.groupBox1.Controls.Add(this.Txtmau_bc);
+            this.groupBox1.Controls.Add(this.lineMAU_BC);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Controls.Add(this.txtMaDvcs);
@@ -247,18 +249,17 @@
             this.Txtma_kh.TabIndex = 4;
             this.Txtma_kh.Vvar = "MA_KH";
             // 
-            // Txtmau_bc
+            // lineMAU_BC
             // 
-            this.Txtmau_bc.AccessibleDescription = "FILTERL00141";
-            this.Txtmau_bc.AccessibleName2 = "MAU_BC";
-            this.Txtmau_bc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.Txtmau_bc.Caption = "Mẫu BC";
-            this.Txtmau_bc.FieldName = "MAU_BC";
-            this.Txtmau_bc.Location = new System.Drawing.Point(6, 62);
-            this.Txtmau_bc.Name = "Txtmau_bc";
-            this.Txtmau_bc.Size = new System.Drawing.Size(282, 22);
-            this.Txtmau_bc.TabIndex = 3;
-            this.Txtmau_bc.Vvar = "";
+            this.lineMAU_BC.AccessibleDescription = "FILTERL00141";
+            this.lineMAU_BC.AccessibleName2 = "MAU_BC";
+            this.lineMAU_BC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.lineMAU_BC.Caption = "Mẫu BC";
+            this.lineMAU_BC.FieldName = "MAU_BC";
+            this.lineMAU_BC.Location = new System.Drawing.Point(6, 62);
+            this.lineMAU_BC.Name = "lineMAU_BC";
+            this.lineMAU_BC.Size = new System.Drawing.Size(282, 22);
+            this.lineMAU_BC.TabIndex = 3;
             // 
             // radOr
             // 
@@ -296,6 +297,19 @@
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
             this.txtMaDvcs.TabIndex = 2;
             this.txtMaDvcs.Vvar = "MA_DVCS";
+            // 
+            // lineMA_SONB
+            // 
+            this.lineMA_SONB.AccessibleDescription = "FILTERL00079";
+            this.lineMA_SONB.AccessibleName2 = "MA_SONB";
+            this.lineMA_SONB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.lineMA_SONB.Caption = "Mã số nội bộ";
+            this.lineMA_SONB.FieldName = "MA_SONB";
+            this.lineMA_SONB.Location = new System.Drawing.Point(6, 154);
+            this.lineMA_SONB.Name = "lineMA_SONB";
+            this.lineMA_SONB.Size = new System.Drawing.Size(282, 22);
+            this.lineMA_SONB.TabIndex = 18;
+            this.lineMA_SONB.Vvar = "MA_SONB";
             // 
             // AGLTHUEBK3TT156
             // 
@@ -342,6 +356,7 @@
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox11;
         private V6ReportControls.FilterLineVvarTextBox txtTk_thue_no;
         private V6ReportControls.FilterLineVvarTextBox Txtma_kh;
-        private V6ReportControls.FilterLineVvarTextBox Txtmau_bc;
+        private V6ReportControls.FilterLineNumberTextBox lineMAU_BC;
+        private V6ReportControls.FilterLineVvarTextBox lineMA_SONB;
     }
 }

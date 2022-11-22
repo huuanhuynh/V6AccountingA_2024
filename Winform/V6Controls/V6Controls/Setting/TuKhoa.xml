@@ -31,8 +31,13 @@
 	<TuKhoa TenTuKhoa='V6Control' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Controls' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ControlFormHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='V6ControlsHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='V6DateTimeColor'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  
+  <TuKhoa TenTuKhoa='V6ControlsHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ControlManager' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='FormManager' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='FormManagerHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  
+  <TuKhoa TenTuKhoa='V6DateTimeColor'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6DateTimePicker'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6FileIO' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Label' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -81,7 +86,8 @@
 	<TuKhoa TenTuKhoa='V6lookupConfig' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='Button' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='DataGridViewRow' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='GridViewSummary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='DataGridViewRow' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DataRow' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='DateTime' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='Exception' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

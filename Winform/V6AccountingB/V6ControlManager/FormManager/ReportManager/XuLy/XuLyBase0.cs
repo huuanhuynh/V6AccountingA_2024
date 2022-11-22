@@ -31,6 +31,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public DataSet _ds;
         public DataTable _tbl, _tbl2;
         public DataTable MauInData;
+        public AlbcConfig _albcConfig = new AlbcConfig();
         public DataRow MauInSelectedRow
         {
             get
@@ -153,6 +154,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             LoadDefaultData(4, "", _reportProcedure, m_itemId, "");
             LoadTag(4, "", _reportProcedure, m_itemId, "");
             FixFilterControlSize();
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         
@@ -190,6 +192,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(_reportFile, "", "", "");
+            _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
         }
 
         void panel1_SizeChanged(object sender, EventArgs e)
@@ -530,16 +533,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {"LAN", row0["LAN"].ToString().Trim()},
                         {"REPORT", row0["REPORT"].ToString().Trim()}
                     };
-                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
-                f.AfterInitControl += f_AfterInitControl;
-                f.InitFormControl(this);
-                f.UpdateSuccessEvent += (data) =>
-                {
-                    //cap nhap thong tin
-                    LoadComboboxSource();
-                };
-                f.ShowDialog(this);
+                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
+                f2.AfterInitControl += f_AfterInitControl;
+                f2.InitFormControl(this);
+                f2.ShowDialog(this);
                 SetStatus2Text();
+                if (f2.UpdateSuccess)
+                {   
+                    //cap nhap thong tin
+                    var data = f2.FormControl.DataDic;
+                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _albcConfig = new AlbcConfig(data);
+                }
             }
             catch (Exception ex)
             {

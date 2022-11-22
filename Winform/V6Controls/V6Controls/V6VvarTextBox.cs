@@ -325,6 +325,23 @@ namespace V6Controls
             }
         }
 
+        public void AddBrotherField(string field)
+        {
+            try
+            {
+                string FIELD = field.ToUpper();
+                if (BrotherFields == null) BrotherFields = field;
+                else if (!("," + BrotherFields.ToUpper() + ",").Contains("," + FIELD + ","))
+                {
+                    BrotherFields += "," + FIELD;
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+
         #region ==== Event ====
         protected override void WndProc(ref System.Windows.Forms.Message m)
         {
@@ -989,11 +1006,9 @@ namespace V6Controls
                     lbl.Left = Right;
                     lbl.Top = Top;
                     lbl.AccessibleName = namefield;
+                    lbl.AutoSize = true;
                     Parent.Controls.Add(lbl);
-                    if (!this.BrotherFields.Contains(namefield))
-                    {
-
-                    }
+                    AddBrotherField(namefield);
                 }
             }
             catch (Exception)

@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
             dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
-            Txtmau_bc.VvarTextBox.Text = "8";
+            lineMAU_BC.SetValue(8);
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             
             if (V6Login.MadvcsCount <= 1)
@@ -107,7 +107,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-               "MA_DVCS","MAU_BC","MA_KH","MA_CT","TK_THUE_NO"
+               "MA_DVCS","MAU_BC","MA_KH","MA_CT","TK_THUE_NO","MA_SONB"
             }, and);
             if (!string.IsNullOrEmpty(key0))
             {

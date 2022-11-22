@@ -6478,13 +6478,13 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="dataGridView1"></param>
         /// <param name="program"></param>
-        public static void FormatGridViewBoldColor(V6ColorDataGridView dataGridView1, string program)
+        public static void FormatGridViewBoldColor0(V6ColorDataGridView dataGridView1, string program)
         {
             try
             {
                 string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
                 object VALUEV;
-                V6BusinessHelper.GetFormatGridView(program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
+                V6BusinessHelper.GetFormatGridView(program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);//Albc
                 FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
             }
             catch (Exception ex)

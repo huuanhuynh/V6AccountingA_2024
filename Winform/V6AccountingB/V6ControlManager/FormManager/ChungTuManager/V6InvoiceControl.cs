@@ -6646,6 +6646,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 chon_accept_flag_add = shift;
 
                 ReportR45db2SelectorForm r45Selector = new ReportR45db2SelectorForm(_invoice, program);
+                r45Selector.All_Objects["parentForm"] = this;
                 if (r45Selector.ShowDialog(this) == DialogResult.OK)
                 {
                     ChonEventArgs chonE = new ChonEventArgs();

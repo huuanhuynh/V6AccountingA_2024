@@ -1141,10 +1141,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     
                     try
                     {
-                        string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-                        object VALUEV;
-                        V6BusinessHelper.GetFormatGridView(CodeForm.Substring(1), "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
-                        V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
+                        //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                        if (_albcConfig != null && _albcConfig.HaveInfo)
+                        {
+                            V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                                _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                        }
                     }
                     catch
                     {
@@ -1420,7 +1422,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
 
-                V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                if (_albcConfig != null && _albcConfig.HaveInfo)
+                {
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                        _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                }
                 FormatGridView();
                 gridViewTopFilter1.MadeFilterItems();
 
@@ -2117,12 +2124,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            if (_albcConfig != null && _albcConfig.HaveInfo)
+            {
+                V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                    _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+            }
         }
 
         private void dataGridView1_FilterChange()
         {
-            V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            if (_albcConfig != null && _albcConfig.HaveInfo)
+            {
+                V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                    _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+            }
         }
 
         public override void ShowAlinitAddEdit(Control control)

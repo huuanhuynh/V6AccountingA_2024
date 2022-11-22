@@ -49,15 +49,18 @@
             this.btnGetMeta = new System.Windows.Forms.Button();
             this.btnSignHSM = new System.Windows.Forms.Button();
             this.btnDownloadPDF = new System.Windows.Forms.Button();
-            this.btnRead_S = new System.Windows.Forms.Button();
-            this.btnSend_S = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radM = new System.Windows.Forms.RadioButton();
+            this.radS = new System.Windows.Forms.RadioButton();
+            this.radT = new System.Windows.Forms.RadioButton();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSend.Enabled = false;
-            this.btnSend.Location = new System.Drawing.Point(450, 645);
+            this.btnSend.Location = new System.Drawing.Point(570, 759);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 10;
@@ -72,7 +75,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(12, 95);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(698, 457);
+            this.richTextBox1.Size = new System.Drawing.Size(911, 568);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
             // 
@@ -80,9 +83,9 @@
             // 
             this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblResult.Location = new System.Drawing.Point(9, 555);
+            this.lblResult.Location = new System.Drawing.Point(9, 666);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(701, 60);
+            this.lblResult.Size = new System.Drawing.Size(914, 60);
             this.lblResult.TabIndex = 8;
             this.lblResult.Text = "content";
             // 
@@ -90,9 +93,9 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(9, 615);
+            this.label2.Location = new System.Drawing.Point(9, 726);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(423, 29);
+            this.label2.Size = new System.Drawing.Size(636, 29);
             this.label2.TabIndex = 9;
             this.label2.Text = "errorMessage";
             // 
@@ -166,7 +169,7 @@
             // btnRead
             // 
             this.btnRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRead.Location = new System.Drawing.Point(344, 644);
+            this.btnRead.Location = new System.Drawing.Point(488, 758);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(75, 23);
             this.btnRead.TabIndex = 10;
@@ -194,7 +197,7 @@
             // txtXmlFile
             // 
             this.txtXmlFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtXmlFile.Location = new System.Drawing.Point(16, 647);
+            this.txtXmlFile.Location = new System.Drawing.Point(16, 758);
             this.txtXmlFile.Name = "txtXmlFile";
             this.txtXmlFile.Size = new System.Drawing.Size(158, 20);
             this.txtXmlFile.TabIndex = 1;
@@ -203,7 +206,7 @@
             // txtDbfFile
             // 
             this.txtDbfFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtDbfFile.Location = new System.Drawing.Point(180, 647);
+            this.txtDbfFile.Location = new System.Drawing.Point(180, 758);
             this.txtDbfFile.Name = "txtDbfFile";
             this.txtDbfFile.Size = new System.Drawing.Size(158, 20);
             this.txtDbfFile.TabIndex = 1;
@@ -213,7 +216,7 @@
             // 
             this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTest.Enabled = false;
-            this.btnTest.Location = new System.Drawing.Point(531, 622);
+            this.btnTest.Location = new System.Drawing.Point(744, 733);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
             this.btnTest.TabIndex = 10;
@@ -224,7 +227,7 @@
             // btnGetMeta
             // 
             this.btnGetMeta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetMeta.Location = new System.Drawing.Point(612, 621);
+            this.btnGetMeta.Location = new System.Drawing.Point(825, 732);
             this.btnGetMeta.Name = "btnGetMeta";
             this.btnGetMeta.Size = new System.Drawing.Size(75, 23);
             this.btnGetMeta.TabIndex = 10;
@@ -236,7 +239,7 @@
             // 
             this.btnSignHSM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSignHSM.Enabled = false;
-            this.btnSignHSM.Location = new System.Drawing.Point(531, 645);
+            this.btnSignHSM.Location = new System.Drawing.Point(744, 756);
             this.btnSignHSM.Name = "btnSignHSM";
             this.btnSignHSM.Size = new System.Drawing.Size(75, 23);
             this.btnSignHSM.TabIndex = 11;
@@ -248,7 +251,7 @@
             // 
             this.btnDownloadPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownloadPDF.Enabled = false;
-            this.btnDownloadPDF.Location = new System.Drawing.Point(612, 645);
+            this.btnDownloadPDF.Location = new System.Drawing.Point(825, 756);
             this.btnDownloadPDF.Name = "btnDownloadPDF";
             this.btnDownloadPDF.Size = new System.Drawing.Size(75, 23);
             this.btnDownloadPDF.TabIndex = 12;
@@ -256,34 +259,57 @@
             this.btnDownloadPDF.UseVisualStyleBackColor = true;
             this.btnDownloadPDF.Click += new System.EventHandler(this.btnDownloadPDF_Click);
             // 
-            // btnRead_S
+            // groupBox1
             // 
-            this.btnRead_S.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRead_S.Location = new System.Drawing.Point(344, 622);
-            this.btnRead_S.Name = "btnRead_S";
-            this.btnRead_S.Size = new System.Drawing.Size(75, 23);
-            this.btnRead_S.TabIndex = 10;
-            this.btnRead_S.Text = "Read S";
-            this.btnRead_S.UseVisualStyleBackColor = true;
-            this.btnRead_S.Click += new System.EventHandler(this.btnRead_S_Click);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.radT);
+            this.groupBox1.Controls.Add(this.radS);
+            this.groupBox1.Controls.Add(this.radM);
+            this.groupBox1.Location = new System.Drawing.Point(344, 726);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(133, 56);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Mode";
             // 
-            // btnSend_S
+            // radM
             // 
-            this.btnSend_S.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend_S.Enabled = false;
-            this.btnSend_S.Location = new System.Drawing.Point(450, 622);
-            this.btnSend_S.Name = "btnSend_S";
-            this.btnSend_S.Size = new System.Drawing.Size(75, 23);
-            this.btnSend_S.TabIndex = 10;
-            this.btnSend_S.Text = "Send S";
-            this.btnSend_S.UseVisualStyleBackColor = true;
-            this.btnSend_S.Click += new System.EventHandler(this.btnSend_S_Click);
+            this.radM.AutoSize = true;
+            this.radM.Checked = true;
+            this.radM.Location = new System.Drawing.Point(6, 19);
+            this.radM.Name = "radM";
+            this.radM.Size = new System.Drawing.Size(34, 17);
+            this.radM.TabIndex = 0;
+            this.radM.TabStop = true;
+            this.radM.Text = "M";
+            this.radM.UseVisualStyleBackColor = true;
+            // 
+            // radS
+            // 
+            this.radS.AutoSize = true;
+            this.radS.Location = new System.Drawing.Point(46, 19);
+            this.radS.Name = "radS";
+            this.radS.Size = new System.Drawing.Size(32, 17);
+            this.radS.TabIndex = 0;
+            this.radS.Text = "S";
+            this.radS.UseVisualStyleBackColor = true;
+            // 
+            // radT
+            // 
+            this.radT.AutoSize = true;
+            this.radT.Location = new System.Drawing.Point(87, 19);
+            this.radT.Name = "radT";
+            this.radT.Size = new System.Drawing.Size(32, 17);
+            this.radT.TabIndex = 0;
+            this.radT.Text = "T";
+            this.radT.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 679);
+            this.ClientSize = new System.Drawing.Size(935, 790);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDownloadPDF);
             this.Controls.Add(this.btnSignHSM);
             this.Controls.Add(this.txtPassword);
@@ -299,16 +325,16 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.btnRead_S);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnGetMeta);
             this.Controls.Add(this.btnTest);
-            this.Controls.Add(this.btnSend_S);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "V6ThuePost";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,8 +362,10 @@
         private System.Windows.Forms.Button btnGetMeta;
         private System.Windows.Forms.Button btnSignHSM;
         private System.Windows.Forms.Button btnDownloadPDF;
-        private System.Windows.Forms.Button btnRead_S;
-        private System.Windows.Forms.Button btnSend_S;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radT;
+        private System.Windows.Forms.RadioButton radS;
+        private System.Windows.Forms.RadioButton radM;
     }
 }
 

@@ -120,8 +120,13 @@ namespace V6ThuePost_VIN_Api
                 {
                     v6Return.RESULT_ERROR_MESSAGE = "result:null,error:" + responseObject.error;
                 }
+                else if (responseObject.result.magiaodich == null && responseObject.result.maketqua != null)// && responseObject.result.maketqua != "1")
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "maketqua:" + responseObject.result.maketqua + ", motaketqua:" + responseObject.result.motaketqua;
+                }
                 else
                 {
+                    // thành công maketqua 01 và có magiaodịch
                     v6Return.SO_HD = responseObject.result.sohoadon;
                     if (responseObject.result.datahd != null && responseObject.result.datahd.ContainsKey("guid"))
                         v6Return.ID = responseObject.result.datahd["guid"].ToString();
@@ -164,6 +169,10 @@ namespace V6ThuePost_VIN_Api
                 {
                     v6Return.RESULT_ERROR_MESSAGE = "result:null,error:" + responseObject.error;
                 }
+                else if (responseObject.result.magiaodich == null && responseObject.result.maketqua != null)// && responseObject.result.maketqua != "1")
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "maketqua:" + responseObject.result.maketqua + ", motaketqua:" + responseObject.result.motaketqua;
+                }
                 else
                 {
                     v6Return.SO_HD = responseObject.result.sohoadon;
@@ -185,20 +194,57 @@ namespace V6ThuePost_VIN_Api
         /// <param name="invalidate">mặc định false.</param>
         /// <param name="v6Return"></param>
         /// <returns></returns>
-        public string POST_REPLACE(string jsonBody, bool invalidate, out V6Return v6Return)
+        public string POST_REPLACE(string jsonBody, bool gui_va_ky, out V6Return v6Return)
         {
-            string result = null;
+            string result = "";
             v6Return = new V6Return();
+
+            string link = thaythehoadon_uri;
+
             try
             {
-                result = POST_CREATE_INVOICE(jsonBody, invalidate, out v6Return);
+                result = POST_BEARERTOKEN(link, jsonBody);
+                v6Return.RESULT_STRING = result;
+
+                VIN_CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
+                v6Return.RESULT_OBJECT = responseObject;
+                if (responseObject.unAuthorizedRequest)// == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
+                {
+                    // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                    Login();
+                    // sau đó gửi lại.
+                    result = POST_BEARERTOKEN(link, jsonBody);
+                    v6Return.RESULT_STRING = result;
+                    responseObject = JsonConvert.DeserializeObject<VIN_CreateInvoiceResponse>(result);
+                    v6Return.RESULT_OBJECT = responseObject;
+                }
+
+                if (responseObject.result == null)
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "result:null,error:" + responseObject.error;
+                }
+                else if (responseObject.result.magiaodich == null && responseObject.result.maketqua != null)// && responseObject.result.maketqua != "1")
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "maketqua:" + responseObject.result.maketqua + ", motaketqua:" + responseObject.result.motaketqua;
+                }
+                else
+                {
+                    v6Return.SO_HD = responseObject.result.sohoadon;
+                    if (responseObject.result.datahd != null && responseObject.result.datahd.ContainsKey("guid"))
+                        v6Return.ID = responseObject.result.datahd["guid"].ToString();
+                    v6Return.SECRET_CODE = responseObject.result.magiaodich;
+                    v6Return.RESULT_MESSAGE = responseObject.result.motaketqua;
+
+                    if (gui_va_ky && v6Return.RESULT_MESSAGE.Contains("Gửi hóa đơn thay thế thành công"))
+                    {
+                        SIGN_HSM(responseObject.result.magiaodich, responseObject.result.ma_hoadon, out v6Return);
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex1)
             {
-                result = ex.Message;
-                v6Return.RESULT_ERROR_MESSAGE += ex.Message;
+                v6Return.RESULT_ERROR_MESSAGE = ex1.Message;
             }
-            Logger.WriteToLog("VIN_WS.POST_REPLACE " + result);
             return result;
         }
         
@@ -231,6 +277,10 @@ namespace V6ThuePost_VIN_Api
                 if (responseObject.result == null)
                 {
                     v6Return.RESULT_ERROR_MESSAGE = "result:null,error:" + responseObject.error;
+                }
+                else if (responseObject.result.magiaodich == null && responseObject.result.maketqua != null)// && responseObject.result.maketqua != "1")
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "maketqua:" + responseObject.result.maketqua + ", motaketqua:" + responseObject.result.motaketqua;
                 }
                 else
                 {
@@ -536,6 +586,10 @@ namespace V6ThuePost_VIN_Api
                 if (responseObject.result == null)
                 {
                     v6Return.RESULT_ERROR_MESSAGE = "result:null,error:" + responseObject.error;
+                }
+                else if (responseObject.result.magiaodich == null && responseObject.result.maketqua != null)// && responseObject.result.maketqua != "1")
+                {
+                    v6Return.RESULT_ERROR_MESSAGE = "maketqua:" + responseObject.result.maketqua + ", motaketqua:" + responseObject.result.motaketqua;
                 }
                 else
                 {
