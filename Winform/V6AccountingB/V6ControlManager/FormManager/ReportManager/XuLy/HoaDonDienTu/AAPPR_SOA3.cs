@@ -90,7 +90,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9MessageAll = "";
         protected override void XuLyF9()
         {
-            try
+            if (EXTRA_INFOR.ContainsKey("PRINTMODE") && EXTRA_INFOR["PRINTMODE"] == "2")
+            {
+                XuLyF9_Mode2();
+            }
+            else try
             {
                 Timer tF9 = new Timer();
                 tF9.Interval = 500;
@@ -108,6 +112,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorException(GetType() + ".XuLyF9", ex);
             }
         }
+
+        public void XuLyF9_Mode2()
+        {
+            try
+            {
+                Timer tF9 = new Timer();
+                tF9.Interval = 500;
+                tF9.Tick += tF9_Mode2_Tick;
+                Thread t = new Thread(F9Thread_Mode2);
+                t.SetApartmentState(ApartmentState.STA);
+                CheckForIllegalCrossThreadCalls = false;
+                remove_list_g = new List<DataGridViewRow>();
+                t.IsBackground = true;
+                t.Start();
+                tF9.Start();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
+            }
+        }
+
+        PrinterSettings printerst = null;
         private void F9Thread()
         {
             f9Running = true;
@@ -115,7 +142,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9MessageAll = "";
 
             //Select printer.
-            var printerst = V6ControlFormHelper.ChoosePrinter(this, "", false);
+            printerst = V6ControlFormHelper.ChoosePrinter(this, "", false);
             if (printerst == null)
             {
                 f9Running = false;
@@ -135,17 +162,37 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string error = null;
                 DataGridViewRow row = dataGridView1.Rows[i];
                 i++;
-                try
+                
+                if (row.IsSelect())
                 {
-                    if (row.IsSelect())
-                    {
-                        //Lấy giá trị
-                        //string mode = row.Cells["Kieu_in"].Value.ToString();
-                        string soct = row.Cells["So_ct"].Value.ToString().Trim();
-                        //string dir = row.Cells["Dir_in"].Value.ToString().Trim();
-                        //string file = row.Cells["File_in"].Value.ToString().Trim();
-                        //VPA_GET_V6MAPINFO @Loai   @Ma_td1 @Ma_ct  @Stt_rec    @Ma_dvcs    @User_id    @Advance
-                        SqlParameter[] plist0 =
+                    PrintOne(row);
+                }
+                
+            }
+            f9Running = false;
+        }
+
+        Thread F9Thread_Row = null;
+        DataGridViewRow printing_row = new DataGridViewRow();
+        int row_time_count = 0;
+        private void PrintRow_Thread()
+        {
+            PrintOne(printing_row);
+        }
+
+        private void PrintOne(DataGridViewRow row)
+        {
+            try
+            {
+                string return_file_name = "", error = "";
+
+                //Lấy giá trị
+                //string mode = row.Cells["Kieu_in"].Value.ToString();
+                string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                //string dir = row.Cells["Dir_in"].Value.ToString().Trim();
+                //string file = row.Cells["File_in"].Value.ToString().Trim();
+                //VPA_GET_V6MAPINFO @Loai   @Ma_td1 @Ma_ct  @Stt_rec    @Ma_dvcs    @User_id    @Advance
+                SqlParameter[] plist0 =
                         {
                             new SqlParameter("@Loai", _reportFile),
                             new SqlParameter("@MA_TD1", FilterControl.String1),
@@ -155,202 +202,203 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@User_ID", V6Login.UserId),
                             new SqlParameter("@Advance", ""),
                         };
-                        var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
-                        
-                        // Download
-                        // 1:VIETTEL 2:VNPT 3:BKAV 4:VNPT_TOKEN 5:SOFT_DREAMS
-                        if (FilterControl.String1 == "1")
-                        {
-                            string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
-                            string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
-                            string invoiceNo = row.Cells["SO_CT"].Value.ToString().Trim();
-                            DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
-                            string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                            string part_infos = row.Cells["Part_infos"].Value.ToString().Trim();
+                var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
 
-                            var pmparams1 = new PostManagerParams
-                            {
-                                AM_data = row.ToDataDictionary(),
-                                DataSet = map_table.DataSet,
-                                Branch = FilterControl.String1,
-                                InvoiceNo = invoiceNo,
-                                InvoiceDate = ngay_ct,
-                                Fkey_hd = fkey_hd,
-                                Saved_Partner_infos = part_infos,
-                                Pattern = pattern,
-                                Serial = serial,
-                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
-                                
-                            };
-                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
-                            if (!string.IsNullOrEmpty(error))
-                            {
-                                f9Error += error;
-                                f9ErrorAll += error;
-                                f9MessageAll += error;
-                                continue;
-                            }
-                        }
-                        else if (FilterControl.String1 == "2" || FilterControl.String1 == "4")
-                        {
-                            string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                            //var download = PostManager.DownloadInvFkeyNoPay(fkey_hd);
-                            var pmparams1 = new PostManagerParams
-                            {
-                                DataSet = map_table.DataSet,
-                                Branch = FilterControl.String1,
-                                InvoiceNo = soct,
-                                Fkey_hd = fkey_hd,
-                                //Pattern = pattern,
-                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
-                            };
-                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
-                            if (!string.IsNullOrEmpty(error))
-                            {
-                                f9Error += error;
-                                f9ErrorAll += error;
-                                f9MessageAll += error;
-                                continue;
-                            }
-                        }
-                        else if (FilterControl.String1 == "3")
-                        {
-                            string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                            var pmparams1 = new PostManagerParams
-                            {
-                                DataSet = map_table.DataSet,
-                                Branch = FilterControl.String1,
-                                InvoiceNo = soct,
-                                Fkey_hd = fkey_hd,
-                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
-                            };
-                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
-                            if (!string.IsNullOrEmpty(error))
-                            {
-                                f9Error += error;
-                                f9ErrorAll += error;
-                                f9MessageAll += error;
-                                continue;
-                            }
-                        }
-                        else if (FilterControl.String1 == "5")
-                        {
-                            string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                            string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
-                            string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
-                            //var download = PostManager.DownloadInvFkeyNoPay(fkey_hd);
-                            var pmparams1 = new PostManagerParams
-                            {
-                                DataSet = map_table.DataSet,
-                                Branch = FilterControl.String1,
-                                InvoiceNo = soct,
-                                Fkey_hd = fkey_hd,
-                                Pattern = pattern,
-                                Serial = serial,
-                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
-                            };
-                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
-                            if (!string.IsNullOrEmpty(error))
-                            {
-                                f9Error += error;
-                                f9ErrorAll += error;
-                                f9MessageAll += error;
-                                continue;
-                            }
-                        }
-                        else if (FilterControl.String1 == "6")
-                        {
-                            string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
-                            var pmparams1 = new PostManagerParams
-                            {
-                                DataSet = map_table.DataSet,
-                                Branch = FilterControl.String1,
-                                InvoiceNo = soct,
-                                V6PartnerID = v6_partner_id,
-                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
-                            };
-                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
-                            if (!string.IsNullOrEmpty(error))
-                            {
-                                f9Error += error;
-                                f9ErrorAll += error;
-                                f9MessageAll += error;
-                                continue;
-                            }
-                        }
-                        else if (FilterControl.String1 == "8")
-                        {
-                            string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
-                            var pmparams = new PostManagerParams
-                            {
-                                DataSet = map_table.DataSet,
-                                Branch = FilterControl.String1,
-                                InvoiceNo = soct,
-                                //InvoiceDate = ngay_ct,
-                                V6PartnerID = v6_partner_id,
-                                //Pattern = pattern,
-                                //Fkey_hd = fkey_hd,
-                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
-                            };
-                            return_file_name = PostManager.PowerDownloadPDF(pmparams, out error);
-                            if (!string.IsNullOrEmpty(error))
-                            {
-                                f9Error += error;
-                                f9ErrorAll += error;
-                                f9MessageAll += error;
-                                continue;
-                            }
-                        }
-                        else
-                        {
-                            this.ShowInfoMessage(V6Text.NotSupported);
-                        }
+                // Download
+                // 1:VIETTEL 2:VNPT 3:BKAV 4:VNPT_TOKEN 5:SOFT_DREAMS
+                if (FilterControl.String1 == "1")
+                {
+                    string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                    string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
+                    string invoiceNo = row.Cells["SO_CT"].Value.ToString().Trim();
+                    DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
+                    string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                    string part_infos = row.Cells["Part_infos"].Value.ToString().Trim();
 
-                        // Update
+                    var pmparams1 = new PostManagerParams
+                    {
+                        AM_data = row.ToDataDictionary(),
+                        DataSet = map_table.DataSet,
+                        Branch = FilterControl.String1,
+                        InvoiceNo = invoiceNo,
+                        InvoiceDate = ngay_ct,
+                        Fkey_hd = fkey_hd,
+                        Saved_Partner_infos = part_infos,
+                        Pattern = pattern,
+                        Serial = serial,
+                        Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
 
-                        // In
-                        string ext = Path.GetExtension(return_file_name).ToLower();
-                        if (ext == ".pdf")
+                    };
+                    return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        f9Error += error;
+                        f9ErrorAll += error;
+                        f9MessageAll += error;
+                        return;
+                    }
+                }
+                else if (FilterControl.String1 == "2" || FilterControl.String1 == "4")
+                {
+                    string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                    //var download = PostManager.DownloadInvFkeyNoPay(fkey_hd);
+                    var pmparams1 = new PostManagerParams
+                    {
+                        DataSet = map_table.DataSet,
+                        Branch = FilterControl.String1,
+                        InvoiceNo = soct,
+                        Fkey_hd = fkey_hd,
+                        //Pattern = pattern,
+                        Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                    };
+                    return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        f9Error += error;
+                        f9ErrorAll += error;
+                        f9MessageAll += error;
+                        return;
+                    }
+                }
+                else if (FilterControl.String1 == "3")
+                {
+                    string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                    var pmparams1 = new PostManagerParams
+                    {
+                        DataSet = map_table.DataSet,
+                        Branch = FilterControl.String1,
+                        InvoiceNo = soct,
+                        Fkey_hd = fkey_hd,
+                        Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                    };
+                    return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        f9Error += error;
+                        f9ErrorAll += error;
+                        f9MessageAll += error;
+                        return;
+                    }
+                }
+                else if (FilterControl.String1 == "5")
+                {
+                    string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                    string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                    string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
+                    //var download = PostManager.DownloadInvFkeyNoPay(fkey_hd);
+                    var pmparams1 = new PostManagerParams
+                    {
+                        DataSet = map_table.DataSet,
+                        Branch = FilterControl.String1,
+                        InvoiceNo = soct,
+                        Fkey_hd = fkey_hd,
+                        Pattern = pattern,
+                        Serial = serial,
+                        Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                    };
+                    return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        f9Error += error;
+                        f9ErrorAll += error;
+                        f9MessageAll += error;
+                        return;
+                    }
+                }
+                else if (FilterControl.String1 == "6")
+                {
+                    string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
+                    var pmparams1 = new PostManagerParams
+                    {
+                        DataSet = map_table.DataSet,
+                        Branch = FilterControl.String1,
+                        InvoiceNo = soct,
+                        V6PartnerID = v6_partner_id,
+                        Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                    };
+                    return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        f9Error += error;
+                        f9ErrorAll += error;
+                        f9MessageAll += error;
+                        return;
+                    }
+                }
+                else if (FilterControl.String1 == "8")
+                {
+                    string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
+                    var pmparams = new PostManagerParams
+                    {
+                        DataSet = map_table.DataSet,
+                        Branch = FilterControl.String1,
+                        InvoiceNo = soct,
+                        //InvoiceDate = ngay_ct,
+                        V6PartnerID = v6_partner_id,
+                        //Pattern = pattern,
+                        //Fkey_hd = fkey_hd,
+                        Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                    };
+                    return_file_name = PostManager.PowerDownloadPDF(pmparams, out error);
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        f9Error += error;
+                        f9ErrorAll += error;
+                        f9MessageAll += error;
+                        return;
+                    }
+                }
+                else
+                {
+                    this.ShowInfoMessage(V6Text.NotSupported);
+                }
+
+                // Update
+
+                // In
+                string ext = Path.GetExtension(return_file_name).ToLower();
+                if (ext == ".pdf")
+                {
+                    PdfDocument pdfDocument1 = PdfDocument.Load(return_file_name);
+                    using (PrintDocument printDocument = pdfDocument1.CreatePrintDocument(PdfPrintMode.ShrinkToMargin))
+                    {
+                        printDocument.PrinterSettings = printerst;
+                        //printDialog.Document = printDocument;
+                        //printDialog.AllowSomePages = true;
+                        //printDocument = printDocument;
+                        //printDialog.UseEXDialog = true;
+                        //printDocument.PrinterSettings.FromPage = 1;
+                        //printDocument.PrinterSettings.ToPage = pdfViewer1.Document.PageCount;
+                        printDocument.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("A4", 810, 1100);
+                        printDocument.DefaultPageSettings.PaperSize = new PaperSize("A4", 810, 1100);
+                        try
                         {
-                            PdfDocument pdfDocument1 = PdfDocument.Load(return_file_name);
-                            using (PrintDocument printDocument = pdfDocument1.CreatePrintDocument(PdfPrintMode.ShrinkToMargin))
+                            if (printDocument.PrinterSettings.FromPage <= pdfDocument1.PageCount)
                             {
-                                printDocument.PrinterSettings = printerst;
-                                //printDialog.Document = printDocument;
-                                //printDialog.AllowSomePages = true;
-                                //printDocument = printDocument;
-                                //printDialog.UseEXDialog = true;
-                                //printDocument.PrinterSettings.FromPage = 1;
-                                //printDocument.PrinterSettings.ToPage = pdfViewer1.Document.PageCount;
-                                printDocument.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
-                                printDocument.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
-                                try
-                                {
-                                    if (printDocument.PrinterSettings.FromPage <= pdfDocument1.PageCount)
-                                    {
-                                        printDocument.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
-                                        printDocument.Print();
-                                    }
-                                }
-                                catch(Exception ex)
-                                {
-                                    f9Error += ex.Message;
-                                    f9ErrorAll += ex.Message;
-                                    f9MessageAll += ex.Message;
-                                }
+                                printDocument.DefaultPageSettings.PaperSize = new PaperSize("A4", 810, 1100);
+                                printDocument.Print();
+                                Thread.Sleep(1000);
                             }
                         }
-                        else if (ext == ".html")
+                        catch (Exception ex)
                         {
-                            HtmlViewerForm view = new HtmlViewerForm(return_file_name, return_file_name, true);
-                            view.AutoPrint = true;
-                            view.ShowDialog(this);
+                            f9Error += ex.Message;
+                            f9ErrorAll += ex.Message;
+                            f9MessageAll += ex.Message;
                         }
+                    }
+                }
+                else if (ext == ".html")
+                {
+                    HtmlViewerForm view = new HtmlViewerForm(return_file_name, return_file_name, true);
+                    view.AutoPrint = true;
+                    view.ShowDialog(this);
+                }
 
-                        
-                        // Update
 
-                        SqlParameter[] plist =
+                // Update
+
+                SqlParameter[] plist =
                         {
                             new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
                                 new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
@@ -361,9 +409,74 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@User_ID", V6Login.UserId)
                         };
 
-                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_UPDATE", plist);
-                        
-                        remove_list_g.Add(row);
+                V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_UPDATE", plist);
+
+                remove_list_g.Add(row);
+            }
+            catch (Exception ex)
+            {
+                f9Error += ex.Message;
+                f9ErrorAll += ex.Message;
+                f9MessageAll += ex.Message;
+            }
+        }
+
+        private void F9Thread_Mode2()
+        {
+            f9Running = true;
+            f9ErrorAll = "";
+            f9MessageAll = "";
+
+            //Select printer.
+            var printerst = V6ControlFormHelper.ChoosePrinter(this, "", false);
+            if (printerst == null)
+            {
+                f9Running = false;
+                return;
+            }
+            
+            string tableName = "V6MAPINFO";
+
+            string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
+            
+            int i = 0;
+            while (i < dataGridView1.Rows.Count)
+            {
+                string error = null;
+                DataGridViewRow row = dataGridView1.Rows[i];
+                i++;
+                try
+                {
+                    if (row.IsSelect())
+                    {
+                        printing_row = row;
+                        F9Thread_Row = new Thread(PrintRow_Thread);
+                        row_time_count = 0;
+                        F9Thread_Row.Start();
+
+                        while (F9Thread_Row.IsAlive) // Vòng đợi mỗi lần in 1 dòng.
+                        {
+                            row_time_count++;
+                            if (row_time_count < 60) // Nếu chưa tới 60 giây chưa xong thì chờ thêm.
+                            {
+                                Thread.Sleep(1000);
+                            }
+                            if (row_time_count == 60)// 60 giây chưa xong thì hủy tiến trình, Tạo lại.
+                            {
+                                F9Thread_Row.Abort();
+                                F9Thread_Row = new Thread(PrintRow_Thread);
+                                F9Thread_Row.Start();
+                                Thread.Sleep(1000);
+                            }
+                            else if (row_time_count > 100) // Tiến trình tạo lại sau 40 giây vẫn chưa xong thì bỏ luôn.
+                            {
+                                F9Thread_Row.Abort();
+                                // Tạo câu lỗi
+                                f9Error += " In lỗi số ct " + printing_row.Cells["SO_CT"].Value;
+                                f9ErrorAll += " In lỗi số ct " + printing_row.Cells["SO_CT"].Value;
+                                f9MessageAll += " In lỗi số ct " + printing_row.Cells["SO_CT"].Value;
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -376,7 +489,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9Running = false;
         }
         
-        
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)
@@ -385,6 +497,28 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 f9Error = f9Error.Substring(cError.Length);
                 V6ControlFormHelper.SetStatusText("F9 running "
                     + (cError.Length>0?"Error: ":"")
+                    + cError + _message);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                RemoveGridViewRow();
+                btnNhan.PerformClick();
+                string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
+                V6ControlFormHelper.SetStatusText(message);
+                V6ControlFormHelper.ShowMainMessage(message);
+                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll, 300);
+            }
+        }
+
+        void tF9_Mode2_Tick(object sender, EventArgs e)
+        {
+            if (f9Running)
+            {
+                var cError = f9Error;
+                f9Error = f9Error.Substring(cError.Length);
+                V6ControlFormHelper.SetStatusText("F9 running "
+                    + (cError.Length > 0 ? "Error: " : "")
                     + cError + _message);
             }
             else

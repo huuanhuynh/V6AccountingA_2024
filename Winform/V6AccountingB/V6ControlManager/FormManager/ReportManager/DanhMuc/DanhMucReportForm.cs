@@ -938,7 +938,12 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl, new ExportExcelSetting(), save.FileName, Name, true);
+                        var setting = new ExportExcelSetting();
+                        setting.data = _tbl;
+                        setting.saveFile = save.FileName;
+                        setting.title = Name;
+                        setting.isDrawLine = true;
+                        V6Tools.V6Export.ExportData.ToExcel(setting);
                     }
                     catch (Exception ex)
                     {

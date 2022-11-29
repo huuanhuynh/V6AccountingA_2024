@@ -2409,9 +2409,12 @@ namespace V6ThuePostManager
                     }
                 }
 
-
-                bool export_ok = ExportData.ToExcelTemplate(template_xls, data2, new ExportExcelSetting(), export_file,
-                    firstCell, columns, parameters, NumberFormatInfo.InvariantInfo, insertRow, drawLine);
+                var setting = new ExportExcelSetting();
+                setting.SetFirstCell(firstCell);
+                setting.saveFile = export_file;
+                setting.data = data2;
+                bool export_ok = ExportData.ToExcelTemplate(template_xls, setting,
+                    columns, parameters, NumberFormatInfo.InvariantInfo, insertRow, drawLine);
 
                 //{Tuanmh test
                 //File.Copy(export_file, "test_out.xls", true);

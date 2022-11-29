@@ -453,7 +453,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
                 if (saveDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    V6Tools.V6Export.ExportData.ToExcel(data, new ExportExcelSetting(), saveDialog.FileName, null, false);
+                    var setting = new ExportExcelSetting();
+                    setting.data = data;
+                    setting.saveFile = saveDialog.FileName;
+                    V6Tools.V6Export.ExportData.ToExcel(setting);
                     V6ControlFormHelper.ShowMainMessage(V6Text.ExportFinish);
                 }
             }

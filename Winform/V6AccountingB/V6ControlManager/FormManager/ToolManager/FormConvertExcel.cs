@@ -119,7 +119,7 @@ namespace V6ControlManager.FormManager.ToolManager
                 if (ds2 != null)
                 {
                     DataGridView currentGridview2 = tabControl2.TabPages[tabControl2.SelectedIndex].Controls[0] as DataGridView;
-                    DataTable currentTable2 = currentGridview2.DataSource as DataTable;
+                    DataTable exportData = currentGridview2.DataSource as DataTable;
                     
                     SaveFileDialog o = new SaveFileDialog();
                     o.Filter = "Excel|*.xls";
@@ -129,22 +129,24 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            ExportData.ToExcel(currentTable2, new ExportExcelSetting(), o.FileName, "");
-
+                            var setting = new ExportExcelSetting();
+                            setting.data = exportData;
+                            setting.saveFile = o.FileName;
+                            ExportData.ToExcel(setting);
                         }
                         else if (ext == ".dbf")
                         {
-                            ExportData.ToDbfFile(currentTable2, o.FileName);
+                            ExportData.ToDbfFile(exportData, o.FileName);
                         }
                         else if (ext == ".txt")
                         {
-                            ExportData.ToTextFile(currentTable2, o.FileName);
+                            ExportData.ToTextFile(exportData, o.FileName);
                         }
                         else
                         {
                             no = true;
                             V6Message.Show("Chưa hỗ trợ " + ext);
-                            ExportData.ToTextFile(currentTable2, o.FileName);
+                            ExportData.ToTextFile(exportData, o.FileName);
                         }
                         if (!no) V6Message.Show("Xong.");
                     }

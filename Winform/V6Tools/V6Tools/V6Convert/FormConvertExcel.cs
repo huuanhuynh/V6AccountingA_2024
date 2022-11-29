@@ -131,8 +131,11 @@ namespace V6Tools.V6Convert
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            ExportData.ToExcel(currentTable2, new ExportExcelSetting(), o.FileName, "");
-
+                            var setting = new ExportExcelSetting();
+                            setting.data = currentTable2;
+                            setting.saveFile = o.FileName;
+                            setting.title = "";
+                            ExportData.ToExcel(setting);
                         }
                         else if (ext == ".dbf")
                         {

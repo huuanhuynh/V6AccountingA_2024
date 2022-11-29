@@ -854,9 +854,12 @@ namespace V6AccountingBusiness
             
             try
             {
-                var data = new DataTable("Name");
-                var saveAs = "path\\" + invoice.AM_TableName + DateTime.Now.ToString("yyyyMMdd") + ".xls";
-                V6Tools.V6Export.ExportData.ToExcel(data, new ExportExcelSetting(), saveAs, "title", true);
+                ExportExcelSetting setting = new ExportExcelSetting();
+                setting.data = new DataTable("Name");
+                setting.saveFile = "path\\" + invoice.AM_TableName + DateTime.Now.ToString("yyyyMMdd") + ".xls";
+                setting.title = "title";
+                setting.isDrawLine = true;
+                V6Tools.V6Export.ExportData.ToExcel(setting);
                 return true;
             }
             catch (Exception ex)

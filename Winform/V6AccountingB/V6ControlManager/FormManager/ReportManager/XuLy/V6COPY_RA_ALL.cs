@@ -258,9 +258,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var tblList = ds.Tables[0];
                 if (radExcel.Checked)
                 {
-                    var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    V6Tools.V6Export.ExportData.ToExcel(tblList, new ExportExcelSetting(), saveFile, "");
-                    files.Add(saveFile);
+                    var setting = new ExportExcelSetting();
+                    setting.saveFile = Path.Combine(tempDirCurrent, key + ".xls");
+                    setting.data = tblList;
+                    V6Tools.V6Export.ExportData.ToExcel(setting);
+                    files.Add(setting.saveFile);
 
                     foreach (DataRow row in tblList.Rows)
                     {
@@ -269,9 +271,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
                         var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
                         var data1 = ds.Tables[stt];
-                        saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
-                        V6Tools.V6Export.ExportData.ToExcel(data1, new ExportExcelSetting(), saveFile, "");
-                        files.Add(saveFile);
+                        setting.saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
+                        setting.data = data1;
+                        V6Tools.V6Export.ExportData.ToExcel(setting);
+                        files.Add(setting.saveFile);
                     }
                 }
                 else

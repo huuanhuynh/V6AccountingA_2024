@@ -1355,6 +1355,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
+                if (NotAddEdit) return;
+                if (detail1.NotAddEdit) return;
+
                 _tien.Value = _psno.Value;
                 //_tienNt.Value = _psnoNt.Value;
 

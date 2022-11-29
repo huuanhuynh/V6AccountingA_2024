@@ -471,7 +471,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
                 if (saveDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    V6Tools.V6Export.ExportData.ToExcel(data, new ExportExcelSetting(), saveDialog.FileName, null, false);
+                    var setting = new ExportExcelSetting();
+                    setting.data = data;
+                    setting.saveFile = saveDialog.FileName;
+
+                    V6Tools.V6Export.ExportData.ToExcel(setting);
                     if (V6Options.AutoOpenExcel)
                     {
                         V6ControlFormHelper.OpenFileProcess(saveDialog.FileName);

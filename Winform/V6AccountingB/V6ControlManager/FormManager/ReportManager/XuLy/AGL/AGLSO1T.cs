@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -30,7 +31,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var text = CorpLan.GetTextNull(id);
             if (string.IsNullOrEmpty(text))
             {
-                text = string.Format("F9: {0}, F10: {1}", V6Text.Text("INTUNGTRANG"), V6Text.Text("INLIENTUC"));
+                text = string.Format("F7: {2}, F9: {0}, F10: {1}", V6Text.Text("INTUNGTRANG"), V6Text.Text("INLIENTUC"), V6Text.Text("XUATEXCEL"));
             }
             V6ControlFormHelper.SetStatusText2(text, id);
         }
@@ -119,7 +120,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyF9", ex);
+                this.ShowErrorException(GetType() + ".XuLyF6", ex);
             }
         }
 
@@ -251,6 +252,191 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         #endregion ==== Xử lý F6 ====
+
+        #region ==== Xử lý F7 ====
+        protected override void XuLyF7()
+        {
+            try
+            {
+                shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (this.ShowConfirmMessage(V6Text.Text("ASKEXPORTEXCEL_NHIEUSHEET")) != DialogResult.Yes)
+                {
+                    return;
+                }
+                //InLienTuc = true;
+
+
+                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
+
+                //if (InLienTuc) // thì chọn máy in trước
+                {
+                    var printerst = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", ReportFile);
+                    if (string.IsNullOrEmpty(printerst))
+                    {
+                        printting = false;
+                    }
+                    else
+                    {
+                        string savefile = Path.Combine(Path.GetDirectoryName(printerst) ?? V6Login.StartupPath, Path.GetFileNameWithoutExtension(printerst));
+                        All_Objects["savefile"] = savefile;
+                        printting = true;
+                    }
+                }
+
+                Timer tF9 = new Timer();
+                tF9.Interval = 500;
+                tF9.Tick += tF7_Tick;
+                CheckForIllegalCrossThreadCalls = false;
+                remove_list_g = new List<DataGridViewRow>();
+                V6ControlFormHelper.NoOpen = true;
+                F7Thread();
+
+                tF9.Start();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF7", ex);
+            }
+        }
+
+        private void F7Thread()
+        {
+            f9Running = true;
+            f9ErrorAll = "";
+
+            int i = 0;
+
+            List<string> list_name = new List<string>();
+            List<DataSet> list_data = new List<DataSet>();
+
+            while (i < dataGridView1.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView1.Rows[i];
+                i++;
+                try
+                {
+                    if (row.IsSelect())
+                    {
+
+                        var tk = (row.Cells["TK"].Value ?? "").ToString().Trim();
+
+                        var oldKeys = FilterControl.GetFilterParameters();
+                        var _reportFileF5 = "AGLSO1TF5";
+                        var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
+                        var _reportTitle2F5 = "Account detail";
+
+                        if (MenuButton.UseXtraReport != shift_is_down)
+                        {
+                            var view = new ReportR_DX(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
+
+                            view.CodeForm = CodeForm;
+                            //view.FilterControl.Call1(ma_kh);
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add("TK", tk);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
+
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
+
+                            //view.AutoPrint = FilterControl.Check1;
+                            view.AutoExportExcelFileName = All_Objects["savefile"] + "_" + tk + ".xls";
+
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
+
+                            view.PrintMode = V6PrintMode.DoNoThing;
+                            view.Form_Load(view, new EventArgs());
+                            //view.ShowToForm(this, "", true);
+                            // Gom data cho Xuất Excel nhiều Sheets.
+                            list_name.Add(row.Cells["TK"].Value.ToString());
+                            list_data.Add(view.DataSet);
+                        }
+                        else
+                        {
+                            var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
+
+                            view.CodeForm = CodeForm;
+                            //view.FilterControl.Call1(ma_kh);
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add("TK", tk);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
+
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
+
+                            //view.AutoPrint = FilterControl.Check1;
+                            view.AutoExportExcel = All_Objects["savefile"] + "_" + tk + ".xls";
+
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
+
+                            view.PrintMode = V6PrintMode.AutoLoadData;
+                            view.ShowToForm(this, "", true);
+                        }
+
+                        SetStatus2Text();
+                        remove_list_g.Add(row);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    f9Error += ex.Message;
+                    f9ErrorAll += ex.Message;
+                }
+
+            }
+
+            //V6ControlFormHelper.ExportExcelTemplate_ManySheet(this, list_name, list_data, ReportDocumentParameters, MAU, LAN, _reportFile, ExcelTemplateFileFull, saveFileName);
+
+            f9Running = false;
+        }
+
+        void tF7_Tick(object sender, EventArgs e)
+        {
+            if (f9Running)
+            {
+                var cError = f9Error;
+                f9Error = f9Error.Substring(cError.Length);
+                V6ControlFormHelper.SetStatusText("F9 running "
+                    + (cError.Length > 0 ? "Error: " : "")
+                    + cError);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                RemoveGridViewRow();
+                //  btnNhan.PerformClick();
+                try
+                {
+                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                }
+                catch
+                {
+                }
+                V6ControlFormHelper.NoOpen = false;
+                V6ControlFormHelper.SetStatusText("F9 finish "
+                    + (f9ErrorAll.Length > 0 ? "Error: " : "")
+                    + f9ErrorAll);
+
+                SetStatusText("F9 end.");
+            }
+        }
+
+        #endregion ==== Xử lý F7 ====
 
         #region ==== Xử lý F9 ====
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -15,20 +16,33 @@ namespace V6Tools.V6Export
         
         public string xlsTemplateFile = null;
         public string saveFile;
-        public string title;
+        public int sheetIndex = 0;
+        public string sheet_name = null;
+        public string title = "";
         public string fontName;
+        public DataTable data;
         public IList<string> Columns = null;
         public bool isShiftRows;
         public bool isShowFieldName;
         public bool isDrawLine;
-
-        public int firstRow;
-        public int firstColumn;
-
+        public string firstCell = "A4";
+        /// <summary>
+        /// Dòng bắt đầu chèn dữ liệu (0_base).
+        /// </summary>
+        public int startRow = 3;
+        /// <summary>
+        /// Cột bắt đầu chèn dữ liệu (0_base).
+        /// </summary>
+        public int startColumn = 1;
+        /// <summary>
+        /// Gán ô bắt đầu chèn dữ liệu theo Excel (vd:A1).
+        /// </summary>
+        /// <param name="firstCell"></param>
         public void SetFirstCell(string firstCell)
         {
-            firstRow = GetExcelRow(firstCell);
-            firstColumn = GetExcelColumn(firstCell);
+            this.firstCell = firstCell;
+            startRow = GetExcelRow(firstCell);
+            startColumn = GetExcelColumn(firstCell);
         }
 
         private static int GetExcelRow(string A1)

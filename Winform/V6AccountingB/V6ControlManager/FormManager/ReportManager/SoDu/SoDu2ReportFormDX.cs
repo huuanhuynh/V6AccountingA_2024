@@ -1066,7 +1066,12 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl1, new ExportExcelSetting(), save.FileName, Name, true);
+                        var setting = new ExportExcelSetting();
+                        setting.data = _tbl1;
+                        setting.saveFile = save.FileName;
+                        setting.title = Name;
+                        setting.isDrawLine = true;
+                        V6Tools.V6Export.ExportData.ToExcel(setting);
                     }
                     catch (Exception ex)
                     {

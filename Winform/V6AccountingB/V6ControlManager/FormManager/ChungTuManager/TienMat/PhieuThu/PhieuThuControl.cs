@@ -269,6 +269,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         case "PS_CO":
                             _psCo = (V6NumberTextBox)control;
                             _check_f_ps_co = true;
+                            _psCo.V6LostFocus += delegate
+                            {
+                                if (NotAddEdit) return;
+                                if (detail1.NotAddEdit) return;
+                                _tien.Value = _psCo.Value;
+                                if (_tientt != null) _tientt.Value = _tien.Value;
+                            };
                             break;
                         case "PS_CO_NT":
                             _pscoNt = (V6NumberTextBox)control;

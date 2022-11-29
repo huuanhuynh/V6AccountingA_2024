@@ -2007,7 +2007,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var setting = new ExportExcelSetting();
                 setting.BOLD_YN = ObjectAndString.ObjectToBool(_albcConfig.BOLD_YN);
                 setting.BOLD_CONDITION = new Condition(_albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV);
-                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, setting, GetExportFileName(), txtReportTitle.Text);
+                setting.data = _tbl1;
+                setting.title = txtReportTitle.Text;
+                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, setting, GetExportFileName());
 
                 if (V6Options.AutoOpenExcel)
                 {

@@ -4292,10 +4292,15 @@ namespace V6Controls.Forms
                     newRow["Tag"] = c.Tag;
                     data.Rows.Add(newRow);
                 }
+
+                var setting = new ExportExcelSetting();
+                setting.data = data;
+                setting.title = form.Name;
                 string file = form.GetType().ToString();
                 file = Path.GetFullPath(file);
+                setting.saveFile = file + ".xls";
                 ExportData.ToTextFile(data, file + ".txt");
-                ExportData.ToExcel(data, new ExportExcelSetting(), file + ".xls", form.Name);
+                ExportData.ToExcel(setting);
                 return file;
             }
             catch (Exception ex)
@@ -4406,7 +4411,8 @@ namespace V6Controls.Forms
         /// <returns>Đường dẫn file lưu.</returns>
         public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, ExportExcelSetting setting, string defaultSaveName)
         {
-            return ExportExcel_ChooseFile(owner, data, setting, defaultSaveName, "");
+            setting.data = data;
+            return ExportExcel_ChooseFile(owner, setting, defaultSaveName);
         }
 
         /// <summary>
@@ -4417,16 +4423,21 @@ namespace V6Controls.Forms
         /// <param name="defaultSaveName">Tên file chọn sẵn.</param>
         /// <param name="title">Tiêu đề trong nội dung. Bỏ qua nếu không dùng.</param>
         /// <returns>Đường dẫn file lưu.</returns>
-        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, ExportExcelSetting setting, string defaultSaveName, string title)
+        public static string ExportExcel_ChooseFile(IWin32Window owner, ExportExcelSetting setting, string defaultSaveName)
         {
             string fileName = null;
             
             try
             {
-                if (data == null) return null;
+                if (setting.data == null) return null;
                 fileName = ChooseSaveFile(owner, "Excel files (*.xls)|*.xls|Xlsx|*.xlsx", ChuyenMaTiengViet.ToUnSign(defaultSaveName));
+
+                setting.data = CookingDataForExcel(setting.data);
+                setting.saveFile = fileName;
+                setting.isDrawLine = true;
+                
                 if (string.IsNullOrEmpty(fileName)) return fileName;
-                ExportData.ToExcel(CookingDataForExcel(data), setting, fileName, title, true);
+                ExportData.ToExcel(setting);
             }
             catch (Exception ex)
             {
@@ -4565,6 +4576,34 @@ namespace V6Controls.Forms
             timer.Start();
         }
 
+        public static void ExportExcelTemplate_ManySheet(IWin32Window owner, DataTable data, DataTable tbl2,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            string ReportFile, string ExcelTemplateFileFull, string saveFileName)
+        {
+            if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
+            ExportExcelTemplate_owner = owner;
+            //ExportExcelTemplate_data = data.Copy();
+            ExportExcelTemplate_data = CookingDataForExcel(data);
+            if (tbl2 == null) ExportExcelTemplate_tbl2 = new DataTable(); else ExportExcelTemplate_tbl2 = tbl2.Copy();
+            ExportExcelTemplate_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
+
+
+
+            ExportExcelTemplate_MAU = MAU;
+            ExportExcelTemplate_LAN = LAN;
+            ExportExcelTemplate_ReportFile = ReportFile;
+            ExportExcelTemplate_ExcelTemplateFileFull = ExcelTemplateFileFull;
+            ExportExcelTemplate_saveFileName = saveFileName;
+            ExportExcelTemplate_running = true;
+            var thread1 = new Thread(ExportExcelTemplate_Thread);
+            thread1.Start();
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += timer1_Tick;
+            time_count1 = 0;
+            timer.Start();
+        }
+
         static void timer1_Tick(object sender, EventArgs e)
         {
             if (ExportExcelTemplate_running)
@@ -4574,7 +4613,7 @@ namespace V6Controls.Forms
             else
             {
                 ((Timer)sender).Stop();
-                ShowMainMessage(V6Text.ExportFinish + ++time_count1);
+                ShowMainMessage(V6Text.ExportFinish);
             }
         }
 
@@ -4602,10 +4641,12 @@ namespace V6Controls.Forms
                 {
                     AlbcConfig albcConfig = ConfigManager.GetAlbcConfig_reportfile(ExportExcelTemplate_MAU, ExportExcelTemplate_LAN, ExportExcelTemplate_ReportFile);
                     ExportExcelSetting setting = new ExportExcelSetting();
+                    setting.SetFirstCell("A4");
+                    setting.saveFile = ExportExcelTemplate_saveFileName;
                     //var albc_row = Albc.GetRow(ExportExcelTemplate_MAU, ExportExcelTemplate_LAN, ExportExcelTemplate_ReportFile);
                     if (albcConfig.HaveInfo)
                     {
-                        var firstCell = "A4"; //auto
+                        //var firstCell = "A4"; //auto
                         bool drawLine = true, insertRow = true;
                         var xlm = albcConfig.EXCEL2;
                         var excelColumns = albcConfig.EXCEL1;
@@ -4627,7 +4668,7 @@ namespace V6Controls.Forms
                                 if (type == "0")
                                 {
                                     if (KEY == "FIRSTCELL")
-                                        firstCell = content;
+                                        setting.SetFirstCell(content);// firstCell = content;
                                     else if (KEY == "DRAWLINE")
                                         drawLine = content == "1";
                                     else if (KEY == "INSERTROW")
@@ -4748,8 +4789,8 @@ namespace V6Controls.Forms
                             //Không có thông tin xml
                         }
 
-                        if (ExportData.ToExcelTemplate(
-                            ExportExcelTemplate_ExcelTemplateFileFull, ExportExcelTemplate_data, setting, ExportExcelTemplate_saveFileName, firstCell,
+                        setting.data = ExportExcelTemplate_data;
+                        if (ExportData.ToExcelTemplate(ExportExcelTemplate_ExcelTemplateFileFull, setting,
                             ObjectAndString.SplitString(excelColumns.Replace("[", "").Replace("]", "")),//.Split(excelColumns.Contains(";") ? ';' : ','),
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
@@ -4890,7 +4931,7 @@ namespace V6Controls.Forms
                         //var albc_row = Albc.GetRow(ExportExcelTemplateD_MAU, ExportExcelTemplateD_LAN, ExportExcelTemplateD_ReportFile);
                         if (albcConfig.HaveInfo)
                         {
-                            var firstCell = "A4"; //auto
+                            setting.SetFirstCell("A4");
                             bool drawLine = true, insertRow = true;
                             string xml = albcConfig.EXCEL2;
                             //var xml_field = ExportExcelTemplateD_MODE == "V" ? "EXCEL2_VIEW" : "EXCEL2";
@@ -4915,7 +4956,7 @@ namespace V6Controls.Forms
                                     if (type == "0")
                                     {
                                         if (KEY == "FIRSTCELL")
-                                            firstCell = content;
+                                            setting.SetFirstCell(content);
                                         else if (KEY == "DRAWLINE")
                                             drawLine = content == "1";
                                         else if (KEY == "INSERTROW")
@@ -5019,12 +5060,11 @@ namespace V6Controls.Forms
                                 }
 
                                 // Add parameter for Excel Columns Name
-                                var firstCellRowIndex = Excel_File.GetExcelRow(firstCell);
-                                var firstCellColIndex = Excel_File.GetExcelColumn(firstCell);
+                                
                                 var headers = ObjectAndString.SplitString(ExportExcelTemplateD_excelHeaders);
                                 for (int i = 0; i < headers.Length; i++)
                                 {
-                                    var key = "" + Excel_File.ToExcelColumnString(firstCellColIndex + i + 1) + firstCellRowIndex;
+                                    var key = "" + Excel_File.ToExcelColumnString(setting.startColumn + i + 1) + setting.startRow;
                                     parameters.Add(key, headers[i]);
                                 }
 
@@ -5034,8 +5074,9 @@ namespace V6Controls.Forms
                                 //Không có thông tin xml
                             }
 
-                            if (ExportData.ToExcelTemplate(
-                                ExportExcelTemplateD_ExcelTemplateFileFull, ExportExcelTemplateD_data, setting, save.FileName, firstCell,
+                            setting.saveFile = save.FileName;
+                            setting.data = ExportExcelTemplateD_data;
+                            if (ExportData.ToExcelTemplate(ExportExcelTemplateD_ExcelTemplateFileFull, setting,
                                 ObjectAndString.SplitString(ExportExcelTemplateD_excelColumns.Replace("[", "").Replace("]", "")),
                                 parameters, V6Setting.V6_number_format_info,
                                 insertRow, drawLine))
@@ -7734,7 +7775,7 @@ namespace V6Controls.Forms
                 }
                 else if (control is V6LookupProc)
                 {
-                    ((V6LookupProc) control).SetValue(value);
+                    ((V6LookupProc) control).Text = value.ToString();
                 }
                 else if (control is V6DateTimePicker) // && V6DateTimeFullPicker
                 {
@@ -8357,20 +8398,20 @@ namespace V6Controls.Forms
                             }
                         }
 
-                        if (control is DropDownButton)
-                        {
-                            var button = control as DropDownButton;
-                            if (button.Menu != null)
-                            {
-                                foreach (ToolStripMenuItem menu_item in button.Menu.Items)
-                                {
-                                    if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
-                                    {
-                                        menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
-                                    }
-                                }
-                            }
-                        }
+                        //if (control is DropDownButton)
+                        //{
+                        //    var button = control as DropDownButton;
+                        //    if (button.Menu != null)
+                        //    {
+                        //        foreach (ToolStripMenuItem menu_item in button.Menu.Items)
+                        //        {
+                        //            if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                        //            {
+                        //                menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
+                        //            }
+                        //        }
+                        //    }
+                        //}
 
                         if (!string.IsNullOrEmpty(control.AccessibleDescription) && !control.AccessibleDescription.Contains(",") && !control.AccessibleDescription.Contains("."))
                         {

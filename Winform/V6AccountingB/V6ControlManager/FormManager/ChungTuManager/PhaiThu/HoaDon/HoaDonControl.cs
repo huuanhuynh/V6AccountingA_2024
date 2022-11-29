@@ -28,6 +28,7 @@ using V6Init;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
@@ -5175,8 +5176,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     string timeString = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     string fileNameAM = string.Format("TTTT_AM_{0}_{1}.xls", CurrentIndex, timeString);
                     string fileNameAD = string.Format("TTTT_AD_{0}.xls", timeString);
-                    V6Tools.V6Export.ExportData.ToExcel(AM, null, fileNameAM, "TTTT AM log");
-                    V6Tools.V6Export.ExportData.ToExcel(AD, null, fileNameAD, "TTTT AD log");
+                    var setting = new ExportExcelSetting();
+                    setting.data = AM;
+                    setting.saveFile = fileNameAM;
+                    setting.title = "TTTT AM log";
+                    V6Tools.V6Export.ExportData.ToExcel(setting);
+                    setting.data = AD;
+                    setting.saveFile = fileNameAD;
+                    setting.title = "TTTT AD log";
+                    V6Tools.V6Export.ExportData.ToExcel(setting);
                     this.WriteToLog("TTTT txtTongThanhToanNt.Value != tTienNt2", string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec + " " + debug_flag, "TTTT(" + debug + ")"));
                     //this.ShowWarningMessage("Tổng < chi tiết!");
 

@@ -17,6 +17,7 @@ using V6Tools;
 using V6Tools.V6Convert;
 using V6ThuePost.ResponseObjects;
 using ParseDBF = V6Tools.ParseDBF;
+using V6Tools.V6Export;
 
 namespace V6ThuePost
 {
@@ -546,9 +547,12 @@ namespace V6ThuePost
                         }
                     }
 
-
-                    bool export_ok = V6Tools.V6Export.ExportData.ToExcelTemplate(template_xls, data2, null, export_file,
-                        firstCell, columns, parameters, NumberFormatInfo.InvariantInfo, insertRow, drawLine);
+                    var setting = new ExportExcelSetting();
+                    setting.SetFirstCell(firstCell);
+                    setting.saveFile = export_file;
+                    setting.data = data2;
+                    bool export_ok = V6Tools.V6Export.ExportData.ToExcelTemplate(template_xls, setting,
+                        columns, parameters, NumberFormatInfo.InvariantInfo, insertRow, drawLine);
 
                     //{Tuanmh test
                     //File.Copy(export_file, "test_out.xls", true);

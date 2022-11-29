@@ -396,7 +396,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl, new ExportExcelSetting(), save.FileName, _reportCaption, true);
+                        ExportExcelSetting setting = new ExportExcelSetting();
+                        setting.data = _tbl;
+                        setting.saveFile = save.FileName;
+                        setting.title = _reportCaption;
+                        setting.isDrawLine = true;
+                        V6Tools.V6Export.ExportData.ToExcel(setting);
                     }
                     catch (Exception ex)
                     {

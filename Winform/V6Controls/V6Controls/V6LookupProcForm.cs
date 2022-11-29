@@ -150,6 +150,8 @@ namespace V6Controls
                 if ((_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data) && vSearchFilter.Contains(","))
                 {
                     plist.Add(new SqlParameter("@advance", initFilter));
+                    plist.Add(new SqlParameter("@advance2", _sender.Advance2));
+                    plist.Add(new SqlParameter("@advance3", _sender.Advance3));
                     var tbl = V6BusinessHelper.ExecuteProcedure(LookupInfo.TABLE_NAME, plist.ToArray()).Tables[0];
                     return tbl;
                 }
@@ -639,14 +641,14 @@ namespace V6Controls
                     }
                 }
 
-                if (keyData == Keys.F3) //Sua
+                if (keyData == Keys.F3 && LookupInfo != null && !string.IsNullOrEmpty(LookupInfo.TABLE_VIEW)) //Sua
                 {
                     if (!LookupInfo.F3)
                     {
                         return false;
                     }
 
-                    if (V6Login.UserRight.AllowEdit("", LookupInfo.TABLE_NAME.ToUpper() + "6"))
+                    if (V6Login.UserRight.AllowEdit("", LookupInfo.TABLE_VIEW.ToUpper() + "6"))
                     {
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
@@ -657,7 +659,7 @@ namespace V6Controls
                             {
                                 {"UID", uid}
                             };
-                            var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Edit, keys, null);
+                            var f = new FormAddEdit(LookupInfo.TABLE_VIEW, V6Mode.Edit, keys, null);
                             f.AfterInitControl += f_AfterInitControl;
                             f.InitFormControl(this);
                             f.ParentData = _senderParentData;
@@ -671,18 +673,18 @@ namespace V6Controls
                     }
                     return true;
                 }
-                else if (keyData == Keys.F4)
+                else if (keyData == Keys.F4 && LookupInfo != null && !string.IsNullOrEmpty(LookupInfo.TABLE_VIEW))
                 {
                     if (!LookupInfo.F4)
                     {
                         return false;
                     }
 
-                    if (V6Login.UserRight.AllowAdd("", LookupInfo.TABLE_NAME.ToUpper() + "6"))
+                    if (V6Login.UserRight.AllowAdd("", LookupInfo.TABLE_VIEW.ToUpper() + "6"))
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;
-                        var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Add, null, data);
+                        var f = new FormAddEdit(LookupInfo.TABLE_VIEW, V6Mode.Add, null, data);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl(this);
                         f.ParentData = _senderParentData;

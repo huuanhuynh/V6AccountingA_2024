@@ -928,7 +928,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (exportData.Columns.Contains("UID")) exportData.Columns.Remove("UID");
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToExcel(data, new ExportExcelSetting(), save.FileName, _reportCaption, true);
+                        var setting = new ExportExcelSetting();
+                        setting.data = data;
+                        setting.saveFile = save.FileName;
+                        setting.title = _reportCaption;
+                        setting.isDrawLine = true;
+                        V6Tools.V6Export.ExportData.ToExcel(setting);
                     }
                     catch (Exception ex)
                     {

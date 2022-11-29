@@ -117,14 +117,15 @@ namespace V6Tools.V6Convert
             return ds;
         }
 
-        public static void ToExcelFile(DataTable data, ExportExcelSetting setting, string fileName)
+        public static void ToExcelFile(ExportExcelSetting setting)
         {
-            ExportData.ToExcel(data, setting, fileName, "");
+            ExportData.ToExcel(setting);
         }
 
-        public static Stream ToExcelStream(DataTable data, ExportExcelSetting setting, string fileName)
+        public static Stream ToExcelStream(ExportExcelSetting setting)
         {
-            return ExportData.ToExcelStream(data, setting, fileName, "", true);
+            setting.isDrawLine = true;
+            return ExportData.ToExcelStream(setting);
         }
 
         public static string ToXml(DataTable data)

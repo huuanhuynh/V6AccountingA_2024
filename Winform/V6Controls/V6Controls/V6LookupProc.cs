@@ -491,6 +491,14 @@ namespace V6Controls
             //if (auto1 != null) return;
             if (LookupInfo.NoInfo) return;
 
+            if (LookupInfo != null && LookupInfo.HaveInfo)
+            {
+                if (LookupInfo.EXTRA_INFOR.ContainsKey("LARGE_YN") && ObjectAndString.ObjectToBool(LookupInfo.EXTRA_INFOR["LARGE_YN"]))
+                {
+                    return;
+                }
+            }
+
             try
             {
                 if (!string.IsNullOrEmpty(LookupInfo.TABLE_NAME) && !string.IsNullOrEmpty(LookupInfo_F_NAME) && auto1 == null)

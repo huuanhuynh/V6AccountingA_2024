@@ -2004,7 +2004,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl1, new ExportExcelSetting(), save.FileName, txtReportTitle.Text, true);
+                        var setting = new ExportExcelSetting();
+                        setting.data = _tbl1;
+                        setting.saveFile = save.FileName;
+                        setting.title = txtReportTitle.Text;
+                        setting.isDrawLine = true;
+                        V6Tools.V6Export.ExportData.ToExcel(setting);
                     }
                     catch (Exception ex)
                     {

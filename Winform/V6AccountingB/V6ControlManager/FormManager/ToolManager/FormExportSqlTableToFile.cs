@@ -101,7 +101,10 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls")) // xls và xlsx
                         {
-                            V6Tools.V6Export.ExportData.ToExcel(exportData, new ExportExcelSetting(), o.FileName, "");
+                            var setting = new ExportExcelSetting();
+                            setting.data = exportData;
+                            setting.saveFile = o.FileName;
+                            V6Tools.V6Export.ExportData.ToExcel(setting);
                         }
                         else if (ext == ".dbf")
                         {
@@ -380,7 +383,10 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls")) // xls và xlsx
                         {
-                            V6Tools.V6Export.ExportData.ToExcel(exportData, new ExportExcelSetting(), o.FileName, "");
+                            var setting = new ExportExcelSetting();
+                            setting.saveFile = o.FileName;
+                            setting.data = exportData;
+                            V6Tools.V6Export.ExportData.ToExcel(setting);
                         }
                         else if (ext == ".dbf")
                         {

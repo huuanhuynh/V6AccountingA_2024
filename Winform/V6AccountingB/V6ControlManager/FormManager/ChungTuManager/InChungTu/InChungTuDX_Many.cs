@@ -1868,7 +1868,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl_AD, new ExportExcelSetting(), save.FileName, Name, true);
+                        var setting = new ExportExcelSetting();
+                        setting.data = _tbl_AD;
+                        setting.saveFile = save.FileName;
+                        setting.title = Name;
+                        setting.isDrawLine = true;
+                        V6Tools.V6Export.ExportData.ToExcel(setting);
                     }
                     catch (Exception ex)
                     {

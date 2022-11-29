@@ -289,9 +289,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 if (radExcel.Checked)
                 {
-                    var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    ExportData.ToExcel(tblList_copy, new ExportExcelSetting(), saveFile, "");
-                    files.Add(saveFile);
+                    
+                    var setting = new ExportExcelSetting();
+                    setting.saveFile = Path.Combine(tempDirCurrent, key + ".xls");
+                    setting.data = tblList_copy;
+                    ExportData.ToExcel(setting);
+                    files.Add(setting.saveFile);
 
                     foreach (DataRow row in tblList.Rows)
                     {
@@ -299,10 +302,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var stt = ObjectAndString.ObjectToInt(row["STT"]);
                         //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
                         var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
-                        var data1 = ds.Tables[stt];
-                        saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
-                        ExportData.ToExcel(data1, new ExportExcelSetting(), saveFile, "");
-                        files.Add(saveFile);
+                        setting.data = ds.Tables[stt];
+                        setting.saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
+                        ExportData.ToExcel(setting);
+                        files.Add(setting.saveFile);
                     }
                 }
                 else
@@ -357,9 +360,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 int data1_count = 0;
                 if (radExcel.Checked)
                 {
-                    var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    Data_Table.ToExcelFile(tblList_copy, new ExportExcelSetting(), saveFile);
-                    files.Add(saveFile);
+                    ExportExcelSetting setting = new ExportExcelSetting();
+                    setting.saveFile = Path.Combine(tempDirCurrent, key + ".xls");
+                    setting.data = tblList_copy;
+                    Data_Table.ToExcelFile(setting);
+                    files.Add(setting.saveFile);
 
                     foreach (DataRow row in tblList.Rows)
                     {
@@ -369,16 +374,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var ma_file_ct = ObjectAndString.ObjectToString(row["MA_FILE_CT"]).Trim();
                         var ma_file_ct_list = ObjectAndString.SplitString(ma_file_ct);
                         //var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
-                        var data1 = ds.Tables[++data1_count];
-                        saveFile = Path.Combine(tempDirCurrent, ma_file + ".xls");
-                        Data_Table.ToExcelFile(data1, new ExportExcelSetting(), saveFile);
-                        files.Add(saveFile);
+                        setting.data = ds.Tables[++data1_count];
+                        setting.saveFile = Path.Combine(tempDirCurrent, ma_file + ".xls");
+                        Data_Table.ToExcelFile(setting);
+                        files.Add(setting.saveFile);
                         foreach (string file_ct in ma_file_ct_list)
                         {
-                            data1 = ds.Tables[++data1_count];
-                            saveFile = Path.Combine(tempDirCurrent, file_ct + ".xls");
-                            Data_Table.ToExcelFile(data1, new ExportExcelSetting(), saveFile);
-                            files.Add(saveFile);
+                            setting.data = ds.Tables[++data1_count];
+                            setting.saveFile = Path.Combine(tempDirCurrent, file_ct + ".xls");
+                            Data_Table.ToExcelFile(setting);
+                            files.Add(setting.saveFile);
                         }
                     }
                 }
