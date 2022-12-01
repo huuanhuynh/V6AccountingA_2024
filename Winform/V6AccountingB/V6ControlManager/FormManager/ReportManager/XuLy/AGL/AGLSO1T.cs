@@ -13,6 +13,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
+using V6Tools.V6Export;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -270,15 +271,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 //if (InLienTuc) // thì chọn máy in trước
                 {
-                    var printerst = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", ReportFile);
-                    if (string.IsNullOrEmpty(printerst))
+                    var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", ReportFile);
+                    if (string.IsNullOrEmpty(saveFile))
                     {
                         printting = false;
                     }
                     else
                     {
-                        string savefile = Path.Combine(Path.GetDirectoryName(printerst) ?? V6Login.StartupPath, Path.GetFileNameWithoutExtension(printerst));
-                        All_Objects["savefile"] = savefile;
+                        All_Objects["savefile"] = saveFile;
                         printting = true;
                     }
                 }
@@ -306,8 +306,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             int i = 0;
 
-            List<string> list_name = new List<string>();
-            List<DataSet> list_data = new List<DataSet>();
+            //List<string> list_name = new List<string>();
+            //List<DataSet> list_data = new List<DataSet>();
+            List<ExportExcelSetting> setting_list = new List<ExportExcelSetting>();
+            string excelTemplateFile = null;
 
             while (i < dataGridView1.Rows.Count)
             {
@@ -317,6 +319,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     if (row.IsSelect())
                     {
+                        var setting = new ExportExcelSetting();
+                        setting_list.Add(setting);
 
                         var tk = (row.Cells["TK"].Value ?? "").ToString().Trim();
 
@@ -351,42 +355,45 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             view.PrinterName = _PrinterName;
                             view.PrintCopies = _PrintCopies;
 
-                            view.PrintMode = V6PrintMode.DoNoThing;
-                            view.Form_Load(view, new EventArgs());
+                            view.PrintMode = V6PrintMode.AutoLoadData;
+                            view.GenerateProcedureParameters();
+                            view.LoadData();
+                            //view.Form_Load(view, new EventArgs());
+                            view.ViewReport();// giả;
                             //view.ShowToForm(this, "", true);
                             // Gom data cho Xuất Excel nhiều Sheets.
-                            list_name.Add(row.Cells["TK"].Value.ToString());
-                            list_data.Add(view.DataSet);
+                            setting.data = view._tbl1;
+                            setting.data2 = view._tbl2;
+                            //setting._pList = view._pList;
+                            setting.sheet_name = row.Cells["TK"].Value.ToString();
+                            setting.albcConfigData = view._albcConfig.DATA;
+                            if (excelTemplateFile == null) excelTemplateFile = view.ExcelTemplateFileFull;
+                            setting.reportParameters = view.ReportDocumentParameters;
+                            V6ControlFormHelper.GEN_PARAMETERS_TO_SETTING_TEST(view._albcConfig, setting);
                         }
-                        else
-                        {
-                            var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
-                                _reportTitleF5, _reportTitle2F5, "", "", "");
-
-                            view.CodeForm = CodeForm;
-                            //view.FilterControl.Call1(ma_kh);
-                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                            data.Add("TK", tk);
-                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
-                            view.CodeForm = CodeForm;
-                            view.Advance = FilterControl.Advance;
-                            view.FilterControl.String1 = FilterControl.String1;
-                            view.FilterControl.String2 = FilterControl.String2;
-
-                            view.Dock = DockStyle.Fill;
-                            view.FilterControl.InitFilters = oldKeys;
-
-                            view.FilterControl.SetParentRow(row.ToDataDictionary());
-
-                            //view.AutoPrint = FilterControl.Check1;
-                            view.AutoExportExcel = All_Objects["savefile"] + "_" + tk + ".xls";
-
-                            view.PrinterName = _PrinterName;
-                            view.PrintCopies = _PrintCopies;
-
-                            view.PrintMode = V6PrintMode.AutoLoadData;
-                            view.ShowToForm(this, "", true);
-                        }
+                        //else
+                        //{
+                        //    var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                        //        _reportTitleF5, _reportTitle2F5, "", "", "");
+                        //    view.CodeForm = CodeForm;
+                        //    //view.FilterControl.Call1(ma_kh);
+                        //    SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                        //    data.Add("TK", tk);
+                        //    V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                        //    view.CodeForm = CodeForm;
+                        //    view.Advance = FilterControl.Advance;
+                        //    view.FilterControl.String1 = FilterControl.String1;
+                        //    view.FilterControl.String2 = FilterControl.String2;
+                        //    view.Dock = DockStyle.Fill;
+                        //    view.FilterControl.InitFilters = oldKeys;
+                        //    view.FilterControl.SetParentRow(row.ToDataDictionary());
+                        //    //view.AutoPrint = FilterControl.Check1;
+                        //    view.AutoExportExcel = All_Objects["savefile"] + "_" + tk + ".xls";
+                        //    view.PrinterName = _PrinterName;
+                        //    view.PrintCopies = _PrintCopies;
+                        //    view.PrintMode = V6PrintMode.AutoLoadData;
+                        //    view.ShowToForm(this, "", true);
+                        //}
 
                         SetStatus2Text();
                         remove_list_g.Add(row);
@@ -400,7 +407,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             }
 
-            //V6ControlFormHelper.ExportExcelTemplate_ManySheet(this, list_name, list_data, ReportDocumentParameters, MAU, LAN, _reportFile, ExcelTemplateFileFull, saveFileName);
+            ExportData.ToExcelTemplate_ManySheet(excelTemplateFile, All_Objects["savefile"].ToString(), setting_list, V6Setting.V6_number_format_info);
+            if (V6Options.AutoOpenExcel)
+            {
+                V6ControlFormHelper.OpenFileProcess(All_Objects["savefile"].ToString());
+            }
+            else
+            {
+                this.ShowInfoMessage(V6Text.ExportFinish);
+            }
 
             f9Running = false;
         }

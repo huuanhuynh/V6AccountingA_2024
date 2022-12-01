@@ -247,6 +247,8 @@ namespace V6Controls
                     if (values.Length > 0) values = values.Substring(1);
                     return values;
                 }
+
+                if (Data == null || _text_data != Text) ExistRowInTable();
                 
                 return Data == null ? null : Data[ValueField];
             }

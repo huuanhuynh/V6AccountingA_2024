@@ -43,7 +43,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private DataView MauInView;
         public AlbcConfig _albcConfig = new AlbcConfig();
         private DataSet _ds;
-        private DataTable _tbl, _tbl2;
+        private DataTable _tbl1, _tbl2;
 
 
         /// <summary>
@@ -805,8 +805,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 _ds = V6BusinessHelper.ExecuteProcedure("VPA_R_AL_ALL", pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
-                    _tbl = _ds.Tables[0];
-                    _tbl.TableName = "DataTable1";
+                    _tbl1 = _ds.Tables[0];
+                    _tbl1.TableName = "DataTable1";
                 }
                 if (_ds.Tables.Count > 1)
                 {
@@ -823,7 +823,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             catch (Exception ex)
             {
                 error_message = "Load Data Error\n"+ex.Message;
-                _tbl = null;
+                _tbl1 = null;
                 _tbl2 = null;
                 _ds = null;
                 _dataloading = false;
@@ -848,7 +848,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 {
                     dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = _tbl;
+                    dataGridView1.DataSource = _tbl1;
 
                     FormatGridView();
                     ViewReport();
@@ -940,7 +940,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void exportToExcelMenu_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl1 == null)
             {
                 ShowMainMessage(V6Text.NoData);
                 return;
@@ -957,7 +957,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                     try
                     {
                         var setting = new ExportExcelSetting();
-                        setting.data = _tbl;
+                        setting.data = _tbl1;
                         setting.saveFile = save.FileName;
                         setting.title = Name;
                         setting.isDrawLine = true;
@@ -986,13 +986,17 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl, _tbl2, ReportDocumentParameters,
-                MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            var setting = new ExportExcelSetting();
+            setting.data = _tbl1;
+            setting.data2 = _tbl2;
+            setting.reportParameters = ReportDocumentParameters;
+            setting.albcConfigData = _albcConfig.DATA;
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
         }
 
         private void exportToXmlMenu_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl1 == null)
             {
                 ShowMainMessage(V6Text.NoData);
                 return;
@@ -1008,7 +1012,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToXmlFile(_tbl, save.FileName);
+                        V6Tools.V6Export.ExportData.ToXmlFile(_tbl1, save.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -1084,7 +1088,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void printGrid_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl1 == null)
             {
                 ShowMainMessage(V6Text.NoData);
                 return;
@@ -1133,7 +1137,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         
         private void F_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _tbl = null;
+            _tbl1 = null;
         }
 
         private void F_ResizeEnd(object sender, EventArgs e)

@@ -171,7 +171,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
 
         private DataSet _ds;
-        private DataTable _tbl_AD, _tbl2_AM, _tbl2, _tbl3;
+        private DataTable _tbl1_AD, _tbl2_AM, _tbl2, _tbl3;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
@@ -1550,8 +1550,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 FilterControl.LoadDataFinish(_ds);
                 if (_ds.Tables.Count > 0)
                 {
-                    _tbl_AD = _ds.Tables[0];
-                    _tbl_AD.TableName = "DataTable1";
+                    _tbl1_AD = _ds.Tables[0];
+                    _tbl1_AD.TableName = "DataTable1";
                 }
                 if (_ds.Tables.Count > 1)
                 {
@@ -1569,7 +1569,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".LoadData Error\n" + ex.Message, "InChungTuDX_Many");
-                _tbl_AD = null;
+                _tbl1_AD = null;
                 _tbl2_AM = null;
                 _ds = null;
                 _executesuccess = false;
@@ -1670,7 +1670,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = _tbl_AD;
+                    dataGridView1.DataSource = _tbl1_AD;
                     dataGridView1.DataSource = _tbl2_AM;
                     FormatGridView();
                     
@@ -1717,7 +1717,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                     dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = _tbl_AD;
+                    dataGridView1.DataSource = _tbl1_AD;
                     
                     FormatGridView();
                     ViewReport();
@@ -1769,7 +1769,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
 
                 //Header
-                var fieldList = (from DataColumn column in _tbl_AD.Columns select column.ColumnName).ToList();
+                var fieldList = (from DataColumn column in _tbl1_AD.Columns select column.ColumnName).ToList();
 
                 var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
                 for (int i = 0; i < dataGridView1.ColumnCount; i++)
@@ -1852,7 +1852,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void exportToExcelMenu_Click(object sender, EventArgs e)
         {
-            if (_tbl_AD == null)
+            if (_tbl1_AD == null)
             {
                 ShowMainMessage(V6Text.NoData);
                 return;
@@ -1869,7 +1869,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     try
                     {
                         var setting = new ExportExcelSetting();
-                        setting.data = _tbl_AD;
+                        setting.data = _tbl1_AD;
                         setting.saveFile = save.FileName;
                         setting.title = Name;
                         setting.isDrawLine = true;
@@ -1961,7 +1961,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void printGrid_Click(object sender, EventArgs e)
         {
-            if (_tbl_AD == null)
+            if (_tbl1_AD == null)
             {
                 ShowMainMessage(V6Text.NoData);
                 return;
@@ -2513,8 +2513,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
-            string exportFile = V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl_AD, _tbl2_AM,
-                ReportDocumentParameters, MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            var setting = new ExportExcelSetting();
+            setting.data = _tbl1_AD;
+            setting.data2 = _tbl2_AM;
+            setting.reportParameters = ReportDocumentParameters;
+            setting.albcConfigData = _albcConfig.DATA;
+            string exportFile = V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
             if (PrintMode == V6PrintMode.AutoExportT && !string.IsNullOrEmpty(exportFile))
             {
                 btnHuy.PerformClick();

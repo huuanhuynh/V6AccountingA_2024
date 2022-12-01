@@ -2419,8 +2419,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
-            string exportFile = V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl_AD, _tbl2_AM,
-                ReportDocumentParameters, MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            var setting = new ExportExcelSetting();
+            setting.data = _tbl_AD;
+            setting.data2 = _tbl2_AM;
+            setting.reportParameters = ReportDocumentParameters;
+            setting.albcConfigData = _albcConfig.DATA;
+            string exportFile = V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
             if (PrintMode == V6PrintMode.AutoExportT && !string.IsNullOrEmpty(exportFile))
             {
                 btnHuy.PerformClick();

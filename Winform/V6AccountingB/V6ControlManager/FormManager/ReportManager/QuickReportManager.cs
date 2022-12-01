@@ -20,6 +20,7 @@ using V6ReportControls;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager
 {
@@ -489,8 +490,13 @@ namespace V6ControlManager.FormManager.ReportManager
                     string ExcelTemplateFileFull = string.Format(@"Reports\{0}\{1}\{2}.xls", MAU, LAN, Ma_File);
                     if (File.Exists(ExcelTemplateFileFull))
                     {
-                        V6ControlFormHelper.ExportExcelTemplate(owner, tbl, tbl2, ReportDocumentParameters,
-                            MAU, LAN, ReportFile, ExcelTemplateFileFull, exportFile);
+                        var setting = new ExportExcelSetting();
+                        setting.data = tbl;
+                        setting.data2 = tbl2;
+                        setting.reportParameters = ReportDocumentParameters;
+                        var albc = ConfigManager.GetAlbcConfig_reportfile(MAU, LAN, ReportFile);
+                        setting.albcConfigData = albc.DATA;
+                        V6ControlFormHelper.ExportExcelTemplate(owner, setting, ReportFile, ExcelTemplateFileFull, exportFile);
                     }
                     else
                     {

@@ -189,7 +189,10 @@ namespace Tools
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            ExportData.ToExcel(table2, new ExportExcelSetting(), o.FileName, "");
+                            var setting = new ExportExcelSetting();
+                            setting.data = table2;
+                            setting.saveFile = o.FileName;
+                            ExportData.ToExcel(setting);
                         }
                         else if (ext == ".dbf")
                         {
@@ -361,7 +364,10 @@ namespace Tools
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            ExportData.ToExcel(table2, new ExportExcelSetting(), o.FileName, "");
+                            var setting = new ExportExcelSetting();
+                            setting.data = table2;
+                            setting.saveFile = o.FileName;
+                            ExportData.ToExcel(setting);
                         }
                         else if (ext == ".dbf")
                         {

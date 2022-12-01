@@ -177,13 +177,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             set { _ds = value; }
         }
         private DataSet _ds;
-        private DataTable _tbl1, _tbl2, _tbl3;
-        private DataView _view1, _view2, _view3;
+        public DataTable _tbl1, _tbl2, _tbl3;
+        public DataView _view1, _view2, _view3;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
         /// </summary>
-        private List<SqlParameter> _pList;
+        public List<SqlParameter> _pList;
 
         /// <summary>
         /// Tên file excel tự động xuất.
@@ -1485,8 +1485,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 if (!string.IsNullOrEmpty(AutoExportExcelFileName))
                 {
-                    V6ControlFormHelper.ExportExcelTemplate(this, _tbl1, _tbl2, ReportDocumentParameters,
-                        MAU, LAN, ReportFile, ExcelTemplateFileFull, AutoExportExcelFileName);
+                    var setting = new ExportExcelSetting();
+                    setting.data = _tbl1;
+                    setting.data2 = _tbl2;
+                    setting.reportParameters = ReportDocumentParameters;
+                    setting.albcConfigData = _albcConfig.DATA;
+                    V6ControlFormHelper.ExportExcelTemplate(this, setting,
+                        ReportFile, ExcelTemplateFileFull, AutoExportExcelFileName);
                     if (!IsDisposed) Dispose();
                 }
                 else if (!string.IsNullOrEmpty(AutoExportWordFileName))
@@ -1507,7 +1512,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// <summary>
         /// Hiển thị report  khi đã có data.
         /// </summary>
-        void ViewReport()
+        public void ViewReport()
         {
             if (_ds == null) return;
             if (_ds.Tables[0].Rows.Count == 0)
@@ -2112,8 +2117,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl1, _tbl2, ReportDocumentParameters,
-                MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            var setting = new ExportExcelSetting();
+            setting.data = _tbl1;
+            setting.data2 = _tbl2;
+            setting.reportParameters = ReportDocumentParameters;
+            setting.albcConfigData = _albcConfig.DATA;
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
         }
 
         private void exportToExcelView_Click(object sender, EventArgs e)
@@ -2133,8 +2142,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     {
                         data = ((DataView)dataGridView1.DataSource).ToTable();
                     }
-                    V6ControlFormHelper.ExportExcelTemplateD(this, data, _tbl2, "V", ReportDocumentParameters,
-                        MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
+
+                    var setting = new ExportExcelSetting();
+                    setting.data = data;
+                    setting.data2 = _tbl2;
+                    setting.reportParameters = ReportDocumentParameters;
+                    setting.albcConfigData = _albcConfig.DATA;
+                    V6ControlFormHelper.ExportExcelTemplateD(this, "V", setting,
+                        ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
                 }
             }
             catch (Exception ex)

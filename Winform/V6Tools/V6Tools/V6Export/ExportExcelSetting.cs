@@ -13,18 +13,27 @@ namespace V6Tools.V6Export
         //public string IS_BOLD_FIELD = null;
         //public string IS_BOLD_OPER = "=";
         //public string IS_BOLD_VALUE = "1";
-        
+        public IDictionary<string, object> albcConfigData = null;
+        /// <summary>
+        /// data dạng key là địa chỉ Excel:ExcelFormat và value {A1:format, value}
+        /// </summary>
+        public IDictionary<string, object> parameters = null;
+        /// <summary>
+        /// Chứa tạm để tạo parameters.
+        /// </summary>
+        public IDictionary<string, object> reportParameters = null;
         public string xlsTemplateFile = null;
         public string saveFile;
-        public int sheetIndex = 0;
+        //public int sheetIndex = 0;
         public string sheet_name = null;
         public string title = "";
         public string fontName;
         public DataTable data;
-        public IList<string> Columns = null;
-        public bool isShiftRows;
+        public DataTable data2 = null;
+        public string[] columns = null;
+        
         public bool isShowFieldName;
-        public bool isDrawLine;
+        public bool isDrawLine, isInsertRow, isFieldNameShow;
         public string firstCell = "A4";
         /// <summary>
         /// Dòng bắt đầu chèn dữ liệu (0_base).

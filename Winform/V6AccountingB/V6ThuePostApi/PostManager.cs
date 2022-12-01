@@ -2413,8 +2413,11 @@ namespace V6ThuePostManager
                 setting.SetFirstCell(firstCell);
                 setting.saveFile = export_file;
                 setting.data = data2;
-                bool export_ok = ExportData.ToExcelTemplate(template_xls, setting,
-                    columns, parameters, NumberFormatInfo.InvariantInfo, insertRow, drawLine);
+                setting.columns = columns;
+                setting.parameters = parameters;
+                setting.isInsertRow = insertRow;
+                setting.isDrawLine = drawLine;
+                bool export_ok = ExportData.ToExcelTemplate(template_xls, setting, NumberFormatInfo.InvariantInfo);
 
                 //{Tuanmh test
                 //File.Copy(export_file, "test_out.xls", true);

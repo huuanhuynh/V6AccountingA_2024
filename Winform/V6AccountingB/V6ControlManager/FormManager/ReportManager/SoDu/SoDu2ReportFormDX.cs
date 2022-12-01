@@ -1096,8 +1096,12 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
 
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl1, _tbl2, ReportDocumentParameters,
-                MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            var setting = new ExportExcelSetting();
+            setting.data = _tbl1;
+            setting.data2 = _tbl2;
+            setting.reportParameters = ReportDocumentParameters;
+            setting.albcConfigData = _albcConfig.DATA;
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
         }
 
         private void exportToXmlMenu_Click(object sender, EventArgs e)

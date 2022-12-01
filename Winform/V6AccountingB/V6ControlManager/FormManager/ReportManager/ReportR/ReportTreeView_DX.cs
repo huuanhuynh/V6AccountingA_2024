@@ -2025,8 +2025,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl1, _tbl2, ReportDocumentParameters,
-                MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            var setting = new ExportExcelSetting();
+            setting.data = _tbl1;
+            setting.data2 = _tbl2;
+            setting.reportParameters = ReportDocumentParameters;
+            setting.albcConfigData = _albcConfig.DATA;
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
         }
 
         private void exportToExcelView_Click(object sender, EventArgs e)
@@ -2046,8 +2050,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     //{
                     //    data = ((DataView)dataGridView1.DataSource).ToTable();
                     //}
-                    V6ControlFormHelper.ExportExcelTemplateD(this, data, _tbl2, "V", ReportDocumentParameters,
-                        MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
+                    var setting = new ExportExcelSetting();
+                    setting.data = data;
+                    setting.data2 = _tbl2;
+                    setting.reportParameters = ReportDocumentParameters;
+                    setting.albcConfigData = _albcConfig.DATA;
+                    V6ControlFormHelper.ExportExcelTemplateD(this, "V", setting,
+                        ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
                 }
             }
             catch (Exception ex)

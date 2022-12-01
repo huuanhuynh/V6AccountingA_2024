@@ -2042,8 +2042,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 var f = V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1";
                 if (_tbl2.Columns.Contains(f)) excelHeaders = _tbl2.Rows[0][f].ToString();
             }
-            V6ControlFormHelper.ExportExcelTemplateD(this, _tbl1, _tbl2, "R", ReportDocumentParameters,
-                MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName(), excelColumns, excelHeaders);
+
+            var setting = new ExportExcelSetting();
+            setting.data = _tbl1;
+            setting.data2 = _tbl2;
+            setting.reportParameters = ReportDocumentParameters;
+            setting.albcConfigData = _albcConfig.DATA;
+            V6ControlFormHelper.ExportExcelTemplateD(this, "R", setting,
+                ReportFile, ExcelTemplateFileFull, GetExportFileName(), excelColumns, excelHeaders);
         }
 
         private void exportToXmlMenu_Click(object sender, EventArgs e)
@@ -2112,8 +2118,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 }
                 else
                 {
-                    V6ControlFormHelper.ExportExcelTemplateD(this, _tbl1, _tbl2, "V", ReportDocumentParameters,
-                     MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, showFields, headerString);
+
+                    var setting = new ExportExcelSetting();
+                    setting.data = _tbl1;
+                    setting.data2 = _tbl2;
+                    setting.reportParameters = ReportDocumentParameters;
+                    setting.albcConfigData = _albcConfig.DATA;
+                    V6ControlFormHelper.ExportExcelTemplateD(this, "V", setting,
+                        ReportFile, ExcelTemplateFileView, ReportTitle, showFields, headerString);
                 }
             }
             catch (Exception ex)

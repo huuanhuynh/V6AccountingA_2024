@@ -12,6 +12,7 @@ using System.Linq;
 //using NPOI.SS.UserModel;
 using SmartXLS;
 using V6Tools.V6Convert;
+using System.Text.RegularExpressions;
 
 namespace V6Tools.V6Export
 {
@@ -93,7 +94,7 @@ namespace V6Tools.V6Export
         /// <param name="data">Bảng dữ liệu sẽ xuất, không được null.</param>
         /// <param name="columns">Danh sách các cột sẽ xuất. Nếu xuất hết để null.</param>
         /// <param name="isShiftRows">Chèn vùng trước khi chèn dữ liệu.</param>
-        /// <param name="isFieldNameShown">Hiển thị tên cột.</param>
+        /// <param name="isFieldNameShow">Hiển thị tên cột.</param>
         /// <param name="drawLine">Tô đen đường kẻ</param>
         /// <param name="firstRow">Dòng bắt đầu, 0 là đầu tiên, phải nhỏ hơn maxRows.</param>
         /// <param name="firstColumn">Cột bắt đầu, 0 là đầu tiên, phải nhỏ hơn maxColumns.</param>
@@ -101,8 +102,7 @@ namespace V6Tools.V6Export
         /// <param name="maxColumns">Xuất hết thì để 0 hoặc -1.</param>
         /// <param name="autoColWidth">Chỉnh lại độ rộng mỗi cột cho phù hợp với dữ liệu.</param>
         /// <param name="bPreserveTypes">Chưa đụng tới - bảo toàn kiểu dữ liệu.</param>
-        private static void ImportDataTable(WorkBook workBook, ExportExcelSetting setting, string[] columns,
-            bool isShiftRows, bool isFieldNameShown, bool drawLine,
+        private static void ImportDataTable(WorkBook workBook, ExportExcelSetting setting,
             int maxRows, int maxColumns, bool autoColWidth = false, bool bPreserveTypes = true)
         {
             if(setting.data == null)
@@ -110,11 +110,11 @@ namespace V6Tools.V6Export
 
             var data = setting.data.Copy();
 
-            var use_arr_cols = columns != null && columns.Length > 0;
+            var use_arr_cols = setting.columns != null && setting.columns.Length > 0;
             var arrColumnsInfo = new List<MyColumnInfo>();
             if (use_arr_cols)
             {
-                foreach (string column1 in columns)
+                foreach (string column1 in setting.columns)
                 {
                     MyColumnInfo myColumnInfo = new MyColumnInfo();
                     arrColumnsInfo.Add(myColumnInfo);
@@ -218,7 +218,7 @@ namespace V6Tools.V6Export
 
             #region ==== Chèn vùng dữ liệu =====
             int exportStartRow = setting.startRow;
-            if (isShiftRows && numOfRows>0)
+            if (setting.isInsertRow && numOfRows>0)
             {
                 var startRow = exportStartRow;
                 var startCol = setting.startColumn;
@@ -234,7 +234,7 @@ namespace V6Tools.V6Export
             #endregion chèn vùng
 
             #region === Điền tên cột ===
-            if (isFieldNameShown)
+            if (setting.isFieldNameShow)
             {
                 //Nếu hiện tên cột thì chèn thêm một dòng
                 workBook.insertRange(exportStartRow, setting.startColumn, exportStartRow, setting.startColumn + numOfColumns - 1, WorkBook.ShiftRows);
@@ -257,11 +257,11 @@ namespace V6Tools.V6Export
             #endregion điền tên cột
 
             #region ==== Tô đen đường kẻ ====
-            if (drawLine && numOfRows>0)
+            if (setting.isDrawLine && numOfRows>0)
             {
-                var startRow = exportStartRow - (isFieldNameShown ? 1 : 0);
+                var startRow = exportStartRow - (setting.isFieldNameShow ? 1 : 0);
                 var startCol = setting.startColumn;
-                var endRow = startRow + numOfRows - (isFieldNameShown ? 0 : 1);
+                var endRow = startRow + numOfRows - (setting.isFieldNameShow ? 0 : 1);
                 var endCol = startCol + numOfColumns - 1;
 
                 RangeStyle rangeStyle = workBook.getRangeStyle(startRow, startCol, endRow, endCol);
@@ -281,7 +281,7 @@ namespace V6Tools.V6Export
             {
                 var startRow = exportStartRow;
                 var startCol = setting.startColumn;
-                var endRow = startRow + numOfRows - (isFieldNameShown ? 0 : 1);
+                var endRow = startRow + numOfRows - (setting.isFieldNameShow ? 0 : 1);
                 var endCol = startCol + numOfColumns - 1;
                 int index = 0;
                 for (int i = startRow; i <= endRow; i++)
@@ -1290,9 +1290,7 @@ namespace V6Tools.V6Export
         /// <param name="drawLine">Vẽ đường kẻ lên dữ liệu</param>
         /// <param name="rowInsert">Chèn dữ liệu vào vị trí chèn, đẩy dòng xuống.</param>
         /// <returns></returns>
-        public static bool ToExcelTemplate(string xlsTemplateFile, ExportExcelSetting setting,
-            string[] columns, SortedDictionary<string, object> parameters, 
-            NumberFormatInfo nfi,bool rowInsert = false, bool drawLine = false)
+        public static bool ToExcelTemplate(string xlsTemplateFile, ExportExcelSetting setting, NumberFormatInfo nfi)
         {
             Message = "";
             //if (!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
@@ -1305,9 +1303,9 @@ namespace V6Tools.V6Export
                     workbook = ReadWorkBookCopy(xlsTemplateFile, setting.saveFile);
                 
                 //select sheet
-                
-                workbook.Sheet = setting.sheetIndex;
-                if (!string.IsNullOrEmpty(setting.sheet_name)) workbook.setSheetName(setting.sheetIndex, setting.sheet_name);
+
+                workbook.Sheet = 0;// setting.sheetIndex;
+                if (!string.IsNullOrEmpty(setting.sheet_name)) workbook.setSheetName(0, setting.sheet_name);
                 int sheetCount = workbook.NumSheets;
                 //string sheetName = workbook.getSheetName(sheetIndex);
                 //string t;
@@ -1321,12 +1319,12 @@ namespace V6Tools.V6Export
                     setting.startColumn = 0;
                 }
 
-                SetParametersAddressFormat(workbook, parameters);
+                SetParametersAddressFormat(workbook, setting.parameters);
 
                 //var endRow = startRow + data.Rows.Count - (data.Rows.Count > 0 ? 1 : 0);
                 //int endCol;// startCol + data.Columns.Count - 1;
-
-                ImportDataTable(workbook, setting, columns, rowInsert, false, drawLine, -1, -1);
+                setting.isFieldNameShow = false;
+                ImportDataTable(workbook, setting, -1, -1);
 
                 string save_ext = Path.GetExtension(setting.saveFile).ToLower();
                 if (save_ext == ".xlsx") workbook.writeXLSX(setting.saveFile);
@@ -1344,9 +1342,7 @@ namespace V6Tools.V6Export
         }
 
 
-        public static bool ToExcelTemplate_ManySheet(string xlsTemplateFile, List<ExportExcelSetting> setting_list,
-            string[] columns, SortedDictionary<string, object> parameters,
-            NumberFormatInfo nfi, bool rowInsert = false, bool drawLine = false)
+        public static bool ToExcelTemplate_ManySheet(string xlsTemplateFile, string saveFile, List<ExportExcelSetting> setting_list, NumberFormatInfo nfi)
         {
             Message = "";
             //if (!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
@@ -1355,16 +1351,19 @@ namespace V6Tools.V6Export
             workbook.setDefaultFont("Arial", 10 * 20, 1);
 
             if (File.Exists(xlsTemplateFile))
-                workbook = ReadWorkBookCopy(xlsTemplateFile, setting_list[0].saveFile);
+                workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
 
+            int sheet_index = 0;
             foreach (ExportExcelSetting setting in setting_list)
             {
                 try
                 {
+                    workbook.Sheet = sheet_index;
+                    workbook.copySheet(sheet_index + 1);
                     //select sheet
-                    workbook.Sheet = setting.sheetIndex;
-                    workbook.copySheet(setting.sheetIndex + 1);
-                    if (!string.IsNullOrEmpty(setting.sheet_name)) workbook.setSheetName(setting.sheetIndex, setting.sheet_name);
+                    workbook.Sheet = sheet_index;
+
+                    if (!string.IsNullOrEmpty(setting.sheet_name)) workbook.setSheetName(sheet_index, setting.sheet_name);
                     int sheetCount = workbook.NumSheets;
                     //string sheetName = workbook.getSheetName(sheetIndex);
                     //string t;
@@ -1378,18 +1377,12 @@ namespace V6Tools.V6Export
                         setting.startColumn = 0;
                     }
 
-                    SetParametersAddressFormat(workbook, parameters);
+                    SetParametersAddressFormat(workbook, setting.parameters);
 
                     //var endRow = startRow + data.Rows.Count - (data.Rows.Count > 0 ? 1 : 0);
                     //int endCol;// startCol + data.Columns.Count - 1;
-
-                    ImportDataTable(workbook, setting, columns, rowInsert, false, drawLine, -1, -1);
-
-                    string save_ext = Path.GetExtension(setting.saveFile).ToLower();
-                    if (save_ext == ".xlsx") workbook.writeXLSX(setting.saveFile);
-                    else workbook.write(setting.saveFile);
-                    workbook.Dispose();
-                    return true;//a false nhưng vẫn lưu file thành công???
+                    setting.isFieldNameShow = false;
+                    ImportDataTable(workbook, setting, -1, -1);
 
                 }
                 catch (Exception ex)
@@ -1398,12 +1391,19 @@ namespace V6Tools.V6Export
                     workbook.Dispose();
                     
                 }
+                sheet_index++;
             }
 
-            // tổng kết
-            return true || false;
+            string save_ext = Path.GetExtension(saveFile).ToLower();
+            if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
+            else workbook.write(saveFile);
+            workbook.Dispose();
+            return true;//a false nhưng vẫn lưu file thành công???
+
             
         }
+
+        
 
 
         /// <summary>
@@ -1492,7 +1492,10 @@ namespace V6Tools.V6Export
 
             //var endRow = startRow + data.Rows.Count - (data.Rows.Count > 0 ? 1 : 0);
             //int endCol;// startCol + data.Columns.Count - 1;
-            ImportDataTable(workbook, setting, columns, rowInsert, false, drawLine, -1, -1);
+            setting.isInsertRow = rowInsert;
+            setting.isDrawLine = drawLine;
+            setting.isFieldNameShow = false;
+            ImportDataTable(workbook, setting, -1, -1);
                 
             string save_ext = Path.GetExtension(saveFile).ToLower();
             if (save_ext == ".xlsx") workbook.writeXLSX(stream);
@@ -1549,8 +1552,10 @@ namespace V6Tools.V6Export
                 }
 
                 SetParametersAddressFormat(workbook, parameters);
-                
-                ImportDataTable(workbook, setting, columns, rowInsert, false, drawLine, -1, -1);
+                setting.isInsertRow = rowInsert;
+                setting.isDrawLine = drawLine;
+                setting.isFieldNameShow = false;
+                ImportDataTable(workbook, setting, -1, -1);
 
                 //Nếu rowIndex = 0 thì chèn thêm một dòng
                 if (headers != null && headers.Length > 0)
@@ -1618,7 +1623,10 @@ namespace V6Tools.V6Export
                     setting.startColumn = GetExcelColumn(firstCell);
                     setting.data = data;
                     //Sua lap
-                    ImportDataTable(workbook, setting, columns, rowInsert, false, drawLine, -1, -1);
+                    setting.isInsertRow = rowInsert;
+                    setting.isDrawLine = drawLine;
+                    setting.isFieldNameShow = false;
+                    ImportDataTable(workbook, setting, -1, -1);
                 }
 
                 string save_ext = Path.GetExtension(xlsTemplateFile).ToLower();
@@ -1700,7 +1708,10 @@ namespace V6Tools.V6Export
 
             setting.startRow = startRow;
             setting.startColumn = startCol;
-            ImportDataTable(workBook, setting, null, false, true, setting.isDrawLine, -1, -1);
+            setting.isInsertRow = false;
+            setting.isFieldNameShow = true;
+            
+            ImportDataTable(workBook, setting, -1, -1);
 
             var ext = Path.GetExtension(setting.saveFile);
             if (ext != null)
@@ -1778,7 +1789,9 @@ namespace V6Tools.V6Export
 
             setting.startRow = startRow;
             setting.startColumn = startCol;
-            ImportDataTable(workBook, setting, null, false, true, setting.isDrawLine, -1, -1);
+            setting.isInsertRow = false;
+            setting.isFieldNameShow = true;
+            ImportDataTable(workBook, setting, -1, -1);
 
             var ext = Path.GetExtension(setting.saveFile);
             Stream st = new MemoryStream();
