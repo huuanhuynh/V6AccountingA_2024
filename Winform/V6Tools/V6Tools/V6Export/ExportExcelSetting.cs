@@ -28,8 +28,18 @@ namespace V6Tools.V6Export
         public string sheet_name = null;
         public string title = "";
         public string fontName;
+        /// <summary>
+        /// data chi tiết, trường hợp group là dữ liệu nhóm.
+        /// </summary>
         public DataTable data;
+        /// <summary>
+        /// data thông tin chính, trường hợp group là data chi tiết.
+        /// </summary>
         public DataTable data2 = null;
+        /// <summary>
+        /// Trường hợp Group. Dữ liệu phụ (thông tin) khi type = 2 (như data2 trường hợp thường).
+        /// </summary>
+        public DataTable data3 = null;
         public string[] columns = null;
         
         public bool isShowFieldName;

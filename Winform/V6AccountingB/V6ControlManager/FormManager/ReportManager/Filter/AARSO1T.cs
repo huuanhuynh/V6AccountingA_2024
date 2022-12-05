@@ -13,6 +13,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
            
             F3 = false;
             F5 = true;
+            F7 = true;
             F9 = true;
             F10 = true;
 
@@ -150,13 +151,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@Advance", cKey));
             return result;
-            
-
-            
-            
-            
         }
 
+        private void rbtLAN_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
+        }
+
+        private void rTienViet_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+        }
         
     }
 }

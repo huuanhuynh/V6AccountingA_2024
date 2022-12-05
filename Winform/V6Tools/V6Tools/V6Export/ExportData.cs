@@ -1342,7 +1342,7 @@ namespace V6Tools.V6Export
         }
 
 
-        public static bool ToExcelTemplate_ManySheet(string xlsTemplateFile, string saveFile, List<ExportExcelSetting> setting_list, NumberFormatInfo nfi)
+        public static bool ToExcelTemplate_ManySheet(string xlsTemplateFile, string saveFile, List<ExportExcelSetting> setting_list, NumberFormatInfo nfi0)
         {
             Message = "";
             //if (!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
@@ -1352,7 +1352,7 @@ namespace V6Tools.V6Export
 
             if (File.Exists(xlsTemplateFile))
                 workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
-
+            
             int sheet_index = 0;
             foreach (ExportExcelSetting setting in setting_list)
             {
@@ -1585,7 +1585,7 @@ namespace V6Tools.V6Export
         /// <summary>
         /// Xuất excel báo cáo thuế HTKK
         /// </summary>
-        public static bool ToExcelTemplateHTKK(string xlsTemplateFile, SortedDictionary<string, object> parameters,
+        public static bool ToExcelTemplateHTKK(string xlsTemplateFile,
             SortedDictionary<string, DataTable> datas, ExportExcelSetting setting, string[] columns, string saveFile, NumberFormatInfo nfi,
             bool rowInsert = false, bool drawLine = false)
         {
@@ -1599,7 +1599,7 @@ namespace V6Tools.V6Export
                 if(File.Exists(xlsTemplateFile))
                     workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
                 
-                SetParametersAddressFormat(workbook, parameters);
+                SetParametersAddressFormat(workbook, setting.parameters);
 
                 //select sheet
                 int sheetIndex = 0;

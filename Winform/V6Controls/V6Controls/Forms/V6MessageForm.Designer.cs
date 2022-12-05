@@ -55,6 +55,7 @@
             this.lblMessage.Size = new System.Drawing.Size(62, 13);
             this.lblMessage.TabIndex = 0;
             this.lblMessage.Text = "Thông báo.";
+            this.lblMessage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lblMessage_MouseUp);
             // 
             // buttonOK
             // 
@@ -194,9 +195,7 @@
             this.Name = "V6MessageForm";
             this.ShowInTaskbar = false;
             this.Text = "Thông báo";
-            this.Controls.SetChildIndex(this.lblMessage, 0);
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Load += new System.EventHandler(this.V6MessageForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -206,7 +205,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCANCEL;
         private System.Windows.Forms.Button buttonYES;
@@ -217,5 +215,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Label lblMessage;
     }
 }

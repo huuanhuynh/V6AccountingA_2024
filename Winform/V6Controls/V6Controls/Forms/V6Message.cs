@@ -101,9 +101,36 @@ namespace V6Controls.Forms
         /// <param name="owner"></param>
         /// <returns></returns>
         public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, MessageBoxIcon icon,
-            int defaultButton, IWin32Window owner = null)
+            int defaultButton)
         {
             var mbox = new V6MessageForm(text, caption, showTime, buttons, icon, defaultButton);
+            return mbox.ShowDialog(null);
+        }
+
+        public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, MessageBoxIcon icon,
+            int defaultButton, IWin32Window owner)
+        {
+            var mbox = new V6MessageForm(text, caption, showTime, buttons, icon, defaultButton);
+            return mbox.ShowDialog(owner);
+        }
+
+        /// <summary>
+        /// Hiển thị thông báo.
+        /// </summary>
+        /// <param name="text">Nội dung thông báo</param>
+        /// <param name="caption">Tiêu đề</param>
+        /// <param name="showTime">Thời gian hiển thị mờ dần, 500 là 5 giây.</param>
+        /// <param name="buttons">Kiểu nút bấm ok - cancel</param>
+        /// <param name="icon">Loại biểu tượng.</param>
+        /// <param name="defaultButton">Nút nhấn mặc định cho nút Enter: 0-Mặc định, 1-Nút thứ nhất, 2-Nút thứ hai</param>
+        /// <param name="owner">From gọi message.</param>
+        /// <param name="accessible_description">Mã ngôn ngữ để có thể sửa được nội dung bằng chuột phải.</param>
+        /// <returns></returns>
+        public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, MessageBoxIcon icon,
+            int defaultButton, IWin32Window owner, string accessible_description)
+        {
+            var mbox = new V6MessageForm(text, caption, showTime, buttons, icon, defaultButton);
+            if (!string.IsNullOrEmpty(accessible_description)) mbox.lblMessage.AccessibleDescription = accessible_description;
             return mbox.ShowDialog(owner);
         }
 

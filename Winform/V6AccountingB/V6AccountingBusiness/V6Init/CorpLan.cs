@@ -44,11 +44,20 @@ namespace V6Init
             }
             return ID;
         }
+        /// <summary>
+        /// Cập nhập dữ liệu ngôn ngữ đã tải.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="text"></param>
         public static void SetText(string id, string text)
         {
             dataDictionary[id.ToUpper()] = text;
         }
 
+        /// <summary>
+        /// Cập nhập dữ liệu ngôn ngữ đã tải.
+        /// </summary>
+        /// <param name="id"></param>
         public static void RemoveText(string id)
         {
             string ID = id.ToUpper();

@@ -9,6 +9,7 @@ using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -172,9 +173,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     this.ShowMessage(V6Text.DataLoading);
                 }
 
-                V6ControlFormHelper.ExportExcelTemplateHTKK(_ds.Tables[0], _ds.Tables[1],
-                    reportRviewBase.ReportDocumentParameters,
-                    reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
+                var setting = new ExportExcelSetting();
+                setting.data = _ds.Tables[0];
+                setting.data2 = _ds.Tables[1];
+                setting.reportParameters = reportRviewBase.ReportDocumentParameters;
+                setting.albcConfigData = reportRviewBase._albcConfig.DATA;
+                V6ControlFormHelper.ExportExcelTemplateHTKK(setting, reportRviewBase.ReportFile,
                     reportRviewBase.ExcelTemplateFileFullHTKK, txtFileName.Text
                     );
             }
@@ -186,9 +190,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     this.ShowMessage(V6Text.DataLoading);
                 }
 
-                V6ControlFormHelper.ExportExcelTemplateHTKK(_ds.Tables[0], _ds.Tables[1],
-                    reportRviewBase.ReportDocumentParameters,
-                    reportRviewBase.MAU, reportRviewBase.LAN, reportRviewBase.ReportFile,
+                var setting = new ExportExcelSetting();
+                setting.data = _ds.Tables[0];
+                setting.data2 = _ds.Tables[1];
+                setting.reportParameters = reportRviewBase.ReportDocumentParameters;
+                setting.albcConfigData = reportRviewBase._albcConfig.DATA;
+                V6ControlFormHelper.ExportExcelTemplateHTKK(setting, reportRviewBase.ReportFile,
                     reportRviewBase.ExcelTemplateFileFullHTKK, txtFileName.Text
                     );
             }

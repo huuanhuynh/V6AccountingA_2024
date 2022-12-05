@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
         public List<DataRow> remove_list_d = new List<DataRow>();
 
-        public V6PrintMode PrintMode = V6PrintMode.AutoLoadData;// AutoClickNhan = false;
+        public V6PrintMode PrintMode = V6PrintMode.DoNoThing;// AutoClickNhan = false;
         public string _reportProcedure, _reportFile;
         public string _program, _reportCaption, _reportCaption2;
         public string _reportFileF5, _reportTitleF5, _reportTitle2F5;

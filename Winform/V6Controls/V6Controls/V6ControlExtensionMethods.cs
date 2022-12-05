@@ -736,6 +736,10 @@ namespace V6Controls
             return V6ControlFormHelper.ShowErrorException(address, ex, caption, owner, showTime);
         }
 
+        public static DialogResult ShowConfirmMessage(this IWin32Window owner, string message)
+        {
+            return V6Message.Show(message, null, 0, MessageBoxButtons.YesNo, MessageBoxIcon.Question, 0, owner);
+        }
         /// <summary>
         /// Return yes/no
         /// </summary>
@@ -745,9 +749,14 @@ namespace V6Controls
         /// <param name="showTime"></param>
         /// <param name="dbutton"></param>
         /// <returns>yes/no</returns>
-        public static DialogResult ShowConfirmMessage(this IWin32Window owner, string message, string caption = null, int showTime = 0, int dbutton = 0)
+        public static DialogResult ShowConfirmMessage(this IWin32Window owner, string message, string caption, int showTime, int dbutton)
         {
             return V6Message.Show(message, caption, showTime, MessageBoxButtons.YesNo, MessageBoxIcon.Question, dbutton, owner);
+        }
+
+        public static DialogResult ShowConfirmMessage(this IWin32Window owner, string message, string caption, int showTime = 0, int dbutton = 0, string acc_description = ".")
+        {
+            return V6Message.Show(message, caption, showTime, MessageBoxButtons.YesNo, MessageBoxIcon.Question, dbutton, owner, acc_description);
         }
 
         public static DialogResult ShowConfirmCancelMessage(this IWin32Window owner, string message, int showTime = 0)

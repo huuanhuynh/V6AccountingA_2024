@@ -1497,8 +1497,13 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
 
         private void exportToExcelGroupMenu_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelGroup_ChooseFile(this, _tbl1, _tbl2, _tbl3, ReportDocumentParameters,
-                MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            var setting = new ExportExcelSetting();
+            setting.data = _tbl1;
+            setting.data2 = _tbl2;
+            setting.data3 = _tbl3;
+            setting.reportParameters = ReportDocumentParameters;
+            setting.albcConfigData = _albcConfig.DATA;
+            V6ControlFormHelper.ExportExcelGroup_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
         }
 
         private void btnExport3_Click(object sender, EventArgs e)

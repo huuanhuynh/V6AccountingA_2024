@@ -831,22 +831,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                if (V6Setting.ReportLanguage == "V")
+                if (!_setVEBC)
                 {
-                    rTiengViet.Checked = true;
+                    SetLanguage(V6Setting.ReportLanguage);
                 }
-                else if (V6Setting.ReportLanguage == "E")
-                {
-                    rEnglish.Checked = true;
-                }
-                else if (V6Setting.ReportLanguage == "B")
-                {
-                    rBothLang.Checked = true;
-                }
-                else
-                {
-                    rCurrent.Checked = true;
-                }
+                //if (V6Setting.ReportLanguage == "V")
+                //{
+                //    rTiengViet.Checked = true;
+                //}
+                //else if (V6Setting.ReportLanguage == "E")
+                //{
+                //    rEnglish.Checked = true;
+                //}
+                //else if (V6Setting.ReportLanguage == "B")
+                //{
+                //    rBothLang.Checked = true;
+                //}
+                //else
+                //{
+                //    rCurrent.Checked = true;
+                //}
                 LoadComboboxSource();
                 LoadDefaultData(4, "", _Ma_File, m_itemId, "");
                 //Gán điều kiện sum cho gridViewSummary1
@@ -1232,6 +1236,85 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             else
             {
                 _tbl3 = null;
+            }
+        }
+
+        /// <summary>
+        /// hàm mới: gán check Tiền Việt / Ngoại tệ
+        /// </summary>
+        /// <param name="VN_FC"></param>
+        public virtual void SetLoaiTien(string VN_FC)
+        {
+            try
+            {
+                var rTienViet = GetControlByName("rTienViet") as RadioButton;
+                var rNgoaiTe = GetControlByName("rNgoaiTe") as RadioButton;
+                if (VN_FC == "FC")
+                {
+                    rTienViet.Checked = false;
+                    rNgoaiTe.Checked = true;
+                }
+                else if (VN_FC == "VN")
+                {
+                    rTienViet.Checked = true;
+                    rNgoaiTe.Checked = false;
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// cờ không gán lại ở Form_load
+        /// </summary>
+        bool _setVEBC = false;
+        /// <summary>
+        /// hàm mới: gán check loại report Tiếng Việt, Eng, Cả 2 hoặc đã chọn lúc login.
+        /// </summary>
+        /// <param name="VEBC"></param>
+        public virtual void SetLanguage(string VEBC)
+        {
+            _setVEBC = true;
+            try
+            {
+                //var rTiengViet = GetControlByName("rTiengViet") as RadioButton;
+                //var rEnglish = GetControlByName("rEnglish") as RadioButton;
+                //var rBothLang = GetControlByName("rBothLang") as RadioButton;
+                //var rCurrent = GetControlByName("rCurrent") as RadioButton;
+                if (VEBC == "V")
+                {
+                    rTiengViet.Checked = true;
+                    rEnglish.Checked = false;
+                    rBothLang.Checked = false;
+                    rCurrent.Checked = false;
+                }
+                else if (VEBC == "E")
+                {
+                    rTiengViet.Checked = false;
+                    rEnglish.Checked = true;
+                    rBothLang.Checked = false;
+                    rCurrent.Checked = false;
+                }
+                else if (VEBC == "B")
+                {
+                    rTiengViet.Checked = false;
+                    rEnglish.Checked = false;
+                    rBothLang.Checked = true;
+                    rCurrent.Checked = false;
+                }
+                else if (VEBC == "C")
+                {
+                    rTiengViet.Checked = false;
+                    rEnglish.Checked = false;
+                    rBothLang.Checked = false;
+                    rCurrent.Checked = true;
+                }
+            }
+            catch
+            {
+
             }
         }
 
@@ -1917,6 +2000,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var printTool = new ReportPrintTool(_repx0);
                 printTool.PrintingSystem.ShowMarginsWarning = false;
                 printTool.PrintDialog();
+
+                if (PrintMode == V6PrintMode.AutoClickPrintThenClose)
+                {
+                    btnHuy.PerformClick();
+                }
             }
             catch (Exception ex)
             {

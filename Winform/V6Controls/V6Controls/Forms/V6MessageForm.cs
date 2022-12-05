@@ -1,5 +1,12 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using V6AccountingBusiness;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
+using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms
 {
@@ -173,6 +180,91 @@ namespace V6Controls.Forms
             }
         }
 
+        private void V6MessageForm_Load(object sender, System.EventArgs e)
+        {
+            //V6ControlFormHelper.ApplyControlTripleClick(lblMessage.Parent);
+        }
+
+        Point old_right_mouseup_location = new Point();
+        private int right_count;
+        private void lblMessage_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.Location == old_right_mouseup_location)
+                {
+                    right_count++;
+                    if (right_count == 3)
+                    {
+                        DoAddEditCorplan();
+                    }
+                }
+                else
+                {
+                    old_right_mouseup_location = e.Location;
+                    right_count = 1;
+                }
+            }
+            else
+            {
+                old_right_mouseup_location = new Point();
+                right_count = 0;
+            }
+        }
+
+        private void DoAddEditCorplan()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(lblMessage.AccessibleDescription) || lblMessage.AccessibleDescription == ".") return;
+                if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
+
+                IDictionary<string, object> key = new Dictionary<string, object>();
+                string ID = lblMessage.AccessibleDescription;
+                key["ID"] = ID;
+
+                FormAddEdit form;
+                if (V6BusinessHelper.CheckDataExist("CorpLan", key))
+                {
+                    form = new FormAddEdit("CorpLan", V6Mode.Edit, key, null);
+                }
+                else
+                {
+                    IDictionary<string, object> data = new Dictionary<string, object>(key);
+                    data["D"] = lblMessage.Text;
+                    data["V"] = lblMessage.Text;
+                    data["E"] = lblMessage.Text;
+                    if (ID.Length > 9)
+                    {
+                        data["SFILE"] = ID.Substring(0, ID.Length - 9);
+                        data["CTYPE"] = ID.Substring(data["SFILE"].ToString().Length, 1);
+                    }
+                    form = new FormAddEdit("CorpLan", V6Mode.Add, null, data);
+                }
+
+                form.InitFormControl(this);
+                (form.FormControl as CorpLanAddEditForm).AutoID = false;
+                (form.FormControl as CorpLanAddEditForm).LockID(true);
+                form.ShowDialog(this);
+                if (form.UpdateSuccess || form.InsertSuccess)
+                {
+                    lblMessage.Text = form.Data[V6Login.SelectedLanguage].ToString();
+                    if (V6Setting.IsVietnamese && !ObjectAndString.ObjectToBool(form.Data["CHANGE_V"]))
+                    {
+                        CorpLan.RemoveText(ID);
+                    }
+                    else
+                    {
+                        CorpLan.SetText(ID, lblMessage.Text);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
         public override void DoHotKey(Keys keyData)
         {
             try
@@ -226,5 +318,7 @@ namespace V6Controls.Forms
                 //DialogResult = DialogResult.Cancel;
             }
         }
+
+        
     }
 }

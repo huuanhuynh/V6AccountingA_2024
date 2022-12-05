@@ -84,6 +84,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         //Các biến xài tùy ý.
         public IDictionary<string, object> ObjectDictionary = new SortedDictionary<string, object>();
+        /// <summary>
+        /// Lấy giá trị trong ObjectDictionary, nếu không có trả về null.
+        /// </summary>
+        /// <param name="KEY"></param>
+        /// <returns></returns>
+        public object GetOD(string KEY)
+        {
+            if (ObjectDictionary.ContainsKey(KEY)) return ObjectDictionary[KEY];
+            return null;
+        }
         public event StringValueChanged String1ValueChanged;
         public event CheckValueChanged Check1ValueChanged;
 
