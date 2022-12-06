@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             
             if (Invoice.Alct == null)
             {
-                this.ShowWarningMessage(V6Text.Text("KTMACT"));
+                this.ShowWarningMessage(V6Text.Text("KTMACT"), "KTMACT");
                 Hide();
             }
             else

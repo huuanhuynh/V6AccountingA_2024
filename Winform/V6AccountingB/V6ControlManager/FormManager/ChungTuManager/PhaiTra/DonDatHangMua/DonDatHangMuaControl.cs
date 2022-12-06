@@ -5563,7 +5563,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -5701,7 +5701,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             {
                 //if (_tkDt.Int_Data("Loai_tk") == 0)
                 //{
-                //    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                //    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                 //    return false;
                 //}
                 string firstErrorField;

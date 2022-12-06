@@ -764,15 +764,29 @@ namespace V6Controls
             return V6Message.Show(message, null, showTime, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, 3, owner);
         }
 
+
+        public static void ShowWarningMessage(this IWin32Window owner, string message)
+        {
+            V6Message.Show(message, V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!", 0, MessageBoxButtons.OK, MessageBoxIcon.Warning, owner);
+        }
+        public static void ShowWarningMessage(this IWin32Window owner, string message, string acc_description)
+        {
+            V6Message.Show(message, V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!", 0, MessageBoxButtons.OK, MessageBoxIcon.Warning, owner, acc_description);
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="owner"></param>
         /// <param name="message"></param>
         /// <param name="showTime">Phần trăm giây</param>
-        public static void ShowWarningMessage(this IWin32Window owner, string message, int showTime = 0)
+        public static void ShowWarningMessage(this IWin32Window owner, string message, int showTime)
         {
             V6Message.Show(message, V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!", showTime, MessageBoxButtons.OK, MessageBoxIcon.Warning, owner);
+        }
+
+        public static void ShowWarningMessage(this IWin32Window owner, string message, int showTime, string acc_description)
+        {
+            V6Message.Show(message, V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!", showTime, MessageBoxButtons.OK, MessageBoxIcon.Warning, owner, acc_description);
         }
 
         /// <summary>

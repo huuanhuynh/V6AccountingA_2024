@@ -5127,7 +5127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -5553,7 +5553,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     ShowParentMessage(V6Text.NoInput + btnApGia.Text);
                     return;
                 }
-                if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL"), V6Text.Confirm, 0, 0, "ASKAPGIABANALL") != DialogResult.Yes)
                 {
                     if (ActiveControl == txtMaKh)
                     {
@@ -5811,7 +5811,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             if (shift_is_down)
             {
-                if (this.ShowConfirmMessage(V6Text.Text("ASKXOACKKM")) == DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKXOACKKM"), V6Text.Confirm, 0, 0, "ASKXOACKKM") == DialogResult.Yes)
                 {
                     XoaKhuyenMai();
                     XoaChietKhau();

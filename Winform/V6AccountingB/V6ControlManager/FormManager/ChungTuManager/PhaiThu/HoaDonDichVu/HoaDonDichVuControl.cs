@@ -745,7 +745,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             {
                 if (_tk_i_33.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"), "TKCNTHIEUMAKH");
                     return false;
                 }
             }
@@ -3715,13 +3715,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 }
                 if (txtManx.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     txtManx.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -3872,7 +3872,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             {
                 if (_tk_dt.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     return false;
                 }
 

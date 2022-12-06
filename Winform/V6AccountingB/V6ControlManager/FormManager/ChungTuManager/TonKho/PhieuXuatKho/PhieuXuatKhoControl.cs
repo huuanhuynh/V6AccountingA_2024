@@ -5364,7 +5364,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -5488,7 +5488,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 if (_tkVt.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     return false;
                 }
 

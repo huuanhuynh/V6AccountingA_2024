@@ -5514,7 +5514,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }

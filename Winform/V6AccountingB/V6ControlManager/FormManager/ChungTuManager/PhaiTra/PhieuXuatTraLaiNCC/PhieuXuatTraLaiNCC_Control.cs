@@ -4985,13 +4985,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 }
                 if (txtManx.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     txtManx.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -5115,7 +5115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             {
                 if (_tkVt.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     return false;
                 }
 

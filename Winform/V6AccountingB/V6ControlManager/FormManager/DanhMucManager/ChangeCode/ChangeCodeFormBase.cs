@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             }
             else if (newCode == oldCode)
             {
-                this.ShowWarningMessage(V6Text.Text("TRUNGMACU"));
+                this.ShowWarningMessage(V6Text.Text("TRUNGMACU"), "TRUNGMACU");
             }
             else
             {

@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                if (this.ShowConfirmMessage(V6Text.Text("ASKEXPORTEXCEL_NHIEUSHEET")) != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKEXPORTEXCEL_NHIEUSHEET"), V6Text.Confirm, 0, 0, "ASKEXPORTEXCEL_NHIEUSHEET") != DialogResult.Yes)
                 {
                     return;
                 }
@@ -235,7 +235,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                if (this.ShowConfirmMessage(V6Text.Text("ASKINTUNGTRANG1")) != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKINTUNGTRANG1"), V6Text.Confirm, 0, 0, "ASKINTUNGTRANG1") != DialogResult.Yes)
                 {
                     return;
                 }
@@ -422,7 +422,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                if (this.ShowConfirmMessage(V6Text.Text("ASKINLIENTUC")) != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKINLIENTUC"), V6Text.Confirm, 0, 0, "ASKINLIENTUC") != DialogResult.Yes)
                 {
                     return;
                 }

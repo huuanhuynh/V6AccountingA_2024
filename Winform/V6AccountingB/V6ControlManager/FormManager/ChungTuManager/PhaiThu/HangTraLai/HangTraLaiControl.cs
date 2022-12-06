@@ -5084,13 +5084,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 }
                 if (txtManx.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     txtManx.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -5206,7 +5206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             {
                 if (_tkTl.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     _tkTl.Focus();
                     return false;
                 }
@@ -5794,7 +5794,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     ShowParentMessage(V6Text.NoInput + btnApGia.Text);
                     return;
                 }
-                if (!auto && this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
+                if (!auto && this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL"), V6Text.Confirm, 0, 0, "ASKAPGIABANALL") != DialogResult.Yes)
                 {
                     return;
                 }
@@ -5806,7 +5806,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     }
                     else
                     {
-                        if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL"), V6Text.Confirm, 0, 0, "ASKAPGIABANALL") != DialogResult.Yes)
                         {
                             if (ActiveControl == txtMaKh)
                             {

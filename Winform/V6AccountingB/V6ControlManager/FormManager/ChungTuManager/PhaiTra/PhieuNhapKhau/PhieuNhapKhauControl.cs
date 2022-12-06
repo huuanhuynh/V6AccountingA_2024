@@ -1567,7 +1567,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 if (_tk_i_33.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"), "TKCNTHIEUMAKH");
                     return false;
                 }
             }
@@ -7276,13 +7276,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 }
                 if (txtManx.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     txtManx.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -7298,14 +7298,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 }
                 if (!CheckPhanBo(dataGridView3ChiPhi, txtT_cp_nt.Value))
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHECKPHANBO"));
+                    this.ShowWarningMessage(V6Text.Text("CHECKPHANBO"), "CHECKPHANBO");
                     return false;
                 }
 
                 //Nhập thuế tự động
                 if (!NhapThueTuDong())
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHECKTHUE"));
+                    this.ShowWarningMessage(V6Text.Text("CHECKTHUE"), "CHECKTHUE");
                     return false;
                 }
 
@@ -8314,7 +8314,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     }
                     else
                     {
-                        if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL"), V6Text.Confirm, 0, 0, "ASKAPGIABANALL") != DialogResult.Yes)
                         {
                             if (ActiveControl == txtMaKh)
                             {

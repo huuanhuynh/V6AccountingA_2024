@@ -72,6 +72,12 @@ namespace V6Controls.Forms
             return mbox.ShowDialog(owner);
         }
 
+
+        public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            var mbox = new V6MessageForm(text, caption, showTime, buttons, icon);
+            return mbox.ShowDialog();
+        }
         /// <summary>
         /// Displays a message box with specified text, caption, buttons, and icon.
         /// </summary>
@@ -83,9 +89,16 @@ namespace V6Controls.Forms
         /// <param name="icon"></param>
         /// <param name="owner"></param>
         /// <returns>DialogResult</returns>
-        public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, MessageBoxIcon icon, IWin32Window owner = null)
+        public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, MessageBoxIcon icon, IWin32Window owner)
         {
             var mbox = new V6MessageForm(text, caption, showTime, buttons, icon);
+            return mbox.ShowDialog(owner);
+        }
+
+        public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, MessageBoxIcon icon, IWin32Window owner, string acc_d)
+        {
+            var mbox = new V6MessageForm(text, caption, showTime, buttons, icon);
+            mbox.lblMessage.AccessibleDescription = acc_d;
             return mbox.ShowDialog(owner);
         }
         

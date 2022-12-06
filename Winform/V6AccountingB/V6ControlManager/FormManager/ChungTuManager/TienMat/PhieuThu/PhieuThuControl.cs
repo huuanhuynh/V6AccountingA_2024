@@ -787,7 +787,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 if (_tk_i_33.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"), "TKCNTHIEUMAKH");
                     return false;
                 }
             }
@@ -3954,13 +3954,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 }
                 if (txtTk.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     txtTk.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -4114,7 +4114,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
              {
                  if (_tkI.Int_Data("Loai_tk") == 0)
                  {
-                     this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                     this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                      return false;
                  }
 

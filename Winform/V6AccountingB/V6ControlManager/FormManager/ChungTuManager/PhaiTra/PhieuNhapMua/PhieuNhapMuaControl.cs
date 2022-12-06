@@ -1523,7 +1523,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 if (_tk_i_33.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"), "TKCNTHIEUMAKH");
                     return false;
                 }
             }
@@ -7478,13 +7478,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 }
                 if (txtManx.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"), "TKNOTCT");
                     txtManx.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"), "CHUACHONKIEUPOST");
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -7500,7 +7500,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 }
                 if (!CheckPhanBo(dataGridView3ChiPhi, TxtT_cp_nt.Value))
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHECKPHANBO"));
+                    this.ShowWarningMessage(V6Text.Text("CHECKPHANBO"), "CHECKPHANBO");
                     return false;
                 }
                 if (txtTongThueNt.Value + txtTongThue.Value != 0)
@@ -7510,7 +7510,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         //TuDongTinhThue
                         if (!NhapThueTuDong())
                         {
-                            this.ShowWarningMessage(V6Text.Text("CHECKTHUE"));
+                            this.ShowWarningMessage(V6Text.Text("CHECKTHUE"), "CHECKTHUE");
                             return false;
                         }
                     }
@@ -7519,7 +7519,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 //Nhập thuế tự động
                 if (!NhapThueTuDong())
                 {
-                    this.ShowWarningMessage(V6Text.Text("CHECKTHUE"));
+                    this.ShowWarningMessage(V6Text.Text("CHECKTHUE"), "CHECKTHUE");
                     return false;
                 }
 
