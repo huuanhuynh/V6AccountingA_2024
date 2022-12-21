@@ -1394,6 +1394,7 @@ namespace V6Tools.V6Export
                 sheet_index++;
             }
 
+            workbook.Sheet = 0;
             string save_ext = Path.GetExtension(saveFile).ToLower();
             if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
             else workbook.write(saveFile);

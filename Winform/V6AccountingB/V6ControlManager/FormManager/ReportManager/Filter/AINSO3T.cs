@@ -12,6 +12,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
            
             F3 = false;
             F5 = true;
+            F7 = true;
             F9 = true;
             F10 = true;
 
@@ -71,13 +72,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
         }
 
+        public override void UpdateValues()
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
+        }
+
         /// <summary>
         /// Lay cac tham so cho procedure
         /// </summary>
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-
+            UpdateValues();
             //@Ngay_ct1 SmallDateTime, --Từ ngày
             //@Ngay_ct2 SmallDateTime, --Đến ngày
             //@Advance AS VARCHAR(max) = ''-- Điều kiện lọc
@@ -145,10 +155,21 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Advance", cKey));
             return result;
             
+            
+        }
 
-            
-            
-            
+
+        private void rTienViet_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+        }
+
+        private void rbtLAN_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
         }
 
         

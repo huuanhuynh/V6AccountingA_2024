@@ -130,9 +130,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@Advance", cKey));
             return result;
-            
         }
-
+        
+        private void rTienViet_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+        }
 
         private void rbtLAN_CheckedChanged(object sender, System.EventArgs e)
         {
@@ -140,11 +143,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
             if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
             if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
-        }
-
-        private void rTienViet_CheckedChanged(object sender, System.EventArgs e)
-        {
-            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
         }
 
         

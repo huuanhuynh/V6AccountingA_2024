@@ -265,6 +265,24 @@ namespace V6Init
                 UtilityHelper.WriteRegistry("LASTUSERW", value);
             }
         }
+
+        private static string _oldPrinter = null;
+        public static string OLDPRINTER
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_lastUserW))
+                {
+                    _oldPrinter = UtilityHelper.ReadRegistry("OLDPRINTER") ?? "";
+                }
+                return _oldPrinter;
+            }
+            set
+            {
+                _oldPrinter = value;
+                UtilityHelper.WriteRegistry("OLDPRINTER", value);
+            }
+        }
         public static int M_Nam_bd
         {
             get

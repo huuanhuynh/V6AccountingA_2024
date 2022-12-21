@@ -2296,42 +2296,7 @@ namespace V6AccountingBusiness
         /// <returns></returns>
         public static string ReadOldSelectPrinter()
         {
-            string path = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, "oldPrinter");
-            string s = "";
-            if (File.Exists(path))
-            {
-                FileStream fs = new FileStream(path, FileMode.Open);
-                StreamReader sr = new StreamReader(fs);
-                try
-                {
-                    s = sr.ReadLine();
-                    sr.Close(); fs.Close();
-                }
-                catch (Exception)
-                {
-                    try
-                    {
-                        sr.Close();
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                    try
-                    {
-                        fs.Close();
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                }
-            }
-            else
-            {
-                s = "";
-            }
-            return s;
+            return V6Setting.OLDPRINTER;
         }
         /// <summary>
         /// Ghi tên máy in xuống file oldPrinter
@@ -2339,33 +2304,7 @@ namespace V6AccountingBusiness
         /// <param name="name"></param>
         public static void WriteOldSelectPrinter(string name)
         {
-            string path = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, "oldPrinter");
-            FileStream fs = new FileStream(path, FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            try
-            {
-                sw.Write(name);
-                sw.Close(); fs.Close();
-            }
-            catch (Exception)
-            {
-                try
-                {
-                    sw.Close();
-                }
-                catch
-                {
-                    // ignored
-                }
-                try
-                {
-                    fs.Close();
-                }
-                catch
-                {
-                    // ignored
-                }
-            }
+            V6Setting.OLDPRINTER = name;
         }
 
         public static void WriteTextFile(string fileName, string content)

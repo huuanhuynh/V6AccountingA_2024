@@ -31,7 +31,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var text = CorpLan.GetTextNull(id);
             if (string.IsNullOrEmpty(text))
             {
-                text = string.Format("F9: {0}, F10: {1}", V6Text.Text("INTUNGTRANG"), V6Text.Text("INLIENTUC"));
+                text = string.Format("F6: {0}, F9: {1}, F10: {2}", V6Text.Text("XUATEXCEL_NHIEUSHEET"), V6Text.Text("INTUNGTRANG"), V6Text.Text("INLIENTUC"));
             }
             V6ControlFormHelper.SetStatusText2(text, id);
         }
@@ -59,14 +59,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 //if (InLienTuc) // thì chọn máy in trước
                 {
-                    var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", ReportFile);
+                    var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", _reportTitleF5);
                     if (string.IsNullOrEmpty(saveFile))
                     {
                         printting = false;
                     }
                     else
                     {
-                        All_Objects["savefile"] = saveFile;
+                        All_Objects["saveFile"] = saveFile;
                         printting = true;
                     }
                 }
@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             view.FilterControl.SetParentRow(row.ToDataDictionary());
 
 
-                            view.AutoExportExcelFileName = All_Objects["savefile"] + "_" + MA_KH + ".xls";
+                            view.AutoExportExcelFileName = All_Objects["saveFile"] + "_" + MA_KH + ".xls";
                             //view.AutoPrint = FilterControl.Check1;
                             //view.PrinterName = _PrinterName;
                             //view.PrintCopies = _PrintCopies;
@@ -172,10 +172,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             }
 
-            ExportData.ToExcelTemplate_ManySheet(excelTemplateFile, All_Objects["savefile"].ToString(), setting_list, V6Setting.V6_number_format_info);
+            ExportData.ToExcelTemplate_ManySheet(excelTemplateFile, All_Objects["saveFile"].ToString(), setting_list, V6Setting.V6_number_format_info);
             if (V6Options.AutoOpenExcel)
             {
-                V6ControlFormHelper.OpenFileProcess(All_Objects["savefile"].ToString());
+                V6ControlFormHelper.OpenFileProcess(All_Objects["saveFile"].ToString());
             }
             else
             {
@@ -243,22 +243,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
 
-                if (InLienTuc) // thì chọn máy in trước
-                {
-                    var printerst = V6ControlFormHelper.ChoosePrinter(this, _oldDefaultPrinter);
-                    if (printerst != null)
-                    {
-                        _PrinterName = printerst.PrinterName;
-                        _PrintCopies = printerst.Copies;
-                        V6BusinessHelper.WriteOldSelectPrinter(_PrinterName);
-                        printting = true;
-                    }
-                    else
-                    {
-                        printting = false;
-                    }
-                }
-
                 Timer tF9 = new Timer();
                 tF9.Interval = 500;
                 tF9.Tick += tF9_Tick;
@@ -283,7 +267,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9ErrorAll = "";
 
             int i = 0;
-           
+            int j = 0;
             while(i<dataGridView1.Rows.Count)
             {
                 DataGridViewRow row = dataGridView1.Rows[i];
@@ -292,7 +276,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     if (row.IsSelect())
                     {
-
+                        j++;
                         var ma_kh = (row.Cells["MA_KH"].Value ?? "").ToString().Trim();
 
                         var oldKeys = FilterControl.GetFilterParameters();
@@ -304,7 +288,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             var view = new ReportR_DX(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
                                 _reportTitleF5, _reportTitle2F5, "", "", "");
-
+                            view.SetAO("INLIENTUC", "1");
                             view.CodeForm = CodeForm;
                             //view.FilterControl.Call1(ma_kh);
                             SortedDictionary<string, object> data = new SortedDictionary<string, object>();
@@ -323,16 +307,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                             //view.AutoPrint = FilterControl.Check1;
                             view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
-                            if (i == 1)
+                            if (j == 1)
                             {
                                 view.PrintMode = V6PrintMode.AutoClickPrint;
                             }
-
                             view.PrinterName = _PrinterName;
                             view.PrintCopies = _PrintCopies;
-
-                            //view.btnNhan_Click(null, null);
                             view.ShowToForm(this, "AARSO1T", true);
+                            if (j == 1)
+                            {
+                                _PrinterName = view.PrinterName;
+                                //_PrintCopies = 
+                            }
                         }
                         else
                         {

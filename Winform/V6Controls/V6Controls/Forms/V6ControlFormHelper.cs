@@ -7536,7 +7536,18 @@ namespace V6Controls.Forms
         /// Chọn một file để lưu. Nếu không chọn trả về rỗng.
         /// </summary>
         /// <param name="owner">Form hooặc control chủ gọi hàm này.</param>
-        /// <param name="filter">Lọc file, vd: All file|*.* hoặc Xls(*.xls)|*.xls|Xlsx|*.xlsx</param>
+        /// <param name="filter">Lọc file, vd: All file|*.* hoặc nhiều lựa chọn Xls|*.xls|Xlsx|*.xlsx hoặc nhiều ext Excel|*.xls;*.xlsx</param>
+        /// <returns></returns>
+        public static string ChooseSaveFile(IWin32Window owner, string filter)
+        {
+            return ChooseSaveFile(owner, filter, null);
+        }
+
+        /// <summary>
+        /// Chọn một file để lưu. Nếu không chọn trả về rỗng.
+        /// </summary>
+        /// <param name="owner">Form hooặc control chủ gọi hàm này.</param>
+        /// <param name="filter">Lọc file, vd: All file|*.* hoặc nhiều lựa chọn Xls|*.xls|Xlsx|*.xlsx hoặc nhiều ext Excel|*.xls;*.xlsx</param>
         /// <param name="fileName">Tên file muốn lưu.</param>
         /// <returns></returns>
         public static string ChooseSaveFile(IWin32Window owner, string filter, string fileName = null)
@@ -7596,7 +7607,7 @@ namespace V6Controls.Forms
         /// Chọn một file để mở. Nếu không chọn trả về rỗng.
         /// </summary>
         /// <param name="owner">Form hooặc control chủ gọi hàm này.</param>
-        /// <param name="filter">Lọc file, vd: All file|*.*</param>
+        /// <param name="filter">Lọc file, vd: All file|*.* hoặc nhiều lựa chọn Xls|*.xls|Xlsx|*.xlsx hoặc nhiều ext Excel|*.xls;*.xlsx</param>
         /// <returns></returns>
         public static string ChooseOpenFile(IWin32Window owner, string filter)
         {

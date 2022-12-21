@@ -54,6 +54,19 @@ namespace V6Controls.Forms
         /// </summary>
         public Type Event_program;
         public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        public object GetAO(string key)
+        {
+            if (All_Objects.ContainsKey(key)) return All_Objects[key];
+            return null;
+        }
+        public object GetAOs(string key)
+        {
+            if (All_Objects.ContainsKey(key) && All_Objects[key] != null) return "" + All_Objects[key];
+            return null;
+        }
+        public void SetAO(string key, object value){
+            All_Objects[key] = value;
+        }
         /// <summary>
         /// Gọi hàm động theo tên event đã định nghĩa.
         /// </summary>

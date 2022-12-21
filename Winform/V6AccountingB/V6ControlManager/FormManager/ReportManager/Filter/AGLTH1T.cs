@@ -12,6 +12,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
            
             F3 = false;
             F5 = true;
+            F7 = true;
             F9 = true;
             F10 = true;
 
@@ -63,7 +64,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 GridViewHideFields.Add("MA_GD", "MA_GD");
 
             }
-            
+        }
+
+        public override void UpdateValues()
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
         }
 
         /// <summary>
@@ -72,7 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-           
+            UpdateValues();
             //@StartDate varchar(8),
             //@EndDate varchar(8),
             //@Advance AS NVARCHAR(MAX),
@@ -132,12 +141,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Loai_tk", loai_tk));
             
             return result;
-            
-
-            
-            
-            
         }
+
+        private void rTienViet_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+        }
+
+        private void rbtLAN_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
+        }       
 
         
     }

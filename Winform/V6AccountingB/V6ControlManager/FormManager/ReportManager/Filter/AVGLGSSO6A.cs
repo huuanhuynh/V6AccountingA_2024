@@ -14,6 +14,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
            
             F3 = false;
             F5 = true;
+            F7 = true;
             F9 = true;
             F10 = false;
 
@@ -63,12 +64,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
         }
 
+        public override void UpdateValues()
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
+        }
+
         /// <summary>
         /// Lay cac tham so cho procedure
         /// </summary>
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
+            UpdateValues();
             //ngay_ct1
             //ngay_ct2
             //so_ct1
@@ -120,5 +131,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return result;
             
         }
+
+
+        private void rTienViet_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+        }
+
+        private void rbtLAN_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
+        }
+
     }
 }

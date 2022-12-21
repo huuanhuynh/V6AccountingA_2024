@@ -1996,10 +1996,25 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     return;
                 }
 
-                //in thường
-                var printTool = new ReportPrintTool(_repx0);
-                printTool.PrintingSystem.ShowMarginsWarning = false;
-                printTool.PrintDialog();
+                if (GetAOs("INLIENTUC") == "1")
+                {
+                    var printerst = V6ControlFormHelper.ChoosePrinter(this, PrinterName);
+                    if (printerst != null)
+                    {
+                        PrinterName = printerst.PrinterName;
+                        PrintCopies = printerst.Copies;
+                        V6BusinessHelper.WriteOldSelectPrinter(PrinterName);
+                        Close_after_print = true;
+                        Print(PrinterName, _repx0);
+                    }
+                }
+                else
+                {
+                    //in thường
+                    var printTool = new ReportPrintTool(_repx0);
+                    printTool.PrintingSystem.ShowMarginsWarning = false;
+                    printTool.PrintDialog();
+                }
 
                 //if (PrintMode == V6PrintMode.AutoClickPrintThenClose)
                 //{

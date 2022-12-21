@@ -48,7 +48,19 @@
             this.Txtnh_vt3 = new V6ReportControls.FilterLineVvarTextBox();
             this.TxtMa_vt = new V6ReportControls.FilterLineVvarTextBox();
             this.Chk_Tinh_dc = new V6Controls.V6CheckBox();
+            this.panel0 = new System.Windows.Forms.Panel();
+            this.grbNgonNgu = new System.Windows.Forms.GroupBox();
+            this.rCurrent = new System.Windows.Forms.RadioButton();
+            this.rBothLang = new System.Windows.Forms.RadioButton();
+            this.rEnglish = new System.Windows.Forms.RadioButton();
+            this.rTiengViet = new System.Windows.Forms.RadioButton();
+            this.grbTienTe = new System.Windows.Forms.GroupBox();
+            this.rNgoaiTe = new System.Windows.Forms.RadioButton();
+            this.rTienViet = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            this.panel0.SuspendLayout();
+            this.grbNgonNgu.SuspendLayout();
+            this.grbTienTe.SuspendLayout();
             this.SuspendLayout();
             // 
             // dateNgay_ct1
@@ -117,9 +129,9 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Controls.Add(this.Txtnh_vt3);
             this.groupBox1.Controls.Add(this.TxtMa_vt);
-            this.groupBox1.Location = new System.Drawing.Point(0, 79);
+            this.groupBox1.Location = new System.Drawing.Point(0, 173);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 352);
+            this.groupBox1.Size = new System.Drawing.Size(289, 345);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -128,6 +140,7 @@
             // 
             this.Txtnh_vt6.AccessibleDescription = "FILTERL00036";
             this.Txtnh_vt6.AccessibleName2 = "NH_VT6";
+            this.Txtnh_vt6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt6.Caption = "Nhóm vật tư 6";
             this.Txtnh_vt6.FieldName = "NH_VT6";
             this.Txtnh_vt6.Location = new System.Drawing.Point(6, 241);
@@ -140,6 +153,7 @@
             // 
             this.Txtnh_vt4.AccessibleDescription = "FILTERL00034";
             this.Txtnh_vt4.AccessibleName2 = "NH_VT4";
+            this.Txtnh_vt4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt4.Caption = "Nhóm vật tư 4";
             this.Txtnh_vt4.FieldName = "NH_VT4";
             this.Txtnh_vt4.Location = new System.Drawing.Point(6, 195);
@@ -152,6 +166,7 @@
             // 
             this.Txtnh_vt5.AccessibleDescription = "FILTERL00035";
             this.Txtnh_vt5.AccessibleName2 = "NH_VT5";
+            this.Txtnh_vt5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt5.Caption = "Nhóm vật tư 5";
             this.Txtnh_vt5.FieldName = "NH_VT5";
             this.Txtnh_vt5.Location = new System.Drawing.Point(6, 218);
@@ -164,6 +179,7 @@
             // 
             this.Txttk_vt.AccessibleDescription = "FILTERL00106";
             this.Txttk_vt.AccessibleName2 = "TK_VT";
+            this.Txttk_vt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txttk_vt.Caption = "Tài khoản VT";
             this.Txttk_vt.FieldName = "TK_VT";
             this.Txttk_vt.Location = new System.Drawing.Point(6, 287);
@@ -176,6 +192,7 @@
             // 
             this.Txtma_qg.AccessibleDescription = "FILTERL00105";
             this.Txtma_qg.AccessibleName2 = "MA_QG";
+            this.Txtma_qg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtma_qg.Caption = "Mã quốc gia";
             this.Txtma_qg.FieldName = "MA_QG";
             this.Txtma_qg.Location = new System.Drawing.Point(6, 264);
@@ -188,6 +205,7 @@
             // 
             this.Txtma_nsx.AccessibleDescription = "FILTERL00107";
             this.Txtma_nsx.AccessibleName2 = "MA_NSX";
+            this.Txtma_nsx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtma_nsx.Caption = "Mã nhà sx";
             this.Txtma_nsx.FieldName = "MA_NSX";
             this.Txtma_nsx.Location = new System.Drawing.Point(6, 310);
@@ -201,6 +219,7 @@
             // 
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
             this.TxtMakho.AccessibleName2 = "MA_KHO";
+            this.TxtMakho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.TxtMakho.Caption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
             this.TxtMakho.Location = new System.Drawing.Point(6, 57);
@@ -238,6 +257,7 @@
             // 
             this.Txtnh_vt1.AccessibleDescription = "FILTERL00031";
             this.Txtnh_vt1.AccessibleName2 = "NH_VT1";
+            this.Txtnh_vt1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt1.Caption = "Nhóm vật tư 1";
             this.Txtnh_vt1.FieldName = "NH_VT1";
             this.Txtnh_vt1.Location = new System.Drawing.Point(6, 126);
@@ -250,6 +270,7 @@
             // 
             this.Txtnh_vt2.AccessibleDescription = "FILTERL00032";
             this.Txtnh_vt2.AccessibleName2 = "NH_VT2";
+            this.Txtnh_vt2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt2.Caption = "Nhóm vật tư 2";
             this.Txtnh_vt2.FieldName = "NH_VT2";
             this.Txtnh_vt2.Location = new System.Drawing.Point(6, 149);
@@ -262,6 +283,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 80);
@@ -274,6 +296,7 @@
             // 
             this.Txtnh_vt3.AccessibleDescription = "FILTERL00033";
             this.Txtnh_vt3.AccessibleName2 = "NH_VT3";
+            this.Txtnh_vt3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt3.Caption = "Nhóm vật tư 3";
             this.Txtnh_vt3.FieldName = "NH_VT3";
             this.Txtnh_vt3.Location = new System.Drawing.Point(6, 172);
@@ -286,6 +309,7 @@
             // 
             this.TxtMa_vt.AccessibleDescription = "FILTERL00020";
             this.TxtMa_vt.AccessibleName2 = "MA_VT";
+            this.TxtMa_vt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.TxtMa_vt.Caption = "Mã vật tư";
             this.TxtMa_vt.FieldName = "MA_VT";
             this.TxtMa_vt.Location = new System.Drawing.Point(6, 103);
@@ -306,10 +330,130 @@
             this.Chk_Tinh_dc.Text = "Tính PS điều chuyển kho";
             this.Chk_Tinh_dc.UseVisualStyleBackColor = true;
             // 
+            // panel0
+            // 
+            this.panel0.Controls.Add(this.grbNgonNgu);
+            this.panel0.Controls.Add(this.grbTienTe);
+            this.panel0.Location = new System.Drawing.Point(-2, 87);
+            this.panel0.Name = "panel0";
+            this.panel0.Size = new System.Drawing.Size(298, 80);
+            this.panel0.TabIndex = 34;
+            // 
+            // grbNgonNgu
+            // 
+            this.grbNgonNgu.AccessibleDescription = "REPORTL00010";
+            this.grbNgonNgu.Controls.Add(this.rCurrent);
+            this.grbNgonNgu.Controls.Add(this.rBothLang);
+            this.grbNgonNgu.Controls.Add(this.rEnglish);
+            this.grbNgonNgu.Controls.Add(this.rTiengViet);
+            this.grbNgonNgu.Location = new System.Drawing.Point(4, 41);
+            this.grbNgonNgu.Name = "grbNgonNgu";
+            this.grbNgonNgu.Size = new System.Drawing.Size(291, 35);
+            this.grbNgonNgu.TabIndex = 1;
+            this.grbNgonNgu.TabStop = false;
+            this.grbNgonNgu.Text = "Ngôn ngữ bc (Rpt Language)";
+            // 
+            // rCurrent
+            // 
+            this.rCurrent.AccessibleDescription = "REPORTR00007";
+            this.rCurrent.AutoSize = true;
+            this.rCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rCurrent.Location = new System.Drawing.Point(215, 13);
+            this.rCurrent.Name = "rCurrent";
+            this.rCurrent.Size = new System.Drawing.Size(59, 17);
+            this.rCurrent.TabIndex = 0;
+            this.rCurrent.Text = "Current";
+            this.rCurrent.UseVisualStyleBackColor = true;
+            this.rCurrent.CheckedChanged += new System.EventHandler(this.rbtLAN_CheckedChanged);
+            // 
+            // rBothLang
+            // 
+            this.rBothLang.AccessibleDescription = "REPORTR00006";
+            this.rBothLang.AutoSize = true;
+            this.rBothLang.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rBothLang.Location = new System.Drawing.Point(142, 13);
+            this.rBothLang.Name = "rBothLang";
+            this.rBothLang.Size = new System.Drawing.Size(71, 17);
+            this.rBothLang.TabIndex = 0;
+            this.rBothLang.Text = "Song ngữ";
+            this.rBothLang.UseVisualStyleBackColor = true;
+            this.rBothLang.CheckedChanged += new System.EventHandler(this.rbtLAN_CheckedChanged);
+            // 
+            // rEnglish
+            // 
+            this.rEnglish.AccessibleDescription = "REPORTR00005";
+            this.rEnglish.AccessibleName = "English";
+            this.rEnglish.AutoSize = true;
+            this.rEnglish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rEnglish.Location = new System.Drawing.Point(83, 13);
+            this.rEnglish.Name = "rEnglish";
+            this.rEnglish.Size = new System.Drawing.Size(59, 17);
+            this.rEnglish.TabIndex = 0;
+            this.rEnglish.Text = "English";
+            this.rEnglish.UseVisualStyleBackColor = true;
+            this.rEnglish.CheckedChanged += new System.EventHandler(this.rbtLAN_CheckedChanged);
+            // 
+            // rTiengViet
+            // 
+            this.rTiengViet.AccessibleDescription = "REPORTR00004";
+            this.rTiengViet.AutoSize = true;
+            this.rTiengViet.Checked = true;
+            this.rTiengViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rTiengViet.Location = new System.Drawing.Point(6, 13);
+            this.rTiengViet.Name = "rTiengViet";
+            this.rTiengViet.Size = new System.Drawing.Size(73, 17);
+            this.rTiengViet.TabIndex = 1;
+            this.rTiengViet.TabStop = true;
+            this.rTiengViet.Text = "Tiếng Việt";
+            this.rTiengViet.UseVisualStyleBackColor = true;
+            this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLAN_CheckedChanged);
+            // 
+            // grbTienTe
+            // 
+            this.grbTienTe.AccessibleDescription = "REPORTL00007";
+            this.grbTienTe.Controls.Add(this.rNgoaiTe);
+            this.grbTienTe.Controls.Add(this.rTienViet);
+            this.grbTienTe.Location = new System.Drawing.Point(4, 5);
+            this.grbTienTe.Name = "grbTienTe";
+            this.grbTienTe.Size = new System.Drawing.Size(291, 35);
+            this.grbTienTe.TabIndex = 0;
+            this.grbTienTe.TabStop = false;
+            this.grbTienTe.Text = "Tiền tệ";
+            // 
+            // rNgoaiTe
+            // 
+            this.rNgoaiTe.AccessibleDescription = "REPORTR00002";
+            this.rNgoaiTe.AccessibleName = "Tiếng Việt";
+            this.rNgoaiTe.AutoSize = true;
+            this.rNgoaiTe.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rNgoaiTe.Location = new System.Drawing.Point(83, 13);
+            this.rNgoaiTe.Name = "rNgoaiTe";
+            this.rNgoaiTe.Size = new System.Drawing.Size(65, 17);
+            this.rNgoaiTe.TabIndex = 1;
+            this.rNgoaiTe.Text = "Ngoại tệ";
+            this.rNgoaiTe.UseVisualStyleBackColor = true;
+            // 
+            // rTienViet
+            // 
+            this.rTienViet.AccessibleDescription = "REPORTR00001";
+            this.rTienViet.AccessibleName = "English";
+            this.rTienViet.AutoSize = true;
+            this.rTienViet.Checked = true;
+            this.rTienViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rTienViet.Location = new System.Drawing.Point(6, 13);
+            this.rTienViet.Name = "rTienViet";
+            this.rTienViet.Size = new System.Drawing.Size(67, 17);
+            this.rTienViet.TabIndex = 0;
+            this.rTienViet.TabStop = true;
+            this.rTienViet.Text = "Tiền Việt";
+            this.rTienViet.UseVisualStyleBackColor = true;
+            this.rTienViet.CheckedChanged += new System.EventHandler(this.rTienViet_CheckedChanged);
+            // 
             // AINSO3T
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel0);
             this.Controls.Add(this.Chk_Tinh_dc);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
@@ -317,9 +461,14 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
             this.Name = "AINSO3T";
-            this.Size = new System.Drawing.Size(295, 446);
+            this.Size = new System.Drawing.Size(295, 533);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel0.ResumeLayout(false);
+            this.grbNgonNgu.ResumeLayout(false);
+            this.grbNgonNgu.PerformLayout();
+            this.grbTienTe.ResumeLayout(false);
+            this.grbTienTe.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,5 +495,14 @@
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt3;
         private V6ReportControls.FilterLineVvarTextBox TxtMa_vt;
         private V6Controls.V6CheckBox Chk_Tinh_dc;
+        private System.Windows.Forms.Panel panel0;
+        private System.Windows.Forms.GroupBox grbNgonNgu;
+        private System.Windows.Forms.RadioButton rCurrent;
+        private System.Windows.Forms.RadioButton rBothLang;
+        private System.Windows.Forms.RadioButton rEnglish;
+        private System.Windows.Forms.RadioButton rTiengViet;
+        private System.Windows.Forms.GroupBox grbTienTe;
+        private System.Windows.Forms.RadioButton rNgoaiTe;
+        private System.Windows.Forms.RadioButton rTienViet;
     }
 }
