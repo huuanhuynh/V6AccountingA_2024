@@ -324,6 +324,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         ShowMainMessage(_message);
                     }
                     _executesuccess = false;
+
+                    var v6backup1 = this as ReportManager.XuLy.V6BACKUP1;
+                    if (v6backup1 != null && v6backup1.AUTO_DISPOSE)
+                    {
+                        v6backup1.Dispose();
+                    }
                 }
                 catch (Exception ex)
                 {

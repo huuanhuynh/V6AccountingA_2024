@@ -73,6 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];
+                    All_Objects["thisForm"] = this;
                     return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }

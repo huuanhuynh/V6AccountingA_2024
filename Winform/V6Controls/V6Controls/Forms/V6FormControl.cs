@@ -54,6 +54,12 @@ namespace V6Controls.Forms
         /// </summary>
         public Type Event_program;
         public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        
+        /// <summary>
+        /// Get AllObjects
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public object GetAO(string key)
         {
             if (All_Objects.ContainsKey(key)) return All_Objects[key];
@@ -64,6 +70,12 @@ namespace V6Controls.Forms
             if (All_Objects.ContainsKey(key) && All_Objects[key] != null) return "" + All_Objects[key];
             return null;
         }
+
+        /// <summary>
+        /// Set AllObjects
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void SetAO(string key, object value){
             All_Objects[key] = value;
         }

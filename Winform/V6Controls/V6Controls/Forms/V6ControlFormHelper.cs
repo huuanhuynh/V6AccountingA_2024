@@ -1907,7 +1907,7 @@ namespace V6Controls.Forms
                         if (string.IsNullOrEmpty(c.AccessibleName)) continue;
                         string baseFIELD = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
                         //Chỉ xử lý các control có AccessibleName trong fields
-                        if (fields.Contains("," + baseFIELD.ToLower() + ","))
+                        if (!(c == control) && fields.Contains("," + baseFIELD.ToLower() + ","))
                         {
                             if (row == null || !row.Table.Columns.Contains(baseFIELD))
                             {
@@ -1980,7 +1980,7 @@ namespace V6Controls.Forms
                         if (string.IsNullOrEmpty(c.AccessibleName)) continue;
                         string baseFIELD = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
                         //Chỉ xử lý các control có AccessibleName trong fields
-                        if (fields1.Contains("," + baseFIELD.ToLower() + ","))
+                        if (!(c == control) && fields1.Contains("," + baseFIELD.ToLower() + ","))
                         {
                             //if (row == null || !row.Table.Columns.Contains(baseFIELD))
                             if (row == null || !row.ContainsKey(baseFIELD))
@@ -2054,6 +2054,7 @@ namespace V6Controls.Forms
                 {
                     foreach (Control c in parent.Controls)
                     {
+                        if (c == control) continue;
                         var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
                         if (string.IsNullOrEmpty(aNAME)) continue;
                         aNAME = aNAME.ToUpper();
@@ -2088,6 +2089,7 @@ namespace V6Controls.Forms
                 {
                     foreach (Control c in parent.Controls)
                     {
+                        if (c == control) continue;
                         var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
                         if (string.IsNullOrEmpty(aNAME)) continue;
                         aNAME = aNAME.ToUpper();

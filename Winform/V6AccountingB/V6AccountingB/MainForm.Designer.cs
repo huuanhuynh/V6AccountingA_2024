@@ -50,7 +50,6 @@ namespace V6AccountingB
             this.lblStatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.menuMain = new V6Controls.MenuControl();
-            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.panelLogin = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +72,7 @@ namespace V6AccountingB
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
+            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -427,17 +427,6 @@ namespace V6AccountingB
             this.menuMain.Click += new V6Controls.MenuControl.ButtonClickEventHandler(this.menuMain_Click);
             this.menuMain.Load += new System.EventHandler(this.menuMain_Load);
             // 
-            // quickMenu1
-            // 
-            this.quickMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.quickMenu1.BackColor = System.Drawing.Color.AliceBlue;
-            this.quickMenu1.Location = new System.Drawing.Point(0, 322);
-            this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
-            this.quickMenu1.Name = "quickMenu1";
-            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
-            this.quickMenu1.TabIndex = 0;
-            // 
             // panelLogin
             // 
             this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
@@ -690,6 +679,17 @@ namespace V6AccountingB
             this.lblV6Message.Text = ".....";
             this.lblV6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // quickMenu1
+            // 
+            this.quickMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.quickMenu1.BackColor = System.Drawing.Color.AliceBlue;
+            this.quickMenu1.Location = new System.Drawing.Point(0, 322);
+            this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
+            this.quickMenu1.Name = "quickMenu1";
+            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
+            this.quickMenu1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -707,8 +707,8 @@ namespace V6AccountingB
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "MainForm";
-            this.Text = "V6Accounting2020.NET - Công ty cổ phần phát triển ứng dụng phần mềm doanh nghiệp " +
-    "V6 (V6Business Software)";
+            this.Text = "V6Accounting2020.NET45 - Công ty cổ phần phát triển ứng dụng phần mềm doanh nghiệ" +
+    "p V6 (V6Business Software)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);

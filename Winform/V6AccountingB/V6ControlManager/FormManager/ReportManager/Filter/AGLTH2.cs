@@ -19,7 +19,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             try
             {
                 F3 = false;
-                F5 = false;
+                F5 = true;
                 TxtLoai_bc.Text = "*";
                 TxtTk.Text = (V6Setting.M_TK ?? "111").Trim();
                 dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);

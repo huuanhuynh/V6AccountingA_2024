@@ -429,6 +429,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "AGLTH1F5":
                     result = new AGLTH1F5();
                     break;
+                case "AGLTH2F5":
+                    result = new AGLTH2F5();
+                    break;
+
+
                 case "AGLCD2":
                     result = new AGLCD2();
                     break;

@@ -257,7 +257,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(296, 18);
             this.label6.TabIndex = 12;
-            this.label6.Text = "V6 BUSINESS SOFTWARE (2004 - 2021)";
+            this.label6.Text = "V6 BUSINESS SOFTWARE (2004 - 2022)";
             // 
             // panel1
             // 

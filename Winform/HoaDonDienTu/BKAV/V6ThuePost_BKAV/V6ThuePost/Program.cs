@@ -301,10 +301,11 @@ namespace V6ThuePost
                 {
                     if (item.Key == "OriginalInvoiceIdentify")
                     {
-                        if (mode == "T")
+                        if (mode == "T")// khi thay thế, cho số hóa đơn = 0 InvoiceNo
                         {
                             postObject.Invoice[item.Key] = GetValue(row0, item.Value);
                             postObject.Invoice["InvoiceCode"] = null;
+                            postObject.Invoice["InvoiceNo"] = 0;
                             continue;
                             //postObject.Invoice.OriginalInvoiceIdentify = "";
                             //postObject.Invoice.InvoiceNo = 0;

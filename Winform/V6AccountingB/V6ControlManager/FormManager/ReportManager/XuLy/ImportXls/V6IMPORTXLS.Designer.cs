@@ -214,6 +214,7 @@
             this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
             this.btnXemMauExcel.TabIndex = 12;
             this.btnXemMauExcel.Text = "Xem mẫu excel";
+            this.toolTipV6FormControl.SetToolTip(this.btnXemMauExcel, "Mở ra 1 bản copy (hoặc gốc nếu giữ Shift) của file mấu.");
             this.btnXemMauExcel.UseVisualStyleBackColor = true;
             this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
             // 
@@ -227,6 +228,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

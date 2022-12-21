@@ -617,7 +617,7 @@ namespace V6ThuePostManager
             {
                 paras.Result.ResultErrorMessage = ex.Message;
                 error = ex.Message;
-                V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
+                V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadInfo", ex);
             }
 
             error = paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE;
@@ -751,12 +751,12 @@ namespace V6ThuePostManager
                 {
                     if (item.Key == "OriginalInvoiceIdentify")
                     {
-                        if (mode == "T")
+                        if (mode == "T") // khi thay thế, cho số hóa đơn = 0 InvoiceNo
                         {
                             postObject.Invoice[item.Key] = Fkey_hd_tt;// GetValue(row0, item.Value);
                             //postObject.Invoice["InvoiceStatusID"] = "1";
                             postObject.Invoice["InvoiceCode"] = null;
-                            //postObject.Invoice["InvoiceNo"] = 0;
+                            postObject.Invoice["InvoiceNo"] = 0;
                             //postObject.Invoice["InvoiceForm"] = "";
                             //postObject.Invoice["InvoiceSerial"] = "";
 

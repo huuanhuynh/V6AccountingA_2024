@@ -938,6 +938,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 _table_name = cboDanhMuc.SelectedValue.ToString().Trim();
+                ex_mau = ((DataRowView)cboDanhMuc.SelectedItem).Row["EX_MAU"].ToString().Trim();
             }
             catch (Exception ex)
             {
@@ -945,9 +946,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private string ex_mau = "";
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.OpenExcelTemplate(_table_name + "_ALL.XLS", V6Setting.IMPORT_EXCEL);
+            string name = string.IsNullOrEmpty(ex_mau) ? _table_name : ex_mau;
+            V6ControlFormHelper.OpenExcelTemplate(name + "_ALL.XLS", V6Setting.IMPORT_EXCEL);
         }
 
 

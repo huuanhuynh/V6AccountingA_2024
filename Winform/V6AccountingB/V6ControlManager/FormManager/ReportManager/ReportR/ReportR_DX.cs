@@ -2015,11 +2015,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     printTool.PrintingSystem.ShowMarginsWarning = false;
                     printTool.PrintDialog();
                 }
-
-                //if (PrintMode == V6PrintMode.AutoClickPrintThenClose)
-                //{
-                //    btnHuy.PerformClick();
-                //}
             }
             catch (Exception ex)
             {

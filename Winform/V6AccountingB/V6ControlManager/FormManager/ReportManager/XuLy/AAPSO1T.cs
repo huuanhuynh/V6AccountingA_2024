@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
@@ -25,15 +26,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         }
 
+        protected override string _default_keyfield { get { return "MA_KH"; } }
+
         public override void SetStatus2Text()
         {
             string id = "ST2" + _reportProcedure;
             var text = CorpLan.GetTextNull(id);
             if (string.IsNullOrEmpty(text))
             {
-                text = string.Format("F6: {0}, F9: {1}, F10: {2}", V6Text.Text("XUATEXCEL_NHIEUSHEET"), V6Text.Text("INTUNGTRANG"), V6Text.Text("INLIENTUC"));
+                text = MadeStatus2();
             }
             V6ControlFormHelper.SetStatusText2(text, id);
+        }
+
+        private string MadeStatus2()
+        {
+            string status = "";
+            if (FilterControl == null) return string.Format("F6: {0}, F7: {1}, F9: {2}, F10: {3}",
+                    V6Text.Text("XUATEXCEL_NHIEUFILE"), V6Text.Text("XUATEXCEL_NHIEUSHEET"), V6Text.Text("INTUNGTRANG"), V6Text.Text("INLIENTUC"));
+            if (FilterControl.F6) status += ", F5: " + V6Text.Text("CHITIET");
+            if (FilterControl.F6) status += ", F6: " + V6Text.Text("XUATEXCEL_NHIEUFILE");
+            if (FilterControl.F6) status += ", F7: " + V6Text.Text("XUATEXCEL_NHIEUSHEET");
+            if (FilterControl.F6) status += ", F9: " + V6Text.Text("INTUNGTRANG");
+            if (FilterControl.F6) status += ", F10: " + V6Text.Text("INLIENTUC");
+            if (status.Length > 2) status = status.Substring(2);
+            return status;
         }
 
         protected override void MakeReport2()
@@ -41,6 +58,175 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             Load_Data = true;//Thay đổi cờ.
             base.MakeReport2();
         }
+
+        #region ==== Xử lý F6 ====
+        protected override void XuLyF6()
+        {
+            try
+            {
+                shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (this.ShowConfirmMessage(V6Text.Text("ASKEXPORTEXCELTUNGTRANG1"), V6Text.Confirm, 0, 0, "ASKEXPORTEXCELTUNGTRANG1") != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", _reportTitleF5);
+                var saveExt = Path.GetExtension(saveFile);
+                if (string.IsNullOrEmpty(saveFile))
+                {
+                    printting = false;
+                }
+                else
+                {
+                    saveFile = Path.Combine(Path.GetDirectoryName(saveFile) ?? V6Login.StartupPath, Path.GetFileNameWithoutExtension(saveFile));
+                    All_Objects["saveFile"] = saveFile;
+                    All_Objects["saveExt"] = saveExt;
+                    printting = true;
+                }
+
+                Timer tF9 = new Timer();
+                tF9.Interval = 500;
+                tF9.Tick += tF6_Tick;
+                CheckForIllegalCrossThreadCalls = false;
+                remove_list_g = new List<DataGridViewRow>();
+                V6ControlFormHelper.NoOpen = true;
+                F6Thread();
+                //Thread t = new Thread(F6Thread);
+                //t.SetApartmentState(ApartmentState.STA);
+                //t.IsBackground = true;
+                //t.Start();
+                tF9.Start();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF6", ex);
+            }
+        }
+
+        private void F6Thread()
+        {
+            f9Running = true;
+            f9ErrorAll = "";
+
+            int i = 0;
+
+            while (i < dataGridView1.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView1.Rows[i];
+                i++;
+                try
+                {
+                    if (row.IsSelect())
+                    {
+
+                        var TK = (row.Cells[KEYFIELD].Value ?? "").ToString().Trim();
+
+                        var oldKeys = FilterControl.GetFilterParameters();
+                        var _reportFileF5 = "AAPSO1TF5";
+                        var _reportTitleF5 = "SỔ CHI TIẾT CÔNG NỢ";
+                        var _reportTitle2F5 = "Customer detail";
+
+                        if (MenuButton.UseXtraReport != shift_is_down)
+                        {
+                            var view = new ReportR_DX(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
+
+                            view.CodeForm = CodeForm;
+
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add(KEYFIELD, TK);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
+
+                            view.AutoExportExcelFileName = All_Objects["saveFile"] + "_" + TK + All_Objects["saveExt"];
+
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
+                            view.PrintMode = V6PrintMode.AutoLoadData;
+                            view.ShowToForm(this, "", true);
+                        }
+                        else
+                        {
+                            var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
+
+                            view.CodeForm = CodeForm;
+                            //view.FilterControl.Call1(ma_kh);
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add(KEYFIELD, TK);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
+
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
+
+                            //view.AutoPrint = FilterControl.Check1;
+                            view.AutoExportExcel = All_Objects["saveFile"] + "_" + TK + ".xls";
+
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
+
+                            view.PrintMode = V6PrintMode.AutoLoadData;
+                            view.ShowToForm(this, "", true);
+                        }
+
+                        SetStatus2Text();
+                        remove_list_g.Add(row);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    f9Error += ex.Message;
+                    f9ErrorAll += ex.Message;
+                }
+
+            }
+            f9Running = false;
+        }
+
+        void tF6_Tick(object sender, EventArgs e)
+        {
+            if (f9Running)
+            {
+                var cError = f9Error;
+                f9Error = f9Error.Substring(cError.Length);
+                V6ControlFormHelper.SetStatusText("F9 running "
+                    + (cError.Length > 0 ? "Error: " : "")
+                    + cError);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                RemoveGridViewRow();
+                //  btnNhan.PerformClick();
+                try
+                {
+                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                }
+                catch
+                {
+                }
+                V6ControlFormHelper.NoOpen = false;
+                V6ControlFormHelper.SetStatusText("F9 finish "
+                    + (f9ErrorAll.Length > 0 ? "Error: " : "")
+                    + f9ErrorAll);
+
+                SetStatusText("F9 end.");
+            }
+        }
+
+        #endregion ==== Xử lý F6 ====
 
         #region ==== Xử lý F7 ====
         protected override void XuLyF7()
@@ -100,7 +286,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var setting = new ExportExcelSetting();
                         setting_list.Add(setting);
 
-                        var tk = (row.Cells["TK"].Value ?? "").ToString().Trim();
+                        var tk = (row.Cells[KEYFIELD].Value ?? "").ToString().Trim();
 
                         var oldKeys = FilterControl.GetFilterParameters();
                         var _reportFileF5 = "AAPSO1TF5";
@@ -115,7 +301,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             view.CodeForm = CodeForm;
                             //view.FilterControl.Call1(ma_kh);
                             SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                            data.Add("TK", tk);
+                            data.Add(KEYFIELD, tk);
                             V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
                             view.CodeForm = CodeForm;
                             view.Advance = FilterControl.Advance;
@@ -144,7 +330,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             setting.data = view._tbl1;
                             setting.data2 = view._tbl2;
                             //setting._pList = view._pList;
-                            setting.sheet_name = row.Cells["TK"].Value.ToString();
+                            setting.sheet_name = row.Cells[KEYFIELD].Value.ToString();
                             setting.albcConfigData = view._albcConfig.DATA;
                             if (excelTemplateFile == null) excelTemplateFile = view.ExcelTemplateFileFull;
                             setting.reportParameters = view.ReportDocumentParameters;
@@ -269,7 +455,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (row.IsSelect())
                     {
                         j++;
-                        var MA_KH = (row.Cells["MA_KH"].Value ?? "").ToString().Trim();
+                        var MA_KH = (row.Cells[KEYFIELD].Value ?? "").ToString().Trim();
 
                         var oldKeys = FilterControl.GetFilterParameters();
                         var _reportFileF5 = "AAPSO1TF5";
@@ -282,9 +468,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 _reportTitleF5, _reportTitle2F5, "", "", "");
                             view.SetAO("INLIENTUC", "1");
                             view.CodeForm = CodeForm;
-                            //view.FilterControl.Call1(ma_kh);
+                            
                             SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                            data.Add("MA_KH", MA_KH);
+                            data.Add(KEYFIELD, MA_KH);
                             V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
                             view.CodeForm = CodeForm;
                             view.Advance = FilterControl.Advance;
@@ -295,10 +481,34 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                             view.Dock = DockStyle.Fill;
                             view.FilterControl.InitFilters = oldKeys;
+                            view.FilterControl.SetParentRow(row.ToDataDictionary());
+                            view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
+                            if (j == 1) view.PrintMode = V6PrintMode.AutoClickPrint;
+                            view.PrinterName = _PrinterName;
+                            view.PrintCopies = _PrintCopies;
+                            view.ShowToForm(this, _reportCaption, true);
+                            if (j == 1) _PrinterName = view.PrinterName;
+                        }
+                        else
+                        {
+                            var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
+                                _reportTitleF5, _reportTitle2F5, "", "", "");
+                            view.SetAO("INLIENTUC", "1");
+                            view.CodeForm = CodeForm;
+                            
+                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                            data.Add(KEYFIELD, MA_KH);
+                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                            view.CodeForm = CodeForm;
+                            view.Advance = FilterControl.Advance;
+                            view.FilterControl.String1 = FilterControl.String1;
+                            view.FilterControl.String2 = FilterControl.String2;
+                            view.SetLoaiTien("" + FilterControl.GetOD("VN_FC"));
+                            view.SetLanguage("" + FilterControl.GetOD("VEBC"));
+                            view.Dock = DockStyle.Fill;
+                            view.FilterControl.InitFilters = oldKeys;
 
                             view.FilterControl.SetParentRow(row.ToDataDictionary());
-
-                            //view.AutoPrint = FilterControl.Check1;
                             view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
                             if (j == 1)
                             {
@@ -306,41 +516,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             }
                             view.PrinterName = _PrinterName;
                             view.PrintCopies = _PrintCopies;
-                            view.PrintMode = V6PrintMode.AutoLoadData;
                             view.ShowToForm(this, "", true);
                             if (j == 1)
                             {
                                 _PrinterName = view.PrinterName;
-                                //_PrintCopies = 
                             }
-                        }
-                        else
-                        {
-                            var view = new ReportRViewBase(m_itemId, _program + "F5", _reportProcedure + "F5", _reportFile + "F5",
-                                _reportTitleF5, _reportTitle2F5, "", "", "");
-
-                            view.CodeForm = CodeForm;
-                            //view.FilterControl.Call1(ma_kh);
-                            SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                            data.Add("MA_KH", MA_KH);
-                            V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
-                            view.CodeForm = CodeForm;
-                            view.Advance = FilterControl.Advance;
-                            view.FilterControl.String1 = FilterControl.String1;
-                            view.FilterControl.String2 = FilterControl.String2;
-
-                            view.Dock = DockStyle.Fill;
-                            view.FilterControl.InitFilters = oldKeys;
-
-                            view.FilterControl.SetParentRow(row.ToDataDictionary());
-
-                            //view.AutoPrint = FilterControl.Check1;
-                            view.PrintMode = InLienTuc ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
-
-                            view.PrinterName = _PrinterName;
-                            view.PrintCopies = _PrintCopies;
-                            view.PrintMode = V6PrintMode.AutoLoadData;
-                            view.ShowToForm(this, "", true);
                         }
 
                         SetStatus2Text();

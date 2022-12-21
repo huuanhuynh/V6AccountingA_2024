@@ -212,6 +212,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        protected virtual string _default_keyfield { get { return "TK"; } }
+        /// <summary>
+        /// Trường khóa của dòng dữ liệu trên Gridview. Nếu mặc định khác TK thì override _default_keyfield = "???"
+        /// </summary>
+        public string KEYFIELD
+        {
+            get
+            {
+                string keyfield = _default_keyfield;
+                if (_albcConfig != null && _albcConfig.HaveInfo)
+                {
+                    if (_albcConfig.EXTRA_INFOR.ContainsKey("KEYFIELD")) keyfield = _albcConfig.EXTRA_INFOR["KEYFIELD"];
+                }
+                return keyfield;
+            }
+        }
+
         #endregion EXTRA_INFOR
 
         private string Report_GRDSV1
@@ -986,11 +1003,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 btnNhan.PerformClick();
             }
-            else if (keyData == Keys.F3 && FilterControl.F3)
+            else if (FilterControl.F3 && (keyData == Keys.F3 || (keyData == (Keys.Shift | Keys.F3))))
             {
                 XuLyHienThiFormSuaChungTuF3();
             }
-            else if (keyData == Keys.F4 && FilterControl.F4)
+            else if (FilterControl.F4 && (keyData == Keys.F4 || (keyData == (Keys.Shift | Keys.F4))))
             {
                 XuLyBoSungThongTinChungTuF4();
             }
@@ -998,19 +1015,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //{
             //    XuLyXemChiTietF5();
             //}
-            else if (keyData == Keys.F6 && FilterControl.F6)
+            else if (FilterControl.F6 && (keyData == Keys.F6 || (keyData == (Keys.Shift | Keys.F6))))
             {
                 XuLyF6();
             }
-            else if (keyData == Keys.F7 && FilterControl.F7)
+            else if (FilterControl.F7 && (keyData == Keys.F7 || (keyData == (Keys.Shift | Keys.F7))))
             {
                 XuLyF7();
             }
-            else if (keyData == Keys.F8 && FilterControl.F8)
+            else if (FilterControl.F8 && (keyData == Keys.F8 || (keyData == (Keys.Shift | Keys.F8))))
             {
                 XuLyF8();
             }
-            else if (keyData == Keys.F9 && FilterControl.F9)
+            else if (FilterControl.F9 && (keyData == Keys.F9 || (keyData == (Keys.Shift | Keys.F9))))
             {
                 All_Objects["data"] = _tbl.Copy();
                 object beforeF9 = InvokeFormEvent(FormDynamicEvent.BEFOREF9);
@@ -1024,7 +1041,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     XuLyF9();
                 }                
             }
-            else if ((keyData & Keys.F10) == Keys.F10 && FilterControl.F10)
+            else if (FilterControl.F10 && (keyData == Keys.F10 || (keyData == (Keys.Shift | Keys.F10))))
             {
                 XuLyF10();
             }

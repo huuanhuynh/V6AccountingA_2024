@@ -12,6 +12,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
            
             F3 = false;
             F5 = true;
+            F6 = true;
+            F7 = true;
             F9 = true;
             F10 = true;
 
@@ -60,9 +62,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 GridViewHideFields.Add("STT_REC_TT", "STT_REC_TT");
                 GridViewHideFields.Add("MA_TT", "MA_TT");
                 GridViewHideFields.Add("MA_GD", "MA_GD");
-
             }
-            
+        }
+
+        public override void UpdateValues()
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
         }
 
         /// <summary>
@@ -71,6 +80,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
+            UpdateValues();
             //@tk nvarchar(4000),
             //@ngay_ct1 smalldatetime,
             //@ngay_ct2 smalldatetime,
@@ -79,10 +89,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Advance AS VARCHAR(8000),
             //@User_id INT = 0
             var result = new List<SqlParameter>();
-
-         
-            
-           
             V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
@@ -123,13 +129,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Advance", cKey));
             result.Add(new SqlParameter("@User_id", V6Login.UserId));
             return result;
-            
-
-            
-            
-            
         }
 
-        
+        private void rTienViet_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ObjectDictionary["VN_FC"] = rTienViet.Checked ? "VN" : "FC";
+        }
+
+        private void rbtLAN_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (rTiengViet.Checked) ObjectDictionary["VEBC"] = "V";
+            if (rEnglish.Checked) ObjectDictionary["VEBC"] = "E";
+            if (rBothLang.Checked) ObjectDictionary["VEBC"] = "B";
+            if (rCurrent.Checked) ObjectDictionary["VEBC"] = "C";
+        }
+
     }
 }

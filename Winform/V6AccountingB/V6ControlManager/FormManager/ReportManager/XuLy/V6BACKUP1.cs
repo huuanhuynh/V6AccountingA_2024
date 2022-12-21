@@ -2,6 +2,7 @@
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -15,6 +16,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             GetName();
+        }
+
+        public bool AUTO_DISPOSE = false;
+        public bool CheckBackup()
+        {
+            var svdate = V6BusinessHelper.GetServerDateTime();
+            if (svdate.Date == FilterControl.Date1.Date)
+            {
+                return true;
+            }
+            return false;
         }
 
         public override void SetStatus2Text()

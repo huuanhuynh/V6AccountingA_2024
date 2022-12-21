@@ -2458,6 +2458,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLTH2TF5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLTH2TF5.designer.cs">
+      <DependentUpon>AGLTH2TF5.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AINGIA_DD_LO.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7529,6 +7535,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLTH2TF5.resx">
+      <DependentUpon>AGLTH2TF5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AINGIA_DD_LO.resx">
       <DependentUpon>AINGIA_DD_LO.cs</DependentUpon>

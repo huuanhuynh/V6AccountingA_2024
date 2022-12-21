@@ -31,6 +31,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
 
             Check1 = v6CheckBox1.Checked;
+            Date1 = (DateTime)txtngay_bk.Value;
             String1ValueChanged += V6BACKUP1_String1ValueChanged;
             Ready();
         }

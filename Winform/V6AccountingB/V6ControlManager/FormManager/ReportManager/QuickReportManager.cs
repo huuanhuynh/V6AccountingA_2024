@@ -337,6 +337,10 @@ namespace V6ControlManager.FormManager.ReportManager
                 {
                     (c as ReportR44ViewBase).btnNhan_Click(null, null);
                 }
+                else if (c is ReportR47ViewBase)
+                {
+                    (c as ReportR47ViewBase).btnNhan_Click(null, null);
+                }
                 else if (c is ReportRView2Base)
                 {
                     (c as ReportRView2Base).btnNhan_Click(null, null);
@@ -353,6 +357,70 @@ namespace V6ControlManager.FormManager.ReportManager
                 {
                     (c as ReportD99ViewBase).btnNhan_Click(null, null);
                 }
+                else if (c is ReportTreeViewBase)
+                {
+                    (c as ReportTreeViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportTreeView44)
+                {
+                    (c as ReportTreeView44).btnNhan_Click(null, null);
+                }
+
+                else if (c is ReportR_DX)
+                {
+                    (c as ReportR_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportR44_DX)
+                {
+                    (c as ReportR44_DX).btnNhan_Click(null, null);
+                }
+                //else if (c is ReportR47_DX)
+                //{
+                //    (c as ReportR47_DX).btnNhan_Click(null, null);
+                //}
+                else if (c is ReportRView2_DX)
+                {
+                    (c as ReportRView2_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportRWWView2_DX)
+                {
+                    (c as ReportRWWView2_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportD_DX)
+                {
+                    (c as ReportD_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportD99_DX)
+                {
+                    (c as ReportD99_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportTreeView_DX)
+                {
+                    (c as ReportTreeView_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportTreeView44_DX)
+                {
+                    (c as ReportTreeView44_DX).btnNhan_Click(null, null);
+                }
+
+                else if (c is XuLy.V6BACKUP1)
+                {
+                    var v6backup1 = c as XuLy.V6BACKUP1;
+                    v6backup1.AUTO_DISPOSE = true;
+                    //bool check = v6backup1.CheckBackup();
+                    bool check = CheckBackup();
+                    if (check == false)
+                    {
+                        v6backup1.btnNhan_Click(null, null);
+                        c.ShowToForm(owner, mButton.ReportTitle + (string.IsNullOrEmpty(mButton.ReportFile) ? "Code: " + mButton.CodeForm : ""),
+                            true, false); // fullScreen, dialog
+                    }
+                    else
+                    {
+
+                    }
+                    return;
+                }
 
                 c.ShowToForm(owner, mButton.ReportTitle + (string.IsNullOrEmpty(mButton.ReportFile) ? "Code: " + mButton.CodeForm : ""),
                     true, false); // fullScreen, dialog
@@ -361,6 +429,18 @@ namespace V6ControlManager.FormManager.ReportManager
             {
                 V6ControlFormHelper.WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
+        }
+
+        /// <summary>
+        /// Kiểm tra đã có backup chưa.
+        /// </summary>
+        /// <returns></returns>
+        private static bool CheckBackup()
+        {
+            var plist = new List<SqlParameter>();
+            plist.Add(new SqlParameter("@nUserID", V6Login.UserId));
+            int i = ObjectAndString.ObjectToInt(V6BusinessHelper.ExecuteFunctionScalar("VFV_isExistFileBackup", plist.ToArray()));
+            return i == 1;
         }
 
         public static void ShowReportR(IWin32Window owner, QuickReportParams quickParams)
