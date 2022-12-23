@@ -92,7 +92,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
 
             //CheckChuaPhanNhom();
 
-            _dataloaded = true;
+            _executesuccess = true;
         }
 
         private void CheckChuaPhanNhom()
@@ -148,7 +148,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             try
             {
-                if (_dataloaded)
+                if (_executesuccess)
                 {
                     timer1.Stop();
                     progressBar1.Value = 100;

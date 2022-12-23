@@ -514,6 +514,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
             }
         }
+
+        private string ReloadData
+        {
+            get
+            {
+                var result = "";
+                if (MauInSelectedRow != null)
+                {
+                    result = MauInSelectedRow["Reload_data"].ToString().Trim();
+                }
+                return result;
+            }
+        }
         
         #endregion 
         
@@ -1198,7 +1211,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             else
             {
-                if (_albcConfig.RELOAD_DATA == "1")
+                if (ReloadData == "1")
                     MakeReport2(PrintMode, PrinterName, _printCopy);
                 else
                     ViewReport();

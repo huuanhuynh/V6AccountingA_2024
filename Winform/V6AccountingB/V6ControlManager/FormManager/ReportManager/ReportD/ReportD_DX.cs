@@ -61,6 +61,33 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private List<SqlParameter> _pList;
 
         /// <summary>
+        /// Tên file excel tự động xuất.
+        /// </summary>
+        public string AutoExportExcelFileName = null;
+        public string AutoExportWordFileName = null;
+
+        public delegate void PrintReportSuccessDelegate(Control sender);
+        public event PrintReportSuccessDelegate PrintSuccess;
+        protected virtual void CallPrintSuccessEvent()
+        {
+            var handler = PrintSuccess;
+
+            if (handler != null)
+            {
+                handler(this);
+            }
+        }
+        public bool Close_after_print { get; set; }
+        public V6PrintMode PrintMode { get; set; }
+        public string PrinterName { get; set; }
+        private int _printCopy = 1;
+        public int PrintCopies
+        {
+            get { return _printCopy; }
+            set { _printCopy = value; }
+        }
+
+        /// <summary>
         /// Danh sách event_method của Form_program.
         /// </summary>
         private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
@@ -854,15 +881,24 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private void Form_Load(object sender, EventArgs e)
         {
             MyInit2();
-            //if (_ds != null && _ds.Tables.Count > 0)
-            //{
-            //    SetTBLdata();
-            //    ShowReport();
-            //}
-            //else if (AutoClickNhan)
-            //{
-            //    btnNhan.PerformClick();
-            //}
+            if (_ds != null && _ds.Tables.Count > 0)
+            {
+                SetTBLdata();
+                ShowReport();
+            }
+            else if (PrintMode != V6PrintMode.DoNoThing)
+            {
+                try
+                {
+                    btnNhanImage = btnNhan.Image;
+                    FormManagerHelper.HideMainMenu();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                }
+            }
         }
 
         
@@ -883,9 +919,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
             try
             {
-                FormManagerHelper.HideMainMenu();
                 btnNhanImage = btnNhan.Image;
-                MakeReport();
+                FormManagerHelper.HideMainMenu();
+                MakeReport2(V6PrintMode.DoNoThing, null, 1);
             }
             catch (Exception ex)
             {
@@ -1038,21 +1074,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 _executing = true;
                 _executesuccess = false;
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
-                if (_ds.Tables.Count > 0)
-                {
-                    _tbl1 = _ds.Tables[0];
-                    _tbl1.TableName = "DataTable1";
-                    _tbls = TachBang(_tbl1, F_START, F_FIXCOLUMN);
-                }
-                if (_ds.Tables.Count > 1)
-                {
-                    _tbl2 = _ds.Tables[1];
-                    _tbl2.TableName = "DataTable2";
-                }
-                else
-                {
-                    _tbl2 = null;
-                }
+                SetTBLdata();
                 
                 _executesuccess = true;
             }
@@ -1068,6 +1090,25 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 _executesuccess = false;
             }
             _executing = false;
+        }
+
+        private void SetTBLdata()
+        {
+            if (_ds.Tables.Count > 0)
+            {
+                _tbl1 = _ds.Tables[0];
+                _tbl1.TableName = "DataTable1";
+                _tbls = TachBang(_tbl1, F_START, F_FIXCOLUMN);
+            }
+            if (_ds.Tables.Count > 1)
+            {
+                _tbl2 = _ds.Tables[1];
+                _tbl2.TableName = "DataTable2";
+            }
+            else
+            {
+                _tbl2 = null;
+            }
         }
 
         private int sobangtach;
@@ -1143,22 +1184,30 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
         }
 
+
         /// <summary>
         /// GenerateProcedureParameters();//Add các key
         /// var tLoadData = new Thread(LoadData);
         /// tLoadData.Start();
         /// timerViewReport.Start();
         /// </summary>
-        private void MakeReport()
+        private void MakeReport2(V6PrintMode printMode, string printerName, int printCopy = 1)
         {
+            PrintMode = printMode;
+            PrinterName = printerName;
+            _printCopy = printCopy;
+
             if (GenerateProcedureParameters()) //Add các key khác
             {
+                _executesuccess = false;
                 _executing = true;
                 var tLoadData = new Thread(LoadData);
+                CheckForIllegalCrossThreadCalls = false;
                 tLoadData.Start();
                 timerViewReport.Start();
             }
         }
+
 
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
@@ -1214,6 +1263,40 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
                 this.ShowErrorMessage(_message);
+            }
+        }
+
+        private void Print(string printerName, XtraReport repx)
+        {
+            bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
+
+            if (printerOnline)
+            {
+                try
+                {
+                    var printTool = new ReportPrintTool(repx);
+                    printTool.PrintingSystem.ShowMarginsWarning = false;
+                    printTool.Print(printerName);
+
+                    //if (!xemMau)
+                    //    timer1.Start();
+
+                    //xong = true;
+                    CallPrintSuccessEvent();
+                    if (Close_after_print)
+                    {
+                        if (!IsDisposed) Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".In lỗi!\n" + ex.Message, "V6Soft");
+                }
+            }
+            else
+            {
+                btnIn.Enabled = true;
+                this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
             }
         }
 
@@ -1298,7 +1381,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             {
                 
             }
-
             SetFormReportFilter();
 
             if (_radioChange)
@@ -1308,7 +1390,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             else
             {
                 if (ReloadData == "1")
-                    MakeReport();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
                 else
                     ViewReport();
             }
@@ -1333,7 +1415,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     }
 
                     if (ReloadData == "1")
-                        MakeReport();
+                        MakeReport2(PrintMode, PrinterName, _printCopy);
                     else
                         ViewReport();
                 }
@@ -1361,7 +1443,73 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 this.ShowErrorException(GetType() + ".PrintGrid", ex);
             }
         }
-        
+
+        void ShowReport()
+        {
+            try
+            {
+                FilterControl.LoadDataFinish(_ds);
+                All_Objects["_ds"] = _ds;
+                InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
+                dataGridView1.SetFrozen(0);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = _tbl1;
+
+                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                if (_albcConfig != null && _albcConfig.HaveInfo)
+                {
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                        _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                }
+
+                FormatGridView();
+                gridViewTopFilter1.MadeFilterItems();
+
+                ViewReport();
+                if (PrintMode == V6PrintMode.AutoPrint)
+                {
+                    Print(PrinterName, _repx0);
+                    if (!IsDisposed) Dispose();
+                }
+                else if (PrintMode == V6PrintMode.AutoClickPrint)
+                {
+                    btnIn.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoExportT)
+                {
+                    if (btnExport3.Visible && btnExport3.Enabled)
+                        btnExport3.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoLoadData)
+                {
+                    //Done;
+                }
+
+                if (!string.IsNullOrEmpty(AutoExportExcelFileName))
+                {
+                    var setting = new ExportExcelSetting();
+                    setting.data = _tbl1;
+                    setting.data2 = _tbl2;
+                    setting.reportParameters = ReportDocumentParameters;
+                    setting.albcConfigData = _albcConfig.DATA;
+                    V6ControlFormHelper.ExportExcelTemplate(this, setting,
+                        ReportFile, ExcelTemplateFileFull, AutoExportExcelFileName);
+                    if (!IsDisposed) Dispose();
+                }
+                else if (!string.IsNullOrEmpty(AutoExportWordFileName))
+                {
+
+                }
+
+                dataGridView1.Focus();
+            }
+            catch (Exception ex)
+            {
+                timerViewReport.Stop();
+                _executesuccess = false;
+                this.ShowErrorException(GetType() + ".ShowReport", ex);
+            }
+        }
 
         void ViewReport()
         {
@@ -1880,7 +2028,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
-                MakeReport();
+                MakeReport2(PrintMode, PrinterName, _printCopy);
             else
                 ViewReport();
         }

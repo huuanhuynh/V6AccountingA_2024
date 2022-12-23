@@ -185,9 +185,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        
-        
-
         /// <summary>
         /// Tên file excel tự động xuất.
         /// </summary>
@@ -1053,7 +1050,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 btnNhanImage = btnNhan.Image;
                 FormManagerHelper.HideMainMenu();
-                
                 MakeReport2(V6PrintMode.DoNoThing, null, 1);
             }
             catch (Exception ex)

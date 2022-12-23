@@ -161,7 +161,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             plist = GetFilterParameters();
 
-            _dataloaded = false;
+            _executesuccess = false;
 
             var tLoadData = new Thread(LoadData);
             CheckForIllegalCrossThreadCalls = false;
@@ -174,18 +174,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             try
             {
-                _dataloading = true;
-                _dataloaded = false;
+                _executing = true;
+                _executesuccess = false;
                 _ds = V6BusinessHelper.ExecuteProcedure("AINHHVTALL", plist.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
                     data = _ds.Tables[0];
-                    _dataloaded = true;
+                    _executesuccess = true;
                 }
                 else
                 {
                     data = null;
-                    _dataloaded = false;
+                    _executesuccess = false;
                 }
             }
             catch (Exception ex)
@@ -196,9 +196,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                 _ds = null;
                 data = null;
-                _dataloaded = false;
+                _executesuccess = false;
             }
-            _dataloading = false;
+            _executing = false;
         }
 
         private void btnLoc_Click(object sender, EventArgs e)
@@ -239,7 +239,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataloaded)
+            if (_executesuccess)
             {
                 timerViewReport.Stop();
                 btnLoc.Image = btnNhanImage;
@@ -257,11 +257,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 catch (Exception ex)
                 {
                     timerViewReport.Stop();
-                    _dataloaded = false;
+                    _executesuccess = false;
                     V6Message.Show(ex.Message);
                 }
             }
-            else if (_dataloading)
+            else if (_executing)
             {
                 btnLoc.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;

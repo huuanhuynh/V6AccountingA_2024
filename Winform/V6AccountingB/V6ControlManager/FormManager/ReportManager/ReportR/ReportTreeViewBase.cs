@@ -181,7 +181,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// Tên file excel tự động xuất.
         /// </summary>
         public string AutoExportExcel = null;
-        public bool AutoClickNhan = false;
+        
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -966,9 +966,18 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 ViewFooter();
                 ShowReport();
             }
-            else if (AutoClickNhan)
+            else if (PrintMode != V6PrintMode.DoNoThing)
             {
-                btnNhan.PerformClick();
+                try
+                {
+                    btnNhanImage = btnNhan.Image;
+                    FormManagerHelper.HideMainMenu();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                }
             }
         }
 
@@ -1025,7 +1034,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 btnNhanImage = btnNhan.Image;
                 FormManagerHelper.HideMainMenu();
-                MakeReport2();
+                MakeReport2(V6PrintMode.DoNoThing, null, 1);
             }
             catch (Exception ex)
             {
@@ -1185,14 +1194,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             _executing = false;
         }
+
         /// <summary>
         /// GenerateProcedureParameters();//Add các key
         /// var tLoadData = new Thread(LoadData);
         /// tLoadData.Start();
         /// timerViewReport.Start();
         /// </summary>
-        private void MakeReport2()
+        private void MakeReport2(V6PrintMode printMode, string printerName, int printCopy = 1)
         {
+            PrintMode = printMode;
+            PrinterName = printerName;
+            _printCopy = printCopy;
+
             if (GenerateProcedureParameters()) //Add các key khác
             {
                 _executesuccess = false;
@@ -1202,7 +1216,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 tLoadData.Start();
                 timerViewReport.Start();
             }
-        }		
+        }
 
         private void SetTBLdata()
         {
@@ -1445,7 +1459,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             else
             {
                 if (ReloadData == "1")
-                    MakeReport2();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
                 else
                     ViewReport();
             }
@@ -1471,7 +1485,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
 
                     if (ReloadData == "1")
-                        MakeReport2();
+                        MakeReport2(PrintMode, PrinterName, _printCopy);
                     else
                         ViewReport();
                 }
@@ -1930,7 +1944,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
-                MakeReport2();
+                MakeReport2(PrintMode, PrinterName, _printCopy);
             else
                 ViewReport();
         }

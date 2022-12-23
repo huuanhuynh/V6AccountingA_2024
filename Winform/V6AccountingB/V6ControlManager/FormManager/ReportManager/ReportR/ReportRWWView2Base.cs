@@ -64,6 +64,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private Type Form_program;
         private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
+        public bool Close_after_print { get; set; }
+        /// <summary>
+        /// 0 DoNoThing 1 AutoPrint 2 AutoClickPrint 3 AutoClickExport
+        /// </summary>
+        public V6PrintMode PrintMode { get; set; }
+        public string PrinterName { get; set; }
+        private int _printCopy = 1;
+        public int PrintCopies
+        {
+            get { return _printCopy; }
+            set { _printCopy = value; }
+        }
+
         private object InvokeFormEvent(string eventName)
         {
             try // Dynamic invoke
@@ -815,9 +828,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             try
             {
-                FormManagerHelper.HideMainMenu();
                 btnNhanImage = btnNhan.Image;
-                MakeReport2();
+                FormManagerHelper.HideMainMenu();
+                MakeReport2(V6PrintMode.DoNoThing, null, 1);
             }
             catch (Exception ex)
             {
@@ -986,14 +999,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 _executesuccess = false;
             }
         }
+
         /// <summary>
         /// GenerateProcedureParameters();//Add các key
         /// var tLoadData = new Thread(LoadData);
         /// tLoadData.Start();
         /// timerViewReport.Start();
         /// </summary>
-        private void MakeReport2()
+        private void MakeReport2(V6PrintMode printMode, string printerName, int printCopy = 1)
         {
+            PrintMode = printMode;
+            PrinterName = printerName;
+            _printCopy = printCopy;
+
             if (GenerateProcedureParameters()) //Add các key khác
             {
                 _executesuccess = false;
@@ -1281,7 +1299,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             else
             {
                 if (ReloadData == "1")
-                    MakeReport2();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
                 else
                     ViewReport();
             }
@@ -1306,7 +1324,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
 
                     if (ReloadData == "1")
-                        MakeReport2();
+                        MakeReport2(PrintMode, PrinterName, _printCopy);
                     else
                         ViewReport();
                 }
@@ -1619,7 +1637,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
-                MakeReport2();
+                MakeReport2(PrintMode, PrinterName, _printCopy);
             else
                 ViewReport();
         }

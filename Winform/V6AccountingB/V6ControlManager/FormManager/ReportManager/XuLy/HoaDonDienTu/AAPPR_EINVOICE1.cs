@@ -37,8 +37,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var text = CorpLan.GetTextNull(id);
             if (string.IsNullOrEmpty(text))
             {
-                text = string.Format("F4: {0}, F5: {1}, F6: {2}, F9: {3}", V6Text.Text("DIEUCHINHTIEN"), V6Text.Text("DIEUCHINHTT"), V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT"));
+                text = string.Format("F4: {0}, F5: {1}, F6: {2}, F9: {3}, F10: {4}", V6Text.Text("DIEUCHINHTIEN"), V6Text.Text("DIEUCHINHTT"), V6Text.Text("THAYTHECT"), V6Text.Text("XULYCT"), V6Text.Text("CAPNHAPSOCT"));
             }
+            text = FixStatusText(text, FilterControl);
             V6ControlFormHelper.SetStatusText2(text, id);
         }
 
@@ -90,8 +91,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (form.ShowDialog(this) != DialogResult.OK || form.SelectedMode == "E_T1") // thay thế dùng F6
             {
                 f9Running = false;
+                SetStatus2Text();
                 return;
             }
+            SetStatus2Text();
 
             int i = 0;
             while(i<dataGridView1.Rows.Count)
@@ -234,8 +237,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (form.ShowDialog(this) != DialogResult.OK || form.SelectedGridViewRow == null)
                 {
                     if (form.SelectedGridViewRow == null) this.ShowWarningMessage(V6Text.NoData);
+                    SetStatus2Text();
                     return;
                 }
+                SetStatus2Text();
 
                 DataGridViewRow row = dataGridView1.CurrentRow;
                 var am_OLD = row.ToDataDictionary();
@@ -350,13 +355,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        protected override void XuLyF7()
+        protected override void XuLyF10()
         {
             try
             {
-                if (Event_Methods.ContainsKey("F7"))
+                if (Event_Methods.ContainsKey("F10"))
                 {
-                    InvokeFormEvent(FormDynamicEvent.F7);
+                    InvokeFormEvent(FormDynamicEvent.F10);
                 }
                 else
                 {
@@ -390,8 +395,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         Fkey_hd = fkey_hd,
                     };
                     string error;
+                    // so_hd0 getWS, so_hd1 fix, so_hd2 input.
                     string so_hd0 = PostManager.PowerDownloadInfo(paras, out error);
-                    string so_hd1 = "";
+                    string so_hd1 = "", so_hd2 = "";
                     //"XL/20E0000323"
                     switch (paras.Branch)
                     {
@@ -404,7 +410,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     string title = V6Text.Text("CAPNHAP_SOHD");
                     if (title == "CAPNHAP_SOHD") title = "Cập nhập lại số hóa đơn";
-                    string so_hd2 = V6ControlFormHelper.GetInputString(this, title, so_hd1);
+                    so_hd2 = V6ControlFormHelper.GetInputString(this, title, so_hd1);
                     if (string.IsNullOrEmpty(so_hd2))
                     {
                         return;
@@ -434,7 +440,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        protected override void XuLyF10()
+        protected void XuLyF10_Delete()
         {
             bool ctrl_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
             string result = "";//, error = "", sohoadon = "", id = "";

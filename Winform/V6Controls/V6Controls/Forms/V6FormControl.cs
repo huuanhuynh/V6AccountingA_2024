@@ -54,7 +54,7 @@ namespace V6Controls.Forms
         /// </summary>
         public Type Event_program;
         public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-        
+
         /// <summary>
         /// Get AllObjects
         /// </summary>

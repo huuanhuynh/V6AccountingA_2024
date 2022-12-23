@@ -564,7 +564,50 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //FilterControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             FilterControl.Focus();
         }
-        
+
+        /// <summary>
+        /// Xóa những phần không dùng (ví dụ filter.F4 = false thì xóa phần text tương ứng)
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public string FixStatusText(string text, FilterBase filter)
+        {
+            // text = F3: abc xyz, F4: 123456, FA:???
+            if (!filter.F3) text = RemoveFx(text, "F3");
+            if (!filter.F4) text = RemoveFx(text, "F4");
+            if (!filter.F5) text = RemoveFx(text, "F5");
+            if (!filter.F6) text = RemoveFx(text, "F6");
+            if (!filter.F7) text = RemoveFx(text, "F7");
+            if (!filter.F8) text = RemoveFx(text, "F8");
+            if (!filter.F9) text = RemoveFx(text, "F9");
+            if (!filter.F10) text = RemoveFx(text, "F10");
+            return text;
+        }
+
+        private string RemoveFx(string text, string Fx)
+        {
+            if (text.StartsWith(Fx + ":"))
+            {
+                int index = text.IndexOf(',');
+                text = text.Substring(index + 1).Trim();
+            }
+            else if (text.Contains(", " + Fx + ":"))
+            {
+                int index1 = text.IndexOf(", " + Fx + ":");
+                int index2 = text.IndexOf(',', index1 + 1);
+                text = text.Remove(index1, index2 - index1);
+            }
+            else if (text.Contains("," + Fx + ":"))
+            {
+                int index1 = text.IndexOf("," + Fx + ":");
+                int index2 = text.IndexOf(',', index1 + 1);
+                if (index2 > index1) text = text.Remove(index1, index2 - index1);
+                else text = text.Remove(index1);
+            }
+
+            return text;
+        }
         
         public void btnNhan_Click(object sender, EventArgs e)
         {

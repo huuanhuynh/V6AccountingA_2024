@@ -574,7 +574,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         
         private void btnNhan_Click(object sender, EventArgs e)
         {
-            if (_dataloading)
+            if (_executing)
             {
                 return;
             }
@@ -878,8 +878,8 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             try
             {
-                _dataloading = true;
-                _dataloaded = false;
+                _executing = true;
+                _executesuccess = false;
                 error_message = "";
                 _ds = V6BusinessHelper.ExecuteProcedure("VPA_R_AL2_ALL", pList.ToArray());
                 if (_ds.Tables.Count > 0)
@@ -907,8 +907,8 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 {
                     _tbl3 = null;
                 }
-                _dataloaded = true;
-                _dataloading = false;
+                _executesuccess = true;
+                _executing = false;
             }
             catch (Exception ex)
             {
@@ -916,8 +916,8 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 _tbl1 = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataloading = false;
-                _dataloaded = false;
+                _executing = false;
+                _executesuccess = false;
             }
         }
         private void MakeReport2()
@@ -930,7 +930,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         }
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataloaded)
+            if (_executesuccess)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -948,12 +948,12 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 }
                 catch (Exception ex)
                 {
-                    _dataloaded = false;
+                    _executesuccess = false;
                     timerViewReport.Stop();
                     this.ShowErrorMessage(GetType() + ".TimerView: " + ex.Message);
                 }
             }
-            else if (_dataloading)
+            else if (_executing)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;

@@ -42,6 +42,35 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         public DataSet _ds;
         public DataTable _tbl1, _tbl2;
 
+        public bool Close_after_print { get; set; }
+        /// <summary>
+        /// 0 DoNoThing 1 AutoPrint 2 AutoClickPrint 3 AutoClickExport
+        /// </summary>
+        public V6PrintMode PrintMode { get; set; }
+        public string PrinterName { get; set; }
+        private int _printCopy = 1;
+        public int PrintCopies
+        {
+            get { return _printCopy; }
+            set { _printCopy = value; }
+        }
+
+        /// <summary>
+        /// Tên file excel tự động xuất.
+        /// </summary>
+        public string AutoExportExcel = null;
+
+        public delegate void PrintReportSuccessDelegate(Control sender);
+        public event PrintReportSuccessDelegate PrintSuccess;
+        protected virtual void CallPrintSuccessEvent()
+        {
+            var handler = PrintSuccess;
+
+            if (handler != null)
+            {
+                handler(this);
+            }
+        }
 
         /// <summary>
         /// MA_FILE, MAU, LAN, REPORT
@@ -115,13 +144,40 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             }
         }
 
-        private SortedDictionary<string, string> _extraInfor;
+        private SortedDictionary<string, string> _extraInfor = null;
 
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
             if (MauInSelectedRow == null) return;
             _extraInfor.AddRange(ObjectAndString.StringToStringDictionary("" + MauInSelectedRow["EXTRA_INFOR"]));
+        }
+
+        /// <summary>
+        /// Zoom mặc định cho crystalreport khi in chứng từ.
+        /// <para>Crystal: 1 PageWidth, 2 AllPage, >=50 is %</para>
+        /// <para>Xtra: 1 = PageWidth, 2 AllPage, >=50 is this %</para>
+        /// </summary>
+        public int ExtraInfo_PrintVCzoom
+        {
+            get
+            {
+                int result = 100;
+                if (EXTRA_INFOR.ContainsKey("PRINTVCZOOM")) result = ObjectAndString.ObjectToInt(EXTRA_INFOR["PRINTVCZOOM"]);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// MauIn (Albc) EXTRA_INFOR NOPRINTER
+        /// </summary>
+        private bool NOPRINTER
+        {
+            get
+            {
+                if (EXTRA_INFOR.ContainsKey("NOPRINTER")) return ObjectAndString.ObjectToBool(EXTRA_INFOR["NOPRINTER"]);
+                return false;
+            }
         }
 
         #endregion EXTRA_INFOR
@@ -485,11 +541,29 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             MyInit2();
+            if (_ds != null && _ds.Tables.Count > 0)
+            {
+                SetTBLdata();
+                ShowReport();
+            }
+            else if (PrintMode != V6PrintMode.DoNoThing)
+            {
+                try
+                {
+                    btnNhanImage = btnNhan.Image;
+                    FormManagerHelper.HideMainMenu();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                }
+            }
         }
         
         private void btnNhan_Click(object sender, EventArgs e)
         {
-            if (_dataloading)
+            if (_executing)
             {
                 return;
             }
@@ -498,7 +572,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             {
                 GenerateKeys();
                 btnNhanImage = btnNhan.Image;
-                MakeReport2();
+                MakeReport2(V6PrintMode.DoNoThing, null, 1);
             }
             catch (Exception ex)
             {
@@ -510,14 +584,15 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             sKey = QueryString;
         }
-        
-        private void AddProcParams()
+
+        private bool GenerateProcedureParameters()
         {
             var _order = V6TableHelper.GetDefaultSortField(V6TableHelper.ToV6TableName(_tableName));
             
             pList.Add(new SqlParameter("@cTable", _tableName));
             pList.Add(new SqlParameter("@cOrder", _order));
             pList.Add(new SqlParameter("@cKey", "1=1" + (sKey.Length>0?" And " +sKey:"")));
+            return true;
         }
 
         private IDictionary<string, object> ReportDocumentParameters; 
@@ -781,26 +856,13 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             try
             {
-                _dataloading = true;
-                _dataloaded = false;
+                _executing = true;
+                _executesuccess = false;
                 error_message = "";
                 _ds = V6BusinessHelper.ExecuteProcedure("VPA_R_AL_ALL", pList.ToArray());
-                if (_ds.Tables.Count > 0)
-                {
-                    _tbl1 = _ds.Tables[0];
-                    _tbl1.TableName = "DataTable1";
-                }
-                if (_ds.Tables.Count > 1)
-                {
-                    _tbl2 = _ds.Tables[1];
-                    _tbl2.TableName = "DataTable2";
-                }
-                else
-                {
-                    _tbl2 = null;
-                }
-                _dataloaded = true;
-                _dataloading = false;
+                SetTBLdata();
+                _executesuccess = true;
+                _executing = false;
             }
             catch (Exception ex)
             {
@@ -808,17 +870,59 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 _tbl1 = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataloading = false;
-                _dataloaded = false;
+                _executing = false;
+                _executesuccess = false;
             }
         }
-        private void MakeReport2()
+
+        private void SetTBLdata()
+        {
+            if (_ds.Tables.Count > 0)
+            {
+                _tbl1 = _ds.Tables[0];
+                _tbl1.TableName = "DataTable1";
+            }
+            if (_ds.Tables.Count > 1)
+            {
+                _tbl2 = _ds.Tables[1];
+                _tbl2.TableName = "DataTable2";
+            }
+            else
+            {
+                _tbl2 = null;
+            }
+        }
+
+        private void MakeReport2( )
         {
             pList = new List<SqlParameter>();
-            AddProcParams();//Add các key khác
+            GenerateProcedureParameters();//Add các key khác
             var tLoadData = new Thread(LoadData);
             tLoadData.Start();
             timerViewReport.Start();
+        }
+
+        /// <summary>
+        /// GenerateProcedureParameters();//Add các key
+        /// var tLoadData = new Thread(LoadData);
+        /// tLoadData.Start();
+        /// timerViewReport.Start();
+        /// </summary>
+        private void MakeReport2(V6PrintMode printMode, string printerName, int printCopy = 1)
+        {
+            PrintMode = printMode;
+            PrinterName = printerName;
+            _printCopy = printCopy;
+
+            if (GenerateProcedureParameters()) //Add các key khác
+            {
+                _executesuccess = false;
+                _executing = true;
+                var tLoadData = new Thread(LoadData);
+                CheckForIllegalCrossThreadCalls = false;
+                tLoadData.Start();
+                timerViewReport.Start();
+            }
         }
 
         /// <summary>
@@ -902,7 +1006,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataloaded)
+            if (_executesuccess)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -913,18 +1017,18 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                     dataGridView1.DataSource = _tbl1;
 
                     FormatGridView();
-                    ViewReport();
+                    ShowReport();
 
                     dataGridView1.Focus();
                 }
                 catch (Exception ex)
                 {
-                    _dataloaded = false;
+                    _executesuccess = false;
                     timerViewReport.Stop();
                     this.ShowErrorMessage(GetType() + ".TimerView: " + ex.Message);
                 }
             }
-            else if (_dataloading)
+            else if (_executing)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;
@@ -934,6 +1038,30 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
                 this.ShowErrorMessage(error_message);
+            }
+        }
+
+        private void Print(string printerName, ReportDocument rpDoc)
+        {
+            bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
+
+            if (printerOnline)
+            {
+                try
+                {
+                    V6ControlFormHelper.SetCrystalReportPrinterOptions(NOPRINTER, V6ControlFormHelper.PrinterSettings, rpDoc);
+                    V6ControlFormHelper.PrintRptToPrinter(NOPRINTER, rpDoc, printerName, _printCopy, 0, 0);
+                    CallPrintSuccessEvent();
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".In lỗi!\n" + ex.Message, "V6Soft");
+                }
+            }
+            else
+            {
+                btnIn.Enabled = true;
+                this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
             }
         }
 
@@ -1111,7 +1239,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             else
             {
                 if (ReloadData == "1")
-                    MakeReport2();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
                 else
                     ViewReport();
             }
@@ -1136,7 +1264,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                     }
 
                     if (ReloadData == "1")
-                        MakeReport2();
+                        MakeReport2(PrintMode, PrinterName, _printCopy);
                     else
                         ViewReport();
                 }
@@ -1168,6 +1296,67 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private void viewGrid_Click(object sender, EventArgs e)
         {
             dataGridView1.ToFullForm("Xem");
+        }
+
+        void ShowReport()
+        {
+            try
+            {
+                //panel1.LoadDataFinish(_ds);
+                All_Objects["_ds"] = _ds;
+                InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
+                dataGridView1.SetFrozen(0);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = _tbl1;
+
+                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                if (_albcConfig != null && _albcConfig.HaveInfo)
+                {
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                        _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                }
+                FormatGridView();
+                //gridViewTopFilter1.MadeFilterItems();
+
+                ViewReport();
+                if (PrintMode == V6PrintMode.AutoPrint)
+                {
+                    Print(PrinterName, _rpDoc0);
+                    if (!IsDisposed) Dispose();
+                }
+                else if (PrintMode == V6PrintMode.AutoClickPrint)
+                {
+                    btnIn.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoExportT)
+                {
+                    if (btnExport3.Visible && btnExport3.Enabled)
+                        btnExport3.PerformClick();
+                }
+                else if (PrintMode == V6PrintMode.AutoLoadData)
+                {
+                    //Done;
+                }
+
+                if (!string.IsNullOrEmpty(AutoExportExcel))
+                {
+                    var setting = new ExportExcelSetting();
+                    setting.data = _tbl1;
+                    setting.data2 = _tbl2;
+                    setting.reportParameters = ReportDocumentParameters;
+                    setting.albcConfigData = _albcConfig.DATA;
+                    V6ControlFormHelper.ExportExcelTemplate(this, setting, ReportFile, ExcelTemplateFileFull, AutoExportExcel);
+                    Dispose();
+                }
+
+                dataGridView1.Focus();
+            }
+            catch (Exception ex)
+            {
+                timerViewReport.Stop();
+                _executesuccess = false;
+                this.ShowErrorException(GetType() + ".ShowReport", ex);
+            }
         }
         
         void ViewReport()
@@ -1271,7 +1460,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
-                MakeReport2();
+                MakeReport2(PrintMode, PrinterName, _printCopy);
             else
                 ViewReport();
         }

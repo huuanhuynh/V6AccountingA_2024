@@ -569,7 +569,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.Name = "DanhMucReportFormDX";
             this.Text = "Báo cáo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.F_FormClosed);
-            this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.ResizeEnd += new System.EventHandler(this.F_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

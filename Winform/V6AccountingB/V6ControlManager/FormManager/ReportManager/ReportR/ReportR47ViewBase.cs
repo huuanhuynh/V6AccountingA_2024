@@ -50,6 +50,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public DataTable BaoCaoData;
         public DataView BaoCaoView;
 
+        public bool Close_after_print { get; set; }
+        /// <summary>
+        /// 0 DoNoThing 1 AutoPrint 2 AutoClickPrint 3 AutoClickExport
+        /// </summary>
+        public V6PrintMode PrintMode { get; set; }
+        public string PrinterName { get; set; }
+        private int _printCopy = 1;
+        public int PrintCopies
+        {
+            get { return _printCopy; }
+            set { _printCopy = value; }
+        }
+
         /// <summary>
         /// Danh sách event_method của Form_program.
         /// </summary>
@@ -167,16 +180,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// </summary>
         private List<SqlParameter> _pList;
 
-        //public bool AutoPrint = false;
-        public bool AutoClickNhan = false;
-        public string PrinterName { get; set; }
-        private int _printCopy = 1;
-
-        public int PrintCopies
-        {
-            get { return _printCopy; }
-            set { _printCopy = value; }
-        }
 
         public delegate void PrintReportSuccessDelegate(Control sender);
         public event PrintReportSuccessDelegate PrintSuccess;
@@ -943,9 +946,18 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 SetTBLdata();
                 ShowReport();
             }
-            else if (AutoClickNhan)
+            else if (PrintMode != V6PrintMode.DoNoThing)
             {
-                btnNhan.PerformClick();
+                try
+                {
+                    btnNhanImage = btnNhan.Image;
+                    FormManagerHelper.HideMainMenu();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                }
             }
         }
 
@@ -966,7 +978,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 btnNhanImage = btnNhan.Image;
                 FormManagerHelper.HideMainMenu();
-                MakeReport2();
+                MakeReport2(V6PrintMode.DoNoThing, null, 1);
             }
             catch (Exception ex)
             {
@@ -1053,15 +1065,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
         
         #region ==== LoadData MakeReport ====
-        
+
         /// <summary>
         /// GenerateProcedureParameters();//Add các key
         /// var tLoadData = new Thread(LoadData);
         /// tLoadData.Start();
         /// timerViewReport.Start();
         /// </summary>
-        private void MakeReport2()
+        private void MakeReport2(V6PrintMode printMode, string printerName, int printCopy = 1)
         {
+            PrintMode = printMode;
+            PrinterName = printerName;
+            _printCopy = printCopy;
+
             if (GenerateProcedureParameters()) //Add các key khác
             {
                 _executesuccess = false;
@@ -1444,9 +1460,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             else
             {
                 if (ReloadData == "1")
-                    MakeReport2();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
                 //else
-                //    ViewReport();
+                    //ViewReport();
             }
         }
 
@@ -1466,7 +1482,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     txtReportTitle.Text = ReportTitle;
                 }
                 if (ReloadData == "1")
-                    MakeReport2();
+                    MakeReport2(PrintMode, PrinterName, _printCopy);
                 //else
                 //    ViewReport();
             }
@@ -1501,11 +1517,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 FormatGridView();
                 gridViewTopFilter1.MadeFilterItems();
-                //if (AutoPrint)
-                //{
-                //    Print(PrinterName);
-                //    Dispose();
-                //}
+                ViewReport();
+
                 gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 dataGridView1.Focus();
             }
@@ -1515,6 +1528,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 _executesuccess = false;
                 this.ShowErrorException(GetType() + ".ShowReport", ex);
             }
+        }
+
+        void ViewReport()
+        {
+            // Noview.
         }
 
         private void XuLyHienThiFormSuaChungTuF3()
@@ -1733,7 +1751,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
-                MakeReport2();
+                MakeReport2(PrintMode, PrinterName, _printCopy);
             //else
             //    ViewReport();
         }
