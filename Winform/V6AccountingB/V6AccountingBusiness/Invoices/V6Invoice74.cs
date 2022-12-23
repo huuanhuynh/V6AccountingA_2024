@@ -416,7 +416,7 @@ namespace V6AccountingBusiness.Invoices
             }
 
             string template =
-                "Select top " + _alctConfig.M_SL_CT0 + " a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien "
+                "Select top " + (_alctConfig.M_SL_CT0 == "0" ? "5" : _alctConfig.M_SL_CT0) + " a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien "
                 + AMSELECTMORE
                 + "\nFROM "+AM_TableName+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
                 + AMJOINMORE

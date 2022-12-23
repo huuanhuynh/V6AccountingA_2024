@@ -488,7 +488,7 @@ namespace V6AccountingBusiness.Invoices
         public DataTable SearchAM_TopCuoiKy(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {
             string template =
-                "Select top " + _alctConfig.M_SL_CT0 + " a.*,f.Ten_nvien AS Ten_nvien "
+                "Select top " + (_alctConfig.M_SL_CT0 == "0" ? "5" : _alctConfig.M_SL_CT0) + " a.*,f.Ten_nvien AS Ten_nvien "
                 + AMSELECTMORE
                 + "\nFROM "+AM_TableName+" a  LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
                 + AMJOINMORE
