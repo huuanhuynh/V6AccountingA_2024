@@ -1120,7 +1120,7 @@ namespace V6ThuePost
                     {
                         case "V6Info":
                             {
-                                ConfigLine line = ReadXmlLine(reader);
+                                ConfigLine line = V6ThuePostUtility.ReadXmlLine(reader);
                                 string line_field = line.Field.ToLower();
                                 switch (line_field)
                                 {
@@ -1172,7 +1172,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    generalInvoiceInfoConfig.Add(key, ReadXmlLine(reader));
+                                    generalInvoiceInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -1181,7 +1181,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    buyerInfoConfig.Add(key, ReadXmlLine(reader));
+                                    buyerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -1190,7 +1190,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    sellerInfoConfig.Add(key, ReadXmlLine(reader));
+                                    sellerInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -1200,7 +1200,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    metadataConfig[key] = ReadXmlLine(reader);
+                                    metadataConfig[key] = V6ThuePostUtility.ReadXmlLine(reader);
                                 }
                                 break;
                             }
@@ -1209,7 +1209,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    paymentsConfig.Add(key, ReadXmlLine(reader));
+                                    paymentsConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -1218,7 +1218,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    itemInfoConfig.Add(key, ReadXmlLine(reader));
+                                    itemInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -1227,7 +1227,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    summarizeInfoConfig.Add(key, ReadXmlLine(reader));
+                                    summarizeInfoConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -1236,7 +1236,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    taxBreakdownsConfig.Add(key, ReadXmlLine(reader));
+                                    taxBreakdownsConfig.Add(key, V6ThuePostUtility.ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -1256,23 +1256,22 @@ namespace V6ThuePost
             }
         }
 
-        private static ConfigLine ReadXmlLine(XmlTextReader reader)
-        {
-            ConfigLine config = new ConfigLine();
-            config.Field = reader.GetAttribute("Field");
-            config.Value = reader.GetAttribute("Value");
-            config.FieldV6 = reader.GetAttribute("FieldV6");
-            config.Type = reader.GetAttribute("Type");
-            config.DataType = reader.GetAttribute("DataType");
-            config.Format = reader.GetAttribute("Format");
-            
-            config.MA_TD2 = reader.GetAttribute("MA_TD2");
-            config.MA_TD3 = reader.GetAttribute("MA_TD3");
-            config.SL_TD1 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD1"));
-            config.SL_TD2 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD2"));
-            config.SL_TD3 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD3"));
-            return config;
-        }
+        //private static ConfigLine ReadXmlLine(XmlTextReader reader)
+        //{
+        //    ConfigLine config = new ConfigLine();
+        //    config.Field = reader.GetAttribute("Field");
+        //    config.Value = reader.GetAttribute("Value");
+        //    config.FieldV6 = reader.GetAttribute("FieldV6");
+        //    config.Type = reader.GetAttribute("Type");
+        //    config.DataType = reader.GetAttribute("DataType");
+        //    config.Format = reader.GetAttribute("Format");            
+        //    config.MA_TD2 = reader.GetAttribute("MA_TD2");
+        //    config.MA_TD3 = reader.GetAttribute("MA_TD3");
+        //    config.SL_TD1 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD1"));
+        //    config.SL_TD2 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD2"));
+        //    config.SL_TD3 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD3"));
+        //    return config;
+        //}
 
 
         private static void AutoInputTokenPassword()

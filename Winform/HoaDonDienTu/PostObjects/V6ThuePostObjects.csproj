@@ -81,6 +81,24 @@
     <Compile Include="MISA_Objects\MISA_PostObject.cs" />
     <Compile Include="MISA_Objects\MISA_SearchInvoiceResponse.cs" />
     <Compile Include="V6ThuePostUtility.cs" />
+    <Compile Include="CYBER_Objects\buyerInfo.cs" />
+    <Compile Include="CYBER_Objects\CYBER_GeneralInvoiceInfo.cs" />
+    <Compile Include="CYBER_Objects\GetInvoice\GetInvoiceInput.cs" />
+    <Compile Include="CYBER_Objects\GetInvoice\GetInvoiceRepresentationFileParameters.cs" />
+    <Compile Include="CYBER_Objects\GetInvoice\GetInvoiceResponse.cs" />
+    <Compile Include="CYBER_Objects\GetInvoice\GetListInvoiceDataControlParams.cs" />
+    <Compile Include="CYBER_Objects\CYBER_InvoiceInfo.cs" />
+    <Compile Include="CYBER_Objects\CYBER_ItemInfo.cs" />
+    <Compile Include="CYBER_Objects\Response\CancelResponse.cs" />
+    <Compile Include="CYBER_Objects\Response\UpdatePaymentResponse.cs" />
+    <Compile Include="CYBER_Objects\Response\VIN_LoginResponse.cs" />
+    <Compile Include="CYBER_Objects\CYBER_SellerInfo.cs" />
+    <Compile Include="CYBER_Objects\CYBER_SummarizeInfo.cs" />
+    <Compile Include="CYBER_Objects\CYBER_TaxBreakdown.cs" />
+    <Compile Include="CYBER_Objects\CYBER_CreateInvoiceResponse.cs" />
+    <Compile Include="CYBER_Objects\CYBER_CreateInvoiceResponse_Result.cs" />
+    <Compile Include="CYBER_Objects\CYBER_PostObject.cs" />
+    <Compile Include="CYBER_Objects\CYBER_SearchInvoiceResponse.cs" />
     <Compile Include="VIN_Objects\buyerInfo.cs" />
     <Compile Include="VIN_Objects\VIN_CreateInvoiceResponse.cs" />
     <Compile Include="VIN_Objects\VIN_CreateInvoiceResponse_Result.cs" />
@@ -183,6 +201,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CYBER_Objects\Request\" />
     <Folder Include="MISA_Objects\Request\" />
     <Folder Include="ViettelObjects\Request\" />
     <Folder Include="ViettelObjects\Response\" />
