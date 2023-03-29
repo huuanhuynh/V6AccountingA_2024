@@ -83,6 +83,10 @@
       <Project>{3D8928F4-81C7-443E-98B3-C155EEE33927}</Project>
       <Name>V6ThuePostBkavApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\HoaDonDienTu\CYBER\ApiConnect\V6ThuePost_CYBER_Api.csproj">
+      <Project>{2D452BBE-9E9A-43FB-91E3-07A2B7348F5E}</Project>
+      <Name>V6ThuePost_CYBER_Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HoaDonDienTu\MISA\ApiConnect\V6ThuePost_MISA_Api.csproj">
       <Project>{b54c8a63-85ae-4fbb-926b-6f2085554a82}</Project>
       <Name>V6ThuePost_MISA_Api</Name>

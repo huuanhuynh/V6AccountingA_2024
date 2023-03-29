@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.SoDuManager.Add_Edit;
 using V6Controls;
 using V6Controls.Forms;
@@ -117,6 +118,33 @@ namespace V6ControlManager.FormManager.SoDuManager
             {
                 V6ControlFormHelper.ProcessUserDefineInfo(_MA_DM, FormControl, this, _MA_DM);
             }
+        }
+
+        public override bool DoHotKey0(Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                var detail1 = FormControl.GetControlByName("detail1") as HD_Detail;
+                if (detail1 != null && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
+                {
+                    if (detail1.MODE == V6Mode.Add)
+                    {
+                        //if (tabControl1.SelectedTab != tabChiTiet) tabControl1.SelectedTab = tabChiTiet;
+                        detail1.OnMoiClick();//.btnMoi.PerformClick();
+                    }
+                    else if (detail1.MODE == V6Mode.Edit)
+                    {
+                        //if (tabControl1.SelectedTab != tabChiTiet) tabControl1.SelectedTab = tabChiTiet;
+                        detail1.btnSua.PerformClick();
+                    }
+                    return true;
+                }
+                else
+                {
+                    return base.DoHotKey0(keyData);
+                }
+            }
+            return base.DoHotKey0(keyData);
         }
     }
 }

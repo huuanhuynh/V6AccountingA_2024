@@ -25,14 +25,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto">
@@ -2358,7 +2359,6 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\DXreport\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\DXreport\DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -9700,6 +9700,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\GhiChu.txt" />
+    <None Include="Resources\UserMaleA24.png" />
+    <None Include="Resources\UserMale24.png" />
     <None Include="Resources\Anydesk32.png" />
     <None Include="Resources\AldmSetting.png" />
     <None Include="Resources\ArrowDownBlue3D.png" />

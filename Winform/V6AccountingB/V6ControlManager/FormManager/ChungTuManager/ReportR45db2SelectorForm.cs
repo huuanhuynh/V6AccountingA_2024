@@ -23,9 +23,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
             MyInit();
         }
 
-        private V6InvoiceBase _invoice = null;
-        private string _program;
-        private ReportR45db2ViewBase _r45;
+        public V6InvoiceBase _invoice = null;
+        public string _program;
+        public ReportR45db2ViewBase _r45;
         public V6ColorDataGridView dataGridView1;
         public string AD2AM;
 
@@ -42,6 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 _r45.btnIn.Visible = false;
                 _r45.btnNhan.Text = V6Text.Text("FILTER");
                 _r45.btnNhan.Image = global::V6ControlManager.Properties.Resources.Search24;
+                _r45.PrintMode = V6PrintMode.AutoLoadData;
                 panel1.Controls.Add(_r45);
                 _r45.Disposed += _r45_Disposed;
                 dataGridView1 = _r45.dataGridView1;

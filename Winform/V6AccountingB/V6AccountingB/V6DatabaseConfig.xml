@@ -655,6 +655,34 @@
     <Type>0</Type>
     <Key>n2S+CPloVH0jM+jpUsryu1iXAsx9MS0Ushq08wxrFq0wr12wPik+5g==</Key>
   </DatabaseList>
+
+  <DatabaseList>
+    <Stt>34</Stt>
+    <Server>192.168.1.12\SQL2K8,7172</Server>
+    <Server2>192.168.1.12\SQL2K8,7172</Server2>
+    <Server2_TH>192.168.1.12\SQL2K8,7172</Server2_TH>
+    <Server3_TH>192.168.1.39\SQL2K8,3979</Server3_TH>
+    <Database>XM2021</Database>
+    <Database2>XM2021</Database2>
+    <Database2_TH>VP2023</Database2_TH>
+    <Database3_TH>XLAG_TH22</Database3_TH>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <UserId2_TH>v6admsa</UserId2_TH>
+    <UserId3_TH>v6admsa</UserId3_TH>
+    <Epassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword>
+    <Epassword2>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2>
+    <Epassword2_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2_TH>
+    <Epassword3_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword3_TH>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>XM  2021 </Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>dGv/QJVRS1qxQkcFAcaoL+UqelHL3YpauXxRfkSelQTp2CdF43g85g==</Key>
+  </DatabaseList>
   
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>

@@ -48,6 +48,7 @@
             this.lblHHTo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnCheckConnection = new V6Controls.Controls.V6FormButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAuto1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHHFrom)).BeginInit();
@@ -96,6 +97,8 @@
             // 
             this.chkDeleteData0.AccessibleDescription = "XULYC00019";
             this.chkDeleteData0.AutoSize = true;
+            this.chkDeleteData0.Checked = true;
+            this.chkDeleteData0.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDeleteData0.Location = new System.Drawing.Point(8, 19);
             this.chkDeleteData0.Name = "chkDeleteData0";
             this.chkDeleteData0.Size = new System.Drawing.Size(149, 17);
@@ -314,10 +317,22 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "giờ";
             // 
+            // btnCheckConnection
+            // 
+            this.btnCheckConnection.AccessibleDescription = ".";
+            this.btnCheckConnection.Image = global::V6ControlManager.Properties.Resources.Network24;
+            this.btnCheckConnection.Location = new System.Drawing.Point(180, 379);
+            this.btnCheckConnection.Name = "btnCheckConnection";
+            this.btnCheckConnection.Size = new System.Drawing.Size(30, 30);
+            this.btnCheckConnection.TabIndex = 25;
+            this.btnCheckConnection.UseVisualStyleBackColor = true;
+            this.btnCheckConnection.Click += new System.EventHandler(this.btnCheckConnection_Click);
+            // 
             // V6IMDATA2TH1_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCheckConnection);
             this.Controls.Add(this.numHHTo);
             this.Controls.Add(this.numHHFrom);
             this.Controls.Add(this.dateNgay_ct2);
@@ -369,5 +384,6 @@
         private System.Windows.Forms.Label lblHHTo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private V6Controls.Controls.V6FormButton btnCheckConnection;
     }
 }

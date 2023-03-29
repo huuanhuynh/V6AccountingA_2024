@@ -2082,6 +2082,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (!shift_is_down) return;
+
                 var data = invoice.LoadDefaultData(V6Setting.Language, m_itemId);
                 var data0 = new SortedDictionary<string, object>();
                 data0.AddRange(data);

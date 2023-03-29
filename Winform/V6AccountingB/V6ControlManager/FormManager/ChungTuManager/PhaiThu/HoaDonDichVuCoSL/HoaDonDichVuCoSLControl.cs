@@ -5613,6 +5613,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         public override void SetDefaultDetail()
         {
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (!shift_is_down) return;
+
             if (_Ma_lnx_i != null && txtLoaiNX_PH.Text != string.Empty)
             {
                 if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;

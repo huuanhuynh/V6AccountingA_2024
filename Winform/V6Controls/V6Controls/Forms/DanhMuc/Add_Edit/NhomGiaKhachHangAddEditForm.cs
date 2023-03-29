@@ -17,7 +17,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
                 keys.Add("MA_DM", _MA_DM);
                 var aldm = ConfigManager.GetAldmConfig(_MA_DM);
-                var v = Categories.IsExistOneCode_List(aldm.F8_TABLE, "MA_NH", TXTMA_NH.Text);
+                //var v = Categories.IsExistOneCode_List(aldm.F8_TABLE, "MA_NH", TXTMA_NH.Text);
+                var v = Categories.IsExistAllCode_List(_MA_DM, "MA_NH", TXTMA_NH.Text);
                 TXTMA_NH.Enabled = !v;
             }
             catch (Exception ex)

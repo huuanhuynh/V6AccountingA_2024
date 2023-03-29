@@ -24,6 +24,7 @@ using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using V6Tools.V6Export;
+using V6ControlManager.FormManager.ReportManager.DXreport;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
@@ -906,6 +907,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (FilterControl.RptExtraParameters != null)
             {
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
+            }
+
+            foreach (var item in edited_paras)
+            {
+                if (ReportDocumentParameters.ContainsKey(item.Key))
+                    ReportDocumentParameters[item.Key] = item.Value;
             }
 
             string errors = "";
@@ -1811,7 +1818,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
             var setting = new ExportExcelSetting();
-            setting.data = _tbl1;
+            if (EXTRA_INFOR.ContainsKey("EXPORTEXCELFILTER"))
+                setting.data = V6BusinessHelper.Filter(_tbl1, EXTRA_INFOR["EXPORTEXCELFILTER"]);
+            else setting.data = _tbl1;
             setting.data2 = _tbl2;
             setting.reportParameters = ReportDocumentParameters;
             setting.albcConfigData = _albcConfig.DATA;
@@ -1952,6 +1961,32 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Export PDF", ex);
+            }
+        }
+
+        SortedDictionary<string, object> edited_paras = new SortedDictionary<string, object>();
+        private void btnEditPara_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // init select bang danh sach 
+                var data = new SortedDictionary<string, object>();
+                if (edited_paras.Count > 0) data = edited_paras;
+                else DXreportManager.AddBaseParameters(data);
+
+                var f = new FormEditDataDynamic("ALTTPARA", data);
+
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    foreach (var item in f.Data)
+                    {
+                        edited_paras[item.Key] = item.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowWarningMessage("btnEditPara_Click: " + ex.Message);
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Windows.Forms;
@@ -7,6 +8,9 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6SqlConnect;
+using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -107,6 +111,19 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void numAuto1_ValueChanged(object sender, EventArgs e)
         {
             ObjectDictionary["AUTOF9TIME"] = numAuto1.Value;
+        }
+
+        private void btnCheckConnection_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var date = (DateTime)SqlHelper.ExecuteScalar(DatabaseConfig.ConnectionString3_TH, CommandType.Text, "Select GETDATE()");
+                this.ShowInfoMessage("Kết nối ổn.\nGiờ server 3_TH: " + ObjectAndString.ObjectToString(date, "dd/MM/yyyy HH:mm:ss"));
+            }
+            catch (Exception ex)
+            {
+                this.ShowInfoMessage("Không kết nối được server 3_TH\n" + ex.Message);
+            }
         }
     }
 }

@@ -564,6 +564,17 @@ namespace V6Init
                 return _extraInfor;
             }
         }
+        /// <summary>
+        /// Lay mot phan tu trong EXTRA_INFOR, ko co tra ve null.
+        /// </summary>
+        /// <param name="KEY"></param>
+        /// <returns></returns>
+        public string EXTRA_INFOR_NULL(string KEY)
+        {
+            KEY = KEY.ToUpper();
+            if (!EXTRA_INFOR.ContainsKey(KEY)) return null;
+            return "" + EXTRA_INFOR[KEY];
+        }
 
         private Dictionary<string, V6FieldInfo> _v6FieldInfos = new Dictionary<string, V6FieldInfo>();
         public Dictionary<string, V6FieldInfo> V6FieldInfos

@@ -198,7 +198,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private void PrepareThread_TopCuoiKy()
         {
             var stru = _invoice.AMStruct;
-            _where0Time = string.Format("ngay_ct <= '{0:yyyyMMdd}'", V6Setting.M_Ngay_ck);
+            _where0Time = string.Format("ngay_ct <= '{0:yyyyMMdd}' and ngay_ct >= '{1:yyyyMMdd}'", V6Setting.M_Ngay_ck, V6Setting.M_Ngay_dk);
             _where1AM = locThongTin1.GetFilterSql_ThongTin(stru, "", chkTTstart.Checked ? "start" : "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)

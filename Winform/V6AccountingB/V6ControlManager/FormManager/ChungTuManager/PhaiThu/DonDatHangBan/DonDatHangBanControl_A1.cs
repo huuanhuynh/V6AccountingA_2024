@@ -4406,6 +4406,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         public override void SetDefaultDetail()
         {
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (!shift_is_down) return;
+
             if (dataGridView1.Rows.Count > 0)
             {
                 var grow = dataGridView1.Rows[dataGridView1.RowCount - 1];

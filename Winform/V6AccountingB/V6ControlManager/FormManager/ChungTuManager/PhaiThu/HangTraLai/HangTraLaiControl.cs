@@ -2982,6 +2982,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (!shift_is_down) return;
+
                 _xuat_dd.TextValue = "a";
                 if (_Ma_lnx_i != null && txtLoaiNX_PH.Text != string.Empty)
                 {

@@ -853,6 +853,26 @@ namespace V6ControlManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap UserMale24 {
+            get {
+                object obj = ResourceManager.GetObject("UserMale24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UserMaleA24 {
+            get {
+                object obj = ResourceManager.GetObject("UserMaleA24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap V6Logo_5x4 {
             get {
                 object obj = ResourceManager.GetObject("V6Logo_5x4", resourceCulture);

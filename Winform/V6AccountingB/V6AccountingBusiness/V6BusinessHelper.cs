@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using V6AccountingBusiness.Invoices;
 using V6Init;
@@ -676,6 +677,33 @@ namespace V6AccountingBusiness
             return ObjectAndString.ObjectToInt(result);
         }
 
+        public static int CheckDataLocked_C(string conString, string type, DateTime date, int month, int year)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Type", type),
+                new SqlParameter("@Date", date.Date),
+                new SqlParameter("@Month", month),
+                new SqlParameter("@Year", year),
+            };
+            var result = SqlHelper.ExecuteScalar(conString, CommandType.Text, "Select dbo.VFA_CheckDataLocked (@Type, @Date, @Month, @Year)", plist);
+            return ObjectAndString.ObjectToInt(result);
+        }
+
+        public static int CheckSyncDataLocked_C(string conString, string madvcs, string type, DateTime date, int month, int year)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Ma_dvcs", madvcs),
+                new SqlParameter("@Type", type),
+                new SqlParameter("@Date", date.Date),
+                new SqlParameter("@Month", month),
+                new SqlParameter("@Year", year),
+            };
+            var result = SqlHelper.ExecuteScalar(conString, CommandType.Text, "Select dbo.VFA_CheckSyncDataLocked (@Ma_dvcs, @Type, @Date, @Month, @Year)", plist);
+            return ObjectAndString.ObjectToInt(result);
+        }
+
         /// <summary>
         /// Kiểm tra MST đúng định dạng.
         /// </summary>
@@ -1061,7 +1089,7 @@ namespace V6AccountingBusiness
         }
         public static bool InsertC(string conString, string tableName, IDictionary<string, object> dataDictionary)
         {
-            V6TableStruct tableStruct = GetTableStruct(tableName);
+            V6TableStruct tableStruct = GetTableStruct_C(conString, tableName);
             string sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, tableStruct, dataDictionary);
             int result = SqlHelper.ExecuteNonQuery(conString, CommandType.Text, sql);
             return result > 0;
@@ -1263,6 +1291,11 @@ namespace V6AccountingBusiness
             };
             var maxvalue = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_GetMaxValue", plist);
             return ObjectAndString.ObjectToDecimal(maxvalue);
+        }
+
+        public static object MaxValue(DataTable t, string column)
+        {
+            return t.AsEnumerable().Max(row => row[column]);
         }
 
         /// <summary>
@@ -3345,6 +3378,11 @@ namespace V6AccountingBusiness
             {
                 throw new Exception("VPA_Ingia_ntxt " + ex.Message);
             }
+        }
+
+        public static decimal MaxDataTable(DataTable aD2, string v)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion TINH_GIA_NTXT

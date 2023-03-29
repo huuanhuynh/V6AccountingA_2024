@@ -307,8 +307,13 @@ namespace V6ControlManager.FormManager.SoDuManager
             }
             return null;
         }
-        
-        private void LoadAD()
+
+        public void LoadAD()
+        {
+            LoadAD(false);
+        }
+
+        public void LoadAD(bool reload)
         {
             try
             {
@@ -320,20 +325,20 @@ namespace V6ControlManager.FormManager.SoDuManager
 
                     if (_MA_DM == "ALTS")
                     {
-                        LoadAD(CurrentSttRec, "TS0=1");
+                        LoadAD(CurrentSttRec, reload, "TS0=1");
                     }
                     else if (_MA_DM == "ALCC")
                     {
-                        LoadAD(CurrentSttRec, "CC0=1");
+                        LoadAD(CurrentSttRec, reload, "CC0=1");
                     }
                     else
                     {
-                        LoadAD(CurrentSttRec);
+                        LoadAD(CurrentSttRec, reload);
                     }
                 }
                 else
                 {
-                    LoadAD("");
+                    LoadAD("", reload);
                 }
             }
             catch (Exception ex)
@@ -342,21 +347,29 @@ namespace V6ControlManager.FormManager.SoDuManager
             }
         }
 
-        
-
-        private void LoadAD(string sttRec, string key = "")
+        public void LoadAD(string sttRec, bool reload, string key = "")
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
-            if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
+            if (ADTables.ContainsKey(sttRec))
+            {
+                if (reload)
+                {
+                    ADTables[sttRec] = LoadAD0(sttRec, key);
+                }
+
+                AD = ADTables[sttRec].Copy();
+            }
             else
             {
                 ADTables.Add(sttRec, LoadAD0(sttRec, key));
+
                 AD = ADTables[sttRec].Copy();
             }
             dataGridView2.DataSource = AD;
             dataGridView2.HideColumnsAldm(_alctConfig.TableNameAD);
             dataGridView2.SetCorplan2();
         }
+
         private DataTable LoadAD0(string sttRec, string key = "")
         {
             string sql = "SELECT * FROM " + LOAD_TABLE2
@@ -484,8 +497,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             }
 
             //datagridview2
-            ADTables[CurrentSttRec] = sender.AD.Copy();
-            dataGridView2.DataSource = ADTables[CurrentSttRec].Copy();
+            LoadAD(true);
             dataGridView2.HideColumnsAldm(_alctConfig.TableNameAD);
         }
 
@@ -1081,6 +1093,11 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+            {
+                // check
+                if (!_aldmConfig.F4) return;
+            }
             if (V6Login.UserRight.AllowAdd("", "B" + _maCt))
             {
                 DoAdd();
@@ -1094,6 +1111,11 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
+            if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+            {
+                // check
+                if (!_aldmConfig.F4) return;
+            }
             if (V6Login.UserRight.AllowCopy("", "B" + _maCt))
             {
                 DoAddCopy();
@@ -1173,6 +1195,11 @@ namespace V6ControlManager.FormManager.SoDuManager
         private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
+            if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+            {
+                // check
+                if (!_aldmConfig.F3) return;
+            }
             if (V6Login.UserRight.AllowEdit("", "B" + _maCt))
             {
                 if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)

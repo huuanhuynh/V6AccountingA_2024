@@ -85,6 +85,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
             this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
+            this.btnEditPara = new V6Controls.Controls.V6FormButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -667,10 +668,23 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
+            // btnEditPara
+            // 
+            this.btnEditPara.AccessibleDescription = ".";
+            this.btnEditPara.Image = global::V6ControlManager.Properties.Resources.UserMale24;
+            this.btnEditPara.Location = new System.Drawing.Point(522, 33);
+            this.btnEditPara.Name = "btnEditPara";
+            this.btnEditPara.Size = new System.Drawing.Size(30, 30);
+            this.btnEditPara.TabIndex = 21;
+            this.toolTipV6FormControl.SetToolTip(this.btnEditPara, "Sửa giá trị tham số");
+            this.btnEditPara.UseVisualStyleBackColor = true;
+            this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
+            // 
             // ReportRWWView2_DX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnEditPara);
             this.Controls.Add(this.documentViewer1);
             this.Controls.Add(this.gridViewTopFilter1);
             this.Controls.Add(this.btnExport3);
@@ -759,9 +773,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem exportEXCELXtraMenu;
         private System.Windows.Forms.ToolStripMenuItem exportEXCELDataMenu;
         private System.Windows.Forms.ToolStripMenuItem exportToHTMLMenu;
-
-
-
-
+        private V6FormButton btnEditPara;
     }
 }

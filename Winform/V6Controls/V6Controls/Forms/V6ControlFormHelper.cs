@@ -5743,6 +5743,11 @@ namespace V6Controls.Forms
                                             DataTable newData4 = ExportExcelTemplateHTKK_setting.data.Filter("ma_nh='4'");
                                             datas.Add(content, newData4);
                                         }
+                                        else if (KEY == "C5")
+                                        {
+                                            DataTable newData5 = ExportExcelTemplateHTKK_setting.data.Filter("ma_nh='5'");
+                                            datas.Add(content, newData5);
+                                        }
                                     }
                                     else if (type == "1")//Lay value trong parameter
                                     {
@@ -6018,6 +6023,11 @@ namespace V6Controls.Forms
                                         {
                                             DataTable newData4 = ExportExcelTemplateONLINE_data.Filter("ma_nh='4'");
                                             datas.Add(content, newData4);
+                                        }
+                                        else if (KEY == "C5")
+                                        {
+                                            DataTable newData5 = ExportExcelTemplateONLINE_data.Filter("ma_nh='5'");
+                                            datas.Add(content, newData5);
                                         }
                                     }
                                     else if (type == "1")//Lay value trong parameter

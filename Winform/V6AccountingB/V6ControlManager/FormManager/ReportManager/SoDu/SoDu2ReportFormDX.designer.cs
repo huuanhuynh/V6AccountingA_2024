@@ -78,6 +78,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
+            this.btnEditPara = new V6Controls.Controls.V6FormButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -590,12 +591,25 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.documentViewer1.ZoomChanged += new System.EventHandler(this.documentViewer1_ZoomChanged);
             this.documentViewer1.DoubleClick += new System.EventHandler(this.documentViewer1_DoubleClick);
             // 
+            // btnEditPara
+            // 
+            this.btnEditPara.AccessibleDescription = ".";
+            this.btnEditPara.Image = global::V6ControlManager.Properties.Resources.UserMale24;
+            this.btnEditPara.Location = new System.Drawing.Point(537, 59);
+            this.btnEditPara.Name = "btnEditPara";
+            this.btnEditPara.Size = new System.Drawing.Size(30, 30);
+            this.btnEditPara.TabIndex = 23;
+            this.toolTipV6FormControl.SetToolTip(this.btnEditPara, "Sửa giá trị tham số");
+            this.btnEditPara.UseVisualStyleBackColor = true;
+            this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
+            // 
             // SoDu2ReportFormDX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;
             this.ClientSize = new System.Drawing.Size(784, 654);
+            this.Controls.Add(this.btnEditPara);
             this.Controls.Add(this.documentViewer1);
             this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.chkHienTatCa);
@@ -674,9 +688,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
         private System.Windows.Forms.ToolStripMenuItem viewListInfoMenu;
         private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer1;
-
-
-
-
+        private V6FormButton btnEditPara;
     }
 }

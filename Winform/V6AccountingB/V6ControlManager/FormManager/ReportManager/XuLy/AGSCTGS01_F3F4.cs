@@ -83,6 +83,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     TXTkieu_ctgs.Text = "1";
                     TXTNO_CO.Text = "1";
+                    v6IndexComboBox1.SelectedIndex = 0;
                 }
 
                 var length = V6BusinessHelper.VFV_iFsize("ARCTGS01", "SO_LO");
@@ -91,7 +92,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 length = V6BusinessHelper.VFV_iFsize("ARCTGS01", "dien_giai");
                 if (length == 0) length = 128;
                 txtdien_giai.MaxLength = length;
-                v6IndexComboBox1.SelectedIndex = 0;
+                
             }
             catch (Exception ex)
             {
@@ -220,7 +221,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var txt = (V6NumberTextBox)sender;
-                if (txt.Value < 1) txt.Value = 0;
+                if (txt.Value < 1) txt.Value = 1;
                 if (txt.Value > 12) txt.Value = 12;
             }
             catch (Exception)

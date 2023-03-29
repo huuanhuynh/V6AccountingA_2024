@@ -401,17 +401,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT.Cho
                     or_makhme_like = string.Format(" or MA_KH_ME like '{0}'", maKhach.Text);
 
                     var ma_kh_me = maKhach.Data["MA_KH_ME"].ToString().Trim();
-                    if (string.IsNullOrEmpty(ma_kh_me))
-                    {
-                        result += string.Format(
-                            "{0}{1}MA_KH in (Select ma_kh from alkh where {2} {3})",
-                            (result.Length > 0 ? and_or : ""), tbL, makh_like_or, or_makhme_like);
-                    }
-                    else
+                    bool check_makhme = _locKetQua._aldmConfig.EXTRA_INFOR_NULL("MA_KH_ME_YN") == "1";
+                    if (check_makhme && !string.IsNullOrEmpty(ma_kh_me))
                     {
                         result += string.Format(
                             "{0}{1}MA_KH in (Select ma_kh from alkh where {2} or MA_KH like '{3}' {4})",
                             (result.Length > 0 ? and_or : ""), tbL, makh_like_or, ma_kh_me, or_makhme_like);
+                    }
+                    else
+                    {
+                        result += string.Format(
+                            "{0}{1}MA_KH in (Select ma_kh from alkh where {2} {3})",
+                            (result.Length > 0 ? and_or : ""), tbL, makh_like_or, or_makhme_like);
                     }
                 }
                 else

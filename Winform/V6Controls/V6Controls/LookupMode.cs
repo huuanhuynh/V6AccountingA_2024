@@ -5,7 +5,7 @@ using System.Text;
 
 namespace V6Controls
 {
-    public enum LookupMode
+    public enum LookupMode 
     {
         /// <summary>
         /// Chọn 1 dòng khi lookup, nhận về 1 mã trong senderTextBox.

@@ -85,6 +85,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.menuCopyValue = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCopyAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEditPara = new V6Controls.Controls.V6FormButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -651,30 +652,43 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.menuCopy,
             this.menuCopyAll});
             this.copyMenuStrip1.Name = "contextMenuStrip1";
-            this.copyMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            this.copyMenuStrip1.Size = new System.Drawing.Size(134, 70);
             // 
             // menuCopyValue
             // 
             this.menuCopyValue.Name = "menuCopyValue";
-            this.menuCopyValue.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyValue.Size = new System.Drawing.Size(133, 22);
             this.menuCopyValue.Text = "Copy value";
             // 
             // menuCopy
             // 
             this.menuCopy.Name = "menuCopy";
-            this.menuCopy.Size = new System.Drawing.Size(152, 22);
+            this.menuCopy.Size = new System.Drawing.Size(133, 22);
             this.menuCopy.Text = "Copy text";
             // 
             // menuCopyAll
             // 
             this.menuCopyAll.Name = "menuCopyAll";
-            this.menuCopyAll.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyAll.Size = new System.Drawing.Size(133, 22);
             this.menuCopyAll.Text = "Copy all";
+            // 
+            // btnEditPara
+            // 
+            this.btnEditPara.AccessibleDescription = ".";
+            this.btnEditPara.Image = global::V6ControlManager.Properties.Resources.UserMale24;
+            this.btnEditPara.Location = new System.Drawing.Point(535, 33);
+            this.btnEditPara.Name = "btnEditPara";
+            this.btnEditPara.Size = new System.Drawing.Size(30, 30);
+            this.btnEditPara.TabIndex = 19;
+            this.toolTipV6FormControl.SetToolTip(this.btnEditPara, "Sửa giá trị tham số");
+            this.btnEditPara.UseVisualStyleBackColor = true;
+            this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
             // 
             // ReportRView2Base
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnEditPara);
             this.Controls.Add(this.gridViewTopFilter1);
             this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.btnSuaLine);
@@ -764,9 +778,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem menuCopyValue;
         private System.Windows.Forms.ToolStripMenuItem menuCopy;
         private System.Windows.Forms.ToolStripMenuItem menuCopyAll;
-
-
-
-
+        private V6FormButton btnEditPara;
     }
 }

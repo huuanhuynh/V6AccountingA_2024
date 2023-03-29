@@ -3694,6 +3694,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         public void TinhThue()
         {
+            if (AD2 != null && AD2.Rows.Count > 0)
+            {
+                txtThueSuat.Value = ObjectAndString.ObjectToDecimal(V6BusinessHelper.MaxValue(AD2, "THUE_SUAT"));
+                txtTkThueNo.ChangeText(ObjectAndString.ObjectToString(V6BusinessHelper.MaxValue(AD2, "THUE_SUAT")));
+            }
             //Tính tiền thuế theo thuế suất
             var thue_suat = txtThueSuat.Value;
             var t_thue_nt = 0m;
@@ -5772,6 +5777,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         public override void SetDefaultDetail()
         {
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (!shift_is_down) return;
+
             if (_Ma_lnx_i != null && txtLoaiNX_PH.Text != string.Empty)
             {
                 if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;

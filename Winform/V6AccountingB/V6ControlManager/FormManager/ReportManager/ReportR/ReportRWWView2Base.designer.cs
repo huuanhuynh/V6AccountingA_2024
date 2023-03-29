@@ -81,6 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
+            this.btnEditPara = new V6Controls.Controls.V6FormButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -639,10 +640,23 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 22);
             this.gridViewTopFilter1.TabIndex = 1;
             // 
+            // btnEditPara
+            // 
+            this.btnEditPara.AccessibleDescription = ".";
+            this.btnEditPara.Image = global::V6ControlManager.Properties.Resources.UserMale24;
+            this.btnEditPara.Location = new System.Drawing.Point(522, 33);
+            this.btnEditPara.Name = "btnEditPara";
+            this.btnEditPara.Size = new System.Drawing.Size(30, 30);
+            this.btnEditPara.TabIndex = 19;
+            this.toolTipV6FormControl.SetToolTip(this.btnEditPara, "Sửa giá trị tham số");
+            this.btnEditPara.UseVisualStyleBackColor = true;
+            this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
+            // 
             // ReportRWWView2Base
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnEditPara);
             this.Controls.Add(this.gridViewTopFilter1);
             this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.btnSuaLine);
@@ -727,9 +741,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private GridViewTopFilter gridViewTopFilter1;
         private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
         private System.Windows.Forms.ToolStripMenuItem viewListInfoMenu;
-
-
-
-
+        private V6FormButton btnEditPara;
     }
 }

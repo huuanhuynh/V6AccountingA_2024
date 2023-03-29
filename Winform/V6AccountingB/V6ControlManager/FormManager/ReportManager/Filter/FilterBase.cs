@@ -1712,6 +1712,48 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                                 result[di.Name] = "";
                                         }
                                     }
+                                    else if (line is FilterLineDynamic && ((FilterLineDynamic)line)._vtextBox != null)
+                                    {
+                                        var lineD = line as FilterLineDynamic;
+
+                                        var vvar_data = lineD._vtextBox.Data;
+                                        if (line.IsSelected == false)
+                                        {
+                                            vvar_data = null;
+                                        }
+
+                                        if (vvar_data != null && vvar_data.Table.Columns.Contains(di.Fname))
+                                        {
+                                            if (line.IsSelected)
+                                            {
+                                                //Bỏ qua giá trị rỗng.
+                                                if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
+                                                result[di.Name] = vvar_data[di.Fname];
+                                            }
+                                            else
+                                            {
+                                                if (di.NotEmpty) continue;
+
+                                                if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                                    result[di.Name] = 0;
+                                                else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                                    result[di.Name] = new DateTime(1900, 1, 1);
+                                                else
+                                                    result[di.Name] = "";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (di.NotEmpty) continue;
+                                            // Tuanmh Null loi
+                                            if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                                result[di.Name] = 0;
+                                            else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                                result[di.Name] = new DateTime(1900, 1, 1);
+                                            else
+                                                result[di.Name] = "";
+                                        }
+                                    }
                                 }
                             }
                             else

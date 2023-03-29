@@ -958,6 +958,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             ReportDocumentParameters["Title"] = txtReportTitle.Text;
             ReportDocumentParameters["M_TEN_NLB"] = txtM_TEN_NLB.Text;
             ReportDocumentParameters["M_TEN_NLB2"] = txtM_TEN_NLB2.Text;
+            foreach (var item in edited_paras)
+            {
+                ReportDocumentParameters[item.Key] = item.Value;
+            }
 
             try
             {
@@ -2240,7 +2244,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
 
             var setting = new ExportExcelSetting();
-            setting.data = _tbl1;
+            if (EXTRA_INFOR.ContainsKey("EXPORTEXCELFILTER"))
+                setting.data = V6BusinessHelper.Filter(_tbl1, EXTRA_INFOR["EXPORTEXCELFILTER"]);
+            else setting.data = _tbl1;
             setting.data2 = _tbl2;
             setting.reportParameters = ReportDocumentParameters;
             setting.albcConfigData = _albcConfig.DATA;
@@ -2371,6 +2377,32 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + "", ex);
+            }
+        }
+
+        SortedDictionary<string, object> edited_paras = new SortedDictionary<string, object>();
+        private void btnEditPara_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // init select bang danh sach 
+                var data = new SortedDictionary<string, object>();
+                if (edited_paras.Count > 0) data = edited_paras;
+                else DXreportManager.AddBaseParameters(data);
+
+                var f = new FormEditDataDynamic("ALTTPARA", data);
+
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    foreach (var item in f.Data)
+                    {
+                        edited_paras[item.Key] = item.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowWarningMessage("btnEditPara_Click: " + ex.Message);
             }
         }
 

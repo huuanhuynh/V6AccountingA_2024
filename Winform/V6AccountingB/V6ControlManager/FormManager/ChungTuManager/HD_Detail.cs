@@ -102,11 +102,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+
                 switch (_mode)
                 {
                     case V6Mode.Add:
                         SetFormControlsReadOnly(false);
-                        SetData(new Dictionary<string, object>());
+                        if (!shift_is_down) SetData(new Dictionary<string, object>());
                         btnMoi.Image = Properties.Resources.Cancel16;
                         //btnMoi.Text = V6Text.Cancel;
                         toolTip1.SetToolTip(btnMoi, V6Text.Cancel);

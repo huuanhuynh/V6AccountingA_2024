@@ -1044,6 +1044,11 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+            {
+                // check
+                if (!_aldmConfig.F4) return;
+            }
             if (V6Login.UserRight.AllowAdd("", _MA_DM + "6"))
             {
                 DoAdd();
@@ -1056,6 +1061,11 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
+            if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+            {
+                // check
+                if (!_aldmConfig.F4) return;
+            }
             if (V6Login.UserRight.AllowCopy("", _MA_DM + "6"))
             {
                 DoAddCopy();
@@ -1134,6 +1144,11 @@ namespace V6ControlManager.FormManager.SoDuManager
         private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
+            if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+            {
+                // check
+                if (!_aldmConfig.F3) return;
+            }
             if (V6Login.UserRight.AllowEdit("", _MA_DM + "6"))
             {
                 if (NO_CONFIG_FPASS(0) || new ConfirmPasswordF368().ShowDialog(this) == DialogResult.OK)

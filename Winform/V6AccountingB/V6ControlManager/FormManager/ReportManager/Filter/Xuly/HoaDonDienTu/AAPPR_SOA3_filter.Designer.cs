@@ -622,7 +622,8 @@
             "MONET",
             "M_INVOICE",
             "VIN",
-            "MISA"});
+            "MISA",
+            "CYBER"});
             this.cboSendType.Location = new System.Drawing.Point(11, 140);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);

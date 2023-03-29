@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer2 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTreeView_DX));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +86,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.menuCopyValue = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCopyAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEditPara = new V6Controls.Controls.V6FormButton();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
             this.panel0.SuspendLayout();
@@ -309,9 +310,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.treeListViewAuto1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            treeListViewItemCollectionComparer2.Column = 0;
-            treeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-            this.treeListViewAuto1.Comparer = treeListViewItemCollectionComparer2;
+            treeListViewItemCollectionComparer1.Column = 0;
+            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.treeListViewAuto1.Comparer = treeListViewItemCollectionComparer1;
             this.treeListViewAuto1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeListViewAuto1.GridLines = true;
             this.treeListViewAuto1.HideSelection = false;
@@ -646,25 +647,38 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // menuCopyValue
             // 
             this.menuCopyValue.Name = "menuCopyValue";
-            this.menuCopyValue.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyValue.Size = new System.Drawing.Size(133, 22);
             this.menuCopyValue.Text = "Copy value";
             // 
             // menuCopy
             // 
             this.menuCopy.Name = "menuCopy";
-            this.menuCopy.Size = new System.Drawing.Size(152, 22);
+            this.menuCopy.Size = new System.Drawing.Size(133, 22);
             this.menuCopy.Text = "Copy text";
             // 
             // menuCopyAll
             // 
             this.menuCopyAll.Name = "menuCopyAll";
-            this.menuCopyAll.Size = new System.Drawing.Size(152, 22);
+            this.menuCopyAll.Size = new System.Drawing.Size(133, 22);
             this.menuCopyAll.Text = "Copy all";
+            // 
+            // btnEditPara
+            // 
+            this.btnEditPara.AccessibleDescription = ".";
+            this.btnEditPara.Image = global::V6ControlManager.Properties.Resources.UserMale24;
+            this.btnEditPara.Location = new System.Drawing.Point(542, 34);
+            this.btnEditPara.Name = "btnEditPara";
+            this.btnEditPara.Size = new System.Drawing.Size(30, 30);
+            this.btnEditPara.TabIndex = 17;
+            this.toolTipV6FormControl.SetToolTip(this.btnEditPara, "Sửa giá trị tham số");
+            this.btnEditPara.UseVisualStyleBackColor = true;
+            this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
             // 
             // ReportTreeView_DX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnEditPara);
             this.Controls.Add(this.documentViewer1);
             this.Controls.Add(this.lblSummary);
             this.Controls.Add(this.btnSuaLine);
@@ -754,9 +768,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private ToolStripMenuItem menuCopyValue;
         private ToolStripMenuItem menuCopy;
         private ToolStripMenuItem menuCopyAll;
-
-
-
-
+        private V6FormButton btnEditPara;
     }
 }

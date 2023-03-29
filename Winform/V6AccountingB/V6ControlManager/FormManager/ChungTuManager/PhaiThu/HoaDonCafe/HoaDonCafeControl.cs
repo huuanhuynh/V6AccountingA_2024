@@ -5910,6 +5910,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         public override void SetDefaultDetail()
         {
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (!shift_is_down) return;
+
             //Tuanmh 14/05/2017
             //MA_KHO_I
             _maKhoI.Text = MA_KHOPH;

@@ -121,7 +121,7 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
             //try
             //{
             //    //var txt = (V6NumberTextBox)sender;
-            //    //if (txt.Value < 1) txt.Value = 0;
+            //    //if (txt.Value < 1) txt.Value = 1;
             //    //if (txt.Value > 12) txt.Value = 12;
             //}
             //catch (Exception)

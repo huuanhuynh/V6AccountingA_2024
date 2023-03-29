@@ -1385,6 +1385,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 ReportDocumentParameters.AddRange(extraParametersD, true);
             }
 
+            foreach (var item in edited_paras)
+            {
+                ReportDocumentParameters[item.Key] = item.Value;
+            }
+
             string errors = "";
             foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
             {
@@ -2593,7 +2598,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
             var setting = new ExportExcelSetting();
-            setting.data = _tbl1_AD;
+            if (EXTRA_INFOR.ContainsKey("EXPORTEXCELFILTER"))
+                setting.data = V6BusinessHelper.Filter(_tbl1_AD, EXTRA_INFOR["EXPORTEXCELFILTER"]);
+            else setting.data = _tbl1_AD;
             setting.data2 = _tbl2_AM;
             setting.reportParameters = ReportDocumentParameters;
             setting.albcConfigData = _albcConfig.DATA;
@@ -2634,64 +2641,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     return;
                 }
 
-                // Kiểm tra pagecount > 1 trường hợp dùng ROW_MAX
-                if (IsInvoice && ROW_MAX > 0)
+                if (_albcConfig != null && _albcConfig.HaveInfo && _albcConfig.ND51_HD)
                 {
-                    var pagecount = documentViewer1.Document.Pages.Count;
-                    if (pagecount > 1)
-                    {
-                        this.ShowWarningMessage(V6Text.OverFlow);
-                        return;
-                    }
-                }
-
-                _soLienIn = (int) numSoLien.Value;
-                //if (!IsInvoice)
-                //{
-                //    documentViewer1.PrintReport();
-                //    return;
-                //}
-
-                var dfp = DefaultPrinter;
-                if (string.IsNullOrEmpty(PrinterName))
-                {
-                    _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
-                    //ReportDocument.PrintingSystem.ShowMarginsWarning = false;
-                    PrintDialog p = new PrintDialog();
-                    p.PrinterSettings.PrinterName = dfp;
-                    p.AllowCurrentPage = false;
-                    p.AllowPrintToFile = false;
-                    p.AllowSelection = false;
-                    p.AllowSomePages = false;
-                    p.PrintToFile = false;
-                    p.UseEXDialog = true; //Fix win7
-
-                    DialogResult dr = p.ShowDialog(this);
-                    if (dr == DialogResult.OK)
-                    {
-                        var selectedPrinter = p.PrinterSettings.PrinterName;
-                        _printCopy = p.PrinterSettings.Copies;
-
-                        V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
-                        //printting = true;
-                        Print(selectedPrinter, _repx10, _repx20, _repx30, _repx40);
-                        PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
-
-                        if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
-                        {
-                            print_one = true;
-                            DefaultPrinter = selectedPrinter;
-                        }
-                    }
-                    else
-                    {
-                        //printting = false;
-                    }
+                    Print_Invoice();
                 }
                 else
                 {
-                    Print(PrinterName, _repx10, _repx20, _repx30, _repx40);
+                    Print_Report(_repx10);
                 }
+                
                 
             }
             catch (Exception ex)
@@ -2699,6 +2657,76 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 this.ShowErrorException(GetType() + ".Print_Click", ex);
             }
+        }
+
+        public void Print_Invoice()
+        {
+            // Kiểm tra pagecount > 1 trường hợp dùng ROW_MAX
+            if (IsInvoice && ROW_MAX > 0)
+            {
+                var pagecount = documentViewer1.Document.Pages.Count;
+                if (pagecount > 1)
+                {
+                    this.ShowWarningMessage(V6Text.OverFlow);
+                    return;
+                }
+            }
+
+            _soLienIn = (int)numSoLien.Value;
+            //if (!IsInvoice)
+            //{
+            //    documentViewer1.PrintReport();
+            //    return;
+            //}
+
+            var dfp = DefaultPrinter;
+            if (string.IsNullOrEmpty(PrinterName))
+            {
+                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
+                //ReportDocument.PrintingSystem.ShowMarginsWarning = false;
+                PrintDialog p = new PrintDialog();
+                p.PrinterSettings.PrinterName = dfp;
+                p.AllowCurrentPage = false;
+                p.AllowPrintToFile = false;
+                p.AllowSelection = false;
+                p.AllowSomePages = false;
+                p.PrintToFile = false;
+                p.UseEXDialog = true; //Fix win7
+
+                DialogResult dr = p.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    var selectedPrinter = p.PrinterSettings.PrinterName;
+                    _printCopy = p.PrinterSettings.Copies;
+
+                    V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
+                    //printting = true;
+                    Print(selectedPrinter, _repx10, _repx20, _repx30, _repx40);
+                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+
+                    if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
+                    {
+                        print_one = true;
+                        DefaultPrinter = selectedPrinter;
+                    }
+                }
+                else
+                {
+                    //printting = false;
+                }
+            }
+            else
+            {
+                Print(PrinterName, _repx10, _repx20, _repx30, _repx40);
+            }
+        }
+
+        public void Print_Report(XtraReport repx)
+        {
+            //in thường
+            var printTool = new ReportPrintTool(repx);
+            printTool.PrintingSystem.ShowMarginsWarning = false;
+            printTool.PrintDialog();
         }
 
         private void btnInLien_Click(object sender, EventArgs e)
@@ -3189,6 +3217,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".viewInvoiceInfoMenu_Click", ex);
+            }
+        }
+
+        SortedDictionary<string, object> edited_paras = new SortedDictionary<string, object>();
+        private void btnEditPara_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // init select bang danh sach 
+                var data = new SortedDictionary<string, object>();
+                if (edited_paras.Count > 0) data = edited_paras;
+                else DXreportManager.AddBaseParameters(data);
+
+                var f = new FormEditDataDynamic("ALTTPARA", data);
+
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    foreach (var item in f.Data)
+                    {
+                        edited_paras[item.Key] = item.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowWarningMessage("btnEditPara_Click: " + ex.Message);
             }
         }
 

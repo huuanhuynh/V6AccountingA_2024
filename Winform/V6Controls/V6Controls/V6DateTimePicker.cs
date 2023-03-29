@@ -405,7 +405,9 @@ namespace V6Controls
                     if (num > DateTime.DaysInMonth(Value.Year, Value.Month))
                     {
                         if (num > 31) num = 31;
-                        Value = new DateTime(Value.Year, 1, num);
+                        var v = new DateTime(Value.Year, 1, num);
+                        SetValue(v);
+                        SetValue(v);
                         SelectDatePartAfterValueChanged(1);
                     }
                 }

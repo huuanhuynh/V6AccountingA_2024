@@ -2,6 +2,7 @@
 using System;
 using V6AccountingBusiness;
 using V6Init;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.DXreport
@@ -17,8 +18,8 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             get
             {
                 if (V6Setting.IsVietnamese)
-                    return "MoneyToWords(decimal, string lang, string ma_nt)\r\nĐọc số tiền. lang là V hoặc E.";
-                return "MoneyToWords(decimal, string lang, string ma_nt)\r\nRead the amount. lang is V or E.";
+                    return "MoneyToWords(decimal, string lang, string ma_nt)\r\nĐọc số tiền. lang là V hoặc E. ma_nt VND USD... NUMBER(doc so thong thuong)";
+                return "MoneyToWords(decimal, string lang, string ma_nt)\r\nRead the amount. lang is V or E. ma_nt VND USD... NUMBER(read number only)";
             }
         }
 
@@ -69,7 +70,11 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
                 ma_nt = operands[2].ToString();
             }
 
-            result = V6BusinessHelper.MoneyToWords(money, lang, ma_nt);
+            if (ma_nt.ToLower() == "number")
+                result = DocSo.DocSoTien(money);
+            else
+                result = V6BusinessHelper.MoneyToWords(money, lang, ma_nt);
+			
             return result;
         }
         /// <summary>

@@ -254,7 +254,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
         private void PrepareThread_TopCuoiKy()
         {
             var stru = _invoice.AMStruct;
-            _where0Time = string.Format("ngay_ct <= '{0:yyyyMMdd}'", V6Setting.M_Ngay_ck);
+            _where0Time = string.Format("ngay_ct <= '{0:yyyyMMdd}' and ngay_ct >= '{1:yyyyMMdd}'", V6Setting.M_Ngay_ck, V6Setting.M_Ngay_dk);
             _where1AM = GetFilterSql_ThongTin(_invoice, stru, "", chkTTstart.Checked ? "start" : "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)
@@ -352,25 +352,44 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
                 }
                 if (tu_so != "" && den_so == "")
                 {
-                    result += string.Format("{0} LTrim(RTrim({1}so_ct)) = '{2}'",
+                    result += string.Format("{0} dbo.VFA_PadL(LTrim(RTrim({1}so_ct)),{3}) = dbo.VFA_PadL('{2}',{3})",
                         result.Length > 0 ? and_or : "",
                         tbL,
-                        tu_so);
+                        tu_so, V6Setting.M_Size_ct);
                 }
                 else if (tu_so == "" && den_so != "")
                 {
-                    result += string.Format("{0} LTrim(RTrim({1}so_ct)) = '{2}'",
+                    result += string.Format("{0} dbo.VFA_PadL(LTrim(RTrim({1}so_ct)),{3}) = dbo.VFA_PadL('{2}',{3})",
                        result.Length > 0 ? and_or : "",
                        tbL,
-                       den_so);
+                       den_so, V6Setting.M_Size_ct);
                 }
                 else if (tu_so != "" && den_so != "")
                 {
-                    result += string.Format("{0} (LTrim(RTrim({1}so_ct)) >= '{2}' and LTrim(RTrim({1}so_ct)) <= '{3}')",
+
+                    string den_so_like = den_so;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        den_so_like.Replace("" + i, "%");
+                        den_so_like.Replace("%%", "%");
+                    }
+                    den_so_like = "%" + den_so_like + "%";
+                    den_so_like.Replace("%%", "%");
+                    if (den_so_like.Length > 2)
+                    {
+                        den_so_like = " and so_ct like '" + den_so_like + "'";
+                    }
+                    else
+                    {
+                        den_so_like = "";
+                    }
+
+                    result += string.Format("{0} (dbo.VFA_PadL(LTrim(RTrim({1}so_ct)),{4}) >= dbo.VFA_PadL('{2}',{4}) and dbo.VFA_PadL(LTrim(RTrim({1}so_ct)),{4}) <= dbo.VFA_PadL('{3}',{4}){5})",
                         result.Length > 0 ? and_or : "",
                         tbL,
-                        tu_so, den_so)
+                        tu_so, den_so, V6Setting.M_Size_ct, den_so_like)
                     ;
+                    
                 }
             }
 

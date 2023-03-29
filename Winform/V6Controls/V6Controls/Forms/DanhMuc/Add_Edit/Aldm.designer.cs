@@ -958,7 +958,8 @@
         "OFF_TOPFILTER:1",
         "NOUPDATE:FIELD1,FIELD2",
         "XTRAREPORT:1",
-        "PAGESIZE:20"};
+        "PAGESIZE:20",
+        "VIEWSUM:1:NOSUM1,COLUMNS2:TIEN > 0" };
             this.dicEditButton1.Location = new System.Drawing.Point(763, 148);
             this.dicEditButton1.Name = "dicEditButton1";
             this.dicEditButton1.ReferenceControl = this.txtExtraInfo;

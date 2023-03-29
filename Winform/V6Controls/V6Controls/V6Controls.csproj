@@ -112,9 +112,7 @@
     <Compile Include="Controls\DateSelectButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\GridView\V6DateTimePickerFullGridViewColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\GridView\V6DateTimePickerFullGridViewColumn.cs" />
     <Compile Include="Controls\RicherTextBox\RichFindForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +136,12 @@
     </Compile>
     <Compile Include="Forms\ConfirmPasswordF368.Designer.cs">
       <DependentUpon>ConfirmPasswordF368.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\FormEditDataDynamic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\FormEditDataDynamic.Designer.cs">
+      <DependentUpon>FormEditDataDynamic.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A3.cs">
       <SubType>UserControl</SubType>
@@ -227,16 +231,10 @@
     <Compile Include="Controls\FileButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\GridView\CalendarColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\GridView\CalendarColumn.cs" />
     <Compile Include="Controls\GridView\MyNumberTextBoxCell.cs" />
-    <Compile Include="Controls\GridView\V6DateTimePickerGridViewColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\GridView\V6DateTimeColorGridViewColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\GridView\V6DateTimePickerGridViewColumn.cs" />
+    <Compile Include="Controls\GridView\V6DateTimeColorGridViewColumn.cs" />
     <Compile Include="Controls\GridView\V6LookupGridViewColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -301,9 +299,7 @@
     <Compile Include="TNumEditBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\GridView\V6NumberDataGridViewColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\GridView\V6NumberDataGridViewColumn.cs" />
     <Compile Include="Controls\Lookup\LookupButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1714,6 +1710,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfirmPasswordF368.resx">
       <DependentUpon>ConfirmPasswordF368.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\FormEditDataDynamic.resx">
+      <DependentUpon>FormEditDataDynamic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A3.resx">
       <DependentUpon>VatTuAddEditForm_A3.cs</DependentUpon>

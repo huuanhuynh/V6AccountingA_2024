@@ -465,9 +465,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
                 DataSet exportDataSet = new DataSet("ALBCEXCELFORMAT");
                 DataTable dataTable = new DataTable("ExcelConfig");
-                IDictionary<string, object> data = V6ControlFormHelper.GetFormDataDictionary(tabDinhDangXemVaExcel);
+                //IDictionary<string, object> data = V6ControlFormHelper.GetFormDataDictionary(tabDinhDangXemVaExcel);
+                IDictionary<string, object> data = V6ControlFormHelper.GetFormDataDictionary(v6TabControl1);
                 //Bỏ qua một số dữ liệu
-                if (data.ContainsKey("EXTRA_PARA")) data.Remove("EXTRA_PARA");
+                //if (data.ContainsKey("EXTRA_PARA")) data.Remove("EXTRA_PARA");
                 if (data.ContainsKey("MMETHOD")) data.Remove("MMETHOD");
                 dataTable.AddRow(data, true);
                 exportDataSet.Tables.Add(dataTable.Copy());
@@ -496,10 +497,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 {
                     var data = exportDataSet.Tables[0].Rows[0].ToDataDictionary();
                     //Bỏ qua một số dữ liệu
-                    if (data.ContainsKey("EXTRA_PARA")) data.Remove("EXTRA_PARA");
+                    //if (data.ContainsKey("EXTRA_PARA")) data.Remove("EXTRA_PARA");
                     if (data.ContainsKey("MMETHOD")) data.Remove("MMETHOD");
                     //Gán lên form.
-                    V6ControlFormHelper.SetSomeDataDictionary(tabDinhDangXemVaExcel, data);
+                    //V6ControlFormHelper.SetSomeDataDictionary(tabDinhDangXemVaExcel, data);
+                    V6ControlFormHelper.SetSomeDataDictionary(v6TabControl1, data);
                 }
             }
             catch (Exception ex)
