@@ -1,0 +1,114 @@
+﻿<?xml version="1.0"?>
+<Root>
+  <V6Info Field='username' 	Value='aiNTD0ESOYA=' Type=''/>
+  <V6Info Field='password' 	Value='/SpDHYzdehfp2CdF43g85g=='/>
+  <V6Info Field='codetax' 	Value='99UdxpxXLTmkEf7r/pkm4g=='/>
+  <V6Info Field='v6fkey' 		Value='V6' Type=''/>
+	<V6Info Field='certificateSerial' 	Value='V6SOFT'/>
+  <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
+  <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
+  <V6Info Field='datetype' 	Value='yyyy-MM-dd HH:mm:ss'/>
+  <V6Info Field='SIGNMODE' 	Value='5s8Gml7oU48=' Value0='V6SOFT'/>
+
+  <V6Info Field='baselink' 	Value='TLa5HcR9C6TGCCha5frRlRJDOXI3nxaHgBQe9zd18Wk=' Type=''/>
+	
+	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+	<!--Các thông tin đơn vị được in trên hóa đơn-->
+  <GeneralInvoiceInfo Field='loaihoadon_ma' 	Value='01GTKT'  Value2='02GTTT' Value3='1'/>
+  <GeneralInvoiceInfo Field='mauso' 	Value='1' FieldV6=''  Type='Field' Note='Ma mau hoa don maxleng 11'/>
+  <GeneralInvoiceInfo Field='kyhieu'	Value='C22TKM' 	FieldV6='' 	Type='Field'  Note='KyHieuHoaDon max6'/>
+	<GeneralInvoiceInfo Field='sophieu' 	Value='00001'	Type='Field'	FieldV6=''/>
+  <GeneralInvoiceInfo Field='ma_hoadon' 	Value='Key'	Type='Field'	FieldV6='UID'/>
+
+  <GeneralInvoiceInfo Field='ngaylap' 	Value='07/07/2022' FieldV6='' Type='Field'	DataType='date:yyyy-MM-dd HH:mm:ss'/>
+	
+	<GeneralInvoiceInfo Field='thanhtoan_phuongthuc' 	Value='3'	FieldV6='' Type='Field' DataType='int'   Note='1 tiền mặt, 2 chuyển khoản, 3 tiền mặt/chuyển khoản, 4 thẻ tín dụng, 5 - đối trừ công nợ,
+Đối với hóa đơn trên 20 triệu yêu 
+cầu không được chọn hình thức 
+thanh toán là tiền mặt'/>
+  <GeneralInvoiceInfo Field='thanhtoan_phuongthuc_ten' 	Value='TM/CK' FieldV6='' Type='Field'/>
+  
+  <GeneralInvoiceInfo Field='thanhtoan_taikhoan'		Value=''	FieldV6=''	Type='Field'  Note='Tai khoan ngan hang'/>
+  <GeneralInvoiceInfo Field='thanhtoan_nganhang'		Value=''	FieldV6=''	Type='Field'  Note=''/>
+  <GeneralInvoiceInfo Field='tiente_ma' 	Value='VND'/>
+  <GeneralInvoiceInfo Field='tygiangoaite'		Value='1'	FieldV6=''	Type='Field'  DataType='int'  Note=''/>
+  <GeneralInvoiceInfo Field='thanhtoan_thoihan'		Value=''	FieldV6=''	Type='Field'  DataType='Date:yyyy-MM-dd'/>
+  
+	<GeneralInvoiceInfo_0 Field='cusGetInvoiceRight' 	Value='1'	FieldV6=''	Type='Field' DataType='Bool'/>
+	<GeneralInvoiceInfo_0 Field='buyerIdNo' 	Value=''/>
+	<GeneralInvoiceInfo_0 Field='buyerIdType' 	Value=''/>
+	<GeneralInvoiceInfo_0 Field='userName' 	Value=''/>
+  
+	
+	<SellerInfo Field='doanhnghiep_mst' 		Value='0105232093-998'/>
+	
+	<!--a____________Tên parameter trong report_____________Tên trường dữ liệu tương ứng_____________-->
+	<BuyerInfo Field='dnmua_ten' 	FieldV6='ong_ba'			Type='Field'/>
+	<BuyerInfo Field='dnmua_tennguoimua' 			FieldV6='ten_kh' 			Type='Field'  DataType='UPPER'/>
+	<BuyerInfo Field='dnmua_mst' 			FieldV6='ma_so_thue'		Type='Field'/>
+	<BuyerInfo Field='dnmua_diachi' 			FieldV6='dia_chi'			Type='Field'/>
+	<BuyerInfo Field='dnmua_sdt' 			FieldV6='DIEN_THOAI'			Type='Field'/>
+	<BuyerInfo Field='dnmua_email' 			FieldV6='E_MAIL'			Type='Field'/>
+	
+  <!-- invoiceCustomFieldId=SL_TD1  /  keyTag=Field / valueType=DataType(text, number, date) / keyLabel=MA_TD2 / isRequired=SL_TD2 / isSeller=SL_TD3 >
+  
+  <MetaData0 Field='economicContractNo'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='100'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='commandDate'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='DATE' MA_TD2='Ngày lệnh'  SL_TD1='101'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='commandOf'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='102'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='commandDes'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='103'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='invoiceNote'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='104'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='contractNo'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='105'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='vehicle'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Phương tiện VC'  SL_TD1='106'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='exportAt'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='107'  SL_TD2='1' SL_TD3='1'/>
+  <MetaData0 Field='importAt'  Value='Test' 			FieldV6='LDD_NO'			Type='Field'  DataType='text' MA_TD2='Label'  SL_TD1='108'  SL_TD2='1' SL_TD3='1'/>
+  
+  <MetaData0 Field='invoiceNote'  Value='Test' 			FieldV6='GHI_CHU'			Type='Field'  DataType='text' MA_TD2='Ghi chú'  SL_TD1='108'  SL_TD2='0' SL_TD3='0'/>
+  <MetaData0 Field='totalAmountWithTaxInWordsEng'  Value='Test' 	FieldV6='T_TT_NT'	Type='Field'  DataType='N2CMANT' MA_TD2='DocSoTienEng'  SL_TD1='109'  SL_TD2='1' SL_TD3='1'/-->
+
+  <!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
+
+  <ItemInfo	Field='stt'		FieldV6='stt'	Type='Field'/>
+  <ItemInfo	Field='hanghoa_loai'  Value='0'	FieldV6='selection'	Type='Field'  DataType='int' Note=' 0 : Hàng hóa + 1: Dịch vụ + 2: Ghi chú'/>
+  <ItemInfo	Field='khuyenmai' Value='0'		FieldV6='stt'	Type='Field'/>
+  
+	<ItemInfo	Field='ma'	FieldV6='ma_vt'		Type='Field'/>
+	<ItemInfo	Field='ten'	FieldV6='ma_vt+"->"+ten_vt'	Type='Field'/>
+	<ItemInfo	Field='donvitinh'		FieldV6='dvt'	Type='Field'/>
+	<ItemInfo	Field='soluong'	FieldV6='so_luong'	Type='Field'/>
+	<ItemInfo	Field='dongia'	FieldV6='gia2'	Type='Field'/>
+  
+  <ItemInfo	Field='phantram_chietkhau'	FieldV6='pt_cki'	Type='Field'/>
+  <ItemInfo	Field='tongtien_chietkhau'	FieldV6='ck'	Type='Field'/>
+  
+  <ItemInfo	Field='phikhac_tyle'	FieldV6='ck'	Type='Field'/>
+  <ItemInfo	Field='phikhac_sotien'	FieldV6='ck'	Type='Field'/>
+  
+  <ItemInfo	Field='tongtien_chuathue'	FieldV6='tien2'	Type='Field'/>
+  
+  <ItemInfo	Field='mathue'	FieldV6='MA_THUE_I'	Type='Field' DataType='int' Note='-2: Không kê khai,+ -1: Không thuế,+ 0: Thuế 0%,+ 5: Thuế 5%,+ 10: Thuế 10%'/>
+  <ItemInfo	Field='tongtien_cothue'	FieldV6='tien2'	Type='Field'/>
+	
+	<ItemInfo	Field='dulieudacthu01'  Value=''	FieldV6=''	Type='Field' />
+
+  <!--ItemInfo	Field='selection'	FieldV6='0'	Type='Field'	Note='1:hàng, 2:ghi chú(itemName), 3:ck'/-->
+  <!--ItemInfo	Field='itemNote'	FieldV6='0'	Type='Field'/-->
+  <!--ItemInfo	Field='batchNo'	FieldV6='0'	Type='Field'/-->
+  <!--ItemInfo	Field='expDate'	FieldV6='0'	Type='Field'/-->
+	
+	<SummarizeInfo	Field='tongtien_chietkhau'		FieldV6='T_CK'	Type='Field'/>
+  <SummarizeInfo	Field='ghichu'		FieldV6='GHI_CHU'	Type='Field'/>
+  <SummarizeInfo	Field='tongtien_chuavat'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo	Field='tienthue'		FieldV6='T_THUE'	Type='Field' />
+  <SummarizeInfo	Field='tongtien_covat'		FieldV6='t_tt'	Type='Field'/>
+
+  <SummarizeInfo	Field='nguoilap'		FieldV6=''	Type='Field'/>
+  <SummarizeInfo	Field='phikhac_sotien'		FieldV6=''	Type='Field'  DataType='decimal'/>
+  <SummarizeInfo	Field='phikhac_tyle'		FieldV6=''	Type='Field'  DataType='decimal'/>
+  <SummarizeInfo	Field='dulieudacthu01'		FieldV6=''	Type='Field'/>
+  
+	
+	
+	<TaxBreakdowns	Field='mathue'		FieldV6='THUE_SUAT'	Type='Field' DataType='int'/>
+	<TaxBreakdowns	Field='tongtien_chiuthue'		FieldV6='T_TIEN2'	Type='Field'/>
+	<TaxBreakdowns	Field='tongtien_thue'		FieldV6='T_THUE'	Type='Field' />
+</Root>	
