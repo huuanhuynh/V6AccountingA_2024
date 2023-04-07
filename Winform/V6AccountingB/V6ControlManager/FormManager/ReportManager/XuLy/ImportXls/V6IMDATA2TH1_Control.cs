@@ -204,6 +204,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var ALFCOPY2LIST = V6BusinessHelper.Select("ALFCOPY2LIST", "*", "MA_FILE='" + _reportProcedure + "'").Data;
                 var ALFCOPY2DATA = V6BusinessHelper.Select("ALFCOPY2DATA", "*", "MA_FILE='" + _reportProcedure + "'").Data;
                 newMyThread = new MyThread(DatabaseConfig.ConnectionString, DatabaseConfig.ConnectionString2_TH, DatabaseConfig.ServerName, 0, _tbl.Rows[0]);
+                newMyThread.ConnectionTimeOut = DatabaseConfig.TimeOut;
                 newMyThread.ALFCOPY2LIST = ALFCOPY2LIST;
                 newMyThread.ALFCOPY2DATA = ALFCOPY2DATA;
                 newMyThread.ThrowExceptionEvent += newMyThread_ThrowExceptionEvent;

@@ -837,52 +837,59 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// </summary>
         protected virtual void FormatGridViewBase()
         {
-            //Header
-            if (_tbl != null)
+            try
             {
-                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
-                if (_albcConfig != null && _albcConfig.HaveInfo)
+                //Header
+                if (_tbl != null)
                 {
-                    V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
-                        _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
-                }
-                
-                var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
-                var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
-                for (int i = 0; i < dataGridView1.ColumnCount; i++)
-                {
-                    if (fieldDic.ContainsKey(dataGridView1.Columns[i].DataPropertyName.ToUpper()))
+                    //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                    if (_albcConfig != null && _albcConfig.HaveInfo)
                     {
-                        dataGridView1.Columns[i].HeaderText =
-                            fieldDic[dataGridView1.Columns[i].DataPropertyName.ToUpper()];
+                        V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
+                            _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                    }
+
+                    var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
+                    var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
+                    for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                    {
+                        if (fieldDic.ContainsKey(dataGridView1.Columns[i].DataPropertyName.ToUpper()))
+                        {
+                            dataGridView1.Columns[i].HeaderText =
+                                fieldDic[dataGridView1.Columns[i].DataPropertyName.ToUpper()];
+                        }
+                    }
+                    //Format
+                    var f = dataGridView1.Columns["so_luong"];
+                    if (f != null)
+                    {
+                        f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
+                    }
+                    f = dataGridView1.Columns["TIEN2"];
+                    if (f != null)
+                    {
+                        f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIEN");
+                    }
+                    f = dataGridView1.Columns["GIA2"];
+                    if (f != null)
+                    {
+                        f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
                     }
                 }
-                //Format
-                var f = dataGridView1.Columns["so_luong"];
-                if (f != null)
+
+                //Format mới
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
+                if (ViewDetail) V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Report_GRDSV2, Report_GRDFV2, V6Setting.IsVietnamese ? Report_GRDHV_V2 : Report_GRDHE_V2);
+                if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
+                if (MauInSelectedRow != null)
                 {
-                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
-                }
-                f = dataGridView1.Columns["TIEN2"];
-                if (f != null)
-                {
-                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIEN");
-                }
-                f = dataGridView1.Columns["GIA2"];
-                if (f != null)
-                {
-                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
+                    int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
+                    dataGridView1.SetFrozen(frozen);
                 }
             }
-
-            //Format mới
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
-            if (ViewDetail) V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Report_GRDSV2, Report_GRDFV2, V6Setting.IsVietnamese ? Report_GRDHV_V2 : Report_GRDHE_V2);
-            if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
-            if (MauInSelectedRow != null)
+            catch(Exception ex)
             {
-                int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
-                dataGridView1.SetFrozen(frozen);
+                this.ShowInfoMessage("FormatGridView:\n" + ex.Message);
             }
         }
 

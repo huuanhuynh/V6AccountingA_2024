@@ -6610,6 +6610,8 @@ namespace V6Controls.Forms
         /// <param name="color">Màu làm back_color. Nếu back_color=false thì đặt giá trị tùy ý (không ảnh hưởng).</param>
         public static void FormatGridView(V6ColorDataGridView grid, string field, string oper, object value, bool bold, bool back_color, Color color)
         {
+            if (string.IsNullOrEmpty(field)) return;
+            if (!grid.Columns.Contains(field)) return;
             var column = grid.Columns[field];
             if (column != null)
             {

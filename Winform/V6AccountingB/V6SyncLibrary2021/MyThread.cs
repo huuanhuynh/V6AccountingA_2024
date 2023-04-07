@@ -18,7 +18,14 @@ namespace V6SyncLibrary2021
         
         private string _CONSTRING_MAIN;
         private string _sqlConString2;
-        
+
+        public int ConnectionTimeOut
+        {
+            get { return timeOut; }
+            set { timeOut = value; }
+        }
+        private int timeOut = 120;
+
         //private string sqlTableName, _sqlSelectFields, sqlPrimarykeyField;
 
         #endregion ==== | ====
@@ -26,7 +33,7 @@ namespace V6SyncLibrary2021
         //DataTable sqlStructTable;
 
         #region ==== Khởi tạo đối tượng ====
-        
+
         public MyThread(string conString1, string conString2, string Name, int Index, DataRow Config):base(Name, Index)
         {
             _CONSTRING_MAIN = conString1;
@@ -154,7 +161,7 @@ namespace V6SyncLibrary2021
             try
             {
                 string strCommand = "select 1 from " + tableName + " where 1 = 0";
-                SqlHelper.ExecuteNonQuery(strCon, CommandType.Text, strCommand);
+                SqlHelper.ExecuteNonQuery(strCon, CommandType.Text, strCommand, timeOut);
                 return true;
             }
             catch
@@ -170,12 +177,12 @@ namespace V6SyncLibrary2021
                 string where = ""; if (filter != "") where = " where " + filter; ;
                 string strCommand = "select count(1) from [" + tableName + "]" + where;
                 //_MessageBox.Show(strCommand);
-                if ((int)SqlHelper.ExecuteDataset(strCon, CommandType.Text, strCommand).Tables[0].Rows[0][0] > 0)
+                if ((int)SqlHelper.ExecuteDataset(strCon, CommandType.Text, strCommand, timeOut).Tables[0].Rows[0][0] > 0)
                 {
                     if (where != "") where += (" and " + sqlWhere);
                     strCommand = "select count(1) from [" + tableName + "]" + where;
                     //_MessageBox.Show(strCommand);
-                    if ((int)SqlHelper.ExecuteDataset(strCon, CommandType.Text, strCommand).Tables[0].Rows[0][0] > 0)
+                    if ((int)SqlHelper.ExecuteDataset(strCon, CommandType.Text, strCommand, timeOut).Tables[0].Rows[0][0] > 0)
                         return 2;
                     else
                         return 1;
@@ -258,7 +265,7 @@ namespace V6SyncLibrary2021
             try
             {
                 string strSQL0 = "SELECT CONVERT(VARCHAR(8),GETDATE(),108) AS curTime";
-                tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strSQL0).Tables[0];
+                tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strSQL0, timeOut).Tables[0];
                 string timehhmm = tb3.Rows[0][0].ToString().Trim();
 
                 //Sync2ThConfig
@@ -567,7 +574,7 @@ namespace V6SyncLibrary2021
             string strsql = "", _Key_ma = "", _Ma_code = "";
 
             strsql = "SELECT * FROM " + _pAl + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
 
             //Corpuser
@@ -576,7 +583,7 @@ namespace V6SyncLibrary2021
 
 
             strsql = " SELECT USER_ID  FROM V6USER WHERE  " + _pkey_SQLF;
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut).Tables[0];
 
 
             foreach (DataRow rowc in tb2.Rows)
@@ -709,7 +716,7 @@ namespace V6SyncLibrary2021
             string strsql = "", _Key_ma = "", _Ma_code = "";
 
             strsql = "SELECT * FROM " + _pAl + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
 
             //Corpuser
@@ -718,7 +725,7 @@ namespace V6SyncLibrary2021
 
 
             strsql = " SELECT USER_ID  FROM V6USER WHERE  " + _pkey_SQLF;
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut).Tables[0];
 
 
             foreach (DataRow rowc in tb2.Rows)
@@ -852,7 +859,7 @@ namespace V6SyncLibrary2021
             string strsql = "", _Key_ma = "", _Check_sync = "", _Ma_code = "", _Check = "0", _Gc_td1 = "";
 
             strsql = "SELECT * FROM " + _pAl + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             // WS_ID
             if (tb1.Columns.Contains("STT_REC"))
@@ -919,7 +926,7 @@ namespace V6SyncLibrary2021
 
 
             strsql = " SELECT * FROM " + _pAl + " WHERE  " + _pkey_SQLF;
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut).Tables[0];
 
 
             foreach (DataRow rowc in tb2.Rows)
@@ -958,7 +965,7 @@ namespace V6SyncLibrary2021
                         strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                         // strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
                         strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
-                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                     }
                         
 
@@ -999,14 +1006,14 @@ namespace V6SyncLibrary2021
                                 }
                             }
 
-                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray());
+                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, timeOut, lstProcParam.ToArray());
                             
                             // Delete client
                             strsql = "DELETE FROM " + _pAl;
                             //strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
                             strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
 
-                            SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                            SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut);
                         }
                     }
                 }
@@ -1048,7 +1055,7 @@ namespace V6SyncLibrary2021
                     }
 
                     string test = "debug";
-                    tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray()).Tables[0];
+                    tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, timeOut, lstProcParam.ToArray()).Tables[0];
 
                     _Check = tb3.Rows[0][0].ToString();
                     if (_Check == "1")
@@ -1073,7 +1080,7 @@ namespace V6SyncLibrary2021
                                 strsql = "UPDATE " + _pAl + " SET ";
                                 strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                                 strsql = strsql + "  WHERE " + _Key_where;
-                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                             }
                         }
                     }
@@ -1110,7 +1117,7 @@ namespace V6SyncLibrary2021
 
                                 strsql = strsql + "  WHERE " + _Key_where;
 
-                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
 
 
                                 // UpdaTE SERVER
@@ -1119,7 +1126,7 @@ namespace V6SyncLibrary2021
                                     strsql = "UPDATE " + _pAl + " SET ";
                                     strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                                     strsql = strsql + "  WHERE " + _Key_where;
-                                    SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                                    SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                                 }
                             }
                         }
@@ -1149,7 +1156,7 @@ namespace V6SyncLibrary2021
                                     strsql = "UPDATE " + _pAl + " SET ";
                                     strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                                     strsql = strsql + "  WHERE " + _Key_where;
-                                    SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                                    SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                                 }
                             }
                         }
@@ -1246,7 +1253,7 @@ namespace V6SyncLibrary2021
             string strsql = "", _Key_ma = "", _Check_sync = "", _Ma_code = "", _Check = "0", _Gc_td1 = "";
 
             strsql = "SELECT * FROM " + _pAl + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             // WS_ID
             if (tb1.Columns.Contains("STT_REC"))
@@ -1314,9 +1321,9 @@ namespace V6SyncLibrary2021
 
             strsql = " SELECT * FROM " + _pAl + " WHERE  " + _pkey_SQLF;
 
-            //MessageBox.Show(strsql);
+            //MessageBox.Show(strsql, timeOut);
 
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut).Tables[0];
 
 
             foreach (DataRow rowc in tb2.Rows)
@@ -1355,7 +1362,7 @@ namespace V6SyncLibrary2021
                         strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                         // strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
                         strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
-                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                     }
 
 
@@ -1397,14 +1404,14 @@ namespace V6SyncLibrary2021
                                 }
                             }
 
-                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray());
+                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, timeOut, lstProcParam.ToArray());
 
                             // Delete client
                             strsql = "DELETE FROM " + _pAl;
                             //strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
                             strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
 
-                            SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                            SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut);
                         }
                     }
                 }
@@ -1445,7 +1452,7 @@ namespace V6SyncLibrary2021
                         }
                     }
 
-                    //tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray()).Tables[0];
+                    //tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, timeOut, lstProcParam.ToArray()).Tables[0];
                     //_Check = tb3.Rows[0][0].ToString();
                     //if (_Check == "1")
                     //{
@@ -1467,7 +1474,7 @@ namespace V6SyncLibrary2021
                     //            strsql = "UPDATE " + _pAl + " SET ";
                     //            strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                     //            strsql = strsql + "  WHERE " + _Key_where;
-                    //            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                    //            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                     //        }
                     //    }
                     //}
@@ -1512,7 +1519,7 @@ namespace V6SyncLibrary2021
                             strsql = "UPDATE " + _pAl + " SET ";
                             strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                             strsql = strsql + "  WHERE " + _Key_where;
-                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                         }
                     }
                 }
@@ -1606,7 +1613,7 @@ namespace V6SyncLibrary2021
             string strsql = "", _Key_ma = "", _Check_sync = "", _Ma_code = "", _Check = "0", _Gc_td1 = "";
 
             strsql = "SELECT * FROM " + _pAl + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             // WS_ID
             if (tb1.Columns.Contains("STT_REC"))
@@ -1668,7 +1675,7 @@ namespace V6SyncLibrary2021
             
 
             strsql = " SELECT * FROM " + _pAl + " WHERE  " + _pkey_SQLF;
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut).Tables[0];
 
             foreach (DataRow rowc in tb2.Rows)
             {
@@ -1706,7 +1713,7 @@ namespace V6SyncLibrary2021
                             strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                             // strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
                             strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
-                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                            SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                         }
 
                         if (tb1.Columns.Contains("GC_TD1"))
@@ -1745,14 +1752,14 @@ namespace V6SyncLibrary2021
                                     }
                                 }
 
-                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray());
+                                SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.StoredProcedure, strsql, timeOut, lstProcParam.ToArray());
                                 
                                 // Delete client
                                 strsql = "DELETE FROM " + _pAl;
                                 //strsql = strsql + "  WHERE " + _pkey_ma + " ='" + _Ma_code + "'";
                                 strsql = strsql + "  WHERE " + _pkey_ma + " =" + MakeSqlValueString(rowc[_pkey_ma]);
 
-                                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut);
                             }
                         }
                     }
@@ -1794,7 +1801,7 @@ namespace V6SyncLibrary2021
                             }
                         }
 
-                        tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, lstProcParam.ToArray()).Tables[0];
+                        tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, strsql, timeOut, lstProcParam.ToArray()).Tables[0];
 
                         _Check = tb3.Rows[0][0].ToString();
                         if (_Check == "1")
@@ -1819,7 +1826,7 @@ namespace V6SyncLibrary2021
                                     strsql = "UPDATE " + _pAl + " SET ";
                                     strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                                     strsql = strsql + "  WHERE " + _Key_where;
-                                    SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                                    SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                                 }
                             }
                         }
@@ -1848,7 +1855,7 @@ namespace V6SyncLibrary2021
 
                                     _Key_where = _Key_where.Substring(0, _Key_where.Length - 5);
                                     strsql = strsql + "  WHERE " + _Key_where;
-                                    SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql);
+                                    SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut);
 
                                     // UpdaTE SERVER
                                     if (pal_struct.ContainsKey("CHECK_SYNC"))
@@ -1856,7 +1863,7 @@ namespace V6SyncLibrary2021
                                         strsql = "UPDATE " + _pAl + " SET ";
                                         strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                                         strsql = strsql + "  WHERE " + _Key_where;
-                                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                                     }
                                 }
                             }
@@ -1886,7 +1893,7 @@ namespace V6SyncLibrary2021
                                         strsql = "UPDATE " + _pAl + " SET ";
                                         strsql = strsql + "CHECK_SYNC ='" + _Check_sync.Trim() + "," + _pUnits.Trim() + "'";
                                         strsql = strsql + "  WHERE " + _Key_where;
-                                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql);
+                                        SqlHelper.ExecuteNonQuery(_sqlConString2, CommandType.Text, strsql, timeOut);
                                     }
                                 }
                             }
@@ -1984,7 +1991,7 @@ namespace V6SyncLibrary2021
             _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
 
             strsql = "SELECT * FROM " + _pAl + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             _pkey_SQLF = plistfield;// script_sql; 
             _pkey_SQL = plistfield;// script_sql;
@@ -1998,7 +2005,7 @@ namespace V6SyncLibrary2021
             #region //1. Post Client to Server
 
             strsql = "SELECT * FROM " + _pAl + " WHERE " + _pkey_SQLF;
-            //tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
+            //tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut).Tables[0];
             List<SqlParameter> lstProcParam = new List<SqlParameter>();
 
             string[] a_paraname = pparaname.Split(',');
@@ -2028,11 +2035,11 @@ namespace V6SyncLibrary2021
                 }
             }
 
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, pprocedure, lstProcParam.ToArray()).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, pprocedure, timeOut, lstProcParam.ToArray()).Tables[0];
 
             //tb3
             //strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
-            //tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            //tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
 
             string[] a_fieldskey = ObjectAndString.SplitString(_pkey_ma);
             if (a_fieldskey.Length > 0)
@@ -2157,7 +2164,7 @@ namespace V6SyncLibrary2021
             _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
             
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             _pkey_SQLF = script_sql;
             _pkey_SQL = script_sql;
@@ -2175,17 +2182,17 @@ namespace V6SyncLibrary2021
             if (!string.IsNullOrEmpty(script_sql) && Sync2ThConfig.GetString("DELE_YN") == "1")
             {
                 strsql = "Delete " + pAd + " Where STT_REC in (Select stt_rec from " + pAm + " Where " + script_sql + ")";
-                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray());
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray());
                 
                 strsql = "Delete " + pAm + " Where " + script_sql;
-                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray());
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray());
             }
 
             #region //1. Post 2 to main (New 1->3, Edit 2->4)
 
 
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQLF + "  ORDER BY NGAY_CT";
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
             
             foreach (DataRow rowc in tb2.Rows)
             {
@@ -2223,14 +2230,14 @@ namespace V6SyncLibrary2021
                     // - Change value
 
                     strsql = "SELECT * FROM " + _pAm + " WHERE STT_REC='" + _stt_rec + "'";
-                    tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
+                    tb3 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut).Tables[0];
                                       
                     // INSERT
                     var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
 
                     //----------------AM------------------------------
                     strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-                    tb4 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+                    tb4 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
                     Insert_datatable(_CONSTRING_MAIN, tb3, tb4, _pAm, null);
 
                     //----------------AD------------------------------
@@ -2339,7 +2346,7 @@ namespace V6SyncLibrary2021
             _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
 
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             _pkey_SQLF = script_sql;
             _pkey_SQL = script_sql;
@@ -2388,10 +2395,10 @@ namespace V6SyncLibrary2021
             if (!string.IsNullOrEmpty(script_sql) && Sync2ThConfig.GetString("DELE_YN") == "1")
             {
                 strsql = "Delete " + pAd + " Where STT_REC in (Select stt_rec from " + pAm + " Where " + script_sql + ")";
-                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray());
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray());
 
                 strsql = "Delete " + pAm + " Where " + script_sql;
-                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray());
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray());
             }
 
             #region //1. Post 2 to main (New 1->3, Edit 2->4)
@@ -2399,7 +2406,7 @@ namespace V6SyncLibrary2021
 
             //strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQLF + "  ORDER BY NGAY_CT";
             string PPROCEDURE = ALFCOPY2DATA_rowData["PPROCEDURE"].ToString().Trim();
-            var ds = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, PPROCEDURE, lstProcParam.ToArray());
+            var ds = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, PPROCEDURE, timeOut, lstProcParam.ToArray());
             tb2 = ds.Tables[0];
             tb3 = ds.Tables[1];
             DataView AD_view = new DataView(tb3.Copy());
@@ -2547,7 +2554,7 @@ namespace V6SyncLibrary2021
 
 
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             _pkey_SQLF = script_sql;
             _pkey_SQL = script_sql;
@@ -2563,19 +2570,19 @@ namespace V6SyncLibrary2021
             {
                 
                 strsql = "Delete " + pAm + " Where " + script_sql;
-                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray());
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray());
             }
 
             #region //1. Post Client to Server
 
 
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQLF;
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
 
 
             //tb3
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
-            tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
             var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
             
 
@@ -2713,7 +2720,7 @@ namespace V6SyncLibrary2021
             _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
 
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             _pkey_SQLF = script_sql;
             _pkey_SQL = script_sql;
@@ -2727,7 +2734,7 @@ namespace V6SyncLibrary2021
             #region //1. Post Client to Server
 
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQLF;
-            //tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql).Tables[0];
+            //tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut).Tables[0];
             List<SqlParameter> lstProcParam = new List<SqlParameter>();
 
             string[] a_paraname = pparaname.Split(',');
@@ -2757,16 +2764,16 @@ namespace V6SyncLibrary2021
                 }
             }
 
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, pprocedure, lstProcParam.ToArray()).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.StoredProcedure, pprocedure, timeOut, lstProcParam.ToArray()).Tables[0];
 
             //tb3
             //strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
-            //tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            //tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
             // Delete
             if (!string.IsNullOrEmpty(script_sql) && Sync2ThConfig.GetString("DELE_YN") == "1")
             {
                 strsql = "Delete " + pAm + " Where " + _pkey_SQL;
-                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray());
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray());
             }
 
             var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
@@ -2890,7 +2897,7 @@ namespace V6SyncLibrary2021
             _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
 
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             _pkey_SQLF = "SO_THE_CC in (Select so_the_cc from ALCC Where " + script_sql + ")";
             _pkey_SQL = "SO_THE_CC in (Select so_the_cc from ALCC Where " + script_sql + ")";
@@ -2904,18 +2911,18 @@ namespace V6SyncLibrary2021
             if (!string.IsNullOrEmpty(script_sql) && Sync2ThConfig.GetString("DELE_YN") == "1")
             {
                 strsql = "Delete " + pAm + " Where " + _pkey_SQLF;// SO_THE_CC in (Select so_the_cc from ALCC Where " + script_sql + ")";
-                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray());
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray());
             }
 
             #region //1. Post Client to Server
 
 
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQLF;
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
             
             //tb3
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
-            tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
             var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
             
 
@@ -3040,7 +3047,7 @@ namespace V6SyncLibrary2021
             _Ngay_ct2 = Sync2ThConfig.NGAY_CT2;
 
             strsql = "SELECT * FROM " + _pAm + " WHERE 1=0 ";
-            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql).Tables[0];
+            tb1 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut).Tables[0];
 
             _pkey_SQLF = "SO_THE_TS in (Select so_the_ts from ALTS Where " + script_sql + ")";
             _pkey_SQL = "SO_THE_TS in (Select so_the_ts from ALTS Where " + script_sql + ")";
@@ -3055,18 +3062,18 @@ namespace V6SyncLibrary2021
             if (!string.IsNullOrEmpty(script_sql) && Sync2ThConfig.GetString("DELE_YN") == "1")
             {
                 strsql = "Delete " + pAm + " Where " + _pkey_SQLF;// SO_THE_TS in (Select so_the_ts from ALTS Where " + script_sql + ")";
-                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray());
+                SqlHelper.ExecuteNonQuery(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray());
             }
 
             #region //1. Post Client to Server
 
 
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQLF;
-            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            tb2 = SqlHelper.ExecuteDataset(_sqlConString2, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
 
             //tb3
             strsql = "SELECT * FROM " + _pAm + " WHERE " + _pkey_SQL;
-            tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, plist.ToArray()).Tables[0];
+            tb3 = SqlHelper.ExecuteDataset(_CONSTRING_MAIN, CommandType.Text, strsql, timeOut, plist.ToArray()).Tables[0];
             var copy_type = ALFCOPY2DATA_rowData["COPY_TYPE"].ToString().Trim();
 
 
@@ -3104,7 +3111,7 @@ namespace V6SyncLibrary2021
             if (pTable != "" && pWhere != "")
             {
                 string strsql = "DELETE FROM " + pTable + " WHERE " + pWhere;
-                SqlHelper.ExecuteNonQuery(pCON, CommandType.Text, strsql);
+                SqlHelper.ExecuteNonQuery(pCON, CommandType.Text, strsql, timeOut);
             }
         }
 
@@ -3114,7 +3121,7 @@ namespace V6SyncLibrary2021
             if (pTable != "" && pWhere != "")
             {
                 string strsql = "Select Count(1) FROM " + pTable + " WHERE " + pWhere;
-                result = (int)SqlHelper.ExecuteScalar(pCON, CommandType.Text, strsql);
+                result = (int)SqlHelper.ExecuteScalar(pCON, CommandType.Text, strsql, timeOut);
             }
             return result != 0;
         }
@@ -3124,10 +3131,10 @@ namespace V6SyncLibrary2021
             if (pTablefrom != "" && pWherefrom != "" && pTableto != "" && pWhereto != "")
             {
                 string strsql = "SELECT * FROM " + pTablefrom + " WHERE " + pWherefrom;
-                tb3 = SqlHelper.ExecuteDataset(pCONfrom, CommandType.Text, strsql).Tables[0];
+                tb3 = SqlHelper.ExecuteDataset(pCONfrom, CommandType.Text, strsql, timeOut).Tables[0];
 
                 strsql = "SELECT * FROM " + pTableto + " WHERE " + pWhereto;
-                tb4 = SqlHelper.ExecuteDataset(pCONto, CommandType.Text, strsql).Tables[0];
+                tb4 = SqlHelper.ExecuteDataset(pCONto, CommandType.Text, strsql, timeOut).Tables[0];
 
                 Insert_datatable(pCONto, tb3, tb4, pTableto, GOP_DATA);
             }

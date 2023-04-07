@@ -7186,6 +7186,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private void TxtT_cp_nt_ao_V6LostFocus(object sender)
         {
             TinhT_CpNt();
+            TinhTongThanhToan("TxtT_cp_nt_ao_V6LostFocus");
             var loai_pb = txtLoai_pb.Text.Trim();
             TinhPhanBoChiPhi(loai_pb);
         }

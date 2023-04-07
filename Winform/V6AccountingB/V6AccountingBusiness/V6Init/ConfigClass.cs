@@ -20,8 +20,11 @@ namespace V6Init
         }
         public Config(IDictionary<string, object> data)
         {
-            DATA = data;
-            NoInfo = false;
+            if (data != null && data.Count > 0)
+            {
+                DATA = data;
+                NoInfo = false;
+            }
         }
         [DefaultValue(true)]
         public bool NoInfo { get; internal set; }
