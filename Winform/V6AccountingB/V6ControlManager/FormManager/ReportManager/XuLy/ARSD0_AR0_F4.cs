@@ -218,19 +218,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             Txtt_tt.Value = V6BusinessHelper.Vround(txtt_tt_nt.Value * txtty_gia.Value, V6Options.M_ROUND);
         }
        
-        private void txtThang12_TextChanged(object sender, System.EventArgs e)
-        {
-            try
-            {
-                var txt = (V6NumberTextBox)sender;
-                if (txt.Value < 1) txt.Value = 1;
-                if (txt.Value > 12) txt.Value = 12;
-            }
-            catch (Exception)
-            {
-
-            }
-        }
       
 
     }

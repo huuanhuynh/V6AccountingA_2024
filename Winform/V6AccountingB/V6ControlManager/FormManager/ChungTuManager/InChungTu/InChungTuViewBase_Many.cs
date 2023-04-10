@@ -510,18 +510,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = Path.Combine(V6Login.StartupPath, @"Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + ".xls";
+                       + ReportFile + ".xls");
                 if (File.Exists(result + "x")) result += "x";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = Path.Combine(V6Login.StartupPath, @"Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
-                       + _Ma_File + ".xls";
+                       + _Ma_File + ".xls");
                     if (File.Exists(result + "x")) result += "x";
                 }
                 return result;
@@ -535,11 +535,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = Path.Combine(V6Login.StartupPath, @"Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + "_view.xls";
+                       + ReportFile + "_view.xls");
                 if (!File.Exists(result))
                 {
                     result = ExcelTemplateFileFull;
@@ -555,17 +555,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = Path.Combine(V6Login.StartupPath, @"Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + "HTKK.xls";
+                       + ReportFile + "HTKK.xls");
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = Path.Combine(V6Login.StartupPath, @"Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
-                       + _Ma_File + "HTKK.xls";
+                       + _Ma_File + "HTKK.xls");
                 }
                 return result;
             }
@@ -578,17 +578,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = Path.Combine(V6Login.StartupPath, @"Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + "ONLINE.xls";
+                       + ReportFile + "ONLINE.xls");
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = Path.Combine(V6Login.StartupPath, @"Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
-                       + _Ma_File + "ONLINE.xls";
+                       + _Ma_File + "ONLINE.xls");
                 }
                 return result;
             }

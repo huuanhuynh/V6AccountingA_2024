@@ -76,7 +76,59 @@ namespace V6ThuePostViettelV2Api
             string token = loginResponse.access_token;
             _viettel_token = token;
         }
-        
+
+        #region ===== V6Special =====
+        private string _V6Special = "";
+        /// <summary>
+        /// Đánh dấu đặc biệt.Triple,FixInvoiceVvar
+        /// </summary>
+        public string V6Special
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_V6Special))
+                {
+                    _V6Special = UtilityHelper.ReadRegistry("V6SPECIAL");
+                    if (string.IsNullOrEmpty(_V6Special))
+                    {
+                        V6Special = "1";
+                    }
+                }
+                return _V6Special;
+            }
+            set
+            {
+                _V6Special = value;
+                UtilityHelper.WriteRegistry("V6SPECIAL", value);
+            }
+        }
+
+        public bool V6Special_AllowAdd
+        {
+            get { return V6Special.Contains("AllowAdd"); }
+        }
+
+        public bool Triple
+        {
+            get { return V6Special.Contains("Triple"); }
+        }
+        /// <summary>
+        /// Gán dữ liệu liên quan của các vVar textbox trong InvoiceControl.
+        /// </summary>
+        public bool FixInvoiceVvar
+        {
+            get { return V6Special.Contains("FixInvoiceVvar"); }
+        }
+        /// <summary>
+        /// Bật tắt ghi log ở những vị trí không phát sinh lỗi để kiểm tra chương trình.
+        /// </summary>
+        public bool WriteExtraLog
+        {
+            get { return V6Special.Contains("WriteExtraLog"); }
+        }
+
+        #endregion ===== V6Special =====
+
         /// <summary>
         /// 
         /// </summary>
@@ -101,7 +153,12 @@ namespace V6ThuePostViettelV2Api
                 if (responseObject.message == "GENERAL" && result.Contains("\"error\":\"Internal Server Error\""))
                 {
                     // Nếu hết phiên đăng nhập thì đăng nhập lại.
+                    if (WriteExtraLog)
+                    {
+                        Logger.WriteToLog("Gặp lỗi GENERAL error:Internal Server Error, thực hiện đăng nhập lại.", "VIETTELV2WS");
+                    }
                     Login();
+                    
                     // sau đó gửi lại.
                     result = POST_VIETTEL_COOKIESTOKEN(link + _codetax, jsonBody);
                     v6Return.RESULT_STRING = result;
@@ -148,7 +205,7 @@ namespace V6ThuePostViettelV2Api
                 result = ex.Message;
                 v6Return.RESULT_ERROR_MESSAGE += ex.Message;
             }
-            Logger.WriteToLog("ViettelWS.POST_REPLACE " + result);
+            
             return result;
         }
 
@@ -198,7 +255,7 @@ namespace V6ThuePostViettelV2Api
                 result = ex.Message;
                 v6Return.RESULT_ERROR_MESSAGE += ex.Message;
             }
-            Logger.WriteToLog("ViettelWS.POST_DRAFT " + result);
+            
             return result;
         }
 
@@ -222,7 +279,7 @@ namespace V6ThuePostViettelV2Api
                 result = ex.Message;
                 v6Return.RESULT_ERROR_MESSAGE += ex.Message;
             }
-            Logger.WriteToLog("ViettelWS.POST_EDIT " + result);
+            
             return result;
         }
 
@@ -360,6 +417,10 @@ namespace V6ThuePostViettelV2Api
                     requestStream.Write(byteArray, 0, byteArray.Length);
                     // Close the Stream object.
                     requestStream.Close();
+                    if (WriteExtraLog)
+                    {
+                        Logger.WriteToLog("" + method + "" + full_uri + "\n" + content, "VIETTELV2WS");
+                    }
                 }
 
                 var response = (HttpWebResponse)request.GetResponse();                
@@ -396,9 +457,12 @@ namespace V6ThuePostViettelV2Api
                     }
                     response.Close();
                 }
-                
+
+                if (WriteExtraLog)
+                {
+                    Logger.WriteToLog("\nRESPONSE:\n" + responseFromServer, "VIETTELV2WS");
+                }
                 return responseFromServer;
-                //return request;
             }
             catch (WebException webex)
             {
@@ -408,6 +472,10 @@ namespace V6ThuePostViettelV2Api
                 {
                     StreamReader reader = new StreamReader(respStream);
                     string text = reader.ReadToEnd();
+                    if (WriteExtraLog)
+                    {
+                        Logger.WriteToLog("\nRESPONSE:\n" + text, "VIETTELV2WS");
+                    }
                     return text;
                 }
             }

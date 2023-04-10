@@ -692,7 +692,8 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav("T");
                     result = bkavWS.POST(jsonBody, BkavConst._123_CreateReplace, out paras.Result.V6ReturnValues);
-                    if (string.IsNullOrEmpty(paras.Key_Down) && V6Infos.ContainsKey("BKAVSIGN") && V6Infos["BKAVSIGN"] == "1")
+                    if ((string.IsNullOrEmpty(paras.Key_Down) || paras.Key_Down == "F9")
+                        && V6Infos.ContainsKey("BKAVSIGN") && V6Infos["BKAVSIGN"] == "1")
                     {
                         V6Return v6return2;
                         result = result + "\r\n" + bkavWS.SignInvoice(paras.Result.V6ReturnValues.ID, out v6return2);
@@ -706,7 +707,8 @@ namespace V6ThuePostManager
                     else if (paras.Key_Down == "F6") commandType = BkavConst._200_Update;
 
                     result = bkavWS.POST(jsonBody, commandType, out paras.Result.V6ReturnValues);
-                    if (string.IsNullOrEmpty(paras.Key_Down) && V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
+                    if ((string.IsNullOrEmpty(paras.Key_Down) || paras.Key_Down == "F9")
+                        && V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
                     {
                         V6Return v6return2;
                         result = result + "\r\n" + bkavWS.SignInvoice(paras.Result.V6ReturnValues.ID, out v6return2);

@@ -58,20 +58,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Ky2", (int)txtKy2.Value));
             result.Add(new SqlParameter("@User_id", V6Login.UserId));
             result.Add(new SqlParameter("@Dien_giai", txtDien_giai.Text.Trim()));
-
             result.Add(new SqlParameter("@Ma_dvcs", txtMaDvcs.IsSelected ? txtMaDvcs.StringValue : "" + "%"));
             result.Add(new SqlParameter("@Ma_dvcs0", txtMaDvcs.IsSelected ? txtMaDvcs.StringValue : ""));
 
-
-
             result.Add(new SqlParameter("@Action", "F2"));
 
-
-
             return result;
-
-            
-            
         }
 
         private void txtThang12_TextChanged(object sender, EventArgs e)
@@ -79,9 +71,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             try
             {
                 var txt = (V6NumberTextBox) sender;
-                if (txt.Value < 1) txt.Value = 1;
-                if (txt.Value > 12) txt.Value = 12;
-                
+                //if (txt.Value < 0) txt.Value = 0;
+                //if (txt.Value > 12) txt.Value = 12;
             }
             catch (Exception)
             {
@@ -98,7 +89,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (txt.Value > 12) txt.Value = 12;
 
                 Change_DienGiai();
-
             }
             catch (Exception)
             {

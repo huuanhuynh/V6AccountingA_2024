@@ -65,8 +65,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             try
             {
                 var txt = (V6NumberTextBox) sender;
-                if (txt.Value < 1) txt.Value = 1;
-                if (txt.Value > 12) txt.Value = 12;
+                //if (txt.Value < 1) txt.Value = 1;
+                //if (txt.Value > 12) txt.Value = 12;
             }
             catch (Exception ex)
             {
