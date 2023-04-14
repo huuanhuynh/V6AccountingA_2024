@@ -274,7 +274,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (txtFileName.Text == "")
                 {
                     if (!Directory.Exists("C:\\V6EXCEL")) Directory.CreateDirectory("C:\\V6EXCEL");
-                    txtFileName.Text = string.Format("C:\\V6EXCEL\\" + "HTKK_BANRA_{0:yyyyMMdd}_{1:yyyyMMdd}.xls",
+                    txtFileName.Text = string.Format("C:\\V6EXCEL\\" + "TAXONLINE_BANRA_{0:yyyyMMdd}_{1:yyyyMMdd}.xls",
                         dateNgay_ct1.Value, dateNgay_ct2.Value);
                 }
                 XuatExcelTaxOnline();

@@ -5853,6 +5853,7 @@ namespace V6Controls.Forms
                             }
 
                             setting.parameters = parameters;
+                            setting.columns = ObjectAndString.SplitString(excelColumnsHTKK);
                             if (ExportData.ToExcelTemplateHTKK(
                                 ExportExcelTemplateHTKK_excelTemplateFile, datas, setting, ObjectAndString.SplitString(excelColumnsHTKK),
                                 ExportExcelTemplateHTKK_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
@@ -6132,6 +6133,7 @@ namespace V6Controls.Forms
                             }
 
                             setting.parameters = parameters;
+                            setting.columns = ObjectAndString.SplitString(excelColumnsONLINE);
                             if (ExportData.ToExcelTemplateHTKK(
                                 ExportExcelTemplateONLINE_excelTemplateFile, datas, setting, ObjectAndString.SplitString(excelColumnsONLINE),
                                 ExportExcelTemplateONLINE_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))

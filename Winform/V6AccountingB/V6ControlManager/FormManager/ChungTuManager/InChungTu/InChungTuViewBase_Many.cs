@@ -407,14 +407,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + ".rpt";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + ".rpt";//_reportFile gốc
@@ -427,14 +427,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "_1.rpt";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + "_1.rpt";//_reportFile gốc
@@ -447,14 +447,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "_2.rpt";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + "_2.rpt";//_reportFile gốc
@@ -467,14 +467,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "_3.rpt";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + "_3.rpt";//_reportFile gốc
@@ -487,14 +487,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "_4.rpt";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + "_4.rpt";//_reportFile gốc

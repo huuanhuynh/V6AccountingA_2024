@@ -461,7 +461,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         txtThang1.Value, txtNam1.Value, txtThang2.Value, txtNam2.Value);
                 }
 
-                string xmlTemplateFile = "Reports\\XML\\" + cboMaubc.SelectedValue.ToString().Trim() + ".xml";
+                string xmlTemplateFile = V6Login.StartupPath + "\\Reports\\XML\\" + cboMaubc.SelectedValue.ToString().Trim() + ".xml";
 
                 if (procName == null)
                 {

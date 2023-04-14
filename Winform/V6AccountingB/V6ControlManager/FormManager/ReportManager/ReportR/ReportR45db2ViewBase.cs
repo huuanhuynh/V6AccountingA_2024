@@ -350,14 +350,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + ".rpt";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + ".rpt";//_reportFile gốc
@@ -370,14 +370,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "F7.rpt";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + "F7.rpt";//_reportFile gốc
@@ -393,7 +393,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
@@ -401,7 +401,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 if (File.Exists(result + "x")) result += "x";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + ".xls";
@@ -418,7 +418,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
@@ -438,14 +438,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "HTKK.xls";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + "HTKK.xls";
@@ -461,14 +461,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "ONLINE.xls";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + "ONLINE.xls";

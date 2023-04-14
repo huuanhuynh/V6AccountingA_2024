@@ -421,7 +421,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.xls;*.xlsx", cboMaubc_X.Text);
                 if (string.IsNullOrEmpty(saveFile)) return;
 
-                string xlsTemplateFile = "Reports\\" + txtMauExport.Text.Trim();
+                string xlsTemplateFile = V6Login.StartupPath + "\\Reports\\" + txtMauExport.Text.Trim();
                 if (!xlsTemplateFile.EndsWith(".xls", true, CultureInfo.InvariantCulture) || !xlsTemplateFile.EndsWith(".xlsx", true, CultureInfo.InvariantCulture))
                 {
                     xlsTemplateFile += ".xls";
@@ -522,7 +522,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Excel|*.docx;*.doc", cboMaubc_X.Text);
                 if (string.IsNullOrEmpty(saveFile)) return;
 
-                string xlsTemplateFile = "Reports\\" + txtMauExport.Text.Trim();
+                string xlsTemplateFile = V6Login.StartupPath + "\\Reports\\" + txtMauExport.Text.Trim();
                 if (!xlsTemplateFile.EndsWith(".doc", true, CultureInfo.InvariantCulture) || !xlsTemplateFile.EndsWith(".docx", true, CultureInfo.InvariantCulture))
                 {
                     xlsTemplateFile += ".docx";

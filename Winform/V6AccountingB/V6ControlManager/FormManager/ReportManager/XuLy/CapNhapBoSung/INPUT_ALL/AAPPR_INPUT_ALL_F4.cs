@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -34,9 +35,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected List<SqlParameter> _pList;
 
         public bool ViewDetail { get; set; }
-        
-        
-        #endregion 
+        protected int _oldIndex = -1;
+        public V6InvoiceBase invoice;
+
+        #endregion
         public AAPPR_INPUT_ALL_F4()
         {
             InitializeComponent();
@@ -190,13 +192,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (am.Count == 0) return;
 
                 var keys = new SortedDictionary<string, object> {{"Stt_rec", _sttRec}};
-                var result = V6BusinessHelper.UpdateSimple(V6TableName.Am81, am, keys);
+                var result = V6BusinessHelper.UpdateSimple(invoice.AM_TableName, am, keys);
                 if (result == 1)
                 {
                     SqlParameter[] plist =
                     {
                         new SqlParameter("@Stt_rec", _sttRec),
-                        new SqlParameter("@Ma_ct", "POH"),
+                        new SqlParameter("@Ma_ct", invoice.Mact),
                         new SqlParameter("@user_id", V6Login.UserId),
                     };
                     V6BusinessHelper.ExecuteProcedure("AAPPR_INPUT_ALL_UPDATE", plist);
@@ -231,7 +233,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        protected int _oldIndex = -1;
         
     }
 }

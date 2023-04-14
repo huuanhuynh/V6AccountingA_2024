@@ -278,6 +278,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 string extra_infor = "";
                                 if (EXTRA_INFOR.ContainsKey("FIELDS_F4")) extra_infor = EXTRA_INFOR["FIELDS_F4"];
                                 var hoaDonForm = new AAPPR_INPUT_ALL_F4(selectedSttRec, am.Rows[0], extra_infor);
+                                hoaDonForm.invoice = invoice;
 
                                 f.Controls.Add(hoaDonForm);
                                 hoaDonForm.Disposed += delegate

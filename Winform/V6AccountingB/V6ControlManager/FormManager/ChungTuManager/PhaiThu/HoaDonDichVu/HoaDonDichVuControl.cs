@@ -213,6 +213,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                                     _soLuong.Value = 0;
                                     _giaNt2.Enabled = false;
                                     _giaNt2.Value = 0;
+                                    _gia2.Value = 0;
                                     _tienNt2.Focus();
                                 }
                                 else
@@ -1176,6 +1177,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     if (gia_nt != 0)
                     {
                         _giaNt2.Value = gia_nt;
+                        TinhTienNt2();
                     }
 
                 }

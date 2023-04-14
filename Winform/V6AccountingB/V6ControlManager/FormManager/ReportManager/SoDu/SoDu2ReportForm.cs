@@ -208,14 +208,14 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + ".rpt";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + ".rpt";//_reportFile gốc
@@ -228,7 +228,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             get
             {
-                var result = @"Reports\"
+                var result = V6Login.StartupPath + @"\Reports\"
                     + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
@@ -236,7 +236,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 if (File.Exists(result + "x")) result += "x";
                 if (!File.Exists(result))
                 {
-                    result = @"Reports\"
+                    result = V6Login.StartupPath + @"\Reports\"
                        + MAU + @"\"
                        + LAN + @"\"
                        + _Ma_File + ".xls";

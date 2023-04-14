@@ -47,7 +47,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
+            UpdateValues();
             return new List<SqlParameter> {new SqlParameter("@nUserID", V6Login.UserId)};
+        }
+
+        private void UpdateValues()
+        {
+            Check1 = v6CheckBox1.Checked;
+            Check2 = v6CheckBox2.Checked;
         }
 
         private void v6CheckBox1_CheckedChanged(object sender, EventArgs e)
