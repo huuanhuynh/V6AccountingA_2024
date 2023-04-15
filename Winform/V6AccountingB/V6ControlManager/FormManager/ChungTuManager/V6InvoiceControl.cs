@@ -4966,7 +4966,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if ((Invoice.AlctConfig.XtraReport && !shift_is_down) || (!Invoice.AlctConfig.XtraReport && shift_is_down))
                 {
-                    var c = new ReportR_DX(Invoice.Mact, program, program, repFile,
+                    var c = new ReportR_DX(Invoice.CodeMact, program, program, repFile,
                         repTitle, repTitle2, "", "", "");
 
                     List<SqlParameter> plist = new List<SqlParameter>();
@@ -4990,7 +4990,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 }
                 else
                 {
-                    var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
+                    var c = new ReportRViewBase(Invoice.CodeMact, program, program, repFile,
                         repTitle, repTitle2, "", "", "");
 
                     List<SqlParameter> plist = new List<SqlParameter>();
@@ -5032,7 +5032,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if ((Invoice.AlctConfig.XtraReport && !shift_is_down) || (!Invoice.AlctConfig.XtraReport && shift_is_down))
                 {
-                    var c = new ReportR_DX(Invoice.Mact, program, program, repFile,
+                    var c = new ReportR_DX(Invoice.CodeMact, program, program, repFile,
                         repTitle, repTitle2, "", "", "");
 
                     List<SqlParameter> plist = new List<SqlParameter>();
@@ -5056,7 +5056,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 }
                 else
                 {
-                    var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
+                    var c = new ReportRViewBase(Invoice.CodeMact, program, program, repFile,
                         repTitle, repTitle2, "", "", "");
 
                     List<SqlParameter> plist = new List<SqlParameter>();
@@ -6362,7 +6362,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                     return;
                 }
 
-                string v6_partner_infor = ("" + row["PART_INFORS"]).Trim();
+                string v6_partner_infor = ("" + row["PART_INFOS"]).Trim();
                 if (string.IsNullOrEmpty(v6_partner_infor))
                 {
                     this.ShowWarningMessage("Hóa đơn chưa chuyển!");
