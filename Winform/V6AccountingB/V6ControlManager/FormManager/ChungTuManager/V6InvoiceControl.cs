@@ -5676,7 +5676,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             var m_ma_hd = ("" + invoice.Alct["M_MA_HD"]).Trim();
             if (m_ma_hd == "") return;
 
-            var sss = ObjectAndString.SplitString(m_ma_hd);
+            var sss = ObjectAndString.SplitStringBy(m_ma_hd, ';');
             foreach (string s in sss)
             {
                 var ss = ObjectAndString.Split2(s, ':');

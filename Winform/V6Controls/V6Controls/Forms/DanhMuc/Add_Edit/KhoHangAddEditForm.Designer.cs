@@ -64,9 +64,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tabTuDinhNghia = new System.Windows.Forms.TabPage();
-            this.txtMaS3 = new V6Controls.V6ColorTextBox();
-            this.txtMaS2 = new V6Controls.V6ColorTextBox();
-            this.txtMaS1 = new V6Controls.V6ColorTextBox();
+            this.txtMaS3 = new V6Controls.V6VvarTextBox();
+            this.txtMaS2 = new V6Controls.V6VvarTextBox();
+            this.txtMaS1 = new V6Controls.V6VvarTextBox();
             this.txtSLS6 = new V6Controls.V6NumberTextBox();
             this.txtSLS5 = new V6Controls.V6NumberTextBox();
             this.txtSLS4 = new V6Controls.V6NumberTextBox();
@@ -1576,9 +1576,9 @@
         private V6CheckBox chkDate_yn;
         private V6CheckBox chkLo_yn;
         private V6CheckBox Chk_khodaily;
-        private V6ColorTextBox txtMaS3;
-        private V6ColorTextBox txtMaS2;
-        private V6ColorTextBox txtMaS1;
+        private V6VvarTextBox txtMaS3;
+        private V6VvarTextBox txtMaS2;
+        private V6VvarTextBox txtMaS1;
         private V6NumberTextBox txtSLS6;
         private V6NumberTextBox txtSLS5;
         private V6NumberTextBox txtSLS4;

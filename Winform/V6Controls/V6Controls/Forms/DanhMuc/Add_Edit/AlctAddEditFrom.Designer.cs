@@ -180,9 +180,9 @@
             this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
             this.tabTuDinhNghia = new System.Windows.Forms.TabPage();
-            this.txtMaS3 = new V6Controls.V6ColorTextBox();
-            this.txtMaS2 = new V6Controls.V6ColorTextBox();
-            this.txtMaS1 = new V6Controls.V6ColorTextBox();
+            this.txtMaS3 = new V6Controls.V6VvarTextBox();
+            this.txtMaS2 = new V6Controls.V6VvarTextBox();
+            this.txtMaS1 = new V6Controls.V6VvarTextBox();
             this.txtSLS6 = new V6Controls.V6NumberTextBox();
             this.txtSLS5 = new V6Controls.V6NumberTextBox();
             this.txtSLS4 = new V6Controls.V6NumberTextBox();
@@ -3408,9 +3408,9 @@
         private V6VvarTextBox txtTYPE_VIEW;
         private System.Windows.Forms.Label lblTYPE_VIEW;
         private System.Windows.Forms.TabPage tabTuDinhNghia;
-        private V6ColorTextBox txtMaS3;
-        private V6ColorTextBox txtMaS2;
-        private V6ColorTextBox txtMaS1;
+        private V6VvarTextBox txtMaS3;
+        private V6VvarTextBox txtMaS2;
+        private V6VvarTextBox txtMaS1;
         private V6NumberTextBox txtSLS6;
         private V6NumberTextBox txtSLS5;
         private V6NumberTextBox txtSLS4;

@@ -175,9 +175,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label55 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.tabTuDinhNghia = new System.Windows.Forms.TabPage();
-            this.txtMaS3 = new V6Controls.V6ColorTextBox();
-            this.txtMaS2 = new V6Controls.V6ColorTextBox();
-            this.txtMaS1 = new V6Controls.V6ColorTextBox();
+            this.txtMaS3 = new V6Controls.V6VvarTextBox();
+            this.txtMaS2 = new V6Controls.V6VvarTextBox();
+            this.txtMaS1 = new V6Controls.V6VvarTextBox();
             this.txtSLS6 = new V6Controls.V6NumberTextBox();
             this.txtSLS5 = new V6Controls.V6NumberTextBox();
             this.txtSLS4 = new V6Controls.V6NumberTextBox();
@@ -4851,9 +4851,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         protected V6FormButton btnChonPDF;
         protected FileButton btnChonFile1;
         protected FileButton btnChonFile2;
-        private V6ColorTextBox txtMaS3;
-        private V6ColorTextBox txtMaS2;
-        private V6ColorTextBox txtMaS1;
+        private V6VvarTextBox txtMaS3;
+        private V6VvarTextBox txtMaS2;
+        private V6VvarTextBox txtMaS1;
         private V6NumberTextBox txtSLS6;
         private V6NumberTextBox txtSLS5;
         private V6NumberTextBox txtSLS4;

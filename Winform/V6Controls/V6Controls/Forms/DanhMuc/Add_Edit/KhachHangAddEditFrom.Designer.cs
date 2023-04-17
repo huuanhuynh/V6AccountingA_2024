@@ -112,9 +112,9 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.tabTuDinhNghia = new System.Windows.Forms.TabPage();
-            this.txtMaS3 = new V6Controls.V6ColorTextBox();
-            this.txtMaS2 = new V6Controls.V6ColorTextBox();
-            this.txtMaS1 = new V6Controls.V6ColorTextBox();
+            this.txtMaS3 = new V6Controls.V6VvarTextBox();
+            this.txtMaS2 = new V6Controls.V6VvarTextBox();
+            this.txtMaS1 = new V6Controls.V6VvarTextBox();
             this.txtSLS6 = new V6Controls.V6NumberTextBox();
             this.txtSLS5 = new V6Controls.V6NumberTextBox();
             this.txtSLS4 = new V6Controls.V6NumberTextBox();
@@ -1123,7 +1123,6 @@
             this.numHantt.AccessibleName = "han_tt";
             this.numHantt.BackColor = System.Drawing.Color.White;
             this.numHantt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.numHantt.DecimalPlaces = 0;
             this.numHantt.EnterColor = System.Drawing.Color.PaleGreen;
             this.numHantt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.numHantt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1147,7 +1146,6 @@
             this.txtGioiHanCN.AccessibleName = "t_tien_cn";
             this.txtGioiHanCN.BackColor = System.Drawing.Color.White;
             this.txtGioiHanCN.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGioiHanCN.DecimalPlaces = 0;
             this.txtGioiHanCN.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtGioiHanCN.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGioiHanCN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1515,7 +1513,7 @@
             this.txtSLS6.Name = "txtSLS6";
             this.txtSLS6.Size = new System.Drawing.Size(200, 23);
             this.txtSLS6.TabIndex = 155;
-            this.txtSLS6.Text = "0,000";
+            this.txtSLS6.Text = "0";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS6.Value = new decimal(new int[] {
             0,
@@ -1540,7 +1538,7 @@
             this.txtSLS5.Name = "txtSLS5";
             this.txtSLS5.Size = new System.Drawing.Size(200, 23);
             this.txtSLS5.TabIndex = 153;
-            this.txtSLS5.Text = "0,000";
+            this.txtSLS5.Text = "0";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS5.Value = new decimal(new int[] {
             0,
@@ -1565,7 +1563,7 @@
             this.txtSLS4.Name = "txtSLS4";
             this.txtSLS4.Size = new System.Drawing.Size(200, 23);
             this.txtSLS4.TabIndex = 151;
-            this.txtSLS4.Text = "0,000";
+            this.txtSLS4.Text = "0";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS4.Value = new decimal(new int[] {
             0,
@@ -1893,7 +1891,7 @@
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox3.TabIndex = 107;
-            this.v6NumberTextBox3.Text = "0,000";
+            this.v6NumberTextBox3.Text = "0";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
             0,
@@ -1918,7 +1916,7 @@
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox2.TabIndex = 105;
-            this.v6NumberTextBox2.Text = "0,000";
+            this.v6NumberTextBox2.Text = "0";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
             0,
@@ -1943,7 +1941,7 @@
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox1.TabIndex = 103;
-            this.v6NumberTextBox1.Text = "0,000";
+            this.v6NumberTextBox1.Text = "0";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,
@@ -2576,9 +2574,9 @@
         private V6ColorTextBox txtTenKH;
         protected Controls.FileButton btnChonFile1;
         protected Controls.FileButton btnChonFile2;
-        private V6ColorTextBox txtMaS3;
-        private V6ColorTextBox txtMaS2;
-        private V6ColorTextBox txtMaS1;
+        private V6VvarTextBox txtMaS3;
+        private V6VvarTextBox txtMaS2;
+        private V6VvarTextBox txtMaS1;
         private V6NumberTextBox txtSLS6;
         private V6NumberTextBox txtSLS5;
         private V6NumberTextBox txtSLS4;

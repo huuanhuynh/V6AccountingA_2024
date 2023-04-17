@@ -39,9 +39,9 @@
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
             this.tabTuDinhNghia = new System.Windows.Forms.TabPage();
-            this.txtMaS3 = new V6Controls.V6ColorTextBox();
-            this.txtMaS2 = new V6Controls.V6ColorTextBox();
-            this.txtMaS1 = new V6Controls.V6ColorTextBox();
+            this.txtMaS3 = new V6Controls.V6VvarTextBox();
+            this.txtMaS2 = new V6Controls.V6VvarTextBox();
+            this.txtMaS1 = new V6Controls.V6VvarTextBox();
             this.txtSLS6 = new V6Controls.V6NumberTextBox();
             this.txtSLS5 = new V6Controls.V6NumberTextBox();
             this.txtSLS4 = new V6Controls.V6NumberTextBox();
@@ -945,9 +945,9 @@
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabThongTinChinh;
         private System.Windows.Forms.TabPage tabTuDinhNghia;
-        private V6ColorTextBox txtMaS3;
-        private V6ColorTextBox txtMaS2;
-        private V6ColorTextBox txtMaS1;
+        private V6VvarTextBox txtMaS3;
+        private V6VvarTextBox txtMaS2;
+        private V6VvarTextBox txtMaS1;
         private V6NumberTextBox txtSLS6;
         private V6NumberTextBox txtSLS5;
         private V6NumberTextBox txtSLS4;
