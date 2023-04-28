@@ -46,11 +46,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\V6Tools.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -114,7 +115,7 @@
     <Compile Include="MyMessage.cs" />
     <Compile Include="MyProcedureParam.cs" />
     <Compile Include="SQLHelper.cs" />
-    <Compile Include="UploadDownloadFTP.cs" />
+    <Compile Include="FtpTransfer.cs" />
     <Compile Include="UtilityHelper.cs" />
     <Compile Include="V6Convert\ConvertException.cs" />
     <Compile Include="V6Convert\Data_Table.cs" />

@@ -185,6 +185,13 @@ namespace V6Tools.V6Convert
                             }
                         }
 
+                        // 2023-04-12T00:00:00
+                        if (t.Contains("T") && t.IndexOf('T') > 6)
+                        {
+                            var d = DateTime.Parse(t);
+                            return d;
+                        }
+
                         if (string.IsNullOrEmpty(dateFormat) || dateFormat.ToUpper() == "DD/MM/YYYY")
                         {
                             t = t.Replace("_", "");
@@ -489,6 +496,14 @@ namespace V6Tools.V6Convert
             DateTime d = DateTime.MinValue;
             try
             {
+                // 2023-04-12T00:00:00
+                string t = s;
+                if (t.Contains("T") && t.IndexOf('T') > 6)
+                {
+                    d = DateTime.Parse(t);
+                    return d;
+                }
+
                 d = DateTime.ParseExact(s, dateFormat, null);
             }
             catch

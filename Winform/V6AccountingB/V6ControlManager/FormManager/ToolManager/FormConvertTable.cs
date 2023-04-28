@@ -115,6 +115,7 @@ namespace V6ControlManager.FormManager.ToolManager
                 if (table2 != null)
                 {
                     SaveFileDialog o = new SaveFileDialog();
+                    o.Filter = "All|*.*|Excel|*.xls;*.xlsx|Xml|*.xml";
                     if (o.ShowDialog(this) == DialogResult.OK)
                     {
                         string ext = Path.GetExtension(o.FileName).ToLower();
@@ -133,6 +134,10 @@ namespace V6ControlManager.FormManager.ToolManager
                         else if (ext == ".txt")
                         {
                             V6Tools.V6Export.ExportData.ToTextFile(table2, o.FileName);
+                        }
+                        else if (ext == ".xml")
+                        {
+                            V6Tools.V6Export.ExportData.ToXmlFile(table2, o.FileName);
                         }
                         else
                         {

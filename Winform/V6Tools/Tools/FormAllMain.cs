@@ -50,9 +50,16 @@ namespace Tools
             var open = new OpenFileDialog();
             if (open.ShowDialog() == DialogResult.OK)
             {
-                UploadDownloadFTP ftp = new UploadDownloadFTP("118.69.183.160", "huuan", UtilityHelper.EnCrypt("_D21C2V62015"));
-                ftp.Upload(open.FileName);
-                MessageBox.Show("Test Xong");
+                try
+                {
+                    FtpTransfer ftp = new FtpTransfer("118.69.183.160", "huuan", UtilityHelper.EnCrypt("_D21C2V62015"));
+                    ftp.Upload(open.FileName);
+                    MessageBox.Show("Test Xong.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Test Lỗi. " + ex.Message);
+                }
             }
         }
 

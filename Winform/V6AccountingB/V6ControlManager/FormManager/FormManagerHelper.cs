@@ -367,6 +367,7 @@ namespace V6ControlManager.FormManager
                         V6ControlFormHelper.SetControlValue(input, defineInfo.DefaultValue);
                     }
                     input.Enabled = defineInfo.Enabled;
+                    if (defineInfo.Readonly) input.ReadOnlyTag();
                     input.Visible = defineInfo.Visible;
                     input.Width = string.IsNullOrEmpty(defineInfo.Width)
                         ? 150
@@ -561,8 +562,8 @@ namespace V6ControlManager.FormManager
                         } //end for
                     } //end if DMETHOD
 
-                    //Add brother
-                    int left = input.Right + 10;
+                    //Add brother, control nằm phía sau, thường là tên...
+                    int left = input.Right + 10 + (defineInfo_M.Visible? 20 : 0);
                     if (input is V6VvarTextBox && !string.IsNullOrEmpty(defineInfo.BField))
                     {
                         var tT = (V6VvarTextBox)input;

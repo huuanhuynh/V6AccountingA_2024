@@ -122,7 +122,7 @@ namespace V6ControlManager.FormManager.ToolManager
                     DataTable exportData = currentGridview2.DataSource as DataTable;
                     
                     SaveFileDialog o = new SaveFileDialog();
-                    o.Filter = "Excel|*.xls";
+                    o.Filter = "All|*.*|Excel|*.xls;*.xlsx|Xml|*.xml";
                     if (o.ShowDialog(this) == DialogResult.OK)
                     {
                         string ext = Path.GetExtension(o.FileName).ToLower();
@@ -141,6 +141,10 @@ namespace V6ControlManager.FormManager.ToolManager
                         else if (ext == ".txt")
                         {
                             ExportData.ToTextFile(exportData, o.FileName);
+                        }
+                        else if (ext == ".xml")
+                        {
+                            ExportData.ToXmlFile(exportData, o.FileName);
                         }
                         else
                         {

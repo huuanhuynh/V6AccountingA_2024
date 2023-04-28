@@ -20,9 +20,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtKy2.Value = V6Setting.M_ngay_ct2.Month;
             txtNam.Value = V6Setting.M_ngay_ct2.Year;
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
-            txtNam.Value = V6Setting.M_NAM;
+
             txtKy1.Value = V6Setting.M_KY1;
             txtKy2.Value = V6Setting.M_KY2;
+            txtNam.Value = V6Setting.M_NAM;
+            Change_DienGiai();
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDvcs.Enabled = false;

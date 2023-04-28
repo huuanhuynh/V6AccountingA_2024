@@ -124,7 +124,7 @@ namespace V6Tools.V6Convert
                     DataTable currentTable2 = currentGridview2.DataSource as DataTable;
                     
                     SaveFileDialog o = new SaveFileDialog();
-                    o.Filter = "Excel|*.xls";
+                    o.Filter = "All|*.*|Excel|*.xls;*.xlsx|Xml|*.xml";
                     if (o.ShowDialog(this) == DialogResult.OK)
                     {
                         string ext = Path.GetExtension(o.FileName).ToLower();
@@ -144,6 +144,10 @@ namespace V6Tools.V6Convert
                         else if (ext == ".txt")
                         {
                             ExportData.ToTextFile(currentTable2, o.FileName);
+                        }
+                        else if (ext == ".xml")
+                        {
+                            ExportData.ToXmlFile(currentTable2, o.FileName);
                         }
                         else
                         {

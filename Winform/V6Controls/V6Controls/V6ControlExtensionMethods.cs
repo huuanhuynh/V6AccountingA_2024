@@ -516,6 +516,7 @@ namespace V6Controls
         {
             if (control is TextBox) ((TextBox)control).ReadOnlyTag(read_only);
             else if (control is DataGridView) ((DataGridView)control).ReadOnlyTag(read_only);
+            else if (control is FileButton) ((FileButton)control).ReadOnly = read_only;
         }
 
         /// <summary>

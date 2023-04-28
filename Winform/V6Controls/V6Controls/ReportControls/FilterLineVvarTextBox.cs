@@ -102,7 +102,7 @@ namespace V6ReportControls
         public override string GetQuery(string tableLabel = null)
         {
             if(StringValue.Contains(","))
-                return Query;
+                return GetQuery0(tableLabel);
             return base.GetQuery(tableLabel);
         }
 

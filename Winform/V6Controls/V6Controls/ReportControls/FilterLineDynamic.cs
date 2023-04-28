@@ -785,6 +785,95 @@ namespace V6ReportControls
             }
         }
 
-        
+        internal void SetReadonly(bool b)
+        {
+            if (b)
+            {
+                if (_vtextBox != null)
+                {
+                    _vtextBox.CheckOnLeave = false;
+                    _vtextBox.ReadOnlyTag();
+                }
+                if (_lookupTextBox != null)
+                {
+                    _lookupTextBox.CheckOnLeave = false;
+                    _lookupTextBox.ReadOnlyTag();
+                }
+                if (_lookupProc != null)
+                {
+                    _lookupProc.CheckOnLeave = false;
+                    _lookupProc.ReadOnlyTag();
+                }
+
+                if (_textBox != null)
+                {
+                    _textBox.ReadOnlyTag();
+                }
+                if (_numberTextBox != null)
+                {
+                    _numberTextBox.ReadOnlyTag();
+                }
+                if (_dateTimeColor != null)
+                {
+                    _dateTimeColor.ReadOnlyTag();
+                }
+                if (_dateTimePick != null)
+                {
+                    _dateTimePick.ReadOnlyTag();
+                }
+                if (_checkBox != null)
+                {
+                    _checkBox.ReadOnlyTag();
+                }
+                if (_button != null)
+                {
+                    _button.ReadOnlyTag();
+                }
+                
+            }
+            else
+            {
+                if (_vtextBox != null)
+                {
+                    _vtextBox.CheckOnLeave = true;
+                    _vtextBox.ReadOnlyTag(false);
+                }
+                if (_lookupTextBox != null)
+                {
+                    _lookupTextBox.CheckOnLeave = true;
+                    _lookupTextBox.ReadOnlyTag(false);
+                }
+                if (_lookupProc != null)
+                {
+                    _lookupProc.CheckOnLeave = true;
+                    _lookupProc.ReadOnlyTag(false);
+                }
+
+                if (_textBox != null)
+                {
+                    _textBox.ReadOnlyTag(false);
+                }
+                if (_numberTextBox != null)
+                {
+                    _numberTextBox.ReadOnlyTag(false);
+                }
+                if (_dateTimeColor != null)
+                {
+                    _dateTimeColor.ReadOnlyTag(false);
+                }
+                if (_dateTimePick != null)
+                {
+                    _dateTimePick.ReadOnlyTag(false);
+                }
+                if (_checkBox != null)
+                {
+                    _checkBox.ReadOnlyTag(false);
+                }
+                if (_button != null)
+                {
+                    _button.ReadOnlyTag(false);
+                }
+            }
+        }
     }
 }

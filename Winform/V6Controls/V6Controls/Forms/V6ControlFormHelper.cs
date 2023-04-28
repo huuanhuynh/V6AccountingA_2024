@@ -1493,6 +1493,7 @@ namespace V6Controls.Forms
                 lineControl.Visible = lineInfo.Visible;
             }
 
+            if (lineInfo.Readonly) lineControl.SetReadonly(true);
             V6VvarTextBox vT;
             V6LookupTextBox vL;
             V6LookupProc vP;
@@ -1508,6 +1509,7 @@ namespace V6Controls.Forms
                 if (!string.IsNullOrEmpty(lineInfo.ShowName)) vT.ShowName = lineInfo.ShowName == "1";
                 vT.F2 = lineInfo.F2;
                 vT.FilterStart = lineInfo.FilterStart;
+                if (lineInfo.Readonly) vT.ReadOnlyTag();
             }
             else if (CONTROL_TYPE == "LOOKUPTEXTBOX") 
             {
@@ -1516,6 +1518,7 @@ namespace V6Controls.Forms
                 //
                 vL.F2 = lineInfo.F2;
                 vL.FilterStart = lineInfo.FilterStart;
+                if (lineInfo.Readonly) vL.ReadOnlyTag();
             }
             else if (CONTROL_TYPE == "LOOKUPPROC") 
             {
@@ -1524,6 +1527,7 @@ namespace V6Controls.Forms
                 //
                 vP.F2 = lineInfo.F2;
                 vP.FilterStart = lineInfo.FilterStart;
+                if (lineInfo.Readonly) vP.ReadOnlyTag();
             }
             else if (CONTROL_TYPE == "NUMBERYEAR")
             {
@@ -8980,6 +8984,7 @@ namespace V6Controls.Forms
                     }
                     input.Enabled = defineInfo.Enabled;
                     input.Visible = defineInfo.Visible;
+                    if (defineInfo.Readonly) input.ReadOnlyTag();
                     input.Width = string.IsNullOrEmpty(defineInfo.Width)
                         ? 150
                         : ObjectAndString.ObjectToInt(defineInfo.Width);

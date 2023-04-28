@@ -40,8 +40,8 @@ namespace V6Tools
                                 Thread.Sleep(1000);
                             }
                         
-                            UploadDownloadFTP du = new UploadDownloadFTP(ip, user, ePass);
-                            du.Upload(fileName, subfolder);
+                            FtpTransfer ftp = new FtpTransfer(ip, user, ePass);
+                            ftp.Upload(fileName, subfolder);
                         }
                         catch (Exception ex)
                         {
@@ -80,7 +80,7 @@ namespace V6Tools
         {
             try
             {
-                UploadDownloadFTP du = new UploadDownloadFTP(ip, user, ePass);
+                FtpTransfer du = new FtpTransfer(ip, user, ePass);
                 du.Download(fileName, vpnSubFolder, localFolder);
                 return true;
             }
@@ -90,6 +90,32 @@ namespace V6Tools
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Kiểm tra file tồn tại trên ftp.
+        /// </summary>
+        /// <param name="name">tên file name.ext</param>
+        /// <param name="subFoler">Documents[/excel...]</param>
+        /// <param name="ip"></param>
+        /// <param name="user"></param>
+        /// <param name="ePass"></param>
+        /// <returns></returns>
+        public static bool CheckFtpFileExist(string name, string subFoler, string ip, string user, string ePass)
+        {
+            // Check if file exist.
+            FtpTransfer ftp = new FtpTransfer(ip, user, ePass);
+            //string name = Path.GetFileName(filePath);
+            try
+            {
+                long l = ftp.GetFileSize(name, subFoler);
+                return l > 0;
+            }
+            catch (Exception ex)
+            {
+                //this.ShowInfoMessage(name + " " + V6Text.Exist);
+                return false;
+            }
         }
 
         /// <summary>

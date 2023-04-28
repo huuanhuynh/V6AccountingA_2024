@@ -69,7 +69,7 @@ namespace V6Controls
                 //
             }
             TextChanged += NumberMonth_TextChanged;
-            V6LostFocus += NumberMonth_V6LostFocus;
+            LostFocus += NumberMonth_LostFocus;
         }
 
         void NumberMonth_TextChanged(object sender, EventArgs e)
@@ -77,7 +77,11 @@ namespace V6Controls
             try
             {
                 if (Value < 1) Value = 0;
-                if (Value > 12) Value = 12;
+                else if (Value > 12 || Text != "" + Value)
+                {
+                    Value = 12;
+                    Text = "12";
+                }
             }
             catch (Exception)
             {
@@ -102,10 +106,14 @@ namespace V6Controls
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        void NumberMonth_V6LostFocus(object sender)
+        void NumberMonth_LostFocus(object sender, EventArgs e)
         {
             if (Value < 1) Value = 1;
-            else if (Value > 12) Value = 12;
+            else if (Value > 12 || Text != ""+Value)
+            {
+                Value = 12;
+                Text = "12";
+            }
         }
     }
     
@@ -126,7 +134,7 @@ namespace V6Controls
                 //
             }
             Leave += NumberYear_Leave;
-            V6LostFocus += NumberYear_V6LostFocus;
+            LostFocus += NumberYear_LostFocus;
         }
 
         void NumberYear_Leave(object sender, EventArgs e)
@@ -141,7 +149,7 @@ namespace V6Controls
             }
         }
 
-        void NumberYear_V6LostFocus(object sender)
+        void NumberYear_LostFocus(object sender, EventArgs e)
         {
             
         }

@@ -52,7 +52,11 @@
 	<TuKhoa TenTuKhoa='V6TableName' 		  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6TableStruct' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ToolExtensionMethods' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='V6VvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ToolExtensionMethods.Right' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ControlExtensionMethods' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ControlExtensionMethods.ShowToForm(hoaDonForm, thisForm, "title", true, true, true);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  
+  <TuKhoa TenTuKhoa='V6VvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Mode' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Message' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Message.Show(("Đã tồn tại. Có chắc chắn xử lý?", "Xác nhận", 0, MessageBoxButtons.YesNo, MessageBoxIcon.Question, 0, thisForm);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

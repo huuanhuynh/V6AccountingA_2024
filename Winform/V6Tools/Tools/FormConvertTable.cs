@@ -100,6 +100,7 @@ namespace Tools
                 if (table2 != null)
                 {
                     SaveFileDialog o = new SaveFileDialog();
+                    o.Filter = "All|*.*|Excel|*.xls;*.xlsx|Xml|*.xml";
                     if (o.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         string ext = Path.GetExtension(o.FileName).ToLower();
@@ -118,6 +119,10 @@ namespace Tools
                         else if (ext == ".txt")
                         {
                             ExportData.ToTextFile(table2, o.FileName);
+                        }
+                        else if (ext == ".xml")
+                        {
+                            ExportData.ToXmlFile(table2, o.FileName);
                         }
                         else
                         {

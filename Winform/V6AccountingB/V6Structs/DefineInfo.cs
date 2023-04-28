@@ -207,9 +207,11 @@ namespace V6Structs
         public string Key2;
         public string Key3;
         public string Key4;
-        public bool Visible;
         public string ShowName = "";
-        public bool Enabled = true;
+
+        public bool Visible = true;
+        public bool Enabled { get; set; }
+        public bool Readonly = false;
 
         /// <summary>
         /// lowercase

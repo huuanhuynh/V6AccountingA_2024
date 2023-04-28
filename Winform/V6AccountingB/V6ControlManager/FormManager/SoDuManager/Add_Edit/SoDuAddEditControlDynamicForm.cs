@@ -373,6 +373,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             SetControlValue(input, defaultValue);
                         }
                         input.Enabled = defineInfo.Enabled;
+                        if (defineInfo.Readonly) input.ReadOnlyTag();
                         input.Visible = defineInfo.Visible;
                         input.Width = string.IsNullOrEmpty(defineInfo.Width)
                             ? 150

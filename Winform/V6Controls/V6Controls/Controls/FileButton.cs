@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -151,7 +152,7 @@ namespace V6Controls.Controls
                 ClearFileName();
                 e1.Mode = FileButtonMode.Clear;
             }
-            else if (!string.IsNullOrEmpty(_fileName))
+            else if (!string.IsNullOrEmpty(_fileName) && _fileName != "...")
             {
                 e1.OpenFile = OpenFile();
                 e1.Mode = FileButtonMode.OpenFile;
@@ -172,6 +173,17 @@ namespace V6Controls.Controls
                 if (string.IsNullOrEmpty(_fileName)) return null;
 
                 var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+                // Create ftp
+                FtpTransfer ftp = new FtpTransfer(_setting.GetSetting("FTP_IP"),
+                    _setting.GetSetting("FTP_USER"),
+                    _setting.GetSetting("FTP_EPASS"));
+                // check connect
+                string message = null;
+                if (!ftp.CheckConnection(out message))
+                {
+                    this.ShowErrorMessage("Kết nối lỗi. " + message);
+                    return null;
+                }
                 V6IOInfo info = new V6IOInfo()
                 {
                     FileName = _fileName,
@@ -210,10 +222,26 @@ namespace V6Controls.Controls
             if (ReadOnly) return;
             try
             {
-                var filePath = V6ControlFormHelper.ChooseOpenFile(this, "All files|*.*");
-                if (filePath == null) return;
+                
 
                 var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+                
+
+                // Create ftp
+                FtpTransfer ftp = new FtpTransfer(_setting.GetSetting("FTP_IP"),
+                    _setting.GetSetting("FTP_USER"),
+                    _setting.GetSetting("FTP_EPASS"));
+                // check connect
+                string message = null;
+                if (!ftp.CheckConnection(out message))
+                {
+                    this.ShowErrorMessage("Kết nối lỗi. " + message);
+                    return;
+                }
+
+                // select file
+                var filePath = V6ControlFormHelper.ChooseOpenFile(this, "All files|*.*");
+                if (filePath == null) return;
                 var info = new V6IOInfo()
                 {
                     FileName = filePath,
@@ -222,16 +250,26 @@ namespace V6Controls.Controls
                     FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
                     FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"), // + "/ChildFolder"
                 };
-                V6FileIO.CopyToVPN(info);
-                FileName = Path.GetFileName(filePath); //  // + "/ChildFolder" + fileName
-                //txtFileName.Text = Path.GetFileName(filePath);
-                //var data = new SortedDictionary<string, object> { { FIELD, txtFileName1.Text } };
-                //var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
-                //var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
-                //if (result == 1)
-                //{
-                //    ShowMainMessage(V6Text.Updated + FIELD);
-                //}
+
+                // Check if file exist.
+                string name = Path.GetFileName(filePath);
+
+                try
+                {
+                    long l = ftp.GetFileSize(name, _setting.GetSetting("FTP_V6DOCSFOLDER"));
+                    if (l > 0)
+                    {
+                        // đã tồn tại, cảnh báo.
+                        this.ShowInfoMessage(name + " " + V6Text.Exist);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // không tồn tại thì upload.
+                    ftp.Upload(filePath, info.FTP_SUBFOLDER);
+                    FileName = name; // gán giá trị cho field data.
+                }
+                
             }
             catch (Exception ex)
             {

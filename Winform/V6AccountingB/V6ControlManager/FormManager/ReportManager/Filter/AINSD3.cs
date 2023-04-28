@@ -114,17 +114,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             if (txtMaDvcs.IsSelected)
             {
                 var ss = txtMaDvcs.VvarTextBox.Text.Trim().Split(',');
-                var orString = "";
-                var orString1 = "";
-
-                foreach (string s in ss)
-                {
-                    orString += string.Format(" OR a.Ma_dvcs Like '{0}%'", s.Trim());
-                    orString1 += string.Format(" OR b.Ma_dvcs Like '{0}%'", s.Trim());
-                }
-                orString = orString.Substring(4);
-                orString1 = orString1.Substring(4);
-
+                var orString = txtMaDvcs.GetQuery("a");
+                var orString1 = txtMaDvcs.GetQuery("b");
+                
                 cKey = cKey + string.Format(" AND ({0})", orString);
                 cKey_SD = cKey_SD + string.Format(" AND ({0})", orString1);
                 
@@ -134,18 +126,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
 
                 var ss2 = txtMakho.VvarTextBox.Text.Trim().Split(',');
-                var orString2 = "";
-                var orString21 = "";
-
-                foreach (string s in ss2)
-                {
-                    orString2 += string.Format(" OR a.Ma_kho Like '{0}%'", s.Trim());
-                    orString21 += string.Format(" OR b.Ma_kho Like '{0}%'", s.Trim());
-                }
-                orString2 = orString2.Substring(4);
-                orString21 = orString21.Substring(4);
-
-
+                var orString2 = txtMakho.GetQuery("a");
+                var orString21 = txtMakho.GetQuery("b");
+                
                 cKey = cKey + string.Format(" AND ({0})", orString2);
                 cKey_SD = cKey_SD + string.Format(" AND ({0})", orString21);
                 

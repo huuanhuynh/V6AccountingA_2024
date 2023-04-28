@@ -158,12 +158,14 @@ namespace V6ThuePostViettelV2Api
                         Logger.WriteToLog("Gặp lỗi GENERAL error:Internal Server Error, thực hiện đăng nhập lại.", "VIETTELV2WS");
                     }
                     Login();
-                    
+
                     // sau đó gửi lại.
-                    result = POST_VIETTEL_COOKIESTOKEN(link + _codetax, jsonBody);
-                    v6Return.RESULT_STRING = result;
-                    responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
-                    v6Return.RESULT_OBJECT = responseObject;
+                    // không gửi lại nữa.
+                    //result = POST_VIETTEL_COOKIESTOKEN(link + _codetax, jsonBody);
+                    //v6Return.RESULT_STRING = result;
+                    //responseObject = JsonConvert.DeserializeObject<VIETTEL_CreateInvoiceResponseV2>(result);
+                    //v6Return.RESULT_OBJECT = responseObject;
+                    v6Return.RESULT_ERROR_MESSAGE = responseObject.message;
                 }
 
                 if (responseObject.result == null)

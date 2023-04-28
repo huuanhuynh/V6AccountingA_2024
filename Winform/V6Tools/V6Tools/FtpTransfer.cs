@@ -5,13 +5,25 @@ using System.Text;
 
 namespace V6Tools
 {
-    public class UploadDownloadFTP
+    /// <summary>
+    /// Quản lý kết nối FTP.
+    /// </summary>
+    public class FtpTransfer
     {
+        /// <summary>
+        /// ip máy chủ.
+        /// </summary>
         private string ftpServerIP;
         private string ftpPassword;
         private string ftpUserID;
 
-        public UploadDownloadFTP(string ip, string user, string ePass)
+        /// <summary>
+        /// Quản lý kết nối FTP
+        /// </summary>
+        /// <param name="ip">ip máy chủ</param>
+        /// <param name="user">username trên máy chủ</param>
+        /// <param name="ePass">password mã hóa</param>
+        public FtpTransfer(string ip, string user, string ePass)
         {
             ftpServerIP = ip;
             ftpUserID = user;
@@ -29,19 +41,7 @@ namespace V6Tools
                 ftpServerIP = value;
             }
         }
-
-        public string FtpPassword
-        {
-            get
-            {
-                return ftpPassword;
-            }
-            set
-            {
-                ftpPassword = value;
-            }
-        }
-
+        
         public string FtpUserID
         {
             get
@@ -55,12 +55,13 @@ namespace V6Tools
         }
 
         /// <summary>
-        /// 
+        /// Đưa tập tin lên server FTP
         /// </summary>
-        /// <param name="filename"></param>
-        /// <param name="ftpSubFolder">abc hoặc abc/def</param>
+        /// <param name="filename">Đường dẫn tập tin ở máy trạm.</param>
+        /// <param name="ftpSubFolder">đường dẫn thư mục của server FTP. abc hoặc abc/def</param>
         public void Upload(string filename, string ftpSubFolder = null)
         {
+            Stream requestStream = null;
             FileInfo fileInfo = new FileInfo(filename);
             if (!string.IsNullOrEmpty(ftpSubFolder) && !ftpSubFolder.StartsWith("/"))
             {
@@ -86,7 +87,7 @@ namespace V6Tools
             FileStream fileStream = fileInfo.OpenRead();
             try
             {
-                Stream requestStream = ftpWebRequest.GetRequestStream();
+                requestStream = ftpWebRequest.GetRequestStream();
                 for (int count2 = fileStream.Read(buffer, 0, count1);
                     count2 != 0;
                     count2 = fileStream.Read(buffer, 0, count1))
@@ -99,12 +100,15 @@ namespace V6Tools
             }
             catch (Exception ex)
             {
-                throw new Exception("FTP_Upload_Download.Upload : " + ex.Message);
+                if (requestStream != null) requestStream.Close();
+                throw;
             }
+            //return message;
         }
 
         public void DeleteFTP(string fileName)
         {
+            FtpWebResponse ftpWebResponse = null;
             try
             {
                 string url1 = "ftp://" + ftpServerIP + "/" + fileName;
@@ -113,7 +117,7 @@ namespace V6Tools
                 ftpWebRequest.KeepAlive = false;
                 ftpWebRequest.Method = "DELE";
                 string str2 = string.Empty;
-                FtpWebResponse ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
+                ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
                 long contentLength = ftpWebResponse.ContentLength;
                 Stream responseStream = ftpWebResponse.GetResponseStream();
                 StreamReader streamReader = new StreamReader(responseStream);
@@ -124,12 +128,14 @@ namespace V6Tools
             }
             catch (Exception ex)
             {
+                if (ftpWebResponse != null) ftpWebResponse.Close();
                 throw new Exception("FTP_Upload_Download.DeleteFTP : " + ex.Message);
             }
         }
 
         public string[] GetFilesDetailList()
         {
+            FtpWebResponse ftpWebResponse = null;
             try
             {
                 StringBuilder stringBuilder = new StringBuilder();
@@ -156,6 +162,7 @@ namespace V6Tools
 
         public string[] GetFileList()
         {
+            WebResponse response = null;
             StringBuilder stringBuilder = new StringBuilder();
             try
             {
@@ -163,7 +170,7 @@ namespace V6Tools
                 ftpWebRequest.UseBinary = true;
                 ftpWebRequest.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
                 ftpWebRequest.Method = "NLST";
-                WebResponse response = ftpWebRequest.GetResponse();
+                response = ftpWebRequest.GetResponse();
                 StreamReader streamReader = new StreamReader(response.GetResponseStream());
                 for (string str = streamReader.ReadLine(); str != null; str = streamReader.ReadLine())
                 {
@@ -177,6 +184,7 @@ namespace V6Tools
             }
             catch (Exception ex)
             {
+                if (response != null) response.Close();
                 throw new Exception("FTP_Upload_Download.GetFileList : " + ex.Message);
             }
         }
@@ -189,6 +197,7 @@ namespace V6Tools
         /// <param name="localFolder"></param>
         public void Download(string fileName, string subFolder, string localFolder)
         {
+            FtpWebResponse ftpWebResponse = null;
             FileStream fileStream = null;
             string localSaveFile = Path.Combine(localFolder, fileName);
             try
@@ -205,7 +214,7 @@ namespace V6Tools
                 ftpWebRequest.Method = "RETR";
                 ftpWebRequest.UseBinary = true;
                 ftpWebRequest.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
-                FtpWebResponse ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
+                ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
                 Stream responseStream = ftpWebResponse.GetResponseStream();
                 long contentLength = ftpWebResponse.ContentLength;
                 int count1 = 2048;
@@ -227,27 +236,45 @@ namespace V6Tools
                     fileStream.Close();
                     if (File.Exists(localSaveFile)) File.Delete(localSaveFile); 
                 }
+                if (ftpWebResponse != null) ftpWebResponse.Close();
                 throw new Exception("FTP_Upload_Download.Download : " + ex.Message);
             }
         }
 
-        public long GetFileSize(string filename)
+        public long GetFileSize(string filename, string subFolder)
         {
-            long contentLength;
+            FtpWebResponse ftpWebResponse = null;
+            long contentLength = -1;
             try
             {
-                FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIP + "/" + filename));
+                if (subFolder != null)
+                {
+                    while (subFolder.StartsWith("/")) subFolder = subFolder.Substring(1);
+                    while (subFolder.EndsWith("/")) subFolder = subFolder.Substring(0, subFolder.Length - 1);
+                }
+                FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIP + "/" + subFolder + "/" + filename));
                 ftpWebRequest.Method = "SIZE";
                 ftpWebRequest.UseBinary = true;
                 ftpWebRequest.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
-                FtpWebResponse ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
+                ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
                 Stream responseStream = ftpWebResponse.GetResponseStream();
                 contentLength = ftpWebResponse.ContentLength;
                 if (responseStream != null) responseStream.Close();
                 ftpWebResponse.Close();
             }
+            catch (WebException ex)
+            {
+                FtpWebResponse response = (FtpWebResponse)ex.Response;
+                if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                {
+                    if (ftpWebResponse != null) ftpWebResponse.Close();
+                    throw;
+                }
+                if (ftpWebResponse != null) ftpWebResponse.Close();
+            }
             catch (Exception ex)
             {
+                if (ftpWebResponse != null) ftpWebResponse.Close();
                 throw new Exception("FTP_Upload_Download : " + ex.Message);
             }
             return contentLength;
@@ -255,6 +282,7 @@ namespace V6Tools
 
         public void Rename(string currentFilename, string newFilename)
         {
+            FtpWebResponse ftpWebResponse = null;
             try
             {
                 FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIP + "/" + currentFilename));
@@ -262,34 +290,61 @@ namespace V6Tools
                 ftpWebRequest.RenameTo = newFilename;
                 ftpWebRequest.UseBinary = true;
                 ftpWebRequest.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
-                FtpWebResponse ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
+                ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
                 var response_stream = ftpWebResponse.GetResponseStream();
                 if (response_stream != null) response_stream.Close();
                 ftpWebResponse.Close();
             }
             catch (Exception ex)
             {
+                if (ftpWebResponse != null) ftpWebResponse.Close();
                 throw new Exception("FTP_Upload_Download : " + ex.Message);
             }
         }
 
         public void MakeDir(string dirName)
         {
+            FtpWebResponse ftpWebResponse = null;
             try
             {
                 FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIP + "/" + dirName));
                 ftpWebRequest.Method = "MKD";
                 ftpWebRequest.UseBinary = true;
                 ftpWebRequest.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
-                FtpWebResponse ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
+                ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
                 var response_stream = ftpWebResponse.GetResponseStream();
                 if (response_stream != null) response_stream.Close();
                 ftpWebResponse.Close();
             }
             catch (Exception ex)
             {
+                if (ftpWebResponse != null) ftpWebResponse.Close();
                 throw new Exception("FTP_Upload_Download : " + ex.Message);
             }
         }
+
+        public bool CheckConnection(out string message)
+        {
+            WebResponse ftpWebResponse = null;
+            try
+            {
+                string url = "ftp://" + ftpServerIP;
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(url);
+                request.Method = WebRequestMethods.Ftp.ListDirectory;
+                request.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
+                ftpWebResponse = request.GetResponse();
+                ftpWebResponse.Close();
+                message = null;
+                
+                return true;
+            }
+            catch (WebException ex)
+            {
+                if (ftpWebResponse != null) ftpWebResponse.Close();
+                message = ex.Message;
+                return false;
+            }
+        }
+
     }
 }

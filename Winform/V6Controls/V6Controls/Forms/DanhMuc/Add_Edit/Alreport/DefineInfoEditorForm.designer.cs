@@ -169,6 +169,8 @@
             this.label77 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label73 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtReadonly = new V6Controls.V6ColorTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinThem.SuspendLayout();
@@ -1076,7 +1078,9 @@
             this.tabThongTinThem.Controls.Add(this.label28);
             this.tabThongTinThem.Controls.Add(this.txtFparent);
             this.tabThongTinThem.Controls.Add(this.txtVisible);
+            this.tabThongTinThem.Controls.Add(this.txtReadonly);
             this.tabThongTinThem.Controls.Add(this.txtEnabled);
+            this.tabThongTinThem.Controls.Add(this.label33);
             this.tabThongTinThem.Controls.Add(this.label18);
             this.tabThongTinThem.Controls.Add(this.label16);
             this.tabThongTinThem.Controls.Add(this.label17);
@@ -2180,6 +2184,35 @@
             this.label73.TabIndex = 0;
             this.label73.Text = "R_DataType";
             // 
+            // label33
+            // 
+            this.label33.AccessibleDescription = ".";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(392, 36);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(68, 17);
+            this.label33.TabIndex = 3;
+            this.label33.Text = "Readonly";
+            // 
+            // txtReadonly
+            // 
+            this.txtReadonly.AccessibleName = "Readonly";
+            this.txtReadonly.BackColor = System.Drawing.Color.White;
+            this.txtReadonly.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtReadonly.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtReadonly.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtReadonly.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtReadonly.HoverColor = System.Drawing.Color.Yellow;
+            this.txtReadonly.LeaveColor = System.Drawing.Color.White;
+            this.txtReadonly.LimitCharacters = "01";
+            this.txtReadonly.Location = new System.Drawing.Point(502, 34);
+            this.txtReadonly.Margin = new System.Windows.Forms.Padding(4);
+            this.txtReadonly.MaxLength = 1;
+            this.txtReadonly.Name = "txtReadonly";
+            this.txtReadonly.Size = new System.Drawing.Size(150, 23);
+            this.txtReadonly.TabIndex = 4;
+            // 
             // DefineInfoEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2349,5 +2382,7 @@
         private V6ColorTextBox txtMultiLine;
         private System.Windows.Forms.Label lblMultiLine;
         private System.Windows.Forms.Label lblNFD;
+        private V6ColorTextBox txtReadonly;
+        private System.Windows.Forms.Label label33;
     }
 }
