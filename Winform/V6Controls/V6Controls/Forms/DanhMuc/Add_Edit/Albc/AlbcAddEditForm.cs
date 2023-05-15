@@ -200,20 +200,33 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                         old_dir = DataOld["RPT_DIR"].ToString().Trim() + @"\";
                     }
 
-                    string folder = @"Reports\";
+                    string folder = V6Login.StartupPath + @"\Reports\";
                     string r_ext = ".rpt";
                     if (All_Objects.ContainsKey("IS_DX") && (string)All_Objects["IS_DX"] == "1")
                     {
-                        folder = @"ReportsDX\";
+                        folder = V6Login.StartupPath + @"\ReportsDX\";
                         r_ext = ".repx";
                     }
 
                     var ReportFileFullOld = folder + old_dir
                                             + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
                                             DataOld["REPORT"].ToString().Trim() + r_ext;
+                    if (!File.Exists(ReportFileFullOld)) // Nếu không tồn tại thì lấy mẫu gốc.
+                    {
+                        ReportFileFullOld = folder + old_dir
+                                            + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
+                                            DataOld["MA_FILE"].ToString().Trim() + r_ext;
+                    }
+
                     var ExcelFileFullOld = folder + old_dir
                                                   + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
                                                   DataOld["REPORT"].ToString().Trim() + ".xls";
+                    if (!File.Exists(ExcelFileFullOld)) // Nếu không tồn tại thì lấy mẫu gốc.
+                    {
+                        ExcelFileFullOld = folder + old_dir
+                                                  + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
+                                                  DataOld["MA_FILE"].ToString().Trim() + ".xls";
+                    }
 
                     string new_dir = "";
                     if (DataDic.ContainsKey("RPT_DIR") && DataDic["RPT_DIR"].ToString().Trim() != "")

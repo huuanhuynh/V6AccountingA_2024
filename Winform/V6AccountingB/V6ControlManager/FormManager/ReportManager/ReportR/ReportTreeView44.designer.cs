@@ -653,6 +653,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportTreeView44_VisibleChanged);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.V6Form_MouseClick);
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);
             this.panel0.ResumeLayout(false);

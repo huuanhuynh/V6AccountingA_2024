@@ -179,6 +179,7 @@ namespace V6ThuePostManager
         public static string BkavPartnerToken = "";
         public static int BkavCommandTypeNew = 112;
         public static int BkavCommandTypeEdit = BkavConst._124_CreateAdjust;
+        public static int BkavCommandTypeEdit2 = BkavConst._126_DieuChinhCK_SoHD_BKAV;
 
         public static ViettelV2WS viettel_V2WS = null;
         public static VIN_WS vin_WS = null;
@@ -681,12 +682,20 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav("S");
                     int commandTType = BkavCommandTypeEdit;
-                    if (commandTType != BkavConst._121_CreateAdjust && commandTType != BkavConst._124_CreateAdjust) commandTType = BkavConst._124_CreateAdjust;
+                    if (commandTType != BkavConst._121_CreateAdjust && commandTType != BkavConst._124_CreateAdjust
+                        && commandTType != BkavConst._122_DieuChinhCK_KoSoHD && commandTType != BkavConst._126_DieuChinhCK_SoHD_BKAV) commandTType = BkavConst._124_CreateAdjust;
                     result = bkavWS.POST(jsonBody, commandTType, out paras.Result.V6ReturnValues);
                     //if (!result.StartsWith("ERR") && V6Infos.ContainsKey("BKAVSIGN") && V6Infos["BKAVSIGN"] == "1")
                     //{
                     //    result = result + "\r\n" + bkavWS.SignInvoice(paras.V6PartnerID, out paras.Result.V6ReturnValues);
                     //}
+                }
+                else if (paras.Mode == "E_S2")
+                {
+                    jsonBody = ReadData_Bkav("S");
+                    int commandTType = BkavCommandTypeEdit2;
+                    if (commandTType != BkavConst._122_DieuChinhCK_KoSoHD && commandTType != BkavConst._126_DieuChinhCK_SoHD_BKAV) commandTType = BkavConst._124_CreateAdjust;
+                    result = bkavWS.POST(jsonBody, commandTType, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "E_T1")
                 {
@@ -6272,7 +6281,10 @@ namespace V6ThuePostManager
                                 case "bkavcommandtypeedit":
                                     BkavCommandTypeEdit = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
                                     break;
-                                case "signmode":
+                                    case "bkavcommandtypeedit2":
+                                        BkavCommandTypeEdit2 = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
+                                        break;
+                                    case "signmode":
                                     _signmode = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
 

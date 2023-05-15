@@ -126,7 +126,10 @@ namespace V6Controls.Forms
         {
             V6ControlFormHelper.SetSomeDataDictionary( this, d );
         }
-        
+
+        /// <summary>
+        /// Hiển thị hướng dẫn ở góc dưới bên phải.
+        /// </summary>
         public virtual void SetStatus2Text()
         {
             //V6ControlFormHelper.SetStatusText2("");
@@ -764,5 +767,52 @@ namespace V6Controls.Forms
             message += "ShowAlinitAddEdit(control)";
             throw new NotImplementedException(message);
         }
+
+        protected void V6Form_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                bool ctrl_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
+
+                var control = V6ControlFormHelper.GetControlUnderMouse(FindForm());
+                if (control.Name == "btnSuaMau" && !control.Enabled)
+                {
+                    if (ctrl_is_down)
+                    {
+                        if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                        {
+                            control.Enabled = true;
+                        }
+                    }
+                    else if (shift_is_down)
+                    {
+                        var form = new ConfirmPassword();
+                        form.txtUserName.Enabled = true;
+                        var drs = form.ShowDialog(this);
+                        if (drs == DialogResult.OK)
+                        {
+                            if (form.User != null && form.User.is_admin)
+                            {
+                                control.Enabled = true;
+                            }
+                            else
+                            {
+                                this.ShowWarningMessage(V6Text.NoRight);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        V6Message.Show(CorpLan.GetText("BTNSUAMAUCLICK"), V6Text.Information, 0, MessageBoxButtons.OK, MessageBoxIcon.Information, 0, this, "BTNSUAMAUCLICK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "", ex);
+            }
+        }
+
     }
 }
