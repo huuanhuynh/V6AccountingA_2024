@@ -46,6 +46,8 @@ namespace V6ThuePostBkavApi
                     case BkavConst._110_CreateClient:
                     case BkavConst._111_CreateClientNo:
                     case BkavConst._112_CreateWithParternSerial: // Hóa đơn tự sinh số chưa phát hành.
+                    case BkavConst._122_DieuChinhCK_KoSoHD:         // Hóa đơn điều chỉnh ck ko số.
+                    case BkavConst._126_DieuChinhCK_SoHD_BKAV:      // Hóa đơn điều chỉnh ck bkav cấp số.
                     case BkavConst._200_Update: // 200 sửa
                         msg = DoCreateInvoice(commandType, jsonBody, out v6return);
                         break;

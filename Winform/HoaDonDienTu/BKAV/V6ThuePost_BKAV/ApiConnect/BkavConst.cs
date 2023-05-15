@@ -54,9 +54,14 @@ namespace V6ThuePostBkavApi
         public const int _123_CreateReplace = 123;
 
         /// <summary>
-        /// Tạo Hóa đơn điều chỉnh chiết khấu
+        /// Tạo Hóa đơn điều chỉnh chiết khấu, HD chưa có số, hoặc số tự do?
         /// </summary>
-        public const int _122 = 122;
+        public const int _122_DieuChinhCK_KoSoHD = 122;
+
+        /// <summary>
+        /// Tạo Hóa đơn điều chỉnh chiết khấu, số HD do BKAV cấp trả về.
+        /// </summary>
+        public const int _126_DieuChinhCK_SoHD_BKAV = 126;
 
         /// <summary>
         /// Cập nhật thông tin Hóa đơn khi chưa được phát hành
