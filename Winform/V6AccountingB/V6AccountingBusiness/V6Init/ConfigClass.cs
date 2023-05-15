@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Reflection;
 using V6AccountingBusiness;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -615,7 +616,72 @@ namespace V6Init
         
     }
 
-    public class V6FieldInfo
+    public class UserConfig : Config
+    {
+        public UserConfig(IDictionary<string, object> data)
+            : base(data)
+        {
+        }
+
+        
+        
+        public string Module_id { get { return GetString("Module_id"); } }
+        
+        public decimal user_id { get { return GetInt("user_id"); } }
+        
+        
+        public string user_name { get { return GetString("user_name"); } }
+        
+        public string user_pre { get { return GetString("user_pre"); } }
+        
+        public string password { get { return GetString("password"); } }
+        public string comment { get { return GetString("comment"); } }
+        public bool is_admin { get { return GetInt("is_admin") == 1; } }
+        public bool is_Vadmin { get { return GetInt("is_Vadmin") == 1; } }
+        public string rights { get { return GetString("rights"); } }
+        public decimal del_yn { get { return GetInt("del_yn"); } }
+        public string r_del { get { return GetString("r_del"); } }
+        
+        public string r_edit { get { return GetString("r_edit"); } }
+        
+        public string r_add { get { return GetString("r_add"); } }
+        public decimal user_id2 { get { return GetInt("user_id2"); } }
+        
+        public byte user_acc { get { return (byte)GetInt("user_acc"); } }
+        
+        public byte user_inv { get { return (byte)GetInt("user_inv"); } }
+        
+        public byte Pagedefa { get { return (byte)GetInt("Pagedefa"); } }
+        
+        public string R_view { get { return GetString("R_view"); } }
+        
+        public string R_print { get { return GetString("R_print"); } }
+        
+        public byte user_sale { get { return (byte)GetInt("user_sale"); } }
+        
+        public string level { get { return GetString("level"); } }
+        
+        public string R_dvcs { get { return GetString("R_dvcs"); } }
+        
+        public string UID { get { return GetString("UID"); } }
+        public string CODE_USER { get { return GetString("CODE_USER"); } }
+        
+        public string R_kho { get { return GetString("R_kho"); } }
+        public decimal Inherit_id { get { return GetInt("Inherit_id"); } }
+        
+        public byte Inherit_ch { get { return (byte)GetInt("Inherit_ch"); } }
+        
+        public string R_sonb { get { return GetString("R_sonb"); } }
+        public string Inherit_type { get { return GetString("Inherit_type"); } }
+        public DateTime pass_date { get { return GetDate("pass_date"); } }
+        
+        public string Pass_Exp { get { return GetString("Pass_Exp"); } }
+        public string XML_INFOR { get { return GetString("XML_INFOR"); } }
+        
+        public string r_copy { get { return GetString("r_copy"); } }  
+    }
+
+        public class V6FieldInfo
     {
         public string FieldName { get; set; }
         public string FieldCaption { get; set; }
@@ -927,6 +993,13 @@ namespace V6Init
                     MethodBase.GetCurrentMethod().Name, ex.Message));
             }
             return lstConfig;
+        }
+
+        public static UserConfig GetUserConfig(string userName)
+        {   
+            var data = SqlConnect.SelectV6User(userName);
+            UserConfig config = new UserConfig(data.ToDataDictionary());
+            return config;
         }
 
         public static AlctConfig GetAlctConfig(string ma_ct)

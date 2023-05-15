@@ -488,7 +488,7 @@ namespace V6Controls.Forms
                 if (_sourceFieldInfoList.ContainsKey(targetItem.Key))
                 {
                     var sf = _sourceFieldInfoList[targetItem.Key];
-                    targetItem.Value.FieldType = sf.FieldType;
+                    //targetItem.Value.FieldType = sf.FieldType;
                 }
             }
             DataTable temp = GenTable(_targetFieldInfoList);

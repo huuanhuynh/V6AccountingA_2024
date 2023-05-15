@@ -5,6 +5,7 @@ namespace V6Controls.Forms
 {
     public partial class ConfirmPassword : V6Form
     {
+        public UserConfig User = null;
         public ConfirmPassword()
         {
             InitializeComponent();
@@ -14,14 +15,17 @@ namespace V6Controls.Forms
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
-            if (V6Login.Login(txtUserName.Text, txtPassword.Text, V6Login.Madvcs))
+            if (e.KeyCode == Keys.Enter)
             {
-                DialogResult = DialogResult.OK;
-            }
-            else
-            {
-                this.ShowWarningMessage("Nhập sai.");
+                User = V6Login.LoginCheck(txtUserName.Text, txtPassword.Text, V6Login.Madvcs);
+                if (User != null)
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    this.ShowWarningMessage("Nhập sai.");
+                }
             }
         }
 

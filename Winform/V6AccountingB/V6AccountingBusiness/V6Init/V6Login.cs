@@ -154,6 +154,46 @@ namespace V6Init
         }
 
         /// <summary>
+        /// Khi đăng nhập lần đầu tiên cần Gán SelectedLanguage và SelectedModule
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="madvcs"></param>
+        /// <returns></returns>
+        public static UserConfig LoginCheck(string username, string password, string madvcs)
+        {
+            var userConfig = ConfigManager.GetUserConfig(username);
+            bool check = CheckLoginCheck(userConfig, username, password, madvcs);
+            return check ? userConfig : null;
+        }
+
+        /// <summary>
+        /// Hàm check ko ảnh hưởng thông tin login.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="passWord">Mã hóa của pass gõ vào</param>
+        /// <param name="madvcs"></param>
+        /// <returns></returns>
+        private static bool CheckLoginCheck(UserConfig userConfig, string userName, string passWord, string madvcs)
+        {
+            //_uName = userName;
+            if (userConfig == null) return false;
+            var ePass = UtilityHelper.EnCrypt(userName + passWord);
+            
+            
+            if (userConfig.password == ePass)
+            {   
+                return true;
+            }
+            else
+            {
+                Message = "Wrong Password.";
+                return false;
+            }
+            
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="userName"></param>
@@ -245,7 +285,7 @@ namespace V6Init
         public static string SelectedLanguageName { get; set; }
         public static string SelectedModule { get; set; }
         /// <summary>
-        /// Lưu đường dẫn start của chương trình.
+        /// Lưu đường dẫn start của chương trình. không có dấu \ cuối.
         /// </summary>
         public static string StartupPath { get; set; }
         public static FileInfo FileInfo { get; set; }

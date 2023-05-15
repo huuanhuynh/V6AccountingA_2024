@@ -124,9 +124,9 @@
         #endregion
 
         public System.Windows.Forms.TextBox txtPassword;
-        private V6Controls.V6ColorTextBox txtUserName;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        public V6Controls.V6ColorTextBox txtUserName;
+        public System.Windows.Forms.Label lblPassword;
+        public System.Windows.Forms.Label lblUserName;
+        public System.Windows.Forms.PictureBox pictureBox1;
     }
 }
