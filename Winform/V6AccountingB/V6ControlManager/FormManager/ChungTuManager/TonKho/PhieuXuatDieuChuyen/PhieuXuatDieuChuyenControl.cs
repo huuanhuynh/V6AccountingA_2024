@@ -157,7 +157,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 {
                     control.ReadOnlyTag();
                 }
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+                // bỏ bớt dòng này do đã dùng ApplyDynamicFormControlEvents
+                //V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects); a
 
                 switch (NAME)
                 {

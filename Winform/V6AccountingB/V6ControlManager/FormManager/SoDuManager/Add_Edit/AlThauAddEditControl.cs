@@ -176,8 +176,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     detail1.CarryFields.Add(NAME);
                 }
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
                 
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "MA_VT":

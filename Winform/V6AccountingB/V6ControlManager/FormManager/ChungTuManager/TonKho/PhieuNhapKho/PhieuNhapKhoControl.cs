@@ -157,8 +157,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     control.ReadOnlyTag();
                 }
                 //Dynamic event before (without last number 2 in method name)
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
-                
+                // bỏ bớt dòng này do đã dùng ApplyDynamicFormControlEvents
+                //V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects); a
+
                 #region === switch (NAME) ===
                 switch (NAME)
                 {

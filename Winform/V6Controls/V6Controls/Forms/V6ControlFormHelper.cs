@@ -8525,7 +8525,7 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Gán code động sự kiện cho các control trên form theo Aname.
+        /// Gán code động sự kiện cho tất cả control trên form theo Aname.
         /// </summary>
         /// <param name="thisForm"></param>
         /// <param name="ma_ct">Mã cộng vào AccessibleDescription để làm mã ngôn ngữ.</param>

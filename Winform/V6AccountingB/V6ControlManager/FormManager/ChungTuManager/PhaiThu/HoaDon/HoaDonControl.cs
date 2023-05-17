@@ -209,7 +209,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     control.ReadOnlyTag();
                 }
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+                // bỏ bớt dòng này do đã dùng ApplyDynamicFormControlEvents
+                //V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects); a
                 ////V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tLoadDetail: " + NAME);
                 switch (NAME)
                 {
