@@ -231,6 +231,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (formCode == "ALVT_A1") FormControl = new VatTuAddEditForm_A1();
                     else if (formCode == "ALVT_A2") FormControl = new VatTuAddEditForm_A2();
                     else if (formCode == "ALVT_A3") FormControl = new VatTuAddEditForm_A3();
+                    else if (formCode == "ALVT_A4") FormControl = new VatTuAddEditForm_A4();
                     else FormControl = new VatTuAddEditForm();
                     break;
                 case "ALVTTG":

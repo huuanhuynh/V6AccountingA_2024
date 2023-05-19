@@ -279,10 +279,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     remove_list_d.RemoveAt(0);
                 }
 
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                }
+                //foreach (DataGridViewRow row in dataGridView1.Rows)
+                //{
+                //    row.DefaultCellStyle.BackColor = Color.Red;
+                //}
 
                 ShowMainMessage("V6IMDATA2TH2 F9 finish " + newMyThread._Status + newMyThread._Message);
                 

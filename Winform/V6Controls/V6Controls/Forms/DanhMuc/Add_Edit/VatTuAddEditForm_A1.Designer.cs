@@ -53,7 +53,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.checkBox2 = new V6Controls.V6CheckBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox6 = new V6Controls.V6ColorTextBox();
+            this.v6ColorTextBox6 = new V6Controls.V6NumberTextBox();
             this.txtLoaiVt = new V6Controls.V6VvarTextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -71,10 +71,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
+            this.v6ColorTextBox5 = new V6Controls.V6NumberTextBox();
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox10 = new V6Controls.V6ColorTextBox();
             this.tabTaiKhoan = new System.Windows.Forms.TabPage();
+            this.txtGhiChu = new V6Controls.V6ColorTextBox();
+            this.lblGhiChu = new System.Windows.Forms.Label();
             this.txtten_tk_nvl = new V6Controls.V6LabelTextBox();
             this.txtten_tk_clvt = new V6Controls.V6LabelTextBox();
             this.txtten_tk_dd = new V6Controls.V6LabelTextBox();
@@ -294,8 +296,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label16 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMa = new System.Windows.Forms.Label();
-            this.txtGhiChu = new V6Controls.V6ColorTextBox();
-            this.lblGhiChu = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTaiKhoan.SuspendLayout();
@@ -692,7 +692,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.LimitCharacters = "12345";
+            this.v6ColorTextBox6.LimitCharacters = "1;2;3;4;5";
             this.v6ColorTextBox6.Location = new System.Drawing.Point(150, 65);
             this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox6.MaxLength = 1;
@@ -903,7 +903,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = "01";
+            this.v6ColorTextBox5.LimitCharacters = "0;1";
             this.v6ColorTextBox5.Location = new System.Drawing.Point(150, 37);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox5.MaxLength = 1;
@@ -987,6 +987,36 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabTaiKhoan.Size = new System.Drawing.Size(735, 362);
             this.tabTaiKhoan.TabIndex = 1;
             this.tabTaiKhoan.Text = "Tài khoản";
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.AccessibleName = "ghi_chu";
+            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGhiChu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGhiChu.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGhiChu.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGhiChu.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGhiChu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGhiChu.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGhiChu.LeaveColor = System.Drawing.Color.White;
+            this.txtGhiChu.Location = new System.Drawing.Point(153, 263);
+            this.txtGhiChu.Margin = new System.Windows.Forms.Padding(5);
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(554, 43);
+            this.txtGhiChu.TabIndex = 59;
+            // 
+            // lblGhiChu
+            // 
+            this.lblGhiChu.AutoSize = true;
+            this.lblGhiChu.Location = new System.Drawing.Point(5, 266);
+            this.lblGhiChu.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblGhiChu.Name = "lblGhiChu";
+            this.lblGhiChu.Size = new System.Drawing.Size(57, 17);
+            this.lblGhiChu.TabIndex = 58;
+            this.lblGhiChu.Text = "Ghi chú";
             // 
             // txtten_tk_nvl
             // 
@@ -4461,36 +4491,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.lblMa.TabIndex = 5;
             this.lblMa.Text = "Mã vật tư";
             // 
-            // txtGhiChu
-            // 
-            this.txtGhiChu.AccessibleName = "ghi_chu";
-            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGhiChu.BackColor = System.Drawing.SystemColors.Window;
-            this.txtGhiChu.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGhiChu.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtGhiChu.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtGhiChu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtGhiChu.HoverColor = System.Drawing.Color.Yellow;
-            this.txtGhiChu.LeaveColor = System.Drawing.Color.White;
-            this.txtGhiChu.Location = new System.Drawing.Point(153, 263);
-            this.txtGhiChu.Margin = new System.Windows.Forms.Padding(5);
-            this.txtGhiChu.Multiline = true;
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(554, 43);
-            this.txtGhiChu.TabIndex = 59;
-            // 
-            // lblGhiChu
-            // 
-            this.lblGhiChu.AutoSize = true;
-            this.lblGhiChu.Location = new System.Drawing.Point(5, 266);
-            this.lblGhiChu.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblGhiChu.Name = "lblGhiChu";
-            this.lblGhiChu.Size = new System.Drawing.Size(57, 17);
-            this.lblGhiChu.TabIndex = 58;
-            this.lblGhiChu.Text = "Ghi chú";
-            // 
             // VatTuAddEditForm_A1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4544,7 +4544,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label105;
         private V6Controls.V6CheckBox checkBox1;
         private V6Controls.V6ColorTextBox v6ColorTextBox12;
-        private V6Controls.V6ColorTextBox v6ColorTextBox6;
+        private V6Controls.V6NumberTextBox v6ColorTextBox6;
         private V6Controls.V6VvarTextBox txtLoaiVt;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label12;
@@ -4557,7 +4557,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label18;
-        private V6ColorTextBox v6ColorTextBox5;
+        private V6NumberTextBox v6ColorTextBox5;
         private V6ColorTextBox v6ColorTextBox13;
         private V6ColorTextBox v6ColorTextBox10;
         private System.Windows.Forms.TabPage tabTaiKhoan;

@@ -41,6 +41,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public V6TableStruct _TableStruct;
         public V6Mode Mode = V6Mode.Add;
+        public bool IsAddOrEdit { get { return Mode == V6Mode.Add || Mode == V6Mode.Edit; } }
+        /// <summary>
+        /// Không phải đang sửa hoặc thêm mới chứng từ.
+        /// </summary>
+        public bool NotAddEdit
+        {
+            get
+            {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return true;
+                return false;
+            }
+        }
+
         public Control _grandFatherControl;
         public IDictionary<string, object> _parentData;
         public AldmConfig _aldmConfig;

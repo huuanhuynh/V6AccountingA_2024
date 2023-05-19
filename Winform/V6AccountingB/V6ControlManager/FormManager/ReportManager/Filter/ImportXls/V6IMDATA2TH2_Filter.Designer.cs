@@ -246,11 +246,6 @@
             0,
             0,
             0});
-            this.numHHFrom.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numHHFrom.Name = "numHHFrom";
             this.numHHFrom.Size = new System.Drawing.Size(63, 20);
             this.numHHFrom.TabIndex = 17;

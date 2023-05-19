@@ -90,7 +90,7 @@ namespace V6SyncLibrary2021
                     }
                     else
                     {
-                        _Message = "EXEC2 Locked by date.";
+                        _Message = "Số liệu đã khóa sổ.";
                     }
 
                 }

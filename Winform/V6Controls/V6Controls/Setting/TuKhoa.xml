@@ -55,6 +55,7 @@
   <TuKhoa TenTuKhoa='V6ToolExtensionMethods.Right' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ControlExtensionMethods' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ControlExtensionMethods.ShowToForm(hoaDonForm, thisForm, "title", true, true, true);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ControlExtensionMethods.ShowConfirmMessage(thisForm, "message") == DialogResult.Yes' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   
   <TuKhoa TenTuKhoa='V6VvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Mode' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

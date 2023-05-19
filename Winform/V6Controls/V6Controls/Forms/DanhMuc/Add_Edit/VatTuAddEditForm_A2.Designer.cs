@@ -33,6 +33,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VatTuAddEditForm_A2));
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
+            this.txtGhiChu = new V6Controls.V6ColorTextBox();
+            this.lblGhiChu = new System.Windows.Forms.Label();
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
             this.txtHan_sd = new V6Controls.V6NumberTextBox();
             this.label67 = new System.Windows.Forms.Label();
@@ -56,10 +58,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabTaiKhoan = new System.Windows.Forms.TabPage();
             this.label106 = new System.Windows.Forms.Label();
             this.label105 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox6 = new V6Controls.V6ColorTextBox();
+            this.v6ColorTextBox6 = new V6Controls.V6NumberTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
+            this.v6ColorTextBox5 = new V6Controls.V6NumberTextBox();
             this.txtten_tk_nvl = new V6Controls.V6LabelTextBox();
             this.txtten_tk_clvt = new V6Controls.V6LabelTextBox();
             this.txtten_tk_dd = new V6Controls.V6LabelTextBox();
@@ -315,8 +317,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label3 = new System.Windows.Forms.Label();
             this.lblTen = new System.Windows.Forms.Label();
             this.lblMa = new System.Windows.Forms.Label();
-            this.txtGhiChu = new V6Controls.V6ColorTextBox();
-            this.lblGhiChu = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTaiKhoan.SuspendLayout();
@@ -388,6 +388,36 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabThongTinChinh.Size = new System.Drawing.Size(735, 420);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Sản phẩm";
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.AccessibleName = "ghi_chu";
+            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGhiChu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGhiChu.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGhiChu.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGhiChu.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGhiChu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGhiChu.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGhiChu.LeaveColor = System.Drawing.Color.White;
+            this.txtGhiChu.Location = new System.Drawing.Point(153, 336);
+            this.txtGhiChu.Margin = new System.Windows.Forms.Padding(5);
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(573, 43);
+            this.txtGhiChu.TabIndex = 59;
+            // 
+            // lblGhiChu
+            // 
+            this.lblGhiChu.AutoSize = true;
+            this.lblGhiChu.Location = new System.Drawing.Point(4, 339);
+            this.lblGhiChu.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblGhiChu.Name = "lblGhiChu";
+            this.lblGhiChu.Size = new System.Drawing.Size(57, 17);
+            this.lblGhiChu.TabIndex = 58;
+            this.lblGhiChu.Text = "Ghi chú";
             // 
             // v6ColorTextBox2
             // 
@@ -717,7 +747,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.LimitCharacters = "12345";
+            this.v6ColorTextBox6.LimitCharacters = "1;2;3;4;5";
             this.v6ColorTextBox6.Location = new System.Drawing.Point(154, 294);
             this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox6.MaxLength = 1;
@@ -757,7 +787,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = "01";
+            this.v6ColorTextBox5.LimitCharacters = "0;1";
             this.v6ColorTextBox5.Location = new System.Drawing.Point(154, 266);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox5.MaxLength = 1;
@@ -4677,36 +4707,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.lblMa.TabIndex = 0;
             this.lblMa.Text = "Mã vật tư";
             // 
-            // txtGhiChu
-            // 
-            this.txtGhiChu.AccessibleName = "ghi_chu";
-            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGhiChu.BackColor = System.Drawing.SystemColors.Window;
-            this.txtGhiChu.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGhiChu.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtGhiChu.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtGhiChu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtGhiChu.HoverColor = System.Drawing.Color.Yellow;
-            this.txtGhiChu.LeaveColor = System.Drawing.Color.White;
-            this.txtGhiChu.Location = new System.Drawing.Point(153, 336);
-            this.txtGhiChu.Margin = new System.Windows.Forms.Padding(5);
-            this.txtGhiChu.Multiline = true;
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(573, 43);
-            this.txtGhiChu.TabIndex = 59;
-            // 
-            // lblGhiChu
-            // 
-            this.lblGhiChu.AutoSize = true;
-            this.lblGhiChu.Location = new System.Drawing.Point(4, 339);
-            this.lblGhiChu.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblGhiChu.Name = "lblGhiChu";
-            this.lblGhiChu.Size = new System.Drawing.Size(57, 17);
-            this.lblGhiChu.TabIndex = 58;
-            this.lblGhiChu.Text = "Ghi chú";
-            // 
             // VatTuAddEditForm_A2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4993,10 +4993,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label106;
         private System.Windows.Forms.Label label105;
-        private V6ColorTextBox v6ColorTextBox6;
+        private V6NumberTextBox v6ColorTextBox6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private V6ColorTextBox v6ColorTextBox5;
+        private V6NumberTextBox v6ColorTextBox5;
         private V6NumberTextBox txths_qd4;
         private System.Windows.Forms.Label label50;
         private V6NumberTextBox txths_qd3;
