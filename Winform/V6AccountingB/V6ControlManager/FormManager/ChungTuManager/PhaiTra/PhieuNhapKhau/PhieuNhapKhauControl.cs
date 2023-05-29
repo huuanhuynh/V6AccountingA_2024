@@ -8293,8 +8293,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         /// <param name="auto">Dùng khi gọi trong code động.</param>
         public override void ApGiaMua(bool auto = false)
         {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             try
             {
+                string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
+
                 if (NotAddEdit) return;
                 if (_flag_next)
                 {
@@ -8339,6 +8342,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                 foreach (DataRow row in AD.Rows)
                 {
+                    var stt_rec0 = row["STT_REC0"].ToString().Trim().ToUpper();
+                    if (shift && shift_stt_rec0 != stt_rec0)
+                    {
+                        continue;
+                    }
                     var maVatTu = row["MA_VT"].ToString().Trim();
                     var dvt = row["DVT"].ToString().Trim();
                     var dvt1 = row["DVT1"].ToString().Trim();

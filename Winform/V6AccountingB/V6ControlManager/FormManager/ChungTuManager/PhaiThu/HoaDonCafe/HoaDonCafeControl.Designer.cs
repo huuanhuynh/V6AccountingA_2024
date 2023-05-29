@@ -2560,7 +2560,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.btnApGia.TabIndex = 2;
             this.btnApGia.TabStop = false;
             this.btnApGia.Text = "Mã giá";
-            this.toolTipV6FormControl.SetToolTip(this.btnApGia, "Áp giá bán");
+            this.toolTipV6FormControl.SetToolTip(this.btnApGia, "Áp giá bán, Giữ Shift chỉ áp 1 dòng.");
             this.btnApGia.UseVisualStyleBackColor = true;
             this.btnApGia.Click += new System.EventHandler(this.btnApGia_Click);
             // 

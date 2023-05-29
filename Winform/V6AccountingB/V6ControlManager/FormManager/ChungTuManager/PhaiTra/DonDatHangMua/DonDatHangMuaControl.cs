@@ -6310,8 +6310,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
         public override void ApGiaMua(bool auto = false)
         {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             try
             {
+                string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
+
                 if (NotAddEdit) return;
                 if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
@@ -6331,6 +6334,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
                 foreach (DataRow row in AD.Rows)
                 {
+                    var stt_rec0 = row["STT_REC0"].ToString().Trim().ToUpper();
+                    if (shift && shift_stt_rec0 != stt_rec0)
+                    {
+                        continue;
+                    }
                     var maVatTu = row["MA_VT"].ToString().Trim();
                     var dvt = row["DVT"].ToString().Trim();
                     var dvt1 = row["DVT1"].ToString().Trim();
