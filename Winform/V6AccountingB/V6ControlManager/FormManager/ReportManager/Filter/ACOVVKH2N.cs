@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public override List<SqlParameter> GetFilterParameters()
         {
             //Number1 = txtThang1.Value;
-            //Number2 = txtThang2.Value;
+            Number2 = txtTuNam.Value;
             Number3 = txtDenNam.Value;
             if(txtTaiKhoan.Text.Trim() == "")
                 throw new Exception(V6Text.Text("CHUANHAPTK"));
@@ -43,6 +43,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void txtTuNam_TextChanged(object sender, EventArgs e)
         {
             txtDenNam.Value = txtTuNam.Value + 1;
+            Number2 = txtTuNam.Value;
             Number3 = txtDenNam.Value;
         }
     }

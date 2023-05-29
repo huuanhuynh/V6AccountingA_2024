@@ -35,14 +35,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var plist = FilterControl.GetFilterParameters();
-                int check = V6BusinessHelper.CheckDataLocked("3", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.Number3);
+                int check = V6BusinessHelper.CheckDataLocked_Next("3", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.Number3);
                 if (check == 1)
                 {
                     this.ShowWarningMessage(V6Text.CheckLock);
                     return;
                 }
 
-                var sql = "select count(1) from ABKU where Nam = " + FilterControl.Number2;
+                var sql = "select count(1) from ABKU where Nam = " + FilterControl.Number3;
                 var check1 = ObjectAndString.ObjectToInt(SqlConnect.ExecuteScalar(CommandType.Text, sql)) > 0;
                 if (check1 && this.ShowConfirmMessage("Năm đã có. Có chắc chắn chuyển sang không?") != DialogResult.Yes)
                 {
