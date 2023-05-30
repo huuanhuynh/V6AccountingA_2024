@@ -2269,7 +2269,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTong_kh_ky.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTong_kh_ky.HoverColor = System.Drawing.Color.Yellow;
             this.txtTong_kh_ky.LeaveColor = System.Drawing.Color.White;
-            this.txtTong_kh_ky.Location = new System.Drawing.Point(680, 186);
+            this.txtTong_kh_ky.Location = new System.Drawing.Point(680, 190);
             this.txtTong_kh_ky.Name = "txtTong_kh_ky";
             this.txtTong_kh_ky.Size = new System.Drawing.Size(119, 22);
             this.txtTong_kh_ky.TabIndex = 42;
@@ -2295,7 +2295,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTong_cl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTong_cl.HoverColor = System.Drawing.Color.Yellow;
             this.txtTong_cl.LeaveColor = System.Drawing.Color.White;
-            this.txtTong_cl.Location = new System.Drawing.Point(565, 186);
+            this.txtTong_cl.Location = new System.Drawing.Point(565, 190);
             this.txtTong_cl.Name = "txtTong_cl";
             this.txtTong_cl.Size = new System.Drawing.Size(114, 22);
             this.txtTong_cl.TabIndex = 41;
@@ -2320,7 +2320,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txttong_da_kh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txttong_da_kh.HoverColor = System.Drawing.Color.Yellow;
             this.txttong_da_kh.LeaveColor = System.Drawing.Color.White;
-            this.txttong_da_kh.Location = new System.Drawing.Point(445, 186);
+            this.txttong_da_kh.Location = new System.Drawing.Point(445, 190);
             this.txttong_da_kh.Name = "txttong_da_kh";
             this.txttong_da_kh.Size = new System.Drawing.Size(119, 22);
             this.txttong_da_kh.TabIndex = 40;
@@ -2345,7 +2345,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txttong_ng.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txttong_ng.HoverColor = System.Drawing.Color.Yellow;
             this.txttong_ng.LeaveColor = System.Drawing.Color.White;
-            this.txttong_ng.Location = new System.Drawing.Point(324, 186);
+            this.txttong_ng.Location = new System.Drawing.Point(324, 190);
             this.txttong_ng.Name = "txttong_ng";
             this.txttong_ng.Size = new System.Drawing.Size(119, 22);
             this.txttong_ng.TabIndex = 39;
@@ -2363,7 +2363,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(189, 189);
+            this.label33.Location = new System.Drawing.Point(189, 193);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(82, 16);
             this.label33.TabIndex = 39;
@@ -2425,7 +2425,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(887, 131);
+            this.dataGridView1.Size = new System.Drawing.Size(887, 136);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView2_ColumnAdded);

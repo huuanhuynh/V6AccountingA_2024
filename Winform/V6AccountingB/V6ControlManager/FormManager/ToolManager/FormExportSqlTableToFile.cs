@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
@@ -26,6 +28,9 @@ namespace V6ControlManager.FormManager.ToolManager
             GetDataTableList();
         }
         
+        /// <summary>
+        /// Tên bảng trong csdl đang được chọn.
+        /// </summary>
         string selectedTableName = "";
         
         private void GetDataTableList()
@@ -45,22 +50,13 @@ namespace V6ControlManager.FormManager.ToolManager
                 this.ShowErrorMessage(GetType() + ".GetDataTableList: " + ex.Message);
             }
         }
+
         DataTable data;
         string sqlSelectTable = "Select * from [{TableName}]";
         private void GetDataTable()
         {
-
             try
-            {
-                if (listBoxTablesName.SelectedItems.Count <= 0)
-                {
-                    if (listBoxTablesName.Items.Count > 0)
-                        selectedTableName = listBoxTablesName.Items[0].ToString();
-                }
-                else
-                {
-                    selectedTableName = listBoxTablesName.SelectedItems[0].ToString();
-                }
+            {   
                 data = SqlConnect.ExecuteDataset(CommandType.Text, sqlSelectTable.Replace("{TableName}", selectedTableName)).Tables[0];
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = data;
@@ -73,7 +69,25 @@ namespace V6ControlManager.FormManager.ToolManager
 
         private void listBoxTablesName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GetDataTable();
+            try
+            {
+                if (listBoxTablesName.SelectedItems.Count <= 0)
+                {
+                    if (listBoxTablesName.Items.Count > 0)
+                        selectedTableName = listBoxTablesName.Items[0].ToString();
+                }
+                else
+                {
+                    selectedTableName = listBoxTablesName.SelectedItems[0].ToString();
+                }
+
+                if (chkAutoLoad.Checked) GetDataTable();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".Select table change: " + ex.Message);
+            }
+            
         }
 
         private void btnExportExcel_Click(object sender, EventArgs e)
@@ -262,6 +276,58 @@ namespace V6ControlManager.FormManager.ToolManager
                 this.ShowErrorMessage("Import count: " + count + "\r\n" + ex.Message);
             }
         }
+
+        int count = 0;
+        bool finish = false;
+        string openFile = "";
+        private void ImportBIG_XML()
+        {
+            count = 0;
+            try
+            {   
+                using (XmlReader reader = XmlReader.Create(openFile))
+                {
+                    reader.MoveToContent();
+                    Dictionary<string, object> one_row = null;
+
+                    while (reader.Read())
+                    {
+                        if (reader.NodeType == XmlNodeType.Element && reader.Depth == 1)
+                        {
+                            if (one_row != null && one_row.Count > 0)
+                            {
+                                //string stt_rec = one_row["STT_REC"].ToString().Trim();
+                                //if (stt_rec == "Z202302024GL4")
+                                //{
+                                //    string a = stt_rec;
+                                //}
+                                // insert
+                                SortedDictionary<string, object> insert_data = new SortedDictionary<string, object>(one_row);
+                                if (insert_data.ContainsKey("UID")) insert_data.Remove("UID");
+                                V6BusinessHelper.Insert(selectedTableName, insert_data);
+                                count++;
+                            }
+
+                            one_row = new Dictionary<string, object>();
+                            
+                        }
+                        else if (reader.Depth == 2 && reader.Name != "")
+                        {
+                            one_row[reader.Name.ToUpper()] = reader.ReadElementContentAsString();
+                        }
+                        else // so depth
+                        {
+                            // do ???
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage("Import count: " + count + "\r\n" + ex.Message);
+            }
+            finish = true;
+        }
         
         private void btnUpdateXmlBy_Click(object sender, EventArgs e)
         {
@@ -418,6 +484,72 @@ namespace V6ControlManager.FormManager.ToolManager
             {
                 V6Message.ShowErrorMessage(ex.Message, this);
             }
+        }
+
+        private void toExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnExportExcel_Click(sender, e);
+        }
+
+        private void rowsToXmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnRowsToXml_Click(sender, e);
+        }
+
+        private void toXmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnExportXml_Click(sender, e);
+        }
+
+        private void importXmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnImportXml_Click(sender, e);
+        }
+
+        private void importBIGXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(selectedTableName))
+                {
+                    this.ShowMessage("Chưa chọn bảng dữ liệu sql.");
+                    return;
+                }
+                openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
+                if (string.IsNullOrEmpty(openFile)) return;
+
+                Thread T = new Thread(ImportBIG_XML);
+                System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+                timer.Interval = 1000;
+                timer.Tick += Timer_Tick;
+                finish = false;
+                count = 0;
+                T.Start();
+                timer.Start();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {   
+            if (finish)
+            {
+                ((System.Windows.Forms.Timer)sender).Stop();
+                lblStatus.Text = "Insert finish: " + count;
+                V6Message.Show("Đã nhập:  " + count, 500, this);
+            }
+            else
+            {
+                lblStatus.Text = "Insert count: " + count;
+            }
+        }
+
+        private void reloadSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetDataTable();
         }
     }
 }

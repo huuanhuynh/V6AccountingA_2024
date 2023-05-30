@@ -677,6 +677,19 @@ namespace V6AccountingBusiness
             return ObjectAndString.ObjectToInt(result);
         }
 
+        public static int CheckDataLocked_Next(string type, DateTime date, int month, int year)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Type", type),
+                new SqlParameter("@Date", date.Date),
+                new SqlParameter("@Month", month),
+                new SqlParameter("@Year", year),
+            };
+            var result = SqlConnect.ExecuteScalar(CommandType.Text, "Select dbo.VFA_CheckDataLocked_Next (@Type, @Date, @Month, @Year)", plist);
+            return ObjectAndString.ObjectToInt(result);
+        }
+
         public static int CheckDataLocked_C(string conString, string type, DateTime date, int month, int year)
         {
             SqlParameter[] plist =
