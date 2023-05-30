@@ -280,6 +280,7 @@ namespace V6ControlManager.FormManager.ToolManager
         int count = 0;
         bool finish = false;
         string openFile = "";
+        string insertTable = "";
         private void ImportBIG_XML()
         {
             count = 0;
@@ -304,7 +305,7 @@ namespace V6ControlManager.FormManager.ToolManager
                                 // insert
                                 SortedDictionary<string, object> insert_data = new SortedDictionary<string, object>(one_row);
                                 if (insert_data.ContainsKey("UID")) insert_data.Remove("UID");
-                                V6BusinessHelper.Insert(selectedTableName, insert_data);
+                                V6BusinessHelper.Insert(insertTable, insert_data);
                                 count++;
                             }
 
@@ -519,11 +520,13 @@ namespace V6ControlManager.FormManager.ToolManager
                 if (string.IsNullOrEmpty(openFile)) return;
 
                 Thread T = new Thread(ImportBIG_XML);
+                insertTable = selectedTableName;
+                finish = false;
+                count = 0;
+
                 System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
                 timer.Interval = 1000;
                 timer.Tick += Timer_Tick;
-                finish = false;
-                count = 0;
                 T.Start();
                 timer.Start();
             }

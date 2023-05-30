@@ -513,9 +513,13 @@ namespace V6Controls
 
                             var sls = TextLength - right + ((sv_dotIndex > 0 && i > sv_dotIndex) ? 1 : 0);
                             if (sls <= 0) sls = 1;
-                            SelectionStart = sls;    
-                        }                       
-                    }                    
+                            SelectionStart = sls;
+                        }
+                        else
+                        {
+                            StringValue = ObjectAndString.TrimSpecial(Text, " ");
+                        }
+                    }
                     return;
                 }
                 else if ((sv_dotIndex > 0 && DecimalPlaces > 0) && ((TextLength >= MaxLength && i<=sv_dotIndex) || SelectionStart == TextLength))

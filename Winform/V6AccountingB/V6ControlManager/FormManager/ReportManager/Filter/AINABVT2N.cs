@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-            //Number1 = txtThang1.Value;
+            //Number1 = txtThang1. Value;
             Number2 = txtTuNam.Value;
             Number3 = txtDenNam.Value;
             var result = new List<SqlParameter>
@@ -43,5 +43,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             Number2 = txtTuNam.Value;
             Number3 = txtDenNam.Value;
         }
+
+        private void txtTuNam_LostFocus(object sender, EventArgs e)
+        {
+            txtTuNam_TextChanged(sender, e);
+        }
+
     }
 }

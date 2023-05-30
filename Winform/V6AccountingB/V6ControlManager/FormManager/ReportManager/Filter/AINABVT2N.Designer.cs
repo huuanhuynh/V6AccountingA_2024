@@ -58,7 +58,6 @@
             // 
             this.txtTuNam.BackColor = System.Drawing.SystemColors.Window;
             this.txtTuNam.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTuNam.DecimalPlaces = 0;
             this.txtTuNam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTuNam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTuNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -77,13 +76,13 @@
             0,
             0,
             0});
+            this.txtTuNam.LostFocus += new System.EventHandler(this.txtTuNam_LostFocus);
             this.txtTuNam.TextChanged += new System.EventHandler(this.txtTuNam_TextChanged);
             // 
             // txtDenNam
             // 
             this.txtDenNam.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtDenNam.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDenNam.DecimalPlaces = 0;
             this.txtDenNam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtDenNam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtDenNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -96,6 +95,7 @@
             this.txtDenNam.ReadOnly = true;
             this.txtDenNam.Size = new System.Drawing.Size(100, 20);
             this.txtDenNam.TabIndex = 3;
+            this.txtDenNam.TabStop = false;
             this.txtDenNam.Text = "0";
             this.txtDenNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenNam.Value = new decimal(new int[] {
