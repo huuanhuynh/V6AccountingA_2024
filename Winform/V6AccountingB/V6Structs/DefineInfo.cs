@@ -22,6 +22,7 @@ namespace V6Structs
             try
             {
                 // define = key:value;key:2value2;key3:va;lue;key4:value4
+                if (string.IsNullOrEmpty(define)) Visible = false;
                 
                 var sss = define.Split(';');
                 string LAST_KEY = null;

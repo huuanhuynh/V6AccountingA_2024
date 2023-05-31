@@ -929,6 +929,10 @@ namespace V6Controls.Forms
                     case "D3": // null + time
                         c = CreateDateTimeFullPickerNull(FCOLUMN, fcaption, width, fstatus, carry);
                         break;
+
+                    case "B0":
+                        c = CreateButton(FCOLUMN, fcaption, fvvar, width, fstatus);
+                        break;
                     #endregion
                 }
 
@@ -1008,6 +1012,37 @@ namespace V6Controls.Forms
             alct1Dic = _alct1Dic;
             //carryList = _carryList;
             return result;
+        }
+
+        public static Button CreateButton(string accessibleName, string caption, string fvvar, int width, bool visible)
+        {
+            var sss = ObjectAndString.StringToDictionary(fvvar);
+            Color textColor = Color.Black; if (sss.ContainsKey("COLOR")) textColor = ObjectAndString.StringToColor(sss["COLOR"].ToString());
+
+            var button = new Button
+            {
+                Name = "btn" + accessibleName,
+                AccessibleName = accessibleName,
+                Text = caption,
+                ForeColor = textColor,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide",
+                UseVisualStyleBackColor = true
+            };
+
+            if (sss.ContainsKey("STYLE")) // BIU
+            {
+                string style = sss["STYLE"].ToString();
+                FontStyle st = FontStyle.Regular;
+                if (style.Contains("B")) st |= FontStyle.Bold;
+                if (style.Contains("I")) st |= FontStyle.Italic;
+                if (style.Contains("U")) st |= FontStyle.Underline;
+                var font = new Font(button.Font, st);
+                button.Font = font;
+            }
+
+            return button;
         }
 
 
@@ -7992,6 +8027,10 @@ namespace V6Controls.Forms
                     var file_button = control as FileButton;
                     file_button.FileName = ObjectAndString.ObjectToString(value).TrimEnd();
                 }
+                else if (control is Button)
+                {
+                    // bỏ qua value.
+                }
                 else if (control is CheckBox)
                 {
                     string value1 = value.ToString().TrimEnd();
@@ -8337,6 +8376,16 @@ namespace V6Controls.Forms
                     };
             }
 
+            methodName = NAME + "_CLICK" + before;
+            if (methods.ContainsKey(methodName))
+                control.Click += (sender, e) =>
+                {
+                    All_Objects["sender"] = sender;
+                    All_Objects["e"] = e;
+                    string m_name = ((Control)sender).AccessibleName.ToUpper() + "_CLICK" + before;
+                    V6ControlsHelper.InvokeMethodInfo(methods[m_name], All_Objects);
+                };
+
             methodName = NAME + "_ENTER" + before;
             if (methods.ContainsKey(methodName))
                 control.Enter += (sender, e) =>
@@ -8439,6 +8488,15 @@ namespace V6Controls.Forms
                     V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_VALUECHANGED" + before, All_Objects);
                 };
             }
+
+            if (eventProgram.GetMethod(NAME + "_CLICK" + before) != null)
+                control.Click += (sender, e) =>
+                {
+                    All_Objects["sender"] = sender;
+                    All_Objects["e"] = e;
+                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_CLICK" + before, All_Objects);
+                };
+
 
             if (eventProgram.GetMethod(NAME + "_ENTER" + before) != null || eventProgram.GetMethod(NAME + "_GOTFOCUS" + before) != null)
             control.Enter += (sender, e) =>

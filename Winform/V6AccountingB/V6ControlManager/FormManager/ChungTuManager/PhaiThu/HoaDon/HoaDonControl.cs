@@ -172,15 +172,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-        private V6ColorTextBox _dvt;
-        private V6CheckTextBox _tang, _xuat_dd;
-        private V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri, _maTdi, _ma_thue_i, _tk_thue_i;
-        private V6ColorTextBox _soKhung, _soMay;
-        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _gia_ban_nt, _gia_ban,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
-        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tien_nt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
-        private V6NumberTextBox _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg, _tien_vcNt, _tien_vc;
-        private V6NumberTextBox _sl_td1;
-        private V6DateTimeColor _hanSd;
+        public V6ColorTextBox _dvt;
+        public V6CheckTextBox _tang, _xuat_dd;
+        public V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri, _maTdi, _ma_thue_i, _tk_thue_i;
+        public V6ColorTextBox _soKhung, _soMay;
+        public V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _gia_ban_nt, _gia_ban,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
+        public V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tien_nt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
+        public V6NumberTextBox _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg, _tien_vcNt, _tien_vc;
+        public V6NumberTextBox _sl_td1;
+        public V6DateTimeColor _hanSd;
 
         private void LoadDetailControls()
         {
@@ -1842,7 +1842,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         //    }
         //}
 
-        private void FixAlLoTon(DataTable alLoTon)
+        public void FixAlLoTon(DataTable alLoTon)
         {
             try
             {
@@ -1854,6 +1854,87 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 // Theo doi lo moi check
                 if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
+                    return;
+
+                //if (maVt == "" || maKhoI == "" || maLo == "") return;
+
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vi_tri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                List<DataRow> empty_rows = new List<DataRow>();
+
+                for (int i = alLoTon.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = alLoTon.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    //string data_maVi_Tri = data_row["Ma_vi_tri"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt, maKhoI, maLo, maVi_Tri
+                    //- so luong
+                    decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                    decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
+                    decimal new_soLuong = data_soLuong;
+                    decimal new_soLuong_qd = data_soLuong_qd;
+
+                    foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                    {
+                        string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                        string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                        //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
+
+                        decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                        decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
+                        if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                        {
+                            if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo)
+                            {
+                                new_soLuong -= c_soLuong;
+                                new_soLuong_qd -= c_soLuong_qd;
+                            }
+                        }
+                    }
+
+                    if (new_soLuong > 0)
+                    {
+                        data_row["Ton_dau"] = new_soLuong;
+                        data_row["Ton_dau_qd"] = new_soLuong_qd;
+                    }
+                    else
+                    {
+                        empty_rows.Add(data_row);
+
+                    }
+                }
+
+                //remove all empty_rows
+                foreach (DataRow row in empty_rows)
+                {
+                    alLoTon.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void FixAlLoTon_NoKho(DataTable alLoTon)
+        {
+            try
+            {
+                string sttRec0 = _sttRec0;
+                //string maVt = _maVt.Text.Trim().ToUpper();
+                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
+                //string maLo = _maLo.Text.Trim().ToUpper();
+                // string maLo = _maLo.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!_maVt.LO_YN || !_maVt.DATE_YN)
                     return;
 
                 //if (maVt == "" || maKhoI == "" || maLo == "") return;
@@ -2087,7 +2168,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void XuLyKhiNhanMaLo(IDictionary<string, object> row, bool isChanged)
+        public void XuLyKhiNhanMaLo(IDictionary<string, object> row, bool isChanged)
         {
             try
             {
@@ -2105,7 +2186,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void CheckMaViTri()
+        public void CheckMaViTri()
         {
             if (_maKhoI.Text != "")
             {
