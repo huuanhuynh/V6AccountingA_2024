@@ -280,8 +280,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtma_khtg = new V6Controls.V6VvarTextBox();
             this.v6LabelTextBox2 = new V6Controls.V6LabelTextBox();
             this.v6LabelTextBox1 = new V6Controls.V6LabelTextBox();
-            this.v6VvarTextBox3 = new V6Controls.V6VvarTextBox();
-            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
+            this.txtMaQG = new V6Controls.V6VvarTextBox();
+            this.txtMaVTTG = new V6Controls.V6VvarTextBox();
             this.txtMaVT = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.txtGC_TD1 = new V6Controls.V6ColorTextBox();
@@ -670,6 +670,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(39, 23);
             this.v6ColorTextBox6.TabIndex = 3;
+            this.v6ColorTextBox6.Text = "0";
+            this.v6ColorTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6ColorTextBox6.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // txtLoaiVt
             // 
@@ -881,6 +888,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(39, 23);
             this.v6ColorTextBox5.TabIndex = 2;
+            this.v6ColorTextBox5.Text = "0";
+            this.v6ColorTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6ColorTextBox5.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // v6ColorTextBox13
             // 
@@ -4177,8 +4191,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.groupBox1.Controls.Add(this.txtma_khtg);
             this.groupBox1.Controls.Add(this.v6LabelTextBox2);
             this.groupBox1.Controls.Add(this.v6LabelTextBox1);
-            this.groupBox1.Controls.Add(this.v6VvarTextBox3);
-            this.groupBox1.Controls.Add(this.v6VvarTextBox1);
+            this.groupBox1.Controls.Add(this.txtMaQG);
+            this.groupBox1.Controls.Add(this.txtMaVTTG);
             this.groupBox1.Controls.Add(this.txtMaVT);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
             this.groupBox1.Controls.Add(this.txtGC_TD1);
@@ -4246,43 +4260,43 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6LabelTextBox1.TabStop = false;
             this.v6LabelTextBox1.Tag = "readonly";
             // 
-            // v6VvarTextBox3
+            // txtMaQG
             // 
-            this.v6VvarTextBox3.AccessibleName = "ma_qg";
-            this.v6VvarTextBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox3.BrotherFields = "Ten_qg";
-            this.v6VvarTextBox3.CheckNotEmpty = true;
-            this.v6VvarTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox3.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox3.Location = new System.Drawing.Point(155, 40);
-            this.v6VvarTextBox3.Name = "v6VvarTextBox3";
-            this.v6VvarTextBox3.Size = new System.Drawing.Size(100, 23);
-            this.v6VvarTextBox3.TabIndex = 3;
-            this.v6VvarTextBox3.VVar = "ma_qg";
+            this.txtMaQG.AccessibleName = "ma_qg";
+            this.txtMaQG.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaQG.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaQG.BrotherFields = "Ten_qg";
+            this.txtMaQG.CheckNotEmpty = true;
+            this.txtMaQG.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaQG.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaQG.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaQG.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaQG.LeaveColor = System.Drawing.Color.White;
+            this.txtMaQG.Location = new System.Drawing.Point(155, 40);
+            this.txtMaQG.Name = "txtMaQG";
+            this.txtMaQG.Size = new System.Drawing.Size(100, 23);
+            this.txtMaQG.TabIndex = 3;
+            this.txtMaQG.VVar = "ma_qg";
             // 
-            // v6VvarTextBox1
+            // txtMaVTTG
             // 
-            this.v6VvarTextBox1.AccessibleName = "MA_VTTG";
-            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.BrotherFields = "TEN_VTTG";
-            this.v6VvarTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.v6VvarTextBox1.CheckNotEmpty = true;
-            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(155, 14);
-            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(100, 23);
-            this.v6VvarTextBox1.TabIndex = 1;
-            this.v6VvarTextBox1.UseLimitCharacters0 = true;
-            this.v6VvarTextBox1.VVar = "MA_VTTG";
+            this.txtMaVTTG.AccessibleName = "MA_VTTG";
+            this.txtMaVTTG.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaVTTG.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaVTTG.BrotherFields = "TEN_VTTG";
+            this.txtMaVTTG.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaVTTG.CheckNotEmpty = true;
+            this.txtMaVTTG.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaVTTG.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaVTTG.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaVTTG.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaVTTG.LeaveColor = System.Drawing.Color.White;
+            this.txtMaVTTG.Location = new System.Drawing.Point(155, 14);
+            this.txtMaVTTG.Name = "txtMaVTTG";
+            this.txtMaVTTG.Size = new System.Drawing.Size(100, 23);
+            this.txtMaVTTG.TabIndex = 1;
+            this.txtMaVTTG.UseLimitCharacters0 = true;
+            this.txtMaVTTG.VVar = "MA_VTTG";
             // 
             // txtMaVT
             // 
@@ -4647,7 +4661,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private V6VvarTextBox txtlma_nvien;
         private V6VvarTextBox txtDVT;
         private V6VvarTextBox v6VvarTextBox4;
-        private V6VvarTextBox v6VvarTextBox3;
+        private V6VvarTextBox txtMaQG;
         private V6VvarTextBox txttk_cp;
         private V6VvarTextBox txttk_cl_vt;
         private V6VvarTextBox txttk_spdd;
@@ -4745,7 +4759,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private V6CheckBox chkREPL_YN;
         private V6ColorTextBox txtGhiChu;
         private System.Windows.Forms.Label lblGhiChu;
-        private V6VvarTextBox v6VvarTextBox1;
+        private V6VvarTextBox txtMaVTTG;
         private System.Windows.Forms.Label label1;
         private V6LabelTextBox v6LabelTextBox1;
         private V6LabelTextBox v6LabelTextBox2;

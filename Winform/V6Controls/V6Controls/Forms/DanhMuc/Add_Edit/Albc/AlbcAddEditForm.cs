@@ -575,62 +575,62 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         /// Lấy thông tin đích 1
         /// </summary>
         /// <returns></returns>
-        private Dictionary<string, AlbcFieldInfo> GetTargetFieldsInfo(Dictionary<string, AlbcFieldInfo> sourceFields,
-            string ssss, string ffff, string vvvv, string eeee, string tttt)
-        {
-            var targetInfoList = new Dictionary<string, AlbcFieldInfo>();
-            var sss = ObjectAndString.SplitString(ssss);
-            var fff = ObjectAndString.SplitString(ffff);    //  N0:100;C200;D250...
-            var vvv = ObjectAndString.SplitString(vvvv);
-            var eee = ObjectAndString.SplitString(eeee);
-            var ttt = ObjectAndString.SplitString(tttt);
-            for (int i = 0; i < sss.Length; i++)
-            {
-                string field = sss[i];
-                string FIELD = field.Trim().ToUpper();
+        //private Dictionary<string, AlbcFieldInfo> GetTargetFieldsInfo(Dictionary<string, AlbcFieldInfo> sourceFields,
+        //    string ssss, string ffff, string vvvv, string eeee, string tttt)
+        //{
+        //    var targetInfoList = new Dictionary<string, AlbcFieldInfo>();
+        //    var sss = ObjectAndString.SplitString(ssss);
+        //    var fff = ObjectAndString.SplitString(ffff);    //  N0:100;C200;D250...
+        //    var vvv = ObjectAndString.SplitString(vvvv);
+        //    var eee = ObjectAndString.SplitString(eeee);
+        //    var ttt = ObjectAndString.SplitString(tttt);
+        //    for (int i = 0; i < sss.Length; i++)
+        //    {
+        //        string field = sss[i];
+        //        string FIELD = field.Trim().ToUpper();
                 
-                string fhv = vvv.Length <= i ? CorpLan2.GetFieldHeader(FIELD, "V") : vvv[i];
-                string fhe = eee.Length <= i ? CorpLan2.GetFieldHeader(FIELD, "E") : eee[i];
-                bool fns = ttt.Length > i && ttt.Contains(FIELD);
+        //        string fhv = vvv.Length <= i ? CorpLan2.GetFieldHeader(FIELD, "V") : vvv[i];
+        //        string fhe = eee.Length <= i ? CorpLan2.GetFieldHeader(FIELD, "E") : eee[i];
+        //        bool fns = ttt.Length > i && ttt.Contains(FIELD);
 
-                AlbcFieldInfo fi = new AlbcFieldInfo()
-                {
-                    FieldName = FIELD,
-                    //FieldType = ft,
-                    //FieldWidth = fw,
-                    FieldHeaderV = fhv,
-                    FieldHeaderE = fhe,
-                    FieldNoSum = fns,
-                };
+        //        AlbcFieldInfo fi = new AlbcFieldInfo()
+        //        {
+        //            FieldName = FIELD,
+        //            //FieldType = ft,
+        //            //FieldWidth = fw,
+        //            FieldHeaderV = fhv,
+        //            FieldHeaderE = fhe,
+        //            FieldNoSum = fns,
+        //        };
                 
-                if (fff.Length > i || !sourceFields.ContainsKey(FIELD)) // ưu tiên fff
-                {
-                    string f = "C100";
-                    if (fff.Length > i) f = fff[i];
+        //        if (fff.Length > i || !sourceFields.ContainsKey(FIELD)) // ưu tiên fff
+        //        {
+        //            string f = "C100";
+        //            if (fff.Length > i) f = fff[i];
                     
-                    string fts = f.Substring(0, 1);
-                    string fws = f.Substring(1);
-                    if (fts == "N")
-                    {
-                        if (f.Length > 1) fts = f.Substring(0, 2);
-                        if (f.Length > 2) fws = f.Substring(3);
-                        else fws = "100";
-                    }
-                    var ft = EnumConvert.FromString<AlbcFieldType>(fts);
-                    int fw = ObjectAndString.ObjectToInt(fws);
-                    fi.FieldType = ft;
-                    fi.FieldWidth = fw;
-                }
-                else if (sourceFields.ContainsKey(FIELD))
-                {
-                    var sf = sourceFields[FIELD];
-                    fi.FieldType = sf.FieldType;
-                    fi.FieldWidth = sf.FieldWidth;
-                }
-                targetInfoList[FIELD] = fi;
-            }
-            return targetInfoList;
-        }
+        //            string fts = f.Substring(0, 1);
+        //            string fws = f.Substring(1);
+        //            if (fts == "N")
+        //            {
+        //                if (f.Length > 1) fts = f.Substring(0, 2);
+        //                if (f.Length > 2) fws = f.Substring(3);
+        //                else fws = "100";
+        //            }
+        //            var ft = EnumConvert.FromString<AlbcFieldType>(fts);
+        //            int fw = ObjectAndString.ObjectToInt(fws);
+        //            fi.FieldType = ft;
+        //            fi.FieldWidth = fw;
+        //        }
+        //        else if (sourceFields.ContainsKey(FIELD))
+        //        {
+        //            var sf = sourceFields[FIELD];
+        //            fi.FieldType = sf.FieldType;
+        //            fi.FieldWidth = sf.FieldWidth;
+        //        }
+        //        targetInfoList[FIELD] = fi;
+        //    }
+        //    return targetInfoList;
+        //}
 
         private Dictionary<string, AlbcFieldInfo> GetSourceFieldsInfo1()
         {
@@ -649,7 +649,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             try
             {
                 Dictionary<string, AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
-                Dictionary<string, AlbcFieldInfo> targetInfoList = GetTargetFieldsInfo(sourceFields, txtShowFields1.Text, txtFormats1.Text, txtHeaderV1.Text, txtHeaderE1.Text, txtNoSum1.Text);
+                Dictionary<string, AlbcFieldInfo> targetInfoList = V6ControlFormHelper.GetTargetFieldsInfo(sourceFields, txtShowFields1.Text, txtFormats1.Text, txtHeaderV1.Text, txtHeaderE1.Text, txtNoSum1.Text);
                 
                 V6ControlFormHelper.SelectFields(this, sourceFields, targetInfoList, txtShowFields1, txtFormats1, txtHeaderV1, txtHeaderE1);
             }
@@ -664,7 +664,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             try
             {
                 Dictionary<string, AlbcFieldInfo> sourceFields = GetSourceFieldsInfo2();
-                Dictionary<string, AlbcFieldInfo> targetInfoList = GetTargetFieldsInfo(sourceFields, txtShowFields2.Text, txtFormats2.Text, txtHeaderV2.Text, txtHeaderE2.Text, txtNoSum2.Text);
+                Dictionary<string, AlbcFieldInfo> targetInfoList = V6ControlFormHelper.GetTargetFieldsInfo(sourceFields, txtShowFields2.Text, txtFormats2.Text, txtHeaderV2.Text, txtHeaderE2.Text, txtNoSum2.Text);
                 //var dataGridView2 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView2") as DataGridView;
                 //form.AddSourceFieldList(V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView2") as DataGridView);
                 //form.AddTargetFieldList(targetInfoList);

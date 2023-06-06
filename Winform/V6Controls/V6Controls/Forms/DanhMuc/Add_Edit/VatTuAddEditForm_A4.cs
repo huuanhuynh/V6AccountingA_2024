@@ -45,6 +45,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
+                txtMaVTTG.ExistRowInTable();
+                txtMaQG.ExistRowInTable();
+
                 txttk_vt.ExistRowInTable();
                 txttk_dt.ExistRowInTable();
                 txttk_gv.ExistRowInTable();

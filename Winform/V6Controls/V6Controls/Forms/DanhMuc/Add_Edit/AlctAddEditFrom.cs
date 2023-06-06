@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Controls.Forms.Editor;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -111,5 +116,46 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             DoEditXml();
         }
 
+
+        private Dictionary<string, AlbcFieldInfo> GetSourceFieldsInfo1()
+        {
+            var amStruct = V6BusinessHelper.GetTableStruct(txtAM.Text);
+            return V6ControlFormHelper.GetSourceFieldsInfo(amStruct);
+        }
+        private Dictionary<string, AlbcFieldInfo> GetSourceFieldsInfo2()
+        {
+            var adStruct = V6BusinessHelper.GetTableStruct(txtAD.Text);
+            return V6ControlFormHelper.GetSourceFieldsInfo(adStruct);
+        }
+        
+
+        private void btnGRDS_V1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Dictionary<string, AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
+                Dictionary<string, AlbcFieldInfo> targetInfoList = V6ControlFormHelper.GetTargetFieldsInfo(sourceFields, txtShowFields1.Text, txtFormats1.Text, txtHeaderV1.Text, txtHeaderE1.Text, "");
+
+                V6ControlFormHelper.SelectFields(this, sourceFields, targetInfoList, txtShowFields1, txtFormats1, txtHeaderV1, txtHeaderE1);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnGRDS_V1_Click", ex);
+            }
+        }
+
+        private void btnGRDS_V2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Dictionary<string, AlbcFieldInfo> sourceFields = GetSourceFieldsInfo2();
+                Dictionary<string, AlbcFieldInfo> targetInfoList = V6ControlFormHelper.GetTargetFieldsInfo(sourceFields, txtShowFields2.Text, txtFormats2.Text, txtHeaderV2.Text, txtHeaderE2.Text, "");
+                V6ControlFormHelper.SelectFields(this, sourceFields, targetInfoList, txtShowFields2, txtFormats2, txtHeaderV2, txtHeaderE2);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnGRDS_V2_Click", ex);
+            }
+        }
     }
 }

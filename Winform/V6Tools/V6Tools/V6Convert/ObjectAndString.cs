@@ -879,7 +879,7 @@ namespace V6Tools.V6Convert
                 int index = s.IndexOf(element_char);
                 if (index > 0)
                 {
-                    result.Add(s.Substring(0, index), s.Substring(index+1));
+                    result[s.Substring(0, index)] = s.Substring(index+1);
                 }
                 else
                 {

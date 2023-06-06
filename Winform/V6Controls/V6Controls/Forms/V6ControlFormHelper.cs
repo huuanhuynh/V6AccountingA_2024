@@ -223,6 +223,73 @@ namespace V6Controls.Forms
             
         }
 
+        /// <summary>
+        /// hàm hỗ trợ tạo form chọn fields.
+        /// </summary>
+        /// <param name="sourceFields"></param>
+        /// <param name="ssss">show fields</param>
+        /// <param name="ffff">format C100;N2..</param>
+        /// <param name="vvvv">tiêu đề Việt</param>
+        /// <param name="eeee">tiêu đề Anh</param>
+        /// <param name="tttt">no sum?</param>
+        /// <returns></returns>
+        public static Dictionary<string, AlbcFieldInfo> GetTargetFieldsInfo(Dictionary<string, AlbcFieldInfo> sourceFields,
+            string ssss, string ffff, string vvvv, string eeee, string tttt)
+        {
+            var targetInfoList = new Dictionary<string, AlbcFieldInfo>();
+            var sss = ObjectAndString.SplitString(ssss);
+            var fff = ObjectAndString.SplitString(ffff);    //  N0:100;C200;D250...
+            var vvv = ObjectAndString.SplitString(vvvv);
+            var eee = ObjectAndString.SplitString(eeee);
+            var ttt = ObjectAndString.SplitString(tttt);
+            for (int i = 0; i < sss.Length; i++)
+            {
+                string field = sss[i];
+                string FIELD = field.Trim().ToUpper();
+
+                string fhv = vvv.Length <= i ? CorpLan2.GetFieldHeader(FIELD, "V") : vvv[i];
+                string fhe = eee.Length <= i ? CorpLan2.GetFieldHeader(FIELD, "E") : eee[i];
+                bool fns = ttt.Length > i && ttt.Contains(FIELD);
+
+                AlbcFieldInfo fi = new AlbcFieldInfo()
+                {
+                    FieldName = FIELD,
+                    //FieldType = ft,
+                    //FieldWidth = fw,
+                    FieldHeaderV = fhv,
+                    FieldHeaderE = fhe,
+                    FieldNoSum = fns,
+                };
+
+                if (fff.Length > i || !sourceFields.ContainsKey(FIELD)) // ưu tiên fff
+                {
+                    string f = "C100";
+                    if (fff.Length > i) f = fff[i];
+
+                    string fts = f.Substring(0, 1);
+                    string fws = f.Substring(1);
+                    if (fts == "N")
+                    {
+                        if (f.Length > 1) fts = f.Substring(0, 2);
+                        if (f.Length > 2) fws = f.Substring(3);
+                        else fws = "100";
+                    }
+                    var ft = EnumConvert.FromString<AlbcFieldType>(fts);
+                    int fw = ObjectAndString.ObjectToInt(fws);
+                    fi.FieldType = ft;
+                    fi.FieldWidth = fw;
+                }
+                else if (sourceFields.ContainsKey(FIELD))
+                {
+                    var sf = sourceFields[FIELD];
+                    fi.FieldType = sf.FieldType;
+                    fi.FieldWidth = sf.FieldWidth;
+                }
+                targetInfoList[FIELD] = fi;
+            }
+            return targetInfoList;
+        }
+
         public static void RemoveTagString(Control control, string tagString)
         {
             var checkTagString = ";" + tagString + ";";
@@ -1779,6 +1846,41 @@ namespace V6Controls.Forms
             }
             return result;
         }
+
+        public static Dictionary<string, AlbcFieldInfo> GetSourceFieldsInfo(V6TableStruct data1)
+        {
+            Dictionary<string, AlbcFieldInfo> result = new Dictionary<string, AlbcFieldInfo>();
+            try
+            {
+                if (data1 != null)
+                {
+                    foreach (KeyValuePair<string,V6ColumnStruct> item in data1)
+                    {
+                        var column = item.Value;
+                        AlbcFieldInfo fi = new AlbcFieldInfo();
+                        string FIELD = item.Key;
+                        fi.FieldName = FIELD;
+                        result[FIELD] = fi;
+                        if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N0;
+                        else if (column.DataType == typeof(DateTime)) fi.FieldType = AlbcFieldType.D;
+                        else fi.FieldType = AlbcFieldType.C;
+
+                        {
+                            fi.FieldWidth = 100;
+                        }
+
+                        fi.FieldHeaderV = CorpLan2.GetFieldHeader(fi.FieldName, "V");
+                        fi.FieldHeaderE = CorpLan2.GetFieldHeader(fi.FieldName, "E");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMainMessage(ex.Message);
+            }
+            return result;
+        }
+
         #endregion select
 
         #region ==== SEND ====

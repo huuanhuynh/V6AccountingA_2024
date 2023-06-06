@@ -47,10 +47,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblMaSo = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.v6NumberTextBox5 = new V6Controls.V6NumberTextBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.txtType = new V6Controls.V6VvarTextBox();
+            this.lblDau = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.txtDau = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox4 = new V6Controls.V6NumberTextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -63,7 +68,10 @@
             this.txtcach_tinh = new V6Controls.V6VvarTextBox();
             this.txtkind = new V6Controls.V6NumberTextBox();
             this.groupBoxB = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.numLoaiInput = new V6Controls.V6NumberTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -75,6 +83,9 @@
             this.txtTK = new V6Controls.V6VvarTextBox();
             this.lblTaiKhoan = new System.Windows.Forms.Label();
             this.groupBoxC = new System.Windows.Forms.GroupBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.numLayPlus = new V6Controls.V6NumberTextBox();
+            this.label39 = new System.Windows.Forms.Label();
             this.v6VvarTextBox5 = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox6 = new V6Controls.V6VvarTextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -124,8 +135,6 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.txtDau = new V6Controls.V6NumberTextBox();
-            this.lblDau = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -142,11 +151,11 @@
             this.groupBox2.Controls.Add(this.chkStatus);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(7, 145);
+            this.groupBox2.Location = new System.Drawing.Point(7, 132);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBox2.Size = new System.Drawing.Size(788, 81);
+            this.groupBox2.Size = new System.Drawing.Size(788, 69);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -157,7 +166,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6CheckBox1.AutoSize = true;
-            this.v6CheckBox1.Location = new System.Drawing.Point(132, 47);
+            this.v6CheckBox1.Location = new System.Drawing.Point(132, 41);
             this.v6CheckBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6CheckBox1.Name = "v6CheckBox1";
             this.v6CheckBox1.Size = new System.Drawing.Size(31, 21);
@@ -195,7 +204,7 @@
             // 
             this.label10.AccessibleDescription = "ADDEDITL00494";
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 48);
+            this.label10.Location = new System.Drawing.Point(9, 42);
             this.label10.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(50, 17);
@@ -220,7 +229,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox1.Size = new System.Drawing.Size(788, 137);
+            this.groupBox1.Size = new System.Drawing.Size(788, 123);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -241,7 +250,6 @@
             this.txtstt.AccessibleName = "STT";
             this.txtstt.BackColor = System.Drawing.Color.White;
             this.txtstt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtstt.DecimalPlaces = 0;
             this.txtstt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtstt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtstt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -263,7 +271,7 @@
             // 
             this.label4.AccessibleDescription = "ADDEDITL00004";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 106);
+            this.label4.Location = new System.Drawing.Point(9, 94);
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 17);
@@ -280,7 +288,7 @@
             this.txtFileMauBc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtFileMauBc.HoverColor = System.Drawing.Color.Yellow;
             this.txtFileMauBc.LeaveColor = System.Drawing.Color.White;
-            this.txtFileMauBc.Location = new System.Drawing.Point(132, 103);
+            this.txtFileMauBc.Location = new System.Drawing.Point(132, 91);
             this.txtFileMauBc.Name = "txtFileMauBc";
             this.txtFileMauBc.Size = new System.Drawing.Size(628, 23);
             this.txtFileMauBc.TabIndex = 11;
@@ -295,7 +303,7 @@
             this.txtTenMauBc2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTenMauBc2.HoverColor = System.Drawing.Color.Yellow;
             this.txtTenMauBc2.LeaveColor = System.Drawing.Color.White;
-            this.txtTenMauBc2.Location = new System.Drawing.Point(132, 74);
+            this.txtTenMauBc2.Location = new System.Drawing.Point(132, 66);
             this.txtTenMauBc2.Name = "txtTenMauBc2";
             this.txtTenMauBc2.Size = new System.Drawing.Size(628, 23);
             this.txtTenMauBc2.TabIndex = 9;
@@ -326,7 +334,7 @@
             this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(445, 45);
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(445, 41);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
             this.v6VvarTextBox1.Size = new System.Drawing.Size(134, 23);
             this.v6VvarTextBox1.TabIndex = 7;
@@ -342,7 +350,7 @@
             this.txtMaSo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaSo.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaSo.LeaveColor = System.Drawing.Color.White;
-            this.txtMaSo.Location = new System.Drawing.Point(132, 45);
+            this.txtMaSo.Location = new System.Drawing.Point(132, 41);
             this.txtMaSo.Name = "txtMaSo";
             this.txtMaSo.Size = new System.Drawing.Size(134, 23);
             this.txtMaSo.TabIndex = 5;
@@ -351,7 +359,7 @@
             // 
             this.label5.AccessibleDescription = "ADDEDITL00492";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 77);
+            this.label5.Location = new System.Drawing.Point(9, 69);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 17);
@@ -375,7 +383,7 @@
             this.label11.AccessibleDescription = "ADDEDITL00491";
             this.label11.AccessibleName = "";
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(321, 48);
+            this.label11.Location = new System.Drawing.Point(321, 44);
             this.label11.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(86, 17);
@@ -387,7 +395,7 @@
             this.lblMaSo.AccessibleDescription = "ADDEDITL00489";
             this.lblMaSo.AccessibleName = "";
             this.lblMaSo.AutoSize = true;
-            this.lblMaSo.Location = new System.Drawing.Point(9, 48);
+            this.lblMaSo.Location = new System.Drawing.Point(9, 44);
             this.lblMaSo.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblMaSo.Name = "lblMaSo";
             this.lblMaSo.Size = new System.Drawing.Size(46, 17);
@@ -396,6 +404,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label37);
+            this.groupBox3.Controls.Add(this.v6NumberTextBox5);
+            this.groupBox3.Controls.Add(this.label36);
             this.groupBox3.Controls.Add(this.txtType);
             this.groupBox3.Controls.Add(this.lblDau);
             this.groupBox3.Controls.Add(this.lblType);
@@ -413,13 +424,58 @@
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.txtcach_tinh);
             this.groupBox3.Controls.Add(this.txtkind);
-            this.groupBox3.Location = new System.Drawing.Point(7, 397);
+            this.groupBox3.Location = new System.Drawing.Point(7, 386);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox3.Size = new System.Drawing.Size(788, 165);
+            this.groupBox3.Size = new System.Drawing.Size(788, 181);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(177, 126);
+            this.label37.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(247, 17);
+            this.label37.TabIndex = 25;
+            this.label37.Text = "0: Cấn trừ  1: Nợ  2: Có  3: Cấn trừ > 0";
+            // 
+            // v6NumberTextBox5
+            // 
+            this.v6NumberTextBox5.AccessibleName = "LOAI_DU_TK";
+            this.v6NumberTextBox5.BackColor = System.Drawing.Color.White;
+            this.v6NumberTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6NumberTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox5.HoverColor = System.Drawing.Color.Yellow;
+            this.v6NumberTextBox5.LeaveColor = System.Drawing.Color.White;
+            this.v6NumberTextBox5.LimitCharacters = "0;1;2;3";
+            this.v6NumberTextBox5.Location = new System.Drawing.Point(134, 123);
+            this.v6NumberTextBox5.MaxLength = 1;
+            this.v6NumberTextBox5.Name = "v6NumberTextBox5";
+            this.v6NumberTextBox5.Size = new System.Drawing.Size(31, 23);
+            this.v6NumberTextBox5.TabIndex = 24;
+            this.v6NumberTextBox5.Text = "1";
+            this.v6NumberTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6NumberTextBox5.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label36
+            // 
+            this.label36.AccessibleDescription = "ADDEDITL00494";
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(9, 126);
+            this.label36.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(55, 17);
+            this.label36.TabIndex = 23;
+            this.label36.Text = "Loại dư";
             // 
             // txtType
             // 
@@ -435,6 +491,17 @@
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(240, 23);
             this.txtType.TabIndex = 22;
+            // 
+            // lblDau
+            // 
+            this.lblDau.AccessibleName = "";
+            this.lblDau.AutoSize = true;
+            this.lblDau.Location = new System.Drawing.Point(468, 103);
+            this.lblDau.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblDau.Name = "lblDau";
+            this.lblDau.Size = new System.Drawing.Size(34, 17);
+            this.lblDau.TabIndex = 19;
+            this.lblDau.Text = "Dấu";
             // 
             // lblType
             // 
@@ -469,12 +536,34 @@
             this.label22.TabIndex = 21;
             this.label22.Text = "1: Công nợ,      0: Không";
             // 
+            // txtDau
+            // 
+            this.txtDau.AccessibleName = "DAU";
+            this.txtDau.BackColor = System.Drawing.Color.White;
+            this.txtDau.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDau.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDau.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDau.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDau.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDau.LeaveColor = System.Drawing.Color.White;
+            this.txtDau.Location = new System.Drawing.Point(520, 100);
+            this.txtDau.MaxLength = 1;
+            this.txtDau.Name = "txtDau";
+            this.txtDau.Size = new System.Drawing.Size(31, 23);
+            this.txtDau.TabIndex = 20;
+            this.txtDau.Text = "1";
+            this.txtDau.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDau.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // v6NumberTextBox4
             // 
             this.v6NumberTextBox4.AccessibleName = "LOAI_CN";
             this.v6NumberTextBox4.BackColor = System.Drawing.Color.White;
             this.v6NumberTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox4.DecimalPlaces = 0;
             this.v6NumberTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -521,7 +610,6 @@
             this.v6NumberTextBox1.AccessibleName = "LOAI_SD";
             this.v6NumberTextBox1.BackColor = System.Drawing.Color.White;
             this.v6NumberTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox1.DecimalPlaces = 0;
             this.v6NumberTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -593,7 +681,7 @@
             // 
             this.label15.AccessibleDescription = "ADDEDITL00421";
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(9, 127);
+            this.label15.Location = new System.Drawing.Point(9, 155);
             this.label15.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(72, 17);
@@ -610,7 +698,7 @@
             this.txtcach_tinh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtcach_tinh.HoverColor = System.Drawing.Color.Yellow;
             this.txtcach_tinh.LeaveColor = System.Drawing.Color.White;
-            this.txtcach_tinh.Location = new System.Drawing.Point(132, 124);
+            this.txtcach_tinh.Location = new System.Drawing.Point(132, 152);
             this.txtcach_tinh.Name = "txtcach_tinh";
             this.txtcach_tinh.Size = new System.Drawing.Size(628, 23);
             this.txtcach_tinh.TabIndex = 15;
@@ -620,7 +708,6 @@
             this.txtkind.AccessibleName = "KIND";
             this.txtkind.BackColor = System.Drawing.Color.White;
             this.txtkind.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtkind.DecimalPlaces = 0;
             this.txtkind.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtkind.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtkind.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -643,7 +730,10 @@
             // 
             // groupBoxB
             // 
+            this.groupBoxB.Controls.Add(this.label3);
             this.groupBoxB.Controls.Add(this.label8);
+            this.groupBoxB.Controls.Add(this.numLoaiInput);
+            this.groupBoxB.Controls.Add(this.label2);
             this.groupBoxB.Controls.Add(this.label7);
             this.groupBoxB.Controls.Add(this.label18);
             this.groupBoxB.Controls.Add(this.label1);
@@ -654,14 +744,24 @@
             this.groupBoxB.Controls.Add(this.label14);
             this.groupBoxB.Controls.Add(this.txtTK);
             this.groupBoxB.Controls.Add(this.lblTaiKhoan);
-            this.groupBoxB.Location = new System.Drawing.Point(7, 229);
+            this.groupBoxB.Location = new System.Drawing.Point(7, 204);
             this.groupBoxB.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBoxB.Name = "groupBoxB";
             this.groupBoxB.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBoxB.Size = new System.Drawing.Size(788, 81);
+            this.groupBoxB.Size = new System.Drawing.Size(788, 100);
             this.groupBoxB.TabIndex = 2;
             this.groupBoxB.TabStop = false;
             this.groupBoxB.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(180, 77);
+            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(304, 17);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "0: Tính  1: Nhập ĐN  2: Cuối kỳ  3: Nhập cả hai";
             // 
             // label8
             // 
@@ -673,6 +773,41 @@
             this.label8.Size = new System.Drawing.Size(203, 17);
             this.label8.TabIndex = 0;
             this.label8.Text = "1: Ngoại bảng,   0: Trong bảng";
+            // 
+            // numLoaiInput
+            // 
+            this.numLoaiInput.AccessibleName = "LOAI_INPUT";
+            this.numLoaiInput.BackColor = System.Drawing.Color.White;
+            this.numLoaiInput.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.numLoaiInput.EnterColor = System.Drawing.Color.PaleGreen;
+            this.numLoaiInput.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.numLoaiInput.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.numLoaiInput.HoverColor = System.Drawing.Color.Yellow;
+            this.numLoaiInput.LeaveColor = System.Drawing.Color.White;
+            this.numLoaiInput.LimitCharacters = "0;1;2;3";
+            this.numLoaiInput.Location = new System.Drawing.Point(132, 74);
+            this.numLoaiInput.MaxLength = 1;
+            this.numLoaiInput.Name = "numLoaiInput";
+            this.numLoaiInput.Size = new System.Drawing.Size(31, 23);
+            this.numLoaiInput.TabIndex = 5;
+            this.numLoaiInput.Text = "1";
+            this.numLoaiInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numLoaiInput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AccessibleDescription = "ADDEDITL00494";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 77);
+            this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Loại input";
             // 
             // label7
             // 
@@ -712,7 +847,6 @@
             this.v6NumberTextBox3.AccessibleName = "NGOAI_BANG";
             this.v6NumberTextBox3.BackColor = System.Drawing.Color.White;
             this.v6NumberTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox3.DecimalPlaces = 0;
             this.v6NumberTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -737,7 +871,6 @@
             this.v6NumberTextBox2.AccessibleName = "TS_NV";
             this.v6NumberTextBox2.BackColor = System.Drawing.Color.White;
             this.v6NumberTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox2.DecimalPlaces = 0;
             this.v6NumberTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -773,7 +906,6 @@
             this.txtCongNo.AccessibleName = "CONG_NO";
             this.txtCongNo.BackColor = System.Drawing.Color.White;
             this.txtCongNo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtCongNo.DecimalPlaces = 0;
             this.txtCongNo.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtCongNo.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtCongNo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -834,11 +966,14 @@
             // 
             // groupBoxC
             // 
+            this.groupBoxC.Controls.Add(this.label38);
+            this.groupBoxC.Controls.Add(this.numLayPlus);
+            this.groupBoxC.Controls.Add(this.label39);
             this.groupBoxC.Controls.Add(this.v6VvarTextBox5);
             this.groupBoxC.Controls.Add(this.v6VvarTextBox6);
             this.groupBoxC.Controls.Add(this.label26);
             this.groupBoxC.Controls.Add(this.label27);
-            this.groupBoxC.Location = new System.Drawing.Point(7, 313);
+            this.groupBoxC.Location = new System.Drawing.Point(7, 310);
             this.groupBoxC.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBoxC.Name = "groupBoxC";
             this.groupBoxC.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
@@ -846,6 +981,51 @@
             this.groupBoxC.TabIndex = 3;
             this.groupBoxC.TabStop = false;
             this.groupBoxC.Visible = false;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(559, 19);
+            this.label38.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(170, 34);
+            this.label38.TabIndex = 28;
+            this.label38.Text = "1: Chỉ lấy > 0,  0: Không\r\n2: Cấn trừ theo ngành > 0";
+            // 
+            // numLayPlus
+            // 
+            this.numLayPlus.AccessibleName = "LAY_PLUS";
+            this.numLayPlus.BackColor = System.Drawing.Color.White;
+            this.numLayPlus.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.numLayPlus.EnterColor = System.Drawing.Color.PaleGreen;
+            this.numLayPlus.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.numLayPlus.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.numLayPlus.HoverColor = System.Drawing.Color.Yellow;
+            this.numLayPlus.LeaveColor = System.Drawing.Color.White;
+            this.numLayPlus.LimitCharacters = "0;1;2";
+            this.numLayPlus.Location = new System.Drawing.Point(520, 16);
+            this.numLayPlus.MaxLength = 1;
+            this.numLayPlus.Name = "numLayPlus";
+            this.numLayPlus.Size = new System.Drawing.Size(31, 23);
+            this.numLayPlus.TabIndex = 27;
+            this.numLayPlus.Text = "1";
+            this.numLayPlus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numLayPlus.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label39
+            // 
+            this.label39.AccessibleDescription = "ADDEDITL00494";
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(456, 19);
+            this.label39.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(55, 17);
+            this.label39.TabIndex = 26;
+            this.label39.Text = "Lấy > 0";
             // 
             // v6VvarTextBox5
             // 
@@ -859,7 +1039,7 @@
             this.v6VvarTextBox5.LeaveColor = System.Drawing.Color.White;
             this.v6VvarTextBox5.Location = new System.Drawing.Point(90, 46);
             this.v6VvarTextBox5.Name = "v6VvarTextBox5";
-            this.v6VvarTextBox5.Size = new System.Drawing.Size(670, 23);
+            this.v6VvarTextBox5.Size = new System.Drawing.Size(355, 23);
             this.v6VvarTextBox5.TabIndex = 8;
             // 
             // v6VvarTextBox6
@@ -874,7 +1054,7 @@
             this.v6VvarTextBox6.LeaveColor = System.Drawing.Color.White;
             this.v6VvarTextBox6.Location = new System.Drawing.Point(90, 19);
             this.v6VvarTextBox6.Name = "v6VvarTextBox6";
-            this.v6VvarTextBox6.Size = new System.Drawing.Size(670, 23);
+            this.v6VvarTextBox6.Size = new System.Drawing.Size(355, 23);
             this.v6VvarTextBox6.TabIndex = 6;
             // 
             // label26
@@ -1050,7 +1230,7 @@
             this.txtSLS6.Name = "txtSLS6";
             this.txtSLS6.Size = new System.Drawing.Size(200, 23);
             this.txtSLS6.TabIndex = 137;
-            this.txtSLS6.Text = "0,000";
+            this.txtSLS6.Text = "0";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS6.Value = new decimal(new int[] {
             0,
@@ -1073,7 +1253,7 @@
             this.txtSLS5.Name = "txtSLS5";
             this.txtSLS5.Size = new System.Drawing.Size(200, 23);
             this.txtSLS5.TabIndex = 135;
-            this.txtSLS5.Text = "0,000";
+            this.txtSLS5.Text = "0";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS5.Value = new decimal(new int[] {
             0,
@@ -1096,7 +1276,7 @@
             this.txtSLS4.Name = "txtSLS4";
             this.txtSLS4.Size = new System.Drawing.Size(200, 23);
             this.txtSLS4.TabIndex = 133;
-            this.txtSLS4.Text = "0,000";
+            this.txtSLS4.Text = "0";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS4.Value = new decimal(new int[] {
             0,
@@ -1374,7 +1554,7 @@
             this.v6NumberTextBox6.Name = "v6NumberTextBox6";
             this.v6NumberTextBox6.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox6.TabIndex = 107;
-            this.v6NumberTextBox6.Text = "0,000";
+            this.v6NumberTextBox6.Text = "0";
             this.v6NumberTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox6.Value = new decimal(new int[] {
             0,
@@ -1397,7 +1577,7 @@
             this.v6NumberTextBox7.Name = "v6NumberTextBox7";
             this.v6NumberTextBox7.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox7.TabIndex = 105;
-            this.v6NumberTextBox7.Text = "0,000";
+            this.v6NumberTextBox7.Text = "0";
             this.v6NumberTextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox7.Value = new decimal(new int[] {
             0,
@@ -1420,7 +1600,7 @@
             this.v6NumberTextBox8.Name = "v6NumberTextBox8";
             this.v6NumberTextBox8.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox8.TabIndex = 103;
-            this.v6NumberTextBox8.Text = "0,000";
+            this.v6NumberTextBox8.Text = "0";
             this.v6NumberTextBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox8.Value = new decimal(new int[] {
             0,
@@ -1620,41 +1800,6 @@
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
             // 
-            // txtDau
-            // 
-            this.txtDau.AccessibleName = "DAU";
-            this.txtDau.BackColor = System.Drawing.Color.White;
-            this.txtDau.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDau.DecimalPlaces = 0;
-            this.txtDau.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtDau.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtDau.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtDau.HoverColor = System.Drawing.Color.Yellow;
-            this.txtDau.LeaveColor = System.Drawing.Color.White;
-            this.txtDau.Location = new System.Drawing.Point(520, 100);
-            this.txtDau.MaxLength = 1;
-            this.txtDau.Name = "txtDau";
-            this.txtDau.Size = new System.Drawing.Size(31, 23);
-            this.txtDau.TabIndex = 20;
-            this.txtDau.Text = "1";
-            this.txtDau.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDau.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // lblDau
-            // 
-            this.lblDau.AccessibleName = "";
-            this.lblDau.AutoSize = true;
-            this.lblDau.Location = new System.Drawing.Point(468, 103);
-            this.lblDau.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.lblDau.Name = "lblDau";
-            this.lblDau.Size = new System.Drawing.Size(34, 17);
-            this.lblDau.TabIndex = 19;
-            this.lblDau.Text = "Dấu";
-            // 
             // AlmaubcCt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1783,5 +1928,14 @@
         private V6VvarTextBox txtType;
         private System.Windows.Forms.Label lblDau;
         private V6NumberTextBox txtDau;
+        private V6NumberTextBox numLoaiInput;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private V6NumberTextBox v6NumberTextBox5;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private V6NumberTextBox numLayPlus;
+        private System.Windows.Forms.Label label39;
     }
 }

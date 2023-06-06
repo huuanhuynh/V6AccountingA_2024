@@ -40,7 +40,7 @@
             this.btnTestDatabaseConfig = new System.Windows.Forms.Button();
             this.btnTestCungTron = new System.Windows.Forms.Button();
             this.btnFileFilter = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnTestDic = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
@@ -178,14 +178,15 @@
             this.btnFileFilter.UseVisualStyleBackColor = true;
             this.btnFileFilter.Click += new System.EventHandler(this.btnFileFilter_Click);
             // 
-            // button12
+            // btnTestDic
             // 
-            this.button12.Location = new System.Drawing.Point(12, 331);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(100, 23);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "button1";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnTestDic.Location = new System.Drawing.Point(12, 331);
+            this.btnTestDic.Name = "btnTestDic";
+            this.btnTestDic.Size = new System.Drawing.Size(100, 23);
+            this.btnTestDic.TabIndex = 0;
+            this.btnTestDic.Text = "Test Dic";
+            this.btnTestDic.UseVisualStyleBackColor = true;
+            this.btnTestDic.Click += new System.EventHandler(this.btnTestDic_Click);
             // 
             // button13
             // 
@@ -428,7 +429,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.btnModelHelp);
-            this.Controls.Add(this.button12);
+            this.Controls.Add(this.btnTestDic);
             this.Controls.Add(this.btnParseDecimal);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.btnFileFilter);
@@ -477,7 +478,7 @@
         private System.Windows.Forms.Button btnTestDatabaseConfig;
         private System.Windows.Forms.Button btnTestCungTron;
         private System.Windows.Forms.Button btnFileFilter;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btnTestDic;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
