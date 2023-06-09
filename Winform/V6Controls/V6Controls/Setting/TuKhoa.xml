@@ -23,8 +23,12 @@
 	<TuKhoa TenTuKhoa='SqlParameter' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
 	<TuKhoa TenTuKhoa='UtilityHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '0' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteProcedure(proc, pList);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
-	<TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteProcedure(proc, plist);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteProcedureNoneQuery(proc, plist);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteSqlDataset(sql, plist);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6BusinessHelper.ExecuteSqlNoneQuery(sql, plist);' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  
+  <TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ColorComboBox ' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ColorDataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ColorTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

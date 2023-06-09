@@ -478,7 +478,7 @@
             this.dateNgay_ct1.LeaveColor = System.Drawing.Color.White;
             this.dateNgay_ct1.Location = new System.Drawing.Point(120, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
-            this.dateNgay_ct1.Size = new System.Drawing.Size(98, 20);
+            this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct1.TabIndex = 0;
             // 
             // dateNgay_ct2
@@ -493,7 +493,7 @@
             this.dateNgay_ct2.LeaveColor = System.Drawing.Color.White;
             this.dateNgay_ct2.Location = new System.Drawing.Point(120, 27);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
-            this.dateNgay_ct2.Size = new System.Drawing.Size(98, 20);
+            this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct2.TabIndex = 1;
             // 
             // label1

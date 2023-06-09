@@ -138,7 +138,7 @@ namespace V6SyncLibrary2021
         /// <summary>
         /// Gán thông báo
         /// </summary>
-        public string _Message = "";
+        public string _Message = "", debug_message = "";
         protected static Random r = new Random();
         #endregion ==== Var ====
 

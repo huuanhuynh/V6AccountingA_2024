@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Xml;
 using V6AccountingBusiness;
@@ -484,7 +485,8 @@ namespace V6SyncLibrary2021
             catch(Exception ex)
             {
                 _Status = Status.Exception;
-                _Message = ex.Message;
+                _Message = ex.Message + debug_message;
+                Logger.WriteExLog("MyThread.EXEC2", ex, "last: " + debug_message, "MyThread");
             }
         }
 
@@ -588,6 +590,9 @@ namespace V6SyncLibrary2021
 
             foreach (DataRow rowc in tb2.Rows)
             {
+                var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " current_data: " + ObjectAndString.DictionaryToXml(insert_data);
 
                 if (_pkey_ma.Split(',').Length - 1 == 0)
                 {
@@ -730,6 +735,9 @@ namespace V6SyncLibrary2021
 
             foreach (DataRow rowc in tb2.Rows)
             {
+                var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " current_data: " + ObjectAndString.DictionaryToXml(insert_data);
 
                 if (_pkey_ma.Split(',').Length - 1 == 0)
                 {
@@ -931,6 +939,9 @@ namespace V6SyncLibrary2021
 
             foreach (DataRow rowc in tb2.Rows)
             {
+                var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " current_data: " + ObjectAndString.DictionaryToXml(insert_data);
 
                 if (_pkey_ma.Split(',').Length - 1 == 0)
                 {
@@ -1328,6 +1339,9 @@ namespace V6SyncLibrary2021
 
             foreach (DataRow rowc in tb2.Rows)
             {
+                var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " current_data: " + ObjectAndString.DictionaryToXml(insert_data);
 
                 if (_pkey_ma.Split(',').Length - 1 == 0)
                 {
@@ -1679,6 +1693,10 @@ namespace V6SyncLibrary2021
 
             foreach (DataRow rowc in tb2.Rows)
             {
+                var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " current_data: " + ObjectAndString.DictionaryToXml(insert_data);
+
                 if (_pkey_ma.Split(',').Length - 1 == 0)
                 {
                     if (tb1.Columns.Contains(_pkey_ma))
@@ -2047,7 +2065,9 @@ namespace V6SyncLibrary2021
                 foreach (DataRow rowc in tb2.Rows)
                 {
                     _Message = _pUnits + " Client->Server :  " + _pAl;
-
+                    var insert_data = rowc.ToDataDictionary();
+                    debug_message = MethodBase.GetCurrentMethod().Name
+                        + " current_data: " + ObjectAndString.DictionaryToXml(insert_data);
                     // INSERT
                     //----------------AM------------------------------
                     _Key_where = "";
@@ -2064,7 +2084,6 @@ namespace V6SyncLibrary2021
                     // INSERT CLIENT
                     if (!check_exist)
                     {
-                        var insert_data = rowc.ToDataDictionary();
                         V6BusinessHelper.InsertC(_CONSTRING_MAIN, _pAl, insert_data);
                     }
 
@@ -2209,7 +2228,9 @@ namespace V6SyncLibrary2021
                     _ngay_ct = ObjectAndString.ObjectToString(rowc["NGAY_CT"]);
 
                 _Message = _pUnits + " Client->Server :  " + _pAm + " : " + _ngay_ct + " -->" + _so_ct.Trim();
-
+                var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " current_data: " + ObjectAndString.DictionaryToXml(insert_data);
 
                 if (_stt_rec != "")
                 {
@@ -2426,7 +2447,9 @@ namespace V6SyncLibrary2021
                     _ngay_ct = ObjectAndString.ObjectToString(rowc["NGAY_CT"]);
 
                 _Message = _pUnits + " Client->Server :  " + _pAm + " : " + _ngay_ct + " -->" + _so_ct.Trim();
-
+                var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " insert_data: " + ObjectAndString.DictionaryToXml(insert_data);
 
                 if (_stt_rec != "")
                 {
@@ -2444,7 +2467,7 @@ namespace V6SyncLibrary2021
                     Delete_Data(_CONSTRING_MAIN, _pAm, "STT_REC='" + _stt_rec + "'");
 
                     // Insert AM
-                    V6BusinessHelper.InsertC(_CONSTRING_MAIN, _pAm, rowc.ToDataDictionary());
+                    V6BusinessHelper.InsertC(_CONSTRING_MAIN, _pAm, insert_data);
 
                     // Insert AD
                     AD_view.RowFilter = "STT_REC= '" + _stt_rec + "'";
@@ -2603,6 +2626,8 @@ namespace V6SyncLibrary2021
                 // INSERT
                 //----------------AM------------------------------
                 var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " insert_data: " + ObjectAndString.DictionaryToXml(insert_data);
                 if (copy_type == "G")
                 {
                     foreach (string field in Sync2ThConfig.fields)
@@ -2785,6 +2810,8 @@ namespace V6SyncLibrary2021
                 // INSERT
                 //----------------AM------------------------------
                 var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " insert_data: " + ObjectAndString.DictionaryToXml(insert_data);
                 if (copy_type == "G")
                 {
                     foreach (string field in Sync2ThConfig.fields)
@@ -2929,12 +2956,11 @@ namespace V6SyncLibrary2021
             foreach (DataRow rowc in tb2.Rows)
             { 
                 _Message = _pUnits + " Client->Server :  " + _pAm;
-                
-                //DataView vtb1 = new DataView(tb3);
-                
                 // INSERT
                 //----------------AM------------------------------
                 var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " insert_data: " + ObjectAndString.DictionaryToXml(insert_data);
                 if (copy_type == "G")
                 {
                     foreach (string field in Sync2ThConfig.fields)
@@ -3080,11 +3106,12 @@ namespace V6SyncLibrary2021
             foreach (DataRow rowc in tb2.Rows)
             {
                 _Message = _pUnits + " Client->Server :  " + _pAm;
-                //DataView vtb1 = new DataView(tb3);
-                    
+                
                 // INSERT
                 //----------------AM------------------------------
                 var insert_data = rowc.ToDataDictionary();
+                debug_message = MethodBase.GetCurrentMethod().Name
+                    + " insert_data: " + ObjectAndString.DictionaryToXml(insert_data);
                 if (copy_type == "G")
                 {
                     foreach (string field in Sync2ThConfig.fields)
@@ -3174,11 +3201,13 @@ namespace V6SyncLibrary2021
                             }
                         }
                     }
+                    debug_message = "data: " + ObjectAndString.DictionaryToXml(insert_data);
                     V6BusinessHelper.InsertC(_CON0, TableName, insert_data);
                 }
                 catch (Exception ex)
                 {
                     _Message += ex.Message;
+                    Logger.WriteExLog("MyThread.Insert_datatable " + TableName, ex, "last: " + debug_message, "MyThread");
                 }
             }
         }

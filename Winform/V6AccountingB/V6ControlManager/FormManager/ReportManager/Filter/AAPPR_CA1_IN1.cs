@@ -79,7 +79,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_BP", "MA_KH", "MA_NX"
+                "MA_DVCS","MA_BP", "MA_KH", "TK"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {

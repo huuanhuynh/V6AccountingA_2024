@@ -6299,6 +6299,12 @@
     <Compile Include="FormManager\ToolManager\FormLogView.designer.cs">
       <DependentUpon>FormLogView.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ToolManager\FormUpdateTableDic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ToolManager\FormUpdateTableDic.designer.cs">
+      <DependentUpon>FormUpdateTableDic.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ToolManager\FormTestInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -9502,6 +9508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormLogView.resx">
       <DependentUpon>FormLogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ToolManager\FormUpdateTableDic.resx">
+      <DependentUpon>FormUpdateTableDic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormTestInvoice.resx">
       <DependentUpon>FormTestInvoice.cs</DependentUpon>

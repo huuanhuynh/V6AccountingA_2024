@@ -51,6 +51,7 @@
             this.chkAutoFixInvoiceVvar = new System.Windows.Forms.CheckBox();
             this.chkMouseRightTriple = new System.Windows.Forms.CheckBox();
             this.grbTools = new System.Windows.Forms.GroupBox();
+            this.btnDataUpdateDic = new System.Windows.Forms.Button();
             this.grbFunctions = new System.Windows.Forms.GroupBox();
             this.btnQuayRa = new System.Windows.Forms.Button();
             this.btnAnyDesk = new System.Windows.Forms.Button();
@@ -313,6 +314,7 @@
             this.grbTools.Controls.Add(this.btnXtraEditor);
             this.grbTools.Controls.Add(this.btnHTMLview);
             this.grbTools.Controls.Add(this.button14);
+            this.grbTools.Controls.Add(this.btnDataUpdateDic);
             this.grbTools.Controls.Add(this.button15);
             this.grbTools.Location = new System.Drawing.Point(141, 157);
             this.grbTools.Name = "grbTools";
@@ -321,6 +323,17 @@
             this.grbTools.TabStop = false;
             this.grbTools.Text = "Công cụ";
             this.grbTools.Visible = false;
+            // 
+            // btnDataUpdateDic
+            // 
+            this.btnDataUpdateDic.Location = new System.Drawing.Point(6, 251);
+            this.btnDataUpdateDic.Name = "btnDataUpdateDic";
+            this.btnDataUpdateDic.Size = new System.Drawing.Size(118, 23);
+            this.btnDataUpdateDic.TabIndex = 15;
+            this.btnDataUpdateDic.Text = "Update Table Dic";
+            this.toolTipV6FormControl.SetToolTip(this.btnDataUpdateDic, "Sửa dữ liệu toàn bộ bảng");
+            this.btnDataUpdateDic.UseVisualStyleBackColor = true;
+            this.btnDataUpdateDic.Click += new System.EventHandler(this.btnDataUpdateDic_Click);
             // 
             // grbFunctions
             // 
@@ -476,5 +489,6 @@
         private System.Windows.Forms.CheckBox chkAllowAdd;
         private System.Windows.Forms.Button btnAnyDesk;
         private System.Windows.Forms.Button btnChuyenMaExcel;
+        private System.Windows.Forms.Button btnDataUpdateDic;
     }
 }

@@ -226,7 +226,7 @@
             // 
             this.chk_tang.AccessibleDescription = "FILTERC00015";
             this.chk_tang.AutoSize = true;
-            this.chk_tang.Location = new System.Drawing.Point(180, 31);
+            this.chk_tang.Location = new System.Drawing.Point(190, 31);
             this.chk_tang.Name = "chk_tang";
             this.chk_tang.Size = new System.Drawing.Size(81, 17);
             this.chk_tang.TabIndex = 6;
@@ -261,9 +261,9 @@
             this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgay_ct2.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct2.Location = new System.Drawing.Point(100, 29);
+            this.dateNgay_ct2.Location = new System.Drawing.Point(80, 29);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
-            this.dateNgay_ct2.Size = new System.Drawing.Size(69, 20);
+            this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct2.TabIndex = 4;
             // 
             // dateNgay_ct1
@@ -274,16 +274,16 @@
             this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgay_ct1.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct1.Location = new System.Drawing.Point(100, 3);
+            this.dateNgay_ct1.Location = new System.Drawing.Point(80, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
-            this.dateNgay_ct1.Size = new System.Drawing.Size(69, 20);
+            this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct1.TabIndex = 1;
             // 
             // chkGiamTru
             // 
             this.chkGiamTru.AccessibleDescription = "FILTERC00013";
             this.chkGiamTru.AutoSize = true;
-            this.chkGiamTru.Location = new System.Drawing.Point(180, 8);
+            this.chkGiamTru.Location = new System.Drawing.Point(190, 8);
             this.chkGiamTru.Name = "chkGiamTru";
             this.chkGiamTru.Size = new System.Drawing.Size(65, 17);
             this.chkGiamTru.TabIndex = 2;

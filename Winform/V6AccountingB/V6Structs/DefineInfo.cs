@@ -211,7 +211,7 @@ namespace V6Structs
         public string ShowName = "";
 
         public bool Visible = true;
-        public bool Enabled { get; set; }
+        public bool Enabled = true;
         public bool Readonly = false;
 
         /// <summary>

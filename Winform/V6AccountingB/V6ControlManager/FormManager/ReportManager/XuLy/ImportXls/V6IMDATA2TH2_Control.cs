@@ -232,6 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 f9Message = "F9Thread_AMAD: " + ex.Message;
+                Logger.WriteExLog(GetType() + ".F9Thread_AMAD", ex);
             }
 
             f9Running = false;

@@ -339,6 +339,9 @@ namespace V6ControlManager.FormManager.ToolManager
             }
         }
 
-       
+        private void btnDataUpdateDic_Click(object sender, EventArgs e)
+        {
+            new FormUpdateTableDic().Show();
+        }
     }
 }
