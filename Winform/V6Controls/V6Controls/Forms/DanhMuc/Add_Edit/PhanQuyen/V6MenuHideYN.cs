@@ -27,10 +27,83 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private void PhanQuyen_Load(object sender, EventArgs e)
         {
             AddItemsMenu();
+            GetCurrentState();
             ready = true;
         }
 
+        Dictionary<TreeListViewItem, CheckState> _currentCheckStateDic = new Dictionary<TreeListViewItem, CheckState>();
+        private void GetCurrentState()
+        {
+            try
+            {
+                foreach (TreeListViewItem item in treeListView1.Items)
+                {
+                    _currentCheckStateDic[item] = item.CheckStatus;
+                    AddChild(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetCurrentState", ex);
+            }
+        }
 
+        private void AddChild(TreeListViewItem titem)
+        {
+            foreach (TreeListViewItem item in titem.Items)
+            {
+                _currentCheckStateDic[item] = item.CheckStatus;
+                AddChild(item);
+            }
+        }
+
+        private void UpdateNewState()
+        {
+            try
+            {
+                string message = "";
+                foreach (KeyValuePair<TreeListViewItem, CheckState> item in _currentCheckStateDic)
+                {
+                    if (item.Key.CheckStatus != item.Value) // nếu khác ban đầu mới update
+                    {
+                        // bỏ qua nếu thay đổi trạng thái giữa nữa vời và uncheck.
+                        switch (item.Value)
+                        {
+                            case CheckState.Unchecked:
+                                if (item.Key.CheckStatus == CheckState.Indeterminate) continue; // bỏ qua
+                                break;
+                            case CheckState.Checked:
+                                
+                                break;
+                            case CheckState.Indeterminate:
+                                if (item.Key.CheckStatus == CheckState.Unchecked) continue; // bỏ qua
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                        SortedDictionary<string, object> key = new SortedDictionary<string, object>();
+                        key.Add("UID", item.Key.Name);
+                        key.Add("Basicright", 0);
+                        SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                        data.Add("HIDE_YN", (item.Key.CheckStatus == CheckState.Checked) ? "1" : "0");
+                        int a = V6BusinessHelper.UpdateSimple(V6TableName.V6menu, data, key);
+
+                        message += "\n" + item.Key.Text + " HIDE_YN=" + data["HIDE_YN"];
+                    }
+                }
+
+                if (message.Length > 0)
+                {
+                    message = V6Text.Updated + message;
+                    ShowMainMessage(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".UpdateNewState", ex);
+            }
+        }
 
         private void AddItemsMenu()
         {
@@ -278,6 +351,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         bool ready = false;
         private void treeListView1_ItemCheckedChanged(TreeListViewItem item, ItemCheckEventArgs e)
         {
+            return;
             //Không thấy sự kiện xảy ra nếu thuộc tính CheckBox = Single
             
             if (ready)
@@ -288,7 +362,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 key.Add("UID", item.Name);
                 key.Add("Basicright", 0);
                 SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                data.Add("HIDE_YN", (e.NewValue == CheckState.Checked) ? "1" : "0");
+                data.Add("HIDE_YN", (item.CheckStatus == CheckState.Checked) ? "1" : "0");
                 int a = V6BusinessHelper.UpdateSimple(V6TableName.V6menu, data, key);
             }
         }
@@ -374,6 +448,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
             if (Mode == V6Mode.View) return;
             GetRights();
+            UpdateNewState();
             DialogResult = DialogResult.OK;
         }
 

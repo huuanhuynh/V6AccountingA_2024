@@ -106,7 +106,6 @@
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
-            this.btnNhan.Visible = false;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
             // V6MenuHideYN
