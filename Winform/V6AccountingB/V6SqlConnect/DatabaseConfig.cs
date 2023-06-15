@@ -79,6 +79,17 @@ namespace V6SqlConnect
             }
         }
 
+        public static string ConnectionString_IPSR
+        {
+            get
+            {
+                var s = "Server=" + IPSRV6Server + ";Database=" + IPSRV6Database + ";User Id=" + IPSRV6UserId
+                    + ";Password=" + V6SqlconnectHelper.DeCrypt(IPSRV6EPassword + check_key) + ";";
+
+                return s;
+            }
+        }
+
         public static string ConfigDataDisplayMember = "Display";
         public static string ConfigDataValueMember = "STT";
 
@@ -177,11 +188,21 @@ namespace V6SqlConnect
                 }
                 //else if (ip_constring != "")
                 //{
-                    
+
                 //}
 
+                if (ConnectionConfigData.Columns.Contains("IPSRV6Name"))
+                {
+                    IPSRV6Name = selectedRow["IPSRV6Name"].ToString().Trim();
+                    IPSRV6Port = selectedRow["IPSRV6Port"].ToString().Trim();
+                    IPSRV6Server = selectedRow["IPSRV6Server"].ToString().Trim();
+                    IPSRV6Database = selectedRow["IPSRV6Database"].ToString().Trim();
+                    IPSRV6UserId = selectedRow["IPSRV6UserId"].ToString().Trim();
+                    IPSRV6EPassword = selectedRow["IPSRV6EPassword"].ToString().Trim();
+                }
 
-                Next1:
+
+                    Next1:
 
                 if (ConnectionConfigData.Columns.Contains("Server2_TH"))
                 {
@@ -395,7 +416,15 @@ namespace V6SqlConnect
         public static string ServerIP = "";
         public static string CheckServer = "";
         public static string PasswordV6 = "Ai0I9gx1t2OUAygIZXqi4g==";
-        
+
+        // Phần lưu IP động
+        public static string IPSRV6Name = "";
+        public static string IPSRV6Port = "";
+        public static string IPSRV6Server = "";
+        public static string IPSRV6Database = "";
+        public static string IPSRV6UserId = "";
+        public static string IPSRV6EPassword = "";
+
         private static bool CheckV6Key()
         {
             if (_v6Key == "V6Soft") return true;

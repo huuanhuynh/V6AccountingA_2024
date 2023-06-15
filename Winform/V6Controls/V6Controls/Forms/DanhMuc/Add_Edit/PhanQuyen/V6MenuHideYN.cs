@@ -251,6 +251,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
 
         private void treeListView1_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
+            return;
             //Sự iện xảy ra quá nhiều.
             try
             {
@@ -262,7 +263,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                     key.Add("UID", uid);
                     key.Add("Basicright", 0);
                     SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                    data.Add("HIDE_YN", _item.Checked ? 1 : 0);
+                    data.Add("HIDE_YN", (_item.CheckStatus == CheckState.Checked) ? 1 : 0);
                     V6BusinessHelper.UpdateSimple(V6TableName.V6menu, data, key);
                 }
                 _item = null;
@@ -277,19 +278,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         bool ready = false;
         private void treeListView1_ItemCheckedChanged(TreeListViewItem item, ItemCheckEventArgs e)
         {
-            //Không thấy sự kiện xảy ra.
-            //if (_item != null)
-            //this.ShowMessage("ItemCheckedChanged " + _item.Checked);
-            //if(ready)
-            ////if (e.NewValue == CheckState.Unchecked)
-            //{
-            //    string itemID = item.Name;
-            //    SortedDictionary<string, object> key = new SortedDictionary<string, object>();
-            //    key.Add("ITEMID", itemID);
-            //    SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-            //    data.Add("HIDE_YN", e.NewValue == CheckState.Checked ? "0" : "1");
-            //    V6BusinessHelper.UpdateSimple(V6TableName.V6menu, data, key);
-            //}
+            //Không thấy sự kiện xảy ra nếu thuộc tính CheckBox = Single
+            
+            if (ready)
+            //if (e.NewValue == CheckState.Unchecked)
+            {
+                string itemID = item.Name;
+                SortedDictionary<string, object> key = new SortedDictionary<string, object>();
+                key.Add("UID", item.Name);
+                key.Add("Basicright", 0);
+                SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                data.Add("HIDE_YN", (e.NewValue == CheckState.Checked) ? "1" : "0");
+                int a = V6BusinessHelper.UpdateSimple(V6TableName.V6menu, data, key);
+            }
         }
 
         

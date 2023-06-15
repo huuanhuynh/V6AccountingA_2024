@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using V6AccountingBusiness;
 using V6AccountingBusiness.V6Init.User;
@@ -237,6 +238,8 @@ namespace V6Init
                     V6Setting.LASTUSERW = userName;
                     V6Setting.LoadSetting(UserId);
                     UserRight = new V6Rights(UserInfo);
+
+                    SaveIP();
                     
                     return true;
                 }
@@ -641,6 +644,10 @@ namespace V6Init
                         row["name"] = "Human Resource Management";
                     else if (row["module_id"].ToString().Trim() == "C")
                         row["name"] = "Customer Relation Management";
+                    else if (row["module_id"].ToString().Trim() == "I")
+                        row["name"] = "Inventory";
+                    else if (row["module_id"].ToString().Trim() == "E")
+                        row["name"] = "ERP";
                 }
                 return moduleTable;
             }
@@ -976,6 +983,66 @@ namespace V6Init
             }
             return null;
         }
+
+        public static void SaveIP()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(DatabaseConfig.IPSRV6Name))
+                {
+                    string ip = GetMyIP();
+                    UpdateMyIP(DatabaseConfig.IPSRV6Name, ip, DatabaseConfig.IPSRV6Port);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        public static string GetMyIP()
+        {
+            String address = "";
+            try
+            {
+                WebRequest request = WebRequest.Create("http://checkip.dyndns.org/");
+                using (WebResponse response = request.GetResponse())
+                using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+                {
+                    address = stream.ReadToEnd();
+                }
+
+                int first = address.IndexOf("Address: ") + 9;
+                int last = address.LastIndexOf("</body>");
+                address = address.Substring(first, last - first);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return address;
+        }
+
+        public static void UpdateMyIP(string name, string new_ip, string extra_port)
+        {
+            SqlParameter[] param =
+            {
+                new SqlParameter("@name", name),
+                new SqlParameter("@ip", new_ip),
+                new SqlParameter("@key", UtilityHelper.EnCrypt(new_ip + extra_port)),
+            };
+            
+            SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString_IPSR, CommandType.Text,
+             "Update V6IP_CUSTS set [IP_NAME]=@ip, "
+            + " [Date2]=CONVERT(smalldatetime, GetDate(), 103), [Time2]=CONVERT(Char(10), GetDate(), 108),"
+            + " [DateTime2] = GetDate(),"
+            + " [Key] = @key"
+            + " Where [name]=@name", param);
+
+
+        }
+
     }
 
     

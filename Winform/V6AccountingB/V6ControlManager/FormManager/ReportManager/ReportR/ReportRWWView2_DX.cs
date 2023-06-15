@@ -1538,7 +1538,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (ReloadData == "1")
                 MakeReport2(PrintMode, PrinterName, _printCopy);
             else
+            {
+                FormatGridView();
                 ViewReport();
+            }
         }
         
         

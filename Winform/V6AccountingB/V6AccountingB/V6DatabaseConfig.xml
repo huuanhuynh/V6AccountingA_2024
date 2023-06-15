@@ -38,11 +38,20 @@
     <Epassword2_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2_TH>
     <Epassword3_TH>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword3_TH>
 
+    <!-- Cấu hình lấy ip lưu trên V6 -->
     <IPName>V6SERVER.2021</IPName>
     <___IPServer>192.168.1.39\SQL2K8,3979</___IPServer>
     <IPDatabase>V6CUST21_IP</IPDatabase>
     <IPUserId>V6ADMsa</IPUserId>
     <IPEPassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</IPEPassword>
+
+    <!-- Cấu hình save ip lên V6 khi khởi động (đang thêm __ để bỏ qua) -->
+    <__IPSRV6Name>V6SERVER.2021</__IPSRV6Name>
+    <IPSRV6Port>,7172</IPSRV6Port>
+      <IPSRV6Server>118.69.183.160\SQL2K8,3979</IPSRV6Server>
+        <IPSRV6Database>V6CUST21_IP</IPSRV6Database>
+          <IPSRV6UserId>V6ADMSA</IPSRV6UserId>
+            <IPSRV6EPassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</IPSRV6EPassword>
 
     <Api>api</Api>
     <Api2>api</Api2>

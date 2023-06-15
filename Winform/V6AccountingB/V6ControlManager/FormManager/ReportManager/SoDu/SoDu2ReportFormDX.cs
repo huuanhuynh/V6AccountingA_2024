@@ -1332,7 +1332,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             if (ReloadData == "1")
                 MakeReport2();
             else
+            {
+                FormatGridView();
                 ViewReport();
+            }
         }
 
         private void btnSuaTTMauBC_Click(object sender, EventArgs e)

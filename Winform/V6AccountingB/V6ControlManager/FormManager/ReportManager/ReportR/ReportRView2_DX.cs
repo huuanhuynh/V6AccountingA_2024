@@ -1658,7 +1658,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (ReloadData == "1")
                 MakeReport2(PrintMode, PrinterName, _printCopy);
             else
+            {
+                FormatGridView();
                 ViewReport();
+            }
         }
 
         private void btnSuaTTMauBC_Click(object sender, EventArgs e)

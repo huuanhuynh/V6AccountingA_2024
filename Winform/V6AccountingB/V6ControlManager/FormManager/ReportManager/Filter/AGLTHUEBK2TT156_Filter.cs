@@ -13,6 +13,9 @@ using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
+    /// <summary>
+    /// Menu: Tổng hợp / Báo cáo thuế / Bản kê hđơn ctừ hh...
+    /// </summary>
     public partial class AGLTHUEBK2TT156_Filter : FilterBase
     {
         public AGLTHUEBK2TT156_Filter()

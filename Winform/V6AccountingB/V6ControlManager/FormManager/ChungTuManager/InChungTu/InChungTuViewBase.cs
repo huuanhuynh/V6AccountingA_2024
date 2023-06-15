@@ -2690,6 +2690,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             else
             {
                 _soLienIn = (int) numSoLien.Value;
+                //FormatGridView();
                 ViewReport();
             }
         }

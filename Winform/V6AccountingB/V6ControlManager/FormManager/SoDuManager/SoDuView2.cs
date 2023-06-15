@@ -897,6 +897,14 @@ namespace V6ControlManager.FormManager.SoDuManager
                     All_Objects["dataGridView2"] = dataGridView2;
                     InvokeFormEvent(FormDynamicEvent.F9);
                 }
+                else if (keyData == Keys.PageUp)
+                {
+                    if (btnPrevious.Enabled) btnPrevious.PerformClick();
+                }
+                else if (keyData == Keys.PageDown)
+                {
+                    if (btnNext.Enabled) btnNext.PerformClick();
+                }
             }
             catch (Exception ex)
             {

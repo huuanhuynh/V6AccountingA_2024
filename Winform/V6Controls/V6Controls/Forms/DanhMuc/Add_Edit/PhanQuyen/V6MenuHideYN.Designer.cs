@@ -52,7 +52,7 @@
             this.treeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Simple;
+            this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
             this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName});
             treeListViewItemCollectionComparer1.Column = 0;
@@ -121,9 +121,6 @@
             this.Name = "V6MenuHideYN";
             this.Text = "V6Menu.Hide_yn";
             this.Load += new System.EventHandler(this.PhanQuyen_Load);
-            this.Controls.SetChildIndex(this.treeListView1, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
             this.ResumeLayout(false);
 
         }
