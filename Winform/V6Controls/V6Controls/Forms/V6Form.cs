@@ -34,7 +34,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Lớp chứa các dynamic_method
         /// </summary>
-        public Type Event_program;
+        public Type Form_program;
         /// <summary>
         /// Các object có thể có trong chữ ký hàm dynamic_method
         /// </summary>
@@ -50,7 +50,7 @@ namespace V6Controls.Forms
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)

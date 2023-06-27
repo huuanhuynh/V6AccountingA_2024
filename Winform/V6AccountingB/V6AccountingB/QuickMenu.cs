@@ -82,7 +82,13 @@ namespace V6AccountingB
                 return;
             }
 
-            view.RowFilter = string.Format("vbar like '%{0}%' or vbar2 like '%{0}%' or ma_ct like '%{0}%'", textBox1.Text);
+            string value = textBox1.Text;
+            value = value.Replace("'", "''");
+            value = value.Replace("[", "[[]");
+            value = value.Replace("*", "[*]");
+
+
+            view.RowFilter = string.Format("vbar like '%{0}%' or vbar2 like '%{0}%' or ma_ct like '%{0}%'", value);
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)

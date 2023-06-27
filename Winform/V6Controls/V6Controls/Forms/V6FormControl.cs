@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Xml;
 using V6AccountingBusiness;
@@ -48,11 +49,18 @@ namespace V6Controls.Forms
         public bool EnableCtrlF12 { get { return _enableCtrlF12; } set { _enableCtrlF12 = value; } }
         protected bool _enableCtrlF12 = true;
 
+        /// <summary>
+        /// Từ đển Event=>Method
+        /// </summary>
         public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        /// <summary>
+        /// Danh sách tên_hàm:hàm trong code động.
+        /// </summary>
+        public Dictionary<string, MethodInfo> Name_Methods = new Dictionary<string, MethodInfo>();
         /// <summary>
         /// Code động.
         /// </summary>
-        public Type Event_program;
+        public Type Form_program;
         public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         /// <summary>
@@ -90,8 +98,10 @@ namespace V6Controls.Forms
             {
                 if (Event_Methods.ContainsKey(eventName))
                 {
+                    All_Objects["thisForm"] = this;
+                    V6ControlFormHelper.SetStatusText("InvokeFormEvent:" + eventName);
                     var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)

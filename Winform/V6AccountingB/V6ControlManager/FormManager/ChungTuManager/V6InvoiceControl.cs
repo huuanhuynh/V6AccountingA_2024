@@ -4336,6 +4336,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 string c_mavitri = row["Ma_vitri"].ToString().Trim();
                 //string c_mavt_makho_malo_mavitri = c_mavt + "~" + c_makho + "~" + c_malo + "~" + c_mavitri;
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                if (c_soluong == 0) continue;
                 //lay thong tin lodate cua mavt
                 bool lo = false, date = false, vitri = false;
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
@@ -4401,6 +4402,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 string c_mavitri = row["Ma_vitri"].ToString().Trim();
                 string c_mavt_makho_malo_mavitri = c_mavt + "~" + c_makho + "~" + c_malo + "~" + c_mavitri;
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                if (c_soluong == 0) continue;
                 //lay thong tin lodate cua mavt
                 bool lo = false, date = false, vitri = false;
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
@@ -4516,6 +4518,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 string c_makho = maKhoX ?? row["Ma_kho_i"].ToString().Trim();
                 string c_malo = row["Ma_lo"].ToString().Trim();
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                if (c_soluong == 0) continue;
                 //lay thong tin lodate cua mavt
                 bool lo = false, date = false;
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
@@ -4597,6 +4600,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 string c_malo = row["Ma_lo"].ToString().Trim();
                 string c_mavt_makho_malo = c_mavt + "~" + c_makho + "~" + c_malo;
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                if (c_soluong == 0) continue;
                 //lay thong tin lodate cua mavt
                 bool lo = false, date = false;
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
@@ -4720,6 +4724,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 string c_makho = maKhoX ?? row["Ma_kho_i"].ToString().Trim();
                 //string c_mavt_makho = c_mavt + "~" + c_makho;
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                if (c_soluong == 0) continue;
 
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("MA_VT", c_mavt);
@@ -4777,6 +4782,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 string c_makho = maKhoX ?? row["Ma_kho_i"].ToString().Trim();
                 string c_mavt_makho = c_mavt + "~" + c_makho;
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                if (c_soluong == 0) continue;
 
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("MA_VT", c_mavt);
@@ -5338,23 +5344,8 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             }
             return "(1=1)";
         }
-
-        /// <summary>
-        /// Từ đển Event=>Method
-        /// </summary>
-        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        /// <summary>
-        /// Danh sách tên_hàm:hàm trong code động.
-        /// </summary>
-        public Dictionary<string, MethodInfo> Name_Methods = new Dictionary<string, MethodInfo>();
-        /// <summary>
-        /// Chương trình build ra từ code động.
-        /// </summary>
-        public Type Event_program;
-        /// <summary>
-        /// Các object dùng làm tham số trong hàm ở code động.
-        /// </summary>
-        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        
+        
         
         public void CreateFormProgram(V6InvoiceBase Invoice)
         {
@@ -5407,9 +5398,9 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 }
 
                 Build:
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + Invoice.Mact, using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + Invoice.Mact, using_text, method_text);
                 // Get Event_program infos
-                var ms = Event_program.GetMethods();
+                var ms = Form_program.GetMethods();
                 for (int i = 0; i < ms.Length; i++)
                 {
                     var m = ms[i];
@@ -5437,7 +5428,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)

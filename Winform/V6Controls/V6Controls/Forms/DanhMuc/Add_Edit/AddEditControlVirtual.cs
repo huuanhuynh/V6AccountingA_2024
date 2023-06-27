@@ -232,7 +232,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             
             All_Objects["thisForm"] = this;
             CreateFormProgram();
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Form_program, All_Objects);
             InvokeFormEvent(FormDynamicEvent.INIT);
             
             LoadAll();
@@ -847,7 +847,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERSAVE))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.AFTERSAVE];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -998,7 +998,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     var method_name = Event_Methods[FormDynamicEvent.VALIDATEDATA];
                     All_Objects["ParentData"] = ParentData;
                     All_Objects["DataOld"] = DataOld;
-                    errors += V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    errors += V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1323,7 +1323,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)

@@ -255,7 +255,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         //        if (Event_Methods.ContainsKey(eventName))
         //        {
         //            var method_name = Event_Methods[eventName];
-        //            return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+        //            return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
         //        }
         //    }
         //    catch (Exception ex1)

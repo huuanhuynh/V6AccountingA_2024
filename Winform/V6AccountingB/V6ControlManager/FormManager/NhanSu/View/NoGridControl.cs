@@ -68,7 +68,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
                 All_Objects["thisForm"] = this;
                 CreateFormProgram();
-                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, null, Event_program, All_Objects);
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, null, Form_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
@@ -115,7 +115,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 }
 
                 Build:
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
             }
             catch (Exception ex)
             {

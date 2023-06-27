@@ -50,40 +50,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         //private V6TableStruct _tStruct;
         public Thread _thread = null;
         
-        /// <summary>
-        /// Danh sách event_method của Form_program.
-        /// </summary>
-        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        private Type Form_program;
-        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-
-        /// <summary>
-        /// Gọi hàm động trong Event_Methods theo tên Event trên form.
-        /// </summary>
-        /// <param name="eventName"></param>
-        /// <returns></returns>
-        protected object InvokeFormEvent(string eventName)
-        {
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey(eventName))
-                {
-                    All_Objects["thisForm"] = this;
-                    V6ControlFormHelper.SetStatusText("InvokeFormEvent:" + eventName);
-                    var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
-                }
-                else
-                {
-                    V6ControlFormHelper.SetStatusText("InvokeFormEvent:" + eventName + "(No code)");
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
-            }
-            return null;
-        }
 
         private void CreateFormProgram()
         {

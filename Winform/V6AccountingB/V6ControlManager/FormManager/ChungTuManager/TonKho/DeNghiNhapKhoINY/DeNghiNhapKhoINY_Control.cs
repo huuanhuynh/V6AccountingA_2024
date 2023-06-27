@@ -679,7 +679,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         _hanSd.Tag = "disable";
                         break;
                 }
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "2");
             }
 
             foreach (AlctControls item in detailControlList1.Values)
@@ -731,7 +731,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 {
                     control.ReadOnlyTag();
                 }
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL2");
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "_DETAIL2");
                 switch (NAME)
                 {
                     case "SO_CT0":
@@ -882,7 +882,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         }
                         break;
                 }
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2_DETAIL2");
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "2_DETAIL2");
             }
             
             foreach (AlctControls control in detailControlList2.Values)
@@ -5794,7 +5794,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 }
                 var chonExcel = new LoadExcelDataForm();
                 chonExcel.CheckDateFields = dateColumns;
-                chonExcel.Program = Event_program;
+                chonExcel.Program = Form_program;
                 chonExcel.All_Objects = All_Objects;
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";
                 chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";

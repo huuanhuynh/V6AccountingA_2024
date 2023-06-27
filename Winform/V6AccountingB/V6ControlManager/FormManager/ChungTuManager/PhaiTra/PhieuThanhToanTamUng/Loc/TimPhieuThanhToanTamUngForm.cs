@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
                 InitTuyChon();
                 InitLocKetQua();
-                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Form_program);
 
                 locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
                 locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);

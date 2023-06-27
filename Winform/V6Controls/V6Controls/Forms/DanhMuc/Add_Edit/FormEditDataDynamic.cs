@@ -675,7 +675,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     using_text += data.Columns.Contains("using") ? event_row["using"] : "";
                     method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                 }
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _MA_DM, using_text, method_text);
+                base.Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _MA_DM, using_text, method_text);
             }
             catch (Exception ex)
             {
@@ -763,7 +763,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.INIT2))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.INIT2];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)

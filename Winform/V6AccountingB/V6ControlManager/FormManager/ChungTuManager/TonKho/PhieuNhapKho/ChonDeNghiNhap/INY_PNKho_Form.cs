@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonDe
             {
                 InitTuyChon();
                 InitLocKetQua();
-                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Form_program);
 
                 panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
                 panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonDe
                 {
                     Text = Text + " " + _locKetQua._aldmConfig.ma_dm + " aldm.TITLE";
                 }
-                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
+                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Form_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)

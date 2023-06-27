@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
                 MyInit_TTCT();
                 InitTuyChon();
                 InitLocKetQua();
-                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Event_program);
+                V6ControlFormHelper.CreateFormProgram(this, _locKetQua._aldmConfig, All_Objects, Event_Methods, out Form_program);
 
                 CreateDynamicFilter_ThongTin(_invoice.AMStruct, _invoice.ADV_AM);
                 CreateDynamicFilter2_ThongTinCT(_invoice.ADStruct, _invoice.ADV_AD);
@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
                 {
                     Text = Text + " " + _locKetQua._aldmConfig.ma_dm + " aldm.TITLE";
                 }
-                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Event_program, All_Objects);
+                V6ControlFormHelper.ApplyDynamicFormControlEvents_ByName(this, Form_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)

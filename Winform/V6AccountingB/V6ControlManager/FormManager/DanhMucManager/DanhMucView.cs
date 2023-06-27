@@ -228,14 +228,14 @@ namespace V6ControlManager.FormManager.DanhMucManager
         public DanhMucView(string itemId, string title, string ma_dm, string initFilter, string sort, AldmConfig aldmConfig)
         {
             m_itemId = itemId;
-            
+
             InitializeComponent();
 
             Title = title;
             _MA_DM = ma_dm.ToUpper();
             _hideColumnDic = _categories.GetHideColumns(ma_dm);
             InitFilter = initFilter;
-            
+
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
@@ -266,7 +266,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 || _MA_DM == "ALNHVV" || _MA_DM == "ALNHVITRI"
                 || _MA_DM == "ALNHPHI" || _MA_DM == "ALNHTS"
                 || _MA_DM == "ALNHCC" || _MA_DM == "ALNHHD"
-                || _MA_DM == "ALNHTK" || _MA_DM == "ALNHKU")
+                || _MA_DM == "ALNHTK" || _MA_DM == "ALNHKU"
+                || _MA_DM == "ALMAGIA"
+                )
             {
                 btnNhom.Enabled = true;
             }
@@ -372,7 +374,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                 All_Objects["thisForm"] = this;
                 CreateFormProgram();
-                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, _MA_DM, Event_program, All_Objects);
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, _MA_DM, Form_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
                 Ready();
             }
@@ -434,7 +436,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
 
             Build:
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
             }
             catch (Exception ex)
             {
@@ -1312,6 +1314,12 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 if (name == V6TableName.Alnhkh)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhkh", "Alkh");
+
+                    form.ShowDialog(this);
+                }
+                if (name == V6TableName.Almagia)
+                {
+                    PhanNhomForm form = new PhanNhomForm("Almagia", "Alkh");
 
                     form.ShowDialog(this);
                 }

@@ -170,7 +170,7 @@ namespace V6Controls.Controls
 
                 All_Objects["thisForm"] = this;
                 //CreateFormProgram();
-                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, _MA_DM, Event_program, All_Objects);
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, _MA_DM, Form_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
                 Ready();
             }

@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 _lookupConfig = V6Lookup.GetV6lookupConfigByTableName(_dataTableName);
                 M_OPTIONS = ObjectAndString.StringToDictionary(V6Options.GetValue("M_V6_ADV_GROUP_F3F4"));
                 LoadDefaultData(2, "", _groupTableNameName, "itemid", "");
-                
+                AddMagiaA();
                 LoadDataThread();
             }
             catch (Exception ex)
@@ -57,11 +57,24 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             }
         }
 
+        private void AddMagiaA()
+        {
+            
+            if (_groupTableNameName.ToUpper() == "ALMAGIA")
+            {
+                comboBox1.Items.Clear();
+            }
+            if (_dataTableName.ToUpper() == "ALKH")
+            {
+                comboBox1.Items.Add("Mã giá A");
+            }
+        }
+
         private string _groupTableNameName, _dataTableName;
         private V6lookupConfig _lookupConfig;
         private string _field = "", _field0 = "", _idField, _idField0;
-        private DataTable _dataGroup = null, _dataSource = null;
-        private DataView _viewGroup, _viewData;
+        private DataTable _dataGroup = null, _dataGroup_Gia = null, _dataSource = null;
+        private DataView _viewGroup, _viewGroup_Gia, _viewData;
         /// <summary>
         /// {TABLENAMEF3:1} {TABLENAMEF4:0}...
         /// </summary>
@@ -88,6 +101,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         private void LoadData()
         {
             _dataGroup = V6BusinessHelper.SelectTable(_groupTableNameName);
+            _dataGroup_Gia = V6BusinessHelper.SelectTable("almagia");
             _dataSource = V6BusinessHelper.SelectTable(_dataTableName);
 
             //CheckChuaPhanNhom();
@@ -110,29 +124,62 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 if (tempView.Count > 0)
                 {
                     //Thêm vào dòng group chưa phân nhóm - nếu chưa có.
-                    DataView tempView2 = new DataView(_dataGroup.Copy());
-                    tempView2.RowFilter = string.Format("Isnull({0},'') = ''", "Ma_nh");
-                    if (tempView2.Count == 0)
+                    if (_field == "MA_GIA")
                     {
-                        for (int i = 1; i <= 9; i++)
+                        DataView tempView2 = new DataView(_dataGroup_Gia.Copy());
+                        tempView2.RowFilter = string.Format("Isnull({0},'') = ''", "MA_GIA");
+                        if (tempView2.Count == 0)
                         {
-                            var newRow = _dataGroup.NewRow();
-                            newRow["Loai_nh"] = "" + i;
-                            newRow["Ma_nh"] = "";
-                            newRow["Ten_nh"] = V6Setting.IsVietnamese ? "Chưa phân nhóm" : "No Group";
-                            _dataGroup.Rows.Add(newRow);
+                            //for (int i = 1; i <= 9; i++)
+                            {
+                                var newRow = _dataGroup_Gia.NewRow();
+                                //newRow["MA_GIA"] = "";
+                                newRow["MA_GIA"] = "";
+                                newRow["Ten_gia"] = V6Setting.IsVietnamese ? "Chưa phân nhóm" : "No Group";
+                                _dataGroup_Gia.Rows.Add(newRow);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DataView tempView2 = new DataView(_dataGroup.Copy());
+                        tempView2.RowFilter = string.Format("Isnull({0},'') = ''", "Ma_nh");
+                        if (tempView2.Count == 0)
+                        {
+                            for (int i = 1; i <= 9; i++)
+                            {
+                                var newRow = _dataGroup.NewRow();
+                                newRow["Loai_nh"] = "" + i;
+                                newRow["Ma_nh"] = "";
+                                newRow["Ten_nh"] = V6Setting.IsVietnamese ? "Chưa phân nhóm" : "No Group";
+                                _dataGroup.Rows.Add(newRow);
+                            }
                         }
                     }
                 }
                 else
                 {
                     //Xóa dòng group chưa phân nhóm
-                    for (int i = _dataGroup.Rows.Count - 1; i >= 0; i--)
+                    if (_field == "MA_GIA")
                     {
-                        var row = _dataGroup.Rows[i];
-                        if (row["Ma_nh"].ToString() == "")
+                        for (int i = _dataGroup_Gia.Rows.Count - 1; i >= 0; i--)
                         {
-                            _dataGroup.Rows.Remove(row);
+                            var row = _dataGroup_Gia.Rows[i];
+                            if (row["MA_GIA"].ToString() == "")
+                            {
+                                _dataGroup_Gia.Rows.Remove(row);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = _dataGroup.Rows.Count - 1; i >= 0; i--)
+                        {
+                            var row = _dataGroup.Rows[i];
+                            if (row["Ma_nh"].ToString() == "")
+                            {
+                                _dataGroup.Rows.Remove(row);
+                            }
                         }
                     }
                 }
@@ -162,7 +209,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                     {
                         comboBox1.CallSelectedIndexChanged(new EventArgs());
                     }
-                    var loai = comboBox1.SelectedIndex + 1;
+                    var loai = comboBox1.Text.Right(1);
                     GetFieldNameInfo(loai);
                     CheckChuaPhanNhom();
                     Ready();
@@ -180,13 +227,21 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             }
         }
 
-        private void GetFieldNameInfo(int loai)
+        private void GetFieldNameInfo(string loai)
         {
             V6TableName name = V6TableHelper.ToV6TableName(_dataTableName);
             if (name == V6TableName.Alkh)
             {
-                _field = "NH_KH" + loai;
-                _idField = "MA_KH";
+                if (loai == "A")
+                {
+                    _field = "MA_GIA";
+                    _idField = "MA_KH";
+                }
+                else
+                {
+                    _field = "NH_KH" + loai;
+                    _idField = "MA_KH";
+                }                
             }
             else if (name == V6TableName.Alvt)
             {
@@ -233,6 +288,11 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 _field = "NH_KU" + loai;
                 _idField = "MA_KU";
             }
+            else if (name == V6TableName.Almagia)
+            {
+                _field = "MA_GIA";
+                _idField = "MA_GIA";
+            }
             else
             {
                 _field = _field0 + loai;
@@ -259,22 +319,63 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             {
                 if (_viewGroup == null)
                     _viewGroup = new DataView(_dataGroup);
-                _viewGroup.RowFilter = "Loai_nh = " + (comboBox1.SelectedIndex + 1);
-                _viewGroup.Sort = "Ma_nh";
+                if (_viewGroup_Gia == null)
+                    _viewGroup_Gia = new DataView(_dataGroup_Gia);
 
-                listBoxMaNh.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
-                listBoxMaNh.ValueMember = "Ma_nh";
-                listBoxMaNh.DataSource = _viewGroup;
-                listBoxMaNh.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
-                listBoxMaNh.ValueMember = "Ma_nh";
+                string filter_field = "Loai_nh";
+                string sort_field = "Ma_nh";
+                string display1 = "Ten_nh", display2 = "Ten_nh2";
+                string value_field = "Ma_nh";
+                if (comboBox1.Text.Right(1) == "A")
+                {
+                    filter_field = "MA_GIA";
+                    sort_field = "MA_GIA";
+                    display1 = "Ten_gia"; display2 = "Ten_gia2";
+                    value_field = "Ma_gia";
 
-                var viewGroup2 = new DataView(_viewGroup.ToTable());
+                    _viewGroup_Gia.RowFilter = "";
+                    _viewGroup_Gia.Sort = sort_field;
 
-                cboToGroupList.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
-                cboToGroupList.ValueMember = "Ma_nh";
-                cboToGroupList.DataSource = viewGroup2;
-                cboToGroupList.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
-                cboToGroupList.ValueMember = "Ma_nh";
+                    listBoxMaNh.DataSource = _viewGroup_Gia;
+                    listBoxMaNh.DisplayMember = V6Setting.IsVietnamese ? display1 : display2;
+                    listBoxMaNh.ValueMember = value_field;
+                    
+                    listBoxMaNh.DisplayMember = V6Setting.IsVietnamese ? display1 : display2;
+                    listBoxMaNh.ValueMember = value_field;
+
+                    var viewGroup_Gia2 = new DataView(_viewGroup_Gia.ToTable());
+                    
+                    cboToGroupList.DataSource = viewGroup_Gia2;
+                    cboToGroupList.DisplayMember = V6Setting.IsVietnamese ? "ten_gia" : "ten_gia2";
+                    cboToGroupList.ValueMember = "ma_gia";
+                }
+                else
+                {
+                    filter_field = "Loai_nh";
+                    sort_field = "Ma_nh";
+                    display1 = "Ten_nh"; display2 = "Ten_nh2";
+                    value_field = "Ma_nh";
+
+                    _viewGroup.RowFilter = filter_field + " = " + (comboBox1.SelectedIndex + 1);
+                    _viewGroup.Sort = sort_field;
+
+                    
+                    listBoxMaNh.DataSource = _viewGroup;
+                    listBoxMaNh.DisplayMember = V6Setting.IsVietnamese ? display1 : display2;
+                    listBoxMaNh.ValueMember = value_field;
+
+                    var viewGroup2 = new DataView(_viewGroup.ToTable());
+
+                    
+                    cboToGroupList.DataSource = viewGroup2;
+                    cboToGroupList.DisplayMember = V6Setting.IsVietnamese ? display1 : display2;
+                    cboToGroupList.ValueMember = value_field;
+                }
+                
+
+                
+
+                
                 
 
                 if (listBoxMaNh.Items.Count > 0)
@@ -327,7 +428,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
-            GetFieldNameInfo(comboBox1.SelectedIndex + 1);
+            GetFieldNameInfo(comboBox1.Text.Right(1));
             if (!_dataSource.Columns.Contains(_field))
             {
                 this.ShowWarningMessage("Loại nhóm không tồn tại!");
@@ -577,8 +678,6 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             try
             {
-                //_dataSource = V6BusinessHelper.SelectTable(_dataTableName);
-                //_dataSource.AddRow(dataDic);
                 _viewData.Table.AddRow(dataDic);
                 ViewData(listBoxMaNh.SelectedValue.ToString().Trim());
             }

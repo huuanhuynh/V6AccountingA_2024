@@ -5473,6 +5473,7 @@ namespace V6Controls.Forms
             if (setting.reportParameters == null) setting.reportParameters = new Dictionary<string, object>();
             ExportExcelGroup_owner = owner;
             setting.data = CookingDataForExcel(setting.data);
+            ExportExcelGroup_setting = setting;
             ExportExcelGroup_ReportFile = ReportFile;
             ExportExcelGroup_ExcelTemplateFileFull = ExcelTemplateFileFull;
             ExportExcelGroup_saveFileName = saveFileName;
