@@ -279,7 +279,8 @@ namespace V6Tools
                     sourceTable.Columns.Contains(KEY) ? data[KEY] : "") ?? DBNull.Value;
                 if (KEY == "UID" || column.DataType == typeof(Guid))
                 {
-                    value = data[KEY].ToString();
+                    if (sourceTable.Columns.Contains("UID")) value = data[KEY].ToString();
+                    else value = DBNull.Value;
                 }
                 
                 newRow[KEY] = value;

@@ -59,7 +59,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <param name="stt_rec"></param>
         /// <param name="am"></param>
         /// <param name="tableName_AM">Tên bảng dữ liệu sẽ được cập nhập (update).</param>
-        /// <param name="fields">FIELD1:Label1:vvar:checkonleave:allwayupdate,FIELD2</param>
+        /// <param name="fields">FIELD1:Label1:vvar:checkonleave:allwayupdate:Field1 like 'a%',FIELD2</param>
         public AAPPR_SOA_F4(string stt_rec, DataRow am, string tableName_AM, string fields = null)
         {
             _sttRec = stt_rec;
@@ -109,6 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         string label = ss[0];
                         string vVar = "";
                         bool checkOnLeave = false;
+                        string filter = "";
                         if (ss.Length > 1)
                         {
                             label = ss[1];
@@ -124,6 +125,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (ss.Length > 4)
                         {
                             if ("1" == ss[4]) _allwayUpdate.Add(field, label);
+                        }
+                        if (ss.Length > 5)
+                        {
+                            filter = ss[5];
                         }
                         _fieldDic.Add(field, label);
 
@@ -149,6 +154,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             F2 = !string.IsNullOrEmpty(vVar),
                             CheckOnLeave = checkOnLeave,
                         };
+                        if (!string.IsNullOrEmpty(filter)) txt.SetInitFilter(filter);
                         V6Label lbl = new V6Label()
                         {
                             Name = "lbl" + field,

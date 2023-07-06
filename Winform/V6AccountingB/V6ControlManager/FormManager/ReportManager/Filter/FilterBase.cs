@@ -706,8 +706,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         protected virtual void GetFilterData()
         {
             FilterData = new SortedDictionary<string, object>();
+            FilterData = GetData();
         }
-
 
         /// <summary>
         /// Lấy danh sách tham số.
@@ -1520,6 +1520,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public virtual void FormatGridView2(V6ColorDataGridView dataGridView2)
         {
             
+        }
+
+        public override SortedDictionary<string, object> GetData()
+        {
+            var data = new SortedDictionary<string, object>();
+            var controls = V6ControlFormHelper.GetAllControls(this);
+            foreach (Control c in controls)
+            {
+                if (c is FilterLineBase)
+                V6ControlFormHelper.FillControlValueToDictionary(data, c);
+            }
+            return data;
         }
 
         /// <summary>

@@ -177,9 +177,10 @@ namespace V6ThuePostManager
         //private static RemoteCommand remoteCommand = null;
         public static string BkavPartnerGUID = "";
         public static string BkavPartnerToken = "";
-        public static int BkavCommandTypeNew = 112;
-        public static int BkavCommandTypeEdit = BkavConst._124_CreateAdjust;
-        public static int BkavCommandTypeEdit2 = BkavConst._126_DieuChinhCK_SoHD_BKAV;
+        public static int BkavCommandTypeNew = BkavConst._112_CreateWithParternSerial;
+        public static int BkavCommandTypeDraf = BkavConst._110_CreateClient;
+        public static int BkavCommandTypeEdit = BkavConst._121_CreateAdjust;
+        public static int BkavCommandTypeEdit2 = BkavConst._124_CreateAdjust;
 
         public static ViettelV2WS viettel_V2WS = null;
         public static VIN_WS vin_WS = null;
@@ -682,8 +683,8 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav("S");
                     int commandTType = BkavCommandTypeEdit;
-                    if (commandTType != BkavConst._121_CreateAdjust && commandTType != BkavConst._124_CreateAdjust
-                        && commandTType != BkavConst._122_DieuChinhCK_KoSoHD && commandTType != BkavConst._126_DieuChinhCK_SoHD_BKAV) commandTType = BkavConst._124_CreateAdjust;
+                    if (commandTType != BkavConst._121_CreateAdjust && commandTType != BkavConst._122_DieuChinhCK_KoSoHD
+                        && commandTType != BkavConst._124_CreateAdjust && commandTType != BkavConst._126_DieuChinhCK_SoHD_BKAV) commandTType = BkavConst._124_CreateAdjust;
                     result = bkavWS.POST(jsonBody, commandTType, out paras.Result.V6ReturnValues);
                     //if (!result.StartsWith("ERR") && V6Infos.ContainsKey("BKAVSIGN") && V6Infos["BKAVSIGN"] == "1")
                     //{
@@ -694,7 +695,8 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav("S");
                     int commandTType = BkavCommandTypeEdit2;
-                    if (commandTType != BkavConst._122_DieuChinhCK_KoSoHD && commandTType != BkavConst._126_DieuChinhCK_SoHD_BKAV) commandTType = BkavConst._124_CreateAdjust;
+                    if (commandTType != BkavConst._121_CreateAdjust && commandTType != BkavConst._122_DieuChinhCK_KoSoHD
+                        && commandTType != BkavConst._124_CreateAdjust) commandTType = BkavConst._126_DieuChinhCK_SoHD_BKAV;
                     result = bkavWS.POST(jsonBody, commandTType, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "E_T1")
@@ -712,7 +714,7 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav("M");
                     int commandType = BkavCommandTypeNew;
-                    if (paras.Key_Down == "F4") commandType = BkavConst._101_CreateEmpty;
+                    if (paras.Key_Down == "F4") commandType = BkavCommandTypeDraf; // 110 no so_hd, 101 bkav so_hd;
                     else if (paras.Key_Down == "F6") commandType = BkavConst._200_Update;
 
                     result = bkavWS.POST(jsonBody, commandType, out paras.Result.V6ReturnValues);
@@ -768,8 +770,6 @@ namespace V6ThuePostManager
             try
             {
                 var postObject = new PostObjectBkav();
-
-                
                 
                 DataRow row0 = am_table.Rows[0];
                 fkeyA = "" + row0["FKEY_HD"];
@@ -6278,6 +6278,10 @@ namespace V6ThuePostManager
                                 case "bkavcommandtypenew":
                                     BkavCommandTypeNew = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
                                     break;
+                                case "bkavcommandtypedraf":
+                                    BkavCommandTypeDraf = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
+                                    break;
+                                        
                                 case "bkavcommandtypeedit":
                                     BkavCommandTypeEdit = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
                                     break;

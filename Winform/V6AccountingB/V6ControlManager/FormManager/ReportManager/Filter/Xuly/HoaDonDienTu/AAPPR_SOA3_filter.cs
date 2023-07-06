@@ -219,7 +219,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     var setting = new ExportExcelSetting();
                     //setting.BOLD_YN = ObjectAndString.ObjectToBool(_albcConfig.BOLD_YN);
                     //setting.BOLD_CONDITION = new Condition(_albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV);
-                    string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, data, setting, tableName + "_" + String1 + cboSendType.Text);
+                    string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, data, tableName + "_" + String1 + cboSendType.Text);
 
                     if (V6Options.AutoOpenExcel)
                     {

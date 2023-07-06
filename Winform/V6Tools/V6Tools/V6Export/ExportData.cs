@@ -1512,9 +1512,7 @@ namespace V6Tools.V6Export
         /// <summary>
         /// Xuất một bảng dữ liệu ra file excel với mẫu có sẵn, thêm tiêu đề gửi vào
         /// </summary>
-        /// <param name="xlsTemplateFile">File Excel mẫu</param>
         /// <param name="data">Dữ liệu vào</param>
-        /// <param name="saveFile">Tên tập tin sẽ lưu, không được trùng với file mẫu</param>
         /// <param name="firstCell">Vị trí ô bắt đầu điền dữ liệu vd: A2.</param>
         /// <param name="columns">Danh sách cột dữ liệu sẽ lấy, null nếu lấy hết.</param>
         /// <param name="headers">Tiêu đề cột. null hoặc rỗng sẽ bỏ qua.</param>
@@ -1523,7 +1521,7 @@ namespace V6Tools.V6Export
         /// <param name="drawLine">Vẽ đường kẻ lên dữ liệu</param>
         /// <param name="rowInsert">Chèn dữ liệu vào vị trí chèn, đẩy dòng xuống.</param>
         /// <returns></returns>
-        public static bool ToExcelTemplate(string xlsTemplateFile, ExportExcelSetting setting, string saveFile,
+        public static bool ToExcelTemplate(ExportExcelSetting setting,
             string[] columns, string[] headers, SortedDictionary<string, object> parameters,
             NumberFormatInfo nfi, bool rowInsert = false, bool drawLine = false)
         {
@@ -1534,8 +1532,8 @@ namespace V6Tools.V6Export
             workbook.setDefaultFont("Arial", 10 * 20, 1);
             try
             {
-                if (File.Exists(xlsTemplateFile))
-                    workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
+                if (File.Exists(setting.xlsTemplateFile))
+                    workbook = ReadWorkBookCopy(setting.xlsTemplateFile, setting.saveFile);
                 
                 //select sheet
                 int sheetIndex = 0;
@@ -1568,9 +1566,9 @@ namespace V6Tools.V6Export
                     SetHeaders(workbook, headers, setting.startRow, setting.startColumn, drawLine);
                 }
 
-                string save_ext = Path.GetExtension(saveFile).ToLower();
-                if (save_ext == ".xlsx") workbook.writeXLSX(saveFile);
-                else workbook.write(saveFile);
+                string save_ext = Path.GetExtension(setting.saveFile).ToLower();
+                if (save_ext == ".xlsx") workbook.writeXLSX(setting.saveFile);
+                else workbook.write(setting.saveFile);
                 workbook.Dispose();
                 return true;//a false nhưng vẫn lưu file thành công???
 

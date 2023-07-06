@@ -80,6 +80,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
                 v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
 
                 LoadDefaultData(4, "IND", "SEARCH_IND_IXA", ItemID);
+                //LoadTag
                 if (_locKetQua._aldmConfig.HaveInfo)
                 {
                     Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;

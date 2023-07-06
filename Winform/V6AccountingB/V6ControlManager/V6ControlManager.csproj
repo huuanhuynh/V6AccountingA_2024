@@ -1992,6 +1992,12 @@
       <DependentUpon>V6InvoiceControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\V6PrintMode.cs" />
+    <Compile Include="FormManager\DanhMucManager\DanhMucSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\DanhMucManager\DanhMucSelectorForm.designer.cs">
+      <DependentUpon>DanhMucSelectorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\DanhMucManager\ChangeCode\AllChangeCodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2037,6 +2043,12 @@
     </Compile>
     <Compile Include="FormManager\DanhMucManager\DanhMucView.Designer.cs">
       <DependentUpon>DanhMucView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\DanhMucManager\DanhMucFilterAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\DanhMucManager\DanhMucFilterAE.Designer.cs">
+      <DependentUpon>DanhMucFilterAE.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\DanhMucManager\FilterForm.cs">
       <SubType>Form</SubType>
@@ -7322,6 +7334,9 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\V6InvoiceControl.resx">
       <DependentUpon>V6InvoiceControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\DanhMucManager\DanhMucSelectorForm.resx">
+      <DependentUpon>DanhMucSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\DanhMucManager\ChangeCode\AllChangeCodeForm.resx">
       <DependentUpon>AllChangeCodeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -7354,6 +7369,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\DanhMucManager\DanhMucView.resx">
       <DependentUpon>DanhMucView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\DanhMucManager\DanhMucFilterAE.resx">
+      <DependentUpon>DanhMucFilterAE.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\DanhMucManager\FilterForm.resx">
       <DependentUpon>FilterForm.cs</DependentUpon>

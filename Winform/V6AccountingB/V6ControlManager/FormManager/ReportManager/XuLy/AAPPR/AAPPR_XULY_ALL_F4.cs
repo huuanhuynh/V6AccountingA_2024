@@ -109,6 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         string label = ss[0];
                         string vVar = "";
                         bool checkOnLeave = false;
+                        string filter = "";
                         if (ss.Length > 1)
                         {
                             label = ss[1];
@@ -124,6 +125,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (ss.Length > 4)
                         {
                             if ("1" == ss[4]) _allwayUpdate.Add(field, label);
+                        }
+                        if (ss.Length > 5)
+                        {
+                            filter = ss[5];
                         }
                         _fieldDic.Add(field, label);
 
@@ -149,6 +154,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             F2 = !string.IsNullOrEmpty(vVar),
                             CheckOnLeave = checkOnLeave,
                         };
+                        if (!string.IsNullOrEmpty(filter)) txt.SetInitFilter(filter);
                         V6Label lbl = new V6Label()
                         {
                             Name = "lbl" + field,

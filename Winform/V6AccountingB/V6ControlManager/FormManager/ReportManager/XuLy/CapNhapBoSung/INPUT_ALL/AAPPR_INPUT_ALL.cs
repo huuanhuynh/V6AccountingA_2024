@@ -16,6 +16,9 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
+    /// <summary>
+    /// He thong / Xu ly duyet chung tu / M. cap nhap bo sung ct all
+    /// </summary>
     public class AAPPR_INPUT_ALL : XuLyBase
     {
         public AAPPR_INPUT_ALL(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
@@ -277,7 +280,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                                 string extra_infor = "";
                                 if (EXTRA_INFOR.ContainsKey("FIELDS_F4")) extra_infor = EXTRA_INFOR["FIELDS_F4"];
-                                var hoaDonForm = new AAPPR_INPUT_ALL_F4(selectedSttRec, am.Rows[0], extra_infor);
+                                var hoaDonForm = new AAPPR_INPUT_ALL_F4(selectedSttRec, am.Rows[0], extra_infor); //!!!!!
                                 hoaDonForm.invoice = invoice;
 
                                 f.Controls.Add(hoaDonForm);

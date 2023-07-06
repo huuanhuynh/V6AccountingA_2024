@@ -916,8 +916,12 @@ namespace V6ThuePost
                                 case "writelog":
                                     _write_log = ObjectAndString.ObjectToBool(line.Value);
                                     break;
-                                    
-                            }
+
+                                    //case "bkavcommandtypedraf":
+                                    //    BkavCommandTypeDraf = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
+                                    //    break;
+
+                                }
                             break;
                         }
                         case "GeneralInvoiceInfo":

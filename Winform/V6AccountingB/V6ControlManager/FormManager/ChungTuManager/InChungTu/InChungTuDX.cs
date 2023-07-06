@@ -2554,7 +2554,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             setting.data2 = _tbl2_AM;
             setting.reportParameters = ReportDocumentParameters;
             setting.albcConfigData = _albcConfig.DATA;
-            string exportFile = V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            setting.xlsTemplateFile = ExcelTemplateFileFull;
+            setting.saveFile = GetExportFileName();
+            string exportFile = V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting);
             if (PrintMode == V6PrintMode.AutoExportT && !string.IsNullOrEmpty(exportFile))
             {
                 btnHuy.PerformClick();

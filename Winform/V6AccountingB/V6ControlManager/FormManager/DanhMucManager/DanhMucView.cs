@@ -1916,6 +1916,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(LOAD_TABLE);
                 if (_MA_DM == "CORPLAN" || _MA_DM == "CORPLAN1" || _MA_DM == "CORPLAN2") goto next1;
                 if (_aldmConfig.IS_ALDM ? (!_aldmConfig.HaveInfo) : (!_v6LookupConfig.HaveInfo))
@@ -1940,12 +1942,37 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     fields = new[] { "ID", "Ctype", "D", "V", "E" };
                 }
 
-                _filterForm = new FilterForm(structTable, fields, _aldmConfig);
-                _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
-                _filterForm.Opacity = 0.9;
-                _filterForm.TopMost = true;
-                //_filterForm.Location = Location;
-                _filterForm.Show(this);
+                if (shift_is_down)
+                {
+                    // Check 3 quyeefn.
+                    if (   (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowAdd("", _MA_DM_P.ToUpper() + "6")))
+                        && (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowEdit("", _MA_DM_P.ToUpper() + "6")))
+                        && (V6Login.UserRight.AllowDelete("", _MA_DM.ToUpper() + "6") || (!string.IsNullOrEmpty(_MA_DM_P) && V6Login.UserRight.AllowDelete("", _MA_DM_P.ToUpper() + "6")))
+                        )
+                    {
+                        if (_aldmConfig.EXTRA_INFOR.ContainsKey("SF5"))
+                        {
+                            DanhMucFilterAE form = new DanhMucFilterAE(structTable, _aldmConfig);
+                            form.ShowDialog(this);
+                        }
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.NoRightWarning();
+                    }
+
+                    
+                    
+                }
+                else
+                {
+                    _filterForm = new FilterForm(structTable, fields, _aldmConfig);
+                    _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
+                    _filterForm.Opacity = 0.9;
+                    _filterForm.TopMost = true;
+                    //_filterForm.Location = Location;
+                    _filterForm.Show(this);
+                }
             }
             catch (Exception ex)
             {

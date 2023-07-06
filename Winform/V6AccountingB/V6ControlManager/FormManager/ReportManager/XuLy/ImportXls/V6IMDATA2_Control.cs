@@ -297,7 +297,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         if (this.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
                         {
-                            V6ControlFormHelper.ExportExcel_ChooseFile(viewer, errorData, null, "errorData");
+                            V6ControlFormHelper.ExportExcel_ChooseFile(viewer, errorData, "errorData");
                         }
                     };
                     viewer.ShowDialog(dataGridView1);

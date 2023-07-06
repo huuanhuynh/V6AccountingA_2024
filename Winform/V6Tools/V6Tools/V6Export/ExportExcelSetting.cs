@@ -22,7 +22,13 @@ namespace V6Tools.V6Export
         /// Chứa tạm để tạo parameters.
         /// </summary>
         public IDictionary<string, object> reportParameters = null;
+        /// <summary>
+        /// File Excel mẫu
+        /// </summary>
         public string xlsTemplateFile = null;
+        /// <summary>
+        /// Tên tập tin sẽ lưu, không được trùng với file mẫu
+        /// </summary>
         public string saveFile;
         //public int sheetIndex = 0;
         public string sheet_name = null;

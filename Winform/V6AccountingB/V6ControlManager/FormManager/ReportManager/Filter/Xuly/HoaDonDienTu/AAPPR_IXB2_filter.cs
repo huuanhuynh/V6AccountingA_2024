@@ -10,6 +10,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6ThuePostManager;
 using V6Tools;
+using V6Tools.V6Export;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -214,7 +215,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (ctrl_is_down) // Xuất Excel
                 {
                     if (data.Columns.Contains("UID")) data.Columns.Remove("UID");
-                    string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, data, null, tableName + "_" + String1 + cboSendType.Text);
+                    var setting = new ExportExcelSetting();
+                    setting.data = data;
+                    string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, data, tableName + "_" + String1 + cboSendType.Text);
 
                     if (V6Options.AutoOpenExcel)
                     {

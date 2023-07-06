@@ -3,7 +3,9 @@
   <V6Info Field='BkavPartnerGUID' 	Value='JSXQrN9HVUSFEa0XGePQUaG/uc0NyCIJhdEQtTQvvdwd/iJKAGDGBQ=='/>
   <V6Info Field='BkavPartnerToken' 	Value='nOrv5dQ3X3w2qL95PtcgGeA95sJjkukflX7mws4J9Z5guDWR2skr7Eb2+MiUE0b1zyrrKH6tenXVtAvwF8/xVjwCJpuLG8j/'/>
   <V6Info Field='BkavCommandTypeNew' 	Value='Ers0JMABBas='/>
+  <V6Info Field='BkavCommandTypeDraf' 	Value='110'/>
   <V6Info Field='BkavCommandTypeEdit' 	Value='G+hgfXoI1Sc='/>
+  <V6Info Field='BkavCommandTypeEdit2' 	Value=''/>
   
   <V6Info Field='baselink' 	Value='UQL2EugVpi1H8viXdwW/RIoo2OErrJQhQVFPYODzJ9xRg2U6oc76H6FNVO3j9ShL' Type='ENCRYPT'/>
   <V6Info Field='BkavSign' 	Value='1' Type=''/>

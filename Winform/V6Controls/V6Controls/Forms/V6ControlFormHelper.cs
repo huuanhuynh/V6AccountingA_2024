@@ -4297,7 +4297,7 @@ namespace V6Controls.Forms
                 {
                     if (ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
                     {
-                        ExportExcel_ChooseFile(viewer, errorData, null, "errorData");
+                        ExportExcel_ChooseFile(viewer, errorData, "errorData");
                     }
                 };
                 viewer.ShowDialog(dataGridView1);
@@ -4549,11 +4549,12 @@ namespace V6Controls.Forms
         /// Xuất excel hỗ trợ chọn file lưu.
         /// </summary>
         /// <param name="owner">Form đang làm việc.</param>
-        /// <param name="data">Dữ liệu xuất Excel.</param>
+        /// <param name="setting">.data = Dữ liệu xuất Excel.</param>
         /// <param name="defaultSaveName">Tên file chọn sẵn.</param>
         /// <returns>Đường dẫn file lưu.</returns>
-        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, ExportExcelSetting setting, string defaultSaveName)
+        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName)
         {
+            ExportExcelSetting setting = new ExportExcelSetting();
             setting.data = data;
             return ExportExcel_ChooseFile(owner, setting, defaultSaveName);
         }
@@ -4569,7 +4570,8 @@ namespace V6Controls.Forms
         public static string ExportExcel_ChooseFile(IWin32Window owner, ExportExcelSetting setting, string defaultSaveName)
         {
             string fileName = null;
-            
+            // check setting
+            if (setting.data == null) throw new Exception("setting.data is null.");
             try
             {
                 if (setting.data == null) return null;
@@ -4614,8 +4616,7 @@ namespace V6Controls.Forms
         /// <param name="ReportFile">key albc</param>
         /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
         /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
-        public static string ExportExcelTemplate_ChooseFile(IWin32Window owner, ExportExcelSetting setting,
-            string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
+        public static string ExportExcelTemplate_ChooseFile(IWin32Window owner, ExportExcelSetting setting)
         {
             if (setting.reportParameters == null) setting.reportParameters = new Dictionary<string, object>();
             if (setting.data == null)
@@ -4625,17 +4626,18 @@ namespace V6Controls.Forms
             }
             try
             {
-                string ext = Path.GetExtension(defaultSaveName).ToLower();
+                string ext = Path.GetExtension(setting.saveFile).ToLower();
                 if (string.IsNullOrEmpty(ext) || ext == ".") ext = ".xlsx";
                 var save = new SaveFileDialog
                 {
                     Filter = "File " + ext + "|*" + ext + "|Excel files|*.xls;*.xlsx",
                     Title = "Xuất excel.",
-                    FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
+                    FileName = ChuyenMaTiengViet.ToUnSign(setting.saveFile)
                 };
                 if (save.ShowDialog(owner) == DialogResult.OK)
-                {   
-                    ExportExcelTemplate(owner, setting, ReportFile, ExcelTemplateFileFull, save.FileName);
+                {
+                    setting.saveFile = save.FileName;
+                    ExportExcelTemplate(owner, setting);
                     return save.FileName;
                 }
             }
@@ -4691,16 +4693,18 @@ namespace V6Controls.Forms
             return result;
         }
         
-        public static void ExportExcelTemplate(IWin32Window owner, ExportExcelSetting setting,
-            string ReportFile, string ExcelTemplateFileFull, string saveFileName)
+        public static void ExportExcelTemplate(IWin32Window owner, ExportExcelSetting setting)
         {
             if (setting.reportParameters == null) setting.reportParameters = new Dictionary<string, object>();
             ExportExcelTemplate_owner = owner;
             ExportExcelTemplate_setting = setting;
-            ExportExcelTemplate_ReportDocumentParameters = setting.reportParameters.ToUpperKeys();
-            ExportExcelTemplate_ReportFile = ReportFile;
-            ExportExcelTemplate_ExcelTemplateFileFull = ExcelTemplateFileFull;
-            ExportExcelTemplate_saveFileName = saveFileName;
+            // check setting
+            //if (setting.reportParameters == null) throw new Exception("setting.reportParameters is null.");
+            if (setting.data == null) throw new Exception("setting.data is null.");
+            if (setting.albcConfigData == null) throw new Exception("setting.albcConfigData is null.");
+            if (string.IsNullOrEmpty(setting.xlsTemplateFile)) throw new Exception("setting.xlsTemplateFile is null.");
+            
+            //ExportExcelTemplate_saveFileName = saveFileName;
             ExportExcelTemplate_running = true;
             var thread1 = new Thread(ExportExcelTemplate_Thread);
             thread1.Start();
@@ -4753,13 +4757,13 @@ namespace V6Controls.Forms
         private static IWin32Window ExportExcelTemplate_owner;
         private static ExportExcelSetting ExportExcelTemplate_setting;
         
-        private static IDictionary<string, object> ExportExcelTemplate_ReportDocumentParameters;
+        //private static IDictionary<string, object> ExportExcelTemplate_ReportDocumentParameters;
         //private static string ExportExcelTemplate_MAU;
         //private static string ExportExcelTemplate_LAN;
-        private static string ExportExcelTemplate_ReportFile;
+        //private static string ExportExcelTemplate_ReportFile;
         
-        private static string ExportExcelTemplate_ExcelTemplateFileFull;
-        private static string ExportExcelTemplate_saveFileName;
+        //private static string ExportExcelTemplate_ExcelTemplateFileFull;
+        //private static string ExportExcelTemplate_saveFileName;
         private static bool ExportExcelTemplate_running;
         private static int time_count1;
         private static void ExportExcelTemplate_Thread()
@@ -4777,7 +4781,7 @@ namespace V6Controls.Forms
                     AlbcConfig albcConfig = new AlbcConfig(ExportExcelTemplate_setting.albcConfigData);
                     //ExportExcelSetting setting = new ExportExcelSetting();
                     ExportExcelTemplate_setting.SetFirstCell("A4");
-                    ExportExcelTemplate_setting.saveFile = ExportExcelTemplate_saveFileName;
+                    //ExportExcelTemplate_setting.saveFile = ExportExcelTemplate_saveFileName;
                     //var albc_row = Albc.GetRow(ExportExcelTemplate_MAU, ExportExcelTemplate_LAN, ExportExcelTemplate_ReportFile);
                     if (albcConfig.HaveInfo)
                     {
@@ -4811,7 +4815,7 @@ namespace V6Controls.Forms
                                 }
                                 else if (type == "1") //Lay value trong parameter
                                 {
-                                    if (ExportExcelTemplate_ReportDocumentParameters == null) continue;
+                                    if (ExportExcelTemplate_setting.reportParameters == null) continue;
                                     // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
                                     // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
                                     // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
@@ -4830,23 +4834,23 @@ namespace V6Controls.Forms
                                                 matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
                                                 matchFormat = matchContain.Substring(_2dotIndex + 1);
                                             }
-                                            if (ExportExcelTemplate_ReportDocumentParameters.ContainsKey(matchColumn)
-                                                && ExportExcelTemplate_ReportDocumentParameters[matchColumn] is DateTime && matchFormat == "")
+                                            if (ExportExcelTemplate_setting.reportParameters.ContainsKey(matchColumn)
+                                                && ExportExcelTemplate_setting.reportParameters[matchColumn] is DateTime && matchFormat == "")
                                             {
                                                 matchFormat = "dd/MM/yyyy";
                                             }
-                                            if (ExportExcelTemplate_ReportDocumentParameters.ContainsKey(matchColumn))
+                                            if (ExportExcelTemplate_setting.reportParameters.ContainsKey(matchColumn))
                                                 content = content.Replace(matchGroup0,
-                                                    ObjectAndString.ObjectToString(ExportExcelTemplate_ReportDocumentParameters[matchColumn], matchFormat));
+                                                    ObjectAndString.ObjectToString(ExportExcelTemplate_setting.reportParameters[matchColumn], matchFormat));
                                         }
                                         parameters.Add(KEY, content);
                                     }
                                     else
                                     {
                                         var P_KEY = content.ToUpper();
-                                        if (ExportExcelTemplate_ReportDocumentParameters.ContainsKey(P_KEY))
+                                        if (ExportExcelTemplate_setting.reportParameters.ContainsKey(P_KEY))
                                         {
-                                            parameters.Add(KEY, ExportExcelTemplate_ReportDocumentParameters[P_KEY]);
+                                            parameters.Add(KEY, ExportExcelTemplate_setting.reportParameters[P_KEY]);
                                         }
                                     }
                                 }
@@ -4930,11 +4934,11 @@ namespace V6Controls.Forms
                         ExportExcelTemplate_setting.parameters = parameters;
                         ExportExcelTemplate_setting.isInsertRow = insertRow;
                         ExportExcelTemplate_setting.isDrawLine = drawLine;
-                        if (ExportData.ToExcelTemplate(ExportExcelTemplate_ExcelTemplateFileFull, ExportExcelTemplate_setting, V6Setting.V6_number_format_info))
+                        if (ExportData.ToExcelTemplate(ExportExcelTemplate_setting.xlsTemplateFile, ExportExcelTemplate_setting, V6Setting.V6_number_format_info))
                         {
                             if (V6Options.AutoOpenExcel && !NoOpen)
                             {
-                                OpenFileProcess(ExportExcelTemplate_saveFileName);
+                                OpenFileProcess(ExportExcelTemplate_setting.saveFile);
                             }
                             else
                             {
@@ -8180,8 +8184,8 @@ namespace V6Controls.Forms
         /// <returns>Dữ liệu chính của control.</returns>
         public static void FillControlValueToDictionary(IDictionary<string, object> d, Control control)
         {
-            string cNAME = control is RadioButton ? control.Name.ToUpper() : control.AccessibleName.Trim().ToUpper();
-
+            string cNAME = control is RadioButton ? control.Name.ToUpper() : ("" + control.AccessibleName).Trim().ToUpper();
+            
             if (control is V6VvarTextBox)
             {
                 d[cNAME] = ((V6VvarTextBox)control).Text;
@@ -8302,6 +8306,13 @@ namespace V6Controls.Forms
 
                 d[cNAME] = ((GioiTinhControl)control).Value;
                 //return ((GioiTinhControl)control).Value;
+                return;
+            }
+            else if (control is FilterLineBase)
+            {
+                FilterLineBase fline = control as FilterLineBase;
+                cNAME = fline.FieldName.ToUpper();
+                d[cNAME] = ((FilterLineBase)control).ObjectValue;
                 return;
             }
             

@@ -1603,8 +1603,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     setting.data2 = _tbl2;
                     setting.reportParameters = ReportDocumentParameters;
                     setting.albcConfigData = _albcConfig.DATA;
-                    V6ControlFormHelper.ExportExcelTemplate(this, setting,
-                        ReportFile, ExcelTemplateFileFull, AutoExportExcelFileName);
+                    setting.xlsTemplateFile = ExcelTemplateFileFull;
+                    setting.saveFile = AutoExportExcelFileName;
+                    V6ControlFormHelper.ExportExcelTemplate(this, setting);
                     if (!IsDisposed) Dispose();
                 }
                 else if (!string.IsNullOrEmpty(AutoExportWordFileName))
@@ -2255,7 +2256,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             setting.data2 = _tbl2;
             setting.reportParameters = ReportDocumentParameters;
             setting.albcConfigData = _albcConfig.DATA;
-            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            setting.xlsTemplateFile = ExcelTemplateFileFull;
+            setting.saveFile = GetExportFileName();
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, setting);
         }
 
         private void exportToExcelView_Click(object sender, EventArgs e)

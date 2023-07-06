@@ -22,10 +22,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
             InitializeComponent();
         }
 
-        public AlvtSelectorForm(V6InvoiceBase ma_ct, string filter)
+        public AlvtSelectorForm(V6InvoiceBase invoice, string filter)
         {
             InitializeComponent();
-            _invoice = ma_ct;
+            _invoice = invoice;
             _filter = filter;
             
             MyInit();

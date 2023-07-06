@@ -83,6 +83,15 @@ namespace V6Tools.V6Convert
             return false;
         }
 
+        public static bool IsUID(object o)
+        {
+            string o_string = "" + 0;
+            if (o_string.StartsWith("{")) o_string = o_string.Substring(1);
+            if (o_string.EndsWith("}")) o_string = o_string.Substring(0, o_string.Length - 1);
+            if (o_string.Length < 36 || o_string.ToString() == "00000000-0000-0000-0000-000000000000") return false;
+            return true;
+        }
+
         /// <summary>
         /// Chuyển số thành chuỗi có định dạng
         /// </summary>

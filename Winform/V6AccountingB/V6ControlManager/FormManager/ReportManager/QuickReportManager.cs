@@ -576,7 +576,9 @@ namespace V6ControlManager.FormManager.ReportManager
                         setting.reportParameters = ReportDocumentParameters;
                         var albc = ConfigManager.GetAlbcConfig_reportfile(MAU, LAN, ReportFile);
                         setting.albcConfigData = albc.DATA;
-                        V6ControlFormHelper.ExportExcelTemplate(owner, setting, ReportFile, ExcelTemplateFileFull, exportFile);
+                        setting.xlsTemplateFile = ExcelTemplateFileFull;
+                        setting.saveFile = exportFile;
+                        V6ControlFormHelper.ExportExcelTemplate(owner, setting);
                     }
                     else
                     {

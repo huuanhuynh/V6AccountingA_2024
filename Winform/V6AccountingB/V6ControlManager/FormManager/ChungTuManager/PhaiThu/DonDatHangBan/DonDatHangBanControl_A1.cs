@@ -5309,7 +5309,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     {
                         if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
                         {
-                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, null, "errorData");
+                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
                         }
                     };
                     viewer.ShowDialog(chonExcel);

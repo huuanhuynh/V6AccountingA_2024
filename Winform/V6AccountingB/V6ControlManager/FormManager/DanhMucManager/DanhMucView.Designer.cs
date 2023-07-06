@@ -39,6 +39,8 @@
             this.txtCurrentPage = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDoiMa = new System.Windows.Forms.Button();
             this.btnFull = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
@@ -57,8 +59,6 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.cboFilter = new V6Controls.V6ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -159,6 +159,21 @@
             this.UID.Name = "UID";
             this.UID.ReadOnly = true;
             this.UID.Visible = false;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewListInfoMenu});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(208, 26);
+            // 
+            // viewListInfoMenu
+            // 
+            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
+            this.viewListInfoMenu.Name = "viewListInfoMenu";
+            this.viewListInfoMenu.Size = new System.Drawing.Size(207, 22);
+            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
+            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // btnDoiMa
             // 
@@ -347,7 +362,7 @@
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(56, 55);
             this.btnFind.TabIndex = 5;
-            this.btnFind.Tag = "F5";
+            this.btnFind.Tag = "F5;F5, Shift";
             this.btnFind.Text = "Tìm";
             this.btnFind.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFind.UseVisualStyleBackColor = true;
@@ -406,21 +421,6 @@
             this.lblFilter.Text = "Lọc";
             this.lblFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblFilter.Visible = false;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewListInfoMenu});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(145, 26);
-            // 
-            // viewListInfoMenu
-            // 
-            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
-            this.viewListInfoMenu.Name = "viewListInfoMenu";
-            this.viewListInfoMenu.Size = new System.Drawing.Size(144, 22);
-            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
-            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // DanhMucView
             // 
