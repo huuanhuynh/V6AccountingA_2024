@@ -770,11 +770,28 @@ namespace V6AccountingB
             }
         }
 
-        private void changeDVCSToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ChangeReportLanguage()
         {
-           ChangeDVCS();
+            try
+            {
+                new ChangeReportLanguageControl().ShowToForm(this, "Change Report Language", false, true, false);
+                ShowDVCS();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".ChangeDVCS:" + ex.Message, ex.Source);
+            }
         }
 
+        private void changeDVCSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeDVCS();
+        }
+
+        private void changeReportLanguageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeReportLanguage();
+        }
         private void stickNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -912,5 +929,7 @@ namespace V6AccountingB
                 right_count = 0;
             }
         }
+
+        
     }
 }

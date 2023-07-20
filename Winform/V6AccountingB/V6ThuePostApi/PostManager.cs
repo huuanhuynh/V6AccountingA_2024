@@ -667,12 +667,12 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_H1")
                 {
-                    string reason = "" + paras.AM_data[_reason_field];
+                    string reason = "" + (paras.AM_data.ContainsKey(_reason_field) ? paras.AM_data[_reason_field] : "");
                     result = bkavWS.CancelInvoice(BkavConst._202_CancelInvoiceByPartnerInvoiceID, paras.Fkey_hd, reason, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode == "E_H2") // Hủy và ký hủy
                 {
-                    string reason = "" + paras.AM_data[_reason_field];
+                    string reason = "" + (paras.AM_data.ContainsKey(_reason_field) ? paras.AM_data[_reason_field] : "");
                     result = bkavWS.CancelInvoice(BkavConst._202_CancelInvoiceByPartnerInvoiceID, paras.Fkey_hd, reason, out paras.Result.V6ReturnValues);
                     if (!result.StartsWith("ERR") && V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
                     {
@@ -6294,6 +6294,7 @@ namespace V6ThuePostManager
 
                                 case "reason":
                                     _reason_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    _reason_field = _reason_field.ToUpper();
                                     break;
                                 case "writelog":
                                     _write_log = ObjectAndString.ObjectToBool(line.Value);

@@ -699,6 +699,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(39, 23);
             this.v6ColorTextBox6.TabIndex = 3;
+            this.v6ColorTextBox6.Text = "0";
+            this.v6ColorTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6ColorTextBox6.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // txtLoaiVt
             // 
@@ -910,6 +917,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(39, 23);
             this.v6ColorTextBox5.TabIndex = 2;
+            this.v6ColorTextBox5.Text = "0";
+            this.v6ColorTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.v6ColorTextBox5.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // v6ColorTextBox13
             // 
@@ -2426,7 +2440,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox55.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox55.Location = new System.Drawing.Point(177, 126);
             this.v6ColorTextBox55.Name = "v6ColorTextBox55";
-            this.v6ColorTextBox55.Size = new System.Drawing.Size(191, 23);
+            this.v6ColorTextBox55.Size = new System.Drawing.Size(547, 23);
             this.v6ColorTextBox55.TabIndex = 4;
             // 
             // label85

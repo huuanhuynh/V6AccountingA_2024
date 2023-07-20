@@ -59,9 +59,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         /// <summary>
-        /// KHOA, Cách nhau bởi ;
+        /// KHOA, Cách nhau bởi ; kiểm tra đủ dữ liệu
         /// </summary>
-        private string CHECK_FIELDS
+        private string KHOA_CHECK_FIELDS
         {
             get
             {
@@ -86,6 +86,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 return result;
             }
         }
+
+        /// <summary>
+        /// Kiểm tra tồn tại, keys xóa.
+        /// </summary>
         private string ID_CHECK
         {
             get
@@ -268,11 +272,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
                 //FixData
                 List<DataRow> remove_list = new List<DataRow>();
-                var check_fields1 = ObjectAndString.SplitString(CHECK_FIELDS);
+                var khoa_check_fields_list = ObjectAndString.SplitString(KHOA_CHECK_FIELDS);
                 foreach (DataRow row in _tbl.Rows)
                 {
                     bool remove = false;
-                    foreach (string field in check_fields1)
+                    foreach (string field in khoa_check_fields_list)
                     {
                         if (!_tbl.Columns.Contains(field) || row[field] == null || row[field].ToString().Trim() == "")
                         {
@@ -379,7 +383,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     All_Objects["data"] = _tbl.Copy();
                     V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "F9", All_Objects);
 
-                    check_field_list = CHECK_FIELDS.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries);
+                    check_field_list = KHOA_CHECK_FIELDS.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
                     foreach (string field in check_field_list)
                     {
@@ -406,7 +410,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format(V6Text.Text("DULIEUBITHIEU") + " {0}", CHECK_FIELDS));
+                        V6ControlFormHelper.ShowMessage(string.Format(V6Text.Text("DULIEUBITHIEU") + " {0}", KHOA_CHECK_FIELDS));
                     }
                 }
                 else
@@ -444,7 +448,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 int stt = 0;
                 total = _tbl.Rows.Count;
-                var id_list = ID_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                var id_check_list = ID_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                 for (int i = 0; i < total; i++)
                 {
@@ -478,7 +482,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             var dataDic = row.ToDataDictionary();
                             //fix dataDic id fields.
-                            foreach (string id in id_list)
+                            foreach (string id in id_check_list)
                             {
                                 if (dataDic[id] is string)
                                 {
@@ -495,11 +499,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                             
                             var keys = new SortedDictionary<string, object>();
-                            foreach (string id in id_list)
+                            foreach (string id in id_check_list)
                             {
                                 keys.Add(id, row[id]);
                             }
-                            var ID0 = dataDic[id_list[0].ToUpper()].ToString().Trim();
+                            var ID0 = dataDic[id_check_list[0].ToUpper()].ToString().Trim();
                             string ID_FIELD1, ID_FIELD2;
                             string ID1, ID2;
                             var exist = false;
@@ -512,20 +516,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     exist = false;
                                     break;
                                 case "01":// OneCode
-                                    exist = _categories.IsExistOneCode_List(_table_name, id_list[0], ID0);
+                                    exist = _categories.IsExistOneCode_List(_table_name, id_check_list[0], ID0);
                                     break;
                                 case "02"://TwoCode
-                                    ID_FIELD1 = id_list[1].ToUpper();
+                                    ID_FIELD1 = id_check_list[1].ToUpper();
                                     ID1 = dataDic[ID_FIELD1].ToString().Trim();
-                                    exist = _categories.IsExistTwoCode_List(_table_name, id_list[0], ID0, ID_FIELD1, ID1);
+                                    exist = _categories.IsExistTwoCode_List(_table_name, id_check_list[0], ID0, ID_FIELD1, ID1);
                                     break;
                                 case "03"://ThreeCode
-                                    ID_FIELD1 = id_list[1];
-                                    ID_FIELD2 = id_list[2].ToUpper();
+                                    ID_FIELD1 = id_check_list[1];
+                                    ID_FIELD2 = id_check_list[2].ToUpper();
                                     ID1 = dataDic[ID_FIELD1].ToString().Trim();
                                     ID2 = dataDic[ID_FIELD2].ToString().Trim();
                                     exist = V6BusinessHelper.IsExistThreeCode_List(_table_name,
-                                        id_list[0], ID0, ID_FIELD1, ID1, ID_FIELD2, ID2);
+                                        id_check_list[0], ID0, ID_FIELD1, ID1, ID_FIELD2, ID2);
                                     break;
                                 
                             }
@@ -561,7 +565,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 if (exist) //Xóa cũ thêm mới.
                                 {
                                     keys = new SortedDictionary<string, object> ();
-                                    foreach (string field in id_list)
+                                    foreach (string field in id_check_list)
                                     {
                                         keys.Add(field.ToUpper(), row[field]);
                                     }
@@ -589,7 +593,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            var s = string.Format(V6Text.Text("DONG0KOCODU1"), stt, CHECK_FIELDS);
+                            var s = string.Format(V6Text.Text("DONG0KOCODU1"), stt, KHOA_CHECK_FIELDS);
                             f9Error += s;
                             f9MessageAll += s;
                         }
@@ -670,7 +674,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     CheckDataInGridView(STATUS_UPDATE);
 
 
-                    check_field_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    check_field_list = KHOA_CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
                     foreach (string field in check_field_list)
                     {
@@ -697,7 +701,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format(V6Text.Text("DULIEUBITHIEU") + " {0}", CHECK_FIELDS));
+                        V6ControlFormHelper.ShowMessage(string.Format(V6Text.Text("DULIEUBITHIEU") + " {0}", KHOA_CHECK_FIELDS));
                     }
                 }
                 else
@@ -846,7 +850,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         else
                         {
                             skip++;
-                            var s = string.Format(V6Text.Text("DONG0KOCODU1"), stt, CHECK_FIELDS);
+                            var s = string.Format(V6Text.Text("DONG0KOCODU1"), stt, KHOA_CHECK_FIELDS);
                             F10Error += s;
                             F10ErrorAll += s;
                         }

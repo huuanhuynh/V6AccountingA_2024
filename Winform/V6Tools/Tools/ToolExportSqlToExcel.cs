@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -164,7 +165,26 @@ namespace Tools
 
         private void listBoxTablesName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GetData();
+            
+            try
+            {
+                if (listBoxTablesName.SelectedItems.Count <= 0)
+                {
+                    if (listBoxTablesName.Items.Count > 0)
+                        selectedTableName = listBoxTablesName.Items[0].ToString();
+                }
+                else
+                {
+                    selectedTableName = listBoxTablesName.SelectedItems[0].ToString();
+                }
+
+                GetData();
+                //if (chkAutoLoad.Checked) GetDataTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(GetType() + ".Select table change: " + ex.Message);
+            }
         }
 
         private void btnExportExcel_Click(object sender, EventArgs e)
@@ -396,5 +416,62 @@ namespace Tools
                 MessageBox.Show(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Tên bảng trong csdl đang được chọn.
+        /// </summary>
+        string selectedTableName = "";
+
+        private void btnImportXml_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            try
+            {
+                var openFile = "";
+                OpenFileDialog op = new OpenFileDialog();
+                op.Filter = "Xml|*.xml";
+                if (op.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    openFile = op.FileName;
+                }
+
+                if (string.IsNullOrEmpty(openFile)) return;
+                FileStream fs = new FileStream(openFile, FileMode.Open);
+                var _ds = new DataSet();
+                _ds.ReadXml(fs);
+                fs.Close();
+                if (_ds.Tables.Count > 0)
+                {
+                    var importData = _ds.Tables[0];
+                    // Bỏ cột UID
+                    if (importData.Columns.Contains("UID"))
+                    {
+                        importData.Columns.Remove("UID");
+                    }
+
+                    foreach (DataRow row in importData.Rows)
+                    {
+                        V6BusinessHelper.Insert(conString, selectedTableName, DataRowToDictionary(row));
+                        count++;
+                    }
+                    MessageBox.Show("Xong. " + count);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Import count: " + count + "\r\n" + ex.Message);
+            }
+        }
+
+        Dictionary<string, object> DataRowToDictionary(DataRow row)
+        {
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            foreach (DataColumn column in row.Table.Columns)
+            {
+                result[column.ColumnName.ToUpper()] = row[column];
+            }
+            return result;
+        }
+
     }
 }

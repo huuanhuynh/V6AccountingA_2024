@@ -29,20 +29,20 @@ namespace V6ControlManager.FormManager.DanhMucManager
     public partial class DanhMucView : V6FormControl
     {
         #region ===== VAR =====
-        private AldmConfig _aldmConfig;
-        private V6lookupConfig _v6LookupConfig;
+        public AldmConfig _aldmConfig;
+        public V6lookupConfig _v6LookupConfig;
         //private bool _aldm0;
-        private readonly V6Categories _categories = new V6Categories();
-        private SortedDictionary<string, string> _hideColumnDic;
+        public readonly V6Categories _categories = new V6Categories();
+        public SortedDictionary<string, string> _hideColumnDic;
         /// <summary>
         /// Tên gốc gửi vào
         /// </summary>
-        private string _MA_DM;
+        public string _MA_DM;
         /// <summary>
         /// Mã danh mục cha.
         /// </summary>
         public string _MA_DM_P { get; set; }
-        private string CONFIG_TABLE_NAME
+        public string CONFIG_TABLE_NAME
         {
             get
             {
@@ -67,7 +67,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
         }
 
-        private string LOAD_TABLE
+        public string LOAD_TABLE
         {
             get
             {
@@ -144,10 +144,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
             set { btnFull.Enabled = value; }
         }
 
-
-
+        
         private FilterForm _filterForm;
         private string _initFilter;
+        public string _alway_filter;
+        public string _last_filter;
         public string InitFilter
         {
             get
@@ -2020,8 +2021,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
 
         private string status2text = "";
-        private string _last_filter;
-
         private void MakeStatus2Text()
         {
             var text = "";

@@ -3085,7 +3085,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         public void Moi()
         {
-            _acted = true;
+            _autoloadtop_acted = true;
             try
             {
                 if (V6Login.UserRight.AllowAdd("", Invoice.CodeMact))
@@ -3350,7 +3350,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         /// <param name="flag"></param>
         public void Tim(string flag)
         {
-            _acted = true;
+            _autoloadtop_acted = true;
             try
             {
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))

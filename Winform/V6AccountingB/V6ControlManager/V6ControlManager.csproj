@@ -2100,6 +2100,12 @@
       <DependentUpon>PhanNhomForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\FormManagerHelper.cs" />
+    <Compile Include="FormManager\HeThong\QuanLyHeThong\ChangeReportLanguageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\HeThong\QuanLyHeThong\ChangeReportLanguageControl.Designer.cs">
+      <DependentUpon>ChangeReportLanguageControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\HeThong\QuanLyHeThong\ChangeDVCSControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7392,6 +7398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\DanhMucManager\PhanNhom\PhanNhomForm.resx">
       <DependentUpon>PhanNhomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\HeThong\QuanLyHeThong\ChangeReportLanguageControl.resx">
+      <DependentUpon>ChangeReportLanguageControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\HeThong\QuanLyHeThong\ChangeDVCSControl.resx">
       <DependentUpon>ChangeDVCSControl.cs</DependentUpon>

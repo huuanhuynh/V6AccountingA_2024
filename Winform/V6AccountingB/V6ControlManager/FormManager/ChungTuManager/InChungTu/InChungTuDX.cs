@@ -170,13 +170,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
-        private DataSet _ds;
-        private DataTable _tbl_AD, _tbl2_AM, _tbl2, _tbl3;
+        public DataSet _ds;
+        public DataTable _tbl_AD, _tbl2_AM, _tbl3;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
         /// </summary>
-        private List<SqlParameter> _pList;
+        public List<SqlParameter> _pList;
 
         /// <summary>
         /// MA_FILE, MAU, LAN, REPORT
@@ -1905,6 +1905,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         var setting = new ExportExcelSetting();
                         setting.data = _tbl_AD;
+                        setting.data2 = _tbl2_AM;
                         setting.saveFile = save.FileName;
                         setting.title = Name;
                         setting.isDrawLine = true;

@@ -50,6 +50,7 @@ namespace V6AccountingB
             this.lblStatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.menuMain = new V6Controls.MenuControl();
+            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.panelLogin = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,7 @@ namespace V6AccountingB
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
-            this.quickMenu1 = new V6AccountingB.QuickMenu();
+            this.changeReportLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -427,6 +428,17 @@ namespace V6AccountingB
             this.menuMain.Click += new V6Controls.MenuControl.ButtonClickEventHandler(this.menuMain_Click);
             this.menuMain.Load += new System.EventHandler(this.menuMain_Load);
             // 
+            // quickMenu1
+            // 
+            this.quickMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.quickMenu1.BackColor = System.Drawing.Color.AliceBlue;
+            this.quickMenu1.Location = new System.Drawing.Point(0, 322);
+            this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
+            this.quickMenu1.Name = "quickMenu1";
+            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
+            this.quickMenu1.TabIndex = 0;
+            // 
             // panelLogin
             // 
             this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
@@ -448,21 +460,22 @@ namespace V6AccountingB
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeDVCSToolStripMenuItem,
+            this.changeReportLanguageToolStripMenuItem,
             this.stickNoteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 92);
             // 
             // changeDVCSToolStripMenuItem
             // 
             this.changeDVCSToolStripMenuItem.Name = "changeDVCSToolStripMenuItem";
-            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.changeDVCSToolStripMenuItem.Text = "Change Agent";
             this.changeDVCSToolStripMenuItem.Click += new System.EventHandler(this.changeDVCSToolStripMenuItem_Click);
             // 
             // stickNoteToolStripMenuItem
             // 
             this.stickNoteToolStripMenuItem.Name = "stickNoteToolStripMenuItem";
-            this.stickNoteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.stickNoteToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.stickNoteToolStripMenuItem.Text = "Stick note";
             this.stickNoteToolStripMenuItem.Click += new System.EventHandler(this.stickNoteToolStripMenuItem_Click);
             // 
@@ -679,16 +692,12 @@ namespace V6AccountingB
             this.lblV6Message.Text = ".....";
             this.lblV6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // quickMenu1
+            // changeReportLanguageToolStripMenuItem
             // 
-            this.quickMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.quickMenu1.BackColor = System.Drawing.Color.AliceBlue;
-            this.quickMenu1.Location = new System.Drawing.Point(0, 322);
-            this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
-            this.quickMenu1.Name = "quickMenu1";
-            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
-            this.quickMenu1.TabIndex = 0;
+            this.changeReportLanguageToolStripMenuItem.Name = "changeReportLanguageToolStripMenuItem";
+            this.changeReportLanguageToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.changeReportLanguageToolStripMenuItem.Text = "Change Report Language";
+            this.changeReportLanguageToolStripMenuItem.Click += new System.EventHandler(this.changeReportLanguageToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -758,6 +767,6 @@ namespace V6AccountingB
         private PictureBox picLOGO;
         private Label lblModule;
         private Label lblModule_Dot;
-        
+        private ToolStripMenuItem changeReportLanguageToolStripMenuItem;
     }
 }

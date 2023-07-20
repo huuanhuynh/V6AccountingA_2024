@@ -2977,7 +2977,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         #endregion Tính toán trong chi tiết ====================================================
 
-        protected bool _acted = false;
+        public bool _autoloadtop_acted = false;
         protected void AutoLoadTop(ToolStripMenuItem timTopCuoiKyMenu)
         {
             try
@@ -2987,7 +2987,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 timer.Interval = 1000;
                 timer.Tick += delegate
                 {
-                    if (_acted)
+                    if (_autoloadtop_acted)
                     {
                         timer.Stop();
                         timer.Dispose();

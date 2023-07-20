@@ -2422,7 +2422,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox55.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox55.Location = new System.Drawing.Point(177, 126);
             this.v6ColorTextBox55.Name = "v6ColorTextBox55";
-            this.v6ColorTextBox55.Size = new System.Drawing.Size(191, 23);
+            this.v6ColorTextBox55.Size = new System.Drawing.Size(549, 23);
             this.v6ColorTextBox55.TabIndex = 4;
             // 
             // label85

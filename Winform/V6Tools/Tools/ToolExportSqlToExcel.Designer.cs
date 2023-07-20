@@ -65,6 +65,7 @@
             this.txtFrom = new System.Windows.Forms.TextBox();
             this.chkConvert = new System.Windows.Forms.CheckBox();
             this.btnExportXml = new System.Windows.Forms.Button();
+            this.btnImportXml = new System.Windows.Forms.Button();
             this.grbLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -206,10 +207,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(175, 256);
+            this.dataGridView1.Location = new System.Drawing.Point(175, 284);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(534, 407);
+            this.dataGridView1.Size = new System.Drawing.Size(534, 379);
             this.dataGridView1.TabIndex = 7;
             // 
             // btnExportExcel
@@ -443,11 +444,22 @@
             this.btnExportXml.Visible = false;
             this.btnExportXml.Click += new System.EventHandler(this.btnExportXml_Click);
             // 
+            // btnImportXml
+            // 
+            this.btnImportXml.Location = new System.Drawing.Point(184, 256);
+            this.btnImportXml.Name = "btnImportXml";
+            this.btnImportXml.Size = new System.Drawing.Size(75, 23);
+            this.btnImportXml.TabIndex = 13;
+            this.btnImportXml.Text = "Import Xml";
+            this.btnImportXml.UseVisualStyleBackColor = true;
+            this.btnImportXml.Click += new System.EventHandler(this.btnImportXml_Click);
+            // 
             // ToolExportSqlToExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 676);
+            this.Controls.Add(this.btnImportXml);
             this.Controls.Add(this.grbExport);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -517,5 +529,6 @@
         private System.Windows.Forms.TextBox txtFrom;
         private System.Windows.Forms.CheckBox chkConvert;
         private System.Windows.Forms.Button btnExportXml;
+        private System.Windows.Forms.Button btnImportXml;
     }
 }

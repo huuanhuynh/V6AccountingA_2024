@@ -633,5 +633,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        private void btnCheckBlackList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int check = V6BusinessHelper.CheckV6BlackList(txtMaKH.Text, txtMaSoThueVAT.Text);
+                if (check == 1)
+                {
+                    txtMaSoThueVAT.Alert();
+                    ShowMainMessage("CHECK MST:" + txtMaSoThueVAT.Text + "\nDoanh nghiệp rủi ro về hóa đơn theo tổng cục thuế.");
+                }
+                else if (check == 0)
+                {
+                    ShowMainMessage("Không có thông tin.");
+                }
+                else if (check == -1)
+                {
+                    ShowMainMessage("Không kiểm tra được.");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnCheckBlackList_Click", ex);
+            }
+        }
     }
 }

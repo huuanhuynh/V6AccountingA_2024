@@ -199,6 +199,10 @@ namespace V6SqlConnect
                     IPSRV6Database = selectedRow["IPSRV6Database"].ToString().Trim();
                     IPSRV6UserId = selectedRow["IPSRV6UserId"].ToString().Trim();
                     IPSRV6EPassword = selectedRow["IPSRV6EPassword"].ToString().Trim();
+                    if (selectedRow.Table.Columns.Contains("IPSRV6BlackTables"))
+                    {
+                        IPSRV6BlackTables = selectedRow["IPSRV6BlackTables"].ToString().Trim();
+                    }
                 }
 
 
@@ -424,6 +428,8 @@ namespace V6SqlConnect
         public static string IPSRV6Database = "";
         public static string IPSRV6UserId = "";
         public static string IPSRV6EPassword = "";
+        public static string IPSRV6BlackTables = "";// VPA_CHECK_BLACK_LIST:1
+
 
         private static bool CheckV6Key()
         {

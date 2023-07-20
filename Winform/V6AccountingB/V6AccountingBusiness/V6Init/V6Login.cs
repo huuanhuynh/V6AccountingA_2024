@@ -316,195 +316,199 @@ namespace V6Init
         /// <returns></returns>
         public static string GetInitFilter(string tableName, string filterType)
         {
-            string result = "";
-
+            string result = "", result1 = "", result2 = "", result3 = "", init_type = "";
+            
+            #region result1
             switch (("" + tableName).ToUpper().Trim())
             {
+                case "ALVT":
+                    result1 = "";
+                    break;
                 case "V6OPTION":
-                    result = "Attribute=1";
+                    result1 = "Attribute=1";
                     break;
 
                 case "V6SOFT":
-                    result = "Attribute=1";
+                    result1 = "Attribute=1";
                     break;
                 case "ALCT1":
-                    result = "(Loai='2' or Loai='3' or Loai='1')";
+                    result1 = "(Loai='2' or Loai='3' or Loai='1')";
                     break;
 
                 case "ALKH":
-                     result = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
-                    result = result.Replace("{0}", "'"+Madvcs+"'");
+                     result1 = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
+                    result1 = result1.Replace("{0}", "'"+Madvcs+"'");
 
                     break;
                 case "ALBP":
-                    result = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
-                    result = result.Replace("{0}", "'" + Madvcs + "'");
+                    result1 = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
+                    result1 = result1.Replace("{0}", "'" + Madvcs + "'");
 
                     break;
                 case "ALDVCS":
 
-                    result = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
+                    result1 = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
                     //result = result.Replace("{0}", "'" + Madvcs + "'");
-                    result = result.Replace("{0}", "{MA_DVCS}");
+                    result1 = result1.Replace("{0}", "{MA_DVCS}");
 
                     break;
                 case "ABVT":
 
-                    result = "Nam = " + V6Setting.M_Nam_bd;
+                    result1 = "Nam = " + V6Setting.M_Nam_bd;
                     if (MadvcsCount == 1)
                     {
-                        result += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
+                        result1 += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
                     }
                     
 
                     break;
                 case "ABKH":
 
-                    result = "Nam = " + V6Setting.M_Nam_bd;
+                    result1 = "Nam = " + V6Setting.M_Nam_bd;
                     if (MadvcsCount == 1)
                     {
-                        result += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
+                        result1 += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
                     }
                     
                     break;
                 case "ABVV":
-                    result = "Nam = " + V6Setting.M_Nam_bd;
+                    result1 = "Nam = " + V6Setting.M_Nam_bd;
                     if (MadvcsCount == 1)
                     {
-                        result += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
+                        result1 += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
                     }
                     break;
 
                 case "ABVVKH":
-                    result = "Nam = " + V6Setting.M_Nam_bd;
+                    result1 = "Nam = " + V6Setting.M_Nam_bd;
                     if (MadvcsCount == 1)
                     {
-                        result += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
+                        result1 += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
                     }
                     break;
 
                 case "ABBPKH":
-                    result = "Nam = " + V6Setting.M_Nam_bd;
+                    result1 = "Nam = " + V6Setting.M_Nam_bd;
                     if (MadvcsCount == 1)
                     {
-                        result += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
+                        result1 += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
                     }
                     break;
 
                 case "ABTK":
 
 
-                    result = "Nam = " + V6Setting.M_Nam_bd;
+                    result1 = "Nam = " + V6Setting.M_Nam_bd;
                     if (MadvcsCount == 1)
                     {
-                        result += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
+                        result1 += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
                     }
                     
 
                     break;
                 case "ABLO":
 
-                    result = "Nam = " + V6Setting.M_Nam_bd;
+                    result1 = "Nam = " + V6Setting.M_Nam_bd;
                     if (MadvcsCount == 1)
                     {
-                        result += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
+                        result1 += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
                     }
 
                     break;
 
                 case "ALQDDVT":
-                    result = "XTYPE='1'";
+                    result1 = "XTYPE='1'";
                     break;
 
                 case "V6MENU":
-                    result = "MODULE_ID='" + V6Options.GetValue("MODULE_ID").Trim() + "'";//+ "' AND ITEMID<>'A0000000' AND ITEMID<>'B0000000' ";
+                    result1 = "MODULE_ID='" + V6Options.GetValue("MODULE_ID").Trim() + "'";//+ "' AND ITEMID<>'A0000000' AND ITEMID<>'B0000000' ";
                     break;
 
                 case "ALKHO":
                     if (MadvcsCount == 1)
                     {
-                        result = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
+                        result1 = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
                         //result = result.Replace("{0}", "'" + Madvcs + "'");
-                        result = result.Replace("{0}", "{MA_DVCS}");
+                        result1 = result1.Replace("{0}", "{MA_DVCS}");
                     }
                    break;
 
                 case "V_ALTS":
                     if (MadvcsCount == 1)
                     {
-                        result = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
+                        result1 = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
 
-                        if (result != "")
-                            result += " AND isnull(ma_giam_ts,'')<>'' ";
+                        if (result1 != "")
+                            result1 += " AND isnull(ma_giam_ts,'')<>'' ";
                         else
-                            result += " isnull(ma_giam_ts,'')<>'' ";
+                            result1 += " isnull(ma_giam_ts,'')<>'' ";
                     }
                     else
                     {
-                        result = IsAdmin ? "" : "";
-                        if (result != "")
-                            result += " AND isnull(ma_giam_ts,'')<>'' ";
+                        result1 = IsAdmin ? "" : "";
+                        if (result1 != "")
+                            result1 += " AND isnull(ma_giam_ts,'')<>'' ";
                         else
-                            result += " isnull(ma_giam_ts,'')<>'' ";
+                            result1 += " isnull(ma_giam_ts,'')<>'' ";
                     }
                     break;
 
                 case "V_ALCC":
                     if (MadvcsCount == 1)
                     {
-                        result = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
+                        result1 = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
 
-                        if (result != "")
-                            result += " AND isnull(ma_giam_cc,'')<>'' ";
+                        if (result1 != "")
+                            result1 += " AND isnull(ma_giam_cc,'')<>'' ";
                         else
-                            result += " isnull(ma_giam_cc,'')<>'' ";
+                            result1 += " isnull(ma_giam_cc,'')<>'' ";
                     }
                     else
                     {
-                        result = IsAdmin ? "" : "";
-                        if (result != "")
-                            result += " AND isnull(ma_giam_cc,'')<>'' ";
+                        result1 = IsAdmin ? "" : "";
+                        if (result1 != "")
+                            result1 += " AND isnull(ma_giam_cc,'')<>'' ";
                         else
-                            result += " isnull(ma_giam_cc,'')<>'' ";
+                            result1 += " isnull(ma_giam_cc,'')<>'' ";
                     }
                     break;
                 case "V_ALTS01":
                     if (MadvcsCount == 1)
                     {
-                        result = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
+                        result1 = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
 
-                        if (result != "")
-                            result += " AND isnull(NGAY_KH1,'')<>'' ";
+                        if (result1 != "")
+                            result1 += " AND isnull(NGAY_KH1,'')<>'' ";
                         else
-                            result += " isnull(NGAY_KH1,'')<>'' ";
+                            result1 += " isnull(NGAY_KH1,'')<>'' ";
                     }
                     else
                     {
-                        result = IsAdmin ? "" : "";
-                        if (result != "")
-                            result += " AND isnull(NGAY_KH1,'')<>'' ";
+                        result1 = IsAdmin ? "" : "";
+                        if (result1 != "")
+                            result1 += " AND isnull(NGAY_KH1,'')<>'' ";
                         else
-                            result += " isnull(NGAY_KH1,'')<>'' ";
+                            result1 += " isnull(NGAY_KH1,'')<>'' ";
                     }
                     break;
 
                 case "V_ALCC01":
                     if (MadvcsCount == 1)
                     {
-                        result = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
+                        result1 = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
 
-                        if (result != "")
-                            result += " AND isnull(NGAY_PB1,'')<>'' ";
+                        if (result1 != "")
+                            result1 += " AND isnull(NGAY_PB1,'')<>'' ";
                         else
-                            result += " isnull(NGAY_PB1,'')<>'' ";
+                            result1 += " isnull(NGAY_PB1,'')<>'' ";
                     }
                     else
                     {
-                        result = IsAdmin ? "" : "";
-                        if (result != "")
-                            result += " AND isnull(NGAY_PB1,'')<>'' ";
+                        result1 = IsAdmin ? "" : "";
+                        if (result1 != "")
+                            result1 += " AND isnull(NGAY_PB1,'')<>'' ";
                         else
-                            result += " isnull(NGAY_PB1,'')<>'' ";
+                            result1 += " isnull(NGAY_PB1,'')<>'' ";
                     }
                     break;
 
@@ -513,18 +517,18 @@ namespace V6Init
                    
                     if (MadvcsCount == 1)
                     {
-                        result = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
+                        result1 = IsAdmin ? "" : "Ma_dvcs='" + Madvcs + "'";
 
                     }
 
                     break;
                 case "ABNTXT":
 
-                    result = "Nam = " + V6Setting.M_Nam_bd;
-                    result += " and Ma_ct = 'S08'";
+                    result1 = "Nam = " + V6Setting.M_Nam_bd;
+                    result1 += " and Ma_ct = 'S08'";
                     if (MadvcsCount == 1)
                     {
-                        result += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
+                        result1 += IsAdmin ? "" : " and Ma_dvcs='" + Madvcs + "'";
                     }
 
 
@@ -534,32 +538,63 @@ namespace V6Init
                     bool filter_all = ObjectAndString.ObjectToBool(V6Lookup.GetValueByTableName(tableName, "FILTER_ALL"));
                     if (filter_all)
                     {
-                        result = V6Lookup.GetValueByTableName(tableName, "InitFilter");
+                        result1 = V6Lookup.GetValueByTableName(tableName, "InitFilter");
                     }
                     else
                     {
-                        result = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
+                        result1 = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
                     }
                     break;
-        
-                
             }
-            string adv_filter = null;
+            #endregion
+
+            #region result2
             if (string.IsNullOrEmpty(filterType)) filterType = "0";
             SqlParameter[] plist =
-                {
-                    new SqlParameter("@IsAldm", true),
-                    new SqlParameter("@TableName", tableName),
-                    new SqlParameter("@Type", filterType),
-                    new SqlParameter("@User_id", V6Login.UserId),
-                };
-
-            adv_filter = (V6BusinessHelper.ExecuteProcedureScalar("VPA_GetAdvanceFilter", plist) ?? "").ToString().Trim();
-            if (!string.IsNullOrEmpty(adv_filter))
             {
-                if (string.IsNullOrEmpty(result)) return adv_filter;
-                return string.Format("({0}) and ({1})", result, adv_filter);
+                new SqlParameter("@IsAldm", true),
+                new SqlParameter("@TableName", tableName),
+                new SqlParameter("@Type", filterType),
+                new SqlParameter("@User_id", V6Login.UserId),
+            };
+            result2 = (V6BusinessHelper.ExecuteProcedureScalar("VPA_GetAdvanceFilter", plist) ?? "").ToString().Trim();
+            #endregion
+
+            #region result3
+            var plist1 = new[]
+                    {
+                        new SqlParameter("@Tablename", tableName),
+                        new SqlParameter("@Ma_dvcs", Madvcs),
+                        new SqlParameter("@User_id", UserId),
+                        new SqlParameter("@Lan", SelectedLanguage),
+                        new SqlParameter("@Filter_type", filterType),
+
+                    };
+            var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_INIT_FILTER_AL_ALL", plist1).Tables[0];
+            //SELECT @Return AS INIT_WHERE,@Return2 AS INIT_TYPE
+            ////--	INIT_TYPE='1'- Chi lay o day, '0'- Khong dung, '2'- Lay o day + init old
+            // -Vi tri -1 : CODE cứng, 2: VPA_GetAdvanceFilter, 3: VPA_GET_INIT_FILTER_AL_ALL            --Return2 = 111: cong ca 3
+            result3 = "" + data.Rows[0]["INIT_WHERE"];
+            init_type = data.Rows[0]["INIT_TYPE"].ToString().Trim();
+            #endregion
+
+            
+            if (init_type.Length > 0 && init_type[0] == '1')
+            {
+                result = result1;
             }
+
+            if (init_type.Length > 1 && init_type[1] == '1' && result2.Length > 1)
+            {
+                result += (result.Length > 1 ? " and " : "") + result2;
+            }
+
+            if (init_type.Length > 2 && init_type[2] == '1' && result3.Length > 1)
+            {
+                result += (result.Length > 1 ? " and " : "") + result3;
+            }
+
+            Logger.WriteToLog(tableName + ": " + result, "TestInitFilter");
             return result;
         }
 

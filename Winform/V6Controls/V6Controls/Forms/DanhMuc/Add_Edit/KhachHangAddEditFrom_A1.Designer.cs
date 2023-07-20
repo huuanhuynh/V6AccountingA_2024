@@ -40,6 +40,7 @@
             this.lblMaKH = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
+            this.btnCheckBlackList = new V6Controls.Controls.V6FormButton();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.txtNhomKH9 = new V6Controls.V6VvarTextBox();
             this.txtNhomKH8 = new V6Controls.V6VvarTextBox();
@@ -342,6 +343,7 @@
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.btnCheckBlackList);
             this.tabThongTinChinh.Controls.Add(this.linkLabel1);
             this.tabThongTinChinh.Controls.Add(this.txtNhomKH9);
             this.tabThongTinChinh.Controls.Add(this.txtNhomKH8);
@@ -392,6 +394,19 @@
             this.tabThongTinChinh.Size = new System.Drawing.Size(749, 374);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
+            // 
+            // btnCheckBlackList
+            // 
+            this.btnCheckBlackList.AccessibleDescription = ".";
+            this.btnCheckBlackList.Image = global::V6Controls.Properties.Resources.Refresh16;
+            this.btnCheckBlackList.Location = new System.Drawing.Point(336, 55);
+            this.btnCheckBlackList.Name = "btnCheckBlackList";
+            this.btnCheckBlackList.Size = new System.Drawing.Size(30, 27);
+            this.btnCheckBlackList.TabIndex = 44;
+            this.btnCheckBlackList.Tag = "cancelall";
+            this.toolTipV6FormControl.SetToolTip(this.btnCheckBlackList, "Kiểm tra thông tin rủi ro hóa đơn");
+            this.btnCheckBlackList.UseVisualStyleBackColor = true;
+            this.btnCheckBlackList.Click += new System.EventHandler(this.btnCheckBlackList_Click);
             // 
             // linkLabel1
             // 
@@ -693,7 +708,7 @@
             this.txtMaSoThueVAT.Location = new System.Drawing.Point(165, 57);
             this.txtMaSoThueVAT.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaSoThueVAT.Name = "txtMaSoThueVAT";
-            this.txtMaSoThueVAT.Size = new System.Drawing.Size(197, 23);
+            this.txtMaSoThueVAT.Size = new System.Drawing.Size(170, 23);
             this.txtMaSoThueVAT.TabIndex = 5;
             // 
             // v6ColorTextBox14
@@ -1123,7 +1138,6 @@
             this.numHantt.AccessibleName = "han_tt";
             this.numHantt.BackColor = System.Drawing.Color.White;
             this.numHantt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.numHantt.DecimalPlaces = 0;
             this.numHantt.EnterColor = System.Drawing.Color.PaleGreen;
             this.numHantt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.numHantt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1147,7 +1161,6 @@
             this.txtGioiHanCN.AccessibleName = "t_tien_cn";
             this.txtGioiHanCN.BackColor = System.Drawing.Color.White;
             this.txtGioiHanCN.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGioiHanCN.DecimalPlaces = 0;
             this.txtGioiHanCN.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtGioiHanCN.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGioiHanCN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1515,7 +1528,7 @@
             this.txtSLS6.Name = "txtSLS6";
             this.txtSLS6.Size = new System.Drawing.Size(200, 23);
             this.txtSLS6.TabIndex = 155;
-            this.txtSLS6.Text = "0,000";
+            this.txtSLS6.Text = "0";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS6.Value = new decimal(new int[] {
             0,
@@ -1540,7 +1553,7 @@
             this.txtSLS5.Name = "txtSLS5";
             this.txtSLS5.Size = new System.Drawing.Size(200, 23);
             this.txtSLS5.TabIndex = 153;
-            this.txtSLS5.Text = "0,000";
+            this.txtSLS5.Text = "0";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS5.Value = new decimal(new int[] {
             0,
@@ -1565,7 +1578,7 @@
             this.txtSLS4.Name = "txtSLS4";
             this.txtSLS4.Size = new System.Drawing.Size(200, 23);
             this.txtSLS4.TabIndex = 151;
-            this.txtSLS4.Text = "0,000";
+            this.txtSLS4.Text = "0";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS4.Value = new decimal(new int[] {
             0,
@@ -1893,7 +1906,7 @@
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox3.TabIndex = 107;
-            this.v6NumberTextBox3.Text = "0,000";
+            this.v6NumberTextBox3.Text = "0";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
             0,
@@ -1918,7 +1931,7 @@
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox2.TabIndex = 105;
-            this.v6NumberTextBox2.Text = "0,000";
+            this.v6NumberTextBox2.Text = "0";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
             0,
@@ -1943,7 +1956,7 @@
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox1.TabIndex = 103;
-            this.v6NumberTextBox1.Text = "0,000";
+            this.v6NumberTextBox1.Text = "0";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,
@@ -2594,5 +2607,6 @@
         private V6DateTimeColor dateNgayS9;
         private V6DateTimeColor dateNgayS8;
         private V6DateTimeColor dateNgayS7;
+        private Controls.V6FormButton btnCheckBlackList;
     }
 }

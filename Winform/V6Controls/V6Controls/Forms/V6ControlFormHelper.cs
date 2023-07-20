@@ -4577,7 +4577,7 @@ namespace V6Controls.Forms
                 if (setting.data == null) return null;
                 fileName = ChooseSaveFile(owner, "Excel files (*.xls)|*.xls|Xlsx|*.xlsx", ChuyenMaTiengViet.ToUnSign(defaultSaveName));
 
-                setting.data = CookingDataForExcel(setting.data);
+                setting.data = CookingDataForExcel(setting.data, null);
                 setting.saveFile = fileName;
                 setting.isDrawLine = true;
                 
@@ -4659,11 +4659,22 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="data">Dữ liệu đầu vào.</param>
         /// <returns>Dữ liệu kết quả.</returns>
-        public static DataTable CookingDataForExcel(DataTable data)
+        public static DataTable CookingDataForExcel(DataTable data, string row_filter)
         {
             if (data == null) return null;
             DateTime _1900 = new DateTime(1900, 1, 1);
-            DataTable result = data.Copy();
+            DataTable result;
+            if (string.IsNullOrEmpty(row_filter))
+            {
+                result = data.Copy();
+            }
+            else
+            {
+                DataView temp_view = new DataView(data);
+                temp_view.RowFilter = row_filter;
+                result = temp_view.ToTable();
+            }
+            
             List<DataColumn> strColumnList = new List<DataColumn>();
             List<DataColumn> dateColumnList = new List<DataColumn>();
             foreach (DataColumn column in result.Columns)
@@ -4826,12 +4837,12 @@ namespace V6Controls.Forms
                                         {
                                             var matchGroup0 = match.Groups[0].Value;
                                             var matchContain = match.Groups[1].Value;
-                                            var matchColumn = matchContain.ToUpper();
+                                            var matchColumn = matchContain;
                                             var matchFormat = "";
                                             if (matchContain.Contains(":"))
                                             {
                                                 int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
-                                                matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                matchColumn = matchContain.Substring(0, _2dotIndex);
                                                 matchFormat = matchContain.Substring(_2dotIndex + 1);
                                             }
                                             if (ExportExcelTemplate_setting.reportParameters.ContainsKey(matchColumn)
@@ -4929,7 +4940,12 @@ namespace V6Controls.Forms
                             //Không có thông tin xml
                         }
 
-                        ExportExcelTemplate_setting.data = CookingDataForExcel(ExportExcelTemplate_setting.data);
+                        string row_filter = "";
+                        if (albcConfig.HaveInfo && albcConfig.EXTRA_INFOR.ContainsKey("EXP_FILTER"))
+                        {
+                            row_filter = albcConfig.EXTRA_INFOR["EXP_FILTER"];
+                        }
+                        ExportExcelTemplate_setting.data = CookingDataForExcel(ExportExcelTemplate_setting.data, row_filter);
                         ExportExcelTemplate_setting.columns = ObjectAndString.SplitString(excelColumns.Replace("[", "").Replace("]", ""));
                         ExportExcelTemplate_setting.parameters = parameters;
                         ExportExcelTemplate_setting.isInsertRow = insertRow;
@@ -5016,12 +5032,12 @@ namespace V6Controls.Forms
                             {
                                 var matchGroup0 = match.Groups[0].Value;
                                 var matchContain = match.Groups[1].Value;
-                                var matchColumn = matchContain.ToUpper();
+                                var matchColumn = matchContain;
                                 var matchFormat = "";
                                 if (matchContain.Contains(":"))
                                 {
                                     int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
-                                    matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                    matchColumn = matchContain.Substring(0, _2dotIndex);
                                     matchFormat = matchContain.Substring(_2dotIndex + 1);
                                 }
                                 if (setting.reportParameters.ContainsKey(matchColumn)
@@ -5145,7 +5161,7 @@ namespace V6Controls.Forms
         {
             if (setting.reportParameters == null) setting.reportParameters = new Dictionary<string, object>();
             ExportExcelTemplateD_owner = owner;
-            setting.data = CookingDataForExcel(setting.data);
+            
             ExportExcelTemplateD_setting = setting;
             ExportExcelTemplateD_MODE = MODE;
             setting.reportParameters = setting.reportParameters.ToUpperKeys();
@@ -5272,12 +5288,12 @@ namespace V6Controls.Forms
                                             {
                                                 var matchGroup0 = match.Groups[0].Value;
                                                 var matchContain = match.Groups[1].Value;
-                                                var matchColumn = matchContain.ToUpper();
+                                                var matchColumn = matchContain;
                                                 var matchFormat = "";
                                                 if (matchContain.Contains(":"))
                                                 {
                                                     int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
-                                                    matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex);
                                                     matchFormat = matchContain.Substring(_2dotIndex + 1);
                                                 }
                                                 if (setting.reportParameters.ContainsKey(matchColumn)
@@ -5366,6 +5382,12 @@ namespace V6Controls.Forms
                             setting.isDrawLine = drawLine;
                             setting.isInsertRow = insertRow;
                             setting.columns = ObjectAndString.SplitString(ExportExcelTemplateD_excelColumns.Replace("[", "").Replace("]", ""));
+                            string row_filter = "";
+                            if (albcConfig.HaveInfo && albcConfig.EXTRA_INFOR.ContainsKey("EXP_FILTER"))
+                            {
+                                row_filter = albcConfig.EXTRA_INFOR["EXP_FILTER"];
+                            }
+                            setting.data = CookingDataForExcel(setting.data, row_filter);
                             if (ExportData.ToExcelTemplate(ExportExcelTemplateD_ExcelTemplateFileFull, setting, V6Setting.V6_number_format_info))
                             {
                                 if (V6Options.AutoOpenExcel && !NoOpen)
@@ -5476,7 +5498,7 @@ namespace V6Controls.Forms
         {
             if (setting.reportParameters == null) setting.reportParameters = new Dictionary<string, object>();
             ExportExcelGroup_owner = owner;
-            setting.data = CookingDataForExcel(setting.data);
+            
             ExportExcelGroup_setting = setting;
             ExportExcelGroup_ReportFile = ReportFile;
             ExportExcelGroup_ExcelTemplateFileFull = ExcelTemplateFileFull;
@@ -5513,17 +5535,20 @@ namespace V6Controls.Forms
         private static int time_count2 = 0;
         private static void ExportExcelGroup_Thread()
         {
-            if (ExportExcelGroup_setting.data == null)
+            var setting = ExportExcelGroup_setting;
+            if (setting.data == null)
             {
                 ShowMainMessage(V6Text.ExportFail + "\n" + V6Text.NoData);
                 return;
             }
+
             try
             {
                 try
                 {
-                    var albcConfig = new AlbcConfig(ExportExcelGroup_setting.albcConfigData);
-                    var setting = new ExportExcelSetting();
+                    
+                    var albcConfig = new AlbcConfig(setting.albcConfigData);
+
                     if (albcConfig.HaveInfo)
                     {
                         var firstCell = "A4"; //auto
@@ -5558,7 +5583,7 @@ namespace V6Controls.Forms
                                 }
                                 else if (type == "1") //Lay value trong parameter
                                 {
-                                    if (ExportExcelGroup_setting.reportParameters == null) continue;
+                                    if (setting.reportParameters == null) continue;
                                     // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
                                     // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
                                     // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
@@ -5568,10 +5593,10 @@ namespace V6Controls.Forms
                                         //foreach (Match match in regex.Matches(content))
                                         //{
                                         //    var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                        //    if (ExportExcelGroup_setting.reportParameters.ContainsKey(MATCH_KEY))
+                                        //    if (setting.reportParameters.ContainsKey(MATCH_KEY))
                                         //        content = content.Replace(match.Groups[0].Value,
                                         //            ObjectAndString.ObjectToString(
-                                        //                ExportExcelGroup_setting.reportParameters[MATCH_KEY]));
+                                        //                setting.reportParameters[MATCH_KEY]));
                                         //}
                                         //parameters.Add(KEY, content);
 
@@ -5580,37 +5605,37 @@ namespace V6Controls.Forms
                                         {
                                             var matchGroup0 = match.Groups[0].Value;
                                             var matchContain = match.Groups[1].Value;
-                                            var matchColumn = matchContain.ToUpper();
+                                            var matchColumn = matchContain;
                                             var matchFormat = "";
                                             if (matchContain.Contains(":"))
                                             {
                                                 int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
-                                                matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                matchColumn = matchContain.Substring(0, _2dotIndex);
                                                 matchFormat = matchContain.Substring(_2dotIndex + 1);
                                             }
-                                            if (ExportExcelGroup_setting.reportParameters.ContainsKey(matchColumn)
-                                                && ExportExcelGroup_setting.reportParameters[matchColumn] is DateTime && matchFormat == "")
+                                            if (setting.reportParameters.ContainsKey(matchColumn)
+                                                && setting.reportParameters[matchColumn] is DateTime && matchFormat == "")
                                             {
                                                 matchFormat = "dd/MM/yyyy";
                                             }
-                                            if (ExportExcelGroup_setting.reportParameters.ContainsKey(matchColumn))
+                                            if (setting.reportParameters.ContainsKey(matchColumn))
                                                 content = content.Replace(matchGroup0,
-                                                    ObjectAndString.ObjectToString(ExportExcelGroup_setting.reportParameters[matchColumn], matchFormat));
+                                                    ObjectAndString.ObjectToString(setting.reportParameters[matchColumn], matchFormat));
                                         }
                                         parameters.Add(KEY, content);
                                     }
                                     else
                                     {
                                         var P_KEY = content.ToUpper();
-                                        if (ExportExcelGroup_setting.reportParameters.ContainsKey(P_KEY))
+                                        if (setting.reportParameters.ContainsKey(P_KEY))
                                         {
-                                            parameters.Add(KEY, ExportExcelGroup_setting.reportParameters[P_KEY]);
+                                            parameters.Add(KEY, setting.reportParameters[P_KEY]);
                                         }
                                     }
                                 }
-                                else if (type == "2" && ExportExcelGroup_setting.data3 != null && ExportExcelGroup_setting.data3.Rows.Count > 0) //Lay value trong tbl2
+                                else if (type == "2" && setting.data3 != null && setting.data3.Rows.Count > 0) //Lay value trong tbl2
                                 {
-                                    var excel_row = ExportExcelGroup_setting.data3.Rows[0];
+                                    var excel_row = setting.data3.Rows[0];
 
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
@@ -5627,9 +5652,9 @@ namespace V6Controls.Forms
                                                 matchColumn = matchContain.Substring(0, _2dotIndex);
                                                 matchFormat = matchContain.Substring(_2dotIndex+1);
                                             }
-                                            if (ExportExcelGroup_setting.data3.Columns.Contains(matchColumn))
+                                            if (setting.data3.Columns.Contains(matchColumn))
                                             {
-                                                if (ExportExcelGroup_setting.data3.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
+                                                if (setting.data3.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
                                                 {
                                                     matchFormat = "dd/MM/yyyy";
                                                 }
@@ -5645,7 +5670,7 @@ namespace V6Controls.Forms
                                     }
                                     else
                                     {
-                                        if (ExportExcelGroup_setting.data3.Columns.Contains(content))
+                                        if (setting.data3.Columns.Contains(content))
                                         {
                                             parameters.Add(KEY, excel_row[content]);
                                         }
@@ -5710,9 +5735,15 @@ namespace V6Controls.Forms
                             ShowWarningMessage("REF_KEY");
                             return;
                         }
+                        string row_filter = "";
+                        if (albcConfig.HaveInfo && albcConfig.EXTRA_INFOR.ContainsKey("EXP_FILTER"))
+                        {
+                            row_filter = albcConfig.EXTRA_INFOR["EXP_FILTER"];
+                        }
+                        setting.data = CookingDataForExcel(setting.data, row_filter);
 
                         if (ExportData.ToExcelTemplateGroup(
-                            ExportExcelGroup_ExcelTemplateFileFull, ExportExcelGroup_setting.data, ExportExcelGroup_setting.data2, setting, ObjectAndString.SplitString(ref_key), ExportExcelGroup_saveFileName, firstCell,
+                            ExportExcelGroup_ExcelTemplateFileFull, setting.data, setting.data2, setting, ObjectAndString.SplitString(ref_key), ExportExcelGroup_saveFileName, firstCell,
                             column_config,
                             null,//Headers
                             parameters, V6Setting.V6_number_format_info,
@@ -5919,12 +5950,12 @@ namespace V6Controls.Forms
                                             {
                                                 var matchGroup0 = match.Groups[0].Value;
                                                 var matchContain = match.Groups[1].Value;
-                                                var matchColumn = matchContain.ToUpper();
+                                                var matchColumn = matchContain;
                                                 var matchFormat = "";
                                                 if (matchContain.Contains(":"))
                                                 {
                                                     int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
-                                                    matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex);
                                                     matchFormat = matchContain.Substring(_2dotIndex + 1);
                                                 }
                                                 if (ExportExcelTemplateHTKK_setting.reportParameters.ContainsKey(matchColumn)
@@ -6047,7 +6078,7 @@ namespace V6Controls.Forms
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
             if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
-            ExportExcelTemplateONLINE_data = CookingDataForExcel(data);
+            ExportExcelTemplateONLINE_data = CookingDataForExcel(data, null);
             if (tbl2 == null) ExportExcelTemplateONLINE_tbl2 = new DataTable(); else ExportExcelTemplateONLINE_tbl2 = tbl2.Copy();
             ExportExcelTemplateONLINE_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplateONLINE_MAU = MAU;
@@ -6104,13 +6135,13 @@ namespace V6Controls.Forms
             try
             {
                 SortedDictionary<string, DataTable> datas = new SortedDictionary<string, DataTable>();
-
+                var setting = new ExportExcelSetting();
                 if (!string.IsNullOrEmpty(ExportExcelTemplateONLINE_saveFileName))
                 {
                     try
                     {
                         var albcConfig = ConfigManager.GetAlbcConfig_reportfile(ExportExcelTemplateONLINE_MAU, ExportExcelTemplateONLINE_LAN, ExportExcelTemplateONLINE_ReportFile);
-                        var setting = new ExportExcelSetting();
+                        
                         if (albcConfig.HaveInfo)
                         {
                             var firstCell = "A4";                           //auto, không dùng, đã có config riêng type 7
@@ -6199,12 +6230,12 @@ namespace V6Controls.Forms
                                             {
                                                 var matchGroup0 = match.Groups[0].Value;
                                                 var matchContain = match.Groups[1].Value;
-                                                var matchColumn = matchContain.ToUpper();
+                                                var matchColumn = matchContain;
                                                 var matchFormat = "";
                                                 if (matchContain.Contains(":"))
                                                 {
                                                     int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
-                                                    matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex);
                                                     matchFormat = matchContain.Substring(_2dotIndex + 1);
                                                 }
                                                 if (ExportExcelTemplateONLINE_ReportDocumentParameters.ContainsKey(matchColumn)
@@ -6280,6 +6311,7 @@ namespace V6Controls.Forms
 
                             setting.parameters = parameters;
                             setting.columns = ObjectAndString.SplitString(excelColumnsONLINE);
+                            
                             if (ExportData.ToExcelTemplateHTKK(
                                 ExportExcelTemplateONLINE_excelTemplateFile, datas, setting, ObjectAndString.SplitString(excelColumnsONLINE),
                                 ExportExcelTemplateONLINE_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))

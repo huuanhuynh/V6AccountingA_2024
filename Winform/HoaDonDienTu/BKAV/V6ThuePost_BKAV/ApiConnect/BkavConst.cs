@@ -9,6 +9,29 @@ namespace V6ThuePostBkavApi
     {
         #region ==== Const ====
 
+        //Ma lenh Tạo hóa đơn
+//100
+//PartnerID
+//Mẫu số, ký hiệu do Bkav cấp.Số HĐ = 0(bản nháp)
+
+//101
+//PartnerID
+//Mẫu số, ký hiệu, số hđ do Bkav cấp (Hóa đơn chờ)
+
+//110
+//PartnerID
+//Mẫu số, ký hiệu do PMKT cấp.Số HĐ = chưa có
+
+//111
+//PartnerID
+//Mẫu số, ký hiệu, số hóa đơn do PMKT cấp 
+
+//112
+//PartnerID
+//Mẫu số, ký hiệu do PMKT cấp, số HĐ do Bkav cấp
+
+
+
         /// <summary>
         /// Tạo HĐ, eHD tự cấp InvoiceForm, InvoiceSerial; InvoiceNo = 0 (tạo HĐ mới)
         /// </summary>

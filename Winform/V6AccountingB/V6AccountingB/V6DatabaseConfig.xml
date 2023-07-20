@@ -47,11 +47,14 @@
 
     <!-- Cấu hình save ip lên V6 khi khởi động (đang thêm __ để bỏ qua) -->
     <__IPSRV6Name>V6SERVER.2021</__IPSRV6Name>
+    <IPSRV6Name></IPSRV6Name>
     <IPSRV6Port>,7172</IPSRV6Port>
       <IPSRV6Server>118.69.183.160\SQL2K8,3979</IPSRV6Server>
         <IPSRV6Database>V6CUST21_IP</IPSRV6Database>
           <IPSRV6UserId>V6ADMSA</IPSRV6UserId>
             <IPSRV6EPassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</IPSRV6EPassword>
+    
+    <IPSRV6BlackTables>VPA_CHECK_BLACK_LIST:1</IPSRV6BlackTables>
 
     <Api>api</Api>
     <Api2>api</Api2>
@@ -60,6 +63,7 @@
     <UseIsolation>1</UseIsolation>
     <Run>1</Run>
     <Type>0</Type>
+    
     <Key>TDGEME1hgGeCrLVu/Gxhr1e/WljDfyEG6r+sK9jftgu4nCmk2hivDw==</Key>
   </DatabaseList>
   <DatabaseList>

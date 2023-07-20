@@ -4653,7 +4653,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         public void Moi()
         {
-            _acted = true;
+            _autoloadtop_acted = true;
             try
             {
                 if (V6Login.UserRight.AllowAdd("", Invoice.CodeMact))
@@ -4900,7 +4900,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         /// <param name="flag"></param>
         public void Tim(string flag)
         {
-            _acted = true;
+            _autoloadtop_acted = true;
             try
             {
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
@@ -6289,7 +6289,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
+        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e) 
         {
             try
             {
@@ -6316,7 +6316,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
-                    
+                    // Gan MA_LNX_I va MA_LNXN
+                    if (!data.ContainsKey("MA_LNX_I"))
+                    {
+                        data["MA_LNX_I"] = txtLoaiNX_PH.Text;
+                    }
+                    if (!data.ContainsKey("MA_LNXN"))
+                    {
+                        data["MA_LNXN"] = txtLoaiNX_PHN.Text;
+                    }
+
                     foreach (KeyValuePair<string, string> item in ad2am_dic)
                     {
                         if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
@@ -7269,6 +7278,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     data["MA_KHO_I"] = cMaKhoI;
                     data["MA_NX_I"] = data["TK_VT"];
                     data["MA_LNX_I"] = txtLoaiNX_PH.Text;
+                    data["MA_LNXN"] = txtLoaiNX_PHN.Text;
 
                     if (XuLyThemDetail(data))
                     {

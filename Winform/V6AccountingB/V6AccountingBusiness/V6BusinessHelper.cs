@@ -657,6 +657,64 @@ namespace V6AccountingBusiness
         }
 
         /// <summary>
+        /// 1 ton tai, 0 khong ton tai, -1 khong xac dinh.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static int CheckV6BlackList(string ma_kh, string mst)
+        {
+            int result = 0;
+            if (string.IsNullOrEmpty(DatabaseConfig.IPSRV6BlackTables))
+            {
+                return 0;
+            }
+
+            var dic = ObjectAndString.StringToDictionary(DatabaseConfig.IPSRV6BlackTables);
+
+            if (dic.ContainsKey("VPA_CHECK_BLACK_LIST")
+                && dic["VPA_CHECK_BLACK_LIST"].ToString().Trim() == "1")
+            {
+                if (DatabaseConfig.CheckConnectionString(DatabaseConfig.ConnectionString_IPSR))
+                {
+                    try
+                    {
+                        //   [VPA_CHECK_BLACK_LIST]
+                        //@Database varchar(100),
+                        //@ma_kh varchar(50),
+                        //@ma_so_thue varchar(50),
+                        //@user_id int=0
+                        var plist = new SqlParameter[]
+                        {
+                            new SqlParameter("@Database", DatabaseConfig.Database),
+                            new SqlParameter("@ma_kh", ma_kh),
+                            new SqlParameter("@ma_so_thue", mst),
+                            new SqlParameter("@user_id", V6Login.UserId),
+                        };
+                        var data = ExecuteProcedureC(DatabaseConfig.ConnectionString_IPSR, "VPA_CHECK_BLACK_LIST", plist).Tables[0];
+                        if (data.Rows.Count > 0)
+                        {
+                            result = 1;
+                        }
+                        else
+                        {
+                            result = 0;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return -1;
+                    }
+                }
+                else
+                {
+                    result = -1;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Kiểm tra khóa số liệu. Nếu có khóa trả về 1, nếu không khóa trả về 0
         /// </summary>
         /// <param name="type">1: dùng tham số date. 2: dùng month year. 3: year</param>

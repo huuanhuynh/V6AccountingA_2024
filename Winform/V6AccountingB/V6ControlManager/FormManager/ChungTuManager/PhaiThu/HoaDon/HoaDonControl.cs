@@ -5941,6 +5941,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                else
+                {
+                    Mode = V6Mode.Init;
+                    _autoloadtop_acted = true;
+                }
                 OnAmChanged(AM);
             }
             catch (Exception ex)
@@ -6592,7 +6597,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         public void Moi()
         {
-            _acted = true;
+            _autoloadtop_acted = true;
             try
             {
                 if (V6Login.UserRight.AllowAdd("", Invoice.CodeMact))
@@ -6874,7 +6879,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         /// <param name="flag"></param>
         public void Tim(string flag)
         {
-            _acted = true;
+            _autoloadtop_acted = true;
             try
             {
                 if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
@@ -9104,8 +9109,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             try
             {
-                string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
-
                 if (NotAddEdit) return;
                 if (_flag_next)
                 {
@@ -9147,8 +9150,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                     }
                 }
-                
 
+                string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
                 foreach (DataRow row in AD.Rows)
                 {
                     var stt_rec0 = row["STT_REC0"].ToString().Trim().ToUpper();

@@ -17,6 +17,7 @@ namespace V6DBF2EXCELTEMPLATE
     static class Program
     {
         static NumberFormatInfo nfi;
+        public static string[] _args;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -25,17 +26,44 @@ namespace V6DBF2EXCELTEMPLATE
         {
             if (args.Length > 5)
             {
+                _args = args;
+                fileDbf1 = _args[0];
+                fileDbf2 = _args[1];
+                fileTemplate = _args[2];
+                fileSave = _args[3];
+                fileFields = _args[4];
+                fileXml = _args[5];
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form1());
+            }
+            else
+            {
+                MessageBox.Show("V6DBF2EXCELTEMPLATE.exe TABLE1.dbf TABLE2.dbf Template.xls Save.xls Field_excel1.txt EXCEL2.XML");
+                //Application.EnableVisualStyles();
+                //Application.SetCompatibleTextRenderingDefault(false);
+                //Application.Run(new Form1());
+            }
+        }
+
+        public static string fileDbf1;
+        public static string fileDbf2;
+        public static string fileTemplate;
+        public static string fileSave;
+        public static string fileFields;
+        public static string fileXml;
+
+        public static void ExportExcelTemplate()
+        {
+            try
+            {
                 //V6DBF2XLSW.exe TABLE1.dbf TABLE2.dbf Template.xls Save.xls Field_excel1.txt EXCEL2.XML
                 nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
                 nfi.NumberGroupSeparator = " ";
                 nfi.NumberDecimalSeparator = ",";
 
-                string fileDbf1 = args[0];
-                string fileDbf2 = args[1];
-                string fileTemplate = args[2];
-                string fileSave = args[3];
-                string fileFields = args[4];
-                string fileXml = args[5];
+                
                 var setting = new ExportExcelSetting();
                 setting.xlsTemplateFile = fileTemplate;
                 setting.saveFile = fileSave;
@@ -82,7 +110,7 @@ namespace V6DBF2EXCELTEMPLATE
                                 {
                                     setting.BOLD_CONDITION = new Condition(sss[0], sss[1], sss[2]);
                                 }
-                                
+
                             }
                         }
                         //else if (type == "1") //Lay value trong parameter
@@ -202,18 +230,13 @@ namespace V6DBF2EXCELTEMPLATE
                 }
 
 
-                
-                V6Tools.V6Export.ExportData.ToExcelTemplate(setting, columns, null,
-                    parameters, nfi, insertRow, drawLine);
 
-                
-                
+                V6Tools.V6Export.ExportData.ToExcelTemplate(setting, columns, null, parameters, nfi, insertRow, drawLine);
+
             }
-            else
+            catch (Exception ex)
             {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+                Logger.WriteExLog("ExportExcelTemplate", ex);
             }
         }
 
