@@ -1998,11 +1998,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                var data = invoice.LoadDefaultData(V6Setting.Language, m_itemId);
-                var data0 = new SortedDictionary<string, object>();
-                data0.AddRange(data);
-                var controlDic = V6ControlFormHelper.SetFormDataDictionary(this, new SortedDictionary<string, object>(data0), false);
-                FixVvarBrothers(controlDic);
+                LoadDefaultData(1, invoice.Mact, "", m_itemId, "nhom='00'");
+                //var data = invoice.LoadDefaultData(V6Setting.Language, m_itemId);
+                //var data0 = new SortedDictionary<string, object>();
+                //data0.AddRange(data);
+                //var controlDic = V6ControlFormHelper.SetFormDataDictionary(this, new SortedDictionary<string, object>(data0), false);
+                //FixVvarBrothers(controlDic);
             }
             catch (Exception ex)
             {
@@ -3907,14 +3908,15 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
         public void SetDefaultDataReference(V6InvoiceBase invoice, string itemID, string controlName, DataRow controlData)
         {
             //Lay thong tin gan du lieu 20161129
-            var infos = invoice.LoadDataReferenceInfo(V6Setting.Language, ItemID);
-            //Duyet txtmahttt
-            //from TK_NO to MA_NX
-            //data[to] = from
+            //var infos =   invoice.LoadDataReferenceInfo(V6Setting.Language, ItemID);
+            var infosDic = GetDefaultDataAndTagInfoData(V6Setting.Language, 1, invoice.Mact, "", itemID, "nhom='02'");
+            //SetDefaultDataInfoToForm(infosDic);
+            
             //Chuẩn bị dữ liệu để gán lên form
             SortedDictionary<string, object> someData = new SortedDictionary<string, object>();
-            foreach (DefaultValueInfo item in infos)
+            foreach (KeyValuePair<string, DefaultValueAndTagInfo> item0 in infosDic)
             {
+                var item = item0.Value;
                 if (item.Type1 == "0")
                 {
                     //Value null vẫn gán.

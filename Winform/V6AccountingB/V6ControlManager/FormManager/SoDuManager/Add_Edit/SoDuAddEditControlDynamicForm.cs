@@ -711,6 +711,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             Mode = mode;
             _keys = keys;
             DataOld = data;
+            LoadDefaultData(2, "", _MA_DM, m_itemId);
             if (Mode == V6Mode.View) V6ControlFormHelper.SetFormControlsReadOnly(this, true);
 
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Event_program, All_Objects);
@@ -719,7 +720,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             //virtual
             LoadDetails();
 
-            LoadTag(2, "", ma_dm, ItemID);
+            //LoadTag(2, "", ma_dm, ItemID);
         }
 
         public override void LoadAll()

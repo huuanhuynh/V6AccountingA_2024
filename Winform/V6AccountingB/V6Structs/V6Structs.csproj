@@ -35,7 +35,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultValueInfo.cs" />
+    <Compile Include="DefaultValueAndTagInfo.cs" />
     <Compile Include="V6Tag.cs" />
     <Compile Include="DefineInfo.cs" />
     <Compile Include="F.cs" />

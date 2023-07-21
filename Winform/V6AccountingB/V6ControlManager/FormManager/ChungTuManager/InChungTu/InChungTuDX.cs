@@ -63,9 +63,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         /// <summary>
         /// Danh sách event_method của Form_program.
         /// </summary>
-        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        private Type Form_program;
-        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        public Type Form_program;
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         private object InvokeFormEvent(string eventName)
         {
@@ -1315,7 +1315,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             return p_FoundEndLabel;
         }
 
-        private IDictionary<string, object> ReportDocumentParameters; 
+        public IDictionary<string, object> ReportDocumentParameters; 
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>
@@ -3019,7 +3019,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
-        SortedDictionary<string, object> edited_paras = new SortedDictionary<string, object>();
+        public SortedDictionary<string, object> edited_paras = new SortedDictionary<string, object>();
         private void btnEditPara_Click(object sender, EventArgs e)
         {
             try

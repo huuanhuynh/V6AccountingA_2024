@@ -229,14 +229,15 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _keys = keys;
             DataOld = data;
             LoadAdvanceControls(_MA_DM);
-            if(Mode == V6Mode.View)  V6ControlFormHelper.SetFormControlsReadOnly(this, true);
+            LoadDefaultData(2, "", _MA_DM, ItemID);
+            if (Mode == V6Mode.View)  V6ControlFormHelper.SetFormControlsReadOnly(this, true);
 
             All_Objects["thisForm"] = this;
             CreateFormProgram();
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Event_program, All_Objects);
             InvokeFormEvent(FormDynamicEvent.INIT);
             LoadAll();
-            LoadTag(2, "", _MA_DM, ItemID);
+            //LoadTag(2, "", _MA_DM, ItemID);
         }
 
         protected void CreateFormProgram()

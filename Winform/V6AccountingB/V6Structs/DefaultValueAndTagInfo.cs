@@ -3,7 +3,7 @@
     /// <summary>
     /// Dữ liệu mặc định cho các control trên form.
     /// </summary>
-    public class DefaultValueInfo
+    public class DefaultValueAndTagInfo
     {
         /// <summary>
         /// Control Name.

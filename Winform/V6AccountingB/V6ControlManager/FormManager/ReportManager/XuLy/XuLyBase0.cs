@@ -152,7 +152,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void Form_Load(object sender, EventArgs e)
         {
             LoadDefaultData(4, "", _reportProcedure, m_itemId, "");
-            LoadTag(4, "", _reportProcedure, m_itemId, "");
+            //LoadTag(4, "", _reportProcedure, m_itemId, "");
             FixFilterControlSize();
             InvokeFormEvent(FormDynamicEvent.INIT2);
         }

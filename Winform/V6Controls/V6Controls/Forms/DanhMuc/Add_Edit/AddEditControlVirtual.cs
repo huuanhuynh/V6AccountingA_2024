@@ -228,18 +228,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             _keys = keys;
             DataOld = data;
             LoadAdvanceControls();
+            LoadDefaultData(2, "", _MA_DM, m_itemId);
             if (Mode == V6Mode.View) V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             
             All_Objects["thisForm"] = this;
             CreateFormProgram();
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Form_program, All_Objects);
             InvokeFormEvent(FormDynamicEvent.INIT);
-            
             LoadAll();
             //virtual
             LoadDetails();
             
-            LoadTag(2, "", _MA_DM, ItemID);
+            //LoadTag(2, "", _MA_DM, ItemID);
         }
 
         private void LoadAdvanceControls()
@@ -263,6 +263,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             LoadStruct();//MaxLength...
             //EnableFormControls_Alctct();
             V6ControlFormHelper.LoadAndSetFormInfoDefine(_MA_DM, this, Parent);
+            
 
             if (Mode==V6Mode.Edit)
             {
@@ -320,7 +321,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 default0:
                 dataOld2["STATUS"] = "1"; // khi tạo mới luôn đặt STATUS = 1
                 SetSomeData(dataOld2);
-                LoadDefaultData(2, "", _MA_DM, m_itemId);
+                
             }
             else if (Mode == V6Mode.View)
             {
@@ -334,7 +335,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
             }
 
-            LoadTag(2, "", _MA_DM, m_itemId);
+            //LoadTag(2, "", _MA_DM, m_itemId);
         }
 
         /// <summary>

@@ -1264,14 +1264,14 @@ namespace V6AccountingBusiness.Invoices
             return result;
         }
 
-        public virtual List<DefaultValueInfo> LoadDataReferenceInfo(string lang, string itemId)
+        public virtual List<DefaultValueAndTagInfo> LoadDataReferenceInfo_0(string lang, string itemId)
         {
             if (defaultInfo == null || defaultInfo.Rows.Count == 0)
                 defaultInfo = V6BusinessHelper.GetDefaultValueData(1, Mact, "", itemId, "nhom='02'");
-            var result = new List<DefaultValueInfo>();
+            var result = new List<DefaultValueAndTagInfo>();
             foreach (DataRow row in defaultInfo.Rows)
             {
-                var dValue = new DefaultValueInfo();
+                var dValue = new DefaultValueAndTagInfo();
                 var cell = row["Default" + lang];
                 if (cell == null) continue;
 

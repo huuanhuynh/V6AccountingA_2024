@@ -165,14 +165,14 @@ namespace V6Controls.Forms
             }
         }
 
-        protected void SetDefaultDataInfoToForm(SortedDictionary<string, DefaultValueInfo> data)
+        protected void SetDefaultDataInfoToForm(SortedDictionary<string, DefaultValueAndTagInfo> data)
         {
             try
             {
                 SortedDictionary<string, object> someData = new SortedDictionary<string, object>();
                 string log_key = "", errors = "";
 
-                foreach (KeyValuePair<string, DefaultValueInfo> item in data)
+                foreach (KeyValuePair<string, DefaultValueAndTagInfo> item in data)
                 {
                     log_key = item.Key;
                     try

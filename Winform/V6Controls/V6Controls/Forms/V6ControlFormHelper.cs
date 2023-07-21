@@ -2908,7 +2908,7 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="container"></param>
         /// <param name="valueInfo"></param>
-        public static void SetFormDefaultValueInfo(Control container, DefaultValueInfo valueInfo)
+        public static void SetFormDefaultValueInfo(Control container, DefaultValueAndTagInfo valueInfo)
         {
             // Try get control in container
             Control c = null;
@@ -9479,12 +9479,12 @@ namespace V6Controls.Forms
             }
         }
 
-        public static SortedDictionary<string, DefaultValueInfo> GetDefaultFormData(string lang, int loai, string mact, string madm, string itemId, string adv = "")
+        public static SortedDictionary<string, DefaultValueAndTagInfo> GetDefaultFormData(string lang, int loai, string mact, string madm, string itemId, string adv = "")
         {
             //if (defaultData != null && defaultData.Count > 0) return defaultData;
             //if (alinitData == null || alinitData.Rows.Count == 0)
             var    alinitData = V6BusinessHelper.GetDefaultValueData(loai, mact, madm, itemId, adv);
-            var result = new SortedDictionary<string, DefaultValueInfo>();
+            var result = new SortedDictionary<string, DefaultValueAndTagInfo>();
             foreach (DataRow row in alinitData.Rows)
             {
                 //Tuanmh 25/12/2017 - Bo sung theo kieu
@@ -9498,7 +9498,7 @@ namespace V6Controls.Forms
                 var tagString = row["Tag"].ToString().Trim();
                 var isHide = "1" == row["Hide"].ToString().Trim().ToUpper();
                 var isReadOnly = "1" == row["Readonly"].ToString().Trim().ToUpper();
-                DefaultValueInfo valueInfo = new DefaultValueInfo()
+                DefaultValueAndTagInfo valueInfo = new DefaultValueAndTagInfo()
                 {
                     AName = ANAME,
                     CName = CNAME,

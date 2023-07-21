@@ -557,7 +557,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void Form_Load(object sender, EventArgs e)
         {
             LoadDefaultData(4, "", _reportProcedure, m_itemId, "");
-            LoadTag(4, "", _reportProcedure, m_itemId, "");
+            //LoadTag(4, "", _reportProcedure, m_itemId, "");
             InvokeFormEvent(FormDynamicEvent.INIT2);
             GetSumCondition();
         }

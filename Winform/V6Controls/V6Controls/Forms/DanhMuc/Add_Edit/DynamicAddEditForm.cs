@@ -701,6 +701,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             Mode = mode;
             _keys = keys;
             DataOld = data;
+            LoadDefaultData(2, "", _MA_DM, ItemID);
             if (Mode == V6Mode.View) V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Form_program, All_Objects);
@@ -709,7 +710,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //virtual
             LoadDetails();
 
-            LoadTag(2, "", _MA_DM, ItemID);
+            //LoadTag(2, "", _MA_DM, ItemID);
         }
 
         protected override void LoadAll()

@@ -80,6 +80,33 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
+        /// Lấy biến bất kể Private hay Public.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public object GetVar(string name)
+        {
+            Type type = GetType();
+            FieldInfo fi = type.GetField(name); if (fi != null) return fi.GetValue(this);
+            fi = type.GetField(name, BindingFlags.NonPublic | BindingFlags.Instance); if (fi != null) return fi.GetValue(this);
+            PropertyInfo pi = type.GetProperty(name); if (pi != null) return pi.GetValue(this, null);
+            pi = type.GetProperty(name, BindingFlags.NonPublic | BindingFlags.Instance); if (pi != null) return pi.GetValue(this, null);
+
+            return null;
+        }
+
+        public bool SetVar(string name, object value)
+        {
+            Type type = GetType();
+            FieldInfo fi = type.GetField(name); if (fi != null) { fi.SetValue(this, value); return true; }
+            fi = type.GetField(name, BindingFlags.NonPublic | BindingFlags.Instance); if (fi != null) { fi.SetValue(this, value); return true; }
+            PropertyInfo pi = type.GetProperty(name); if (pi != null) { pi.SetValue(this, value, null); return true; }
+            pi = type.GetProperty(name, BindingFlags.NonPublic | BindingFlags.Instance); if (pi != null) { pi.SetValue(this, value, null); return true; }
+
+            return false;
+        }
+
+        /// <summary>
         /// Set AllObjects
         /// </summary>
         /// <param name="key"></param>
@@ -373,7 +400,7 @@ namespace V6Controls.Forms
         {
             try
             {
-                var data = GetDefaultData(V6Setting.Language, loai, mact, madm, itemId, adv);
+                var data = GetDefaultDataAndTagInfoData(V6Setting.Language, loai, mact, madm, itemId, adv);
                 //data = V6ControlFormHelper.GetDefaultFormData(V6Setting.Language, loai, mact, madm, itemId, adv);
                 SetDefaultDataInfoToForm(data);
             }
@@ -381,16 +408,26 @@ namespace V6Controls.Forms
             {
                 this.WriteExLog(GetType() + ".LoadDefaultData", ex);
             }
+            // and tag
+            try
+            {
+                var data = GetTagData(loai, mact, madm, itemId, adv);
+                V6ControlFormHelper.SetFormTagDictionary(this, data);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadTag", ex);
+            }
         }
 
-        protected void SetDefaultDataInfoToForm(SortedDictionary<string, DefaultValueInfo> data)
+        protected void SetDefaultDataInfoToForm(SortedDictionary<string, DefaultValueAndTagInfo> data)
         {
             try
             {
                 SortedDictionary<string, object> someData = new SortedDictionary<string, object>();
                 string log_key = "", errors = "";
 
-                foreach (KeyValuePair<string, DefaultValueInfo> item in data)
+                foreach (KeyValuePair<string, DefaultValueAndTagInfo> item in data)
                 {
                     log_key = item.Key;
                     try
@@ -401,7 +438,7 @@ namespace V6Controls.Forms
                         var valueInfo = item.Value;
                         switch (valueInfo.Type1)
                         {
-                            case "0":
+                            case "0": // Value = 0 hoặc null vẫn gán lên form
                                 if (!string.IsNullOrEmpty(valueInfo.AName))
                                 {
                                     someData[valueInfo.AName] = valueInfo.Value;
@@ -411,7 +448,7 @@ namespace V6Controls.Forms
                                     SetControlValue(GetControlByName(valueInfo.CName), valueInfo.Value);
                                 }
                                 break;
-                            case "1":
+                            case "1": // Value khác null mới gán
                                 if (!string.IsNullOrEmpty(valueInfo.Value))
                                 {
                                     if (!string.IsNullOrEmpty(valueInfo.AName))
@@ -424,7 +461,7 @@ namespace V6Controls.Forms
                                     }
                                 }
                                 break;
-                            case "2":
+                            case "2": // kiểm tra form rỗng mới gán
                                 if (!string.IsNullOrEmpty(valueInfo.AName))
                                 {
                                     var formValue = V6ControlFormHelper.GetFormValue(this, valueInfo.AName);
@@ -501,17 +538,9 @@ namespace V6Controls.Forms
         /// <param name="madm"></param>
         /// <param name="itemId"></param>
         /// <param name="adv"></param>
-        protected void LoadTag(int loai, string mact, string madm, string itemId, string adv = "")
+        protected void LoadTag_0(int loai, string mact, string madm, string itemId, string adv = "")
         {
-            try
-            {
-                var data = GetTagData(loai, mact, madm, itemId, adv);
-                V6ControlFormHelper.SetFormTagDictionary(this, data);
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".LoadTag", ex);
-            }
+            
         }
 
         protected void LoadReadonly(int loai, string mact, string madm, string adv = "")
@@ -537,12 +566,12 @@ namespace V6Controls.Forms
         /// <param name="itemId"></param>
         /// <param name="adv"></param>
         /// <returns></returns>
-        private SortedDictionary<string, DefaultValueInfo> GetDefaultData(string lang, int loai, string mact, string madm, string itemId, string adv = "")
+        public SortedDictionary<string, DefaultValueAndTagInfo> GetDefaultDataAndTagInfoData(string lang, int loai, string mact, string madm, string itemId, string adv = "")
         {
             if (defaultData != null && defaultData.Count > 0) return defaultData;
             if (alinitData == null || alinitData.Rows.Count == 0)
                 alinitData = V6BusinessHelper.GetDefaultValueData(loai, mact, madm, itemId, adv);
-            var result = new SortedDictionary<string, DefaultValueInfo>();
+            var result = new SortedDictionary<string, DefaultValueAndTagInfo>();
             foreach (DataRow row in alinitData.Rows)
             {   
                 //Tuanmh 25/12/2017 - Bo sung theo kieu
@@ -556,7 +585,7 @@ namespace V6Controls.Forms
                 var tagString = row["Tag"].ToString().Trim();
                 var isHide = "1" == row["Hide"].ToString().Trim().ToUpper();
                 var isReadOnly = "1" == row["Readonly"].ToString().Trim().ToUpper();
-                DefaultValueInfo valueInfo = new DefaultValueInfo()
+                DefaultValueAndTagInfo valueInfo = new DefaultValueAndTagInfo()
                 {
                     AName = ANAME,
                     CName = CNAME,
@@ -573,7 +602,7 @@ namespace V6Controls.Forms
         }
 
         protected DataTable alinitData;
-        private SortedDictionary<string, DefaultValueInfo> defaultData;
+        private SortedDictionary<string, DefaultValueAndTagInfo> defaultData;
         //private SortedDictionary<string, string> tagData;
         private SortedDictionary<string, string> readonlyData;
         private SortedDictionary<string, string> visibleData;
