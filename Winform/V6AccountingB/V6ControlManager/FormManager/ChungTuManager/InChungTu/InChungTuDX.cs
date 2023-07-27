@@ -851,7 +851,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
-        private int _viewer_focus_count = 0;
         
 
         private void LoadComboboxSource()
@@ -2913,6 +2912,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
             }
+            All_Objects["thisForm"] = this;
             _updateDataRow = false;
         }
 

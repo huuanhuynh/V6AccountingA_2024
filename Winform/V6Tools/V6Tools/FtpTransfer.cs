@@ -200,11 +200,12 @@ namespace V6Tools
             FtpWebResponse ftpWebResponse = null;
             FileStream fileStream = null;
             string localSaveFile = Path.Combine(localFolder, fileName);
+            string tempSaveFile = localFolder + ".tem";
             try
             {
-                
-                if (File.Exists(localSaveFile)) File.Delete(localSaveFile);
-                fileStream = new FileStream(localSaveFile, FileMode.Create); // đường dẫn dấu nối \
+
+                if (File.Exists(tempSaveFile)) File.Delete(tempSaveFile);
+                fileStream = new FileStream(tempSaveFile, FileMode.Create); // đường dẫn dấu nối \
                 if (subFolder != null)
                 {
                     while (subFolder.StartsWith("/")) subFolder = subFolder.Substring(1);
@@ -228,13 +229,17 @@ namespace V6Tools
                 responseStream.Close();
                 fileStream.Close();
                 ftpWebResponse.Close();
+                // Nếu đã download thành công
+                // Xóa file local nếu có.
+                if (File.Exists(tempSaveFile)) File.Delete(tempSaveFile);
+                // copy file temp thành file local.
+                File.Copy(tempSaveFile, localSaveFile, true);
             }
             catch (Exception ex)
             {
                 if (fileStream != null)
                 {
                     fileStream.Close();
-                    if (File.Exists(localSaveFile)) File.Delete(localSaveFile); 
                 }
                 if (ftpWebResponse != null) ftpWebResponse.Close();
                 throw new Exception("FTP_Upload_Download.Download : " + ex.Message);

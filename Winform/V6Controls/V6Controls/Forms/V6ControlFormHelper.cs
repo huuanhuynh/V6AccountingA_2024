@@ -4416,6 +4416,30 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Tải tập tin từ server FTP setting.ini FTP_IP
+        /// </summary>
+        /// <param name="fileName">Tên tập tin cần tải</param>
+        /// <param name="subFolder">V6Options.GetValueNull("M_DIR_FTPV6_UPDATE");</param>
+        /// <param name="directory">Thư mục đích.</param>
+        /// <returns></returns>
+        public static bool DownloadFTP(string fileName, string subFolder, string directory)
+        {
+            // Tải update.txt
+            var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+            V6IOInfo info = new V6IOInfo()
+            {
+                FileName = fileName,
+                FTP_IP = _setting.GetSetting("FTP_IP"),
+                FTP_USER = _setting.GetSetting("FTP_USER"),
+                FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
+                FTP_SUBFOLDER = subFolder,
+                LOCAL_FOLDER = directory,
+            };
+            bool copy = V6FileIO.CopyFromVPN(info);
+            return copy;
+        }
+
         private static string ExportFormInfo(Control form)
         {
             try

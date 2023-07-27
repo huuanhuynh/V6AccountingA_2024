@@ -181,6 +181,7 @@ namespace V6Controls
                 parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6ControlManager.dll");
                 parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6ThuePostManager.dll");
                 parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6SyncLibrary2021.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6AccountingB.exe");
 
 
                 // True - memory generation, false - external file generation

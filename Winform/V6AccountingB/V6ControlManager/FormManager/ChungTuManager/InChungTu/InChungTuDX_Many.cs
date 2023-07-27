@@ -2963,6 +2963,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
             }
+            All_Objects["thisForm"] = this;
             _updateDataRow = false;
         }
 

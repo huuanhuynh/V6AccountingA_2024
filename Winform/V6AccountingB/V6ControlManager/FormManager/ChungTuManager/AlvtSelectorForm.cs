@@ -496,7 +496,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 catch (Exception ex1)
                 {
-                    
+                    Logger.WriteExLog("AlvtSelectorForm.dataGridView2_CellEndEdit", ex1);
                 }
                 
 

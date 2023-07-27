@@ -220,16 +220,27 @@ namespace V6Tools.V6Export
             int exportStartRow = setting.startRow;
             if (setting.isInsertRow && numOfRows>0)
             {
-                var startRow = exportStartRow;
-                var startCol = setting.startColumn;
-                var endRow = startRow + numOfRows - 1;
-                var endCol = startCol + numOfColumns -1;
-                workBook.insertRange(exportStartRow, setting.startColumn,
+                var styleStartRow = exportStartRow;
+                var styleStartColumn = setting.startColumn;
+                var styleEndRow = styleStartRow + numOfRows - 1;
+                var styleEndColumn = styleStartColumn + numOfColumns -1;
+
+                int fixStarRow = 0, fix;
+                // Check nếu có dòng trống từ first_row thì giảm vùng chèn 1 dòng.
+                {
+                    string temp = "";
+                    for (int col_i = setting.startColumn; col_i < setting.startColumn + numOfColumns; col_i++)
+                    {
+                        temp += workBook.getText(exportStartRow, col_i);
+                    }
+                    if (temp.Trim().Length == 0) fixStarRow = 1;
+                }
+                workBook.insertRange(exportStartRow + fixStarRow, setting.startColumn,
                     exportStartRow + numOfRows - 1, setting.startColumn + numOfColumns - 1,
                     WorkBook.ShiftRows);
-                RangeStyle rangeStyle = workBook.getRangeStyle(startRow, startCol, endRow, endCol);
+                RangeStyle rangeStyle = workBook.getRangeStyle(styleStartRow, styleStartColumn, styleEndRow, styleEndColumn);
                 ResetRangeStyleFormat(rangeStyle);
-                workBook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endCol);
+                workBook.setRangeStyle(rangeStyle, styleStartRow, styleStartColumn, styleEndRow, styleEndColumn);
             }
             #endregion chèn vùng
 

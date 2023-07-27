@@ -2097,6 +2097,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
             }
+            All_Objects["thisForm"] = this;
             SetStatus2Text();
         }
 

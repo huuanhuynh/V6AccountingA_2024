@@ -594,7 +594,7 @@ namespace V6Init
                 result += (result.Length > 1 ? " and " : "") + result3;
             }
 
-            Logger.WriteToLog(tableName + ": " + result, "TestInitFilter");
+            //Logger.WriteToLog(tableName + ": " + result, "TestInit//Filter");
             return result;
         }
 

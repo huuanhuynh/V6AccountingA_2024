@@ -42,6 +42,7 @@ namespace V6AccountingB
 
         private void MyInit()
         {
+            All_Objects["thisForm"] = this;
             V6ControlFormHelper.StatusTextViewControl = lblStatus;
             V6ControlFormHelper.StatusTextViewControl2 = lblStatus2;
             lblMainMessage.Top = -lblMainMessage.Height;
@@ -52,6 +53,7 @@ namespace V6AccountingB
             V6ControlFormHelper.MainMenu = menuMain;
             
             menuMain.Buttons.Clear();
+            CreateFormProgram();
             MakeMenu1();
             FixQuickMenu();
             
@@ -63,8 +65,45 @@ namespace V6AccountingB
             this.Text += " " + DatabaseConfig.Note;
 
             LoadMainFormInit();
+            InvokeFormEvent(FormDynamicEvent.INIT);
         }
-        
+
+        AlbcConfig _albcConfig = new AlbcConfig();
+
+        private void CreateFormProgram()
+        {
+            try
+            {
+                _albcConfig = ConfigManager.GetAlbcConfigByMA_FILE("V6MAINFORM");
+                if (!_albcConfig.HaveInfo) return;
+
+                var xml = _albcConfig.MMETHOD;
+                if (xml == "") return;
+                DataSet ds = new DataSet();
+                ds.ReadXml(new StringReader(xml));
+                if (ds.Tables.Count <= 0) return;
+
+                var data = ds.Tables[0];
+
+                string using_text = "";
+                string method_text = "";
+                foreach (DataRow event_row in data.Rows)
+                {
+                    var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                    var method_name = event_row["method"].ToString().Trim();
+                    Event_Methods[EVENT_NAME] = method_name;
+
+                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                    method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                }
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + "V6MAINFORM", using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
         private void MakeMenu1()
         {
             
@@ -175,7 +214,8 @@ namespace V6AccountingB
                 quickMenu1.LoadMenuData();
                 // Implement sự kiện ShowAlinitAddEdit.
                 V6ControlFormHelper.ShowAlinitAddEdit += V6ControlFormHelper_ShowAlinitAddEdit;
-                
+                All_Objects["thisForm"] = this;
+                InvokeFormEvent("LOADMENUFINISH");
             }
             catch (Exception ex)
             {
@@ -232,6 +272,7 @@ namespace V6AccountingB
             WindowState = FormWindowState.Maximized;
 
             GoiBaoCaoNhanh();
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         private void ShowDVCS()
