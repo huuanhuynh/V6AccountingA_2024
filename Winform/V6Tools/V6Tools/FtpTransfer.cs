@@ -162,11 +162,22 @@ namespace V6Tools
 
         public string[] GetFileList()
         {
+            return GetFileList(null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="subFolder">level1/level2</param>
+        /// <returns></returns>
+        public string[] GetFileList(string subFolder)
+        {
             WebResponse response = null;
             StringBuilder stringBuilder = new StringBuilder();
             try
             {
-                FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIP + "/"));
+                if (!string.IsNullOrEmpty(subFolder) && !subFolder.StartsWith("/")) subFolder = "/" + subFolder;
+                FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIP + subFolder));
                 ftpWebRequest.UseBinary = true;
                 ftpWebRequest.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
                 ftpWebRequest.Method = "NLST";
@@ -200,7 +211,7 @@ namespace V6Tools
             FtpWebResponse ftpWebResponse = null;
             FileStream fileStream = null;
             string localSaveFile = Path.Combine(localFolder, fileName);
-            string tempSaveFile = localFolder + ".tem";
+            string tempSaveFile = localSaveFile + ".tem";
             try
             {
 
@@ -231,7 +242,7 @@ namespace V6Tools
                 ftpWebResponse.Close();
                 // Nếu đã download thành công
                 // Xóa file local nếu có.
-                if (File.Exists(tempSaveFile)) File.Delete(tempSaveFile);
+                //if (File.Exists(localSaveFile)) File.Delete(localSaveFile);
                 // copy file temp thành file local.
                 File.Copy(tempSaveFile, localSaveFile, true);
             }
@@ -243,6 +254,40 @@ namespace V6Tools
                 }
                 if (ftpWebResponse != null) ftpWebResponse.Close();
                 throw new Exception("FTP_Upload_Download.Download : " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Tải file từ ftp server về thư mục local.
+        /// </summary>
+        /// <param name="subFolder">Thư mục trên ftp server.</param>
+        /// <param name="localFolder">Thư mục ở máy cục bộ.</param>
+        public void DownloadFolder(string subFolder, string localFolder)
+        {
+            try
+            {
+                var listFile = GetFileList(subFolder);
+                string error = "";
+                foreach (string file in listFile)
+                {
+                    try
+                    {
+                        Download(file, subFolder, localFolder);
+                    }
+                    catch (Exception ex1)
+                    {
+                        error += file + ": " + ex1.Message + "\n";
+                    }                    
+                }
+                if (error.Length > 0)
+                {
+                    throw new Exception(error);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
             }
         }
 

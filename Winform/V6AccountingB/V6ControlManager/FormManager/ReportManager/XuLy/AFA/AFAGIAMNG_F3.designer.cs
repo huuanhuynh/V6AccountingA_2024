@@ -32,7 +32,7 @@
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.txtSo_the_cc = new V6Controls.V6VvarTextBox();
+            this.txtSo_the_ts = new V6Controls.V6VvarTextBox();
             this.v6Label1 = new V6Controls.V6Label();
             this.TxtTen_ts = new V6Controls.V6ColorTextBox();
             this.v6Label12 = new V6Controls.V6Label();
@@ -107,35 +107,35 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
-            // txtSo_the_cc
+            // txtSo_the_ts
             // 
-            this.txtSo_the_cc.AccessibleName = "so_the_cc";
-            this.txtSo_the_cc.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txtSo_the_cc.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSo_the_cc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSo_the_cc.BrotherFields = "TEN_CC";
-            this.txtSo_the_cc.CheckNotEmpty = true;
-            this.txtSo_the_cc.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtSo_the_cc.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtSo_the_cc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtSo_the_cc.HoverColor = System.Drawing.Color.Yellow;
-            this.txtSo_the_cc.LeaveColor = System.Drawing.Color.White;
-            this.txtSo_the_cc.Location = new System.Drawing.Point(112, 7);
-            this.txtSo_the_cc.Name = "txtSo_the_cc";
-            this.txtSo_the_cc.ReadOnly = true;
-            this.txtSo_the_cc.Size = new System.Drawing.Size(147, 20);
-            this.txtSo_the_cc.TabIndex = 1;
-            this.txtSo_the_cc.TabStop = false;
+            this.txtSo_the_ts.AccessibleName = "SO_THE_TS";
+            this.txtSo_the_ts.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtSo_the_ts.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSo_the_ts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSo_the_ts.BrotherFields = "TEN_CC";
+            this.txtSo_the_ts.CheckNotEmpty = true;
+            this.txtSo_the_ts.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSo_the_ts.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSo_the_ts.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSo_the_ts.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSo_the_ts.LeaveColor = System.Drawing.Color.White;
+            this.txtSo_the_ts.Location = new System.Drawing.Point(112, 7);
+            this.txtSo_the_ts.Name = "txtSo_the_ts";
+            this.txtSo_the_ts.ReadOnly = true;
+            this.txtSo_the_ts.Size = new System.Drawing.Size(147, 20);
+            this.txtSo_the_ts.TabIndex = 1;
+            this.txtSo_the_ts.TabStop = false;
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "XULYL00020";
+            this.v6Label1.AccessibleDescription = "XULYL00005";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(9, 10);
             this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(64, 13);
+            this.v6Label1.Size = new System.Drawing.Size(56, 13);
             this.v6Label1.TabIndex = 0;
-            this.v6Label1.Text = "Mã công cụ";
+            this.v6Label1.Text = "Mã tài sản";
             // 
             // TxtTen_ts
             // 
@@ -239,7 +239,6 @@
             this.txtNam.AccessibleName = "NAM";
             this.txtNam.BackColor = System.Drawing.SystemColors.Window;
             this.txtNam.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNam.DecimalPlaces = 0;
             this.txtNam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -264,7 +263,6 @@
             this.txtThang1.AccessibleName = "KY";
             this.txtThang1.BackColor = System.Drawing.SystemColors.Window;
             this.txtThang1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtThang1.DecimalPlaces = 0;
             this.txtThang1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtThang1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtThang1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -380,7 +378,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNguyen_gia.BackColor = System.Drawing.Color.White;
             this.txtNguyen_gia.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNguyen_gia.DecimalPlaces = 0;
             this.txtNguyen_gia.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNguyen_gia.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtNguyen_gia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -426,7 +423,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGt_da_kh.BackColor = System.Drawing.Color.White;
             this.txtGt_da_kh.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGt_da_kh.DecimalPlaces = 0;
             this.txtGt_da_kh.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtGt_da_kh.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGt_da_kh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -462,7 +458,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSo_ky.BackColor = System.Drawing.Color.White;
             this.txtSo_ky.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSo_ky.DecimalPlaces = 0;
             this.txtSo_ky.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtSo_ky.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtSo_ky.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -498,7 +493,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGt_cl.BackColor = System.Drawing.Color.White;
             this.txtGt_cl.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGt_cl.DecimalPlaces = 0;
             this.txtGt_cl.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtGt_cl.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGt_cl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -568,7 +562,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGt_kh_ky.BackColor = System.Drawing.Color.White;
             this.txtGt_kh_ky.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGt_kh_ky.DecimalPlaces = 0;
             this.txtGt_kh_ky.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtGt_kh_ky.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGt_kh_ky.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -611,7 +604,6 @@
             this.txtTang_giam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTang_giam.BackColor = System.Drawing.Color.White;
             this.txtTang_giam.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTang_giam.DecimalPlaces = 0;
             this.txtTang_giam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTang_giam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTang_giam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -637,7 +629,6 @@
             this.txtTs0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTs0.BackColor = System.Drawing.Color.White;
             this.txtTs0.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTs0.DecimalPlaces = 0;
             this.txtTs0.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTs0.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTs0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -664,7 +655,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGt_kh_ky_n.BackColor = System.Drawing.Color.White;
             this.txtGt_kh_ky_n.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGt_kh_ky_n.DecimalPlaces = 0;
             this.txtGt_kh_ky_n.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtGt_kh_ky_n.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGt_kh_ky_n.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -728,7 +718,7 @@
             this.Controls.Add(this.TxtTen_ts);
             this.Controls.Add(this.txtdien_giai);
             this.Controls.Add(this.v6Label12);
-            this.Controls.Add(this.txtSo_the_cc);
+            this.Controls.Add(this.txtSo_the_ts);
             this.Controls.Add(this.v6Label7);
             this.Controls.Add(this.txtSoCt);
             this.Controls.Add(this.v6Label1);
@@ -747,7 +737,7 @@
         private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
-        private V6Controls.V6VvarTextBox txtSo_the_cc;
+        private V6Controls.V6VvarTextBox txtSo_the_ts;
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6ColorTextBox TxtTen_ts;
         private V6Controls.V6Label v6Label12;

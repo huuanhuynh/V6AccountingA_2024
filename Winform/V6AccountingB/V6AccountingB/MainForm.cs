@@ -378,7 +378,7 @@ namespace V6AccountingB
             }
             catch (Exception ex)
             {
-                //
+                Logger.WriteExLog(GetType() + ".RemoveSomeControl Main", ex);
             }
         }
 
@@ -391,7 +391,8 @@ namespace V6AccountingB
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(GetType() + ".ProcessCmdKey Main: " + ex.Message, ex.StackTrace);
+                
+                Logger.WriteExLog(GetType() + ".ProcessCmdKey Main", ex);
             }
             if (string.IsNullOrEmpty(_dohotkey))
                 return base.ProcessCmdKey(ref msg, keyData);

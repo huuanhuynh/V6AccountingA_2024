@@ -770,7 +770,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                string textPart = "";
+                //string textPart = "";
                 // tính toán vị trí.
                 if (_copyValues.Count == 0)
                 {
@@ -801,7 +801,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 Clipboard.SetText("ERR:" + ex.Message);
                 return;
             }
-            Clipboard.SetText("");
+            //Clipboard.SetText("");
         }
 
         private void CheckRightReport()

@@ -168,16 +168,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     int TS0 = currentRowData.ContainsKey("TS0")
                         ? ObjectAndString.ObjectToInt(currentRowData["TS0"])
                         : 1;
-
-
-                 
-                    
-
                 
                     if (TS0 == 1)
                     {
                         this.ShowWarningMessage(V6Text.EditDenied);
-
                     }
                     else
                     {
@@ -202,54 +196,43 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             var uid = currentRow.Cells
                               ["UID"].Value;
 
-                        
+
                             if (!string.IsNullOrEmpty(selectedSttRec) && !string.IsNullOrEmpty(selectedMaCt))
                             {
-
                                 var plist = new List<SqlParameter>
-                                    {
-                                        new SqlParameter("@uid", uid)
-                                    };
+                                {
+                                    new SqlParameter("@uid", uid)
+                                };
 
-                                    var am = V6BusinessHelper.Select("ADALTS", "*",
-                                        "UID=@uid",
-                                        "", "", plist.ToArray()).Data;
-
-                              
-
-                                    var fText = "Sửa giảm nguyên giá: " + sothets;
-                                    var f = new V6Form
-                                    {
-                                        Text = fText,
-                                        AutoSize = true,
-                                        FormBorderStyle = FormBorderStyle.FixedSingle
-                                    };
-
-
-                                  
-                                    var hoaDonForm = new AFAGIAMNG_F3(selectedSttRec, am.Rows[0]);
-                                    
-
-                                    f.Controls.Add(hoaDonForm);
-                                    hoaDonForm.Disposed += delegate
-                                    {
-                                        f.Dispose();
-                                    };
-
-                                    f.ShowDialog(this);
-                                    SetStatus2Text();
-                                    btnNhan.PerformClick();
-
+                                var am = V6BusinessHelper.Select("ADALTS", "*",
+                                    "UID=@uid",
+                                    "", "", plist.ToArray()).Data;
                                 
+                                var fText = "Sửa giảm nguyên giá: " + sothets;
+                                var f = new V6Form
+                                {
+                                    Text = fText,
+                                    AutoSize = true,
+                                    FormBorderStyle = FormBorderStyle.FixedSingle
+                                };
+
+                                var hoaDonForm = new AFAGIAMNG_F3(selectedSttRec, am.Rows[0]);
+                                
+                                f.Controls.Add(hoaDonForm);
+                                hoaDonForm.Disposed += delegate
+                                {
+                                    f.Dispose();
+                                };
+
+                                f.ShowDialog(this);
+                                SetStatus2Text();
+                                btnNhan.PerformClick();
                             }
                         }
-
-
                         else
                         {
                             this.ShowWarningMessage(V6Text.EditDenied);
                         }
-
                     }
                 }
             }

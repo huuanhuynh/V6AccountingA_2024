@@ -92,6 +92,22 @@ namespace V6Tools
             return false;
         }
 
+        public static bool CopyFolderFTP(string ftpSubFolder, string localFolder, string ip, string user, string ePass)
+        {
+            try
+            {
+                FtpTransfer du = new FtpTransfer(ip, user, ePass);
+                du.DownloadFolder(ftpSubFolder, localFolder);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(string.Format("CopyFolderFTP {0} error: {1}", ftpSubFolder, ex.Message), "V6Tools");
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Kiểm tra file tồn tại trên ftp.
         /// </summary>

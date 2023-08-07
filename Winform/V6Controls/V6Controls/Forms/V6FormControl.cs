@@ -73,7 +73,7 @@ namespace V6Controls.Forms
             if (All_Objects.ContainsKey(key)) return All_Objects[key];
             return null;
         }
-        public object GetAOs(string key)
+        public string GetAOs(string key)
         {
             if (All_Objects.ContainsKey(key) && All_Objects[key] != null) return "" + All_Objects[key];
             return null;
