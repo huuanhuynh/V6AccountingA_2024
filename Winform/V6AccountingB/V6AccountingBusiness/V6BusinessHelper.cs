@@ -1969,6 +1969,30 @@ namespace V6AccountingBusiness
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loai">1ct 2danhmuc 4report</param>
+        /// <param name="ma_ct">MA_CT (Trong invoice, MA_DM rỗng, advance nhom='00').</param>
+        /// <param name="ma_dm">MA_DM, MA_FILE (MA_CT rỗng, advance rỗng).</param>
+        /// <param name="itemId"></param>
+        /// <param name="advance"></param>
+        /// <returns></returns>
+        public static DataTable GetDefaultValueData_ALL(int loai, string ma_ct, string ma_dm, string itemId, string advance)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@loai",loai),
+                new SqlParameter("@ma_ct",ma_ct),
+                new SqlParameter("@ma_dm",ma_dm),
+                new SqlParameter("@user_id",V6Login.UserId),
+                new SqlParameter("@itemid",itemId),
+                new SqlParameter("@advance",advance),
+            };
+            var data = ExecuteProcedure("VPA_GetDefaultvalue_ALL", plist).Tables[0];
+            return data;
+        }
+
+        /// <summary>
         /// GetLoDate không theo Mã Kho
         /// </summary>
         /// <param name="mavt"></param>

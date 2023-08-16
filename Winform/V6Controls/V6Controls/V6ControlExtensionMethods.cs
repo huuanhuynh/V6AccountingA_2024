@@ -561,7 +561,7 @@ namespace V6Controls
         public static void InvisibleTag(this Control control)
         {
             control.Visible = false;
-            control.Tag = "hide";
+            control.AddTagString("hide");
         }
 
         /// <summary>

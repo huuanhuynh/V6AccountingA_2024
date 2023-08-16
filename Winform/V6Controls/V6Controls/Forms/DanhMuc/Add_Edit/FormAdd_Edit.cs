@@ -207,63 +207,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        //protected void CreateFormProgram()
-        //{
-        //    try
-        //    {
-        //        //DMETHOD
-        //        if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
-        //        {
-        //            //this.ShowWarningMessage("No column name [DMETHOD]");
-        //            return;
-        //        }
-
-        //        string using_text = "";
-        //        string method_text = "";
-        //        //foreach (DataRow dataRow in Invoice.Alct1.Rows)
-        //        {
-        //            var xml = _aldmConfig.DMETHOD;
-        //            if (xml == "") return;
-        //            DataSet ds = new DataSet();
-        //            ds.ReadXml(new StringReader(xml));
-        //            if (ds.Tables.Count <= 0) return;
-        //            var data = ds.Tables[0];
-        //            foreach (DataRow event_row in data.Rows)
-        //            {
-        //                var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
-        //                var method_name = event_row["method"].ToString().Trim();
-        //                Event_Methods[EVENT_NAME] = method_name;
-
-        //                using_text += data.Columns.Contains("using") ? event_row["using"] : "";
-        //                method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
-        //            }
-        //        }
-
-        //    Build:
-        //        Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.WriteExLog(GetType() + ".CreateProgram0", ex);
-        //    }
-        //}
-
-        //private object InvokeFormEvent(string eventName)
-        //{
-        //    try // Dynamic invoke
-        //    {
-        //        if (Event_Methods.ContainsKey(eventName))
-        //        {
-        //            var method_name = Event_Methods[eventName];
-        //            return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
-        //        }
-        //    }
-        //    catch (Exception ex1)
-        //    {
-        //        this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
-        //    }
-        //    return null;
-        //}
+       
 
 
         private void btnNhan_Click(object sender, EventArgs e)

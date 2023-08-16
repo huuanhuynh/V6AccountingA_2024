@@ -143,6 +143,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\FormEditDataDynamic.Designer.cs">
       <DependentUpon>FormEditDataDynamic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A5.Designer.cs">
+      <DependentUpon>VatTuAddEditForm_A5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A4.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1719,6 +1725,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\FormEditDataDynamic.resx">
       <DependentUpon>FormEditDataDynamic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A5.resx">
+      <DependentUpon>VatTuAddEditForm_A5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A4.resx">
       <DependentUpon>VatTuAddEditForm_A4.cs</DependentUpon>

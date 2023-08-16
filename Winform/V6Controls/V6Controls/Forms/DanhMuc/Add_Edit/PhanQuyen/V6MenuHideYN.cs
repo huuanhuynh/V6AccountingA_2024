@@ -459,7 +459,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             
             foreach (TreeListViewItem item1 in treeListView1.Items)
             {
-                if (item1.Checked)
+                if (item1.CheckStatus == CheckState.Checked)
                 {
                     vrights_hide_yn += "," + item1.Name;
                 }
@@ -470,7 +470,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
 
                 foreach (TreeListViewItem item2 in item1.Items)
                 {
-                    if (item2.Checked)
+                    if (item2.CheckStatus == CheckState.Checked)
                     {
                         vrights_hide_yn += "," + item2.Name;
                     }

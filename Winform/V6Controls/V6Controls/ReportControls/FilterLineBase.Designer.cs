@@ -90,6 +90,7 @@ namespace V6ReportControls
             this.Controls.Add(this.checkBox1);
             this.Name = "FilterLineBase";
             this.Size = new System.Drawing.Size(308, 22);
+            this.Load += new System.EventHandler(this.FilterLineBase_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

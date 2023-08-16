@@ -90,13 +90,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// </summary>
         public IDictionary<string, object> _keys = new SortedDictionary<string, object>();
 
-        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        /// <summary>
-        /// Code động từ aldmConfig.
-        /// </summary>
-        protected Type Event_program;
-        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-
         /// <summary>
         /// Chứa data mới (trên form) dùng để insert hoặc edit.
         /// </summary>
@@ -1304,7 +1297,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
 
             Build:
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
             }
             catch (Exception ex)
             {

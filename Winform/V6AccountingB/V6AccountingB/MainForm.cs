@@ -534,45 +534,76 @@ namespace V6AccountingB
 
         }
 
+        bool _thoat_khong_can_hoi = false;
+        private void ThoatKhongCanHoi()
+        {
+            try
+            {
+                _thoat_khong_can_hoi = true;
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             string message = "";
-            if (V6ControlFormHelper.RunningList.Count>0)
+            if (!_thoat_khong_can_hoi)
             {
-                message = V6Setting.IsVietnamese ? "Có chứng từ đang mở. Vẫn muốn thoát?" : "There are open documents. Still want to exit?";
-                message +="\r\n" + V6ControlFormHelper.RunningListString;
-            }
-
-            if (message == "")
-            {
-                if (this.ShowConfirmMessage(V6Text.ExitQuestion) != DialogResult.Yes)
+                if (V6ControlFormHelper.RunningList.Count > 0)
                 {
-                    e.Cancel = true;
+                    message = V6Setting.IsVietnamese ? "Có chứng từ đang mở. Vẫn muốn thoát?" : "There are open documents. Still want to exit?";
+                    message += "\r\n" + V6ControlFormHelper.RunningListString;
+                }
+
+                if (message == "")
+                {
+                    if (this.ShowConfirmMessage(V6Text.ExitQuestion) != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                        GoiBaoCaoEnd();
+                    }
+                }
+                else
+                {
+                    if (V6Message.Show(
+                        (V6Setting.IsVietnamese ? "Thoát chương trình?\n" : "Exit?\n") + message,
+                        V6Setting.IsVietnamese ? "Cảnh báo!" : "Warning!", 0,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Stop
+                        )
+                        != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else // Hỏi thêm lần nữa.
+                    {
+                        if (V6Message.Show(
+                        (V6Setting.IsVietnamese ? "Xác nhận lần 2.\n" : "Asking again.\n") + message,
+                        V6Setting.IsVietnamese ? "Cảnh báo!" : "Warning!", 0,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning
+                        )
+                        != DialogResult.Yes)
+                        {
+                            e.Cancel = true;
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                            GoiBaoCaoEnd();
+                        }
+                    }
                 }
             }
             else
             {
-                if (V6Message.Show(
-                    (V6Setting.IsVietnamese ? "Thoát chương trình?\n" : "Exit?\n") + message,
-                    V6Setting.IsVietnamese? "Cảnh báo!" : "Warning!", 0,
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Stop
-                    )
-                    != DialogResult.Yes)
-                {
-                    e.Cancel = true;
-                }
-                else // Hỏi thêm lần nữa.
-                {
-                    if (V6Message.Show(
-                    (V6Setting.IsVietnamese ? "Xác nhận lần 2.\n" : "Asking again.\n") + message,
-                    V6Setting.IsVietnamese ? "Cảnh báo!" : "Warning!", 0,
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning
-                    )
-                    != DialogResult.Yes)
-                    {
-                        e.Cancel = true;
-                    }
-                }
+                _thoat_khong_can_hoi = false;
             }
         }
 
@@ -753,6 +784,19 @@ namespace V6AccountingB
             {
                 this.ShowErrorMessage(GetType() + ".GoiBaoCaoNhanh:" + ex.Message, ex.Source);
             }
+        }
+
+        private void GoiBaoCaoEnd()
+        {
+            try
+            {
+                QuickReportManager.ShowEndReport(this, "CallFromMain");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".GoiBaoCaoNhanh:" + ex.Message, ex.Source);
+            }
+            ThoatKhongCanHoi();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

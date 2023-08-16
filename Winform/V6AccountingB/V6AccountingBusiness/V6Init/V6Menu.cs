@@ -158,6 +158,19 @@ namespace V6Init
             return data;
         }
 
+        public static DataTable GetMenuEndReport()
+        {
+            int type = 3;
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@ModuleID", V6Options.MODULE_ID),
+                new SqlParameter("@User_id", V6Login.UserId),
+                new SqlParameter("@TYPE", type),
+            };
+            DataTable data = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GETV6MENU3", plist).Tables[0];
+            return data;
+        }
+
         public static DataTable GetKey2Hm2()
         {
             var sql = "Select * from V6Menu Where Key2 = @Key2";

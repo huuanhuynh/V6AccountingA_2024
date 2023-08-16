@@ -2915,12 +2915,13 @@ namespace V6Controls.Forms
             if (!string.IsNullOrEmpty(valueInfo.CName))
             {
                 c = GetControlByName(container, valueInfo.CName);
+                if (c == null) c = GetControlByAccessibleName(container, valueInfo.AName);
             }
             else if (!string.IsNullOrEmpty(valueInfo.AName))
             {
                 c = GetControlByAccessibleName(container, valueInfo.AName);
             }
-            if (c == null) return;
+            if (c == null) return; // Không tìm thấy control.
 
             // Gán default value
             switch (valueInfo.Type1)
@@ -2962,6 +2963,8 @@ namespace V6Controls.Forms
             {
                 AddTagString(c, valueInfo.TagString);
             }
+            if (valueInfo.IsReadOnly) c.ReadOnlyTag();
+            if (valueInfo.IsHide) c.InvisibleTag();
         }
 
         /// <summary>
@@ -8609,18 +8612,18 @@ namespace V6Controls.Forms
         /// Áp dụng code động cho event của control
         /// </summary>
         /// <param name="control"></param>
-        /// <param name="eventProgram"></param>
+        /// <param name="formProgram"></param>
         /// <param name="All_Objects">Các đối tượng control</param>
         /// <param name="before">Phần cộng thêm cho tên hàm Event ví dụ NAME_V6LOSTFOCUS2 </param>
-        public static void ApplyControlEventByAccessibleName(Control control, Type eventProgram, Dictionary<string, object> All_Objects, string before = "")
+        public static void ApplyControlEventByAccessibleName(Control control, Type formProgram, Dictionary<string, object> All_Objects, string before = "")
         {
-            if (eventProgram == null) return;
+            if (formProgram == null) return;
 
             string NAME = control.AccessibleName;
             if (string.IsNullOrEmpty(NAME)) return;
             NAME = NAME.ToUpper();
             string methodName = ""; MethodInfo method = null;
-            var m = eventProgram.GetMethods(BindingFlags.Public);
+            var m = formProgram.GetMethods(BindingFlags.Public);
 
             All_Objects[NAME] = control;
 
@@ -8628,20 +8631,20 @@ namespace V6Controls.Forms
             {
                 var colorTB = control as V6ColorTextBox;
                 methodName = NAME + "_V6LOSTFOCUS" + before;
-                method = eventProgram.GetMethod(methodName);
+                method = formProgram.GetMethod(methodName);
                 if (method != null)
                 colorTB.V6LostFocus += (sender)=>
                 {
                     All_Objects["sender"] = sender;
-                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUS" + before, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_V6LOSTFOCUS" + before, All_Objects);
                 };
                 methodName = NAME + "_V6LOSTFOCUSNOCHANGE" + before;
-                method = eventProgram.GetMethod(methodName);
+                method = formProgram.GetMethod(methodName);
                 if (method != null)
                 colorTB.V6LostFocusNoChange += (sender) =>
                 {
                     All_Objects["sender"] = sender;
-                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUSNOCHANGE" + before, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_V6LOSTFOCUSNOCHANGE" + before, All_Objects);
                 };
             }
 
@@ -8650,51 +8653,51 @@ namespace V6Controls.Forms
             {
                 var date = control as DateTimePicker;
                 methodName = NAME + "_VALUECHANGED" + before;
-                method = eventProgram.GetMethod(methodName);
+                method = formProgram.GetMethod(methodName);
                 if (method != null)
                 date.ValueChanged += (sender, args) =>
                 {
                     All_Objects["sender"] = sender;
-                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_VALUECHANGED" + before, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_VALUECHANGED" + before, All_Objects);
                 };
             }
 
-            if (eventProgram.GetMethod(NAME + "_CLICK" + before) != null)
+            if (formProgram.GetMethod(NAME + "_CLICK" + before) != null)
                 control.Click += (sender, e) =>
                 {
                     All_Objects["sender"] = sender;
                     All_Objects["e"] = e;
-                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_CLICK" + before, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_CLICK" + before, All_Objects);
                 };
 
 
-            if (eventProgram.GetMethod(NAME + "_ENTER" + before) != null || eventProgram.GetMethod(NAME + "_GOTFOCUS" + before) != null)
+            if (formProgram.GetMethod(NAME + "_ENTER" + before) != null || formProgram.GetMethod(NAME + "_GOTFOCUS" + before) != null)
             control.Enter += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
                 All_Objects["e"] = e;
-                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_ENTER" + before, All_Objects);
-                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_GOTFOCUS" + before, All_Objects);
+                V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_ENTER" + before, All_Objects);
+                V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_GOTFOCUS" + before, All_Objects);
             };
 
 
-            if (eventProgram.GetMethod(NAME + "_LEAVE" + before) != null || eventProgram.GetMethod(NAME + "_LOSTFOCUS" + before) != null)
+            if (formProgram.GetMethod(NAME + "_LEAVE" + before) != null || formProgram.GetMethod(NAME + "_LOSTFOCUS" + before) != null)
             control.Leave += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
                 All_Objects["e"] = e;
-                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LEAVE" + before, All_Objects);
-                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LOSTFOCUS" + before, All_Objects);
+                V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_LEAVE" + before, All_Objects);
+                V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_LOSTFOCUS" + before, All_Objects);
             };
 
             methodName = NAME + "_TEXTCHANGED" + before;
-            method = eventProgram.GetMethod(methodName);
+            method = formProgram.GetMethod(methodName);
             if (method != null)
             control.TextChanged += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
                 All_Objects["e"] = e;
-                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_TEXTCHANGED" + before, All_Objects);
+                V6ControlsHelper.InvokeMethodDynamic(formProgram, NAME + "_TEXTCHANGED" + before, All_Objects);
             };
         }
 
@@ -8949,7 +8952,7 @@ namespace V6Controls.Forms
         {
             // Copy từ bản chính ở V6ControlFormHelper (có lButton)
 
-            Type Event_program2 = thisForm.GetType();
+            Type Form_Type = thisForm.GetType();
             DataTable Alreport1Data = null;
             Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>();
             Dictionary<string, Label> Label_Controls = new Dictionary<string, Label>();
@@ -9297,11 +9300,11 @@ namespace V6Controls.Forms
                                     case "INIT":
                                         input.EnabledChanged += (s, e) =>
                                         {
-                                            if (Event_program2 == null) return;
+                                            if (Form_Type == null) return;
 
                                             All_Objects["sender"] = s;
                                             All_Objects["e"] = e;
-                                            V6ControlsHelper.InvokeMethodDynamic(Event_program2, method_name,
+                                            V6ControlsHelper.InvokeMethodDynamic(Form_Type, method_name,
                                                 All_Objects);
                                         };
                                         break;
@@ -9310,11 +9313,11 @@ namespace V6Controls.Forms
                                     case "TEXTCHANGED":
                                         input.TextChanged += (s, e) =>
                                         {
-                                            if (Event_program2 == null) return;
+                                            if (Form_Type == null) return;
 
                                             All_Objects["sender"] = s;
                                             All_Objects["e"] = e;
-                                            V6ControlsHelper.InvokeMethodDynamic(Event_program2, method_name,
+                                            V6ControlsHelper.InvokeMethodDynamic(Form_Type, method_name,
                                                 All_Objects);
                                         };
                                         break;
@@ -9326,11 +9329,11 @@ namespace V6Controls.Forms
 
                                         numInput.StringValueChange += (s, e) =>
                                         {
-                                            if (Event_program2 == null) return;
+                                            if (Form_Type == null) return;
 
                                             All_Objects["sender"] = s;
                                             All_Objects["e"] = e;
-                                            V6ControlsHelper.InvokeMethodDynamic(Event_program2, method_name,
+                                            V6ControlsHelper.InvokeMethodDynamic(Form_Type, method_name,
                                                 All_Objects);
                                         };
                                         break;
@@ -9339,11 +9342,11 @@ namespace V6Controls.Forms
                                     case "ENTER":
                                         input.Enter += (s, e) =>
                                         {
-                                            if (Event_program2 == null) return;
+                                            if (Form_Type == null) return;
 
                                             All_Objects["sender"] = s;
                                             All_Objects["e"] = e;
-                                            V6ControlsHelper.InvokeMethodDynamic(Event_program2, method_name,
+                                            V6ControlsHelper.InvokeMethodDynamic(Form_Type, method_name,
                                                 All_Objects);
                                         };
                                         break;
@@ -9352,11 +9355,11 @@ namespace V6Controls.Forms
                                     case "LEAVE":
                                         input.Leave += (s, e) =>
                                         {
-                                            if (Event_program2 == null) return;
+                                            if (Form_Type == null) return;
 
                                             All_Objects["sender"] = s;
                                             All_Objects["e"] = e;
-                                            V6ControlsHelper.InvokeMethodDynamic(Event_program2, method_name,
+                                            V6ControlsHelper.InvokeMethodDynamic(Form_Type, method_name,
                                                 All_Objects);
                                         };
                                         break;
@@ -9366,11 +9369,11 @@ namespace V6Controls.Forms
                                         if (colorInput == null) break;
                                         colorInput.V6LostFocus += (s) =>
                                         {
-                                            if (Event_program2 == null) return;
+                                            if (Form_Type == null) return;
 
                                             All_Objects["sender"] = s;
                                             All_Objects["eventargs"] = null;
-                                            V6ControlsHelper.InvokeMethodDynamic(Event_program2, method_name,
+                                            V6ControlsHelper.InvokeMethodDynamic(Form_Type, method_name,
                                                 All_Objects);
                                         };
                                         break;
@@ -9378,11 +9381,11 @@ namespace V6Controls.Forms
                                     case "KEYDOWN":
                                         input.KeyDown += (s, e) =>
                                         {
-                                            if (Event_program2 == null) return;
+                                            if (Form_Type == null) return;
 
                                             All_Objects["sender"] = s;
                                             All_Objects["e"] = e;
-                                            V6ControlsHelper.InvokeMethodDynamic(Event_program2, method_name,
+                                            V6ControlsHelper.InvokeMethodDynamic(Form_Type, method_name,
                                                 All_Objects);
                                         };
                                         break;
@@ -9390,11 +9393,11 @@ namespace V6Controls.Forms
                                     case "CLICK":
                                         input.Click += (s, e) =>
                                         {
-                                            if (Event_program2 == null) return;
+                                            if (Form_Type == null) return;
 
                                             All_Objects["sender"] = s;
                                             All_Objects["e"] = e;
-                                            V6ControlsHelper.InvokeMethodDynamic(Event_program2, method_name,
+                                            V6ControlsHelper.InvokeMethodDynamic(Form_Type, method_name,
                                                 All_Objects);
                                         };
                                         break;
@@ -9461,7 +9464,7 @@ namespace V6Controls.Forms
                 }
                 i_index++;
             }
-            Event_program2 = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + ma_bc, using_text2,
+            Form_Type = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + ma_bc, using_text2,
                 method_text2);
         }
 
@@ -9666,9 +9669,9 @@ namespace V6Controls.Forms
         }
 
 
-        public static  void CreateFormProgram(IWin32Window owner, AldmConfig aldmConfig, Dictionary<string, object> All_Objects, Dictionary<string, string> Event_Methods, out Type Event_program)
+        public static  void CreateFormProgram(IWin32Window owner, AldmConfig aldmConfig, Dictionary<string, object> All_Objects, Dictionary<string, string> Event_Methods, out Type Form_program)
         {
-            Event_program = null;
+            Form_program = null;
             try
             {
                 All_Objects["thisForm"] = owner;
@@ -9697,7 +9700,7 @@ namespace V6Controls.Forms
                     method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                 }
 
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + aldmConfig.MA_DM, using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + aldmConfig.MA_DM, using_text, method_text);
             }
             catch (Exception ex)
             {

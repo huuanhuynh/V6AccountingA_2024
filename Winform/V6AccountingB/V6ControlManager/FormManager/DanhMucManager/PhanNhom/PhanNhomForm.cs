@@ -654,6 +654,36 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 }
                 return true;
             }
+            else if (keyData == Keys.F10)
+            {
+                string OPTION_KEY = _dataTableName.ToUpper() + "F4";
+                if (!M_OPTIONS.ContainsKey(OPTION_KEY) || M_OPTIONS[OPTION_KEY].ToString() != "1")
+                {
+                    goto End;
+                }
+                if (V6Login.UserRight.AllowAdd("", _lookupConfig.vMa_file.ToUpper() + "6"))
+                {
+                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+                    var data = row != null ? row.ToDataDictionary() : null;
+                    if (data == null) data = new Dictionary<string, object>();
+                    data["AUTOID_LOAINH"] = comboBox1.SelectedIndex + 1;
+                    data["AUTOID_NHVALUE"] = listBoxMaNh.SelectedValue.ToString().Trim().ToUpper();
+
+                    var f = new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Add, null, data);
+                    f.IS_COPY = true;
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl(this);
+                    //f.ParentData = _senderTextBox.ParentData;
+                    if (data == null) f.SetParentData();                        // Code lạ??????
+                    f.InsertSuccessEvent += f_InsertSuccessEvent;
+                    f.ShowDialog(this);
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
+                return true;
+            }
             End:
             return base.ProcessCmdKey(ref msg, keyData);
         }

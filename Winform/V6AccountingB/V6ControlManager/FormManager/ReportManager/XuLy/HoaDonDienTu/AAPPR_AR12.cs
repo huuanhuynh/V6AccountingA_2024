@@ -60,7 +60,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string Key_Down = "";
         protected override void XuLyBoSungThongTinChungTuF4()
         {
-            if (FilterControl.String1 == "1" || FilterControl.String1 == "3" || FilterControl.String1 == "5")
+            string s1 = FilterControl.String1;
+            if (s1 == "1" || s1 == "2" || s1 == "3" || s1 == "5")
             {
                 Key_Down = "F4";
                 XuLyF9();
@@ -69,7 +70,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyF6()
         {
-            if (FilterControl.String1 == "1" || FilterControl.String1 == "3" || FilterControl.String1 == "5")
+            string s1 = FilterControl.String1;
+            if (s1 == "1" || s1 == "2" || s1 == "3" || s1 == "5")
             {
                 Key_Down = "F6";
                 XuLyF9();

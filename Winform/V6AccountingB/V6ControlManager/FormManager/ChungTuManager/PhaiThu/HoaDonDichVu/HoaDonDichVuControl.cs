@@ -4185,7 +4185,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 chonExcel.Program = Form_program;
                 chonExcel.All_Objects = All_Objects;
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";
-                chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.CheckFields = "TK_DT,TIEN_NT2";
                 chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
                 chonExcel.AcceptData += chonExcel_AcceptData;
@@ -4206,16 +4206,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 List<DataGridViewRow> removeList = new List<DataGridViewRow>();
                 foreach (DataGridViewRow row in chonExcel.dataGridView1.Rows)
                 {
-                    string cMaVt = ("" + row.Cells["MA_VT"].Value).Trim();
-                    string cMaKhoI = ("" + row.Cells["MA_KHO_I"].Value).Trim();
-                    if (cMaVt == string.Empty && cMaKhoI == string.Empty)
+                    string cTK_DT = ("" + row.Cells["TK_DT"].Value).Trim();
+                    if (cTK_DT == string.Empty)
                     {
                         removeList.Add(row);
                         continue;
                     }
-                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
-                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
-                    if (!exist || !exist2)
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALTK", "TK", cTK_DT);
+                    if (!exist)
                     {
                         row.DefaultCellStyle.BackColor = Color.Red;
                         errorData.AddRow(row.ToDataDictionary(), true);
@@ -4258,9 +4256,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             dataGridView1.UnLock();
             if (table == null || table.Count == 0) return;
             var row0 = table[0];
-            if (row0.ContainsKey("MA_VT") && row0.ContainsKey("MA_KHO_I")
-               && row0.ContainsKey("TIEN_NT0") && row0.ContainsKey("SO_LUONG1")
-               && row0.ContainsKey("GIA_NT01"))
+            if (row0.ContainsKey("TK_DT") && row0.ContainsKey("TIEN_NT2"))
             {
                 if (table.Count > 0)
                 {
@@ -4283,10 +4279,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 foreach (IDictionary<string, object> row in table)
                 {
                     var data = row;
-                    var cMaVt = data["MA_VT"].ToString().Trim();
-                    var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
-                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
-                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+                    var cTK_DT = data["TK_DT"].ToString().Trim();
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALTK", "TK", cTK_DT);
                     foreach (KeyValuePair<string, string> item in ad2am_dic)
                     {
                         if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
@@ -4294,42 +4288,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                             AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
                         }
                     }
-                    ////{ Tuanmh 31/08/2016 Them thong tin ALVT
-                    //_maVt.Text = cMaVt;
-                    //var datavt = _maVt.Data;
-                    //if (datavt != null)
-                    //{
-                    //    //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
-                    //    if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
-                    //    if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
-                    //    if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
-                    //    if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
-                    //    if (!data.ContainsKey("HE_SO1T")) data.Add("HE_SO1T", 1);
-                    //    if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
-                    //    if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
-
-                    //    var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT0"]);
-                    //    var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT01"]);
-                    //    var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);
-                    //    var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
-
-                    //    if (!data.ContainsKey("TIEN0")) data.Add("TIEN0", __tien0);
-
-                    //    if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", data["TIEN_NT0"]);
-                    //    if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien0);
-                    //    if (!data.ContainsKey("GIA01")) data.Add("GIA01", __gia0);
-                    //    if (!data.ContainsKey("GIA0")) data.Add("GIA0", __gia0);
-                    //    if (!data.ContainsKey("GIA")) data.Add("GIA", __gia0);
-                    //    if (!data.ContainsKey("GIA1")) data.Add("GIA1", __gia0);
-                    //    if (!data.ContainsKey("GIA_NT0")) data.Add("GIA_NT0", data["GIA_NT01"]);
-                    //    if (!data.ContainsKey("GIA_NT")) data.Add("GIA_NT", data["GIA_NT01"]);
-                    //    if (!data.ContainsKey("GIA_NT1")) data.Add("GIA_NT1", data["GIA_NT01"]);
-                    //}
-                    ////}
-
-
-
-                    if (exist && exist2)
+                    
+                    if (exist)
                     {
                         if (XuLyThemDetail(data))
                         {
@@ -4340,8 +4300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     }
                     else
                     {
-                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaVt);
-                        if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cTK_DT);
                     }
                 }
 

@@ -223,5 +223,9 @@ namespace V6ReportControls
             OnMouseUp(e);
         }
 
+        private void FilterLineBase_Load(object sender, EventArgs e)
+        {
+            this.Name = "line" + FieldName;
+        }
     }
 }

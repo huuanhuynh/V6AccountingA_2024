@@ -54,8 +54,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             MyInit();
         }
 
-        private Type Form_program;
-        //private Type Event_program;
+        //private Type Form_program;
+        
         private string all_using_text = "", all_method_text = "";
         private void MyInit()
         {

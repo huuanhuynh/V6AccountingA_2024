@@ -84,7 +84,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _default11 = new V6ColorTextBox()
             {
                 AccessibleName = "default11",
-                GrayText = "Giá trị 11"
+                GrayText = "Tag string"
             };
             _default11.Width = 100;
             _default12 = new V6ColorTextBox()

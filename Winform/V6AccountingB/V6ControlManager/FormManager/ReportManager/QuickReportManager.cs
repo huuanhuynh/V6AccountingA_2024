@@ -431,6 +431,122 @@ namespace V6ControlManager.FormManager.ReportManager
             }
         }
 
+
+        public static void ShowEndReport(Control owner, string itemId)
+        {
+            try
+            {
+                //return;
+                var data = V6Menu.GetMenuEndReport();
+                if (data == null || data.Rows.Count == 0) return;
+
+                var row = data.Rows[0];
+
+                MenuButton mButton = new MenuButton(row.ToDataDictionary());
+                var c = MenuManager.MenuManager.GenControl(owner, mButton, null);
+                //auto click
+                if (c is ReportRViewBase)
+                {
+                    (c as ReportRViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportR44ViewBase)
+                {
+                    (c as ReportR44ViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportR47ViewBase)
+                {
+                    (c as ReportR47ViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportRView2Base)
+                {
+                    (c as ReportRView2Base).btnNhan_Click(null, null);
+                }
+                else if (c is ReportRWWView2Base)
+                {
+                    (c as ReportRWWView2Base).btnNhan_Click(null, null);
+                }
+                else if (c is ReportDViewBase)
+                {
+                    (c as ReportDViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportD99ViewBase)
+                {
+                    (c as ReportD99ViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportTreeViewBase)
+                {
+                    (c as ReportTreeViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportTreeView44)
+                {
+                    (c as ReportTreeView44).btnNhan_Click(null, null);
+                }
+
+                else if (c is ReportR_DX)
+                {
+                    (c as ReportR_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportR44_DX)
+                {
+                    (c as ReportR44_DX).btnNhan_Click(null, null);
+                }
+                //else if (c is ReportR47_DX)
+                //{
+                //    (c as ReportR47_DX).btnNhan_Click(null, null);
+                //}
+                else if (c is ReportRView2_DX)
+                {
+                    (c as ReportRView2_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportRWWView2_DX)
+                {
+                    (c as ReportRWWView2_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportD_DX)
+                {
+                    (c as ReportD_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportD99_DX)
+                {
+                    (c as ReportD99_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportTreeView_DX)
+                {
+                    (c as ReportTreeView_DX).btnNhan_Click(null, null);
+                }
+                else if (c is ReportTreeView44_DX)
+                {
+                    (c as ReportTreeView44_DX).btnNhan_Click(null, null);
+                }
+
+                else if (c is XuLy.V6BACKUP1)
+                {
+                    var v6backup1 = c as XuLy.V6BACKUP1;
+                    v6backup1.AUTO_DISPOSE = true;
+                    //bool check = v6backup1.CheckBackup();
+                    bool check = CheckBackup();
+                    if (check == false)
+                    {
+                        v6backup1.btnNhan_Click(null, null);
+                        c.ShowToForm(owner, mButton.ReportTitle + (string.IsNullOrEmpty(mButton.ReportFile) ? "Code: " + mButton.CodeForm : ""),
+                            true, true); // fullScreen, dialog
+                    }
+                    else
+                    {
+
+                    }
+                    return;
+                }
+
+                c.ShowToForm(owner, mButton.ReportTitle + (string.IsNullOrEmpty(mButton.ReportFile) ? "Code: " + mButton.CodeForm : ""),
+                    true, true); // fullScreen, dialog
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
         /// <summary>
         /// Kiểm tra đã có backup chưa.
         /// </summary>

@@ -49,8 +49,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             MyInit();
         }
 
-        private Type Form_program;
-        //private Type Event_program;
+        //private Type Form_program;
+        
         private string all_using_text = "", all_method_text = "";
         private void MyInit()
         {
@@ -679,7 +679,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     using_text += data.Columns.Contains("using") ? event_row["using"] : "";
                     method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                 }
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _MA_DM, using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _MA_DM, using_text, method_text);
             }
             catch (Exception ex)
             {
