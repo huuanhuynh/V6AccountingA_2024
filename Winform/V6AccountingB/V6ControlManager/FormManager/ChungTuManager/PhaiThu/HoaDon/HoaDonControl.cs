@@ -5249,6 +5249,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
             ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
 
+            //SaveTemp();
+
             if(IsViewingAnInvoice)
             try // Log
             {
@@ -5288,6 +5290,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 // No log for extra log.
             }
         }
+
+       
+
+        
 
         public void TinhTongThue_ct()
         {
@@ -5799,6 +5805,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (ADTables.ContainsKey(sttRec))
             {
                 AD = ADTables[sttRec].Copy();
+                AD.TableName = "AD";
             }
             else
             {
@@ -5806,11 +5813,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     ADTables[sttRec] = Invoice.LoadAD(sttRec);
                     AD = ADTables[sttRec].Copy();
+                    AD.TableName = "AD";
                 }
                 catch
                 {
                     ADTables[sttRec] = Invoice.LoadAD(sttRec);
                     AD = ADTables[sttRec].Copy();
+                    AD.TableName = "AD";
                 }
             }
             //Load AD3
@@ -5818,6 +5827,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (AD3Tables.ContainsKey(sttRec))
             {
                 AD3 = AD3Tables[sttRec].Copy();
+                AD3.TableName = "AD3";
             }
             else
             {
@@ -5825,11 +5835,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     AD3Tables[sttRec] = Invoice.LoadAD3(sttRec);
                     AD3 = AD3Tables[sttRec].Copy();
+                    AD3.TableName = "AD3";
                 }
                 catch
                 {
                     AD3Tables[sttRec] = Invoice.LoadAD3(sttRec);
                     AD3 = AD3Tables[sttRec].Copy();
+                    AD3.TableName = "AD3";
                 }
             }
         }
@@ -6134,6 +6146,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
+                    base.SaveTemp("SAVEFAIL1");
                     _AED_Success = false;
                     addErrorMessage = V6Text.Text("ADD0");
                     Invoice.PostErrorLog(_sttRec, "M");
@@ -6141,6 +6154,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             catch (Exception ex)
             {
+                if (ex is SqlException)
+                {
+                    SaveTemp("SAVEFAIL2");
+                }
                 _AED_Success = false;
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
@@ -6613,37 +6630,90 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                     }
 
-                    AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
-
-                    ResetForm();
-                    Mode = V6Mode.Add;
-                    txtLoaiPhieu.ChangeText(_maGd);
-                    //LoadAll(V6Mode.Add);
-                    GetSttRec(Invoice.Mact);
-
-                    V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
-
-                    //GetSoPhieu();
-                    GetM_ma_nt0();
-                    GetTyGiaDefault();
-                    GetDefault_Other();
-                    SetDefaultData(Invoice);
-                    GET_AM_OLD_EXTRA();
-                    Txtma_td_ph.Text = base.GetCA();
-                    detail1.DoAddButtonClick( );
-                    var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
-                    if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                    bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
+                    bool alt = (ModifierKeys & Keys.Alt) == Keys.Alt;
+                    DataSet loadtempDS = null;
+                    if (ctrl && alt)
                     {
-                        detail1.ChangeToViewMode();
-                        dataGridView1.UnLock();
-                    }
-                    else
-                    {
-                        SetDefaultDetail();
+                        loadtempDS = LoadTemp();
                     }
                     
-                    detail3.MODE = V6Mode.Init;
-                    GoToFirstFocus(txtMa_sonb);
+                    if (ctrl && alt && loadtempDS != null)
+                    {
+                        AM_old = null;
+
+                        ResetForm();
+                        Mode = V6Mode.Add;
+                        //txtLoaiPhieu.ChangeText(_maGd);
+                        //LoadAll(V6Mode.Add);
+                        GetSttRec(Invoice.Mact);
+
+                        V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
+
+                        // set data temp
+                        V6ControlFormHelper.SetFormDataRow(this, loadtempDS.Tables["AM"].Rows[0]);
+                        txtMaDVCS.ExistRowInTable();
+                        txtMaKh.ExistRowInTable();
+                        txtLoaiPhieu.ExistRowInTable(true);
+                        ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
+
+                        XuLyThayDoiMaDVCS();
+                        //{Tuanmh 20/02/2016
+                        XuLyThayDoiMaNt();
+                        
+                        // add gridview data...
+                        if (loadtempDS.Tables.Contains("AD"))
+                        {
+                            AD.AddRowByTable(loadtempDS.Tables["AD"]);
+                        }
+                        if (loadtempDS.Tables.Contains("AD2"))
+                        {
+                            AD2.AddRowByTable(loadtempDS.Tables["AD2"]);
+                        }
+                        if (loadtempDS.Tables.Contains("AD3"))
+                        {
+                            AD3.AddRowByTable(loadtempDS.Tables["AD3"]);
+                        }
+
+                        detail3.MODE = V6Mode.View;
+                        GoToFirstFocus(txtMa_sonb);
+                    }
+                    else // bình thường
+                    {
+                        AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
+
+                        ResetForm();
+                        Mode = V6Mode.Add;
+                        txtLoaiPhieu.ChangeText(_maGd);
+                        //LoadAll(V6Mode.Add);
+                        GetSttRec(Invoice.Mact);
+
+                        V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
+
+                        //GetSoPhieu();
+                        GetM_ma_nt0();
+                        GetTyGiaDefault();
+                        GetDefault_Other();
+                        SetDefaultData(Invoice);
+                        GET_AM_OLD_EXTRA();
+                        Txtma_td_ph.Text = base.GetCA();
+                        detail1.DoAddButtonClick();
+                        var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
+                        if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            detail1.ChangeToViewMode();
+                            dataGridView1.UnLock();
+                        }
+                        else
+                        {
+                            SetDefaultDetail();
+                        }
+
+                        detail3.MODE = V6Mode.Init;
+                        GoToFirstFocus(txtMa_sonb);
+                    }
+
+                    
                 }
                 else
                 {
@@ -7447,7 +7517,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     btnSua.PerformClick();
                 }
             }
-            else if (Invoice.ExtraInfo_AutoLoadTop)
+            else if (Invoice.ExtraInfor_AutoLoadTop)
             {
                 AutoLoadTop(timTopCuoiKyMenu);
             }
@@ -7461,6 +7531,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #region ==== Command Buttons ====
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
+            bool alt = (ModifierKeys & Keys.Alt) == Keys.Alt;
+            if (ctrl && alt)
+            {
+                SaveTemp("CTRLALT");
+                return;
+            }
+
             DisableAllFunctionButtons(btnLuu, btnMoi, btnCopy, btnIn, btnSua, btnHuy, btnXoa, btnXem, btnTim, btnQuayRa);
             if (ValidateData_Master())
             {
@@ -7539,6 +7617,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 ViewCurrentRowToDetail(dataGridView1, detail1);
             }
         }
+
         private void hoaDonDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
@@ -7548,6 +7627,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                    {
+                        SaveTemp("MAXROWSAVETEMP");
+                    }
                     return;
                 }
                 throw new Exception(V6Text.AddFail);
@@ -7565,6 +7648,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                     GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
+                    if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                    {
+                        SaveTemp("MAXROWSAVETEMP_EDIT");
+                    }
                     return;
                 }
                 throw new Exception(V6Text.EditFail);
@@ -8039,7 +8126,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             return false;
         }
 
-        private bool ValidateData_Detail(IDictionary<string, object> data)
+        public bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
             {
@@ -8054,7 +8141,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
-                    //detail1.MODE = detail1.Old_mode;
                     detail1.SetFormControlsReadOnly(false);
                     var c = detail1.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
@@ -8924,6 +9010,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     SetSomeData(AM_somedata);
                 }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+                if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                {
+                    SaveTemp("MAXROWSAVETEMP");
+                }
             }
             else
             {

@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToPdfMenu,
             this.viewInvoiceInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 136);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -173,6 +173,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.printGridMenu.Name = "printGridMenu";
             this.printGridMenu.Size = new System.Drawing.Size(210, 22);
             this.printGridMenu.Text = "Print Grid";
+            this.printGridMenu.Visible = false;
             this.printGridMenu.Click += new System.EventHandler(this.printGrid_Click);
             // 
             // exportToPdfMenu

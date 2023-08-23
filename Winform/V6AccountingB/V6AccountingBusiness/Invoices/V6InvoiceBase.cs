@@ -730,12 +730,26 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        public bool ExtraInfo_AutoLoadTop
+        public bool ExtraInfor_AutoLoadTop
         {
             get
             {
                 bool result = false;
                 if (EXTRA_INFOR.ContainsKey("AUTOLOADTOP")) result = ObjectAndString.ObjectToBool(EXTRA_INFOR["AUTOLOADTOP"]);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Cài đặt số dòng chi tiết sẽ tự động Lưu Tạm (SaveTemp). Ít nhất là 3 hoặc không cài đặt (mặc định 13). Cài 0 để tắt.
+        /// </summary>
+        public int ExtraInfor_MaxRowSaveTemp
+        {
+            get
+            {
+                int result = 0;
+                if (EXTRA_INFOR.ContainsKey("MAXROWSAVETEMP")) result = ObjectAndString.ObjectToInt(EXTRA_INFOR["MAXROWSAVETEMP"]);
+                if (result == 1 || result == 2) result = 3;
                 return result;
             }
         }

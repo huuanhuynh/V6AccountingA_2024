@@ -217,6 +217,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormManager\ChungTuManager\LoadTempForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\LoadTempForm.Designer.cs">
+      <DependentUpon>LoadTempForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\DataSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6438,6 +6444,9 @@
     <None Include="Resources\newspaperplus.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormManager\ChungTuManager\LoadTempForm.resx">
+      <DependentUpon>LoadTempForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\DataSelectorForm.resx">
       <DependentUpon>DataSelectorForm.cs</DependentUpon>
     </EmbeddedResource>

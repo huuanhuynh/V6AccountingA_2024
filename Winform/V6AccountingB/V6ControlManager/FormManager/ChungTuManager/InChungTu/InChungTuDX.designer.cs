@@ -86,6 +86,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.inLien4Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.btnEditPara = new V6Controls.Controls.V6FormButton();
+            this.menuViewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -138,10 +139,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToExcelTemplateMenu,
             this.exportToExcelMenu,
             this.printGridMenu,
+            this.menuViewDataToolStripMenuItem,
             this.exportToPdfMenu,
             this.viewInvoiceInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 158);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -165,6 +167,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.printGridMenu.Name = "printGridMenu";
             this.printGridMenu.Size = new System.Drawing.Size(210, 22);
             this.printGridMenu.Text = "Print Grid";
+            this.printGridMenu.Visible = false;
             this.printGridMenu.Click += new System.EventHandler(this.printGrid_Click);
             // 
             // exportToPdfMenu
@@ -736,6 +739,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.btnEditPara.UseVisualStyleBackColor = true;
             this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
             // 
+            // menuViewDataToolStripMenuItem
+            // 
+            this.menuViewDataToolStripMenuItem.AccessibleDescription = "REPORTM00009";
+            this.menuViewDataToolStripMenuItem.Name = "menuViewDataToolStripMenuItem";
+            this.menuViewDataToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.menuViewDataToolStripMenuItem.Text = "View Data";
+            this.menuViewDataToolStripMenuItem.Click += new System.EventHandler(this.menuViewDataToolStripMenuItem_Click);
+            // 
             // InChungTuDX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -834,5 +845,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer4;
         private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer3;
         private V6FormButton btnEditPara;
+        private System.Windows.Forms.ToolStripMenuItem menuViewDataToolStripMenuItem;
     }
 }

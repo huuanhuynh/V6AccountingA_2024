@@ -5843,6 +5843,75 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
         }
 
         /// <summary>
+        /// Lưu tạm dữ liệu nhập vào Temp\*.xml
+        /// </summary>
+        /// <param name="type">key phân loại</param>
+        public void SaveTemp(string type)
+        {
+            // Tạo thư mục Temp
+            if (string.IsNullOrEmpty(type)) type = "0";
+
+            try
+            {
+                if (!Directory.Exists(tempFolder))
+                {
+                    Directory.CreateDirectory(tempFolder);
+                }
+                string fileName = _sttRec + "_" + V6Login.UserName + "_" + type + ".xml";
+                string filePath = Path.Combine(tempFolder, fileName);
+
+                DataSet tempDS = new DataSet(fileName);
+                DataTable tempAM = new DataTable("AM");
+                var amData = GetData();
+                tempAM.AddRow(amData, true);
+                tempDS.Tables.Add(tempAM);
+                var tempAD = AD.Copy(); tempAD.TableName = "AD"; tempDS.Tables.Add(tempAD);
+                tempDS.Tables.Add(AD2 != null ? AD2.Copy() : new DataTable("AD2"));
+                tempDS.Tables.Add(AD3 != null ? AD3.Copy() : new DataTable("AD3"));
+                tempDS.WriteXml(filePath);
+
+                using (StreamWriter sw = File.AppendText(TodayListFile))
+                {
+                    sw.WriteLine(filePath + "\t" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+                }
+
+                SetStatusText("Save temp end.");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+
+        }
+
+        private string tempFolder = "Temp";
+        /// <summary>
+        /// File danh sách data tạm trong ngày của UserName
+        /// </summary>
+        public string TodayListFile
+        {
+            get { return Path.Combine(tempFolder, _invoice.Mact + "_" + V6Login.UserName + "_" + DateTime.Now.ToString("yyyyMMdd") + ".list"); }
+        }
+
+        public DataSet LoadTemp()
+        {
+            try
+            {
+                var form = new LoadTempForm(TodayListFile, _invoice);
+                var dr = form.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    return form.LoadDataSet;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// ADSELECTMORE d.XXXX Gán giá trị liên quan của ma_vt
         /// </summary>
         /// <param name="invoice"></param>
@@ -6704,5 +6773,6 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             }
             V6ControlFormHelper.CallShowAlinitAddEdit(v6mode, keys, keys0);
         }
+        
     }
 }

@@ -291,6 +291,14 @@ namespace V6Init
                 return _Nam_bd;
             }
         }
+        public static DateTime M_NGAY_BD
+        {
+            get
+            {
+                var _Ngay_bd = Convert.ToDateTime(SqlConnect.ExecuteScalar(CommandType.Text, "Select Ngay_dn from AlStt"));
+                return _Ngay_bd;
+            }
+        }
         public static DateTime M_Ngay_ks
         {
             get

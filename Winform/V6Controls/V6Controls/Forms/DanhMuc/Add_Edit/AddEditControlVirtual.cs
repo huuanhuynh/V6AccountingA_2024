@@ -1390,6 +1390,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        /// <summary>
+        /// Kiểm tra dữ liệu có đúng theo cấu hình _aldmConfig.VALID_CHARS.
+        /// (Ngoại trừ các field không có, ô số, ngày, ô đã khóa edit)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private string CheckChar(IDictionary<string, object> data)
         {
             string error = "";
@@ -1399,12 +1405,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 foreach (KeyValuePair<string, string> item in check_items)
                 {
                     string FIELD = item.Key.Trim().ToUpper();
+                    
                     string CHARS = item.Value;
                     if (!_TableStruct.ContainsKey(FIELD)) continue;
                     if (!data.ContainsKey(FIELD)) continue;
                     if (!(data[FIELD] is string)) continue;
                     if (ObjectAndString.IsNumberType(_TableStruct[FIELD].DataType)) continue;
                     if (ObjectAndString.IsDateTimeType(_TableStruct[FIELD].DataType)) continue;
+                    // Kiểm tra nếu ô nhập FIELD đang bị khóa Readonly hoặc Disbaled thì bỏ qua (continue)
+                    var c_f = GetControlByAccessibleName(FIELD) as TextBox;
+                    if (c_f != null && (c_f.ReadOnly || !c_f.Enabled)) continue;
 
                     string value = data[FIELD].ToString();
                     string error1 = "";

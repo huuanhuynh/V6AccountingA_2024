@@ -3136,6 +3136,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             documentViewer1_ZoomChanged(dv, null);
         }
 
+        private void menuViewDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.ViewDataToNewForm();
+        }
+
         private void panel1_Leave(object sender, EventArgs e)
         {
             //btnIn.Focus();

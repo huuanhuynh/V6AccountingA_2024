@@ -3945,6 +3945,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 }
                 else
                 {
+                    base.SaveTemp("SAVEFAIL1");
                     _AED_Success = false;
                     addErrorMessage = V6Text.Text("ADD0");
                     Invoice.PostErrorLog(_sttRec, "M");
@@ -3952,6 +3953,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
             catch (Exception ex)
             {
+                base.SaveTemp("SAVEFAIL2");
                 _AED_Success = false;
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
@@ -4370,35 +4372,87 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                     }
 
-                    AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
-
-                    ResetForm();
-                    Mode = V6Mode.Add;
-                    txtLoaiPhieu.ChangeText(_maGd);
-
-                    //LoadAll(V6Mode.Add);
-
-                    GetSttRec(Invoice.Mact);
-                    V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
-                    //GetSoPhieu();
-                    GetM_ma_nt0();
-                    GetTyGiaDefault();
-                    GetDefault_Other();
-                    SetDefaultData(Invoice);
-                    GET_AM_OLD_EXTRA();
-                    detail1.DoAddButtonClick( );
-                    var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
-                    if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                    bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
+                    bool alt = (ModifierKeys & Keys.Alt) == Keys.Alt;
+                    DataSet loadtempDS = null;
+                    if (ctrl && alt)
                     {
-                        detail1.ChangeToViewMode();
-                        dataGridView1.UnLock();
+                        loadtempDS = LoadTemp();
                     }
-                    else
+
+                    if (ctrl && alt && loadtempDS != null)
                     {
-                        dataGridView1.Lock();
-                        SetDefaultDetail();
+                        AM_old = null;
+
+                        ResetForm();
+                        Mode = V6Mode.Add;
+                        //txtLoaiPhieu.ChangeText(_maGd);
+                        //LoadAll(V6Mode.Add);
+                        GetSttRec(Invoice.Mact);
+
+                        V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
+
+                        // set data temp
+                        V6ControlFormHelper.SetFormDataRow(this, loadtempDS.Tables["AM"].Rows[0]);
+                        txtMaDVCS.ExistRowInTable();
+                        txtMaKh.ExistRowInTable();
+                        txtLoaiPhieu.ExistRowInTable(true);
+                        ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
+
+                        XuLyThayDoiMaDVCS();
+                        //{Tuanmh 20/02/2016
+                        XuLyThayDoiMaNt();
+
+                        // add gridview data...
+                        if (loadtempDS.Tables.Contains("AD"))
+                        {
+                            AD.AddRowByTable(loadtempDS.Tables["AD"]);
+                        }
+                        if (loadtempDS.Tables.Contains("AD2"))
+                        {
+                            AD2.AddRowByTable(loadtempDS.Tables["AD2"]);
+                        }
+                        if (loadtempDS.Tables.Contains("AD3"))
+                        {
+                            AD3.AddRowByTable(loadtempDS.Tables["AD3"]);
+                        }
+
+                        //detail3.MODE = V6Mode.View;
+                        GoToFirstFocus(txtMa_sonb);
                     }
-                    GoToFirstFocus(txtMa_sonb);
+                    else // bình thường
+                    {
+
+                        AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
+
+                        ResetForm();
+                        Mode = V6Mode.Add;
+                        txtLoaiPhieu.ChangeText(_maGd);
+
+                        //LoadAll(V6Mode.Add);
+
+                        GetSttRec(Invoice.Mact);
+                        V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
+                        //GetSoPhieu();
+                        GetM_ma_nt0();
+                        GetTyGiaDefault();
+                        GetDefault_Other();
+                        SetDefaultData(Invoice);
+                        GET_AM_OLD_EXTRA();
+                        detail1.DoAddButtonClick();
+                        var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
+                        if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            detail1.ChangeToViewMode();
+                            dataGridView1.UnLock();
+                        }
+                        else
+                        {
+                            dataGridView1.Lock();
+                            SetDefaultDetail();
+                        }
+                        GoToFirstFocus(txtMa_sonb);
+                    }
                 }
                 else
                 {
@@ -5071,7 +5125,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     btnSua.PerformClick();
                 }
             }
-            else if (Invoice.ExtraInfo_AutoLoadTop)
+            else if (Invoice.ExtraInfor_AutoLoadTop)
             {
                 AutoLoadTop(timTopCuoiKyMenu);
             }
@@ -5084,6 +5138,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         #region ==== Command Buttons ====
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
+            bool alt = (ModifierKeys & Keys.Alt) == Keys.Alt;
+            if (ctrl && alt)
+            {
+                SaveTemp("CTRLALT");
+                return;
+            }
+
             DisableAllFunctionButtons(btnLuu, btnMoi, btnCopy, btnIn, btnSua, btnHuy, btnXoa, btnXem, btnTim, btnQuayRa);
             if (ValidateData_Master())
             {
@@ -5171,6 +5233,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                    {
+                        SaveTemp("MAXROWSAVETEMP");
+                    }
                     return;
                 }
                 throw new Exception(V6Text.AddFail);
@@ -5187,6 +5253,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                     GotoNextDetailEdit(dataGridView1, detail1, chkAutoNext.Checked);
+                    if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                    {
+                        SaveTemp("MAXROWSAVETEMP_EDIT");
+                    }
                     return;
                 }
                 throw new Exception(V6Text.EditFail);
@@ -5785,6 +5855,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     SetSomeData(AM_somedata);
                 }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+                if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                {
+                    SaveTemp("MAXROWSAVETEMP");
+                }
             }
             else
             {
@@ -5889,6 +5963,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     }
                 }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+                if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                {
+                    SaveTemp("MAXROWSAVETEMP");
+                }
             }
             else
             {
@@ -5951,6 +6029,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     }
                 }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+                if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                {
+                    SaveTemp("MAXROWSAVETEMP");
+                }
             }
             else
             {

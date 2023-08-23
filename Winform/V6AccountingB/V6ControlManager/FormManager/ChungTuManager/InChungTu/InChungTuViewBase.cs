@@ -2774,6 +2774,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             LoadAdvanceControls((Control)sender, "Albc");
         }
 
+        private void menuViewDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.ViewDataToNewForm();
+        }
+
         protected void LoadAdvanceControls(Control form, string ma_ct)
         {
             try
