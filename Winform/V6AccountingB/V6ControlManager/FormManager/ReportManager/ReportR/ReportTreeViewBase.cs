@@ -767,7 +767,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 // tính toán vị trí.
                 if (_copyValues.Count == 0)
                 {
-                    Clipboard.SetText("");
+                    Clipboard.Clear();
                     return;
                 }
                 int onePartW = lblSummary.Width / _copyValues.Count;
@@ -794,7 +794,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 Clipboard.SetText("ERR:" + ex.Message);
                 return;
             }
-            Clipboard.SetText("");
+            Clipboard.Clear();
         }
 
         private void CheckRightReport()

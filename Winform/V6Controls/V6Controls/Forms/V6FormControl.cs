@@ -62,7 +62,9 @@ namespace V6Controls.Forms
         /// </summary>
         public Type Form_program;
         public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-
+        public readonly AnchorStyles full_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+        public readonly AnchorStyles top_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+        public readonly AnchorStyles bottom_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
         /// <summary>
         /// Get AllObjects
         /// </summary>

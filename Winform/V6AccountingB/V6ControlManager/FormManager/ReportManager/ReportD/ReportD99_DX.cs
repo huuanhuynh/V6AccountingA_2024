@@ -631,12 +631,39 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     dataGridView1.Font = new Font(dataGridView1.Font.FontFamily, V6Options.M_R_FONTSIZE);
                 }
+                LoadControlsViewType();
                 dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".Init", ex);
+            }
+        }
+
+        private void LoadControlsViewType()
+        {
+            try
+            {
+                dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
+                if (_albcConfig.HaveInfo && _albcConfig.EXTRA_INFOR.ContainsKey("BORDER_STYLE"))
+                {
+                    string type = _albcConfig.EXTRA_INFOR["BORDER_STYLE"];
+                    if (type.Length < 2) throw new Exception("BORDER_STYLE length < 2");
+                    string t = FormManagerHelper.Get_Border_Style(this, type);
+                    ApplyControlsViewType(t);
+                }
+                else if (V6Options.GetValueNull("M_BORDER_STYLE") != null)
+                {
+                    string types = V6Options.GetValue("M_BORDER_STYLE");
+                    if (types.Length < 10) throw new Exception("M_BORDER_STYLE length < 10");
+                    string t = FormManagerHelper.Get_Border_Styles(this, types);
+                    ApplyControlsViewType(t);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadControlLocation " + _albcConfig.REPORT, ex);
             }
         }
 
@@ -1479,7 +1506,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             btnNext.Enabled = current_report_index < sobangtach-1;
         }
 
-        private int SummaryHeight
+        public int SummaryHeight
         {
             get
             {
@@ -1488,6 +1515,44 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 if (lblSummary.Visible) summaryHeight += lblSummary.Height + 5;
                 if (summaryHeight == 0) summaryHeight = 5;
                 return summaryHeight;
+            }
+        }
+
+        AnchorStyles dataGridView1_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+        AnchorStyles documentViewer1_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+
+        /// <summary>
+        /// Thay đổi kích thước GridView hoặc ReportView theo type
+        /// </summary>
+        /// <param name="type">0 ko đổi, 1 big Gridview, 2 big Report.</param>
+        public void ApplyControlsViewType(string type)
+        {
+            int min_height = 60;
+            int full_height = Height - grbDieuKienLoc.Top;
+            switch (type)
+            {
+                case "1": // big GridView
+                    documentViewer1.Height = min_height;
+                    dataGridView1.Height = full_height - gridViewTopFilter1.Height - SummaryHeight - documentViewer1.Height;
+                    documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
+
+                    dataGridView1_Anchor = full_Anchor;
+                    dataGridView1.Anchor = dataGridView1_Anchor;
+                    documentViewer1_Anchor = bottom_Anchor;
+                    documentViewer1.Anchor = documentViewer1_Anchor;
+                    break;
+                case "2": // big Report
+                    dataGridView1.Height = min_height;
+                    documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
+                    documentViewer1.Height = full_height - gridViewTopFilter1.Height - dataGridView1.Height - SummaryHeight;
+
+                    dataGridView1_Anchor = top_Anchor;
+                    dataGridView1.Anchor = dataGridView1_Anchor;
+                    documentViewer1_Anchor = full_Anchor;
+                    documentViewer1.Anchor = documentViewer1_Anchor;
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -1503,7 +1568,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Left;
 
-                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+                dataGridView1.Anchor = full_Anchor;
 
                 lblSummary.Left = dataGridView1.Left;
                 lblSummary.Top = dataGridView1.Bottom + 26;
@@ -1515,7 +1580,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 dataGridView1.Left = grbDieuKienLoc.Right + 5;
                 dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 dataGridView1.Width = documentViewer1.Width;
-                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+                dataGridView1.Anchor = dataGridView1_Anchor;
 
                 lblSummary.Left = dataGridView1.Left;
                 lblSummary.Top = dataGridView1.Bottom + 26;
@@ -1532,6 +1597,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 documentViewer1.Width = documentViewer1.Right - grbDieuKienLoc.Left;
                 documentViewer1.Top = grbDieuKienLoc.Top;
                 documentViewer1.Left = grbDieuKienLoc.Left;
+                documentViewer1.Anchor = full_Anchor;
             }
             else
             {
@@ -1539,6 +1605,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
                 documentViewer1.Height = Height - documentViewer1.Top - 10;
                 documentViewer1.Width = dataGridView1.Width;
+                documentViewer1.Anchor = documentViewer1_Anchor;
             }
         }
 

@@ -280,16 +280,36 @@ namespace V6Controls.Controls
                         var col = this._dgv.Columns[ITEM.Key];
                         if (sender == menuCopy)
                         {
-                            string text = SumOfSelectedRowsByColumn_DrawString(_dgv, col);
-                            Clipboard.SetText(text);
+                            if (ObjectAndString.IsNumberType(col.ValueType) && !_NO_SUM_COLUMNS_FOR_CHECK.Contains(";" + col.DataPropertyName.ToUpper() + ";"))
+                            {
+                                string text = SumOfSelectedRowsByColumn_DrawString(_dgv, col);
+                                Clipboard.SetText(text);
+                            }
+                            else
+                            {
+                                Clipboard.Clear();
+                            }
                         }
                         else if (sender == menuCopyValue)
                         {
-                            string text = SumOfSelectedRowsByColumn(_dgv, col).ToString(CultureInfo.InstalledUICulture);
-                            Clipboard.SetText(text);
+                            if (ObjectAndString.IsNumberType(col.ValueType) && !_NO_SUM_COLUMNS_FOR_CHECK.Contains(";" + col.DataPropertyName.ToUpper() + ";"))
+                            {
+                                string text = SumOfSelectedRowsByColumn(_dgv, col).ToString(CultureInfo.InstalledUICulture);
+                                Clipboard.SetText(text);
+                            }
+                            else
+                            {
+                                Clipboard.Clear();
+                            }
                         }
                         return;
                     }
+                }
+
+                if (sender == menuCopy)
+                {
+                    Clipboard.SetText(_sumText);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -297,7 +317,7 @@ namespace V6Controls.Controls
                 Clipboard.SetText("ERR:" + ex.Message);
                 return;
             }
-            Clipboard.SetText("");
+            Clipboard.Clear();
         }
 
         private SortedDictionary<string, decimal> _SUM_VALUES; 

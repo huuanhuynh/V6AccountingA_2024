@@ -2480,7 +2480,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 this.ShowErrorMessage(string.Format("{0} {1}", GetType(), V6Text.Text("PRINTERAE")));
             }
         }
-        
+
+        AnchorStyles dataGridView1_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+        AnchorStyles documentViewer1_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Bottom < panelCRview.Top)
@@ -2493,7 +2496,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 dataGridView1.Top = grbDieuKienLoc.Top;
                 dataGridView1.Left = grbDieuKienLoc.Left;
 
-                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+                dataGridView1.Anchor = full_Anchor;
             }
             else
             {
@@ -2501,7 +2504,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 dataGridView1.Left = grbDieuKienLoc.Right + 5;
                 dataGridView1.Height = panelCRview.Top - grbDieuKienLoc.Top - 5;
                 dataGridView1.Width = panelCRview.Width;
-                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+                dataGridView1.Anchor = dataGridView1_Anchor;
             }
         }
 
@@ -2514,14 +2517,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 panelCRview.Width = panelCRview.Right - grbDieuKienLoc.Left;
                 panelCRview.Top = grbDieuKienLoc.Top;
                 panelCRview.Left = grbDieuKienLoc.Left;
+                panelCRview.Anchor = full_Anchor;
             }
             else
             {
                 dataGridView1.Visible = true;
                 panelCRview.Left = grbDieuKienLoc.Right + 5;
                 panelCRview.Top = dataGridView1.Bottom + 5;
-                panelCRview.Height = Height - panelCRview.Top - 10;// panelCRview.Bottom - dataGridView1.Bottom - 5;
+                panelCRview.Height = Height - panelCRview.Top - 10;
                 panelCRview.Width = dataGridView1.Width;
+                panelCRview.Anchor = documentViewer1_Anchor;
             }
         }
         

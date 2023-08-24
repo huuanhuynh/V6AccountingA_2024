@@ -708,7 +708,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, V6Options.M_R_FONTSIZE);
                 }
-                dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
+                LoadControlsViewType();
 
                 menuCopy.Click += menuCopy_Click;
                 menuCopyValue.Click += menuCopy_Click;
@@ -719,6 +719,32 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".Init", ex);
+            }
+        }
+
+        private void LoadControlsViewType()
+        {
+            try
+            {
+                dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
+                if (_albcConfig.HaveInfo && _albcConfig.EXTRA_INFOR.ContainsKey("BORDER_STYLE"))
+                {
+                    string type = _albcConfig.EXTRA_INFOR["BORDER_STYLE"];
+                    if (type.Length < 2) throw new Exception("BORDER_STYLE length < 2");
+                    string t = FormManagerHelper.Get_Border_Style(this, type);
+                    ApplyControlsViewType(t);
+                }
+                else if (V6Options.GetValueNull("M_BORDER_STYLE") != null)
+                {
+                    string types = V6Options.GetValue("M_BORDER_STYLE");
+                    if (types.Length < 10) throw new Exception("M_BORDER_STYLE length < 10");
+                    string t = FormManagerHelper.Get_Border_Styles(this, types);
+                    ApplyControlsViewType(t);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadControlLocation " + _albcConfig.REPORT, ex);
             }
         }
 
@@ -740,7 +766,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 // tính toán vị trí.
                 if (_copyValues.Count == 0)
                 {
-                    Clipboard.SetText("");
+                    Clipboard.Clear();
                     return;
                 }
                 int onePartW = lblSummary.Width / _copyValues.Count;
@@ -767,7 +793,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 Clipboard.SetText("ERR:" + ex.Message);
                 return;
             }
-            Clipboard.SetText("");
+            Clipboard.Clear();
         }
 
         private void CheckRightReport()
@@ -1732,7 +1758,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             public string stringValue { get; set; }
         }
 
-        private int SummaryHeight
+        public int SummaryHeight
         {
             get
             {
@@ -1743,6 +1769,45 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 return summaryHeight;
             }
         }
+        
+        public AnchorStyles dataGridView1_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+        public AnchorStyles crystalReportViewer1_Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+
+        /// <summary>
+        /// Thay đổi kích thước GridView hoặc ReportView theo type
+        /// </summary>
+        /// <param name="type">0 ko đổi, 1 big Gridview, 2 big Report.</param>
+        public void ApplyControlsViewType(string type)
+        {
+            int min_height = 60;
+            int full_height = Height - grbDieuKienLoc.Top;
+            switch (type)
+            {
+                case "1": // big GridView
+                    crystalReportViewer1.Height = min_height;
+                    dataGridView1.Height = full_height - gridViewTopFilter1.Height - SummaryHeight - crystalReportViewer1.Height;
+                    crystalReportViewer1.Top = dataGridView1.Bottom + SummaryHeight;
+
+                    dataGridView1_Anchor = full_Anchor;
+                    dataGridView1.Anchor = dataGridView1_Anchor;
+                    crystalReportViewer1_Anchor = bottom_Anchor;
+                    crystalReportViewer1.Anchor = crystalReportViewer1_Anchor;
+                    break;
+                case "2": // big Report
+                    dataGridView1.Height = min_height;
+                    crystalReportViewer1.Top = dataGridView1.Bottom + SummaryHeight;
+                    crystalReportViewer1.Height = full_height - gridViewTopFilter1.Height - dataGridView1.Height - SummaryHeight;
+
+                    dataGridView1_Anchor = top_Anchor;
+                    dataGridView1.Anchor = dataGridView1_Anchor;
+                    crystalReportViewer1_Anchor = full_Anchor;
+                    crystalReportViewer1.Anchor = crystalReportViewer1_Anchor;
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1756,7 +1821,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Left;
 
-                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+                dataGridView1.Anchor = full_Anchor;
 
                 lblSummary.Left = dataGridView1.Left;
                 lblSummary.Top = dataGridView1.Bottom + 26;
@@ -1768,7 +1833,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.Left = grbDieuKienLoc.Right + 5;
                 dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 dataGridView1.Width = crystalReportViewer1.Width;
-                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+                dataGridView1.Anchor = dataGridView1_Anchor;
 
                 lblSummary.Left = dataGridView1.Left;
                 lblSummary.Top = dataGridView1.Bottom + 26;
@@ -1785,6 +1850,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 crystalReportViewer1.Width = crystalReportViewer1.Right - grbDieuKienLoc.Left;
                 crystalReportViewer1.Top = grbDieuKienLoc.Top;
                 crystalReportViewer1.Left = grbDieuKienLoc.Left;
+                crystalReportViewer1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
             }
             else
             {
@@ -1792,6 +1858,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 crystalReportViewer1.Top = dataGridView1.Bottom + SummaryHeight;
                 crystalReportViewer1.Height = Height - crystalReportViewer1.Top - 10;
                 crystalReportViewer1.Width = dataGridView1.Width;
+                crystalReportViewer1.Anchor = crystalReportViewer1_Anchor;
             }
         }
 

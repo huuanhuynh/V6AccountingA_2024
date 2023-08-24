@@ -1137,7 +1137,8 @@
         "FOOTER:[rten_dau_ky]:DAU_KY:N2,[rten_cuoi_ky]:CUOI_KY:N2",
         "EXPORT:Cấu hình tên xuất file NAME_Date(Column:Format)_abc",
         "PRINTVCZOOM:1(width) or 2(all_page) or 100(%)",
-        "EXPORTEXCELFILTER:MA_KH=\'ABC\'"};
+        "EXPORTEXCELFILTER:MA_KH=\'ABC\'",
+        "BORDER_STYLE:22(11 big gridview, 22 big report)"};
             this.dicEditButton1.Location = new System.Drawing.Point(719, 348);
             this.dicEditButton1.Name = "dicEditButton1";
             this.dicEditButton1.ReferenceControl = this.txtExtraInfo;

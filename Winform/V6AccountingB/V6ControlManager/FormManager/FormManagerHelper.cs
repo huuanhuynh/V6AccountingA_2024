@@ -11,6 +11,8 @@ using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu;
 using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager.DanhMuc;
+using V6ControlManager.FormManager.ReportManager.ReportD;
+using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Controls;
 using V6Controls.Forms;
@@ -624,5 +626,47 @@ namespace V6ControlManager.FormManager
                 method_text2);
         }
 
+        /// <summary>
+        /// Lấy đúng giá trị trong chuỗi type theo form report
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static string Get_Border_Style(Control thisForm, string type)
+        {
+            if (thisForm is ReportRViewBase
+                || thisForm is ReportRView2Base
+                || thisForm is ReportR44ViewBase
+                || thisForm is ReportDViewBase
+                || thisForm is ReportD99ViewBase
+                || thisForm is ReportRWWView2Base)
+            {
+                return type.Substring(0, 1);
+            }
+            else
+            {
+                return type.Substring(1, 1);
+            }
+        }
+        /// <summary>
+        /// Lấy đúng giá trị trong chuỗi type theo form report R, R2, R44, D, D99, WW2
+        /// </summary>
+        /// <param name="types"></param>
+        /// <returns></returns>
+        public static string Get_Border_Styles(Control thisForm, string types)
+        {
+            if (thisForm is ReportRViewBase) return types.Substring(0, 1);
+            else if (thisForm is ReportR_DX) return types.Substring(1, 1);
+            else if (thisForm is ReportRView2Base) return types.Substring(2, 1);
+            else if (thisForm is ReportRView2_DX) return types.Substring(3, 1);
+            else if (thisForm is ReportR44ViewBase) return types.Substring(4, 1);
+            else if (thisForm is ReportR44_DX) return types.Substring(5, 1);
+            else if (thisForm is ReportDViewBase) return types.Substring(6, 1);
+            else if (thisForm is ReportD_DX) return types.Substring(7, 1);
+            else if (thisForm is ReportD99ViewBase) return types.Substring(8, 1);
+            else if (thisForm is ReportD99_DX) return types.Substring(9, 1);
+            else if (thisForm is ReportRWWView2Base) return types.Substring(10, 1);
+            else if (thisForm is ReportRWWView2_DX) return types.Substring(11, 1);
+            else return "0";
+        }
     }
 }
