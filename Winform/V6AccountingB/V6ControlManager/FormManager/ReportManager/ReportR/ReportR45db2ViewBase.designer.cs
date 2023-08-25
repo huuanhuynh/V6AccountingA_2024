@@ -645,7 +645,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportR45db2ViewBase_VisibleChanged);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.V6Form_MouseClick);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.thisForm_MouseClick);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbDieuKienLoc.ResumeLayout(false);

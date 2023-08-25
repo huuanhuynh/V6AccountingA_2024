@@ -3211,7 +3211,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
             if (_albcConfig != null && _albcConfig.HaveInfo)
             {
                 V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,

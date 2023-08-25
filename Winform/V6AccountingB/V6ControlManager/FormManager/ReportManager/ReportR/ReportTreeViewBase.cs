@@ -1616,6 +1616,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        public void MoveLblSummary()
+        {
+            lblSummary.Left = treeListViewAuto1.Left;
+            lblSummary.Top = treeListViewAuto1.Bottom;// + (gridViewSummary1.Visible ? 26 : 0);
+            if (treeListViewAuto1.Anchor == full_Anchor) lblSummary.Anchor = bottom_Anchor;
+            else if (treeListViewAuto1.Anchor == top_Anchor) lblSummary.Anchor = top_Anchor;
+        }
+
         private void ViewFooter()
         {
             try
@@ -1626,6 +1634,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     config_string = EXTRA_INFOR["FOOTER"];
                     lblSummary.Visible = true;
+                    MoveLblSummary();
                 }
                 else
                 {
@@ -2062,6 +2071,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
             }
+        }
+
+        private void thisForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            V6Form_MouseClick(sender, e);
         }
 
         private string GetExportFileName()

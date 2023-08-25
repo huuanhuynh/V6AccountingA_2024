@@ -1580,7 +1580,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
 
-                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                
                 if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
                     V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -1704,6 +1704,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     config_string = EXTRA_INFOR["FOOTER"];
                     lblSummary.Visible = true;
                     dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
+                    MoveLblSummary();
                 }
                 else
                 {
@@ -1802,9 +1803,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     crystalReportViewer1.Height = min_height;
                     dataGridView1.Height = full_height - gridViewTopFilter1.Height - SummaryHeight - crystalReportViewer1.Height;
                     crystalReportViewer1.Top = dataGridView1.Bottom + SummaryHeight;
-
                     dataGridView1_Anchor = full_Anchor;
                     dataGridView1.Anchor = dataGridView1_Anchor;
+                    MoveLblSummary();
                     crystalReportViewer1_Anchor = bottom_Anchor;
                     crystalReportViewer1.Anchor = crystalReportViewer1_Anchor;
                     break;
@@ -1812,15 +1813,23 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     dataGridView1.Height = min_height;
                     crystalReportViewer1.Top = dataGridView1.Bottom + SummaryHeight;
                     crystalReportViewer1.Height = full_height - gridViewTopFilter1.Height - dataGridView1.Height - SummaryHeight;
-
                     dataGridView1_Anchor = top_Anchor;
                     dataGridView1.Anchor = dataGridView1_Anchor;
+                    MoveLblSummary();
                     crystalReportViewer1_Anchor = full_Anchor;
                     crystalReportViewer1.Anchor = crystalReportViewer1_Anchor;
                     break;
                 default:
                     break;
             }
+        }
+
+        public void MoveLblSummary()
+        {
+            lblSummary.Left = dataGridView1.Left;
+            lblSummary.Top = dataGridView1.Bottom + (gridViewSummary1.Visible ? 26 : 0);
+            if (dataGridView1.Anchor == full_Anchor) lblSummary.Anchor = bottom_Anchor;
+            else if (dataGridView1.Anchor == top_Anchor) lblSummary.Anchor = top_Anchor;
         }
 
 
@@ -1835,11 +1844,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.Width = Width - 5;
                 dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Left;
-
+                MoveLblSummary();
                 dataGridView1.Anchor = full_Anchor;
-
-                lblSummary.Left = dataGridView1.Left;
-                lblSummary.Top = dataGridView1.Bottom + 26;
                 crystalReportViewer1.Visible = false;
             }
             else // Thu nhỏ dataGridView
@@ -1849,9 +1855,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 dataGridView1.Width = crystalReportViewer1.Width;
                 dataGridView1.Anchor = dataGridView1_Anchor;
-
-                lblSummary.Left = dataGridView1.Left;
-                lblSummary.Top = dataGridView1.Bottom + 26;
+                MoveLblSummary();
                 crystalReportViewer1.Visible = true;
             }
         }
@@ -2063,7 +2067,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
             if (_albcConfig != null && _albcConfig.HaveInfo)
             {
                 V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -2232,6 +2236,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
             }
+        }
+
+        private void thisForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            V6Form_MouseClick(sender, e);
         }
 
         private string GetExportFileName()
@@ -2515,7 +2524,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_FilterChange()
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
             if (_albcConfig != null && _albcConfig.HaveInfo)
             {
                 V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,

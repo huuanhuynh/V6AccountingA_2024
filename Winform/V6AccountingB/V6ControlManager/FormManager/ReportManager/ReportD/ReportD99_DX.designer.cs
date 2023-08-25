@@ -536,6 +536,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.txtReportTitle.Name = "txtReportTitle";
             this.txtReportTitle.Size = new System.Drawing.Size(868, 20);
             this.txtReportTitle.TabIndex = 5;
+            this.txtReportTitle.TabStop = false;
             // 
             // label1
             // 
@@ -566,6 +567,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
             this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB2.TabIndex = 7;
+            this.txtM_TEN_NLB2.TabStop = false;
             // 
             // txtM_TEN_NLB
             // 
@@ -575,6 +577,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
             this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB.TabIndex = 8;
+            this.txtM_TEN_NLB.TabStop = false;
             // 
             // cboMauIn
             // 
@@ -587,6 +590,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.cboMauIn.Name = "cboMauIn";
             this.cboMauIn.Size = new System.Drawing.Size(200, 21);
             this.cboMauIn.TabIndex = 20;
+            this.cboMauIn.TabStop = false;
             this.cboMauIn.SelectedIndexChanged += new System.EventHandler(this.cboMauIn_SelectedIndexChanged);
             // 
             // label4
@@ -608,6 +612,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
             this.chkHienTatCa.TabIndex = 35;
+            this.chkHienTatCa.TabStop = false;
             this.chkHienTatCa.Text = "All";
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
@@ -642,6 +647,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(30, 30);
             this.btnSuaLine.TabIndex = 36;
+            this.btnSuaLine.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
@@ -654,6 +660,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(30, 30);
             this.btnSuaMau.TabIndex = 21;
+            this.btnSuaMau.TabStop = false;
             this.btnSuaMau.UseVisualStyleBackColor = true;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
             // 
@@ -665,6 +672,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnSuaTTMauBC.TabIndex = 22;
+            this.btnSuaTTMauBC.TabStop = false;
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
             // 
@@ -676,6 +684,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnThemMauBC.TabIndex = 23;
+            this.btnThemMauBC.TabStop = false;
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
@@ -690,6 +699,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnExport3.Size = new System.Drawing.Size(50, 30);
             this.btnExport3.SplitMenuStrip = this.contextMenuStrip1;
             this.btnExport3.TabIndex = 39;
+            this.btnExport3.TabStop = false;
             this.btnExport3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
@@ -728,6 +738,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnEditPara.Name = "btnEditPara";
             this.btnEditPara.Size = new System.Drawing.Size(30, 30);
             this.btnEditPara.TabIndex = 41;
+            this.btnEditPara.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.btnEditPara, "Sửa giá trị tham số");
             this.btnEditPara.UseVisualStyleBackColor = true;
             this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
@@ -761,7 +772,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportRViewBase_VisibleChanged);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.V6Form_MouseClick);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.thisForm_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);

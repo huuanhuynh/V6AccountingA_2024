@@ -1227,7 +1227,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     
                     try
                     {
-                        //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                        
                         if (_albcConfig != null && _albcConfig.HaveInfo)
                         {
                             V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -1510,7 +1510,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
 
-                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                
                 if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
                     V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -1975,6 +1975,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        private void thisForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            V6Form_MouseClick(sender, e);
+        }
+
         private string GetExportFileName()
         {
             string result = ChuyenMaTiengViet.ToUnSign(ReportTitle);
@@ -2259,7 +2264,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
             if (_albcConfig != null && _albcConfig.HaveInfo)
             {
                 V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -2269,7 +2274,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_FilterChange()
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
             if (_albcConfig != null && _albcConfig.HaveInfo)
             {
                 V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,

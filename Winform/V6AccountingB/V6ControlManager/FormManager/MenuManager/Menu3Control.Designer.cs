@@ -53,6 +53,7 @@ namespace V6ControlManager.FormManager.MenuManager
             this.lblShowHide.RenderingMode = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lblShowHide.Size = new System.Drawing.Size(27, 203);
             this.lblShowHide.TabIndex = 1;
+            this.lblShowHide.TabStop = false;
             this.lblShowHide.Tag = "Ẩn hoặc hiện menu";
             this.lblShowHide.Text = "Hide";
             this.lblShowHide.TextDrawMode = V6Controls.DrawMode.TopBottom;
@@ -90,6 +91,7 @@ namespace V6ControlManager.FormManager.MenuManager
             this.menuControl1.SelectedButton = null;
             this.menuControl1.Size = new System.Drawing.Size(261, 48);
             this.menuControl1.TabIndex = 0;
+            this.menuControl1.TabStop = false;
             this.menuControl1.Click += new V6Controls.MenuControl.ButtonClickEventHandler(this.menuControl_Click);
             this.menuControl1.DoubleClick += new System.EventHandler(this.menuControl1_DoubleClick);
             // 

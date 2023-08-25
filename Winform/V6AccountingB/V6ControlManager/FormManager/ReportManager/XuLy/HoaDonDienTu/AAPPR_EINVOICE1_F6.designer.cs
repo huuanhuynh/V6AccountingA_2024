@@ -33,6 +33,7 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.xuLyBase1 = new V6ControlManager.FormManager.ReportManager.XuLy.XuLyBase();
+            this.btnTestViewXml = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // timerViewReport
@@ -74,7 +75,6 @@
             // 
             // xuLyBase1
             // 
-            this.xuLyBase1._sttRec = null;
             this.xuLyBase1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -88,11 +88,22 @@
             this.xuLyBase1.Tag = ";canceltriple";
             this.xuLyBase1.ViewDetail = false;
             // 
+            // btnTestViewXml
+            // 
+            this.btnTestViewXml.Location = new System.Drawing.Point(190, 30);
+            this.btnTestViewXml.Name = "btnTestViewXml";
+            this.btnTestViewXml.Size = new System.Drawing.Size(55, 23);
+            this.btnTestViewXml.TabIndex = 24;
+            this.btnTestViewXml.Text = "XML";
+            this.btnTestViewXml.UseVisualStyleBackColor = true;
+            this.btnTestViewXml.Click += new System.EventHandler(this.btnTestViewXml_Click);
+            // 
             // AAPPR_EINVOICE1_F6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 692);
+            this.Controls.Add(this.btnTestViewXml);
             this.Controls.Add(this.xuLyBase1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
@@ -109,9 +120,6 @@
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
         private XuLyBase xuLyBase1;
-
-
-
-
+        private System.Windows.Forms.Button btnTestViewXml;
     }
 }

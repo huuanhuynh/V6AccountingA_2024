@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,27 +102,27 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Control_S = true;
             this.dataGridView1.Location = new System.Drawing.Point(307, 86);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(662, 312);
             this.dataGridView1.TabIndex = 4;
@@ -442,7 +442,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.rTiengViet.Name = "rTiengViet";
             this.rTiengViet.Size = new System.Drawing.Size(73, 17);
             this.rTiengViet.TabIndex = 1;
-            this.rTiengViet.TabStop = true;
             this.rTiengViet.Text = "Tiếng Việt";
             this.rTiengViet.UseVisualStyleBackColor = true;
             this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
@@ -509,7 +508,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.rTienViet.Name = "rTienViet";
             this.rTienViet.Size = new System.Drawing.Size(67, 17);
             this.rTienViet.TabIndex = 0;
-            this.rTienViet.TabStop = true;
             this.rTienViet.Text = "Tiền Việt";
             this.rTienViet.UseVisualStyleBackColor = true;
             this.rTienViet.CheckedChanged += new System.EventHandler(this.rbtTienTe_CheckedChanged);
@@ -537,6 +535,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.txtReportTitle.Name = "txtReportTitle";
             this.txtReportTitle.Size = new System.Drawing.Size(870, 20);
             this.txtReportTitle.TabIndex = 5;
+            this.txtReportTitle.TabStop = false;
             // 
             // label1
             // 
@@ -567,6 +566,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
             this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB2.TabIndex = 7;
+            this.txtM_TEN_NLB2.TabStop = false;
             // 
             // txtM_TEN_NLB
             // 
@@ -576,6 +576,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
             this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB.TabIndex = 8;
+            this.txtM_TEN_NLB.TabStop = false;
             // 
             // btnSuaMau
             // 
@@ -585,6 +586,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(30, 30);
             this.btnSuaMau.TabIndex = 21;
+            this.btnSuaMau.TabStop = false;
             this.btnSuaMau.UseVisualStyleBackColor = true;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
             // 
@@ -599,6 +601,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.cboMauIn.Name = "cboMauIn";
             this.cboMauIn.Size = new System.Drawing.Size(200, 21);
             this.cboMauIn.TabIndex = 20;
+            this.cboMauIn.TabStop = false;
             this.cboMauIn.SelectedIndexChanged += new System.EventHandler(this.cboMauIn_SelectedIndexChanged);
             // 
             // label4
@@ -620,6 +623,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
             this.chkHienTatCa.TabIndex = 35;
+            this.chkHienTatCa.TabStop = false;
             this.chkHienTatCa.Text = "All";
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
@@ -642,6 +646,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(30, 30);
             this.btnSuaLine.TabIndex = 36;
+            this.btnSuaLine.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
@@ -666,6 +671,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnSuaTTMauBC.TabIndex = 22;
+            this.btnSuaTTMauBC.TabStop = false;
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
             // 
@@ -677,6 +683,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnThemMauBC.TabIndex = 23;
+            this.btnThemMauBC.TabStop = false;
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
@@ -691,6 +698,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnExport3.Size = new System.Drawing.Size(50, 30);
             this.btnExport3.SplitMenuStrip = this.contextMenuStrip1;
             this.btnExport3.TabIndex = 39;
+            this.btnExport3.TabStop = false;
             this.btnExport3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
@@ -730,6 +738,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnEditPara.Name = "btnEditPara";
             this.btnEditPara.Size = new System.Drawing.Size(30, 30);
             this.btnEditPara.TabIndex = 41;
+            this.btnEditPara.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.btnEditPara, "Sửa giá trị tham số");
             this.btnEditPara.UseVisualStyleBackColor = true;
             this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
@@ -763,7 +772,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportD_DX_VisibleChanged);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.V6Form_MouseClick);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.thisForm_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);

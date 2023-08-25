@@ -1265,7 +1265,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
                     try
                     {
-                        //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                        
                         if (_albcConfig != null && _albcConfig.HaveInfo)
                         {
                             V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -1487,7 +1487,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
 
-                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                
                 if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
                     V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -1582,6 +1582,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     config_string = EXTRA_INFOR["FOOTER"];
                     lblSummary.Visible = true;
                     dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
+                    MoveLblSummary();
                 }
                 else
                 {
@@ -1746,9 +1747,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     documentViewer1.Height = min_height;
                     dataGridView1.Height = full_height - gridViewTopFilter1.Height - SummaryHeight - documentViewer1.Height;
                     documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
-
                     dataGridView1_Anchor = full_Anchor;
                     dataGridView1.Anchor = dataGridView1_Anchor;
+                    MoveLblSummary();
                     documentViewer1_Anchor = bottom_Anchor;
                     documentViewer1.Anchor = documentViewer1_Anchor;
                     break;
@@ -1756,15 +1757,23 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     dataGridView1.Height = min_height;
                     documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
                     documentViewer1.Height = full_height - gridViewTopFilter1.Height - dataGridView1.Height - SummaryHeight;
-
                     dataGridView1_Anchor = top_Anchor;
                     dataGridView1.Anchor = dataGridView1_Anchor;
+                    MoveLblSummary();
                     documentViewer1_Anchor = full_Anchor;
                     documentViewer1.Anchor = documentViewer1_Anchor;
                     break;
                 default:
                     break;
             }
+        }
+
+        public void MoveLblSummary()
+        {
+            lblSummary.Left = dataGridView1.Left;
+            lblSummary.Top = dataGridView1.Bottom + (gridViewSummary1.Visible ? 26 : 0);
+            if (dataGridView1.Anchor == full_Anchor) lblSummary.Anchor = bottom_Anchor;
+            else if (dataGridView1.Anchor == top_Anchor) lblSummary.Anchor = top_Anchor;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1780,9 +1789,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 dataGridView1.Left = grbDieuKienLoc.Left;
 
                 dataGridView1.Anchor = full_Anchor;
-
-                lblSummary.Left = dataGridView1.Left;
-                lblSummary.Top = dataGridView1.Bottom + 26;
+                MoveLblSummary();
                 documentViewer1.Visible = false;
             }
             else // Thu nhỏ dataGridView
@@ -1792,9 +1799,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 dataGridView1.Width = documentViewer1.Width;
                 dataGridView1.Anchor = dataGridView1_Anchor;
-
-                lblSummary.Left = dataGridView1.Left;
-                lblSummary.Top = dataGridView1.Bottom + 26;
+                MoveLblSummary();
                 documentViewer1.Visible = true;
             }
         }
@@ -2214,6 +2219,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
         }
 
+        private void thisForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            V6Form_MouseClick(sender, e);
+        }
+
         private void btnSuaLine_Click(object sender, EventArgs e)
         {
             if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK)
@@ -2570,10 +2580,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
         }
-
+        
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
             if (_albcConfig != null && _albcConfig.HaveInfo)
             {
                 V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,

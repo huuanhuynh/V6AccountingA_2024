@@ -767,7 +767,7 @@ namespace V6Controls.Forms
             throw new NotImplementedException(message);
         }
 
-        protected void V6Form_MouseClick(object sender, MouseEventArgs e)
+        public void V6Form_MouseClick(object sender, MouseEventArgs e)
         {
             try
             {

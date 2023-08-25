@@ -229,6 +229,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.cboMauIn.Name = "cboMauIn";
             this.cboMauIn.Size = new System.Drawing.Size(200, 21);
             this.cboMauIn.TabIndex = 4;
+            this.cboMauIn.TabStop = false;
             this.cboMauIn.SelectedIndexChanged += new System.EventHandler(this.cboMauIn_SelectedIndexChanged);
             // 
             // lblNguoiLapBieu
@@ -250,6 +251,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
             this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB2.TabIndex = 12;
+            this.txtM_TEN_NLB2.TabStop = false;
             // 
             // txtM_TEN_NLB
             // 
@@ -259,6 +261,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
             this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB.TabIndex = 10;
+            this.txtM_TEN_NLB.TabStop = false;
             // 
             // lblMauIn
             // 
@@ -288,6 +291,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.txtReportTitle.Name = "txtReportTitle";
             this.txtReportTitle.Size = new System.Drawing.Size(868, 20);
             this.txtReportTitle.TabIndex = 2;
+            this.txtReportTitle.TabStop = false;
             // 
             // dataGridView1
             // 
@@ -461,7 +465,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.rTiengViet.Name = "rTiengViet";
             this.rTiengViet.Size = new System.Drawing.Size(73, 17);
             this.rTiengViet.TabIndex = 1;
-            this.rTiengViet.TabStop = true;
             this.rTiengViet.Text = "Tiếng Việt";
             this.rTiengViet.UseVisualStyleBackColor = true;
             this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
@@ -502,7 +505,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.rTienViet.Name = "rTienViet";
             this.rTienViet.Size = new System.Drawing.Size(67, 17);
             this.rTienViet.TabIndex = 0;
-            this.rTienViet.TabStop = true;
             this.rTienViet.Text = "Tiền Việt";
             this.rTienViet.UseVisualStyleBackColor = true;
             this.rTienViet.CheckedChanged += new System.EventHandler(this.rbtTienTe_CheckedChanged);
@@ -527,6 +529,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(30, 30);
             this.btnSuaMau.TabIndex = 7;
+            this.btnSuaMau.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.btnSuaMau, "Sửa Mẫu");
             this.btnSuaMau.UseVisualStyleBackColor = true;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
@@ -540,6 +543,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
             this.chkHienTatCa.TabIndex = 8;
+            this.chkHienTatCa.TabStop = false;
             this.chkHienTatCa.Text = "All";
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
@@ -562,6 +566,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(30, 30);
             this.btnSuaLine.TabIndex = 7;
+            this.btnSuaLine.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
@@ -587,6 +592,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnSuaTTMauBC.TabIndex = 5;
+            this.btnSuaTTMauBC.TabStop = false;
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
             // 
@@ -598,6 +604,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnThemMauBC.TabIndex = 6;
+            this.btnThemMauBC.TabStop = false;
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
@@ -612,6 +619,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnExport3.Size = new System.Drawing.Size(50, 30);
             this.btnExport3.SplitMenuStrip = this.contextMenuStrip1;
             this.btnExport3.TabIndex = 20;
+            this.btnExport3.TabStop = false;
             this.btnExport3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
@@ -677,6 +685,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnEditPara.Name = "btnEditPara";
             this.btnEditPara.Size = new System.Drawing.Size(30, 30);
             this.btnEditPara.TabIndex = 22;
+            this.btnEditPara.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.btnEditPara, "Sửa giá trị tham số");
             this.btnEditPara.UseVisualStyleBackColor = true;
             this.btnEditPara.Click += new System.EventHandler(this.btnEditPara_Click);
@@ -710,7 +719,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportR44_DX_VisibleChanged);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.V6Form_MouseClick);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.thisForm_MouseClick);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbDieuKienLoc.ResumeLayout(false);

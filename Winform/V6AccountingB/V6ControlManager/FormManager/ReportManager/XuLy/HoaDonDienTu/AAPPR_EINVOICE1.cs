@@ -228,9 +228,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     this.ShowWarningMessage(V6Text.NoData);
                     return;
                 }
-                
+
+                DataGridViewRow row = dataGridView1.CurrentRow;
+                var am_OLD = row.ToDataDictionary();
 
                 var form = new AAPPR_EINVOICE1_F6();
+                form.am_OLD = am_OLD;
+                form.branch = FilterControl.String1;
                 if (mode == "E_T1") form.Text += " (Thay thế)";
                 else if (mode == "E_S1") form.Text += " (Điều chỉnh tiền)";
                 else if (mode == "E_S2") form.Text += " (Điều chỉnh thông tin)";
@@ -241,9 +245,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
                 SetStatus2Text();
-
-                DataGridViewRow row = dataGridView1.CurrentRow;
-                var am_OLD = row.ToDataDictionary();
 
                 try
                 {

@@ -1410,7 +1410,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                
                 if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
                     V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -1584,6 +1584,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        public void MoveLblSummary()
+        {
+            lblSummary.Left = dataGridView1.Left;
+            lblSummary.Top = dataGridView1.Bottom + (gridViewSummary1.Visible ? 26 : 0);
+            if (dataGridView1.Anchor == full_Anchor) lblSummary.Anchor = bottom_Anchor;
+            else if (dataGridView1.Anchor == top_Anchor) lblSummary.Anchor = top_Anchor;
+        }
+
         private void ViewFooter()
         {
             try
@@ -1594,6 +1602,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     config_string = EXTRA_INFOR["FOOTER"];
                     lblSummary.Visible = true;
+                    MoveLblSummary();
                 }
                 else
                 {
@@ -1975,7 +1984,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             //    this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
             //}
         }
-        
+
+        private void thisForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            V6Form_MouseClick(sender, e);
+        }
+
         private void btnSuaLine_Click(object sender, EventArgs e)
         {
             if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK)
@@ -2218,7 +2232,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
             if (_albcConfig != null && _albcConfig.HaveInfo)
             {
                 V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -2228,7 +2242,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_FilterChange()
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
             if (_albcConfig != null && _albcConfig.HaveInfo)
             {
                 V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,

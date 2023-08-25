@@ -661,6 +661,12 @@ namespace V6ThuePostManager
                     result = xml;
                     paras.Result.ResultString = xml;
                 }
+                else if (paras.Mode == "TestViewE_T1")
+                {
+                    var xml = ReadData_Bkav("E_T1");
+                    result = xml;
+                    paras.Result.ResultString = xml;
+                }
                 else if (paras.Mode == "E_G1") // Gạch nợ.
                 {
                     paras.Result.ResultErrorMessage = V6Text.NotSupported;
@@ -779,7 +785,7 @@ namespace V6ThuePostManager
                 {
                     if (item.Key == "OriginalInvoiceIdentify")
                     {
-                        if (mode == "T") // khi thay thế, cho số hóa đơn = 0 InvoiceNo
+                        if (mode == "T" || mode == "E_T1") // khi thay thế, cho số hóa đơn = 0 InvoiceNo
                         {
                             postObject.Invoice[item.Key] = Fkey_hd_tt;// GetValue(row0, item.Value);
                             //postObject.Invoice["InvoiceStatusID"] = "1";
@@ -1293,6 +1299,12 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "TestView_Shift")
                 {
                     // Download thôngg tin ?????
+                }
+                else if (paras.Mode == "TestViewE_T1")
+                {
+                    var xml = ReadDataXmlT();
+                    result = xml;
+                    paras.Result.ResultString = xml;
                 }
                 else if (paras.Mode.StartsWith("E_"))
                 {
@@ -2617,6 +2629,12 @@ namespace V6ThuePostManager
                     result = xml;
                     paras.Result.ResultString = xml;
                 }
+                else if (paras.Mode == "TestViewE_T1")
+                {
+                    var xml = ReadDataXmlT();
+                    result = xml;
+                    paras.Result.ResultString = xml;
+                }
                 else if (paras.Mode.StartsWith("M"))     //  MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
                 {
                     var xml = ReadData_Vnpt();
@@ -2747,7 +2765,7 @@ namespace V6ThuePostManager
                         }
                     }
                 }
-                else if (paras.Mode == "T")
+                else if (paras.Mode == "T" || paras.Mode == "E_T1")
                 {
                     var xml = ReadDataXmlT();
                     result = vnptWS.replaceInv(xml, paras.Fkey_hd_tt, out paras.Result.V6ReturnValues);
@@ -3269,6 +3287,21 @@ namespace V6ThuePostManager
                     }
                     result = viettel_V2WS.GetMetaDataDefine(getPattern, out paras.Result.V6ReturnValues);
                 }
+                else if (paras.Mode == "TestViewE_T1")
+                {
+                    if (!string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                    }
+
+                    jsonBody = ReadData_Viettel(paras);
+                    result = jsonBody;
+                    paras.Result.ResultString = jsonBody;
+                }
                 else if (paras.Mode == "E_G1") // Gạch nợ
                 {
                     rd.RESULT_ERROR_MESSAGE = V6Text.NotSupported;
@@ -3651,7 +3684,7 @@ namespace V6ThuePostManager
                     __serial = row0[seri_field].ToString().Trim();
                 
 
-                if (paras.Mode == "E_T1")
+                if (paras.Mode == "E_T1" || paras.Mode == "TestViewE_T1")
                 {
                     //Lập hóa đơn thay thế:
                     //adjustmentType = ‘3’
@@ -3996,7 +4029,13 @@ namespace V6ThuePostManager
 
                 if (paras.Mode == "TestView")
                 {
-                    var invoices = ReadData_SoftDreams(paras.Mode);
+                    var invoices = ReadData_SoftDreams("M");
+                    result = invoices.ToXml();
+                    paras.Result.ResultString = result;
+                }
+                else if (paras.Mode == "TestViewE_T1")
+                {
+                    var invoices = ReadData_SoftDreams("T");
                     result = invoices.ToXml();
                     paras.Result.ResultString = result;
                 }
@@ -4251,7 +4290,13 @@ namespace V6ThuePostManager
 
                 if (paras.Mode == "TestView")
                 {
-                    var invoices = ReadData_ThaiSon(paras.Mode);
+                    var invoices = ReadData_ThaiSon("M");
+                    result = V6XmlConverter.ClassToXml(invoices);
+                    paras.Result.ResultString = result;
+                }
+                else if (paras.Mode == "TestViewE_T1")
+                {
+                    var invoices = ReadData_ThaiSon("T");
                     result = V6XmlConverter.ClassToXml(invoices);
                     paras.Result.ResultString = result;
                 }
@@ -4743,7 +4788,12 @@ namespace V6ThuePostManager
 
                 if (paras.Mode == "TestView")
                 {
-                    jsonBodyObject = ReadData_Minvoice(paras.Mode);
+                    jsonBodyObject = ReadData_Minvoice("M");
+                    paras.Result.ResultString = jsonBodyObject.ToJson();
+                }
+                else if (paras.Mode == "TestViewE_T1")
+                {
+                    jsonBodyObject = ReadData_Minvoice("T");
                     paras.Result.ResultString = jsonBodyObject.ToJson();
                 }
                 else if (paras.Mode.StartsWith("M"))
@@ -4773,7 +4823,7 @@ namespace V6ThuePostManager
                     jsonBodyObject = ReadData_Minvoice("S");
                     response = mInvoiceWs.POST_EDIT(jsonBodyObject, out paras.Result.V6ReturnValues);
                 }
-                else if (paras.Mode == "T")
+                else if (paras.Mode == "T" || paras.Mode == "E_T1")
                 {
                     jsonBodyObject = ReadData_Minvoice("T");
                     response = mInvoiceWs.POST_EDIT(jsonBodyObject, out paras.Result.V6ReturnValues);
@@ -4981,7 +5031,11 @@ namespace V6ThuePostManager
 
                 if (paras.Mode == "TestView")
                 {
-                    paras.Result.ResultString = ReadData_VIN(paras.Mode);
+                    paras.Result.ResultString = ReadData_VIN("M");
+                }
+                else if (paras.Mode == "TestViewE_T1")
+                {
+                    paras.Result.ResultString = ReadData_VIN("T");
                 }
                 else if (paras.Mode.StartsWith("M"))
                 {

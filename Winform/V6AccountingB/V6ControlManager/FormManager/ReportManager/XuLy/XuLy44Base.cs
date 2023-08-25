@@ -707,7 +707,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //Header
             if (_tbl != null)
             {
-                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                
                 if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
                     V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,

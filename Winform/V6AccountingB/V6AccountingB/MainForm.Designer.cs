@@ -54,6 +54,7 @@ namespace V6AccountingB
             this.panelLogin = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeReportLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stickNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picLOGO = new System.Windows.Forms.PictureBox();
             this.lblDVCS = new System.Windows.Forms.Label();
@@ -73,7 +74,6 @@ namespace V6AccountingB
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
-            this.changeReportLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -425,6 +425,7 @@ namespace V6AccountingB
             this.menuMain.SelectedButton = null;
             this.menuMain.Size = new System.Drawing.Size(153, 321);
             this.menuMain.TabIndex = 2;
+            this.menuMain.TabStop = false;
             this.menuMain.Click += new V6Controls.MenuControl.ButtonClickEventHandler(this.menuMain_Click);
             this.menuMain.Load += new System.EventHandler(this.menuMain_Load);
             // 
@@ -438,6 +439,7 @@ namespace V6AccountingB
             this.quickMenu1.Name = "quickMenu1";
             this.quickMenu1.Size = new System.Drawing.Size(151, 39);
             this.quickMenu1.TabIndex = 0;
+            this.quickMenu1.TabStop = false;
             // 
             // panelLogin
             // 
@@ -463,7 +465,7 @@ namespace V6AccountingB
             this.changeReportLanguageToolStripMenuItem,
             this.stickNoteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 70);
             // 
             // changeDVCSToolStripMenuItem
             // 
@@ -471,6 +473,13 @@ namespace V6AccountingB
             this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.changeDVCSToolStripMenuItem.Text = "Change Agent";
             this.changeDVCSToolStripMenuItem.Click += new System.EventHandler(this.changeDVCSToolStripMenuItem_Click);
+            // 
+            // changeReportLanguageToolStripMenuItem
+            // 
+            this.changeReportLanguageToolStripMenuItem.Name = "changeReportLanguageToolStripMenuItem";
+            this.changeReportLanguageToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.changeReportLanguageToolStripMenuItem.Text = "Change Report Language";
+            this.changeReportLanguageToolStripMenuItem.Click += new System.EventHandler(this.changeReportLanguageToolStripMenuItem_Click);
             // 
             // stickNoteToolStripMenuItem
             // 
@@ -536,6 +545,7 @@ namespace V6AccountingB
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(78, 39);
             this.btnExit.TabIndex = 12;
+            this.btnExit.TabStop = false;
             this.btnExit.Text = "Exit";
             this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExit.UseVisualStyleBackColor = false;
@@ -691,13 +701,6 @@ namespace V6AccountingB
             this.lblV6Message.TabIndex = 4;
             this.lblV6Message.Text = ".....";
             this.lblV6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // changeReportLanguageToolStripMenuItem
-            // 
-            this.changeReportLanguageToolStripMenuItem.Name = "changeReportLanguageToolStripMenuItem";
-            this.changeReportLanguageToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.changeReportLanguageToolStripMenuItem.Text = "Change Report Language";
-            this.changeReportLanguageToolStripMenuItem.Click += new System.EventHandler(this.changeReportLanguageToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -1313,7 +1313,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
 
-                //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+                
                 if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
                     V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
@@ -1660,7 +1660,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+            
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
