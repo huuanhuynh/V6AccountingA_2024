@@ -13,6 +13,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
+using V6Tools.V6Export;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -284,6 +285,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".viewDataToolStripMenuItem_Click", ex);
+            }
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedGrid = V6ControlFormHelper.GetControlByName(tabControl1.SelectedTab, "dataGridView1")
+                       as V6ColorDataGridView;
+                if (selectedGrid != null)
+                {
+                    SaveFileDialog o = new SaveFileDialog();
+                    o.Filter = "All|*.*|Excel|*.xls;*.xlsx|Xml|*.xml";
+                    if (o.ShowDialog(this) == DialogResult.OK)
+                    {
+                        var setting = new ExportExcelSetting();
+                        setting.data = selectedGrid.DataSource as DataTable;
+                        setting.saveFile = o.FileName;
+                        ExportData.ToExcel(setting);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".exportExcelToolStripMenuItem_Click", ex);
             }
         }
     }

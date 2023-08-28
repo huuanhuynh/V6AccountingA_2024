@@ -34,11 +34,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewDataMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.cboProcList = new V6Controls.V6ComboBox();
             this.v6Label20 = new V6Controls.V6Label();
             this.lblTen = new V6Controls.V6Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.viewDataMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -112,6 +113,22 @@
             this.tabControl1.Size = new System.Drawing.Size(551, 288);
             this.tabControl1.TabIndex = 7;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewDataMenu,
+            this.exportExcelToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            // 
+            // viewDataMenu
+            // 
+            this.viewDataMenu.AccessibleDescription = "REPORTM00009";
+            this.viewDataMenu.Name = "viewDataMenu";
+            this.viewDataMenu.Size = new System.Drawing.Size(152, 22);
+            this.viewDataMenu.Text = "View Data";
+            this.viewDataMenu.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
+            // 
             // cboProcList
             // 
             this.cboProcList.AccessibleName = "";
@@ -151,26 +168,20 @@
             this.lblTen.Text = "Trạng thái";
             this.lblTen.Visible = false;
             // 
-            // contextMenuStrip1
+            // exportExcelToolStripMenuItem
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewDataMenu});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 26);
-            // 
-            // viewDataToolStripMenuItem
-            // 
-            this.viewDataMenu.AccessibleDescription = "REPORTM00009";
-            this.viewDataMenu.Name = "viewDataMenu";
-            this.viewDataMenu.Size = new System.Drawing.Size(123, 22);
-            this.viewDataMenu.Text = "View Data";
-            this.viewDataMenu.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
+            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportExcelToolStripMenuItem.Text = "ExportExcel";
+            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
             // 
             // V6CHECK_U1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "V6CHECK_U1";
+            this.Controls.SetChildIndex(this.btnSuaTTMauBC, 0);
+            this.Controls.SetChildIndex(this.btnThemMauBC, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.panel1.ResumeLayout(false);
@@ -192,5 +203,6 @@
         private V6Controls.V6Label lblTen;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem viewDataMenu;
+        private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
     }
 }

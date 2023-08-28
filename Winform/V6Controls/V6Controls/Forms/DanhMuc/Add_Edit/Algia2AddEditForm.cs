@@ -47,9 +47,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 var data = txtMaVt.Data;
 
-                txtDVT.Text = data["dvt"].ToString().Trim();
+                //txtDVT.Text = data["dvt"].ToString().Trim();
                 txtDVT.SetInitFilter("ma_vt='" + txtMaVt.Text + "'");
-                txtDVT.Text = txtDVT.Text;
+                //txtDVT.Text = txtDVT.Text;
 
                 if (data.Table.Columns.Contains("Nhieu_DVT"))
                 {
