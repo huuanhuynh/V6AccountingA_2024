@@ -140,6 +140,11 @@ namespace V6Controls.Controls
                         {
                             comboBox1.SelectedItem = ps;
                         }
+                        else
+                        {
+                            comboBox1.Items.Add(ps);
+                            comboBox1.SelectedItem = ps;
+                        }
                     }
                     if (_aldmConfig.EXTRA_INFOR.ContainsKey("VIEWSUM"))
                     {

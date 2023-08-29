@@ -2222,6 +2222,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void btnSuaLine_Click(object sender, EventArgs e)
         {
+            bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
             if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK)
             {
                 return;
@@ -2229,6 +2230,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
             try
             {
+                if (ctrl) // đảo PAGE trong V6MENU để đảo kiểu report Crystal hay DX.
+                {
+                    string new_value = "1";
+                    if (MenuButton.UseXtraReport) new_value = "0";
+                    string sql = "UPDATE V6MENU SET PAGE = '" + new_value + "' WHERE ITEMID = '" + ItemID + "'";
+                    int result = V6BusinessHelper.ExecuteSqlNoneQuery(sql);
+                    MenuButton.Xtra = new_value;
+                    ShowMainMessage("V6MENU " + V6Text.Updated + " " + result);
+                    return;
+                }
+
                 var title = V6Setting.IsVietnamese ? "Sửa báo cáo động" : "Edit dynamic report";
                 var f = new DanhMucView(ItemID, title, "Alreport", "ma_bc='" + _program + "'",
                     V6TableHelper.GetDefaultSortField(V6TableName.Alreport), new AldmConfig());

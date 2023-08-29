@@ -345,6 +345,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         {
                             comboBox1.SelectedItem = ps;
                         }
+                        else
+                        {
+                            comboBox1.Items.Add(ps);
+                            comboBox1.SelectedItem = ps;
+                        }
                     }
                     if (_aldmConfig.EXTRA_INFOR.ContainsKey("VIEWSUM"))
                     {
