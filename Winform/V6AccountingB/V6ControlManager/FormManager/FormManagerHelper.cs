@@ -7,12 +7,14 @@ using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia;
 using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu;
 using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager.DanhMuc;
 using V6ControlManager.FormManager.ReportManager.ReportD;
 using V6ControlManager.FormManager.ReportManager.ReportR;
+using V6ControlManager.FormManager.SoDuManager;
 using V6Controls;
 using V6Controls.Controls;
 using V6Controls.Forms;
@@ -624,6 +626,120 @@ namespace V6ControlManager.FormManager
             }
             Event_program2 = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + ma_bc, using_text2,
                 method_text2);
+        }
+
+        static int max_check = 20;
+        internal static void CheckManyFormOpen(Menu3Control menu3Control)
+        {
+            try
+            {
+                max_check = V6Options.M_SWMENUPOP_MAXFORM;
+                if (ManagerFormList.Count > max_check)
+                {
+                    var r = menu3Control.ShowConfirmCancelMessage(string.Format("ManagerFormList.Count > {0}. Close some?", max_check));
+                    if (r == DialogResult.Yes)
+                    {
+                        AutoDisposeSomeForm();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private static void AutoDisposeSomeForm()
+        {
+            try
+            {
+                List<IntPtr> List_IntPtr = new List<IntPtr>();
+                List<IntPtr> List_IntPtr_Invoice = new List<IntPtr>();
+                int dispose_count = 0, all_form_count = ManagerFormList.Count, count = 0;
+                //Duyệt qua tất cả control
+                foreach (KeyValuePair<IntPtr, V6Control> item in ManagerFormList)
+                {
+                    count++;
+                    if (all_form_count - count <= V6Options.M_SWMENUPOP_RESTFORM) break; // chừa lại REST cái cuối cùng.
+
+                    if (item.Value != CurrentFormControl)
+                    {
+                        if (IsDanhMucOrSoDu(item.Value))
+                        {
+                            List_IntPtr.Add(item.Key);
+                        }
+                        else if (IsReportControl(item.Value))
+                        {
+                            List_IntPtr.Add(item.Key);
+                        }
+                        else if (IsChungTuContainer(item.Value))
+                        {
+                            List_IntPtr_Invoice.Add(item.Key);
+                        }
+                    }
+                }
+
+                dispose_count += List_IntPtr.Count;
+                foreach (IntPtr item in List_IntPtr)
+                {
+                    ManagerFormList[item].Dispose();
+                    ManagerFormList.Remove(item);
+                }
+
+                if (dispose_count < max_check / 2)
+                {
+                    foreach (IntPtr item in List_IntPtr_Invoice)
+                    {
+                        ManagerFormList[item].Dispose_NotAddEdit();
+                    }
+                }
+
+                CurrentMenu3Control.Invalidate();
+                V6ControlFormHelper.MainMenu.Invalidate();
+                
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        public static bool IsReportControl(V6Control control)
+        {
+            if (control is ReportRViewBase || control is ReportR_DX
+                || control is ReportRView2Base || control is ReportRView2_DX
+                || control is ReportR44ViewBase || control is ReportR44_DX
+                || control is ReportDViewBase || control is ReportD_DX
+                || control is ReportD99ViewBase || control is ReportD99_DX
+                || control is ReportRWWView2Base || control is ReportRWWView2_DX) return true;
+            return false;
+        }
+
+        public static bool IsChungTuContainer(V6Control control)
+        {
+            if (control is ChungTuChungContainer || control is BaoGiaContainer) return true;
+            return false;
+        }
+
+        public static bool IsDanhMucOrSoDu(V6Control control)
+        {
+            if (control is DanhMucView || control is CategoryView
+                || control is SoDuView || control is SoDuView2) return true;
+            return false;
+        }
+
+        static Dictionary<IntPtr, V6Control> ManagerFormList = new Dictionary<IntPtr, V6Control>();
+
+        internal static void AddManagerFormList(IntPtr handle, V6Control c)
+        {
+            try
+            {
+                ManagerFormList[handle] = c;
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         /// <summary>

@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("V6Controls")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("V6")]
 [assembly: AssemblyProduct("V6Controls")]
 [assembly: AssemblyCopyright("Copyright ©  2011")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("V6")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.2.3")]
+[assembly: AssemblyFileVersion("1.0.2.3")]

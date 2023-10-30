@@ -347,7 +347,8 @@ namespace V6Controls.Controls
                 {
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1,
                             V6Setting.IsVietnamese ? _aldmConfig.GRDHV_V1 : _aldmConfig.GRDHE_V1);
-                    var conditionColor = ObjectAndString.StringToColor(_aldmConfig.COLORV);
+                    Color conditionColor = Color.Transparent;
+                    ObjectAndString.StringToColor(_aldmConfig.COLORV, out conditionColor);
                     V6ControlFormHelper.FormatGridView(dataGridView1, _aldmConfig.FIELDV, _aldmConfig.OPERV, _aldmConfig.VALUEV,
                         _aldmConfig.BOLD_YN, _aldmConfig.COLOR_YN, conditionColor);
                     int frozen = ObjectAndString.ObjectToInt(_aldmConfig.FROZENV);
@@ -359,7 +360,8 @@ namespace V6Controls.Controls
                     string formatStrings = _v6LookupConfig.GRDF_V1;
                     string headerString = V6Setting.IsVietnamese ? _v6LookupConfig.GRDHV_V1 : _v6LookupConfig.GRDHE_V1;
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-                    var conditionColor = ObjectAndString.StringToColor(_v6LookupConfig.COLORV);
+                    Color conditionColor = Color.Transparent;
+                    ObjectAndString.StringToColor(_v6LookupConfig.COLORV, out conditionColor);
                     V6ControlFormHelper.FormatGridView(dataGridView1, _v6LookupConfig.FIELDV, _v6LookupConfig.OPERV, _v6LookupConfig.VALUEV,
                         _v6LookupConfig.BOLD_YN, _v6LookupConfig.COLOR_YN, conditionColor);
                     int frozen = ObjectAndString.ObjectToInt(_v6LookupConfig.FROZENV);

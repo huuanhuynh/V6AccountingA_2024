@@ -456,6 +456,10 @@ namespace V6Tools.V6Convert
                 result = o.ToString();
                 return result;
             }
+            else if (o is byte[])
+            {
+                return "byte["+((byte[])o).Length+"]";
+            }
 
             switch (t.ToString())
             {

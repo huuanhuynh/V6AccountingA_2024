@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BarcodeLib")]
 [assembly: AssemblyDescription("Barcode Image Generation Library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Barnhill Software")]
+[assembly: AssemblyCompany("V6")]
 [assembly: AssemblyProduct("BarcodeLib")]
-[assembly: AssemblyCopyright("Copyright © Brad Barnhill 2007-present")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("V6")]
+[assembly: AssemblyTrademark("V6")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SevenZip")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("V6")]
 [assembly: AssemblyProduct("SevenZip")]
 [assembly: AssemblyCopyright("Copyright © SevenZip 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("V6")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

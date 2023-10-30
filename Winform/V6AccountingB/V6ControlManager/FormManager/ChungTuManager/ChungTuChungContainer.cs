@@ -20,6 +20,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private int currentTabIndex = -1;
         private string MaCt;
         private bool _showQuickViewControl;
+        public List<V6InvoiceControl> List_InvoiceControl = new List<V6InvoiceControl>();
         private V6InvoiceBase Invoice { get; set; }
 
         public ChungTuChungContainer(string maCt, string itemId)
@@ -139,6 +140,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 ChungTu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
                 panel.Controls.Add(ChungTu);
+                List_InvoiceControl.Add(ChungTu);
                 method_log += "var tab;";
                 var tab = new TabPage(V6Text.Invoice);
                 ChungTu.ParentTabPage = tab;
@@ -185,7 +187,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var color_name = row["ColorV"].ToString().Trim();
                     if (color_name != "")
                     {
-                        var color = ObjectAndString.StringToColor(color_name);
+                        Color color;
+                        ObjectAndString.StringToColor(color_name, out color);
                         colorList[kieu_post] = color;
                     }
                 }
@@ -393,6 +396,28 @@ namespace V6ControlManager.FormManager.ChungTuManager
             e.Graphics.DrawString(lblTitle.Text, lblTitle.Font, myBrush, point);
 
         }
-        
+
+        public override void Dispose_NotAddEdit()
+        {
+            try
+            {
+                List<V6InvoiceControl> dispose_list = new List<V6InvoiceControl>();
+                foreach (var item in List_InvoiceControl)
+                {
+                    if (item.NotAddEdit) dispose_list.Add(item);
+                }
+                foreach (var item in dispose_list)
+                {
+                    List_InvoiceControl.Remove(item);
+                    item.Dispose();
+                }
+                if (List_InvoiceControl.Count == 0) Dispose();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
     }
 }

@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("V6SignToken")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("V6")]
 [assembly: AssemblyProduct("V6SignToken")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2019")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("V6")]
+[assembly: AssemblyTrademark("V6")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

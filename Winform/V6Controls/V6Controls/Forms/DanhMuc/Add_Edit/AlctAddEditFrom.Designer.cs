@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlctAddEditFrom));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label61 = new System.Windows.Forms.Label();
@@ -224,6 +225,9 @@
             this.label72 = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xuatDinhDangGridViewMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.nhapDinhDangGridViewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
@@ -231,6 +235,7 @@
             this.tabCacTuyChon.SuspendLayout();
             this.tabThongTinKhac.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -3255,10 +3260,33 @@
             this.label74.TabIndex = 90;
             this.label74.Text = "Mã ĐN 1";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xuatDinhDangGridViewMenu,
+            this.nhapDinhDangGridViewMenu});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 70);
+            // 
+            // xuatDinhDangGridViewMenu
+            // 
+            this.xuatDinhDangGridViewMenu.Name = "xuatDinhDangGridViewMenu";
+            this.xuatDinhDangGridViewMenu.Size = new System.Drawing.Size(210, 22);
+            this.xuatDinhDangGridViewMenu.Text = "Xuất định dạng GridView";
+            this.xuatDinhDangGridViewMenu.Click += new System.EventHandler(this.xuatDinhDangGridViewMenu_Click);
+            // 
+            // nhapDinhDangGridViewMenu
+            // 
+            this.nhapDinhDangGridViewMenu.Name = "nhapDinhDangGridViewMenu";
+            this.nhapDinhDangGridViewMenu.Size = new System.Drawing.Size(210, 22);
+            this.nhapDinhDangGridViewMenu.Text = "Nhập định dạng GridView";
+            this.nhapDinhDangGridViewMenu.Click += new System.EventHandler(this.nhapDinhDangGridViewMenu_Click);
+            // 
             // AlctAddEditFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3279,6 +3307,7 @@
             this.tabThongTinKhac.PerformLayout();
             this.tabTuDinhNghia.ResumeLayout(false);
             this.tabTuDinhNghia.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3480,5 +3509,8 @@
         private Controls.DicEditButton dicEditButton1;
         protected System.Windows.Forms.Button btnGRDS_V1;
         protected System.Windows.Forms.Button btnGRDS_V2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem xuatDinhDangGridViewMenu;
+        private System.Windows.Forms.ToolStripMenuItem nhapDinhDangGridViewMenu;
     }
 }

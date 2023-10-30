@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("V6SyncLibrary2021")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("V6")]
 [assembly: AssemblyProduct("V6SyncLibrary2021")]
 [assembly: AssemblyCopyright("V62021")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("V6")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

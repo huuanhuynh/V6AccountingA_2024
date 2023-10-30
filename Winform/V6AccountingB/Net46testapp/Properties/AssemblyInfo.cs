@@ -1,16 +1,17 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("V6AccountingBusiness")]
+[assembly: AssemblyTitle("Net46testapp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("V6")]
-[assembly: AssemblyProduct("V6AccountingBusiness")]
-[assembly: AssemblyCopyright("V6")]
-[assembly: AssemblyTrademark("V6")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Net46testapp")]
+[assembly: AssemblyCopyright("Copyright ©  2023")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("cd48c341-4ecf-44ff-ad84-b330a3f4914a")]
+[assembly: Guid("ddb03522-48ad-4378-818f-2ea40c974933")]
 
 // Version information for an assembly consists of the following four values:
 //

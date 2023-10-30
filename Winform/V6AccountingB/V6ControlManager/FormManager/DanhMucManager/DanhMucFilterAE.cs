@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -282,8 +283,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 
                 if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
+                    Color color;
+                    ObjectAndString.StringToColor(_albcConfig.COLORV, out color);
                     V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
-                        _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", ObjectAndString.StringToColor(_albcConfig.COLORV));
+                        _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", color);
                 }
 
                 FormatGridView();
@@ -309,7 +312,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 {
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1,
                         V6Setting.IsVietnamese ? _aldmConfig.GRDHV_V1 : _aldmConfig.GRDHE_V1);
-                    var conditionColor = ObjectAndString.StringToColor(_aldmConfig.COLORV);
+                    Color conditionColor;
+                    ObjectAndString.StringToColor(_aldmConfig.COLORV, out conditionColor);
                     V6ControlFormHelper.FormatGridView(dataGridView1, _aldmConfig.FIELDV, _aldmConfig.OPERV, _aldmConfig.VALUEV,
                         _aldmConfig.BOLD_YN, _aldmConfig.COLOR_YN, conditionColor);
 

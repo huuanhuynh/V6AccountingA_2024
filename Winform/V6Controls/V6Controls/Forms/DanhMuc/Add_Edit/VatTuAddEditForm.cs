@@ -168,8 +168,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 var chooseImage = V6ControlFormHelper.ChooseImage(this);
                 if (chooseImage == null) return;
-
-                ptbPHOTOGRAPH.Image = chooseImage;
+                
+                ptbPHOTOGRAPH.Image = Picture.ResizeDownImage(chooseImage, ptbPHOTOGRAPH.Width, ptbPHOTOGRAPH.Height);
 
                 var ma_vt_new = txtMaVT.Text.Trim();
                 var ma_vt_old = Mode == V6Mode.Edit ? DataOld["MA_VT"].ToString().Trim() : ma_vt_new;

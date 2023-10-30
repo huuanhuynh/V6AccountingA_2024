@@ -233,6 +233,8 @@ namespace V6ControlManager.FormManager.MenuManager
                         AddMenu2Status(1);
                         menuControl1.Invalidate();
                         V6ControlFormHelper.MainMenu.Invalidate();
+                        // thêm nhóm quản lý chung.
+                        FormManagerHelper.AddManagerFormList(c.Handle, c);
                         
                         var cName = c.Name;
                         c.Disposed += delegate(object sender1, EventArgs e1)
@@ -257,6 +259,9 @@ namespace V6ControlManager.FormManager.MenuManager
                         panelView.Controls.Add(c);
                         c.Focus();
                         FormManagerHelper.CurrentFormControl = c;
+                        // Check many form opening.
+                        // .....
+                        FormManagerHelper.CheckManyFormOpen(this);
                     }
                 }
             }

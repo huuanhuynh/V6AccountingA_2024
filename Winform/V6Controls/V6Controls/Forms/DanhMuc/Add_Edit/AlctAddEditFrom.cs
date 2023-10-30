@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -155,6 +157,83 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".btnGRDS_V2_Click", ex);
+            }
+        }
+
+        private void xuatDinhDangGridViewMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //var saveFile = V6ControlFormHelper.ChooseSaveFile("Xml|*.xml");
+                var saveFile = new SaveFileDialog
+                {
+                    Filter = "XML files (*.Xml)|*.xml",
+                    Title = "Xuất XML.",
+                    FileName = "ALCT_GRIDVIEWFORMAT.xml"
+                };
+                if (saveFile.ShowDialog(this) == DialogResult.OK)
+                {
+                    if (string.IsNullOrEmpty(saveFile.FileName)) return;
+
+                    DataSet _ds = new DataSet();
+                    DataTable _dt = new DataTable("ALCT_GRIDVIEWFORMAT");
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    data[txtShowFields1.AccessibleName] = txtShowFields1.Text;
+                    data[txtFormats1.AccessibleName] = txtFormats1.Text;
+                    data[txtHeaderV1.AccessibleName] = txtHeaderV1.Text;
+                    data[txtHeaderE1.AccessibleName] = txtHeaderE1.Text;
+
+                    data[txtShowFields2.AccessibleName] = txtShowFields2.Text;
+                    data[txtFormats2.AccessibleName] = txtFormats2.Text;
+                    data[txtHeaderV2.AccessibleName] = txtHeaderV2.Text;
+                    data[txtHeaderE2.AccessibleName] = txtHeaderE2.Text;
+                    _dt.AddRow(data, true);
+                    _ds.Tables.Add(_dt);
+                    
+                    FileStream fs = new FileStream(saveFile.FileName, FileMode.Create);
+                    (_ds).WriteXml(fs);
+                    fs.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + ".WriteToFile", ex);
+            }
+        }
+
+        private void nhapDinhDangGridViewMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
+                if (string.IsNullOrEmpty(openFile)) return;
+                FileStream fs = new FileStream(openFile, FileMode.Open);
+                
+                var load_ds = new DataSet();
+                IDictionary<string, object> load_data = null;
+                load_ds.ReadXml(fs);
+                if (load_ds.Tables.Count > 0 && load_ds.Tables[0].Rows.Count > 0)
+                {
+                    load_data = load_ds.Tables[0].Rows[0].ToDataDictionary();
+                }
+                fs.Close();
+
+                if (load_data != null)
+                {
+                    if (load_data.ContainsKey(txtShowFields1.AccessibleName.ToUpper())) txtShowFields1.Text = "" + load_data[txtShowFields1.AccessibleName.ToUpper()];
+                    if (load_data.ContainsKey(txtFormats1.AccessibleName.ToUpper())) txtFormats1.Text = "" + load_data[txtFormats1.AccessibleName.ToUpper()];
+                    if (load_data.ContainsKey(txtHeaderV1.AccessibleName.ToUpper())) txtHeaderV1.Text = "" + load_data[txtHeaderV1.AccessibleName.ToUpper()];
+                    if (load_data.ContainsKey(txtHeaderE1.AccessibleName.ToUpper())) txtHeaderE1.Text = "" + load_data[txtHeaderE1.AccessibleName.ToUpper()];
+
+                    if (load_data.ContainsKey(txtShowFields2.AccessibleName.ToUpper())) txtShowFields2.Text = "" + load_data[txtShowFields2.AccessibleName.ToUpper()];
+                    if (load_data.ContainsKey(txtFormats2.AccessibleName.ToUpper())) txtFormats2.Text = "" + load_data[txtFormats2.AccessibleName.ToUpper()];
+                    if (load_data.ContainsKey(txtHeaderV2.AccessibleName.ToUpper())) txtHeaderV2.Text = "" + load_data[txtHeaderV2.AccessibleName.ToUpper()];
+                    if (load_data.ContainsKey(txtHeaderE2.AccessibleName.ToUpper())) txtHeaderE2.Text = "" + load_data[txtHeaderE2.AccessibleName.ToUpper()];
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + ".LoadFromFile", ex);
             }
         }
     }

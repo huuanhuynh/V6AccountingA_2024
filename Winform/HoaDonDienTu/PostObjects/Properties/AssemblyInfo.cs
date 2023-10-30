@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("V6ThuePostApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("V6")]
 [assembly: AssemblyProduct("V6ThuePostApi")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("V6")]
+[assembly: AssemblyTrademark("V6")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

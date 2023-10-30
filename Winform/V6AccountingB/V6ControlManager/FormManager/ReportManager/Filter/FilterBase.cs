@@ -1376,6 +1376,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 var and_or = and ? " and" : " or ";
                 var key0 = GetFilterStringByFields(in_fieldList_Alsp, and);
+                //if (string.IsNullOrEmpty(line_value))
+                //{
+
+                //} else
                 if (!string.IsNullOrEmpty(key0))
                 {
                     result = string.Format("{0} {2} in (select {3} from {4} where {1} )",
@@ -1593,9 +1597,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             di = new DefineInfo(ss);
                             if (string.IsNullOrEmpty(di.Name)) continue;
 
-                            if (di.Ptype.ToUpper() == "TABLE2")
+                            if (di.Ptype.ToUpper() == "TABLE2" || di.Ptype.ToUpper() == "TABLE3")
                             {
                                 var dataTable2 = _ds.Tables[1];
+                                if (di.Ptype.ToUpper() == "TABLE3") dataTable2 = _ds.Tables[2];
                                 var _tbl2Row = dataTable2.Rows[0];
                                 if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBANNT")
                                 {

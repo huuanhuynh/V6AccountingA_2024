@@ -778,6 +778,9 @@ namespace V6Controls
         public string HELP2;
         public string HELP_XML1;
         public string HELP_XML2;
+        /// <summary>
+        /// Ghi nhận số lượng form con đang được mở.
+        /// </summary>
         public int StatusNumber { get; set; }
 
         public string ReportFile { get; set; }

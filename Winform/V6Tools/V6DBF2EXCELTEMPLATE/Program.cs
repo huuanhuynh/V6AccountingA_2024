@@ -112,6 +112,10 @@ namespace V6DBF2EXCELTEMPLATE
                                 }
 
                             }
+                            else if (KEY == "COLOR_FIELD")
+                            {
+                                setting.COLOR_FIELD = content;
+                            }
                         }
                         //else if (type == "1") //Lay value trong parameter
                         //{

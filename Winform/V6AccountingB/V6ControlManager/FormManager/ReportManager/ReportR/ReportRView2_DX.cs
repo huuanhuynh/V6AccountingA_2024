@@ -153,14 +153,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private DataSet _ds;
-        private DataTable _tbl1, _tbl2, _tbl3;
-        private DataView _view1, _view2, _view3;
+        public DataSet _ds;
+        public DataTable _tbl1, _tbl2, _tbl3;
+        public DataView _view1, _view2, _view3;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
         /// </summary>
-        private List<SqlParameter> _pList;
+        public List<SqlParameter> _pList;
 
         public V6PrintMode PrintMode = V6PrintMode.DoNoThing;
         
@@ -653,7 +653,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                dataGridView1.Height = documentViewer1.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
+                dataGridView1.Height = dataGridView2.Top - grbDieuKienLoc.Top - SummaryHeight - gridViewTopFilter1.Height;
                 if (_albcConfig.HaveInfo && _albcConfig.EXTRA_INFOR.ContainsKey("BORDER_STYLE"))
                 {
                     string type = _albcConfig.EXTRA_INFOR["BORDER_STYLE"];
@@ -1475,21 +1475,27 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 case "1": // big GridView
                     documentViewer1.Height = min_height;
-                    dataGridView1.Height = full_height - gridViewTopFilter1.Height - SummaryHeight - documentViewer1.Height;
-                    documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
+                    dataGridView1.Height = full_height - gridViewTopFilter1.Height - SummaryHeight
+                        - dataGridView2.Height - documentViewer1.Height;
+                    dataGridView2.Top = dataGridView1.Bottom + SummaryHeight;
+                    documentViewer1.Top = dataGridView2.Bottom;
 
                     dataGridView1_Anchor = full_Anchor;
                     dataGridView1.Anchor = dataGridView1_Anchor;
+                    dataGridView2.Anchor = bottom_Anchor;
                     documentViewer1_Anchor = bottom_Anchor;
                     documentViewer1.Anchor = documentViewer1_Anchor;
                     break;
                 case "2": // big Report
                     dataGridView1.Height = min_height;
-                    documentViewer1.Top = dataGridView1.Bottom + SummaryHeight;
-                    documentViewer1.Height = full_height - gridViewTopFilter1.Height - dataGridView1.Height - SummaryHeight;
+                    dataGridView2.Top = dataGridView1.Bottom + SummaryHeight;
+                    documentViewer1.Top = dataGridView2.Bottom;
+                    documentViewer1.Height = full_height - gridViewTopFilter1.Height - dataGridView1.Height - SummaryHeight
+                        - dataGridView2.Height;
 
                     dataGridView1_Anchor = top_Anchor;
                     dataGridView1.Anchor = dataGridView1_Anchor;
+                    dataGridView2.Anchor = top_Anchor;
                     documentViewer1_Anchor = full_Anchor;
                     documentViewer1.Anchor = documentViewer1_Anchor;
                     break;

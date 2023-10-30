@@ -4549,7 +4549,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
                                 var ty_gia_ht2_Value = ObjectAndString.ObjectToDecimal(dic0["TY_GIA"]);
                                 dic["TY_GIA_HT2"] = ty_gia_ht2_Value;
-                                if (dic["MA_NT_I"].ToString().Trim() != _mMaNt0)
+                                if ((dic["MA_NT_I"] + "").Trim() != _mMaNt0)
                                 {
                                     var tientt_Value = V6BusinessHelper.Vround(
                                         ObjectAndString.ObjectToDecimal(dic["PHAI_TT_NT"])*ty_gia_ht2_Value, M_ROUND);
@@ -4563,8 +4563,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                                 if (string.IsNullOrEmpty(dien_giai_option))
                                 {
                                     dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " +
-                                                        dic0["SO_CT"].ToString().Trim() + ", ngày " +
-                                                        ObjectAndString.ObjectToString((DateTime) dic0["NGAY_CT"]);
+                                                        (dic0["SO_CT"] + "").Trim() + ", ngày " +
+                                                        ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
                                 }
                                 else
                                 {
@@ -4616,7 +4616,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
                             dic["SO_CT0"] = dic0["SO_CT"];
                             dic["TK_I"] = dic0["TK"];
-                            if (dic0["MA_NT"].ToString().Trim() == _mMaNt0)
+                            if ((dic0["MA_NT"] + "").Trim() == _mMaNt0)
                             {
                                 dic["T_TT_NT0"] = dic0["TC_TT"];
                                 dic["T_TT_QD"] = dic0["T_TT_QD"];
@@ -4654,8 +4654,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             string dien_giai_option = V6Options.GetValueNull("M_DIENGIAII_THU");
                             if (string.IsNullOrEmpty(dien_giai_option))
                             {
-                                dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + dic0["SO_CT"].ToString().Trim() + ", ngày " +
-                                                    ObjectAndString.ObjectToString((DateTime) dic0["NGAY_CT"]);
+                                dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + (dic0["SO_CT"] + "").Trim() + ", ngày " +
+                                                    ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
                             }
                             else
                             {

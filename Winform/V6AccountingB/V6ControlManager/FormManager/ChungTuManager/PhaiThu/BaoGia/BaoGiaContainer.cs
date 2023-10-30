@@ -20,6 +20,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private int currentTabIndex = -1;
         private string MaCt;
         private bool _showQuickViewControl;
+        public List<V6InvoiceControl> List_InvoiceControl = new List<V6InvoiceControl>();
         private V6InvoiceBase Invoice { get; set; }
         
         public BaoGiaContainer(string maCt, string itemId, bool showQuickView)
@@ -36,6 +37,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
             else
             {
+                _showQuickViewControl = Invoice.AlctConfig.TYPE_VIEW == "2";
                 InitializeComponent();
                 MyInit();
                 AddTab();
@@ -356,6 +358,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             int x = (tsMessage.Width - lblTitle.Width) / 2;
             PointF point = new PointF(x, 0);
             e.Graphics.DrawString(lblTitle.Text, lblTitle.Font, myBrush, point);
+        }
+
+        public override void Dispose_NotAddEdit()
+        {
+            try
+            {
+                List<V6InvoiceControl> dispose_list = new List<V6InvoiceControl>();
+                foreach (var item in List_InvoiceControl)
+                {
+                    if (item.NotAddEdit) dispose_list.Add(item);
+                }
+                foreach (var item in dispose_list)
+                {
+                    List_InvoiceControl.Remove(item);
+                    item.Dispose();
+                }
+                if (List_InvoiceControl.Count == 0) Dispose();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
     }

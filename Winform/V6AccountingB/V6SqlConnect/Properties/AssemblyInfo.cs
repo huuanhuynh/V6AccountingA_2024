@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("V6")]
 [assembly: AssemblyProduct("V6SqlConnect")]
 [assembly: AssemblyCopyright("Copyright © V6 2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("V6")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

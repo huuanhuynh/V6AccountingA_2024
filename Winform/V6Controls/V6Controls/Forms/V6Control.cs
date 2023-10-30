@@ -375,5 +375,10 @@ namespace V6Controls.Forms
             }
             return result;
         }
+        
+        public virtual void Dispose_NotAddEdit()
+        {
+            throw new NotImplementedException(GetType() + ".Dispose_NotAddEdit have no override.");
+        }
     }
 }

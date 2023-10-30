@@ -1175,6 +1175,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         public void GiaNt21_V6LostFocus(object sender)
         {
             TinhTienNt2(_giaNt21);
+            Tinh_thue_ct();
         }
 
         void Hs_qd4_V6LostFocus(object sender)

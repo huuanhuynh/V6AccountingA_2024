@@ -685,6 +685,59 @@ namespace V6Init
                 return null;
             }
         }
+
+        private static string _M_SWMENUPOP = null;
+        /// <summary>
+        /// M_SWMENUPOP 30;10 (30 là số lượng form nhiều nhất, 10 số lượng để lại)
+        /// </summary>
+        public static string M_SWMENUPOP
+        {
+            get
+            {
+                _M_SWMENUPOP = GetValueNull("M_SWMENUPOP");
+                return _M_SWMENUPOP;
+            }
+        }
+
+        public static int M_SWMENUPOP_MAXFORM
+        {
+            get
+            {
+                string[] ss = ObjectAndString.SplitString(M_SWMENUPOP);
+                if (ss.Length > 0)
+                {
+                    return ObjectAndString.ObjectToInt(ss[0]);
+                }
+                return 20;
+            }
+        }
+
+        public static int M_SWMENUPOP_RESTFORM
+        {
+            get
+            {
+                string[] ss = ObjectAndString.SplitString(M_SWMENUPOP);
+                if (ss.Length > 1)
+                {
+                    return ObjectAndString.ObjectToInt(ss[1]);
+                }
+                return 7;
+            }
+        }
+
+        static string _M_COLOR_SUM = "Yellow";
+        /// <summary>
+        /// Màu nền mặc định xuất excel
+        /// </summary>
+        public static string M_COLOR_SUM
+        {
+            get
+            {
+                _M_COLOR_SUM = GetValueNull("M_COLOR_SUM");
+                return _M_COLOR_SUM;
+            }
+        }
+        
     }
 
     public enum GetDataMode

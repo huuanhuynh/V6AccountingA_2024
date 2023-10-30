@@ -1646,7 +1646,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     //break;
             }
 
-            if (result == null) result = new FilterBase() { Visible = false };
+            if (result == null)
+            {
+                //result = new FilterBase() { Visible = false };
+                result = GetFilterControl44(program, reportProcedure, reportFile, toolTip);
+            }
 
             result.MyInitDynamic(program, reportProcedure, reportFile, toolTip);
 

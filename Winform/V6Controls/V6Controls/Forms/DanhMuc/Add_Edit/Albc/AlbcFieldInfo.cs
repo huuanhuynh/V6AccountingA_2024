@@ -53,5 +53,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         N3 = 13,
         N4 = 14,
         N5 = 15,
+        N6 = 16,
+        N7 = 17,
+        N8 = 18,
+        N9 = 19,
     }
 }

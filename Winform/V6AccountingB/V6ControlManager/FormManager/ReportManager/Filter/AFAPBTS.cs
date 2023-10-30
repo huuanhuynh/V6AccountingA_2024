@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
-
+            F5 = true;
             
         }
 

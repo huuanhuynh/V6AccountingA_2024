@@ -754,7 +754,7 @@ namespace V6Controls.Forms
             Image img;
             using (var bmpTemp = new Bitmap(path))
             {
-                img = new Bitmap(bmpTemp);
+                img = new Bitmap((Image)bmpTemp.Clone());
             }
             return img;
         }
@@ -1084,7 +1084,8 @@ namespace V6Controls.Forms
         public static Button CreateButton(string accessibleName, string caption, string fvvar, int width, bool visible)
         {
             var sss = ObjectAndString.StringToDictionary(fvvar);
-            Color textColor = Color.Black; if (sss.ContainsKey("COLOR")) textColor = ObjectAndString.StringToColor(sss["COLOR"].ToString());
+            Color textColor = Color.Black;
+            if (sss.ContainsKey("COLOR")) ObjectAndString.StringToColor(sss["COLOR"].ToString(), out textColor);
 
             var button = new Button
             {
@@ -4806,7 +4807,8 @@ namespace V6Controls.Forms
         private static int time_count1;
         private static void ExportExcelTemplate_Thread()
         {
-            if (ExportExcelTemplate_setting.data == null)
+            var setting = ExportExcelTemplate_setting;
+            if (setting.data == null)
             {
                 ShowMainMessage(V6Text.ExportFail + "\n" + V6Text.NoData);
                 return;
@@ -4816,10 +4818,10 @@ namespace V6Controls.Forms
                 try
                 {
                     
-                    AlbcConfig albcConfig = new AlbcConfig(ExportExcelTemplate_setting.albcConfigData);
+                    AlbcConfig albcConfig = new AlbcConfig(setting.albcConfigData);
                     //ExportExcelSetting setting = new ExportExcelSetting();
-                    ExportExcelTemplate_setting.SetFirstCell("A4");
-                    //ExportExcelTemplate_setting.saveFile = ExportExcelTemplate_saveFileName;
+                    setting.SetFirstCell("A4");
+                    //setting.saveFile = ExportExcelTemplate_saveFileName;
                     //var albc_row = Albc.GetRow(ExportExcelTemplate_MAU, ExportExcelTemplate_LAN, ExportExcelTemplate_ReportFile);
                     if (albcConfig.HaveInfo)
                     {
@@ -4827,8 +4829,8 @@ namespace V6Controls.Forms
                         bool drawLine = true, insertRow = true;
                         var xlm = albcConfig.EXCEL2;
                         var excelColumns = albcConfig.EXCEL1;
-                        ExportExcelTemplate_setting.BOLD_YN = ObjectAndString.ObjectToBool(albcConfig.BOLD_YN);
-                        ExportExcelTemplate_setting.BOLD_CONDITION = new Condition(albcConfig.FIELDV, albcConfig.OPERV, albcConfig.VALUEV);
+                        setting.BOLD_YN = ObjectAndString.ObjectToBool(albcConfig.BOLD_YN);
+                        setting.BOLD_CONDITION = new Condition(albcConfig.FIELDV, albcConfig.OPERV, albcConfig.VALUEV);
                         DataSet ds = new DataSet();
                         StringReader sReader = new StringReader(xlm);
                         ds.ReadXml(sReader);
@@ -4845,15 +4847,19 @@ namespace V6Controls.Forms
                                 if (type == "0")
                                 {
                                     if (KEY == "FIRSTCELL")
-                                        ExportExcelTemplate_setting.SetFirstCell(content);// firstCell = content;
+                                        setting.SetFirstCell(content);// firstCell = content;
                                     else if (KEY == "DRAWLINE")
                                         drawLine = content == "1";
                                     else if (KEY == "INSERTROW")
                                         insertRow = content == "1";
+                                    else if (KEY == "COLOR_FIELD")
+                                    {
+                                        setting.COLOR_FIELD = content;
+                                    }
                                 }
                                 else if (type == "1") //Lay value trong parameter
                                 {
-                                    if (ExportExcelTemplate_setting.reportParameters == null) continue;
+                                    if (setting.reportParameters == null) continue;
                                     // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
                                     // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
                                     // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
@@ -4872,30 +4878,30 @@ namespace V6Controls.Forms
                                                 matchColumn = matchContain.Substring(0, _2dotIndex);
                                                 matchFormat = matchContain.Substring(_2dotIndex + 1);
                                             }
-                                            if (ExportExcelTemplate_setting.reportParameters.ContainsKey(matchColumn)
-                                                && ExportExcelTemplate_setting.reportParameters[matchColumn] is DateTime && matchFormat == "")
+                                            if (setting.reportParameters.ContainsKey(matchColumn)
+                                                && setting.reportParameters[matchColumn] is DateTime && matchFormat == "")
                                             {
                                                 matchFormat = "dd/MM/yyyy";
                                             }
-                                            if (ExportExcelTemplate_setting.reportParameters.ContainsKey(matchColumn))
+                                            if (setting.reportParameters.ContainsKey(matchColumn))
                                                 content = content.Replace(matchGroup0,
-                                                    ObjectAndString.ObjectToString(ExportExcelTemplate_setting.reportParameters[matchColumn], matchFormat));
+                                                    ObjectAndString.ObjectToString(setting.reportParameters[matchColumn], matchFormat));
                                         }
                                         parameters.Add(KEY, content);
                                     }
                                     else
                                     {
                                         var P_KEY = content.ToUpper();
-                                        if (ExportExcelTemplate_setting.reportParameters.ContainsKey(P_KEY))
+                                        if (setting.reportParameters.ContainsKey(P_KEY))
                                         {
-                                            parameters.Add(KEY, ExportExcelTemplate_setting.reportParameters[P_KEY]);
+                                            parameters.Add(KEY, setting.reportParameters[P_KEY]);
                                         }
                                     }
                                 }
-                                else if (type == "2" && ExportExcelTemplate_setting.data2 != null
-                                    && ExportExcelTemplate_setting.data2.Rows.Count > 0) //Lay value trong tbl2
+                                else if (type == "2" && setting.data2 != null
+                                    && setting.data2.Rows.Count > 0) //Lay value trong tbl2
                                 {
-                                    var excel_row = ExportExcelTemplate_setting.data2.Rows[0];
+                                    var excel_row = setting.data2.Rows[0];
 
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
@@ -4912,9 +4918,9 @@ namespace V6Controls.Forms
                                                 matchColumn = matchContain.Substring(0, _2dotIndex);
                                                 matchFormat = matchContain.Substring(_2dotIndex+1);
                                             }
-                                            if (ExportExcelTemplate_setting.data2.Columns.Contains(matchColumn))
+                                            if (setting.data2.Columns.Contains(matchColumn))
                                             {
-                                                if (ExportExcelTemplate_setting.data2.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
+                                                if (setting.data2.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
                                                 {
                                                     matchFormat = "dd/MM/yyyy";
                                                 }
@@ -4930,7 +4936,7 @@ namespace V6Controls.Forms
                                     }
                                     else
                                     {
-                                        if (ExportExcelTemplate_setting.data2.Columns.Contains(content))
+                                        if (setting.data2.Columns.Contains(content))
                                         {
                                             parameters.Add(KEY, excel_row[content]);
                                         }
@@ -4972,16 +4978,16 @@ namespace V6Controls.Forms
                         {
                             row_filter = albcConfig.EXTRA_INFOR["EXP_FILTER"];
                         }
-                        ExportExcelTemplate_setting.data = CookingDataForExcel(ExportExcelTemplate_setting.data, row_filter);
-                        ExportExcelTemplate_setting.columns = ObjectAndString.SplitString(excelColumns.Replace("[", "").Replace("]", ""));
-                        ExportExcelTemplate_setting.parameters = parameters;
-                        ExportExcelTemplate_setting.isInsertRow = insertRow;
-                        ExportExcelTemplate_setting.isDrawLine = drawLine;
-                        if (ExportData.ToExcelTemplate(ExportExcelTemplate_setting.xlsTemplateFile, ExportExcelTemplate_setting, V6Setting.V6_number_format_info))
+                        setting.data = CookingDataForExcel(setting.data, row_filter);
+                        setting.columns = ObjectAndString.SplitString(excelColumns.Replace("[", "").Replace("]", ""));
+                        setting.parameters = parameters;
+                        setting.isInsertRow = insertRow;
+                        setting.isDrawLine = drawLine;
+                        if (ExportData.ToExcelTemplate(setting.xlsTemplateFile, setting, V6Setting.V6_number_format_info))
                         {
                             if (V6Options.AutoOpenExcel && !NoOpen)
                             {
-                                OpenFileProcess(ExportExcelTemplate_setting.saveFile);
+                                OpenFileProcess(setting.saveFile);
                             }
                             else
                             {
@@ -5045,6 +5051,10 @@ namespace V6Controls.Forms
                             setting.isDrawLine = content == "1";
                         else if (KEY == "INSERTROW")
                             setting.isInsertRow = content == "1";
+                        else if (KEY == "COLOR_FIELD")
+                        {
+                            setting.COLOR_FIELD = content;
+                        }
                     }
                     else if (type == "1") //Lay value trong parameter
                     {
@@ -5291,6 +5301,10 @@ namespace V6Controls.Forms
                                             drawLine = content == "1";
                                         else if (KEY == "INSERTROW")
                                             insertRow = content == "1";
+                                        else if (KEY == "COLOR_FIELD")
+                                        {
+                                            setting.COLOR_FIELD = content;
+                                        }
                                     }
                                     else if (type == "1")//Lay value trong parameter
                                     {
@@ -5607,6 +5621,10 @@ namespace V6Controls.Forms
                                         drawLine = content == "1";
                                     else if (KEY == "INSERTROW")
                                         insertRow = content == "1";
+                                    else if (KEY == "COLOR_FIELD")
+                                    {
+                                        setting.COLOR_FIELD = content;
+                                    }
                                 }
                                 else if (type == "1") //Lay value trong parameter
                                 {
@@ -5770,7 +5788,7 @@ namespace V6Controls.Forms
                         setting.data = CookingDataForExcel(setting.data, row_filter);
 
                         if (ExportData.ToExcelTemplateGroup(
-                            ExportExcelGroup_ExcelTemplateFileFull, setting.data, setting.data2, setting, ObjectAndString.SplitString(ref_key), ExportExcelGroup_saveFileName, firstCell,
+                            ExportExcelGroup_ExcelTemplateFileFull, setting, ObjectAndString.SplitString(ref_key), ExportExcelGroup_saveFileName, firstCell,
                             column_config,
                             null,//Headers
                             parameters, V6Setting.V6_number_format_info,
@@ -5922,6 +5940,10 @@ namespace V6Controls.Forms
                                             excelColumnsHTKK = content;
                                         else if (KEY == "ONLINE")
                                             excelColumnsONLINE = content;
+                                        else if (KEY == "COLOR_FIELD")
+                                        {
+                                            setting.COLOR_FIELD = content;
+                                        }
                                     }
                                     else if (type == "7")
                                     {
@@ -6204,6 +6226,10 @@ namespace V6Controls.Forms
                                             excelColumnsHTKK = content;
                                         else if (KEY == "ONLINE")
                                             excelColumnsONLINE = content;
+                                        else if (KEY == "COLOR_FIELD")
+                                        {
+                                            setting.COLOR_FIELD = content;
+                                        }
                                     }
                                     else if (type == "7")
                                     {
@@ -6838,7 +6864,9 @@ namespace V6Controls.Forms
                         {
                             try
                             {
-                                row.DefaultCellStyle.BackColor = ObjectAndString.StringToColor(colorRGB);
+                                Color out_color;
+                                ObjectAndString.StringToColor(colorRGB, out out_color);
+                                row.DefaultCellStyle.BackColor = out_color;
                             }
                             catch (Exception ex2)
                             {
@@ -6873,7 +6901,9 @@ namespace V6Controls.Forms
                 string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
                 object VALUEV;
                 V6BusinessHelper.GetFormatGridView(program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);//Albc
-                FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
+                Color out_color;
+                ObjectAndString.StringToColor(COLORV, out out_color);
+                FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", out_color);
             }
             catch (Exception ex)
             {

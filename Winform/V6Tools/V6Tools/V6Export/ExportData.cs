@@ -316,6 +316,49 @@ namespace V6Tools.V6Export
             }
             #endregion tô đậm
 
+            #region Tô màu nền mỗi dòng
+
+            // Nếu có tùy chọn tô màu.
+            if (!string.IsNullOrEmpty(setting.COLOR_FIELD))
+            {
+                var startRow = exportStartRow;
+                var startCol = setting.startColumn;
+                var endRow = startRow + numOfRows - (setting.isFieldNameShow ? 0 : 1);
+                var endCol = startCol + numOfColumns - 1;
+                int index = 0;
+                
+                Color default_line_color = Color.Transparent;
+                if (!ObjectAndString.StringToColor(setting.M_COLOR_SUM, out default_line_color))
+                {
+                    default_line_color = Color.Transparent;
+                }
+
+                for (int i = startRow; i <= endRow; i++)
+                {
+                    try
+                    {
+                        DataRow row = data.Rows[index++];
+                        RangeStyle rs = workBook.getRangeStyle(i, startCol, i, endCol);
+
+                        var color = Color.Transparent;
+                        if (!row.Table.Columns.Contains(setting.COLOR_FIELD)
+                            || !ObjectAndString.StringToColor("" + row[setting.COLOR_FIELD], out color))
+                        {
+                            color = default_line_color;
+                        }
+                        
+                        rs.Pattern = RangeStyle.PatternSolid;
+                        rs.PatternFG = color.ToArgb();
+                        workBook.setRangeStyle(rs, i, startCol, i, endCol);
+                    }
+                    catch (Exception)
+                    {
+                        //
+                    }
+                }
+            }
+            #endregion tô màu nền mỗi dòng.
+
             // ImportData by DataType
             // Column by column
             // Duyệt qua từng cột một
@@ -402,7 +445,9 @@ namespace V6Tools.V6Export
                 }
                 #endregion chèn dữ liệu cột i
 
-                if(autoColWidth) workBook.setColWidthAutoSize(i, true);
+                
+
+                if (autoColWidth) workBook.setColWidthAutoSize(i, true);
             }
 
             
@@ -417,8 +462,8 @@ namespace V6Tools.V6Export
             }
 
             private DataColumn _dataColumn;
-            public int MergeFrom;
-            public int MergeTo;
+            public int MergeFrom { get; set; }
+            public int MergeTo { get; set; }
             public bool IsMerge { get { return MergeTo > MergeFrom; } }
             public int ExcelColumnIndex { get { return MergeFrom; } private set { MergeFrom = value; } }
             public string ColumnName { get { return _dataColumn == null ? null : _dataColumn.ColumnName; } }
@@ -459,6 +504,11 @@ namespace V6Tools.V6Export
                     }
                 }
             }
+
+            public bool IsBold { get; set; }
+            public bool IsItalic { get; set; }
+            public bool IsUnderline { get; set; }
+            public Color Color { get; set; }
         }
 
         /// <summary>
@@ -481,7 +531,7 @@ namespace V6Tools.V6Export
         /// <param name="drawLine">Vẽ đường kẻ lên dữ liệu</param>
         /// <param name="rowInsert">Chèn dữ liệu vào vị trí chèn, đẩy dòng xuống.</param>
         /// <returns></returns>
-        public static bool ToExcelTemplateGroup(string xlsTemplateFile, DataTable data1, DataTable data2, ExportExcelSetting setting, string[] keys, string saveFile,
+        public static bool ToExcelTemplateGroup(string xlsTemplateFile, ExportExcelSetting setting, string[] keys, string saveFile,
             string firstCell, IDictionary<string, string> column_config, string[] headers, SortedDictionary<string, object> parameters,
             NumberFormatInfo nfi, bool rowInsert = false, bool drawLine = false)
         {
@@ -493,7 +543,10 @@ namespace V6Tools.V6Export
             try
             {
                 if (File.Exists(xlsTemplateFile))
+                {
                     workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
+                    workbook.PrintGridLines = false;
+                }
                 
                 //select sheet
                 int sheetIndex = 0;
@@ -519,7 +572,7 @@ namespace V6Tools.V6Export
 
                 SetParametersAddressFormat(workbook, parameters);
 
-                ImportDataGroup(workbook, data1, data2, setting, keys, column_config, rowInsert, false, drawLine, startRow, startCol, -1, -1);
+                ImportDataGroup(workbook, setting, keys, column_config, rowInsert, false, drawLine, startRow, startCol, -1, -1);
 
                 //Nếu rowIndex = 0 thì chèn thêm một dòng
                 if (headers != null && headers.Length > 0)
@@ -540,7 +593,7 @@ namespace V6Tools.V6Export
             }
             catch (Exception ex)
             {
-                Message = "Data_Table ToExcelTemplate " + ex.Message;
+                Message = "Data_Table ToExcelTemplateGroup " + ex.Message;
                 workbook.Dispose();
                 return false;
             }
@@ -568,15 +621,15 @@ namespace V6Tools.V6Export
         /// <param name="autoColWidth"></param>
         /// <param name="bPreserveTypes"></param>
         private static void ImportDataGroup(
-            WorkBook workBook, DataTable data, DataTable data2, ExportExcelSetting setting, string[] keys, IDictionary<string, string> columns_config, 
+            WorkBook workBook, ExportExcelSetting setting, string[] keys, IDictionary<string, string> columns_config, 
             bool isShiftRows, bool isFieldNameShown, bool drawLine,
             int firstRow, int firstColumn,
             int maxRows, int maxColumns,
             //IList<DataColumn> arrColumns = null,
             bool autoColWidth = false, bool bPreserveTypes = true)
         {
-            if (data == null)
-                throw new ArgumentNullException("data");
+            if (setting.data == null || setting.data2 == null)
+                throw new ArgumentNullException("setting.data and setting.data2 null");
 
             
             var listColumnDic1 = new SortedDictionary<string, SortedDictionary<int, ColumnInfo>>();
@@ -595,9 +648,18 @@ namespace V6Tools.V6Export
                     {
                         string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
                         if (ss.Length < 2) throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
-                        if (data.Columns.Contains(ss[1]))
+                        ColumnInfo ci = null;
+                        if (setting.data.Columns.Contains(ss[1]))
                         {
-                            ColumnInfo ci = new ColumnInfo(data.Columns[ss[1]]);
+                            ci = new ColumnInfo(setting.data.Columns[ss[1]]);
+                            ci.SetExcelColumn(ss[0].Trim());
+                            if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
+                            columnDic.Add(ci.ExcelColumnIndex, ci);
+                        }
+                        else if (ss[1].StartsWith("\"") && ss[1].EndsWith("\""))
+                        {
+                            ci = new ColumnInfo(null);
+                            ci.ColumnNameText = ss[1];
                             ci.SetExcelColumn(ss[0].Trim());
                             if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
                             columnDic.Add(ci.ExcelColumnIndex, ci);
@@ -617,9 +679,18 @@ namespace V6Tools.V6Export
                     {
                         string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
                         if (ss.Length < 2) throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
-                        if (data2.Columns.Contains(ss[1]))
+                        ColumnInfo ci = null;
+                        if (setting.data2.Columns.Contains(ss[1]))
                         {
-                            ColumnInfo ci = new ColumnInfo(data2.Columns[ss[1]]);
+                            ci = new ColumnInfo(setting.data2.Columns[ss[1]]);
+                            ci.SetExcelColumn(ss[0].Trim());
+                            if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
+                            columnDic.Add(ci.ExcelColumnIndex, ci);
+                        }
+                        else if (ss[1].StartsWith("\"") && ss[1].EndsWith("\""))
+                        {
+                            ci = new ColumnInfo(null);
+                            ci.ColumnNameText = ss[1];
                             ci.SetExcelColumn(ss[0].Trim());
                             if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
                             columnDic.Add(ci.ExcelColumnIndex, ci);
@@ -637,22 +708,90 @@ namespace V6Tools.V6Export
                 {
                     foreach (string index_field in columns1)
                     {
-                        string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
-                        if (ss.Length < 2) throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
-                        if (data.Columns.Contains(ss[1]))
+                        string ab_field_biu_color = index_field;
+                        
+                        string ab = null, field = null, biu = null, color = null;
+                        int index = ab_field_biu_color.IndexOf(':');
+                        if (index > 0)
                         {
-                            ColumnInfo ci = new ColumnInfo(data.Columns[ss[1]]);
-                            ci.SetExcelColumn(ss[0].Trim());
+                            ab = ab_field_biu_color.Substring(0, index);
+                            ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                        }
+                        else
+	                    {
+                            throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT:BIU:Blue");
+	                    }
+
+                        if (ab_field_biu_color.StartsWith("\""))
+                        {
+                            index = ab_field_biu_color.LastIndexOf("\"");
+                            field = ab_field_biu_color.Substring(0, index+1);
+                            ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                            if (ab_field_biu_color.StartsWith(":")) ab_field_biu_color = ab_field_biu_color.Substring(1);
+                        }
+                        else
+                        {
+                            index = ab_field_biu_color.IndexOf(':');
+                            if (index > 0)
+                            {
+                                field = ab_field_biu_color.Substring(0, index);
+                                ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                            }
+                            else
+                            {
+                                field = ab_field_biu_color;
+                                ab_field_biu_color = "";
+                            }
+                        }
+
+                        index = ab_field_biu_color.IndexOf(':');
+                        if (index > 0)
+                        {
+                            biu = ab_field_biu_color.Substring(0, index);
+                            ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                            index = ab_field_biu_color.IndexOf(':');
+                            if (index > 0)
+                            {
+                                color = ab_field_biu_color.Substring(0, index);
+                                ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                            }
+                            else
+                            {
+                                color = ab_field_biu_color;
+                            }
+                        }
+                        else if (!string.IsNullOrEmpty(ab_field_biu_color))
+                        {
+                            biu = ab_field_biu_color;
+                        }
+
+                        ColumnInfo ci = null;
+                        if (setting.data.Columns.Contains(field))
+                        {
+                            ci = new ColumnInfo(setting.data.Columns[field]);
+                            ci.SetExcelColumn(ab.Trim());
                             if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
                             columnDic.Add(ci.ExcelColumnIndex, ci);
                         }
-                        else if (ss[1].StartsWith("\"") && ss[1].EndsWith("\""))
+                        else if (field.StartsWith("\"") && field.EndsWith("\""))
                         {
-                            ColumnInfo ci = new ColumnInfo(null);
-                            ci.ColumnNameText = ss[1];
-                            ci.SetExcelColumn(ss[0].Trim());
+                            ci = new ColumnInfo(null);
+                            ci.ColumnNameText = field;
+                            ci.SetExcelColumn(ab.Trim());
                             if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
                             columnDic.Add(ci.ExcelColumnIndex, ci);
+                        }
+                        if (biu != null)
+                        {
+                            if (biu.Contains("B")) ci.IsBold = true;
+                            if (biu.Contains("I")) ci.IsItalic = true;
+                            if (biu.Contains("U")) ci.IsUnderline = true;
+                        }
+                        if (color != null)
+                        {
+                            Color color0;
+                            if (ObjectAndString.StringToColor(color, out color0))
+                                ci.Color = color0;
                         }
                     }
                     listColumnDic3[item.Key.ToUpper()] = columnDic;
@@ -687,14 +826,14 @@ namespace V6Tools.V6Export
             #endregion điền tên cột
 
             // ImportData
-            DataView data2view = new DataView(data2);
+            DataView data2view = new DataView(setting.data2);
             // Số lượng dòng đã import.
             int importRowCount = 0;
             // index dòng đang đứng.
             int importRowCurrentIndex = firstRow;
             int row1Index = 0;
             // Duyệt qua từng dòng
-            foreach (DataRow row1 in data.Rows)
+            foreach (DataRow row1 in setting.data.Rows)
             {
                 importRowCurrentIndex = firstRow + importRowCount;
 
@@ -717,6 +856,15 @@ namespace V6Tools.V6Export
                             workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                         }
                     }
+                    if (!string.IsNullOrEmpty(setting.COLOR_FIELD))
+                    {
+                        var color = Color.Red;
+                        if (row1.Table.Columns.Contains(setting.COLOR_FIELD)) ObjectAndString.StringToColor("" + row1[setting.COLOR_FIELD], out color);
+                        rs.Pattern = RangeStyle.PatternSolid;
+                        //rs.PatternBG = Color.Red.ToArgb();
+                        rs.PatternFG = color.ToArgb();
+                        workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    }
                     importRowCount++;
                     importRowCurrentIndex++;
                 }
@@ -736,6 +884,12 @@ namespace V6Tools.V6Export
                     filter = filter.Substring(4);
                     data2view.RowFilter = filter;
                     DataTable data2filter = data2view.ToTable();
+
+                    Color default_line_color = Color.Transparent;
+                    if (!ObjectAndString.StringToColor(setting.M_COLOR_SUM, out default_line_color))
+                    {
+                        default_line_color = Color.Transparent;
+                    }
                     // ==== Duyệt qua từng dòng chi tiết ====
                     foreach (DataRow row2 in data2filter.Rows)
                     {
@@ -749,11 +903,27 @@ namespace V6Tools.V6Export
                         {
                             if (setting.BOLD_CONDITION.Check(row2))
                             {
-                                rs = workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                                //rs = workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                                 rs.FontBold = true;
                                 workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                             }
                         }
+
+                        if (!string.IsNullOrEmpty(setting.COLOR_FIELD))
+                        {
+                            var color = Color.Cyan;
+                            if (!row2.Table.Columns.Contains(setting.COLOR_FIELD)
+                                || !ObjectAndString.StringToColor("" + row2[setting.COLOR_FIELD], out color))
+                            {
+                                color = default_line_color;
+                            }
+                            
+                            rs.Pattern = RangeStyle.PatternSolid;
+                            rs.PatternFG = color.ToArgb();
+                            workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                        }
+                        
+
                         importRowCount++;
                         importRowCurrentIndex++;
                     }
@@ -771,6 +941,7 @@ namespace V6Tools.V6Export
                         workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                     //SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                     ImportDataRow_Group(workBook, row1, importRowCurrentIndex, columnDic3);
+                    
                     if (setting.BOLD_YN && setting.BOLD_CONDITION != null)
                     {
                         if (setting.BOLD_CONDITION.Check(row1))
@@ -780,6 +951,16 @@ namespace V6Tools.V6Export
                             workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                         }
                     }
+                    if (!string.IsNullOrEmpty(setting.COLOR_FIELD))
+                    {
+                        var color = Color.Red;
+                        if (row1.Table.Columns.Contains(setting.COLOR_FIELD)) ObjectAndString.StringToColor("" + row1[setting.COLOR_FIELD], out color);
+                        rs.Pattern = RangeStyle.PatternSolid;
+                        //rs.PatternBG = Color.Red.ToArgb();
+                        rs.PatternFG = color.ToArgb();
+                        workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    }
+
                     importRowCount++;
                     importRowCurrentIndex++;
                 }
@@ -860,6 +1041,13 @@ namespace V6Tools.V6Export
                         rsM.BottomBorder = RangeStyle.BorderThin;
                         workBook.setRangeStyle(rsM, importRowIndex, column.ExcelColumnIndex, importRowIndex, column.MergeTo);
                     }
+
+                    // Font style
+                    if (column.IsBold) rs.FontBold = column.IsBold;
+                    rs.FontItalic = column.IsItalic;
+                    rs.FontUnderline = (short) (column.IsUnderline ? 2 : 0);
+                    rs.FontColor = column.Color.ToArgb();
+                    workBook.setRangeStyle(rs, importRowIndex, column.ExcelColumnIndex, importRowIndex, column.ExcelColumnIndex);
 
                     if (column.ColumnNameIsText)
                     {
@@ -1311,7 +1499,10 @@ namespace V6Tools.V6Export
             try
             {
                 if (File.Exists(xlsTemplateFile))
+                {
                     workbook = ReadWorkBookCopy(xlsTemplateFile, setting.saveFile);
+                    workbook.PrintGridLines = false;
+                }
                 
                 //select sheet
 
@@ -1362,7 +1553,10 @@ namespace V6Tools.V6Export
             workbook.setDefaultFont("Arial", 10 * 20, 1);
 
             if (File.Exists(xlsTemplateFile))
+            {
                 workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
+                workbook.PrintGridLines = false;
+            }
             
             int sheet_index = 0;
             foreach (ExportExcelSetting setting in setting_list)
@@ -1544,7 +1738,10 @@ namespace V6Tools.V6Export
             try
             {
                 if (File.Exists(setting.xlsTemplateFile))
+                {
                     workbook = ReadWorkBookCopy(setting.xlsTemplateFile, setting.saveFile);
+                    workbook.PrintGridLines = false;
+                }
                 
                 //select sheet
                 int sheetIndex = 0;
@@ -1606,8 +1803,11 @@ namespace V6Tools.V6Export
             workbook.setDefaultFont("Arial", 10 * 20, 1);
             try
             {
-                if(File.Exists(xlsTemplateFile))
+                if (File.Exists(xlsTemplateFile))
+                {
                     workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
+                    workbook.PrintGridLines = false;
+                }
                 
                 SetParametersAddressFormat(workbook, setting.parameters);
 
@@ -1912,7 +2112,10 @@ namespace V6Tools.V6Export
             try
             {
                 if (File.Exists(xlsTemplateFile))
+                {
                     workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
+                    workbook.PrintGridLines = false;
+                }
                 
                 if (mappingData != null)
                 {
