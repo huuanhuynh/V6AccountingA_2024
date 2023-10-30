@@ -283,8 +283,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 
                 if (_albcConfig != null && _albcConfig.HaveInfo)
                 {
-                    Color color;
-                    ObjectAndString.StringToColor(_albcConfig.COLORV, out color);
+                    Color color = ObjectAndString.StringToColor(_albcConfig.COLORV);
                     V6ControlFormHelper.FormatGridView(dataGridView1, _albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV,
                         _albcConfig.BOLD_YN == "1", _albcConfig.COLOR_YN == "1", color);
                 }
@@ -312,8 +311,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 {
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1,
                         V6Setting.IsVietnamese ? _aldmConfig.GRDHV_V1 : _aldmConfig.GRDHE_V1);
-                    Color conditionColor;
-                    ObjectAndString.StringToColor(_aldmConfig.COLORV, out conditionColor);
+                    Color conditionColor = ObjectAndString.StringToColor(_aldmConfig.COLORV);
                     V6ControlFormHelper.FormatGridView(dataGridView1, _aldmConfig.FIELDV, _aldmConfig.OPERV, _aldmConfig.VALUEV,
                         _aldmConfig.BOLD_YN, _aldmConfig.COLOR_YN, conditionColor);
 

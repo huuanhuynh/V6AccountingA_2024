@@ -1538,6 +1538,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return data;
         }
 
+        public SortedDictionary<string, object> GetData_Check()
+        {
+            var data = new SortedDictionary<string, object>();
+            var controls = V6ControlFormHelper.GetAllControls(this);
+            foreach (Control c in controls)
+            {
+                if (c is FilterLineBase && ((FilterLineBase)c).IsSelected)
+                    V6ControlFormHelper.FillControlValueToDictionary(data, c);
+            }
+            return data;
+        }
+
         /// <summary>
         /// Cần override
         /// </summary>

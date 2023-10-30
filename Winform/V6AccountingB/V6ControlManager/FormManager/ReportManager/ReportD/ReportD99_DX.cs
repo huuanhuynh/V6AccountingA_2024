@@ -918,7 +918,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             {
                 ReportDocumentParameters[item.Key] = item.Value;
             }
-
+            string filterDic = ObjectAndString.DictionaryToString(FilterControl.GetData());
+            ReportDocumentParameters.Add("FILTER_DATA", filterDic);
+            string filterDicCheck = ObjectAndString.DictionaryToString(FilterControl.GetData_Check());
+            ReportDocumentParameters.Add("FILTER_DATA_CHECK", filterDicCheck);
             try
             {
                 var index = 0;

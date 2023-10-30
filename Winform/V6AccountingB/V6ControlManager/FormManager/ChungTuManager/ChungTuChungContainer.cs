@@ -187,8 +187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var color_name = row["ColorV"].ToString().Trim();
                     if (color_name != "")
                     {
-                        Color color;
-                        ObjectAndString.StringToColor(color_name, out color);
+                        Color color = ObjectAndString.StringToColor(color_name);
                         colorList[kieu_post] = color;
                     }
                 }

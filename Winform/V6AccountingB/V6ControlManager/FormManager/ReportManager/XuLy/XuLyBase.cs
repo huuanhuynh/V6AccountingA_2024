@@ -492,6 +492,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             LoadDefaultData(4, "", _reportProcedure, m_itemId, "");
             //LoadTag(4, "", _reportProcedure, m_itemId, "");
+            if (FilterControl != null)
+            {
+                var count = V6ControlFormHelper.GetAllControls(FilterControl).Count;
+                if (FilterControl is ReportFilter44Base && count == 3) FilterControl.Visible = false;
+                else if (FilterControl is FilterBase && count <= 1) FilterControl.Visible = false;
+            }
             InvokeFormEvent(FormDynamicEvent.INIT2);
             GetSumCondition();
             if (PrintMode == V6PrintMode.AutoLoadData)

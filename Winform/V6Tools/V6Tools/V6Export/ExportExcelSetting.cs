@@ -10,9 +10,12 @@ namespace V6Tools.V6Export
     {
         public bool BOLD_YN = false;
         public Condition BOLD_CONDITION { get; set; }
-        public string COLOR_FIELD = null;
         /// <summary>
-        /// Màu nền dòng dữ liệu xuất Excel.
+        /// Lấy từ xml setting
+        /// </summary>
+        public string COLOR_FIELD { get; set; }
+        /// <summary>
+        /// Màu nền dòng dữ liệu xuất Excel. Lấy từ V6Options.
         /// </summary>
         public string M_COLOR_SUM { get; set; }
         //public string IS_BOLD_FIELD = null;

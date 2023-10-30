@@ -2390,6 +2390,8 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\DXreport\DXreportManager.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXGetDatabase.cs" />
+    <Compile Include="FormManager\ReportManager\DXreport\V6DXDicValue.cs" />
     <Compile Include="FormManager\ReportManager\DXreport\V6DXMoneyToWords.cs" />
     <Compile Include="FormManager\ReportManager\DXreport\V6DXToString.cs" />
     <Compile Include="FormManager\ReportManager\DXreport\V6DXFormatNumber.cs" />

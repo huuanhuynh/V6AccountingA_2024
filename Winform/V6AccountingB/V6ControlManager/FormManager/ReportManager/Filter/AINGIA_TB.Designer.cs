@@ -56,6 +56,8 @@
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
+            this.v6Label10 = new V6Controls.V6Label();
+            this.txtNam2 = new V6Controls.NumberYear();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,10 +65,10 @@
             // 
             this.v6Label9.AccessibleDescription = "FILTERL00055";
             this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(8, 47);
+            this.v6Label9.Location = new System.Drawing.Point(254, 6);
             this.v6Label9.Name = "v6Label9";
             this.v6Label9.Size = new System.Drawing.Size(29, 13);
-            this.v6Label9.TabIndex = 4;
+            this.v6Label9.TabIndex = 2;
             this.v6Label9.Text = "Năm";
             // 
             // label2
@@ -76,7 +78,7 @@
             this.label2.Location = new System.Drawing.Point(8, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 4;
             this.label2.Text = "Đến tháng";
             // 
             // label1
@@ -259,7 +261,6 @@
             // 
             this.txtThang1.BackColor = System.Drawing.SystemColors.Window;
             this.txtThang1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtThang1.DecimalPlaces = 0;
             this.txtThang1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtThang1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtThang1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -284,7 +285,6 @@
             // 
             this.txtThang2.BackColor = System.Drawing.SystemColors.Window;
             this.txtThang2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtThang2.DecimalPlaces = 0;
             this.txtThang2.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtThang2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtThang2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -295,7 +295,7 @@
             this.txtThang2.MaxNumLength = 2;
             this.txtThang2.Name = "txtThang2";
             this.txtThang2.Size = new System.Drawing.Size(100, 20);
-            this.txtThang2.TabIndex = 3;
+            this.txtThang2.TabIndex = 5;
             this.txtThang2.Text = "0";
             this.txtThang2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtThang2.Value = new decimal(new int[] {
@@ -309,18 +309,17 @@
             // 
             this.txtNam.BackColor = System.Drawing.SystemColors.Window;
             this.txtNam.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNam.DecimalPlaces = 0;
             this.txtNam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNam.HoverColor = System.Drawing.Color.Yellow;
             this.txtNam.LeaveColor = System.Drawing.Color.White;
-            this.txtNam.Location = new System.Drawing.Point(120, 44);
+            this.txtNam.Location = new System.Drawing.Point(294, 3);
             this.txtNam.MaxLength = 4;
             this.txtNam.MaxNumLength = 4;
             this.txtNam.Name = "txtNam";
-            this.txtNam.Size = new System.Drawing.Size(100, 20);
-            this.txtNam.TabIndex = 5;
+            this.txtNam.Size = new System.Drawing.Size(65, 20);
+            this.txtNam.TabIndex = 3;
             this.txtNam.Text = "0";
             this.txtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNam.Value = new decimal(new int[] {
@@ -334,7 +333,6 @@
             this.txtDk_cl.AccessibleName = "DK_CL";
             this.txtDk_cl.BackColor = System.Drawing.SystemColors.Window;
             this.txtDk_cl.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDk_cl.DecimalPlaces = 0;
             this.txtDk_cl.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtDk_cl.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtDk_cl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -360,7 +358,6 @@
             this.txtTinh_giatb.AccessibleName = "TINH_GIATB";
             this.txtTinh_giatb.BackColor = System.Drawing.SystemColors.Window;
             this.txtTinh_giatb.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTinh_giatb.DecimalPlaces = 0;
             this.txtTinh_giatb.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTinh_giatb.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTinh_giatb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -461,6 +458,39 @@
             this.v6Label3.TabIndex = 19;
             this.v6Label3.Text = "Tạo phiếu xuất chênh lệch giá trị tồn kho";
             // 
+            // v6Label10
+            // 
+            this.v6Label10.AccessibleDescription = "FILTERL00055";
+            this.v6Label10.AutoSize = true;
+            this.v6Label10.Location = new System.Drawing.Point(254, 27);
+            this.v6Label10.Name = "v6Label10";
+            this.v6Label10.Size = new System.Drawing.Size(29, 13);
+            this.v6Label10.TabIndex = 6;
+            this.v6Label10.Text = "Năm";
+            // 
+            // txtNam2
+            // 
+            this.txtNam2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNam2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNam2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNam2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNam2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNam2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNam2.LeaveColor = System.Drawing.Color.White;
+            this.txtNam2.Location = new System.Drawing.Point(294, 24);
+            this.txtNam2.MaxLength = 4;
+            this.txtNam2.MaxNumLength = 4;
+            this.txtNam2.Name = "txtNam2";
+            this.txtNam2.Size = new System.Drawing.Size(65, 20);
+            this.txtNam2.TabIndex = 7;
+            this.txtNam2.Text = "0";
+            this.txtNam2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNam2.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // AINGIA_TB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,8 +505,10 @@
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.txtTinh_giatb);
             this.Controls.Add(this.txtDk_cl);
+            this.Controls.Add(this.txtNam2);
             this.Controls.Add(this.txtNam);
             this.Controls.Add(this.txtThang2);
+            this.Controls.Add(this.v6Label10);
             this.Controls.Add(this.txtThang1);
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.label2);
@@ -521,5 +553,7 @@
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6Label v6Label3;
+        private V6Controls.V6Label v6Label10;
+        private V6Controls.NumberYear txtNam2;
     }
 }

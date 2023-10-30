@@ -81,6 +81,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             return result;
         }
 
+        public override SortedDictionary<string, object> GetData()
+        {
+            var data = new SortedDictionary<string, object>();
+            var controls = V6ControlFormHelper.GetAllControls(this);
+            foreach (Control c in controls)
+            {
+                if (c is FilterLineBase)
+                    V6ControlFormHelper.FillControlValueToDictionary(data, c);
+            }
+            return data;
+        }
+
+        public SortedDictionary<string, object> GetData_Check()
+        {
+            var data = new SortedDictionary<string, object>();
+            var controls = V6ControlFormHelper.GetAllControls(this);
+            foreach (Control c in controls)
+            {
+                if (c is FilterLineBase && ((FilterLineBase)c).IsSelected)
+                    V6ControlFormHelper.FillControlValueToDictionary(data, c);
+            }
+            return data;
+        }
+
         protected DataSet _ds = null;
         /// <summary>
         /// Nhận dữ liệu khi tải xong.

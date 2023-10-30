@@ -764,6 +764,18 @@ namespace V6Controls
         {
             return V6Message.Show(message, null, showTime, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, 3, owner);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="message"></param>
+        /// <param name="showTime"></param>
+        /// <param name="accessible_description">Mã ngôn ngữ để có thể sửa được nội dung bằng chuột phải.</param>
+        /// <returns></returns>
+        public static DialogResult ShowConfirmCancelMessage(this IWin32Window owner, string message, int showTime, string accessible_description)
+        {
+            return V6Message.Show(message, null, showTime, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, 3, owner, accessible_description);
+        }
 
 
         public static void ShowWarningMessage(this IWin32Window owner, string message)

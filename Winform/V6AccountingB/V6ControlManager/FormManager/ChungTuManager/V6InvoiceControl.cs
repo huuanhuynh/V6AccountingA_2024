@@ -4359,7 +4359,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 }
                 if (lo && date && vitri)
                 {
-                    var data1 = Invoice.GetViTriLoDateAll(c_mavt, c_makho, c_malo, c_mavitri, _sttRec, ngayCt.Date);
+                    var data1 = Invoice.GetViTriLoDateAll("'"+c_mavt+"'", "'"+c_makho+"'", "'"+c_malo+"'", "'"+c_mavitri+"'", _sttRec, ngayCt.Date);
                     foreach (DataRow row1 in data1.Rows)
                     {
                         var data_mavt = row1["Ma_vt"].ToString().Trim();
@@ -4540,7 +4540,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 }
                 if (lo && date)
                 {
-                    var data1 = Invoice.GetLoDateAll(c_mavt, c_makho, c_malo, _sttRec, ngayCt);
+                    var data1 = Invoice.GetLoDateAll("'"+c_mavt+ "'", "'"+c_makho+ "'", "'"+c_malo+"'", _sttRec, ngayCt);
                     //Kiểm tra
 
 
@@ -4741,7 +4741,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 }
 
                 //Get dữ liệu tồn
-                var data1 = Invoice.GetStockAll(c_mavt, c_makho, _sttRec, ngayCt);
+                var data1 = Invoice.GetStockAll("'" +c_mavt+"'", "'"+c_makho+"'", _sttRec, ngayCt);
                 foreach (DataRow row1 in data1.Rows)
                 {
                     var data_mavt = row1["Ma_vt"].ToString().Trim();

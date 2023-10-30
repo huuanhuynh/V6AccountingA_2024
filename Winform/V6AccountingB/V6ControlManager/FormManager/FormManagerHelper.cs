@@ -636,7 +636,7 @@ namespace V6ControlManager.FormManager
                 max_check = V6Options.M_SWMENUPOP_MAXFORM;
                 if (ManagerFormList.Count > max_check)
                 {
-                    var r = menu3Control.ShowConfirmCancelMessage(string.Format("ManagerFormList.Count > {0}. Close some?", max_check));
+                    var r = menu3Control.ShowConfirmCancelMessage(string.Format("ManagerFormList.Count > {0}. Close some?", max_check), 0, "MAXFORMASK");
                     if (r == DialogResult.Yes)
                     {
                         AutoDisposeSomeForm();

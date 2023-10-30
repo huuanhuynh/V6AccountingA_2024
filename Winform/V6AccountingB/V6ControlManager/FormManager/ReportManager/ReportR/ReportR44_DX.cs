@@ -1083,7 +1083,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 ReportDocumentParameters[item.Key] = item.Value;
             }
-
+            string filterDic = ObjectAndString.DictionaryToString(FilterControl.GetData());
+            ReportDocumentParameters.Add("FILTER_DATA", filterDic);
+            string filterDicCheck = ObjectAndString.DictionaryToString(FilterControl.GetData_Check());
+            ReportDocumentParameters.Add("FILTER_DATA_CHECK", filterDicCheck);
             if (FilterControl.RptExtraParameters != null)
             {
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
@@ -2178,6 +2181,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var setting = new ExportExcelSetting();
                 setting.BOLD_YN = ObjectAndString.ObjectToBool(_albcConfig.BOLD_YN);
                 setting.BOLD_CONDITION = new Condition(_albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV);
+                setting.M_COLOR_SUM = V6Options.M_COLOR_SUM;
                 setting.data = _tbl1;
                 setting.title = txtReportTitle.Text;
                 string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, setting, GetExportFileName());

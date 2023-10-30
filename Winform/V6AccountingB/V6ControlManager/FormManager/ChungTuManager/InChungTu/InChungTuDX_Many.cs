@@ -1389,6 +1389,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 ReportDocumentParameters[item.Key] = item.Value;
             }
+            string filterDic = ObjectAndString.DictionaryToString(FilterControl.GetData());
+            ReportDocumentParameters.Add("FILTER_DATA", filterDic);
+            string filterDicCheck = ObjectAndString.DictionaryToString(FilterControl.GetData_Check());
+            ReportDocumentParameters.Add("FILTER_DATA_CHECK", filterDicCheck);
 
             string errors = "";
             foreach (KeyValuePair<string, object> item in ReportDocumentParameters)

@@ -530,7 +530,7 @@ namespace V6Tools
         {
             if (!data.Columns.Contains(keyField))
                 throw new Exception(string.Format("No keyField [{0}] column.", keyField));
-            var DataDic = new SortedDictionary<string, DataRow>();
+            var DataDic = new Dictionary<string, DataRow>();
             for (int i = 0; i < data.Rows.Count; i++)
             {
                 var row = data.Rows[i];
@@ -593,7 +593,7 @@ namespace V6Tools
 
         public static IDictionary<string, object> DataRowToDataDictionary(DataRow row)
         {
-            var DataDic = new SortedDictionary<string, object>();
+            var DataDic = new Dictionary<string, object>();
             if (row == null) return DataDic;
             for (int i = 0; i < row.Table.Columns.Count; i++)
             {
@@ -604,7 +604,7 @@ namespace V6Tools
 
         public static IDictionary<string, object> DataRowToDataDictionaryLower(DataRow row)
         {
-            var DataDic = new SortedDictionary<string, object>();
+            var DataDic = new Dictionary<string, object>();
             if (row == null) return DataDic;
             for (int i = 0; i < row.Table.Columns.Count; i++)
             {
@@ -615,7 +615,7 @@ namespace V6Tools
 
         public static IDictionary<string, object> DataRowToDataDictionaryUpper(DataRow row)
         {
-            var DataDic = new SortedDictionary<string, object>();
+            var DataDic = new Dictionary<string, object>();
             if (row == null) return DataDic;
             for (int i = 0; i < row.Table.Columns.Count; i++)
             {
@@ -627,7 +627,7 @@ namespace V6Tools
         public static IDictionary<string, object> DataGridViewRowToDataDictionary(DataGridViewRow row)
         {
             if (row == null) return null;
-            var DataDic = new SortedDictionary<string, object>();
+            var DataDic = new Dictionary<string, object>();
             for (int i = 0; i < row.DataGridView.Columns.Count; i++)
             {
                 DataDic.Add(row.DataGridView.Columns[i].DataPropertyName.ToUpper(), row.Cells[i].Value);
@@ -661,7 +661,7 @@ namespace V6Tools
         /// <returns></returns>
         public static IDictionary<string, object> DataRowToDataDictionary(DataRow row, string sttRec)
         {
-            var DataDic = new SortedDictionary<string, object>();
+            var DataDic = new Dictionary<string, object>();
             if (row == null) return DataDic;
             for (int i = 0; i < row.Table.Columns.Count; i++)
             {
@@ -679,7 +679,7 @@ namespace V6Tools
         public static IDictionary<string, object> ToDataDictionary(this DataRow row, string sttRec)
         {
             return DataRowToDataDictionary(row, sttRec);
-            var DataDic = new SortedDictionary<string, object>();
+            var DataDic = new Dictionary<string, object>();
             if (row == null) return DataDic;
             for (int i = 0; i < row.Table.Columns.Count; i++)
             {

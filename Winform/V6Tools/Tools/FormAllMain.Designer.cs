@@ -61,6 +61,7 @@
             this.numNgang = new System.Windows.Forms.NumericUpDown();
             this.numCao = new System.Windows.Forms.NumericUpDown();
             this.txtCung = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numOutLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarNgang)).BeginInit();
@@ -413,11 +414,19 @@
             this.txtCung.Size = new System.Drawing.Size(100, 20);
             this.txtCung.TabIndex = 1;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(415, 441);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 5;
+            // 
             // FormAllMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 577);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.trackBarCao);
             this.Controls.Add(this.trackBarNgang);
             this.Controls.Add(this.btnConvertExcel);
@@ -499,5 +508,6 @@
         private System.Windows.Forms.NumericUpDown numNgang;
         private System.Windows.Forms.NumericUpDown numCao;
         private System.Windows.Forms.TextBox txtCung;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

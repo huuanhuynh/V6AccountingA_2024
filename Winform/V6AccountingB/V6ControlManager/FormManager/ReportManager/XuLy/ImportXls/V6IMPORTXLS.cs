@@ -921,6 +921,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private void V6IMPORTXLS_Load(object sender, EventArgs e)
+        {
+            //if (FilterControl != null) FilterControl.Visible = false;
+        }
+
         private void chkChuyenMa_CheckedChanged(object sender, EventArgs e)
         {
             if (chkChuyenMa.Checked)

@@ -34,6 +34,8 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXFormatNumberTTNT());
             DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXToString());
             DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXMoneyToWords());
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXDicValue());
+            DevExpress.Data.Filtering.CriteriaOperator.RegisterCustomFunction(new V6DXGetDatabase());
         }
         //public static XtraReport CreateXtraReport()
         //{

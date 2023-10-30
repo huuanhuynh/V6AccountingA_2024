@@ -1085,7 +1085,7 @@ namespace V6Controls.Forms
         {
             var sss = ObjectAndString.StringToDictionary(fvvar);
             Color textColor = Color.Black;
-            if (sss.ContainsKey("COLOR")) ObjectAndString.StringToColor(sss["COLOR"].ToString(), out textColor);
+            if (sss.ContainsKey("COLOR")) textColor = ObjectAndString.StringToColor(sss["COLOR"].ToString());
 
             var button = new Button
             {
@@ -6864,9 +6864,7 @@ namespace V6Controls.Forms
                         {
                             try
                             {
-                                Color out_color;
-                                ObjectAndString.StringToColor(colorRGB, out out_color);
-                                row.DefaultCellStyle.BackColor = out_color;
+                                row.DefaultCellStyle.BackColor = ObjectAndString.StringToColor(colorRGB);
                             }
                             catch (Exception ex2)
                             {
@@ -6901,9 +6899,8 @@ namespace V6Controls.Forms
                 string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
                 object VALUEV;
                 V6BusinessHelper.GetFormatGridView(program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);//Albc
-                Color out_color;
-                ObjectAndString.StringToColor(COLORV, out out_color);
-                FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", out_color);
+                Color color = ObjectAndString.StringToColor(COLORV);
+                FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", color);
             }
             catch (Exception ex)
             {

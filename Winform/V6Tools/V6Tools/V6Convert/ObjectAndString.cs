@@ -858,7 +858,7 @@ namespace V6Tools.V6Convert
             string LAST_KEY = null;
             foreach (string s in sss)
             {
-                string[] ss = s.Split(new[] { element_char }, StringSplitOptions.RemoveEmptyEntries);
+                string[] ss = s.Split(new[] { element_char }, 2);
                 
                 if (ss.Length == 1)
                 {
@@ -909,7 +909,7 @@ namespace V6Tools.V6Convert
             {
                 result += ";" + item.Key + ":" + item.Value;
             }
-            result = result.Substring(1);
+            if (result.Length > 1) result = result.Substring(1);
 
             return result;
         }
@@ -921,7 +921,7 @@ namespace V6Tools.V6Convert
             {
                 result += ";" + item.Key + ":" + ObjectToString(item.Value);
             }
-            result = result.Substring(1);
+            if (result.Length > 1) result = result.Substring(1);
 
             return result;
         }

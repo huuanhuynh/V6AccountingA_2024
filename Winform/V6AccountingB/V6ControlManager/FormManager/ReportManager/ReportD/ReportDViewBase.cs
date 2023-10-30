@@ -2209,6 +2209,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 var setting = new ExportExcelSetting();
                 setting.BOLD_YN = ObjectAndString.ObjectToBool(_albcConfig.BOLD_YN);
                 setting.BOLD_CONDITION = new Condition(_albcConfig.FIELDV, _albcConfig.OPERV, _albcConfig.VALUEV);
+                setting.M_COLOR_SUM = V6Options.M_COLOR_SUM;
                 setting.data = _tbl1;
                 setting.title = txtReportTitle.Text;
                 string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, setting, GetExportFileName());

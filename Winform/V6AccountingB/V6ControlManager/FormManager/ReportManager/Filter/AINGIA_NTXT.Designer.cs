@@ -253,7 +253,6 @@
             // 
             this.txtThang1.BackColor = System.Drawing.SystemColors.Window;
             this.txtThang1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtThang1.DecimalPlaces = 0;
             this.txtThang1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtThang1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtThang1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -278,7 +277,6 @@
             // 
             this.txtThang2.BackColor = System.Drawing.SystemColors.Window;
             this.txtThang2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtThang2.DecimalPlaces = 0;
             this.txtThang2.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtThang2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtThang2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -303,7 +301,6 @@
             // 
             this.txtNam.BackColor = System.Drawing.SystemColors.Window;
             this.txtNam.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNam.DecimalPlaces = 0;
             this.txtNam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -338,7 +335,6 @@
             this.txtTinh_giatb.AccessibleName = "TINH_GIATB";
             this.txtTinh_giatb.BackColor = System.Drawing.SystemColors.Window;
             this.txtTinh_giatb.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTinh_giatb.DecimalPlaces = 0;
             this.txtTinh_giatb.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTinh_giatb.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTinh_giatb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

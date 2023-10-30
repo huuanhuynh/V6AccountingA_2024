@@ -15,7 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtThang1.Value =V6Setting.M_ngay_ct1.Month;
             txtThang2.Value = V6Setting.M_ngay_ct2.Month;
             txtNam.Value = V6Setting.M_ngay_ct2.Year;
-
+            txtNam2.Value = V6Setting.M_ngay_ct2.Year;
 
             Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
@@ -49,12 +49,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             Number1 = txtThang1.Value;
             Number2 = txtThang2.Value;
             Number3 = txtNam.Value;
+            ObjectDictionary["Number4"] = txtNam2.Value;
 
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@Period1", (int)txtThang1.Value));
             result.Add(new SqlParameter("@Year1", (int)txtNam.Value));
             result.Add(new SqlParameter("@Period2", (int)txtThang2.Value));
-            result.Add(new SqlParameter("@Year2", (int)txtNam.Value));
+            result.Add(new SqlParameter("@Year2", (int)txtNam2.Value));
 
             result.Add(new SqlParameter("@Ma_kho",TxtMakho.StringValue==""?"%":TxtMakho.StringValue));
             result.Add(new SqlParameter("@Ma_vt", TxtMa_vt.StringValue==""?"%":TxtMa_vt.StringValue));

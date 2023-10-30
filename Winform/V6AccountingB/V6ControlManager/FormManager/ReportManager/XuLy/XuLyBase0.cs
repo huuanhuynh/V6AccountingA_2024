@@ -154,6 +154,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             LoadDefaultData(4, "", _reportProcedure, m_itemId, "");
             //LoadTag(4, "", _reportProcedure, m_itemId, "");
             FixFilterControlSize();
+            if (FilterControl != null)
+            {
+                var count = V6ControlFormHelper.GetAllControls(FilterControl).Count;
+                if (FilterControl is ReportFilter44Base && count == 3) FilterControl.Visible = false;
+                else if (FilterControl is FilterBase && count <= 1) FilterControl.Visible = false;
+            }
             InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
@@ -162,6 +168,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected void AddFilterControl(string program)
         {
             FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure, _reportFile, toolTipV6FormControl);
+            var count = V6ControlFormHelper.GetAllControls(FilterControl);
             FilterControl.Height = panel1.Height;
             FilterControl.Width = panel1.Width;
             panel1.Controls.Add(FilterControl);
@@ -268,7 +275,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected virtual void Nhan()
         {
             _message = string.Empty;
-            All_Objects["_plist"] = _pList;
+            //All_Objects["_plist"] = _pList;
             object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
             if (beforeLoadData != null && !ObjectAndString.ObjectToBool(beforeLoadData))
             {

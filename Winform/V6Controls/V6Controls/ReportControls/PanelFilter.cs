@@ -318,7 +318,30 @@ namespace V6ReportControls
                     result.Add(c.FieldName, c.ObjectValue);
             }
             return result;
-        } 
+        }
 
+        public SortedDictionary<string, object> GetData()
+        {
+            var data = new SortedDictionary<string, object>();
+            var controls = V6ControlFormHelper.GetAllControls(this);
+            foreach (Control c in controls)
+            {
+                if (c is FilterLineBase)
+                    V6ControlFormHelper.FillControlValueToDictionary(data, c);
+            }
+            return data;
+        }
+
+        public SortedDictionary<string, object> GetData_Check()
+        {
+            var data = new SortedDictionary<string, object>();
+            var controls = V6ControlFormHelper.GetAllControls(this);
+            foreach (Control c in controls)
+            {
+                if (c is FilterLineBase && ((FilterLineBase)c).IsSelected)
+                    V6ControlFormHelper.FillControlValueToDictionary(data, c);
+            }
+            return data;
+        }
     }
 }

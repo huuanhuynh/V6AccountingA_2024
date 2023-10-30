@@ -649,7 +649,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             {
                 ReportDocumentParameters[item.Key] = item.Value;
             }
-
+            string filterDic = ObjectAndString.DictionaryToString(panel1.GetData());
+            ReportDocumentParameters.Add("FILTER_DATA", filterDic);
+            string filterDicCheck = ObjectAndString.DictionaryToString(panel1.GetData_Check());
+            ReportDocumentParameters.Add("FILTER_DATA_CHECK", filterDicCheck);
             //if (FilterControl.RptExtraParameters != null)
             //{
             //    ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);

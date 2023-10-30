@@ -91,13 +91,7 @@ namespace V6Tools.V6Export
         /// workBook.ImportDataTable không đảm bảo được UID.
         /// </summary>
         /// <param name="workBook">Excel workBook object.</param>
-        /// <param name="data">Bảng dữ liệu sẽ xuất, không được null.</param>
-        /// <param name="columns">Danh sách các cột sẽ xuất. Nếu xuất hết để null.</param>
-        /// <param name="isShiftRows">Chèn vùng trước khi chèn dữ liệu.</param>
-        /// <param name="isFieldNameShow">Hiển thị tên cột.</param>
-        /// <param name="drawLine">Tô đen đường kẻ</param>
-        /// <param name="firstRow">Dòng bắt đầu, 0 là đầu tiên, phải nhỏ hơn maxRows.</param>
-        /// <param name="firstColumn">Cột bắt đầu, 0 là đầu tiên, phải nhỏ hơn maxColumns.</param>
+        /// <param name="setting">data columns...</param>
         /// <param name="maxRows">Xuất hết thì để 0 hoặc -1.</param>
         /// <param name="maxColumns">Xuất hết thì để 0 hoặc -1.</param>
         /// <param name="autoColWidth">Chỉnh lại độ rộng mỗi cột cho phù hợp với dữ liệu.</param>
@@ -319,7 +313,7 @@ namespace V6Tools.V6Export
             #region Tô màu nền mỗi dòng
 
             // Nếu có tùy chọn tô màu.
-            if (!string.IsNullOrEmpty(setting.COLOR_FIELD))
+            if (!string.IsNullOrEmpty(setting.COLOR_FIELD) && data.Columns.Contains(setting.COLOR_FIELD))
             {
                 var startRow = exportStartRow;
                 var startCol = setting.startColumn;
@@ -327,10 +321,10 @@ namespace V6Tools.V6Export
                 var endCol = startCol + numOfColumns - 1;
                 int index = 0;
                 
-                Color default_line_color = Color.Transparent;
-                if (!ObjectAndString.StringToColor(setting.M_COLOR_SUM, out default_line_color))
+                Color default_line_color = Color.White;
+                if (!string.IsNullOrEmpty(setting.M_COLOR_SUM))
                 {
-                    default_line_color = Color.Transparent;
+                    default_line_color = ObjectAndString.StringToColor(setting.M_COLOR_SUM);
                 }
 
                 for (int i = startRow; i <= endRow; i++)
@@ -341,10 +335,14 @@ namespace V6Tools.V6Export
                         RangeStyle rs = workBook.getRangeStyle(i, startCol, i, endCol);
 
                         var color = Color.Transparent;
-                        if (!row.Table.Columns.Contains(setting.COLOR_FIELD)
-                            || !ObjectAndString.StringToColor("" + row[setting.COLOR_FIELD], out color))
+                        // nếu dữ liệu COLOR rỗng
+                        if (("" + row[setting.COLOR_FIELD]).Trim() == "")
                         {
                             color = default_line_color;
+                        }
+                        else
+                        {
+                            color = ObjectAndString.StringToColor("" + row[setting.COLOR_FIELD]);
                         }
                         
                         rs.Pattern = RangeStyle.PatternSolid;
@@ -466,7 +464,7 @@ namespace V6Tools.V6Export
             public int MergeTo { get; set; }
             public bool IsMerge { get { return MergeTo > MergeFrom; } }
             public int ExcelColumnIndex { get { return MergeFrom; } private set { MergeFrom = value; } }
-            public string ColumnName { get { return _dataColumn == null ? null : _dataColumn.ColumnName; } }
+            public string ColumnName { get { return _dataColumn == null ? ColumnNameText : _dataColumn.ColumnName; } }
             public string ColumnNameText { get; set; }
 
             public bool ColumnNameIsText
@@ -600,6 +598,122 @@ namespace V6Tools.V6Export
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ColumnXX"></param>
+        /// <param name="ColumnXXconfig"></param>
+        /// <param name="settingData">data hoặc data2 ...</param>
+        /// <returns></returns>
+        private static Dictionary<string, ColumnInfo> ReadColumnDic(string ColumnXX, string ColumnXXconfig, DataTable settingData)
+        {
+            var columnDic = new Dictionary<string, ColumnInfo>();
+            var columns1 = ObjectAndString.SplitString(ColumnXXconfig);
+
+            foreach (string index_field in columns1)
+            {
+                string ab_field_biu_color = index_field;
+
+                string ab = null, field = null, biu = null, color = null;
+                int index = ab_field_biu_color.IndexOf(':');
+                if (index > 0)
+                {
+                    ab = ab_field_biu_color.Substring(0, index);
+                    ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                    // đặt biệt nếu ab = "COLOR", setting để tô màu cho cả dòng.
+                    if (ab == "COLOR")
+                    {
+                        //...
+                        var ci1 = new ColumnInfo(null);
+                        //ci1.ColumnNameIsText = true;
+                        ci1.ColumnNameText = ab;
+                        //ci1.SetExcelColumn("IV");
+                        ci1.Color = ObjectAndString.StringToColor(ab_field_biu_color);
+                        columnDic.Add(ci1.ColumnName, ci1);
+                        continue;
+                    }
+                }
+                else
+                {
+                    throw new Exception(ColumnXX + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT:BIU:Blue");
+                }
+
+                if (ab_field_biu_color.StartsWith("\"")) // value chuỗi cứng. ví dụ "Tổng cộng:"
+                {
+                    index = ab_field_biu_color.LastIndexOf("\"");
+                    field = ab_field_biu_color.Substring(0, index + 1);
+                    ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                    if (ab_field_biu_color.StartsWith(":")) ab_field_biu_color = ab_field_biu_color.Substring(1);
+                }
+                else
+                {
+                    index = ab_field_biu_color.IndexOf(':');
+                    if (index > 0)
+                    {
+                        field = ab_field_biu_color.Substring(0, index);
+                        ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                    }
+                    else
+                    {
+                        field = ab_field_biu_color;
+                        ab_field_biu_color = "";
+                    }
+                }
+
+                index = ab_field_biu_color.IndexOf(':');
+                if (index > 0)
+                {
+                    biu = ab_field_biu_color.Substring(0, index);
+                    ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                    index = ab_field_biu_color.IndexOf(':');
+                    if (index > 0)
+                    {
+                        color = ab_field_biu_color.Substring(0, index);
+                        ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
+                    }
+                    else
+                    {
+                        color = ab_field_biu_color;
+                    }
+                }
+                else if (!string.IsNullOrEmpty(ab_field_biu_color))
+                {
+                    biu = ab_field_biu_color;
+                }
+
+                ColumnInfo ci = null;
+                if (settingData.Columns.Contains(field))
+                {
+                    ci = new ColumnInfo(settingData.Columns[field]);
+                    ci.SetExcelColumn(ab.Trim());
+                    //if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(ColumnXX + " trùng cột.");
+                    columnDic.Add(ci.ColumnName, ci);
+                }
+                else if (field.StartsWith("\"") && field.EndsWith("\""))
+                {
+                    ci = new ColumnInfo(null);
+                    ci.ColumnNameText = field;
+                    ci.SetExcelColumn(ab.Trim());
+                    //if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(ColumnXX + " trùng cột.");
+                    columnDic.Add(ci.ColumnName, ci);
+                }
+
+                if (biu != null)
+                {
+                    if (biu.Contains("B")) ci.IsBold = true;
+                    if (biu.Contains("I")) ci.IsItalic = true;
+                    if (biu.Contains("U")) ci.IsUnderline = true;
+                }
+                if (color != null)
+                {
+                    ci.Color = ObjectAndString.StringToColor(color);
+                }
+            }
+
+
+            return columnDic;
+        }
+
+        /// <summary>
         /// Xuất dữ liệu ra excel có nhóm từ 2 bảng (1 - nhiều).
         /// </summary>
         /// <param name="workBook"></param>
@@ -632,172 +746,87 @@ namespace V6Tools.V6Export
                 throw new ArgumentNullException("setting.data and setting.data2 null");
 
             
-            var listColumnDic1 = new SortedDictionary<string, SortedDictionary<int, ColumnInfo>>();
-            var listColumnDic2 = new SortedDictionary<string, SortedDictionary<int, ColumnInfo>>();
-            var listColumnDic3 = new SortedDictionary<string, SortedDictionary<int, ColumnInfo>>();
+            var listColumnDic1 = new SortedDictionary<string, Dictionary<string, ColumnInfo>>();
+            var listColumnDic2 = new SortedDictionary<string, Dictionary<string, ColumnInfo>>();
+            var listColumnDic3 = new SortedDictionary<string, Dictionary<string, ColumnInfo>>();
             int lastColumnIndex = firstColumn;
 
             foreach (KeyValuePair<string, string> item in columns_config)
             {
-                var columnDic = new SortedDictionary<int, ColumnInfo>();
+                var columnDic = new Dictionary<string, ColumnInfo>();
                 var columns1 = ObjectAndString.SplitString(item.Value);
                 
                 if (item.Key.ToUpper().StartsWith("COLUMNS1")) // Các dòng chính
                 {
-                    foreach (string index_field in columns1)
-                    {
-                        string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
-                        if (ss.Length < 2) throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
-                        ColumnInfo ci = null;
-                        if (setting.data.Columns.Contains(ss[1]))
-                        {
-                            ci = new ColumnInfo(setting.data.Columns[ss[1]]);
-                            ci.SetExcelColumn(ss[0].Trim());
-                            if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
-                            columnDic.Add(ci.ExcelColumnIndex, ci);
-                        }
-                        else if (ss[1].StartsWith("\"") && ss[1].EndsWith("\""))
-                        {
-                            ci = new ColumnInfo(null);
-                            ci.ColumnNameText = ss[1];
-                            ci.SetExcelColumn(ss[0].Trim());
-                            if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
-                            columnDic.Add(ci.ExcelColumnIndex, ci);
-                        }
-                    }
+                    //foreach (string index_field in columns1)
+                    //{
+                    //    string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                    //    if (ss.Length < 2) throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
+                    //    ColumnInfo ci = null;
+                    //    if (setting.data.Columns.Contains(ss[1]))
+                    //    {
+                    //        ci = new ColumnInfo(setting.data.Columns[ss[1]]);
+                    //        ci.SetExcelColumn(ss[0].Trim());
+                    //        if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
+                    //        columnDic.Add(ci.ExcelColumnIndex, ci);
+                    //    }
+                    //    else if (ss[1].StartsWith("\"") && ss[1].EndsWith("\""))
+                    //    {
+                    //        ci = new ColumnInfo(null);
+                    //        ci.ColumnNameText = ss[1];
+                    //        ci.SetExcelColumn(ss[0].Trim());
+                    //        if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
+                    //        columnDic.Add(ci.ExcelColumnIndex, ci);
+                    //    }
+                    //}
+                    columnDic = ReadColumnDic(item.Key.ToUpper(), item.Value, setting.data);
 
                     listColumnDic1[item.Key.ToUpper()] = columnDic;
                     if (columnDic.Count > 0)
                     {
-                        int temp_last_column = columnDic.Last().Key;
+                        int temp_last_column = columnDic.Last().Value.ExcelColumnIndex;
                         if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
                     }
                 }
                 else if (item.Key.ToUpper().StartsWith("COLUMNS2")) // Các dòng chi tiết.
                 {
-                    foreach (string index_field in columns1)
-                    {
-                        string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
-                        if (ss.Length < 2) throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
-                        ColumnInfo ci = null;
-                        if (setting.data2.Columns.Contains(ss[1]))
-                        {
-                            ci = new ColumnInfo(setting.data2.Columns[ss[1]]);
-                            ci.SetExcelColumn(ss[0].Trim());
-                            if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
-                            columnDic.Add(ci.ExcelColumnIndex, ci);
-                        }
-                        else if (ss[1].StartsWith("\"") && ss[1].EndsWith("\""))
-                        {
-                            ci = new ColumnInfo(null);
-                            ci.ColumnNameText = ss[1];
-                            ci.SetExcelColumn(ss[0].Trim());
-                            if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
-                            columnDic.Add(ci.ExcelColumnIndex, ci);
-                        }
-                    }
+                    //foreach (string index_field in columns1)
+                    //{
+                    //    string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                    //    if (ss.Length < 2) throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
+                    //    ColumnInfo ci = null;
+                    //    if (setting.data2.Columns.Contains(ss[1]))
+                    //    {
+                    //        ci = new ColumnInfo(setting.data2.Columns[ss[1]]);
+                    //        ci.SetExcelColumn(ss[0].Trim());
+                    //        if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
+                    //        columnDic.Add(ci.ExcelColumnIndex, ci);
+                    //    }
+                    //    else if (ss[1].StartsWith("\"") && ss[1].EndsWith("\""))
+                    //    {
+                    //        ci = new ColumnInfo(null);
+                    //        ci.ColumnNameText = ss[1];
+                    //        ci.SetExcelColumn(ss[0].Trim());
+                    //        if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
+                    //        columnDic.Add(ci.ExcelColumnIndex, ci);
+                    //    }
+                    //}
+                    columnDic = ReadColumnDic(item.Key.ToUpper(), item.Value, setting.data2);
 
                     listColumnDic2[item.Key.ToUpper()] = columnDic;
                     if (columnDic.Count > 0)
                     {
-                        int temp_last_column = columnDic.Last().Key;
+                        int temp_last_column = columnDic.Last().Value.ExcelColumnIndex;
                         if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
                     }
                 }
                 else if (item.Key.ToUpper().StartsWith("COLUMNS3")) // Các dòng tổng
                 {
-                    foreach (string index_field in columns1)
-                    {
-                        string ab_field_biu_color = index_field;
-                        
-                        string ab = null, field = null, biu = null, color = null;
-                        int index = ab_field_biu_color.IndexOf(':');
-                        if (index > 0)
-                        {
-                            ab = ab_field_biu_color.Substring(0, index);
-                            ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
-                        }
-                        else
-	                    {
-                            throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT:BIU:Blue");
-	                    }
-
-                        if (ab_field_biu_color.StartsWith("\""))
-                        {
-                            index = ab_field_biu_color.LastIndexOf("\"");
-                            field = ab_field_biu_color.Substring(0, index+1);
-                            ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
-                            if (ab_field_biu_color.StartsWith(":")) ab_field_biu_color = ab_field_biu_color.Substring(1);
-                        }
-                        else
-                        {
-                            index = ab_field_biu_color.IndexOf(':');
-                            if (index > 0)
-                            {
-                                field = ab_field_biu_color.Substring(0, index);
-                                ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
-                            }
-                            else
-                            {
-                                field = ab_field_biu_color;
-                                ab_field_biu_color = "";
-                            }
-                        }
-
-                        index = ab_field_biu_color.IndexOf(':');
-                        if (index > 0)
-                        {
-                            biu = ab_field_biu_color.Substring(0, index);
-                            ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
-                            index = ab_field_biu_color.IndexOf(':');
-                            if (index > 0)
-                            {
-                                color = ab_field_biu_color.Substring(0, index);
-                                ab_field_biu_color = ab_field_biu_color.Substring(index + 1);
-                            }
-                            else
-                            {
-                                color = ab_field_biu_color;
-                            }
-                        }
-                        else if (!string.IsNullOrEmpty(ab_field_biu_color))
-                        {
-                            biu = ab_field_biu_color;
-                        }
-
-                        ColumnInfo ci = null;
-                        if (setting.data.Columns.Contains(field))
-                        {
-                            ci = new ColumnInfo(setting.data.Columns[field]);
-                            ci.SetExcelColumn(ab.Trim());
-                            if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
-                            columnDic.Add(ci.ExcelColumnIndex, ci);
-                        }
-                        else if (field.StartsWith("\"") && field.EndsWith("\""))
-                        {
-                            ci = new ColumnInfo(null);
-                            ci.ColumnNameText = field;
-                            ci.SetExcelColumn(ab.Trim());
-                            if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
-                            columnDic.Add(ci.ExcelColumnIndex, ci);
-                        }
-                        if (biu != null)
-                        {
-                            if (biu.Contains("B")) ci.IsBold = true;
-                            if (biu.Contains("I")) ci.IsItalic = true;
-                            if (biu.Contains("U")) ci.IsUnderline = true;
-                        }
-                        if (color != null)
-                        {
-                            Color color0;
-                            if (ObjectAndString.StringToColor(color, out color0))
-                                ci.Color = color0;
-                        }
-                    }
+                    columnDic = ReadColumnDic(item.Key.ToUpper(), item.Value, setting.data);
                     listColumnDic3[item.Key.ToUpper()] = columnDic;
                     if (columnDic.Count > 0)
                     {
-                        int temp_last_column = columnDic.Last().Key;
+                        int temp_last_column = columnDic.Last().Value.ExcelColumnIndex;
                         if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
                     }
                 }
@@ -814,9 +843,14 @@ namespace V6Tools.V6Export
                 //Nếu hiện tên cột thì chèn thêm một dòng
                 workBook.insertRange(firstRow, firstColumn, firstRow, firstColumn + numOfColumns1 - 1, WorkBook.ShiftRows);
                 
-                for (int i = 0; i < numOfColumns1; i++)
+                //for (int i = 0; i < numOfColumns1; i++)
+                //{
+                //    //workBook.setText(firstRow, i + firstColumn, listColumnDic1["COLUMNS11"][i].ColumnName);
+                //}
+                var listColumnDic11 = listColumnDic1["COLUMNS11"];
+                foreach (var item in listColumnDic11)
                 {
-                    workBook.setText(firstRow, i + firstColumn, listColumnDic1["COLUMNS11"][i].ColumnName);
+                    workBook.setText(firstRow, item.Value.ExcelColumnIndex, item.Value.ColumnName);
                 }
                 
                 firstRow++;
@@ -833,9 +867,11 @@ namespace V6Tools.V6Export
             int importRowCurrentIndex = firstRow;
             int row1Index = 0;
             // Duyệt qua từng dòng
+            
+
             foreach (DataRow row1 in setting.data.Rows)
             {
-                importRowCurrentIndex = firstRow + importRowCount;
+                //importRowCurrentIndex = firstRow + importRowCount;    
 
                 #region ==== Điền dòng chính (nếu có) ====================================================================================================
 
@@ -846,32 +882,24 @@ namespace V6Tools.V6Export
                         ? InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex)
                         : workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                     //SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                    ImportDataRow_Group(workBook, row1, importRowCurrentIndex, columnDic1);
                     if (setting.BOLD_YN && setting.BOLD_CONDITION != null)
                     {
                         if (setting.BOLD_CONDITION.Check(row1))
                         {
-                            rs = workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                            //rs = workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                             rs.FontBold = true;
                             workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                         }
                     }
-                    if (!string.IsNullOrEmpty(setting.COLOR_FIELD))
-                    {
-                        var color = Color.Red;
-                        if (row1.Table.Columns.Contains(setting.COLOR_FIELD)) ObjectAndString.StringToColor("" + row1[setting.COLOR_FIELD], out color);
-                        rs.Pattern = RangeStyle.PatternSolid;
-                        //rs.PatternBG = Color.Red.ToArgb();
-                        rs.PatternFG = color.ToArgb();
-                        workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                    }
+                    ImportDataRow_Group(workBook, row1, columnDic1, importRowCurrentIndex, firstColumn, lastColumnIndex);
+                    
                     importRowCount++;
                     importRowCurrentIndex++;
                 }
 
                 #endregion //Điền xong 1 dòng chính
 
-                #region ==== Điền các dòng chi tiết ========================================================================================================
+                #region ==== Điền vài dòng chi tiết (của dòng chính) ========================================================================================================
 
                 foreach (var item in listColumnDic2)
                 {
@@ -886,10 +914,7 @@ namespace V6Tools.V6Export
                     DataTable data2filter = data2view.ToTable();
 
                     Color default_line_color = Color.Transparent;
-                    if (!ObjectAndString.StringToColor(setting.M_COLOR_SUM, out default_line_color))
-                    {
-                        default_line_color = Color.Transparent;
-                    }
+                    if (!string.IsNullOrEmpty(setting.M_COLOR_SUM)) default_line_color = ObjectAndString.StringToColor(setting.M_COLOR_SUM);
                     // ==== Duyệt qua từng dòng chi tiết ====
                     foreach (DataRow row2 in data2filter.Rows)
                     {
@@ -898,7 +923,7 @@ namespace V6Tools.V6Export
                             : workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
 
                         //SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                        ImportDataRow_Group(workBook, row2, importRowCurrentIndex, columnDic2);
+                        ImportDataRow_Group(workBook, row2, columnDic2, importRowCurrentIndex, firstColumn, lastColumnIndex);
                         if (setting.BOLD_YN && setting.BOLD_CONDITION != null)
                         {
                             if (setting.BOLD_CONDITION.Check(row2))
@@ -911,9 +936,12 @@ namespace V6Tools.V6Export
 
                         if (!string.IsNullOrEmpty(setting.COLOR_FIELD))
                         {
-                            var color = Color.Cyan;
-                            if (!row2.Table.Columns.Contains(setting.COLOR_FIELD)
-                                || !ObjectAndString.StringToColor("" + row2[setting.COLOR_FIELD], out color))
+                            var color = default_line_color;
+                            if (row2.Table.Columns.Contains(setting.COLOR_FIELD) && ("" + row2[setting.COLOR_FIELD]).Trim() != "")
+                            {
+                                color = ObjectAndString.StringToColor("" + row2[setting.COLOR_FIELD]);
+                            }
+                            else
                             {
                                 color = default_line_color;
                             }
@@ -929,7 +957,7 @@ namespace V6Tools.V6Export
                     }
                 }
 
-                #endregion// Điền xong các dòng chi tiết
+                #endregion// Điền xong vài dòng chi tiết
 
                 #region ==== Tiếp tục dòng tổng nếu có. ========================================================================================================
 
@@ -940,7 +968,6 @@ namespace V6Tools.V6Export
                         InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex) :
                         workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                     //SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                    ImportDataRow_Group(workBook, row1, importRowCurrentIndex, columnDic3);
                     
                     if (setting.BOLD_YN && setting.BOLD_CONDITION != null)
                     {
@@ -951,16 +978,8 @@ namespace V6Tools.V6Export
                             workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                         }
                     }
-                    if (!string.IsNullOrEmpty(setting.COLOR_FIELD))
-                    {
-                        var color = Color.Red;
-                        if (row1.Table.Columns.Contains(setting.COLOR_FIELD)) ObjectAndString.StringToColor("" + row1[setting.COLOR_FIELD], out color);
-                        rs.Pattern = RangeStyle.PatternSolid;
-                        //rs.PatternBG = Color.Red.ToArgb();
-                        rs.PatternFG = color.ToArgb();
-                        workBook.setRangeStyle(rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
-                    }
-
+                    ImportDataRow_Group(workBook, row1, columnDic3, importRowCurrentIndex, firstColumn, lastColumnIndex);
+                    
                     importRowCount++;
                     importRowCurrentIndex++;
                 }
@@ -1018,11 +1037,12 @@ namespace V6Tools.V6Export
         /// <param name="row1"></param>
         /// <param name="importRowIndex"></param>
         /// <param name="columnDic"></param>
-        private static void ImportDataRow_Group(WorkBook workBook, DataRow row1, int importRowIndex, SortedDictionary<int, ColumnInfo> columnDic)
+        private static void ImportDataRow_Group(WorkBook workBook, DataRow row1, Dictionary<string, ColumnInfo> columnDic,
+            int importRowIndex, int firtColumn, int lastColumn)
         {
             try
             {
-                foreach (KeyValuePair<int, ColumnInfo> item in columnDic)
+                foreach (KeyValuePair<string, ColumnInfo> item in columnDic)
                 {
                     var column = item.Value;
                     //var type = column.DataType;
@@ -1030,6 +1050,13 @@ namespace V6Tools.V6Export
                     //int columnIndex = index_column.Key;
 
                     RangeStyle rs = workBook.getRangeStyle(importRowIndex, column.ExcelColumnIndex, importRowIndex, column.ExcelColumnIndex);
+                    if (item.Value.ColumnNameText == "COLOR")
+                    {
+                        rs.Pattern = RangeStyle.PatternSolid;
+                        rs.PatternFG = item.Value.Color.ToArgb();
+                        workBook.setRangeStyle(rs, importRowIndex, firtColumn, importRowIndex, lastColumn);
+                        continue;
+                    }
                     //Merge
                     if (column.IsMerge)
                     {
