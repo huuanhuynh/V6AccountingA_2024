@@ -903,7 +903,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
 
-        private bool XuLyThemDetail3(IDictionary<string, object> data)
+        public bool XuLyThemDetail3(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
@@ -1807,7 +1807,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private bool XuLyThemDetail4(IDictionary<string, object> data)
+        public bool XuLyThemDetail4(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
@@ -1861,7 +1861,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
         
-        private bool XuLyThemDetail5(IDictionary<string, object> data)
+        public bool XuLyThemDetail5(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {

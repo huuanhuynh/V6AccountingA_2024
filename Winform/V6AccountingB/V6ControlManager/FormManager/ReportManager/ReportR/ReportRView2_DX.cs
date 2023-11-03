@@ -1735,6 +1735,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 //in thường
                 var printTool = new ReportPrintTool(_repx0);
                 printTool.PrintingSystem.ShowMarginsWarning = false;
+                printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
                 printTool.PrintDialog();
             }
             catch (Exception ex)
@@ -1742,6 +1743,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 ShowMainMessage(string.Format("{0}: {1}", V6Text.Text("LOIIN"), ex.Message));
                 this.WriteExLog(GetType() + ".btnIn_Click", ex);
             }
+        }
+
+        private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
+        {
+            e.PrintDocument.PrinterSettings.Copies = (short)PrintCopies;
         }
 
         private bool _updateDataRow = false;

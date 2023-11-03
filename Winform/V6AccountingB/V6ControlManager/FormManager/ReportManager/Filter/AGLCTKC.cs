@@ -6,7 +6,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AGLCTKC: FilterBase
+    public partial class AGLCTKC : FilterBase
     {
         public AGLCTKC()
         {

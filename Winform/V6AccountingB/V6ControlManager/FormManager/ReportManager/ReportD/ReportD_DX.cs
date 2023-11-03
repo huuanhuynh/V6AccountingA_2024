@@ -87,29 +87,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             set { _printCopy = value; }
         }
 
-        /// <summary>
-        /// Danh sách event_method của Form_program.
-        /// </summary>
-        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        private Type Form_program;
-        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-
-        private object InvokeFormEvent(string eventName)
-        {
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey(eventName))
-                {
-                    var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
-            }
-            return null;
-        }
 
         private void CreateFormProgram()
         {
@@ -1313,10 +1290,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     printTool.PrintingSystem.ShowMarginsWarning = false;
                     printTool.Print(printerName);
 
-                    //if (!xemMau)
-                    //    timer1.Start();
-
-                    //xong = true;
                     CallPrintSuccessEvent();
                     if (Close_after_print)
                     {
@@ -1984,6 +1957,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 //in thường
                 var printTool = new ReportPrintTool(_repx0);
                 printTool.PrintingSystem.ShowMarginsWarning = false;
+                printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
                 printTool.PrintDialog();
             }
             catch (Exception ex)
@@ -1991,6 +1965,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 ShowMainMessage(string.Format("{0}: {1}", V6Text.Text("LOIIN"), ex.Message));
                 this.WriteExLog(GetType() + ".btnIn_Click", ex);
             }
+        }
+
+        private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
+        {
+            e.PrintDocument.PrinterSettings.Copies = (short)PrintCopies;
         }
 
         private void btnFirst_Click(object sender, EventArgs e)

@@ -1464,7 +1464,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             return true;
         }
 
-        private bool XuLyThemDetail3(IDictionary<string, object> data)
+        public bool XuLyThemDetail3(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {

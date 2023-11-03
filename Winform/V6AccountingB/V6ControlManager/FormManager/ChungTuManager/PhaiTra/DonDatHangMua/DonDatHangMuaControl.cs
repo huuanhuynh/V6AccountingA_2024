@@ -4464,7 +4464,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             return true;
         }
 
-        private bool XuLyThemDetail2(IDictionary<string, object> data)
+        public bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {

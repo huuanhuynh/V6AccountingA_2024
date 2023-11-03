@@ -59,29 +59,25 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         /// </summary>
         private List<SqlParameter> _pList;
 
-        /// <summary>
-        /// Danh sách event_method của Form_program.
-        /// </summary>
-        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        private Type Form_program;
-        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-
-        private object InvokeFormEvent(string eventName)
+        public delegate void PrintReportSuccessDelegate(Control sender);
+        public event PrintReportSuccessDelegate PrintSuccess;
+        protected virtual void CallPrintSuccessEvent()
         {
-            try // Dynamic invoke
+            var handler = PrintSuccess;
+
+            if (handler != null)
             {
-                if (Event_Methods.ContainsKey(eventName))
-                {
-                    var method_name = Event_Methods[eventName];
-                    All_Objects["thisForm"] = this;
-                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
-                }
+                handler(this);
             }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
-            }
-            return null;
+        }
+        public bool Close_after_print { get; set; }
+        public V6PrintMode PrintMode { get; set; }
+        public string PrinterName { get; set; }
+        private int _printCopy = 1;
+        public int PrintCopies
+        {
+            get { return _printCopy; }
+            set { _printCopy = value; }
         }
 
         private void CreateFormProgram()
@@ -1198,6 +1194,36 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
         }
 
+        private void Print(string printerName, XtraReport repx)
+        {
+            bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
+
+            if (printerOnline)
+            {
+                try
+                {
+                    var printTool = new ReportPrintTool(repx);
+                    printTool.PrintingSystem.ShowMarginsWarning = false;
+                    printTool.Print(printerName);
+
+                    CallPrintSuccessEvent();
+                    if (Close_after_print)
+                    {
+                        if (!IsDisposed) Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".In lỗi!\n" + ex.Message, "V6Soft");
+                }
+            }
+            else
+            {
+                btnIn.Enabled = true;
+                this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
+            }
+        }
+
         private void FormatGridView()
         {
             //Header
@@ -1772,6 +1798,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 //in thường
                 var printTool = new ReportPrintTool(_repx0);
                 printTool.PrintingSystem.ShowMarginsWarning = false;
+                printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
                 printTool.PrintDialog();
             }
             catch (Exception ex)
@@ -1779,6 +1806,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 ShowMainMessage(string.Format("{0}: {1}", V6Text.Text("LOIIN"), ex.Message));
                 this.WriteExLog(GetType() + ".btnIn_Click", ex);
             }
+        }
+
+        private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
+        {
+            e.PrintDocument.PrinterSettings.Copies = (short)PrintCopies;
         }
 
         private void btnFirst_Click(object sender, EventArgs e)

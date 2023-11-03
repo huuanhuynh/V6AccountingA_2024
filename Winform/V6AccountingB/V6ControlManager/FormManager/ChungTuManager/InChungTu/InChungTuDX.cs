@@ -2684,9 +2684,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         public void Print_Report(XtraReport repx)
         {
             //in thường
-            var printTool = new ReportPrintTool(repx);
+            _soLienIn = (int)numSoLien.Value;
+            ReportPrintTool printTool = new ReportPrintTool(repx);
             printTool.PrintingSystem.ShowMarginsWarning = false;
+            printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
             printTool.PrintDialog();
+        }
+
+        private void PrintingSystem_StartPrint(object sender, PrintDocumentEventArgs e)
+        {
+            e.PrintDocument.PrinterSettings.Copies = (short)_soLienIn;
         }
 
         private void btnInLien_Click(object sender, EventArgs e)

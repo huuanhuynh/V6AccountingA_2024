@@ -2737,7 +2737,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             //in thường
             var printTool = new ReportPrintTool(repx);
             printTool.PrintingSystem.ShowMarginsWarning = false;
+            printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
             printTool.PrintDialog();
+        }
+
+        private void PrintingSystem_StartPrint(object sender, PrintDocumentEventArgs e)
+        {
+            e.PrintDocument.PrinterSettings.Copies = (short)PrintCopies;
         }
 
         private void btnInLien_Click(object sender, EventArgs e)

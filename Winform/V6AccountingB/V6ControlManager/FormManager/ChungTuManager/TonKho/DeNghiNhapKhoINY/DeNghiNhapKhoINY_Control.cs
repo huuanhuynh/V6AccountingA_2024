@@ -4414,7 +4414,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             return true;
         }
 
-        private bool XuLyThemDetail2(IDictionary<string, object> data)
+        public bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {

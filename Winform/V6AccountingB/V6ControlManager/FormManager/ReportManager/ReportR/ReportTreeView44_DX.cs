@@ -1684,12 +1684,18 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 //in thường
                 var printTool = new ReportPrintTool(_repx0);
                 printTool.PrintingSystem.ShowMarginsWarning = false;
+                printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
                 printTool.PrintDialog();
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".btnIn_Click " + V6Text.Text("LOIIN"), ex);
             }
+        }
+
+        private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
+        {
+            e.PrintDocument.PrinterSettings.Copies = (short)PrintCopies;
         }
 
         private bool _updateDataRow = false;
