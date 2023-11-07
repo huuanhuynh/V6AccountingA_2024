@@ -10,7 +10,7 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class ZACOSXLT_TINHGIA_Filter: FilterBase
+    public partial class ZACOSXLT_TINHGIA_Filter : FilterBase
     {
         public ZACOSXLT_TINHGIA_Filter()
         {
@@ -102,6 +102,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             ObjectDictionary["LIST_LOAI_BC"] = list_loai_bc;
             ObjectDictionary["LIST_VITRI"] = list_vitri;
             ObjectDictionary["MA_BPHT"] = lineMaBpHt.StringValue;
+            ObjectDictionary["TINHGIA_DC"] = chkTinhGiaDC.Checked;
+            ObjectDictionary["NGAY_CT1"] = dateNgay_ct1.Value;
+            ObjectDictionary["NGAY_CT2"] = dateNgay_ct2.Value;
+            ObjectDictionary["USER_ID"] = V6Login.UserId;
+
 
         }
 

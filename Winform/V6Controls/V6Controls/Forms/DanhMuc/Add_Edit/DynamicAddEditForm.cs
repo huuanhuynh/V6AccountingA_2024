@@ -400,7 +400,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 {
                                     var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
                                     var method_name = event_row["method"].ToString().Trim();
-
+                                    //Event_Methods[EVENT_NAME] = method_name; => default switch.
                                     all_using_text += data.Columns.Contains("using") ? event_row["using"] : "";
                                     all_method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
 
@@ -502,6 +502,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                 All_Objects["e"] = e;
                                                 V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                                             };
+                                            break;
+                                        default:
+                                            Event_Methods[EVENT_NAME] = method_name;
                                             break;
                                     }//end switch
                                 }
@@ -669,17 +672,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             
                 var data = ds.Tables[0];
 
-                string using_text = "";
-                string method_text = "";
                 foreach (DataRow event_row in data.Rows)
                 {
                     var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
                     var method_name = event_row["method"].ToString().Trim();
                     Event_Methods[EVENT_NAME] = method_name;
-                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
-                    method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    all_using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                    all_method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                 }
-                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _MA_DM, using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _MA_DM, all_using_text, all_method_text);
             }
             catch (Exception ex)
             {
@@ -912,7 +913,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 All_Objects["data"] = DataDic;
                 All_Objects["dataDic"] = DataDic;
                 All_Objects["dataOld"] = DataOld;
-                ValidateData();
+                if (_aldmConfig.IS_ALDM)
+                {
+                    ValidateData_IsAldm();
+                }
+                else
+                {
+                    ValidateData();
+                }
+                InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+                
                 string checkV6Valid = CheckV6Valid(DataDic, _MA_DM);
                 if (!string.IsNullOrEmpty(checkV6Valid))
                 {

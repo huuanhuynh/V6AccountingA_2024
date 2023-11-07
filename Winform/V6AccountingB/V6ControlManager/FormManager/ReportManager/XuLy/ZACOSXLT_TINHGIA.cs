@@ -354,6 +354,57 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 V6BusinessHelper.TinhGia_TB(FilterControl.Date1.Month, FilterControl.Date1.Year, FilterControl.Date2.Month, FilterControl.Date2.Year,
                     ma_kho, ma_vt, dk_cl, tinh_giatb, advance);
             }
+            else if (cvitri_description.StartsWith("ACOSXLT_APGIA:"))
+            {
+                string description = cvitri_description.Substring(cvitri_description.IndexOf(':') + 1);
+                var temp_dic = ObjectAndString.StringToStringDictionary(description);
+                //ACOSXLT_APGIA:PROC:ACOGTXL01_COAPGIA0;NGAY_CT1:DIC_NGAY_CT1;NGAY_CT2:DIC_NGAY_CT2;
+                //MA_BPHT:DIC_MA_BPHT;TINHGIA_DC:DIC_TINHGIA_DC;USER_ID:DIC_USER_ID
+                string proc = "";
+                
+                List<SqlParameter> plist0 = new List<SqlParameter>();
+                foreach (var item in temp_dic)
+                {
+                    if (item.Key == "PROC")
+                    {
+                        proc = temp_dic["PROC"];
+                    }
+                    else
+                    {
+                        if (item.Value.StartsWith("DIC_"))
+                        {
+                            string FIELD = item.Value.Substring(4);
+                            if (FilterControl.ObjectDictionary.ContainsKey(FIELD))
+                            {
+                                plist0.Add(new SqlParameter("@" + item.Key, FilterControl.ObjectDictionary[FIELD]));
+                            }
+                            else
+                            {
+                                plist0.Add(new SqlParameter("@" + item.Key, "FilterControl.ObjectDictionary have no key " + FIELD));
+                            }
+                        }
+                        else
+                        {
+                            plist0.Add(new SqlParameter("@" + item.Key, item.Value));
+                        }
+                    }
+                }
+
+                // chạy từng ngày.
+                for (DateTime i = FilterControl.Date1; i <= FilterControl.Date2; i = i.AddDays(1))
+                {
+                    string i_string = i.ToString("yyyyMMdd");
+                    SetStatusText(proc + ": " + i_string);
+                    List<SqlParameter> plist1 = new List<SqlParameter>()
+                    {   
+                        new SqlParameter("@Ngay_ct1", i_string),
+                        new SqlParameter("@Ngay_ct2", i_string)
+                    };
+
+                    plist1.AddRange(plist0); // ghép với plist tạo trước bên trên.
+                    V6BusinessHelper.ExecuteProcedure(proc, plist1.ToArray());
+                }
+            }
             else if (cvitri_description.StartsWith("AINGIA_TBDD:"))
             {
                 string description = cvitri_description.Substring(cvitri_description.IndexOf(':') + 1);
