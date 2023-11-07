@@ -2654,12 +2654,7 @@ namespace V6ThuePostManager
                             paras.Result.ResultString = result;
                         }
                     }
-                    else // chạy lần 2
-                    {
-                        StartAutoInputTokenPassword();
-                        resultM = PublishInvWithToken_Dll(xml, __pattern, __serial, out paras.Result.V6ReturnValues);
-                        result = resultM;
-                    }
+                    
 
                     // Gửi file.
                     string filePath = Path.Combine(paras.Dir, paras.FileName);

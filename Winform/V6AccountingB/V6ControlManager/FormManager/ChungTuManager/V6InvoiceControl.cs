@@ -6285,10 +6285,50 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             }
         }
 
-        public virtual bool XuLyThemDetail(IDictionary<string, object> toDataDictionary)
+        public virtual bool XuLyThemDetail(IDictionary<string, object> data)
         {
             throw new NotImplementedException();
         }
+
+        public virtual bool XuLyThemDetail2(IDictionary<string, object> data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChonExcelVAT()
+        {
+            try
+            {
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+
+                if (NotAddEdit) return;
+                string pmessage = "";
+                string file = V6ControlFormHelper.ChooseExcelFile(this);
+                if (string.IsNullOrEmpty(file)) return;
+                var data = Excel_File.Sheet1ToDataTable(file);
+                if (!shift)
+                {
+                    pmessage += V6Text.Delete + " " + AD2.Rows.Count + ". ";
+                    AD2.Rows.Clear();
+                }
+                int count = 0;
+                foreach (DataRow row in data.Rows)
+                {
+                    var new_data = row.ToDataDictionary();
+                    bool add = XuLyThemDetail2(new_data);
+                    if (!add) break;
+                    count++;
+                }
+
+                pmessage += V6Text.Add + " " + count + ". ";
+                ShowParentMessage(pmessage);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChonExcelVAT " + _sttRec, ex);
+            }
+        }
+        
 
         protected void GET_AM_OLD_EXTRA()
         {

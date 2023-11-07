@@ -19,7 +19,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public AINGIA_TBDD(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
-            
+            InitializeComponent();
         }
 
         public override void SetStatus2Text()
@@ -37,7 +37,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (GenerateProcedureParameters())
             {
-                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.ObjectDictionary["Number4"]);
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)FilterControl.Number2,
+                    ObjectAndString.ObjectToInt(FilterControl.ObjectDictionary["Number4"]));
                 if (check == 1)
                 {
                     this.ShowWarningMessage(V6Text.CheckLock);

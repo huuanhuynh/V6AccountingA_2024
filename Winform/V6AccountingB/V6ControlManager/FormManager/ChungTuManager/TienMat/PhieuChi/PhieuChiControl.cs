@@ -5364,6 +5364,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
+        private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabThue;
+            ChonExcelVAT();
+        }
+
         private void XuLyThongDonViCoSo()
         {
             try
@@ -5584,7 +5590,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
-        public bool XuLyThemDetail2(IDictionary<string, object> data)
+        public override bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {

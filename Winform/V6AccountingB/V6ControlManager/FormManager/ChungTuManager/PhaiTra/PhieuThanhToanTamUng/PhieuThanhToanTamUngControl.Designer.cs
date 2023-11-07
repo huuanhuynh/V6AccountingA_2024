@@ -94,6 +94,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.btnChucNang2 = new V6Controls.Controls.DropDownButton();
+            this.menuChucNang2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xuLyKhac1Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyKhac2Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonPCMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chkAutoNext = new V6Controls.V6CheckBox();
             this.txtSoct_tt = new V6Controls.V6VvarTextBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
@@ -191,11 +196,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.Txtma_nk = new V6Controls.V6VvarTextBox();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.menuChucNang2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.xuLyKhac1Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.xuLyKhac2Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonPCMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnChucNang2 = new V6Controls.Controls.DropDownButton();
+            this.chonTuExcelVATMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -206,13 +207,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.panelVND.SuspendLayout();
             this.panelNT.SuspendLayout();
             this.group4.SuspendLayout();
+            this.menuChucNang2.SuspendLayout();
             this.menuChucNang.SuspendLayout();
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
             this.menuBtnTim.SuspendLayout();
-            this.menuChucNang2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -352,7 +353,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.STT_REC0.ReadOnly = true;
             this.STT_REC0.Visible = false;
             // 
-            // tabVAT
+            // tabThue
             // 
             this.tabThue.AccessibleDescription = "AAPCTAP2L00056";
             this.tabThue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
@@ -668,7 +669,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtSL_UD3.Name = "txtSL_UD3";
             this.txtSL_UD3.Size = new System.Drawing.Size(135, 20);
             this.txtSL_UD3.TabIndex = 144;
-            this.txtSL_UD3.Text = "0,000";
+            this.txtSL_UD3.Text = "0";
             this.txtSL_UD3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSL_UD3.Value = new decimal(new int[] {
             0,
@@ -693,7 +694,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtSL_UD2.Name = "txtSL_UD2";
             this.txtSL_UD2.Size = new System.Drawing.Size(135, 20);
             this.txtSL_UD2.TabIndex = 142;
-            this.txtSL_UD2.Text = "0,000";
+            this.txtSL_UD2.Text = "0";
             this.txtSL_UD2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSL_UD2.Value = new decimal(new int[] {
             0,
@@ -718,7 +719,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtSL_UD1.Name = "txtSL_UD1";
             this.txtSL_UD1.Size = new System.Drawing.Size(135, 20);
             this.txtSL_UD1.TabIndex = 140;
-            this.txtSL_UD1.Text = "0,000";
+            this.txtSL_UD1.Text = "0";
             this.txtSL_UD1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSL_UD1.Value = new decimal(new int[] {
             0,
@@ -1013,7 +1014,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongTien.Size = new System.Drawing.Size(136, 20);
             this.txtTongTien.TabIndex = 1;
             this.txtTongTien.Tag = "readonly";
-            this.txtTongTien.Text = "0,000";
+            this.txtTongTien.Text = "0";
             this.txtTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongTien.Value = new decimal(new int[] {
             0,
@@ -1039,7 +1040,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongThue.Size = new System.Drawing.Size(136, 20);
             this.txtTongThue.TabIndex = 7;
             this.txtTongThue.Tag = "readonly";
-            this.txtTongThue.Text = "0,000";
+            this.txtTongThue.Text = "0";
             this.txtTongThue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongThue.Value = new decimal(new int[] {
             0,
@@ -1054,7 +1055,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongThanhToan.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongThanhToan.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongThanhToan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongThanhToan.DecimalPlaces = 0;
             this.txtTongThanhToan.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongThanhToan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongThanhToan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1096,7 +1096,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongTienNt.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongTienNt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongTienNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongTienNt.DecimalPlaces = 0;
             this.txtTongTienNt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongTienNt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongTienNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1143,7 +1142,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongThueNt.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongThueNt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongThueNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongThueNt.DecimalPlaces = 0;
             this.txtTongThueNt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongThueNt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongThueNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1171,7 +1169,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTongThanhToanNt.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongThanhToanNt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongThanhToanNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongThanhToanNt.DecimalPlaces = 0;
             this.txtTongThanhToanNt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongThanhToanNt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongThanhToanNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1225,6 +1222,53 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.group4.Size = new System.Drawing.Size(474, 108);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // btnChucNang2
+            // 
+            this.btnChucNang2.AccessibleDescription = "ASOCTSOAB00033";
+            this.btnChucNang2.Location = new System.Drawing.Point(206, 30);
+            this.btnChucNang2.Menu = this.menuChucNang2;
+            this.btnChucNang2.Name = "btnChucNang2";
+            this.btnChucNang2.Size = new System.Drawing.Size(90, 23);
+            this.btnChucNang2.TabIndex = 53;
+            this.btnChucNang2.Tag = "cancelall";
+            this.btnChucNang2.Text = "Chức năng 2";
+            this.btnChucNang2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChucNang2.UseVisualStyleBackColor = true;
+            // 
+            // menuChucNang2
+            // 
+            this.menuChucNang2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xuLyKhac1Menu,
+            this.xuLyKhac2Menu,
+            this.chonPCMenu,
+            this.chonTuExcelVATMenu});
+            this.menuChucNang2.Name = "menuChucNang";
+            this.menuChucNang2.Size = new System.Drawing.Size(178, 114);
+            // 
+            // xuLyKhac1Menu
+            // 
+            this.xuLyKhac1Menu.AccessibleDescription = "AP2M00001";
+            this.xuLyKhac1Menu.Name = "xuLyKhac1Menu";
+            this.xuLyKhac1Menu.Size = new System.Drawing.Size(177, 22);
+            this.xuLyKhac1Menu.Text = "Xử lý khác 1";
+            this.xuLyKhac1Menu.Click += new System.EventHandler(this.xuLyKhac1Menu_Click);
+            // 
+            // xuLyKhac2Menu
+            // 
+            this.xuLyKhac2Menu.AccessibleDescription = "AP2M00002";
+            this.xuLyKhac2Menu.Name = "xuLyKhac2Menu";
+            this.xuLyKhac2Menu.Size = new System.Drawing.Size(177, 22);
+            this.xuLyKhac2Menu.Text = "Xử lý khác 2";
+            this.xuLyKhac2Menu.Click += new System.EventHandler(this.xuLyKhac2Menu_Click);
+            // 
+            // chonPCMenu
+            // 
+            this.chonPCMenu.AccessibleDescription = "AP2M00003";
+            this.chonPCMenu.Name = "chonPCMenu";
+            this.chonPCMenu.Size = new System.Drawing.Size(177, 22);
+            this.chonPCMenu.Text = "Chọn PC";
+            this.chonPCMenu.Click += new System.EventHandler(this.btnChonPC_Click);
             // 
             // chkAutoNext
             // 
@@ -1599,7 +1643,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.v6NumberTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6NumberTextBox1.DecimalPlaces = 0;
             this.v6NumberTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1652,7 +1695,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.txtTyGia.Name = "txtTyGia";
             this.txtTyGia.Size = new System.Drawing.Size(100, 20);
             this.txtTyGia.TabIndex = 8;
-            this.txtTyGia.Text = "0,000";
+            this.txtTyGia.Text = "0";
             this.txtTyGia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTyGia.Value = new decimal(new int[] {
             0,
@@ -2548,51 +2591,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.lblNameT.TabIndex = 29;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // menuChucNang2
+            // chonTuExcelVATMenu
             // 
-            this.menuChucNang2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xuLyKhac1Menu,
-            this.xuLyKhac2Menu,
-            this.chonPCMenu});
-            this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(138, 70);
-            // 
-            // xuLyKhac1Menu
-            // 
-            this.xuLyKhac1Menu.AccessibleDescription = "AP2M00001";
-            this.xuLyKhac1Menu.Name = "xuLyKhac1Menu";
-            this.xuLyKhac1Menu.Size = new System.Drawing.Size(137, 22);
-            this.xuLyKhac1Menu.Text = "Xử lý khác 1";
-            this.xuLyKhac1Menu.Click += new System.EventHandler(this.xuLyKhac1Menu_Click);
-            // 
-            // xuLyKhac2Menu
-            // 
-            this.xuLyKhac2Menu.AccessibleDescription = "AP2M00002";
-            this.xuLyKhac2Menu.Name = "xuLyKhac2Menu";
-            this.xuLyKhac2Menu.Size = new System.Drawing.Size(137, 22);
-            this.xuLyKhac2Menu.Text = "Xử lý khác 2";
-            this.xuLyKhac2Menu.Click += new System.EventHandler(this.xuLyKhac2Menu_Click);
-            // 
-            // chonPCMenu
-            // 
-            this.chonPCMenu.AccessibleDescription = "AP2M00003";
-            this.chonPCMenu.Name = "chonPCMenu";
-            this.chonPCMenu.Size = new System.Drawing.Size(137, 22);
-            this.chonPCMenu.Text = "Chọn PC";
-            this.chonPCMenu.Click += new System.EventHandler(this.btnChonPC_Click);
-            // 
-            // btnChucNang2
-            // 
-            this.btnChucNang2.AccessibleDescription = "ASOCTSOAB00033";
-            this.btnChucNang2.Location = new System.Drawing.Point(206, 30);
-            this.btnChucNang2.Menu = this.menuChucNang2;
-            this.btnChucNang2.Name = "btnChucNang2";
-            this.btnChucNang2.Size = new System.Drawing.Size(90, 23);
-            this.btnChucNang2.TabIndex = 53;
-            this.btnChucNang2.Tag = "cancelall";
-            this.btnChucNang2.Text = "Chức năng 2";
-            this.btnChucNang2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChucNang2.UseVisualStyleBackColor = true;
+            this.chonTuExcelVATMenu.Name = "chonTuExcelVATMenu";
+            this.chonTuExcelVATMenu.Size = new System.Drawing.Size(177, 22);
+            this.chonTuExcelVATMenu.Text = "Chọn từ Excel (VAT)";
+            this.chonTuExcelVATMenu.Click += new System.EventHandler(this.chonTuExcelVATMenu_Click);
             // 
             // PhieuThanhToanTamUngControl
             // 
@@ -2645,6 +2649,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.panelNT.PerformLayout();
             this.group4.ResumeLayout(false);
             this.group4.PerformLayout();
+            this.menuChucNang2.ResumeLayout(false);
             this.menuChucNang.ResumeLayout(false);
             this.group3.ResumeLayout(false);
             this.group3.PerformLayout();
@@ -2654,7 +2659,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.group1.PerformLayout();
             this.menuBtnIn.ResumeLayout(false);
             this.menuBtnTim.ResumeLayout(false);
-            this.menuChucNang2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2820,5 +2824,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         private System.Windows.Forms.ToolStripMenuItem xuLyKhac2Menu;
         private System.Windows.Forms.ToolStripMenuItem chonPCMenu;
         private DropDownButton btnChucNang2;
+        private System.Windows.Forms.ToolStripMenuItem chonTuExcelVATMenu;
     }
 }

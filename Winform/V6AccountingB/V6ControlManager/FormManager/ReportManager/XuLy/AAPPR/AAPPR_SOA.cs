@@ -190,7 +190,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 catch (Exception ex)
                 {
-                    
                     f9Error += ex.Message;
                     f9ErrorAll += ex.Message;
                 }

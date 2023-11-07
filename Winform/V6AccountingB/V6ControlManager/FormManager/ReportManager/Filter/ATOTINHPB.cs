@@ -6,7 +6,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class ATOTINHPB: FilterBase
+    public partial class ATOTINHPB : FilterBase
     {
         public ATOTINHPB()
         {

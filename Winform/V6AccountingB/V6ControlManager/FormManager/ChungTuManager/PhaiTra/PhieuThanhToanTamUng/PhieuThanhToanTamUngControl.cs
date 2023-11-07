@@ -2887,7 +2887,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             return true;
         }
 
-        public bool XuLyThemDetail2(IDictionary<string, object> data)
+        public override bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3899,6 +3899,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 this.ShowErrorException(GetType() + ".ValidateData_Master " + _sttRec, ex);
                 return false;
             }
+        }
+
+        private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabThue;
+            ChonExcelVAT();
         }
 
         private bool ValidateData_Detail(IDictionary<string, object> data)

@@ -3682,7 +3682,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             return true;
         }
 
-        public bool XuLyThemDetail2(IDictionary<string, object> data)
+        public override bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -5097,6 +5097,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private void txtMaKh_TextChanged(object sender, EventArgs e)
         {
             TxtMa_kh_i_ao.Text = txtMaKh.Text;
+        }
+
+        private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabThue;
+            ChonExcelVAT();
         }
 
         private void txtManx_TextChanged(object sender, EventArgs e)

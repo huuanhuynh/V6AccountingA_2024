@@ -6,7 +6,7 @@ using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AAPPR_SOA: FilterBase
+    public partial class AAPPR_SOA : FilterBase
     {
         public AAPPR_SOA()
         {

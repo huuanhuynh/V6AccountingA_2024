@@ -64,7 +64,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //8 @Advance VARCHAR(255) = ''
                 if (GenerateProcedureParameters())
                 {
-                    int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.ObjectDictionary["Number4"]);
+                    int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)FilterControl.Number2,
+                        ObjectAndString.ObjectToInt(FilterControl.ObjectDictionary["Number4"]));
                     if (check == 1)
                     {
                         this.ShowWarningMessage(V6Text.CheckLock);

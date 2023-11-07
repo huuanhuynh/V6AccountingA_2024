@@ -2695,8 +2695,8 @@ namespace V6AccountingBusiness
                         {
                             SqlParameter[] plist =
                             {
-                                new SqlParameter("@Ngay_ct1", i), 
-                                new SqlParameter("@Ngay_ct2", i), 
+                                new SqlParameter("@Ngay_ct1", i.ToString("yyyyMMdd")), 
+                                new SqlParameter("@Ngay_ct2", i.ToString("yyyyMMdd")), 
                                 new SqlParameter("@Gia_vt", Gia_vt), 
                                 new SqlParameter("@Ma_Kho", Ma_Kho), 
                                 new SqlParameter("@Ma_vt", Ma_vt), 
@@ -2906,8 +2906,8 @@ namespace V6AccountingBusiness
                         {
                             SqlParameter[] plist =
                             {
-                                new SqlParameter("@Ngay_ct1", i), 
-                                new SqlParameter("@Ngay_ct2", i), 
+                                new SqlParameter("@Ngay_ct1", i.ToString("yyyyMMdd")), 
+                                new SqlParameter("@Ngay_ct2", i.ToString("yyyyMMdd")), 
                                 new SqlParameter("@Gia_vt", Gia_vt), 
                                 new SqlParameter("@Ma_Kho", Ma_Kho), 
                                 new SqlParameter("@Ma_vt", Ma_vt), 

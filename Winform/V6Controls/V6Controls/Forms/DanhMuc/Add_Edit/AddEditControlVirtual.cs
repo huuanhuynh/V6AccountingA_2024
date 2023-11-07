@@ -965,26 +965,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public void ValidateData_IsAldm()
         {
             var errors = "";
-
-            // check notempty
-            //foreach (KeyValuePair<string, DefineInfo> item in DefineInfo_Data)
-            //{
-            //    if (item.Value.NotEmpty)
-            //    {
-            //        if (DataDic.ContainsKey(item.Key))
-            //        {
-            //            if ((DataDic[item.Key] ?? "").ToString().Trim() == "")
-            //            {
-            //                errors += string.Format(V6Text.CheckInfor + "{0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
-            //            }
-            //        }
-            //        else
-            //        {
-            //            errors += string.Format(V6Text.CheckDeclare + "{0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
-            //        }
-            //    }
-            //}
-
+            
             try // Dynamic invoke
             {
                 if (Event_Methods.ContainsKey(FormDynamicEvent.VALIDATEDATA))

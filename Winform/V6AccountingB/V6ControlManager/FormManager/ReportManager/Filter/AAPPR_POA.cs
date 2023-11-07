@@ -6,7 +6,7 @@ using V6SqlConnect;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AAPPR_POA: FilterBase
+    public partial class AAPPR_POA : FilterBase
     {
         public AAPPR_POA()
         {

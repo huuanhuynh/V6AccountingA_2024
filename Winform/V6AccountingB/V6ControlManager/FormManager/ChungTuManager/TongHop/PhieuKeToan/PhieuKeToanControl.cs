@@ -2822,7 +2822,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             return true;
         }
 
-        public bool XuLyThemDetail2(IDictionary<string, object> data)
+        public override bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3999,6 +3999,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         private void thayTheNhieuMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice, true);
+        }
+
+        private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabThue;
+            ChonExcelVAT();
         }
 
         private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)

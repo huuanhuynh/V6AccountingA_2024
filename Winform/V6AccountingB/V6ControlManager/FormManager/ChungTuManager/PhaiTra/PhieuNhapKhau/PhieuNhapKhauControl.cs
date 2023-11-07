@@ -5982,7 +5982,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             return true;
         }
 
-        public bool XuLyThemDetail2(IDictionary<string, object> data)
+        public override bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -7175,6 +7175,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        }
+
+        private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabThue;
+            ChonExcelVAT();
         }
 
         private void XoaPhanBoChiPhi()

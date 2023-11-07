@@ -6043,7 +6043,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             return true;
         }
 
-        public bool XuLyThemDetail2(IDictionary<string, object> data)
+        public override bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -7234,6 +7234,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private void btnIn_Click(object sender, EventArgs e)
         {
             BasePrint(Invoice, _sttRec, V6PrintMode.DoNoThing, TongThanhToan, TongThanhToanNT, false);
+        }
+
+        private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabThue;
+            ChonExcelVAT();
         }
 
         private void txtTongThanhToanNt_TextChanged(object sender, EventArgs e)

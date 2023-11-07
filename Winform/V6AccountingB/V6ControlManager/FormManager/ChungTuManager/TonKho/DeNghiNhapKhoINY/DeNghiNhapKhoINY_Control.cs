@@ -4414,7 +4414,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             return true;
         }
 
-        public bool XuLyThemDetail2(IDictionary<string, object> data)
+        public override bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -5527,6 +5527,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             {
                 // ignored
             }
+        }
+
+        private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabThue;
+            ChonExcelVAT();
         }
 
         private void TxtT_cp_nt_ao_V6LostFocus(object sender)

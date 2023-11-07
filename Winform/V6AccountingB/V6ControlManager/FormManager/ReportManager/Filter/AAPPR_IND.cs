@@ -5,7 +5,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AAPPR_IND: FilterBase
+    public partial class AAPPR_IND : FilterBase
     {
         public AAPPR_IND()
         {

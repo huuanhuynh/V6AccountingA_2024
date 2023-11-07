@@ -4414,7 +4414,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             return true;
         }
 
-        public bool XuLyThemDetail2(IDictionary<string, object> data)
+        public override bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -5508,6 +5508,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             {
                 this.ShowErrorException(GetType() + ".XoaPhanBoChiPhi " + _sttRec, ex);
             }
+        }
+
+        private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabThue;
+            ChonExcelVAT();
         }
 
         List<string> gridView3Fields = new List<string>() { "MA_VT", "TEN_VT", "DVT1", "SO_LUONG1", "CP_NT", "CP", "TIEN_NT0", "TIEN0" };

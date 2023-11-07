@@ -8,7 +8,7 @@ using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AVBCNH70A: FilterBase
+    public partial class AVBCNH70A : FilterBase
     {
         public AVBCNH70A()
         {
