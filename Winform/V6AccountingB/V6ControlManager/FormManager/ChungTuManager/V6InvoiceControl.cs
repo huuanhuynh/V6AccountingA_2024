@@ -3700,10 +3700,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 IDictionary<string, object> form_data = GetData();
                 SqlParameter[] plist = {new SqlParameter("@status", Mode == V6Mode.Add ? "M" : "S"), 
 new SqlParameter("@kieu_post", form_data["KIEU_POST"]), 
-new SqlParameter("@SO_CT0", DETAIL2_DATA["SO_CT0"]),
-new SqlParameter("@SO_SERI0", DETAIL2_DATA["SO_SERI0"]),
-new SqlParameter("@MA_SO_THUE0", DETAIL2_DATA["MA_SO_THUE"]),
-new SqlParameter("@MA_KH0", DETAIL2_DATA["MA_KH"]), // KHACH_HANG_0
+new SqlParameter("@SO_CT0", ("" + DETAIL2_DATA["SO_CT0"]).Trim()),
+new SqlParameter("@SO_SERI0", ("" + DETAIL2_DATA["SO_SERI0"]).Trim()),
+new SqlParameter("@MA_SO_THUE0",("" +  DETAIL2_DATA["MA_SO_THUE"]).Trim()),
+new SqlParameter("@MA_KH0", ("" + DETAIL2_DATA["MA_KH"]).Trim()), // KHACH_HANG_0
 new SqlParameter("@NGAY_CT0", DETAIL2_DATA["NGAY_CT0"]),
 new SqlParameter("@MA_CT", _invoice.Mact),
 new SqlParameter("@STT_REC", _sttRec),
@@ -3718,8 +3718,8 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 V6Tag invTag2 = new V6Tag(result);
                 if (invTag2.Cancel)
                 {
-                    firstField = invTag.Field;
-                    error += invTag.DescriptionLang(V6Setting.IsVietnamese);
+                    firstField = invTag2.Field;
+                    error += invTag2.DescriptionLang(V6Setting.IsVietnamese);
                     return error;
                 }
 
@@ -6295,17 +6295,70 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             throw new NotImplementedException();
         }
 
+        public virtual bool ValidateData_Detail2(IDictionary<string, object> data)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool shift = false;
         public void ChonExcelVAT()
         {
             try
             {
-                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
 
                 if (NotAddEdit) return;
+                
+
+                List<string> dateColumns = new List<string>();
+                foreach (DataColumn column in AD.Columns)
+                {
+                    if (ObjectAndString.IsDateTimeType(column.DataType))
+                    {
+                        dateColumns.Add(column.ColumnName);
+                    }
+                }
+                var chonExcel = new LoadExcelDataForm() { MODE = "VAT" };
+                chonExcel.CheckDateFields = dateColumns;
+                chonExcel.Program = Form_program;
+                chonExcel.All_Objects = All_Objects;
+                chonExcel.DynamicFixMethodName = "DynamicFixExcelVAT";
+                if (_invoice.AlctConfig.EXTRA_INFOR.ContainsKey("CHKXLS_VAT"))
+                {
+                    string checkfields = _invoice.AlctConfig.EXTRA_INFOR["CHKXLS_VAT"].Trim();
+                    if (checkfields.Length > 0) chonExcel.CheckFields = _invoice.AlctConfig.EXTRA_INFOR["CHKXLS_VAT"];
+                }
+                else
+                {
+                    ShowParentMessage("no ExtraInfo CHKXLS_VAT");
+                }
+                //chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.MA_CT = _invoice.Mact;
+                chonExcel.LoadDataComplete += ChonExcel_LoadDataComplete;
+                chonExcel.AcceptData += chonExcelVAT_AcceptData;
+                chonExcel.ShowDialog(this);
+
+                
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChonExcelVAT " + _sttRec, ex);
+            }
+        }
+
+        private void ChonExcel_LoadDataComplete(object sender)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public virtual void chonExcelVAT_AcceptData(DataTable data)
+        {
+            try
+            {
+                //string file = V6ControlFormHelper.ChooseExcelFile(this);
+                //if (string.IsNullOrEmpty(file)) return;
+                //var data = Excel_File.Sheet1ToDataTable(file);
                 string pmessage = "";
-                string file = V6ControlFormHelper.ChooseExcelFile(this);
-                if (string.IsNullOrEmpty(file)) return;
-                var data = Excel_File.Sheet1ToDataTable(file);
                 if (!shift)
                 {
                     pmessage += V6Text.Delete + " " + AD2.Rows.Count + ". ";
@@ -6315,9 +6368,16 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 foreach (DataRow row in data.Rows)
                 {
                     var new_data = row.ToDataDictionary();
-                    bool add = XuLyThemDetail2(new_data);
-                    if (!add) break;
-                    count++;
+                    if (ValidateData_Detail2(new_data))
+                    {
+                        bool add = XuLyThemDetail2(new_data);
+                        if (!add) break;
+                        count++;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
 
                 pmessage += V6Text.Add + " " + count + ". ";
@@ -6325,10 +6385,10 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ChonExcelVAT " + _sttRec, ex);
+                this.ShowErrorException(GetType() + ".chonExcelVAT_AcceptData " + _sttRec, ex);
             }
         }
-        
+
 
         protected void GET_AM_OLD_EXTRA()
         {

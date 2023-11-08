@@ -5732,7 +5732,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             return true;
         }
 
-        private bool ValidateData_Detail2(IDictionary<string, object>  data)
+        public override bool ValidateData_Detail2(IDictionary<string, object>  data)
         {
             try
             {

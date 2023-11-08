@@ -4685,7 +4685,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             return true;
         }
 
-        private bool ValidateData_Detail2(IDictionary<string, object> data)
+        public override bool ValidateData_Detail2(IDictionary<string, object> data)
         {
             try
             {

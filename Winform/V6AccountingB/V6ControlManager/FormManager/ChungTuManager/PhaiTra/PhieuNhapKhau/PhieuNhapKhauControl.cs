@@ -7548,7 +7548,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
             return true;
         }
-        private bool ValidateData_Detail2(IDictionary<string, object>  data)
+        public override bool ValidateData_Detail2(IDictionary<string, object>  data)
         {
             try
             {
