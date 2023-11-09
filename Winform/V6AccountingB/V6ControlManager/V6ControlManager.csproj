@@ -6470,6 +6470,9 @@
       <DependentUpon>InChungTuViewBase_Many.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\LocKetQuaBase.resx">
+      <DependentUpon>LocKetQuaBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl_A1.resx">
       <DependentUpon>DonDatHangBanControl_A1.cs</DependentUpon>
     </EmbeddedResource>

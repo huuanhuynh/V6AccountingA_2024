@@ -5930,7 +5930,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 chonExcel.Program = Form_program;
                 chonExcel.All_Objects = All_Objects;
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";
-                chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.CheckFields = "MA_VT,MA_KHO_I,SO_LUONG1,GIA_NT01,TIEN_NT0";
                 chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
                 chonExcel.AcceptData += chonExcel_AcceptData;

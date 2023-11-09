@@ -77,6 +77,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 this.ShowErrorException(GetType() + ".LocKetQuaBaseInit", ex);
             }
+            this.VisibleChanged += new System.EventHandler(this.LocKetQuaBase_VisibleChanged);
         }
 
         void _grid1_DataSourceChanged(object sender, EventArgs e)
@@ -183,6 +184,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public void SetAM(DataTable am)
         {
             if (_grid1 != null && am != null) _grid1.DataSource = am.Copy();
+        }
+        
+
+        private void LocKetQuaBase_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Visible) _grid1_DataSourceChanged(_grid1, e);
         }
 
         public void SetAD(DataTable ad)

@@ -6332,7 +6332,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 {
                     ShowParentMessage("no ExtraInfo CHKXLS_VAT");
                 }
-                //chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                
                 chonExcel.MA_CT = _invoice.Mact;
                 chonExcel.LoadDataComplete += ChonExcel_LoadDataComplete;
                 chonExcel.AcceptData += chonExcelVAT_AcceptData;

@@ -4214,7 +4214,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 chonExcel.Program = Form_program;
                 chonExcel.All_Objects = All_Objects;
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";
-                chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.CheckFields = "NH_DK,TK_I,MA_KH_I,PS_NO,PS_NO_NT,PS_CO,PS_CO_NT";
                 chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
                 chonExcel.AcceptData += chonExcel_AcceptData;
@@ -4235,15 +4235,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 List<DataGridViewRow> removeList = new List<DataGridViewRow>();
                 foreach (DataGridViewRow row in chonExcel.dataGridView1.Rows)
                 {
-                    string cMaVt = ("" + row.Cells["MA_VT"].Value).Trim();
-                    string cMaKhoI = ("" + row.Cells["MA_KHO_I"].Value).Trim();
+                    string cMaVt = ("" + row.Cells["TK_I"].Value).Trim();
+                    string cMaKhoI = ("" + row.Cells["MA_KH_I"].Value).Trim();
                     if (cMaVt == string.Empty && cMaKhoI == string.Empty)
                     {
                         removeList.Add(row);
                         continue;
                     }
-                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
-                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALTK", "TK", cMaVt);
+                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKH", "MA_KH", cMaKhoI);
                     if (!exist || !exist2)
                     {
                         row.DefaultCellStyle.BackColor = Color.Red;
