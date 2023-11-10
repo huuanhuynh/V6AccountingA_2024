@@ -344,7 +344,6 @@
             this.rTiengViet.Name = "rTiengViet";
             this.rTiengViet.Size = new System.Drawing.Size(80, 17);
             this.rTiengViet.TabIndex = 0;
-            this.rTiengViet.TabStop = true;
             this.rTiengViet.Text = "Vietnamese";
             this.rTiengViet.UseVisualStyleBackColor = true;
             this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);

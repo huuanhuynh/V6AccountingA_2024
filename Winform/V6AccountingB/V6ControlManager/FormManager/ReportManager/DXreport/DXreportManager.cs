@@ -17,6 +17,7 @@ using V6Init;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using DevExpress.XtraPrinting.BarCode;
 
 namespace V6ControlManager.FormManager.ReportManager.DXreport
 {
@@ -711,5 +712,31 @@ namespace V6ControlManager.FormManager.ReportManager.DXreport
             }
             return result;
         }
+
+
+        public static XRBarCode CreateQRCode(string BarCodeText)
+        {
+            // Create a bar code control.
+            XRBarCode barCode = new XRBarCode();
+
+            // Set the bar code's type to QRCode.
+            barCode.Symbology = new QRCodeGenerator();
+            barCode.Text = BarCodeText;
+
+            barCode.ShowText = false;
+            barCode.Width = 470;
+            barCode.Height = 470;
+            barCode.Module = 4.07F;
+
+            // Adjust the properties specific to the bar code type.
+            ((QRCodeGenerator)barCode.Symbology).CompactionMode = QRCodeCompactionMode.Byte;
+            ((QRCodeGenerator)barCode.Symbology).ErrorCorrectionLevel = QRCodeErrorCorrectionLevel.M;
+            ((QRCodeGenerator)barCode.Symbology).Version = QRCodeVersion.Version24;
+            //((QRCodeGenerator)barCode.Symbology).Logo = ImageSource.FromFile(@"..\..\CH-Kreuz_7mm.svg");
+
+            return barCode;
+        }
+
+
     }
 }

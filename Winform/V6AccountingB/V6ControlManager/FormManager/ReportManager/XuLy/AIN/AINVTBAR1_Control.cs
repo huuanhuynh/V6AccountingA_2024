@@ -250,8 +250,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 dataGridView1.EndEdit();
 
                 var data = GenData();
-                PrintBarcodeForm pForm = new PrintBarcodeForm(data);
-                
+                //PrintBarcodeForm pForm = new PrintBarcodeForm(data);
+                PrintQRcodeForm pForm = new PrintQRcodeForm(data);
+
                 pForm.ShowDialog(this);
             }
             catch (Exception ex)

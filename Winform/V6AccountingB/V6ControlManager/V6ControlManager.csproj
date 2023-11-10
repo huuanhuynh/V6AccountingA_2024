@@ -2124,6 +2124,12 @@
     <Compile Include="FormManager\HeThong\QuanLyHeThong\OnlineManager.Designer.cs">
       <DependentUpon>OnlineManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\HeThong\V6BarcodePrint\PrintQRcodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\HeThong\V6BarcodePrint\PrintQRcodeForm.designer.cs">
+      <DependentUpon>PrintQRcodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\HeThong\V6BarcodePrint\PrintBarcodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6406,6 +6412,10 @@
       <Project>{1FC63292-A994-4371-98C0-72564B12296F}</Project>
       <Name>SevenZip</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QRCoder\QRCoder.csproj">
+      <Project>{01aa1611-207c-420a-87a7-2b17c707a3b3}</Project>
+      <Name>QRCoder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\V6AccountingBusiness\V6AccountingBusiness.csproj">
       <Project>{5128ff85-304f-4943-853e-f8e3535dfb55}</Project>
       <Name>V6AccountingBusiness</Name>
@@ -7421,6 +7431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\HeThong\QuanLyHeThong\OnlineManager.resx">
       <DependentUpon>OnlineManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\HeThong\V6BarcodePrint\PrintQRcodeForm.resx">
+      <DependentUpon>PrintQRcodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\HeThong\V6BarcodePrint\PrintBarcodeForm.resx">
       <DependentUpon>PrintBarcodeForm.cs</DependentUpon>
