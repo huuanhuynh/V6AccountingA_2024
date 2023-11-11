@@ -5105,6 +5105,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\AIN\ACOVVBAR2_Control.Designer.cs">
       <DependentUpon>ACOVVBAR2_Control.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTQRC1_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AIN\AINVTQRC1_Control.Designer.cs">
+      <DependentUpon>AINVTQRC1_Control.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -8931,6 +8937,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\ACOVVBAR2_Control.resx">
       <DependentUpon>ACOVVBAR2_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AIN\AINVTQRC1_Control.resx">
+      <DependentUpon>AINVTQRC1_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATOGIAMNG.resx">
       <DependentUpon>ATOGIAMNG.cs</DependentUpon>

@@ -14,14 +14,14 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class AINVTBAR1_Control : XuLyBase0
+    public partial class AINVTQRC1_Control : XuLyBase0
     {
-        public AINVTBAR1_Control()
+        public AINVTQRC1_Control()
         {
             InitializeComponent();
         }
 
-        public AINVTBAR1_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public AINVTQRC1_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
@@ -86,7 +86,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             };
         }
 
-        private void AINVTBAR1_Control_Load(object sender, EventArgs e)
+        private void AINVTQRC1_Control_Load(object sender, EventArgs e)
         {
             
         }
@@ -140,7 +140,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _message = "";
                 var plist = FilterControl.GetFilterParameters();
-                _ds = V6BusinessHelper.ExecuteProcedure("AINVTBAR1", plist.ToArray());
+                _ds = V6BusinessHelper.ExecuteProcedure("AINVTQRC1", plist.ToArray());
                 _executing = false;
                 _executesuccess = true;
             }
@@ -228,8 +228,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 int sl_in = ObjectAndString.ObjectToInt(row["SL_IN"]);
                 if (sl_in <= 0) continue;
 
-                string code = row["MA_VT"].ToString().Trim();
-                string name = row["TEN_VT"].ToString().Trim();
+                string code = row["QR_CODE"].ToString().Trim();
+                string name = row["TEN_LO"].ToString().Trim();
                 decimal price = ObjectAndString.ObjectToDecimal(row["GIA_IN"]);
                 for (int i = 0; i < sl_in; i++)
                 {
@@ -250,8 +250,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 dataGridView1.EndEdit();
 
                 var data = GenData();
-                PrintBarcodeForm pForm = new PrintBarcodeForm(data);
-                //PrintQRcodeForm pForm = new PrintQRcodeForm(data);
+                //PrintBarcodeForm pForm = new PrintBarcodeForm(data);
+                PrintQRcodeForm pForm = new PrintQRcodeForm(data);
 
                 pForm.ShowDialog(this);
             }

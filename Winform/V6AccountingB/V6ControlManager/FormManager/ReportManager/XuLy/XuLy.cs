@@ -317,6 +317,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 case "AINVTBAR1":
                     return new AINVTBAR1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AINVTQRC1":
+                    return new AINVTQRC1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVTBAR2":
                     return new AINVTBAR2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ACOVVBAR2":

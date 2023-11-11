@@ -1535,6 +1535,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "AINVTBAR1":
                     result = new FilterDanhMuc("ALVT");
                     break;
+                case "AINVTQRC1":
+                    result = new FilterDanhMuc("ALLO");
+                    break;
                 case "AINVTBAR2":
                     result = new FilterDanhMuc("ALLO");
                     break;
