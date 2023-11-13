@@ -8785,7 +8785,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Gán code động sự kiện cho tất cả control trên form theo Aname.
         /// </summary>
-        /// <param name="thisForm"></param>
+        /// <param name="thisForm">Form chứa các control có thể được gán sự kiện.</param>
         /// <param name="ma_ct">Mã cộng vào AccessibleDescription để làm mã ngôn ngữ.</param>
         /// <param name="eventProgram"></param>
         /// <param name="allObjects"></param>
@@ -8793,51 +8793,69 @@ namespace V6Controls.Forms
         {
             try
             {
-                //return;
                 var all_control = GetAllControls(thisForm);
+                ApplyDynamicFormControlEvents(all_control, ma_ct, methods, allObjects);
+            }
+            catch (Exception ex)
+            {
+                thisForm.WriteExLog(thisForm.GetType() + ".ApplyFormControlEvents", ex);
+            }
+        }
+
+        /// <summary>
+        /// Gán code động sự kiện cho tất cả control trên form theo Aname.
+        /// </summary>
+        /// <param name="all_control">danh sách control có thể được gán sự kiện.</param>
+        /// <param name="ma_ct">Mã cộng vào AccessibleDescription để làm mã ngôn ngữ.</param>
+        /// <param name="eventProgram"></param>
+        /// <param name="allObjects"></param>
+        public static void ApplyDynamicFormControlEvents(List<Control> all_control, string ma_ct, Dictionary<string, MethodInfo> methods, Dictionary<string, object> allObjects)
+        {
+            try
+            {
                 string error = "";
 
                 foreach (Control control in all_control)
                 {
                     if (ma_ct != null)
-                    try // Modify AccessibleDescription with ma_ct.
-                    {
-                        if (control.ContextMenuStrip != null)
+                        try // Modify AccessibleDescription with ma_ct.
                         {
-                            foreach (ToolStripMenuItem menu_item in control.ContextMenuStrip.Items)
+                            if (control.ContextMenuStrip != null)
                             {
-                                if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                                foreach (ToolStripMenuItem menu_item in control.ContextMenuStrip.Items)
                                 {
-                                    menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
+                                    if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                                    {
+                                        menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
+                                    }
                                 }
                             }
+
+                            //if (control is DropDownButton)
+                            //{
+                            //    var button = control as DropDownButton;
+                            //    if (button.Menu != null)
+                            //    {
+                            //        foreach (ToolStripMenuItem menu_item in button.Menu.Items)
+                            //        {
+                            //            if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                            //            {
+                            //                menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
+                            //            }
+                            //        }
+                            //    }
+                            //}
+
+                            if (!string.IsNullOrEmpty(control.AccessibleDescription) && !control.AccessibleDescription.Contains(",") && !control.AccessibleDescription.Contains("."))
+                            {
+                                control.AccessibleDescription = ma_ct + control.AccessibleDescription;
+                            }
+
                         }
-
-                        //if (control is DropDownButton)
-                        //{
-                        //    var button = control as DropDownButton;
-                        //    if (button.Menu != null)
-                        //    {
-                        //        foreach (ToolStripMenuItem menu_item in button.Menu.Items)
-                        //        {
-                        //            if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
-                        //            {
-                        //                menu_item.AccessibleDescription = ma_ct + menu_item.AccessibleDescription;
-                        //            }
-                        //        }
-                        //    }
-                        //}
-
-                        if (!string.IsNullOrEmpty(control.AccessibleDescription) && !control.AccessibleDescription.Contains(",") && !control.AccessibleDescription.Contains("."))
+                        catch (Exception ex)
                         {
-                            control.AccessibleDescription = ma_ct + control.AccessibleDescription;
+
                         }
-
-                    }
-                    catch(Exception ex)
-                    {
-
-                    }
 
                     try
                     {
@@ -8851,12 +8869,12 @@ namespace V6Controls.Forms
 
                 if (error.Length > 0)
                 {
-                    thisForm.WriteToLog(thisForm.GetType() + ".ApplyFormControlEvents", error);
+                    Logger.WriteToLog("V6ControlFormHelper.ApplyDynamicFormControlEvents error: " + error);
                 }
             }
             catch (Exception ex)
             {
-                thisForm.WriteExLog(thisForm.GetType() + ".ApplyFormControlEvents", ex);
+                Logger.WriteToLog("V6ControlFormHelper.SetFormDataDicRecusive ex: " + ex.Message);
             }
         }
 

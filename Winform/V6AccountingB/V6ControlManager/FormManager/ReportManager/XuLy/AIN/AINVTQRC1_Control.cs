@@ -219,6 +219,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private DataTable GenData()
         {
             var data = new DataTable();
+            data.Columns.Add("QR", typeof(string));
             data.Columns.Add("Code", typeof(string));
             data.Columns.Add("Name", typeof(string));
             data.Columns.Add("Price", typeof(decimal));
@@ -228,15 +229,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 int sl_in = ObjectAndString.ObjectToInt(row["SL_IN"]);
                 if (sl_in <= 0) continue;
 
-                string code = row["QR_CODE"].ToString().Trim();
+                string qr = row["QR_CODE"].ToString().Trim();
+                string code = row["MA_LO"].ToString().Trim();
                 string name = row["TEN_LO"].ToString().Trim();
                 decimal price = ObjectAndString.ObjectToDecimal(row["GIA_IN"]);
                 for (int i = 0; i < sl_in; i++)
                 {
                     var newRow = data.NewRow();
-                    newRow[0] = code;
-                    newRow[1] = name;
-                    newRow[2] = price;
+                    newRow[0] = qr;
+                    newRow[1] = code;
+                    newRow[2] = name;
+                    newRow[3] = price;
                     data.Rows.Add(newRow);
                 }
             }
@@ -251,7 +254,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 var data = GenData();
                 //PrintBarcodeForm pForm = new PrintBarcodeForm(data);
-                PrintQRcodeForm pForm = new PrintQRcodeForm(data);
+                PrintQRcodeForm pForm = new PrintQRcodeForm(data, _albcConfig);
 
                 pForm.ShowDialog(this);
             }

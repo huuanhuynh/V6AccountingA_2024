@@ -14,6 +14,8 @@ using V6Tools.V6Convert;
 using QRCoder;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
+using System.Reflection;
+using V6AccountingBusiness;
 
 namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 {
@@ -22,20 +24,31 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 	/// </summary>
 	partial class PrintQRcodeForm : V6Form
 	{
+        QRcodePrintSetting _qrSetting;
 		public DataTable Data { get; set; }
+        public AlbcConfig _albcConfig;
+        public string DBFpath = "";
+        //public DataTable data;
+        //public Setting setting;
 
-		public PrintQRcodeForm( )
+        public PrintQRcodeForm( )
 		{
 			InitializeComponent( );
             MyInit();
-			cboScale.SelectedIndex = 2;
 		}
 
         public PrintQRcodeForm(DataTable data)
         {
             InitializeComponent();
-            cboScale.SelectedIndex = 2;
             Data = data;
+            MyInit();
+        }
+
+        public PrintQRcodeForm(DataTable data, AlbcConfig _albcConfig)
+        {
+            InitializeComponent();
+            Data = data;
+            this._albcConfig = _albcConfig;
             MyInit();
         }
 
@@ -43,53 +56,22 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         {
             try
             {
-                cboECC.SelectedIndex = qrECCLever;
+                _qrSetting = new QRcodePrintSetting();
+                if (_albcConfig.EXTRA_INFOR == null || _albcConfig.EXTRA_INFOR.Count == 0)
+                {
+                    GenDefaultSetting();
+                }
+                else
+                {
+                    LoadSetting();
+                }
+                
 
-                radV.Checked = V6Setting.IsVietnamese;
-
-                setting = new Setting(Path.GetFullPath("V6BarcodeSetting.ini"));
-                pageWidth = Convert.ToSingle(setting.GetSetting("PageWidth"));
-                pageHeight = Convert.ToSingle(setting.GetSetting("PageHeight"));
-
-                marginleft = Convert.ToSingle(setting.GetSetting("MarginLeft"));
-                marginright = Convert.ToSingle(setting.GetSetting("MarginRight"));
-                margintop = Convert.ToSingle(setting.GetSetting("MarginTop"));
-                marginbottom = Convert.ToSingle(setting.GetSetting("MarginBottom"));
-
-                distanceH = Convert.ToInt32(setting.GetSetting("DistanceH"));
-                distanceV = Convert.ToInt32(setting.GetSetting("DistanceV"));
+                cboECC.SelectedIndex = 0;
+                propertyGrid1.SelectedObject = _qrSetting;
                 NumberFormatInfo DecimalSeparatorFormat = new NumberFormatInfo { NumberDecimalSeparator = "." };
-                //scale = float.Parse(setting.GetSetting("Scale"), DecimalSeparatorFormat);
-                var numStampWidthValue = ObjectAndString.ObjectToDecimal(setting.GetSetting("StampWidth"));
-                if (numStampWidthValue > 0) numStampWidth.Value = numStampWidthValue;
-                var numStampHeightValue = ObjectAndString.ObjectToDecimal(setting.GetSetting("StampHeight"));
-                if (numStampHeightValue > 0) numStampHeight.Value = numStampHeightValue;
-                float.TryParse(setting.GetSetting("Scale"),
-                    NumberStyles.Float, DecimalSeparatorFormat, out scale);
-                var barcodetypeString = setting.GetSetting("BarcodeType");
-                
-                
 
-                float.TryParse(setting.GetSetting("CodeTextFontSize"),
-                    NumberStyles.Float, DecimalSeparatorFormat, out codetextfontsize);
-                float.TryParse(setting.GetSetting("NameTextFontSize"),
-                    NumberStyles.Float, DecimalSeparatorFormat, out nametextfontsize);
-                float.TryParse(setting.GetSetting("PriceTextFontSize"),
-                    NumberStyles.Float, DecimalSeparatorFormat, out pricetextfontsize);
-
-                nametextfontbold = "1" == setting.GetSetting("NameTextFontBold");
-                codetextfontbold = "1" == setting.GetSetting("CodeTextFontBold");
-                pricetextfontbold = "1" == setting.GetSetting("PriceTextFontBold");
-                nametextcandrop = "1" == setting.GetSetting("NameTextCanDrop");
-
-                ThousandGroup = setting.GetSetting("ThousandGroup");
-                DecimalGroup = setting.GetSetting("DecimalGroup");
-
-                CurrencyType = setting.GetSetting("CurrencyType");
-                AnotherCurrencySymbol = setting.GetSetting("AnotherCurrencySymbol");
-                LAN = setting.GetSetting("LAN");
-
-                if (setting.GetSetting("ForcePrint") == "1")
+                if (_qrSetting.ForcePrint)
                 {
                     Print();
                 }
@@ -106,46 +88,128 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             }
         }
 
-	    
+        private void LoadSetting()
+        {
+            try
+            {
+                _qrSetting.PageWidth = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("PageWidth"));
+                _qrSetting.PageHeight = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("PageHeight"));
+                _qrSetting.MarginLeft = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("MarginLeft"));
+                _qrSetting.MarginRight = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("MarginRight"));
+                _qrSetting.MarginTop = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("MarginTop"));
+                _qrSetting.MarginBottom = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("MarginBottom"));
 
-	    public string DBFpath = "";
-        //public DataTable data;
-        public Setting setting;
-        public int barcodecount = 0;
+                _qrSetting.DistanceH = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("DistanceH"));
+                _qrSetting.DistanceV = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("DistanceV"));
 
-        public float pageWidth = 75, pageHeight = 20,
-            marginleft = 0, marginright = 0, margintop = 0, marginbottom = 0;
 
-        public float scale = 1f;
-        public int qrECCLever = 0;
-        public float codetextfontsize = 8.25f;
-        public float nametextfontsize = 8.25f;
-        public float pricetextfontsize = 8.25f;
-        public bool nametextfontbold = false;
-        public bool codetextfontbold = false;
-        public bool pricetextfontbold = false;
-        public bool nametextcandrop = false;
-        public int distanceH = 0, distanceV = 0;
 
-        //public bool useAnotherSymbol = false;
-        public string AnotherCurrencySymbol = "$";
-        public string CurrencyType = "1";
-        public string LAN = "V";
-        public string ThousandGroup = ",";
-        public string DecimalGroup = ".";
+                _qrSetting.StampWidth = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("StampWidth"));
+                _qrSetting.StampHeight = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("StampHeight"));
+                _qrSetting.Scale = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("Scale"));
 
-        //public string decimalSymbol = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+                _qrSetting.CodeTextFontSize = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("CodeTextFontSize"));
+                _qrSetting.NameTextFontSize = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("NameTextFontSize"));
+                _qrSetting.PriceTextFontSize = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("PriceTextFontSize"));
+                _qrSetting.NameTextFontBold = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("NameTextFontBold"));
+                _qrSetting.CodeTextFontBold = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("CodeTextFontBold"));
+                _qrSetting.PriceTextFontBold = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("PriceTextFontBold"));
+                _qrSetting.NameTextCanDrop = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("NameTextCanDrop"));
+                _qrSetting.ShowCode = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("ShowName"));
+                _qrSetting.ShowName = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("ShowName"));
+                _qrSetting.ShowPrice = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("ShowPrice"));
 
-	    private bool CheckData()
+                _qrSetting.ForcePrint = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("ForcePrint"));
+
+                _qrSetting.ThousandGroup = _albcConfig.GET_EXTRA_INFOR("ThousandGroup");
+                _qrSetting.DecimalGroup = _albcConfig.GET_EXTRA_INFOR("DecimalGroup");
+                _qrSetting.PriceDecimals = ObjectAndString.ObjectToInt(_albcConfig.GET_EXTRA_INFOR("PriceDecimals"));
+
+                _qrSetting.CurrencyType = _albcConfig.GET_EXTRA_INFOR("CurrencyType");
+                _qrSetting.AnotherCurrencySymbol = _albcConfig.GET_EXTRA_INFOR("AnotherCurrencySymbol");
+                _qrSetting.LAN = _albcConfig.GET_EXTRA_INFOR("LAN");
+                _qrSetting.UnitText = _albcConfig.GET_EXTRA_INFOR("UnitText");
+            }
+            catch (Exception ex)
+            {
+                V6Message.ShowErrorMessage("LoadSetting " + ex.Message, this);
+            }
+        }
+
+        private void GenDefaultSetting()
+        {
+            try
+            {
+                _qrSetting.PageWidth = 120;
+                _qrSetting.PageHeight = 80;
+                _qrSetting.MarginLeft = 5;
+                _qrSetting.MarginRight = 5;
+                _qrSetting.MarginTop = 5;
+                _qrSetting.MarginBottom = 5;
+
+                _qrSetting.DistanceH = 5;
+                _qrSetting.DistanceV = 5;
+
+                _qrSetting.StampWidth = 50;
+                _qrSetting.StampHeight = 50;
+                _qrSetting.Scale = 1;
+
+                _qrSetting.CodeTextFontSize = 8;
+                _qrSetting.NameTextFontSize = 8;
+                _qrSetting.PriceTextFontSize = 8;
+                _qrSetting.NameTextFontBold = true;
+                _qrSetting.CodeTextFontBold = true;
+                _qrSetting.PriceTextFontBold = true;
+                _qrSetting.NameTextCanDrop = true;
+                _qrSetting.ShowCode = false;
+
+                _qrSetting.ForcePrint = false;
+
+                _qrSetting.ThousandGroup = " ";
+                _qrSetting.DecimalGroup = ",";
+                _qrSetting.PriceDecimals = 2;
+
+                _qrSetting.CurrencyType = "1";
+                _qrSetting.AnotherCurrencySymbol = "$";
+                _qrSetting.LAN = "V";
+                _qrSetting.UnitText = "VND";
+
+                string EXTRA_INFOR = _qrSetting.ToStringDictionary();
+                _albcConfig.DATA["EXTRA_INFOR"] = EXTRA_INFOR;
+                _albcConfig.LoadExtraInfor();
+
+                //_albcConfig.UpdateSimple("EXTRA_INFOR", EXTRA_INFOR);
+                SaveSetting();
+                
+            }
+            catch (Exception ex)
+            {
+                V6Message.ShowErrorMessage("GenDefaultSetting " + ex.Message, this);
+            }
+        }
+
+        private void SaveSetting()
+        {
+            string EXTRA_INFOR = _qrSetting.ToStringDictionary();
+            _albcConfig.DATA["EXTRA_INFOR"] = EXTRA_INFOR;
+            _albcConfig.LoadExtraInfor();
+            var data = new Dictionary<string, object>();
+            data["EXTRA_INFOR"] = EXTRA_INFOR;
+            var key = new Dictionary<string, object>();
+            key["MA_FILE"] = _albcConfig.MA_FILE;
+            V6BusinessHelper.UpdateSimple("ALBC", data, key);
+        }
+
+        private bool CheckData()
         {
             string errors = "";
-            Dictionary<string, string> codeList = new Dictionary<string, string>();
+            Dictionary<string, string> qrList = new Dictionary<string, string>();
 	        foreach (DataRow row in Data.Rows)
 	        {
-	            var code = row[0].ToString().Trim();
-	            var name = row[1].ToString().Trim();
-                if(codeList.ContainsKey(code)) continue;
-                codeList.Add(code, name);
+	            var qr = row[0].ToString().Trim();
+	            var code = row[1].ToString().Trim();
+                if(qrList.ContainsKey(qr)) continue;
+                qrList.Add(qr, code);
                
 	        }
             if (errors.Length > 0)
@@ -157,15 +221,16 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 	    }
 
 
+        int barcodecount = 0;
         public void Print()
         {
             //SetBarcodeGeneralValues(_barcodeLib);
             barcodecount = 0;
             PrintDocument document = new PrintDocument();
-            document.DocumentName = "V6Barcode";
+            document.DocumentName = "V6QRcode";
             PaperSize psize = new PaperSize("V6",
-                    (int)(pageWidth / 25.4f * 100),
-                    (int)(pageHeight / 25.4f * 100));
+                    (int)(_qrSetting.PageWidth / 25.4 * 100),
+                    (int)(_qrSetting.PageHeight / 25.4 * 100));
 
             document.DefaultPageSettings.PaperSize = psize;
             
@@ -214,8 +279,8 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             document.DocumentName = "V6Barcode";
             document.DefaultPageSettings.PaperSize
                 = new PaperSize("V6",
-                    (int)(pageWidth / 25.4f * 100),
-                    (int)(pageHeight / 25.4f * 100));
+                    (int)(_qrSetting.PageWidth / 25.4 * 100),
+                    (int)(_qrSetting.PageHeight / 25.4 * 100));
 
             PrintPreviewDialog printview = new PrintPreviewDialog();
             printview.Width = 800;
@@ -234,13 +299,13 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         private int TongSoTrang(PaperSize psize)
         {
             int pagecount = 0;
-            float yPos = 0f; yPos = margintop;
+            float yPos = 0f; yPos = _qrSetting.MarginTop;
             float xPos = 0f;// xPos = e.PageSettings.Margins.Left;
-            float pageWidthmm = pageWidth;// e.PageBounds.Width * 25.4f / 100;
-            float pageHeightmm = pageHeight;// e.PageBounds.Height * 25.4f / 100;
+            float pageWidthmm = _qrSetting.PageWidth;// e.PageBounds.Width * 25.4f / 100;
+            float pageHeightmm = _qrSetting.PageHeight;// e.PageBounds.Height * 25.4f / 100;
 
-            int columnsPerPage = (int)((pageWidthmm - marginleft - marginright + distanceV)
-                / ((float)numStampWidth.Value * scale + distanceV));
+            int columnsPerPage = (int)((pageWidthmm - _qrSetting.MarginLeft - _qrSetting.MarginRight + _qrSetting.DistanceV)
+                / ((float)_qrSetting.StampWidth * _qrSetting.Scale + _qrSetting.DistanceV));
             if (columnsPerPage == 0)
             {
                 columnsPerPage = 1;
@@ -254,7 +319,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 //barcodecount++;
                 pagecount++;
                 lineInPageCount = 0;
-                yPos = margintop;
+                yPos = _qrSetting.MarginTop;
                 do
                 {
                     for (int i = 0; i < columnsPerPage; i++)
@@ -269,8 +334,8 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                         }
                     }
                     lineInPageCount++;
-                    yPos += (float)numStampHeight.Value * scale + distanceH;
-                } while (Math.Abs(yPos) < 0.001f || yPos < pageHeightmm - (float)numStampHeight.Value * scale);
+                    yPos += (float)_qrSetting.StampHeight * _qrSetting.Scale + _qrSetting.DistanceH;
+                } while (Math.Abs(yPos) < 0.001f || yPos < pageHeightmm - (float)_qrSetting.StampHeight * _qrSetting.Scale);
 
             }
 
@@ -284,13 +349,13 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         {
             //Code in trong 1 trang
             
-            float yPos = 0f; yPos = margintop;
+            float yPos = 0f; yPos = _qrSetting.MarginTop;
             float xPos = 0f;// xPos = e.PageSettings.Margins.Left;
             float pageWidthmm = e.PageBounds.Width * 25.4f / 100;
             float pageHeightmm = e.PageBounds.Height * 25.4f / 100;
 
-            int columnsPerPage = (int)((pageWidthmm - marginleft - marginright + distanceV)
-                / ((float)numStampWidth.Value * scale + distanceV));
+            int columnsPerPage = (int)((pageWidthmm - _qrSetting.MarginLeft - _qrSetting.MarginRight + _qrSetting.DistanceV)
+                / ((float)_qrSetting.StampWidth * _qrSetting.Scale + _qrSetting.DistanceV));
             if (columnsPerPage == 0)
             {
                 columnsPerPage = 1;
@@ -306,17 +371,18 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                     {
                         DataRow currentdata = Data.Rows[barcodecount];//Lấy thông tin tại barcodecount xong mới ++
                         barcodecount++;
-                        
-                        var barcodeProductCode = currentdata[0].ToString().Trim();//Raw_data
-                        var barcodeProductName = currentdata[1].ToString().Trim();
-                        var barcodeProductPrice = Convert.ToDecimal(currentdata[2]);
+
+                        var qr = currentdata[0].ToString().Trim();//QR value
+                        var barcodeProductCode = currentdata[1].ToString().Trim();
+                        var barcodeProductName = currentdata[2].ToString().Trim();
+                        var barcodeProductPrice = Convert.ToDecimal(currentdata[3]);
 
                         //Tính vị trí x
-                        xPos = marginleft +
-                            i * ((float)numStampWidth.Value * scale + distanceV);
+                        xPos = _qrSetting.MarginLeft +
+                            i * ((float)_qrSetting.StampWidth * _qrSetting.Scale + _qrSetting.DistanceV);
 
                         DrawBarcode(e.Graphics, new Point((int)xPos, (int)yPos),
-                            barcodeProductCode, barcodeProductCode, barcodeProductName, barcodeProductPrice, qrECCLever);
+                            qr, barcodeProductCode, barcodeProductName, barcodeProductPrice, _qrSetting.ECCLever);
                     }
                     else
                     {
@@ -324,9 +390,9 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                     }
                 }
                 lineInPageCount++;
-                yPos += (float)numStampHeight.Value * scale + distanceH;
+                yPos += (float)_qrSetting.StampHeight * _qrSetting.Scale + _qrSetting.DistanceH;
             }
-            while (Math.Abs(yPos) < 0.001f || yPos < pageHeightmm - (float)numStampHeight.Value * scale);
+            while (Math.Abs(yPos) < 0.001f || yPos < pageHeightmm - (float)_qrSetting.StampHeight * _qrSetting.Scale);
 
             if (barcodecount < Data.Rows.Count)
             {
@@ -352,10 +418,11 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             {
                 Graphics g = picBarcode.CreateGraphics();
 
-                g.FillRectangle(new SolidBrush(SystemColors.Control),
-                    new Rectangle(0, 0, picBarcode.Width, picBarcode.Height));
-                DrawBarcode(g, new Point(0, 0), "QRSTRING", "MA_SAN_PHAM", "TÊN SẢN PHẨM", 150000, qrECCLever);
-                g.Dispose();
+                g.FillRectangle(new SolidBrush(SystemColors.Control), new Rectangle(0, 0, picBarcode.Width, picBarcode.Height));
+
+                DrawBarcode(g, new Point(0, 0), txtQRcode.Text, txtProductCode.Text, txtProductName.Text,
+                    ObjectAndString.ObjectToDecimal(txtPrice.Text), _qrSetting.ECCLever);
+                //g.Dispose();
             }
             catch (Exception ex)
             {
@@ -364,7 +431,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         }
         
 
-        public Bitmap RenderQrCode(Bitmap icon)
+        public Bitmap RenderQrCode(string qr_code, Bitmap icon)
         {
             //Graphics g = picBarcode.CreateGraphics();
 
@@ -374,7 +441,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             string level = cboECC.SelectedItem.ToString(); // 0123 LMQH
             QRCodeGenerator.ECCLevel eccLevel = (QRCodeGenerator.ECCLevel)(level == "L" ? 0 : level == "M" ? 1 : level == "Q" ? 2 : 3);
             using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
-            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(txtProductCode.Text, eccLevel))
+            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qr_code, eccLevel))
             using (QRCode qrCode = new QRCode(qrCodeData))
             {
                 result = qrCode.GetGraphic(20, Color.Black, Color.White, icon, 15);
@@ -394,7 +461,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         /// </summary>
         /// <param name="g"></param>
         /// <param name="pt"></param>
-        /// <param name="value"></param>
+        /// <param name="value">Giá trị QR</param>
         /// <param name="productCode"></param>
         /// <param name="productName"></param>
         /// <param name="productPrice"></param>
@@ -402,15 +469,9 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         public void DrawBarcode(Graphics g, Point pt, string value,
             string productCode, string productName, decimal productPrice,
             int eccLevel)
-        {   
-            
-
-            float width = (float)numStampWidth.Value * (float)numericUpDownScale.Value;
-            float height = (float)numStampHeight.Value * (float)numericUpDownScale.Value;
-
-
-            //	EAN13 Barcode should be a total of 113 modules wide.
-            //float lineWidth = width / 113f;
+        {
+            float width = (float)_qrSetting.StampWidth * (float)_qrSetting.Scale;
+            float height = (float)_qrSetting.StampHeight * (float)_qrSetting.Scale;
 
             // Save the GraphicsState.
             GraphicsState gs = g.Save();
@@ -422,264 +483,89 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             g.PageScale = 1;
 
             SolidBrush brush = new SolidBrush(Color.Black);
-
-            float xPosition = 0;
-            float yPosition = 0;
-
             
-            
-            
-
-
             float xStart = pt.X;
             float yStart = pt.Y;
             float xEnd = xStart + width;
             float yEnd = yStart + height;
 
-            Font fontOfNameText = new Font("Arial", this.NameTextFontSize * (float)numericUpDownScale.Value,
-                this.NameTextFontBold ? FontStyle.Bold : FontStyle.Regular);
-            Font fontOfCodeText = new Font("Arial", this._fCodeTextFontSize * (float)numericUpDownScale.Value,
-                this.CodeTextFontBold ? FontStyle.Bold : FontStyle.Regular);
-            Font fontOfPriceText = new Font("Arial", this.PriceTextFontSize * (float)numericUpDownScale.Value,
-                this.PriceTextFontBold ? FontStyle.Bold : FontStyle.Regular);
+            Font name_font = new Font("Arial", _qrSetting.NameTextFontSize * _qrSetting.Scale,
+                _qrSetting.NameTextFontBold ? FontStyle.Bold : FontStyle.Regular);
+            Font code_font = new Font("Arial", _qrSetting.CodeTextFontSize * _qrSetting.Scale,
+                _qrSetting.CodeTextFontBold ? FontStyle.Bold : FontStyle.Regular);
+            Font price_font = new Font("Arial", _qrSetting.PriceTextFontSize * _qrSetting.Scale,
+                _qrSetting.PriceTextFontBold ? FontStyle.Bold : FontStyle.Regular);
 
             
 
-            SizeF textSize1 = g.MeasureString(this.ProductName, fontOfNameText);
-            float nameHeight = textSize1.Height;
-            if (NameTextCanDrop && textSize1.Width > width)
+            SizeF textSize1 = g.MeasureString(productCode, code_font);
+            float code_Height = textSize1.Height;
+            if (_qrSetting.CodeTextCanDrop && textSize1.Width > width)
             {
-                nameHeight *= 2;
+                code_Height *= 2;
             }
-            float fTextHeight = g.MeasureString(productCode, fontOfCodeText).Height;
-            //float fNameTextHeight = g.MeasureString(sTempUPC, fontOfNameText).Height;
-            float fPriceTextHeight = g.MeasureString(productCode, fontOfPriceText).Height;
+            if (!_qrSetting.ShowCode)
+            {
+                code_Height = 0;
+            }
+            SizeF textSize_name = g.MeasureString(productName, name_font);
+            float name_Height = textSize_name.Height;
+            if (_qrSetting.NameTextCanDrop && textSize_name.Width > width)
+            {
+                name_Height *= 2;
+            }
+            if (!_qrSetting.ShowName)
+            {
+                name_Height = 0;
+            }
+            float price_Height = g.MeasureString(productCode, price_font).Height;
+            if (!_qrSetting.ShowPrice)
+            {
+                price_Height = 0;
+            }
 
-            // Vẽ tên sản phẩm ở dòng đầu tiên, canh giữa và không tràn ra 2 bên.
-            //float nameLeft = (width - g.MeasureString(ProductName, fontOfNameText).Width)/2;
-            //if (nameLeft < 0) nameLeft = 0;
-
-            float aWidth = g.MeasureString("A", fontOfCodeText).Width;
+            float aWidth = g.MeasureString("A", code_font).Width;
             StringFormat stringFormat = new StringFormat();
             stringFormat.Alignment = StringAlignment.Center;
-            //g.DrawString(ProductName, fontOfNameText, brush, new PointF(xStart + nameLeft, pt.Y));
-            g.DrawString(ProductName, fontOfNameText, brush, new RectangleF(xStart, yStart, width, nameHeight), stringFormat);
 
-            yStart += nameHeight;
-
+            yStart += code_Height;
             // Vẽ QR vào vùng vẽ.
-            Bitmap QR = RenderQrCode(null);
+            Bitmap QR = RenderQrCode(value, null);
             // Tính toán kích thước QR
             float QR_width = width;
-            float QR_height = height - nameHeight - fPriceTextHeight;
+            float QR_height = height - code_Height - name_Height - price_Height;
             g.DrawImage(QR, xStart, yStart, QR_width, QR_height);
-
-            
-
+            // Vẽ mã sản phẩm trên cùng
+            yStart -= code_Height;
+            if (code_Height > 0) g.DrawString(productCode, code_font, brush, new RectangleF(xStart, yStart, width, code_Height), stringFormat);
+            // Vẽ tên sản phẩm bên dưới.
+            yStart += code_Height + QR_height;
+            if (name_Height > 0) g.DrawString(productName, name_font, brush, new RectangleF(xStart, yStart, width, name_Height), stringFormat);
             //Vẽ phần giá bên dưới
-            //if(Program.VND)
-            g.DrawString(
-                PriceText
-                + " " + productPrice.ToString(NumberFormatString, numberformatinfo) + " "
-                + UnitText,
-                fontOfPriceText, brush,
-                new PointF(xStart + aWidth, pt.Y + height - fPriceTextHeight));
-
-            //yStart += g.MeasureString(PriceText, fontOfPriceText).Height;
-
+            if (price_Height > 0) g.DrawString(_qrSetting.PriceText + " " +
+                ObjectAndString.NumberToString(productPrice, _qrSetting.PriceDecimals, _qrSetting.DecimalGroup, _qrSetting.ThousandGroup, true)
+                + " " + _qrSetting.UnitText,
+                price_font, brush,
+                new RectangleF(xStart + aWidth, pt.Y + height - price_Height, width, price_Height), stringFormat);
+            
             // Restore the GraphicsState.
             g.Restore(gs);
         }
 
-
-        private float _fCodeTextFontSize = 8.0f;
-        /// <summary>
-        /// Cỡ chữ cho phần tên sản phẩm.
-        /// </summary>
-        public float NameTextFontSize = 8f;
-        /// <summary>
-        /// Cỡ chữ cho phần chữ in giá.
-        /// </summary>
-        public float PriceTextFontSize = 8f;
-        /// <summary>
-        /// Có in đậm phần tên hay không?
-        /// </summary>
-        public bool NameTextFontBold = false;
-        /// <summary>
-        /// Có in đậm phần mã hay không?
-        /// </summary>
-        [DefaultValue(false)]
-        public bool CodeTextFontBold { get; set; }
-        [DefaultValue(false)]
-        public bool PriceTextFontBold { get; set; }
-        [DefaultValue(false)]
-        public bool NameTextCanDrop { get; set; }
-
-        public string PriceText = "Giá:", UnitText = "VND";
-        public string NumberFormatString = "0,0.";
         public NumberFormatInfo numberformatinfo
             = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
-
+        
 
         private void frmEan13_Load(object sender, EventArgs e)
-        {
-            
-
-            numericUpDownNgang.Value = (decimal)pageWidth;
-            numericUpDownDoc.Value = (decimal)pageHeight;
-            numericUpDownScale.Value = (decimal) scale * 100;
-
-            numericUpDownCodeTextFontSize.Value = (decimal)codetextfontsize;
-            numericUpDownNameTextFontSize.Value = (decimal)nametextfontsize;
-            numericUpDownPriceTextFontSize.Value = (decimal)pricetextfontsize;
-            chkNameTextBold.Checked = nametextfontbold;
-            chkCodeTextBold.Checked = codetextfontbold;
-            chkPriceTextBold.Checked = pricetextfontbold;
-            chkNameDrop.Checked = nametextcandrop;
-
-            numericUpDownMarginLeft.Value = (decimal)marginleft;
-            numericUpDownMarginRight.Value = (decimal)marginright;
-            numericUpDownMarginTop.Value = (decimal)margintop;
-            numericUpDownMarginBottom.Value = (decimal)marginbottom;
-
-            numericUpDownDistanceH.Value = distanceH;
-            numericUpDownDistanceV.Value = distanceV;
-
-            if (CurrencyType == "1") radVND.Checked = true;
-            else if (CurrencyType == "0") radUSD.Checked = true;
-            else radKhac.Checked = true;
-
-            if (LAN == "V") radV.Checked = true; else radE.Checked = true;
-
+        {   
             LoadLanguage();
-
-            DrawSampleQR();
+            btnDrawSample.PerformClick();
         }
-
-        void LoadLanguage0()
-        {
-            if (radV.Checked)
-            {
-                //Load Vietnamese
-                butDraw.Text = "Xem mẫu";
-                btnPrintView.Text = "Xem trước";
-                btnPrint.Text = "In barcode";
-
-                grbPaperSize.Text = "Kích thước trang in (mm)";
-                lblNgang.Text = "Ngang";
-                lblDoc.Text = "Dọc";
-                grbStampSize.Text = "Kích thước tem (mm)";
-                lblTemNgang.Text = "Ngang";
-                lblTemDoc.Text = "Dọc";
-                grbPageMargin.Text = "Canh lề trang in (mm)";
-                lblTrai.Text = "Trái";
-                lblPhai.Text = "Phải";
-                lblTren.Text = "Trên";
-                lblDuoi.Text = "Dưới";
-                
-                lblTen.Text = "Tên";
-                lblMa.Text = "Mã";
-                lblGia.Text = "Giá";
-
-                lblKhoangCachCotVaHang.Text = "Khoảng cách cột _ hàng";
-                
-                
-                lblTyLeCoGian.Text = "Tỷ lệ co giãn (%)";
-                grbFontSizeBold.Text = "Cỡ chữ  /  In đậm  /  Xuống dòng";
-                chkNameTextBold.Text = "";
-                grbDonViTien.Text = "Đơn vị tiền";
-                radKhac.Text = AnotherCurrencySymbol;
-                grbLang.Text = "Ngôn ngữ";
-
-            }
-            else
-            {
-                //Load English
-                butDraw.Text = "Show template";
-                btnPrintView.Text = "Preview";
-                btnPrint.Text = "Print";
-
-                grbPaperSize.Text = "Paper size (mm)";
-                lblNgang.Text = "Horizontal";
-                lblDoc.Text = "Vertical";
-                grbStampSize.Text = "Stamp size (mm)";
-                lblTemNgang.Text = "Horizontal";
-                lblTemDoc.Text = "Vertical";
-                grbPageMargin.Text = "Margin (mm)";
-                lblTrai.Text = "Left";
-                lblPhai.Text = "Right";
-                lblTren.Text = "Top";
-                lblDuoi.Text = "Bottom";
-
-                lblTen.Text = "Name";
-                lblMa.Text = "Code";
-                lblGia.Text = "Price";
-
-                lblKhoangCachCotVaHang.Text = "Columns _ rows distance";
-                
-
-                lblTyLeCoGian.Text = "Scale (%)";
-                grbFontSizeBold.Text = "Font size  /  Bold  /  Drop";
-                chkNameTextBold.Text = "";
-                grbDonViTien.Text = "Currency unit";
-                radKhac.Text = AnotherCurrencySymbol;
-                grbLang.Text = "Language";
-            }
-        }
+        
 
         void UpdateValues()
         {
-            qrECCLever = cboECC.SelectedIndex;
-            pageWidth = (int)numericUpDownNgang.Value;
-            pageHeight = (int)numericUpDownDoc.Value;
-            scale = (float)numericUpDownScale.Value / 100f;
-            codetextfontsize = (float)numericUpDownCodeTextFontSize.Value;
-            nametextfontsize = (float)numericUpDownNameTextFontSize.Value;
-            pricetextfontsize = (float)numericUpDownPriceTextFontSize.Value;
-            nametextfontbold = chkNameTextBold.Checked;
-            codetextfontbold = chkCodeTextBold.Checked;
-            pricetextfontbold = chkPriceTextBold.Checked;
-            nametextcandrop = chkNameDrop.Checked;
-
-            marginleft = (int)numericUpDownMarginLeft.Value;
-            marginright = (int)numericUpDownMarginRight.Value;
-            margintop = (int)numericUpDownMarginTop.Value;
-            marginbottom = (int)numericUpDownMarginBottom.Value;
-
-            distanceH = (int)numericUpDownDistanceH.Value;
-            distanceV = (int)numericUpDownDistanceV.Value;
-
-            CurrencyType = radVND.Checked?"1":(radUSD.Checked?"0":"2");
-            
-            LAN = radV.Checked ? "V" : "E";
-
-            
-            //setting.SetSetting("BarcodeType", cboBarcodeType.SelectedItem.ToString());
-            setting.SetSetting("PageWidth", pageWidth.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("PageHeight", pageHeight.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("StampWidth", numStampWidth.Value.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("StampHeight", numStampHeight.Value.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("Scale", scale.ToString(CultureInfo.InvariantCulture));//format(F) -000.00
-            setting.SetSetting("CodeTextFontSize", codetextfontsize.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("NameTextFontSize", nametextfontsize.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("PriceTextFontSize", pricetextfontsize.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("NameTextFontBold", nametextfontbold ? "1" : "0");
-            setting.SetSetting("CodeTextFontBold", codetextfontbold ? "1" : "0");
-            setting.SetSetting("PriceTextFontBold", pricetextfontbold ? "1" : "0");
-            setting.SetSetting("NameTextCanDrop", nametextcandrop ? "1" : "0");
-
-            setting.SetSetting("MarginLeft", marginleft.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("MarginRight", marginright.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("MarginTop", margintop.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("MarginBottom", marginbottom.ToString(CultureInfo.InvariantCulture));
-            setting.SetSetting("DistanceH", distanceH.ToString());
-            setting.SetSetting("DistanceV", distanceV.ToString());
-
-            setting.SetSetting("CurrencyType", CurrencyType);
-            //AnotherCurrencySymbol edit by user, setting load only
-            setting.SetSetting("LAN", LAN);
-            
-            setting.SaveSetting();
+            //setting.SaveSetting();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -700,11 +586,112 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             }
         }
 
-        private void radV_CheckedChanged(object sender, EventArgs e)
+        private void btnSaveSetting_Click(object sender, EventArgs e)
         {
-            LoadLanguage();
+            SaveSetting();
         }
 
 	}
+
+    class QRcodePrintSetting
+    {
+        /// <summary>
+        /// $
+        /// </summary>
+        [Category("TEXT")]
+        public string AnotherCurrencySymbol { get; set; }
+        [Category("TEXT")]
+        public bool CodeTextFontBold { get; set; }
+        [Category("TEXT")]
+        public float CodeTextFontSize { get; set; }
+        /// <summary>
+        /// 1 VND 2 USD
+        /// </summary>
+        public string CurrencyType { get; set; }
+        [Category("PAGE")]
+        public float DistanceH { get; set; }
+        [Category("PAGE")]
+        public float DistanceV { get; set; }
+        public bool ForcePrint { get; set; }
+        public string LAN { get; set; }
+        [Category("PAGE")]
+        public float MarginBottom { get; set; }
+        [Category("PAGE")]
+        public float MarginLeft { get; set; }
+        [Category("PAGE")]
+        public float MarginRight { get; set; }
+        [Category("PAGE")]
+        public float MarginTop { get; set; }
+        [Category("TEXT")]
+        public bool CodeTextCanDrop { get; set; }
+        [Category("TEXT")]
+        public bool NameTextCanDrop { get; set; }
+        [Category("TEXT")]
+        public bool NameTextFontBold { get; set; }
+        [Category("TEXT")]
+        public float NameTextFontSize { get; set; }
+        [Category("PAGE")]
+        public float PageHeight { get; set; }
+        [Category("PAGE")]
+        public float PageWidth { get; set; }
+        [Category("TEXT")]
+        public bool PriceTextFontBold { get; set; }
+        [Category("TEXT")]
+        public float PriceTextFontSize { get; set; }
+        public float Scale { get; set; }
+        public float StampHeight { get; set; }
+        public float StampWidth { get; set; }
+        public string ThousandGroup { get; set; }
+        [Category("TEXT")]
+        public string DecimalGroup { get; set; }
+        public int ECCLever { get; set; }
+        /// <summary>
+        /// Giá: Price:
+        /// </summary>
+        [Category("TEXT")]
+        public string PriceText { get; set; }
+        
+        [Category("TEXT")]
+        public int PriceDecimals { get; set; }
+        /// <summary>
+        /// VND
+        /// </summary>
+        [Category("TEXT")]
+        public string UnitText { get; set; }
+        [Category("TEXT")]
+        public bool ShowCode { get; set; }
+        [Category("TEXT")]
+        public bool ShowName { get; set; }
+        [Category("TEXT")]
+        public bool ShowPrice { get; set; }
+
+        public QRcodePrintSetting()
+        {
+
+        }
+        public QRcodePrintSetting(IDictionary<string, string> dic)
+        {
+
+        }
+
+        public string ToStringDictionary()
+        {
+            string result = "";
+            foreach (PropertyInfo property in GetType().GetProperties())
+            {
+                if (property.CanRead && property.CanWrite)
+                {
+                    object value = property.GetValue(this, null);
+                    if (value is bool)
+                    {
+                        value = (bool)value ? "1" : "0";
+                    }
+                    result += ";" + property.Name +  ":" + value;
+                }
+            }
+            if (result.Length > 1) result = result.Substring(1);
+            return result;
+        }
+    }
 }
 

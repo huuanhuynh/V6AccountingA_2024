@@ -44,8 +44,8 @@ namespace V6Init
             return DateTime.MinValue;
         }
 
-        protected SortedDictionary<string, string> _extraInfor = null;
-        protected void GetExtraInfor()
+        public SortedDictionary<string, string> _extraInfor = null;
+        public void LoadExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
             string s = "" + GetString("EXTRA_INFOR");
@@ -61,6 +61,13 @@ namespace V6Init
                     }
                 }
             }
+        }
+
+        public string GET_EXTRA_INFOR(string key)
+        {
+            if (!_extraInfor.ContainsKey(key) && !_extraInfor.ContainsKey(key.ToUpper())) throw new Exception("No key: " + key);
+            if (_extraInfor.ContainsKey(key)) return _extraInfor[key];
+            return _extraInfor[key.ToUpper()];
         }
 
         public int GetInt(string name)
@@ -94,7 +101,7 @@ namespace V6Init
         public AlbcConfig(IDictionary<string, object> data)
             : base(data)
         {
-            GetExtraInfor();
+            LoadExtraInfor();
         }
 
         public AlbcConfig()
@@ -206,7 +213,7 @@ namespace V6Init
             {
                 if (_extraInfor == null || _extraInfor.Count == 0)
                 {
-                    GetExtraInfor();
+                    LoadExtraInfor();
                 }
                 return _extraInfor;
             }
@@ -227,6 +234,7 @@ namespace V6Init
         }
         public int FROZENV { get { return GetInt("FROZENV"); } }
 
+        
     }
 
     public class AlctConfig : Config
@@ -386,7 +394,7 @@ namespace V6Init
             {
                 if (_extraInfor == null || _extraInfor.Count == 0)
                 {
-                    GetExtraInfor();
+                    LoadExtraInfor();
                 }
                 return _extraInfor;
             }
@@ -563,7 +571,7 @@ namespace V6Init
             {
                 if (_extraInfor == null || _extraInfor.Count == 0)
                 {
-                    GetExtraInfor();
+                    LoadExtraInfor();
                 }
                 return _extraInfor;
             }

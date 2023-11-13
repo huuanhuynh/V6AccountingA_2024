@@ -315,6 +315,11 @@ namespace V6Tools.V6Convert
             return result;
         }
 
+        public static float ObjectToFloat(object o)
+        {
+            return (float)ObjectToDecimal(o);
+        }
+
         public static int ObjectToInt(object o)
         {
             decimal result = 0;

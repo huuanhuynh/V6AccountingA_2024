@@ -141,7 +141,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Invoice.Mact, Name_Methods, All_Objects);
+            
+            var all_control = V6ControlFormHelper.GetAllControls(this);
+            foreach (var item in detailControlList1)
+            {
+                try
+                {
+                    all_control.Remove(item.Value.DetailControl);
+                }
+                catch
+                {
+
+                }
+            }
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(all_control, Invoice.Mact, Name_Methods, All_Objects);
         }
         
         #endregion contructor
