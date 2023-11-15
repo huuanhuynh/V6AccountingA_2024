@@ -100,7 +100,7 @@ namespace V6Structs
                             }
                             else if (propertyInfo.PropertyType == typeof(bool))
                             {
-                                propertyInfo.SetValue(this, value == "1", null);
+                                propertyInfo.SetValue(this, value == "1" || value.ToLower() == "true" || value.ToLower() == "yes", null);
                             }
                             break;
                         }

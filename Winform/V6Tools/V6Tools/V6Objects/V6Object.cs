@@ -6,42 +6,41 @@ using V6Tools.V6Convert;
 namespace V6Tools.V6Objects
 {
     /// <summary>
-    /// Khi chuyển to xml, nếu là property sẽ có tag name bao bọc, còn field thì không.
+    /// Class có sẵn các hàm chuyển đổi thành DICTIONARY và StringDICTIONARY.
     /// </summary>
-    public class V6JsonObject : V6Object
+    public class V6Object
     {
-        public virtual string ToJson()
+        /// <summary>
+        /// Định dạng ngày tháng để convert.
+        /// </summary>
+        protected string DateTimeFormat = "dd/MM/yyyy";
+        /// <summary>
+        /// Class có sẵn các hàm chuyển đổi thành DICTIONARY và StringDICTIONARY.
+        /// </summary>
+        public V6Object()
         {
-            return V6JsonConverter.ClassToJson(this, DateTimeFormat);
+
+        }
+        /// <summary>
+        /// Class có sẵn các hàm chuyển đổi thành DICTIONARY và StringDICTIONARY.
+        /// </summary>
+        /// <param name="dateTimeFormat">dd/MM/yyyy</param>
+        public V6Object(string dateTimeFormat = null)
+        {
+            DateTimeFormat = dateTimeFormat;
         }
 
         /// <summary>
-        /// Chuyển thành chuỗi json. DateTime format hoặc null hoặc VIETTEL.
+        /// Gán giá trị từ DIC vào các property { get; set; }
         /// </summary>
-        /// <param name="dateTimeFormat">null hoặc yyyMMdd tùy ý hoặc VIETTEL(millisecond from 1900)</param>
-        /// <returns></returns>
-        public virtual string ToJson(string dateTimeFormat)
-        {
-            return V6JsonConverter.ClassToJson(this, dateTimeFormat);
-        }
-        
-        /// <summary>
-        /// Khi chuyển to xml, nếu là property sẽ có tag name bao bọc, còn field thì không.
-        /// </summary>
-        /// <returns></returns>
-        public string ToXml()
-        {
-            return V6XmlConverter.ClassToXml(this);
-        }
-
-
-        public void SetPropertiesValue(IDictionary<string, string> dic)
+        /// <param name="DIC"></param>
+        public void SetPropertiesValue(IDictionary<string, string> DIC)
         {
             foreach (PropertyInfo propertyInfo in GetType().GetProperties())
             {
-                if (dic.ContainsKey(propertyInfo.Name) && propertyInfo.CanWrite)
+                if (DIC.ContainsKey(propertyInfo.Name) && propertyInfo.CanWrite)
                 {
-                    var value = dic[propertyInfo.Name];
+                    var value = DIC[propertyInfo.Name];
                     if (propertyInfo.PropertyType == typeof(string))
                     {
                         propertyInfo.SetValue(this, value, null);
@@ -60,16 +59,16 @@ namespace V6Tools.V6Objects
                     }
                     else if (propertyInfo.PropertyType == typeof(DateTime))
                     {
-                        propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null), null);
+                        propertyInfo.SetValue(this, DateTime.ParseExact(value, DateTimeFormat, null), null);
                     }
                     else if (propertyInfo.PropertyType == typeof(bool))
                     {
                         propertyInfo.SetValue(this, value == "1", null);
                     }
                 }
-                else if (dic.ContainsKey(propertyInfo.Name.ToUpper()) && propertyInfo.CanWrite)
+                else if (DIC.ContainsKey(propertyInfo.Name.ToUpper()) && propertyInfo.CanWrite)
                 {
-                    var value = dic[propertyInfo.Name.ToUpper()];
+                    var value = DIC[propertyInfo.Name.ToUpper()];
                     if (propertyInfo.PropertyType == typeof(string))
                     {
                         propertyInfo.SetValue(this, value, null);

@@ -16,6 +16,7 @@ using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Reflection;
 using V6AccountingBusiness;
+using V6Tools.V6Objects;
 
 namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 {
@@ -69,7 +70,6 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 
                 cboECC.SelectedIndex = 0;
                 propertyGrid1.SelectedObject = _qrSetting;
-                NumberFormatInfo DecimalSeparatorFormat = new NumberFormatInfo { NumberDecimalSeparator = "." };
 
                 if (_qrSetting.ForcePrint)
                 {
@@ -88,51 +88,38 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             }
         }
 
+        private void Form_Load(object sender, EventArgs e)
+        {
+            LoadLanguage();
+            timer1.Start();
+        }
+
+
         private void LoadSetting()
         {
             try
             {
-                _qrSetting.PageWidth = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("PageWidth"));
-                _qrSetting.PageHeight = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("PageHeight"));
-                _qrSetting.MarginLeft = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("MarginLeft"));
-                _qrSetting.MarginRight = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("MarginRight"));
-                _qrSetting.MarginTop = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("MarginTop"));
-                _qrSetting.MarginBottom = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("MarginBottom"));
-
-                _qrSetting.DistanceH = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("DistanceH"));
-                _qrSetting.DistanceV = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("DistanceV"));
-
-
-
-                _qrSetting.StampWidth = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("StampWidth"));
-                _qrSetting.StampHeight = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("StampHeight"));
-                _qrSetting.Scale = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("Scale"));
-
-                _qrSetting.CodeTextFontSize = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("CodeTextFontSize"));
-                _qrSetting.NameTextFontSize = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("NameTextFontSize"));
-                _qrSetting.PriceTextFontSize = ObjectAndString.ObjectToFloat(_albcConfig.GET_EXTRA_INFOR("PriceTextFontSize"));
-                _qrSetting.NameTextFontBold = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("NameTextFontBold"));
-                _qrSetting.CodeTextFontBold = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("CodeTextFontBold"));
-                _qrSetting.PriceTextFontBold = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("PriceTextFontBold"));
-                _qrSetting.NameTextCanDrop = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("NameTextCanDrop"));
-                _qrSetting.ShowCode = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("ShowName"));
-                _qrSetting.ShowName = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("ShowName"));
-                _qrSetting.ShowPrice = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("ShowPrice"));
-
-                _qrSetting.ForcePrint = ObjectAndString.ObjectToBool(_albcConfig.GET_EXTRA_INFOR("ForcePrint"));
-
-                _qrSetting.ThousandGroup = _albcConfig.GET_EXTRA_INFOR("ThousandGroup");
-                _qrSetting.DecimalGroup = _albcConfig.GET_EXTRA_INFOR("DecimalGroup");
-                _qrSetting.PriceDecimals = ObjectAndString.ObjectToInt(_albcConfig.GET_EXTRA_INFOR("PriceDecimals"));
-
-                _qrSetting.CurrencyType = _albcConfig.GET_EXTRA_INFOR("CurrencyType");
-                _qrSetting.AnotherCurrencySymbol = _albcConfig.GET_EXTRA_INFOR("AnotherCurrencySymbol");
-                _qrSetting.LAN = _albcConfig.GET_EXTRA_INFOR("LAN");
-                _qrSetting.UnitText = _albcConfig.GET_EXTRA_INFOR("UnitText");
+                _qrSetting.LoadSetting(_albcConfig.EXTRA_INFOR);
+                // Load icon
+                LoadIconFromSetting();
             }
             catch (Exception ex)
             {
                 V6Message.ShowErrorMessage("LoadSetting " + ex.Message, this);
+            }
+        }
+
+        public void LoadIconFromSetting()
+        {
+            string file = Path.Combine(V6Login.StartupPath, "Pictures\\QRLOGO\\" + _qrSetting.LogoFileName);
+            if (!string.IsNullOrEmpty(_qrSetting.LogoFileName) && File.Exists(file))
+            {
+                LoadIcon(file);
+            }
+            else
+            {
+                _icon = null;
+                btnIcon.Image = new Bitmap(32,32);
             }
         }
 
@@ -174,7 +161,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 _qrSetting.LAN = "V";
                 _qrSetting.UnitText = "VND";
 
-                string EXTRA_INFOR = _qrSetting.ToStringDictionary();
+                string EXTRA_INFOR = _qrSetting.ToStringDICTIONARY();
                 _albcConfig.DATA["EXTRA_INFOR"] = EXTRA_INFOR;
                 _albcConfig.LoadExtraInfor();
 
@@ -188,9 +175,24 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             }
         }
 
+        private void btnReloadSetting_Click(object sender, EventArgs e)
+        {
+            ReLoadSetting();
+            DrawSampleQR();
+        }
+
         private void SaveSetting()
         {
-            string EXTRA_INFOR = _qrSetting.ToStringDictionary();
+            Dictionary<string, object> settingDic = _qrSetting.ToDICTIONARY();
+            //Ghép thêm EXTRA_INFOR không thuộc setting.
+            foreach (var item in _albcConfig.EXTRA_INFOR)
+            {
+                if (!settingDic.ContainsKey(item.Key))
+                {
+                    settingDic[item.Key] = item.Value;
+                }
+            }
+            string EXTRA_INFOR = ObjectAndString.DictionaryToString(settingDic);
             _albcConfig.DATA["EXTRA_INFOR"] = EXTRA_INFOR;
             _albcConfig.LoadExtraInfor();
             var data = new Dictionary<string, object>();
@@ -198,6 +200,24 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             var key = new Dictionary<string, object>();
             key["MA_FILE"] = _albcConfig.MA_FILE;
             V6BusinessHelper.UpdateSimple("ALBC", data, key);
+        }
+
+        private void ReLoadSetting()
+        {
+            try
+            {
+                var key = new Dictionary<string, object>();
+                key["MA_FILE"] = _albcConfig.MA_FILE;
+                string EXTRA_INFOR = "" + V6BusinessHelper.SelectOneValue("ALBC", "EXTRA_INFOR", key);
+                _albcConfig.DATA["EXTRA_INFOR"] = EXTRA_INFOR;
+                _albcConfig.LoadExtraInfor();
+
+                LoadSetting();
+            }
+            catch (Exception ex)
+            {
+                V6Message.ShowErrorMessage("ReLoadSetting " + ex.Message, this);
+            }
         }
 
         private bool CheckData()
@@ -224,7 +244,6 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         int barcodecount = 0;
         public void Print()
         {
-            //SetBarcodeGeneralValues(_barcodeLib);
             barcodecount = 0;
             PrintDocument document = new PrintDocument();
             document.DocumentName = "V6QRcode";
@@ -408,8 +427,14 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         
         private void butDraw_Click(object sender, EventArgs e)
 		{
-            UpdateValues();
-            DrawSampleQR();
+            try
+            {
+                DrawSampleQR();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".butDraw_Click " + ex.Message);
+            }
 		}
 
         private void DrawSampleQR()
@@ -417,8 +442,9 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             try
             {
                 Graphics g = picBarcode.CreateGraphics();
+                g.PageUnit = GraphicsUnit.Millimeter;
 
-                g.FillRectangle(new SolidBrush(SystemColors.Control), new Rectangle(0, 0, picBarcode.Width, picBarcode.Height));
+                g.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, 0, (int)_qrSetting.StampWidth, (int)_qrSetting.StampHeight));
 
                 DrawBarcode(g, new Point(0, 0), txtQRcode.Text, txtProductCode.Text, txtProductName.Text,
                     ObjectAndString.ObjectToDecimal(txtPrice.Text), _qrSetting.ECCLever);
@@ -429,14 +455,10 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 this.ShowErrorMessage(GetType() + ".DrawSample " + ex.Message);
             }
         }
-        
 
+        Bitmap _icon = null;
         public Bitmap RenderQrCode(string qr_code, Bitmap icon)
         {
-            //Graphics g = picBarcode.CreateGraphics();
-
-            //g.FillRectangle(new SolidBrush(SystemColors.Control),
-            //    new Rectangle(0, 0, picBarcode.Width, picBarcode.Height));
             Bitmap result = null;
             string level = cboECC.SelectedItem.ToString(); // 0123 LMQH
             QRCodeGenerator.ECCLevel eccLevel = (QRCodeGenerator.ECCLevel)(level == "L" ? 0 : level == "M" ? 1 : level == "Q" ? 2 : 3);
@@ -444,14 +466,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qr_code, eccLevel))
             using (QRCode qrCode = new QRCode(qrCodeData))
             {
-                result = qrCode.GetGraphic(20, Color.Black, Color.White, icon, 15);
-                //g.DrawImage(qr_bitmap, 0, 0, picBarcode.Width, picBarcode.Height);
-
-                //this.pictureBoxQRCode.Size = new System.Drawing.Size(pictureBoxQRCode.Width, pictureBoxQRCode.Height);
-                //Set the SizeMode to center the image.
-                //this.pictureBoxQRCode.SizeMode = PictureBoxSizeMode.CenterImage;
-
-                //pictureBoxQRCode.SizeMode = PictureBoxSizeMode.StretchImage;
+                result = qrCode.GetGraphic(20, Color.Black, Color.White, icon, _qrSetting.LogoPercent);
             }
             return result;
         }
@@ -530,7 +545,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 
             yStart += code_Height;
             // Vẽ QR vào vùng vẽ.
-            Bitmap QR = RenderQrCode(value, null);
+            Bitmap QR = RenderQrCode(value, _icon);
             // Tính toán kích thước QR
             float QR_width = width;
             float QR_height = height - code_Height - name_Height - price_Height;
@@ -546,31 +561,15 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 ObjectAndString.NumberToString(productPrice, _qrSetting.PriceDecimals, _qrSetting.DecimalGroup, _qrSetting.ThousandGroup, true)
                 + " " + _qrSetting.UnitText,
                 price_font, brush,
-                new RectangleF(xStart + aWidth, pt.Y + height - price_Height, width, price_Height), stringFormat);
+                new RectangleF(xStart, pt.Y + height - price_Height, width, price_Height), stringFormat);
             
             // Restore the GraphicsState.
             g.Restore(gs);
         }
-
-        public NumberFormatInfo numberformatinfo
-            = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
         
-
-        private void frmEan13_Load(object sender, EventArgs e)
-        {   
-            LoadLanguage();
-            btnDrawSample.PerformClick();
-        }
         
-
-        void UpdateValues()
-        {
-            //setting.SaveSetting();
-        }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            UpdateValues();
             if (CheckData())
             {
                 Print();
@@ -579,7 +578,6 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 
         private void btnPrintView_Click(object sender, EventArgs e)
         {
-            UpdateValues();
             if (CheckData())
             {
                 PrintView();
@@ -591,106 +589,235 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             SaveSetting();
         }
 
-	}
+        private void cboECC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (change_ecc_on_g)
+            {
+                change_ecc_on_g = false;
+                return;
+            }
+            _qrSetting.ECCLever = cboECC.SelectedIndex;
+        }
 
-    class QRcodePrintSetting
+        bool change_ecc_on_g;
+        private void propertyGrid1_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            if (e.ChangedItem.Label == "ECCLever")
+            {
+                change_ecc_on_g = true;
+                cboECC.SelectedIndex = _qrSetting.ECCLever;
+            }
+            else if (e.ChangedItem.Label == "LogoFileName")
+            {
+                LoadIconFromSetting();
+            }
+        }
+
+        int timer_count = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                timer_count++;
+                if (timer_count == 1)
+                {
+                    DrawSampleQR();
+                    timer1.Stop();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".timer1_Tick " + ex.Message);
+            }
+        }
+
+        public void LoadIcon(string file)
+        {
+            if (!string.IsNullOrEmpty(file) && File.Exists(file))
+            {
+                _icon = new Bitmap(V6ControlFormHelper.LoadCopyImage(file));
+                btnIcon.Image = _icon.Clone(new Rectangle(0, 0, 32, 32), System.Drawing.Imaging.PixelFormat.DontCare);
+            }
+        }
+
+        private void btnIcon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var file = V6ControlFormHelper.ChooseOpenFile(this, "Hình ảnh|*.jpg;*.png;*.gif;*.bmp");
+                if (!string.IsNullOrEmpty(file) && File.Exists(file))
+                {
+                    try
+                    {
+                        string file_name = Path.GetFileName(file);
+                        _qrSetting.LogoFileName = file_name;
+                        string directory = Path.Combine(V6Login.StartupPath, "Pictures\\QRLOGO");
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
+                        string file2 = Path.Combine(directory, file_name);
+                        if (file2.ToUpper() != file.ToUpper())
+                        {
+                            File.Copy(file, file2, true);
+                        }
+                    }
+                    catch { }
+                    LoadIcon(file);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".btnIcon_Click " + ex.Message);
+            }
+        }
+    }
+
+    class QRcodePrintSetting : V6Object
     {
+        #region Properties
         /// <summary>
         /// $
         /// </summary>
         [Category("TEXT")]
+        [Description("Đơn vị khác.")]
         public string AnotherCurrencySymbol { get; set; }
         [Category("TEXT")]
+        [Description("In đậm mã sản phẩm.")]
         public bool CodeTextFontBold { get; set; }
         [Category("TEXT")]
+        [Description("Cỡ chữ mã sản phẩm.")]
         public float CodeTextFontSize { get; set; }
-        /// <summary>
-        /// 1 VND 2 USD
-        /// </summary>
-        public string CurrencyType { get; set; }
-        [Category("PAGE")]
-        public float DistanceH { get; set; }
-        [Category("PAGE")]
-        public float DistanceV { get; set; }
-        public bool ForcePrint { get; set; }
-        public string LAN { get; set; }
-        [Category("PAGE")]
-        public float MarginBottom { get; set; }
-        [Category("PAGE")]
-        public float MarginLeft { get; set; }
-        [Category("PAGE")]
-        public float MarginRight { get; set; }
-        [Category("PAGE")]
-        public float MarginTop { get; set; }
         [Category("TEXT")]
+        [Description("In mã xuống dòng nếu quá dài.")]
         public bool CodeTextCanDrop { get; set; }
         [Category("TEXT")]
+        [Description("In tên xuống dòng nếu quá dài.")]
         public bool NameTextCanDrop { get; set; }
         [Category("TEXT")]
+        [Description("In đậm tên sản phẩm.")]
         public bool NameTextFontBold { get; set; }
         [Category("TEXT")]
+        [Description("Cỡ chữ tên sản phẩm.")]
         public float NameTextFontSize { get; set; }
-        [Category("PAGE")]
-        public float PageHeight { get; set; }
-        [Category("PAGE")]
-        public float PageWidth { get; set; }
         [Category("TEXT")]
+        [Description("In đậm giá sản phẩm.")]
         public bool PriceTextFontBold { get; set; }
         [Category("TEXT")]
+        [Description("Cỡ chữ giá.")]
         public float PriceTextFontSize { get; set; }
-        public float Scale { get; set; }
-        public float StampHeight { get; set; }
-        public float StampWidth { get; set; }
+        [Category("TEXT")]
+        [Description("Ký tự cách phần nghìn.")]
         public string ThousandGroup { get; set; }
         [Category("TEXT")]
+        [Description("Ký tự phần thập phân.")]
         public string DecimalGroup { get; set; }
-        public int ECCLever { get; set; }
         /// <summary>
         /// Giá: Price:
         /// </summary>
         [Category("TEXT")]
+        [Description("Đoạn chữ trước giá tiền. Ví dụ [Giá:]")]
         public string PriceText { get; set; }
-        
+
         [Category("TEXT")]
+        [Description("Số chữ số thập phân. Ví dụ 2 => 100 000,00")]
         public int PriceDecimals { get; set; }
         /// <summary>
         /// VND
         /// </summary>
         [Category("TEXT")]
+        [Description("Đơn vị tiền.")]
         public string UnitText { get; set; }
         [Category("TEXT")]
+        [Description("Hiện mã sản phẩm hoặc không.")]
         public bool ShowCode { get; set; }
         [Category("TEXT")]
+        [Description("Hiện tên sản phẩm hoặc không.")]
         public bool ShowName { get; set; }
         [Category("TEXT")]
+        [Description("Hiện giá sản phẩm hoặc không.")]
         public bool ShowPrice { get; set; }
+        [Description("Ngôn ngữ")]
+        public string LAN { get; set; }
+        /// <summary>
+        /// 1 VND 2 USD
+        /// </summary>
+        [Category("TEXT")]
+        [DefaultValue("VND")]
+        [Description("Loại tiền 1 VND 2 USD")]
+        public string CurrencyType { get; set; }
+        [Category("PAGE")]
+        [DefaultValue(5)]
+        [Description("Khoảng cách hàng nếu trang in lớn.")]
+        public float DistanceH { get; set; }
+        [Category("PAGE")]
+        [DefaultValue(5)]
+        [Description("Khoảng cách cột nếu trang in lớn.")]
+        public float DistanceV { get; set; }
+        [Category("PAGE")]
+        [DefaultValue(1)]
+        [Description("Canh lề dưới trang.")]
+        public float MarginBottom { get; set; }
+        [Category("PAGE")]
+        [DefaultValue(1)]
+        [Description("Canh lề trái trang.")]
+        public float MarginLeft { get; set; }
+        [Category("PAGE")]
+        [DefaultValue(1)]
+        [Description("Canh lề phải trang.")]
+        public float MarginRight { get; set; }
+        [Category("PAGE")]
+        [DefaultValue(1)]
+        [Description("Canh lề trên trang.")]
+        public float MarginTop { get; set; }
+        
+        [Category("PAGE")]
+        [Description("Chiều cao trang in.")]
+        public float PageHeight { get; set; }
+        [Category("PAGE")]
+        [Description("Chiều rộng trang in.")]
+        public float PageWidth { get; set; }
+
+        [Category("STAMP")]
+        [DefaultValue(1.0)]
+        [Description("Co giãn them so với kích thước định nghĩa.")]
+        public float Scale { get; set; }
+        [Category("STAMP")]
+        [Description("Chiều cao tem.")]
+        public float StampHeight { get; set; }
+        [Category("STAMP")]
+        [Description("Chiều rộng tem.")]
+        public float StampWidth { get; set; }
+        [Category("STAMP")]
+        [DefaultValue(0)]
+        [Description("Cấp độ mã hóa 0123")]
+        public int ECCLever { get; set; }
+        [Category("STAMP")]
+        [DefaultValue("")]
+        [Description("Logo giữa QRcode.")]
+        public string LogoFileName { get; set; }
+        [Category("STAMP")]
+        [DefaultValue(15)]
+        [Description("Kích thước phần trăm Logo so với QRcode.")]
+        public int LogoPercent { get; set; }
+
+        [Category("PRINT")]
+        [DefaultValue(false)]
+        [Description("In luôn không hiện form tùy chỉnh.")]
+        public bool ForcePrint { get; set; }
+        
+
+
+        #endregion Properties
 
         public QRcodePrintSetting()
         {
-
-        }
-        public QRcodePrintSetting(IDictionary<string, string> dic)
-        {
-
+            DateTimeFormat = "dd/MM/yyyy";
         }
 
-        public string ToStringDictionary()
+        public void LoadSetting(IDictionary<string, string> dic)
         {
-            string result = "";
-            foreach (PropertyInfo property in GetType().GetProperties())
-            {
-                if (property.CanRead && property.CanWrite)
-                {
-                    object value = property.GetValue(this, null);
-                    if (value is bool)
-                    {
-                        value = (bool)value ? "1" : "0";
-                    }
-                    result += ";" + property.Name +  ":" + value;
-                }
-            }
-            if (result.Length > 1) result = result.Substring(1);
-            return result;
+            base.SetPropertiesValue(dic);
         }
     }
 }

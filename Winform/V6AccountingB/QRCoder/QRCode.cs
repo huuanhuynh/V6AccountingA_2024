@@ -126,6 +126,11 @@ namespace QRCoder
             roundedRect.CloseFigure();
             return roundedRect;
         }
+
+        public Bitmap GetGraphic(int v, Color black, Color white, Bitmap icon, object iconPercent)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 #if NET6_0_WINDOWS

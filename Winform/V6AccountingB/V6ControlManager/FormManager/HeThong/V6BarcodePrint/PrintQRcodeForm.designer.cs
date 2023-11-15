@@ -27,6 +27,7 @@
 		/// </summary>
 		private void InitializeComponent( )
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrintQRcodeForm));
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtProductCode = new System.Windows.Forms.TextBox();
@@ -45,13 +46,16 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveSetting = new System.Windows.Forms.Button();
+            this.btnReloadSetting = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnIcon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(5, 120);
+            this.txtProductName.Location = new System.Drawing.Point(5, 159);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(121, 20);
             this.txtProductName.TabIndex = 17;
@@ -59,11 +63,11 @@
             // 
             // txtProductCode
             // 
-            this.txtProductCode.Location = new System.Drawing.Point(6, 77);
+            this.txtProductCode.Location = new System.Drawing.Point(6, 116);
             this.txtProductCode.Name = "txtProductCode";
             this.txtProductCode.Size = new System.Drawing.Size(121, 20);
             this.txtProductCode.TabIndex = 19;
-            this.txtProductCode.Text = "201620141249";
+            this.txtProductCode.Text = "20231114164300";
             // 
             // label2
             // 
@@ -79,7 +83,7 @@
             // 
             this.label3.AccessibleDescription = ".";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 59);
+            this.label3.Location = new System.Drawing.Point(6, 98);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 18;
@@ -88,14 +92,15 @@
             // txtQRcode
             // 
             this.txtQRcode.Location = new System.Drawing.Point(6, 36);
+            this.txtQRcode.Multiline = true;
             this.txtQRcode.Name = "txtQRcode";
-            this.txtQRcode.Size = new System.Drawing.Size(125, 20);
+            this.txtQRcode.Size = new System.Drawing.Size(125, 59);
             this.txtQRcode.TabIndex = 13;
-            this.txtQRcode.Text = "V6BARCODE2016SP";
+            this.txtQRcode.Text = "V6QRCODE2023SP~1234567890~ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(6, 160);
+            this.txtPrice.Location = new System.Drawing.Point(6, 199);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(100, 20);
             this.txtPrice.TabIndex = 23;
@@ -105,7 +110,7 @@
             // 
             this.label10.AccessibleDescription = ".";
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 143);
+            this.label10.Location = new System.Drawing.Point(6, 182);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 13);
             this.label10.TabIndex = 22;
@@ -115,7 +120,7 @@
             // 
             this.btnPrintView.AccessibleDescription = "V6REASKB00004";
             this.btnPrintView.Image = global::V6ControlManager.Properties.Resources.ViewDetails;
-            this.btnPrintView.Location = new System.Drawing.Point(402, 449);
+            this.btnPrintView.Location = new System.Drawing.Point(570, 442);
             this.btnPrintView.Name = "btnPrintView";
             this.btnPrintView.Size = new System.Drawing.Size(107, 40);
             this.btnPrintView.TabIndex = 11;
@@ -128,7 +133,7 @@
             // 
             this.btnPrint.AccessibleDescription = "V6REASKB00003";
             this.btnPrint.Image = global::V6ControlManager.Properties.Resources.Print;
-            this.btnPrint.Location = new System.Drawing.Point(515, 434);
+            this.btnPrint.Location = new System.Drawing.Point(683, 442);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(138, 55);
             this.btnPrint.TabIndex = 12;
@@ -140,9 +145,9 @@
             // picBarcode
             // 
             this.picBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBarcode.Location = new System.Drawing.Point(284, 39);
+            this.picBarcode.Location = new System.Drawing.Point(444, 39);
             this.picBarcode.Name = "picBarcode";
-            this.picBarcode.Size = new System.Drawing.Size(369, 389);
+            this.picBarcode.Size = new System.Drawing.Size(377, 389);
             this.picBarcode.TabIndex = 2;
             this.picBarcode.TabStop = false;
             // 
@@ -150,7 +155,7 @@
             // 
             this.btnDrawSample.AccessibleDescription = "V6REASKB00005";
             this.btnDrawSample.Image = global::V6ControlManager.Properties.Resources.Barcode24;
-            this.btnDrawSample.Location = new System.Drawing.Point(6, 200);
+            this.btnDrawSample.Location = new System.Drawing.Point(6, 225);
             this.btnDrawSample.Name = "btnDrawSample";
             this.btnDrawSample.Size = new System.Drawing.Size(107, 29);
             this.btnDrawSample.TabIndex = 26;
@@ -161,7 +166,7 @@
             // labelECC
             // 
             this.labelECC.AutoSize = true;
-            this.labelECC.Location = new System.Drawing.Point(321, 15);
+            this.labelECC.Location = new System.Drawing.Point(629, 15);
             this.labelECC.Name = "labelECC";
             this.labelECC.Size = new System.Drawing.Size(57, 13);
             this.labelECC.TabIndex = 35;
@@ -176,10 +181,11 @@
             "M",
             "Q",
             "H"});
-            this.cboECC.Location = new System.Drawing.Point(387, 12);
+            this.cboECC.Location = new System.Drawing.Point(692, 12);
             this.cboECC.Name = "cboECC";
             this.cboECC.Size = new System.Drawing.Size(120, 21);
             this.cboECC.TabIndex = 34;
+            this.cboECC.SelectedIndexChanged += new System.EventHandler(this.cboECC_SelectedIndexChanged);
             // 
             // propertyGrid1
             // 
@@ -187,6 +193,7 @@
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.Size = new System.Drawing.Size(279, 477);
             this.propertyGrid1.TabIndex = 36;
+            this.propertyGrid1.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.propertyGrid1_PropertyValueChanged);
             // 
             // groupBox1
             // 
@@ -199,9 +206,9 @@
             this.groupBox1.Controls.Add(this.txtQRcode);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Location = new System.Drawing.Point(659, 39);
+            this.groupBox1.Location = new System.Drawing.Point(284, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(154, 389);
+            this.groupBox1.Size = new System.Drawing.Size(154, 261);
             this.groupBox1.TabIndex = 37;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mẫu";
@@ -210,7 +217,7 @@
             // 
             this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 104);
+            this.label1.Location = new System.Drawing.Point(6, 143);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 16;
@@ -220,7 +227,7 @@
             // 
             this.btnSaveSetting.AccessibleDescription = "";
             this.btnSaveSetting.Image = global::V6ControlManager.Properties.Resources.Apply;
-            this.btnSaveSetting.Location = new System.Drawing.Point(289, 449);
+            this.btnSaveSetting.Location = new System.Drawing.Point(289, 442);
             this.btnSaveSetting.Name = "btnSaveSetting";
             this.btnSaveSetting.Size = new System.Drawing.Size(107, 40);
             this.btnSaveSetting.TabIndex = 11;
@@ -228,6 +235,37 @@
             this.btnSaveSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSaveSetting.UseVisualStyleBackColor = true;
             this.btnSaveSetting.Click += new System.EventHandler(this.btnSaveSetting_Click);
+            // 
+            // btnReloadSetting
+            // 
+            this.btnReloadSetting.AccessibleDescription = "";
+            this.btnReloadSetting.Image = global::V6ControlManager.Properties.Resources.Refresh;
+            this.btnReloadSetting.Location = new System.Drawing.Point(402, 442);
+            this.btnReloadSetting.Name = "btnReloadSetting";
+            this.btnReloadSetting.Size = new System.Drawing.Size(107, 40);
+            this.btnReloadSetting.TabIndex = 11;
+            this.btnReloadSetting.Text = "Tải Setting";
+            this.btnReloadSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReloadSetting.UseVisualStyleBackColor = true;
+            this.btnReloadSetting.Click += new System.EventHandler(this.btnReloadSetting_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btnIcon
+            // 
+            this.btnIcon.AccessibleDescription = "";
+            this.btnIcon.Image = global::V6ControlManager.Properties.Resources.Add;
+            this.btnIcon.Location = new System.Drawing.Point(289, 282);
+            this.btnIcon.Name = "btnIcon";
+            this.btnIcon.Size = new System.Drawing.Size(107, 40);
+            this.btnIcon.TabIndex = 11;
+            this.btnIcon.Text = "Chọn Logo";
+            this.btnIcon.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnIcon.UseVisualStyleBackColor = true;
+            this.btnIcon.Click += new System.EventHandler(this.btnIcon_Click);
             // 
             // PrintQRcodeForm
             // 
@@ -237,6 +275,8 @@
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.labelECC);
             this.Controls.Add(this.cboECC);
+            this.Controls.Add(this.btnReloadSetting);
+            this.Controls.Add(this.btnIcon);
             this.Controls.Add(this.btnSaveSetting);
             this.Controls.Add(this.btnPrintView);
             this.Controls.Add(this.btnPrint);
@@ -247,7 +287,7 @@
             this.MinimizeBox = false;
             this.Name = "PrintQRcodeForm";
             this.Text = "V6Barcode";
-            this.Load += new System.EventHandler(this.frmEan13_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -275,6 +315,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveSetting;
+        private System.Windows.Forms.Button btnReloadSetting;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnIcon;
     }
 }
 
