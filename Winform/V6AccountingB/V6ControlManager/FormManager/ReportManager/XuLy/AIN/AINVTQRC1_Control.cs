@@ -222,6 +222,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             data.Columns.Add("QR", typeof(string));
             data.Columns.Add("Code", typeof(string));
             data.Columns.Add("Name", typeof(string));
+            data.Columns.Add("Name2", typeof(string));
             data.Columns.Add("Price", typeof(decimal));
             var data0 = _ds.Tables[0];
             foreach (DataRow row in data0.Rows)
@@ -232,6 +233,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string qr = row["QR_CODE"].ToString().Trim();
                 string code = row["MA_LO"].ToString().Trim();
                 string name = row["TEN_LO"].ToString().Trim();
+                string name2 = row["TEN_LO2"].ToString().Trim();
                 decimal price = ObjectAndString.ObjectToDecimal(row["GIA_IN"]);
                 for (int i = 0; i < sl_in; i++)
                 {
@@ -239,7 +241,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     newRow[0] = qr;
                     newRow[1] = code;
                     newRow[2] = name;
-                    newRow[3] = price;
+                    newRow[3] = name2;
+                    newRow[4] = price;
                     data.Rows.Add(newRow);
                 }
             }

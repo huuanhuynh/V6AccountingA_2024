@@ -133,7 +133,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 			// Save the GraphicsState.
 			System.Drawing.Drawing2D.GraphicsState gs = g.Save( );
 
-			// Set the PageUnit to Inch because all of our measurements are in inches.
+			// Set the PageUnit to Milimet because all of our measurements are in inches.
 			g.PageUnit = System.Drawing.GraphicsUnit.Millimeter;
 
 			// Set the PageScale to 1, so a millimeter will represent a true millimeter.

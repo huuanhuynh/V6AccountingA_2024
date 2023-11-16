@@ -129,13 +129,13 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             {
                 _qrSetting.PageWidth = 120;
                 _qrSetting.PageHeight = 80;
-                _qrSetting.MarginLeft = 5;
-                _qrSetting.MarginRight = 5;
-                _qrSetting.MarginTop = 5;
-                _qrSetting.MarginBottom = 5;
+                _qrSetting.MarginLeft = 1;
+                _qrSetting.MarginRight = 1;
+                _qrSetting.MarginTop = 1;
+                _qrSetting.MarginBottom = 1;
 
-                _qrSetting.DistanceH = 5;
-                _qrSetting.DistanceV = 5;
+                _qrSetting.DistanceH = 3;
+                _qrSetting.DistanceV = 3;
 
                 _qrSetting.StampWidth = 50;
                 _qrSetting.StampHeight = 50;
@@ -149,6 +149,9 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 _qrSetting.PriceTextFontBold = true;
                 _qrSetting.NameTextCanDrop = true;
                 _qrSetting.ShowCode = false;
+                _qrSetting.ShowName = false;
+                _qrSetting.ShowName2 = false;
+                _qrSetting.ShowPrice = false;
 
                 _qrSetting.ForcePrint = false;
 
@@ -157,8 +160,8 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 _qrSetting.PriceDecimals = 2;
 
                 _qrSetting.CurrencyType = "1";
-                _qrSetting.AnotherCurrencySymbol = "$";
-                _qrSetting.LAN = "V";
+                //_qrSetting.AnotherCurrencySymbol = "$";
+                //_qrSetting.LAN = "V";
                 _qrSetting.UnitText = "VND";
 
                 string EXTRA_INFOR = _qrSetting.ToStringDICTIONARY();
@@ -394,14 +397,15 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                         var qr = currentdata[0].ToString().Trim();//QR value
                         var barcodeProductCode = currentdata[1].ToString().Trim();
                         var barcodeProductName = currentdata[2].ToString().Trim();
-                        var barcodeProductPrice = Convert.ToDecimal(currentdata[3]);
+                        var barcodeProductName2 = currentdata[3].ToString().Trim();
+                        var barcodeProductPrice = Convert.ToDecimal(currentdata[4]);
 
                         //Tính vị trí x
                         xPos = _qrSetting.MarginLeft +
                             i * ((float)_qrSetting.StampWidth * _qrSetting.Scale + _qrSetting.DistanceV);
 
                         DrawBarcode(e.Graphics, new Point((int)xPos, (int)yPos),
-                            qr, barcodeProductCode, barcodeProductName, barcodeProductPrice, _qrSetting.ECCLever);
+                            qr, barcodeProductCode, barcodeProductName, barcodeProductName2, barcodeProductPrice, _qrSetting.ECCLever);
                     }
                     else
                     {
@@ -442,11 +446,12 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             try
             {
                 Graphics g = picBarcode.CreateGraphics();
+                g.Clear(this.BackColor);
                 g.PageUnit = GraphicsUnit.Millimeter;
 
                 g.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, 0, (int)_qrSetting.StampWidth, (int)_qrSetting.StampHeight));
 
-                DrawBarcode(g, new Point(0, 0), txtQRcode.Text, txtProductCode.Text, txtProductName.Text,
+                DrawBarcode(g, new Point(0, 0), txtQRcode.Text, txtProductCode.Text, txtProductName.Text, txtProductName2.Text,
                     ObjectAndString.ObjectToDecimal(txtPrice.Text), _qrSetting.ECCLever);
                 //g.Dispose();
             }
@@ -482,7 +487,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         /// <param name="productPrice"></param>
         /// <param name="eccLevel"></param>
         public void DrawBarcode(Graphics g, Point pt, string value,
-            string productCode, string productName, decimal productPrice,
+            string productCode, string productName, string productName2, decimal productPrice,
             int eccLevel)
         {
             float width = (float)_qrSetting.StampWidth * (float)_qrSetting.Scale;
@@ -491,7 +496,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             // Save the GraphicsState.
             GraphicsState gs = g.Save();
 
-            // Set the PageUnit to Inch because all of our measurements are in inches.
+            // Set the PageUnit to Milimet because all of our measurements are in inches.
             g.PageUnit = GraphicsUnit.Millimeter;
 
             // Set the PageScale to 1, so a millimeter will represent a true millimeter.
@@ -510,12 +515,11 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 _qrSetting.CodeTextFontBold ? FontStyle.Bold : FontStyle.Regular);
             Font price_font = new Font("Arial", _qrSetting.PriceTextFontSize * _qrSetting.Scale,
                 _qrSetting.PriceTextFontBold ? FontStyle.Bold : FontStyle.Regular);
-
             
 
-            SizeF textSize1 = g.MeasureString(productCode, code_font);
-            float code_Height = textSize1.Height;
-            if (_qrSetting.CodeTextCanDrop && textSize1.Width > width)
+            SizeF code_size = g.MeasureString(productCode, code_font);
+            float code_Height = code_size.Height;
+            if (_qrSetting.CodeTextCanDrop && code_size.Width > width)
             {
                 code_Height *= 2;
             }
@@ -523,9 +527,9 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             {
                 code_Height = 0;
             }
-            SizeF textSize_name = g.MeasureString(productName, name_font);
-            float name_Height = textSize_name.Height;
-            if (_qrSetting.NameTextCanDrop && textSize_name.Width > width)
+            SizeF name_size = g.MeasureString(productName, name_font);
+            float name_Height = name_size.Height;
+            if (_qrSetting.NameTextCanDrop && name_size.Width > width)
             {
                 name_Height *= 2;
             }
@@ -533,6 +537,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             {
                 name_Height = 0;
             }
+
             float price_Height = g.MeasureString(productCode, price_font).Height;
             if (!_qrSetting.ShowPrice)
             {
@@ -543,19 +548,40 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             StringFormat stringFormat = new StringFormat();
             stringFormat.Alignment = StringAlignment.Center;
 
-            yStart += code_Height;
+            yStart += (_qrSetting.ShowCode ? (code_size.Height - 2f) : 0);
             // Vẽ QR vào vùng vẽ.
             Bitmap QR = RenderQrCode(value, _icon);
             // Tính toán kích thước QR
             float QR_width = width;
-            float QR_height = height - code_Height - name_Height - price_Height;
-            g.DrawImage(QR, xStart, yStart, QR_width, QR_height);
+            float QR_height = height
+                - (_qrSetting.ShowCode ? (code_size.Height - 1.5f) : 0)
+                - (_qrSetting.ShowName ? (name_size.Height - 1.5f) : 0)
+                - (_qrSetting.ShowPrice ? (price_Height - 1.5f) : 0);
+            g.DrawImage(QR, xStart-(_qrSetting.ShowName2?1:0), yStart, QR_width, QR_height);
+
             // Vẽ mã sản phẩm trên cùng
-            yStart -= code_Height;
+            yStart = pt.Y;
             if (code_Height > 0) g.DrawString(productCode, code_font, brush, new RectangleF(xStart, yStart, width, code_Height), stringFormat);
             // Vẽ tên sản phẩm bên dưới.
-            yStart += code_Height + QR_height;
+            yStart += (_qrSetting.ShowCode ? (code_size.Height - 1.5f) : 0) + QR_height - 3;
             if (name_Height > 0) g.DrawString(productName, name_font, brush, new RectangleF(xStart, yStart, width, name_Height), stringFormat);
+            // Vẽ tên sản phẩm bên phải.
+            if (_qrSetting.ShowName2)
+            {
+                SizeF name2_size = g.MeasureString(productName2, name_font);
+                g.RotateTransform(90);
+                // xx là điểm bắt đầu (trên xuống)
+                // yy trái qua phải (âm)
+                // ww độ dài khung vẽ chữ (trên xuống)
+                // hh độ cao chữ (phải => trái)
+                float
+                    xx = pt.Y,
+                    yy = -(width - 0) - pt.X,
+                    ww = height - (_qrSetting.ShowName || _qrSetting.ShowPrice ? name2_size.Height : 0),
+                    hh = name2_size.Height;
+                g.DrawString(productName2, name_font, Brushes.Black, new RectangleF(xx, yy, ww, hh), stringFormat);
+            }
+            g.ResetTransform();
             //Vẽ phần giá bên dưới
             if (price_Height > 0) g.DrawString(_qrSetting.PriceText + " " +
                 ObjectAndString.NumberToString(productPrice, _qrSetting.PriceDecimals, _qrSetting.DecimalGroup, _qrSetting.ThousandGroup, true)
@@ -676,12 +702,12 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
     class QRcodePrintSetting : V6Object
     {
         #region Properties
-        /// <summary>
-        /// $
-        /// </summary>
-        [Category("TEXT")]
-        [Description("Đơn vị khác.")]
-        public string AnotherCurrencySymbol { get; set; }
+        ///// <summary>
+        ///// $
+        ///// </summary>
+        //[Category("TEXT")]
+        //[Description("Đơn vị khác.")]
+        //public string AnotherCurrencySymbol { get; set; }
         [Category("TEXT")]
         [Description("In đậm mã sản phẩm.")]
         public bool CodeTextFontBold { get; set; }
@@ -720,6 +746,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         public string PriceText { get; set; }
 
         [Category("TEXT")]
+        [DefaultValue(2)]
         [Description("Số chữ số thập phân. Ví dụ 2 => 100 000,00")]
         public int PriceDecimals { get; set; }
         /// <summary>
@@ -735,10 +762,13 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         [Description("Hiện tên sản phẩm hoặc không.")]
         public bool ShowName { get; set; }
         [Category("TEXT")]
+        [Description("Hiện tên sản phẩm 2 bên phải hoặc không.")]
+        public bool ShowName2 { get; set; }
+        [Category("TEXT")]
         [Description("Hiện giá sản phẩm hoặc không.")]
         public bool ShowPrice { get; set; }
-        [Description("Ngôn ngữ")]
-        public string LAN { get; set; }
+        //[Description("Ngôn ngữ")]
+        //public string LAN { get; set; }
         /// <summary>
         /// 1 VND 2 USD
         /// </summary>
@@ -747,27 +777,27 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         [Description("Loại tiền 1 VND 2 USD")]
         public string CurrencyType { get; set; }
         [Category("PAGE")]
-        [DefaultValue(5)]
+        [DefaultValue(3.0f)]
         [Description("Khoảng cách hàng nếu trang in lớn.")]
         public float DistanceH { get; set; }
         [Category("PAGE")]
-        [DefaultValue(5)]
+        [DefaultValue(3.0f)]
         [Description("Khoảng cách cột nếu trang in lớn.")]
         public float DistanceV { get; set; }
         [Category("PAGE")]
-        [DefaultValue(1)]
+        [DefaultValue(1.0f)]
         [Description("Canh lề dưới trang.")]
         public float MarginBottom { get; set; }
         [Category("PAGE")]
-        [DefaultValue(1)]
+        [DefaultValue(1.0f)]
         [Description("Canh lề trái trang.")]
         public float MarginLeft { get; set; }
         [Category("PAGE")]
-        [DefaultValue(1)]
+        [DefaultValue(1.0f)]
         [Description("Canh lề phải trang.")]
         public float MarginRight { get; set; }
         [Category("PAGE")]
-        [DefaultValue(1)]
+        [DefaultValue(1.0f)]
         [Description("Canh lề trên trang.")]
         public float MarginTop { get; set; }
         
@@ -779,7 +809,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         public float PageWidth { get; set; }
 
         [Category("STAMP")]
-        [DefaultValue(1.0)]
+        [DefaultValue(1.0f)]
         [Description("Co giãn them so với kích thước định nghĩa.")]
         public float Scale { get; set; }
         [Category("STAMP")]
@@ -806,6 +836,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         [Description("In luôn không hiện form tùy chỉnh.")]
         public bool ForcePrint { get; set; }
         
+
 
 
         #endregion Properties

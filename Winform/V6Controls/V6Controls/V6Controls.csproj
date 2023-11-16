@@ -1373,6 +1373,9 @@
     <Compile Include="V6LookupDataForm.designer.cs">
       <DependentUpon>V6LookupDataForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="V6QRTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>
@@ -2401,6 +2404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="V6LookupData.resx">
       <DependentUpon>V6LookupData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="V6QRTextBox.resx">
+      <DependentUpon>V6QRTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="V6VvarTextBox.resx">
       <DependentUpon>V6VvarTextBox.cs</DependentUpon>
