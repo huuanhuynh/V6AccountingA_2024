@@ -332,7 +332,7 @@ namespace V6Init
                     result1 = "Attribute=1";
                     break;
                 case "ALCT1":
-                    result1 = "(Loai='2' or Loai='3' or Loai='1')";
+                    result1 = "(Loai='2' or Loai='3' or Loai='1' or Loai='4')";
                     break;
 
                 case "ALKH":

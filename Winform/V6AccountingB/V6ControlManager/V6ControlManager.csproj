@@ -9807,6 +9807,7 @@
     <None Include="Resources\Setting24.png" />
     <None Include="Resources\SendEmail32.png" />
     <None Include="Resources\RefreshGreen.png" />
+    <None Include="Resources\QRicon32.png" />
     <Content Include="Resources\ToolBox16.png" />
     <Content Include="Resources\TreeBlack16.png" />
     <Content Include="Resources\TreeFolderYellowk16.png" />

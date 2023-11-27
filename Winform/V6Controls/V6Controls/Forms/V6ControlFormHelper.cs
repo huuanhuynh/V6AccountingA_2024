@@ -939,6 +939,26 @@ namespace V6Controls.Forms
                             c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
                         }
                         break;
+                    case "C4": // QRTextBox
+                        {
+                            var checkonLeave = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+
+                            string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
+                            string bfields, nfields;
+                            if (ss.Length >= 2)
+                            {
+                                bfields = ss[0];
+                                nfields = ss[1];
+                            }
+                            else
+                            {
+                                throw new Exception("fvvar không đủ bfields:nfields.");
+                            }
+                            
+                            c = CreateQRTextBox(FCOLUMN, "", "", bfields, nfields, fcaption, limits, width, fstatus, checkonLeave, notempty, carry);
+                        }
+                        break;
                     case "N9"://Kieu so bat ky
                         decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
                         c = CreateNumberTextBox(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
@@ -2252,39 +2272,49 @@ namespace V6Controls.Forms
                 throw new Exception("SetBrotherData error!\n" + (control.AccessibleName ?? "") + ": " + ex.Message);
             }
         }
-        
+
         /// <summary>
         /// Gán value cho vài control hàng xóm ánh xạ theo tên.
         /// </summary>
-        /// <param name="control">Control chứa</param>
-        /// <param name="row">Dữ liệu</param>
-        /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ</param>
+        /// <param name="control">Control gốc.</param>
+        /// <param name="row">Dữ liệu từ control gốc.</param>
+        /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ (để lấy dữ liệu trong data).</param>
         public static void SetNeighborData(Control control, DataRow row, IDictionary<string, string> neighbor_field)
         {
             try
             {
-                //if (row == null) return;
                 Control parent = control.Parent;
+                if (parent != null && parent.Parent != null) parent = parent.Parent;
+                var p2 = FindParent<V6Control>(control);
+                if (p2 != null)
+                {
+                    parent = p2;
+                }
+                else
+                {
+                    p2 = FindParent<V6Control>(control);
+                    if (p2 != null) parent = p2;
+                }
+
                 if (parent != null)
                 {
+                    var n_data = new Dictionary<string, object>();
+                    foreach (var item in neighbor_field)
+                    {
+                        if (row.Table.Columns.Contains(item.Value))
+                        {
+                            n_data[item.Key] = row[item.Value];
+                        }
+                        else
+                        {
+                            n_data[item.Key] = null;
+                        }
+                    }
+
+
                     foreach (Control c in parent.Controls)
                     {
-                        if (c == control) continue;
-                        var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
-                        if (string.IsNullOrEmpty(aNAME)) continue;
-                        aNAME = aNAME.ToUpper();
-                        if (!neighbor_field.ContainsKey(aNAME)) continue;
-                        var fieldName = neighbor_field[aNAME];
-
-                        if (row != null && row.Table.Columns.Contains(fieldName))
-                        {
-                            SetControlValue(c, row[fieldName]);
-                        }
-                        else // Có trong neighbor nhưng không có trong data
-                        {
-                            //Gán rỗng hoặc mặc định
-                            SetControlValue(c, null);
-                        }
+                        SetSomeDataDictionary(c, n_data);
                     }
                 }
             }
@@ -2294,67 +2324,99 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Gán dữ liệu vào các ô hàng xóm
+        /// </summary>
+        /// <param name="control">Control gốc.</param>
+        /// <param name="data">Dữ liệu trong control gốc.</param>
+        /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ (để lấy dữ liệu trong data).</param>
         public static void SetNeighborData(Control control, IDictionary<string, string> data, IDictionary<string, string> neighbor_field)
         {
             try
             {
-                //if (row == null) return;
                 Control parent = control.Parent;
+                if (parent != null && parent.Parent != null) parent = parent.Parent;
+                var p2 = FindParent<V6Control>(control);
+                if (p2 != null)
+                {
+                    parent = p2;
+                }
+                else
+                {
+                    p2 = FindParent<V6Control>(control);
+                    if (p2 != null) parent = p2;
+                }
+
                 if (parent != null)
                 {
+                    var n_data = new Dictionary<string, object>();
+                    foreach (var item in neighbor_field)
+                    {
+                        if (data.ContainsKey(item.Value))
+                        {
+                            n_data[item.Key] = data[item.Value];
+                        }
+                        else
+                        {
+                            n_data[item.Key] = null;
+                        }
+                    }
+                    
+
                     foreach (Control c in parent.Controls)
                     {
-                        if (c == control) continue;
-                        var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
-                        if (string.IsNullOrEmpty(aNAME)) continue;
-                        aNAME = aNAME.ToUpper();
-                        if (!neighbor_field.ContainsKey(aNAME)) continue;
-                        var fieldName = neighbor_field[aNAME].ToUpper();
-
-                        if (data != null && data.ContainsKey(fieldName))
-                        {
-                            SetControlValue(c, data[fieldName]);
-                        }
-                        else // Có trong neighbor nhưng không có trong data
-                        {
-                            //Gán rỗng hoặc mặc định
-                            SetControlValue(c, null);
-                        }
+                        SetSomeDataDictionary(c, n_data);
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("SetBrotherData error!\n" + (control.AccessibleName ?? "") + ": " + ex.Message);
+                //throw new Exception("SetBrotherData error!\n" + (control.AccessibleName ?? "") + ": " + ex.Message);
             }
         }
 
-        public static void SetNeighborDataProc(Control control, IDictionary<string, object> row, IDictionary<string, string> neighbor_field)
+        public static void SetNeighborDataProc(Control control, IDictionary<string, object> data, IDictionary<string, string> neighbor_field)
         {
             try
             {
-                //if (row == null) return;
-                Control parent = control.Parent;
+                Control parent = control.Parent.Parent;
+                var p2 = FindParent<V6FormControl>(control);
+                if (p2 != null) parent = p2;
+
                 if (parent != null)
                 {
+                    var n_data = new Dictionary<string, object>();
+                    foreach (var item in neighbor_field)
+                    {
+                        if (data.ContainsKey(item.Key))
+                        {
+                            n_data[item.Key] = item.Value;
+                        }
+                        else
+                        {
+                            n_data[item.Key] = null;
+                        }
+                    }
+                    
                     foreach (Control c in parent.Controls)
                     {
-                        if (c == control) continue;
-                        var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
-                        if (string.IsNullOrEmpty(aNAME)) continue;
-                        aNAME = aNAME.ToUpper();
-                        if (!neighbor_field.ContainsKey(aNAME)) continue;
-                        var FIELD_NAME = neighbor_field[aNAME].ToUpper();
+                        SetSomeDataDictionary(c, n_data);
+                        //if (c == control) continue;
+                        //var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
+                        //if (string.IsNullOrEmpty(aNAME)) continue;
+                        //aNAME = aNAME.ToUpper();
+                        //if (!neighbor_field.ContainsKey(aNAME)) continue;
+                        //var FIELD_NAME = neighbor_field[aNAME].ToUpper();
 
-                        if (row != null && row.ContainsKey(FIELD_NAME))
-                        {
-                            SetControlValue(c, row[FIELD_NAME]);
-                        }
-                        else // Có trong neighbor nhưng không có trong data
-                        {
-                            //Gán rỗng hoặc mặc định
-                            SetControlValue(c, null);
-                        }
+                        //if (row != null && row.ContainsKey(FIELD_NAME))
+                        //{
+                        //    SetControlValue(c, row[FIELD_NAME]);
+                        //}
+                        //else // Có trong neighbor nhưng không có trong data
+                        //{
+                        //    //Gán rỗng hoặc mặc định
+                        //    SetControlValue(c, null);
+                        //}
                     }
                 }
             }
@@ -3438,6 +3500,7 @@ namespace V6Controls.Forms
                 Tag = visible ? null : "hide"
             };
         }
+        
         public static V6NumberTextBox CreateNumberTextBox(string accessibleName, string caption, int decimals, string limits, int width, bool visible, bool carry = false)
         {
             return new V6NumberTextBox
@@ -3603,7 +3666,32 @@ namespace V6Controls.Forms
             };
         }
 
-        
+        public static V6ColorTextBox CreateQRTextBox(string accessibleName,
+            string value_field, string text_field, string brother, string neighbor,
+            string caption, string limits, int width, bool visible,
+            bool checkOnLeave, bool checkNotEmpty, bool carry = false)
+        {
+            return new V6QRTextBox
+            {
+                Name = accessibleName,
+                AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
+                //AccessibleName2 = accessibleName + "2",
+                Carry = carry,
+                //ValueField = value_field,
+                //ShowTextField = text_field,
+                BrotherFields = brother,
+                NeighborFields = neighbor,
+
+                CheckOnLeave = checkOnLeave,
+                CheckNotEmpty = checkNotEmpty,
+                GrayText = caption,
+                LimitCharacters = limits,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide"
+            };
+        }
 
         public static V6LookupData CreateLookupDataTextBox(string accessibleName, string vvar, string caption, string limits, int width, bool visible,
             bool checkOnLeave, bool checkNotEmpty, bool carry = false)

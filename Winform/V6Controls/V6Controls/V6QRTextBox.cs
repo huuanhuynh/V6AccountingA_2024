@@ -50,9 +50,7 @@ namespace V6Controls
             }
         }
 
-        private string _vVar = "";
-        //private bool _loadAutoCompleteSrc = false;
-        private bool _f5 = true, _f2;
+        
         /// <summary>
         /// Data_ID
         /// </summary>
@@ -78,19 +76,26 @@ namespace V6Controls
 
         private void GetData()
         {
-            _text_data = Text;
-            if (string.IsNullOrEmpty(M_QRCODE_INFOS.SPLIT))
+            try
             {
-                _data = null;
-            }
-            else
-            {
-                var ar = ObjectAndString.SplitStringBy(_text_data, '~', false);
-                _data = new Dictionary<string, string>();
-                foreach (var item in M_QRCODE_INFOS.FIELD_INDEX)
+                _text_data = Text;
+                if (string.IsNullOrEmpty(M_QRCODE_INFOS.SPLIT))
                 {
-                    _data[item.Key] = ar[item.Value];
+                    _data = null;
                 }
+                else
+                {
+                    var ar = ObjectAndString.SplitStringBy(_text_data, '~', false);
+                    _data = new Dictionary<string, string>();
+                    foreach (var item in M_QRCODE_INFOS.FIELD_INDEX)
+                    {
+                        _data[item.Key] = ar[item.Value];
+                    }
+                }
+            }
+            catch
+            {
+
             }
         }
 
@@ -136,9 +141,9 @@ namespace V6Controls
         {
             if (BrotherFields != null)
             {
-                if (_data != null)
+                if (Data != null)
                 {
-                    V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
+                    V6ControlFormHelper.SetBrotherData(this, Data, BrotherFields, BrotherFields2);
                     SetNeighborValues();
                 }
                 else
@@ -211,19 +216,7 @@ namespace V6Controls
             get { return _checkNotEmpty; }
             set { _checkNotEmpty = value; }
         }
-
-        [Description("V6 VVar")]
-        [DefaultValue("")]
-        public string VVar
-        {
-            get { return _vVar; }
-            set
-            {
-                _vVar = value;
-                if (!string.IsNullOrEmpty(_vVar)) _upper = true;
-            }
-        }
-
+        
         
 
         #region ==== Event ====
@@ -296,27 +289,21 @@ namespace V6Controls
                 return;
             }
             _checkOnLeave_OnEnter = false;
-            //Save keyDown history();
-            if (string.IsNullOrEmpty(_vVar))
+            
+            if (e.KeyData == Keys.Enter)
             {
-                base.V6ColorTextBox_KeyDown(sender, e);
+                //Do check on leave
+                Do_CheckOnLeave(new EventArgs());
+                //Flag
+                _checkOnLeave_OnEnter = true;
+                //Send Tab
+                SendKeys.Send("{TAB}");
             }
             else
             {
-                if (e.KeyData == Keys.Enter)
-                {
-                    //Do check on leave
-                    Do_CheckOnLeave(new EventArgs());
-                    //Flag
-                    _checkOnLeave_OnEnter = true;
-                    //Send Tab
-                    SendKeys.Send("{TAB}");
-                }
-                else
-                {
-                    base.V6ColorTextBox_KeyDown(this, e);
-                }
+                base.V6ColorTextBox_KeyDown(this, e);
             }
+            
         }
 
         /// <summary>
@@ -338,31 +325,20 @@ namespace V6Controls
                 V6ControlsHelper.DisableLookup = false;
                 return;
             }
-
-            if (string.IsNullOrEmpty(_vVar))
+            
+            // Đã xử lý KeyDown Enter.
+            _checkOnLeave_OnEnter = false;
+            if (!Looking && gotfocustext != Text)
             {
-                base.V6ColorTextBox_LostFocus(sender, e);
+                SetBrotherFormData();
+                CallDoV6LostFocus();
             }
             else
             {
-                if (_checkOnLeave_OnEnter)
-                {
-                    // Đã xử lý KeyDown Enter.
-                    _checkOnLeave_OnEnter = false;
-                    //if (!Looking && gotfocustext != Text)
-                    //{
-                    //    CallDoV6LostFocus();
-                    //}
-                    //else
-                    //{
-                    //    CallDoV6LostFocusNoChange();
-                    //}
-                }
-                else
-                {
-                    Do_CheckOnLeave(e);
-                }
+                CallDoV6LostFocusNoChange();
             }
+            
+            
         }
 
         private void Do_CheckOnLeave(EventArgs e)
@@ -477,7 +453,14 @@ namespace V6Controls
             {
                 try
                 {
-                    FIELD_INDEX[item.Key.ToUpper()] = ObjectAndString.ObjectToInt(item.Value);
+                    if (item.Key == "SPLIT")
+                    {
+
+                    }
+                    else
+                    {
+                        FIELD_INDEX[item.Key.ToUpper()] = ObjectAndString.ObjectToInt(item.Value)-1;
+                    }
                 }
                 catch
                 {

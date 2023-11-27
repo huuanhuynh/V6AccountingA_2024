@@ -683,6 +683,16 @@ namespace V6ControlManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap QRicon32 {
+            get {
+                object obj = ResourceManager.GetObject("QRicon32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap questionwhite {
             get {
                 object obj = ResourceManager.GetObject("questionwhite", resourceCulture);
