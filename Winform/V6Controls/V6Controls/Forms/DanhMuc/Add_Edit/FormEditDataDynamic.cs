@@ -218,6 +218,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             vvar_input.SetInitFilter(defineInfo.InitFilter);
                             vvar_input.F2 = defineInfo.F2;
                         }
+                        else if (defineInfo.ControlType.ToUpper() == "QRTEXTBOX")
+                        {
+                            input = new V6QRTextBox()
+                            {
+                                Name = "txt" + defineInfo.Field,
+                                //Ma_dm = defineInfo.MA_DM, //Mã danh mục trong Aldm
+                                AccessibleName = defineInfo.AccessibleName, //Trường get dữ liệu
+                                //AccessibleName2 = defineInfo.AccessibleName2, //Trường get text hiển thị
+                                //ValueField = defineInfo.Field, //Trường dữ liệu
+                                //ShowTextField = defineInfo.Field2, //Trường text hiển thị
+                                //CheckOnLeave = true,
+                                CheckNotEmpty = defineInfo.NotEmpty,
+                                UseChangeTextOnSetFormData = defineInfo.UseChangeText,
+                                UseLimitCharacters0 = defineInfo.UseLimitChars0,
+                            };
+                        }
                         else if (defineInfo.ControlType.ToUpper() == "LOOKUPTEXTBOX")
                         {
                             input = new V6LookupTextBox()

@@ -33,23 +33,23 @@ namespace V6Controls
             // V6QRTextBox
             // 
             this.TextChanged += new System.EventHandler(this.V6QRTextBox_TextChanged);
-            this.Enter += new System.EventHandler(this.V6QRTextBox_Enter);
+            //this.Enter += new System.EventHandler(this.V6QRTextBox_Enter);
             //this. GotFocus += new System.EventHandler(this.V6QRTextBox_GotFocus);
             this.ResumeLayout(false);
         }
-        
-        private void V6QRTextBox_Enter(object sender, EventArgs e)
+
+        protected override void V6ColorTextBox_Enter(object sender, EventArgs e)
         {
+            base.V6ColorTextBox_Enter(sender, e);
             try
             {
-                
+                SelectAll();
             }
             catch (Exception)
             {
                 
             }
         }
-
         
         /// <summary>
         /// Data_ID
@@ -85,7 +85,7 @@ namespace V6Controls
                 }
                 else
                 {
-                    var ar = ObjectAndString.SplitStringBy(_text_data, '~', false);
+                    var ar = ObjectAndString.SplitStringBy(_text_data, M_QRCODE_INFOS.SPLIT[0], false);
                     _data = new Dictionary<string, string>();
                     foreach (var item in M_QRCODE_INFOS.FIELD_INDEX)
                     {
@@ -168,7 +168,7 @@ namespace V6Controls
                 {
                     neighbor_field.Add(nList[i].ToUpper(), bList[i].ToUpper());
                 }
-                V6ControlFormHelper.SetNeighborData(this, _data, neighbor_field);
+                V6ControlFormHelper.SetNeighborData_V6Lost(this, _data, neighbor_field);
             }
             catch (Exception)
             {
@@ -199,7 +199,7 @@ namespace V6Controls
         /// <summary>
         /// Cờ đã xử lý khi bấm enter.
         /// </summary>
-        private bool _checkOnLeave_OnEnter = false;
+        private int _checkOnLeave_OnEnter = 0;
         private bool _checkOnLeave = true;
         [Description("Bật tắt kiểm tra tính hợp lệ của dữ liệu khi rời khỏi.")]
         [DefaultValue(true)]
@@ -288,14 +288,14 @@ namespace V6Controls
                 if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
                 return;
             }
-            _checkOnLeave_OnEnter = false;
+            _checkOnLeave_OnEnter = 0;
             
             if (e.KeyData == Keys.Enter)
             {
                 //Do check on leave
                 Do_CheckOnLeave(new EventArgs());
                 //Flag
-                _checkOnLeave_OnEnter = true;
+                _checkOnLeave_OnEnter = 2;
                 //Send Tab
                 SendKeys.Send("{TAB}");
             }
@@ -327,7 +327,16 @@ namespace V6Controls
             }
             
             // Đã xử lý KeyDown Enter.
-            _checkOnLeave_OnEnter = false;
+            if (_checkOnLeave_OnEnter == 1)
+            {
+                _checkOnLeave_OnEnter = 0;
+                return;
+            }
+            else if (_checkOnLeave_OnEnter == 2)
+            {
+                _checkOnLeave_OnEnter--;
+            }
+            
             if (!Looking && gotfocustext != Text)
             {
                 SetBrotherFormData();
@@ -375,8 +384,7 @@ namespace V6Controls
         {
             try
             {
-                
-                return false;
+                return !string.IsNullOrEmpty(M_QRCODE_INFOS.SPLIT) && Text.Contains(M_QRCODE_INFOS.SPLIT);
             }
             catch (Exception)
             {

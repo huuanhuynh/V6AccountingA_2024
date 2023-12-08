@@ -479,5 +479,13 @@ namespace V6Controls
             if (Carry)
                 Value = Carry_Value;
         }
+
+        /// <summary>
+        /// Gọi sự kiện Leave. Các code .Levae += của textbox được gọi sẽ được kích hoạt.
+        /// </summary>
+        public void CallLeave()
+        {
+            OnLeave(new EventArgs());
+        }
     }
 }

@@ -391,7 +391,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 // chạy từng ngày.
-                for (DateTime i = FilterControl.Date1; i <= FilterControl.Date2; i = i.AddDays(1))
+                for (DateTime i = FilterControl.Date1.Date; i <= FilterControl.Date2; i = i.AddDays(1))
                 {
                     string i_string = i.ToString("yyyyMMdd");
                     SetStatusText(proc + ": " + i_string);

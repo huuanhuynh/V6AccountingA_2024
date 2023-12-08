@@ -793,6 +793,45 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
+        /// <summary>
+        /// Trường kiểm tra trùng thì cộng dồn.
+        /// </summary>
+        public string[] ExtraInfo_QrChecks
+        {
+            get
+            {
+                string[] result = null;
+                if (EXTRA_INFOR.ContainsKey("QR_CHECKS")) result = ObjectAndString.SplitString(EXTRA_INFOR["QR_CHECKS"]);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Quét qr, nhận tự cộng dồn.
+        /// </summary>
+        public string[] ExtraInfo_QrSums
+        {
+            get
+            {
+                string[] result = null;
+                if (EXTRA_INFOR.ContainsKey("QR_SUMS")) result = ObjectAndString.SplitString(EXTRA_INFOR["QR_SUMS"]);
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// ô nhảy vào sau khi quét QR
+        /// </summary>
+        public string ExtraInfo_QrGot
+        {
+            get
+            {
+                string result = null;
+                if (EXTRA_INFOR.ContainsKey("QR_GOT")) result = EXTRA_INFOR["QR_GOT"];
+                return result;
+            }
+        }
+
         private SortedDictionary<string, string> _extraInfor = null;
         private SortedDictionary<string, string> _extraInforCT = null;
 
@@ -813,6 +852,7 @@ namespace V6AccountingBusiness.Invoices
                 }
             }
         }
+
         private void GetExtraInforCT()
         {
             _extraInforCT = new SortedDictionary<string, string>();

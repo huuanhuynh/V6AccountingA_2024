@@ -1181,6 +1181,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     SetFormReportFilter();
                     if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
                     {
+                        _albcConfig = new AlbcConfig(MauInSelectedRow.ToDataDictionary());
                         txtReportTitle.Text = ReportTitle;
                     }
 

@@ -1618,9 +1618,11 @@ namespace V6Controls.Forms
 
             if (lineInfo.Readonly) lineControl.SetReadonly(true);
             V6VvarTextBox vT;
+            V6QRTextBox qR;
             V6LookupTextBox vL;
             V6LookupProc vP;
             V6FormButton bT;
+            RichTextBox rT;
             
             
             if (CONTROL_TYPE == "VVARTEXTBOX")
@@ -1629,10 +1631,28 @@ namespace V6Controls.Forms
                 //
                 vT.BrotherFields = lineInfo.BField;
                 vT.BrotherFields2 = lineInfo.BField2;
+                vT.NeighborFields = lineInfo.NField;
                 if (!string.IsNullOrEmpty(lineInfo.ShowName)) vT.ShowName = lineInfo.ShowName == "1";
                 vT.F2 = lineInfo.F2;
                 vT.FilterStart = lineInfo.FilterStart;
                 if (lineInfo.Readonly) vT.ReadOnlyTag();
+            }
+            else if (CONTROL_TYPE == "RICHTEXTBOX")
+            {
+                rT = lineControl.AddRichTextBox();
+                if (lineInfo.Readonly) rT.ReadOnlyTag();
+            }
+            else if (CONTROL_TYPE == "QRTEXTBOX")
+            {
+                qR = lineControl.AddQRTextBox();
+                //
+                qR.BrotherFields = lineInfo.BField;
+                qR.BrotherFields2 = lineInfo.BField2;
+                qR.NeighborFields = lineInfo.NField;
+                //if (!string.IsNullOrEmpty(lineInfo.ShowName)) qR.ShowName = lineInfo.ShowName == "1";
+                //qR.F2 = lineInfo.F2;
+                //qR.FilterStart = lineInfo.FilterStart;
+                if (lineInfo.Readonly) qR.ReadOnlyTag();
             }
             else if (CONTROL_TYPE == "LOOKUPTEXTBOX") 
             {
@@ -2285,7 +2305,7 @@ namespace V6Controls.Forms
             {
                 Control parent = control.Parent;
                 if (parent != null && parent.Parent != null) parent = parent.Parent;
-                var p2 = FindParent<V6Control>(control);
+                var p2 = FindParent<V6Control>(parent);
                 if (p2 != null)
                 {
                     parent = p2;
@@ -2314,7 +2334,7 @@ namespace V6Controls.Forms
 
                     foreach (Control c in parent.Controls)
                     {
-                        SetSomeDataDictionary(c, n_data);
+                        SetSomeDataDictionary_Forced(c, n_data);
                     }
                 }
             }
@@ -2336,7 +2356,7 @@ namespace V6Controls.Forms
             {
                 Control parent = control.Parent;
                 if (parent != null && parent.Parent != null) parent = parent.Parent;
-                var p2 = FindParent<V6Control>(control);
+                var p2 = FindParent<V6Control>(parent);
                 if (p2 != null)
                 {
                     parent = p2;
@@ -2365,13 +2385,80 @@ namespace V6Controls.Forms
 
                     foreach (Control c in parent.Controls)
                     {
-                        SetSomeDataDictionary(c, n_data);
+                        SetSomeDataDictionary_Forced(c, n_data);
                     }
                 }
             }
             catch (Exception ex)
             {
                 //throw new Exception("SetBrotherData error!\n" + (control.AccessibleName ?? "") + ": " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gán dữ liệu vào các ô hàng xóm
+        /// </summary>
+        /// <param name="control">Control gốc.</param>
+        /// <param name="data">Dữ liệu trong control gốc.</param>
+        /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ (để lấy dữ liệu trong data).</param>
+        public static void SetNeighborData_V6Lost(Control control, IDictionary<string, string> data, IDictionary<string, string> neighbor_field)
+        {
+            try
+            {
+                Control parent = control.Parent;
+                if (parent != null && parent.Parent != null) parent = parent.Parent;
+                var p2 = FindParent<V6Control>(parent);
+                if (p2 != null)
+                {
+                    parent = p2;
+                }
+                else
+                {
+                    p2 = FindParent<V6Control>(control);
+                    if (p2 != null) parent = p2;
+                }
+
+                if (parent != null)
+                {
+                    var n_data = new Dictionary<string, object>();
+                    foreach (var item in neighbor_field)
+                    {
+                        Control c = GetControlByAccessibleName(parent, item.Key);
+                        if (c == null) continue;
+
+                        if (data.ContainsKey(item.Value))
+                        {
+                            SetControlValue(c, data[item.Value]);
+                        }
+                        else
+                        {
+                            SetControlValue(c, null);
+                        }
+
+                        
+
+                        if (c is V6ColorTextBox)
+                        {
+                            ((V6ColorTextBox)c).CallLeave();
+                            ((V6ColorTextBox)c).CallDoV6LostFocus();
+                        }
+                        else if (c is V6ColorMaskedTextBox)
+                        {
+                            ((V6ColorMaskedTextBox)c).CallLeave();
+                            ((V6ColorMaskedTextBox)c).CallDoV6LostFocus();
+                        }
+                        else if (c is V6DateTimePicker)
+                        {
+                            ((V6DateTimePicker)c).CallLeave();
+                            ((V6DateTimePicker)c).CallDoV6LostFocus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("SetBrotherData_V6Lost error!\n" + (control.AccessibleName ?? "") + ": " + ex.Message);
             }
         }
 
@@ -2400,23 +2487,7 @@ namespace V6Controls.Forms
                     
                     foreach (Control c in parent.Controls)
                     {
-                        SetSomeDataDictionary(c, n_data);
-                        //if (c == control) continue;
-                        //var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
-                        //if (string.IsNullOrEmpty(aNAME)) continue;
-                        //aNAME = aNAME.ToUpper();
-                        //if (!neighbor_field.ContainsKey(aNAME)) continue;
-                        //var FIELD_NAME = neighbor_field[aNAME].ToUpper();
-
-                        //if (row != null && row.ContainsKey(FIELD_NAME))
-                        //{
-                        //    SetControlValue(c, row[FIELD_NAME]);
-                        //}
-                        //else // Có trong neighbor nhưng không có trong data
-                        //{
-                        //    //Gán rỗng hoặc mặc định
-                        //    SetControlValue(c, null);
-                        //}
+                        SetSomeDataDictionary_Forced(c, n_data);
                     }
                 }
             }
@@ -2674,7 +2745,39 @@ namespace V6Controls.Forms
             }
             return result;
         }
-        
+
+        /// <summary>
+        /// Gán value cho các control trên form có AccessibleName
+        /// Không có data thì sẽ set rỗng nếu set_default = true
+        /// Có cancelall, canceldata
+        /// </summary>
+        /// <param name="control">Form cần điền dữ liệu, thường dùng từ khóa this</param>
+        /// <param name="data">Lưu ý. nên dùng key UPPER</param>
+        /// <param name="set_default">Nếu không có dữ liệu thì gán rỗng hoặc mặc định.</param>
+        public static SortedDictionary<string, Control> SetFormDataDictionary_Force(Control control, IDictionary<string, object> data, bool set_default = true)
+        {
+            SortedDictionary<string, Control> result = new SortedDictionary<string, Control>();
+            try
+            {
+                _errors = "";
+                if (!set_default && (data == null || data.Count == 0)) return result;
+                Dictionary<string, object> dataClone = null;
+                if (data != null) dataClone = new Dictionary<string, object>(data);
+                result = SetFormDataDicRecursive_Forced(control, dataClone, set_default);
+            }
+            catch (Exception ex)
+            {
+                _errors += "\nSetFormDataDic: " + control.AccessibleName + ": " + ex.Message;
+            }
+            if (_errors != "")
+            {
+                var ex = new Exception("SetFormDataDictionary_Force: " + _errors);
+                WriteExLog("V6ControlFormHelper.SetFormDataDictionary_Force", ex);
+                throw ex;
+            }
+            return result;
+        }
+
         /// <summary>
         /// Gán value cho một số control có AccessibleName trùng data
         /// </summary>
@@ -2699,6 +2802,35 @@ namespace V6Controls.Forms
                 var ex = new Exception("SetSomeDataDictionary: " + _errors);
                 Logger.WriteExLog(V6Login.ClientName + " " + MethodBase.GetCurrentMethod().DeclaringType
                     + ".SetSomeDataDictionary", ex, LastActionListString);
+                throw ex;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Gán value cho một số control có AccessibleName trùng data, không bị cancel tag.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="data"></param>
+        public static SortedDictionary<string, Control> SetSomeDataDictionary_Forced(Control control, IDictionary<string, object> data)
+        {
+            SortedDictionary<string, Control> result = new SortedDictionary<string, Control>();
+            Dictionary<string, object> dataClone = null;
+            if (data != null) dataClone = new Dictionary<string, object>(data);
+            try
+            {
+                _errors = "";
+                result = SetFormDataDicRecursive_Forced(control, dataClone, false);
+            }
+            catch (Exception ex)
+            {
+                _errors += "\nSetSomeDataDictionary_Forced: " + control.AccessibleName + ": " + ex.Message;
+            }
+            if (_errors != "")
+            {
+                var ex = new Exception("SetSomeDataDictionary_Forced: " + _errors);
+                Logger.WriteExLog(V6Login.ClientName + " " + MethodBase.GetCurrentMethod().DeclaringType
+                    + ".SetSomeDataDictionary_Forced", ex, LastActionListString);
                 throw ex;
             }
             return result;
@@ -2756,6 +2888,60 @@ namespace V6Controls.Forms
                     }
                 }
             CANCEL: ;
+            }
+            catch (Exception ex)
+            {
+                _errors += "\r\nAccessibleName: " + control.AccessibleName
+                    + "\r\nException: " + ex.Message;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Gán dữ liệu lên form hoặc control. Không bị cancel tag.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="data"></param>
+        /// <param name="set_default"></param>
+        /// <returns>Các control được gán dữ liệu. key=AccessibleName</returns>
+        private static SortedDictionary<string, Control> SetFormDataDicRecursive_Forced(Control control, IDictionary<string, object> data, bool set_default = true)
+        {
+            SortedDictionary<string, Control> result = new SortedDictionary<string, Control>();
+            try
+            {
+                var NAME = "" + (control is RadioButton ? control.Name : control.AccessibleName);
+                NAME = NAME.ToUpper();
+
+                if (data != null && !string.IsNullOrEmpty(NAME) && data.ContainsKey(NAME.ToUpper()))
+                {
+                    NAME = NAME.ToUpper();
+                    result[NAME] = control;
+
+                    SetControlValue(control, data[NAME]);
+                    data.Remove(NAME);
+                }
+                else if (set_default && !string.IsNullOrEmpty(NAME))
+                {
+                    // === Gán rỗng hoặc mặc định ===
+                    result[NAME] = control;
+                    if (control.AccessibleName == "MA_XULY")
+                    {
+
+                    }
+                    SetControlValue(control, null);
+                }
+
+                if (!set_default && (data == null || data.Count == 0)) return result;
+
+                if (control.Controls.Count > 0)
+                {
+                    foreach (Control c in control.Controls)
+                    {
+                        var result1 = SetFormDataDicRecursive_Forced(c, data, set_default);
+                        result.AddRange(result1);
+                    }
+                }
+
             }
             catch (Exception ex)
             {

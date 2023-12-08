@@ -22,6 +22,9 @@ namespace V6ReportControls
         public V6DateTimePicker _dateTimePick;
         public V6CheckBox _checkBox;
         public V6FormButton _button;
+        public V6QRTextBox _qrTextBox;
+        public RichTextBox _richTextBox;
+
         public bool CheckNotEmpty;
         
         /// <summary>
@@ -78,6 +81,14 @@ namespace V6ReportControls
             {
                 IsSelected = false;
             }
+            else if (_richTextBox != null && _richTextBox.Text.Trim() == string.Empty)
+            {
+                IsSelected = false;
+            }
+            else if (_qrTextBox != null && _qrTextBox.Text.Trim() == string.Empty)
+            {
+                IsSelected = false;
+            }
             else if (_vtextBox != null && _vtextBox.Text.Trim() == string.Empty)
             {
                 IsSelected = false;
@@ -114,6 +125,8 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox.AccessibleName;
+                if (_richTextBox != null) return _richTextBox.AccessibleName;
+                if (_qrTextBox != null) return _qrTextBox.AccessibleName;
                 if (_vtextBox != null) return _vtextBox.AccessibleName;
                 if (_lookupTextBox != null) return _lookupTextBox.AccessibleName;
                 if (_lookupProc != null) return _lookupProc.AccessibleName;
@@ -127,6 +140,8 @@ namespace V6ReportControls
             set
             {
                 if (_textBox != null) _textBox.AccessibleName = value;
+                if (_richTextBox != null) _richTextBox.AccessibleName = value;
+                if (_qrTextBox != null) _qrTextBox.AccessibleName = value;
                 if (_vtextBox != null) _vtextBox.AccessibleName = value;
                 if (_lookupTextBox != null) _lookupTextBox.AccessibleName = value;
                 if (_lookupProc != null) _lookupProc.AccessibleName = value;
@@ -143,6 +158,8 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox;
+                if (_richTextBox != null) return _richTextBox;
+                if (_qrTextBox != null) return _qrTextBox;
                 if (_vtextBox != null) return _vtextBox;
                 if (_lookupTextBox != null) return _lookupTextBox;
                 if (_lookupProc != null) return _lookupProc;
@@ -160,6 +177,8 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox.Text.Trim();
+                if (_richTextBox != null) return _richTextBox.Text.Trim();
+                if (_qrTextBox != null) return _qrTextBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
                 if (_lookupTextBox != null) return _lookupTextBox.Value;
                 if (_lookupProc != null) return _lookupProc.Value;
@@ -177,6 +196,8 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox.Text.Trim();
+                if (_richTextBox != null) return _richTextBox.Text.Trim();
+                if (_qrTextBox != null) return _qrTextBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
                 if (_lookupTextBox != null) return _lookupTextBox.Value == null ? null : _lookupTextBox.Value.ToString();
                 if (_lookupProc != null) return _lookupProc.Value.ToString();
@@ -197,6 +218,8 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox;
+                if (_richTextBox != null) return _richTextBox;
+                if (_qrTextBox != null) return _qrTextBox;
                 if (_vtextBox != null) return _vtextBox;
                 if (_lookupTextBox != null) return _lookupTextBox;
                 if (_lookupProc != null) return _lookupProc;
@@ -314,6 +337,59 @@ namespace V6ReportControls
             _textBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _textBox.KeyDown += FilterLineDynamic_KeyDown;
             return _textBox;
+        }
+        public RichTextBox AddRichTextBox()
+        {
+            //checkBox1.Visible = false;
+            //label1.Visible = false;
+            comboBox1.Visible = false;
+            
+            _richTextBox = new RichTextBox();
+            _richTextBox.Name = "txt" + FieldName;
+            _richTextBox.Location = new Point(checkBox1.Left, checkBox1.Bottom + 5);
+            _richTextBox.Size = new Size(Width - 5, 60);
+            _richTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Controls.Add(_richTextBox);
+            Height = _richTextBox.Height + _richTextBox.Top;
+            //Operators.Clear();
+            //Operators.Add("start");
+            //Operators.Add("like");
+            //Operators.Add("=");
+            //Operators.Add("<>");
+            //Operators.Add("is null");
+            //Operators.Add("is not null");
+            //Operator = "start";
+            _richTextBox.Click += FilterLineDynamic_Click;
+            _richTextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _richTextBox.Enter += FilterLineDynamic_GotFocus;
+            _richTextBox.Leave += FilterLineDynamic_LostFocus;
+            //_richTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _richTextBox.KeyDown += FilterLineDynamic_KeyDown;
+            return _richTextBox;
+        }
+        public V6QRTextBox AddQRTextBox()
+        {
+            _qrTextBox = new V6QRTextBox();
+            _qrTextBox.Name = "txt" + FieldName;
+            _qrTextBox.Location = new Point(comboBox1.Right + 5, 1);
+            _qrTextBox.Size = new Size(Width - comboBox1.Right - 5, 20);
+            _qrTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Controls.Add(_qrTextBox);
+            Operators.Clear();
+            Operators.Add("start");
+            Operators.Add("like");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add("is null");
+            Operators.Add("is not null");
+            Operator = "start";
+            _qrTextBox.Click += FilterLineDynamic_Click;
+            _qrTextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _qrTextBox.Enter += FilterLineDynamic_GotFocus;
+            _qrTextBox.Leave += FilterLineDynamic_LostFocus;
+            _qrTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _qrTextBox.KeyDown += FilterLineDynamic_KeyDown;
+            return _qrTextBox;
         }
         public V6VvarTextBox AddVvarTextBox(string vVar, string filter)
         {
@@ -646,6 +722,14 @@ namespace V6ReportControls
             {
                 _textBox.Text = ObjectAndString.ObjectToString(value);
             }
+            else if (_richTextBox != null)
+            {
+                _richTextBox.Text = ObjectAndString.ObjectToString(value);
+            }
+            else if (_qrTextBox != null)
+            {
+                _qrTextBox.Text = ObjectAndString.ObjectToString(value);
+            }
             else if (_vtextBox != null)
             {
                 _vtextBox.Text = ObjectAndString.ObjectToString(value);
@@ -691,6 +775,10 @@ namespace V6ReportControls
             {
                 _textBox.LimitCharacters = limitChars;
             }
+            else if (_qrTextBox != null)
+            {
+                _qrTextBox.LimitCharacters = limitChars;
+            }
             else if (_vtextBox != null)
             {
                 _vtextBox.LimitCharacters = limitChars;
@@ -718,6 +806,10 @@ namespace V6ReportControls
             if (_textBox != null)
             {
                 _textBox.MaxLength = maxLength;
+            }
+            if (_qrTextBox != null)
+            {
+                _qrTextBox.MaxLength = maxLength;
             }
             else if (_vtextBox != null)
             {
@@ -809,6 +901,14 @@ namespace V6ReportControls
                 {
                     _textBox.ReadOnlyTag();
                 }
+                if (_richTextBox != null)
+                {
+                    _richTextBox.ReadOnlyTag();
+                }
+                if (_qrTextBox != null)
+                {
+                    _qrTextBox.ReadOnlyTag();
+                }
                 if (_numberTextBox != null)
                 {
                     _numberTextBox.ReadOnlyTag();
@@ -852,6 +952,14 @@ namespace V6ReportControls
                 if (_textBox != null)
                 {
                     _textBox.ReadOnlyTag(false);
+                }
+                if (_richTextBox != null)
+                {
+                    _richTextBox.ReadOnlyTag(false);
+                }
+                if (_qrTextBox != null)
+                {
+                    _qrTextBox.ReadOnlyTag(false);
                 }
                 if (_numberTextBox != null)
                 {

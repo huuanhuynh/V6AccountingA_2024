@@ -862,10 +862,10 @@ namespace V6Controls
         }
 
         #endregion change disable backcolor and forecolor
-        
+
         #region ==== Events ====
         /// <summary>
-        /// Sự kiện xảy ra khi có dữ liệu thay đổi và leave.
+        /// Sự kiện xảy ra khi có dữ liệu thay đổi và leave. += (sender)=>{}
         /// </summary>
         public event ControlEventHandle V6LostFocus;
         public event ControlEventHandle V6LostFocusNoChange;

@@ -449,6 +449,7 @@ namespace V6Controls
         public static void ShowColorText(V6ColorTextBox txtBox, string key_press)
         {
             if (FlyText_Form == null) return;
+            //if (txtBox is V6QRTextBox) return;
             FlyText_Form.TargetControl = txtBox;
             
             if (TextRenderer.MeasureText(txtBox.Text, txtBox.Font).Width > txtBox.Width)

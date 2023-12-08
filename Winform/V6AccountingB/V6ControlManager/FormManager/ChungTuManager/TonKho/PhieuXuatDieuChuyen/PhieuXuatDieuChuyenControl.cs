@@ -125,14 +125,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-        private V6ColorTextBox _dvt;
-        private V6CheckTextBox _xuat_dd;
-        private V6VvarTextBox _maVt, _Ma_lnx_i, _Ma_lnxn, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maViTri, _maViTri2, _maViTriN;
-        private V6ColorTextBox _soKhung, _soMay;
-        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
+        public V6ColorTextBox _dvt;
+        public V6CheckTextBox _xuat_dd;
+        public V6ColorTextBox _detail1Focus;
+        public V6QRTextBox _qr_code0;
+        public V6VvarTextBox _maVt, _Ma_lnx_i, _Ma_lnxn, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maViTri, _maViTri2, _maViTriN;
+        public V6ColorTextBox _soKhung, _soMay;
+        public V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         public V6NumberTextBox _sl_101, _sl_102, _sl_103, _sl_104, _sl_01, _sl_02, _sl_03, _sl_04;
-        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tien_nt, _gia1, _gia_nt1;
-        private V6DateTimeColor _hanSd;
+        public V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tien_nt, _gia1, _gia_nt1;
+        public V6DateTimeColor _hanSd;
+
+        public void Detail1FocusReset()
+        {
+            if (_detail1Focus != null) _detail1Focus.Focus();
+            else _maVt.Focus();
+        }
 
         private void LoadDetailControls()
         {
@@ -167,6 +175,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 {
                     case "MA_VT":
                         _maVt = (V6VvarTextBox) control;
+                        if (_detail1Focus == null)
+                        {
+                            _detail1Focus = _maVt;
+                        }
                         _maVt.Upper();
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_qg,ma_vitri";
                         _maVt.V6LostFocus += MaVatTu_V6LostFocus;
@@ -873,6 +885,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         break;
                     case "SO_MAY":
                         _soMay = (V6ColorTextBox)control;
+                        break;
+                    default:
+                        if (!(_detail1Focus is V6QRTextBox) && control is V6QRTextBox && control.Visible)
+                        {
+                            _detail1Focus = (V6QRTextBox)control;
+                        }
+
+                        if (NAME == "QR_CODE0")
+                        {
+                            if (control is V6QRTextBox)
+                            {
+                                _qr_code0 = (V6QRTextBox)control;
+                                _qr_code0.V6LostFocus += (sender) =>
+                                {
+                                    _soLuong1.Value = 1;
+                                    _soLuong1.CallDoV6LostFocus();
+                                    if (!string.IsNullOrEmpty(Invoice.ExtraInfo_QrGot))
+                                    {
+                                        var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
+                                        if (c != null) c.Focus();
+                                    }
+                                };
+                            }
+                        }
                         break;
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "2");
@@ -1802,11 +1838,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     detail1.btnNhan.Focus();
                     if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                     {
-                        var detailData = detail1.GetData();
-                        if (ValidateData_Detail(detailData))
+                        if (_maVt.Text == "")
                         {
-                            detail1.btnNhan.Focus();
-                            detail1.btnNhan.PerformClick();
+                            Detail1FocusReset();
+                        }
+                        else
+                        {
+                            var detailData = detail1.GetData();
+                            if (ValidateData_Detail(detailData))
+                            {
+                                detail1.btnNhan.Focus();
+                                detail1.btnNhan.PerformClick();
+                            }
                         }
                     }
 
@@ -5193,7 +5236,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 else
                 {
                     dataGridView1.Lock();
-                    _maVt.Focus();
+                    Detail1FocusReset();
                 }
             }
             catch (Exception ex)
@@ -5271,24 +5314,61 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
                 
                 if (error == "")
-                {
-                    UpdateDetailChangeLog(_sttRec0, detailControlList1, null, data);
-                    //Tạo dòng dữ liệu mới.
-                    var newRow = AD.NewRow();
-                    foreach (DataColumn column in AD.Columns)
+                {// Check cộng số lượng // Bộ check gồm MA_VT DVT1 MA_KHO
+
+                    DataRow containsRow = null;
+                    int con_index = -1;
+                    if (_detail1Focus is V6QRTextBox
+                        && Invoice.ExtraInfo_QrChecks != null && Invoice.ExtraInfo_QrSums != null
+                        && ADContains(data, Invoice.ExtraInfo_QrChecks, out containsRow, out con_index))
                     {
-                        var key = column.ColumnName.ToUpper();
-                        object value = ObjectAndString.ObjectTo(column.DataType,
-                            data.ContainsKey(key) ? data[key] : "")??DBNull.Value;
-                        newRow[key] = value;
+                        foreach (string SUM_FIELD in Invoice.ExtraInfo_QrSums)
+                        {
+                            var column = AD.Columns[SUM_FIELD];
+                            object value = ObjectAndString.ObjectTo(column.DataType,
+                                ObjectAndString.ObjectToDecimal(containsRow[SUM_FIELD])
+                                + ObjectAndString.ObjectToDecimal(data[SUM_FIELD]));
+                            containsRow[SUM_FIELD] = value;
+                        }
+
+                        dataGridView1.DataSource = AD;
+                        // tô màu gridview
+                        var sum_color = Color.DarkOrange;
+                        if (con_index >= 0)
+                        {
+                            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                            {
+                                if (i == con_index) continue;
+                                var cellStyle = dataGridView1.Rows[i].DefaultCellStyle;
+                                if (cellStyle.BackColor == sum_color)
+                                {
+                                    if (i % 2 == 0) cellStyle.BackColor = dataGridView1.RowsDefaultCellStyle.BackColor;
+                                    else cellStyle.BackColor = dataGridView1.AlternatingRowsDefaultCellStyle.BackColor;
+                                }
+                            }
+                            dataGridView1.Rows[con_index].DefaultCellStyle.BackColor = sum_color;
+                        }
                     }
-                    AD.Rows.Add(newRow);
-                    dataGridView1.DataSource = AD;
-                    
-                    if (AD.Rows.Count > 0)
+                    else  // Hoặc thêm dòng như bình thường.
                     {
-                        dataGridView1.Rows[AD.Rows.Count - 1].Selected = true;
-                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
+                        UpdateDetailChangeLog(_sttRec0, detailControlList1, null, data);
+                        //Tạo dòng dữ liệu mới.
+                        var newRow = AD.NewRow();
+                        foreach (DataColumn column in AD.Columns)
+                        {
+                            var key = column.ColumnName.ToUpper();
+                            object value = ObjectAndString.ObjectTo(column.DataType,
+                                data.ContainsKey(key) ? data[key] : "") ?? DBNull.Value;
+                            newRow[key] = value;
+                        }
+                        AD.Rows.Add(newRow);
+                        dataGridView1.DataSource = AD;
+
+                        if (AD.Rows.Count > 0)
+                        {
+                            dataGridView1.Rows[AD.Rows.Count - 1].Selected = true;
+                            V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
+                        }
                     }
                 }
                 else
@@ -5726,7 +5806,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         dataGridView1.Lock();
                         XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
-                        _maVt.Focus();
+                        Detail1FocusReset();
                         GetLoDate13();
                     }
                 }

@@ -480,7 +480,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     lblName.AccessibleName = null;
                 }
-                
+                if (c.AccessibleName.ToUpper() == "MA_VT")
+                {
+                    panelControls.Controls.Add(lblName);
+                }
+
                 c.TabStop = true;
                 if (c is V6ColorTextBox)
                 {
@@ -586,6 +590,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (c.AccessibleName.ToUpper() == "TEN_VT")
                 {
                     lblName.AccessibleName = null;
+                }
+                if (c.AccessibleName.ToUpper() == "MA_VT")
+                {
+                    panelControls.Controls.Add(lblName);
                 }
                 //c.TabStop = true;
                 if (c is V6ColorTextBox)
@@ -710,6 +718,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
             panelControls.Width = _p.X;
         }
 
+        /// <summary>
+        /// Thêm control vào Panel0.
+        /// </summary>
+        /// <param name="c"></param>
         public void AddFixControl(Control c)
         {
             c.Location = _p0;

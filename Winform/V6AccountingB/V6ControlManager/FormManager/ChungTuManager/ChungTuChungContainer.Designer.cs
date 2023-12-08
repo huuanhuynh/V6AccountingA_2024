@@ -35,6 +35,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.tsMessage = new System.Windows.Forms.Label();
+            this.tsSetting = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,9 +94,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Controls.Add(this.tsMessage);
-            this.panel1.Location = new System.Drawing.Point(67, 0);
+            this.panel1.Location = new System.Drawing.Point(99, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(758, 33);
+            this.panel1.Size = new System.Drawing.Size(726, 33);
             this.panel1.TabIndex = 4;
             // 
             // lblTitle
@@ -103,7 +104,7 @@
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(701, 3);
+            this.lblTitle.Location = new System.Drawing.Point(669, 3);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(57, 18);
             this.lblTitle.TabIndex = 1;
@@ -118,17 +119,29 @@
             this.tsMessage.ForeColor = System.Drawing.Color.Red;
             this.tsMessage.Location = new System.Drawing.Point(0, 0);
             this.tsMessage.Name = "tsMessage";
-            this.tsMessage.Size = new System.Drawing.Size(758, 33);
+            this.tsMessage.Size = new System.Drawing.Size(726, 33);
             this.tsMessage.TabIndex = 0;
             this.tsMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsMessage.Paint += new System.Windows.Forms.PaintEventHandler(this.tsMessage_Paint);
             this.tsMessage.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tsMessage_MouseDoubleClick);
+            // 
+            // tsSetting
+            // 
+            this.tsSetting.FlatAppearance.BorderSize = 0;
+            this.tsSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsSetting.Image = global::V6ControlManager.Properties.Resources.Setting24;
+            this.tsSetting.Location = new System.Drawing.Point(67, 0);
+            this.tsSetting.Name = "tsSetting";
+            this.tsSetting.Size = new System.Drawing.Size(26, 26);
+            this.tsSetting.TabIndex = 5;
+            this.tsSetting.UseVisualStyleBackColor = true;
             // 
             // ChungTuChungContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.tsSetting);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tsFull);
             this.Controls.Add(this.tsNew);
@@ -153,5 +166,6 @@
         private System.Windows.Forms.Label tsMessage;
         public System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button tsSetting;
     }
 }

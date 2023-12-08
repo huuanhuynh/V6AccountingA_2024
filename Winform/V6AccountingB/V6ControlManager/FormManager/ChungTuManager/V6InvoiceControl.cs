@@ -6873,6 +6873,34 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             }
             V6ControlFormHelper.CallShowAlinitAddEdit(v6mode, keys, keys0);
         }
-        
+
+        /// <summary>
+        /// Kiểm tra AD có chứa dòng có các fields check giống nhau không.
+        /// </summary>
+        /// <param name="data">Dữ liệu kiểm tra</param>
+        /// <param name="CHECK_FIELDS">Các trường kiểm tra</param>
+        /// <param name="containsRow">Dòng trùng đầu tiên được đẩy ra nếu có</param>
+        /// <returns></returns>
+        internal bool ADContains(IDictionary<string, object> data, IList<string> CHECK_FIELDS, out DataRow containsRow, out int index)
+        {
+            index = -1;
+            foreach (DataRow row in AD.Rows)
+            {
+                index++;
+                bool check = true;
+                foreach (string FIELD in CHECK_FIELDS)
+                {
+                    check = check && ObjectAndString.CheckCondition(data[FIELD], "=", row[FIELD], true);
+                }
+                if (check)
+                {
+                    containsRow = row;
+                    return check;
+                    break;
+                }
+            }
+            containsRow = null;
+            return false;
+        }
     }
 }

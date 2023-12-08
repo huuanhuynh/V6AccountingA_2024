@@ -814,6 +814,7 @@
             "LookupTextBox",
             "V6LookupProc",
             "VvarTextBox",
+            "QRTextBox",
             "CheckBox",
             "DateTime",
             "DateTimeFull",

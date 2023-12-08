@@ -755,5 +755,13 @@ namespace V6Controls
         {
             return string.Format("{0}:{1} type:{2}", string.IsNullOrEmpty(AccessibleName) ? Name : AccessibleName, Text, GetType());
         }
+
+        /// <summary>
+        /// Gọi sự kiện Leave. Các code .Levae += của textbox được gọi sẽ được kích hoạt.
+        /// </summary>
+        public void CallLeave()
+        {
+            OnLeave(new EventArgs());
+        }
     }
 }

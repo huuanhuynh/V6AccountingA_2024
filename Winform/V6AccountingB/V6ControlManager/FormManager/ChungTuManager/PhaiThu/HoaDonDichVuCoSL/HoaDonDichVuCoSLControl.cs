@@ -162,11 +162,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         #region ==== Khởi tạo Detail Form ====
         public V6ColorTextBox _dvt, _so_bill;
         public V6CheckTextBox _tang, _xuat_dd;
+        public V6ColorTextBox _detail1Focus;
+        public V6QRTextBox _qr_code0;
         public V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri, _maTdi, _ma_thue_i, _tk_thue_i, _ma_kh_i0;
         public V6NumberTextBox _soLuong1, _soLuong, _soNgay, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21, _sl_td1;
         public V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tien_nt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         public V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg;
         public V6DateTimeColor _hanSd;
+
+        public void Detail1FocusReset()
+        {
+            if (_detail1Focus != null) _detail1Focus.Focus();
+            else _maVt.Focus();
+        }
 
         private void LoadDetailControls()
         {
@@ -201,6 +209,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 {
                     case "MA_VT":
                         _maVt = (V6VvarTextBox) control;
+                        if (_detail1Focus == null)
+                        {
+                            _detail1Focus = _maVt;
+                        }
                         _maVt.Upper();
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
 
@@ -896,7 +908,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         _maTdi.FilterStart = true;
                         _maTdi.EnableTag(_m_Ma_td == "0");
                         break;
+                    default:
+                        if (!(_detail1Focus is V6QRTextBox) && control is V6QRTextBox && control.Visible)
+                        {
+                            _detail1Focus = (V6QRTextBox)control;
+                        }
 
+                        if (NAME == "QR_CODE0")
+                        {
+                            if (control is V6QRTextBox)
+                            {
+                                _qr_code0 = (V6QRTextBox)control;
+                                _qr_code0.V6LostFocus += (sender) =>
+                                {
+                                    _soLuong1.Value = 1;
+                                    _soLuong1.CallDoV6LostFocus();
+                                    if (!string.IsNullOrEmpty(Invoice.ExtraInfo_QrGot))
+                                    {
+                                        var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
+                                        if (c != null) c.Focus();
+                                    }
+                                };
+                            }
+                        }
+                        break;
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "2");
             }
@@ -944,9 +979,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private V6ColorTextBox _operTT_33, _nh_dk_33;
-        private V6VvarTextBox _tk_i_33, _ma_kh_i_33;
-        private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33, _mau_bc_33,
+        public V6ColorTextBox _operTT_33, _nh_dk_33;
+        public V6VvarTextBox _tk_i_33, _ma_kh_i_33;
+        public V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33, _mau_bc_33,
             _gia_nt_33, _tien_nt_33, _gia_33, _tien_33;
 
         private void LoadDetail3Controls()
@@ -2062,11 +2097,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     detail1.btnNhan.Focus();
                     if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                     {
-                        var detailData = detail1.GetData();
-                        if (ValidateData_Detail(detailData))
+                        if (_maVt.Text == "")
                         {
-                            detail1.btnNhan.Focus();
-                            detail1.btnNhan.PerformClick();
+                            Detail1FocusReset();
+                        }
+                        else
+                        {
+                            var detailData = detail1.GetData();
+                            if (ValidateData_Detail(detailData))
+                            {
+                                detail1.btnNhan.Focus();
+                                detail1.btnNhan.PerformClick();
+                            }
                         }
                     }
 
@@ -5657,7 +5699,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 else
                 {
                     dataGridView1.Lock();
-                    _maVt.Focus();
+                    Detail1FocusReset();
                     CheckShowTienNt2();
                 }
             }
@@ -5712,52 +5754,89 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
                 if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                 if (error == "")
-                {
-                    UpdateDetailChangeLog(_sttRec0, detailControlList1, null, data);
-                    //Tạo cột thiếu cho AD. (Làm chậm)
-                    //foreach (KeyValuePair<string, object> item in data)
-                    //{
-                    //    if (!AD.Columns.Contains(item.Key))
-                    //    {
-                    //        AD.Columns.Add(item.Key, (item.Value ?? "").GetType());
-                    //    }
-                    //}
-                    //Tạo dòng dữ liệu mới.
-                    var newRow = AD.NewRow();
-                    foreach (DataColumn column in AD.Columns)
+                {// Check cộng số lượng // Bộ check gồm MA_VT DVT1 MA_KHO
+
+                    DataRow containsRow = null;
+                    int con_index = -1;
+                    if (_detail1Focus is V6QRTextBox
+                        && Invoice.ExtraInfo_QrChecks != null && Invoice.ExtraInfo_QrSums != null
+                        && ADContains(data, Invoice.ExtraInfo_QrChecks, out containsRow, out con_index))
                     {
-                        var KEY = column.ColumnName.ToUpper();
-                        object value = ObjectAndString.ObjectTo(column.DataType,
-                            data.ContainsKey(KEY) ? data[KEY] : "")??DBNull.Value;
-                        newRow[KEY] = value;
-                    }
-                    AD.Rows.Add(newRow);
-                    dataGridView1.DataSource = AD;
-                    
-                    var tData = _maVt.Data;
-                    if (tData == null || tData["MA_THUE"] == null) goto Next1;
-                    var maThue = tData["MA_THUE"].ToString().Trim();
-                    if (maThue == "") goto Next1;
-                    if(V6Options.GetValue("M_SOA_MULTI_VAT") != "0") goto Next1;
-                    
-                    if (AD.Rows.Count == 1) // Neu la dong dau tien thi lay ma thue ra AM
-                    {
-                        txtMa_thue.ChangeText(maThue);
-                    }
-                    else if (maThue != txtMa_thue.Text)
-                    {
-                        if (_tien2.Value != 0)
+                        foreach (string SUM_FIELD in Invoice.ExtraInfo_QrSums)
                         {
-                            var message = string.Format(V6Text.Text("MATHUEVTKHACCHON"), maThue, txtMa_thue.Text);
-                            ShowParentMessage(message);
-                            this.ShowWarningMessage(message);
+                            var column = AD.Columns[SUM_FIELD];
+                            object value = ObjectAndString.ObjectTo(column.DataType,
+                                ObjectAndString.ObjectToDecimal(containsRow[SUM_FIELD])
+                                + ObjectAndString.ObjectToDecimal(data[SUM_FIELD]));
+                            containsRow[SUM_FIELD] = value;
+                        }
+
+                        dataGridView1.DataSource = AD;
+                        // tô màu gridview
+                        var sum_color = Color.DarkOrange;
+                        if (con_index >= 0)
+                        {
+                            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                            {
+                                if (i == con_index) continue;
+                                var cellStyle = dataGridView1.Rows[i].DefaultCellStyle;
+                                if (cellStyle.BackColor == sum_color)
+                                {
+                                    if (i % 2 == 0) cellStyle.BackColor = dataGridView1.RowsDefaultCellStyle.BackColor;
+                                    else cellStyle.BackColor = dataGridView1.AlternatingRowsDefaultCellStyle.BackColor;
+                                }
+                            }
+                            dataGridView1.Rows[con_index].DefaultCellStyle.BackColor = sum_color;
                         }
                     }
-                    
-                    if (dataGridView1.Rows.Count > 0)
+                    else  // Hoặc thêm dòng như bình thường.
                     {
-                        dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = true;
-                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
+                        UpdateDetailChangeLog(_sttRec0, detailControlList1, null, data);
+                        //Tạo cột thiếu cho AD. (Làm chậm)
+                        //foreach (KeyValuePair<string, object> item in data)
+                        //{
+                        //    if (!AD.Columns.Contains(item.Key))
+                        //    {
+                        //        AD.Columns.Add(item.Key, (item.Value ?? "").GetType());
+                        //    }
+                        //}
+                        //Tạo dòng dữ liệu mới.
+                        var newRow = AD.NewRow();
+                        foreach (DataColumn column in AD.Columns)
+                        {
+                            var KEY = column.ColumnName.ToUpper();
+                            object value = ObjectAndString.ObjectTo(column.DataType,
+                                data.ContainsKey(KEY) ? data[KEY] : "") ?? DBNull.Value;
+                            newRow[KEY] = value;
+                        }
+                        AD.Rows.Add(newRow);
+                        dataGridView1.DataSource = AD;
+
+                        var tData = _maVt.Data;
+                        if (tData == null || tData["MA_THUE"] == null) goto Next1;
+                        var maThue = tData["MA_THUE"].ToString().Trim();
+                        if (maThue == "") goto Next1;
+                        if (V6Options.GetValue("M_SOA_MULTI_VAT") != "0") goto Next1;
+
+                        if (AD.Rows.Count == 1) // Neu la dong dau tien thi lay ma thue ra AM
+                        {
+                            txtMa_thue.ChangeText(maThue);
+                        }
+                        else if (maThue != txtMa_thue.Text)
+                        {
+                            if (_tien2.Value != 0)
+                            {
+                                var message = string.Format(V6Text.Text("MATHUEVTKHACCHON"), maThue, txtMa_thue.Text);
+                                ShowParentMessage(message);
+                                this.ShowWarningMessage(message);
+                            }
+                        }
+
+                        if (dataGridView1.Rows.Count > 0)
+                        {
+                            dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = true;
+                            V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
+                        }
                     }
                 }
                 else
@@ -6333,7 +6412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     {
                         dataGridView1.Lock();
                         XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
-                        _maVt.Focus();
+                        Detail1FocusReset();
                         CheckShowTienNt2();
                     }
                 }
