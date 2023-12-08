@@ -68,6 +68,7 @@
 	<!--ItemInfo	Field='Code'	FieldV6='ma_vt'		Type='Field'/-->
 	<!--ItemInfo	Field='Discount'	FieldV6='pt_cki'	Type='Field'/-->
 	<!--ItemInfo	Field='DiscountAmount'	FieldV6='ck'	Type='Field'/-->
+  <ItemInfo	Field='IsSum'	FieldV6=''	Type='Field'  Note='4 ghi chú, VATRate=-4'/>
 	
 	<!--SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/-->
 	<SummarizeInfo	Field='Total'	Note='Tổng tiền trước thuế'	FieldV6='T_TIEN2'	Type='Field'/>

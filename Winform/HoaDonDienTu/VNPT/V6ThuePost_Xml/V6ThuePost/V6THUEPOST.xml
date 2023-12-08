@@ -66,6 +66,8 @@
   <ItemInfo	Field='DiscountAmount'	FieldV6='ck'	Type='Field'/>
   <ItemInfo	Field='VATRate'	FieldV6='thue_suati'	Type='Field'	DataType='long'/>
   <ItemInfo	Field='VATAmount'	FieldV6='thue'	Type='Field'	DataType='long'/>
+  
+  <ItemInfo	Field='IsSum'	FieldV6='pt_cki'	Type='Field'  Note='4 ghi chú, VATRate=-4'/>
 
 
   <!--SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/-->
