@@ -83,15 +83,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
         void _grid1_DataSourceChanged(object sender, EventArgs e)
         {
             try
-            {
-                if (!_grid1.IsFormated)
-                {
-                    V6ControlFormHelper.FormatGridViewAndHeader(_grid1, _invoice.AlctConfig.GRDS_AM,
-                        _invoice.AlctConfig.GRDF_AM,
-                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
-                    V6ControlFormHelper.FormatGridViewHideColumns(_grid1, _invoice.Mact);
-                    _grid1.Formated();
-                }
+            {   
+                V6ControlFormHelper.FormatGridViewAndHeader(_grid1, _invoice.AlctConfig.GRDS_AM,
+                    _invoice.AlctConfig.GRDF_AM,
+                    V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
+                V6ControlFormHelper.FormatGridViewHideColumns(_grid1, _invoice.Mact);
+                
                 //Đổi màu dữ liệu
                 if (_aldmConfig == null) _aldmConfig = ConfigManager.GetAldmConfig("SEARCH_" + _invoice.Mact);
                 if (_aldmConfig.HaveInfo)
@@ -107,15 +104,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                //if (!_grid2.IsFormated)
-                {
-                    V6ControlFormHelper.FormatGridViewAndHeader(
-                        _grid2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
-                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
+                V6ControlFormHelper.FormatGridViewAndHeader(
+                    _grid2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
+                    V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
 
-                    V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
-                    _grid2.Formated();
-                }
+                V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
             }
             catch (Exception ex)
             {

@@ -13,6 +13,8 @@ using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonDeNghiNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.Loc;
+using V6ControlManager.FormManager.KhoHangManager;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
@@ -135,7 +137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         public V6CheckTextBox _tang, _xuat_dd;
         public V6ColorTextBox _detail1Focus;
         public V6QRTextBox _qr_code0;
-        public V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho, _maKhoI, _tkTl, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
+        public V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho, _maKhoI, _maKho2, _tkTl, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i, _maViTri, _maViTri2;
         public V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21, _sl_td1;
         public V6NumberTextBox _ton13, _ton13s, _ton13Qd, _gia, _gia_nt, _tien, _tien_nt, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd30, _hs_qd4, _ggNt, _gg, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         public V6DateTimeColor _hanSd;
@@ -289,6 +291,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         _maKho.Upper();
                         _maKho.V6LostFocus += MaKhoV6LostFocus;
                         _maKho.Tag = "hide";
+                        break;
+                    case "MA_KHO2":
+                        _maKho2 = (V6VvarTextBox)control;
+                        _maKho2.Upper();
+                        _maKho2.V6LostFocus += delegate (object sender)
+                        {
+
+                        };
                         break;
                     case "MA_KHO_I":
                         _maKhoI = (V6VvarTextBox)control;
@@ -820,6 +830,69 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         _hanSd.Enabled = false;
                         _hanSd.Tag = "disable";
                         break;
+
+                    case "MA_VITRI":
+                        _maViTri = control as V6VvarTextBox;
+                        if (_maViTri != null)
+                        {
+                            _maViTri.GotFocus += (s, e) =>
+                            {
+                                try
+                                {
+                                    _maViTri.CheckNotEmpty = _maVt.VITRI_YN;
+                                    var filter = "Ma_kho='" + _maKhoI.Text.Trim() + "'";
+
+                                    if (("," + V6Options.GetValue("M_LST_CT_DV") + ",").Contains(Invoice.Mact))
+                                    {
+                                        _dataViTri = Invoice.GetViTri("", _maKhoI.Text, _sttRec, dateNgayCT.Date);
+                                        var getFilter = GetFilterMaViTriNhap(_dataViTri, _sttRec0, "", _maKhoI.Text);
+                                        if (getFilter != "") filter += " and " + getFilter;
+                                    }
+
+                                    _maViTri.SetInitFilter(filter);
+                                }
+                                catch (Exception ex)
+                                {
+                                    this.ShowErrorException("MA_VITRI_GOTFOCUS", ex);
+                                }
+                            };
+
+                            _maViTri.V6LostFocus += sender =>
+                            {
+                                //CheckMaViTri();
+                                XuLyThongTinKhiChonMaVitri();
+                            };
+                        }
+                        break;
+                    case "MA_VITRI2":
+                        _maViTri2 = control as V6VvarTextBox;
+                        if (_maViTri2 != null)
+                        {
+                            _maViTri2.GotFocus += (s, e) =>
+                            {
+                                _maViTri2.CheckNotEmpty = _maVt.VITRI_YN;
+                                var filter = "Ma_kho='" + _maKho2.Text.Trim() + "'";
+
+                                if (("," + V6Options.GetValue("M_LST_CT_DV") + ",").Contains(Invoice.Mact))
+                                {
+                                    var dataViTri = Invoice.GetViTri("", _maKho2.Text, _sttRec, dateNgayCT.Date);
+                                    var getFilter = GetFilterMaViTriNhap2(dataViTri, _sttRec0, "", _maKho2.Text);
+                                    if (getFilter != "")
+                                    {
+                                        filter += " and " + getFilter;
+                                    }
+                                }
+
+                                _maViTri2.SetInitFilter(filter);
+                            };
+
+                            _maViTri2.V6LostFocus += sender =>
+                            {
+                                //CheckMaViTri();
+                            };
+                        }
+                        break;
+
                     default:
                         if (!(_detail1Focus is V6QRTextBox) && control is V6QRTextBox && control.Visible)
                         {
@@ -861,6 +934,140 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private void Hs_qd4_V6LostFocus(object sender)
         {
             TinhGiamGiaCt();
+        }
+
+        private string GetFilterMaViTriNhap(DataTable dataViTri, string sttRec0, string maVt, string maKhoI)
+        {
+            try
+            {
+                var list_maViTri = "";
+                if (maKhoI == "") return list_maViTri;
+
+
+                for (int i = dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = dataViTri.Rows[i];
+                    //string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+                    if (data_maViTri == "") continue;
+
+                    //Neu dung maVt va maKhoI
+                    if (maKhoI == data_maKhoI)
+                    {
+
+                        list_maViTri += string.Format(" and Ma_vitri<>'{0}'", data_maViTri);
+
+                    }
+                }
+
+                //if (list_maViTri.Length > 4)
+                //{
+                //    list_maViTri = list_maViTri.Substring(4);
+                //    list_maViTri = "(" + list_maViTri + ")";
+                //}
+
+                foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                {
+
+                    string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                    // string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                    string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                    string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                    //Add 31-07-2016
+                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+
+                    if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                    {
+                        if (maKhoI == c_maKhoI)
+                        {
+                            list_maViTri += string.Format(" and Ma_vitri<>'{0}'", c_maViTri);
+                        }
+                    }
+                }
+
+                if (list_maViTri.Length > 4)
+                {
+                    list_maViTri = list_maViTri.Substring(4);
+                    list_maViTri = "(" + list_maViTri + ")";
+                    return list_maViTri;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return "(1=1)";
+        }
+
+        private string GetFilterMaViTriNhap2(DataTable dataViTri, string sttRec0, string maVt, string maKhoI)
+        {
+            try
+            {
+                var list_maViTri = "";
+                if (maKhoI == "") return list_maViTri;
+
+
+                for (int i = dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = dataViTri.Rows[i];
+                    // string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+                    if (data_maViTri == "") continue;
+
+                    //Neu dung maVt va maKhoI
+                    if (maKhoI == data_maKhoI)
+                    {
+
+                        list_maViTri += string.Format(" and Ma_vitri<>'{0}'", data_maViTri);
+
+                    }
+                }
+
+                //if (list_maViTri.Length > 4)
+                //{
+                //    list_maViTri = list_maViTri.Substring(4);
+                //    list_maViTri = "(" + list_maViTri + ")";
+                //}
+
+                foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                {
+
+                    string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                    // string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                    string c_maKhoI = row["MA_KHO2"].ToString().Trim().ToUpper();
+                    string c_maViTri = row["MA_VITRI2"].ToString().Trim().ToUpper();
+
+                    //Add 31-07-2016
+                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+
+                    if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                    {
+                        if (maKhoI == c_maKhoI)
+                        {
+                            list_maViTri += string.Format(" and Ma_vitri<>'{0}'", c_maViTri);
+                        }
+                    }
+                }
+
+                if (list_maViTri.Length > 4)
+                {
+                    list_maViTri = list_maViTri.Substring(4);
+                    list_maViTri = "(" + list_maViTri + ")";
+                    return list_maViTri;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return "(1=1)";
         }
 
         void _maLo_V6LostFocus(object sender)
@@ -1427,6 +1634,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
+        private void XuLyThongTinKhiChonMaVitri()
+        {
+            try
+            {
+                var datavt = _maVt.Data;
+                if (datavt == null) return;
+                var packs1 = ObjectAndString.ObjectToDecimal(datavt["Packs1"]);
+                if (packs1 > 0 && _soLuong1.Value == 0)
+                {
+                    _soLuong1.Value = packs1;
+                    if (_he_so1T.Value == 0)
+                    {
+                        _he_so1T.Value = 1;
+                        _he_so1M.Value = 1;
+                    }
+                    _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XuLyThongTinKhiChonMaVitri " + _sttRec, ex);
+            }
+        }
+        private DataTable _dataViTri;
         private DataTable _dataLoDate;
 
         public void GetTon13()
@@ -5356,6 +5587,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             return false;
         }
 
+        private void xemVitriMenu_Click(object sender, EventArgs e)
+        {
+            XemVitri(_maKhoI.Text, dateNgayCT.Value, _maVt.Text);
+        }
+
+        private void XemVitri(string makho, DateTime ngayCt, string mavt)
+        {
+            try
+            {
+                AINVITRI02 control = new AINVITRI02(ItemID, "AINVITRI02", "AINVITRI02", "AINVITRI02", "AINVITRI02", "AINVITRI02");
+                control.khoHangContainer.txtMaKho.Text = makho;
+                control.khoHangContainer.dateCuoiNgay.Value = ngayCt;
+                control.khoHangContainer.txtMavt.Text = mavt;
+                control.khoHangContainer.V6Click += delegate (IDictionary<string, object> data)
+                {
+                    List<ViTriDetail> _list_vtd = data["LISTVITRIDETAIL"] as List<ViTriDetail>;
+                    if (_list_vtd != null && _list_vtd.Count > 0 && _list_vtd[0]._rowDataVitriVattu == null)
+                    {
+                        _maViTri.Text = _list_vtd[0].MA_VITRI;
+                    }
+                };
+
+                control.btnNhan.PerformClick();
+                control.ShowToForm(this, "title", false, true, false);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
@@ -5934,15 +6196,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             try
             {
-                string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
-
                 if (NotAddEdit) return;
+                if (AD == null || AD.Rows.Count == 0) return;
+                string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
+                
                 if (_flag_next)
                 {
                     _flag_next = false;
                     return;
                 }
-                if (AD == null || AD.Rows.Count == 0) return;
+
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     if (!auto) this.ShowWarningMessage(V6Text.DetailNotComplete);

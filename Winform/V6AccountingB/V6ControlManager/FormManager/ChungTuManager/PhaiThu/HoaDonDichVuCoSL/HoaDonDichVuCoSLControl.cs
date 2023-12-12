@@ -7262,15 +7262,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             try
             {
-                string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
-
                 if (NotAddEdit) return;
+                if (AD == null || AD.Rows.Count == 0) return;
+                string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
+                
                 if (_flag_next)
                 {
                     _flag_next = false;
                     return;
                 }
-                if (AD == null || AD.Rows.Count == 0) return;
+
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     this.ShowWarningMessage(V6Text.DetailNotComplete);

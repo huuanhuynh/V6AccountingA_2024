@@ -1306,35 +1306,20 @@ namespace V6Controls
             }
 
         }
-
-        /// <summary>
-        /// Gridview đã được format thông qua hàm FormatGridViewAldm của chính nó hay chưa?
-        /// </summary>
-        public bool IsFormated { get { return _formated; } }
-        private bool _formated;
-        /// <summary>
-        /// Chuyển trạng thái IsFormated thành true;
-        /// </summary>
-        public void Formated()
-        {
-            _formated = true;
-        }
+        
         /// <summary>
         /// Định dạng lại gridview theo cấu hình trong bảng Aldm.
         /// </summary>
         /// <param name="ma_dm">Mã danh mục [MA_DM] trong bảng Aldm.</param>
-        /// <param name="force">Format bất chấp, mặc định false - format 1 lần không format lại.</param>
         /// <returns>Có hoặc không format được gridview.</returns>
-        public bool FormatGridViewAldm(string ma_dm, bool force = false)
+        public bool FormatGridViewAldm(string ma_dm)
         {
-            if (!force && _formated) return true;
             try
             {
                 AldmConfig config = ConfigManager.GetAldmConfig(ma_dm);
                 if (config.HaveInfo)
                 {
                     V6ControlFormHelper.FormatGridViewAndHeader(this, config.GRDS_V1, config.GRDF_V1, config.GRDH_LANG_V1);
-                    _formated = true;
                     return true;
                 }
             }
@@ -1345,15 +1330,13 @@ namespace V6Controls
             return false;
         }
 
-        public bool FormatGridViewAldm(AldmConfig config, bool force = false)
+        public bool FormatGridViewAldm(AldmConfig config)
         {
-            if (!force && _formated) return true;
             try
             {
                 if (config.HaveInfo)
                 {
                     V6ControlFormHelper.FormatGridViewAndHeader(this, config.GRDS_V1, config.GRDF_V1, config.GRDH_LANG_V1);
-                    _formated = true;
                     return true;
                 }
             }

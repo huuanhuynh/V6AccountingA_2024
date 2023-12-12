@@ -6437,6 +6437,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             try
             {
+                if (NotAddEdit) return;
+                if (AD == null || AD.Rows.Count == 0) return;
                 string shift_stt_rec0 = dataGridView1.CurrentRow.Cells["STT_REC0"].Value.ToString().Trim().ToUpper();
 
                 if (NotAddEdit) return;
@@ -6445,7 +6447,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
                     _flag_next = false;
                     return;
                 }
-                if (AD == null || AD.Rows.Count == 0) return;
+
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     if (!auto) this.ShowWarningMessage(V6Text.DetailNotComplete);

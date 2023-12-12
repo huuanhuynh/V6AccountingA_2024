@@ -5546,13 +5546,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             try
             {
                 if (NotAddEdit) return;
+                if (AD == null || AD.Rows.Count == 0) return;
                 if (_flag_next)
                 {
                     _flag_next = false;
                     return;
                 }
-                if (AD == null || AD.Rows.Count == 0) return;
-                
+
                 if (txtMaGia.Text.Trim() == "")
                 {
                     ShowParentMessage(V6Text.NoInput + btnApGia.Text);

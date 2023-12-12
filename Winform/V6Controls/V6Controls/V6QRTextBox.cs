@@ -110,7 +110,18 @@ namespace V6Controls
             }
         }
 
-        
+
+        private bool _qr_lostauto = true;
+        /// <summary>
+        /// Tự gọi v6lostfocus khi gắn data cho các control.
+        /// </summary>
+        [DefaultValue(true)]
+        public bool QR_LostAuto
+        {
+            get { return _qr_lostauto; }
+            set { _qr_lostauto = value; }
+        }
+
 
         /// <summary>
         /// Tên các trường dữ liệu liên quan
@@ -168,7 +179,8 @@ namespace V6Controls
                 {
                     neighbor_field.Add(nList[i].ToUpper(), bList[i].ToUpper());
                 }
-                V6ControlFormHelper.SetNeighborData_V6Lost(this, _data, neighbor_field);
+                if (_qr_lostauto) V6ControlFormHelper.SetNeighborData_V6Lost(this, _data, neighbor_field);
+                else V6ControlFormHelper.SetNeighborData(this, _data, neighbor_field);
             }
             catch (Exception)
             {

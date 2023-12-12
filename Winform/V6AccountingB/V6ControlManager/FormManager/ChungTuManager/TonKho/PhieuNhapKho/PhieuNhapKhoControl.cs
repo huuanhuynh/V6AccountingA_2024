@@ -130,7 +130,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         public V6CheckTextBox _nhap_tb;
         public V6ColorTextBox _detail1Focus;
         public V6QRTextBox _qr_code0;
-        public V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _Ma_lnx_i, _tkVt, _maLo, _maKhoI, _maViTri, _maViTri2;
+        public V6VvarTextBox _maVt, _dvt1, _Ma_nx_i, _Ma_lnx_i, _tkVt, _maLo, _maKhoI, _maKho2, _maViTri, _maViTri2;
         public V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         public V6NumberTextBox _sl_101, _sl_102, _sl_103, _sl_104, _sl_01, _sl_02, _sl_03, _sl_04;
         public V6NumberTextBox _ton13, _ton13s, _ton13Qd, _gia, _gia_nt, _gia0, _gia_nt0, _tien, _tienNt, _tien0, _tien_nt0, _gia01, _gia_nt01;

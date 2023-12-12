@@ -2429,28 +2429,25 @@ namespace V6Controls.Forms
                         if (data.ContainsKey(item.Value))
                         {
                             SetControlValue(c, data[item.Value]);
+                            if (c is V6ColorTextBox)
+                            {
+                                ((V6ColorTextBox)c).CallLeave();
+                                ((V6ColorTextBox)c).CallDoV6LostFocus();
+                            }
+                            else if (c is V6ColorMaskedTextBox)
+                            {
+                                ((V6ColorMaskedTextBox)c).CallLeave();
+                                ((V6ColorMaskedTextBox)c).CallDoV6LostFocus();
+                            }
+                            else if (c is V6DateTimePicker)
+                            {
+                                ((V6DateTimePicker)c).CallLeave();
+                                ((V6DateTimePicker)c).CallDoV6LostFocus();
+                            }
                         }
                         else
                         {
                             SetControlValue(c, null);
-                        }
-
-                        
-
-                        if (c is V6ColorTextBox)
-                        {
-                            ((V6ColorTextBox)c).CallLeave();
-                            ((V6ColorTextBox)c).CallDoV6LostFocus();
-                        }
-                        else if (c is V6ColorMaskedTextBox)
-                        {
-                            ((V6ColorMaskedTextBox)c).CallLeave();
-                            ((V6ColorMaskedTextBox)c).CallDoV6LostFocus();
-                        }
-                        else if (c is V6DateTimePicker)
-                        {
-                            ((V6DateTimePicker)c).CallLeave();
-                            ((V6DateTimePicker)c).CallDoV6LostFocus();
                         }
 
                     }
