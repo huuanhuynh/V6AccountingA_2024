@@ -147,9 +147,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.v6CheckBox1);
             this.groupBox2.Controls.Add(this.chkStatus);
+            this.groupBox2.Controls.Add(this.numLoaiInput);
             this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Location = new System.Drawing.Point(7, 132);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -730,10 +733,7 @@
             // 
             // groupBoxB
             // 
-            this.groupBoxB.Controls.Add(this.label3);
             this.groupBoxB.Controls.Add(this.label8);
-            this.groupBoxB.Controls.Add(this.numLoaiInput);
-            this.groupBoxB.Controls.Add(this.label2);
             this.groupBoxB.Controls.Add(this.label7);
             this.groupBoxB.Controls.Add(this.label18);
             this.groupBoxB.Controls.Add(this.label1);
@@ -756,7 +756,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(180, 77);
+            this.label3.Location = new System.Drawing.Point(367, 19);
             this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(304, 17);
@@ -785,7 +785,7 @@
             this.numLoaiInput.HoverColor = System.Drawing.Color.Yellow;
             this.numLoaiInput.LeaveColor = System.Drawing.Color.White;
             this.numLoaiInput.LimitCharacters = "0;1;2;3";
-            this.numLoaiInput.Location = new System.Drawing.Point(132, 74);
+            this.numLoaiInput.Location = new System.Drawing.Point(319, 16);
             this.numLoaiInput.MaxLength = 1;
             this.numLoaiInput.Name = "numLoaiInput";
             this.numLoaiInput.Size = new System.Drawing.Size(31, 23);
@@ -802,7 +802,7 @@
             // 
             this.label2.AccessibleDescription = "ADDEDITL00494";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 77);
+            this.label2.Location = new System.Drawing.Point(196, 19);
             this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 17);

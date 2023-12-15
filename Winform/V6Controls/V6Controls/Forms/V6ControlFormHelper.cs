@@ -2350,7 +2350,7 @@ namespace V6Controls.Forms
         /// <param name="control">Control gốc.</param>
         /// <param name="data">Dữ liệu trong control gốc.</param>
         /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ (để lấy dữ liệu trong data).</param>
-        public static void SetNeighborData(Control control, IDictionary<string, string> data, IDictionary<string, string> neighbor_field)
+        public static void SetNeighborData(Control control, IDictionary<string, string> data, IDictionary<string, string> neighbor_field, bool set_null)
         {
             try
             {
@@ -2374,11 +2374,14 @@ namespace V6Controls.Forms
                     {
                         if (data.ContainsKey(item.Value))
                         {
-                            n_data[item.Key] = data[item.Value];
+                            if (set_null || !ObjectAndString.IsNoValue(data[item.Key]))
+                            {
+                                n_data[item.Key] = data[item.Value];
+                            }
                         }
                         else
                         {
-                            n_data[item.Key] = null;
+                            if (set_null) n_data[item.Key] = null;
                         }
                     }
                     
@@ -2401,7 +2404,8 @@ namespace V6Controls.Forms
         /// <param name="control">Control gốc.</param>
         /// <param name="data">Dữ liệu trong control gốc.</param>
         /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ (để lấy dữ liệu trong data).</param>
-        public static void SetNeighborData_V6Lost(Control control, IDictionary<string, string> data, IDictionary<string, string> neighbor_field)
+        /// <param name="set_null">data trắng hoặc ko có vẫn gán.</param>
+        public static void SetNeighborData_V6Lost(Control control, IDictionary<string, string> data, IDictionary<string, string> neighbor_field, bool set_null)
         {
             try
             {
@@ -2428,26 +2432,29 @@ namespace V6Controls.Forms
 
                         if (data.ContainsKey(item.Value))
                         {
-                            SetControlValue(c, data[item.Value]);
-                            if (c is V6ColorTextBox)
+                            if (set_null || !ObjectAndString.IsNoValue(data[item.Value]))
                             {
-                                ((V6ColorTextBox)c).CallLeave();
-                                ((V6ColorTextBox)c).CallDoV6LostFocus();
-                            }
-                            else if (c is V6ColorMaskedTextBox)
-                            {
-                                ((V6ColorMaskedTextBox)c).CallLeave();
-                                ((V6ColorMaskedTextBox)c).CallDoV6LostFocus();
-                            }
-                            else if (c is V6DateTimePicker)
-                            {
-                                ((V6DateTimePicker)c).CallLeave();
-                                ((V6DateTimePicker)c).CallDoV6LostFocus();
+                                SetControlValue(c, data[item.Value]);
+                                if (c is V6ColorTextBox)
+                                {
+                                    ((V6ColorTextBox)c).CallLeave();
+                                    ((V6ColorTextBox)c).CallDoV6LostFocus();
+                                }
+                                else if (c is V6ColorMaskedTextBox)
+                                {
+                                    ((V6ColorMaskedTextBox)c).CallLeave();
+                                    ((V6ColorMaskedTextBox)c).CallDoV6LostFocus();
+                                }
+                                else if (c is V6DateTimePicker)
+                                {
+                                    ((V6DateTimePicker)c).CallLeave();
+                                    ((V6DateTimePicker)c).CallDoV6LostFocus();
+                                }
                             }
                         }
                         else
                         {
-                            SetControlValue(c, null);
+                            if (set_null) SetControlValue(c, null);
                         }
 
                     }

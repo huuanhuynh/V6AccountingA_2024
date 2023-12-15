@@ -277,6 +277,12 @@
     <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.designer.cs">
       <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\QR_TRANSFER_SOA_FORM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\QR_TRANSFER_SOA_FORM.designer.cs">
+      <DependentUpon>QR_TRANSFER_SOA_FORM.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\ReportR45SelectorForm2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6497,6 +6503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.resx">
       <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\QR_TRANSFER_SOA_FORM.resx">
+      <DependentUpon>QR_TRANSFER_SOA_FORM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45SelectorForm2.resx">
       <DependentUpon>ReportR45SelectorForm2.cs</DependentUpon>

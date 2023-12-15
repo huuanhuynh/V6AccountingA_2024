@@ -101,7 +101,8 @@ namespace V6Controls
                 }
                 else
                 {
-                    ExistRowInTable(Text);
+                    //ExistRowInTable(Text);
+                    GetDataRow();
                 }
                 return _data;
             }
@@ -111,6 +112,38 @@ namespace V6Controls
                 V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
                 SetNeighborValues();
             }
+        }
+
+        public DataRow GetDataRow()
+        {
+            try
+            {
+                string tableName = LookupInfo.vMa_file;
+                string filter = HaveValueChanged ? Filter : null;
+                filter = Filter;
+                if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
+
+                SqlParameter[] plist =
+                {
+                        new SqlParameter("@text", Text.Trim())
+                };
+                var tbl = V6BusinessHelper.Select(tableName, "*", LookupInfo.vValue + "=@text " + filter, "", "", plist).Data;
+
+                if (tbl != null && tbl.Rows.Count >= 1)
+                {
+                    var oneRow = tbl.Rows[0];
+                    _data = oneRow;
+                }
+                else
+                {
+                    _data = null;
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+            return _data;
         }
 
         public List<IDictionary<string, object>> Datas;

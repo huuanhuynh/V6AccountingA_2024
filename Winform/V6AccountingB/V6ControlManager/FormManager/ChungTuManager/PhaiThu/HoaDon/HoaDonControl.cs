@@ -964,6 +964,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         {
                             _maViTri.GotFocus += (s, e) =>
                             {
+                                if (NotAddEdit) return;
+                                if (detail1.NotAddEdit) return;
+
                                 _maViTri.CheckNotEmpty = _maVt.VITRI_YN;
                                 var filter = "Ma_kho='" + _maKhoI.Text.Trim() + "'";
 
@@ -1140,12 +1143,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 _qr_code0 = (V6QRTextBox)control;
                                 _qr_code0.V6LostFocus += (sender)=>
                                 {
-                                    _soLuong1.Value = 1;
-                                    _soLuong1.CallDoV6LostFocus();
-                                    if (!string.IsNullOrEmpty(Invoice.ExtraInfo_QrGot))
+                                    if (_qr_code0.Text.Trim() == "")
                                     {
-                                        var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
-                                        if (c != null) c.Focus();
+                                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(detail1,
+                                            ObjectAndString.SplitString(_qr_code0.NeighborFields), false);
+                                        if (_maVt != null) _maVt.Focus();
+                                    }
+                                    else
+                                    {
+                                        //readonly
+                                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(detail1,
+                                            ObjectAndString.SplitString(_qr_code0.NeighborFields), true);
+                                        _soLuong1.Value = 1;
+                                        _soLuong1.CallDoV6LostFocus();
+                                        if (!string.IsNullOrEmpty(Invoice.ExtraInfo_QrGot))
+                                        {
+                                            var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
+                                            if (c != null) c.Focus();
+                                        }
                                     }
                                 };
                             }
@@ -1966,11 +1981,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 string sttRec0 = _sttRec0;
-                //string maVt = _maVt.Text.Trim().ToUpper();
-                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                //string maLo = _maLo.Text.Trim().ToUpper();
-                // string maLo = _maLo.Text.Trim().ToUpper();
-
                 // Theo doi lo moi check
                 if (!_maVt.LO_YN || !_maVt.DATE_YN)
                     return;
@@ -2042,7 +2052,73 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void FixAlLoDateTon_Chon(DataTable alLoTon)
+        public void FixAlVitriTon_NoKho(DataTable alVitriTon)
+        {
+            try
+            {
+                List<DataRow> empty_rows = new List<DataRow>();
+
+                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN)
+                    return;
+
+                for (int i = alVitriTon.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = alVitriTon.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt, maKhoI, maLo, maViTri
+                    //- so luong
+                    decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                    decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
+                    decimal new_soLuong = data_soLuong;
+                    decimal new_soLuong_qd = data_soLuong_qd;
+
+                    foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                    {
+                        string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                        string c_khoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                        string c_viTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+                        
+
+                        decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                        decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]); //???
+
+                        if (data_maVt == c_maVt && data_maKhoI == c_khoI && data_maLo == c_maLo &&
+                            data_maViTri == c_viTri)
+                        {
+                            new_soLuong -= c_soLuong;
+                            new_soLuong_qd -= c_soLuong_qd;
+                        }
+                    }
+
+                    if (new_soLuong > 0)
+                    {
+                        data_row["Ton_dau"] = new_soLuong;
+                        data_row["Ton_dau_qd"] = new_soLuong_qd;
+                    }
+                    else
+                    {
+                        empty_rows.Add(data_row);
+                    }
+                }
+
+                //remove all empty_rows
+                foreach (DataRow row in empty_rows)
+                {
+                    alVitriTon.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void FixAlLoDateTon_Chon(DataTable alLoTon)
         {
             try
             {
@@ -2121,7 +2197,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void FixAlVitriTon_Chon(DataTable alVitriTon)
+        public void FixAlVitriTon_Chon(DataTable alVitriTon)
         {
             try
             {
@@ -2199,6 +2275,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     alVitriTon.Rows.Remove(row);
                 }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void XuLyKhiNhanMaVitri(IDictionary<string, object> row, bool isChanged)
+        {
+            try
+            {
+                _maLo.Text = row["MA_LO"].ToString().Trim();
+                _hanSd.Value = ObjectAndString.ObjectToDate(row["HSD"]);
+                _ton13.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU"]);
+                if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU_QD"]);
+                _maLo.Enabled = false;
+
+                if (isChanged) CheckSoLuong1();
             }
             catch (Exception ex)
             {
@@ -2765,6 +2859,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     btnLuu.PerformClick();
                 }
+            }
+            else if (keyData == (Keys.Control | Keys.F4))
+            {
+                xuLyQRCODEMenu.PerformClick();
             }
             else if (keyData == (Keys.Control | Keys.T))
             {
@@ -7358,6 +7456,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         foreach (string SUM_FIELD in Invoice.ExtraInfo_QrSums)
                         {
+                            if (!data.ContainsKey(SUM_FIELD)) continue;
                             var column = AD.Columns[SUM_FIELD];
                             object value = ObjectAndString.ObjectTo(column.DataType,
                                 ObjectAndString.ObjectToDecimal(containsRow[SUM_FIELD])
@@ -10433,6 +10532,165 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             string program = "A" + Invoice.Mact + "_XULYKHAC";
             XuLyKhac(program);
+        }
+
+        private void xuLyQRCODEMenu_Click(object sender, EventArgs e)
+        {
+            string program = "A" + Invoice.Mact + "_XULYKHAC4";
+            XuLyKhacQR(program);
+        }
+
+        public void XuLyKhacQR(string program)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+
+                QR_TRANSFER_SOA_FORM qr_transfer = new QR_TRANSFER_SOA_FORM(_invoice, program);
+                qr_transfer.All_Objects = All_Objects;
+                qr_transfer.All_Objects["parentForm"] = this;
+                qr_transfer.Form_program = Form_program;
+                qr_transfer.DynamicFixMethodName = "DynamicFixQR";
+                qr_transfer.InitFixMethodName = "InitFixQR";
+                qr_transfer._parentQRinput = _qr_code0;
+                if (qr_transfer.ShowDialog(this) == DialogResult.OK)
+                {
+                    ChonEventArgs chonE = new ChonEventArgs();
+                    chonE.AD2AM = Invoice.ExtraInfo_QrAD2AM;
+                    qrTransfer_AcceptData(qr_transfer.dataGridView1.GetSelectedData(), chonE);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void qrTransfer_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
+        {
+            var count = 0;
+            _message = "";
+            detail1.MODE = V6Mode.View;
+            dataGridView1.UnLock();
+            if (table == null || table.Count == 0) return;
+            var row0 = table[0];
+            if (row0.ContainsKey("MA_VT") && row0.ContainsKey("MA_KHO_I")
+                                          && row0.ContainsKey("TIEN_NT2") && row0.ContainsKey("SO_LUONG1")
+                                          && row0.ContainsKey("GIA_NT21"))
+            {
+
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
+                {
+                    AD.Rows.Clear();
+                }
+
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
+
+                foreach (IDictionary<string, object> row in table)
+                {
+                    var data = row;
+                    var cMaVt = data["MA_VT"].ToString().Trim();
+                    var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+
+                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
+                    _maVt.Text = cMaVt;
+                    var datavt = _maVt.Data;
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
+                    if (datavt != null)
+                    {
+                        //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
+                        if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_DT")) data.Add("TK_DT", (datavt["TK_DT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_GV")) data.Add("TK_GV", (datavt["TK_GV"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_CKI")) data.Add("TK_CKI", (datavt["TK_CK"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("HE_SO1T")) data.Add("HE_SO1T", 1);
+                        if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
+                        if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
+                        if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", 0m);
+                        if (!data.ContainsKey("GIA_NT1")) data.Add("GIA_NT1", 0m);
+
+
+                        var __tien_nt2 = ObjectAndString.ToObject<decimal>(data["TIEN_NT2"]);
+                        var __gia_nt21 = ObjectAndString.ObjectToDecimal(data["GIA_NT21"]);
+                        var __tien2 = V6BusinessHelper.Vround(__tien_nt2 * txtTyGia.Value, M_ROUND);
+                        var __gia21 = V6BusinessHelper.Vround(__gia_nt21 * txtTyGia.Value, M_ROUND_GIA);
+                        if (!data.ContainsKey("TIEN2")) data.Add("TIEN2", __tien2);
+                        if (!data.ContainsKey("GIA21")) data.Add("GIA21", __gia21);
+                        if (!data.ContainsKey("GIA2")) data.Add("GIA2", __gia21);
+                        if (!data.ContainsKey("GIA_NT2")) data.Add("GIA_NT2", data["GIA_NT21"]);
+
+
+                        var __tien_nt = ObjectAndString.ToObject<decimal>(data["TIEN_NT"]);
+                        var __gia_nt1 = ObjectAndString.ObjectToDecimal(data["GIA_NT1"]);
+                        var __tien = V6BusinessHelper.Vround(__tien_nt * txtTyGia.Value, M_ROUND);
+                        var __gia1 = V6BusinessHelper.Vround(__gia_nt1 * txtTyGia.Value, M_ROUND_GIA);
+                        if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien);
+                        if (!data.ContainsKey("GIA1")) data.Add("GIA1", __gia1);
+                        if (!data.ContainsKey("GIA")) data.Add("GIA", __gia1);
+                        if (!data.ContainsKey("GIA_NT")) data.Add("GIA_NT", data["GIA_NT1"]);
+
+
+                        if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")
+                        {
+                            //Ghi đè MA_TD_I
+                            data["MA_TD_I"] = Txtma_td_ph.Text;
+                        }
+
+                    }
+                    //}
+
+
+
+                    if (exist && exist2)
+                    {
+                        if (XuLyThemDetail(data))
+                        {
+                            count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                        }
+                    }
+                    else
+                    {
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaVt);
+                        if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
+                //ApGiaBan(false);
+                InvokeFormEvent("AFTERACCEPTDATAQR");
+
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+                if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                {
+                    SaveTemp("MAXROWSAVETEMP");
+                }
+            }
+            else
+            {
+                ShowParentMessage(V6Text.Text("LACKINFO"));
+            }
         }
 
 

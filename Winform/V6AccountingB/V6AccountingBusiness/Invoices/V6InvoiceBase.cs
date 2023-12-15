@@ -832,6 +832,19 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
+        /// <summary>
+        /// Từ điển ADfield:AMfield,,
+        /// </summary>
+        public string ExtraInfo_QrAD2AM
+        {
+            get
+            {
+                string result = null;
+                if (EXTRA_INFOR.ContainsKey("QR_AD2AM")) result = EXTRA_INFOR["QR_AD2AM"];
+                return result;
+            }
+        }
+
         private SortedDictionary<string, string> _extraInfor = null;
         private SortedDictionary<string, string> _extraInforCT = null;
 

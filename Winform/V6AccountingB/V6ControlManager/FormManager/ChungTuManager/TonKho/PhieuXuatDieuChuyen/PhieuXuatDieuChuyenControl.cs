@@ -900,14 +900,59 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                 _qr_code0.QR_LostAuto = false;
                                 _qr_code0.V6LostFocus += (sender) =>
                                 {
-                                    if (_qr_code0.Data != null && _qr_code0.Data.ContainsKey("MA_KHO"))
+                                    if (_qr_code0.Text.Trim() == "")
                                     {
-                                        if (txtMaKhoX.Text.ToUpper() != _qr_code0.Data["MA_KHO"].ToUpper())
+                                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(detail1,
+                                            ObjectAndString.SplitString(_qr_code0.NeighborFields), false);
+                                        if (_maVt != null) _maVt.Focus();
+                                    }
+                                    else
+                                    {
+                                        //readonly
+                                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(detail1,
+                                            ObjectAndString.SplitString(_qr_code0.NeighborFields), true);
+
+                                        if (_qr_code0.Data != null && _qr_code0.Data.ContainsKey("MA_KHO"))
                                         {
-                                            ShowMainMessage("Không đúng mã kho.");
-                                            //detail1.OnMoiClick();
-                                            detail1.SetData(detail1.CarryData);
-                                            Detail1FocusReset();
+                                            if (txtMaKhoX.Text.ToUpper() != _qr_code0.Data["MA_KHO"].ToUpper())
+                                            {
+                                                ShowMainMessage("Không đúng mã kho.");
+                                                //detail1.OnMoiClick();
+                                                detail1.SetData(detail1.CarryData);
+                                                Detail1FocusReset();
+                                            }
+                                            else
+                                            {
+                                                // Gọi lostfocus cho các Neighbor
+                                                var fields = ObjectAndString.SplitString(_qr_code0.NeighborFields);
+                                                foreach (string field in fields)
+                                                {
+                                                    var c = detail1.GetControlByAccessibleName(field);
+                                                    if (c is V6ColorTextBox)
+                                                    {
+                                                        ((V6ColorTextBox)c).CallLeave();
+                                                        ((V6ColorTextBox)c).CallDoV6LostFocus();
+                                                    }
+                                                    else if (c is V6ColorMaskedTextBox)
+                                                    {
+                                                        ((V6ColorMaskedTextBox)c).CallLeave();
+                                                        ((V6ColorMaskedTextBox)c).CallDoV6LostFocus();
+                                                    }
+                                                    else if (c is V6DateTimePicker)
+                                                    {
+                                                        ((V6DateTimePicker)c).CallLeave();
+                                                        ((V6DateTimePicker)c).CallDoV6LostFocus();
+                                                    }
+                                                }
+
+                                                _soLuong1.Value = 1;
+                                                _soLuong1.CallDoV6LostFocus();
+                                                if (!string.IsNullOrEmpty(Invoice.ExtraInfo_QrGot))
+                                                {
+                                                    var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
+                                                    if (c != null) c.Focus();
+                                                }
+                                            }
                                         }
                                         else
                                         {
@@ -940,38 +985,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                                 var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
                                                 if (c != null) c.Focus();
                                             }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // Gọi lostfocus cho các Neighbor
-                                        var fields = ObjectAndString.SplitString(_qr_code0.NeighborFields);
-                                        foreach (string field in fields)
-                                        {
-                                            var c = detail1.GetControlByAccessibleName(field);
-                                            if (c is V6ColorTextBox)
-                                            {
-                                                ((V6ColorTextBox)c).CallLeave();
-                                                ((V6ColorTextBox)c).CallDoV6LostFocus();
-                                            }
-                                            else if (c is V6ColorMaskedTextBox)
-                                            {
-                                                ((V6ColorMaskedTextBox)c).CallLeave();
-                                                ((V6ColorMaskedTextBox)c).CallDoV6LostFocus();
-                                            }
-                                            else if (c is V6DateTimePicker)
-                                            {
-                                                ((V6DateTimePicker)c).CallLeave();
-                                                ((V6DateTimePicker)c).CallDoV6LostFocus();
-                                            }
-                                        }
-
-                                        _soLuong1.Value = 1;
-                                        _soLuong1.CallDoV6LostFocus();
-                                        if (!string.IsNullOrEmpty(Invoice.ExtraInfo_QrGot))
-                                        {
-                                            var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
-                                            if (c != null) c.Focus();
                                         }
                                     }
                                 };
@@ -5392,6 +5405,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         foreach (string SUM_FIELD in Invoice.ExtraInfo_QrSums)
                         {
+                            if (!data.ContainsKey(SUM_FIELD)) continue;
                             var column = AD.Columns[SUM_FIELD];
                             object value = ObjectAndString.ObjectTo(column.DataType,
                                 ObjectAndString.ObjectToDecimal(containsRow[SUM_FIELD])

@@ -706,12 +706,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                                 _qr_code0 = (V6QRTextBox)control;
                                 _qr_code0.V6LostFocus += (sender) =>
                                 {
-                                    _soLuong1.Value = 1;
-                                    _soLuong1.CallDoV6LostFocus();
-                                    if (!string.IsNullOrEmpty(Invoice.ExtraInfo_QrGot))
+                                    if (_qr_code0.Text.Trim() == "")
                                     {
-                                        var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
-                                        if (c != null) c.Focus();
+                                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(detail1,
+                                            ObjectAndString.SplitString(_qr_code0.NeighborFields), false);
+                                        if (_maVt != null) _maVt.Focus();
+                                    }
+                                    else
+                                    {
+                                        //readonly
+                                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(detail1,
+                                            ObjectAndString.SplitString(_qr_code0.NeighborFields), true);
+                                        _soLuong1.Value = 1;
+                                        _soLuong1.CallDoV6LostFocus();
+                                        if (!string.IsNullOrEmpty(Invoice.ExtraInfo_QrGot))
+                                        {
+                                            var c = detail1.GetControlByAccessibleName(Invoice.ExtraInfo_QrGot);
+                                            if (c != null) c.Focus();
+                                        }
                                     }
                                 };
                             }
@@ -4481,6 +4493,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     {
                         foreach (string SUM_FIELD in Invoice.ExtraInfo_QrSums)
                         {
+                            if (!data.ContainsKey(SUM_FIELD)) continue;
                             var column = AD.Columns[SUM_FIELD];
                             object value = ObjectAndString.ObjectTo(column.DataType,
                                 ObjectAndString.ObjectToDecimal(containsRow[SUM_FIELD])

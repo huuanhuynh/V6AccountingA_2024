@@ -39,7 +39,7 @@ namespace V6Controls
         public bool multiSelect { get;set; }
         public IDictionary<string, object> extraData { get; set; }
         /// <summary>
-        /// AD2AM:abc:def,
+        /// DIC abc:def,GHI:JKL
         /// </summary>
         public string AD2AM { get; set; }
     }

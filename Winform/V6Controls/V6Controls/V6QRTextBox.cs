@@ -85,7 +85,7 @@ namespace V6Controls
                 }
                 else
                 {
-                    var ar = ObjectAndString.SplitStringBy(_text_data, M_QRCODE_INFOS.SPLIT[0], false);
+                    var ar = ObjectAndString.SplitStringBy(_text_data, M_QRCODE_INFOS.SPLIT[0], true);
                     _data = new Dictionary<string, string>();
                     foreach (var item in M_QRCODE_INFOS.FIELD_INDEX)
                     {
@@ -152,9 +152,9 @@ namespace V6Controls
         {
             if (BrotherFields != null)
             {
-                if (Data != null)
+                if (Data != null && Data.Count > 0)
                 {
-                    V6ControlFormHelper.SetBrotherData(this, Data, BrotherFields, BrotherFields2);
+                    //V6ControlFormHelper.SetBrotherData(this, Data, BrotherFields, BrotherFields2);
                     SetNeighborValues();
                 }
                 else
@@ -179,8 +179,8 @@ namespace V6Controls
                 {
                     neighbor_field.Add(nList[i].ToUpper(), bList[i].ToUpper());
                 }
-                if (_qr_lostauto) V6ControlFormHelper.SetNeighborData_V6Lost(this, _data, neighbor_field);
-                else V6ControlFormHelper.SetNeighborData(this, _data, neighbor_field);
+                if (_qr_lostauto) V6ControlFormHelper.SetNeighborData_V6Lost(this, _data, neighbor_field, false);
+                else V6ControlFormHelper.SetNeighborData(this, _data, neighbor_field, false);
             }
             catch (Exception)
             {
@@ -351,11 +351,16 @@ namespace V6Controls
             
             if (!Looking && gotfocustext != Text)
             {
-                SetBrotherFormData();
+                if (Text.Trim() != "")
+                {
+                    SetBrotherFormData();
+                }
                 CallDoV6LostFocus();
             }
             else
             {
+                //SetBrotherFormData();
+                //CallDoV6LostFocus();
                 CallDoV6LostFocusNoChange();
             }
             
