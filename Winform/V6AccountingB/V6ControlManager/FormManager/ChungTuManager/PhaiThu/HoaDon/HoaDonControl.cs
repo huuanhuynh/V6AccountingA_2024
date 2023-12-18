@@ -2860,9 +2860,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     btnLuu.PerformClick();
                 }
             }
+            else if (keyData == (Keys.Control | Keys.Shift | Keys.F4))
+            {
+                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", true);
+            }
             else if (keyData == (Keys.Control | Keys.F4))
             {
-                xuLyQRCODEMenu.PerformClick();
+                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", false);
             }
             else if (keyData == (Keys.Control | Keys.T))
             {
@@ -10537,15 +10541,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void xuLyQRCODEMenu_Click(object sender, EventArgs e)
         {
             string program = "A" + Invoice.Mact + "_XULYKHAC4";
-            XuLyKhacQR(program);
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            XuLyKhacQR(program, shift);
         }
 
-        public void XuLyKhacQR(string program)
+        public void XuLyKhacQR(string program, bool shift)
         {
             try
             {
                 if (NotAddEdit) return;
-                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                
                 chon_accept_flag_add = shift;
 
                 QR_TRANSFER_SOA_FORM qr_transfer = new QR_TRANSFER_SOA_FORM(_invoice, program);

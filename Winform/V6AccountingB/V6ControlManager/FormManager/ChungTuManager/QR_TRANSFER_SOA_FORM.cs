@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
@@ -38,6 +39,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                TurnOffCapsLock();
+
                 var fields = "QR_CODE0,MA_KHO_I,MA_VT,MA_VITRI,MA_LO,HSD,SO_LUONG1,GIA_NT21,TIEN_NT2";
                 _table = V6BusinessHelper.SelectSimple(_invoice.AD_TableName, fields, "1=0");
                 InvokeInitFix();
@@ -49,7 +52,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        
+        [DllImport("user32.dll")]
+        static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
+        private void TurnOffCapsLock()
+        {
+            if (Control.IsKeyLocked(Keys.CapsLock)) // Checks Capslock is on
+            {
+                const int KEYEVENTF_EXTENDEDKEY = 0x1;
+                const int KEYEVENTF_KEYUP = 0x2;
+                keybd_event(0x14, 0x45, KEYEVENTF_EXTENDEDKEY, (UIntPtr)0);
+                keybd_event(0x14, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,
+                (UIntPtr)0);
+            }
+        }
 
         public void LoadData()
         {

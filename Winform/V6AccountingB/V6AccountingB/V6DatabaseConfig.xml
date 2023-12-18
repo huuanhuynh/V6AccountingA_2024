@@ -696,6 +696,25 @@
     <Type>0</Type>
     <Key>dGv/QJVRS1qxQkcFAcaoL+UqelHL3YpauXxRfkSelQTp2CdF43g85g==</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>35</Stt>
+    <Server>118.69.183.160\SQL2K16,3839</Server>
+    <Server2>118.69.183.160\SQL2K16,3839</Server2>
+    <Database>CNBD_WH23API</Database>
+    <Database2>CNBD_WH23API</Database2>
+    <UserId>v6admsa23</UserId>
+    <UserId2>v6admsa23</UserId2>
+    <Epassword>Ai0I9gx1t2P+Pw6IAXXVbunYJ0XjeDzm</Epassword>
+    <Epassword2>Ai0I9gx1t2P+Pw6IAXXVbunYJ0XjeDzm</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Biwase Stock 2023B TEST API ONLINE</Note>
+    <UseIsolation>1</UseIsolation>
+    <TimeOut>360</TimeOut>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>Q6yzpLmbESkj6SJh9iG32D9Qb9G9nQGRqgsr6xJ3tNwFNG509OPC/YmCnSWFFuvw</Key>
+  </DatabaseList>
   
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
