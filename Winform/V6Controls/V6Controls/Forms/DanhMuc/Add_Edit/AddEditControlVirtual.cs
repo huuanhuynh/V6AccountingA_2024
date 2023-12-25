@@ -962,7 +962,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             
         }
 
-        public void ValidateData_IsAldm()
+        public virtual void ValidateData_IsAldm()
         {
             var errors = "";
             

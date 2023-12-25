@@ -273,6 +273,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             if (errors.Length > 0) throw new Exception(errors);
         }
 
+        public override void ValidateData_IsAldm()
+        {
+            ValidateData();
+        }
+
         public override bool DoHotKey0(Keys keyData)
         {
             if (keyData == Keys.F1)

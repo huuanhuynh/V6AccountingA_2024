@@ -311,6 +311,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.taoGRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taoRRMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.xemVitriMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyQRCODEMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2398,15 +2399,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.xuLyKhac1Menu,
             this.xuLyKhac2Menu,
             this.chonPhieuXuatMenu,
-            this.chonTuExcelVATMenu});
+            this.chonTuExcelVATMenu,
+            this.xuLyQRCODEMenu});
             this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(178, 92);
+            this.menuChucNang2.Size = new System.Drawing.Size(197, 136);
             // 
             // xuLyKhac1Menu
             // 
             this.xuLyKhac1Menu.AccessibleDescription = "APOCTPOBM00001";
             this.xuLyKhac1Menu.Name = "xuLyKhac1Menu";
-            this.xuLyKhac1Menu.Size = new System.Drawing.Size(177, 22);
+            this.xuLyKhac1Menu.Size = new System.Drawing.Size(196, 22);
             this.xuLyKhac1Menu.Text = "Xử lý khác 1";
             this.xuLyKhac1Menu.Click += new System.EventHandler(this.xuLyKhac1Menu_Click);
             // 
@@ -2414,7 +2416,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.xuLyKhac2Menu.AccessibleDescription = "APOCTPOBM00002";
             this.xuLyKhac2Menu.Name = "xuLyKhac2Menu";
-            this.xuLyKhac2Menu.Size = new System.Drawing.Size(177, 22);
+            this.xuLyKhac2Menu.Size = new System.Drawing.Size(196, 22);
             this.xuLyKhac2Menu.Text = "Xử lý khác 2";
             this.xuLyKhac2Menu.Click += new System.EventHandler(this.xuLyKhac2Menu_Click);
             // 
@@ -2422,13 +2424,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.chonPhieuXuatMenu.AccessibleDescription = "APOCTPOBM00003";
             this.chonPhieuXuatMenu.Name = "chonPhieuXuatMenu";
-            this.chonPhieuXuatMenu.Size = new System.Drawing.Size(177, 22);
+            this.chonPhieuXuatMenu.Size = new System.Drawing.Size(196, 22);
             this.chonPhieuXuatMenu.Text = "Chọn phiếu xuất";
             // 
             // chonTuExcelVATMenu
             // 
             this.chonTuExcelVATMenu.Name = "chonTuExcelVATMenu";
-            this.chonTuExcelVATMenu.Size = new System.Drawing.Size(177, 22);
+            this.chonTuExcelVATMenu.Size = new System.Drawing.Size(196, 22);
             this.chonTuExcelVATMenu.Text = "Chọn từ Excel (VAT)";
             this.chonTuExcelVATMenu.Click += new System.EventHandler(this.chonTuExcelVATMenu_Click);
             // 
@@ -4351,7 +4353,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.taoRRMenu,
             this.xemVitriMenu});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(162, 158);
+            this.menuDetail1.Size = new System.Drawing.Size(162, 136);
             // 
             // XemPhieuNhapMenu
             // 
@@ -4401,6 +4403,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.xemVitriMenu.Text = "Xem vị trí";
             this.xemVitriMenu.ToolTipText = "Nhấn giữ Shift khi Click chuột trên vị trí để chọn mà không xem báo cáo.";
             this.xemVitriMenu.Click += new System.EventHandler(this.xemVitriMenu_Click);
+            // 
+            // xuLyQRCODEMenu
+            // 
+            this.xuLyQRCODEMenu.Name = "xuLyQRCODEMenu";
+            this.xuLyQRCODEMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
+            this.xuLyQRCODEMenu.Size = new System.Drawing.Size(196, 22);
+            this.xuLyQRCODEMenu.Text = "Xử lý QRCODE";
+            this.xuLyQRCODEMenu.Click += new System.EventHandler(this.xuLyQRCODEMenu_Click);
             // 
             // PhieuNhapKhauControl
             // 
@@ -4743,5 +4753,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private DropDownButton btnChucNang2;
         private System.Windows.Forms.ToolStripMenuItem chonTuExcelVATMenu;
         private System.Windows.Forms.ToolStripMenuItem xemVitriMenu;
+        private System.Windows.Forms.ToolStripMenuItem xuLyQRCODEMenu;
     }
 }

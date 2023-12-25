@@ -2628,7 +2628,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             return ObjectAndString.ObjectToDecimal(cell.Value);
         }
+        /// <summary>
+        /// ObjectAndString.ObjectToDecimal(object)
+        /// </summary>
+        /// <param name="cell"></param>
+        /// <returns></returns>
+        public decimal DEC(object cell)
+        {
+            return ObjectAndString.ObjectToDecimal(cell);
+        }
 
+        public decimal VROUND(decimal num, int r)
+        {
+            return V6BusinessHelper.Vround(num, r);
+        }
 
         /// <summary>
         /// return grow.Cells[name].Value.ToString().Trim();
@@ -6826,6 +6839,42 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
         }
 
         public virtual void chonExcel_AcceptData(List<IDictionary<string, object>> getSelectedData, ChonEventArgs chonE)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void XuLyKhacQR(string program, bool shift, V6QRTextBox _qr_code0)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+
+                chon_accept_flag_add = shift;
+
+                QR_TRANSFER_SOA_FORM qr_transfer = new QR_TRANSFER_SOA_FORM(_invoice, program);
+                qr_transfer.All_Objects = All_Objects;
+                qr_transfer.All_Objects["parentForm"] = this;
+                qr_transfer.Form_program = Form_program;
+                qr_transfer.DynamicFixMethodName = "DynamicFixQR";
+                qr_transfer.InitFixMethodName = "InitFixQR";
+                qr_transfer.QR_AD = _invoice.ExtraInfo_QrAD;
+                qr_transfer._parentQRinput = _qr_code0;
+                if (qr_transfer.ShowDialog(this) == DialogResult.OK)
+                {
+                    ChonEventArgs chonE = new ChonEventArgs();
+                    chonE.AD2AM = _invoice.ExtraInfo_QrAD2AM;
+                    qrTransfer_AcceptData(qr_transfer.dataGridView1.GetSelectedData(), chonE);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+
+        public virtual void qrTransfer_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
         {
             throw new NotImplementedException();
         }

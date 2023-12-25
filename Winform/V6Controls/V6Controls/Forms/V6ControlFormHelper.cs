@@ -2350,7 +2350,7 @@ namespace V6Controls.Forms
         /// <param name="control">Control gốc.</param>
         /// <param name="data">Dữ liệu trong control gốc.</param>
         /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ (để lấy dữ liệu trong data).</param>
-        public static void SetNeighborData(Control control, IDictionary<string, string> data, IDictionary<string, string> neighbor_field, bool set_null)
+        public static void SetNeighborData(Control control, IDictionary<string, object> data, IDictionary<string, string> neighbor_field, bool set_null)
         {
             try
             {
@@ -2405,7 +2405,7 @@ namespace V6Controls.Forms
         /// <param name="data">Dữ liệu trong control gốc.</param>
         /// <param name="neighbor_field">key là Neighbor, value là field ánh xạ (để lấy dữ liệu trong data).</param>
         /// <param name="set_null">data trắng hoặc ko có vẫn gán.</param>
-        public static void SetNeighborData_V6Lost(Control control, IDictionary<string, string> data, IDictionary<string, string> neighbor_field, bool set_null)
+        public static void SetNeighborData_V6Lost(Control control, IDictionary<string, object> data, IDictionary<string, string> neighbor_field, bool set_null)
         {
             try
             {

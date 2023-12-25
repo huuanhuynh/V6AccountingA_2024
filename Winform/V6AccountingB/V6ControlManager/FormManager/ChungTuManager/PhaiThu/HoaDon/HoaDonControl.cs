@@ -2862,11 +2862,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             else if (keyData == (Keys.Control | Keys.Shift | Keys.F4))
             {
-                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", true);
+                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", true, _qr_code0);
+            }
+            else if (keyData == (Keys.Shift | Keys.F4))
+            {
+                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", true, _qr_code0);
             }
             else if (keyData == (Keys.Control | Keys.F4))
             {
-                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", false);
+                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", false, _qr_code0);
             }
             else if (keyData == (Keys.Control | Keys.T))
             {
@@ -9365,6 +9369,173 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
+        private void btnSoDH_Click(object sender, EventArgs e) 
+        {
+            try
+            {
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (NotAddEdit) return;   
+                if (detail1.IsAddOrEdit)
+                {
+                    this.ShowInfoMessage(V6Text.UnFinished);
+                    return;
+                }
+
+                if (V6Login.UserRight.AllowView("", Invoice.CodeMact))
+                {
+                    FormManagerHelper.HideMainMenu();
+                    TimDonDatHangBanForm chonForm = new TimDonDatHangBanForm(new V6Invoice91(), V6Mode.Select);
+                    var chonForm_makh = chonForm.GetControlByAccessibleName("MA_KH") as V6VvarTextBox;
+                    var ctTuSo = chonForm.GetControlByName("ctTuSo") as V6VvarTextBox;
+                    if (chonForm_makh != null) chonForm_makh.Text = txtMaKh.Text;
+                    if (ctTuSo != null) ctTuSo.Text = txtSoDH.Text;
+                    chonForm.ViewMode = false;
+                    chonForm.new_flag = true;
+
+                    if (chonForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        var CHON1AM = chonForm._locKetQua.dataGridView1.CurrentRow.ToDataDictionary();
+                        All_Objects["CHON1AM"] = CHON1AM;
+                        All_Objects["CHON1AD"] = chonForm._formChungTu_AD;
+                        InvokeFormEvent("CHON1QR" + chonForm._invoice.Mact + Invoice.Mact);
+                        _message = "";
+
+                        txtSoDH.Text = CHON1AM["SO_CT"].ToString();
+
+                        Dictionary<int, decimal> skip_index = new Dictionary<int, decimal>(); // index-so_luong_chua_pb
+                        foreach (DataRow row in chonForm._formChungTu_AD.Rows)
+                        {
+                            var newData = row.ToDataDictionary();
+                            // phaan bo so luong nhung chi dien ma stt_Rec// danh dau// theo truong so_luong
+
+                            string ma_vt = newData["MA_VT"].ToString().Trim().ToUpper();
+                            decimal so_luong = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                            decimal soluong_conlai = so_luong;
+                            
+                            for (int i = 0; i < AD.Rows.Count; i++)
+                            {
+                                var ad_row = AD.Rows[i];
+                                string mavt_ad = ad_row["MA_VT"].ToString().Trim().ToUpper();
+                                decimal soluong_ad = ObjectAndString.ObjectToDecimal(ad_row["SO_LUONG"]);
+                                if (skip_index.ContainsKey(i))
+                                {
+                                    if (skip_index[i] == 0) continue; // skip
+                                }
+                                else
+                                {
+                                    skip_index[i] = soluong_ad;
+                                    if (skip_index[i] == 0) continue; // skip
+                                }
+
+                                if (mavt_ad == ma_vt)
+                                {
+                                    // Nếu dòng AD phân bổ lần đầu
+                                    if (skip_index[i] == soluong_ad)
+                                    {
+                                        ad_row["STT_RECDH"] = newData["STT_REC"];
+                                        ad_row["STT_REC0DH"] = newData["STT_REC0"];
+                                        if (shift)
+                                        {
+                                            ad_row["GIA_NT21"] = newData["GIA_NT21"];
+                                            ad_row["GIA21"] = newData["GIA21"];
+                                            // tinh lai tien???
+                                            Tinh_TienGiaThue_Row(ad_row, txtTyGia.Value);
+                                        }
+                                    }
+                                    
+                                    if (soluong_conlai >= skip_index[i])
+                                    {
+                                        soluong_conlai -= skip_index[i];
+                                        skip_index[i] = 0; // continue;
+                                    }
+                                    else // soluong_conlai < soluong_ad
+                                    {
+                                        skip_index[i] = skip_index[i] - soluong_conlai;
+                                        soluong_conlai = 0;
+                                        break;
+                                    }
+                                }
+                            }
+                            
+
+                        }
+
+                        //V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
+                        
+                    }
+                    btnSua.Focus();
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void Tinh_TienGiaThue_Row(DataRow r, decimal tygia)
+        {
+            try
+            {
+                var row_data = r.ToDataDictionary();
+                r["TIEN_NT2"] = VROUND(DEC(r["SO_LUONG1"]) * DEC(r["GIA_NT21"]), M_ROUND_NT);
+                r["TIEN2"] = VROUND(DEC(r["TIEN_NT2"]) * tygia, M_ROUND);
+
+                if (_maNt == _mMaNt0)
+                {
+                    r["TIEN2"] = r["TIEN_NT2"];
+                }
+
+                r["GIA21"] = VROUND(DEC(r["GIA_NT21"]) * tygia, M_ROUND_GIA);
+                if (_maNt == _mMaNt0)
+                {
+                    r["GIA21"] = r["GIA_NT21"];
+                }
+
+                if (DEC(r["SO_LUONG"]) != 0)
+                {
+                    if (DEC(r["HE_SO1T"]) == 1 && DEC(r["HE_SO1M"]) == 1)
+                    {
+                        r["GIA_NT2"] = r["GIA_NT21"];
+                        r["GIA2"] = r["GIA21"];
+                    }
+                    else
+                    {
+                        r["GIA_NT21"] = VROUND(DEC(r["TIEN_NT2"]) / DEC(r["SO_LUONG"]), M_ROUND_GIA_NT);
+                        r["GIA2"] = VROUND(DEC(r["TIEN2"]) / DEC(r["SO_LUONG"]), M_ROUND_GIA);
+                    }
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        r["GIA2"] = r["GIA_NT2"];
+                    }
+                }
+
+                if (M_SOA_MULTI_VAT == "1")
+                {
+                    var thueSuat = DEC(r["THUE_SUAT_I"]);
+                    var tienNt = DEC(r["TIEN_NT2"]) - DEC(r["CK_NT"]) - DEC(r["GG_NT"]);
+                    var tien = DEC(r["TIEN2"]) - DEC(r["CK"]) - DEC(r["GG"]);
+                    
+                    r["THUE_NT"] = VROUND(tienNt * thueSuat / 100, M_ROUND_NT);
+                    r["THUE"] = VROUND(tien * thueSuat / 100, M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        r["THUE"] = r["THUE_NT"];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
             FixDataGridViewSize(dataGridView1, dataGridView3);
@@ -10542,38 +10713,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             string program = "A" + Invoice.Mact + "_XULYKHAC4";
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-            XuLyKhacQR(program, shift);
+            XuLyKhacQR(program, shift, _qr_code0);
         }
 
-        public void XuLyKhacQR(string program, bool shift)
-        {
-            try
-            {
-                if (NotAddEdit) return;
-                
-                chon_accept_flag_add = shift;
-
-                QR_TRANSFER_SOA_FORM qr_transfer = new QR_TRANSFER_SOA_FORM(_invoice, program);
-                qr_transfer.All_Objects = All_Objects;
-                qr_transfer.All_Objects["parentForm"] = this;
-                qr_transfer.Form_program = Form_program;
-                qr_transfer.DynamicFixMethodName = "DynamicFixQR";
-                qr_transfer.InitFixMethodName = "InitFixQR";
-                qr_transfer._parentQRinput = _qr_code0;
-                if (qr_transfer.ShowDialog(this) == DialogResult.OK)
-                {
-                    ChonEventArgs chonE = new ChonEventArgs();
-                    chonE.AD2AM = Invoice.ExtraInfo_QrAD2AM;
-                    qrTransfer_AcceptData(qr_transfer.dataGridView1.GetSelectedData(), chonE);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
-        public void qrTransfer_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
+        
+        public override void qrTransfer_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
         {
             var count = 0;
             _message = "";

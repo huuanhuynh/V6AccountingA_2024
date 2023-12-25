@@ -39,16 +39,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.grbMode = new System.Windows.Forms.GroupBox();
+            this.rScan = new System.Windows.Forms.RadioButton();
+            this.rInventory = new System.Windows.Forms.RadioButton();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.txtQR_INFOR = new System.Windows.Forms.RichTextBox();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
-            this.grbMode = new System.Windows.Forms.GroupBox();
-            this.rScan = new System.Windows.Forms.RadioButton();
-            this.rInventory = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbMode.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -60,7 +60,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnHuy.AccessibleDescription = "REPORTB00005";
             this.btnHuy.AccessibleName = "";
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnHuy.Location = new System.Drawing.Point(100, 560);
@@ -105,6 +104,43 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel1.Size = new System.Drawing.Size(1003, 552);
             this.panel1.TabIndex = 0;
             // 
+            // grbMode
+            // 
+            this.grbMode.AccessibleDescription = "";
+            this.grbMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.grbMode.Controls.Add(this.rScan);
+            this.grbMode.Controls.Add(this.rInventory);
+            this.grbMode.Location = new System.Drawing.Point(198, 475);
+            this.grbMode.Name = "grbMode";
+            this.grbMode.Size = new System.Drawing.Size(194, 35);
+            this.grbMode.TabIndex = 4;
+            this.grbMode.TabStop = false;
+            this.grbMode.Text = "Mode";
+            // 
+            // rScan
+            // 
+            this.rScan.AutoSize = true;
+            this.rScan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rScan.Location = new System.Drawing.Point(83, 13);
+            this.rScan.Name = "rScan";
+            this.rScan.Size = new System.Drawing.Size(50, 17);
+            this.rScan.TabIndex = 1;
+            this.rScan.Text = "&Scan";
+            this.rScan.UseVisualStyleBackColor = true;
+            // 
+            // rInventory
+            // 
+            this.rInventory.AutoSize = true;
+            this.rInventory.Checked = true;
+            this.rInventory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rInventory.Location = new System.Drawing.Point(6, 13);
+            this.rInventory.Name = "rInventory";
+            this.rInventory.Size = new System.Drawing.Size(69, 17);
+            this.rInventory.TabIndex = 0;
+            this.rInventory.TabStop = true;
+            this.rInventory.Text = "&Inventory";
+            this.rInventory.UseVisualStyleBackColor = true;
+            // 
             // btnClear
             // 
             this.btnClear.AccessibleDescription = "";
@@ -114,7 +150,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(88, 40);
             this.btnClear.TabIndex = 2;
-            this.btnClear.Text = "Xóa";
+            this.btnClear.Text = "&Xóa";
             this.btnClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -128,7 +164,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(88, 40);
             this.btnLoad.TabIndex = 1;
-            this.btnLoad.Text = "Tải";
+            this.btnLoad.Text = "&Tải";
             this.btnLoad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -144,6 +180,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.txtQR_INFOR.Size = new System.Drawing.Size(389, 454);
             this.txtQR_INFOR.TabIndex = 0;
             this.txtQR_INFOR.Text = "";
+            this.txtQR_INFOR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQR_INFOR_KeyDown);
             // 
             // dataGridView1
             // 
@@ -173,43 +210,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.dataGridView1.Size = new System.Drawing.Size(605, 552);
             this.dataGridView1.TabIndex = 3;
             // 
-            // grbMode
-            // 
-            this.grbMode.AccessibleDescription = "";
-            this.grbMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.grbMode.Controls.Add(this.rScan);
-            this.grbMode.Controls.Add(this.rInventory);
-            this.grbMode.Location = new System.Drawing.Point(198, 475);
-            this.grbMode.Name = "grbMode";
-            this.grbMode.Size = new System.Drawing.Size(194, 35);
-            this.grbMode.TabIndex = 4;
-            this.grbMode.TabStop = false;
-            this.grbMode.Text = "Mode";
-            // 
-            // rScan
-            // 
-            this.rScan.AutoSize = true;
-            this.rScan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rScan.Location = new System.Drawing.Point(83, 13);
-            this.rScan.Name = "rScan";
-            this.rScan.Size = new System.Drawing.Size(50, 17);
-            this.rScan.TabIndex = 1;
-            this.rScan.Text = "Scan";
-            this.rScan.UseVisualStyleBackColor = true;
-            // 
-            // rInventory
-            // 
-            this.rInventory.AutoSize = true;
-            this.rInventory.Checked = true;
-            this.rInventory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rInventory.Location = new System.Drawing.Point(6, 13);
-            this.rInventory.Name = "rInventory";
-            this.rInventory.Size = new System.Drawing.Size(69, 17);
-            this.rInventory.TabIndex = 0;
-            this.rInventory.TabStop = true;
-            this.rInventory.Text = "Inventory";
-            this.rInventory.UseVisualStyleBackColor = true;
-            // 
             // QR_TRANSFER_SOA_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,9 +228,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.Load += new System.EventHandler(this.Form_Load);
             this.SizeChanged += new System.EventHandler(this.QR_TRANSFER_SOA_FORM_SizeChanged);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbMode.ResumeLayout(false);
             this.grbMode.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }

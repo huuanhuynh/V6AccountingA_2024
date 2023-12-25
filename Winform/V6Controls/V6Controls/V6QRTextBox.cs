@@ -55,10 +55,10 @@ namespace V6Controls
         /// Data_ID
         /// </summary>
         private string _text_data = "";
-        public Dictionary<string, string> _data;
+        public Dictionary<string, object> _data;
         //private Form _frm;
         
-        public new Dictionary<string, string> Data
+        public new Dictionary<string, object> Data
         {
             get
             {
@@ -86,10 +86,30 @@ namespace V6Controls
                 else
                 {
                     var ar = ObjectAndString.SplitStringBy(_text_data, M_QRCODE_INFOS.SPLIT[0], true);
-                    _data = new Dictionary<string, string>();
-                    foreach (var item in M_QRCODE_INFOS.FIELD_INDEX)
+                    _data = new Dictionary<string, object>();
+                    foreach (var item in M_QRCODE_INFOS.FIELD_INFO)
                     {
-                        _data[item.Key] = ar[item.Value];
+                        var info = item.Value;
+                        if (!string.IsNullOrEmpty(info.TYPE))
+                        {
+                            switch (info.TYPE)
+                            {
+                                case "D":
+                                    _data[item.Key] = ObjectAndString.StringToDate(ar[info.INDEX], info.FORMAT);
+                                    break;
+                                case "N":
+                                    _data[item.Key] = ObjectAndString.StringToDecimal(ar[info.INDEX]);
+                                    break;
+                                default:
+                                    _data[item.Key] = ar[info.INDEX];
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            _data[item.Key] = ar[info.INDEX];
+                        }
+                        
                     }
                 }
             }
@@ -473,7 +493,7 @@ namespace V6Controls
         {
             var DIC = ObjectAndString.StringToStringDictionary(M_QRCODE_INFOS);
             if (DIC.ContainsKey("SPLIT")) SPLIT = DIC["SPLIT"];
-            FIELD_INDEX = new Dictionary<string, int>();
+            FIELD_INFO = new Dictionary<string, INDEX_TYPE_FORMAT>();
             foreach (var item in DIC)
             {
                 try
@@ -484,7 +504,19 @@ namespace V6Controls
                     }
                     else
                     {
-                        FIELD_INDEX[item.Key.ToUpper()] = ObjectAndString.ObjectToInt(item.Value)-1;
+                        INDEX_TYPE_FORMAT INFO = new INDEX_TYPE_FORMAT();
+                        var value_sss = ObjectAndString.SplitStringBy(item.Value, ':');
+                        INFO.INDEX = ObjectAndString.ObjectToInt(value_sss[0]) - 1;
+                        if (value_sss.Length > 1)
+                        {
+                            INFO.TYPE = value_sss[1];
+                        }
+                        if (value_sss.Length > 2)
+                        {
+                            INFO.FORMAT = value_sss[2];
+                        }
+
+                        FIELD_INFO[item.Key.ToUpper()] = INFO;
                     }
                 }
                 catch
@@ -495,6 +527,12 @@ namespace V6Controls
         }
         
         public string SPLIT { get; private set; }
-        public Dictionary<string, int> FIELD_INDEX { get; private set; }
+        public Dictionary<string, INDEX_TYPE_FORMAT> FIELD_INFO { get; private set; }
+        public class INDEX_TYPE_FORMAT
+        {
+            public int INDEX { get; set; }
+            public string TYPE { get; set; }
+            public string FORMAT { get; set; }
+        }
     }
 }

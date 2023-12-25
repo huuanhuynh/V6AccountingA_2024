@@ -33,6 +33,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public DataTable _table = null;
         public string DynamicFixMethodName { get; set; }
         public string InitFixMethodName { get; set; }
+        /// <summary>
+        /// Các trường dữ liệu khởi tạo.
+        /// </summary>
+        public string QR_AD { get; set; }
         public V6QRTextBox _parentQRinput = null;
 
         private void MyInit()
@@ -40,15 +44,28 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 TurnOffCapsLock();
-
-                var fields = "QR_CODE0,MA_KHO_I,MA_VT,MA_VITRI,MA_LO,HSD,SO_LUONG1,GIA_NT21,TIEN_NT2";
-                _table = V6BusinessHelper.SelectSimple(_invoice.AD_TableName, fields, "1=0");
                 InvokeInitFix();
-                dataGridView1.DataSource = _table;
             }
             catch (Exception ex)
             {
                 this.ShowErrorException("MyInit", ex);
+            }
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                TurnOffCapsLock();
+
+                var fields = QR_AD;
+                _table = V6BusinessHelper.SelectSimple(_invoice.AD_TableName, fields, "1=0");
+                InvokeFormProgram("QR_TRANSFER_INIT2");
+                dataGridView1.DataSource = _table;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("Form_load", ex);
             }
         }
 
@@ -70,6 +87,27 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             if (rInventory.Checked) LoadData_Inventory();
             else if (rScan.Checked) LoadData_Scan();
+        }
+
+        public void CheckMode()
+        {
+            try
+            {
+                var line = txtQR_INFOR.Lines[0];
+                var ssss = ObjectAndString.SplitStringBy(line, '\t', false);
+                if (ssss.Length < 3)
+                {
+                    rScan.Checked = true;
+                }
+                else
+                {
+                    rInventory.Checked = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         public void LoadData_Inventory()
@@ -176,14 +214,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        private Dictionary<string, string> MadeNeighbor(V6QRTextBox txt)
+        private Dictionary<string, object> MadeNeighbor(V6QRTextBox txt)
         {
-            Dictionary<string, string> result = null;
+            Dictionary<string, object> result = null;
             try
             {
                 if (txt.Data != null && txt.Data.Count > 0)
                 {
-                    result = new Dictionary<string, string>();
+                    result = new Dictionary<string, object>();
                     var bbb = ObjectAndString.SplitString(txt.BrotherFields);
                     var nnn = ObjectAndString.SplitString(txt.NeighborFields);
                     for (int i = 0; i < bbb.Length; i++)
@@ -250,11 +288,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return null;
         }
 
-
-        private void Form_Load(object sender, EventArgs e)
+        private object InvokeFormProgram(string method_name)
         {
-
+            try // Dynamic invoke
+            {
+                if (Form_program != null && !string.IsNullOrEmpty(method_name))
+                {
+                    All_Objects["data"] = _table;
+                    All_Objects["qrForm"] = this;
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + InitFixMethodName, ex1);
+            }
+            return null;
         }
+        
 
         private void SelectMultiIDForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -263,6 +314,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (txtQR_INFOR.Text.Trim() != "")
+            {
+                btnLoad.PerformClick();
+            }
             if (dataGridView1.DataSource == null)
             {
                 this.ShowInfoMessage(V6Text.NoData);
@@ -275,7 +330,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            if (this.ShowConfirmMessage(V6Text.CloseConfirm) == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Cancel;
+            }
         }
 
         //public override bool DoHotKey0(Keys keyData)
@@ -314,7 +372,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            ClearData();
+            if (txtQR_INFOR.Text.Trim() != "" && this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+            {
+                ClearData();
+            }   
+        }
+
+        private void txtQR_INFOR_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                CheckMode();
+            }
         }
     }
 }

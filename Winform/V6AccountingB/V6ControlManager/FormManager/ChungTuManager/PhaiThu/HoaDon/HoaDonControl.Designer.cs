@@ -194,7 +194,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label36 = new V6Controls.V6Label();
             this.Txtten_vtthue = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox4 = new V6Controls.V6VvarTextBox();
-            this.lblSoDH = new V6Controls.V6Label();
             this.v6Label34 = new V6Controls.V6Label();
             this.txtDiaChiGiaoHang = new V6Controls.V6VvarTextBox();
             this.txtMaDVCS = new V6Controls.V6VvarTextBox();
@@ -268,6 +267,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuBtnTim = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSoDH = new V6Controls.Controls.V6FormButton();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -2086,7 +2086,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.chonDonHangBanTheoKhoMenu,
             this.xuLyQRCODEMenu});
             this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(239, 158);
+            this.menuChucNang2.Size = new System.Drawing.Size(239, 136);
             // 
             // chonPhieuXuatMenu
             // 
@@ -2629,7 +2629,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group3.Controls.Add(this.v6Label36);
             this.group3.Controls.Add(this.Txtten_vtthue);
             this.group3.Controls.Add(this.v6ColorTextBox4);
-            this.group3.Controls.Add(this.lblSoDH);
             this.group3.Controls.Add(this.v6Label34);
             this.group3.Controls.Add(this.txtDiaChiGiaoHang);
             this.group3.Controls.Add(this.txtMaDVCS);
@@ -2639,6 +2638,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group3.Controls.Add(this.txtHanTT);
             this.group3.Controls.Add(this.txtTyGia);
             this.group3.Controls.Add(this.cboMaNt);
+            this.group3.Controls.Add(this.btnSoDH);
             this.group3.Controls.Add(this.btnApGia);
             this.group3.Controls.Add(this.txtMaHttt);
             this.group3.Controls.Add(this.txtMaGia);
@@ -2779,17 +2779,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(75, 20);
             this.v6ColorTextBox4.TabIndex = 24;
-            // 
-            // lblSoDH
-            // 
-            this.lblSoDH.AccessibleDescription = "ASOCTSOAL00126";
-            this.lblSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSoDH.AutoSize = true;
-            this.lblSoDH.Location = new System.Drawing.Point(625, 11);
-            this.lblSoDH.Name = "lblSoDH";
-            this.lblSoDH.Size = new System.Drawing.Size(39, 13);
-            this.lblSoDH.TabIndex = 0;
-            this.lblSoDH.Text = "Số ĐH";
             // 
             // v6Label34
             // 
@@ -3859,6 +3848,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.timKhacMenu.Size = new System.Drawing.Size(153, 22);
             this.timKhacMenu.Text = "Khác...";
             // 
+            // btnSoDH
+            // 
+            this.btnSoDH.AccessibleDescription = "ASOCTSOAL00126";
+            this.btnSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSoDH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSoDH.Location = new System.Drawing.Point(622, 7);
+            this.btnSoDH.Name = "btnSoDH";
+            this.btnSoDH.Size = new System.Drawing.Size(60, 22);
+            this.btnSoDH.TabIndex = 2;
+            this.btnSoDH.TabStop = false;
+            this.btnSoDH.Text = "Số ĐH";
+            this.btnSoDH.UseVisualStyleBackColor = true;
+            this.btnSoDH.Click += new System.EventHandler(this.btnSoDH_Click);
+            // 
             // HoaDonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4128,7 +4131,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private NumberSoluong txtTongSoLuong;
         private V6Label lblKieuPostColor;
         private V6VvarTextBox txtSoDH;
-        private V6Label lblSoDH;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn TEN_TK;
         private System.Windows.Forms.DataGridViewTextBoxColumn UID_CT;
@@ -4162,5 +4164,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private System.Windows.Forms.ToolStripMenuItem xuLyKhac2Menu;
         private System.Windows.Forms.ToolStripMenuItem chonDonHangBanTheoKhoMenu;
         private System.Windows.Forms.ToolStripMenuItem xuLyQRCODEMenu;
+        private V6FormButton btnSoDH;
     }
 }

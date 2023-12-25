@@ -931,15 +931,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     detail2.btnNhan.Focus();
                     detail2.btnNhan.PerformClick();
                 }
-                //else if (tabControl1.SelectedTab == tabChiTietBoSung && (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit))
-                //{
-                //    detail3.btnNhan.Focus();
-                //    detail3.btnNhan.PerformClick();
-                //}
                 else
                 {
                     btnLuu.PerformClick();
                 }
+            }
+            else if (keyData == (Keys.Control | Keys.Shift | Keys.F4))
+            {
+                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", true, _qr_code0);
+            }
+            else if (keyData == (Keys.Shift | Keys.F4))
+            {
+                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", true, _qr_code0);
+            }
+            else if (keyData == (Keys.Control | Keys.F4))
+            {
+                XuLyKhacQR("A" + Invoice.Mact + "_XULYKHAC4", false, _qr_code0);
+            }
+            else if (keyData == (Keys.Control | Keys.T))
+            {
+                _ctrl_T = true;
             }
             else if (keyData == Keys.Escape)
             {
@@ -5196,6 +5207,127 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             tabControl1.SelectedTab = tabThue;
             ChonExcelVAT();
+        }
+
+        private void xuLyQRCODEMenu_Click(object sender, EventArgs e)
+        {
+            string program = "A" + Invoice.Mact + "_XULYKHAC4";
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            XuLyKhacQR(program, shift, _qr_code0);
+        }
+
+        public override void qrTransfer_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
+        {
+            var count = 0;
+            _message = "";
+            detail1.MODE = V6Mode.View;
+            dataGridView1.UnLock();
+            if (table == null || table.Count == 0) return;
+            var row0 = table[0];
+            if (row0.ContainsKey("MA_VT") && row0.ContainsKey("MA_KHO_I")
+               && row0.ContainsKey("TIEN_NT0") && row0.ContainsKey("SO_LUONG1")
+               && row0.ContainsKey("GIA_NT01"))
+            {
+                if (table.Count > 0)
+                {
+                    bool flag_add = chon_accept_flag_add;
+                    chon_accept_flag_add = false;
+                    if (!flag_add)
+                    {
+                        AD.Rows.Clear();
+                    }
+
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        detail1.MODE = V6Mode.View;
+                    }
+                }
+
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
+
+                foreach (IDictionary<string, object> row in table)
+                {
+                    var data = row;
+                    var cMaVt = data["MA_VT"].ToString().Trim();
+                    var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+
+                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
+                    _maVt.Text = cMaVt;
+                    var datavt = _maVt.Data;
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
+                    if (datavt != null)
+                    {
+                        //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
+                        if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("HE_SO1T")) data.Add("HE_SO1T", 1);
+                        if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
+                        if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
+
+                        var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT0"]);
+                        var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT01"]);
+                        var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);
+                        var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
+
+                        if (!data.ContainsKey("TIEN0")) data.Add("TIEN0", __tien0);
+
+                        if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", data["TIEN_NT0"]);
+                        if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien0);
+                        if (!data.ContainsKey("GIA01")) data.Add("GIA01", __gia0);
+                        if (!data.ContainsKey("GIA0")) data.Add("GIA0", __gia0);
+                        if (!data.ContainsKey("GIA")) data.Add("GIA", __gia0);
+                        if (!data.ContainsKey("GIA1")) data.Add("GIA1", __gia0);
+                        if (!data.ContainsKey("GIA_NT0")) data.Add("GIA_NT0", data["GIA_NT01"]);
+                        if (!data.ContainsKey("GIA_NT")) data.Add("GIA_NT", data["GIA_NT01"]);
+                        if (!data.ContainsKey("GIA_NT1")) data.Add("GIA_NT1", data["GIA_NT01"]);
+                    }
+                    //}
+
+
+
+                    if (exist && exist2)
+                    {
+                        if (XuLyThemDetail(data))
+                        {
+                            count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                        }
+                    }
+                    else
+                    {
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaVt);
+                        if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
+                InvokeFormEvent("AFTERACCEPTDATAQR");
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+                if (Invoice.ExtraInfor_MaxRowSaveTemp > 2 && AD.Rows.Count >= Invoice.ExtraInfor_MaxRowSaveTemp)
+                {
+                    SaveTemp("MAXROWSAVETEMP");
+                }
+            }
+            else
+            {
+                ShowParentMessage(V6Text.Text("LACKINFO"));
+            }
         }
 
         private void txtManx_TextChanged(object sender, EventArgs e)

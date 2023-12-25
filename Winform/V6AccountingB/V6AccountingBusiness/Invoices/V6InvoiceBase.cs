@@ -833,6 +833,19 @@ namespace V6AccountingBusiness.Invoices
         }
 
         /// <summary>
+        /// Các trường dữ liệu mẫu bảng AD.
+        /// </summary>
+        public string ExtraInfo_QrAD
+        {
+            get
+            {
+                string result = "QR_CODE0";
+                if (EXTRA_INFOR.ContainsKey("QR_AD")) result = EXTRA_INFOR["QR_AD"];
+                return result;
+            }
+        }
+
+        /// <summary>
         /// Từ điển ADfield:AMfield,,
         /// </summary>
         public string ExtraInfo_QrAD2AM

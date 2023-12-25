@@ -924,6 +924,7 @@ namespace V6Tools.V6Export
 
                         //SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                         ImportDataRow_Group(workBook, row2, columnDic2, importRowCurrentIndex, firstColumn, lastColumnIndex);
+                        rs = workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
                         if (setting.BOLD_YN && setting.BOLD_CONDITION != null)
                         {
                             if (setting.BOLD_CONDITION.Check(row2))
@@ -1109,8 +1110,8 @@ namespace V6Tools.V6Export
                     {
                         // Áp định dạng canh phải cho kiểu số
                         rs.HorizontalAlignment = RangeStyle.HorizontalAlignmentRight;
-                        workBook.setRangeStyle(rs, importRowIndex, column.ExcelColumnIndex, importRowIndex, column.ExcelColumnIndex);
                         workBook.setNumber(importRowIndex, column.ExcelColumnIndex, ObjectAndString.ToObject<double>(row1[column.ColumnName]));
+                        workBook.setRangeStyle(rs, importRowIndex, column.ExcelColumnIndex, importRowIndex, column.ExcelColumnIndex);
                     }
                     else
                     {
