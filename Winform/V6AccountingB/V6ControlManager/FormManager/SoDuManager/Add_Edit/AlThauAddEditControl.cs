@@ -20,8 +20,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
     public partial class AlThauAddEditControl : SoDuAddEditControlVirtual
     {
         private V6TableStruct _table2Struct;
+        private V6TableStruct _table3Struct;
         private string _sttRec0 = "";
-        
+        private string _sttRec022 = "";
+
         public AlThauAddEditControl()
         {
             InitializeComponent();
@@ -34,24 +36,32 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             Mact = "S01";
             _sttRec0 = "";
             _table2Name = "Althauct";
+            _table3Name = "Althauct2";
             txtMaCt.Text = Mact;
 
             //TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");
             _table2Struct = V6BusinessHelper.GetTableStruct(_table2Name);
-            
+            _table3Struct = V6BusinessHelper.GetTableStruct(_table3Name);
             //LoadDetailControls();
-            //detail1.MODE = V6Mode.View;
-            //detail1.lblName.AccessibleName = "TEN_VT";
-            
-            
+
         }
 
-        private void SoDu2AddEditControl0_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
-            LoadDetailControls();
-            detail1.MODE = V6Mode.View;
-            detail1.lblName.AccessibleName = "TEN_VT";
-            SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
+            try
+            {
+                LoadDetailControls();
+                LoadDetail2Controls();
+                detail1.MODE = V6Mode.View;
+                detail3.MODE = V6Mode.View;
+                detail1.lblName.AccessibleName = "TEN_VT";
+                detail3.lblName.AccessibleName = "TEN_VT";
+                SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Form_Load", ex);
+            }
         }
 
         public override void DoBeforeAdd()
@@ -76,90 +86,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private V6ColorTextBox _Ghi_chukm, _Ghi_chuck ;
 
         private void LoadDetailControls()
-        {
-            //Tạo trước control phòng khi alct1 không có
-
-            //_ma_vt = new V6VvarTextBox
-            //{
-            //    AccessibleName = "ma_vt",
-            //    VVar = "ma_vt",
-            //    GrayText = "Mã vật tư",
-            //    BrotherFields = "TEN_VT"
-            //};
-            //_ma_vt.V6LostFocus += delegate(object sender)
-            //{
-            //    XuLyDonViTinhKhiChonMaVt(_ma_vt.Text);
-            //};
-            //_ma_vt.Upper();
-            //_ma_vt.FilterStart = true;
-
-            //_dvt = new V6VvarTextBox
-            //{
-            //    AccessibleName = "dvt",
-            //    VVar = "dvt1",
-            //    GrayText = "Đơn vị tính",
-            //    CheckNotEmpty = true,
-            //    CheckOnLeave = true,
-            //};
-            //_dvt.GotFocus += (s, e) =>
-            //{
-            //    _dvt.SetInitFilter("ma_vt='" + _ma_vt.Text.Trim() + "'");
-            //    _dvt.ExistRowInTable(true);
-            //};
-            //_dvt.Upper();
-
-            //_t_sl1 = new NumberSoluong()
-            //{
-            //    AccessibleName = "t_sl1",
-            //    GrayText = V6Text.Text("SLTRUNGTHAU")
-            //};
-            //_t_sl2 = new NumberSoluong()
-            //{
-            //    AccessibleName = "t_sl2",
-            //    GrayText = V6Text.Text("SLDAXUAT")
-            //};
-            //_gia2 = new NumberGia()
-            //{
-            //    AccessibleName = "gia2",
-            //    GrayText = V6Text.Text("DONGIA")
-            //};
-            //_gia_km = new NumberGia()
-            //{
-            //    AccessibleName = "gia_km",
-            //    GrayText = V6Text.Text("DONGIATHAU")
-            //};
-            //_sl_km = new NumberSoluong()
-            //{
-            //    AccessibleName = "sl_km",
-            //    GrayText = V6Text.Text("SLDUTHAU")
-            //};
-            //_Ghi_chukm = new V6ColorTextBox
-            //{
-            //    AccessibleName = "ghi_chukm",
-            //    GrayText = V6Text.Text("GCDUTHAU"),
-            //    Width = 200
-            //};
-            //_Ghi_chuck = new V6ColorTextBox
-            //{
-            //    AccessibleName = "ghi_chuck",
-            //    GrayText = V6Text.Text("GCTRUNGTHAU"),
-            //    Width = 200
-            //};
-
-
-            var dynamicControlList0 = new SortedDictionary<int, Control>();
-            //t_sl1, t_sl2, t_tien1, t_tien2, sl_km, tien_km, Ghi_chukm, Ghi_chuck, T_SLKM;
-            int stt = 0;
-            dynamicControlList0.Add(stt++, _ma_vt);
-            dynamicControlList0.Add(stt++, _dvt);
-            dynamicControlList0.Add(stt++, _sl_km);
-            dynamicControlList0.Add(stt++, _gia_km);
-            dynamicControlList0.Add(stt++, _t_sl1);
-            dynamicControlList0.Add(stt++, _t_sl2);
-            dynamicControlList0.Add(stt++, _gia2);
-            dynamicControlList0.Add(stt++, _Ghi_chukm);
-            dynamicControlList0.Add(stt++, _Ghi_chuck);
-
+        {   
             List<string> _orderList;
             SortedDictionary<string, DataRow> _alct1Dic;
             Dictionary<string, AlctControls> dynamicControlList_New = V6ControlFormHelper.GetDynamicControlStructsAlct(Mact, Alct1Data, out _orderList, out _alct1Dic);
@@ -177,7 +104,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     detail1.CarryFields.Add(NAME);
                 }
                 
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects);
 
                 switch (NAME)
                 {
@@ -237,7 +164,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         //TIEN_KM = T_SL1*GIA2 M_ROUND0
                     
                 }
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "2");
             }
             
             //Add detail controls
@@ -249,7 +176,120 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             V6ControlFormHelper.SetFormStruct(detail1, _table2Struct);
         }
 
-        
+
+        private V6VvarTextBox _ma_vt22, _dvt22;
+        private V6NumberTextBox _t_sl122, _gia222, _t_sl222, _gia_km22, _sl_km22, _tien_km22;
+        private V6ColorTextBox _Ghi_chukm22, _Ghi_chuck22;
+        private void LoadDetail2Controls()
+        {
+            List<string> _orderList2;
+            SortedDictionary<string, DataRow> _alct2Dic;
+            Dictionary<string, AlctControls> dynamicControlList3_New = V6ControlFormHelper.GetDynamicControlStructsAlct(Mact, Alct2Data, out _orderList2, out _alct2Dic);
+
+            foreach (KeyValuePair<string, AlctControls> item in dynamicControlList3_New)
+            {
+                var control = item.Value.DetailControl;
+
+                ApplyControlEnterStatus(control);
+
+                var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                if (control is V6ColorTextBox && item.Value.IsCarry)
+                {
+                    detail1.CarryFields.Add(NAME);
+                }
+
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "_DETAIL3");
+
+                switch (NAME)
+                {
+                    case "MA_VT":
+                        _ma_vt22 = (V6VvarTextBox)control;
+                        _ma_vt22.Upper();
+                        _ma_vt22.FilterStart = true;
+                        _ma_vt22.V6LostFocus += delegate
+                        {
+                            //GetThongTinVt22();
+                        };
+                        break;
+                   
+                    //==============
+                    case "DVT":
+                        _dvt22 = (V6VvarTextBox)control;
+                        _dvt22.GotFocus += (s, e) =>
+                        {
+                            if (detail3.IsAddOrEdit)
+                            {
+                                _dvt22.SetInitFilter("ma_vt='" + _ma_vt22.Text.Trim() + "'");
+                                _dvt22.ExistRowInTable(true);
+                            }
+                        };
+                        _dvt22.Upper();
+                        break;
+                    case "T_SL1":
+                        _t_sl122 = (V6NumberTextBox)control;
+                        _t_sl122.V6LostFocus += sender =>
+                        {
+                            _tien_km22.Value = V6BusinessHelper.Vround(_t_sl122.Value * _gia222.Value, V6Options.M_ROUND);
+                        };
+                        break;
+                    case "T_SL2":
+                        _t_sl222 = (V6NumberTextBox)control;
+                        break;
+                    case "GIA2":
+                        _gia222 = (V6NumberTextBox)control;
+                        _gia222.V6LostFocus += sender =>
+                        {
+                            _tien_km22.Value = V6BusinessHelper.Vround(_t_sl122.Value * _gia222.Value, V6Options.M_ROUND);
+                        };
+                        break;
+                    case "GIA_KM":
+                        _gia_km22 = (V6NumberTextBox)control;
+                        break;
+                    case "SL_KM":
+                        _sl_km22 = (V6NumberTextBox)control;
+                        break;
+                    case "TIEN_KM":
+                        _tien_km22 = (V6NumberTextBox)control;
+                        break;
+                    case "GHI_CHUKM":
+                        _Ghi_chukm22 = (V6ColorTextBox)control;
+                        break;
+                    case "GHI_CHUCK":
+                        _Ghi_chuck22 = (V6ColorTextBox)control;
+                        break;
+
+
+                }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "2_DETAIL3");
+            }
+
+            //Add detail controls
+            foreach (AlctControls control in dynamicControlList3_New.Values)
+            {
+                detail3.AddControl(control);
+            }
+
+            V6ControlFormHelper.SetFormStruct(detail3, _table3Struct);
+            
+        }
+
+
+        private void GetThongTinVt()
+        {
+            if (_ma_vt.Data != null)
+            {
+                //_ten_vt.Text = _ma_vt.Data["Ten_vt"].ToString().Trim();
+                _dvt.Text = _ma_vt.Data["Dvt"].ToString().Trim();
+            }
+            else
+            {
+                //_ten_vt.Clear();
+                _dvt.Clear();
+            }
+        }
+
+
         private void XuLyDonViTinhKhiChonMaVt(string mavt, bool changeMavt = true)
         {
             try
@@ -310,12 +350,21 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 //Load AD
                 var sttRec = DataOld == null ? "" : DataOld["STT_REC"].ToString();
-                var sql = "SELECT a.*,b.ten_vt as ten_vt FROM " + _table2Name +
-                          " as a left join alvt b on a.ma_vt=b.ma_vt  Where stt_rec = @rec";
-                SqlParameter[] plist = {new SqlParameter("@rec", sttRec)};
-                AD = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist).Tables[0];
-
-                SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
+                {
+                    var sql = "SELECT a.*,b.ten_vt as ten_vt FROM " + _table2Name +
+                              " as a left join alvt b on a.ma_vt=b.ma_vt  Where stt_rec = @rec";
+                    SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
+                    AD = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist).Tables[0];
+                    SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
+                }
+                //Data3
+                {
+                    string sql = "SELECT a.*,b.ten_vt as ten_vt FROM " + _table3Name +
+                                 " as a left join alvt b on a.ma_vt=b.ma_vt  Where stt_rec = @rec";
+                    SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
+                    data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist).Tables[0];
+                    SetDataToGrid(gView3, data3, txtMaCt.Text, _table3Name);
+                }
             }
             catch (Exception ex)
             {
@@ -348,6 +397,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         {
                             ok = ok && V6BusinessHelper.Insert(TRANSACTION, V6TableHelper.ToV6TableName(_table2Name), row);
                         }
+                        if (!ok) goto fail;
+
+                        adList = data3.ToListDataDictionary(txtSttRec.Text);
+                        foreach (IDictionary<string, object> row in adList)
+                        {
+                            ok = ok && V6BusinessHelper.Insert(TRANSACTION, _table3Name, row);
+                        }
+                        if (!ok) goto fail;
 
                         if (ok)
                         {
@@ -356,6 +413,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         }
                     }
 
+                fail:
                     TRANSACTION.Rollback();
                     return false;
                     
@@ -393,11 +451,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     //Delete AD
                     var deleteAdSql = SqlGenerator.GenDeleteSql(_table2Struct, keys);
                     SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
+                    //Delete AD2
+                    var deleteAd2Sql = SqlGenerator.GenDeleteSql(_table3Struct, keys);
+                    SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd2Sql);
 
                     //Update AM
                     var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM, _TableStruct, DataDic, keys);
                     var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
-                    var j = 0;
+                    int j = 0, k = 0;
 
                     //Insert AD
                     var adList = AD.ToListDataDictionary(txtSttRec.Text);
@@ -406,7 +467,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, _table2Struct, adRow, false);
                         j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
                     }
-                    if (insert_success && j == adList.Count)
+
+                    //Insert AD2
+                    var ad2List = data3.ToListDataDictionary(txtSttRec.Text);
+                    foreach (IDictionary<string, object> adRow in ad2List)
+                    {
+                        var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, _table3Struct, adRow, false);
+                        k += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
+                    }
+
+
+                    if (insert_success && j == adList.Count && k == ad2List.Count)
                     {
                         TRANSACTION.Commit();
                         return 1;
@@ -646,13 +717,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
 
-        #endregion details
-
-        private void TxtDu_co00_V6LostFocus(object sender)
-        {
-            
-        }
-        
         private void detail1_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
             if (e.Mode == V6Mode.Add)
@@ -713,6 +777,260 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             throw new Exception(V6Text.ValidateFail);
         }
+
+        #endregion detail1
+
+
+        #region ==== Detail3 control events ====
+
+        private void XuLyDetail3ClickAdd()
+        {
+            try
+            {
+                SetDefaultDetail3();
+                _ma_vt22.Focus();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyDetail3ClickAdd", ex);
+            }
+        }
+
+        private void SetDefaultDetail3()
+        {
+            
+        }
+
+        public bool XuLyThemDetail3(IDictionary<string, object> data)
+        {
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            {
+                this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
+                return false;
+            }
+            try
+            {
+                _sttRec022 = V6BusinessHelper.GetNewSttRec0(data3);
+                data["STT_REC0"] = _sttRec022;
+                data["STT_REC"] = txtSttRec.Text;
+
+                //Kiem tra du lieu truoc khi them sua
+                var error = "";
+                if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n"
+                        + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
+
+                if (error == "")
+                {
+                    //Tạo dòng dữ liệu mới.
+                    var newRow = data3.NewRow();
+                    foreach (DataColumn column in data3.Columns)
+                    {
+                        var key = column.ColumnName.ToUpper();
+                        object value = ObjectAndString.ObjectTo(column.DataType,
+                            data.ContainsKey(key) ? data[key] : "") ?? DBNull.Value;
+                        newRow[key] = value;
+                    }
+                    //Them du lieu chung
+                    data3.Rows.Add(newRow);
+                    gView3.DataSource = data3;
+                    //TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
+
+                    if (data3.Rows.Count > 0)
+                    {
+                        gView3.Rows[data3.Rows.Count - 1].Selected = true;
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(gView3, "Ma_vt");
+                    }
+                }
+                else
+                {
+                    this.ShowWarningMessage(V6Text.CheckData + error);
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XulyThemDetail3", ex);
+                return false;
+            }
+            return true;
+        }
+        
+        private bool XuLySuaDetail3(IDictionary<string, object> data)
+        {
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            {
+                this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
+                return true;
+            }
+            try
+            {
+                if (_gv3EditingRow != null)
+                {
+                    var cIndex = _gv3EditingRow.Index;
+
+                    if (cIndex >= 0 && cIndex < data3.Rows.Count)
+                    {
+                        //Kiem tra du lieu truoc khi them sua
+                        var error = "";
+                        if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
+
+                        if (error == "")
+                        {
+                            //Sửa dòng dữ liệu.
+                            var currentRow = data3.Rows[cIndex];
+                            foreach (DataColumn column in data3.Columns)
+                            {
+                                var key = column.ColumnName.ToUpper();
+                                if (data.ContainsKey(key))
+                                {
+                                    object value = ObjectAndString.ObjectTo(column.DataType, data[key]);
+                                    currentRow[key] = value;
+                                }
+                            }
+                            gView3.DataSource = data3;
+                            //TinhTongThanhToan("xy ly sua detail3");
+                        }
+                        else
+                        {
+                            this.ShowWarningMessage(V6Text.CheckData + error);
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    this.ShowWarningMessage(V6Text.NoSelection);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XulySuaDetail3", ex);
+                return false;
+            }
+            return true;
+        }
+
+        private void XuLyXoaDetail3()
+        {
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            {
+                this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
+                return;
+            }
+            try
+            {
+                if (gView3.CurrentRow != null)
+                {
+                    var cIndex = gView3.CurrentRow.Index;
+                    if (cIndex >= 0 && cIndex < data3.Rows.Count)
+                    {
+                        var currentRow = data3.Rows[cIndex];
+                        var details = "Mã vật tư: " + currentRow["Ma_vt"];
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
+                            == DialogResult.Yes)
+                        {
+                            data3.Rows.Remove(currentRow);
+                            gView3.DataSource = data3;
+                            detail3.SetData(gView3.CurrentRow.ToDataDictionary());
+                        }
+                    }
+                }
+                else
+                {
+                    this.ShowWarningMessage(V6Text.NoSelection);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyXoaDetail3", ex);
+            }
+        }
+
+
+        private bool ValidateData_Detail3(IDictionary<string, object> data)
+        {
+            try
+            {
+                if (data == null) return false;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ValidateData_Detail3", ex);
+            }
+            return true;
+        }
+
+        private void detail3_ClickAdd(object sender, HD_Detail_Eventargs e)
+        {
+            if (e.Mode == V6Mode.Add)
+            {
+                XuLyDetail3ClickAdd();
+            }
+            else
+            {
+                dataGridView1.UnLock();
+            }
+        }
+
+        private void detail3_AddHandle(IDictionary<string, object> data)
+        {
+            if (ValidateData_Detail3(data))
+            {
+                if (XuLyThemDetail3(data)) return;
+                throw new Exception(V6Text.AddFail);
+            }
+            throw new Exception(V6Text.ValidateFail);
+            throw new Exception(V6Text.AddFail);
+        }
+
+        private void detail3_ClickEdit(object sender, HD_Detail_Eventargs e)
+        {
+            try
+            {
+                if (data3 != null && data3.Rows.Count > 0 && gView3.DataSource != null)
+                {
+                    detail3.ChangeToEditMode();
+                    ChungTu.ViewSelectedDetailToDetailForm(gView3, detail3, out _gv3EditingRow, out _sttRec022);
+
+                    _ma_vt22.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".detail3_ClickEdit", ex);
+            }
+        }
+
+        private void detail3_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
+        {
+            detail3.SetData(_gv3EditingRow.ToDataDictionary());
+        }
+
+        private void detail3_ClickDelete(object sender, HD_Detail_Eventargs e)
+        {
+            XuLyXoaDetail3();
+        }
+
+        private void detail3_EditHandle(IDictionary<string, object> data)
+        {
+            if (ValidateData_Detail3(data))
+            {
+                if (XuLySuaDetail3(data)) return;
+                throw new Exception(V6Text.EditFail);
+            }
+            throw new Exception(V6Text.ValidateFail);
+        }
+
+        #endregion detail3
+
+        private void TxtDu_co00_V6LostFocus(object sender)
+        {
+            
+        }
+        
+        
         
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
@@ -722,11 +1040,23 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
+        private void gView3_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (detail3.IsViewOrLock)
+            {
+                detail3.SetData(gView3.CurrentRow.ToDataDictionary());
+            }
+        }
+
         private void tabControl1_Enter(object sender, EventArgs e)
         {
             if (tabControl1.SelectedTab == tabChiTiet)
             {
                 detail1.AutoFocus();
+            }
+            else if (tabControl1.SelectedTab == tabChiTiet2)
+            {
+                detail3.AutoFocus();
             }
         }
 

@@ -1299,12 +1299,18 @@ namespace V6Controls
             using (SolidBrush b = new SolidBrush(RowHeadersDefaultCellStyle.ForeColor))
             {
                 e.Graphics.DrawString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font, b, e.RowBounds.Location.X + 10, e.RowBounds.Location.Y + 4);
-                if (Rows[e.RowIndex].IsSelect())
+                try
                 {
-                    e.Graphics.DrawString("x", e.InheritedRowStyle.Font, b, e.RowBounds.Location.X + 20, e.RowBounds.Location.Y + 4);
+                    if (Rows[e.RowIndex].IsSelect())
+                    {
+                        e.Graphics.DrawString("x", e.InheritedRowStyle.Font, b, e.RowBounds.Location.X + 20, e.RowBounds.Location.Y + 4);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string s = ex.Message;
                 }
             }
-
         }
         
         /// <summary>

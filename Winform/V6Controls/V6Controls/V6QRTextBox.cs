@@ -90,26 +90,33 @@ namespace V6Controls
                     foreach (var item in M_QRCODE_INFOS.FIELD_INFO)
                     {
                         var info = item.Value;
+                        string ar_index = "";
+                        if (info.INDEX < ar.Length) ar_index = ar[info.INDEX];
                         if (!string.IsNullOrEmpty(info.TYPE))
                         {
                             switch (info.TYPE)
                             {
                                 case "D":
-                                    _data[item.Key] = ObjectAndString.StringToDate(ar[info.INDEX], info.FORMAT);
+                                    _data[item.Key] = ObjectAndString.StringToDate(ar_index, info.FORMAT);
                                     break;
                                 case "N":
-                                    _data[item.Key] = ObjectAndString.StringToDecimal(ar[info.INDEX]);
+                                    _data[item.Key] = ObjectAndString.StringToDecimal(ar_index);
+                                    break;
+                                case "U":
+                                    _data[item.Key] = ar_index.ToUpper();
+                                    break;
+                                case "L":
+                                    _data[item.Key] = ar_index.ToLower();
                                     break;
                                 default:
-                                    _data[item.Key] = ar[info.INDEX];
+                                    _data[item.Key] = ar_index;
                                     break;
                             }
                         }
                         else
                         {
-                            _data[item.Key] = ar[info.INDEX];
+                            _data[item.Key] = ar_index;
                         }
-                        
                     }
                 }
             }
@@ -531,6 +538,9 @@ namespace V6Controls
         public class INDEX_TYPE_FORMAT
         {
             public int INDEX { get; set; }
+            /// <summary>
+            /// U: UPPER, L: lower, D: date, N: number.
+            /// </summary>
             public string TYPE { get; set; }
             public string FORMAT { get; set; }
         }

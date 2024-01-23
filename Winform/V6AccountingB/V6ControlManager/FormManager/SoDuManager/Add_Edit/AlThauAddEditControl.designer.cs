@@ -33,6 +33,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
             this.txtGhiChu = new V6Controls.V6ColorTextBox();
@@ -109,6 +112,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabChiTiet2 = new System.Windows.Forms.TabPage();
+            this.detail3 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
+            this.gView3 = new V6Controls.V6ColorDataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
@@ -116,6 +127,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabChiTiet2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gView3)).BeginInit();
             this.SuspendLayout();
             // 
             // v6TabControl1
@@ -459,7 +472,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_co00.Name = "TxtDu_co00";
             this.TxtDu_co00.Size = new System.Drawing.Size(128, 23);
             this.TxtDu_co00.TabIndex = 13;
-            this.TxtDu_co00.Text = "0,000";
+            this.TxtDu_co00.Text = "0";
             this.TxtDu_co00.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtDu_co00.Value = new decimal(new int[] {
             0,
@@ -729,7 +742,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS6.Name = "txtSLS6";
             this.txtSLS6.Size = new System.Drawing.Size(200, 23);
             this.txtSLS6.TabIndex = 119;
-            this.txtSLS6.Text = "0,000";
+            this.txtSLS6.Text = "0";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS6.Value = new decimal(new int[] {
             0,
@@ -754,7 +767,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS5.Name = "txtSLS5";
             this.txtSLS5.Size = new System.Drawing.Size(200, 23);
             this.txtSLS5.TabIndex = 117;
-            this.txtSLS5.Text = "0,000";
+            this.txtSLS5.Text = "0";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS5.Value = new decimal(new int[] {
             0,
@@ -779,7 +792,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS4.Name = "txtSLS4";
             this.txtSLS4.Size = new System.Drawing.Size(200, 23);
             this.txtSLS4.TabIndex = 115;
-            this.txtSLS4.Text = "0,000";
+            this.txtSLS4.Text = "0";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS4.Value = new decimal(new int[] {
             0,
@@ -1050,7 +1063,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN3.Name = "txtSLDN3";
             this.txtSLDN3.Size = new System.Drawing.Size(200, 23);
             this.txtSLDN3.TabIndex = 101;
-            this.txtSLDN3.Text = "0,000";
+            this.txtSLDN3.Text = "0";
             this.txtSLDN3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLDN3.Value = new decimal(new int[] {
             0,
@@ -1075,7 +1088,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN2.Name = "txtSLDN2";
             this.txtSLDN2.Size = new System.Drawing.Size(200, 23);
             this.txtSLDN2.TabIndex = 99;
-            this.txtSLDN2.Text = "0,000";
+            this.txtSLDN2.Text = "0";
             this.txtSLDN2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLDN2.Value = new decimal(new int[] {
             0,
@@ -1100,7 +1113,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN1.Name = "txtSLDN1";
             this.txtSLDN1.Size = new System.Drawing.Size(200, 23);
             this.txtSLDN1.TabIndex = 97;
-            this.txtSLDN1.Text = "0,000";
+            this.txtSLDN1.Text = "0";
             this.txtSLDN1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLDN1.Value = new decimal(new int[] {
             0,
@@ -1318,6 +1331,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabChiTiet);
+            this.tabControl1.Controls.Add(this.tabChiTiet2);
             this.tabControl1.Controls.Add(this.tabKhac);
             this.tabControl1.Location = new System.Drawing.Point(7, 343);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
@@ -1345,6 +1359,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail1.CarryData = null;
+            this.detail1.FixControl = 3;
             this.detail1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detail1.Location = new System.Drawing.Point(2, 2);
             this.detail1.MODE = V6Structs.V6Mode.Init;
@@ -1440,6 +1456,119 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.STT_REC0.ReadOnly = true;
             this.STT_REC0.Visible = false;
             // 
+            // tabChiTiet2
+            // 
+            this.tabChiTiet2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabChiTiet2.Controls.Add(this.detail3);
+            this.tabChiTiet2.Controls.Add(this.gView3);
+            this.tabChiTiet2.Location = new System.Drawing.Point(4, 25);
+            this.tabChiTiet2.Name = "tabChiTiet2";
+            this.tabChiTiet2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabChiTiet2.Size = new System.Drawing.Size(879, 190);
+            this.tabChiTiet2.TabIndex = 2;
+            this.tabChiTiet2.Text = "Chi tiết theo khách hàng";
+            // 
+            // detail3
+            // 
+            this.detail3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.detail3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail3.CarryData = null;
+            this.detail3.FixControl = 3;
+            this.detail3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detail3.Location = new System.Drawing.Point(2, 2);
+            this.detail3.MODE = V6Structs.V6Mode.Init;
+            this.detail3.Name = "detail3";
+            this.detail3.ShowLblName = false;
+            this.detail3.Size = new System.Drawing.Size(876, 50);
+            this.detail3.Sua_tien = false;
+            this.detail3.TabIndex = 4;
+            this.detail3.Tag = "cancelall";
+            this.detail3.Vtype = null;
+            this.detail3.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail3_ClickAdd);
+            this.detail3.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail3_ClickEdit);
+            this.detail3.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail3_ClickCancelEdit);
+            this.detail3.AddHandle += new V6Controls.HandleData(this.detail3_AddHandle);
+            this.detail3.EditHandle += new V6Controls.HandleData(this.detail3_EditHandle);
+            this.detail3.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail3_ClickDelete);
+            // 
+            // gView3
+            // 
+            this.gView3.AllowUserToAddRows = false;
+            this.gView3.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.gView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.gView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.gView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            this.gView3.Location = new System.Drawing.Point(2, 53);
+            this.gView3.MultiSelect = false;
+            this.gView3.Name = "gView3";
+            this.gView3.ReadOnly = true;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.gView3.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.gView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.gView3.Size = new System.Drawing.Size(875, 135);
+            this.gView3.TabIndex = 5;
+            this.gView3.CurrentCellChanged += new System.EventHandler(this.gView3_CurrentCellChanged);
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "MA_VT";
+            this.dataGridViewTextBoxColumn6.Frozen = true;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Mã hàng";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "TEN_VT";
+            this.dataGridViewTextBoxColumn7.Frozen = true;
+            this.dataGridViewTextBoxColumn7.HeaderText = "Tên hàng";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "UID";
+            this.dataGridViewTextBoxColumn8.HeaderText = "UID";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "STT_REC";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Rec";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "STT_REC0";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Rec0";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Visible = false;
+            // 
             // tabKhac
             // 
             this.tabKhac.AccessibleDescription = "XULYT00005";
@@ -1461,7 +1590,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AlThauAddEditControl";
             this.Size = new System.Drawing.Size(904, 568);
-            this.Load += new System.EventHandler(this.SoDu2AddEditControl0_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();
@@ -1470,6 +1599,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabChiTiet2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1553,5 +1684,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.Label lblMaDN3;
         private System.Windows.Forms.Label lblMaDN2;
         private System.Windows.Forms.Label lblMaDN1;
+        private System.Windows.Forms.TabPage tabChiTiet2;
+        private ChungTuManager.HD_Detail detail3;
+        private V6ColorDataGridView gView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
     }
 }

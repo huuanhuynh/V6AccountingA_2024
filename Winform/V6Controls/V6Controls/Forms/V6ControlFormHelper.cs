@@ -8783,8 +8783,8 @@ namespace V6Controls.Forms
             else if (control is FilterLineBase)
             {
                 FilterLineBase fline = control as FilterLineBase;
-                cNAME = fline.FieldName.ToUpper();
-                d[cNAME] = ((FilterLineBase)control).ObjectValue;
+                cNAME = ("" + fline.FieldName).ToUpper();
+                if (cNAME != "") d[cNAME] = ((FilterLineBase)control).ObjectValue;
                 return;
             }
             

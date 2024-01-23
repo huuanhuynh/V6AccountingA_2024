@@ -145,6 +145,34 @@ namespace V6Tools
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="source"></param>
+        /// <param name="fieldstart">Thêm vào đầu field name.</param>
+        /// <param name="overwrite"></param>
+        public static void AddRange(this IDictionary<string, object> target, IDictionary<string, object> source, string fieldstart, bool overwrite = false)
+        {
+            if (target == null || source == null)
+                return;
+
+            if (overwrite)
+            {
+                foreach (KeyValuePair<string, object> item in source)
+                {
+                    target[fieldstart + item.Key] = item.Value;
+                }
+            }
+            else foreach (var element in source)
+                {
+                    if (!target.ContainsKey(element.Key))
+                    {
+                        target.Add(fieldstart + element.Key, element.Value);
+                    }
+                }
+        }
+
+        /// <summary>
         /// Add source to target
         /// </summary>
         /// <param name="target"></param>
@@ -172,6 +200,34 @@ namespace V6Tools
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="source"></param>
+        /// <param name="fieldstart">Thêm vào đầu field name.</param>
+        /// <param name="overwrite"></param>
+        public static void AddRange(this IDictionary<string, object> target, IDictionary<string, string> source, string fieldstart, bool overwrite = false)
+        {
+            if (target == null || source == null)
+                return;
+
+            foreach (var element in source)
+            {
+                if (target.ContainsKey(element.Key))
+                {
+                    if (overwrite)
+                    {
+                        target[fieldstart + element.Key] = element.Value;
+                    }
+                }
+                else
+                {
+                    target.Add(fieldstart + element.Key, element.Value);
+                }
+            }
+        }
+
+        /// <summary>
         /// Add source to target
         /// </summary>
         /// <param name="target"></param>
@@ -194,6 +250,34 @@ namespace V6Tools
                 else
                 {
                     target.Add(element.Key, ObjectAndString.ObjectToString(element.Value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="source"></param>
+        /// <param name="fieldstart">Thêm vào đầu field name.</param>
+        /// <param name="overwrite"></param>
+        public static void AddRange(this IDictionary<string, string> target, IDictionary<string, object> source, string fieldstart, bool overwrite = false)
+        {
+            if (target == null || source == null)
+                return;
+
+            foreach (var element in source)
+            {
+                if (target.ContainsKey(element.Key))
+                {
+                    if (overwrite)
+                    {
+                        target[fieldstart + element.Key] = element.Value.ToString();
+                    }
+                }
+                else
+                {
+                    target.Add(fieldstart + element.Key, ObjectAndString.ObjectToString(element.Value));
                 }
             }
         }
@@ -240,12 +324,20 @@ namespace V6Tools
             }
 
             var newRow = table.NewRow();
-            foreach (DataColumn column in table.Columns)
+            //foreach (DataColumn column in table.Columns)
+            //{
+            //    var KEY = column.ColumnName.ToUpper();
+            //    object value = ObjectAndString.ObjectTo(column.DataType,
+            //        data.ContainsKey(KEY) ? data[KEY] : "") ?? DBNull.Value;
+            //    newRow[KEY] = value;
+            //}
+            foreach (var item in data)
             {
-                var KEY = column.ColumnName.ToUpper();
-                object value = ObjectAndString.ObjectTo(column.DataType,
-                    data.ContainsKey(KEY) ? data[KEY] : "") ?? DBNull.Value;
-                newRow[KEY] = value;
+                var column = table.Columns[item.Key];
+                if (column != null)
+                {
+                    newRow[item.Key] = ObjectAndString.ObjectTo(column.DataType, item.Value) ?? DBNull.Value;
+                }
             }
             table.Rows.Add(newRow);
             return newRow;

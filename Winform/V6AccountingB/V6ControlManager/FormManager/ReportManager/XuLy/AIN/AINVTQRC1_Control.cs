@@ -14,7 +14,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class AINVTQRC1_Control : XuLyBase0
+    public partial class AINVTQRC1_Control : XuLyBase
     {
         public AINVTQRC1_Control()
         {
@@ -32,6 +32,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                this.ViewDetail = false;
                 panel1.SizeChanged += panel1_SizeChanged;
                 
                 dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;
@@ -102,7 +103,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             V6ControlFormHelper.SetStatusText2(text, id);
         }
 
-        protected override void Nhan()
+        protected void Nhan0()
         {
             try
             {
@@ -140,7 +141,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _message = "";
                 var plist = FilterControl.GetFilterParameters();
-                _ds = V6BusinessHelper.ExecuteProcedure("AINVTQRC1", plist.ToArray());
+                _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, plist.ToArray());
                 _executing = false;
                 _executesuccess = true;
             }
@@ -212,6 +213,32 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        public override void FormatGridViewExtern()
+        {
+            try
+            {
+                dataGridView1.ReadOnly = false;
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    if (column.DataPropertyName == "SL_IN" || column.DataPropertyName == "GIA_IN")
+                    {
+                        column.ReadOnly = false;
+                    }
+                    else
+                    {
+                        column.ReadOnly = true;
+                    }
+                }
+
+                DoAfterExecuteSuccess();
+                V6ControlFormHelper.ShowMainMessage(V6Text.Text("TAIDULIEUXONG") + "!\r\n" + _message);
+            }
+            catch (Exception ex)
+            {
+                
             }
         }
 

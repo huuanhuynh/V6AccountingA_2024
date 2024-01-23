@@ -1034,10 +1034,32 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             {
                                 if (_aldmConfig.HaveInfo)
                                 {
+                                    var fields = ObjectAndString.SplitString(_aldmConfig.KEY);
+                                    string values = "", types = ""; 
+                                    foreach (string field in fields)
+                                    {
+                                        if (ObjectAndString.IsDateTime(row.Cells[field]))
+                                        {
+                                            values += "|" + ObjectAndString.ObjectToString(row.Cells[field].Value, "yyyyMMdd");
+                                            types += "|" + "D";
+                                        }
+                                        else if (ObjectAndString.IsNumber(row.Cells[field]))
+                                        {
+                                            values += "|" + ObjectAndString.ObjectToString(row.Cells[field].Value);
+                                            types += "|" + "N";
+                                        }
+                                        else
+                                        {
+                                            values += "|" + ObjectAndString.ObjectToString(row.Cells[field].Value);
+                                            types += "|" + "C";
+                                        }
+                                    }
                                     SqlParameter[] plist =
                                     {
                                         new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
-                                        new SqlParameter("@Fields", _aldmConfig.KEY),
+                                        new SqlParameter("@Fields", _aldmConfig.KEY),//key1,key2
+                                        new SqlParameter("@Values", values.Substring(1)), //value1|value2
+                                        new SqlParameter("@Types", types.Substring(1)), //C|D|N
                                         new SqlParameter("@uid", row.Cells["UID"].Value.ToString()),
                                         new SqlParameter("@mode", "X"),
                                         new SqlParameter("@User_id", V6Login.UserId),

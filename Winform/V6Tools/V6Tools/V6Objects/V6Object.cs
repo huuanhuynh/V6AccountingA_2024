@@ -53,6 +53,10 @@ namespace V6Tools.V6Objects
                     {
                         propertyInfo.SetValue(this, float.Parse(value), null);
                     }
+                    else if (propertyInfo.PropertyType == typeof(double))
+                    {
+                        propertyInfo.SetValue(this, double.Parse(value), null);
+                    }
                     else if (propertyInfo.PropertyType == typeof(decimal))
                     {
                         propertyInfo.SetValue(this, decimal.Parse(value), null);
@@ -80,6 +84,10 @@ namespace V6Tools.V6Objects
                     else if (propertyInfo.PropertyType == typeof(float))
                     {
                         propertyInfo.SetValue(this, float.Parse(value), null);
+                    }
+                    else if (propertyInfo.PropertyType == typeof(double))
+                    {
+                        propertyInfo.SetValue(this, double.Parse(value), null);
                     }
                     else if (propertyInfo.PropertyType == typeof(decimal))
                     {

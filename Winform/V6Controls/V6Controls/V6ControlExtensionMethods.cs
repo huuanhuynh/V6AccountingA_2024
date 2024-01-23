@@ -515,6 +515,7 @@ namespace V6Controls
         public static void ReadOnlyTag(this Control control, bool read_only = true)
         {
             if (control is TextBox) ((TextBox)control).ReadOnlyTag(read_only);
+            else if (control is RichTextBox) ((RichTextBox)control).ReadOnlyTag(read_only);
             else if (control is DataGridView) ((DataGridView)control).ReadOnlyTag(read_only);
             else if (control is FileButton) ((FileButton)control).ReadOnly = read_only;
         }
@@ -525,6 +526,20 @@ namespace V6Controls
         /// <param name="control"></param>
         /// <param name="read_only"></param>
         public static void ReadOnlyTag(this TextBox control, bool read_only = true)
+        {
+            if (read_only)
+            {
+                control.ReadOnly = true;
+                control.AddTagString("readonly");
+            }
+            else
+            {
+                control.ReadOnly = false;
+                control.RemoveTagString("readonly");
+            }
+        }
+
+        public static void ReadOnlyTag(this RichTextBox control, bool read_only = true)
         {
             if (read_only)
             {

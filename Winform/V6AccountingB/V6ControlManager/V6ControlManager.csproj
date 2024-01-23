@@ -161,6 +161,7 @@
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="NPOI, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NPOI.2.5.6\lib\net45\NPOI.dll</HintPath>
       <Private>True</Private>
@@ -183,8 +184,16 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SharpCompress, Version=0.21.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\SharpCompress.0.21.1\lib\net45\SharpCompress.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SplitButton">
       <HintPath>..\..\..\Lib\Winform\SplitButton\SplitButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg, Version=2.4.3.29446, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Svg.2.4.3\lib\Svg.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -265,6 +274,12 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl_A1.Designer.cs">
       <DependentUpon>DonDatHangBanControl_A1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\QR_LOADTEMP_FORM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\QR_LOADTEMP_FORM.designer.cs">
+      <DependentUpon>QR_LOADTEMP_FORM.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,11 +292,11 @@
     <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.designer.cs">
       <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\QR_TRANSFER_SOA_FORM.cs">
+    <Compile Include="FormManager\ChungTuManager\QR_TRANSFER_FORM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\QR_TRANSFER_SOA_FORM.designer.cs">
-      <DependentUpon>QR_TRANSFER_SOA_FORM.cs</DependentUpon>
+    <Compile Include="FormManager\ChungTuManager\QR_TRANSFER_FORM.designer.cs">
+      <DependentUpon>QR_TRANSFER_FORM.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\ReportR45SelectorForm2.cs">
       <SubType>Form</SubType>
@@ -2555,6 +2570,12 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSGL1_Filter.Designer.cs">
       <DependentUpon>XLSGL1_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\EIVPOA_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\EIVPOA_Filter.Designer.cs">
+      <DependentUpon>EIVPOA_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSPOB_Filter.cs">
       <SubType>UserControl</SubType>
@@ -5408,11 +5429,20 @@
     <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\EIVSOA_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH2_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH1_Control.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2EIV.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2EIV.Designer.cs">
+      <DependentUpon>V6IMPORT2EIV.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.cs">
       <SubType>UserControl</SubType>
@@ -5420,6 +5450,10 @@
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.Designer.cs">
       <DependentUpon>V6IMPORT2XLS.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2EVI_Container.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\HoadondientuAPI.cs" />
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSAR1_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5430,6 +5464,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSGL1_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\EIVPOA_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSPOB_Control.cs">
@@ -6412,6 +6449,10 @@
     <Compile Include="FileTool\WordUtility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\HoaDonDienTu\PostObjects\V6ThuePostObjects.csproj">
+      <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
+      <Name>V6ThuePostObjects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\V6BarcodeLib\V6BarcodeLib.csproj">
       <Project>{f8646414-0c9c-49bb-9da3-3923bf78a398}</Project>
       <Name>V6BarcodeLib</Name>
@@ -6498,14 +6539,17 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl_A1.resx">
       <DependentUpon>DonDatHangBanControl_A1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\QR_LOADTEMP_FORM.resx">
+      <DependentUpon>QR_LOADTEMP_FORM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45db2SelectorForm2.resx">
       <DependentUpon>ReportR45db2SelectorForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.resx">
       <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\QR_TRANSFER_SOA_FORM.resx">
-      <DependentUpon>QR_TRANSFER_SOA_FORM.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ChungTuManager\QR_TRANSFER_FORM.resx">
+      <DependentUpon>QR_TRANSFER_FORM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45SelectorForm2.resx">
       <DependentUpon>ReportR45SelectorForm2.cs</DependentUpon>
@@ -7641,6 +7685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSGL1_Filter.resx">
       <DependentUpon>XLSGL1_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\EIVPOA_Filter.resx">
+      <DependentUpon>EIVPOA_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSPOB_Filter.resx">
       <DependentUpon>XLSPOB_Filter.cs</DependentUpon>
@@ -9113,14 +9160,23 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\EIVSOA_Control.resx">
+      <DependentUpon>EIVSOA_Control.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH2_Control.resx">
       <DependentUpon>V6IMDATA2TH2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMDATA2TH1_Control.resx">
       <DependentUpon>V6IMDATA2TH1_Control.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2EIV.resx">
+      <DependentUpon>V6IMPORT2EIV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.resx">
       <DependentUpon>V6IMPORT2XLS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2EVI_Container.resx">
+      <DependentUpon>V6IMPORT2EVI_Container.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS_Container.resx">
       <DependentUpon>V6IMPORT2XLS_Container.cs</DependentUpon>
@@ -9136,6 +9192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSGL1_Control.resx">
       <DependentUpon>XLSGL1_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\EIVPOA_Control.resx">
+      <DependentUpon>EIVPOA_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSPOB_Control.resx">
       <DependentUpon>XLSPOB_Control.cs</DependentUpon>

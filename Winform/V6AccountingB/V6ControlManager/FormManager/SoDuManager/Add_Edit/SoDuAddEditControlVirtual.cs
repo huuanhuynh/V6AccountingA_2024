@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
     public partial class SoDuAddEditControlVirtual : V6FormControl
     {
         public AldmConfig _aldmConfig;
-        public DataTable Alct1Data;
+        public DataTable Alct1Data, Alct2Data;
         protected V6Categories Categories;
         public bool IS_COPY;
         
@@ -34,6 +34,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 _maCt = value;
                 Alct1Data = GetAlct1(_maCt);
+                Alct2Data = GetAlct2();
             }
         }
 
@@ -100,11 +101,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// Dùng khi gọi form update, chứa giá trị cũ trước khi update.
         /// </summary>
         public IDictionary<string, object> _keys = new SortedDictionary<string, object>();
-        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        /// <summary>
-        /// Code động từ aldmConfig.
-        /// </summary>
-        protected Type Event_program;
+        
         /// <summary>
         /// Chứa data dùng để insert hoặc edit.
         /// </summary>
@@ -234,7 +231,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             All_Objects["thisForm"] = this;
             CreateFormProgram();
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Form_program, All_Objects);
             InvokeFormEvent(FormDynamicEvent.INIT);
             LoadAll();
             //LoadTag(2, "", _MA_DM, ItemID);
@@ -271,12 +268,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                     }
                 }
-
+                
                 Alct1_DMETHOD:
                 if (!Alct1Data.Columns.Contains("DMETHOD"))
                 {
                     this.ShowWarningMessage("No column name [DMETHOD] in [Alct1]");
-                    goto Build;
+                    goto Alct2_DMETHOD;
                 }
 
                 foreach (DataRow dataRow in Alct1Data.Rows)
@@ -298,8 +295,34 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     }
                 }
 
-            Build:
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+                Alct2_DMETHOD:
+                if (!Alct2Data.Columns.Contains("DMETHOD"))
+                {
+                    this.ShowWarningMessage("No column name [DMETHOD] in [Alct2]");
+                    goto Build;
+                }
+
+                foreach (DataRow dataRow in Alct2Data.Rows)
+                {
+                    var xml = dataRow["DMETHOD"].ToString().Trim();
+                    if (xml == "") goto Build;
+                    DataSet ds = ObjectAndString.XmlStringToDataSet(xml);
+                    if (ds == null || ds.Tables.Count <= 0) goto Build;
+
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        if (!Event_Methods.ContainsKey(EVENT_NAME)) Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    }
+                }
+
+                Build:
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
             }
             catch (Exception ex)
             {
@@ -307,29 +330,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        /// <summary>
-        /// Gọi hàm động theo tên event đã định nghĩa.
-        /// </summary>
-        /// <param name="eventName"></param>
-        /// <returns></returns>
-        public object InvokeFormEvent(string eventName)
-        {
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey(eventName))
-                {
-                    var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
-            }
-            return null;
-        }
-
-        protected DataTable GetAlct1(string mact)
+        public DataTable GetAlct1(string mact)
         {
             SqlParameter[] plist =
             {
@@ -345,6 +346,23 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure,
                     "VPA_GET_AUTO_COLULMN", plist).Tables[0];
+        }
+        public DataTable GetAlct2()
+        {
+            SqlParameter[] pList =
+                {
+                    new SqlParameter("@ma_ct", Mact),
+                    new SqlParameter("@list_fix", ""),
+                    new SqlParameter("@order_fix", ""),
+                    new SqlParameter("@vvar_fix", ""),
+                    new SqlParameter("@type_fix", ""),
+                    new SqlParameter("@checkvvar_fix", ""),
+                    new SqlParameter("@notempty_fix", ""),
+                    new SqlParameter("@fdecimal_fix", "")
+                };
+
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure,
+                    "VPA_GET_AUTO_COLUMN_GT", pList).Tables[0];
         }
 
         #region ===== LoadAdvanceControls =====
@@ -509,6 +527,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 else
                 {
                     AldmConfig aldm = ConfigManager.GetAldmConfig(tableName);
+                    if (aldm.HaveInfo)
                     V6ControlFormHelper.FormatGridViewAndHeader(dgv, aldm.GRDS_V1, aldm.GRDF_V1,
                         V6Setting.IsVietnamese ? aldm.GRDHV_V1 : aldm.GRDHE_V1);
                 }
@@ -969,7 +988,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERSAVE))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.AFTERSAVE];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1187,7 +1206,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         //            }
         //        }
         //    Build:
-        //        Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+        //        Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
         //    }
         //    catch (Exception ex)
         //    {
@@ -1207,7 +1226,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         //        if (Event_Methods.ContainsKey(eventName))
         //        {
         //            var method_name = Event_Methods[eventName];
-        //            return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+        //            return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
         //        }
         //    }
         //    catch (Exception ex1)

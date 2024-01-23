@@ -62,7 +62,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         }
 
         private Type Form_program;
-        //private Type Event_program;
+        //private Type Form_program;
         private string all_using_text = "", all_method_text = "";
         private void MyInit()
         {
@@ -704,7 +704,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     using_text += data.Columns.Contains("using") ? event_row["using"] : "";
                     method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                 }
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _MA_DM, using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _MA_DM, using_text, method_text);
             }
             catch (Exception ex)
             {
@@ -730,7 +730,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             LoadDefaultData(2, "", _MA_DM, m_itemId);
             if (Mode == V6Mode.View) V6ControlFormHelper.SetFormControlsReadOnly(this, true);
 
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, ma_dm, Form_program, All_Objects);
             InvokeFormEvent(FormDynamicEvent.INIT);
             LoadAll();
             //virtual
@@ -866,7 +866,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     All_Objects["ParentData"] = ParentData;
                     All_Objects["DataOld"] = DataOld;
                     var method_name = Event_Methods[FormDynamicEvent.LOADDATA];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
                 if (_keys != null && _keys.Count > 0)
                 {
@@ -903,7 +903,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     All_Objects["ParentData"] = ParentData;
                     All_Objects["DataOld"] = DataOld;
                     var method_name = Event_Methods[FormDynamicEvent.FIXFORMDATA];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex)
@@ -1055,7 +1055,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERSAVE))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.AFTERSAVE];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1071,7 +1071,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERINSERT))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.AFTERINSERT];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1107,7 +1107,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERUPDATE))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.AFTERUPDATE];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1164,7 +1164,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFORECOPY))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.DOBEFORECOPY];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1180,7 +1180,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFOREADD))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.DOBEFOREADD];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1198,7 +1198,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFOREEDIT))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.DOBEFOREEDIT];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1214,7 +1214,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFOREVIEW))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.DOBEFOREVIEW];
-                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1253,7 +1253,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     var method_name = Event_Methods[FormDynamicEvent.VALIDATEDATA];
                     All_Objects["ParentData"] = ParentData;
                     All_Objects["DataOld"] = DataOld;
-                    errors += V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                    errors += V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
@@ -1434,7 +1434,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             //    if (Event_Methods.ContainsKey(FormDynamicEvent.INIT2))
             //    {
             //        var method_name = Event_Methods[FormDynamicEvent.INIT2];
-            //        V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+            //        V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
             //    }
             //}
             //catch (Exception ex1)

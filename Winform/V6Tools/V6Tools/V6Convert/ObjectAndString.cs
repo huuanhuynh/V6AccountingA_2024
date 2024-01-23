@@ -73,6 +73,14 @@ namespace V6Tools.V6Convert
             }
             return false;
         }
+
+        public static bool IsDateTimeFormatString(string format)
+        {
+            if (format == "dd/MM/yyyy" || format == "yyyyMMdd" || format == "dd/MM/yy") return true;
+            if (format.Contains("dd") || format.Contains("MM") || format.Contains("yy")
+                || format.Contains("HH") || format.Contains("mm") || format.Contains("ss")) return true;
+            return false;
+        }
         
         public static bool IsDateTimeType(Type dataType)
         {
@@ -391,7 +399,7 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// chuyển một object thành chuỗi hiển thị. formatString mặc định là dd/MM/yyyy
+        /// chuyển một object thành chuỗi hiển thị.
         /// </summary>
         /// <param name="o"></param>
         /// <param name="formatString">vd dd/MM/yyyy hoặc cho kiểu số #_0,00 (hoặc 0,00 hoặc 0 - dấu , có thể là . 00 có thể nhiều hoặc ít số 0)</param>
@@ -427,22 +435,18 @@ namespace V6Tools.V6Convert
                         decimal_ = formatString[1].ToString();
                         decimals = formatString.Substring(2).Length;
                     }
-                    else // C# format
+                    else if (!IsDateTimeFormatString(formatString))
                     {
                         return value.ToString(formatString);
+                    }
+                    else
+                    {
+                        return value.ToString(CultureInfo.InvariantCulture);
                     }
                     
                     result = NumberToString(value, decimals, decimal_, thousand_, true);
                 }
                 return result;
-                //if (t == typeof(decimal) || t == typeof(double) || t == typeof(float))
-                //{
-                //    result = NumberToString(ObjectToDecimal(o), 2, ",", " ");
-                //}
-                //else
-                //{
-                //    result = o.ToString();
-                //}
             }
             
             
@@ -519,6 +523,40 @@ namespace V6Tools.V6Convert
                 if (t.Contains("T") && t.IndexOf('T') > 6)
                 {
                     d = DateTime.Parse(t);
+                    return d;
+                }
+                if (!string.IsNullOrEmpty(dateFormat) && dateFormat.Contains("/"))
+                {
+                    t = t.Replace("_", "");
+                    var fff = SplitStringBy(dateFormat, '/');
+                    var ttt = SplitStringBy(t, '/');
+
+                    int day = 0, month = 0, year = 0;
+                    for (int i = 0; i < fff.Length; i++)
+                    {
+                        string FF = fff[i].ToUpper().Trim();
+                        if (FF.StartsWith("D"))
+                        {
+                            day = int.Parse(ttt[i]);
+                        }
+                        else if (FF.StartsWith("M"))
+                        {
+                            month = int.Parse(ttt[i]);
+                        }
+                        else if (FF.StartsWith("Y"))
+                        {
+                            if (ttt[i].Length == 2)
+                            {
+                                year = int.Parse(DateTime.Now.Year / 100 + ttt[i]);
+                            }
+                            else
+                            {
+                                year = int.Parse(ttt[i]);
+                            }
+                        }
+                    }
+
+                    d = new DateTime(year, month, day);
                     return d;
                 }
 
@@ -848,6 +886,18 @@ namespace V6Tools.V6Convert
             {
                 if (tag is IDictionary<string, object>) return (IDictionary<string, object>) tag;
                 if (tag is string) return StringToDictionary(tag.ToString());
+
+                Dictionary<string, object> result = new Dictionary<string, object>();
+                foreach (PropertyInfo property in tag.GetType().GetProperties())
+                {
+                    if (property.CanRead && property.CanWrite)
+                    {
+                        object value = property.GetValue(tag, null);
+                        result[property.Name] = value;
+                        //result += ",\n" + ValueToJson(property.Name, value);
+                    }
+                }
+                return result;
             }
             catch (Exception)
             {

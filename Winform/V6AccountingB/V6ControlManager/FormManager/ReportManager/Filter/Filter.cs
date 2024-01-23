@@ -1037,6 +1037,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "XLSPOA":
                     result = new XLSPOA_Filter();
                     break;
+
+                case "EIVSOA":
+                    result = new EIVPOA_Filter(); // !!!!
+                    break;
+                case "EIVPOA":
+                    result = new EIVPOA_Filter();
+                    break;
+
                 case "XLSPOB":
                     result = new XLSPOB_Filter();
                     break;
@@ -1641,6 +1649,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     result = new XADVXNK01_Filter();
                     //return result; // Đã dùng cờ DynamicOff, có thể bỏ dòng này.
                     break;
+                
                 //default:
                     //if (program.StartsWith("ADVXNK01."))
                     //{

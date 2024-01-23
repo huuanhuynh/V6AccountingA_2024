@@ -8,10 +8,11 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public class V6IMPORT2XLS_Container : XuLyBase0
+    public class V6IMPORT2EIV_Container : XuLyBase0
     {
         private V6ComboBox cboDanhMuc;
         private Panel panelView;
@@ -65,17 +66,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.panelView.Size = new System.Drawing.Size(554, 316);
             this.panelView.TabIndex = 6;
             // 
-            // V6IMPORT2XLS_Container
+            // V6IMPORT2EIV_Container
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Name = "V6IMPORT2XLS_Container";
+            this.Name = "V6IMPORT2EIV_Container";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
-        public V6IMPORT2XLS_Container(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public V6IMPORT2EIV_Container(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
@@ -100,7 +101,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var text = CorpLan.GetTextNull(id);
             if (string.IsNullOrEmpty(text))
             {
-                text = "V6IMPORT2XLS_Container.";
+                text = "V6IMPORT2EIV_Container.";
             }
 
             V6ControlFormHelper.SetStatusText2(text, id);
@@ -154,7 +155,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 new SqlParameter("@r_add", V6Login.UserInfo["r_add"].ToString().Trim()),
                 new SqlParameter("@moduleID", V6Login.SelectedModule),
             };
-            ALIM2XLS_DATA = V6BusinessHelper.Select("ALIM2XLS", "*", "IMPORT_YN='1'"
+            ALIM2XLS_DATA = V6BusinessHelper.Select("ALIM2XLS", "*", "KT_LONG='1'"
                 + " AND Rtrim(MO_TA) in (Select Itemid from V6menu Where (((1=@isAdmin or (dbo.VFA_Inlist_MEMO([Itemid], @mrights)=1 and dbo.VFA_Inlist_MEMO([Itemid], @r_add)=1)))"
                 + " AND hide_yn<>1 AND Module_id=@moduleID))",
                 "", "STT", plist).Data;
@@ -187,6 +188,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 string item_id = menuRow["itemid"].ToString().Trim();
                 string program = menuRow["program"].ToString().Trim();
+                program = program.Replace("XLS", "EIV");
                 string reportCaption = menuRow["title"].ToString().Trim();
                 string reportCaption2 = menuRow["title2"].ToString().Trim();
 
@@ -221,7 +223,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             c = new XLSGL1_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
                         case "POA":
-                            c = new XLSPOA_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            c = new EIVPOA_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
                         case "POB":
                             c = new XLSPOB_Control(item_id, program, program, program, reportCaption, reportCaption2);
@@ -233,7 +235,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             c = new XLSIXA_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
                         case "SOA":
-                            c = new XLSSOA_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            c = new EIVSOA_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
                         case "SOB":
                             c = new XLSSOB_Control(item_id, program, program, program, reportCaption, reportCaption2);
@@ -255,6 +257,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (c != null)
                     {
                         CurrentControl = c;
+                        c.ALIM2XLS_Config = new ALIM2XLS_CONFIG(SelectedRow.ToDataDictionaryUpper());
                         c.Name = ma_ct;
                         c.Dock = DockStyle.Fill;
                         var cName = c.Name;

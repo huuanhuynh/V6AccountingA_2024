@@ -63,6 +63,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new AAPPR_SOA_IN3(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSPOA":
                     return new XLSPOA_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "EIVPOA":
+                    return new EIVPOA_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSPOB":
                     return new XLSPOB_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSAP1":
@@ -73,6 +75,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new XLSIXA_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSSOA":
                     return new XLSSOA_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "EIVSOA":
+                    return new EIVSOA_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSSOB":
                     return new XLSSOB_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6IMDATA2":
@@ -155,7 +159,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new V6IMPORTXLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6IM2XLS":
                     return new V6IMPORT2XLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
-                    //return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, reportCaption);
+                case "V6IM2EIV":
+                    return new V6IMPORT2EIV(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                //return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, reportCaption);
                 case "V6IMDATA2TH1":
                     return new V6IMDATA2TH1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     break;
@@ -247,7 +253,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 case "AAPPR_EINVOICE2": // Xử lý hóa đơn điện tử.
                     return new AAPPR_EINVOICE2(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
-
+                case "AINVTQRC1":
+                    return new AINVTQRC1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
             }
 
             // Đổi program thành pro_old
@@ -317,8 +324,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 case "AINVTBAR1":
                     return new AINVTBAR1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
-                case "AINVTQRC1":
-                    return new AINVTQRC1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                //case "AINVTQRC1": đảo qua xulybase
+                //    return new AINVTQRC1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVTBAR2":
                     return new AINVTBAR2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ACOVVBAR2":
@@ -356,7 +363,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 case "V6IM2XLS":
                     //return new V6IMPORT2XLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
-                    return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                    return new  V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "V6IM2EIV":
+                    //return new V6IMPORT2XLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                    return new V6IMPORT2EIV_Container(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+
                 case "ADVXNK01":
                     return new XuLyBase0(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
             }

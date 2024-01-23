@@ -642,7 +642,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         #region ==== LoadData MakeReport ====
 
-        void LoadData()
+        public void LoadData()
         {
             All_Objects["_plist"] = _pList;
             LoadData0();
@@ -806,6 +806,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             
         }
 
+        protected virtual void DoAfterExecuteSuccess()
+        {
+
+        }
+
         /// <summary>
         /// Hàm format luôn chạy trong base sau khi set dữ liệu cho grid 1.
         /// </summary>
@@ -901,6 +906,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             get { return _executing; }
         }
+
+        public ALIM2XLS_CONFIG ALIM2XLS_Config { get; set; }
+
         private void btnHuy_Click(object sender, EventArgs e)
         {
             if (IsRunning)

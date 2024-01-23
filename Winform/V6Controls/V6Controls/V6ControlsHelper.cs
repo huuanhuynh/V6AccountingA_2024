@@ -29,6 +29,7 @@ namespace V6Controls
             try
             {
                 if (!Directory.Exists(V6Setting.V6SoftLocalAppData_Directory)) Directory.CreateDirectory(V6Setting.V6SoftLocalAppData_Directory);
+                if (!Directory.Exists(V6Setting.V6ATempLocalAppData_Directory)) Directory.CreateDirectory(V6Setting.V6ATempLocalAppData_Directory);
             }
             catch
             {

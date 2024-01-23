@@ -403,7 +403,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
-                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "_DETAIL2");
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Form_program, All_Objects, "_DETAIL2");
             }
 
             //Add detail controls
@@ -447,12 +447,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     string sql = "SELECT a.*,b.ten_vt as ten_vt FROM " + _table3Name +
                                  " as a left join alvt b on a.ma_vt=b.ma_vt  Where stt_rec = @rec";
                     SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
-                    data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
-                        .Tables[0];
+                    data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist).Tables[0];
                     SetDataToGrid(gView3, data3, txtMaCt.Text, _table3Name);
-                    //gView3.DataSource = data3;
-                    //gView3.HideColumnsAldm(_table3Name);
-                    //gView3.SetCorplan2();
                 }
 
                 //Data4
@@ -461,12 +457,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                 + _table4Name +
                                  " as a left join alkh b on a.ma_kh_i=b.ma_kh  Where stt_rec = @rec";
                     SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
-                    data4 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
-                        .Tables[0];
+                    data4 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist).Tables[0];
                     SetDataToGrid(gView4, data4, txtMaCt.Text, _table4Name);
-                    //gView3.DataSource = data3;
-                    //gView3.HideColumnsAldm(_table3Name);
-                    //gView3.SetCorplan2();
                 }
                 //Data5
                 {

@@ -129,6 +129,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             {
                 _qrSetting.PageWidth = 120;
                 _qrSetting.PageHeight = 80;
+                _qrSetting.Rotate = false;
                 _qrSetting.MarginLeft = 1;
                 _qrSetting.MarginRight = 1;
                 _qrSetting.MarginTop = 1;
@@ -152,6 +153,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 _qrSetting.ShowName = false;
                 _qrSetting.ShowName2 = false;
                 _qrSetting.ShowPrice = false;
+                _qrSetting.QRSquare = false;
 
                 _qrSetting.ForcePrint = false;
 
@@ -186,23 +188,30 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 
         private void SaveSetting()
         {
-            Dictionary<string, object> settingDic = _qrSetting.ToDICTIONARY();
-            //Ghép thêm EXTRA_INFOR không thuộc setting.
-            foreach (var item in _albcConfig.EXTRA_INFOR)
+            if (_albcConfig != null && _albcConfig.HaveInfo)
             {
-                if (!settingDic.ContainsKey(item.Key))
+                Dictionary<string, object> settingDic = _qrSetting.ToDICTIONARY();
+                //Ghép thêm EXTRA_INFOR không thuộc setting.
+                foreach (var item in _albcConfig.EXTRA_INFOR)
                 {
-                    settingDic[item.Key] = item.Value;
+                    if (!settingDic.ContainsKey(item.Key))
+                    {
+                        settingDic[item.Key] = item.Value;
+                    }
                 }
+                string EXTRA_INFOR = ObjectAndString.DictionaryToString(settingDic);
+                _albcConfig.DATA["EXTRA_INFOR"] = EXTRA_INFOR;
+                _albcConfig.LoadExtraInfor();
+                var data = new Dictionary<string, object>();
+                data["EXTRA_INFOR"] = EXTRA_INFOR;
+                var key = new Dictionary<string, object>();
+                key["MA_FILE"] = _albcConfig.MA_FILE;
+                V6BusinessHelper.UpdateSimple("ALBC", data, key);
             }
-            string EXTRA_INFOR = ObjectAndString.DictionaryToString(settingDic);
-            _albcConfig.DATA["EXTRA_INFOR"] = EXTRA_INFOR;
-            _albcConfig.LoadExtraInfor();
-            var data = new Dictionary<string, object>();
-            data["EXTRA_INFOR"] = EXTRA_INFOR;
-            var key = new Dictionary<string, object>();
-            key["MA_FILE"] = _albcConfig.MA_FILE;
-            V6BusinessHelper.UpdateSimple("ALBC", data, key);
+            else
+            {
+                this.ShowInfoMessage(V6Text.NoDefine + " ALBC");
+            }
         }
 
         private void ReLoadSetting()
@@ -303,7 +312,11 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 = new PaperSize("V6",
                     (int)(_qrSetting.PageWidth / 25.4 * 100),
                     (int)(_qrSetting.PageHeight / 25.4 * 100));
-
+            if (_qrSetting.Rotate)
+            {
+                document.DefaultPageSettings.Landscape = !document.DefaultPageSettings.Landscape;
+            }
+            
             PrintPreviewDialog printview = new PrintPreviewDialog();
             printview.Width = 800;
             printview.Height = 600;
@@ -555,15 +568,25 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             float QR_width = width;
             float QR_height = height
                 - (_qrSetting.ShowCode ? (code_size.Height - 1.5f) : 0)
-                - (_qrSetting.ShowName ? (name_size.Height - 1.5f) : 0)
+                - (_qrSetting.ShowName ? (name_Height - 1.5f) : 0)
                 - (_qrSetting.ShowPrice ? (price_Height - 1.5f) : 0);
-            g.DrawImage(QR, xStart-(_qrSetting.ShowName2?1:0), yStart, QR_width, QR_height);
+            float QR_x = xStart - (_qrSetting.ShowName2 ? 1 : 0);
+            if (_qrSetting.QRSquare)
+            {
+                if (QR_width > QR_height)
+                {
+                    QR_x = QR_x + (QR_width - QR_height) / 2;
+                    QR_width = QR_height;
+                }
+                
+            }
+            g.DrawImage(QR, QR_x, yStart, QR_width, QR_height);
 
             // Vẽ mã sản phẩm trên cùng
             yStart = pt.Y;
             if (code_Height > 0) g.DrawString(productCode, code_font, brush, new RectangleF(xStart, yStart, width, code_Height), stringFormat);
             // Vẽ tên sản phẩm bên dưới.
-            yStart += (_qrSetting.ShowCode ? (code_size.Height - 1.5f) : 0) + QR_height - 3;
+            yStart += (_qrSetting.ShowCode ? (code_size.Height - 1.5f) : 0) + QR_height-2;
             if (name_Height > 0) g.DrawString(productName, name_font, brush, new RectangleF(xStart, yStart, width, name_Height), stringFormat);
             // Vẽ tên sản phẩm bên phải.
             if (_qrSetting.ShowName2)
@@ -807,6 +830,10 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         [Category("PAGE")]
         [Description("Chiều rộng trang in.")]
         public float PageWidth { get; set; }
+        [Category("PAGE")]
+        [DefaultValue(false)]
+        [Description("Xoay trang in.")]
+        public bool Rotate { get; set; }
 
         [Category("STAMP")]
         [DefaultValue(1.0f)]
@@ -830,6 +857,11 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
         [DefaultValue(15)]
         [Description("Kích thước phần trăm Logo so với QRcode.")]
         public int LogoPercent { get; set; }
+
+        [Category("STAMP")]
+        [DefaultValue(false)]
+        [Description("Làm vuông QR.")]
+        public bool QRSquare { get; set; }
 
         [Category("PRINT")]
         [DefaultValue(false)]

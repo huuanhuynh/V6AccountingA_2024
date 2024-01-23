@@ -6274,6 +6274,19 @@ namespace V6ThuePostManager
                                 case "baselink":
                                 case "baseurl":
                                     _baseUrl = UtilityHelper.DeCrypt(line.Value);
+                                        if (string.IsNullOrEmpty(_link_Publish_vnpt_thaison))
+                                        {
+                                            _link_Publish_vnpt_thaison = _baseUrl;
+                                            if (_link_Publish_vnpt_thaison.EndsWith("/"))
+                                            {
+                                                _link_Publish_vnpt_thaison += "PublishService.asmx";
+                                            }
+                                            else
+                                            {
+                                                _link_Publish_vnpt_thaison += "/PublishService.asmx";
+                                            }
+                                            
+                                        }
                                     break;
                                 case "appid":
                                     _appID = UtilityHelper.DeCrypt(line.Value);

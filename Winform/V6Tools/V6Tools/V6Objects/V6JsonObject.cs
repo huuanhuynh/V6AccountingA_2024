@@ -35,86 +35,86 @@ namespace V6Tools.V6Objects
         }
 
 
-        public void SetPropertiesValue(IDictionary<string, string> dic)
-        {
-            foreach (PropertyInfo propertyInfo in GetType().GetProperties())
-            {
-                if (dic.ContainsKey(propertyInfo.Name) && propertyInfo.CanWrite)
-                {
-                    var value = dic[propertyInfo.Name];
-                    if (propertyInfo.PropertyType == typeof(string))
-                    {
-                        propertyInfo.SetValue(this, value, null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(int))
-                    {
-                        propertyInfo.SetValue(this, int.Parse(value), null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(float))
-                    {
-                        propertyInfo.SetValue(this, float.Parse(value), null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(decimal))
-                    {
-                        propertyInfo.SetValue(this, decimal.Parse(value), null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(DateTime))
-                    {
-                        propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null), null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(bool))
-                    {
-                        propertyInfo.SetValue(this, value == "1", null);
-                    }
-                }
-                else if (dic.ContainsKey(propertyInfo.Name.ToUpper()) && propertyInfo.CanWrite)
-                {
-                    var value = dic[propertyInfo.Name.ToUpper()];
-                    if (propertyInfo.PropertyType == typeof(string))
-                    {
-                        propertyInfo.SetValue(this, value, null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(int))
-                    {
-                        propertyInfo.SetValue(this, int.Parse(value), null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(float))
-                    {
-                        propertyInfo.SetValue(this, float.Parse(value), null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(decimal))
-                    {
-                        propertyInfo.SetValue(this, decimal.Parse(value), null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(DateTime))
-                    {
-                        propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null), null);
-                    }
-                    else if (propertyInfo.PropertyType == typeof(bool))
-                    {
-                        propertyInfo.SetValue(this, ObjectAndString.ObjectToBool(value), null);
-                    }
-                }
-            }
-        }
+        //public void SetPropertiesValue(IDictionary<string, string> dic)
+        //{
+        //    foreach (PropertyInfo propertyInfo in GetType().GetProperties())
+        //    {
+        //        if (dic.ContainsKey(propertyInfo.Name) && propertyInfo.CanWrite)
+        //        {
+        //            var value = dic[propertyInfo.Name];
+        //            if (propertyInfo.PropertyType == typeof(string))
+        //            {
+        //                propertyInfo.SetValue(this, value, null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(int))
+        //            {
+        //                propertyInfo.SetValue(this, int.Parse(value), null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(float))
+        //            {
+        //                propertyInfo.SetValue(this, float.Parse(value), null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(decimal))
+        //            {
+        //                propertyInfo.SetValue(this, decimal.Parse(value), null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(DateTime))
+        //            {
+        //                propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null), null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(bool))
+        //            {
+        //                propertyInfo.SetValue(this, value == "1", null);
+        //            }
+        //        }
+        //        else if (dic.ContainsKey(propertyInfo.Name.ToUpper()) && propertyInfo.CanWrite)
+        //        {
+        //            var value = dic[propertyInfo.Name.ToUpper()];
+        //            if (propertyInfo.PropertyType == typeof(string))
+        //            {
+        //                propertyInfo.SetValue(this, value, null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(int))
+        //            {
+        //                propertyInfo.SetValue(this, int.Parse(value), null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(float))
+        //            {
+        //                propertyInfo.SetValue(this, float.Parse(value), null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(decimal))
+        //            {
+        //                propertyInfo.SetValue(this, decimal.Parse(value), null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(DateTime))
+        //            {
+        //                propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null), null);
+        //            }
+        //            else if (propertyInfo.PropertyType == typeof(bool))
+        //            {
+        //                propertyInfo.SetValue(this, ObjectAndString.ObjectToBool(value), null);
+        //            }
+        //        }
+        //    }
+        //}
 
-        public Dictionary<string, object> ToDICTIONARY()
-        {
-            Dictionary<string, object> RESULT = new Dictionary<string, object>();
-            foreach (PropertyInfo property in GetType().GetProperties())
-            {
-                if (property.CanRead && property.CanWrite)
-                {
-                    object value = property.GetValue(this, null);
-                    if (value is bool)
-                    {
-                        value = (bool)value ? "1" : "0";
-                    }
-                    RESULT[property.Name.ToUpper()] = value;
-                }
-            }
-            return RESULT;
-        }
+        //public Dictionary<string, object> ToDICTIONARY()
+        //{
+        //    Dictionary<string, object> RESULT = new Dictionary<string, object>();
+        //    foreach (PropertyInfo property in GetType().GetProperties())
+        //    {
+        //        if (property.CanRead && property.CanWrite)
+        //        {
+        //            object value = property.GetValue(this, null);
+        //            if (value is bool)
+        //            {
+        //                value = (bool)value ? "1" : "0";
+        //            }
+        //            RESULT[property.Name.ToUpper()] = value;
+        //        }
+        //    }
+        //    return RESULT;
+        //}
 
         /// <summary>
         /// Trả về 1 chuỗi DIC dạng KEY:Value;KEY2:value2...
