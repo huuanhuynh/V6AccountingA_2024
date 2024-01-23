@@ -1343,27 +1343,7 @@ namespace V6AccountingBusiness.Invoices
             }
             return result;
         }
-
-        public virtual List<DefaultValueAndTagInfo> LoadDataReferenceInfo_0(string lang, string itemId)
-        {
-            if (defaultInfo == null || defaultInfo.Rows.Count == 0)
-                defaultInfo = V6BusinessHelper.GetDefaultValueData(1, Mact, "", itemId, "nhom='02'");
-            var result = new List<DefaultValueAndTagInfo>();
-            foreach (DataRow row in defaultInfo.Rows)
-            {
-                var dValue = new DefaultValueAndTagInfo();
-                var cell = row["Default" + lang];
-                if (cell == null) continue;
-
-                dValue.AName = row["NameVal"].ToString().Trim().ToUpper();
-                dValue.CName = row["NameTag"].ToString().Trim().ToUpper();
-                dValue.Value = ("" + cell).Trim();
-                dValue.Type1 = row["Kieu"].ToString().Trim();
-                
-                result.Add(dValue);
-            }
-            return result;
-        }
+        
 
         public DataTable AlVitriTon;
         public DataTable GetAlVitriTon(DateTime ngay_ct, string sttRec, string mavt, string makho)// string makh, string madvcs)
