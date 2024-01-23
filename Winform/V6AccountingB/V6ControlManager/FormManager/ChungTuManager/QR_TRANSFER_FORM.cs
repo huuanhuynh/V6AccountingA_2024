@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
-using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ChungTuManager
 {
-    public partial class QR_TRANSFER_SOA_FORM : V6Form
+    public partial class QR_TRANSFER_FORM : V6Form
     {
-        public QR_TRANSFER_SOA_FORM()
+        
+        public QR_TRANSFER_FORM()
         {
             InitializeComponent();
         }
 
-        public QR_TRANSFER_SOA_FORM(V6InvoiceBase invoice, string program)
+        public QR_TRANSFER_FORM(V6InvoiceBase invoice, string program)
         {
             InitializeComponent();
             _invoice = invoice;
@@ -43,14 +45,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                SetSaveTempKey("QR_TRANSFER_" + _invoice.Mact);
                 TurnOffCapsLock();
                 InvokeInitFix();
+                LoadDefaultData(2, "", "QRTRANSFER", ItemID);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException("MyInit", ex);
             }
         }
+
+        
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -122,8 +128,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (ssss.Length < 3)
                     {
                         no_length_count++;
-                        if (no_length_count >= txtQR_INFOR.Lines.Length - 1) rScan.Checked = true;
-                        continue;
+                        if (no_length_count > 0 && no_length_count == txtQR_INFOR.Lines.Length - 1) rScan.Checked = true;
+                        return;
                     }
                     var new_row = _table.NewRow();
                     string qr_code0 = ssss[1];
@@ -152,6 +158,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 dataGridView1.SelectAllRow();
                 InvokeDynamicFix();
+                txtQR_INFOR.Clear();
             }
             catch (Exception ex)
             {
@@ -168,6 +175,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     if (line.Trim() == "") continue;
                     var ssss = ObjectAndString.SplitStringBy(line, '\t', false);
+                    if (ssss.Length > 2)
+                    {
+                        rInventory.Checked = true;
+                        //ShowMainMessage
+                        return;
+                    }
                     string qr_code0 = ssss[0].Trim();
                     if (QR_Quantity.ContainsKey(qr_code0))
                     {
@@ -199,7 +212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             if (_table.Columns.Contains(item.Key))
                             {
                                 var column = _table.Columns[item.Key];
-                                new_row[item.Key] = ObjectAndString.ObjectTo(column.DataType, item.Value);
+                                new_row[item.Key] = ObjectAndString.ObjectTo(column.DataType, item.Value) ?? DBNull.Value;
                             }
                         }
                     }
@@ -207,6 +220,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 dataGridView1.SelectAllRow();
                 InvokeDynamicFix();
+                txtQR_INFOR.Clear();
             }
             catch (Exception ex)
             {
@@ -314,10 +328,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtQR_INFOR.Text.Trim() != "")
-            {
-                btnLoad.PerformClick();
-            }
+            //if (txtQR_INFOR.Text.Trim() != "")
+            //{
+            //    btnLoad.PerformClick();
+            //}
             if (dataGridView1.DataSource == null)
             {
                 this.ShowInfoMessage(V6Text.NoData);
@@ -368,6 +382,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private void btnLoad_Click(object sender, EventArgs e)
         {
             LoadData();
+            SaveTemp();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -383,7 +398,98 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (e.KeyData == Keys.Enter)
             {
                 CheckMode();
+                TurnOffCapsLock();
+                SaveTemp();
             }
+            else if (e.KeyCode == Keys.CapsLock)
+            {
+                TurnOffCapsLock();
+            }
+        }
+
+        string savetempkey = "QR_TRANSFER_FORM";
+        public void SetSaveTempKey(string key)
+        {
+            savetempkey = key;
+        }
+        public void SaveTemp()
+        {
+            try
+            {
+                int size = 10;
+                //mã form, mã file, date?, index.
+                string[] files = new string[size];
+                FileInfo[] finfos = new FileInfo[size];
+                FileInfo choosenone = null;
+                for (int i = 0; i < size; i++)
+                {
+                    files[i] = Path.Combine(V6Setting.V6ATempLocalAppData_Directory, savetempkey + i + ".txt");
+                    finfos[i] = new FileInfo(files[i]);
+                    if (choosenone == null && !finfos[i].Exists)
+                    {
+                        // Neu chua co file i thi tao moi.
+                        choosenone = finfos[i];
+                        break;
+                    }
+                }
+                if (choosenone == null)
+                {
+                    // Neu co 5 thi chon cai cu nhat.
+                    DateTime time = DateTime.Now;
+                    foreach (var item in finfos)
+                    {
+                        if (item != null && item.Exists && item.LastWriteTime < time)
+                        {
+                            time = item.LastWriteTime;
+                            choosenone = item;
+                        }
+                    }
+                }
+
+                //choosenone.OpenWrite
+                File.WriteAllLines(choosenone.FullName, txtQR_INFOR.Lines);
+                _table.WriteXml(choosenone.FullName + ".xml");
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        public void LoadTemp()
+        {
+            try
+            {
+                // Hiện lên 1 form chọn
+                QR_LOADTEMP_FORM form = new QR_LOADTEMP_FORM(_invoice, _program, QR_AD);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    txtQR_INFOR.Text = form.txtQR_INFOR.Text;
+
+                    _table.Rows.Clear();
+                    _table.AddRowByTable(form._table);
+                    dataGridView1.SelectAllRow();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void txtQR_INFOR_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void txtQR_INFOR_Enter(object sender, EventArgs e)
+        {
+            TurnOffCapsLock();
+        }
+
+        private void btnLoadTemp_Click(object sender, EventArgs e)
+        {
+            LoadTemp();
         }
     }
 }

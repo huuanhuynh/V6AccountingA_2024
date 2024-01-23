@@ -2,7 +2,7 @@
 
 namespace V6ControlManager.FormManager.ChungTuManager
 {
-    partial class QR_TRANSFER_SOA_FORM
+    partial class QR_TRANSFER_FORM
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QR_TRANSFER_SOA_FORM));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QR_TRANSFER_FORM));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
@@ -43,6 +43,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.rScan = new System.Windows.Forms.RadioButton();
             this.rInventory = new System.Windows.Forms.RadioButton();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnLoadTemp = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.txtQR_INFOR = new System.Windows.Forms.RichTextBox();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
@@ -96,6 +97,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.grbMode);
             this.panel1.Controls.Add(this.btnClear);
+            this.panel1.Controls.Add(this.btnLoadTemp);
             this.panel1.Controls.Add(this.btnLoad);
             this.panel1.Controls.Add(this.txtQR_INFOR);
             this.panel1.Controls.Add(this.dataGridView1);
@@ -110,7 +112,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.grbMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.grbMode.Controls.Add(this.rScan);
             this.grbMode.Controls.Add(this.rInventory);
-            this.grbMode.Location = new System.Drawing.Point(198, 475);
+            this.grbMode.Location = new System.Drawing.Point(10, 509);
             this.grbMode.Name = "grbMode";
             this.grbMode.Size = new System.Drawing.Size(194, 35);
             this.grbMode.TabIndex = 4;
@@ -146,7 +148,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnClear.AccessibleDescription = "";
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnClear.Image = global::V6ControlManager.Properties.Resources.Delete32;
-            this.btnClear.Location = new System.Drawing.Point(104, 470);
+            this.btnClear.Location = new System.Drawing.Point(104, 463);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(88, 40);
             this.btnClear.TabIndex = 2;
@@ -155,16 +157,30 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnLoadTemp
+            // 
+            this.btnLoadTemp.AccessibleDescription = "";
+            this.btnLoadTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLoadTemp.Image = global::V6ControlManager.Properties.Resources.History24;
+            this.btnLoadTemp.Location = new System.Drawing.Point(304, 463);
+            this.btnLoadTemp.Name = "btnLoadTemp";
+            this.btnLoadTemp.Size = new System.Drawing.Size(88, 40);
+            this.btnLoadTemp.TabIndex = 1;
+            this.btnLoadTemp.Text = "&Lịch sử";
+            this.btnLoadTemp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLoadTemp.UseVisualStyleBackColor = true;
+            this.btnLoadTemp.Click += new System.EventHandler(this.btnLoadTemp_Click);
+            // 
             // btnLoad
             // 
             this.btnLoad.AccessibleDescription = "";
             this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLoad.Image = global::V6ControlManager.Properties.Resources.QRicon32;
-            this.btnLoad.Location = new System.Drawing.Point(10, 470);
+            this.btnLoad.Location = new System.Drawing.Point(10, 463);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(88, 40);
             this.btnLoad.TabIndex = 1;
-            this.btnLoad.Text = "&Tải";
+            this.btnLoad.Text = "&Thêm";
             this.btnLoad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -175,11 +191,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.txtQR_INFOR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtQR_INFOR.BackColor = System.Drawing.SystemColors.Info;
-            this.txtQR_INFOR.Location = new System.Drawing.Point(3, 10);
+            this.txtQR_INFOR.Location = new System.Drawing.Point(3, 3);
             this.txtQR_INFOR.Name = "txtQR_INFOR";
-            this.txtQR_INFOR.Size = new System.Drawing.Size(389, 454);
+            this.txtQR_INFOR.Size = new System.Drawing.Size(389, 456);
             this.txtQR_INFOR.TabIndex = 0;
             this.txtQR_INFOR.Text = "";
+            this.txtQR_INFOR.Enter += new System.EventHandler(this.txtQR_INFOR_Enter);
             this.txtQR_INFOR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQR_INFOR_KeyDown);
             // 
             // dataGridView1
@@ -210,7 +227,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.dataGridView1.Size = new System.Drawing.Size(605, 552);
             this.dataGridView1.TabIndex = 3;
             // 
-            // QR_TRANSFER_SOA_FORM
+            // QR_TRANSFER_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -220,10 +237,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
-            this.Name = "QR_TRANSFER_SOA_FORM";
+            this.Name = "QR_TRANSFER_FORM";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "QR_TRANSFER_SOA_FORM";
+            this.Text = "QR_TRANSFER";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectMultiIDForm_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.SizeChanged += new System.EventHandler(this.QR_TRANSFER_SOA_FORM_SizeChanged);
@@ -249,5 +266,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private System.Windows.Forms.GroupBox grbMode;
         private System.Windows.Forms.RadioButton rScan;
         private System.Windows.Forms.RadioButton rInventory;
+        private System.Windows.Forms.Button btnLoadTemp;
     }
 }

@@ -878,7 +878,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         #region ==== GETTONROW ====
-        private DataTable _dataViTri;
+        public DataTable _dataViTri;
 
         public void GetTonRow(DataGridViewRow grow, HD_Detail detail1, DateTime ngay_ct)
         {
@@ -2061,6 +2061,35 @@ namespace V6ControlManager.FormManager.ChungTuManager
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".FixVvarBrothers " + _sttRec, ex);
+            }
+        }
+
+        public void SetDefaultDataDetail_Brothers(V6InvoiceBase invoice, V6Control detailControl, string ads, V6VvarTextBox txt)
+        {
+            try
+            {
+                int loai = 1;
+                List<SqlParameter> plist = new List<SqlParameter>();
+                plist.Add(new SqlParameter("@loai", loai));
+                plist.Add(new SqlParameter("@ma_ct", invoice.Mact));
+                plist.Add(new SqlParameter("@Ads", ads));
+                plist.Add(new SqlParameter("@ma_dm", txt.LookupInfo.vMa_file));
+                plist.Add(new SqlParameter("@vvar", txt.VVar));
+                plist.Add(new SqlParameter("@vvalue", txt.Text));
+                plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                plist.Add(new SqlParameter("@itemid", ItemID));
+                plist.Add(new SqlParameter("@advance", ""));
+
+                var table = V6BusinessHelper.ExecuteProcedure("VPA_GET_BROTHERS_DEFAULTVALUE", plist.ToArray()).Tables[0];
+                if (table.Rows.Count > 0)
+                {
+                    var data = table.Rows[0].ToDataDictionary();
+                    detailControl.SetSomeData(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SetDefaultDataDetail_Brothers " + _sttRec, ex);
             }
         }
 
@@ -6445,6 +6474,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                 }
 
                 int i = -1;
+                var tMA_VT = new V6VvarTextBox() { VVar = "MA_VT" };
                 foreach (DataRow row in table.Rows)
                 {
                     i++;
@@ -6454,11 +6484,9 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
                     var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
 
-                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
-                    _maVt.Text = cMaVt;
-                    var datavt = _maVt.Data;
-
-
+                    // { Tuanmh 31/08/2016 Them thong tin ALVT fix 28/12/2023
+                    tMA_VT.Text = cMaVt;
+                    var datavt = tMA_VT.Data;
                     if (datavt != null)
                     {
                         //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
@@ -6852,19 +6880,22 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
 
                 chon_accept_flag_add = shift;
 
-                QR_TRANSFER_SOA_FORM qr_transfer = new QR_TRANSFER_SOA_FORM(_invoice, program);
-                qr_transfer.All_Objects = All_Objects;
-                qr_transfer.All_Objects["parentForm"] = this;
-                qr_transfer.Form_program = Form_program;
-                qr_transfer.DynamicFixMethodName = "DynamicFixQR";
-                qr_transfer.InitFixMethodName = "InitFixQR";
-                qr_transfer.QR_AD = _invoice.ExtraInfo_QrAD;
-                qr_transfer._parentQRinput = _qr_code0;
-                if (qr_transfer.ShowDialog(this) == DialogResult.OK)
+                if (AD.Rows.Count == 0 || shift || (this.ShowConfirmMessage("Xóa hết chi tiết đã nhập?Dùng Shift để nhập thêm.") == DialogResult.Yes))
                 {
-                    ChonEventArgs chonE = new ChonEventArgs();
-                    chonE.AD2AM = _invoice.ExtraInfo_QrAD2AM;
-                    qrTransfer_AcceptData(qr_transfer.dataGridView1.GetSelectedData(), chonE);
+                    QR_TRANSFER_FORM qr_transfer = new QR_TRANSFER_FORM(_invoice, program);
+                    qr_transfer.All_Objects = All_Objects;
+                    qr_transfer.All_Objects["parentForm"] = this;
+                    qr_transfer.Form_program = Form_program;
+                    qr_transfer.DynamicFixMethodName = "DynamicFixQR";
+                    qr_transfer.InitFixMethodName = "InitFixQR";
+                    qr_transfer.QR_AD = _invoice.ExtraInfo_QrAD;
+                    qr_transfer._parentQRinput = _qr_code0;
+                    if (qr_transfer.ShowDialog(this) == DialogResult.OK)
+                    {
+                        ChonEventArgs chonE = new ChonEventArgs();
+                        chonE.AD2AM = _invoice.ExtraInfo_QrAD2AM;
+                        qrTransfer_AcceptData(qr_transfer.dataGridView1.GetSelectedData(), chonE);
+                    }
                 }
             }
             catch (Exception ex)
@@ -6924,7 +6955,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
         }
 
         /// <summary>
-        /// Kiểm tra AD có chứa dòng có các fields check giống nhau không.
+        /// Kiểm tra QR_CODE0 != "", AD có chứa dòng có các fields check giống nhau không.
         /// </summary>
         /// <param name="data">Dữ liệu kiểm tra</param>
         /// <param name="CHECK_FIELDS">Các trường kiểm tra</param>
@@ -6933,12 +6964,23 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
         internal bool ADContains(IDictionary<string, object> data, IList<string> CHECK_FIELDS, out DataRow containsRow, out int index)
         {
             index = -1;
+            if (data == null || !data.ContainsKey("QR_CODE0") || (data["QR_CODE0"] + "").Trim() == "")
+            {
+                containsRow = null;
+                return false;
+            }
+            
             foreach (DataRow row in AD.Rows)
             {
                 index++;
                 bool check = true;
                 foreach (string FIELD in CHECK_FIELDS)
                 {
+                    if (!data.ContainsKey(FIELD))
+                    {
+                        containsRow = null;
+                        return false;
+                    }
                     check = check && ObjectAndString.CheckCondition(data[FIELD], "=", row[FIELD], true);
                 }
                 if (check)
