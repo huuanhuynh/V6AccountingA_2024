@@ -4315,9 +4315,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     //var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
                     //var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
 
-                    ////{ Tuanmh 31/08/2016 Them thong tin ALVT
-                    //_maVt.Text = cMaVt;
-                    //var datavt = _maVt.Data;
+                    //// { Tuanmh 31/08/2016 Them thong tin ALVT fix 28/12/2023
+                    //tMA_VT.Text = cMaVt;
+                    //var datavt = tMA_VT.Data;
                     foreach (KeyValuePair<string, string> item in ad2am_dic)
                     {
                         if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
@@ -4325,9 +4325,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                             AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
                         }
                     }
-
-
-
+                    
                     //if (exist && exist2)
                     {
                         if (XuLyThemDetail(data))

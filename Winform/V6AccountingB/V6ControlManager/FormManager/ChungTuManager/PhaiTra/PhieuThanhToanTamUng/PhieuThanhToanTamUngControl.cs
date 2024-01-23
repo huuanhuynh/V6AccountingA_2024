@@ -181,6 +181,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         break;
                     case "MA_KH_I":
                         _ma_kh_i = control as V6VvarTextBox;
+                        _ma_kh_i.BrotherFields = "TEN_KH";
+                        _ma_kh_i.NeighborFields = "TEN_KH_I";
+                        break;
+                    case "TEN_KH_I":
+                        control.DisableTag();
                         break;
                     case "THUE_NT":
                         _thue_nt = control as V6NumberTextBox;
@@ -4325,9 +4330,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                             AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
                         }
                     }
-                    ////{ Tuanmh 31/08/2016 Them thong tin ALVT
-                    //_maVt.Text = cMaVt;
-                    //var datavt = _maVt.Data;
+                    //// { Tuanmh 31/08/2016 Them thong tin ALVT fix 28/12/2023
+                    //tMA_VT.Text = cMaVt;
+                    //var datavt = tMA_VT.Data;
                     //if (datavt != null)
                     //{
                     //    //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
@@ -4338,7 +4343,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     //    if (!data.ContainsKey("HE_SO1T")) data.Add("HE_SO1T", 1);
                     //    if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
                     //    if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
-                    
+
                     //    var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT0"]);
                     //    var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT01"]);
                     //    var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);

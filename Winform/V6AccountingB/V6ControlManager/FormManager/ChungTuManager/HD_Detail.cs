@@ -411,7 +411,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 var t = Tag;
                 Tag = null;
-                V6ControlFormHelper.SetSomeDataDictionary(this, data);
+                V6ControlFormHelper.SetSomeDataDictionary_Forced(this, data);
                 Tag = t;
             }
             catch (Exception ex)

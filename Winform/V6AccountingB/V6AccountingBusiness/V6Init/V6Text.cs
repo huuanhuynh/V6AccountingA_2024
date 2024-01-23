@@ -422,6 +422,8 @@ namespace V6Init
         public static string Ready { get { return V6Setting.Language == "V" ? "Sẵn sàng." : "Ready."; } }
         public static string ReloadConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn tải lại?" : "Are you sure you want to reload?"; } }
         public static string ReportError { get { return V6Setting.Language == "V" ? "Báo cáo bị lỗi." : "Report error."; } }
+        public static string SaveConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn lưu lại?" : "Are you sure you want to save changes?"; } }
+        public static string SaveOverrideConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn lưu đè?" : "Are you sure you want to save changes?"; } }
         public static string Sec { get { return V6Setting.Language == "V" ? "Giây" : "Sec"; } }
         public static string SecretKeyFail { get { return V6Setting.Language == "V" ? "Sai khóa." : "No key."; } }
         public static string SelectAccount { get { return V6Setting.Language == "V" ? "Chưa chọn tài khoản!" : "Select account please!"; } }

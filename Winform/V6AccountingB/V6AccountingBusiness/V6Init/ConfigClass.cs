@@ -689,7 +689,7 @@ namespace V6Init
         public string r_copy { get { return GetString("r_copy"); } }  
     }
 
-        public class V6FieldInfo
+    public class V6FieldInfo
     {
         public string FieldName { get; set; }
         public string FieldCaption { get; set; }
@@ -895,7 +895,40 @@ namespace V6Init
 
     }
 
-    
+    public class ALIM2XLS_CONFIG : Config
+    {
+        public ALIM2XLS_CONFIG(IDictionary<string, object> data) : base(data)
+        {
+        }
+
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    LoadExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
+
+        public string MA_CT { get { return GetString("MA_CT"); } }
+
+        /// <summary>
+        /// Lay mot phan tu trong EXTRA_INFOR, ko co tra ve null.
+        /// </summary>
+        /// <param name="KEY"></param>
+        /// <returns></returns>
+        public string EXTRA_INFOR_NULL(string KEY)
+        {
+            KEY = KEY.ToUpper();
+            if (!EXTRA_INFOR.ContainsKey(KEY)) return null;
+            return "" + EXTRA_INFOR[KEY];
+        }
+    }
+
+
     public class ConfigManager
     {
         public static AlbcConfig GetAlbcConfig(string mau, string lan, string ma_file, string report)

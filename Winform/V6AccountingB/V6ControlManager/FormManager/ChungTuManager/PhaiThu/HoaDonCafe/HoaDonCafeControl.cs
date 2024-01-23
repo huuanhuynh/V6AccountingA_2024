@@ -295,7 +295,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         }
                         _maVt.Upper();
                         _maVt.Font = new Font(_maVt.Font.FontFamily, 10f, FontStyle.Bold);
-                        _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
+                        _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_qg";
 
                         _mavt_default_initfilter = _maVt.InitFilter;
                         var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
@@ -1551,6 +1551,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         if (_soLuong1.Value > _ton13.Value)
                         {
                             _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
+                            _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                             TinhTienNt2();
                         }
                     }
@@ -7105,9 +7106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             dataGridView1.UnLock();
             if (table == null || table.Count == 0) return;
             var row0 = table[0];
-            if (row0.ContainsKey("MA_VT") && row0.ContainsKey("MA_KHO_I")
-                                          && row0.ContainsKey("TIEN_NT0") && row0.ContainsKey("SO_LUONG1")
-                                          && row0.ContainsKey("GIA_NT01"))
+            if (row0.ContainsKey("MA_VT") && row0.ContainsKey("MA_KHO_I") && row0.ContainsKey("SO_LUONG1"))
             {
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
@@ -7118,7 +7117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 var AM_somedata = new Dictionary<string, object>();
                 var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
-
+                var tMA_VT = new V6VvarTextBox() { VVar = "MA_VT" };
                 foreach (IDictionary<string, object> row in table)
                 {
                     var data = row;
@@ -7127,9 +7126,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
                     var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
 
-                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
-                    _maVt.Text = cMaVt;
-                    var datavt = _maVt.Data;
+                    // { Tuanmh 31/08/2016 Them thong tin ALVT fix 28/12/2023
+                    tMA_VT.Text = cMaVt;
+                    var datavt = tMA_VT.Data;
                     foreach (KeyValuePair<string, string> item in ad2am_dic)
                     {
                         if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
@@ -7149,17 +7148,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
                         if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
 
-                        var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT2"]);
-                        var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT21"]);
-                        var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);
-                        var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
+                        //var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT2"]);
+                        //var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT21"]);
+                        //var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);
+                        //var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
 
-                        if (!data.ContainsKey("TIEN2")) data.Add("TIEN2", __tien0);
-
-                        if (!data.ContainsKey("GIA21")) data.Add("GIA21", __gia0);
-                        if (!data.ContainsKey("GIA2")) data.Add("GIA2", __gia0);
-                        if (!data.ContainsKey("GIA_NT2")) data.Add("GIA_NT2", data["GIA_NT21"]);
-
+                        //if (!data.ContainsKey("TIEN2")) data.Add("TIEN2", __tien0);
+                        //if (!data.ContainsKey("GIA21")) data.Add("GIA21", __gia0);
+                        //if (!data.ContainsKey("GIA2")) data.Add("GIA2", __gia0);
+                        //if (!data.ContainsKey("GIA_NT2")) data.Add("GIA_NT2", data["GIA_NT21"]);
 
                     }
                     //}
@@ -7483,7 +7480,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 var AM_somedata = new Dictionary<string, object>();
                 var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
-
+                var tMA_VT = new V6VvarTextBox() { VVar = "MA_VT" };
                 foreach (IDictionary<string, object> row in table)
                 {
                     var data = row;
@@ -7492,9 +7489,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
                     var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
 
-                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
-                    _maVt.Text = cMaVt;
-                    var datavt = _maVt.Data;
+                    // { Tuanmh 31/08/2016 Them thong tin ALVT fix 28/12/2023
+                    tMA_VT.Text = cMaVt;
+                    var datavt = tMA_VT.Data;
                     foreach (KeyValuePair<string, string> item in ad2am_dic)
                     {
                         if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
@@ -7853,6 +7850,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 && table.Columns.Contains("TIEN_NT2") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT21"))
             {
+                var tMA_VT = new V6VvarTextBox() { VVar = "MA_VT" };
                 foreach (DataRow row in table.Rows)
                 {
                     var data = row.ToDataDictionary(_sttRec);
@@ -7861,11 +7859,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
                     var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
 
-                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
-                    _maVt.Text = cMaVt;
-                    var datavt = _maVt.Data;
-
-
+                    // { Tuanmh 31/08/2016 Them thong tin ALVT fix 28/12/2023
+                    tMA_VT.Text = cMaVt;
+                    var datavt = tMA_VT.Data;
                     if (datavt != null)
                     {
                         //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
@@ -7883,16 +7879,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
 
                         if (!data.ContainsKey("TIEN2")) data.Add("TIEN2", __tien0);
-
                         if (!data.ContainsKey("GIA21")) data.Add("GIA21", __gia0);
                         if (!data.ContainsKey("GIA2")) data.Add("GIA2", __gia0);
                         if (!data.ContainsKey("GIA_NT2")) data.Add("GIA_NT2", data["GIA_NT21"]);
-
-
                     }
                     //}
-
-
 
                     if (exist && exist2)
                     {

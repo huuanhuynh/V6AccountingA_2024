@@ -145,6 +145,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.xuLyKhac2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.xuLyKhac21Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.xuLyKhac22Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyQRCODEMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong1 = new V6Controls.NumberSoluong();
@@ -205,7 +206,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtDiaChi = new V6Controls.V6VvarTextBox();
             this.v6Label11 = new V6Controls.V6Label();
             this.lblMaKH = new V6Controls.V6Label();
-            this.xuLyQRCODEMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
@@ -1499,6 +1499,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtTongTienNt.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongTienNt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongTienNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongTienNt.DecimalPlaces = 2;
             this.txtTongTienNt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongTienNt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongTienNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1509,7 +1510,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtTongTienNt.Size = new System.Drawing.Size(136, 20);
             this.txtTongTienNt.TabIndex = 1;
             this.txtTongTienNt.Tag = "readonly";
-            this.txtTongTienNt.Text = "0";
+            this.txtTongTienNt.Text = "0,00";
             this.txtTongTienNt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongTienNt.Value = new decimal(new int[] {
             0,
@@ -1664,7 +1665,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.xuLyKhac22Menu,
             this.xuLyQRCODEMenu});
             this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(254, 180);
+            this.menuChucNang2.Size = new System.Drawing.Size(254, 158);
             // 
             // chonDeNghiXuatKhoTheoKhoMenu
             // 
@@ -1711,6 +1712,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.xuLyKhac22Menu.Size = new System.Drawing.Size(253, 22);
             this.xuLyKhac22Menu.Text = "Xử lý khác 22";
             this.xuLyKhac22Menu.Click += new System.EventHandler(this.xuLyKhac22Menu_Click);
+            // 
+            // xuLyQRCODEMenu
+            // 
+            this.xuLyQRCODEMenu.Name = "xuLyQRCODEMenu";
+            this.xuLyQRCODEMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
+            this.xuLyQRCODEMenu.Size = new System.Drawing.Size(253, 22);
+            this.xuLyQRCODEMenu.Text = "Xử lý QRCODE";
+            this.xuLyQRCODEMenu.Click += new System.EventHandler(this.xuLyQRCODEMenu_Click);
             // 
             // btnChucNang
             // 
@@ -2011,7 +2020,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.v6Label2.Location = new System.Drawing.Point(6, 36);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(49, 13);
-            this.v6Label2.TabIndex = 7;
+            this.v6Label2.TabIndex = 2;
             this.v6Label2.Text = "Số phiếu";
             // 
             // txtSoPhieu
@@ -2028,7 +2037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtSoPhieu.Location = new System.Drawing.Point(92, 32);
             this.txtSoPhieu.Name = "txtSoPhieu";
             this.txtSoPhieu.Size = new System.Drawing.Size(100, 20);
-            this.txtSoPhieu.TabIndex = 2;
+            this.txtSoPhieu.TabIndex = 3;
             this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoCt_TextChanged);
             // 
             // dateNgayLCT
@@ -2043,7 +2052,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.dateNgayLCT.Location = new System.Drawing.Point(302, 32);
             this.dateNgayLCT.Name = "dateNgayLCT";
             this.dateNgayLCT.Size = new System.Drawing.Size(96, 20);
-            this.dateNgayLCT.TabIndex = 4;
+            this.dateNgayLCT.TabIndex = 7;
             // 
             // dateNgayCT
             // 
@@ -2057,7 +2066,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.dateNgayCT.Location = new System.Drawing.Point(302, 10);
             this.dateNgayCT.Name = "dateNgayCT";
             this.dateNgayCT.Size = new System.Drawing.Size(96, 20);
-            this.dateNgayCT.TabIndex = 3;
+            this.dateNgayCT.TabIndex = 5;
             this.dateNgayCT.ValueChanged += new System.EventHandler(this.dateNgayCT_ValueChanged);
             // 
             // v6Label5
@@ -2654,14 +2663,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.lblMaKH.Size = new System.Drawing.Size(82, 13);
             this.lblMaKH.TabIndex = 0;
             this.lblMaKH.Text = "Mã khách hàng";
-            // 
-            // xuLyQRCODEMenu
-            // 
-            this.xuLyQRCODEMenu.Name = "xuLyQRCODEMenu";
-            this.xuLyQRCODEMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-            this.xuLyQRCODEMenu.Size = new System.Drawing.Size(253, 22);
-            this.xuLyQRCODEMenu.Text = "Xử lý QRCODE";
-            this.xuLyQRCODEMenu.Click += new System.EventHandler(this.xuLyQRCODEMenu_Click);
             // 
             // PhieuXuatKhoControl
             // 

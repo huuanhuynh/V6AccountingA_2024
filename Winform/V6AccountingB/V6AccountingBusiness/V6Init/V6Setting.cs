@@ -34,6 +34,7 @@ namespace V6Init
         /// <para>File sẽ bị xóa khi khởi động chương trình.</para>
         /// </summary>
         public static readonly string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
+        public static readonly string V6ATempLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6ATemp");
         /// <summary>
         /// Thư mục tạm trong appdata trên máy.
         /// </summary>

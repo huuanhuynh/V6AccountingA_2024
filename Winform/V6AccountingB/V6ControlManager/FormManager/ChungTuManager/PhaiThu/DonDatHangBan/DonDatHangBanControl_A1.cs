@@ -5416,7 +5416,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 var AM_somedata = new Dictionary<string, object>();
                 var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
-
+                var tMA_VT = new V6VvarTextBox() { VVar = "MA_VT" };
                 foreach (IDictionary<string, object> row in table)
                 {
                     var data = row;
@@ -5431,11 +5431,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
                         }
                     }
-                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
-                    V6VvarTextBox _maVt = new V6VvarTextBox();
-                    _maVt.VVar = "MA_VT";
-                    _maVt.Text = cMaVt;
-                    var datavt = _maVt.Data;
+                    // { Tuanmh 31/08/2016 Them thong tin ALVT fix 28/12/2023
+                    tMA_VT.Text = cMaVt;
+                    var datavt = tMA_VT.Data;
                     if (datavt != null)
                     {
                         //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.

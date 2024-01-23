@@ -3482,5 +3482,13 @@ namespace V6AccountingBusiness
 
         #endregion TINH_GIA_NTXT
 
+        #region TEMP DATA
+        public static void TempData()
+        {
+            string tempFolder = V6Setting.V6ATempLocalAppData_Directory;
+        }
+
+        #endregion temp data
+
     }
 }
