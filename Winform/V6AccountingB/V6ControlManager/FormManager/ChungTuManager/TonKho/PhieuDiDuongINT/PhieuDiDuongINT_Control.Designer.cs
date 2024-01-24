@@ -3206,7 +3206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             // 
             // txtMA_NVIEN
             // 
-            this.txtMA_NVIEN.AccessibleName = "ma_nvien";
+            this.txtMA_NVIEN.AccessibleName = "MA_NVIEN";
             this.txtMA_NVIEN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMA_NVIEN.BackColor = System.Drawing.SystemColors.Window;
             this.txtMA_NVIEN.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -3221,6 +3221,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             this.txtMA_NVIEN.Size = new System.Drawing.Size(82, 20);
             this.txtMA_NVIEN.TabIndex = 24;
             this.txtMA_NVIEN.VVar = "ma_nvien";
+            this.txtMA_NVIEN.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMA_NVIEN_V6LostFocus);
             // 
             // txtTyGia
             // 

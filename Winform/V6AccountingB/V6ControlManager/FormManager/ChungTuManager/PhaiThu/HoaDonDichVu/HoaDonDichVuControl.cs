@@ -4123,6 +4123,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             }
         }
 
+        private void txtMA_NVIEN_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_NVIEN);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
         private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
             string program = "A" + Invoice.Mact + "_XULYKHAC";

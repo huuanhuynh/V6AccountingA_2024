@@ -2394,7 +2394,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             TinhTienVon();
         }
 
-        private void XuLyLayThongTinKhiChonMaKhoI()
+        public void XuLyLayThongTinKhiChonMaKhoI()
         {
             try
             {
@@ -2419,6 +2419,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                          }
                     }
 
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, detail1, "AD", _maKhoI);
                     GetGia();
                     TinhTienNt2();
                 }
@@ -2605,6 +2607,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     _maLo.Enabled = true;
                 }
 
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, detail1, "AD", _maVt);
                 SetDefaultDataDetail(Invoice, detail1.panelControls);
 
                 if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")
@@ -6954,6 +6958,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 {
                     //VPA_GET_BROTHERS_DEFAULTVALUE();
                     SetDefaultData_Brothers(Invoice, this, "AM", txtMA_BP);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
+        private void txtMA_NVIEN_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_NVIEN);
                 }
             }
             catch (Exception ex)

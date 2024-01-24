@@ -208,7 +208,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.txtTenDVCS = new V6Controls.V6VvarTextBox();
             this.lblMaDVCS = new V6Controls.V6Label();
             this.txtHanTT = new V6Controls.V6NumberTextBox();
-            this.txtMaNvien = new V6Controls.V6VvarTextBox();
+            this.txtMA_NVIEN = new V6Controls.V6VvarTextBox();
             this.txtTyGia = new V6Controls.V6NumberTextBox();
             this.txtMA_BP = new V6Controls.V6VvarTextBox();
             this.cboMaNt = new V6Controls.V6ComboBox();
@@ -2733,7 +2733,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.group3.Controls.Add(this.txtTenDVCS);
             this.group3.Controls.Add(this.lblMaDVCS);
             this.group3.Controls.Add(this.txtHanTT);
-            this.group3.Controls.Add(this.txtMaNvien);
+            this.group3.Controls.Add(this.txtMA_NVIEN);
             this.group3.Controls.Add(this.txtTyGia);
             this.group3.Controls.Add(this.txtMA_BP);
             this.group3.Controls.Add(this.cboMaNt);
@@ -2924,23 +2924,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             0,
             0});
             // 
-            // txtMaNvien
+            // txtMA_NVIEN
             // 
-            this.txtMaNvien.AccessibleName = "ma_nvien";
-            this.txtMaNvien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaNvien.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMaNvien.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaNvien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaNvien.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaNvien.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMaNvien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMaNvien.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaNvien.LeaveColor = System.Drawing.Color.White;
-            this.txtMaNvien.Location = new System.Drawing.Point(836, 76);
-            this.txtMaNvien.Name = "txtMaNvien";
-            this.txtMaNvien.Size = new System.Drawing.Size(52, 20);
-            this.txtMaNvien.TabIndex = 26;
-            this.txtMaNvien.VVar = "ma_nvien";
+            this.txtMA_NVIEN.AccessibleName = "MA_NVIEN";
+            this.txtMA_NVIEN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMA_NVIEN.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_NVIEN.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_NVIEN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMA_NVIEN.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_NVIEN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_NVIEN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_NVIEN.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_NVIEN.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_NVIEN.Location = new System.Drawing.Point(836, 76);
+            this.txtMA_NVIEN.Name = "txtMA_NVIEN";
+            this.txtMA_NVIEN.Size = new System.Drawing.Size(52, 20);
+            this.txtMA_NVIEN.TabIndex = 26;
+            this.txtMA_NVIEN.VVar = "ma_nvien";
+            this.txtMA_NVIEN.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMA_NVIEN_V6LostFocus);
             // 
             // txtTyGia
             // 
@@ -4162,7 +4163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private NumberTienNt txtTongThueNt;
         private NumberTien txtTongThanhToan;
         private V6NumberTextBox txtHanTT;
-        private V6VvarTextBox txtMaNvien;
+        private V6VvarTextBox txtMA_NVIEN;
         private V6VvarTextBox txtMA_BP;
         private V6Controls.V6CheckBox chkSuaTien;
         private V6Label v6Label14;

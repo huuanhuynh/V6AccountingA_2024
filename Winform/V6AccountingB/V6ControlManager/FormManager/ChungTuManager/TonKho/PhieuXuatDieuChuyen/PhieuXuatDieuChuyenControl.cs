@@ -2159,6 +2159,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                 if (makhoX_data != null)
                 {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, detail1, "AM", txtMaKhoX);
+
                     method_log += "11";
                     TxtTen_kho.Text = makhoX_data["TEN_KHO"].ToString();
                     method_log += "12";
@@ -2228,6 +2231,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 var data = txtMaKhoN.Data;
                 if (data != null)
                 {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, detail1, "AM", txtMaKhoN);
+
                     TxtTen_khoN.Text = data["TEN_KHO"].ToString();
                     
                     var tk_dl = data["TK_DL"].ToString().Trim();
@@ -2981,6 +2987,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     _Ma_nx_i.Text = Invoice.Alct["TK_NO"].ToString().Trim();
                 }
 
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, detail1, "AD", _maVt);
                 SetDefaultDataDetail(Invoice, detail1.panelControls);
 
                 var makhoN_data = txtMaKhoN.Data;
@@ -6533,6 +6541,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
+        private void txtMA_NVIEN_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_NVIEN);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
         private void XemPhieuNhap()
         {
             try
@@ -7398,6 +7422,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 {
                     V6ControlFormHelper.UpdateDKlist(AD, "MA_LNXN", txtLoaiNX_PHN.Text);
                     if (_Ma_lnxn != null) _Ma_lnxn.Text = txtLoaiNX_PHN.Text;
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, detail1, "AM", txtLoaiNX_PHN);
                 }
             }
             catch (Exception ex)

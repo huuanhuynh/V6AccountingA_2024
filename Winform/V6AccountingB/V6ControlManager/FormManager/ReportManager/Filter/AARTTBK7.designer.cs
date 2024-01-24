@@ -249,7 +249,7 @@
             this.filterLineVvarTextBox4.Name = "filterLineVvarTextBox4";
             this.filterLineVvarTextBox4.Size = new System.Drawing.Size(282, 22);
             this.filterLineVvarTextBox4.TabIndex = 0;
-            this.filterLineVvarTextBox4.VVar = "MA_BP";
+            this.filterLineVvarTextBox4.Vvar = "MA_BP";
             // 
             // Txtnh_kh6
             // 

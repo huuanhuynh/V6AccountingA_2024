@@ -1359,8 +1359,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
         }
 
-        private void XuLyLayThongTinKhiChonMaKhoI()
+        public void XuLyLayThongTinKhiChonMaKhoI()
         {
+            try
+            {
+
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, detail1, "AD", _maKhoI);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
         }
 
         /// <summary>
@@ -1670,6 +1680,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     _maLo.Enabled = true;
                 }
 
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, detail1, "AD", _maVt);
                 SetDefaultDataDetail(Invoice, detail1.panelControls);
             }
             catch (Exception ex)
@@ -6088,7 +6100,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
 
             //txtma_nvien.ExistRowInTable();
-            var manvData = txtma_nvien.Data;
+            var manvData = txtMA_NVIEN.Data;
             if (manvData != null)
             {
                 txtten_nvien.Text = manvData["TEN_NVIEN"].ToString();
@@ -6118,9 +6130,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private void txtMA_NVIEN_V6LostFocus(object sender)
         {
-            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            try
             {
-                FixBPNV_Name();
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    FixBPNV_Name();
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_NVIEN);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
             }
         }
 

@@ -446,7 +446,7 @@
             // 
             // TxtMa_nvien
             // 
-            this.TxtMa_nvien.AccessibleName = "ma_nvien";
+            this.TxtMa_nvien.AccessibleName = "MA_NVIEN";
             this.TxtMa_nvien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtMa_nvien.BackColor = System.Drawing.Color.AntiqueWhite;
             this.TxtMa_nvien.BackColorDisabled = System.Drawing.SystemColors.Control;

@@ -572,7 +572,7 @@
             // 
             // txtma_nvien
             // 
-            this.txtma_nvien.AccessibleName = "ma_nvien";
+            this.txtma_nvien.AccessibleName = "MA_NVIEN";
             this.txtma_nvien.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_nvien.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_nvien.BrotherFields = "Ten_nvien";

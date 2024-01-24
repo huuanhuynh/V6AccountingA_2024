@@ -1029,6 +1029,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     ma_lo_column.ReadOnly = false; //_maLo.Enabled = true;
                 }
 
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                //SetDefaultData_Brothers(Invoice, detail1, "AD", _maVt);
                 //SetDefaultDataDetail(Invoice, detail1.panelControls);
             }
             catch (Exception ex)
@@ -6584,6 +6586,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 {
                     //VPA_GET_BROTHERS_DEFAULTVALUE();
                     SetDefaultData_Brothers(Invoice, this, "AM", txtMA_BP);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
+        private void txtMA_NVIEN_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_NVIEN);
                 }
             }
             catch (Exception ex)

@@ -128,7 +128,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.v6Label17 = new V6Controls.V6Label();
             this.Txtdien_giai = new V6Controls.V6VvarTextBox();
             this.v6Label12 = new V6Controls.V6Label();
-            this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
+            this.txtMA_NVIEN = new V6Controls.V6VvarTextBox();
             this.txtMA_BP = new V6Controls.V6VvarTextBox();
             this.v6Label8 = new V6Controls.V6Label();
             this.TxtTk_i = new V6Controls.V6VvarTextBox();
@@ -1583,22 +1583,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.v6Label12.TabIndex = 4;
             this.v6Label12.Text = "Diễn giải";
             // 
-            // v6VvarTextBox2
+            // txtMA_NVIEN
             // 
-            this.v6VvarTextBox2.AccessibleName = "ma_nvien";
-            this.v6VvarTextBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6VvarTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox2.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.Location = new System.Drawing.Point(170, 10);
-            this.v6VvarTextBox2.Name = "v6VvarTextBox2";
-            this.v6VvarTextBox2.Size = new System.Drawing.Size(82, 20);
-            this.v6VvarTextBox2.TabIndex = 12;
-            this.v6VvarTextBox2.VVar = "ma_nvien";
+            this.txtMA_NVIEN.AccessibleName = "MA_NVIEN";
+            this.txtMA_NVIEN.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_NVIEN.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_NVIEN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMA_NVIEN.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_NVIEN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_NVIEN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_NVIEN.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_NVIEN.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_NVIEN.Location = new System.Drawing.Point(170, 10);
+            this.txtMA_NVIEN.Name = "txtMA_NVIEN";
+            this.txtMA_NVIEN.Size = new System.Drawing.Size(82, 20);
+            this.txtMA_NVIEN.TabIndex = 12;
+            this.txtMA_NVIEN.VVar = "ma_nvien";
+            this.txtMA_NVIEN.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMA_NVIEN_V6LostFocus);
             // 
             // txtMA_BP
             // 
@@ -1673,7 +1674,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.group2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.group2.Controls.Add(this.txtMA_BP);
-            this.group2.Controls.Add(this.v6VvarTextBox2);
+            this.group2.Controls.Add(this.txtMA_NVIEN);
             this.group2.Controls.Add(this.v6Label8);
             this.group2.Location = new System.Drawing.Point(425, -5);
             this.group2.Name = "group2";
@@ -2388,7 +2389,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         private V6Label lblDocSoTien;
         private V6VvarTextBox txtMa_ct;
         private System.Windows.Forms.ToolTip toolTip1;
-        private V6VvarTextBox v6VvarTextBox2;
+        private V6VvarTextBox txtMA_NVIEN;
         private V6VvarTextBox txtMA_BP;
         private V6Controls.V6CheckBox chkSuaTien;
         private HD_Detail detail2;

@@ -162,7 +162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.lblMaKH = new V6Controls.V6Label();
             this.group2 = new System.Windows.Forms.GroupBox();
             this.TxtTen_tk = new V6Controls.V6VvarTextBox();
-            this.Txtma_nvien = new V6Controls.V6VvarTextBox();
+            this.txtMA_NVIEN = new V6Controls.V6VvarTextBox();
             this.txtMA_BP = new V6Controls.V6VvarTextBox();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
@@ -2092,7 +2092,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.group2.Controls.Add(this.TxtTen_tk);
-            this.group2.Controls.Add(this.Txtma_nvien);
+            this.group2.Controls.Add(this.txtMA_NVIEN);
             this.group2.Controls.Add(this.txtMA_BP);
             this.group2.Controls.Add(this.v6Label7);
             this.group2.Controls.Add(this.v6Label8);
@@ -2124,23 +2124,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.TxtTen_tk.TabIndex = 2;
             this.TxtTen_tk.Tag = "disable";
             // 
-            // Txtma_nvien
+            // txtMA_NVIEN
             // 
-            this.Txtma_nvien.AccessibleName = "MA_NVIEN";
-            this.Txtma_nvien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txtma_nvien.BackColor = System.Drawing.Color.White;
-            this.Txtma_nvien.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.Txtma_nvien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Txtma_nvien.EnterColor = System.Drawing.Color.PaleGreen;
-            this.Txtma_nvien.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Txtma_nvien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.Txtma_nvien.HoverColor = System.Drawing.Color.Yellow;
-            this.Txtma_nvien.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_nvien.Location = new System.Drawing.Point(413, 10);
-            this.Txtma_nvien.Name = "Txtma_nvien";
-            this.Txtma_nvien.Size = new System.Drawing.Size(76, 20);
-            this.Txtma_nvien.TabIndex = 5;
-            this.Txtma_nvien.VVar = "Ma_nvien";
+            this.txtMA_NVIEN.AccessibleName = "MA_NVIEN";
+            this.txtMA_NVIEN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMA_NVIEN.BackColor = System.Drawing.Color.White;
+            this.txtMA_NVIEN.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_NVIEN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMA_NVIEN.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_NVIEN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_NVIEN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_NVIEN.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_NVIEN.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_NVIEN.Location = new System.Drawing.Point(413, 10);
+            this.txtMA_NVIEN.Name = "txtMA_NVIEN";
+            this.txtMA_NVIEN.Size = new System.Drawing.Size(76, 20);
+            this.txtMA_NVIEN.TabIndex = 5;
+            this.txtMA_NVIEN.VVar = "Ma_nvien";
+            this.txtMA_NVIEN.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMA_NVIEN_V6LostFocus);
             // 
             // txtMA_BP
             // 
@@ -2848,7 +2849,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private V6Controls.V6CheckBox chkSuaTien;
         private V6FormButton btnChonNhieuHD;
         private V6VvarTextBox Txtma_nk;
-        private V6VvarTextBox Txtma_nvien;
+        private V6VvarTextBox txtMA_NVIEN;
         private V6VvarTextBox txtMA_BP;
         private V6VvarTextBox txtMa_sonb;
         private V6Label v6Label2;

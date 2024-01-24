@@ -5400,6 +5400,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
+        private void txtMA_NVIEN_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_NVIEN);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
         private void XuLyThongDonViCoSo()
         {
             try

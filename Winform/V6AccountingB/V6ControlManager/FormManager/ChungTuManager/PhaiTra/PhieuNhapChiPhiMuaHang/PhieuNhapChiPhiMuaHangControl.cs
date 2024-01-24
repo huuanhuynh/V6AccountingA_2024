@@ -1089,8 +1089,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         }
 
         
-        private void XuLyLayThongTinKhiChonMaKhoI()
+        public void XuLyLayThongTinKhiChonMaKhoI()
         {
+            try
+            {
+
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, detail1, "AD", _maKhoI);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
         }
 
         void MaKhoV6LostFocus(object sender)
@@ -1301,6 +1311,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     _maLo.Enabled = false;
                 }
 
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, detail1, "AD", _maVt);
                 SetDefaultDataDetail(Invoice, detail1.panelControls);
             }
             catch (Exception ex)
