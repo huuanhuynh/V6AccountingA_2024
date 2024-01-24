@@ -155,6 +155,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.xuLyKhac1Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.xuLyKhac2BMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelVATMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyQRCODEMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
@@ -209,7 +210,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.txtHanTT = new V6Controls.V6NumberTextBox();
             this.txtMaNvien = new V6Controls.V6VvarTextBox();
             this.txtTyGia = new V6Controls.V6NumberTextBox();
-            this.txtMaBP = new V6Controls.V6VvarTextBox();
+            this.txtMA_BP = new V6Controls.V6VvarTextBox();
             this.cboMaNt = new V6Controls.V6ComboBox();
             this.txtMaKh = new V6Controls.V6VvarTextBox();
             this.v6Label8 = new V6Controls.V6Label();
@@ -286,7 +287,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.taoMaLoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.xemVitriMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chuaDatTen3Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.xuLyQRCODEMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2071,7 +2071,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.chonTuExcelVATMenu,
             this.xuLyQRCODEMenu});
             this.menuChucNang2.Name = "menuChucNang";
-            this.menuChucNang2.Size = new System.Drawing.Size(254, 224);
+            this.menuChucNang2.Size = new System.Drawing.Size(254, 202);
             // 
             // chonDeNghiXuatKhoTheoKhoMenu
             // 
@@ -2129,6 +2129,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.chonTuExcelVATMenu.Size = new System.Drawing.Size(253, 22);
             this.chonTuExcelVATMenu.Text = "Chọn từ Excel (VAT)";
             this.chonTuExcelVATMenu.Click += new System.EventHandler(this.chonTuExcelVATMenu_Click);
+            // 
+            // xuLyQRCODEMenu
+            // 
+            this.xuLyQRCODEMenu.Name = "xuLyQRCODEMenu";
+            this.xuLyQRCODEMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
+            this.xuLyQRCODEMenu.Size = new System.Drawing.Size(253, 22);
+            this.xuLyQRCODEMenu.Text = "Xử lý QRCODE";
+            this.xuLyQRCODEMenu.Click += new System.EventHandler(this.xuLyQRCODEMenu_Click);
             // 
             // chkTempSuaCT
             // 
@@ -2727,7 +2735,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.group3.Controls.Add(this.txtHanTT);
             this.group3.Controls.Add(this.txtMaNvien);
             this.group3.Controls.Add(this.txtTyGia);
-            this.group3.Controls.Add(this.txtMaBP);
+            this.group3.Controls.Add(this.txtMA_BP);
             this.group3.Controls.Add(this.cboMaNt);
             this.group3.Controls.Add(this.txtMaKh);
             this.group3.Controls.Add(this.v6Label8);
@@ -2960,23 +2968,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             0});
             this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTyGia_V6LostFocus);
             // 
-            // txtMaBP
+            // txtMA_BP
             // 
-            this.txtMaBP.AccessibleName = "ma_bp";
-            this.txtMaBP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaBP.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMaBP.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaBP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaBP.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaBP.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMaBP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMaBP.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaBP.LeaveColor = System.Drawing.Color.White;
-            this.txtMaBP.Location = new System.Drawing.Point(784, 76);
-            this.txtMaBP.Name = "txtMaBP";
-            this.txtMaBP.Size = new System.Drawing.Size(52, 20);
-            this.txtMaBP.TabIndex = 25;
-            this.txtMaBP.VVar = "ma_bp";
+            this.txtMA_BP.AccessibleName = "MA_BP";
+            this.txtMA_BP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMA_BP.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_BP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_BP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMA_BP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_BP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_BP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_BP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_BP.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_BP.Location = new System.Drawing.Point(784, 76);
+            this.txtMA_BP.Name = "txtMA_BP";
+            this.txtMA_BP.Size = new System.Drawing.Size(52, 20);
+            this.txtMA_BP.TabIndex = 25;
+            this.txtMA_BP.VVar = "MA_BP";
+            this.txtMA_BP.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMA_BP_V6LostFocus);
             // 
             // cboMaNt
             // 
@@ -3978,14 +3987,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.chuaDatTen3Menu.Size = new System.Drawing.Size(161, 22);
             this.chuaDatTen3Menu.Text = "...";
             // 
-            // xuLyQRCODEMenu
-            // 
-            this.xuLyQRCODEMenu.Name = "xuLyQRCODEMenu";
-            this.xuLyQRCODEMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-            this.xuLyQRCODEMenu.Size = new System.Drawing.Size(253, 22);
-            this.xuLyQRCODEMenu.Text = "Xử lý QRCODE";
-            this.xuLyQRCODEMenu.Click += new System.EventHandler(this.xuLyQRCODEMenu_Click);
-            // 
             // PhieuNhapMuaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4162,7 +4163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private NumberTien txtTongThanhToan;
         private V6NumberTextBox txtHanTT;
         private V6VvarTextBox txtMaNvien;
-        private V6VvarTextBox txtMaBP;
+        private V6VvarTextBox txtMA_BP;
         private V6Controls.V6CheckBox chkSuaTien;
         private V6Label v6Label14;
         private V6VvarTextBox txtSoCt0;

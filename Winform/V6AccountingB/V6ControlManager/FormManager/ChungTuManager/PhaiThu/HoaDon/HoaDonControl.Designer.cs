@@ -203,6 +203,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtHanTT = new V6Controls.V6NumberTextBox();
             this.txtTyGia = new V6Controls.V6NumberTextBox();
             this.cboMaNt = new V6Controls.V6ComboBox();
+            this.btnSoDH = new V6Controls.Controls.V6FormButton();
             this.btnApGia = new V6Controls.Controls.V6FormButton();
             this.txtMaHttt = new V6Controls.V6VvarTextBox();
             this.txtMaGia = new V6Controls.V6VvarTextBox();
@@ -223,8 +224,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group2 = new System.Windows.Forms.GroupBox();
             this.txtLoaiNX_PH = new V6Controls.V6VvarTextBox();
             this.lblLoaiNX_PH = new V6Controls.V6Label();
-            this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
-            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
+            this.txtMA_NVIEN = new V6Controls.V6VvarTextBox();
+            this.txtMA_BP = new V6Controls.V6VvarTextBox();
             this.txtSoCtXuat = new V6Controls.V6VvarTextBox();
             this.lblMauKyHieu = new V6Controls.V6Label();
             this.lblOngBa = new V6Controls.V6Label();
@@ -267,7 +268,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuBtnTim = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSoDH = new V6Controls.Controls.V6FormButton();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -2942,6 +2942,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.cboMaNt.TabStop = false;
             this.cboMaNt.SelectedValueChanged += new System.EventHandler(this.cboMaNt_SelectedValueChanged);
             // 
+            // btnSoDH
+            // 
+            this.btnSoDH.AccessibleDescription = "ASOCTSOAL00126";
+            this.btnSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSoDH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSoDH.Location = new System.Drawing.Point(622, 7);
+            this.btnSoDH.Name = "btnSoDH";
+            this.btnSoDH.Size = new System.Drawing.Size(60, 22);
+            this.btnSoDH.TabIndex = 2;
+            this.btnSoDH.TabStop = false;
+            this.btnSoDH.Text = "Số ĐH";
+            this.btnSoDH.UseVisualStyleBackColor = true;
+            this.btnSoDH.Click += new System.EventHandler(this.btnSoDH_Click);
+            // 
             // btnApGia
             // 
             this.btnApGia.AccessibleDescription = "ASOCTSOAH00051";
@@ -3206,8 +3220,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             | System.Windows.Forms.AnchorStyles.Right)));
             this.group2.Controls.Add(this.txtLoaiNX_PH);
             this.group2.Controls.Add(this.lblLoaiNX_PH);
-            this.group2.Controls.Add(this.v6VvarTextBox2);
-            this.group2.Controls.Add(this.v6VvarTextBox1);
+            this.group2.Controls.Add(this.txtMA_NVIEN);
+            this.group2.Controls.Add(this.txtMA_BP);
             this.group2.Controls.Add(this.txtSoCtXuat);
             this.group2.Controls.Add(this.lblMauKyHieu);
             this.group2.Controls.Add(this.lblOngBa);
@@ -3253,41 +3267,42 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.lblLoaiNX_PH.TabIndex = 2;
             this.lblLoaiNX_PH.Text = "Loại NX";
             // 
-            // v6VvarTextBox2
+            // txtMA_NVIEN
             // 
-            this.v6VvarTextBox2.AccessibleName = "ma_nvien";
-            this.v6VvarTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6VvarTextBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6VvarTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox2.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.Location = new System.Drawing.Point(418, 10);
-            this.v6VvarTextBox2.Name = "v6VvarTextBox2";
-            this.v6VvarTextBox2.Size = new System.Drawing.Size(75, 20);
-            this.v6VvarTextBox2.TabIndex = 10;
-            this.v6VvarTextBox2.VVar = "ma_nvien";
+            this.txtMA_NVIEN.AccessibleName = "ma_nvien";
+            this.txtMA_NVIEN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMA_NVIEN.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_NVIEN.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_NVIEN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMA_NVIEN.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_NVIEN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_NVIEN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_NVIEN.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_NVIEN.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_NVIEN.Location = new System.Drawing.Point(418, 10);
+            this.txtMA_NVIEN.Name = "txtMA_NVIEN";
+            this.txtMA_NVIEN.Size = new System.Drawing.Size(75, 20);
+            this.txtMA_NVIEN.TabIndex = 10;
+            this.txtMA_NVIEN.VVar = "ma_nvien";
             // 
-            // v6VvarTextBox1
+            // txtMA_BP
             // 
-            this.v6VvarTextBox1.AccessibleName = "ma_bp";
-            this.v6VvarTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(358, 10);
-            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(58, 20);
-            this.v6VvarTextBox1.TabIndex = 9;
-            this.v6VvarTextBox1.VVar = "ma_bp";
+            this.txtMA_BP.AccessibleName = "MA_BP";
+            this.txtMA_BP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMA_BP.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_BP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_BP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMA_BP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_BP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_BP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_BP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_BP.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_BP.Location = new System.Drawing.Point(358, 10);
+            this.txtMA_BP.Name = "txtMA_BP";
+            this.txtMA_BP.Size = new System.Drawing.Size(58, 20);
+            this.txtMA_BP.TabIndex = 9;
+            this.txtMA_BP.VVar = "MA_BP";
+            this.txtMA_BP.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMA_BP_V6LostFocus);
             // 
             // txtSoCtXuat
             // 
@@ -3848,20 +3863,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.timKhacMenu.Size = new System.Drawing.Size(153, 22);
             this.timKhacMenu.Text = "Khác...";
             // 
-            // btnSoDH
-            // 
-            this.btnSoDH.AccessibleDescription = "ASOCTSOAL00126";
-            this.btnSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSoDH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSoDH.Location = new System.Drawing.Point(622, 7);
-            this.btnSoDH.Name = "btnSoDH";
-            this.btnSoDH.Size = new System.Drawing.Size(60, 22);
-            this.btnSoDH.TabIndex = 2;
-            this.btnSoDH.TabStop = false;
-            this.btnSoDH.Text = "Số ĐH";
-            this.btnSoDH.UseVisualStyleBackColor = true;
-            this.btnSoDH.Click += new System.EventHandler(this.btnSoDH_Click);
-            // 
             // HoaDonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4035,8 +4036,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private NumberTienNt txtTongThueNt;
         private NumberTien txtTongThanhToan;
         private V6NumberTextBox txtHanTT;
-        private V6VvarTextBox v6VvarTextBox2;
-        private V6VvarTextBox v6VvarTextBox1;
+        private V6VvarTextBox txtMA_NVIEN;
+        private V6VvarTextBox txtMA_BP;
         private V6Controls.V6CheckBox chkSuaTien;
         private V6VvarTextBox txtMaDVCS;
         private V6VvarTextBox v6ColorTextBox3;

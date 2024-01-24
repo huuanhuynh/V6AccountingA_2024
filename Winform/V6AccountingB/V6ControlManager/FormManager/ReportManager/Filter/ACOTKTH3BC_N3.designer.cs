@@ -350,7 +350,7 @@
             this.filterLineVvarTextBox4.Name = "filterLineVvarTextBox4";
             this.filterLineVvarTextBox4.Size = new System.Drawing.Size(267, 22);
             this.filterLineVvarTextBox4.TabIndex = 12;
-            this.filterLineVvarTextBox4.Vvar = "MA_BP";
+            this.filterLineVvarTextBox4.VVar = "MA_BP";
             // 
             // filterLineVvarTextBox7
             // 

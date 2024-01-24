@@ -234,7 +234,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // txtma_bp
             // 
-            this.txtma_bp.AccessibleName = "ma_bp";
+            this.txtma_bp.AccessibleName = "MA_BP";
             this.txtma_bp.BackColor = System.Drawing.Color.White;
             this.txtma_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_bp.BrotherFields = "ten_bp";
@@ -248,7 +248,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtma_bp.Name = "txtma_bp";
             this.txtma_bp.Size = new System.Drawing.Size(150, 23);
             this.txtma_bp.TabIndex = 2;
-            this.txtma_bp.VVar = "ma_bp";
+            this.txtma_bp.VVar = "MA_BP";
             // 
             // label9
             // 

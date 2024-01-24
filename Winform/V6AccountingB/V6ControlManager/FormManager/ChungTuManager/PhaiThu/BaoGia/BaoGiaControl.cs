@@ -1276,6 +1276,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 txtdien_thoai.Text = (data["dien_thoai"] ?? "").ToString().Trim();
 
                 SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, this, "AM", txtMaKh);
             }
             catch (Exception ex)
             {
@@ -6075,7 +6077,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private void FixBPNV_Name()
         {
             //txtma_bp.ExistRowInTable();
-            var mabpData = txtma_bp.Data;
+            var mabpData = txtMA_BP.Data;
             if (mabpData != null)
             {
                 txtten_bp.Text = mabpData["TEN_BP"].ToString();
@@ -6097,7 +6099,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
         }
 
-        private void txtma_bp_nv_V6LostFocus(object sender)
+        private void txtMA_BP_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    FixBPNV_Name();
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_BP);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
+        private void txtMA_NVIEN_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
@@ -6231,6 +6250,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 {
                     V6ControlFormHelper.UpdateDKlist(AD, "MA_LNX_I", txtLoaiNX_PH.Text);
                     if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtLoaiNX_PH);
                 }
             }
             catch (Exception ex)

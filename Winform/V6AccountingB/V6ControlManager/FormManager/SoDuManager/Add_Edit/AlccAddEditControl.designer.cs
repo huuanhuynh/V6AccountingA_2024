@@ -496,7 +496,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // txtMa_bpcc
             // 
-            this.txtMa_bpcc.AccessibleName = "Ma_bp";
+            this.txtMa_bpcc.AccessibleName = "MA_BP";
             this.txtMa_bpcc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMa_bpcc.BackColor = System.Drawing.Color.White;
             this.txtMa_bpcc.BackColorDisabled = System.Drawing.SystemColors.Control;

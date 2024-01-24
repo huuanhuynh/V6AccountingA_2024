@@ -374,7 +374,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             // 
             // txtMaBoPhan
             // 
-            this.txtMaBoPhan.AccessibleName = "ma_bp";
+            this.txtMaBoPhan.AccessibleName = "MA_BP";
             this.txtMaBoPhan.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaBoPhan.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaBoPhan.CheckOnLeave = false;

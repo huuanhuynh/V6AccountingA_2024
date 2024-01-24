@@ -428,7 +428,7 @@
             this.mabophan.Name = "mabophan";
             this.mabophan.Size = new System.Drawing.Size(292, 22);
             this.mabophan.TabIndex = 4;
-            this.mabophan.Vvar = "MA_BP";
+            this.mabophan.VVar = "MA_BP";
             // 
             // filterLineVvarTextBox10
             // 

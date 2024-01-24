@@ -163,7 +163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.lblMauKyHieu = new V6Controls.V6Label();
             this.txtMaMauHD = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
-            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
+            this.txtMA_BP = new V6Controls.V6VvarTextBox();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
             this.lblMaNX = new V6Controls.V6Label();
@@ -1059,6 +1059,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongTangGiam.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongTangGiam.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongTangGiam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongTangGiam.DecimalPlaces = 2;
             this.txtTongTangGiam.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongTangGiam.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongTangGiam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1069,7 +1070,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongTangGiam.Size = new System.Drawing.Size(153, 20);
             this.txtTongTangGiam.TabIndex = 12;
             this.txtTongTangGiam.Tag = "readonly";
-            this.txtTongTangGiam.Text = "0";
+            this.txtTongTangGiam.Text = "0,00";
             this.txtTongTangGiam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongTangGiam.Value = new decimal(new int[] {
             0,
@@ -1175,6 +1176,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongTangGiamNt.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongTangGiamNt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongTangGiamNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongTangGiamNt.DecimalPlaces = 2;
             this.txtTongTangGiamNt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongTangGiamNt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongTangGiamNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1185,7 +1187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongTangGiamNt.Size = new System.Drawing.Size(153, 20);
             this.txtTongTangGiamNt.TabIndex = 14;
             this.txtTongTangGiamNt.Tag = "readonly";
-            this.txtTongTangGiamNt.Text = "0";
+            this.txtTongTangGiamNt.Text = "0,00";
             this.txtTongTangGiamNt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongTangGiamNt.Value = new decimal(new int[] {
             0,
@@ -1210,6 +1212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongTienNt2.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongTienNt2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongTienNt2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongTienNt2.DecimalPlaces = 2;
             this.txtTongTienNt2.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongTienNt2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongTienNt2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1220,7 +1223,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongTienNt2.Size = new System.Drawing.Size(153, 20);
             this.txtTongTienNt2.TabIndex = 1;
             this.txtTongTienNt2.Tag = "readonly";
-            this.txtTongTienNt2.Text = "0";
+            this.txtTongTienNt2.Text = "0,00";
             this.txtTongTienNt2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongTienNt2.Value = new decimal(new int[] {
             0,
@@ -1255,6 +1258,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongThueNt.BackColor = System.Drawing.Color.White;
             this.txtTongThueNt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongThueNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongThueNt.DecimalPlaces = 2;
             this.txtTongThueNt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongThueNt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongThueNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1265,7 +1269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongThueNt.Size = new System.Drawing.Size(153, 20);
             this.txtTongThueNt.TabIndex = 7;
             this.txtTongThueNt.Tag = "readonly";
-            this.txtTongThueNt.Text = "0";
+            this.txtTongThueNt.Text = "0,00";
             this.txtTongThueNt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongThueNt.Value = new decimal(new int[] {
             0,
@@ -1295,6 +1299,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongThanhToanNt.BackColor = System.Drawing.SystemColors.Window;
             this.txtTongThanhToanNt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTongThanhToanNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongThanhToanNt.DecimalPlaces = 2;
             this.txtTongThanhToanNt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTongThanhToanNt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTongThanhToanNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1305,7 +1310,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtTongThanhToanNt.Size = new System.Drawing.Size(153, 20);
             this.txtTongThanhToanNt.TabIndex = 9;
             this.txtTongThanhToanNt.Tag = "readonly";
-            this.txtTongThanhToanNt.Text = "0";
+            this.txtTongThanhToanNt.Text = "0,00";
             this.txtTongThanhToanNt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongThanhToanNt.Value = new decimal(new int[] {
             0,
@@ -1487,7 +1492,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.exportXmlMenu,
             this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 290);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 268);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ChonDonHangBanMenu
@@ -2107,7 +2112,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.group2.Controls.Add(this.lblMauKyHieu);
             this.group2.Controls.Add(this.txtMaMauHD);
             this.group2.Controls.Add(this.v6VvarTextBox2);
-            this.group2.Controls.Add(this.v6VvarTextBox1);
+            this.group2.Controls.Add(this.txtMA_BP);
             this.group2.Controls.Add(this.v6Label7);
             this.group2.Controls.Add(this.v6Label8);
             this.group2.Controls.Add(this.lblMaNX);
@@ -2167,23 +2172,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6VvarTextBox2.TabIndex = 6;
             this.v6VvarTextBox2.VVar = "ma_nvien";
             // 
-            // v6VvarTextBox1
+            // txtMA_BP
             // 
-            this.v6VvarTextBox1.AccessibleName = "ma_bp";
-            this.v6VvarTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(304, 10);
-            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(79, 20);
-            this.v6VvarTextBox1.TabIndex = 5;
-            this.v6VvarTextBox1.VVar = "ma_bp";
+            this.txtMA_BP.AccessibleName = "MA_BP";
+            this.txtMA_BP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMA_BP.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_BP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_BP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMA_BP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_BP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_BP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_BP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_BP.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_BP.Location = new System.Drawing.Point(304, 10);
+            this.txtMA_BP.Name = "txtMA_BP";
+            this.txtMA_BP.Size = new System.Drawing.Size(79, 20);
+            this.txtMA_BP.TabIndex = 5;
+            this.txtMA_BP.VVar = "MA_BP";
+            this.txtMA_BP.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMA_BP_V6LostFocus);
             // 
             // v6Label7
             // 
@@ -2918,7 +2924,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private NumberTien txtTongThanhToan;
         private V6NumberTextBox v6NumberTextBox1;
         private V6VvarTextBox v6VvarTextBox2;
-        private V6VvarTextBox v6VvarTextBox1;
+        private V6VvarTextBox txtMA_BP;
         private V6Controls.V6CheckBox chkSuaTien;
         private V6VvarTextBox txtMaDVCS;
         private V6VvarTextBox v6ColorTextBox3;

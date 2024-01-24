@@ -224,7 +224,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.TxtMa_bp.Name = "TxtMa_bp";
             this.TxtMa_bp.Size = new System.Drawing.Size(61, 20);
             this.TxtMa_bp.TabIndex = 10;
-            this.TxtMa_bp.VVar = "Ma_bp";
+            this.TxtMa_bp.VVar = "MA_BP";
             // 
             // v6Label8
             // 

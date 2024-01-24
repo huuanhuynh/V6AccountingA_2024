@@ -88,7 +88,7 @@
             // 
             // TxtMa_bp
             // 
-            this.TxtMa_bp.AccessibleName = "ma_bp";
+            this.TxtMa_bp.AccessibleName = "MA_BP";
             this.TxtMa_bp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtMa_bp.BackColor = System.Drawing.SystemColors.Window;
             this.TxtMa_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -102,7 +102,7 @@
             this.TxtMa_bp.Name = "TxtMa_bp";
             this.TxtMa_bp.Size = new System.Drawing.Size(97, 20);
             this.TxtMa_bp.TabIndex = 1;
-            this.TxtMa_bp.VVar = "ma_bp";
+            this.TxtMa_bp.VVar = "MA_BP";
             // 
             // v6Label8
             // 

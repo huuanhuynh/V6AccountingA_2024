@@ -391,7 +391,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // 
             // txtma_bp
             // 
-            this.txtma_bp.AccessibleName = "ma_bp";
+            this.txtma_bp.AccessibleName = "MA_BP";
             this.txtma_bp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtma_bp.BackColor = System.Drawing.SystemColors.Window;
@@ -406,7 +406,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtma_bp.Name = "txtma_bp";
             this.txtma_bp.Size = new System.Drawing.Size(144, 20);
             this.txtma_bp.TabIndex = 26;
-            this.txtma_bp.VVar = "ma_bp";
+            this.txtma_bp.VVar = "MA_BP";
             // 
             // lbma_bp
             // 

@@ -270,7 +270,7 @@
             this.lineMaBoPhan.Name = "lineMaBoPhan";
             this.lineMaBoPhan.Size = new System.Drawing.Size(294, 22);
             this.lineMaBoPhan.TabIndex = 5;
-            this.lineMaBoPhan.Vvar = "MA_BP";
+            this.lineMaBoPhan.VVar = "MA_BP";
             // 
             // lineMaKh
             // 

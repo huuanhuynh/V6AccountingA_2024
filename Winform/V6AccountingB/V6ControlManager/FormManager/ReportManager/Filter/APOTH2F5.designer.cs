@@ -81,7 +81,7 @@
             this.ma_bp_filterLine.Name = "ma_bp_filterLine";
             this.ma_bp_filterLine.Size = new System.Drawing.Size(289, 22);
             this.ma_bp_filterLine.TabIndex = 8;
-            this.ma_bp_filterLine.Vvar = "MA_BP";
+            this.ma_bp_filterLine.VVar = "MA_BP";
             // 
             // ma_vv_filterLine
             // 

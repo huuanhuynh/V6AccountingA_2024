@@ -406,7 +406,7 @@
             this.Txtma_bp.Name = "Txtma_bp";
             this.Txtma_bp.Size = new System.Drawing.Size(292, 22);
             this.Txtma_bp.TabIndex = 5;
-            this.Txtma_bp.Vvar = "MA_BP";
+            this.Txtma_bp.VVar = "MA_BP";
             // 
             // Txtma_nsx
             // 

@@ -1274,6 +1274,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
 
                 SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, this, "AM", txtMaKh);
             }
             catch (Exception ex)
             {
@@ -4826,6 +4828,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
+        private void txtMA_BP_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_BP);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
         public override void qrTransfer_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
         {
             var count = 0;
@@ -5496,6 +5514,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 {
                     V6ControlFormHelper.UpdateDKlist(AD, "MA_LNX_I", txtLoaiNX_PH.Text);
                     if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtLoaiNX_PH);
                 }
             }
             catch (Exception ex)

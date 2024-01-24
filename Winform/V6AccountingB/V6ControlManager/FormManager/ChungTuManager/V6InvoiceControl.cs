@@ -2064,7 +2064,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        public void SetDefaultDataDetail_Brothers(V6InvoiceBase invoice, V6Control detailControl, string ads, V6VvarTextBox txt)
+        public void SetDefaultData_Brothers(V6InvoiceBase invoice, V6Control detailControl, string ads, V6VvarTextBox txt)
         {
             try
             {
@@ -2080,10 +2080,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 plist.Add(new SqlParameter("@itemid", ItemID));
                 plist.Add(new SqlParameter("@advance", ""));
 
-                var table = V6BusinessHelper.ExecuteProcedure("VPA_GET_BROTHERS_DEFAULTVALUE", plist.ToArray()).Tables[0];
-                if (table.Rows.Count > 0)
+                var ds = V6BusinessHelper.ExecuteProcedure("VPA_GET_BROTHERS_DEFAULTVALUE", plist.ToArray());
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
-                    var data = table.Rows[0].ToDataDictionary();
+                    var data = ds.Tables[0].Rows[0].ToDataDictionary();
                     detailControl.SetSomeData(data);
                 }
             }

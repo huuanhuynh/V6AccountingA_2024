@@ -1409,6 +1409,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 SetControlValue(txtMaGia, data["MA_GIA"], Invoice.GetTemplateSettingAM("MA_GIA"));
 
                 SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, this, "AM", txtMaKh);
             }
             catch (Exception ex)
             {
@@ -5790,6 +5792,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
+        private void txtMA_BP_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_BP);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
         private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
@@ -6572,6 +6590,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 {
                     V6ControlFormHelper.UpdateDKlist(AD, "MA_LNX_I", txtLoaiNX_PH.Text);
                     if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtLoaiNX_PH);
                 }
             }
             catch (Exception ex)

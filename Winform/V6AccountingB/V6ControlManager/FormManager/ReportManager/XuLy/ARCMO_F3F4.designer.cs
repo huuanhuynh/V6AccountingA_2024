@@ -532,7 +532,7 @@
             // 
             // txtma_bp
             // 
-            this.txtma_bp.AccessibleName = "ma_bp";
+            this.txtma_bp.AccessibleName = "MA_BP";
             this.txtma_bp.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_bp.BrotherFields = "Ten_bp";
@@ -545,7 +545,7 @@
             this.txtma_bp.Name = "txtma_bp";
             this.txtma_bp.Size = new System.Drawing.Size(146, 20);
             this.txtma_bp.TabIndex = 7;
-            this.txtma_bp.VVar = "ma_bp";
+            this.txtma_bp.VVar = "MA_BP";
             // 
             // v6LabelTextBox2
             // 

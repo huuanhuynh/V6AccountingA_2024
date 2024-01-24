@@ -1405,6 +1405,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 txtTenKh.Text = V6Setting.Language.Trim() == "V" ? (data["ten_kh"] ?? "").ToString().Trim() : (data["ten_kh2"] ?? "").ToString().Trim();
 
                 SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
+                //VPA_GET_BROTHERS_DEFAULTVALUE();
+                SetDefaultData_Brothers(Invoice, this, "AM", txtMaKh);
             }
             catch (Exception ex)
             {
@@ -4777,6 +4779,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void txtMA_BP_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    //VPA_GET_BROTHERS_DEFAULTVALUE();
+                    SetDefaultData_Brothers(Invoice, this, "AM", txtMA_BP);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
             }
         }
 
