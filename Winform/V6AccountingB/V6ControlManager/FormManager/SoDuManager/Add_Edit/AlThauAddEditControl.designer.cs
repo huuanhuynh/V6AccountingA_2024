@@ -30,6 +30,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlThauAddEditControl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -103,6 +104,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.lblMaDN2 = new System.Windows.Forms.Label();
             this.lblMaDN1 = new System.Windows.Forms.Label();
             this.tabThongTinKhac = new System.Windows.Forms.TabPage();
+            this.btnChonFile2 = new V6Controls.Controls.FileButton();
+            this.btnXemPDF2 = new V6Controls.Controls.V6FormButton();
+            this.btnXoaPDF2 = new V6Controls.Controls.V6FormButton();
+            this.btnChonPDF2 = new V6Controls.Controls.V6FormButton();
+            this.btnChonFile1 = new V6Controls.Controls.FileButton();
+            this.btnXemPDF = new V6Controls.Controls.V6FormButton();
+            this.btnXoaPDF = new V6Controls.Controls.V6FormButton();
+            this.btnChonPDF = new V6Controls.Controls.V6FormButton();
+            this.pictureBoxS = new System.Windows.Forms.PictureBox();
+            this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
+            this.btnXoaHinhS = new V6Controls.Controls.V6FormButton();
+            this.btnXoahinh = new V6Controls.Controls.V6FormButton();
+            this.btnChonHinhS = new V6Controls.Controls.V6FormButton();
+            this.btnChonhinh = new V6Controls.Controls.V6FormButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -124,6 +139,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
+            this.tabThongTinKhac.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbPHOTOGRAPH)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -144,7 +162,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(889, 330);
+            this.v6TabControl1.Size = new System.Drawing.Size(889, 352);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabThongTinChinh
@@ -176,7 +194,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(5);
             this.tabThongTinChinh.Name = "tabThongTinChinh";
             this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(5);
-            this.tabThongTinChinh.Size = new System.Drawing.Size(881, 298);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(881, 320);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
             // 
@@ -568,7 +586,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabTuDinhNghia.Margin = new System.Windows.Forms.Padding(5);
             this.tabTuDinhNghia.Name = "tabTuDinhNghia";
             this.tabTuDinhNghia.Padding = new System.Windows.Forms.Padding(5);
-            this.tabTuDinhNghia.Size = new System.Drawing.Size(881, 298);
+            this.tabTuDinhNghia.Size = new System.Drawing.Size(881, 320);
             this.tabTuDinhNghia.TabIndex = 1;
             this.tabTuDinhNghia.Text = "Tự định nghĩa";
             // 
@@ -1317,13 +1335,228 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.tabThongTinKhac.AccessibleDescription = "ADDEDITT00004";
             this.tabThongTinKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinKhac.Controls.Add(this.btnChonFile2);
+            this.tabThongTinKhac.Controls.Add(this.btnXemPDF2);
+            this.tabThongTinKhac.Controls.Add(this.btnXoaPDF2);
+            this.tabThongTinKhac.Controls.Add(this.btnChonPDF2);
+            this.tabThongTinKhac.Controls.Add(this.btnChonFile1);
+            this.tabThongTinKhac.Controls.Add(this.btnXemPDF);
+            this.tabThongTinKhac.Controls.Add(this.btnXoaPDF);
+            this.tabThongTinKhac.Controls.Add(this.btnChonPDF);
+            this.tabThongTinKhac.Controls.Add(this.pictureBoxS);
+            this.tabThongTinKhac.Controls.Add(this.ptbPHOTOGRAPH);
+            this.tabThongTinKhac.Controls.Add(this.btnXoaHinhS);
+            this.tabThongTinKhac.Controls.Add(this.btnXoahinh);
+            this.tabThongTinKhac.Controls.Add(this.btnChonHinhS);
+            this.tabThongTinKhac.Controls.Add(this.btnChonhinh);
             this.tabThongTinKhac.Location = new System.Drawing.Point(4, 28);
             this.tabThongTinKhac.Margin = new System.Windows.Forms.Padding(5);
             this.tabThongTinKhac.Name = "tabThongTinKhac";
             this.tabThongTinKhac.Padding = new System.Windows.Forms.Padding(5);
-            this.tabThongTinKhac.Size = new System.Drawing.Size(881, 298);
+            this.tabThongTinKhac.Size = new System.Drawing.Size(881, 320);
             this.tabThongTinKhac.TabIndex = 2;
             this.tabThongTinKhac.Text = "Thông tin khác";
+            this.tabThongTinKhac.Click += new System.EventHandler(this.tabThongTinKhac_Click);
+            // 
+            // btnChonFile2
+            // 
+            this.btnChonFile2.AccessibleName = "FILE_NAME2";
+            this.btnChonFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonFile2.Image = ((System.Drawing.Image)(resources.GetObject("btnChonFile2.Image")));
+            this.btnChonFile2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChonFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonFile2.Location = new System.Drawing.Point(758, 151);
+            this.btnChonFile2.Name = "btnChonFile2";
+            this.btnChonFile2.ReadOnly = false;
+            this.btnChonFile2.Size = new System.Drawing.Size(115, 62);
+            this.btnChonFile2.TabIndex = 56;
+            this.btnChonFile2.Text = "Chọn file 2";
+            this.btnChonFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonFile2.UseVisualStyleBackColor = true;
+            this.btnChonFile2.FileNameChanged += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile0_FileNameChanged);
+            this.btnChonFile2.AfterProcess += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile0_AfterProcess);
+            // 
+            // btnXemPDF2
+            // 
+            this.btnXemPDF2.AccessibleName = "";
+            this.btnXemPDF2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXemPDF2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXemPDF2.Location = new System.Drawing.Point(758, 120);
+            this.btnXemPDF2.Name = "btnXemPDF2";
+            this.btnXemPDF2.Size = new System.Drawing.Size(90, 25);
+            this.btnXemPDF2.TabIndex = 58;
+            this.btnXemPDF2.Text = "Xem PDF2";
+            this.btnXemPDF2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXemPDF2.UseVisualStyleBackColor = true;
+            this.btnXemPDF2.Click += new System.EventHandler(this.btnXemPDF2_Click);
+            // 
+            // btnXoaPDF2
+            // 
+            this.btnXoaPDF2.AccessibleName = "";
+            this.btnXoaPDF2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaPDF2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaPDF2.Location = new System.Drawing.Point(758, 89);
+            this.btnXoaPDF2.Name = "btnXoaPDF2";
+            this.btnXoaPDF2.Size = new System.Drawing.Size(90, 25);
+            this.btnXoaPDF2.TabIndex = 59;
+            this.btnXoaPDF2.Text = "Xóa PDF2";
+            this.btnXoaPDF2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaPDF2.UseVisualStyleBackColor = true;
+            this.btnXoaPDF2.Click += new System.EventHandler(this.btnXoaPDF2_Click);
+            // 
+            // btnChonPDF2
+            // 
+            this.btnChonPDF2.AccessibleName = "";
+            this.btnChonPDF2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonPDF2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonPDF2.Location = new System.Drawing.Point(758, 58);
+            this.btnChonPDF2.Name = "btnChonPDF2";
+            this.btnChonPDF2.Size = new System.Drawing.Size(90, 25);
+            this.btnChonPDF2.TabIndex = 57;
+            this.btnChonPDF2.Text = "Chọn PDF2";
+            this.btnChonPDF2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonPDF2.UseVisualStyleBackColor = true;
+            this.btnChonPDF2.Click += new System.EventHandler(this.btnChonPDF2_Click);
+            // 
+            // btnChonFile1
+            // 
+            this.btnChonFile1.AccessibleName = "FILE_NAME1";
+            this.btnChonFile1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonFile1.Image = ((System.Drawing.Image)(resources.GetObject("btnChonFile1.Image")));
+            this.btnChonFile1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChonFile1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonFile1.Location = new System.Drawing.Point(315, 151);
+            this.btnChonFile1.Name = "btnChonFile1";
+            this.btnChonFile1.ReadOnly = false;
+            this.btnChonFile1.Size = new System.Drawing.Size(131, 62);
+            this.btnChonFile1.TabIndex = 52;
+            this.btnChonFile1.Text = "Chọn file 1";
+            this.btnChonFile1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonFile1.UseVisualStyleBackColor = true;
+            this.btnChonFile1.FileNameChanged += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile0_FileNameChanged);
+            this.btnChonFile1.AfterProcess += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile0_AfterProcess);
+            // 
+            // btnXemPDF
+            // 
+            this.btnXemPDF.AccessibleName = "";
+            this.btnXemPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXemPDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXemPDF.Location = new System.Drawing.Point(315, 120);
+            this.btnXemPDF.Name = "btnXemPDF";
+            this.btnXemPDF.Size = new System.Drawing.Size(90, 25);
+            this.btnXemPDF.TabIndex = 54;
+            this.btnXemPDF.Text = "Xem PDF";
+            this.btnXemPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXemPDF.UseVisualStyleBackColor = true;
+            this.btnXemPDF.Click += new System.EventHandler(this.btnXemPDF_Click);
+            // 
+            // btnXoaPDF
+            // 
+            this.btnXoaPDF.AccessibleName = "";
+            this.btnXoaPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaPDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaPDF.Location = new System.Drawing.Point(315, 89);
+            this.btnXoaPDF.Name = "btnXoaPDF";
+            this.btnXoaPDF.Size = new System.Drawing.Size(90, 25);
+            this.btnXoaPDF.TabIndex = 55;
+            this.btnXoaPDF.Text = "Xóa PDF";
+            this.btnXoaPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaPDF.UseVisualStyleBackColor = true;
+            this.btnXoaPDF.Click += new System.EventHandler(this.btnXoaPDF_Click);
+            // 
+            // btnChonPDF
+            // 
+            this.btnChonPDF.AccessibleName = "";
+            this.btnChonPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonPDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonPDF.Location = new System.Drawing.Point(315, 58);
+            this.btnChonPDF.Name = "btnChonPDF";
+            this.btnChonPDF.Size = new System.Drawing.Size(90, 25);
+            this.btnChonPDF.TabIndex = 53;
+            this.btnChonPDF.Text = "Chọn PDF";
+            this.btnChonPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonPDF.UseVisualStyleBackColor = true;
+            this.btnChonPDF.Click += new System.EventHandler(this.btnChonPDF_Click);
+            // 
+            // pictureBoxS
+            // 
+            this.pictureBoxS.AccessibleName = "SIGNATURE";
+            this.pictureBoxS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxS.Location = new System.Drawing.Point(452, 36);
+            this.pictureBoxS.Name = "pictureBoxS";
+            this.pictureBoxS.Size = new System.Drawing.Size(300, 262);
+            this.pictureBoxS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxS.TabIndex = 50;
+            this.pictureBoxS.TabStop = false;
+            // 
+            // ptbPHOTOGRAPH
+            // 
+            this.ptbPHOTOGRAPH.AccessibleName = "PHOTOGRAPH";
+            this.ptbPHOTOGRAPH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ptbPHOTOGRAPH.Location = new System.Drawing.Point(9, 36);
+            this.ptbPHOTOGRAPH.Name = "ptbPHOTOGRAPH";
+            this.ptbPHOTOGRAPH.Size = new System.Drawing.Size(300, 262);
+            this.ptbPHOTOGRAPH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbPHOTOGRAPH.TabIndex = 51;
+            this.ptbPHOTOGRAPH.TabStop = false;
+            // 
+            // btnXoaHinhS
+            // 
+            this.btnXoaHinhS.AccessibleDescription = "ADDEDITB00025";
+            this.btnXoaHinhS.AccessibleName = "";
+            this.btnXoaHinhS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaHinhS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaHinhS.Location = new System.Drawing.Point(548, 3);
+            this.btnXoaHinhS.Name = "btnXoaHinhS";
+            this.btnXoaHinhS.Size = new System.Drawing.Size(91, 29);
+            this.btnXoaHinhS.TabIndex = 48;
+            this.btnXoaHinhS.Text = "Xóa hình";
+            this.btnXoaHinhS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaHinhS.UseVisualStyleBackColor = true;
+            this.btnXoaHinhS.Click += new System.EventHandler(this.btnXoaHinhS_Click);
+            // 
+            // btnXoahinh
+            // 
+            this.btnXoahinh.AccessibleDescription = "ADDEDITB00005";
+            this.btnXoahinh.AccessibleName = "";
+            this.btnXoahinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoahinh.Location = new System.Drawing.Point(105, 3);
+            this.btnXoahinh.Name = "btnXoahinh";
+            this.btnXoahinh.Size = new System.Drawing.Size(91, 29);
+            this.btnXoahinh.TabIndex = 49;
+            this.btnXoahinh.Text = "Xóa hình";
+            this.btnXoahinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoahinh.UseVisualStyleBackColor = true;
+            this.btnXoahinh.Click += new System.EventHandler(this.btnXoahinh_Click);
+            // 
+            // btnChonHinhS
+            // 
+            this.btnChonHinhS.AccessibleDescription = "ADDEDITB00024";
+            this.btnChonHinhS.AccessibleName = "";
+            this.btnChonHinhS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonHinhS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonHinhS.Location = new System.Drawing.Point(451, 3);
+            this.btnChonHinhS.Name = "btnChonHinhS";
+            this.btnChonHinhS.Size = new System.Drawing.Size(91, 29);
+            this.btnChonHinhS.TabIndex = 46;
+            this.btnChonHinhS.Text = "Chọn hình";
+            this.btnChonHinhS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonHinhS.UseVisualStyleBackColor = true;
+            this.btnChonHinhS.Click += new System.EventHandler(this.btnChonHinhS_Click);
+            // 
+            // btnChonhinh
+            // 
+            this.btnChonhinh.AccessibleDescription = "ADDEDITB00004";
+            this.btnChonhinh.AccessibleName = "";
+            this.btnChonhinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonhinh.Location = new System.Drawing.Point(8, 3);
+            this.btnChonhinh.Name = "btnChonhinh";
+            this.btnChonhinh.Size = new System.Drawing.Size(91, 29);
+            this.btnChonhinh.TabIndex = 47;
+            this.btnChonhinh.Text = "Chọn hình";
+            this.btnChonhinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonhinh.UseVisualStyleBackColor = true;
+            this.btnChonhinh.Click += new System.EventHandler(this.btnChonhinh_Click);
             // 
             // tabControl1
             // 
@@ -1333,11 +1566,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabControl1.Controls.Add(this.tabChiTiet);
             this.tabControl1.Controls.Add(this.tabChiTiet2);
             this.tabControl1.Controls.Add(this.tabKhac);
-            this.tabControl1.Location = new System.Drawing.Point(7, 343);
+            this.tabControl1.Location = new System.Drawing.Point(7, 360);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(887, 219);
+            this.tabControl1.Size = new System.Drawing.Size(887, 234);
             this.tabControl1.TabIndex = 4;
             this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
@@ -1350,7 +1583,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet.Location = new System.Drawing.Point(4, 25);
             this.tabChiTiet.Name = "tabChiTiet";
             this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet.Size = new System.Drawing.Size(879, 190);
+            this.tabChiTiet.Size = new System.Drawing.Size(879, 205);
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Text = "Chi tiết";
             // 
@@ -1410,7 +1643,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(875, 138);
+            this.dataGridView1.Size = new System.Drawing.Size(875, 153);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
@@ -1464,7 +1697,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet2.Location = new System.Drawing.Point(4, 25);
             this.tabChiTiet2.Name = "tabChiTiet2";
             this.tabChiTiet2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet2.Size = new System.Drawing.Size(879, 190);
+            this.tabChiTiet2.Size = new System.Drawing.Size(879, 205);
             this.tabChiTiet2.TabIndex = 2;
             this.tabChiTiet2.Text = "Chi tiết theo khách hàng";
             // 
@@ -1576,7 +1809,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabKhac.Location = new System.Drawing.Point(4, 25);
             this.tabKhac.Name = "tabKhac";
             this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac.Size = new System.Drawing.Size(879, 190);
+            this.tabKhac.Size = new System.Drawing.Size(879, 205);
             this.tabKhac.TabIndex = 1;
             this.tabKhac.Text = "Khác";
             // 
@@ -1589,13 +1822,16 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AlThauAddEditControl";
-            this.Size = new System.Drawing.Size(904, 568);
+            this.Size = new System.Drawing.Size(904, 600);
             this.Load += new System.EventHandler(this.Form_Load);
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();
             this.tabTuDinhNghia.ResumeLayout(false);
             this.tabTuDinhNghia.PerformLayout();
+            this.tabThongTinKhac.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbPHOTOGRAPH)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -1692,5 +1928,19 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.PictureBox pictureBoxS;
+        private System.Windows.Forms.PictureBox ptbPHOTOGRAPH;
+        protected V6Controls.Controls.V6FormButton btnXoaHinhS;
+        protected V6Controls.Controls.V6FormButton btnXoahinh;
+        protected V6Controls.Controls.V6FormButton btnChonHinhS;
+        protected V6Controls.Controls.V6FormButton btnChonhinh;
+        protected V6Controls.Controls.FileButton btnChonFile1;
+        protected V6Controls.Controls.V6FormButton btnXemPDF;
+        protected V6Controls.Controls.V6FormButton btnXoaPDF;
+        protected V6Controls.Controls.V6FormButton btnChonPDF;
+        protected V6Controls.Controls.FileButton btnChonFile2;
+        protected V6Controls.Controls.V6FormButton btnXemPDF2;
+        protected V6Controls.Controls.V6FormButton btnXoaPDF2;
+        protected V6Controls.Controls.V6FormButton btnChonPDF2;
     }
 }

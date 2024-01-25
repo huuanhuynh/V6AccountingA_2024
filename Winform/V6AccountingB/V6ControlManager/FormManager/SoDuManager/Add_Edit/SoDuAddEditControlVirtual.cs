@@ -90,7 +90,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 return false;
             }
         }
-        protected DataTable data3, data4, data5;
+
+        public DataTable data3, data4, data5;
         /// <summary>
         /// Data đưa vào để edit.
         /// </summary>

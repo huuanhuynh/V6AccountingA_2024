@@ -253,7 +253,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + FIELD);
                 }
             }
             catch (Exception ex)

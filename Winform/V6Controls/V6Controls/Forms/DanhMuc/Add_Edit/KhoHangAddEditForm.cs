@@ -56,8 +56,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 Chk_khodaily.Checked = TxtTk_dl.Text != "";
                 TxtTk_dl.Enabled = (Chk_khodaily.Checked);
                 TxtTk_dl.ReadOnly = !(Chk_khodaily.Checked);
-
-                LoadImageData();
+                
             }
             catch (Exception ex)
             {
@@ -190,6 +189,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
 
         }
-        
+
+        private void KhoHangAddEditForm_Load(object sender, EventArgs e)
+        {
+            LoadImageData();
+        }
     }
 }

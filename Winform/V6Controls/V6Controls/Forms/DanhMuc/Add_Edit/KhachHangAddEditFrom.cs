@@ -45,6 +45,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtNhomKH9.SetInitFilter("Loai_nh=9");
 
             txtloai_kh.ExistRowInTable();
+            LoadImageData();
 
             txtMaKH.Focus();
         }
@@ -61,7 +62,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     txtMaDVCS.Enabled = false;
                 }
 
-                LoadImageData();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
+            }
+        }
+
+        public override void DoBeforeView()
+        {
+            try
+            {
+                
             }
             catch (Exception ex)
             {
@@ -340,7 +352,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowMainMessage(V6Text.Updated + FIELD);
                 }
             }
             catch (Exception ex)

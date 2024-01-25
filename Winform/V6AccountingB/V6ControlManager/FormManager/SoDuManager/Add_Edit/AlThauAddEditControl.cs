@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Structs;
 using V6Init;
@@ -57,6 +59,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 detail1.lblName.AccessibleName = "TEN_VT";
                 detail3.lblName.AccessibleName = "TEN_VT";
                 SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
+
+                LoadImageData();
             }
             catch (Exception ex)
             {
@@ -74,6 +78,19 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             try
             {
                 if (!DataOld.ContainsKey("MA_THAU")) txtMaThau.Enabled = true;//vidu
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
+            }
+        }
+
+        public override void DoBeforeView()
+        {
+            try
+            {
+                
             }
             catch (Exception ex)
             {
@@ -502,6 +519,26 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         }
 
 
+        private void LoadImageData()
+        {
+            SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
+            keys.Add("MA_THAU", txtMaThau.Text);
+            var data = Categories.Select("Althauct1", keys).Data;
+            if (data != null && data.Rows.Count > 0)
+            {
+                var rowData = data.Rows[0].ToDataDictionary();
+                SetSomeData(new SortedDictionary<string, object>()
+                {
+                    {"PHOTOGRAPH", rowData["PHOTOGRAPH"] },
+                    {"SIGNATURE", rowData["SIGNATURE"] },
+                    {"PDF1", rowData["PDF1"] },
+                    {"PDF2", rowData["PDF2"] },
+                    {"FILE_NAME1", rowData["FILE_NAME1"] },
+                    {"FILE_NAME2", rowData["FILE_NAME2"] },
+                });
+            }
+        }
+
         public override void ValidateData()
         {
             var errors = "";
@@ -537,8 +574,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             if (errors.Length > 0) throw new Exception(errors);
 
-            V6ControlFormHelper.UpdateDKlistAll(DataDic,
-                     new[] { "MA_THAU", "MA_THAU0", "MA_DVCS", "MA_KH", "NGAY_HL", "NGAY_HL2", "MA_CT" }, AD);
+            V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_THAU", "MA_THAU0", "MA_DVCS", "MA_KH", "NGAY_HL", "NGAY_HL2", "MA_CT" }, AD);
+            V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_THAU", "MA_THAU0", "MA_DVCS", "MA_KH", "NGAY_HL", "NGAY_HL2", "MA_CT" }, data3);
         }
 
         #region ==== Detail control events ====
@@ -856,6 +893,308 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
         
+
+        private void tabThongTinKhac_Click(object sender, EventArgs e)
+        {
+            DoNothing();
+        }
+
+        private void btnChonhinh_Click(object sender, EventArgs e)
+        {
+            ChonHinh();
+        }
+
+        private void btnChonHinhS_Click(object sender, EventArgs e)
+        {
+            ChonHinhS();
+        }
+
+        private void btnXoahinh_Click(object sender, EventArgs e)
+        {
+            XoaHinh();
+        }
+
+        private void btnXoaHinhS_Click(object sender, EventArgs e)
+        {
+            XoaHinhS();
+        }
+
+
+        private void ChonHinh()
+        {
+            try
+            {
+                var chooseImage = V6ControlFormHelper.ChooseImage(this);
+                if (chooseImage == null) return;
+
+                ptbPHOTOGRAPH.Image = chooseImage;
+
+                var ma_thau_new = txtMaThau.Text.Trim();
+                var ma_thau_old = Mode == V6Mode.Edit ? DataOld["MA_THAU"].ToString().Trim() : ma_thau_new;
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALTHAUCT1",
+                    new SqlParameter("@cMa_thau_old", ma_thau_old),
+                    new SqlParameter("@cMa_thau_new", ma_thau_new));
+
+                var photo = Picture.ToJpegByteArray(ptbPHOTOGRAPH.Image);
+                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
+                var data = new SortedDictionary<string, object> { { "PHOTOGRAPH", photo } };//, {"SIGNATURE", sign}};
+                var keys = new SortedDictionary<string, object> { { "MA_THAU", txtMaThau.Text } };
+
+                var result = V6BusinessHelper.UpdateTable("Althauct1", data, keys);
+
+                if (result == 1)
+                {
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ChonHinh", ex);
+            }
+        }
+
+        private void ChonHinhS()
+        {
+            try
+            {
+                var chooseImage = V6ControlFormHelper.ChooseImage(this);
+                if (chooseImage == null) return;
+
+                pictureBoxS.Image = chooseImage;
+
+                var ma_thau_new = txtMaThau.Text.Trim();
+                var ma_thau_old = Mode == V6Mode.Edit ? DataOld["MA_THAU"].ToString().Trim() : ma_thau_new;
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALTHAUCT1",
+                    new SqlParameter("@cMa_thau_old", ma_thau_old),
+                    new SqlParameter("@cMa_thau_new", ma_thau_new));
+
+                var photo = Picture.ToJpegByteArray(pictureBoxS.Image);
+                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
+                var data = new SortedDictionary<string, object> { { "SIGNATURE", photo } };//, {"SIGNATURE", sign}};
+                var keys = new SortedDictionary<string, object> { { "MA_THAU", txtMaThau.Text } };
+
+                var result = V6BusinessHelper.UpdateTable("Althauct1", data, keys);
+
+                if (result == 1)
+                {
+                    ShowMainMessage(V6Text.Updated + "SIGNATURE");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ChonHinhS", ex);
+            }
+        }
+
+
+        private void XoaHinh()
+        {
+            try
+            {
+                ptbPHOTOGRAPH.Image = null;
+
+                var photo = Picture.ToJpegByteArray(ptbPHOTOGRAPH.Image);
+                var data = new SortedDictionary<string, object> { { "PHOTOGRAPH", photo } };
+                var keys = new SortedDictionary<string, object> { { "MA_THAU", txtMaThau.Text } };
+
+                var result = V6BusinessHelper.UpdateTable("Althauct1", data, keys);
+
+                if (result == 1)
+                {
+                    ShowMainMessage(V6Text.Updated + "PHOTOGRAPH");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".XoaHinh " + ex.Message);
+            }
+        }
+
+        private void XoaHinhS()
+        {
+            try
+            {
+                pictureBoxS.Image = null;
+
+                var photo = Picture.ToJpegByteArray(pictureBoxS.Image);
+                var data = new SortedDictionary<string, object> { { "SIGNATURE", photo } };
+                var keys = new SortedDictionary<string, object> { { "MA_THAU", txtMaThau.Text } };
+
+                var result = V6BusinessHelper.UpdateTable("Althauct1", data, keys);
+
+                if (result == 1)
+                {
+                    ShowMainMessage(V6Text.Updated + "SIGNATURE");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XoaHinhS", ex);
+            }
+        }
+
+        private void btnChonPDF_Click(object sender, EventArgs e)
+        {
+            ChonPDF("PDF1", "PDF files|*.PDF");
+        }
+
+        private void btnChonPDF2_Click(object sender, EventArgs e)
+        {
+            ChonPDF("PDF2", "PDF files|*.PDF");
+        }
+
+        private void btnXoaPDF_Click(object sender, EventArgs e)
+        {
+            XoaPDF("PDF1");
+        }
+
+        private void btnXoaPDF2_Click(object sender, EventArgs e)
+        {
+            XoaPDF("PDF2");
+        }
+
+        private void btnXemPDF_Click(object sender, EventArgs e)
+        {
+            XemPDF("PDF1");
+        }
+
+        private void btnXemPDF2_Click(object sender, EventArgs e)
+        {
+            XemPDF("PDF2");
+        }
+
+        private void ChonPDF(string FIELD, string fileFilter)
+        {
+            try
+            {
+                var filePath = V6ControlFormHelper.ChooseOpenFile(this, fileFilter);
+                if (filePath == null) return;
+
+                //var photo = ;
+                byte[] fileBytes = File.ReadAllBytes(filePath);
+                //DataOld là chỗ chứa tạm.
+                if (DataOld == null) DataOld = new SortedDictionary<string, object>();
+                DataOld[FIELD] = fileBytes;
+                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
+                var data = new SortedDictionary<string, object> { { FIELD, fileBytes } };
+                var keys = new SortedDictionary<string, object> { { "MA_THAU", txtMaThau.Text } };
+
+                var result = V6BusinessHelper.UpdateTable("Althauct1", data, keys);
+
+                if (result == 1)
+                {
+                    ShowMainMessage(V6Text.Updated + FIELD);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ChonPDF " + FIELD, ex);
+            }
+        }
+
+        private void XoaPDF(string FIELD)
+        {
+            try
+            {
+                var data = new SortedDictionary<string, object> { { FIELD, null } };
+                var keys = new SortedDictionary<string, object> { { "MA_THAU", txtMaThau.Text } };
+                var result = V6BusinessHelper.UpdateTable("Althauct1", data, keys);
+
+                if (result == 1)
+                {
+                    ShowMainMessage(V6Text.Updated + FIELD);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XoaPDF " + FIELD, ex);
+            }
+        }
+
+        private void XemPDF(string FIELD)
+        {
+            try
+            {
+                //DataOld là chỗ chứa tạm.
+                if (DataOld != null && DataOld.ContainsKey(FIELD))
+                {
+                    V6ControlFormHelper.OpenFileBytes((byte[])DataOld[FIELD], "pdf");
+                }
+                else
+                {
+                    ShowMainMessage(V6Text.NoData);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XemPDF", ex);
+            }
+        }
+
+
+        private void btnChonFile0_AfterProcess(object sender, FileButton.Event_Args e)
+        {
+            try
+            {
+                string FIELD = e.Sender.AccessibleName.Trim().ToUpper();
+                if (e.Mode == FileButton.FileButtonMode.ChooseFile)
+                {
+                    try
+                    {
+                        if (string.IsNullOrEmpty(e.Sender.FileName)) return;
+
+
+                        var data = new SortedDictionary<string, object> { { FIELD, e.Sender.FileName } };
+                        var keys = new SortedDictionary<string, object> { { "MA_THAU", txtMaThau.Text } };
+
+                        var result = V6BusinessHelper.UpdateTable("Althauct1", data, keys);
+
+                        if (result == 1)
+                        {
+                            ShowMainMessage(V6Text.Updated + FIELD);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("ChooseFile: " + ex.Message);
+                    }
+                }
+                else if (e.Mode == FileButton.FileButtonMode.Clear)
+                {
+                    try
+                    {
+                        var data = new SortedDictionary<string, object> { { FIELD, null } };
+                        var keys = new SortedDictionary<string, object> { { "MA_THAU", txtMaThau.Text } };
+                        var result = V6BusinessHelper.UpdateTable("Althauct1", data, keys);
+
+                        if (result == 1)
+                        {
+                            ShowMainMessage(V6Text.Updated + FIELD);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Clear:" + FIELD + ex.Message);
+                    }
+                }
+                else if (e.Mode == FileButton.FileButtonMode.OpenFile)
+                {
+                    string openFile = e.OpenFile;
+                    //File.Delete(openFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnChonFile_AfterProcess", ex);
+            }
+        }
+
+        private void btnChonFile0_FileNameChanged(object sender, FileButton.Event_Args e)
+        {
+            toolTipV6FormControl.SetToolTip(e.Sender, e.NewFileName);
+        }
+        
+
         private bool XuLySuaDetail3(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
