@@ -48,6 +48,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
+            this.lblDetailDown = new V6Controls.V6Label();
+            this.lblDetailUp = new V6Controls.V6Label();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.MA_VT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -321,11 +323,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.tabControl1.Controls.Add(this.tabChiPhi);
             this.tabControl1.Controls.Add(this.tabKhac);
             this.tabControl1.Controls.Add(this.tabChiTietBoSung);
-            this.tabControl1.Location = new System.Drawing.Point(8, 160);
+            this.tabControl1.Location = new System.Drawing.Point(3, 160);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(887, 214);
+            this.tabControl1.Size = new System.Drawing.Size(894, 214);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.Tag = "";
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -336,15 +338,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             this.tabChiTiet.AccessibleDescription = "APOCTPOAR00041";
             this.tabChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabChiTiet.Controls.Add(this.lblDetailDown);
+            this.tabChiTiet.Controls.Add(this.lblDetailUp);
             this.tabChiTiet.Controls.Add(this.detail1);
             this.tabChiTiet.Controls.Add(this.dataGridView1);
             this.tabChiTiet.Location = new System.Drawing.Point(4, 22);
             this.tabChiTiet.Name = "tabChiTiet";
             this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet.Size = new System.Drawing.Size(879, 188);
+            this.tabChiTiet.Size = new System.Drawing.Size(886, 188);
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Tag = "cancelall";
             this.tabChiTiet.Text = "Chi tiết";
+            // 
+            // lblDetailDown
+            // 
+            this.lblDetailDown.Image = global::V6ControlManager.Properties.Resources.ArrowDown16B3;
+            this.lblDetailDown.Location = new System.Drawing.Point(6, 95);
+            this.lblDetailDown.Name = "lblDetailDown";
+            this.lblDetailDown.Size = new System.Drawing.Size(25, 25);
+            this.lblDetailDown.TabIndex = 18;
+            this.toolTipV6FormControl.SetToolTip(this.lblDetailDown, "Chuyển xuống");
+            this.lblDetailDown.Click += new System.EventHandler(this.lblDetailDown_Click);
+            // 
+            // lblDetailUp
+            // 
+            this.lblDetailUp.Image = global::V6ControlManager.Properties.Resources.ArrowUp16B3;
+            this.lblDetailUp.Location = new System.Drawing.Point(6, 70);
+            this.lblDetailUp.Name = "lblDetailUp";
+            this.lblDetailUp.Size = new System.Drawing.Size(25, 25);
+            this.lblDetailUp.TabIndex = 19;
+            this.toolTipV6FormControl.SetToolTip(this.lblDetailUp, "Chuyển lên");
+            this.lblDetailUp.Click += new System.EventHandler(this.lblDetailUp_Click);
             // 
             // detail1
             // 
@@ -357,7 +381,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.detail1.MODE = V6Structs.V6Mode.Init;
             this.detail1.Name = "detail1";
             this.detail1.ShowLblName = false;
-            this.detail1.Size = new System.Drawing.Size(875, 50);
+            this.detail1.Size = new System.Drawing.Size(882, 50);
             this.detail1.Sua_tien = false;
             this.detail1.TabIndex = 2;
             this.detail1.Tag = "cancelall";
@@ -396,14 +420,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.UID,
             this.STT_REC,
             this.STT_REC0});
-            this.dataGridView1.Location = new System.Drawing.Point(2, 52);
+            this.dataGridView1.Location = new System.Drawing.Point(36, 52);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(875, 136);
+            this.dataGridView1.Size = new System.Drawing.Size(848, 136);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Tag = "cancelall";
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
@@ -461,7 +485,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.tabThue.Location = new System.Drawing.Point(4, 22);
             this.tabThue.Name = "tabThue";
             this.tabThue.Padding = new System.Windows.Forms.Padding(3);
-            this.tabThue.Size = new System.Drawing.Size(879, 188);
+            this.tabThue.Size = new System.Drawing.Size(886, 188);
             this.tabThue.TabIndex = 1;
             this.tabThue.Tag = "cancelall";
             this.tabThue.Text = "Thuế GTGT";
@@ -556,7 +580,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.tabChiPhi.Location = new System.Drawing.Point(4, 22);
             this.tabChiPhi.Name = "tabChiPhi";
             this.tabChiPhi.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiPhi.Size = new System.Drawing.Size(879, 188);
+            this.tabChiPhi.Size = new System.Drawing.Size(886, 188);
             this.tabChiPhi.TabIndex = 2;
             this.tabChiPhi.Text = "Chi phí";
             // 
@@ -924,7 +948,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.tabKhac.Location = new System.Drawing.Point(4, 22);
             this.tabKhac.Name = "tabKhac";
             this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac.Size = new System.Drawing.Size(879, 188);
+            this.tabKhac.Size = new System.Drawing.Size(886, 188);
             this.tabKhac.TabIndex = 3;
             this.tabKhac.Text = "Khác";
             // 
@@ -1435,7 +1459,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.tabChiTietBoSung.Location = new System.Drawing.Point(4, 22);
             this.tabChiTietBoSung.Name = "tabChiTietBoSung";
             this.tabChiTietBoSung.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTietBoSung.Size = new System.Drawing.Size(879, 188);
+            this.tabChiTietBoSung.Size = new System.Drawing.Size(886, 188);
             this.tabChiTietBoSung.TabIndex = 4;
             this.tabChiTietBoSung.Text = "Chi tiết bổ sung";
             // 
@@ -4305,5 +4329,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private System.Windows.Forms.ToolStripMenuItem chonTuExcelVATMenu;
         private System.Windows.Forms.ToolStripMenuItem xemVitriMenu;
         private System.Windows.Forms.ToolStripMenuItem xuLyQRCODEMenu;
+        private V6Label lblDetailDown;
+        private V6Label lblDetailUp;
     }
 }

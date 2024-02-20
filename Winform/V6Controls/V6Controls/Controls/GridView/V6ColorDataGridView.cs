@@ -934,7 +934,9 @@ namespace V6Controls
         public bool Control_E { get { return control_e; } set { control_e = value; } }
         private bool control_e = false;
 
-        
+        /// <summary>
+        /// Dùng Space_Bar để thay đổi trạng thái chọn của dòng đang đứng.
+        /// </summary>
         [DefaultValue(false)]
         [Description("Dùng Space_Bar để thay đổi trạng thái chọn của dòng đang đứng.")]
         public bool Space_Bar { get { return space_bar; } set { space_bar = value; } }
@@ -2566,6 +2568,51 @@ namespace V6Controls
             if (DataRowUpdated != null)
             {
                 DataRowUpdated(data);
+            }
+        }
+
+        public void MoveCurrentRowUp()
+        {
+            if (CurrentRow == null) return;
+            if (CurrentRow.Index <= 0) return;
+            int col_index = CurrentCell.ColumnIndex;
+            var select_mode = SelectionMode;
+
+            var changeRow = this.Rows[CurrentRow.Index - 1];
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ChangeRowData(((DataRowView)CurrentRow.DataBoundItem).Row, ((DataRowView)changeRow.DataBoundItem).Row);
+            this.CurrentCell = changeRow.Cells[col_index];
+            SelectionMode = select_mode;
+            this.CurrentCell.Selected = true;
+        }
+
+        public void MoveCurrentRowDown()
+        {
+            if (CurrentRow == null) return;
+            if (CurrentRow.Index == Rows.Count -1) return;
+            int col_index = CurrentCell.ColumnIndex;
+            var select_mode = SelectionMode;
+
+            var changeRow = this.Rows[CurrentRow.Index + 1];
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ChangeRowData(((DataRowView)CurrentRow.DataBoundItem).Row, ((DataRowView)changeRow.DataBoundItem).Row);
+            this.CurrentCell = changeRow.Cells[col_index];
+            SelectionMode = select_mode;
+            this.CurrentCell.Selected = true;
+        }
+
+        private void ChangeRowData(DataRow row1, DataRow row2)
+        {
+            if (row1 == null || row2 == null)
+            {
+                return;
+            }
+            
+            foreach (DataColumn column in row1.Table.Columns)
+            {
+                object o1 = row1[column];
+                row1[column] = row2[column];
+                row2[column] = o1;
             }
         }
     }

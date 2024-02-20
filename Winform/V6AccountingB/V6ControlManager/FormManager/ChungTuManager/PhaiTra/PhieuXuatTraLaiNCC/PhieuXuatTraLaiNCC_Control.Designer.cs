@@ -37,6 +37,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
+            this.lblDetailDown = new V6Controls.V6Label();
+            this.lblDetailUp = new V6Controls.V6Label();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.MA_VT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -263,6 +265,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             this.tabChiTiet.AccessibleDescription = "AINCTIXCP00002";
             this.tabChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabChiTiet.Controls.Add(this.lblDetailDown);
+            this.tabChiTiet.Controls.Add(this.lblDetailUp);
             this.tabChiTiet.Controls.Add(this.detail1);
             this.tabChiTiet.Controls.Add(this.dataGridView1);
             this.tabChiTiet.Location = new System.Drawing.Point(4, 22);
@@ -272,6 +276,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Tag = "cancelall";
             this.tabChiTiet.Text = "Chi tiết";
+            // 
+            // lblDetailDown
+            // 
+            this.lblDetailDown.Image = global::V6ControlManager.Properties.Resources.ArrowDown16B3;
+            this.lblDetailDown.Location = new System.Drawing.Point(6, 95);
+            this.lblDetailDown.Name = "lblDetailDown";
+            this.lblDetailDown.Size = new System.Drawing.Size(25, 25);
+            this.lblDetailDown.TabIndex = 18;
+            this.toolTipV6FormControl.SetToolTip(this.lblDetailDown, "Chuyển xuống");
+            this.lblDetailDown.Click += new System.EventHandler(this.lblDetailDown_Click);
+            // 
+            // lblDetailUp
+            // 
+            this.lblDetailUp.Image = global::V6ControlManager.Properties.Resources.ArrowUp16B3;
+            this.lblDetailUp.Location = new System.Drawing.Point(6, 70);
+            this.lblDetailUp.Name = "lblDetailUp";
+            this.lblDetailUp.Size = new System.Drawing.Size(25, 25);
+            this.lblDetailUp.TabIndex = 19;
+            this.toolTipV6FormControl.SetToolTip(this.lblDetailUp, "Chuyển lên");
+            this.lblDetailUp.Click += new System.EventHandler(this.lblDetailUp_Click);
             // 
             // detail1
             // 
@@ -323,14 +347,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.UID,
             this.STT_REC,
             this.STT_REC0});
-            this.dataGridView1.Location = new System.Drawing.Point(2, 52);
+            this.dataGridView1.Location = new System.Drawing.Point(36, 52);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(882, 140);
+            this.dataGridView1.Size = new System.Drawing.Size(850, 140);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Tag = "readonly";
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
@@ -3334,5 +3358,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         private System.Windows.Forms.ToolStripMenuItem chonPhieuNhapMenu;
         private DropDownButton btnChucNang2;
         private System.Windows.Forms.ToolStripMenuItem xuLyQRCODEMenu;
+        private V6Label lblDetailDown;
+        private V6Label lblDetailUp;
     }
 }

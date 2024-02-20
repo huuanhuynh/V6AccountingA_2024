@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.lblUserName = new System.Windows.Forms.Label();
-            this.btnCaptcha = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkAutoSoCt = new V6Controls.V6CheckBox();
             this.chkDeleteOldExcel = new V6Controls.V6CheckBox();
             this.btnSuaChiTieu = new System.Windows.Forms.Button();
             this.btnXemMauExcel = new System.Windows.Forms.Button();
-            this.svgImage = new System.Windows.Forms.PictureBox();
             this.txtUserName = new V6Controls.V6ColorTextBox();
             this.txtPassword = new V6Controls.V6ColorTextBox();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -53,12 +51,19 @@
             this.lblFAIL = new System.Windows.Forms.Label();
             this.lblERR = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtCQT_DAYS = new V6Controls.V6ColorTextBox();
             this.chkCQT_DAYS = new V6Controls.V6CheckBox();
             this.chkContinueDownload = new V6Controls.V6CheckBox();
-            this.txtCQT_DAYS = new V6Controls.V6ColorTextBox();
+            this.btnReplace = new System.Windows.Forms.Button();
+            this.btnMoveUp = new System.Windows.Forms.Button();
+            this.btnDichVu = new System.Windows.Forms.Button();
+            this.svgImage = new System.Windows.Forms.PictureBox();
+            this.btnCaptcha = new System.Windows.Forms.Button();
+            this.cboFields = new System.Windows.Forms.ComboBox();
+            this.lblCurrentCode = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.svgImage)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImage)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUserName
@@ -69,18 +74,6 @@
             this.lblUserName.Size = new System.Drawing.Size(58, 13);
             this.lblUserName.TabIndex = 0;
             this.lblUserName.Text = "User name";
-            // 
-            // btnCaptcha
-            // 
-            this.btnCaptcha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCaptcha.Image = global::V6ControlManager.Properties.Resources.Refresh;
-            this.btnCaptcha.Location = new System.Drawing.Point(0, 55);
-            this.btnCaptcha.Name = "btnCaptcha";
-            this.btnCaptcha.Size = new System.Drawing.Size(40, 40);
-            this.btnCaptcha.TabIndex = 4;
-            this.btnCaptcha.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCaptcha.UseVisualStyleBackColor = true;
-            this.btnCaptcha.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // groupBox1
             // 
@@ -124,7 +117,7 @@
             // 
             this.btnSuaChiTieu.AccessibleDescription = "FILTERB00001";
             this.btnSuaChiTieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSuaChiTieu.Location = new System.Drawing.Point(110, 446);
+            this.btnSuaChiTieu.Location = new System.Drawing.Point(110, 531);
             this.btnSuaChiTieu.Name = "btnSuaChiTieu";
             this.btnSuaChiTieu.Size = new System.Drawing.Size(88, 29);
             this.btnSuaChiTieu.TabIndex = 20;
@@ -136,21 +129,13 @@
             // 
             this.btnXemMauExcel.AccessibleDescription = "FILTERB00013";
             this.btnXemMauExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXemMauExcel.Location = new System.Drawing.Point(0, 446);
+            this.btnXemMauExcel.Location = new System.Drawing.Point(0, 531);
             this.btnXemMauExcel.Name = "btnXemMauExcel";
             this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
             this.btnXemMauExcel.TabIndex = 19;
             this.btnXemMauExcel.Text = "Xem mẫu excel";
             this.btnXemMauExcel.UseVisualStyleBackColor = true;
             this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
-            // 
-            // svgImage
-            // 
-            this.svgImage.Location = new System.Drawing.Point(67, 55);
-            this.svgImage.Name = "svgImage";
-            this.svgImage.Size = new System.Drawing.Size(202, 40);
-            this.svgImage.TabIndex = 8;
-            this.svgImage.TabStop = false;
             // 
             // txtUserName
             // 
@@ -354,6 +339,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tùy chọn";
             // 
+            // txtCQT_DAYS
+            // 
+            this.txtCQT_DAYS.AccessibleName = "CQT_DAYS";
+            this.txtCQT_DAYS.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtCQT_DAYS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtCQT_DAYS.Enabled = false;
+            this.txtCQT_DAYS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtCQT_DAYS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtCQT_DAYS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtCQT_DAYS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtCQT_DAYS.LeaveColor = System.Drawing.Color.White;
+            this.txtCQT_DAYS.Location = new System.Drawing.Point(174, 39);
+            this.txtCQT_DAYS.Name = "txtCQT_DAYS";
+            this.txtCQT_DAYS.ReadOnly = true;
+            this.txtCQT_DAYS.Size = new System.Drawing.Size(48, 20);
+            this.txtCQT_DAYS.TabIndex = 9;
+            this.txtCQT_DAYS.TabStop = false;
+            this.txtCQT_DAYS.Text = "1";
+            // 
             // chkCQT_DAYS
             // 
             this.chkCQT_DAYS.AutoSize = true;
@@ -380,29 +384,100 @@
             this.chkContinueDownload.Text = "Tải tiếp phiếu lỗi.";
             this.chkContinueDownload.UseVisualStyleBackColor = true;
             // 
-            // txtCQT_DAYS
+            // btnReplace
             // 
-            this.txtCQT_DAYS.AccessibleName = "CQT_DAYS";
-            this.txtCQT_DAYS.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txtCQT_DAYS.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtCQT_DAYS.Enabled = false;
-            this.txtCQT_DAYS.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtCQT_DAYS.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtCQT_DAYS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtCQT_DAYS.HoverColor = System.Drawing.Color.Yellow;
-            this.txtCQT_DAYS.LeaveColor = System.Drawing.Color.White;
-            this.txtCQT_DAYS.Location = new System.Drawing.Point(174, 39);
-            this.txtCQT_DAYS.Name = "txtCQT_DAYS";
-            this.txtCQT_DAYS.ReadOnly = true;
-            this.txtCQT_DAYS.Size = new System.Drawing.Size(48, 20);
-            this.txtCQT_DAYS.TabIndex = 9;
-            this.txtCQT_DAYS.TabStop = false;
-            this.txtCQT_DAYS.Text = "1";
+            this.btnReplace.AccessibleName = "";
+            this.btnReplace.Image = global::V6ControlManager.Properties.Resources.Replace;
+            this.btnReplace.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnReplace.Location = new System.Drawing.Point(9, 471);
+            this.btnReplace.Name = "btnReplace";
+            this.btnReplace.Size = new System.Drawing.Size(109, 40);
+            this.btnReplace.TabIndex = 21;
+            this.btnReplace.Tag = "";
+            this.btnReplace.Text = "Chuyển DV";
+            this.btnReplace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReplace.UseVisualStyleBackColor = true;
+            this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
+            // 
+            // btnMoveUp
+            // 
+            this.btnMoveUp.AccessibleName = "";
+            this.btnMoveUp.Image = global::V6ControlManager.Properties.Resources.ArrowUpBlue3D;
+            this.btnMoveUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnMoveUp.Location = new System.Drawing.Point(124, 425);
+            this.btnMoveUp.Name = "btnMoveUp";
+            this.btnMoveUp.Size = new System.Drawing.Size(109, 40);
+            this.btnMoveUp.TabIndex = 21;
+            this.btnMoveUp.Tag = "";
+            this.btnMoveUp.Text = "Chuyển DV";
+            this.btnMoveUp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMoveUp.UseVisualStyleBackColor = true;
+            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
+            // 
+            // btnDichVu
+            // 
+            this.btnDichVu.AccessibleName = "";
+            this.btnDichVu.Image = global::V6ControlManager.Properties.Resources.ArrowDownBlue3D;
+            this.btnDichVu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnDichVu.Location = new System.Drawing.Point(9, 425);
+            this.btnDichVu.Name = "btnDichVu";
+            this.btnDichVu.Size = new System.Drawing.Size(109, 40);
+            this.btnDichVu.TabIndex = 21;
+            this.btnDichVu.Tag = "";
+            this.btnDichVu.Text = "Chuyển DV";
+            this.btnDichVu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDichVu.UseVisualStyleBackColor = true;
+            this.btnDichVu.Click += new System.EventHandler(this.btnDichVu_Click);
+            // 
+            // svgImage
+            // 
+            this.svgImage.Location = new System.Drawing.Point(67, 55);
+            this.svgImage.Name = "svgImage";
+            this.svgImage.Size = new System.Drawing.Size(202, 40);
+            this.svgImage.TabIndex = 8;
+            this.svgImage.TabStop = false;
+            // 
+            // btnCaptcha
+            // 
+            this.btnCaptcha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCaptcha.Image = global::V6ControlManager.Properties.Resources.Refresh;
+            this.btnCaptcha.Location = new System.Drawing.Point(0, 55);
+            this.btnCaptcha.Name = "btnCaptcha";
+            this.btnCaptcha.Size = new System.Drawing.Size(40, 40);
+            this.btnCaptcha.TabIndex = 4;
+            this.btnCaptcha.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCaptcha.UseVisualStyleBackColor = true;
+            this.btnCaptcha.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // cboFields
+            // 
+            this.cboFields.AccessibleName = "";
+            this.cboFields.BackColor = System.Drawing.SystemColors.Window;
+            this.cboFields.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboFields.Location = new System.Drawing.Point(124, 490);
+            this.cboFields.Name = "cboFields";
+            this.cboFields.Size = new System.Drawing.Size(144, 21);
+            this.cboFields.TabIndex = 23;
+            // 
+            // lblCurrentCode
+            // 
+            this.lblCurrentCode.AutoSize = true;
+            this.lblCurrentCode.Location = new System.Drawing.Point(125, 474);
+            this.lblCurrentCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCurrentCode.Name = "lblCurrentCode";
+            this.lblCurrentCode.Size = new System.Drawing.Size(75, 13);
+            this.lblCurrentCode.TabIndex = 22;
+            this.lblCurrentCode.Text = "Trường dữ liệu";
             // 
             // EIVPOA_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cboFields);
+            this.Controls.Add(this.lblCurrentCode);
+            this.Controls.Add(this.btnReplace);
+            this.Controls.Add(this.btnMoveUp);
+            this.Controls.Add(this.btnDichVu);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblERR);
             this.Controls.Add(this.lblFAIL);
@@ -427,13 +502,13 @@
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.txtToken);
             this.Name = "EIVPOA_Filter";
-            this.Size = new System.Drawing.Size(275, 478);
+            this.Size = new System.Drawing.Size(275, 563);
             this.Load += new System.EventHandler(this.EIVPOA_Filter_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.svgImage)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -469,5 +544,10 @@
         private V6Controls.V6CheckBox chkCQT_DAYS;
         private V6Controls.V6CheckBox chkContinueDownload;
         private V6Controls.V6ColorTextBox txtCQT_DAYS;
+        public System.Windows.Forms.Button btnDichVu;
+        public System.Windows.Forms.Button btnMoveUp;
+        public System.Windows.Forms.Button btnReplace;
+        private System.Windows.Forms.ComboBox cboFields;
+        private System.Windows.Forms.Label lblCurrentCode;
     }
 }

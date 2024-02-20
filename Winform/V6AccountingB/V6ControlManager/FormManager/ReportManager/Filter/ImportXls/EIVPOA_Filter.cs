@@ -21,6 +21,8 @@ using V6ThuePost.HDDT_GDT_GOV;
 using V6Tools.V6Convert;
 using Newtonsoft.Json;
 using V6ThuePost;
+using V6ControlManager.FormManager.ReportManager.XuLy;
+using V6Controls.Forms.Viewer;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -107,7 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public int per_cent = 0, total = 10, ok_count = 0, fail_count = 0, err_count = 0;
         DataTable full_table = null;
         List<Dictionary<string, object>> Continue_download_list = null;
-
+        
         public ALIM2XLS_CONFIG ALIM2XLS_Config { get; internal set; }
 
         /// <summary>
@@ -538,7 +540,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         {
                             item_value = ObjectAndString.StringToDecimal(item.DLieu);
                         }
-                        else if (item.KDLieu == "string" || item.KDLieu == "String")
+                        else if (item.KDLieu == "string" || item.KDLieu == "String" || item.KDLieu == "")
                         {
                             DoNothing();
                         }
@@ -692,6 +694,103 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false);
         }
 
+        DataTable dv_table = null;
+        private void btnDichVu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var parent_control = FindParent<XuLyBase>() as XuLyBase;
+                var gridview1 = parent_control.dataGridView1;
+                var gridview2 = parent_control.dataGridView2;
+                if (full_table != null && full_table.Rows.Count > 0)
+                {
+                    dv_table = new DataTable("DV_TABLE");
+                    List<DataGridViewRow> list = new List<DataGridViewRow>();
+                    foreach (DataGridViewRow row in gridview1.Rows)
+                    {
+                        if (row.IsSelect())
+                        {
+                            dv_table.AddRow(row.ToDataDictionary(), true);
+                            list.Add(row);
+                        }
+                    }
+
+                    foreach (DataGridViewRow item in list)
+                    {
+                        gridview1.Rows.Remove(item);
+                    }
+
+                    if (gridview2.DataSource == null)
+                    {
+                        gridview2.DataSource = dv_table;
+                    }
+                    else
+                    {
+                        ((DataTable)gridview2.DataSource).AddRowByTable(dv_table);
+                    }
+                    //FormatGridView2(pa)
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var parent_control = FindParent<XuLyBase>() as XuLyBase;
+                var gridview1 = parent_control.dataGridView1;
+                var gridview2 = parent_control.dataGridView2;
+                //if (full_table != null && full_table.Rows.Count > 0)
+                {
+                    dv_table = new DataTable("DV_TABLE");
+                    List<DataGridViewRow> list = new List<DataGridViewRow>();
+                    foreach (DataGridViewRow row in gridview2.Rows)
+                    {
+                        if (row.IsSelect())
+                        {
+                            dv_table.AddRow(row.ToDataDictionary(), true);
+                            list.Add(row);
+                        }
+                    }
+
+                    foreach (DataGridViewRow item in list)
+                    {
+                        gridview2.Rows.Remove(item);
+                    }
+
+                    ((DataTable)gridview1.DataSource).AddRowByTable(dv_table);
+                    //FormatGridView2(pa)
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
+        private void btnReplace_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ALMAPCQT_VT = cboFields.SelectedValue.ToString();
+                AldmConfig config = ConfigManager.GetAldmConfig(ALMAPCQT_VT);
+
+                var data = V6BusinessHelper.SelectSimple(config.TABLE_NAME, config.FIELDV);
+
+                DataEditorForm f = new DataEditorForm(this, data, ALMAPCQT_VT, config.FIELD, config.KEY, config.TITLE, true, true, false, true, null);
+                
+                f.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
             V6ControlFormHelper.OpenExcelTemplate("POA_ALL.XLS", V6Setting.IMPORT_EXCEL);
@@ -714,9 +813,33 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void EIVPOA_Filter_Load(object sender, EventArgs e)
         {
-            txtUserName.Text = "3700360123";
-            txtPassword.Text = "123456aA$";
-            btnCaptcha.PerformClick();
+            try
+            {
+                
+                btnCaptcha.PerformClick();
+
+                var parent_control = FindParent<XuLyBase>() as XuLyBase;
+
+                if (parent_control._albcConfig.EXTRA_INFOR != null && parent_control._albcConfig.EXTRA_INFOR.ContainsKey("EIV_USERNAME"))
+                {
+                    txtUserName.Text = parent_control._albcConfig.EXTRA_INFOR["EIV_USERNAME"];// "3700360123";
+                    //txtPassword.Text = "123456aA$";
+                }
+
+                if (parent_control._albcConfig.EXTRA_INFOR != null && parent_control._albcConfig.EXTRA_INFOR.ContainsKey("EIV_FIELDS"))
+                {
+                    var dic = ObjectAndString.StringToStringDictionary(parent_control._albcConfig.EXTRA_INFOR["EIV_FIELDS"], ',', ':');
+                    cboFields.DataSource = new BindingSource(dic, null);
+                    cboFields.DisplayMember = "Key";
+                    cboFields.ValueMember = "Value";
+                    //cboFields.Items.AddRange(ObjectAndString.SplitString(parent_control._albcConfig.EXTRA_INFOR["EIV_FIELDS"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+            
         }
         
         

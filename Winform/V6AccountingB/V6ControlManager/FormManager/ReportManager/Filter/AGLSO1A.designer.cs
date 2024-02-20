@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AGLSO1A));
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radOr = new System.Windows.Forms.RadioButton();
@@ -41,6 +42,8 @@
             this.v6Label9 = new V6Controls.V6Label();
             this.TxtTk = new V6Controls.V6VvarTextBox();
             this.Txtten_tk = new V6Controls.V6ColorTextBox();
+            this.dateSelectButton1 = new V6Controls.Controls.DateSelectButton();
+            this.dateSelectButton2 = new V6Controls.Controls.DateSelectButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +51,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 41);
@@ -216,10 +220,30 @@
             this.Txtten_tk.TabIndex = 44;
             this.Txtten_tk.TabStop = false;
             // 
+            // dateSelectButton1
+            // 
+            this.dateSelectButton1.Image = ((System.Drawing.Image)(resources.GetObject("dateSelectButton1.Image")));
+            this.dateSelectButton1.Location = new System.Drawing.Point(231, 3);
+            this.dateSelectButton1.Name = "dateSelectButton1";
+            this.dateSelectButton1.ReferenceControl = this.dateNgay_ct1;
+            this.dateSelectButton1.Size = new System.Drawing.Size(21, 21);
+            this.dateSelectButton1.TabIndex = 45;
+            // 
+            // dateSelectButton2
+            // 
+            this.dateSelectButton2.Image = ((System.Drawing.Image)(resources.GetObject("dateSelectButton2.Image")));
+            this.dateSelectButton2.Location = new System.Drawing.Point(231, 29);
+            this.dateSelectButton2.Name = "dateSelectButton2";
+            this.dateSelectButton2.ReferenceControl = this.dateNgay_ct2;
+            this.dateSelectButton2.Size = new System.Drawing.Size(21, 21);
+            this.dateSelectButton2.TabIndex = 45;
+            // 
             // AGLSO1A
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dateSelectButton2);
+            this.Controls.Add(this.dateSelectButton1);
             this.Controls.Add(this.Txtten_tk);
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.TxtTk);
@@ -254,5 +278,7 @@
         private V6Controls.V6Label v6Label9;
         private V6Controls.V6VvarTextBox TxtTk;
         private V6Controls.V6ColorTextBox Txtten_tk;
+        private V6Controls.Controls.DateSelectButton dateSelectButton1;
+        private V6Controls.Controls.DateSelectButton dateSelectButton2;
     }
 }

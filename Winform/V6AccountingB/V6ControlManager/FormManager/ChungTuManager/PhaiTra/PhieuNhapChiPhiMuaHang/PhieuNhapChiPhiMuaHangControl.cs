@@ -5357,6 +5357,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
+        private void lblDetailUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (detail1.IsAddOrEdit) return;
+                dataGridView1.MoveCurrentRowUp();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
+        private void lblDetailDown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (detail1.IsAddOrEdit) return;
+                dataGridView1.MoveCurrentRowDown();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
         private void txtManx_TextChanged(object sender, EventArgs e)
         {
             TxtTk_i_ao.Text = txtManx.Text;

@@ -484,6 +484,9 @@ namespace V6Init
         public string TITLE_U { get { return GetString("TITLE_U"); } }
         public string TITLE_U2 { get { return GetString("TITLE_U2"); } }
         public string LOOKUP { get { return GetString("LOOKUP"); } }
+        /// <summary>
+        /// Trường mã của bảng khác ánh xạ qua Table_key (;) AlmapCQT 2 trường thay thế from;to.
+        /// </summary>
         public string DOI_MA { get { return GetString("DOI_MA"); } }
         public string V_TYPE { get { return GetString("V_TYPE"); } }
         public string I_LOOKUP { get { return GetString("I_LOOKUP"); } }

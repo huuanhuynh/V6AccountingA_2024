@@ -684,8 +684,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             dgv.Height = gpa.Height - 55;
                         }
-                        dgv.Left = 2;
-                        dgv.Width = gpa.Width - 5;
+                        if (dgv.Name == "dataGridView1")
+                        {
+                            dgv.Left = 36;
+                            dgv.Width = gpa.Width - 39;
+                        }
+                        else
+                        {
+                            dgv.Left = 2;
+                            dgv.Width = gpa.Width - 5;
+                        }
                     }
                 }
             }

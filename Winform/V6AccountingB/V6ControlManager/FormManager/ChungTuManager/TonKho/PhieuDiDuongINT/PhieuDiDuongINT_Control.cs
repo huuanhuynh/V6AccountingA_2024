@@ -5777,6 +5777,41 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             }
         }
 
+        private void lblDetailUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (detail1.IsAddOrEdit) return;
+
+                
+                dataGridView1.MoveCurrentRowUp();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
+        private void lblDetailDown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (detail1.IsAddOrEdit) return;
+
+                
+                dataGridView1.MoveCurrentRowDown();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+        
+
         List<string> gridView3Fields = new List<string>() { "MA_VT", "TEN_VT", "DVT1", "SO_LUONG1", "CP_NT", "CP", "TIEN_NT0", "TIEN0" };
         private void dataGridView3_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {

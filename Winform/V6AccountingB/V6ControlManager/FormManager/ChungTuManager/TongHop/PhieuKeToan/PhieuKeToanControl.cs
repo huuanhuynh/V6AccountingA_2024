@@ -4039,6 +4039,40 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             }
         }
 
+        private void lblDetailUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (detail1.IsAddOrEdit) return;
+
+                
+                dataGridView1.MoveCurrentRowUp();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
+        private void lblDetailDown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (detail1.IsAddOrEdit) return;
+
+                
+                dataGridView1.MoveCurrentRowDown();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
         private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);

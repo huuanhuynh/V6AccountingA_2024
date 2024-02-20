@@ -6609,5 +6609,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
             }
         }
+
+        private void lblDetailUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (!dataGridView1.ReadOnly) return;
+                dataGridView1.MoveCurrentRowUp();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
+        private void lblDetailDown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (!dataGridView1.ReadOnly) return;
+                dataGridView1.MoveCurrentRowDown();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
     }
 }

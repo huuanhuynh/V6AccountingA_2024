@@ -4864,6 +4864,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
+        private void btnDetailUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (detail1.IsAddOrEdit) return;
+                dataGridView1.MoveCurrentRowUp();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
+        private void btnDetailDown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                if (detail1.IsAddOrEdit) return;
+                dataGridView1.MoveCurrentRowDown();
+                ResetSttRec0();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name + _sttRec, ex);
+            }
+        }
+
         public override void qrTransfer_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
         {
             var count = 0;

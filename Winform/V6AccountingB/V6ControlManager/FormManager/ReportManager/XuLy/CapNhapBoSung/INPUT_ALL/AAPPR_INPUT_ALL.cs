@@ -318,7 +318,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string showFields = invoice.EXTRA_INFOR.ContainsKey("ADFIELDS") ? invoice.EXTRA_INFOR["ADFIELDS"] : "";
                 string keyFields = "UID"; // "STT_REC,STT_REC0"
                 string tableName = invoice.AD_TableName;// invoice.Mact + "_REPLACE";
-                var f = new DataEditorForm(this, dataGridView2.DataSource, tableName, showFields, keyFields, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, true);
+                var f = new DataEditorForm(this, (System.Data.DataTable)dataGridView2.DataSource, tableName, showFields, keyFields, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, true);
                 All_Objects["dataGridView"] = f.DataGridView;
                 InvokeFormEvent(FormDynamicEvent.SUANHIEUDONG);
                 f.ShowDialog(this);
