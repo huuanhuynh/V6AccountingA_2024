@@ -5429,6 +5429,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\EIV_ReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\EIV_ReplaceForm.Designer.cs">
+      <DependentUpon>EIV_ReplaceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\EIVSOA_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -9160,6 +9166,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATO\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\EIV_ReplaceForm.resx">
+      <DependentUpon>EIV_ReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\EIVSOA_Control.resx">
       <DependentUpon>EIVSOA_Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -9855,6 +9864,8 @@
     <None Include="Resources\ArrowUpBlue3D.png" />
     <None Include="Resources\ArrowUpLeftBlue3D.png" />
     <None Include="Resources\ArrowUpRightBlue3D.png" />
+    <None Include="Resources\ArrowDown16B3.png" />
+    <None Include="Resources\ArrowUp16B3.png" />
     <Content Include="Resources\Box16.png" />
     <None Include="Resources\Excel32.ico" />
     <None Include="Resources\Excel16.png" />

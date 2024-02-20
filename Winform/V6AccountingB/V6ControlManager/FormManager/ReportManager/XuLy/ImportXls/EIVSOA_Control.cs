@@ -29,9 +29,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string check = null;
         
         public EIVSOA_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
-            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
-
+            InitializeComponent();
         }
         
         public override void SetStatus2Text()
@@ -857,6 +857,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 ((EIVPOA_Filter)FilterControl).ALIM2XLS_Config = ALIM2XLS_Config;
+                dataGridView2.Space_Bar = true;
+                dataGridView2.Control_A = true;
             }
             catch (Exception ex)
             {

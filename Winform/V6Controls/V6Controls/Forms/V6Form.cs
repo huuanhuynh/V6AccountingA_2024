@@ -323,6 +323,11 @@ namespace V6Controls.Forms
             return false;
         }
 
+        /// <summary>
+        /// V6ControlFormHelper.SetControlValue
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="value"></param>
         public void SetControlValue(Control control, object value)
         {
             V6ControlFormHelper.SetControlValue(control, value);

@@ -134,7 +134,9 @@
             this.label28 = new System.Windows.Forms.Label();
             this.txtFparent = new V6Controls.V6ColorTextBox();
             this.txtVisible = new V6Controls.V6ColorTextBox();
+            this.txtReadonly = new V6Controls.V6ColorTextBox();
             this.txtEnabled = new V6Controls.V6ColorTextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -146,8 +148,11 @@
             this.txtF2 = new V6Controls.V6ColorTextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
+            this.txtItems = new V6Controls.V6ColorTextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.txtMultiLine = new V6Controls.V6ColorTextBox();
             this.lblMultiLine = new System.Windows.Forms.Label();
             this.txtToUpper = new V6Controls.V6ColorTextBox();
@@ -169,8 +174,9 @@
             this.label77 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label73 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.txtReadonly = new V6Controls.V6ColorTextBox();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.txtComboBoxType = new V6Controls.V6ColorTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinThem.SuspendLayout();
@@ -825,7 +831,8 @@
             "FileButton",
             "NumberMonth",
             "NumberYear",
-            "FILTERGROUP"});
+            "FILTERGROUP",
+            "ComboBox"});
             this.cboControlType.Location = new System.Drawing.Point(287, 8);
             this.cboControlType.Name = "cboControlType";
             this.cboControlType.Size = new System.Drawing.Size(121, 24);
@@ -1706,6 +1713,24 @@
             this.txtVisible.Size = new System.Drawing.Size(150, 23);
             this.txtVisible.TabIndex = 7;
             // 
+            // txtReadonly
+            // 
+            this.txtReadonly.AccessibleName = "Readonly";
+            this.txtReadonly.BackColor = System.Drawing.Color.White;
+            this.txtReadonly.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtReadonly.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtReadonly.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtReadonly.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtReadonly.HoverColor = System.Drawing.Color.Yellow;
+            this.txtReadonly.LeaveColor = System.Drawing.Color.White;
+            this.txtReadonly.LimitCharacters = "01";
+            this.txtReadonly.Location = new System.Drawing.Point(502, 34);
+            this.txtReadonly.Margin = new System.Windows.Forms.Padding(4);
+            this.txtReadonly.MaxLength = 1;
+            this.txtReadonly.Name = "txtReadonly";
+            this.txtReadonly.Size = new System.Drawing.Size(150, 23);
+            this.txtReadonly.TabIndex = 4;
+            // 
             // txtEnabled
             // 
             this.txtEnabled.AccessibleName = "Enabled";
@@ -1723,6 +1748,17 @@
             this.txtEnabled.Name = "txtEnabled";
             this.txtEnabled.Size = new System.Drawing.Size(150, 23);
             this.txtEnabled.TabIndex = 4;
+            // 
+            // label33
+            // 
+            this.label33.AccessibleDescription = ".";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(392, 36);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(68, 17);
+            this.label33.TabIndex = 3;
+            this.label33.Text = "Readonly";
             // 
             // label18
             // 
@@ -1810,11 +1846,17 @@
             // 
             this.tabThongTinKhac.AccessibleDescription = "ADDEDITT00004";
             this.tabThongTinKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinKhac.Controls.Add(this.txtComboBoxType);
+            this.tabThongTinKhac.Controls.Add(this.label74);
+            this.tabThongTinKhac.Controls.Add(this.label76);
             this.tabThongTinKhac.Controls.Add(this.txtF2);
             this.tabThongTinKhac.Controls.Add(this.label20);
             this.tabThongTinKhac.Controls.Add(this.label19);
+            this.tabThongTinKhac.Controls.Add(this.label48);
             this.tabThongTinKhac.Controls.Add(this.label46);
             this.tabThongTinKhac.Controls.Add(this.label40);
+            this.tabThongTinKhac.Controls.Add(this.txtItems);
+            this.tabThongTinKhac.Controls.Add(this.label23);
             this.tabThongTinKhac.Controls.Add(this.txtMultiLine);
             this.tabThongTinKhac.Controls.Add(this.lblMultiLine);
             this.tabThongTinKhac.Controls.Add(this.txtToUpper);
@@ -1867,6 +1909,16 @@
             this.label19.TabIndex = 38;
             this.label19.Text = "Bật tắt chức năng lookup chọn nhiều mã";
             // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(283, 90);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(230, 17);
+            this.label48.TabIndex = 40;
+            this.label48.Text = "Danh sách các item cho ComboBox";
+            // 
             // label46
             // 
             this.label46.AutoSize = true;
@@ -1887,6 +1939,34 @@
             this.label40.Size = new System.Drawing.Size(114, 17);
             this.label40.TabIndex = 40;
             this.label40.Text = "Bật Upper khi gõ";
+            // 
+            // txtItems
+            // 
+            this.txtItems.AccessibleName = "ITEMS";
+            this.txtItems.BackColor = System.Drawing.Color.White;
+            this.txtItems.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtItems.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtItems.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtItems.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtItems.HoverColor = System.Drawing.Color.Yellow;
+            this.txtItems.LeaveColor = System.Drawing.Color.White;
+            this.txtItems.LimitCharacters = "";
+            this.txtItems.Location = new System.Drawing.Point(119, 86);
+            this.txtItems.Margin = new System.Windows.Forms.Padding(4);
+            this.txtItems.Name = "txtItems";
+            this.txtItems.Size = new System.Drawing.Size(150, 23);
+            this.txtItems.TabIndex = 39;
+            // 
+            // label23
+            // 
+            this.label23.AccessibleDescription = ".";
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(7, 86);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(41, 17);
+            this.label23.TabIndex = 42;
+            this.label23.Text = "Items";
             // 
             // txtMultiLine
             // 
@@ -2185,34 +2265,43 @@
             this.label73.TabIndex = 0;
             this.label73.Text = "R_DataType";
             // 
-            // label33
+            // label74
             // 
-            this.label33.AccessibleDescription = ".";
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(392, 36);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(68, 17);
-            this.label33.TabIndex = 3;
-            this.label33.Text = "Readonly";
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(283, 116);
+            this.label74.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(150, 17);
+            this.label74.TabIndex = 44;
+            this.label74.Text = "0 mặc định, 1 chỉ chọn";
             // 
-            // txtReadonly
+            // label76
             // 
-            this.txtReadonly.AccessibleName = "Readonly";
-            this.txtReadonly.BackColor = System.Drawing.Color.White;
-            this.txtReadonly.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtReadonly.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtReadonly.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtReadonly.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtReadonly.HoverColor = System.Drawing.Color.Yellow;
-            this.txtReadonly.LeaveColor = System.Drawing.Color.White;
-            this.txtReadonly.LimitCharacters = "01";
-            this.txtReadonly.Location = new System.Drawing.Point(502, 34);
-            this.txtReadonly.Margin = new System.Windows.Forms.Padding(4);
-            this.txtReadonly.MaxLength = 1;
-            this.txtReadonly.Name = "txtReadonly";
-            this.txtReadonly.Size = new System.Drawing.Size(150, 23);
-            this.txtReadonly.TabIndex = 4;
+            this.label76.AccessibleDescription = ".";
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(7, 112);
+            this.label76.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(111, 17);
+            this.label76.TabIndex = 45;
+            this.label76.Text = "ComboBox Type";
+            // 
+            // txtComboBoxType
+            // 
+            this.txtComboBoxType.AccessibleName = "ComboBoxType";
+            this.txtComboBoxType.BackColor = System.Drawing.Color.White;
+            this.txtComboBoxType.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtComboBoxType.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtComboBoxType.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtComboBoxType.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtComboBoxType.HoverColor = System.Drawing.Color.Yellow;
+            this.txtComboBoxType.LeaveColor = System.Drawing.Color.White;
+            this.txtComboBoxType.LimitCharacters = "01";
+            this.txtComboBoxType.Location = new System.Drawing.Point(119, 112);
+            this.txtComboBoxType.Margin = new System.Windows.Forms.Padding(4);
+            this.txtComboBoxType.Name = "txtComboBoxType";
+            this.txtComboBoxType.Size = new System.Drawing.Size(150, 23);
+            this.txtComboBoxType.TabIndex = 46;
             // 
             // DefineInfoEditorForm
             // 
@@ -2385,5 +2474,11 @@
         private System.Windows.Forms.Label lblNFD;
         private V6ColorTextBox txtReadonly;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label48;
+        private V6ColorTextBox txtItems;
+        private System.Windows.Forms.Label label23;
+        private V6ColorTextBox txtComboBoxType;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label label76;
     }
 }

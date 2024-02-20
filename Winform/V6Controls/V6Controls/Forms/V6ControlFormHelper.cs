@@ -1721,6 +1721,10 @@ namespace V6Controls.Forms
             {
                 lineControl.AddCheckBox();
             }
+            else if (CONTROL_TYPE == "COMBOBOX")
+            {
+                lineControl.AddComboBox(lineInfo.Items, lineInfo.ComboBoxType);
+            }
             else if (ObjectAndString.IsDateTimeType(lineInfo.DataType))
             {
                 lineControl.AddDateTimePick();
@@ -9393,7 +9397,7 @@ namespace V6Controls.Forms
             string using_text2 = "", method_text2 = "";
 
             Panel panel1 = null; //Phải get trên form theo tên nào đó. AdvanceControlsPanel
-            panel1 = V6ControlFormHelper.GetControlByName(thisForm, "PanelAdvance") as Panel;
+            panel1 = GetControlByName(thisForm, "PanelAdvance") as Panel;
             if (panel1 == null)
             {
                 //Tạo tab Advance nếu có tabControl1
@@ -9561,6 +9565,15 @@ namespace V6Controls.Forms
                             Name = "chk" + defineInfo.Field
                         };
                     }
+                    else if (defineInfo.ControlType.ToUpper() == "COMBOBOX")
+                    {
+                        input = new ComboBox()
+                        {
+                            Name = "cbo" + defineInfo.Field,
+                            DropDownStyle = defineInfo.ComboBoxType == "1" ? ComboBoxStyle.DropDownList : ComboBoxStyle.DropDown
+                        };
+                        ((ComboBox)input).Items.AddRange(ObjectAndString.SplitString(defineInfo.Items, false));
+                    }
                     else if (defineInfo.ControlType.ToUpper() == "DATETIME")
                     {
                         input = new V6DateTimePicker();
@@ -9642,7 +9655,8 @@ namespace V6Controls.Forms
                     if (string.IsNullOrEmpty(input.Name)) input.Name = "txt" + defineInfo.Field;
                     if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                     {
-                        V6ControlFormHelper.SetControlValue(input, defineInfo.DefaultValue);
+                        object defaultValue = GetDefaultSystemValue(defineInfo.DefaultValue);
+                        SetControlValue(input, defaultValue);
                     }
                     input.Enabled = defineInfo.Enabled;
                     input.Visible = defineInfo.Visible;

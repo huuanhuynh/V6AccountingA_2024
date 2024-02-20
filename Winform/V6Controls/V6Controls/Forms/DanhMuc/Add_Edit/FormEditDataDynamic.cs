@@ -302,6 +302,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 Name = "chk" + defineInfo.Field
                             };
                         }
+                        else if (defineInfo.ControlType.ToUpper() == "COMBOBOX")
+                        {
+                            input = new ComboBox()
+                            {
+                                Name = "cbo" + defineInfo.Field,
+                                DropDownStyle = defineInfo.ComboBoxType == "1" ? ComboBoxStyle.DropDownList : ComboBoxStyle.DropDown
+                            };
+                            ((ComboBox)input).Items.AddRange(ObjectAndString.SplitString(defineInfo.Items, false));
+                        }
                         else
                         {
                             goto Next_1;

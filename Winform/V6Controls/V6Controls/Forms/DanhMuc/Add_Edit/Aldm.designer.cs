@@ -420,7 +420,8 @@
             this.v6ColorTextBox20.Name = "v6ColorTextBox20";
             this.v6ColorTextBox20.Size = new System.Drawing.Size(215, 23);
             this.v6ColorTextBox20.TabIndex = 6;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox20, "Trường mã của bảng khác ánh xạ qua Table_key (;)");
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox20, "Trường mã của bảng khác ánh xạ qua Table_key (;)\r\nAlmapCQT 2 trường thay thế from" +
+        " ; to.");
             // 
             // label21
             // 
@@ -959,7 +960,7 @@
         "NOUPDATE:FIELD1,FIELD2",
         "XTRAREPORT:1",
         "PAGESIZE:20",
-        "VIEWSUM:1:NOSUM1,COLUMNS2:TIEN > 0" };
+        "VIEWSUM:1:NOSUM1,COLUMNS2:TIEN > 0"};
             this.dicEditButton1.Location = new System.Drawing.Point(763, 148);
             this.dicEditButton1.Name = "dicEditButton1";
             this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
@@ -1228,7 +1229,6 @@
             this.v6NumberTextBox1.AccessibleName = "FROZENV";
             this.v6NumberTextBox1.BackColor = System.Drawing.Color.White;
             this.v6NumberTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox1.DecimalPlaces = 0;
             this.v6NumberTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6NumberTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1721,7 +1721,6 @@
             this.txtSTT13.AccessibleName = "STT13";
             this.txtSTT13.BackColor = System.Drawing.Color.White;
             this.txtSTT13.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSTT13.DecimalPlaces = 0;
             this.txtSTT13.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtSTT13.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtSTT13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -2057,7 +2056,6 @@
             this.TxtForder.AccessibleName = "STT";
             this.TxtForder.BackColor = System.Drawing.SystemColors.Window;
             this.TxtForder.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtForder.DecimalPlaces = 0;
             this.TxtForder.EnterColor = System.Drawing.Color.PaleGreen;
             this.TxtForder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtForder.ForeColor = System.Drawing.Color.Red;

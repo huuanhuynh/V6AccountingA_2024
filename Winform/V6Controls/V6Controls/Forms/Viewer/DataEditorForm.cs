@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -22,7 +23,7 @@ namespace V6Controls.Forms.Viewer
         public V6ColorDataGridView DataGridView { get { return dataGridView1; } }
         private AldmConfig _config;
         private readonly Control _owner;
-        private object _data;
+        public DataTable _data;
         private readonly string _tableName;
         private string _showFields;
         private string[] _KEY_FIELDS;
@@ -53,7 +54,7 @@ namespace V6Controls.Forms.Viewer
         /// <param name="showSum">Hiển thị dòng tổng.</param>
         /// <param name="updateDatabase">Có cập nhập vào csdl hay không?</param>
         /// <param name="defaultData">Dữ liệu mặc định khi dùng chức năng thêm.</param>
-        public DataEditorForm(Control owner, object data, string tableName, string showFields, string keyFields, string title,
+        public DataEditorForm(Control owner, DataTable data, string tableName, string showFields, string keyFields, string title,
             bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null)
         {
             InitializeComponent();

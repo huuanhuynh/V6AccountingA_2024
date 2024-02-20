@@ -14,6 +14,7 @@ namespace V6ReportControls
     public partial class FilterLineDynamic : FilterLineBase
     {
         public V6ColorTextBox _textBox;
+        public ComboBox _comboBox;
         public V6VvarTextBox _vtextBox;
         public V6LookupTextBox _lookupTextBox;
         public V6LookupProc _lookupProc;
@@ -81,6 +82,10 @@ namespace V6ReportControls
             {
                 IsSelected = false;
             }
+            if (_comboBox != null && _comboBox.Text.Trim() == string.Empty)
+            {
+                IsSelected = false;
+            }
             else if (_richTextBox != null && _richTextBox.Text.Trim() == string.Empty)
             {
                 IsSelected = false;
@@ -125,6 +130,7 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox.AccessibleName;
+                if (_comboBox != null) return _comboBox.AccessibleName;
                 if (_richTextBox != null) return _richTextBox.AccessibleName;
                 if (_qrTextBox != null) return _qrTextBox.AccessibleName;
                 if (_vtextBox != null) return _vtextBox.AccessibleName;
@@ -140,6 +146,7 @@ namespace V6ReportControls
             set
             {
                 if (_textBox != null) _textBox.AccessibleName = value;
+                if (_comboBox != null) _comboBox.AccessibleName = value;
                 if (_richTextBox != null) _richTextBox.AccessibleName = value;
                 if (_qrTextBox != null) _qrTextBox.AccessibleName = value;
                 if (_vtextBox != null) _vtextBox.AccessibleName = value;
@@ -158,6 +165,7 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox;
+                if (_comboBox != null) return _comboBox;
                 if (_richTextBox != null) return _richTextBox;
                 if (_qrTextBox != null) return _qrTextBox;
                 if (_vtextBox != null) return _vtextBox;
@@ -177,6 +185,7 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox.Text.Trim();
+                if (_comboBox != null) return _comboBox.Text.Trim();
                 if (_richTextBox != null) return _richTextBox.Text.Trim();
                 if (_qrTextBox != null) return _qrTextBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
@@ -196,6 +205,7 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox.Text.Trim();
+                if (_comboBox != null) return _comboBox.Text.Trim();
                 if (_richTextBox != null) return _richTextBox.Text.Trim();
                 if (_qrTextBox != null) return _qrTextBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
@@ -218,6 +228,7 @@ namespace V6ReportControls
             get
             {
                 if (_textBox != null) return _textBox;
+                if (_comboBox != null) return _comboBox;
                 if (_richTextBox != null) return _richTextBox;
                 if (_qrTextBox != null) return _qrTextBox;
                 if (_vtextBox != null) return _vtextBox;
@@ -337,6 +348,38 @@ namespace V6ReportControls
             _textBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _textBox.KeyDown += FilterLineDynamic_KeyDown;
             return _textBox;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="comboBoxType">1 DropDownList, 0 DropDown</param>
+        /// <returns></returns>
+        public ComboBox AddComboBox(string items, string comboBoxType)
+        {
+            _comboBox = new ComboBox();
+            _comboBox.Name = "txt" + FieldName;
+            _comboBox.Location = new Point(comboBox1.Right + 5, 1);
+            _comboBox.Size = new Size(Width - comboBox1.Right - 5, 20);
+            _comboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            _comboBox.Items.AddRange(ObjectAndString.SplitString(items, false));
+            _comboBox.DropDownStyle = comboBoxType == "1" ? ComboBoxStyle.DropDownList : ComboBoxStyle.DropDown;
+            Controls.Add(_comboBox);
+            Operators.Clear();
+            Operators.Add("start");
+            Operators.Add("like");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add("is null");
+            Operators.Add("is not null");
+            Operator = "start";
+            _comboBox.Click += FilterLineDynamic_Click;
+            _comboBox.TextChanged += FilterLineDynamic_TextChanged;
+            _comboBox.Enter += FilterLineDynamic_GotFocus;
+            _comboBox.Leave += FilterLineDynamic_LostFocus;
+            //_comboBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _comboBox.KeyDown += FilterLineDynamic_KeyDown;
+            return _comboBox;
         }
         public RichTextBox AddRichTextBox()
         {
@@ -722,6 +765,10 @@ namespace V6ReportControls
             {
                 _textBox.Text = ObjectAndString.ObjectToString(value);
             }
+            else if (_comboBox != null)
+            {
+                SetControlValue(_comboBox, value);
+            }
             else if (_richTextBox != null)
             {
                 _richTextBox.Text = ObjectAndString.ObjectToString(value);
@@ -775,6 +822,10 @@ namespace V6ReportControls
             {
                 _textBox.LimitCharacters = limitChars;
             }
+            //else if (_comboBox != null)
+            //{
+            //    _comboBox.LimitCharacters = limitChars;
+            //}
             else if (_qrTextBox != null)
             {
                 _qrTextBox.LimitCharacters = limitChars;
@@ -807,7 +858,11 @@ namespace V6ReportControls
             {
                 _textBox.MaxLength = maxLength;
             }
-            if (_qrTextBox != null)
+            else if (_comboBox != null)
+            {
+                _comboBox.MaxLength = maxLength;
+            }
+            else if (_qrTextBox != null)
             {
                 _qrTextBox.MaxLength = maxLength;
             }
@@ -901,6 +956,10 @@ namespace V6ReportControls
                 {
                     _textBox.ReadOnlyTag();
                 }
+                if (_comboBox != null)
+                {
+                    _comboBox.ReadOnlyTag();
+                }
                 if (_richTextBox != null)
                 {
                     _richTextBox.ReadOnlyTag();
@@ -952,6 +1011,10 @@ namespace V6ReportControls
                 if (_textBox != null)
                 {
                     _textBox.ReadOnlyTag(false);
+                }
+                if (_comboBox != null)
+                {
+                    _comboBox.ReadOnlyTag(false);
                 }
                 if (_richTextBox != null)
                 {

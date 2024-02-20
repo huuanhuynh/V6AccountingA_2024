@@ -133,6 +133,16 @@ namespace V6ControlManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ArrowDown16B3 {
+            get {
+                object obj = ResourceManager.GetObject("ArrowDown16B3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ArrowDownBlue3D {
             get {
                 object obj = ResourceManager.GetObject("ArrowDownBlue3D", resourceCulture);
@@ -196,6 +206,16 @@ namespace V6ControlManager.Properties {
         internal static System.Drawing.Bitmap ArrowRightGreen3D {
             get {
                 object obj = ResourceManager.GetObject("ArrowRightGreen3D", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ArrowUp16B3 {
+            get {
+                object obj = ResourceManager.GetObject("ArrowUp16B3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

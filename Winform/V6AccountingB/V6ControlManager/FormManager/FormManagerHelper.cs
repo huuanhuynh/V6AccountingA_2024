@@ -287,6 +287,15 @@ namespace V6ControlManager.FormManager
                             Name = "chk" + defineInfo.Field
                         };
                     }
+                    else if (defineInfo.ControlType.ToUpper() == "COMBOBOX")
+                    {
+                        input = new ComboBox()
+                        {
+                            Name = "cbo" + defineInfo.Field,
+                            DropDownStyle = defineInfo.ComboBoxType == "1" ? ComboBoxStyle.DropDownList : ComboBoxStyle.DropDown
+                        };
+                        ((ComboBox)input).Items.AddRange(ObjectAndString.SplitString(defineInfo.Items, false));
+                    }
                     else if (defineInfo.ControlType.ToUpper() == "DATETIME")
                     {
                         input = new V6DateTimePicker();
@@ -368,7 +377,8 @@ namespace V6ControlManager.FormManager
                     if (string.IsNullOrEmpty(input.Name)) input.Name = "txt" + defineInfo.Field;
                     if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                     {
-                        V6ControlFormHelper.SetControlValue(input, defineInfo.DefaultValue);
+                        object defaultValue = V6ControlFormHelper.GetDefaultSystemValue(defineInfo.DefaultValue);
+                        V6ControlFormHelper.SetControlValue(input, defaultValue);
                     }
                     input.Enabled = defineInfo.Enabled;
                     if (defineInfo.Readonly) input.ReadOnlyTag();

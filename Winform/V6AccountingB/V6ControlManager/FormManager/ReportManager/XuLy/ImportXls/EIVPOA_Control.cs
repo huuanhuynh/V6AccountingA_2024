@@ -29,11 +29,57 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string check = null;
         
         public EIVPOA_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
-            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
-
+            InitializeComponent();
+            MyInit();
         }
-        
+
+        public void MyInit()
+        {
+            try
+            {
+                dataGridView1.RowSelectChanged += DataGridView1_RowSelectChanged;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
+
+        bool code_running = false;
+        private void DataGridView1_RowSelectChanged(object sender, SelectRowEventArgs e)
+        {
+            if (code_running) return;
+            code_running = true;
+            try
+            {
+                bool select = e.Select;
+                {
+                    // bộ data select MAU_HD SO_SERI NGAY_CT
+                    var A = e.Row.Cells["MAU_HD"].Value;
+                    var B = e.Row.Cells["SO_SERI"].Value;
+                    var C = e.Row.Cells["NGAY_CT"].Value;
+                    foreach (DataGridViewRow frow in dataGridView1.Rows)
+                    {
+                        if (frow == e.Row) continue;
+                        var a = frow.Cells["MAU_HD"].Value;
+                        var b = frow.Cells["SO_SERI"].Value;
+                        var c = frow.Cells["NGAY_CT"].Value;
+                        if (ObjectAndString.CheckCondition(a, "=", A) && ObjectAndString.CheckCondition(b, "=", B) && ObjectAndString.CheckCondition(c, "=", C))
+                        {
+                            frow.Select(select);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+            code_running = false;
+        }
+
         public override void SetStatus2Text()
         {
             string id = "ST2" + _reportProcedure;
@@ -76,6 +122,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 
                 MappingData(tbl);
+                ReplaceData();
                 FixData();
                 All_Objects["_data"] = _tbl;
                 All_Objects["data"] = _tbl.Copy();
@@ -91,6 +138,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             _executing = false;
         }
 
+        /// <summary>
+        /// Đổi trường dữ liệu thành trường V6
+        /// </summary>
+        /// <param name="tbl"></param>
         private void MappingData(DataTable tbl)
         {
             if (_albcConfig != null && _albcConfig.EXTRA_INFOR.ContainsKey("EIV_MAPPING"))
@@ -131,6 +182,47 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _tbl = tbl.Copy();
                 _message = "NO EXTRA_INFOR EIV_MAPPING\n" + _message;
+            }
+        }
+
+        /// <summary>
+        /// Đổi mã thành mã sử dụng trong V6
+        /// </summary>
+        public void ReplaceData()
+        {
+            try
+            {
+                // lấy cấu hình danh sách bảng thay thế
+                if (_albcConfig.EXTRA_INFOR != null && _albcConfig.EXTRA_INFOR.ContainsKey("EIV_FIELDS"))
+                {
+                    var dic = ObjectAndString.StringToStringDictionary(_albcConfig.EXTRA_INFOR["EIV_FIELDS"], ',', ':');
+
+                    foreach (KeyValuePair<string, string> item in dic)
+                    {
+                        var ma_dm = item.Value;
+                        AldmConfig config = ConfigManager.GetAldmConfig(ma_dm);
+                        var data = V6BusinessHelper.SelectSimple(config.TABLE_NAME, config.FIELDV);
+                        var ss = ObjectAndString.SplitString(config.DOI_MA);
+                        ReplaceData(_tbl, item.Key, data, ss[0], ss[1]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog("EIVPOA.ReplaceData", ex);
+            }
+        }
+
+        private void ReplaceData(DataTable do_tbl, string do_field, DataTable replace_data, string f_from, string f_to)
+        {
+            var replace_dic = replace_data.ToDataSortedDictionary(f_from, f_to);
+            foreach (DataRow row in do_tbl.Rows)
+            {
+                string KEY = row[do_field].ToString().Trim().ToUpper();
+                if (replace_dic.ContainsKey(KEY))
+                {
+                    row[do_field] = replace_dic[KEY];
+                }
             }
         }
 
@@ -304,6 +396,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 this.WriteExLog(GetType() + ".FixData", ex);
             }
+        }
+
+        protected override void ViewDetails(DataGridViewRow row)
+        {
+            //base.ViewDetails(row);
+        }
+
+        public void ChuyenHoaDonDV()
+        {
+
         }
 
         #region ==== Xử lý F9 ====
@@ -854,6 +956,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 ((EIVPOA_Filter)FilterControl).ALIM2XLS_Config = ALIM2XLS_Config;
+                dataGridView2.Space_Bar = true;
+                dataGridView2.Control_A = true;
             }
             catch (Exception ex)
             {

@@ -245,6 +245,14 @@ namespace V6Structs
         public int MaxLength = 0;
         public string DefaultValue { get; set; }
         /// <summary>
+        /// Danh sách items cho ComboBox
+        /// </summary>
+        public string Items { get; set; }
+        /// <summary>
+        /// 0 mặc định, 1 chỉ chọn (DropDownList)
+        /// </summary>
+        public string ComboBoxType { get; set; }
+        /// <summary>
         /// Key là LimitChars hoặc LimitChar không phân biệt hoa thường.
         /// </summary>
         public string LimitChars { get; set; }
