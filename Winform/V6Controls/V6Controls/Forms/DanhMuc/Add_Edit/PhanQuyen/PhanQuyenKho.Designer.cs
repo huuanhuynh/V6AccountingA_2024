@@ -36,6 +36,7 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.treeListView1 = new System.Windows.Forms.TreeListView();
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnMA_KHO = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnUnSelect = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -84,7 +85,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
             this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnName});
+            this.columnName,
+            this.columnMA_KHO});
             treeListViewItemCollectionComparer1.Column = 0;
             treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.None;
             this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
@@ -105,7 +107,12 @@
             // columnName
             // 
             this.columnName.Text = "Danh sách kho";
-            this.columnName.Width = 720;
+            this.columnName.Width = 620;
+            // 
+            // columnMA_KHO
+            // 
+            this.columnMA_KHO.Text = "Mã kho";
+            this.columnMA_KHO.Width = 120;
             // 
             // btnUnSelect
             // 
@@ -143,11 +150,6 @@
             this.Name = "PhanQuyenKho";
             this.Text = "Phần quyền theo kho";
             this.Load += new System.EventHandler(this.PhanQuyenKho_Load);
-            this.Controls.SetChildIndex(this.treeListView1, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.btnSelectAll, 0);
-            this.Controls.SetChildIndex(this.btnUnSelect, 0);
             this.ResumeLayout(false);
 
         }
@@ -161,7 +163,6 @@
         private System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.Button btnUnSelect;
         private System.Windows.Forms.Button btnSelectAll;
-
-
+        private System.Windows.Forms.ColumnHeader columnMA_KHO;
     }
 }

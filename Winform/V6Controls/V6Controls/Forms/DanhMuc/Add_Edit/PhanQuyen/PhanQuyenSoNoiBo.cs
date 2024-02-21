@@ -60,6 +60,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             var Ma_sonb = row["Ma_sonb"].ToString().Trim();
             TreeListViewItem item = new TreeListViewItem(text);
             item.Name = Ma_sonb;
+            item.SubItems.Add(Ma_sonb);
 
             treeListView1.Items.Add(item);
             if (("/" + Vrights_sonb + "/").Contains("/" + Ma_sonb + "/"))

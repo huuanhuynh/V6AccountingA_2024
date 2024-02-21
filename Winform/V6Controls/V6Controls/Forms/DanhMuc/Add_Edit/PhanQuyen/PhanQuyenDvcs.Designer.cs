@@ -38,6 +38,7 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.btnUnSelect = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
+            this.columnMA_DVCS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // imageList1
@@ -57,7 +58,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Recursive;
             this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnName});
+            this.columnName,
+            this.columnMA_DVCS});
             treeListViewItemCollectionComparer1.Column = 0;
             treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.None;
             this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
@@ -78,7 +80,7 @@
             // columnName
             // 
             this.columnName.Text = "Danh sách đơn vị cơ sở";
-            this.columnName.Width = 720;
+            this.columnName.Width = 620;
             // 
             // btnHuy
             // 
@@ -129,6 +131,11 @@
             this.btnSelectAll.UseVisualStyleBackColor = true;
             this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
+            // columnMA_DVCS
+            // 
+            this.columnMA_DVCS.Text = "Mã DVCS";
+            this.columnMA_DVCS.Width = 120;
+            // 
             // PhanQuyenDvcs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,11 +150,6 @@
             this.Name = "PhanQuyenDvcs";
             this.Text = "Phần quyền theo đơn vị cơ sở";
             this.Load += new System.EventHandler(this.PhanQuyenDvcs_Load);
-            this.Controls.SetChildIndex(this.treeListView1, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.btnSelectAll, 0);
-            this.Controls.SetChildIndex(this.btnUnSelect, 0);
             this.ResumeLayout(false);
 
         }
@@ -161,7 +163,6 @@
         private System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.Button btnUnSelect;
         private System.Windows.Forms.Button btnSelectAll;
-
-
+        private System.Windows.Forms.ColumnHeader columnMA_DVCS;
     }
 }

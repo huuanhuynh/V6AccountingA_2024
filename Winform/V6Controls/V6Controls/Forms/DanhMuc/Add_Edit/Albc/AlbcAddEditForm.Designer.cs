@@ -96,6 +96,8 @@
             this.label47 = new System.Windows.Forms.Label();
             this.dicEditButton2 = new V6Controls.Controls.DicEditButton();
             this.tabDinhDangMauVaMoRong = new System.Windows.Forms.TabPage();
+            this.txtREFREPORT = new V6Controls.V6ColorTextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
             this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.TxtSTT13 = new V6Controls.V6NumberTextBox();
@@ -1092,6 +1094,8 @@
             // 
             this.tabDinhDangMauVaMoRong.AccessibleDescription = "ADDEDITT00020";
             this.tabDinhDangMauVaMoRong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.txtREFREPORT);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label33);
             this.tabDinhDangMauVaMoRong.Controls.Add(this.dicEditButton1);
             this.tabDinhDangMauVaMoRong.Controls.Add(this.TxtSTT13);
             this.tabDinhDangMauVaMoRong.Controls.Add(this.lblFrozen);
@@ -1128,6 +1132,32 @@
             this.tabDinhDangMauVaMoRong.Size = new System.Drawing.Size(747, 384);
             this.tabDinhDangMauVaMoRong.TabIndex = 1;
             this.tabDinhDangMauVaMoRong.Text = "Định dạng màu và mở rộng";
+            // 
+            // txtREFREPORT
+            // 
+            this.txtREFREPORT.AccessibleName = "REFREPORT";
+            this.txtREFREPORT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtREFREPORT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtREFREPORT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtREFREPORT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtREFREPORT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtREFREPORT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtREFREPORT.LeaveColor = System.Drawing.Color.White;
+            this.txtREFREPORT.Location = new System.Drawing.Point(486, 199);
+            this.txtREFREPORT.Name = "txtREFREPORT";
+            this.txtREFREPORT.Size = new System.Drawing.Size(254, 20);
+            this.txtREFREPORT.TabIndex = 153;
+            this.toolTipV6FormControl.SetToolTip(this.txtREFREPORT, "ALL : lấy hết");
+            // 
+            // label33
+            // 
+            this.label33.AccessibleDescription = ".";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(333, 202);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(141, 13);
+            this.label33.TabIndex = 152;
+            this.label33.Text = "REFREPORT (Mẫu in bank)";
             // 
             // dicEditButton1
             // 
@@ -2045,5 +2075,7 @@
         private System.Windows.Forms.ToolStripMenuItem excelTemplateMenu;
         private System.Windows.Forms.ToolStripMenuItem wordTemplateMenu;
         private wyDay.Controls.SplitButton btnExcelTemplate2;
+        private V6ColorTextBox txtREFREPORT;
+        private System.Windows.Forms.Label label33;
     }
 }

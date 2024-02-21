@@ -52,14 +52,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             var Ma_dvcs = row["Ma_dvcs"].ToString().Trim();
             TreeListViewItem item = new TreeListViewItem(text);
             item.Name = Ma_dvcs;
+            item.SubItems.Add(Ma_dvcs);
 
             treeListView1.Items.Add(item);
             if (("/" + Vrights_dvcs + "/").Contains("/" + Ma_dvcs + "/"))
             {
                 item.Checked = true;
             }
-
-          
         }
 
 
@@ -99,18 +98,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             foreach (TreeListViewItem item in treeListView1.Items)
             {
                 
-                        if (item.Checked)
-                        {
-                            vrights_dvcs += "/" + item.Name;
-
-                          }
-                    
-                
+                if (item.Checked)
+                {
+                    vrights_dvcs += "/" + item.Name;
+                }
             }
             if (vrights_dvcs.Length > 1) vrights_dvcs = vrights_dvcs.Substring(1);
 
             Vrights_dvcs = vrights_dvcs;
-            
         }
 
         private void btnHuy_Click(object sender, EventArgs e)

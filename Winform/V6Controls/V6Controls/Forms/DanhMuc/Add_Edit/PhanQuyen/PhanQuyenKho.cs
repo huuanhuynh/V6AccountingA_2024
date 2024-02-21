@@ -57,6 +57,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             var Ma_kho = row["Ma_kho"].ToString().Trim();
             TreeListViewItem item = new TreeListViewItem(text);
             item.Name = Ma_kho;
+            item.SubItems.Add(Ma_kho);
 
             treeListView1.Items.Add(item);
             if (("/" + Vrights_kho + "/").Contains("/" + Ma_kho + "/"))
