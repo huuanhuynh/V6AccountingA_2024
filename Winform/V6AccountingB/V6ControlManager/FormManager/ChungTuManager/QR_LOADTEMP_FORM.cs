@@ -71,7 +71,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 InvokeFormProgram("QR_LOADTEMP_INIT2");
-                listView1.Items[0].Selected = true;
+                if (listView1.Items.Count > 0)
+                    listView1.Items[0].Selected = true;
             }
             catch (Exception ex)
             {

@@ -200,7 +200,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         private const string Procedure = "VPA_V6VIEW_INFOR_DATA";
-
+        DataTable loadData;
         private void SelectFunction()
         {
             try
@@ -208,6 +208,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (comboBox1.SelectedItem != null) // && !(comboBox1.SelectedValue is DataRowView))
                 {
                     var select = comboBox1.SelectedValue.ToString().Trim();
+                    ViewHistoryButton(select);
                     //Gen param
                     SqlParameter[] plist =
                     {
@@ -215,7 +216,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         new SqlParameter("@cTable", select),
                         new SqlParameter("@cMa_ct", MA_CT),
                     };
-                    DataTable loadData;
+                    
                     if (Data2_TH)
                         loadData = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString2_TH, CommandType.StoredProcedure,Procedure, plist).Tables[0];
                     else
@@ -235,17 +236,55 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                var selectedValue = comboBox1.SelectedValue.ToString().Trim();
-                if (selectedValue == "PRINT_INFOR3")
+                var select = comboBox1.SelectedValue.ToString().Trim();
+                if (select == "PRINT_INFOR3")
+                {   
+                    if (dataGridView1.CurrentRow != null)
+                    {
+                        HistoryViewerForm form = new HistoryViewerForm(loadData);
+                        form.ShowDialog(this);
+                    }
+                    else
+                    {
+                        ShowMainMessage(V6Text.NoData);
+                    }
+                }
+                else if (select == "PRINT_INFOR6") // lịch sử trạng thái.
                 {
-                    HistoryViewerForm form = new HistoryViewerForm();
-                    form.Data = dataGridView1.CurrentRow.ToDataDictionary();
-                    form.ShowDialog(this);
+                    if (dataGridView1.CurrentRow != null)
+                    {
+                        HistoryStatusForm form = new HistoryStatusForm(loadData);
+                        form.ShowDialog(this);
+                    }
+                    else
+                    {
+                        ShowMainMessage(V6Text.NoData);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + "ViewHistory", ex);
+            }
+        }
+
+        public void ViewHistoryButton(string select)
+        {
+            if (select == "PRINT_INFOR3")
+            {
+                btnHistory.Image = global::V6ControlManager.Properties.Resources.History24;
+                btnHistory.Text = "Lịch sử";
+                btnHistory.Visible = true;
+            }
+            else if (select == "PRINT_INFOR6")
+            {
+                btnHistory.Image = global::V6ControlManager.Properties.Resources.Status24;
+                btnHistory.Text = "Trạng thái";
+                btnHistory.Visible = true;
+            }
+            else
+            {
+                btnHistory.Visible = false;
             }
         }
 

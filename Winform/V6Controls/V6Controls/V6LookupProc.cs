@@ -250,7 +250,7 @@ namespace V6Controls
 
                 if (Data == null || _text_data != Text) ExistRowInTable();
                 
-                return Data == null ? null : Data[ValueField];
+                return Data == null ? null : Data[ValueField.ToUpper()];
             }
         }
 

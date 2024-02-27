@@ -226,6 +226,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormManager\ChungTuManager\HistoryStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\HistoryStatusForm.Designer.cs">
+      <DependentUpon>HistoryStatusForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\LoadTempForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6515,6 +6521,9 @@
     <None Include="Resources\newspaperplus.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormManager\ChungTuManager\HistoryStatusForm.resx">
+      <DependentUpon>HistoryStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\LoadTempForm.resx">
       <DependentUpon>LoadTempForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -9887,6 +9896,7 @@
     <None Include="Resources\SendEmail32.png" />
     <None Include="Resources\RefreshGreen.png" />
     <None Include="Resources\QRicon32.png" />
+    <None Include="Resources\Status24.png" />
     <Content Include="Resources\ToolBox16.png" />
     <Content Include="Resources\TreeBlack16.png" />
     <Content Include="Resources\TreeFolderYellowk16.png" />

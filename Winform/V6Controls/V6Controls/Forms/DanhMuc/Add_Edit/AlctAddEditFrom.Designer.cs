@@ -2141,6 +2141,7 @@
             this.chkWriteLog.Size = new System.Drawing.Size(109, 21);
             this.chkWriteLog.TabIndex = 53;
             this.chkWriteLog.Text = "WRITE_LOG";
+            this.toolTipV6FormControl.SetToolTip(this.chkWriteLog, "Bật tính năng ghi lịch sử sửa chứng từ (kết hợp V6options M_USER_LOG 111 giữa).");
             this.chkWriteLog.UseVisualStyleBackColor = true;
             this.chkWriteLog.Visible = false;
             // 
@@ -3266,7 +3267,7 @@
             this.xuatDinhDangGridViewMenu,
             this.nhapDinhDangGridViewMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 48);
             // 
             // xuatDinhDangGridViewMenu
             // 

@@ -133,6 +133,7 @@ namespace V6Controls
                 {
                     var oneRow = tbl.Rows[0];
                     _data = oneRow;
+                    _text_data = Text;
                 }
                 else
                 {
@@ -796,8 +797,7 @@ namespace V6Controls
             try
             {
                 if (!use_Filter && _data != null && _text_data == Text) return true;
-
-                _text_data = text;
+                
                 if (!string.IsNullOrEmpty(LookupInfo.vValue))
                 {
                     string tableName = LookupInfo.vMa_file;
@@ -815,6 +815,7 @@ namespace V6Controls
                     {
                         var oneRow = tbl.Rows[0];
                         _data = oneRow;
+                        _text_data = text;
                         V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
                         SetNeighborValues();
                         return true;
@@ -822,6 +823,7 @@ namespace V6Controls
                     else
                     {
                         _data = null;
+                        _text_data = text;
                         V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
                         SetNeighborValues();
                     }
