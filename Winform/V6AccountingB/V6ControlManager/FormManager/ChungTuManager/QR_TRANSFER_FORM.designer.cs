@@ -39,6 +39,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkAutoTransfer = new System.Windows.Forms.CheckBox();
             this.grbMode = new System.Windows.Forms.GroupBox();
             this.rScan = new System.Windows.Forms.RadioButton();
             this.rInventory = new System.Windows.Forms.RadioButton();
@@ -95,6 +96,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.chkAutoTransfer);
             this.panel1.Controls.Add(this.grbMode);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnLoadTemp);
@@ -105,6 +107,17 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1003, 552);
             this.panel1.TabIndex = 0;
+            // 
+            // chkAutoTransfer
+            // 
+            this.chkAutoTransfer.AutoSize = true;
+            this.chkAutoTransfer.Location = new System.Drawing.Point(115, 478);
+            this.chkAutoTransfer.Name = "chkAutoTransfer";
+            this.chkAutoTransfer.Size = new System.Drawing.Size(139, 17);
+            this.chkAutoTransfer.TabIndex = 5;
+            this.chkAutoTransfer.Text = "Tự động chuyển (Scan)";
+            this.toolTipV6FormControl.SetToolTip(this.chkAutoTransfer, "Tự chuyển sau khi quét một mã (Enter)");
+            this.chkAutoTransfer.UseVisualStyleBackColor = true;
             // 
             // grbMode
             // 
@@ -148,12 +161,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnClear.AccessibleDescription = "";
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnClear.Image = global::V6ControlManager.Properties.Resources.Delete32;
-            this.btnClear.Location = new System.Drawing.Point(104, 463);
+            this.btnClear.Location = new System.Drawing.Point(818, 465);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(88, 40);
             this.btnClear.TabIndex = 2;
             this.btnClear.Text = "&Xóa";
             this.btnClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTipV6FormControl.SetToolTip(this.btnClear, "Xóa dòng dữ liệu đang đứng (Click)");
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -162,12 +176,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnLoadTemp.AccessibleDescription = "";
             this.btnLoadTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLoadTemp.Image = global::V6ControlManager.Properties.Resources.History24;
-            this.btnLoadTemp.Location = new System.Drawing.Point(304, 463);
+            this.btnLoadTemp.Location = new System.Drawing.Point(912, 465);
             this.btnLoadTemp.Name = "btnLoadTemp";
             this.btnLoadTemp.Size = new System.Drawing.Size(88, 40);
             this.btnLoadTemp.TabIndex = 1;
             this.btnLoadTemp.Text = "&Lịch sử";
             this.btnLoadTemp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTipV6FormControl.SetToolTip(this.btnLoadTemp, "Xem và chọn lại dữ liệu cũ.");
             this.btnLoadTemp.UseVisualStyleBackColor = true;
             this.btnLoadTemp.Click += new System.EventHandler(this.btnLoadTemp_Click);
             // 
@@ -176,12 +191,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnLoad.AccessibleDescription = "";
             this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLoad.Image = global::V6ControlManager.Properties.Resources.QRicon32;
-            this.btnLoad.Location = new System.Drawing.Point(10, 463);
+            this.btnLoad.Location = new System.Drawing.Point(10, 465);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(88, 40);
+            this.btnLoad.Size = new System.Drawing.Size(99, 40);
             this.btnLoad.TabIndex = 1;
-            this.btnLoad.Text = "&Thêm";
+            this.btnLoad.Text = "&Chuyển";
             this.btnLoad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTipV6FormControl.SetToolTip(this.btnLoad, "Chuyển mã đã quét thành dữ liệu");
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -224,7 +240,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(605, 552);
+            this.dataGridView1.Size = new System.Drawing.Size(605, 459);
             this.dataGridView1.TabIndex = 3;
             // 
             // QR_TRANSFER_FORM
@@ -245,6 +261,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.Load += new System.EventHandler(this.Form_Load);
             this.SizeChanged += new System.EventHandler(this.QR_TRANSFER_SOA_FORM_SizeChanged);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.grbMode.ResumeLayout(false);
             this.grbMode.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -267,5 +284,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private System.Windows.Forms.RadioButton rScan;
         private System.Windows.Forms.RadioButton rInventory;
         private System.Windows.Forms.Button btnLoadTemp;
+        private System.Windows.Forms.CheckBox chkAutoTransfer;
     }
 }

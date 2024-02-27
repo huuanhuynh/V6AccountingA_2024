@@ -192,6 +192,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                 }
 
+                int wrong_count = 0;
                 foreach (var qr_q in QR_Quantity)
                 {
                     var new_row = _table.NewRow();
@@ -215,9 +216,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
                                 new_row[item.Key] = ObjectAndString.ObjectTo(column.DataType, item.Value) ?? DBNull.Value;
                             }
                         }
+                        _table.Rows.Add(new_row);
                     }
-                    _table.Rows.Add(new_row);
+                    else
+                    {
+                        wrong_count++;
+                    }
                 }
+
+                if (wrong_count > 0)
+                {
+                    ShowMainMessage(wrong_count + " " + V6Text.WrongData);
+                }
+
                 dataGridView1.SelectAllRow();
                 InvokeDynamicFix();
                 txtQR_INFOR.Clear();
@@ -387,9 +398,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            if (txtQR_INFOR.Text.Trim() != "" && this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+            if (dataGridView1.CurrentRow != null && this.ShowConfirmMessage(V6Text.DeleteRowConfirm) == DialogResult.Yes)
             {
-                ClearData();
+                dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
             }   
         }
 
@@ -399,6 +410,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 CheckMode();
                 TurnOffCapsLock();
+                if (rScan.Checked && chkAutoTransfer.Checked)
+                {
+                    btnLoad.PerformClick();
+                }
                 SaveTemp();
             }
             else if (e.KeyCode == Keys.CapsLock)

@@ -30,6 +30,7 @@
         {
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btnHuy
@@ -65,11 +66,23 @@
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(837, 476);
+            this.panel1.TabIndex = 4;
+            // 
             // HistoryStatusForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(842, 537);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.MinimizeBox = false;
@@ -84,5 +97,6 @@
 
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnNhan;
+        private System.Windows.Forms.Panel panel1;
     }
 }

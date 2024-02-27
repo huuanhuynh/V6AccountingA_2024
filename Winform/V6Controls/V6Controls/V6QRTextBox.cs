@@ -79,13 +79,14 @@ namespace V6Controls
             try
             {
                 _text_data = Text;
-                if (string.IsNullOrEmpty(M_QRCODE_INFOS.SPLIT))
+                var ar = ObjectAndString.SplitStringBy(_text_data, M_QRCODE_INFOS.SPLIT[0], true);
+
+                if (string.IsNullOrEmpty(M_QRCODE_INFOS.SPLIT) || ar.Length < M_QRCODE_INFOS.FCOUNT)
                 {
                     _data = null;
                 }
                 else
-                {
-                    var ar = ObjectAndString.SplitStringBy(_text_data, M_QRCODE_INFOS.SPLIT[0], true);
+                {   
                     _data = new Dictionary<string, object>();
                     foreach (var item in M_QRCODE_INFOS.FIELD_INFO)
                     {
@@ -500,12 +501,14 @@ namespace V6Controls
         {
             var DIC = ObjectAndString.StringToStringDictionary(M_QRCODE_INFOS);
             if (DIC.ContainsKey("SPLIT")) SPLIT = DIC["SPLIT"];
+            if (DIC.ContainsKey("FCOUNT")) FCOUNT = ObjectAndString.ObjectToInt(DIC["FCOUNT"]);
+
             FIELD_INFO = new Dictionary<string, INDEX_TYPE_FORMAT>();
             foreach (var item in DIC)
             {
                 try
                 {
-                    if (item.Key == "SPLIT")
+                    if (item.Key == "SPLIT" || item.Key == "FCOUNT")
                     {
 
                     }
@@ -534,6 +537,10 @@ namespace V6Controls
         }
         
         public string SPLIT { get; private set; }
+        /// <summary>
+        /// Kiểm tra QR data phải đủ số lượng phần tử.
+        /// </summary>
+        public int FCOUNT { get; private set; }
         public Dictionary<string, INDEX_TYPE_FORMAT> FIELD_INFO { get; private set; }
         public class INDEX_TYPE_FORMAT
         {
