@@ -239,6 +239,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        public override void DoHotKey(Keys keyData)
+        {
+            if (keyData == Keys.F8)
+            {
+                btnDeleteOne.PerformClick();
+            }
+            else
+            {
+                base.DoHotKey(keyData);
+            }
+        }
+
         private Dictionary<string, object> MadeNeighbor(V6QRTextBox txt)
         {
             Dictionary<string, object> result = null;
@@ -396,12 +408,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
             SaveTemp();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnDeleteOne_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null && this.ShowConfirmMessage(V6Text.DeleteRowConfirm) == DialogResult.Yes)
             {
                 dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
-            }   
+            }
+        }
+
+        private void btnDeleteAll_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0 && this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+            {
+                dataGridView1.Rows.Clear();
+            }
         }
 
         private void txtQR_INFOR_KeyDown(object sender, KeyEventArgs e)

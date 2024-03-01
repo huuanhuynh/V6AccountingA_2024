@@ -6671,12 +6671,13 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                     SortedDictionary<string, object> newData1 = new SortedDictionary<string, object>();
                     foreach (KeyValuePair<string, AlctControls> item in controlList1)
                     {
-                        string KEY = item.Key.ToUpper();
-                        if (item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled && newData.ContainsKey(KEY))
+                        string FIELD = item.Key.ToUpper();
+                        if (newData.ContainsKey(FIELD) &&
+                            item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled && newData.ContainsKey(FIELD))
                         {
-                            if (!ObjectAndString.IsNoValue(newData[KEY]))
+                            if (!ObjectAndString.IsNoValue(newData[FIELD]))
                             {
-                                newData1[KEY] = newData[KEY];
+                                newData1[FIELD] = newData[FIELD];
                             }
                         }
                     }
@@ -6688,12 +6689,13 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                     SortedDictionary<string, object> oldData1 = new SortedDictionary<string, object>();
                     foreach (KeyValuePair<string, AlctControls> item in controlList1)
                     {
-                        string KEY = item.Key.ToUpper();
-                        if (item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled && oldData.ContainsKey(KEY))
+                        string FIELD = item.Key.ToUpper();
+                        if (oldData.ContainsKey(FIELD) &&
+                            item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled && oldData.ContainsKey(FIELD))
                         {
-                            if (!ObjectAndString.IsNoValue(oldData[KEY]))
+                            if (!ObjectAndString.IsNoValue(oldData[FIELD]))
                             {
-                                oldData1[KEY] = oldData[KEY];
+                                oldData1[FIELD] = oldData[FIELD];
                             }
                         }
                     }
@@ -6707,9 +6709,10 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                         IDictionary<string, object> newData1 = new Dictionary<string, object>();
                         foreach (KeyValuePair<string, AlctControls> item in controlList1)
                         {
-                            if (item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled)
-                            {
-                                string FIELD = item.Key.ToUpper();
+                            string FIELD = item.Key.ToUpper();
+                            if (oldData.ContainsKey(FIELD) &&
+                                item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled)
+                            {   
                                 newData1[FIELD] = newData[FIELD];
                             }
                         }
@@ -6722,9 +6725,10 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
                         IDictionary<string, object> newData1 = new Dictionary<string, object>();
                         foreach (KeyValuePair<string, AlctControls> item in controlList1)
                         {
-                            if (item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled)
-                            {
-                                string FIELD = item.Key.ToUpper();
+                            string FIELD = item.Key.ToUpper();
+                            if (oldData.ContainsKey(FIELD) &&
+                                item.Value.IsVisible && item.Value.DetailControl != null && item.Value.DetailControl.Enabled)
+                            {   
                                 oldData1[FIELD] = oldData[FIELD];
                                 newData1[FIELD] = newData[FIELD];
                             }
@@ -6757,15 +6761,28 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             public IDictionary<string, object> NewData;
         }
 
+        /// <summary>
+        /// Trả về xml của List detail xml.
+        /// </summary>
+        /// <returns></returns>
         private string GetDetailInfo()
         {
-            string result = "";
+            DataTable result = new DataTable("DetailInfo");
+            result.Columns.Add("Key", typeof(string));
+            result.Columns.Add("Value", typeof(string));
             foreach (KeyValuePair<string, OldNewData> item in editLogData)
             {
-                result += "~" + item.Key + " " + V6ControlFormHelper.CompareDifferentData(item.Value.OldData, item.Value.NewData);
+                var newRow = result.NewRow();
+                newRow["Key"] = item.Key;
+
+                var compare_data = V6ControlFormHelper.CompareDifferentData(item.Value.OldData, item.Value.NewData);
+                var json = V6JsonConverter.ObjectToJson(compare_data, "dd/MM/yyyy");
+
+                newRow["Value"] = json;
+                result.Rows.Add(newRow);
             }
-            if (result.Length > 1) result = result.Substring(1);
-            return result;
+            
+            return Data_Table.ToXml(result);
         }
 
         /// <summary>
@@ -6779,10 +6796,19 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             {
                 if (V6Options.SaveEditLogInvoice && _invoice.WRITE_LOG)
                 {
-                    string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
-                    string detailInfo = GetDetailInfo();
+                    var info_table = new DataTable("InfoTable");
+                    var compare_data = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
+                    string info_xml = "";
+                    if (compare_data != null && compare_data.Count > 0)
+                    {
+                        info_table.AddRow(compare_data, true);
+                        info_xml = Data_Table.ToXml(info_table);
+                    }
+
+                    string detailInfo_xml = GetDetailInfo();
+
                     V6BusinessHelper.WriteV6InvoiceHistory(ItemID, MethodBase.GetCurrentMethod().Name, string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(),
-                        ObjectAndString.ObjectToString(data_old["UID"]), _invoice.Mact, _sttRec, info, detailInfo);
+                        ObjectAndString.ObjectToString(data_old["UID"]), _invoice.Mact, _sttRec, info_xml, detailInfo_xml);
                 }
             }
             catch (Exception ex)

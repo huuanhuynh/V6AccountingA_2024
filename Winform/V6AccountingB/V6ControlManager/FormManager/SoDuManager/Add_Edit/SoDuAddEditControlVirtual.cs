@@ -1111,15 +1111,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             public IDictionary<string, object> NewData = null;
         }
 
+        /// <summary>
+        /// Trả về xml của List string
+        /// </summary>
+        /// <returns></returns>
         private string GetDetailInfo()
         {
-            string result = "";
+            List<string> result = new List<string>();
             foreach (KeyValuePair<string, OldNewData> item in editLogData)
             {
-                result += "~" + item.Key + " " + V6ControlFormHelper.CompareDifferentData(item.Value.OldData, item.Value.NewData);
+                result.Add(item.Key + " " + ObjectAndString.DictionaryToString(
+                    V6ControlFormHelper.CompareDifferentData(item.Value.OldData, item.Value.NewData)));
             }
-            if (result.Length > 1) result = result.Substring(1);
-            return result;
+            //if (result.Length > 1) result = result.Substring(1);
+            return ObjectAndString.ListToXml(result);
         }
 
         /// <summary>
@@ -1133,7 +1138,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 if (V6Options.SaveEditLogList && _aldmConfig != null && _aldmConfig.HaveInfo && ObjectAndString.ObjectToBool(_aldmConfig.DMFIX))
                 {
-                    string info = V6ControlFormHelper.CompareDifferentData(data_old, data_new);
+                    string info = ObjectAndString.DictionaryToString(
+                        V6ControlFormHelper.CompareDifferentData(data_old, data_new));
                     //V6BusinessHelper.write.WriteV6ListHistory(ItemID, MethodBase.GetCurrentMethod().Name,
                     //    string.IsNullOrEmpty(CodeForm) ? "N" : CodeForm[0].ToString(),
                     //    _aldmConfig.MA_DM,  ObjectAndString.ObjectToString(data_new[_aldmConfig.VALUE]), info, ObjectAndString.ObjectToString(data_old["UID"]));

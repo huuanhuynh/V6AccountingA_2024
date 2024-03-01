@@ -2472,7 +2472,7 @@ namespace V6AccountingBusiness
         }
 
         public static void WriteV6InvoiceHistory(string item_id, string action, string type,
-            string uid, string ma_ct, string stt_rec, string content, string content4)
+            string uid, string ma_ct, string stt_rec, string content_xml, string content4_xml)
         {
             try
             {
@@ -2489,15 +2489,18 @@ namespace V6AccountingBusiness
                 //data["MA_DM"] = ma_dm;
                 data["STT_REC"] = stt_rec;
                 //data["MA"] = ma;
-                data["CONTENT"] = content;
+                //data["CONTENT"] = content;
                 //data["CONTENT2"] = content2;
                 data["CONTENT3"] = uid;
-                data["CONTENT4"] = content4;
+                //data["CONTENT4"] = content4;
+                data["XML_CT"] = content_xml;
+                //data["XML_CT2"] = content2_xml;
+                data["XML_CT4"] = content4_xml;
                 InsertSimple("V6HISTORY", data);
             }
             catch (Exception ex)
             {
-                Logger.WriteExLog("WriteV6InvoiceHistory " + item_id + action + content, ex);
+                Logger.WriteExLog("WriteV6InvoiceHistory " + item_id + action + content_xml, ex);
             }
         }
 

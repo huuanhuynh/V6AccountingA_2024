@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
@@ -52,21 +54,29 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 DataTable AM_DATA = new DataTable();
                 foreach (DataRow row in _data.Rows)
                 {
-                    var master_string = row["CONTENT"].ToString();
-                    var am_data = ObjectAndString.StringToStringDictionary(master_string);
+                    var master_string = row["XML_CT"].ToString();
+                    var table = Data_Table.FromXmlString(master_string);
+                    
                     Dictionary<string, object> a = new Dictionary<string, object>();
                     a["DATE"] = ObjectAndString.ObjectToString(row["DATE"], "yyyy-MM-dd HH:mm:ss");
                     a["USER_NAME"] = row["USER_NAME"];
                     a["CLIENT_NAME"] = row["CLIENT_NAME"];
-                    foreach (KeyValuePair<string, string> item in am_data)
+                    if (table != null)
+                    foreach (DataRow row1 in table.Rows)
                     {
-                        a[item.Key] = item.Value.Replace("|", "=>");
+                        a.AddRange(row1.ToDataDictionary());
+                        //a[item.Key] = item.Value.Replace("|", "=>");
                     }
-                    a["CONTENT4"] = row["CONTENT4"];
+                    a["XML_CT4"] = row["XML_CT4"];
                     AM_DATA.AddRow(a, true);
                 }
 
                 dataGridView1.DataSource = AM_DATA;
+                // hide columns
+                if (dataGridView1.Columns.Contains("XML_CT4"))
+                {
+                    dataGridView1.Columns["XML_CT4"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -87,26 +97,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 DataTable AD_DATA = new DataTable();
                 var Data = row.ToDataDictionary();
                 // AD
-                var details_string = ObjectAndString.SplitStringBy(Data["CONTENT4"].ToString(), '~');
-                foreach (string s in details_string)
+                //var ds = new DataSet();
+                string xml_ct4 = "" + Data["XML_CT4"];
+                var table = Data_Table.FromXmlString(xml_ct4);
+                
+                if (table != null)
+                foreach (DataRow s in table.Rows)
                 {
-                    int index = s.IndexOf(' ');
-                    string stt_rec0 = s.Substring(0, index);
-                    string detail1 = s.Substring(index + 1);
-                    var data = ObjectAndString.StringToStringDictionary(detail1);
                     Dictionary<string, object> rowData = new Dictionary<string, object>();
-                    rowData["STT_REC0"] = stt_rec0;
-                    foreach (KeyValuePair<string, string> item in data)
-                    {
-                        if (stt_rec0.StartsWith("EDIT_"))
-                        {
-                            rowData[item.Key] = item.Value.Replace("|", "=>");
-                        }
-                        else
-                        {
-                            rowData[item.Key] = item.Value;
-                        }
-                    }
+                    rowData["KEY"] = s["Key"];
+                    string json = "" + s["Value"];
+                    var dic = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                    rowData.AddRange(dic);
 
                     AD_DATA.AddRow(rowData, true);
                 }

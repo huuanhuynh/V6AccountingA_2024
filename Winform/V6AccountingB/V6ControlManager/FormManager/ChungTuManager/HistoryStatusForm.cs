@@ -85,12 +85,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             Label lblDateTime = new Label(); lblDateTime.AutoSize = false;
             lblDateTime.Size = new System.Drawing.Size(120, 20);
             lblDateTime.Text = ObjectAndString.ObjectToString(row["DATE2"], "yyyy-MM-dd ") + row["TIME2"];
-            lblDateTime.Top = 3; lblDateTime.Left = 3;
+            lblDateTime.Top = 8; lblDateTime.Left = 3;
             p.Controls.Add(lblDateTime);
 
             Label lblColor = new Label(); lblColor.AutoSize = false;
             lblColor.Size = new System.Drawing.Size(30, 20);
-            lblColor.Text = "●"; lblColor.Font = new System.Drawing.Font(lblColor.Font.FontFamily, lblColor.Font.Size + 3);
+            lblColor.Text = "●"; lblColor.Font = new System.Drawing.Font(lblColor.Font.FontFamily, lblColor.Font.Size + 8);
+            lblColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             lblColor.ForeColor = color;
             lblColor.Top = 1; lblColor.Left = 3 + lblDateTime.Width;
             p.Controls.Add(lblColor);
@@ -99,7 +100,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             lblName.Size = new System.Drawing.Size(panel1.Width - lblDateTime.Width - lblColor.Width - 9, 20);
             lblName.Text = row["NAME"].ToString();// lblName.Font = new System.Drawing.Font(lblName.Font.FontFamily, lblName.Font.Size + 3);
             lblName.ForeColor = color;
-            lblName.Top = 3; lblName.Left = 153;
+            lblName.Top = 8; lblName.Left = 153;
             p.Controls.Add(lblName);
 
             return p;
@@ -114,7 +115,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             
             Label lblColor = new Label(); lblColor.AutoSize = false;
             lblColor.Size = new System.Drawing.Size(30, 20);
-            lblColor.Text = "↑"; lblColor.Font = new System.Drawing.Font(lblColor.Font.FontFamily, lblColor.Font.Size + 3);
+            lblColor.Text = "↑"; lblColor.Font = new System.Drawing.Font(lblColor.Font.FontFamily, lblColor.Font.Size + 5, System.Drawing.FontStyle.Bold);
+            lblColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             lblColor.ForeColor = color;
             lblColor.Top = 1; lblColor.Left = 3 + 120;
             p.Controls.Add(lblColor);

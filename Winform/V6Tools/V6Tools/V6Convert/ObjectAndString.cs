@@ -1255,9 +1255,13 @@ namespace V6Tools.V6Convert
 
         public static string DataTableToXml(DataTable data)
         {
-            string result = "";
-            result += string.Format("[DataTable] have {0} row[s].", data.Rows.Count);
-            return result;
+            StringWriter sw = new StringWriter();
+            data.WriteXml(sw);
+            string s = sw.ToString();
+            return s;
+            //string result = "";
+            //result += string.Format("[DataTable] have {0} row[s].", data.Rows.Count);
+            //return result;
         }
 
         /// <summary>

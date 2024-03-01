@@ -10061,32 +10061,26 @@ namespace V6Controls.Forms
             //table.Columns[oldName].ColumnName = newName;
         }
 
-
-        public static string CompareDifferentData(IDictionary<string, object> data1, IDictionary<string, object> data2)
+        /// <summary>
+        /// Trả về Dic thể hiện sự khác biệt???.
+        /// </summary>
+        /// <param name="data1">data old</param>
+        /// <param name="data2">data new</param>
+        /// <returns></returns>
+        public static Dictionary<string, object> CompareDifferentData(IDictionary<string, object> data1, IDictionary<string, object> data2)
         {
-            string result = "";
+            Dictionary<string, object> row = new Dictionary<string, object>();
             if (data1 == null) // add
             {
-                foreach (KeyValuePair<string, object> item in data2)
-                {
-                    string newValue = ObjectAndString.ObjectToString(data2[item.Key]).Trim();
-                    result += string.Format(";{0}:{1}", item.Key, newValue);
-                }
-
-                if (result.Length > 1) result = result.Substring(1);
+                row.AddRange(data2);
             }
             else if (data2 == null) // delete
             {
-                foreach (KeyValuePair<string, object> item in data1)
-                {
-                    string oldValue = ObjectAndString.ObjectToString(item.Value).Trim();
-                    result += string.Format(";{0}:{1}", item.Key, oldValue);
-                }
-
-                if (result.Length > 1) result = result.Substring(1);
+                row.AddRange(data1);
             }
             else // edit
             {
+                
                 foreach (KeyValuePair<string, object> item in data1)
                 {
                     if (data2.ContainsKey(item.Key))
@@ -10096,21 +10090,21 @@ namespace V6Controls.Forms
                             decimal oldValue = ObjectAndString.ObjectToDecimal(item.Value);
                             decimal newValue = ObjectAndString.ObjectToDecimal(data2[item.Key]);
                             if (newValue != oldValue)
-                                result += string.Format(";{0}:{1}|{2}", item.Key, oldValue, newValue);
+                                row.Add(item.Key, string.Format("{0}=>{1}", oldValue, newValue));
                         }
                         else
                         {
                             string oldValue = ObjectAndString.ObjectToString(item.Value).Trim();
                             string newValue = ObjectAndString.ObjectToString(data2[item.Key]).Trim();
                             if (newValue != oldValue)
-                                result += string.Format(";{0}:{1}|{2}", item.Key, oldValue, newValue);
+                                row.Add( item.Key, string.Format("{0}=>{1}", oldValue, newValue));
                         }
                     }
                 }
-                if (result.Length > 1) result = result.Substring(1);
+
             }
 
-            return result;
+            return row;
         }
 
 

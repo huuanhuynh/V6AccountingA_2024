@@ -150,6 +150,14 @@ namespace V6Tools.V6Convert
             return sb.ToString();
         }
 
+        public static string DataTableToXml(DataTable data)
+        {
+            StringWriter sw = new StringWriter();
+            data.WriteXml(sw);
+            string s = sw.ToString();
+            return s;
+        }
+
         /// <summary>
         /// Biến dữ liệu cột thành Dictionary, key trùng sẽ lấy dòng sau cùng.
         /// </summary>

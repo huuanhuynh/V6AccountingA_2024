@@ -43,7 +43,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.grbMode = new System.Windows.Forms.GroupBox();
             this.rScan = new System.Windows.Forms.RadioButton();
             this.rInventory = new System.Windows.Forms.RadioButton();
-            this.btnClear = new System.Windows.Forms.Button();
+            this.btnDeleteAll = new System.Windows.Forms.Button();
+            this.btnDeleteOne = new System.Windows.Forms.Button();
             this.btnLoadTemp = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.txtQR_INFOR = new System.Windows.Forms.RichTextBox();
@@ -98,7 +99,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.chkAutoTransfer);
             this.panel1.Controls.Add(this.grbMode);
-            this.panel1.Controls.Add(this.btnClear);
+            this.panel1.Controls.Add(this.btnDeleteAll);
+            this.panel1.Controls.Add(this.btnDeleteOne);
             this.panel1.Controls.Add(this.btnLoadTemp);
             this.panel1.Controls.Add(this.btnLoad);
             this.panel1.Controls.Add(this.txtQR_INFOR);
@@ -156,25 +158,40 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.rInventory.Text = "&Inventory";
             this.rInventory.UseVisualStyleBackColor = true;
             // 
-            // btnClear
+            // btnDeleteAll
             // 
-            this.btnClear.AccessibleDescription = "";
-            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClear.Image = global::V6ControlManager.Properties.Resources.Delete32;
-            this.btnClear.Location = new System.Drawing.Point(818, 465);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(88, 40);
-            this.btnClear.TabIndex = 2;
-            this.btnClear.Text = "&Xóa";
-            this.btnClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.toolTipV6FormControl.SetToolTip(this.btnClear, "Xóa dòng dữ liệu đang đứng (Click)");
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnDeleteAll.AccessibleDescription = "";
+            this.btnDeleteAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteAll.Image = global::V6ControlManager.Properties.Resources.Cancel;
+            this.btnDeleteAll.Location = new System.Drawing.Point(818, 465);
+            this.btnDeleteAll.Name = "btnDeleteAll";
+            this.btnDeleteAll.Size = new System.Drawing.Size(88, 40);
+            this.btnDeleteAll.TabIndex = 2;
+            this.btnDeleteAll.Text = "Xóa hết";
+            this.btnDeleteAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTipV6FormControl.SetToolTip(this.btnDeleteAll, "Xóa hết dữ liệu.");
+            this.btnDeleteAll.UseVisualStyleBackColor = true;
+            this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
+            // 
+            // btnDeleteOne
+            // 
+            this.btnDeleteOne.AccessibleDescription = "";
+            this.btnDeleteOne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteOne.Image = global::V6ControlManager.Properties.Resources.Delete32;
+            this.btnDeleteOne.Location = new System.Drawing.Point(724, 465);
+            this.btnDeleteOne.Name = "btnDeleteOne";
+            this.btnDeleteOne.Size = new System.Drawing.Size(88, 40);
+            this.btnDeleteOne.TabIndex = 2;
+            this.btnDeleteOne.Text = "&Xóa 1";
+            this.btnDeleteOne.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTipV6FormControl.SetToolTip(this.btnDeleteOne, "Xóa dòng dữ liệu đang đứng (Click)");
+            this.btnDeleteOne.UseVisualStyleBackColor = true;
+            this.btnDeleteOne.Click += new System.EventHandler(this.btnDeleteOne_Click);
             // 
             // btnLoadTemp
             // 
             this.btnLoadTemp.AccessibleDescription = "";
-            this.btnLoadTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLoadTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLoadTemp.Image = global::V6ControlManager.Properties.Resources.History24;
             this.btnLoadTemp.Location = new System.Drawing.Point(912, 465);
             this.btnLoadTemp.Name = "btnLoadTemp";
@@ -277,7 +294,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.Panel panel1;
         public V6ColorDataGridView dataGridView1;
-        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnDeleteOne;
         private System.Windows.Forms.Button btnLoad;
         public System.Windows.Forms.RichTextBox txtQR_INFOR;
         private System.Windows.Forms.GroupBox grbMode;
@@ -285,5 +302,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private System.Windows.Forms.RadioButton rInventory;
         private System.Windows.Forms.Button btnLoadTemp;
         private System.Windows.Forms.CheckBox chkAutoTransfer;
+        private System.Windows.Forms.Button btnDeleteAll;
     }
 }
