@@ -7701,6 +7701,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         private void chonTuExcelVATMenu_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabThue;

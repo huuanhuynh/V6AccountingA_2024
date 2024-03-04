@@ -136,7 +136,7 @@
     <value>True</value>
   </metadata>
   <metadata name="menuChucNang2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>562, 17</value>
+    <value>138, 56</value>
   </metadata>
   <metadata name="menuChucNang.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>190, 17</value>
@@ -145,6 +145,6 @@
     <value>330, 17</value>
   </metadata>
   <metadata name="menuBtnTim.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>441, 17</value>
+    <value>17, 56</value>
   </metadata>
 </root>

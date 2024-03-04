@@ -4314,6 +4314,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();

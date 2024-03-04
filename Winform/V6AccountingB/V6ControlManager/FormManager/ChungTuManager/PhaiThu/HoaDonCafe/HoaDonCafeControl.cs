@@ -7264,6 +7264,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         private void detail1_LabelNameTextChanged(object sender, EventArgs e)
         {
             lblNameT.Text = ((Label) sender).Text;

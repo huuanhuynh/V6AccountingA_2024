@@ -6639,6 +6639,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         public override void qrTransfer_AcceptData(List<IDictionary<string, object>> table, ChonEventArgs e)
         {
             var count = 0;

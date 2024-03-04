@@ -3959,7 +3959,7 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
         {
             //Lay thong tin gan du lieu 20161129
             //var infos =   invoice.LoadDataReferenceInfo(V6Setting.Language, ItemID);
-            var infosDic = GetDefaultDataAndTagInfoData(V6Setting.Language, 1, invoice.Mact, "", itemID, "nhom='02'");
+            var infosDic = GetDefaultDataAndTagInfoData_02(V6Setting.Language, 1, invoice.Mact, "", itemID, "nhom='02'");
             //SetDefaultDataInfoToForm(infosDic);
             
             //Chuẩn bị dữ liệu để gán lên form
@@ -5889,6 +5889,29 @@ new SqlParameter("@USER_ID", V6Login.UserId) };
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".ViewLblKieuPost", ex);
+            }
+        }
+
+        public void ViewTrangThaiHistory()
+        {
+            try
+            {
+                if (!IsViewingAnInvoice) return;
+                if (Mode != V6Mode.View) return;
+                var plist = new SqlParameter[]
+                {
+                    new SqlParameter("@STT_REC", _sttRec),
+                    new SqlParameter("@isInvoice", "1"),
+                    new SqlParameter("@ReportFile", ""),
+
+                };
+                var loadData = V6BusinessHelper.ExecuteProcedure("PRINT_INFOR6", plist).Tables[0];
+                HistoryStatusForm form = new HistoryStatusForm(loadData);
+                form.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ViewTrangThaiHistory " + _sttRec, ex);
             }
         }
 

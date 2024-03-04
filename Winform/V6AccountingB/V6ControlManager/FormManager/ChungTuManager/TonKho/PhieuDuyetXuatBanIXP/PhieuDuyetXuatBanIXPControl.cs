@@ -6268,7 +6268,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             }
         }
 
-        
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
 
         private void txtTyGia_V6LostFocus(object sender)
         {

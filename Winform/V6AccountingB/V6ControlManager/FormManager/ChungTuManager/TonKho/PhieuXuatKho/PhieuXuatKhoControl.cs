@@ -6852,6 +6852,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         private void txtSLSP_Leave(object sender, EventArgs e)
         {
             try

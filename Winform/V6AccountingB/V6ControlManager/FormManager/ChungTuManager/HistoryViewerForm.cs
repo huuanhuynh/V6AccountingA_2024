@@ -28,12 +28,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             MyInit();
         }
 
-        //public IDictionary<string, object> Data { get; set; }
+
         private void MyInit()
         {
             try
             {
-                //dataGridView1.DataSource = _data;
                 GenDataForGridViews();
             }
             catch (Exception ex)
@@ -65,7 +64,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     foreach (DataRow row1 in table.Rows)
                     {
                         a.AddRange(row1.ToDataDictionary());
-                        //a[item.Key] = item.Value.Replace("|", "=>");
                     }
                     a["XML_CT4"] = row["XML_CT4"];
                     AM_DATA.AddRow(a, true);
@@ -97,7 +95,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 DataTable AD_DATA = new DataTable();
                 var Data = row.ToDataDictionary();
                 // AD
-                //var ds = new DataSet();
                 string xml_ct4 = "" + Data["XML_CT4"];
                 var table = Data_Table.FromXmlString(xml_ct4);
                 

@@ -561,8 +561,77 @@ namespace V6Controls.Forms
             return result;
         }
 
+        public SortedDictionary<string, DefaultValueAndTagInfo> GetDefaultDataAndTagInfoData_02(string lang, int loai, string mact, string madm, string itemId, string adv = "")
+        {
+            if (defaultValueTagData_02 != null && defaultValueTagData_02.Count > 0) return defaultValueTagData_02;
+
+            if (alinitData_02 == null || alinitData_02.Rows.Count == 0)
+            {
+                alinitData_02 = V6BusinessHelper.GetDefaultValueData(loai, mact, madm, itemId, adv);
+                alinitData_ALL_02 = V6BusinessHelper.GetDefaultValueData_ALL(loai, mact, madm, itemId, adv);
+            }
+            var result = new SortedDictionary<string, DefaultValueAndTagInfo>();
+            foreach (DataRow row in alinitData_02.Rows)
+            {
+                //Tuanmh 25/12/2017 - Bo sung theo kieu
+                string kieu = row["kieu"].ToString().Trim();
+                if (kieu == "") continue;
+
+                var cell = row["Default" + lang]; if (cell == null) continue;
+                var value = cell.ToString().Trim();
+                var ANAME = row["NameVal"].ToString().Trim().ToUpper();
+                var CNAME = row["NameTag"].ToString().Trim().ToUpper();
+                var tagString = row["Tag"].ToString().Trim();
+                var isHide = "1" == row["Hide"].ToString().Trim().ToUpper();
+                var isReadOnly = "1" == row["Readonly"].ToString().Trim().ToUpper();
+                DefaultValueAndTagInfo valueInfo = new DefaultValueAndTagInfo()
+                {
+                    AName = ANAME,
+                    CName = CNAME,
+                    Value = value,
+                    TagString = tagString,
+                    Type1 = kieu,
+                    IsHide = isHide,
+                    IsReadOnly = isReadOnly,
+                };
+                result[string.IsNullOrEmpty(ANAME) ? CNAME : ANAME] = valueInfo;
+            }
+
+            foreach (DataRow row in alinitData_ALL_02.Rows)
+            {
+                //Tuanmh 25/12/2017 - Bo sung theo kieu
+                string kieu = row["kieu"].ToString().Trim();
+                if (kieu == "") continue;
+
+                var cell = row["Default" + lang]; if (cell == null) continue;
+                var value = cell.ToString().Trim();
+                var ANAME = row["NameVal"].ToString().Trim().ToUpper();
+                var CNAME = row["NameTag"].ToString().Trim().ToUpper();
+                var tagString = row["Tag"].ToString().Trim();
+                var isHide = "1" == row["Hide"].ToString().Trim().ToUpper();
+                var isReadOnly = "1" == row["Readonly"].ToString().Trim().ToUpper();
+                DefaultValueAndTagInfo valueInfo = new DefaultValueAndTagInfo()
+                {
+                    AName = ANAME,
+                    CName = CNAME,
+                    Value = value,
+                    TagString = tagString,
+                    Type1 = kieu,
+                    IsHide = isHide,
+                    IsReadOnly = isReadOnly,
+                };
+                result[string.IsNullOrEmpty(ANAME) ? CNAME : ANAME] = valueInfo;
+            }
+
+
+            defaultValueTagData_02 = result;
+            return result;
+        }
+
         public DataTable alinitData, alinitData_ALL;
+        public DataTable alinitData_02, alinitData_ALL_02;
         public SortedDictionary<string, DefaultValueAndTagInfo> defaultValueTagData;
+        public SortedDictionary<string, DefaultValueAndTagInfo> defaultValueTagData_02;
         //private SortedDictionary<string, string> tagData;
         public SortedDictionary<string, string> readonlyData;
         public SortedDictionary<string, string> visibleData;

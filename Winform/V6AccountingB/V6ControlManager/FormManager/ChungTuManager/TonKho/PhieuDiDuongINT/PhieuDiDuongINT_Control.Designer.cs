@@ -213,7 +213,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             this.txtThueSuat = new V6Controls.V6NumberTextBox();
             this.txtPtCk = new V6Controls.V6NumberTextBox();
             this.lblTongSoDong = new V6Controls.V6Label();
-            this.v6Label20 = new V6Controls.V6Label();
+            this.lblTrangThai = new V6Controls.V6Label();
             this.v6Label30 = new V6Controls.V6Label();
             this.v6Label35 = new V6Controls.V6Label();
             this.v6Label32 = new V6Controls.V6Label();
@@ -981,7 +981,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             this.tabThue.Location = new System.Drawing.Point(4, 22);
             this.tabThue.Name = "tabThue";
             this.tabThue.Padding = new System.Windows.Forms.Padding(3);
-            this.tabThue.Size = new System.Drawing.Size(879, 188);
+            this.tabThue.Size = new System.Drawing.Size(886, 188);
             this.tabThue.TabIndex = 1;
             this.tabThue.Tag = "cancelall";
             this.tabThue.Text = "Thuế GTGT";
@@ -1073,7 +1073,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             this.tabChiPhi.Location = new System.Drawing.Point(4, 22);
             this.tabChiPhi.Name = "tabChiPhi";
             this.tabChiPhi.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiPhi.Size = new System.Drawing.Size(879, 188);
+            this.tabChiPhi.Size = new System.Drawing.Size(886, 188);
             this.tabChiPhi.TabIndex = 2;
             this.tabChiPhi.Text = "Chi phí";
             // 
@@ -1363,7 +1363,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             this.tabKhac.Location = new System.Drawing.Point(4, 22);
             this.tabKhac.Name = "tabKhac";
             this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac.Size = new System.Drawing.Size(879, 188);
+            this.tabKhac.Size = new System.Drawing.Size(886, 188);
             this.tabKhac.TabIndex = 3;
             this.tabKhac.Text = "Khác";
             // 
@@ -1941,7 +1941,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             this.tabThongTin.Location = new System.Drawing.Point(4, 22);
             this.tabThongTin.Name = "tabThongTin";
             this.tabThongTin.Padding = new System.Windows.Forms.Padding(3);
-            this.tabThongTin.Size = new System.Drawing.Size(879, 188);
+            this.tabThongTin.Size = new System.Drawing.Size(886, 188);
             this.tabThongTin.TabIndex = 4;
             this.tabThongTin.Text = "TT nhận hàng & PTTT";
             // 
@@ -2503,7 +2503,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             this.group4.Controls.Add(this.txtThueSuat);
             this.group4.Controls.Add(this.txtPtCk);
             this.group4.Controls.Add(this.lblTongSoDong);
-            this.group4.Controls.Add(this.v6Label20);
+            this.group4.Controls.Add(this.lblTrangThai);
             this.group4.Controls.Add(this.v6Label30);
             this.group4.Controls.Add(this.v6Label35);
             this.group4.Controls.Add(this.v6Label32);
@@ -2976,15 +2976,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
             this.lblTongSoDong.TabIndex = 0;
             this.lblTongSoDong.Text = "0 dòng";
             // 
-            // v6Label20
+            // lblTrangThai
             // 
-            this.v6Label20.AccessibleDescription = "APOCTPOAL00031";
-            this.v6Label20.AutoSize = true;
-            this.v6Label20.Location = new System.Drawing.Point(6, 130);
-            this.v6Label20.Name = "v6Label20";
-            this.v6Label20.Size = new System.Drawing.Size(55, 13);
-            this.v6Label20.TabIndex = 9;
-            this.v6Label20.Text = "Trạng thái";
+            this.lblTrangThai.AccessibleDescription = "APOCTPOAL00031";
+            this.lblTrangThai.AutoSize = true;
+            this.lblTrangThai.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrangThai.Location = new System.Drawing.Point(6, 130);
+            this.lblTrangThai.Name = "lblTrangThai";
+            this.lblTrangThai.Size = new System.Drawing.Size(65, 13);
+            this.lblTrangThai.TabIndex = 9;
+            this.lblTrangThai.Text = "Trạng thái";
+            this.lblTrangThai.Click += new System.EventHandler(this.lblTrangThai_Click);
             // 
             // v6Label30
             // 
@@ -3923,7 +3925,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDiDuongINT
         private V6Label v6Label19;
         private V6VvarTextBox txtMa_thue;
         private V6Controls.V6ColorComboBox cboKieuPost;
-        private V6Label v6Label20;
+        private V6Label lblTrangThai;
         private V6Label v6Label24;
         private V6Label v6Label23;
         private V6Label v6Label22;

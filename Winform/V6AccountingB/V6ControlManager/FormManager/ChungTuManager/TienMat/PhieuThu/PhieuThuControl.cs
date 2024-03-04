@@ -4844,6 +4844,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         //private void ChucNang_ChonTuExcel(bool add)
         //{
         //    try

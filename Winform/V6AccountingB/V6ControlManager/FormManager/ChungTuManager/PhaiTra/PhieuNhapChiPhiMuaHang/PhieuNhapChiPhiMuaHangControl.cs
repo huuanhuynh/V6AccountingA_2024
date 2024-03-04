@@ -5387,6 +5387,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         private void txtManx_TextChanged(object sender, EventArgs e)
         {
             TxtTk_i_ao.Text = txtManx.Text;

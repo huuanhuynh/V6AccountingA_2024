@@ -5761,6 +5761,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         public void chonExcel_AcceptData(DataTable table)
         {
             chonExcel_AcceptData(table.ToListDataDictionary(), new ChonEventArgs());

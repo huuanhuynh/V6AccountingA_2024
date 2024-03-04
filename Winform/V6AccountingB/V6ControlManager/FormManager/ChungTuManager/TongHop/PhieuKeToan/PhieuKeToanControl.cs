@@ -4073,6 +4073,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);

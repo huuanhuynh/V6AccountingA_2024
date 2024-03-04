@@ -4169,6 +4169,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             }
         }
 
+        private void lblTrangThai_Click(object sender, EventArgs e)
+        {
+            ViewTrangThaiHistory();
+        }
+
         private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
             string program = "A" + Invoice.Mact + "_XULYKHAC";
