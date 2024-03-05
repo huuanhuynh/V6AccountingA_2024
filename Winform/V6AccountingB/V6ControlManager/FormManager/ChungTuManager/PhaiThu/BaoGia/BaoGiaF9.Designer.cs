@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.cboKieuPost = new V6Controls.V6ComboBox();
-            this.v6Label20 = new V6Controls.V6Label();
+            this.lblTrangThai = new V6Controls.V6Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -51,15 +51,15 @@
             this.cboKieuPost.Size = new System.Drawing.Size(219, 24);
             this.cboKieuPost.TabIndex = 1;
             // 
-            // v6Label20
+            // lblTrangThai
             // 
-            this.v6Label20.AccessibleDescription = "ASOCTSOAL00045";
-            this.v6Label20.AutoSize = true;
-            this.v6Label20.Location = new System.Drawing.Point(18, 32);
-            this.v6Label20.Name = "v6Label20";
-            this.v6Label20.Size = new System.Drawing.Size(55, 13);
-            this.v6Label20.TabIndex = 0;
-            this.v6Label20.Text = "Trạng thái";
+            this.lblTrangThai.AccessibleDescription = "ASOCTSOAL00045";
+            this.lblTrangThai.AutoSize = true;
+            this.lblTrangThai.Location = new System.Drawing.Point(18, 32);
+            this.lblTrangThai.Name = "lblTrangThai";
+            this.lblTrangThai.Size = new System.Drawing.Size(55, 13);
+            this.lblTrangThai.TabIndex = 0;
+            this.lblTrangThai.Text = "Trạng thái";
             // 
             // btnHuy
             // 
@@ -104,16 +104,12 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.cboKieuPost);
-            this.Controls.Add(this.v6Label20);
+            this.Controls.Add(this.lblTrangThai);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BaoGiaF9";
             this.Text = "BaoGiaF9";
-            this.Controls.SetChildIndex(this.v6Label20, 0);
-            this.Controls.SetChildIndex(this.cboKieuPost, 0);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,7 +117,7 @@
 
         #endregion
 
-        private V6Controls.V6Label v6Label20;
+        private V6Controls.V6Label lblTrangThai;
         protected System.Windows.Forms.Button btnHuy;
         protected System.Windows.Forms.Button btnNhan;
         public V6Controls.V6ComboBox cboKieuPost;

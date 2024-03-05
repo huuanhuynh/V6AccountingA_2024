@@ -5562,25 +5562,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private void lblTrangThai_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!IsViewingAnInvoice) return;
-                if (Mode != V6Mode.View) return;
-                var plist = new SqlParameter[]
-                {
-                    new SqlParameter("@STT_REC", _sttRec),
-                    new SqlParameter("@isInvoice", "1"),
-                    new SqlParameter("@ReportFile", ""),
-
-                };
-                var loadData = V6BusinessHelper.ExecuteProcedure("PRINT_INFOR6", plist).Tables[0];
-                HistoryStatusForm form = new HistoryStatusForm(loadData);
-                form.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".lblTrangThai_Click " + _sttRec, ex);
-            }
+            ViewTrangThaiHistory();
         }
 
         private void txtPtCk_V6LostFocus(object sender)

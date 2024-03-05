@@ -1854,6 +1854,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.lblTrangThai.Size = new System.Drawing.Size(65, 13);
             this.lblTrangThai.TabIndex = 22;
             this.lblTrangThai.Text = "Trạng thái";
+            this.lblTrangThai.Click += new System.EventHandler(this.lblTrangThai_Click);
             // 
             // v6Label35
             // 
