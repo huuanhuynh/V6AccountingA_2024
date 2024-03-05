@@ -9771,7 +9771,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             ViewTrangThaiHistory();
         }
-
+        
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
             FixDataGridViewSize(dataGridView1, dataGridView3);

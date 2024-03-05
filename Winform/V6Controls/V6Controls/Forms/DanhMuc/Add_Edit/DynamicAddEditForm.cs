@@ -751,23 +751,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                //var dataOld2 = new SortedDictionary<string, object>();
-                //if (DataOld != null) dataOld2.AddRange(DataOld);
-                //dataOld2["STATUS"] = "1";
-                //if (DataOld != null)
-                //{
-                //    SetSomeData(dataOld2);
-                //}
-                //else if (_keys != null)
-                //{
-                //    LoadData();
-                //}
-                //else
-                //{
-                //    LoadDefaultData(2, "", _MA_DM, m_itemId);
-                //    SetSomeData(dataOld2);
-                //}
-
                 if (DataOld == null && _keys != null)
                 {
                     DataOld = LoadData();
@@ -827,7 +810,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
                 else
                 {
-                    if (_keys != null) LoadData();
+                    if (_keys != null)
+                    {
+                        DataOld = LoadData();
+                        SetData(DataOld);
+                    }
                 }
             }
         }

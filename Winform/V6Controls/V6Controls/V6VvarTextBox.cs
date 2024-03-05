@@ -290,7 +290,7 @@ namespace V6Controls
             }
         }
 
-        public string BaseInitFilter = null;
+        public string BaseInitFilter { get; set; }
 
         private string _initFilter;
         public string InitFilter
@@ -313,8 +313,8 @@ namespace V6Controls
             get
             {
                 if (string.IsNullOrEmpty(BaseInitFilter)) return InitFilter;
-                if (string.IsNullOrEmpty(InitFilter)) return BaseInitFilter;
-                return BaseInitFilter + " AND " + InitFilter;
+                if (string.IsNullOrEmpty(InitFilter)) return BaseInitFilter.Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
+                return BaseInitFilter.Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'") + " AND " + InitFilter;
             }
         }
 

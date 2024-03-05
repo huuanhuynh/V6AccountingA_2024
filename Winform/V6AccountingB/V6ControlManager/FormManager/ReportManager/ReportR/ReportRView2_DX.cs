@@ -1473,7 +1473,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// <param name="type">0 ko đổi, 1 big Gridview, 2 big Report.</param>
         public void ApplyControlsViewType(string type)
         {
-            int min_height = 60;
+            int min_height = 80;
             int full_height = Height - grbDieuKienLoc.Top;
             switch (type)
             {

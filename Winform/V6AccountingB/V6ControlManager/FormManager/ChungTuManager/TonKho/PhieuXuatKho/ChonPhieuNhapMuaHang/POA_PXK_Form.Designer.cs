@@ -218,7 +218,6 @@
             this.v6ColorTextBox4.AccessibleName = "MA_TD3";
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox4.BaseInitFilter = null;
             this.v6ColorTextBox4.CheckOnLeave = false;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -235,7 +234,6 @@
             this.v6ColorTextBox5.AccessibleName = "MA_VITRI";
             this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox5.BaseInitFilter = null;
             this.v6ColorTextBox5.CheckOnLeave = false;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -253,7 +251,6 @@
             this.txtMaHD.AccessibleName = "MA_HD";
             this.txtMaHD.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaHD.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaHD.BaseInitFilter = null;
             this.txtMaHD.CheckOnLeave = false;
             this.txtMaHD.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaHD.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -271,7 +268,7 @@
             this.txtMaSP.AccessibleName = "MA_SP";
             this.txtMaSP.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaSP.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaSP.BaseInitFilter = null;
+            
             this.txtMaSP.CheckOnLeave = false;
             this.txtMaSP.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaSP.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -289,7 +286,6 @@
             this.v6ColorTextBox24.AccessibleName = "MA_KU";
             this.v6ColorTextBox24.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox24.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox24.BaseInitFilter = null;
             this.v6ColorTextBox24.CheckOnLeave = false;
             this.v6ColorTextBox24.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox24.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -307,7 +303,6 @@
             this.v6ColorTextBox25.AccessibleName = "MA_VV_I";
             this.v6ColorTextBox25.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox25.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox25.BaseInitFilter = null;
             this.v6ColorTextBox25.CheckOnLeave = false;
             this.v6ColorTextBox25.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox25.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -325,7 +320,6 @@
             this.v6ColorTextBox26.AccessibleName = "TK_GV";
             this.v6ColorTextBox26.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox26.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox26.BaseInitFilter = null;
             this.v6ColorTextBox26.CheckOnLeave = false;
             this.v6ColorTextBox26.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox26.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -343,7 +337,6 @@
             this.v6ColorTextBox27.AccessibleName = "MA_VT";
             this.v6ColorTextBox27.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox27.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox27.BaseInitFilter = null;
             this.v6ColorTextBox27.CheckOnLeave = false;
             this.v6ColorTextBox27.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox27.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -361,7 +354,6 @@
             this.v6VvarTextBox1.AccessibleName = "MA_TD2";
             this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.BaseInitFilter = null;
             this.v6VvarTextBox1.CheckOnLeave = false;
             this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -378,7 +370,6 @@
             this.v6ColorTextBox28.AccessibleName = "MA_BPHT";
             this.v6ColorTextBox28.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox28.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox28.BaseInitFilter = null;
             this.v6ColorTextBox28.CheckOnLeave = false;
             this.v6ColorTextBox28.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox28.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -396,7 +387,6 @@
             this.v6ColorTextBox29.AccessibleName = "TK_VT";
             this.v6ColorTextBox29.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox29.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox29.BaseInitFilter = null;
             this.v6ColorTextBox29.CheckOnLeave = false;
             this.v6ColorTextBox29.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox29.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -414,7 +404,6 @@
             this.v6VvarTextBox2.AccessibleName = "ma_lo";
             this.v6VvarTextBox2.BackColor = System.Drawing.SystemColors.Window;
             this.v6VvarTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox2.BaseInitFilter = null;
             this.v6VvarTextBox2.CheckOnLeave = false;
             this.v6VvarTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6VvarTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -432,7 +421,6 @@
             this.v6ColorTextBox30.AccessibleName = "MA_TD1";
             this.v6ColorTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox30.BaseInitFilter = null;
             this.v6ColorTextBox30.CheckOnLeave = false;
             this.v6ColorTextBox30.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox30.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -449,7 +437,6 @@
             this.v6ColorTextBox31.AccessibleName = "TK_DT";
             this.v6ColorTextBox31.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox31.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox31.BaseInitFilter = null;
             this.v6ColorTextBox31.CheckOnLeave = false;
             this.v6ColorTextBox31.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox31.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -467,7 +454,6 @@
             this.v6ColorTextBox32.AccessibleName = "MA_PHI";
             this.v6ColorTextBox32.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox32.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox32.BaseInitFilter = null;
             this.v6ColorTextBox32.CheckOnLeave = false;
             this.v6ColorTextBox32.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox32.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -495,7 +481,6 @@
             this.v6ColorTextBox33.AccessibleName = "MA_KHO_I";
             this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox33.BaseInitFilter = null;
             this.v6ColorTextBox33.CheckOnLeave = false;
             this.v6ColorTextBox33.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox33.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -724,7 +709,6 @@
             this.maKhach.AccessibleName = "";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maKhach.BaseInitFilter = null;
             this.maKhach.CheckOnLeave = false;
             this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
             this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -775,7 +759,6 @@
             this.taiKhoanThue.AccessibleName = "TK_THUE";
             this.taiKhoanThue.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanThue.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.taiKhoanThue.BaseInitFilter = null;
             this.taiKhoanThue.CheckOnLeave = false;
             this.taiKhoanThue.EnterColor = System.Drawing.Color.PaleGreen;
             this.taiKhoanThue.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -814,7 +797,6 @@
             this.taiKhoanNo.AccessibleName = "MA_NX";
             this.taiKhoanNo.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanNo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.taiKhoanNo.BaseInitFilter = null;
             this.taiKhoanNo.CheckOnLeave = false;
             this.taiKhoanNo.EnterColor = System.Drawing.Color.PaleGreen;
             this.taiKhoanNo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -831,7 +813,6 @@
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.ctDenSo.BaseInitFilter = null;
             this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -847,7 +828,6 @@
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.dienGiai.BaseInitFilter = null;
             this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -864,7 +844,6 @@
             this.maNhanVien.AccessibleName = "MA_NVIEN";
             this.maNhanVien.BackColor = System.Drawing.SystemColors.Window;
             this.maNhanVien.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maNhanVien.BaseInitFilter = null;
             this.maNhanVien.CheckOnLeave = false;
             this.maNhanVien.EnterColor = System.Drawing.Color.PaleGreen;
             this.maNhanVien.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -882,7 +861,6 @@
             this.maBoPhan.AccessibleName = "MA_BP";
             this.maBoPhan.BackColor = System.Drawing.SystemColors.Window;
             this.maBoPhan.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maBoPhan.BaseInitFilter = null;
             this.maBoPhan.CheckOnLeave = false;
             this.maBoPhan.EnterColor = System.Drawing.Color.PaleGreen;
             this.maBoPhan.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -921,7 +899,6 @@
             this.maThue.AccessibleName = "ma_thue";
             this.maThue.BackColor = System.Drawing.SystemColors.Window;
             this.maThue.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maThue.BaseInitFilter = null;
             this.maThue.CheckOnLeave = false;
             this.maThue.EnterColor = System.Drawing.Color.PaleGreen;
             this.maThue.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -938,7 +915,6 @@
             // 
             this.ctTuSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctTuSo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.ctTuSo.BaseInitFilter = null;
             this.ctTuSo.CheckOnLeave = false;
             this.ctTuSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctTuSo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1240,7 +1216,6 @@
             this.txtNhomVT6.AccessibleName = "NH_VT6";
             this.txtNhomVT6.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT6.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT6.BaseInitFilter = null;
             this.txtNhomVT6.CheckOnLeave = false;
             this.txtNhomVT6.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNhomVT6.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1258,7 +1233,6 @@
             this.txtNhomVT5.AccessibleName = "NH_VT5";
             this.txtNhomVT5.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT5.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT5.BaseInitFilter = null;
             this.txtNhomVT5.CheckOnLeave = false;
             this.txtNhomVT5.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNhomVT5.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1276,7 +1250,6 @@
             this.txtNhomVT4.AccessibleName = "NH_VT4";
             this.txtNhomVT4.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT4.BaseInitFilter = null;
             this.txtNhomVT4.CheckOnLeave = false;
             this.txtNhomVT4.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNhomVT4.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1342,7 +1315,6 @@
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaDVCS.BaseInitFilter = null;
             this.txtMaDVCS.Enabled = false;
             this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1360,7 +1332,6 @@
             this.txtNhomVT3.AccessibleName = "NH_VT3";
             this.txtNhomVT3.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT3.BaseInitFilter = null;
             this.txtNhomVT3.CheckOnLeave = false;
             this.txtNhomVT3.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNhomVT3.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1378,7 +1349,6 @@
             this.txtNhomVT2.AccessibleName = "NH_VT2";
             this.txtNhomVT2.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT2.BaseInitFilter = null;
             this.txtNhomVT2.CheckOnLeave = false;
             this.txtNhomVT2.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNhomVT2.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1411,7 +1381,6 @@
             this.txtNhomVT1.AccessibleName = "NH_VT1";
             this.txtNhomVT1.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT1.BaseInitFilter = null;
             this.txtNhomVT1.CheckOnLeave = false;
             this.txtNhomVT1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtNhomVT1.ForeColor = System.Drawing.SystemColors.WindowText;

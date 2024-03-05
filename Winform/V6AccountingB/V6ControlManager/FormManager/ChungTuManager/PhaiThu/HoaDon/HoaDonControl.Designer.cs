@@ -244,9 +244,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtSoPhieu = new V6Controls.V6VvarTextBox();
             this.dateNgayLCT = new V6Controls.V6DateTimePicker();
             this.dateNgayCT = new V6Controls.V6DateTimePicker();
-            this.v6Label5 = new V6Controls.V6Label();
-            this.v6Label3 = new V6Controls.V6Label();
-            this.v6Label1 = new V6Controls.V6Label();
+            this.lblNgayLCT = new V6Controls.V6Label();
+            this.lblNgayCT = new V6Controls.V6Label();
+            this.lblMa_SoNB = new V6Controls.V6Label();
             this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.inPhieuThuTienMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -3480,9 +3480,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group1.Controls.Add(this.txtSoPhieu);
             this.group1.Controls.Add(this.dateNgayLCT);
             this.group1.Controls.Add(this.dateNgayCT);
-            this.group1.Controls.Add(this.v6Label5);
-            this.group1.Controls.Add(this.v6Label3);
-            this.group1.Controls.Add(this.v6Label1);
+            this.group1.Controls.Add(this.lblNgayLCT);
+            this.group1.Controls.Add(this.lblNgayCT);
+            this.group1.Controls.Add(this.lblMa_SoNB);
             this.group1.Location = new System.Drawing.Point(5, -5);
             this.group1.Name = "group1";
             this.group1.Size = new System.Drawing.Size(390, 57);
@@ -3575,35 +3575,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.dateNgayCT.Leave += new System.EventHandler(this.dateNgayCT_Leave);
             this.dateNgayCT.Validated += new System.EventHandler(this.dateNgayCT_Validated);
             // 
-            // v6Label5
+            // lblNgayLCT
             // 
-            this.v6Label5.AccessibleDescription = "ASOCTSOAL00003";
-            this.v6Label5.AutoSize = true;
-            this.v6Label5.Location = new System.Drawing.Point(200, 34);
-            this.v6Label5.Name = "v6Label5";
-            this.v6Label5.Size = new System.Drawing.Size(92, 13);
-            this.v6Label5.TabIndex = 6;
-            this.v6Label5.Text = "Ngày lập hóa đơn";
+            this.lblNgayLCT.AccessibleDescription = "ASOCTSOAL00003";
+            this.lblNgayLCT.AutoSize = true;
+            this.lblNgayLCT.Location = new System.Drawing.Point(200, 34);
+            this.lblNgayLCT.Name = "lblNgayLCT";
+            this.lblNgayLCT.Size = new System.Drawing.Size(92, 13);
+            this.lblNgayLCT.TabIndex = 6;
+            this.lblNgayLCT.Text = "Ngày lập hóa đơn";
             // 
-            // v6Label3
+            // lblNgayCT
             // 
-            this.v6Label3.AccessibleDescription = "ASOCTSOAL00004";
-            this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(200, 13);
-            this.v6Label3.Name = "v6Label3";
-            this.v6Label3.Size = new System.Drawing.Size(83, 13);
-            this.v6Label3.TabIndex = 4;
-            this.v6Label3.Text = "Ngày hạch toán";
+            this.lblNgayCT.AccessibleDescription = "ASOCTSOAL00004";
+            this.lblNgayCT.AutoSize = true;
+            this.lblNgayCT.Location = new System.Drawing.Point(200, 13);
+            this.lblNgayCT.Name = "lblNgayCT";
+            this.lblNgayCT.Size = new System.Drawing.Size(83, 13);
+            this.lblNgayCT.TabIndex = 4;
+            this.lblNgayCT.Text = "Ngày hạch toán";
             // 
-            // v6Label1
+            // lblMa_SoNB
             // 
-            this.v6Label1.AccessibleDescription = "ASOCTSOAC00042";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(6, 13);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(52, 13);
-            this.v6Label1.TabIndex = 0;
-            this.v6Label1.Text = "Số nội bộ";
+            this.lblMa_SoNB.AccessibleDescription = "ASOCTSOAC00042";
+            this.lblMa_SoNB.AutoSize = true;
+            this.lblMa_SoNB.Location = new System.Drawing.Point(6, 13);
+            this.lblMa_SoNB.Name = "lblMa_SoNB";
+            this.lblMa_SoNB.Size = new System.Drawing.Size(52, 13);
+            this.lblMa_SoNB.TabIndex = 0;
+            this.lblMa_SoNB.Text = "Số nội bộ";
             // 
             // menuBtnIn
             // 
@@ -3961,8 +3961,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #endregion
 
         private System.Windows.Forms.GroupBox group1;
-        private V6Label v6Label3;
-        private V6Label v6Label1;
+        private V6Label lblNgayCT;
+        private V6Label lblMa_SoNB;
         private V6VvarTextBox txtLoaiCt;
         private System.Windows.Forms.GroupBox group3;
         private System.Windows.Forms.GroupBox group4;
@@ -3976,7 +3976,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private NumberTienNt txtTongTienNt2;
         private wyDay.Controls.SplitButton btnTim;
         private V6DateTimePicker dateNgayLCT;
-        private V6Label v6Label5;
+        private V6Label lblNgayLCT;
         private System.Windows.Forms.GroupBox group2;
         private V6Label lblMauKyHieu;
         private V6Label lblOngBa;

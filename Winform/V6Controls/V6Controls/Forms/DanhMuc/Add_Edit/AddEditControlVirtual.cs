@@ -324,7 +324,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
                 else
                 {
-                    if (_keys != null) LoadData();
+                    if (_keys != null)
+                    {
+                        DataOld = LoadData();
+                        SetData(DataOld);
+                    }
                 }
             }
 
