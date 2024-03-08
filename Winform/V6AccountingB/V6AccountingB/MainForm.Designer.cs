@@ -66,7 +66,7 @@ namespace V6AccountingB
             this.lblUser_ = new System.Windows.Forms.Label();
             this.panelMenuShow = new System.Windows.Forms.Panel();
             this.lblMenuShow = new V6Controls.V6VeticalLabel();
-            this.lblMainMessage = new V6Controls.V6Label();
+            this.lblTopRightMessage = new V6Controls.V6Label();
             this.panelView = new System.Windows.Forms.Panel();
             this.lblModule_Dot = new System.Windows.Forms.Label();
             this.lblModule = new System.Windows.Forms.Label();
@@ -428,6 +428,8 @@ namespace V6AccountingB
             this.menuMain.TabStop = false;
             this.menuMain.Click += new V6Controls.MenuControl.ButtonClickEventHandler(this.menuMain_Click);
             this.menuMain.Load += new System.EventHandler(this.menuMain_Load);
+            this.menuMain.MouseEnter += new System.EventHandler(this.menuMain_MouseEnter);
+            this.menuMain.MouseLeave += new System.EventHandler(this.menuMain_MouseLeave);
             // 
             // quickMenu1
             // 
@@ -608,18 +610,19 @@ namespace V6AccountingB
             this.lblMenuShow.TransparentBackground = false;
             this.lblMenuShow.Click += new System.EventHandler(this.lblMenuShow_Click);
             // 
-            // lblMainMessage
+            // lblTopRightMessage
             // 
-            this.lblMainMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMainMessage.BackColor = System.Drawing.Color.GreenYellow;
-            this.lblMainMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMainMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMainMessage.Location = new System.Drawing.Point(632, 0);
-            this.lblMainMessage.Name = "lblMainMessage";
-            this.lblMainMessage.Size = new System.Drawing.Size(209, 39);
-            this.lblMainMessage.TabIndex = 3;
-            this.lblMainMessage.Text = "Chào mừng đến với phần mềm V6";
-            this.lblMainMessage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblTopRightMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTopRightMessage.BackColor = System.Drawing.Color.GreenYellow;
+            this.lblTopRightMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTopRightMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblTopRightMessage.Location = new System.Drawing.Point(632, 0);
+            this.lblTopRightMessage.Name = "lblTopRightMessage";
+            this.lblTopRightMessage.Size = new System.Drawing.Size(209, 39);
+            this.lblTopRightMessage.TabIndex = 3;
+            this.lblTopRightMessage.Text = "Chào mừng đến với phần mềm V6";
+            this.lblTopRightMessage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblTopRightMessage.Click += new System.EventHandler(this.lblTopRightMessage_Click);
             // 
             // panelView
             // 
@@ -685,7 +688,7 @@ namespace V6AccountingB
             // 
             // timer2
             // 
-            this.timer2.Interval = 1000;
+            this.timer2.Interval = 60000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // lblV6Message
@@ -709,7 +712,7 @@ namespace V6AccountingB
             this.BackgroundImage = global::V6AccountingB.Properties.Resources.V6Pic4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(842, 588);
-            this.Controls.Add(this.lblMainMessage);
+            this.Controls.Add(this.lblTopRightMessage);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelMenuShow);
@@ -755,7 +758,7 @@ namespace V6AccountingB
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus2;
-        private V6Label lblMainMessage;
+        private V6Label lblTopRightMessage;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Label lblV6Message;
         private System.Windows.Forms.Button btnExit;

@@ -395,7 +395,41 @@ namespace V6Init
                 return GetValue("M_CHK_XUAT");
             }
         }
+
         
+        static Dictionary<string, string> _m_choose_time = null;
+        /// <summary>
+        /// MESS1:5;MESS2:30 khoảng thời gian tải thông báo.
+        /// </summary>
+        public static Dictionary<string, string> M_CHOOSE_TIME
+        {
+            get
+            {
+                if (_m_choose_time == null || _m_choose_time.Count == 0)
+                {
+                    GetM_CHOOSE_TIME();
+                }
+                return _m_choose_time;
+            }
+        }
+        private static void GetM_CHOOSE_TIME()
+        {
+            _m_choose_time = new Dictionary<string, string>();
+            string s = "" + GetValueNull("M_CHOOSE_TIME");
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _m_choose_time[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+        }
+
         public static int M_IP_TIEN
         {
             get

@@ -45,16 +45,17 @@ namespace V6AccountingB
             All_Objects["thisForm"] = this;
             V6ControlFormHelper.StatusTextViewControl = lblStatus;
             V6ControlFormHelper.StatusTextViewControl2 = lblStatus2;
-            lblMainMessage.Top = -lblMainMessage.Height;
+            lblTopRightMessage.Top = -lblTopRightMessage.Height;
             
             V6ControlFormHelper.MainForm = this;
-            V6ControlFormHelper.MessageLable = lblMainMessage;
+            V6ControlFormHelper.TopRightMessageLable = lblTopRightMessage;
             V6ControlFormHelper.lblMenuMain = lblMenuShow;
             V6ControlFormHelper.MainMenu = menuMain;
             
             menuMain.Buttons.Clear();
             CreateFormProgram();
             MakeMenu1();
+            LoadConfigVars();
             FixQuickMenu();
             
             lblCompanyName.Text = V6Soft.V6SoftValue["M_TEN_CTY"].ToUpper();
@@ -164,6 +165,25 @@ namespace V6AccountingB
             quickMenu1.Height = panelLogin.Top - quickMenu1.Top;
         }
 
+        private void LoadConfigVars()
+        {
+            try
+            {
+                if (V6Options.M_CHOOSE_TIME.ContainsKey("MESS1"))
+                {
+                    mess1 = ObjectAndString.ObjectToInt(V6Options.M_CHOOSE_TIME["MESS1"]);
+                }
+
+                if (V6Options.M_CHOOSE_TIME.ContainsKey("MESS2"))
+                {
+                    mess2 = ObjectAndString.ObjectToInt(V6Options.M_CHOOSE_TIME["MESS2"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadConfigVars", ex);
+            }
+        }
 
         public static bool LoadMainFormInit()
         {
@@ -301,63 +321,81 @@ namespace V6AccountingB
         
         private void menuMain_Click(object sender, MenuControl.ButtonClickEventArgs e)
         {
-            if (_complete < 100) return;
-            string v2ID = e.SelectedButton.ItemID;
-            V6ControlFormHelper.SetHideMenuLabel(lblMenuShow, e.SelectedButton.Text);
-
-            //Hiện
-            foreach (var item in controlsDictionary)
+            try
             {
-                if (item.Key == v2ID)
+                if (_complete < 100) return;
+                string v2ID = e.SelectedButton.ItemID;
+                V6ControlFormHelper.SetHideMenuLabel(lblMenuShow, e.SelectedButton.Text);
+                ViewMess1Message();
+
+                //Hiện
+                foreach (var item in controlsDictionary)
                 {
-                    currentControl = item.Value;
-                    item.Value.Visible = true;
-                    item.Value.BringToFront();
-                    
-                    if (!panelView.Contains(item.Value))
+                    if (item.Key == v2ID)
                     {
-                        panelView.Controls.Add(item.Value);
-                        //item.Value.BringToFront();
-                        RemoveSomeControl();
-                    }
+                        currentControl = item.Value;
+                        item.Value.Visible = true;
+                        item.Value.BringToFront();
 
-                    if (currentControl is Menu2Control)
-                    {
-                       FormManagerHelper.CurrentMenu3Control
-                            = ((Menu2Control) currentControl).CurrentMenu3Control;
-                    }
-                    break;
-                }
-            }
-            //Ẩn
-            foreach (var item in controlsDictionary)
-            {
-                if (item.Key != v2ID)
-                {   
-                    item.Value.Visible = false;
-                }
-            }
-            
-            //return;//Phần này tạo control nếu chưa có.//Debug
-            //Nếu đã load full ở init thì không chạy tới đây.
-            if (!controlsDictionary.ContainsKey(v2ID))
-            {
-                UserControl c;
+                        if (!panelView.Contains(item.Value))
+                        {
+                            panelView.Controls.Add(item.Value);
+                            //item.Value.BringToFront();
+                            RemoveSomeControl();
+                        }
 
-                c = new Menu2Control(e.SelectedButton, e.SelectedButton.Text, V6Options.MODULE_ID, v2ID);
-                currentControl = c;
-                c.Dock = DockStyle.Fill;
-                panelView.Controls.Add(c);
-                controlsDictionary.Add(v2ID, c);
-                c.BringToFront();
+                        if (currentControl is Menu2Control)
+                        {
+                            FormManagerHelper.CurrentMenu3Control
+                                 = ((Menu2Control)currentControl).CurrentMenu3Control;
+                        }
+                        break;
+                    }
+                }
+                //Ẩn
+                foreach (var item in controlsDictionary)
                 {
-                    FormManagerHelper.CurrentMenu3Control
-                         = ((Menu2Control)c).CurrentMenu3Control;
+                    if (item.Key != v2ID)
+                    {
+                        item.Value.Visible = false;
+                    }
                 }
-            }
 
-            if (BackgroundImage != null)
-                BackgroundImage = null;
+                //return;//Phần này tạo control nếu chưa có.//Debug
+                //Nếu đã load full ở init thì không chạy tới đây.
+                if (!controlsDictionary.ContainsKey(v2ID))
+                {
+                    UserControl c;
+
+                    c = new Menu2Control(e.SelectedButton, e.SelectedButton.Text, V6Options.MODULE_ID, v2ID);
+                    currentControl = c;
+                    c.Dock = DockStyle.Fill;
+                    panelView.Controls.Add(c);
+                    controlsDictionary.Add(v2ID, c);
+                    c.BringToFront();
+                    {
+                        FormManagerHelper.CurrentMenu3Control
+                             = ((Menu2Control)c).CurrentMenu3Control;
+                    }
+                }
+
+                if (BackgroundImage != null)
+                    BackgroundImage = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog(GetType() + ".menuMain_Click", ex);
+            }
+        }
+
+        private void menuMain_MouseEnter(object sender, EventArgs e)
+        {
+            ViewMess1Message();
+        }
+
+        private void menuMain_MouseLeave(object sender, EventArgs e)
+        {
+            ViewMess1Message();
         }
 
         private bool removesomecontrl;
@@ -613,7 +651,8 @@ namespace V6AccountingB
             lblStatus2.Width = statusStrip1.Width - lblStatus.Width - 15;
         }
 
-        private int timeCount2 = -1;
+        private int timeCount2 = 0;
+        private int mess1 = 0, mess2 = 0;
         private void timer2_Tick(object sender, EventArgs e)
         {
             timeCount2++;
@@ -624,23 +663,61 @@ namespace V6AccountingB
             }
             else if (!_locked)
             {
-                if (timeCount2%(60*3) == 0)
+                if (mess1 > 0 && timeCount2 > 0 && timeCount2 % (mess1) == 0)
                 {
-                    timeCount2 = 0;         //Reset timeCount
-                    LoadV6ViewMessage();    //Tải message
+                    if ((mess2 <= 0) || (timeCount2 % (mess2) == 0))
+                    {
+                        timeCount2 = 0;
+                    }
+                    LoadMess1Message();    // Tải message        
                 }
-                else if(timeCount2%5==0)
-                    ViewV6Message();
+                if (mess1 > 0)
+                {
+                    ViewMess1Message();   // Hiển thị lần lượt các message
+                }
+
+                if (mess2 > 0 && timeCount2 > 0 && timeCount2 % (mess2) == 0)
+                {
+                    if ((mess1 <= 0) || (timeCount2 % (mess1) == 0))
+                    {
+                        timeCount2 = 0;
+                    }
+                    ViewNotification(); // viết code tạo list trong quick menu
+                }
             }
         }
 
-        private void ViewV6Message()
+        private void ViewNotification()
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("User_id", V6Login.UserId),
+                    new SqlParameter("Type", ""),
+                    new SqlParameter("Advance1", ""),
+                    new SqlParameter("Advance2", ""),
+                    new SqlParameter("Advance3", "")
+                };
+                var data = V6BusinessHelper.ExecuteProcedure("VPA_V6VIEW_MESSAGE2", plist).Tables[0]; // mess2
+                quickMenu1.SetMess2Data(data);
+                //type TT hiện giống form Trạng thái
+                //45 report
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ViewNotification", ex);
+            }
+
+        }
+
+
+        private void ViewMess1Message()
         {
             try
             {
                 if (have_news) //reset
                 {
-                    timeCount2 = 0;
                     have_news = false;
                     messageIndex = -1;
                 }
@@ -648,9 +725,9 @@ namespace V6AccountingB
                 messageIndex++;
                 GetMessage();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".ViewMess1Message", ex);
             }
         }
 
@@ -690,7 +767,7 @@ namespace V6AccountingB
         private int messageIndex = -1;
         //private string newMessage = "Chưa tải thông báo! sửa lại thành rỗng!";
 
-        private void LoadV6ViewMessage()
+        private void LoadMess1Message()
         {
             try
             {
@@ -1017,5 +1094,9 @@ namespace V6AccountingB
         }
 
         
+        private void lblTopRightMessage_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.click_count++;
+        }
     }
 }
