@@ -480,7 +480,7 @@
             this.grpExportType.Size = new System.Drawing.Size(169, 50);
             this.grpExportType.TabIndex = 42;
             this.grpExportType.TabStop = false;
-            this.grpExportType.Text = "groupBox2";
+            this.grpExportType.Text = "Export";
             // 
             // radExcel
             // 

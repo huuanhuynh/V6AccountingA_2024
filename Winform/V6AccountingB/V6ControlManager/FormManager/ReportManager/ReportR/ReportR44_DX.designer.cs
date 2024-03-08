@@ -465,6 +465,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.rTiengViet.Name = "rTiengViet";
             this.rTiengViet.Size = new System.Drawing.Size(73, 17);
             this.rTiengViet.TabIndex = 1;
+            this.rTiengViet.TabStop = true;
             this.rTiengViet.Text = "Tiếng Việt";
             this.rTiengViet.UseVisualStyleBackColor = true;
             this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
@@ -505,6 +506,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.rTienViet.Name = "rTienViet";
             this.rTienViet.Size = new System.Drawing.Size(67, 17);
             this.rTienViet.TabIndex = 0;
+            this.rTienViet.TabStop = true;
             this.rTienViet.Text = "Tiền Việt";
             this.rTienViet.UseVisualStyleBackColor = true;
             this.rTienViet.CheckedChanged += new System.EventHandler(this.rbtTienTe_CheckedChanged);
@@ -738,8 +740,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private V6Controls.V6ColorDataGridView dataGridView1;
         private System.Windows.Forms.GroupBox grbDieuKienLoc;
-        private System.Windows.Forms.Button btnNhan;
-        private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelMenu;
         private System.Windows.Forms.ToolStripMenuItem printGridMenu;
@@ -757,7 +757,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.TextBox txtM_TEN_NLB2;
         private System.Windows.Forms.TextBox txtM_TEN_NLB;
         public System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.Label lblMauIn;
         private V6Controls.V6ComboBox cboMauIn;
         private V6FormButton btnSuaMau;
@@ -788,5 +787,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem menuCopy;
         private System.Windows.Forms.ToolStripMenuItem menuCopyAll;
         private V6FormButton btnEditPara;
+        public System.Windows.Forms.Button btnNhan;
+        public System.Windows.Forms.Button btnHuy;
+        public System.Windows.Forms.Button btnIn;
     }
 }

@@ -89,6 +89,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(ex.Message);
             }
         }
+
+        public override void DoBeforeAdd()
+        {
+            txtMA_TT.Value = 0;
+        }
+
         public void btnNhan_Click(object sender, EventArgs e)
         {
             try

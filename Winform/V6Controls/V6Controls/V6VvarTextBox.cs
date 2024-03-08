@@ -290,7 +290,7 @@ namespace V6Controls
             }
         }
 
-        public string BaseInitFilter { get; set; }
+        public string BaseInitFilter = null;
 
         private string _initFilter;
         public string InitFilter
@@ -949,6 +949,7 @@ namespace V6Controls
             {
                 Text = Data[LookupInfo.vValue].ToString().Trim();
                 _text_data = Text;
+                V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
             }
             else if (Datas != null)
             {
@@ -964,11 +965,13 @@ namespace V6Controls
                 if (new_text.Length > 0) new_text = new_text.Substring(1);
                 Text = new_text;
                 _text_data = "";
+                V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
             }
             else
             {
                 Text = "";
                 _text_data = "";
+                V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
             }
         }
 

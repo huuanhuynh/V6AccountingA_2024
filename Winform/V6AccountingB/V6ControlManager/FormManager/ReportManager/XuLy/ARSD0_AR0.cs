@@ -184,26 +184,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyBoSungThongTinChungTuF4()
         {
-            //var currentRow = dataGridView1.CurrentRow;
-
-            var f = new V6Form
+            try
             {
-                AutoSize = true,
-                FormBorderStyle = FormBorderStyle.FixedSingle
-            };
-          
-            var hoaDonForm = new ARSD0_AR0_F4();
-
-            f.Controls.Add(hoaDonForm);
-            hoaDonForm.Disposed += delegate
+                var form = new ARSD0_AR0_F4();
+                form.InitValues("ARSD0_AR0", V6Structs.V6Mode.Add, null, null);
+                string title = V6Text.Add;
+                if (form._aldmConfig != null && form._aldmConfig.HaveInfo)
+                {
+                    title += " " + _albcConfig.TITLE;
+                }
+                form.ShowToForm(this, title);
+                
+                SetStatus2Text();
+                btnNhan.PerformClick();
+            }
+            catch (Exception ex)
             {
-                f.Dispose();
-            };
-
-            f.ShowDialog(this);
-            SetStatus2Text();
-            btnNhan.PerformClick();
-
+                
+            }
         }
 
         private void InitializeComponent()

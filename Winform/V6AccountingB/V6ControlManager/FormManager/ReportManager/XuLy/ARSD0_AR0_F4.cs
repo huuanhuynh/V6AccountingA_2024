@@ -80,13 +80,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         txtT_Tt_NT0.Value = txtT_Tt0.Value;
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(ex.Message);
             }
         }
+
+        public override void DoBeforeAdd()
+        {
+            txtMA_TT.Value = 0;
+        }
+
         public  void btnNhan_Click(object sender, EventArgs e)
         {
             try
@@ -133,7 +138,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         this.ShowWarningMessage("Insert Error!");
                     }
                 }
-
             }
             catch (Exception ex)
             {

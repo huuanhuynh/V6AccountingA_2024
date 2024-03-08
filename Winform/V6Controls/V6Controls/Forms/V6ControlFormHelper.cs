@@ -370,8 +370,9 @@ namespace V6Controls.Forms
         #region ==== SHOW HIDE MESSAGE ====
 
         public static Form MainForm;
-        public static V6Label MessageLable { get;set; }
-        private static Timer _mainMessageTimer;
+        public static V6Label TopRightMessageLable { get;set; }
+        public static int click_count = 0;
+        private static Timer _topRightMessageTimer;
         private static int _mainTime = -1;
         /// <summary>
         /// Hiển thị một thông báo nổi ở trên chính giữa màn hình và mờ dần.
@@ -414,54 +415,64 @@ namespace V6Controls.Forms
         /// <param name="owner"></param>
         public static void ShowTopRightMessage(string message, IWin32Window owner)
         {
-            if (MessageLable.Parent != MainForm)
+            if (TopRightMessageLable.Parent != MainForm)
             {
-                MainForm.Controls.Add(MessageLable);
+                MainForm.Controls.Add(TopRightMessageLable);
             }
 
-            if (_mainMessageTimer != null && _mainMessageTimer.Enabled)
+            if (_topRightMessageTimer != null && _topRightMessageTimer.Enabled)
             {
-                _mainMessageTimer.Stop();
+                _topRightMessageTimer.Stop();
                 //MessageLable.Top 
             }
 
-            MessageLable.Text = message;
-            _mainMessageTimer = new Timer { Interval = 200 };
-            _mainMessageTimer.Tick += _mainMessageTimer_Tick;
+            TopRightMessageLable.Text = message;
+            _topRightMessageTimer = new Timer { Interval = 200 };
+            _topRightMessageTimer.Tick += _topRightMessageTimer_Tick;
             _mainTime = -1;
-            _mainMessageTimer.Start();
+            _topRightMessageTimer.Start();
         }
         
 
-        static void _mainMessageTimer_Tick(object sender, EventArgs e)
+        static void _topRightMessageTimer_Tick(object sender, EventArgs e)
         {
             try
             {
                 _mainTime++;
                 if (_mainTime < 10)//Hiện ra
                 {
-                    MessageLable.Top -= MessageLable.Top/3;
+                    TopRightMessageLable.Top -= TopRightMessageLable.Top/3;
                     
-                    if (MessageLable.Top == -1) MessageLable.Top = 0;
-                    if (MessageLable.Top == -2) MessageLable.Top = -1;
+                    if (TopRightMessageLable.Top == -1) TopRightMessageLable.Top = 0;
+                    if (TopRightMessageLable.Top == -2) TopRightMessageLable.Top = -1;
                     return;
                 }
                 if (_mainTime < 20)//Dừng lại
                 {
                     return;
                 }
-                if (_mainTime < 30)//Ẩn đi
+                //if (_mainTime < 30)//Ẩn đi
+                if (click_count >= 3)
                 {
-                    MessageLable.Top -= MessageLable.Bottom/3;
-                    if (MessageLable.Bottom == 1) MessageLable.Top = -MessageLable.Height;
-                    if (MessageLable.Bottom == 2) MessageLable.Top = -MessageLable.Height+1;
+                    TopRightMessageLable.Top -= TopRightMessageLable.Bottom/3;
+                    if (TopRightMessageLable.Bottom == 1)
+                    {
+                        TopRightMessageLable.Top = -TopRightMessageLable.Height;
+                        click_count = 0; // done
+                        _topRightMessageTimer.Stop();
+                    }
+                    if (TopRightMessageLable.Bottom == 2)
+                    {
+                        TopRightMessageLable.Top = -TopRightMessageLable.Height + 1;
+                    }
                     return;
                 }
-                _mainMessageTimer.Stop();
+                //_topRightMessageTimer.Stop();
             }
             catch// (Exception)
             {
                 // ignored
+                int a = 0;
             }
         }
 

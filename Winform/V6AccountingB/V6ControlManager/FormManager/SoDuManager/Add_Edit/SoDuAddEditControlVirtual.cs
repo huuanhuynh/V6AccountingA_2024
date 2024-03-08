@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             get
             {
                 string title = CONFIG_TABLE_NAME;
-                if (_aldmConfig.HaveInfo) title = V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2;
+                if (_aldmConfig != null && _aldmConfig.HaveInfo) title = V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2;
                 return title;
             }
         }
