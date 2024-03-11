@@ -6326,6 +6326,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void DoAddThread()
         {
+            InvokeFormEvent(FormDynamicEvent.BEFORESAVE + "0");
             ReadyForAdd();
             
             Timer checkAdd = new Timer();
@@ -6497,6 +6498,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void DoEditThread()
         {
+            InvokeFormEvent(FormDynamicEvent.BEFORESAVE + "0");
             ReadyForEdit();
             
             Timer checkEdit = new Timer();

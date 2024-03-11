@@ -172,6 +172,7 @@
     <None Include="Resources\Calculator.png" />
     <None Include="Resources\LoginButton_32.png" />
     <None Include="Resources\Update32.png" />
+    <None Include="bin\Z_DOC\LOGO\V6Pic2024.png" />
     <Content Include="V6DatabaseConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

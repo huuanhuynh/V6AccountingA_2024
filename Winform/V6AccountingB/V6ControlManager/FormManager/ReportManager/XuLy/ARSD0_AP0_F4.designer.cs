@@ -34,6 +34,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
+            this.txtMA_TT = new V6Controls.NumberTien();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtT_Tt0 = new V6Controls.NumberTien();
             this.v6Label7 = new V6Controls.V6Label();
@@ -115,7 +116,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.label35 = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.txtMA_TT = new V6Controls.NumberTien();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
@@ -187,6 +187,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.tabThongTinChinh.Size = new System.Drawing.Size(749, 391);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
+            // 
+            // txtMA_TT
+            // 
+            this.txtMA_TT.AccessibleName = "MA_TT";
+            this.txtMA_TT.BackColor = System.Drawing.Color.White;
+            this.txtMA_TT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_TT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_TT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_TT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_TT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_TT.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_TT.Location = new System.Drawing.Point(316, 331);
+            this.txtMA_TT.Name = "txtMA_TT";
+            this.txtMA_TT.Size = new System.Drawing.Size(71, 20);
+            this.txtMA_TT.TabIndex = 40;
+            this.txtMA_TT.Text = "0";
+            this.txtMA_TT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMA_TT.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtMA_TT.Visible = false;
             // 
             // v6Label1
             // 
@@ -648,6 +671,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // 
             // lbT_Tt_NT0
             // 
+            this.lbT_Tt_NT0.AccessibleDescription = "XULYL00207";
             this.lbT_Tt_NT0.AccessibleName = "";
             this.lbT_Tt_NT0.AutoSize = true;
             this.lbT_Tt_NT0.Location = new System.Drawing.Point(7, 256);
@@ -691,6 +715,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // 
             // lbTxtT_CL_NT
             // 
+            this.lbTxtT_CL_NT.AccessibleDescription = "XULYL00206";
             this.lbTxtT_CL_NT.AutoSize = true;
             this.lbTxtT_CL_NT.Location = new System.Drawing.Point(7, 306);
             this.lbTxtT_CL_NT.Name = "lbTxtT_CL_NT";
@@ -1449,29 +1474,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
-            // 
-            // txtMA_TT
-            // 
-            this.txtMA_TT.AccessibleName = "MA_TT";
-            this.txtMA_TT.BackColor = System.Drawing.Color.White;
-            this.txtMA_TT.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMA_TT.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMA_TT.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMA_TT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMA_TT.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMA_TT.LeaveColor = System.Drawing.Color.White;
-            this.txtMA_TT.Location = new System.Drawing.Point(316, 331);
-            this.txtMA_TT.Name = "txtMA_TT";
-            this.txtMA_TT.Size = new System.Drawing.Size(71, 20);
-            this.txtMA_TT.TabIndex = 40;
-            this.txtMA_TT.Text = "0";
-            this.txtMA_TT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMA_TT.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtMA_TT.Visible = false;
             // 
             // ARSD0_AP0_F4
             // 

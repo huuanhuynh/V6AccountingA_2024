@@ -656,6 +656,7 @@ namespace V6AccountingB
         private void timer2_Tick(object sender, EventArgs e)
         {
             timeCount2++;
+            if (timeCount2 > 10000) timeCount2 = 1;
             //if (!_locked && Win32.GetIdleTime() > 600 * 5)//Test
             if (V6Options.M_LOCK_TIME > 0 && !_locked && Win32.GetIdleTime() > 60000 * V6Options.M_LOCK_TIME)
             {
@@ -664,11 +665,7 @@ namespace V6AccountingB
             else if (!_locked)
             {
                 if (mess1 > 0 && timeCount2 > 0 && timeCount2 % (mess1) == 0)
-                {
-                    if ((mess2 <= 0) || (timeCount2 % (mess2) == 0))
-                    {
-                        timeCount2 = 0;
-                    }
+                {   
                     LoadMess1Message();    // Tải message        
                 }
                 if (mess1 > 0)
@@ -678,10 +675,6 @@ namespace V6AccountingB
 
                 if (mess2 > 0 && timeCount2 > 0 && timeCount2 % (mess2) == 0)
                 {
-                    if ((mess1 <= 0) || (timeCount2 % (mess1) == 0))
-                    {
-                        timeCount2 = 0;
-                    }
                     ViewNotification(); // viết code tạo list trong quick menu
                 }
             }

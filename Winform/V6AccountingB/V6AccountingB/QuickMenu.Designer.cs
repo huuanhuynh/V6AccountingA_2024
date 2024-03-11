@@ -30,7 +30,7 @@
         {
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox1 = new V6Controls.V6ColorTextBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new V6Controls.Controls.MultiLineListBox();
             this.SuspendLayout();
             // 
             // listBox1
@@ -71,6 +71,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(0, 0);
             this.listBox2.Name = "listBox2";
@@ -97,6 +98,6 @@
 
         private System.Windows.Forms.ListBox listBox1;
         private V6Controls.V6ColorTextBox textBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private V6Controls.Controls.MultiLineListBox listBox2;
     }
 }
