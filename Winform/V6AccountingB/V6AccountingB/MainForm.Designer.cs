@@ -32,6 +32,7 @@ namespace V6AccountingB
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             V6Controls.MenuButton menuButton1 = new V6Controls.MenuButton();
             V6Controls.MenuButton menuButton2 = new V6Controls.MenuButton();
             V6Controls.MenuButton menuButton3 = new V6Controls.MenuButton();
@@ -43,7 +44,7 @@ namespace V6AccountingB
             V6Controls.MenuButton menuButton9 = new V6Controls.MenuButton();
             V6Controls.MenuButton menuButton10 = new V6Controls.MenuButton();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStatus2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -51,7 +52,7 @@ namespace V6AccountingB
             this.menuMain = new V6Controls.MenuControl();
             this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.panelLogin = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeReportLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stickNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,7 @@ namespace V6AccountingB
             this.lblModule = new System.Windows.Forms.Label();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.timer2 = new System.Windows.Forms.Timer();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -717,11 +718,12 @@ namespace V6AccountingB
             this.Controls.Add(this.panelMenuShow);
             this.Controls.Add(this.panelView);
             this.Controls.Add(this.lblV6Message);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "MainForm";
-            this.Text = "V6Accounting2020.NET45 - Công ty cổ phần phát triển ứng dụng phần mềm doanh nghiệ" +
+            this.Text = "V6Accounting2024.NET45 - Công ty cổ phần phát triển ứng dụng phần mềm doanh nghiệ" +
     "p V6 (V6Business Software)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);

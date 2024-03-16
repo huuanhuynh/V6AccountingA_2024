@@ -735,6 +735,20 @@ namespace V6AccountingBusiness
             return ObjectAndString.ObjectToInt(result);
         }
 
+        public static bool CheckDataLockedMin(DataTable table)
+        {
+            if (table == null) throw new Exception("data null");
+            if (!table.Columns.Contains("ngay_ct")) throw new Exception("data no ngay_ct");
+
+            var ngay_ct = DateTime.Now;
+            foreach (DataRow row in table.Rows)
+            {
+                var min = ObjectAndString.ObjectToFullDateTime(row["ngay_ct"]);
+                if (min < ngay_ct) ngay_ct = min;
+            }
+            return V6BusinessHelper.CheckDataLocked("1", ngay_ct, 0, 0) == 1;
+        }
+
         public static int CheckDataLocked_Next(string type, DateTime date, int month, int year)
         {
             SqlParameter[] plist =

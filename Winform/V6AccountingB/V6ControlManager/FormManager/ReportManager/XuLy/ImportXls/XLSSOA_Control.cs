@@ -212,6 +212,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         
         #region ==== Xử lý F9 ====
+        
         protected override void XuLyF9()
         {
             try
@@ -223,6 +224,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 if (_tbl != null)
                 {
+                    if (V6BusinessHelper.CheckDataLockedMin(_tbl))
+                    {
+                        this.ShowWarningMessage(V6Text.CheckLock);
+                        return;
+                    }
+
                     if (_tbl.Columns.Contains(ID_FIELD) && _tbl.Columns.Contains(NAME_FIELD))
                     {
                         LockButtons();
@@ -348,10 +355,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT2,TIEN_NT,TIEN2,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
 
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
+                        DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM_DATA["NGAY_CT"]);
+
                         if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
                         {
                             string ma_sonb;
-                            DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM_DATA["NGAY_CT"]);
                             var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", madvcs, makho, sttRec, V6Login.UserId, out ma_sonb);
                             AM_DATA["SO_CT"] = so_ct;
                             AM_DATA["MA_SONB"] = ma_sonb;
@@ -362,7 +370,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         All_Objects["AM"] = AM_DATA;
                         All_Objects["AD"] = AD1_List;
                         InvokeFormEvent("BEFOREINSERT");
-                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<IDictionary<string, object>>()))
+
+                        if (V6BusinessHelper.CheckDataLocked("1", ngay_ct, 0, 0) == 1)
+                        {
+                            f9Message += item.Key + ": " + V6Text.CheckLock;
+                            f9MessageAll += item.Key + ": " + V6Text.CheckLock;
+                        }
+                        else if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<IDictionary<string, object>>()))
                         {
                             f9Message += V6Text.Added + item.Key;
                             //Danh dau xóa data.

@@ -168,6 +168,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 if (_tbl != null)
                 {
+                    if (V6BusinessHelper.CheckDataLockedMin(_tbl))
+                    {
+                        this.ShowWarningMessage(V6Text.CheckLock);
+                        return;
+                    }
+
                     if (_tbl.Columns.Contains(ID_FIELD) && _tbl.Columns.Contains(NAME_FIELD))
                     {
                         LockButtons();

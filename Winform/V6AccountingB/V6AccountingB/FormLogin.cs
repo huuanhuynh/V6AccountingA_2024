@@ -39,7 +39,7 @@ namespace V6AccountingB
         private void MyInit()
         {
             fi = new FileInfo(Application.ExecutablePath);
-            this.Text = "LOGIN - Version " + Application.ProductVersion + " " + fi.LastWriteTime.ToString("dd/MM/yyyy HH:mm:ss");
+            this.Text = "LOGIN - Version " + Application.ProductVersion + " (" + fi.LastWriteTime.ToString("dd/MM/yyyy HH:mm:ss") + ")";
             //Phần này có thể đọc setting
             radLocalDataMode.Checked = true;
 
@@ -233,7 +233,7 @@ namespace V6AccountingB
                     panel1.Enabled = true;
                     txtUserName.Focus();
                     V6Options.LoadValue();
-                    this.Text = "LOGIN - Version " + Application.ProductVersion + " " + fi.LastWriteTime.ToString("dd/MM/yyyy HH:mm:ss");
+                    this.Text = "LOGIN - Version " + Application.ProductVersion + " (" + fi.LastWriteTime.ToString("dd/MM/yyyy HH:mm:ss") + ")";
                     //Ready();
                 }
                 else

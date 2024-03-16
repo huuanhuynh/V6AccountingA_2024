@@ -373,6 +373,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (_tbl != null)
                 {
+                    if (V6BusinessHelper.CheckDataLockedMin(_tbl))
+                    {
+                        this.ShowWarningMessage(V6Text.CheckLock);
+                        return;
+                    }
+                    
                     check_field_list = CHECK_FIELDS.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
                     foreach (string field in check_field_list)
