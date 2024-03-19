@@ -684,7 +684,7 @@ namespace V6Tools.V6Convert
         /// So sánh 2 giá trị
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="oper"></param>
+        /// <param name="oper">&lt; = &gt; like start end</param>
         /// <param name="value"></param>
         /// <param name="any_type">Bỏ qua kiểu, chuyển kiểu value về giống obj. Ví dụ giá trị 1 và chuỗi "1" là bằng nhau.</param>
         /// <returns></returns>
@@ -704,7 +704,7 @@ namespace V6Tools.V6Convert
         /// So sánh 2 giá trị
         /// </summary>
         /// <param name="obj">Giá trị cần so sánh.</param>
-        /// <param name="oper">Biểu thức so sánh.</param>
+        /// <param name="oper">Biểu thức so sánh. &lt; = &gt; like start end</param>
         /// <param name="value">So với giá trị này.</param>
         /// <returns></returns>
         public static bool CheckCondition(object obj, string oper, object value)
@@ -758,6 +758,18 @@ namespace V6Tools.V6Convert
                 {
                     return String.CompareOrdinal(obj.ToString().Trim(), value.ToString().Trim()) <= 0;
                 }
+            }
+            if (oper == "like") // value.Contains
+            {
+                return obj.ToString().ToLower().Contains(value.ToString().ToLower());
+            }
+            if (oper == "start") // value StartsWith
+            {
+                return obj.ToString().ToLower().StartsWith(value.ToString().ToLower());
+            }
+            if (oper == "end") // value EndsWith
+            {
+                return obj.ToString().ToLower().EndsWith(value.ToString().ToLower());
             }
             return false;
         }

@@ -2219,76 +2219,6 @@ Tiles of Fate                   32k PRG / 32k CHR       H       AVE (79)
 
 
 
-        private void numNgang_ValueChanged(object sender, EventArgs e)
-        {
-            trackBarNgang.Value = (int)numNgang.Value;
-            TinhDoDaiDayCung();
-        }
-
-        private void trackBarNgang_Scroll(object sender, EventArgs e)
-        {
-            numNgang.Value = trackBarNgang.Value;
-            TinhDoDaiDayCung();
-        }
-
-        private void numCao_ValueChanged(object sender, EventArgs e)
-        {
-            //if (numCao.Value >= numNgang.Value) numCao.Value = numNgang.Value - 1;
-            trackBarCao.Value = (int)numCao.Value;
-            TinhDoDaiDayCung();
-        }
-
-        private void trackBarCao_Scroll(object sender, EventArgs e)
-        {
-            //if (trackBarCao.Value >= trackBarNgang.Value) trackBarCao.Value = trackBarNgang.Value - 1;
-            numCao.Value = trackBarCao.Value;
-            TinhDoDaiDayCung();
-        }
-
-        void TinhDoDaiDayCung()
-        {
-            try
-            {
-                double day_cung = TinhDoDaiMaiVom((double)numNgang.Value, (double)numCao.Value);
-                txtCung.Text = "" + day_cung;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message);
-            }
-        }
-
-        double TinhDoDaiMaiVom(double D, double H)
-        {
-            double result = 0;
-            try
-            {
-                double d = D / 2;
-                double h = H, _h = 0;
-                if (h > d)
-                {
-                    h = d;
-                    _h = H - h;
-                }
-
-                double c = Căn(Bình_phương(d) + Bình_phương(h));
-
-                double Arad = Math.Acos(d / c);
-
-                double A2rad = Math.PI/2 - (Arad*2);
-                double cosA2 = Math.Cos(A2rad);
-                double R = d / cosA2;
-
-                result = (4 * Arad) * R + 2*_h;
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, "Tinh: " + ex.Message);
-            }
-            return -1;
-        }
 
         // viet hoa ham tinh toan
         double Căn(double a)
@@ -2311,6 +2241,11 @@ Tiles of Fate                   32k PRG / 32k CHR       H       AVE (79)
             string s = "TyS7YnXYosxBWHoM2/WkB8z9TRKIOxYQ:TyS7YnXYosxBWHoM2/WkB8z9TRKIOxYQ;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh;PMPH2023:kOjl/4Ef92Alsu/Rr1NSAtAkNPYt4Vfh";
             var dic = ObjectAndString.StringToStringDictionary(s);
             var sss = ObjectAndString.StringDictionaryToString(dic);
+        }
+
+        private void btnRepxFilter_Click(object sender, EventArgs e)
+        {
+            (new FormRepxFilter()).ShowDialog();
         }
     }
 }

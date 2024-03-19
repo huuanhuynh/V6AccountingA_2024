@@ -87,6 +87,12 @@
     <Compile Include="FormDBF.Designer.cs">
       <DependentUpon>FormDBF.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRepxFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRepxFilter.Designer.cs">
+      <DependentUpon>FormRepxFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormFilterTextFiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDBF.resx">
       <DependentUpon>FormDBF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRepxFilter.resx">
+      <DependentUpon>FormRepxFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFilterTextFiles.resx">
       <DependentUpon>FormFilterTextFiles.cs</DependentUpon>
