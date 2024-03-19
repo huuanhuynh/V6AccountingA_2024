@@ -190,6 +190,11 @@ namespace V6ReportControls
             return result;
         }
 
+        public virtual string GetQuery_R(string tableLabel = null)
+        {
+            return GetQuery(tableLabel);
+        }
+
         /// <summary>
         /// Trả về query nếu được check
         /// </summary>

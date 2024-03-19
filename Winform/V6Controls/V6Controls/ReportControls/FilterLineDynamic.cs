@@ -317,6 +317,63 @@ namespace V6ReportControls
             }
         }
 
+        private string Query_R(string tableLabel = null)
+        {
+            var tL = string.IsNullOrEmpty(tableLabel) ? "" : tableLabel + ".";
+            var sValue = StringValue;
+            var result = "";
+
+            var oper = Operator;
+            if (oper == "start") oper = "like";
+
+            if (sValue.Contains(",") || sValue.Contains("|"))
+            {
+                string[] sss = sValue.Split(',', '|');
+                foreach (string s in sss) // !!!!! thêm kiểu   and (ma_kho in (select alkho where xxxxx))
+                {
+                    if (oper == "<>")
+                    {
+                        result += string.Format(" and {3}{0} {1} {2}", _vtextBox.LookupInfo.vValue, oper, FormatValue(s.Trim(), typeof(string)), tL);
+                    }
+                    else
+                    {
+                        result += string.Format(" or {3}{0} {1} {2}", _vtextBox.LookupInfo.vValue, oper, FormatValue(s.Trim(), typeof(string)), tL);
+                    }
+                }
+
+                if (result.Length > 4)
+                {
+                    result = result.Substring(4);
+                    result = string.Format("({3} in (select {2} from {1} where {0}))",
+                        result, _vtextBox.LookupInfo.TableName, _vtextBox.LookupInfo.vValue, FieldName);
+                }
+            }
+            else
+            {
+                result = string.Format("{3}{0} {1} {2}", FieldName, oper, FormatValue(StringValue, typeof(string)), tL);
+            }
+            return result;
+        }
+
+        public override string GetQuery_R(string tableLabel = null)
+        {
+            if (_vtextBox != null && (StringValue.Contains(",") || StringValue.Contains("|")))
+                return GetQuery0_R(tableLabel);
+            return base.GetQuery(tableLabel);
+        }
+
+        /// <summary>
+        /// trường hợp đặc biệt vvar danh sách ,,,
+        /// </summary>
+        /// <param name="tableLabel"></param>
+        /// <returns></returns>
+        public string GetQuery0_R(string tableLabel = null)
+        {
+            var tL = string.IsNullOrEmpty(tableLabel) ? "" : tableLabel + ".";
+            var result = string.Format("{0}{1}", tL, Query_R(tableLabel));
+            return result;
+        }
+
         [DefaultValue(true)]
         public bool ShowName { get { return _vtextBox != null && _vtextBox.ShowName; }
             set

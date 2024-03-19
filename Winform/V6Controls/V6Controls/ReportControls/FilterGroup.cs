@@ -8,6 +8,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ReportControls
 {
@@ -102,13 +103,11 @@ namespace V6ReportControls
             set { groupBoxNhom.Text = value ?? ""; }
         }
 
-        ///// <summary>
-        ///// Nếu không check trả về rỗng.
-        ///// </summary>
-        //public virtual string StringValueCheck
-        //{
-        //    get { return IsSelected ? StringValue : ""; }
-        //}
+
+        public bool CheckNotEmpty
+        {
+            get;set;
+        }
 
         ///// <summary>
         ///// Tự kiểm tra check để lấy. Phần này luôn trả về chuỗi dù có check hay không.
@@ -173,6 +172,7 @@ namespace V6ReportControls
         {
             V6ControlFormHelper.SetStatusText(((Control)sender).AccessibleName);
         }
+        public int CheckSumGroup = 0;
         private void NH_KH1_Leave(object sender, EventArgs e)
         {
             var current = sender as TextBox;
@@ -203,8 +203,10 @@ namespace V6ReportControls
             //String2 += "TEN_VT";
 
             var paramDic = new Dictionary<string, string>();
+            CheckSumGroup = 0;
             foreach (V6ColorTextBox txt in txtList)
             {
+                CheckSumGroup += ObjectAndString.ObjectToInt(txt.Text);
                 paramDic.Add(txt.Name, txt.Text);
             }
 

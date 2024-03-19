@@ -106,6 +106,13 @@ namespace V6ReportControls
             return base.GetQuery(tableLabel);
         }
 
+        public override string GetQuery_R(string tableLabel = null)
+        {
+            if (StringValue.Contains(","))
+                return GetQuery0_R(tableLabel);
+            return base.GetQuery(tableLabel);
+        }
+
         private string GetQuery0(string tableLabel = null)
         {
             var tL = string.IsNullOrEmpty(tableLabel) ? "" : tableLabel + ".";
@@ -118,7 +125,7 @@ namespace V6ReportControls
             if (sValue.Contains(",") || sValue.Contains("|"))
             {
                 string[] sss = sValue.Split(',', '|');
-                foreach (string s in sss)
+                foreach (string s in sss) // !!!!! thêm kiểu   and (ma_kho in (select alkho where xxxxx))
                 {
                     if (oper == "<>")
                     {
@@ -134,6 +141,44 @@ namespace V6ReportControls
                 {
                     result = result.Substring(4);
                     result = string.Format("({0})", result);
+                }
+            }
+            else
+            {
+                result = string.Format("{3}{0} {1} {2}", FieldName, oper, FormatValue(StringValue), tL);
+            }
+            return result;
+        }
+
+        private string GetQuery0_R(string tableLabel = null)
+        {
+            var tL = string.IsNullOrEmpty(tableLabel) ? "" : tableLabel + ".";
+            var sValue = StringValue;
+            var result = "";
+
+            var oper = Operator;
+            if (oper == "start") oper = "like";
+
+            if (sValue.Contains(",") || sValue.Contains("|"))
+            {
+                string[] sss = sValue.Split(',', '|');
+                foreach (string s in sss) // !!!!! thêm kiểu   and (ma_kho in (select alkho where xxxxx))
+                {
+                    if (oper == "<>")
+                    {
+                        result += string.Format(" and {3}{0} {1} {2}", VvarTextBox.LookupInfo.vValue, oper, FormatValue(s.Trim()), tL);
+                    }
+                    else
+                    {
+                        result += string.Format(" or {3}{0} {1} {2}", VvarTextBox.LookupInfo.vValue, oper, FormatValue(s.Trim()), tL);
+                    }
+                }
+
+                if (result.Length > 4)
+                {
+                    result = result.Substring(4);
+                    result = string.Format("({3} in (select {2} from {1} where {0}))",
+                        result, VvarTextBox.LookupInfo.TableName, VvarTextBox.LookupInfo.vValue, FieldName);
                 }
             }
             else
