@@ -62,7 +62,7 @@ namespace V6Init
         /// </summary>
         public static string SystemDecimalSeparator
         {
-            get { return System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator; }
+            get { return SystemCulture.NumberFormat.NumberDecimalSeparator; }
         }
 
         /// <summary>
@@ -388,6 +388,7 @@ namespace V6Init
 
         public static int YearFilter { get; set; }
         public static int MonthFilter { get; set; }
+        public static CultureInfo SystemCulture { get; set; }
 
         public static object GetValueNull(string name)
         {

@@ -6,9 +6,11 @@
 */
 
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Controls
 {
@@ -23,6 +25,13 @@ namespace V6Controls.Controls
             Controls.Add(tbox);
 
         }
+
+        /// <summary>
+        /// 0: không dùng, 1: dùng data COLOR
+        /// </summary>
+        [DefaultValue(0)]
+        [Description("0: không dùng, 1: dùng data COLOR, 2: dùng BackColor")]
+        public int UseBackColor { get; set; }
 
         protected override void OnMeasureItem(MeasureItemEventArgs e)
         {
@@ -55,9 +64,19 @@ namespace V6Controls.Controls
             {
                 string s = "";
                 var lineItem = Items[e.Index];
+                var lineColor = SystemColors.Window;
                 if (lineItem is DataRowView)
                 {
-                    s = ((DataRowView)lineItem)[DisplayMember] + "";
+                    DataRowView rv = lineItem as DataRowView;
+                    s = rv[DisplayMember] + "";
+                    if (UseBackColor == 1 && rv.Row.Table.Columns.Contains("COLOR"))
+                    {
+                        lineColor = ObjectAndString.StringToColor(rv["COLOR"] + "");
+                    }
+                    else if (UseBackColor == 2)
+                    {
+                        lineColor = BackColor;
+                    }
                 }
                 else
                 {
@@ -66,7 +85,7 @@ namespace V6Controls.Controls
 
                 if ((e.State & DrawItemState.Focus) == 0)
                 {
-                    e.Graphics.FillRectangle(new SolidBrush(SystemColors.Window), e.Bounds);
+                    e.Graphics.FillRectangle(new SolidBrush(lineColor), e.Bounds);
                     e.Graphics.DrawString(s, Font, new SolidBrush(SystemColors.WindowText),
                         e.Bounds);
                     e.Graphics.DrawRectangle(new Pen(SystemColors.Highlight), e.Bounds);

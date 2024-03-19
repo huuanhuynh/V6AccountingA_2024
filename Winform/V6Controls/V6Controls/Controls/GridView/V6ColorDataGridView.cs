@@ -145,7 +145,9 @@ namespace V6Controls
         {
             if (ObjectAndString.IsNumberType(cell.OwningColumn.ValueType) && !string.IsNullOrEmpty(cell.OwningColumn.DefaultCellStyle.Format))
             {
-                return ObjectAndString.ObjectToString(cell.Value, cell.OwningColumn.DefaultCellStyle.Format);
+                var text = ObjectAndString.ObjectToDecimal(cell.Value).ToString(V6Setting.SystemCulture);
+                return text;
+                //return ObjectAndString.ObjectToString(cell.Value, cell.OwningColumn.DefaultCellStyle.Format);
             }
             if (ObjectAndString.IsStringType(cell.OwningColumn.ValueType))
             {
@@ -1608,7 +1610,8 @@ namespace V6Controls
                     string text = "";
                     if (ObjectAndString.IsNumberType(CurrentCell.OwningColumn.ValueType))
                     {
-                        text = ObjectAndString.ObjectToDecimal(CurrentCell.Value).ToString(CultureInfo.InstalledUICulture);
+                        //text = ObjectAndString.ObjectToDecimal(CurrentCell.Value).ToString(CultureInfo.CurrentCulture);
+                        text = ObjectAndString.ObjectToDecimal(CurrentCell.Value).ToString(V6Setting.SystemCulture);
                     }
                     else
                     {

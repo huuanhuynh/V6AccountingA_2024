@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
@@ -644,12 +645,18 @@ namespace V6ControlManager.FormManager
             try
             {
                 max_check = V6Options.M_SWMENUPOP_MAXFORM;
-                if (ManagerFormList.Count > max_check)
+                if (_timer_stoped && ManagerFormList.Count > max_check)
                 {
                     var r = menu3Control.ShowConfirmCancelMessage(string.Format("ManagerFormList.Count > {0}. Close some?", max_check), 0, "MAXFORMASK");
                     if (r == DialogResult.Yes)
                     {
-                        AutoDisposeSomeForm();
+                        Thread thread = new Thread(AutoDisposeSomeForm);
+                        thread.Start();
+                        _running = true; dispose_count = 0; _timer_stoped = false;
+
+                        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer() { Interval = 10000 };
+                        timer.Tick += Timer_Tick;
+                        timer.Start();
                     }
                 }
             }
@@ -659,13 +666,59 @@ namespace V6ControlManager.FormManager
             }
         }
 
+        private static void Timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_running || List_IntPtr.Count > 0 || List_IntPtr_Invoice.Count > 0)
+                {
+                    if (List_IntPtr.Count > 0)
+                    {
+                        var item = List_IntPtr[0];
+                        ManagerFormList[item].Dispose();
+                        dispose_count++;
+                        ManagerFormList.Remove(item);
+                        List_IntPtr.Remove(item);
+                    }
+                    if (List_IntPtr_Invoice.Count > 0)
+                    {
+                        var item = List_IntPtr_Invoice[0];
+                        if (dispose_count < max_check / 2)
+                        {
+                            ManagerFormList[item].Dispose_NotAddEdit();
+                            dispose_count++;
+                        }
+                        List_IntPtr_Invoice.Remove(item);
+                    }
+                    CurrentMenu3Control.Invalidate();
+                    V6ControlFormHelper.MainMenu.Invalidate();
+                }
+                else
+                {
+                    CurrentMenu3Control.Invalidate();
+                    V6ControlFormHelper.MainMenu.Invalidate();
+                    ((System.Windows.Forms.Timer)sender).Stop();
+                    _timer_stoped = true;
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+            
+        }
+
+        private static bool _running = false, _timer_stoped = false;
+        private static int dispose_count = 0;
+        static List<IntPtr> List_IntPtr = new List<IntPtr>();
+        static List<IntPtr> List_IntPtr_Invoice = new List<IntPtr>();
         private static void AutoDisposeSomeForm()
         {
             try
             {
-                List<IntPtr> List_IntPtr = new List<IntPtr>();
-                List<IntPtr> List_IntPtr_Invoice = new List<IntPtr>();
-                int dispose_count = 0, all_form_count = ManagerFormList.Count, count = 0;
+                List_IntPtr = new List<IntPtr>();
+                List_IntPtr_Invoice = new List<IntPtr>();
+                int all_form_count = ManagerFormList.Count, count = 0;
                 //Duyệt qua tất cả control
                 foreach (KeyValuePair<IntPtr, V6Control> item in ManagerFormList)
                 {
@@ -689,29 +742,30 @@ namespace V6ControlManager.FormManager
                     }
                 }
 
-                dispose_count += List_IntPtr.Count;
-                foreach (IntPtr item in List_IntPtr)
-                {
-                    ManagerFormList[item].Dispose();
-                    ManagerFormList.Remove(item);
-                }
+                //dispose_count += List_IntPtr.Count;
+                //foreach (IntPtr item in List_IntPtr)
+                //{
+                //    ManagerFormList[item].Dispose();
+                //    ManagerFormList.Remove(item);
+                //}
 
-                if (dispose_count < max_check / 2)
-                {
-                    foreach (IntPtr item in List_IntPtr_Invoice)
-                    {
-                        ManagerFormList[item].Dispose_NotAddEdit();
-                    }
-                }
+                //if (dispose_count < max_check / 2)
+                //{
+                //    foreach (IntPtr item in List_IntPtr_Invoice)
+                //    {
+                //        ManagerFormList[item].Dispose_NotAddEdit();
+                //    }
+                //}
 
-                CurrentMenu3Control.Invalidate();
-                V6ControlFormHelper.MainMenu.Invalidate();
-                
+                //CurrentMenu3Control.Invalidate();
+                //V6ControlFormHelper.MainMenu.Invalidate();
+
             }
             catch (Exception ex)
             {
                 
             }
+            _running = false;
         }
 
         public static bool IsReportControl(V6Control control)

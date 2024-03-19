@@ -886,7 +886,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     if (control is FilterGroup)
                     {
                         var group = control as FilterGroup;
-                        if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
+                            if (group.CheckNotEmpty && group.CheckSumGroup == 0)
+                            {
+                                throw new Exception(string.Format("{0}: {1} ({2}).", V6Text.CheckInfor, group.Text, group.DefineInfo.Field));
+                            }
+                            if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
 
                         last_key = group.DefineInfo.Loai_key;
 
@@ -1105,7 +1109,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     if (control is FilterGroup)
                     {
                         var group = control as FilterGroup;
-                        if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
+                            if (group.CheckNotEmpty && group.CheckSumGroup == 0)
+                            {
+                                throw new Exception(string.Format("{0}: {1} ({2}).", V6Text.CheckInfor, group.Text, group.DefineInfo.Field));
+                            }
+                            if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
 
                         last_key = group.DefineInfo.Loai_key;
 
@@ -1451,7 +1459,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var line = control as FilterLineBase;
             if (line != null && line.IsSelected && !string.IsNullOrEmpty(line.FieldName) && fields.Contains(line.FieldName.ToUpper()))
             {
-                result += (and ? "\nand " : "\nor  ") + line.GetQuery(table);
+                result += (and ? "\nand " : "\nor  ") + line.GetQuery_R(table); // !!! line.GetQuery_R(table);
             }
             if (control.Controls.Count > 0)
             {

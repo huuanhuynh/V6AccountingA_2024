@@ -290,7 +290,7 @@ namespace V6AccountingB
         private static void Main()
         {
             //Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-
+            V6Setting.SystemCulture = CultureInfo.CurrentCulture;
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 

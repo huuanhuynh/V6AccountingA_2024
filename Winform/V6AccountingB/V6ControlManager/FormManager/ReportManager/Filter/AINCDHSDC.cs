@@ -95,7 +95,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var key0 = GetFilterStringByFields(new List<string>()
             {
                 "MA_DVCS","MA_KHO","MA_VT","MA_VITRI","MA_LO"
-            }, and);
+            }, and); // !!!!! sửa gen or ma_kho,,,
             var key1 = GetFilterStringByFields(new List<string>()
             {
                 "NH_VT1","NH_VT2","NH_VT3","NH_VT4","NH_VT5","NH_VT6"

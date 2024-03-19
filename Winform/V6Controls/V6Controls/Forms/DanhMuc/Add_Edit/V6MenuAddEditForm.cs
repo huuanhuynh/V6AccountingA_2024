@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen;
+using V6SqlConnect;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -111,5 +113,37 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        private void btnMenuPath_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Mode != V6Structs.V6Mode.Edit) return;
+                string path = "";
+                Dictionary<string, object> keys = new Dictionary<string, object>();
+                keys["Itemid"] = "A0000000";
+                keys[txtV2ID.AccessibleName] = txtV2ID.Text;
+                var menu0 = SqlConnect.SelectOneRow("V6Menu", keys);
+                if (menu0.Rows.Count > 0)
+                {
+                    path += "/" + menu0.Rows[0]["Vbar"];
+                }
+                keys["Itemid"] = "B0000000";
+                keys[txtJOBID.AccessibleName] = txtJOBID.Text;
+                var menu1 = SqlConnect.SelectOneRow("V6Menu", keys);
+                if (menu1.Rows.Count > 0)
+                {
+                    path += "/" + menu1.Rows[0]["Vbar"];
+                }
+
+                path += "/" + DataOld["HOTKEY"] + "." + txtVBAR.Text;
+
+                this.ShowInfoMessage(path);
+                SetStatusText(path);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(ex);
+            }
+        }
     }
 }

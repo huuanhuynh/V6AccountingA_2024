@@ -40,7 +40,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
+            this.txtPageX = new V6Controls.V6ColorTextBox();
             this.txtHotKey = new V6Controls.V6ColorTextBox();
+            this.lblUseXtra = new System.Windows.Forms.Label();
             this.txtCode = new V6Controls.V6ColorTextBox();
             this.lblHotKey = new System.Windows.Forms.Label();
             this.txtMaCt = new V6Controls.V6ColorTextBox();
@@ -127,8 +129,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.lblUseXtra = new System.Windows.Forms.Label();
-            this.txtPageX = new V6Controls.V6ColorTextBox();
+            this.btnMenuPath = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabCacTuyChon.SuspendLayout();
@@ -363,6 +364,23 @@
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
             // 
+            // txtPageX
+            // 
+            this.txtPageX.AccessibleName = "PAGE";
+            this.txtPageX.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPageX.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPageX.Enabled = false;
+            this.txtPageX.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPageX.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPageX.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPageX.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPageX.LeaveColor = System.Drawing.Color.White;
+            this.txtPageX.Location = new System.Drawing.Point(517, 296);
+            this.txtPageX.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPageX.Name = "txtPageX";
+            this.txtPageX.Size = new System.Drawing.Size(56, 23);
+            this.txtPageX.TabIndex = 23;
+            // 
             // txtHotKey
             // 
             this.txtHotKey.AccessibleName = "HOTKEY";
@@ -378,6 +396,17 @@
             this.txtHotKey.Name = "txtHotKey";
             this.txtHotKey.Size = new System.Drawing.Size(56, 23);
             this.txtHotKey.TabIndex = 23;
+            // 
+            // lblUseXtra
+            // 
+            this.lblUseXtra.AccessibleDescription = "";
+            this.lblUseXtra.AutoSize = true;
+            this.lblUseXtra.Location = new System.Drawing.Point(347, 299);
+            this.lblUseXtra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUseXtra.Name = "lblUseXtra";
+            this.lblUseXtra.Size = new System.Drawing.Size(154, 17);
+            this.lblUseXtra.TabIndex = 22;
+            this.lblUseXtra.Text = "Page (UserXtraReport)";
             // 
             // txtCode
             // 
@@ -440,7 +469,6 @@
             this.txtSttBox.AccessibleName = "STT_BOX";
             this.txtSttBox.BackColor = System.Drawing.SystemColors.Window;
             this.txtSttBox.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSttBox.DecimalPlaces = 0;
             this.txtSttBox.Enabled = false;
             this.txtSttBox.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtSttBox.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -817,6 +845,7 @@
             this.tabCacTuyChon.AccessibleDescription = "ADDEDITT00010";
             this.tabCacTuyChon.AutoScroll = true;
             this.tabCacTuyChon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabCacTuyChon.Controls.Add(this.btnMenuPath);
             this.tabCacTuyChon.Controls.Add(this.btnMenuHide);
             this.tabCacTuyChon.Controls.Add(this.chkQuickRun);
             this.tabCacTuyChon.Controls.Add(this.label19);
@@ -1110,7 +1139,7 @@
             this.txtSLS6.Name = "txtSLS6";
             this.txtSLS6.Size = new System.Drawing.Size(200, 23);
             this.txtSLS6.TabIndex = 137;
-            this.txtSLS6.Text = "0,000";
+            this.txtSLS6.Text = "0";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS6.Value = new decimal(new int[] {
             0,
@@ -1133,7 +1162,7 @@
             this.txtSLS5.Name = "txtSLS5";
             this.txtSLS5.Size = new System.Drawing.Size(200, 23);
             this.txtSLS5.TabIndex = 135;
-            this.txtSLS5.Text = "0,000";
+            this.txtSLS5.Text = "0";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS5.Value = new decimal(new int[] {
             0,
@@ -1156,7 +1185,7 @@
             this.txtSLS4.Name = "txtSLS4";
             this.txtSLS4.Size = new System.Drawing.Size(200, 23);
             this.txtSLS4.TabIndex = 133;
-            this.txtSLS4.Text = "0,000";
+            this.txtSLS4.Text = "0";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSLS4.Value = new decimal(new int[] {
             0,
@@ -1434,7 +1463,7 @@
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox3.TabIndex = 107;
-            this.v6NumberTextBox3.Text = "0,000";
+            this.v6NumberTextBox3.Text = "0";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
             0,
@@ -1457,7 +1486,7 @@
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox2.TabIndex = 105;
-            this.v6NumberTextBox2.Text = "0,000";
+            this.v6NumberTextBox2.Text = "0";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
             0,
@@ -1480,7 +1509,7 @@
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox1.TabIndex = 103;
-            this.v6NumberTextBox1.Text = "0,000";
+            this.v6NumberTextBox1.Text = "0";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,
@@ -1680,33 +1709,18 @@
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
             // 
-            // lblUseXtra
+            // btnMenuPath
             // 
-            this.lblUseXtra.AccessibleDescription = "";
-            this.lblUseXtra.AutoSize = true;
-            this.lblUseXtra.Location = new System.Drawing.Point(347, 299);
-            this.lblUseXtra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUseXtra.Name = "lblUseXtra";
-            this.lblUseXtra.Size = new System.Drawing.Size(154, 17);
-            this.lblUseXtra.TabIndex = 22;
-            this.lblUseXtra.Text = "Page (UserXtraReport)";
-            // 
-            // txtPageX
-            // 
-            this.txtPageX.AccessibleName = "PAGE";
-            this.txtPageX.BackColor = System.Drawing.SystemColors.Window;
-            this.txtPageX.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtPageX.Enabled = false;
-            this.txtPageX.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtPageX.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtPageX.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtPageX.HoverColor = System.Drawing.Color.Yellow;
-            this.txtPageX.LeaveColor = System.Drawing.Color.White;
-            this.txtPageX.Location = new System.Drawing.Point(517, 296);
-            this.txtPageX.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPageX.Name = "txtPageX";
-            this.txtPageX.Size = new System.Drawing.Size(56, 23);
-            this.txtPageX.TabIndex = 23;
+            this.btnMenuPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMenuPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuPath.Location = new System.Drawing.Point(307, 309);
+            this.btnMenuPath.Name = "btnMenuPath";
+            this.btnMenuPath.Size = new System.Drawing.Size(211, 25);
+            this.btnMenuPath.TabIndex = 9;
+            this.btnMenuPath.Text = "Xem đường dẫn";
+            this.btnMenuPath.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMenuPath.UseVisualStyleBackColor = true;
+            this.btnMenuPath.Click += new System.EventHandler(this.btnMenuPath_Click);
             // 
             // V6MenuAddEditForm
             // 
@@ -1835,6 +1849,6 @@
         private System.Windows.Forms.Label lblHotKey;
         private V6ColorTextBox txtPageX;
         private System.Windows.Forms.Label lblUseXtra;
-
+        private System.Windows.Forms.Button btnMenuPath;
     }
 }

@@ -1557,7 +1557,7 @@ namespace V6Controls.Forms
                     Enabled = lineInfo.Enabled,
                     Visible = lineInfo.Visible,
                     AccessibleName = lineInfo.AccessibleName,
-                    //AccessibleName2 = lineInfo.AccessibleName2,
+                    CheckNotEmpty = lineInfo.NotEmpty,
                 };
                 filter.GenControls(V6Setting.IsVietnamese ? lineInfo.DescriptionV : lineInfo.DescriptionE);
                 return filter;

@@ -279,8 +279,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     if (control is FilterGroup)
                     {
                         var group = control as FilterGroup;
-                        if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
+                        if (group.CheckNotEmpty && group.CheckSumGroup == 0)
+                        {
+                            throw new Exception(string.Format("{0}: {1} ({2}).", V6Text.CheckInfor, group.Text, group.DefineInfo.Field));
+                        }
 
+                        if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
+                        
                         last_key = group.DefineInfo.Loai_key;
 
                         switch (last_key)
@@ -496,6 +501,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     if (control is FilterGroup)
                     {
                         var group = control as FilterGroup;
+                        if (group.CheckNotEmpty && group.CheckSumGroup == 0)
+                        {
+                            throw new Exception(string.Format("{0}: {1} ({2}).", V6Text.CheckInfor, group.Text, group.DefineInfo.Field));
+                        }
                         if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
 
                         last_key = group.DefineInfo.Loai_key;
